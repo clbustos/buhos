@@ -1,0 +1,67 @@
+%body
+  %head
+    %title Sistema de votaciones Radio Biobío
+    %script{:type=>"text/javascript", :src=>url("/jquery-1.6.2.js")}
+    %script{:type=>"text/javascript", :src=>url("/jquery.jeditable.mini.js")}
+    %script{:type=>"text/javascript", :src=>url("/editable.js")}
+    %script{:type=>"text/javascript", :src=>url("/superfish/js/jquery.bgiframe.min.js")}
+    %script{:type=>"text/javascript", :src=>url("/superfish/js/hoverIntent.js")}
+    %script{:type=>"text/javascript", :src=>url("/superfish/js/superfish.js")}
+    %script{:type=>"text/javascript", :src=>url("/jquery-ui-1.8.15.custom.min.js")}
+    %script{:type=>"text/javascript", :src=>url("/chosen.jquery.min.js")}
+    %script{:type=>"text/javascript", :src=>url("/jquery.dataTables.min.js")}
+    
+    
+    %link{:href=>url("/css/ui-lightness/jquery-ui-1.8.15.custom.css") , :media => "screen", :rel=>'stylesheet', :type=>'text/css'}
+    %link{:href=>url("/superfish/css/superfish.css") , :media => "screen", :rel=>'stylesheet', :type=>'text/css'}    
+    %link{:href=>url("/css/main.css") , :media => "screen", :rel=>'stylesheet', :type=>'text/css'}
+    %link{:href=>url("/css/demo_table.css") , :media => "screen", :rel=>'stylesheet', :type=>'text/css'}    
+    %link{:href=>url("/css/chosen.css") , :media => "screen", :rel=>'stylesheet', :type=>'text/css'}
+    %link{:href=>url("/css/print.css") , :media => "print", :rel=>'stylesheet', :type=>'text/css'}
+  %body
+    #outer
+      #inner
+        .title
+          %h1 Sistema de votaciones
+        #header
+          #usuario
+            =presentar_usuario
+          #menu
+            %ul.sf-menu
+              -if permiso("ingreso")
+                %li 
+                  %a{:href=>"/ingreso"} Digitación
+              -if permiso("analisis")
+                %li 
+                  %a{:href=>"/control"} Control
+              -if permiso("historico")
+                %li
+                  %a{:href=>"/historico/eleccion/9/presidencial"} Histórico
+              %li
+                %a{:href=>"/resultados"} Resultados                  
+              -if permiso("administracion")
+                %li
+                  %a{:href=>"/analisis"} Análisis
+                %li 
+                  %a{:href=>"#"} Administración
+                  %ul
+                    %li<
+                      %a{:href=>url('/admin/elecciones')} Elecciones
+                    %li<
+                      %a{:href=>url('/admin/usuarios')} Usuarios
+                    %li<
+                      %a{:href=>url('/admin/mesas')} Mesas
+                    %li<
+                      %a{:href=>url('/admin/roles')} Roles
+                    %li<
+                      %a{:href=>url('/admin/equipos')} Equipos              
+          %div#header-end
+
+        #mensajes
+          =imprimir_mensajes
+          -if development?
+            .desarrollo Desarrollo
+        #content
+          =yield
+        #footer
+          %p Copyright (c) 2009-2013. Radio Bio Bio

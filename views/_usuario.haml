@@ -1,0 +1,17 @@
+%table
+  %tr
+    %th Nombre
+    %td=@usuario[:nombre]
+  %tr
+    %th Rol
+    %td
+      %p
+        =@usuario.rol[:descripcion]
+        (
+        =@usuario.rol[:id]
+        )
+  %tr
+    %th Permisos
+    %td 
+      -@usuario.permisos.each do |per|
+        %span=per[:id]

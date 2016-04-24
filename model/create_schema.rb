@@ -118,8 +118,6 @@ end
 $db.create_join_table?(:busqueda_id=>:busquedas,:registro_id=>:registros)
 
 
-
-
 $db.create_table? :permisos do
   String :id, :size=>50, :primary_key=>true
   String :descripcion
