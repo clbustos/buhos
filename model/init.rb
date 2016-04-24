@@ -1,6 +1,6 @@
 # encoding:utf-8
 require 'sequel'
-
+require 'logger'
 Sequel::Model.plugin :force_encoding, 'UTF-8' if RUBY_VERSION>="1.9"
 # Chanta, ¿no?
 
@@ -18,15 +18,15 @@ raise("No sé donde conectarme")
 end
 
 $db.run("SET NAMES UTF8")
-$log_sql = Logger.new('log/app_sql.log')
+$log_sql = Logger.new(File.dirname(__FILE__)+'/../log/app_sql.log')
 
 $db.loggers << $log_sql
 
 
 
-before do
-  content_type :html, 'charset' => 'utf-8'
-end
+#before do
+#  content_type :html, 'charset' => 'utf-8'
+#end
 
 
 Sequel.inflections do |inflect|

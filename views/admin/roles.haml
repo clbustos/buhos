@@ -1,0 +1,11 @@
+%h2 Roles
+%form{:method=>:post, :action=>url("/admin/roles/actualizar")}
+  -@roles.each do |rol|
+    %h3
+      Rol
+      =rol[:id]
+    %select{:multiple=>true, :size=>@permisos.count, :name=>"permisos[#{rol[:id]}[]"}
+      - @permisos.each do |permiso|
+        %option{:value=>permiso[:id], :selected=>rol.incluye_permiso?(permiso[:id])}=permiso[:id]
+  %p
+  %input{:type=>:submit}

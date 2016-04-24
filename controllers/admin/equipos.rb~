@@ -1,0 +1,32 @@
+get '/admin/equipos' do
+  error(403) unless permiso('ver_equipos')
+
+  @equipos=Equipo
+  @circunscripciones=Circunscripcion.activas_eleccion
+  @usuarios=Usuario.where(:activa=>1).order(:nombre)
+  @circunscripciones_equipos=Circunscripcion.arbol_circunscripciones_equipos
+  @usuarios_equipos=Usuario.arbol_usuarios_equipos
+#  @permisos=Permiso.order(:id)
+  haml "admin/equipos".to_sym
+end
+
+post '/admin/equipos/actualizar' do
+  error(403) unless permiso('editar_equipos')
+  equipos_c=params['circunscripcion']
+  equipos_c.each {|equipo_id, cir_ids|
+    $db.run "DELETE FROM equipos_circunscripciones WHERE equipo_id=#{equipo_id}"
+    cir_ids.keys.each {|cir|
+      $db.run "INSERT INTO equipos_circunscripciones (equipo_id,circunscripcion_id) VALUES (#{equipo_id},#{cir})"
+    }
+  }
+  usuarios_c=params['usuario']
+  usuarios_c.each {|equipo_id, usr_ids|
+    $db.run "DELETE FROM usuarios_equipos WHERE equipo_id=#{equipo_id}"
+    usr_ids.keys.each {|usr_id|
+      $db.run "INSERT INTO usuarios_equipos (equipo_id,usuario_id) VALUES (#{equipo_id},#{usr_id})"
+    }
+  }
+  
+#  $log.info(equipos)
+  redirect back
+end

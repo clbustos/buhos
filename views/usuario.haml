@@ -1,0 +1,6 @@
+.usuario
+  Bienvenido, 
+  %a{:href=>url("/usuario/#{session['user_id']}")}=session['nombre']
+  |
+  %a{:href=>url("/logout")} Desconectar
+  

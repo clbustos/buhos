@@ -1,0 +1,163 @@
+# encoding: utf-8
+# @!method get_admin_elecciones
+get '/admin/elecciones' do
+  permiso("ver_elecciones")
+  @elecciones=Eleccion.order()
+  #@eleccion_actual=config_get("eleccion_actual")
+  haml :elecciones
+end
+
+# @!method post_admin_elecciones_actualizar
+post '/admin/elecciones/actualizar' do
+  error(403) unless permiso("editar_elecciones")
+  params['eleccion'].each {|id,elec|
+    if(id=='N')
+      if(elec["nombre"]!="")
+        data={
+          'nombre'=>elec['nombre'],
+          'fecha'=>elec['fecha'],
+          'tipo'=>elec['tipo'],
+          'activa'=>1
+        }
+        log.info(data)
+        Eleccion.insert(data)
+      end
+    elsif !elec['borrar'].nil? and permiso("borrar_elecciones")
+      Eleccion[id].delete()
+    else
+        data={
+          'nombre'=>elec['nombre'],
+          'fecha'=>elec['fecha'],
+          'tipo'=>elec['tipo'],
+          'activa'=>(elec['activa']=="1") ? 1:0
+        }       
+        $log.info(data)
+      Eleccion[id].update(data)
+    end
+  }
+  redirect back
+end
+
+
+get '/admin/eleccion/:eleccion_id/subelecciones' do |id|
+  error(403) unless permiso("ver_subelecciones")
+  @eleccion=Eleccion[id]
+  log.info(@eleccion)
+  error(404) if @eleccion.nil?
+  @subelecciones=@eleccion.subelecciones_dataset
+  haml "admin/subelecciones".to_sym
+end
+
+
+post '/admin/eleccion/:eleccion_id/subelecciones/actualizar' do |eleccion_id|
+  error(403) unless permiso("editar_elecciones")
+
+  @eleccion=Eleccion[eleccion_id]
+  error(404) if @eleccion.nil?
+  params['subeleccion'].each {|id,elec|
+    if(id=='N')
+      if(elec["nombre"]!="")
+        data=elec
+        data[:eleccion_id]=eleccion_id
+        log.info(data)
+        Subeleccion.insert(data)
+      end
+    elsif !elec['borrar'].nil? and permiso("borrar_elecciones")
+      Subeleccion[id].delete()
+    else
+      data=elec
+      #$log.info(data)
+      Subeleccion[id].update(data)
+    end
+  }
+  redirect back
+end
+
+get '/admin/subeleccion/:se_id/candidatos' do |se_id|
+  permiso("ver_subelecciones")
+  @subeleccion=Subeleccion[se_id]
+  error(404) if @subeleccion.nil?
+  @eleccion=@subeleccion.eleccion
+  @candidaturas=@subeleccion.candidaturas_completas
+  haml :subeleccion_candidatos
+end
+
+
+get '/admin/subeleccion/:se_id/crear_tabla' do |se_id|
+  @subeleccion=Subeleccion[se_id]
+  error(404) if @subeleccion.nil?
+  @subeleccion.crear_tablas_envios
+  $db["DELETE FROM resultados_cnn WHERE subeleccion_id='#{se_id}}'"]
+  agregar_mensaje "Creacion de tablas exitosa para subeleccion #{@subeleccion[:nombre]}"
+  redirect back
+end
+
+get '/admin/eleccion/:eleccion_id/crear_tablas_envios' do |eleccion_id|
+  
+  error(403) unless permiso("crear_tablas_envios")
+  @eleccion=Eleccion[eleccion_id]
+  error(404) if @eleccion.nil?
+  @eleccion.update(:ultima_validacion=>nil,:ultima_validacion_usuario_id=>nil);
+  if @eleccion.tipo=="presidencial"
+    @eleccion.actualizar_candidaturas
+  end
+  
+  
+  $db["DELETE FROM eleccion_validaciones WHERE eleccion_id=#{@eleccion[:id]}"]
+  
+  @eleccion.subelecciones.each {|sube|
+    $db["DELETE FROM resultado_subelecciones WHERE subeleccion_id=#{sube[:id]}"]
+    $db["DROP TABLE IF EXISTS envios_#{sube[:id]}"]
+    $db["DROP TABLE IF EXISTS envios_#{sube[:id]}_mesas"]
+    $db["DELETE FROM subeleccion_validaciones WHERE subeleccion_id=#{sube[:id]}"]
+    sube.reload
+    sube.crear_tablas_envios
+    
+    sube.ponderacion_circunscripciones.each do |pc|
+      pc.crear_vista_envios
+    end
+    
+    agregar_mensaje "Creacion de tablas exitosa para subeleccion #{sube[:nombre]}"
+  }
+  @eleccion.crear_vista_envios
+  
+  if @eleccion.tipo=="presidencial"
+    @eleccion.actualizar_historico_2013b
+    @eleccion.actualizar_presidencial_cnn_2013  
+
+  end
+  redirect back
+end
+
+get '/admin/subeleccion/:se_id/ponderaciones' do |se_id|
+  error(403) unless permiso("ver_subelecciones")
+  @subeleccion=Subeleccion[se_id]
+  error(404) if @subeleccion.nil?
+  @eleccion=@subeleccion.eleccion
+  redirect "/admin/subeleccion/#{se_id}/ponderaciones/#{@eleccion.tipo}"
+
+end
+
+
+get '/admin/eleccion/:e_id/ponderaciones' do |e_id|
+  error(403) unless permiso("ver_subelecciones")
+  @eleccion=Eleccion[e_id]
+  error(404) if @eleccion.nil?
+  tipo = @eleccion.tipo=="alcalde" ? "alcalde" : "general"
+  redirect url("/admin/eleccion/#{e_id}/ponderaciones/#{tipo}")
+end
+
+get '/admin/eleccion/:e_id/candidatos' do |e_id|
+  error(403) unless permiso("ver_subelecciones")
+  @eleccion=Eleccion[e_id]
+  error(404) if @eleccion.nil?
+  redirect url("/admin/eleccion/#{e_id}/candidatos/#{@eleccion.tipo}")
+end
+
+get '/admin/eleccion/:e_id/candidatos/presidencial' do |e_id|
+  @eleccion=Eleccion[e_id]
+  error(404) if @eleccion.nil?
+  @candidatos=CandidaturaPresidencial.where(:eleccion_id=>e_id).order(:orden)
+  
+  haml "admin/eleccion_candidatos_presidencial".to_sym
+end

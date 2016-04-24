@@ -1,0 +1,69 @@
+# encoding: utf-8
+
+get '/admin/eleccion/:e_id/ponderaciones/general' do |e_id|
+  error(403) unless permiso("ver_subelecciones")
+  @eleccion=Eleccion[e_id]
+  error(404) if @eleccion.nil?
+  @subelecciones=@eleccion.subelecciones_dataset
+  haml ("admin/eleccion_ponderaciones_general").to_sym
+end
+
+
+
+get %r{/admin/subeleccion/(.+)/ponderaciones/(diputados|senatorial|presidencial)} do |se_id,tipo_id|
+  @subeleccion=Subeleccion[se_id]
+  error(404) if @subeleccion.nil?
+  @eleccion=@subeleccion.eleccion
+  @ponderaciones=PonderacionCircunscripcion.where(:subeleccion_id=>se_id)
+  @circunscripciones=@subeleccion.circunscripciones_posibles.order(:id)
+  @total_p=PonderacionCircunscripcion.where(:subeleccion_id=>se_id).sum(:porcentaje)
+  @total_p=0 if @total_p.nil?
+  haml "admin/subeleccion_ponderaciones_general".to_sym
+end
+
+post '/admin/subeleccion/:se_id/actualizar_ponderacion/general' do |se_id|
+  error(403) unless permiso("editar_ponderaciones")
+  @subeleccion=Subeleccion[se_id]
+  error(404) if @subeleccion.nil?
+  @eleccion=@subeleccion.eleccion
+  orden_par=params["orden"]
+  porcentaje_cir=params["porcentaje_cir"]
+  porcentaje_tipo=params["porcentaje_tipo"]
+  $log.info("Ingreso informacion subeleccion")
+  @subeleccion.circunscripciones_posibles.each do |cir|
+	cir_id=cir[:id].to_s
+	pc_o=PonderacionCircunscripcion[:subeleccion_id=>se_id,:circunscripcion_id=>cir[:id]]
+	if orden_par[cir_id]!="" and porcentaje_cir[cir_id]!=""
+	$log.info("Tengo informacion para circunscripcion #{cir_id}")
+		# Ingreso la circunscripcion si no esta
+		#$log << pc_o
+		if(pc_o.nil?)
+			pc_id=PonderacionCircunscripcion.insert(:subeleccion_id=>se_id,:circunscripcion_id=>cir[:id],
+			  :porcentaje=>porcentaje_cir[cir_id],:orden=>orden_par[cir_id])
+			  #$log.info(pc_id)
+		else
+		   pc_o.update(:porcentaje=>porcentaje_cir[cir_id],:orden=>orden_par[cir_id])
+		   pc_id=pc_o[:id]
+		end
+		# Reviso tipos
+		cir.tipos_mesas.each do |tipo|
+			pct_o=PonderacionCircunscripcionTipo[:ponderacion_circunscripcion_id=>pc_id,:tipo=>tipo]
+			if porcentaje_tipo[cir_id][tipo]!=""
+				if pct_o.nil?
+					PonderacionCircunscripcionTipo.insert(:ponderacion_circunscripcion_id=>pc_id,:tipo=>tipo, 
+					  :porcentaje=>porcentaje_tipo[cir_id][tipo])
+				else
+				   pct_o.update(:porcentaje=>porcentaje_tipo[cir_id][tipo])
+				end
+			else
+				pct_o.delete unless pct_o.nil?
+			end
+		end
+	elsif !pc_o.nil? # Si existe, pero no tiene datos, la borro
+	    $log.info("No hay info para circunscripcion #{cir_id}")
+		pc_o.delete
+	end
+	
+  end
+  redirect back
+end

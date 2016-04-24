@@ -1,0 +1,15 @@
+%p Ingrese su nombre de usuario y password
+%form{:method=>"post",:action=>url("login")}
+  %table
+    %tr
+      %td Nombre de usuario
+      %td 
+        %input{:type=>'text', :name=>"user"}
+    %tr
+      %td Password
+      %td 
+        %input{:type=>'password', :name=>"password"}
+    %tr
+      %td{:colspan=>2}
+        %input.enviar{:type=>'submit', :value=>"Ingresar al sistema"}
+
