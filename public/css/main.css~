@@ -1,0 +1,701 @@
+/*
+Design by Free CSS Templates
+http://www.freecsstemplates.org
+Released for free under a Creative Commons Attribution 2.5 License
+*/
+
+/* Elements */
+
+body {
+  margin: 20px 0;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  color: #A1A1A1;
+}
+
+h1 {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+
+}
+
+h2, h3, h4, h5, h6 {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+
+  color: #2582A4;
+}
+
+h3 a:hover, h3 a:link, h3 a:visited {
+    color: #2582A4;
+    text-decoration:none;
+}
+
+
+p, ol, ul {
+  text-align: justify;
+}
+
+strong {
+  font-weight: bold;
+  color: #808080;
+}
+
+a {
+  color: #87A019;
+}
+
+a:hover {
+  text-decoration: none;
+  color: #2582A4;
+}
+
+.box {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  background: url(images/img07.gif) repeat-x left bottom;
+}
+
+.bottom {
+  display: block;
+  margin-bottom: 0;
+  padding-bottom: 10px;
+  background: url(images/img08.gif) no-repeat left bottom;
+}
+
+.image {
+  float: left;
+  margin: 3px 0 0 0;
+  padding: 0;
+}
+
+.indent {
+  margin-left: 125px;
+}
+
+/* Header */
+
+#header {
+  width: 100%;
+  height: 37px;
+  margin: 0 auto;
+  background: #BECF74 url(images/img01.gif) repeat-x;
+  border-bottom: 3px solid #FFFFFF;
+}
+#usuario {
+    float:right;
+}
+/* Menu */
+
+#menu {
+  float: left;
+  width: 750px;
+  height: 37px;
+  margin: 0;
+  padding: 0 0 0 10px;
+  list-style: none;
+  background: url(images/img02.gif) no-repeat;
+}
+
+#menu li {
+  display: inline;
+}
+
+#menu a {
+  display: block;
+  float: left;
+  height: 27px;
+  padding: 10px 15px 0px 15px;
+  text-transform: lowercase;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: bold;
+  color: #FFFFFF;
+}
+
+#menu a:hover {
+  background: #A4B74C url(images/img04.gif) repeat-x;
+}
+
+/* Search */
+
+#header-end {
+  float: right;
+  height: 28px;
+  margin: 0;
+  padding: 9px 25px 0 0;
+  background: url(images/img03.gif) no-repeat right top;
+}
+
+#search fieldset {
+  display: inline;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+#input1 {
+  width: 164px;
+  padding: 2px 5px;
+  background: #FFFFFF;
+  border: none;
+}
+
+#input2 {
+  height: 20px;
+  background: #87C4DB;
+  border: none;
+  text-transform: lowercase;
+  font-size: 10px;
+  font-weight: bold;
+  color: #FFFFFF;
+}
+
+.enviar {
+
+  border:1px solid #AAAAFF;
+  padding:1px solid;
+  background-color:white;
+  margin-top:1em;
+}
+
+/* Content */
+
+#content {
+  width: 100%;
+  margin: 0 9;
+  padding: 30px 40px 0 0px;
+  background: url(images/img09.gif) repeat-x;
+  
+}
+
+#inner {
+    width:100%;
+}
+#content h2 {
+  margin-top: 0;
+  font-size: 18px;
+}
+
+#content h3 {
+  margin-bottom: 0;
+  font-size: 16px;
+}
+
+#content h4 {
+  margin-top: 0;
+  font-size: 14px;
+  font-weight: normal;
+}
+
+#content .box {
+  margin: 0 -30px 30px -20px;
+  padding: 0 30px 0 20px;
+}
+
+#content .bottom {
+  margin: 0 0 20px -20px;
+  padding: 0 0 20px 20px;
+}
+
+/* Logo */
+
+#logo {
+  height: 150px;
+  background: url(images/img06.gif) no-repeat;
+}
+
+#logo h1, #logo h2, #logo a {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  text-transform: lowercase;
+  text-align: center;
+  color: #FFFFFF;
+}
+
+#logo h1 {
+  padding-top: 25px;
+  font-size: 34px;
+}
+
+#logo h2 {
+  margin-top: -5px;
+  font-size: 12px;
+}
+
+/* Footer */
+
+#footer {
+  clear: both;
+  width: 100%;
+  margin: 0 auto;
+  padding-top: 40px;
+  background: url(images/img11.gif) repeat-x;
+}
+
+#footer p {
+  margin: 0;
+  text-align: center;
+}
+
+
+/** Mesas varones **/
+
+.mesas-contenedor {
+    clear:both;
+}
+.mesas-varones {
+    width: auto;
+    float:left;
+    border:1px dashed #aaa;
+    margin:0.5em;
+    padding:0.5em;
+}
+
+
+
+.mesas-mujeres {
+    width: auto;
+    float:left;
+    border:1px dashed #aaa;
+    margin:0.5em;
+    padding:0.5em;
+}
+
+.dato-mesa {
+    border:1px solid #eee;
+    padding:1px;
+}
+
+/* Para los ingresos */
+
+.eleccion-float {
+  float:left;
+  border:1px solid grey;
+  margin:0.2em;
+  padding:0.2em;
+}
+
+.subeleccion-float {
+  float:left;
+  width:200px;
+  margin:0.2em;
+  padding:0.2em;
+}
+
+.subeleccion-float-2 {
+  float:left;
+  width:auto;
+  margin:0.2em;
+  padding:0.2em;
+}
+
+
+
+table {
+    border-collapse: collapse;   
+    color:black;
+    font-size:10pt;
+}
+table.a95 {
+/*    width:95%;*/
+}
+
+table.reporte {
+    font-size:98%;
+    margin-left:0px;
+    margin-right:1em;
+} 
+table.blanco td {
+    border:0px solid #666;
+    padding:0.1em;
+
+}
+table.reporte td {
+    border:1px solid #666;
+    padding:0.2em;
+    text-align:right;
+    
+}
+
+table.reporte th {
+    background: #eee;
+    font-weight: bold;
+    color:black;
+    border:1px solid black;
+}
+
+table.reporte th.chico {
+  font-size:90%;
+    background: #eee;
+    font-weight: bold;
+    color:black;
+    border:1px solid black;
+}
+
+.rojo {
+    color:red;
+}
+
+img {
+    border:0px;
+}
+
+
+.reporte-control {
+    font-size:90%;
+    border-collapse:collapse;
+}
+
+.reporte-control td {
+    border:1px solid black;
+}
+.reporte-control th {
+    color:black;
+    font-weight:bold;
+    background:#999;
+    border:1px solid black;
+}
+
+
+.total-circunscripcion {
+    background-color:yellow;
+    color: black;
+    font-weight:bold;
+}
+
+
+.prioridad-0 {
+
+}
+.prioridad-1 {
+    background:#EEEEEE;
+}
+.prioridad-2 {
+    background:#AACFFF;
+}
+
+.prioridad-3 {
+    background:#FFCFAA;
+}
+
+.hidden {
+    display:none;
+}
+
+
+.correcto {
+    background-color: #CFC;
+    border:1px solid #969;
+    padding:1em;
+    color:green;
+}
+
+.completo {
+    background-color: #CFC;
+    border:1px solid #969;
+    color:green;
+
+}
+
+.advertencia {
+    background-color:#FFC;
+    border:1px solid red;
+    padding:1em;
+    color:black;
+    font-weight:bold;
+}
+
+
+.incompleto {
+    color:red;
+}
+
+.semaforo {
+background:white;
+  position:absolute;
+  float:right;
+  right:1em;
+  top:120px;
+  width:auto;
+  height:150px;
+  overflow:auto;
+}
+#ingreso_datos_principal {
+    width:auto;
+}
+#tabla_ingreso_candidatos {
+/* font-size:98%;*/
+}
+
+.ui-tabs {
+width:98%;
+background:white;
+padding:0px;
+}
+
+.ui-tabs-nav {
+background:#A4B74C;
+border-color:#A4B74C;;
+}
+.ui-tabs-selected a:link {
+    color:#87A019;
+border-color:#A4B74C;;
+    
+}
+
+.ui-tabs-nav a:hover {
+    color: #2582A4;
+    background:white;
+    border-color: #2582A4;
+}
+
+
+.lista_candidatos {
+    width:600px;
+    font-size:105%;
+    margin-top:1em;
+}
+
+.presidencial {
+    width:400px;
+}
+
+.acciones_globales {
+    margin:10px;
+    border-left:1px dashed grey;
+    padding-left:0.5em;
+}
+
+.lista_candidatos .lista {
+    border-top:1px dashed grey;
+    clear:both;
+    border-collapse:collapse;
+    padding:0.75em 0em;
+    height:auto;
+}
+.lista_candidatos .candidato {
+    width:auto;
+    clear:both;
+    
+}
+
+.lista_candidatos  .nombre {
+    float:left;
+    
+}
+
+.lista_candidatos  .porcentaje {
+    float:right;
+}
+
+
+.lista_candidatos .candidatos {
+    float:left;
+    width:75%;
+}
+
+
+.lista_candidatos .resultados{
+    float:right;
+    width:13%;
+}
+
+.ganador {
+    color:blue;
+    font-weight:bold;
+}
+
+.estimaciones {
+    height:auto;
+    
+}
+.pie_estimaciones {
+    clear:both;
+}
+.actual {
+    float:left;
+}
+.validado_antiguo {
+    background:#eee;
+    border:1px dashed #999;
+    float:left;
+    width:auto;
+    padding:0px 1em;
+    margin-left:1em;
+}
+
+
+.validado_antiguo .ganador {
+    color:#003;
+    font-weight: normal;
+}
+
+/** breadcrumb */
+
+#breadcrumb {
+margin-left:1em;
+margin-bottom:0.5em;
+}
+
+#breadcrumb select {
+   overflow: hidden;
+   background: white;
+   border: 1px solid #ccc;
+   
+}
+
+#navlist
+{
+list-style: none;
+padding: 0;
+margin: 0;
+}
+
+#navlist li
+{
+display: inline;
+padding: 0;
+margin: 0;
+}
+
+#navlist li:before { content: "> "; }
+#navlist li:first-child:before { content: ""; }
+
+/*IE workaround*/
+/*All IE browsers*/
+* html #navlist li
+{
+background-image: url("images/gt.gif");
+background-repeat: no-repeat;
+background-position: 0 50%;
+padding: 0 0.5em 0 1em;
+margin: 0 1em 0 -1em;
+}
+
+/*Win IE browsers - hide from Mac IE\*/
+* html #navlist { height: 1%; }
+
+* html #navlist li
+{
+display: block;
+float: left;
+}
+
+/*End hide*/
+/*Mac IE 5*/
+* html #navlist li:first-child { background-image: none; }
+
+
+#asignacion_equipos {
+    clear:both;
+}
+
+
+
+
+#asignacion_equipos
+{
+list-style: none;
+padding: 0;
+margin: 0;
+}
+
+#asignacion_equipos li
+{
+display: inline;
+padding: 0;
+margin: 0;
+margin-left:0.5em;
+border-radius: 3px;
+}
+
+.incluido {
+border:1px solid #aca;
+background:#dfd;
+    
+}
+
+.excluido {
+border:1px solid #aca;
+background:#fdd;
+
+}
+
+#asignacion_equipos a {
+    text-decoration: none;
+}
+
+
+/*IE workaround*/
+/*All IE browsers*/
+* html #asignacion_equipos li
+{
+background-image: url("images/gt.gif");
+background-repeat: no-repeat;
+background-position: 0 50%;
+padding: 0 0.5em 0 1em;
+margin: 0 1em 0 -1em;
+}
+
+/*Win IE browsers - hide from Mac IE\*/
+* html #asignacion_equipos { height: 1%; }
+
+* html #asignacion_equipos li
+{
+display: block;
+float: left;
+}
+
+/*End hide*/
+/*Mac IE 5*/
+* html #asignacion_equipos li:first-child { background-image: none; }
+
+
+/** historico */
+.historicos .arbol {
+    width:30%;
+    height:auto;
+    border:1px solid dashed;
+    padding:0.5em;
+    float:left;
+}
+
+.historicos .resultados {
+    width:65%;
+    float:right;
+}
+.historicos .subelecciones, .historicos .circunscripciones {
+    padding-left:2em;
+}
+
+.historicos  .nombre {
+    float:left;
+    
+}
+
+.historicos  .porcentaje {
+    float:right;
+}
+
+.historicos .subeleccion, .historicos .circunscripcion {
+    clear:both
+}
+
+.historicos .subeleccion {
+    border-bottom:1px dotted #ccc;
+}
+
+.historicos .circunscripcion {
+    border-bottom:1px dotted #eee;
+}
+
+
+.historicos .destacado {
+    color:black;
+    font-weight:bold;
+}
+
+
+.historicos .validacion {
+    margin:1em;
+}

@@ -7,7 +7,6 @@ require "bundler/setup"
 require 'sinatra'
 # Vamos a activar el reloader en todos los casos
 # Como el sistema está en vivo, es más peligroso hacer lo otro
-require "sinatra/reloader" #if development?
 require 'haml'
 # Arreglo a lo bestia para el force_encoding
 unless "".respond_to? :force_encoding
@@ -35,6 +34,8 @@ end
 $log = Logger.new('log/app.log')
 $log_sql = Logger.new('log/app_sql.log')
 
+
+
 require 'model/init.rb'
 require 'model/models.rb'
 require 'lib/partials.rb'
@@ -54,9 +55,6 @@ enable :logging, :dump_errors, :raise_errors, :sessions
 
 configure :development do |c|
   c.enable :logging, :dump_errors, :raise_errors, :sessions, :show_errors, :show_exceptions 
-  c.also_reload("controllers/*.rb")
-  c.also_reload("lib/*.rb")
-  c.also_reload("model/*.rb")
 end
 
 configure :production do |c|

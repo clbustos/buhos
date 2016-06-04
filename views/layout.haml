@@ -1,28 +1,14 @@
 %body
   %head
-    %title Sistema de votaciones Radio Biobío
-    %script{:type=>"text/javascript", :src=>url("/jquery-1.6.2.js")}
-    %script{:type=>"text/javascript", :src=>url("/jquery.jeditable.mini.js")}
-    %script{:type=>"text/javascript", :src=>url("/editable.js")}
-    %script{:type=>"text/javascript", :src=>url("/superfish/js/jquery.bgiframe.min.js")}
-    %script{:type=>"text/javascript", :src=>url("/superfish/js/hoverIntent.js")}
-    %script{:type=>"text/javascript", :src=>url("/superfish/js/superfish.js")}
-    %script{:type=>"text/javascript", :src=>url("/jquery-ui-1.8.15.custom.min.js")}
-    %script{:type=>"text/javascript", :src=>url("/chosen.jquery.min.js")}
-    %script{:type=>"text/javascript", :src=>url("/jquery.dataTables.min.js")}
-    
-    
-    %link{:href=>url("/css/ui-lightness/jquery-ui-1.8.15.custom.css") , :media => "screen", :rel=>'stylesheet', :type=>'text/css'}
-    %link{:href=>url("/superfish/css/superfish.css") , :media => "screen", :rel=>'stylesheet', :type=>'text/css'}    
+    %title Sistema de revisiones sistemáticas
+    %script{:type=>"text/javascript", :src=>url("./bundle.js")}    
     %link{:href=>url("/css/main.css") , :media => "screen", :rel=>'stylesheet', :type=>'text/css'}
-    %link{:href=>url("/css/demo_table.css") , :media => "screen", :rel=>'stylesheet', :type=>'text/css'}    
-    %link{:href=>url("/css/chosen.css") , :media => "screen", :rel=>'stylesheet', :type=>'text/css'}
     %link{:href=>url("/css/print.css") , :media => "print", :rel=>'stylesheet', :type=>'text/css'}
   %body
     #outer
       #inner
         .title
-          %h1 Sistema de votaciones
+          %h1 Sistema de revisiones bibliográficas
         #header
           #usuario
             =presentar_usuario
@@ -30,18 +16,17 @@
             %ul.sf-menu
               -if permiso("ingreso")
                 %li 
-                  %a{:href=>"/ingreso"} Digitación
-              -if permiso("analisis")
+                  %a{:href=>"/revisiones"} Revisiones sistematicas
+              -if permiso("canonico")
                 %li 
-                  %a{:href=>"/control"} Control
-              -if permiso("historico")
+                  %a{:href=>"/control"} Control de Canonicos
+              -if permiso("grupos")
                 %li
-                  %a{:href=>"/historico/eleccion/9/presidencial"} Histórico
-              %li
-                %a{:href=>"/resultados"} Resultados                  
+                  %a{:href=>"/grupos"} Usuarios y grupos                  
+              -if permiso("estadisticas")
+                %li
+                  %a{:href=>"/grupos"} Estadisticas de uso                  
               -if permiso("administracion")
-                %li
-                  %a{:href=>"/analisis"} Análisis
                 %li 
                   %a{:href=>"#"} Administración
                   %ul
@@ -59,9 +44,11 @@
 
         #mensajes
           =imprimir_mensajes
-          -if development?
+          -$log.info(self.methods)
+          
+          -if settings.development?
             .desarrollo Desarrollo
         #content
           =yield
         #footer
-          %p Copyright (c) 2009-2013. Radio Bio Bio
+          %p Copyright (c) 2016 , Bustos y Morales

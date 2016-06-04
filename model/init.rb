@@ -5,12 +5,12 @@ Sequel::Model.plugin :force_encoding, 'UTF-8' if RUBY_VERSION>="1.9"
 # Chanta, ¿no?
 
 if(ENV['USER']=='elecciones' and production?)
-  $db=Sequel.mysql(:host=>"192.168.0.10",:user=>'biobio',:password=>'biobio018025', :database=>'biobio2012', :encoding => 'UTF8')
+  $db=Sequel.mysql2(:host=>"192.168.0.10",:user=>'biobio',:password=>'biobio018025', :database=>'biobio2012', :encoding => 'utf8')
 elsif(ENV['USER']=='elecciones' and development?)
-  $db=Sequel.mysql(:host=>"192.168.0.10",:user=>'biobio',:password=>'biobio018025', :database=>'biobio2012_dev', :encoding => 'UTF8')
+  $db=Sequel.mysql2(:host=>"192.168.0.10",:user=>'biobio',:password=>'biobio018025', :database=>'biobio2012_dev', :encoding => 'utf8')
 
 elsif(ENV['USER']=="cdx")
-$db=Sequel.mysql(:host=>"localhost",:user=>'root',:password=>'psr-400', :database=>'revsist', :encoding => 'UTF8')
+$db=Sequel.mysql2(:host=>"localhost",:user=>'root',:password=>'psr-400', :database=>'revsist', :encoding => 'utf8')
 
 else
 #$db=Sequel.mysql(:host=>"mysql.apsique.cl",:user=>'biobio',:password=>'biobio018025', :database=>'biobio2012', :encoding => 'UTF8')

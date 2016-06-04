@@ -1,0 +1,17 @@
+body {
+    font-size:9pt;
+}
+
+#header {
+    visibility:hidden;
+    display:none;
+}
+
+#breadcrumb {
+    visibility:hidden;
+    display:none;
+}
+
+table.reporte {
+    font-size:95%;
+}

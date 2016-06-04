@@ -1,0 +1,14 @@
+{
+  "name": "revsist",
+  "version": "1.0.0",
+  "dependencies": {
+    "jquery": "~1.12.4",
+    "tipso": "~1.0.8"
+  },
+  "browser": {
+    "tipso": "./node_modules/tipso/src/tipso.js"
+  },
+  "style": [
+  "./node_modules/tipso/src/tipso.css"
+  ]
+}
