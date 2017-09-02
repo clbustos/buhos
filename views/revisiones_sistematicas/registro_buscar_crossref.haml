@@ -1,0 +1,8 @@
+%h3 Registro, búsqueda en Crossref
+
+
+%p
+  =@reg.ref_apa_6
+  %a{:href=>url("/referencia/#{@reg.id}")}="(#{@reg[:id]})"
+
+=partial(:respuesta_crossref,:locals=>{:respuesta=>@respuesta,:base_url=>"/registro/#{@reg.id}/asignar_doi/", :volver_url=>"/registro/#{@reg.id}"})

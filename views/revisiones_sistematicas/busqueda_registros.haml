@@ -1,0 +1,13 @@
+%h3 Registros
+%ul.breadcrumb
+  %li
+    %a{:href=>url("/revision/#{@revision.id}")}=@revision.nombre
+  %li
+    %a{:href=>url("/busqueda/#{@busqueda.id}")}=@busqueda.nombre
+  %li
+    Registros
+
+%a{:href=>"/busqueda/#{@busqueda.id}/registros/completar_dois"}
+  %button{:class=>"btn btn-default btn-sm"}Completar DOIs
+
+=partial(:registros_lista, :locals=>{:registros=>@registros})

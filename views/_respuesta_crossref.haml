@@ -1,0 +1,12 @@
+.list-group
+  - respuesta.each do |resp|
+    %div.list-group-item
+      %h4.list-group-item-heading=resp['title']
+      %span{:class=>'badge'}="#{resp['normalizedScore']} / #{resp['score'].round(2)}"
+      .list-group-item-text
+        =resp['fullCitation']
+        %strong
+          =a_doi(resp['doi'])
+        %a{:href=>"#{base_url}/#{CGI.escape(doi_sin_http(resp['doi']).gsub('/','***'))}?volver_url=#{volver_url}"}
+          %button{:class=>"btn btn-default btn-sm"}
+            Asignar DOI

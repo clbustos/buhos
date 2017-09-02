@@ -1,0 +1,169 @@
+.operacion {
+    margin-top:1.5em;
+    padding: 0.5em;
+    border-bottom: 1px solid #aaa;
+}
+.operacion > .nombre {
+   font-weight:bold;
+   font-size: 120%;
+   margin-left:0px;
+}
+.actividades {
+    padding-top:1em;
+    margin-top:2px;
+}
+
+.actividad {
+    border:1px dashed #999;
+    margin:0.5em;
+
+    padding:0.5em;
+}
+
+.persona {
+    position:relative;
+    border:1px dashed #777;
+    min-height:60px;
+    padding:0.5em;
+    padding-left:60px;
+    margin:0.5em;
+}
+
+.persona_imagen {
+    background:url('/persona/imagen.png');
+    position:absolute;
+    left: 5px;
+    height:50px;
+    width:50px;
+}
+
+
+.persona_cuadro {
+    display:inline;
+    width:75px;
+    height:90px;
+    padding:0.2em;
+    margin:0.2em;
+    float:left;
+    overflow: hidden;
+    border:1px solid #aaa;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+
+.persona_cuadro > .imagen {
+    margin-left:25%;
+    margin-top:5px;
+}
+
+.persona_cuadro > .nombre {
+    text-align:center;
+    
+}
+
+.proyecto_cuadro {
+    display:inline;
+    width:220px;
+    height:4em;
+    padding:0.2em;
+    margin:0.2em;
+    float:left;
+    overflow: hidden;
+   border:1px solid #faa;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+
+.ambito_cuadro {
+    display:inline;
+    width:110px;
+    height:2.5em;
+    padding:0.2em;
+    margin:0.2em;
+    float:left;
+    overflow: hidden;
+    border:1px dashed #aaf;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+
+
+.unidad_cuadro {
+    display:inline;
+    width:110px;
+    height:2.5em;
+    padding:0.2em;
+    margin:0.1em;
+    float:left;
+    overflow: hidden;
+    border:1px solid #faa;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+
+.actividad > .nombre {
+    margin-bottom: 1em;
+}
+.actividad.completa > .nombre {
+    background:#e9ffe9;
+    border:1px solid green;
+}
+
+.actividad.cancelada > .nombre {
+    background: #a33;
+    color:white;
+}
+
+
+.actividad > .nombre{ 
+    background-repeat:no-repeat;
+    font-weight:bold;
+    padding-left:30px;
+    min-height:35px;
+}
+
+
+
+
+.actividad.ejecucion > .nombre{ 
+    background-image: url("/images/ejecucion.png");
+}
+
+
+.tareas {
+    background-image: url("/images/estrella.png");
+    background-repeat:no-repeat;
+    margin:0em 1em 1em 1em;
+}
+.tareas > .nombre {
+    margin:0.5em;
+    font-weight:bold;
+    padding-left:26px;
+}
+
+.tareas table {
+    margin-top:0.2em;
+    border:0px;
+}
+.tareas th {
+    color:black;
+    background:#eee;
+}
+.tareas table  td{
+    border:0px solid #aaa;
+    background:white;
+}
+
+
+.proyecto {
+    border:1px dashed #999;
+    margin:0.5em;
+    padding:0.5em;
+}
+.proyecto .nombre {
+    font-weight:bold;
+}
+.proyecto .descripcion {
+    margin-top:0.5em;
+    border-top:1px solid #ccc;
+}

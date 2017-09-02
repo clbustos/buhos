@@ -3,7 +3,9 @@ require 'sinatra'
 #  :run => false,
 #  :env => :production
 #)
-require './app'
+require_relative 'app.rb'
 disable :run
 set :session_secret, "Secreto"
+set :show_exceptions, true
+
 run Sinatra::Application

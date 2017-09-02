@@ -699,3 +699,11 @@ float: left;
 .historicos .validacion {
     margin:1em;
 }
+
+.historicos .negro {
+    color:black;
+}
+
+.historicos .validado {
+    font-weight:bold;
+}

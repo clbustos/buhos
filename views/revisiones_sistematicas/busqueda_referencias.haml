@@ -1,0 +1,70 @@
+%h3 Referencias
+
+:javascript
+  $(document).ready(function() {
+    buscar_similares_canonico();
+  });
+
+%ul.breadcrumb
+  %li
+    %a{:href=>url("/revision/#{@revision.id}")}=@revision.nombre
+  %li
+    %a{:href=>url("/busqueda/#{@busqueda.id}")}=@busqueda.nombre
+  %li
+    Referencias
+
+%p
+  Número de referencias:
+  =@referencias.count
+
+
+
+%p
+  Número de referencias con canónico:
+  =@referencias_con_canonico.count
+
+%a{:href=>"/busqueda/#{@busqueda.id}/referencias/buscar_dois"}
+  %button{:class=>"btn btn-default btn-sm"}Buscar DOIs
+
+
+%form{:method=>"get",:action=>url("/busqueda/#{@busqueda.id}/referencias"), :class=>"form-inline"}
+  .form-group
+    %label{:for=>"n_referencias"}Número referencias
+    %input{:type=>"input",:class=>"form-control",:id=>"n_referencias", :name=>"n_referencias",:value=>@n_referencias}
+    %input{:type=>:submit, :class=>"btn btn-primary",:value=>"Enviar"}
+
+%h4 Referencias más citadas con canonico
+
+.list-group
+- @rmc_canonico.each do |ref|
+  %div.list-group-item
+    %span{:class=>"badge"}=ref[:n_registros]
+    .list-group-item-text
+      ="#{ref[:author]} (#{ref[:year]}). #{ref[:title]}. <em>#{ref[:journal]},#{ref[:volume]}</em>, #{ref[:pages]} "
+      %button{:class=>"btn btn-default btn-sm buscar_similares_canonico",:id=>"buscar_similar-#{ref[:id]}"}
+        %span{:class=>"glyphicon glyphicon-search"}
+        Buscar similares
+      %a{:href=>url("/canonico_documento/#{ref[:id]}")}
+        %button{:class=>"btn btn-success btn-sm"}
+          %span{:class=>"glyphicon glyphicon-king"}
+          Canónico
+      %div{:id=>"buscar_similar-#{ref[:id]}-campo", :style=>"max-height:200px;overflow:auto"}
+
+%p
+
+%h4 Referencias más citadas sin canonico
+
+.list-group
+- @rmc_sin_canonico.each do |ref|
+  %div.list-group-item
+    %span{:class=>"badge"}=ref[:n]
+    .list-group-item-text
+      =ref[:texto]
+      %button{:class=>"btn btn-default btn-sm buscar_similares_no_canonico",:id=>"buscar_similar-#{ref[:id]}"}
+        %span{:class=>"glyphicon glyphicon-search"}
+        Buscar similares
+      %a{:href=>url("/referencia/#{ref[:id]}/buscar_crossref")}
+        %button{:class=>"btn btn-default btn-sm"}
+          %span{:class=>"glyphicon glyphicon-search"}
+          Buscar en Crossref
+      %div{:id=>"buscar_similar-#{ref[:id]}-campo"}

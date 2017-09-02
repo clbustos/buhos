@@ -1,0 +1,51 @@
+%h3 Edición de Revision sistematica
+%form{:method=>:post, :action=>url("/revision/actualizar")}
+  %input{:type=>"hidden", :name=>"revision_id",:value=>@revision[:id]}
+  %div
+    %div{:class=>"form-group"}
+      %label{:for=>"nombre"}Nombre
+      %input{:class=>"form-control",:type=>"text", :name=>"nombre",:value=>@revision[:nombre]}
+    %div{:class=>"form-group"}
+      %label Descripción
+      %textarea{:class=>"form-control",:name=>"descripcion"}=@revision[:descripcion]
+    %div{:class=>"form-group"}
+      %label Fecha de Inicio
+      %input{:class=>"form-control",:type=>"text", :name=>"fecha_inicio",:value=>@revision[:fecha_inicio]}
+    %div{:class=>"form-group"}
+      %label Objetivos
+      %textarea{:class=>"form-control",:name=>"objetivos"}=@revision[:objetivos]
+    %div{:class=>"form-group"}
+      %label Año de inicio
+      %input{:class=>"form-control",:type=>"text", :name=>"agno_inicio",:value=>@revision[:agno_inicio]}
+    %div{:class=>"form-group"}
+      %label Año de término
+      %input{:class=>"form-control",:type=>"text", :name=>"agno_termino",:value=>@revision[:agno_termino]}
+    %div{:class=>"form-group"}
+      %label Palabras claves
+      %input{:class=>"form-control",:type=>"text", :name=>"palabras_claves",:value=>@revision[:palabras_claves]}
+    %div{:class=>"form-group"}
+      %label{:for=>"grupo_id"} Grupo
+      - Grupo.all.each do |g|
+        %input{:class=>"form-check-input",:type=>"radio", :name=>"grupo_id", :value=>g.id,
+            :checked=>g.id==@revision[:grupo_id]}=g.name
+    -if !@revision.grupo.nil?
+      %div{:class=>"form-group"}
+        %label Administrador
+        - @revision.grupo.usuarios.each do |u|
+          %input{:class=>"form-check-input",:type=>"radio", :name=>"administrador_revision", :checked=> u.id==@revision[:administrador_revision], :value=>u.id}=u.nombre
+  
+  %h4 Taxonomía
+  %table.reporte
+    - l=Revision_Sistematica::TRS.length
+    - (0...l).each do |i|
+      %tr
+        - trs=Revision_Sistematica::TRS[i]
+        %th=trs.capitalize
+        %td
+          - $db["SELECT * FROM trs_#{Revision_Sistematica::TRS_p[i]} "].all.each do |tip|
+            %p 
+              %input{:class=>"form-check-input",:type=>"radio", :name=>"trs_#{trs}_id", :value=>tip[:id], :checked=>(tip[:id]==@revision["trs_#{trs}_id".to_sym])}
+              =tip[:name]
+  %input{:type=>:submit, :value=>"Enviar"}             
+  
+  

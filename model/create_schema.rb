@@ -1,6 +1,6 @@
 require_relative 'init.rb'
 
-
+if(ENV['CREATE_SCHEMA'])
 
 $db.create_table? :roles do
    String :id, :size=>50, :primary_key=>true
@@ -25,6 +25,16 @@ end
 
 $db.create_join_table?(:usuario_id=>:usuarios,:grupo_id=>:grupos)
 
+# Taxonomía de revisiones sistemáticas
+
+["foco","objetivo","perspectiva","cobertura","organizacion","destinario"].each do |v|
+  $db.create_table? "trs_#{v}".to_sym do
+    primary_key :id
+    String :name
+  end
+end
+
+
 $db.create_table? :revisiones_sistematicas do
   primary_key :id
   String :nombre
@@ -36,6 +46,14 @@ $db.create_table? :revisiones_sistematicas do
   String :palabras_claves
   foreign_key :grupo_id, :grupos, :null=>false
   foreign_key :administrador_revision, :usuarios, :null=>false
+  
+  foreign_key :trs_foco_id, :trs_foco, :null=>false
+  foreign_key :trs_objetivo_id, :trs_objetivo, :null=>false
+  foreign_key :trs_perspectiva_id, :trs_perspectiva, :null=>false
+  foreign_key :trs_cobertura_id, :trs_cobertura, :null=>false
+  foreign_key :trs_organizacion_id, :trs_organizacion, :null=>false
+  foreign_key :trs_destinatario_id, :trs_destinario, :null=>false
+  
 end
 
 $db.create_table? :bases_bibliograficas do
@@ -45,23 +63,31 @@ $db.create_table? :bases_bibliograficas do
 end
 
 
+
+
 $db.create_table? :canonicos_documentos do
   primary_key :id
-  String :tipo
-  String :titulo, :text=>true
-  String :autores, :text=>true
-  String :fecha
+  String :type
+  String :title, :text=>true
+  String :author, :text=>true
+  String :date
   String :journal, :text=>true
-  String :volumen
-  String :numero
-  String :paginas
-  String :nombre_libro, :text=>true
-  String :editores, :text=>true
-  String :conferencia, :text=>true
-  String :lugar
+  String :volume
+  String :number
+  String :pages
+  String :book_name, :text=>true
+  String :editors, :text=>true
+  String :proceedings, :text=>true
+  String :place
   String :editorial
   String :doi
   String :pubmed
+  String :wos_id, :size=>32
+  String :scopus_id
+  String :ebscohost_id
+  Integer :year
+  String :journal_abbr, :size=>32
+  String :abstract, :text=>true
 end
 
 $db.create_table? :canonicos_autores do
@@ -91,31 +117,41 @@ $db.create_table? :busquedas do
 
 end
 
+
 $db.create_table? :registros do
   primary_key :id
   foreign_key :base_bibliografica_id    ,:bases_bibliograficas, :null=>false
-  String :base_datos_id
-  String :tipo
-  String :titulo, :text=>true
-  String :autores, :text=>true
-  String :fecha
+  String :uid
+  String :title, :text=>true
+  String :author, :text=>true
+  String :date
   String :journal, :text=>true
-  String :volumen
-  String :numero
-  String :paginas
-  String :nombre_libro, :text=>true
-  String :editores, :text=>true
-  String :conferencia, :text=>true
-  String :lugar
+  String :volume
+  String :number
+  String :pages
+  String :book_name, :text=>true
+  String :editors, :text=>true
+  String :proceedings, :text=>true
+  String :place
   String :editorial
   String :doi
   String :pmid
   String :arxiv_id
+  Integer :year
+  String :journal_abbr, :size=>32
+  String :abstract, :text=>true
+  foreign_key :canonico_documento_id ,:canonicos_documentos, :null=>true
+end
+
+$db.create_table? :referencias do
+  String :id, :primary_key=>true
+  String :texto, :text=>true
   foreign_key :canonico_documento_id ,:canonicos_documentos, :null=>true
 end
 
 
-$db.create_join_table?(:busqueda_id=>:busquedas,:registro_id=>:registros)
+  $db.create_join_table?(:busqueda_id=>:busquedas,:registro_id=>:registros)
+  $db.create_join_table?(:referencia_id=>{:table=>:referencias, :type=>String},:registro_id=>:registros)
 
 
 $db.create_table? :permisos do
@@ -137,3 +173,17 @@ $db.create_table? :permisos_roles do
 
 end
 
+$db.create_table? :crossref_queries do
+  String :id, :size=>100, :primary_key=>true
+  String :query, :text=>true
+  String :json, :text=>true
+end
+
+
+  $db.create_table? :crossref_dois do
+    String :doi, :size=>100, :primary_key=>true
+    String :bibtex, :text=>true
+    String :json, :text=>true
+  end
+
+end

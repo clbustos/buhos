@@ -1,0 +1,45 @@
+%h2="Búsquedas para Revisión #{@revision.nombre}"
+
+%p
+%table.reporte
+  %thead
+    %th Id
+    %th Base
+    %th Fecha
+    %th Criterio Busqueda
+    %th Descripcion
+    %th Archivo
+    %th Registros
+  %tbody
+    - @busquedas.each do |g|
+      %tr
+        %td=g.id
+        %td=g.base_bibliografica_nombre
+        %td=g.fecha
+        %td=g.criterio_busqueda
+        %td=g.descripcion
+        %td="#{g.archivo_nombre} [#{g.archivo_tipo}]"
+        %td
+          %a{:href=>url("/busqueda/#{g.id}/editar")}
+            %button{:class=>"btn btn-default"}
+              %span{:class=>"glyphicon glyphicon-pencil"}
+              Editar
+          %a{:href=>url("/busqueda/#{g.id}/registros")}
+            %button{:class=>"btn btn-default"}
+              %span{:class=>"glyphicon glyphicon-list"}
+              Registros
+          %a{:href=>url("/busqueda/#{g.id}/referencias")}
+            %button{:class=>"btn btn-default"}
+              %span{:class=>"glyphicon glyphicon-plane"}
+              Referencias
+
+
+%a{:href=>url("/revision/#{@revision.id}/busqueda/nuevo")}
+  %button{:class=>"btn btn-default"}
+    %span{:class=>"glyphicon glyphicon-plus"}
+    Nueva búsqueda
+
+%a{:href=>url("/revision/#{@revision.id}/procesar")}
+  %button{:class=>"btn btn-default"}
+    %span{:class=>"glyphicon glyphicon-play"}
+    Procesar

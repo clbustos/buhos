@@ -1,6 +1,6 @@
 get '/administrador' do 
   @usuario=Usuario[session['user_id']]
-  $log.info(session)
+  #$log.info(session)
   haml :index
 end
 

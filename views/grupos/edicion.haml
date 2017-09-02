@@ -1,0 +1,30 @@
+%h3 Edición de grupo
+%form{:method=>:post, :action=>url("/grupo/actualizar")}
+  %input{:type=>"hidden", :name=>"grupo_id",:value=>@grupo[:id]}
+  %table.informe
+    %tr
+      %th Nombre
+      %td
+        %input{:type=>"text", :name=>"name",:value=>@grupo[:name]}
+      
+    %tr
+      %th Descripción
+      %td
+        %input{:type=>"text", :name=>"description",:value=>@grupo[:description]}
+    %tr
+      %th Administrador
+      %td
+        - Usuario.all.each do |u|
+          %p
+            %input{:type=>"radio", :name=>"administrador_grupo", :value=>u.id,
+            :checked=>u.id==@grupo[:administrador_grupo]}
+            =u.nombre
+    %tr
+      %th Usuarios
+      %td
+        - Usuario.all.each do |u|
+          %p
+            %input{:type=>"checkbox", :name=>"usuarios[#{u.id}]", 
+            :checked=> @usuarios_id.include?(u.id)}
+            =u.nombre     
+  %input{:type=>:submit, :value=>"Enviar"}

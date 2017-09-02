@@ -8,4 +8,6 @@ gem "haml"
 gem "rspec"
 gem "rack-test"
 gem "i18n"
-
+gem 'bibtex-ruby'
+gem 'levenshtein-ffi', :require => 'levenshtein'
+gem 'serrano'

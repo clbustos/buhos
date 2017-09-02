@@ -1,0 +1,33 @@
+%h2 Revisiones
+%a{:href=>url("/revision/nuevo")}
+  %img{:src=>url("images/list-add.png")}
+  Nueva revisión sistemática
+%form{:method=>:post, :action=>url("/revisiones/actualizar")}
+  %table.reporte
+    %thead
+      %th ID
+      %th Nombre
+      %th Descripción
+      %th Foco
+      %th Objetivo
+      %th Perspectiva
+      %th Cobertura
+      %th Organización
+      %th Destinatario
+      %th Busquedas
+    -@revisiones.each do |r|
+      %tr
+        %td=r.id
+        %td
+          %a{:href=>"/revision/#{r.id}"}=r.nombre
+        %td=r.descripcion
+        %td=r.trs_foco.name
+        %td=r.trs_objetivo.name
+        %td=r.trs_perspectiva.name
+        %td=r.trs_cobertura.name
+        %td=r.trs_organizacion.name
+        %td=r.trs_destinatario.name
+        %td=partial(:revision_botones, :locals=>{:r=>r})
+
+          
+  %input{:type=>:submit}

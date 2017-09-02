@@ -1,0 +1,32 @@
+- bb=Base_Bibliografica.id_a_nombre_h
+%p
+  Número de registros:
+  =registros.count
+
+  .list-group
+    - i=1
+    - registros.each do |registro|
+      .list-group-item
+        ="#{i}) "
+        =registro[:author]
+        ="(#{registro[:year]})."
+        =registro[:title]
+        %em="#{registro[:journal]}, #{registro[:volume]},"
+        =registro[:pages]
+        - if registro[:doi]
+          =".#{a_doi(registro[:doi])}"
+        - else
+          %a{:href=>url("/registro/#{registro[:id]}/buscar_crossref")}
+            %button{:class=>"btn btn-default btn-sm"}
+              %span{:class=>"glyphicon glyphicon-search"}
+              Crossref
+        %botton{:class=>"btn btn-default btn-sm"}
+          =bb[registro[:base_bibliografica_id]]
+        - if registro[:canonico_documento_id]
+          =partial(:canonico_documento_boton, :locals=>{:id=>registro[:canonico_documento_id]})
+        -if registro[:abstract]!=""
+          %button{:class=>"btn btn-primary btn-sm", :type=>"button",  "data-toggle"=>'collapse', "data-target"=>"#registro#{registro[:id]}", "aria-expanded"=>"false", "aria-controls"=>"registro#{registro[:id]}"}Abstract
+          %div{:class=>"collapse", :id=>"registro#{registro[:id]}"}
+            .well=registro[:abstract]
+
+      - i=i+1

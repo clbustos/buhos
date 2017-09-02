@@ -4,12 +4,7 @@ require 'logger'
 Sequel::Model.plugin :force_encoding, 'UTF-8' if RUBY_VERSION>="1.9"
 # Chanta, ¿no?
 
-if(ENV['USER']=='elecciones' and production?)
-  $db=Sequel.mysql2(:host=>"192.168.0.10",:user=>'biobio',:password=>'biobio018025', :database=>'biobio2012', :encoding => 'utf8')
-elsif(ENV['USER']=='elecciones' and development?)
-  $db=Sequel.mysql2(:host=>"192.168.0.10",:user=>'biobio',:password=>'biobio018025', :database=>'biobio2012_dev', :encoding => 'utf8')
-
-elsif(ENV['USER']=="cdx")
+if(ENV['USER']=="cdx")
 $db=Sequel.mysql2(:host=>"localhost",:user=>'root',:password=>'psr-400', :database=>'revsist', :encoding => 'utf8')
 
 else
@@ -29,9 +24,18 @@ $db.loggers << $log_sql
 #end
 
 
+
+
+
 Sequel.inflections do |inflect|
   inflect.irregular 'rol','roles'
   inflect.irregular 'configuracion','configuraciones'  
   inflect.irregular 'permisos_rol','permisos_roles'
+  inflect.irregular 'grupo_usuario','grupos_usuarios'
+  inflect.irregular 'revision_sistematica','revisiones_sistematicas'  
+  inflect.irregular 'trs_organizacion','trs_organizaciones'
+  inflect.irregular 'base_bibliografica','bases_bibliograficas'
+  inflect.irregular 'canonico_documento','canonicos_documentos'
+
 end
 

@@ -1,0 +1,31 @@
+- if !@ajax
+  %h3 Referencia, búsqueda similares
+
+
+  %p
+    %strong Original:
+    =@cd.ref_apa_6
+    %a{:href=>url("/canonico_documento/#{@cd.id}")}="(#{@cd[:id]})"
+
+-if @ref_similares.length==0
+  %p
+    %em No hay referencias similares sin canonico
+-else
+  %form{:action=>url("/canonico_documento/#{@cd.id}/unir_referencias_similares"),:method=>:post}
+    .list-group
+    - @ref_similares.each do |resp|
+      %div.list-group-item
+        %input{:type=>"checkbox", :checked=>true, :name=>"referencia[#{resp[:id]}]"}
+        %h4.list-group-item-heading=resp[:texto]
+        %span{:class=>'badge'}=resp[:distancia]
+        .list-group-item-text
+          - if resp[:canonico_documento_id]
+            %a{:href=>url("/canonico/#{resp[:canonico_documento_id]}")}
+              %button{:class=>"btn btn-success btn-sm"}
+                %span{:class=>"glyphicon glyphicon-king"}
+                Canónico
+          - if resp[:doi]
+            %strong
+              =a_doi(resp[:doi])
+
+    %input{:type=>:submit, :value=>"Unir",:class=>"form-control"}

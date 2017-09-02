@@ -1,0 +1,49 @@
+%h3="Revision sistematica #{@revision[:nombre]}"
+
+
+
+%div.list-group
+  %div{:class=>"list-group-item"}
+    %span{:class=>"titulo"} Id:
+    %span{ :name=>"nombre"}=@revision[:id]
+  %div{:class=>"list-group-item"}
+    %span{:class=>"titulo"}Nombre
+    %span{ :name=>"nombre"}=@revision[:nombre]
+  %div{:class=>"list-group-item"}
+    %span{:class=>"titulo"} Descripción:
+    =@revision[:descripcion]
+  %div{:class=>"list-group-item"}
+    %span{:class=>"titulo"} Fecha de Inicio:
+    %span{ :name=>"fecha_inicio"}=@revision[:fecha_inicio]
+  %div{:class=>"list-group-item"}
+    %span{:class=>"titulo"} Objetivos:
+    =@revision[:objetivos].split("\n").join("<br/>")
+  %div{:class=>"list-group-item"}
+    %span{:class=>"titulo"} Año de inicio
+    %span{ :name=>"agno_inicio"}=@revision[:agno_inicio]
+  %div{:class=>"list-group-item"}
+    %span{:class=>"titulo"} Año de término
+    %span{ :name=>"agno_termino"}=@revision[:agno_termino]
+  %div{:class=>"list-group-item"}
+    %span{:class=>"titulo"} Palabras claves
+    %span{ :name=>"palabras_claves"}=@revision[:palabras_claves]
+  %div{:class=>"list-group-item"}
+    %span{:class=>"titulo"} Grupo
+    %span=@revision.grupo_nombre
+  -if !@revision.grupo.nil?
+    %div{:class=>"list-group-item"}
+      %span{:class=>"titulo"} Administrador
+      %span=@revision.administrador_nombre
+  %div{:class=>"list-group-item"}
+    %h4{:class=>"list-group-item-heading"}Taxonomía
+    %table.reporte
+      - l=Revision_Sistematica::TRS.length
+      - (0...l).each do |i|
+        %tr
+          - trs=Revision_Sistematica::TRS[i]
+          %th=trs.capitalize
+          %td=@nombres_trs[Revision_Sistematica::TRS[i]]
+
+  %div{:class=>"list-group-item"}
+    %h4{:class=>"list-group-item-heading"}Acciones
+    %p=partial(:revision_botones, :locals=>{:r=>@revision})

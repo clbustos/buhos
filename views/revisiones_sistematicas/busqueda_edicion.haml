@@ -1,0 +1,21 @@
+%h3 Edición de Busqueda
+%form{:method=>:post, :action=>url("/revision/busqueda/actualizar"), :enctype=>'multipart/form-data'}
+  %input{:type=>"hidden", :name=>"revision_sistematica_id",:value=>@revision[:id]}
+  %input{:type=>"hidden", :name=>"busqueda_id",:value=>@busqueda[:id]}
+  .form-group
+    %label{:for=>"base_bibliografica_id"}Base
+    -Base_Bibliografica.all.each do |bb|
+      %input{:class=>"form-check",:type=>"radio", :name=>"base_bibliografica_id",:value=>bb.id, :checked=>@busqueda[:base_bibliografica_id]==bb.id}= bb.nombre
+  .form-group
+    %label Fecha de realización
+    %input{:class=>"form-control",:type=>"text", :name=>"fecha",:value=>@busqueda[:fecha]}
+  .form-group
+    %label Criterio de Búsqueda
+    %textarea{:class=>"form-control",:name=>"criterio_busqueda"}=@busqueda[:criterio_busqueda]
+  .form-group
+    %label Descripcion
+    %input{:class=>"form-control",:type=>"text", :name=>"descripcion",:value=>@busqueda[:descripcion]}
+  .form-group
+    %label Archivo
+    %input{:type=>'file', :name=>'archivo'}
+  %input{:type=>:submit, :class=>"btn btn-primary",:value=>"Enviar"}

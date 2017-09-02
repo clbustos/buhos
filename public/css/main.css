@@ -10,7 +10,6 @@ body {
   margin: 20px 0;
   font-family: Verdana, Arial, Helvetica, sans-serif;
   font-size: 12px;
-  color: #A1A1A1;
 }
 
 h1 {
@@ -87,7 +86,7 @@ a:hover {
 
 #menu {
   float: left;
-  width: 750px;
+  width: 90%;
   height: 37px;
   margin: 0;
   padding: 0 0 0 10px;
@@ -152,7 +151,7 @@ a:hover {
 .enviar {
 
   border:1px solid #AAAAFF;
-  padding:1px solid;
+  padding:1px;
   background-color:white;
   margin-top:1em;
 }
@@ -706,4 +705,8 @@ float: left;
 
 .historicos .validado {
     font-weight:bold;
+}
+
+span.titulo {
+    font-weight: bold;
 }

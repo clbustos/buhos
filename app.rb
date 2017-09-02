@@ -1,6 +1,5 @@
 # encoding: UTF-8
 
-$:.unshift(File.dirname(__FILE__)+"/.")
 
 
 require "bundler/setup"
@@ -8,7 +7,13 @@ require 'sinatra'
 # Vamos a activar el reloader en todos los casos
 # Como el sistema está en vivo, es más peligroso hacer lo otro
 require 'haml'
+require 'logger'
+
+
+set :session_secret, 'super secret2'
+
 # Arreglo a lo bestia para el force_encoding
+
 unless "".respond_to? :force_encoding
   class String
     def force_encoding(s)
@@ -19,15 +24,14 @@ end
 
 
 Dir.glob("controllers/**/*.rb").each do |f|
-  require(f)
+  require_relative(f)
 end
 
 Dir.glob("lib/*.rb").each do |f|
-  require(f)
+  require_relative(f)
 end
 
 
-require 'logger'
 if !File.exists?("log")
   FileUtils.mkdir("log")
 end
@@ -36,13 +40,13 @@ $log_sql = Logger.new('log/app_sql.log')
 
 
 
-require 'model/init.rb'
-require 'model/models.rb'
-require 'lib/partials.rb'
+require_relative 'model/init.rb'
+require_relative 'model/models.rb'
+require_relative 'lib/partials.rb'
 
 
 Dir.glob("model/*.rb").each do |f|
-  require(f)
+  require_relative(f)
 end
 
 
@@ -107,8 +111,13 @@ set :root, File.dirname(__FILE__)
 #register Sinatra::I18n
 
 
+
+
+
 helpers do
-  # Entrega el acceso al log  
+
+  include DOIHelpers
+  # Entrega el acceso al log
   def log
     $log
   end
@@ -160,7 +169,7 @@ helpers do
   
     def authorize(login, password)
     u=Usuario.filter(:login=>login,:password=>Digest::SHA1.hexdigest(password))
-    $log.info(u.first)
+    #$log.info(u.first)
     if(u.first)
       user=u.first
       session['user']=user[:login]
@@ -181,11 +190,19 @@ helpers do
    def agregar_mensaje(mensaje,tipo=:info)
     session['mensajes']||=[]
     session['mensajes'].push([mensaje,tipo])
+   end
+  def agregar_resultado(result)
+    result.events.each do |event|
+      agregar_mensaje(event[:message],event[:type])
+    end
   end
+
   def imprimir_mensajes
     if(session['mensajes'])
+      $log.info(session['mensajes'])
       out=session['mensajes'].map {|men,tipo|
-        "<div class='#{tipo.to_s}'>#{men}</div>\n"
+
+        "<div class='alert alert-#{tipo.to_s} #{tipo.to_s=='error' ? 'alert-danger' : ''}' role='alert'>#{men}</div>\n"
       }
       session.delete("mensajes")
       out.join()
@@ -200,6 +217,25 @@ helpers do
       ruta
     end
   end
+
+
+
+  def put_editable(b,&block)
+    params=b.params
+    value=params['value'].chomp
+    return 505 if value==""
+    id=params['pk']
+    block.call(id, value)
+    return 200
+  end
+
+
+  def a_editable(id, prefix, data_url, v,default_value="--")
+    url_s=url(data_url)
+    val=(v.nil? ? default_value : v)
+    "<a class='nombre_editable' data-pk='#{id}' data-url=#{url_s} href='#' id='#{prefix}-2'>#{val}</a>"
+  end
+
 
 end
 
