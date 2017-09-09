@@ -12,6 +12,7 @@ if ENV['JAWSDB_URL'] and ENV['USE_JAWSDB']=='true'
   url_mysql= ENV['JAWSDB_URL'].sub("mysql:","mysql2:")
   $db=Sequel.connect(url_mysql, :encoding => 'utf8',:reconnect=>true)
 else
+  
   $db=Sequel.connect(ENV['DATABASE_URL'], :encoding => 'utf8',:reconnect=>true)
 end
 
