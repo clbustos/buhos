@@ -10,18 +10,17 @@
         ="#{i}) "
         =registro[:author]
         ="(#{registro[:year]})."
-        =registro[:title]
+        %a{:href=>url("/registro/#{registro[:id]}")}=registro[:title]
         %em="#{registro[:journal]}, #{registro[:volume]},"
         =registro[:pages]
         - if registro[:doi]
           =".#{a_doi(registro[:doi])}"
-        - else
+        - elsif permiso("crossref_acceder")
           %a{:href=>url("/registro/#{registro[:id]}/buscar_crossref")}
             %button{:class=>"btn btn-default btn-sm"}
               %span{:class=>"glyphicon glyphicon-search"}
               Crossref
-        %botton{:class=>"btn btn-default btn-sm"}
-          =bb[registro[:base_bibliografica_id]]
+        ="[#{bb[registro[:base_bibliografica_id]]}]"
         - if registro[:canonico_documento_id]
           =partial(:canonico_documento_boton, :locals=>{:id=>registro[:canonico_documento_id]})
         -if registro[:abstract]!=""

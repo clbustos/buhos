@@ -26,17 +26,56 @@ function buscar_similares_canonico() {
     });
 }
 
-$(document).ready(function () {
+function actualizar_decision(etapa) {
 
-    $('.nombre_editable').editable({
-        type: 'text',
-        title: 'Ingrese nuevo nombre',
+    $(".dc_decision").click(function () {
+        var pk_id = $(this).attr("data-pk");
+        var decision = $(this).attr("data-decision");
+        var user_id = $(this).attr("data-user");
+        var url = $(this).attr("data-url");
+        //var comentario=$("#comentario-"+pk_id).val()
+        var boton = $(this);
+        boton.prop("disabled", true)
+        $.post(url, {pk_id: pk_id, decision: decision, user_id: user_id}, function (data) {
+            $("#decision-cd-" + pk_id).html(data)
+            actualizar_textarea_editable();
+            //setTimeout(function() {
+            //    actualizar_decision(etapa);
+            //},2000);
+
+        }).fail(function () {
+            alert("No se pudo cargar la decisión")
+        })
+    })
+
+}
+
+function actualizar_textarea_editable() {
+
+    $('.textarea_editable').editable({
+        type: 'textarea',
+        emptytext: '--Vacio--',
+        title: 'Ingrese',
+        rows: 10,
+        mode: "inline",
         ajaxOptions: {
             type: 'put'
         }
     });
 
+}
 
+$(document).ready(function () {
+    actualizar_textarea_editable();
+
+    $('.nombre_editable').editable({
+        type: 'text',
+        emptytext: '--Vacio--',
+        title: 'Ingrese',
+        ajaxOptions: {
+            type: 'put'
+        }
+    });
 
 
     $('.tipo_editable').editable({

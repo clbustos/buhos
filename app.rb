@@ -10,6 +10,12 @@ require 'haml'
 require 'logger'
 
 
+require 'scopus'
+require 'dotenv'
+
+Dotenv.load("./.env")
+
+
 set :session_secret, 'super secret2'
 
 # Arreglo a lo bestia para el force_encoding
@@ -51,8 +57,6 @@ end
 
 
 require 'digest/sha1'
-
-
 
 
 enable :logging, :dump_errors, :raise_errors, :sessions
@@ -140,7 +144,7 @@ helpers do
     end
   end
   def presentar_usuario
-    #$log.info(session)
+    ##$log.info(session)
     if(!session['user'].nil?)
       haml :usuario
     else
@@ -151,11 +155,11 @@ helpers do
   # Verifica que la persona tenga un permiso específico
   def permiso(per)
     #log.info(session['permisos'])    
-    if(session['user'].nil?)
+    if session['user'].nil?
       false
     else
-      if(session['rol_id']=='administrador' and Permiso[per].nil?)
-        Permiso.insert(:id=>per, :descripcion=>'Por hacer')
+      if session['rol_id']=='administrador' and Permiso[per].nil?
+        Permiso.insert(:id=>per, :descripcion=>'Permiso creado por administracion')
         Rol['administrador'].add_permiso(Permiso[per])
         true
       elsif session['permisos'].include? per
@@ -166,10 +170,16 @@ helpers do
     end
   end
 
-  
+  def revision_pertenece_a(revision_id,usuario_id)
+    permiso("revision_editar_propia") and Revision_Sistematica[:id=>revision_id, :administrador_revision=>usuario_id]
+  end
+  def revision_analizada_por(revision_id,usuario_id)
+    permiso("revision_analizar_propia") and !$db["SELECT * FROM grupos_usuarios gu INNER JOIN revisiones_sistematicas rs ON gu.grupo_id=rs.grupo_id WHERE rs.id=? AND gu.grupo_id=?", revision_id, usuario_id].empty?
+  end
+
     def authorize(login, password)
     u=Usuario.filter(:login=>login,:password=>Digest::SHA1.hexdigest(password))
-    #$log.info(u.first)
+    ##$log.info(u.first)
     if(u.first)
       user=u.first
       session['user']=user[:login]
@@ -199,7 +209,7 @@ helpers do
 
   def imprimir_mensajes
     if(session['mensajes'])
-      $log.info(session['mensajes'])
+      #$log.info(session['mensajes'])
       out=session['mensajes'].map {|men,tipo|
 
         "<div class='alert alert-#{tipo.to_s} #{tipo.to_s=='error' ? 'alert-danger' : ''}' role='alert'>#{men}</div>\n"
@@ -227,6 +237,30 @@ helpers do
     id=params['pk']
     block.call(id, value)
     return 200
+  end
+
+  def class_bootstrap_contextual(cond, prefix, clase, clase_no="default")
+    cond ? "#{prefix}-#{clase}" : "#{prefix}-#{clase_no}"
+  end
+
+  def decision_class_bootstrap(tipo, prefix)
+    suffix=case tipo
+             when nil
+               "default"
+             when "yes"
+               "success"
+             when "no"
+               "danger"
+             when "undecided"
+               "warning"
+           end
+    "#{prefix}-#{suffix}"
+  end
+
+  def a_textarea_editable(id, prefix, data_url, v, default_value="--")
+    url_s=url(data_url)
+
+    "<a class='textarea_editable' data-pk='#{id}' data-url=#{url_s} href='#' id='#{prefix}-2' 'data-defaultValue'='#{default_value}'>#{v}</a>"
   end
 
 

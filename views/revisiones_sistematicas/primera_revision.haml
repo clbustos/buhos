@@ -1,0 +1,74 @@
+.page-header
+  %h2="Revision sistemática #{@revision.nombre} "
+  %h3 Primera etapa: Revisión de documentos en las búsquedas
+%ul.breadcrumb
+  %li
+    %a{:href=>url("/revision/#{@revision.id}")}=@revision.nombre
+  %li
+    %a{:href=>url("/revision/#{@revision.id}/primera_revision")} Primera revision
+
+.well
+  Objetivo de la primera etapa: Seleccionar aquellos textos que serán sujetos a una revisión de texto completo más adelante. Además, se considerarán las referencias de los documentos seleccionados para una segunda revisión.
+
+:javascript
+  $(document).ready(function() {
+    actualizar_decision('primera_revision');
+    }
+  );
+
+
+%div.list-group
+  %div{:class=>"list-group-item"}
+    %span{:class=>"titulo"} Objetivos:
+    %p=@revision[:objetivos].split("\n").join("<br/>")
+  %div{:class=>"list-group-item"}
+    %span{:class=>"titulo"} Año de inicio
+    %span{ :name=>"agno_inicio"}=@revision[:agno_inicio]
+  %div{:class=>"list-group-item"}
+    %span{:class=>"titulo"} Año de término
+    %span{ :name=>"agno_termino"}=@revision[:agno_termino]
+  %div{:class=>"list-group-item"}
+    %span{:class=>"titulo"} Descripción:
+    =@revision[:descripcion].split("\n").join("<br/>")
+  %div{:class=>"list-group-item"}
+    %span{:class=>"titulo"} Palabras claves
+    %span{ :name=>"palabras_claves"}=@revision[:palabras_claves]
+
+%h3 Estado de la revision
+%p
+  %strong Número de documentos total a revisar:
+  = sprintf("%d", @ars.cd_count_reg)
+
+%form{:action=>url("/revision/#{@revision[:id]}/primera_revision"), :method=>:get,:class=>"form-check", :enctype=>"multipart/form-data"}
+  %table.reporte
+    %thead
+      - Decision::N_EST.values.each do |k|
+        %th=k
+    %tbody
+      %tr
+        - Decision::N_EST.keys.each do |k|
+          -key= k == '--' ? nil : k
+          %td=@ads.total_decisiones[key].to_i
+      %tr
+        - Decision::N_EST.keys.each do |k|
+          - checked= @busqueda.nil?  ? false :  ( @busqueda.include?(k) )
+          %td
+            %input{:type=>:radio,  :class=>"form-check-input",:name=>"busqueda", :value=>k, :checked=> checked }
+      %tr
+        %td{:colspan=>Decision::N_EST.keys.length}
+          %input{:type=>"submit", :class=>"btn btn-default", :value=>"Filtrar"}
+- if @busqueda
+  %p
+    %strong Número documentos búsqueda:
+    =@cds_total
+
+- if @ads.total_decisiones[nil].to_i==0
+  %p
+    %strong Ha concluido la primera fase de revision de documentos de la busqueda. Cuando todos los usuarios del grupo hayan contestado, comenzara la segunda fase de revision de referencias.
+
+= partial(:pager,:locals=>{url: @url, pagina: @pagina, max_page: @max_page, :extra=>{busqueda:@busqueda}})
+.list-group
+  - @cds.each do |cd|
+    %div{:id=>"decision-cd-#{cd[:id]}"}
+      =partial(:decision, :locals=>{ revision_id: @revision[:id], cd: cd, decisiones: @decisiones, ars: @ars, usuario_id: @usuario_id, etapa: "primera_revision"})
+= partial(:pager,:locals=>{url: @url, pagina: @pagina, max_page: @max_page, :extra=>{busqueda:@busqueda}})

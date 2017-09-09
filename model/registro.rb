@@ -30,12 +30,12 @@ class Registro < Sequel::Model
   end
 
   # @param referencias_id ID de referencias que deberían estar acá
-  def actualizar_referencias(referencias_id,modo=:sincronia)
+  def actualizar_referencias(referencias_id, modo=:aditivo)
     result=Result.new
     cit_ref_yap=$db["SELECT referencia_id FROM referencias_registros WHERE registro_id=?", self[:id]].map {|v| v[:referencia_id]}
 
-    cit_rep_por_ingresar = referencias_id- cit_ref_yap
-    cit_rep_por_borrar = cit_ref_yap - referencias_id
+    cit_rep_por_ingresar = (referencias_id- cit_ref_yap).uniq
+    cit_rep_por_borrar = (cit_ref_yap - referencias_id).uniq
     $db.transaction do
       if cit_rep_por_ingresar.length>0
         $db[:referencias_registros].multi_insert(cit_rep_por_ingresar.map {|v| {:referencia_id => v, :registro_id => self[:id]}})
@@ -82,7 +82,7 @@ class Registro < Sequel::Model
       return status
     end
 
-    #$log.info(co)
+    ##$log.info(co)
     if self[:doi]==doi
       status.info("Ya agregado DOI para registro #{self[:id]}")
     else
@@ -105,5 +105,12 @@ class Registro < Sequel::Model
     status
   end
 
+  def referencias_id
+    $db["SELECT referencia_id FROM referencias_registros rr WHERE registro_id=?", self[:id]].select_map(:referencia_id)
 
+  end
+
+  def referencias
+    Referencia.where(:id => referencias_id)
+  end
 end

@@ -6,15 +6,34 @@
   });
 
 %table.reporte
-  - [:author, :year,:title,:journal, :volume,:pages,:doi].each do |field|
+  - [:author, :year,:title,:journal, :volume,:pages,:doi,:url].each do |field|
     %tr
       %th=field.capitalize
-      %td=a_editable(@cd[:id], "canonico_documento", "/canonico_documento/editar_campo/#{field}", @cd[field],"")
+      %td
+        - if permiso("documentos_canonicos_editar")
+          =a_editable(@cd[:id], "canonico_documento", "/canonico_documento/editar_campo/#{field}", @cd[field],"")
+        -else
+          =@cd[field]
 
+
+%h3 Abstract
+%p
+  - if permiso("documentos_canonicos_editar")
+    =a_textarea_editable(@cd[:id], "canonico_documento", "/canonico_documento/editar_campo/abstract", @cd[:abstract],"")
+  - else
+    =@cd[:abstract]
+
+.btn-group
+  -if permiso("scopus_acceder")
+    - if !@cd.abstract
+      %a{:href=>url("/canonico_documento/#{@cd[:id]}/buscar_abstract_scopus"), :role=>:button, :class=>"btn btn-default"}Buscar abstract en Scopus
+  -if permiso("crossref_acceder")
+    - if @cd.doi
+      %a{:href=>url("/canonico_documento/#{@cd[:id]}/buscar_referencias_crossref"), :role=>:button, :class=>"btn btn-default"} Buscar referencias en Crossref
 
 %h3 Crossref
 - if @cr_doi
-  =@cr_doi.ref_apa_6
+  =@cr_doi.ref_apa_6_breve_html
 - elsif @cd.doi
   %a{:href=>url("/canonico_documento/#{@cd[:id]}/obtener_crossref")}
     %button{:class=>"btn btn-primary"}
@@ -23,23 +42,32 @@
   %p
     %em No hay DOI para unirse a Crossref
 
-%h3 Registros
+%h3 Registros en los que aparece
 
 =partial(:registros_lista, :locals=>{:registros=>@registros})
 
-%h3 Referencias
+%h3 Referencias en las que aparece
 
-.list-group
-- @referencias.each do |ref|
-  %div.list-group-item
-    %span{:class=>"badge"}=ref[:n]
-    .list-group-item-text
-      =ref[:texto]
-      - if ref[:doi]
-        =a_doi(ref[:doi])
-      - else
-        %a{:href=>url("/referencia/#{ref[:id]}/buscar_crossref")}
-          %button{:class=>"btn btn-default btn-sm"}
-            %span{:class=>"glyphicon glyphicon-search"}
-            Buscar en Crossref
-      %div{:class=>:small}=ref[:id]
+- if @referencias.count==0
+  %div{:class=>"alert alert-warning"}No aparece en ninguna referencia
+- else
+
+  .list-group
+  - @referencias.each do |ref|
+    %div.list-group-item
+      %span{:class=>"badge"}=ref[:n]
+      .list-group-item-text
+        =ref[:texto]
+        - if ref[:doi]
+          =a_doi(ref[:doi])
+        - else
+          %a{:href=>url("/referencia/#{ref[:id]}/buscar_crossref")}
+            %button{:class=>"btn btn-default btn-sm"}
+              %span{:class=>"glyphicon glyphicon-search"}
+              Buscar en Crossref
+        %div{:class=>:small}
+          %a{:href=>url("/referencia/#{ref[:id]}")}=ref[:id]
+%h3 Referencias que realiza
+
+=partial(:referencias_lista, :locals=>{:referencias=>@referencias_realizadas})
+

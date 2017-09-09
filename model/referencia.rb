@@ -7,6 +7,8 @@ class Referencia < Sequel::Model
 
   include DOIHelpers
   extend DOIHelpers
+
+  many_to_many :registros
   def self.get_by_text(text)
     dig=Digest::SHA256.hexdigest text
     Referencia[dig]
@@ -52,7 +54,7 @@ class Referencia < Sequel::Model
 
 
   def agregar_doi(doi_n)
-    $log.info("Agregar #{doi_n} a #{self[:id]}")
+    #$log.info("Agregar #{doi_n} a #{self[:id]}")
     status=Result.new
 
     crossref_doi=Crossref_Doi.procesar_doi(doi_n)
@@ -63,7 +65,7 @@ class Referencia < Sequel::Model
     end
 
     $db.transaction do
-      #$log.info(co)
+      ##$log.info(co)
       if self[:doi]==doi_n
         status.info("Ya agregado DOI para referencia #{self[:id]}")
       else
@@ -78,14 +80,20 @@ class Referencia < Sequel::Model
           status.info("Agregado a documento canónico #{can_doc[:id]} ya existente")
         else # No existe el canónico, lo debo crear
           integrator=Crossref_Doi.reference_integrator_json(doi)
-          #$log.info(integrator)
+          ##$log.info(integrator)
           fields = [:title,:author,:year,:journal, :volume, :pages, :doi, :journal_abbr,:abstract]
           fields_update=fields.inject({}) {|ac,v|
             ac[v]= integrator.send(v); ac;
           }
-          can_doc_id=Canonico_Documento.insert(fields_update)
-          self.update(:canonico_documento_id=>can_doc_id)
-          status.success("Agregado un nuevo documento canónico #{can_doc_id}: #{integrator.ref_apa_6}")
+
+          # En casos muy raros no está el año. Tengo que reportar error, no más
+          if fields_update[:year].nil?
+            status.error("El DOI #{doi} no tiene año. Extraño, pero tengo que cancelar misión")
+          else
+            can_doc_id=Canonico_Documento.insert(fields_update)
+            self.update(:canonico_documento_id=>can_doc_id)
+            status.success("Agregado un nuevo documento canónico #{can_doc_id}: #{integrator.ref_apa_6}")
+          end
         end
         $db.after_rollback {
           status=Result.new

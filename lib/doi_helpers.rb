@@ -8,10 +8,11 @@ module DOIHelpers
   end
   def a_doi(doi)
     url_doi_=url_doi(doi)
-    "<a target='_black' href='#{url_doi_}'>#{url_doi_}</a>"
+    "<a target='_blank' href='#{url_doi_}'>#{url_doi_}</a>"
   end
 
   def doi_sin_http(doi)
+    return nil if doi.nil?
     doi.gsub(/http.+doi.org\// ,"")
   end
 end

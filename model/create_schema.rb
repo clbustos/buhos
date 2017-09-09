@@ -88,6 +88,7 @@ $db.create_table? :canonicos_documentos do
   Integer :year
   String :journal_abbr, :size=>32
   String :abstract, :text=>true
+  String :url, :text => true
 end
 
 $db.create_table? :canonicos_autores do
@@ -140,12 +141,15 @@ $db.create_table? :registros do
   Integer :year
   String :journal_abbr, :size=>32
   String :abstract, :text=>true
+  String :url, :text => true
   foreign_key :canonico_documento_id ,:canonicos_documentos, :null=>true
 end
 
 $db.create_table? :referencias do
   String :id, :primary_key=>true
   String :texto, :text=>true
+  String :doi
+
   foreign_key :canonico_documento_id ,:canonicos_documentos, :null=>true
 end
 
@@ -186,4 +190,23 @@ end
     String :json, :text=>true
   end
 
+  $db.create_table? :scopus_abstracts do
+    String :id, :primary_key => true
+    String :xml, :text => true
+    String :doi
+  end
+
+
+  $db.create_table? :decisiones do
+    foreign_key :revision_sistematica_id, :revisiones_sistematicas, :null => false, :index => true
+    foreign_key :usuario_id, :usuarios, :null => false, :index => true
+    foreign_key :canonico_documento_id, :canonicos_documentos, :null => false, :index => true
+    String :etapa, :null => false
+    String :decision
+    String :comentario, :text => true
+    primary_key [:revision_sistematica_id, :usuario_id, :canonico_documento_id, :etapa]
+    index [:revision_sistematica_id, :usuario_id, :etapa]
+  end
+
 end
+

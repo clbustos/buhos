@@ -7,7 +7,7 @@ get '/referencia/:id/buscar_similar' do |id|
   @distancia=params['distancia'].to_i
   @distancia=30 if @distancia==0
   @ref_similares=@ref.buscar_similares(@distancia)
-  #$log.info(@ref_similares)
+  ##$log.info(@ref_similares)
   if @ajax
     haml "revisiones_sistematicas/referencia_buscar_similar".to_sym, :layout=>nil
   else
@@ -30,23 +30,40 @@ post '/referencia/:id/unir_referencias_similares' do |id|
 end
 
 
+get '/referencias/buscar_crossref_por_doi/:doi' do |doi|
+  doi=doi.gsub("***", "/")
+  result=Result.new
+  Referencia.where(:doi => doi).each do |ref|
+    result.add_result(ref.agregar_doi(doi))
+  end
+
+  agregar_resultado(result)
+  redirect back
+end
+
 get '/referencia/:id/buscar_crossref' do |id|
 
   @ref=Referencia[id]
 
-  if(@ref.doi)
+  if @ref.doi
     result=Result.new
     result.add_result(@ref.agregar_doi(@ref.doi))
+    if result.success?
     agregar_resultado(result)
     redirect back
-  else
-    @respuesta=@ref.crossref_query
-    haml "revisiones_sistematicas/referencia_buscar_crossref".to_sym
+    else
+      agregar_resultado(result)
+    end
+
   end
+  @respuesta=@ref.crossref_query
+  haml "revisiones_sistematicas/referencia_buscar_crossref".to_sym
+
 end
 
 get '/referencia/:id' do |id|
   @ref=Referencia[id]
+  @registros=@ref.registros
   haml :referencia
 end
 
@@ -63,3 +80,18 @@ get '/referencia/:id/asignar_doi/:doi' do |id,doi|
   end
 
 end
+
+
+get '/referencias/completar_canonicos' do
+  res_c=nil
+  $db.transaction(:rollback => :reraise) do
+    res=$db["SELECT r.id as referencia_id,cd.id as cd_id	 FROM referencias r INNER  JOIN canonicos_documentos cd ON r.doi=cd.doi WHERE r.doi IS NOT NULL AND r.canonico_documento_id IS NULL 	"]
+    res_c=res.count()
+    res.each do |row|
+      Referencia[row[:referencia_id]].update(:canonico_documento_id => row[:cd_id])
+    end
+  end
+  agregar_mensaje("Se completaron los canonicos para #{res_c} referencias con DOI sin canonicos previos")
+  redirect back
+end
+

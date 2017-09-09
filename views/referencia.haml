@@ -1,5 +1,16 @@
 %h3="Referencia #{@ref[:id]}"
 
-%h4 Registros
+%p
+  %strong Texto:
+  =@ref[:texto]
+
+-if @ref.doi
+  =a_doi(@ref.doi)
+
+
+- if @ref.canonico_documento_id
+  %h4 Canónico que corresponde a esta referencia
+  =partial(:canonico_documento_resumen,:locals=>{:id=>@ref.canonico_documento_id})
+%h4 Registros que citan a esta referencia
 
 =partial(:registros_lista, :locals=>{:registros=>@registros})

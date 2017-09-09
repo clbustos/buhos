@@ -1,0 +1,68 @@
+%h2="Documentos Canónicos para Revisión #{@revision.nombre}"
+
+%ul.breadcrumb
+  %li
+    %a{:href=>url("/revision/#{@revision.id}")}=@revision.nombre
+  %li
+    %a{:href=>url("/revision/#{@revision.id}/canonicos_documentos")} Documentos canónicos
+
+
+%p
+  %strong Número de documentos canónicos total (registro/referencia):
+  = sprintf("%d (%d / %d)", @ars.cd_count_total, @ars.cd_count_reg, @ars.cd_count_ref)
+
+%p
+  %strong DOI repetidos:
+  = @cd_rep_doi.length
+
+%form{:action=>url("/revision/#{@revision[:id]}/canonicos_documentos"), :method=>:get,:class=>"form-inline"}
+  %div{:class=>"input-group mb-2 mr-sm-2"}
+    %input{:type=>:hidden,:name=>:pagina, :value=>@pagina}
+
+    %label{:class=>"", :for=>:busqueda}Busqueda
+    %input{:type=>:text, :value=>@busqueda, :name=>:busqueda, :class=>"form-control"}
+    .form-group-inline
+      %label{:for=>:sin_abstract} Revisar solo sin abstract
+      %input{:type=>:checkbox, :name=>:sin_abstract, :class=>"form-control-checkbox", :value=>'true',:checked=>@sin_abstract}
+    .form-group-inline
+      %label{:for=>:solo_registros} Sólo documentos en búsquedas (no referencias)
+      %input{:type=>:checkbox, :name=>:solo_registros, :class=>"form-control-checkbox", :checked=>@solo_registros, :value=>'true'}
+  %input{:type=>:submit, :class=>'btn btn-default '}
+%div{:class=>"btn-group btn-group-sm", :role=>"group"}
+  - if permiso("documentos_canonicos_editar")  or revision_pertenece_a(@revision.id, session['user_id'])
+    %a{:href=>url("/revision/#{@revision.id}/canonicos_documentos_repetidos"), :role=>'button', :class=>"btn btn-default"} Revisar duplicaciones
+  - if permiso("documentos_canonicos_editar")  or revision_pertenece_a(@revision.id, session['user_id'])
+    %a{:href=>url("/referencias/completar_canonicos"), :role=>'button', :class=>"btn btn-default", :tooltip=>"Se revisan todas las referencias con DOI y se le une al canónico correspondiente"}
+      %span{:class=>""}
+      Referencias completar canonicos
+  - if permiso("documentos_canonicos_editar")  or revision_pertenece_a(@revision.id, session['user_id'])
+    %a{:href=>url("/canonicos_documentos/revision/#{@revision.id}/completar_abstract")   , :role=>'button', :class=>"btn btn-default"}
+      %span{:class=>""}
+      Completar abstract Scopus
+  %a{:href=>url("/revision/#{@revision.id}/canonicos_documentos_graphml"),  :role=>'button', :class=>"btn btn-default"}
+    %span{:class=>"glyphicon glyphicon-save"}
+    Graphml
+
+%p
+  %strong Número documentos búsqueda:
+  =@cds_total
+
+= partial(:pager,:locals=>{url: @url, pagina: @pagina, max_page: @max_page,:extra=>{busqueda:@busqueda, sin_abstract:@sin_abstract, solo_registros:@solo_registros}} )
+.list-group
+  - #$log.info(@cds)
+  - @cds.each do |cd|
+    .list-group-item
+      =CGI::escapeHTML cd.ref_apa_6_breve
+      %p=sprintf("<strong>Referencias:</strong> citado por %d / referencia a %d", @ars.cd_count_entrada(cd[:id]).to_i, @ars.cd_count_salida(cd[:id]).to_i)
+      %div
+        =partial(:canonico_documento_boton,:locals=>{:id=>cd.id})
+        -if !cd[:abstract].nil? and cd[:abstract]!=""
+          %button{:class=>"btn btn-primary btn-sm", :type=>"button",  "data-toggle"=>'collapse', "data-target"=>"#cd#{cd[:id]}", "aria-expanded"=>"false", "aria-controls"=>"cd#{cd[:id]}"}Abstract
+          %div{:class=>"collapse", :id=>"cd#{cd[:id]}"}
+            .well=cd[:abstract]
+
+
+
+
+
+= partial(:pager,:locals=>{url: @url, pagina: @pagina, max_page: @max_page,:extra=>{busqueda:@busqueda, sin_abstract:@sin_abstract, solo_registros:@solo_registros}} )

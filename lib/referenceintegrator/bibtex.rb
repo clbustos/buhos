@@ -30,6 +30,8 @@ module ReferenceIntegrator
           type=:wos
         elsif bibtex_value[:url].to_s=~/search\.ebscohost.com/
           type=:ebscohost
+        elsif bibtex_value[:url].to_s=~/scielo/
+          type=:scielo
         else
           type=:generic
         end
@@ -114,6 +116,22 @@ module ReferenceIntegrator
 
 
     end
+
+
+    class Record_Scielo < Record
+      def type
+        :scielo
+      end
+
+      def parse_specific
+        results=/(pid=[^&]+)/.match(@bv[:url])
+        @uid=results[0]
+      end
+
+      def cited_references
+        nil
+      end
+    end
     class Record_Ebscohost < Record
       def parse_specific
         @keywords=@bv[:keywords].split(", ")
@@ -144,7 +162,7 @@ module ReferenceIntegrator
 
       def initialize(bibtex_bibliography)
         @bb=bibtex_bibliography
-        parse_references
+        parse_records
       end
 
       def self.open(filename)

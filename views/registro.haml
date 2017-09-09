@@ -1,0 +1,15 @@
+%h3="Registro #{@reg[:id]}"
+
+=partial(:registros_lista,:locals=>{:registros=>[@reg]})
+
+
+%h4 Referencias
+
+- if permiso("referencias_editar")
+  %form{:method=>:post, :action=>url("/registro/#{@reg[:id]}/referencias_manuales"), :class=>"form-group"}
+    %label{:for=>:referencia_manual}Ingresar referencias manualmente
+    %textarea{:name=>:referencia_manual, :rows=>5, :cols=>30, :class=>"form-control"}
+    %input{:type=>:submit, :value=>"Enviar", :class=>"form-control"}
+
+
+=partial(:referencias_lista, :locals=>{:referencias=>@referencias})

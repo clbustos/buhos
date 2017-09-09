@@ -25,6 +25,11 @@ class Busqueda < Sequel::Model
     $db["SELECT r.id, r.texto, COUNT(DISTINCT(br.registro_id)) as n FROM referencias r INNER JOIN referencias_registros rr ON r.id=rr.referencia_id INNER JOIN busquedas_registros br ON rr.registro_id=br.registro_id WHERE br.busqueda_id=? AND canonico_documento_id IS NULL GROUP BY r.id ORDER BY n DESC #{sql_limit}", self[:id] ]
   end
 
+  def referencias_sin_canonico_con_doi_n(limit=nil)
+    sql_limit= limit.nil? ? "" : "LIMIT #{limit.to_i}"
+    $db["SELECT r.doi, r.texto, COUNT(DISTINCT(br.registro_id)) as n FROM referencias r INNER JOIN referencias_registros rr ON r.id=rr.referencia_id INNER JOIN busquedas_registros br ON rr.registro_id=br.registro_id WHERE br.busqueda_id=? AND canonico_documento_id IS NULL AND doi IS NOT NULL GROUP BY r.doi ORDER BY n DESC #{sql_limit}", self[:id]]
+  end
+
   def nombre
     "#{self.base_bibliografica_nombre} - #{self.fecha}"
   end
@@ -38,17 +43,17 @@ class Busqueda < Sequel::Model
   def procesar_canonicos
 
     bb=Base_Bibliografica.id_a_nombre_h
-    #$log.info(bb)
+    ##$log.info(bb)
     $db.transaction(:rollback=>:reraise) do
       registros.each do |registro|
         fields = [:title,:author,:year,:journal, :volume, :pages, :doi, :journal_abbr,:abstract]
 
         fields_update=crear_hash_update(fields,  registro)
-        #$log.info(fields)
+        ##$log.info(fields)
         registro_base_id="#{bb[registro.base_bibliografica_id]}_id".to_sym
         if registro[:canonico_documento_id].nil?
           # Verifiquemos si existe doi
-          if registro[:doi].to_s!=""
+          if registro[:doi].to_s=~/10\./
             can_doc=Canonico_Documento[:doi=>registro[:doi]]
           end
 
@@ -61,7 +66,7 @@ class Busqueda < Sequel::Model
           can_doc=Canonico_Documento[registro[:canonico_documento_id]]
           # Verificamos si tenemos una nueva información que antes no estaba
           fields_new_info=fields.find_all {|v|  (can_doc[v].nil? or can_doc[v].to_s=="") and !(registro[v].nil? or registro[v].to_s=="")   }
-          #$log.info(fields.map {|v| registro[v]})
+          ##$log.info(fields.map {|v| registro[v]})
           unless fields_new_info.nil?
             fields_update_2=crear_hash_update(fields_new_info, registro)
             can_doc.update(fields_update_2)
@@ -91,13 +96,15 @@ class Busqueda < Sequel::Model
   def procesar_archivo
     return nil if self[:archivo_cuerpo].nil?
     if self[:archivo_tipo]=="text/x-bibtex"
-      integrator=ReferenceIntegrator::BibTeX::Reader.parse(self[:archivo_cuerpo])
-    elsif self[:archivo_tipo]=="csv" # Por trabajar
-      raise("Don't have nothing for csv")
+      integrator=ReferenceIntegrator::BibTex::Reader.parse(self[:archivo_cuerpo])
+    elsif self[:archivo_tipo]=="text/csv" # Por trabajar
+      #$log.info(base_bibliografica_nombre)
+      integrator=ReferenceIntegrator::CSV::Reader.parse(self[:archivo_cuerpo], base_bibliografica_nombre)
     else
       raise("No integrator defined")
     end
-
+    ##$log.info(integrator)
+    #raise("PARAR")
     $db.transaction do
       bb=Base_Bibliografica.nombre_a_id_h
       ref_ids=[]
@@ -120,7 +127,7 @@ class Busqueda < Sequel::Model
 
         fields = [:title,:author,:year,:journal, :volume, :pages, :doi, :journal_abbr,:abstract]
 
-        fields_update=fields.inject({}) {|ac,v|
+        fields_update=fields.find_all {|v| reg_o[:field].nil? and reference.send(v)!=""}.inject({}) {|ac, v|
           ac[v]= reference.send(v); ac;
         }
 

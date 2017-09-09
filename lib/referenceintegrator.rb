@@ -6,6 +6,8 @@ module ReferenceIntegrator
     attr_accessor  :title
     attr_accessor  :abstract
     attr_reader  :authors
+    attr_accessor :author
+
     attr_accessor  :journal
     attr_accessor  :year
     attr_accessor  :volume
@@ -30,3 +32,4 @@ end
 
 require_relative 'referenceintegrator/bibtex'
 require_relative 'referenceintegrator/json'
+require_relative 'referenceintegrator/csv'

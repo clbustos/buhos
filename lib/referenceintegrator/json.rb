@@ -63,13 +63,13 @@ module ReferenceIntegrator
 
           @uid=vh["URL"]
           @title=vh["title"].join(";")
-          $log.info("Parseando")
-          $log.info(vh["author"])
+          #$log.info("Parseando")
+          #$log.info(vh["author"])
           @authors=vh["author"].map {|v|
             "#{v["family"]}, #{v["given"]}"
           } unless vh["author"].nil?
 
-#          $log.info(@authors)
+#          #$log.info(@authors)
 
           @journal=vh["container-title"].join(";")
           @year=vh["issued"]["date-parts"][0][0]
@@ -81,7 +81,7 @@ module ReferenceIntegrator
           @references_crossref=@jv["message"]["reference"]
 
         rescue Exception=>e
-          $log.info("Error:#{vh}")
+          #$log.info("Error:#{vh}")
           raise e
         end
 
@@ -95,7 +95,7 @@ module ReferenceIntegrator
 
 
       def author
-        $log.info(@authors)
+        #$log.info(@authors)
         @authors.join (" and ")
 
       end

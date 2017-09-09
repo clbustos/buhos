@@ -12,7 +12,7 @@ class Crossref_Doi < Sequel::Model
       rescue Serrano::NotFound=>e
         return false
       rescue URI::InvalidURIError
-        $log.info("Malformed URI: #{doi}")
+        #$log.info("Malformed URI: #{doi}")
         return false
       end
       if co
@@ -49,9 +49,8 @@ class Crossref_Query < Sequel::Model
       url="http://search.crossref.org/dois?q=#{CGI.escape(t)}"
       uri = URI(url)
       res = Net::HTTP.get_response(uri)
-      #$log.info(res)
+      ##$log.info(res)
       raise "No lo pude leer bien" if res.code!="200"
-
       json_raw = res.body
       Crossref_Query.insert(:id=>digest,:query=>t,:json=>json_raw)
     else

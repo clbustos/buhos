@@ -1,33 +1,52 @@
-%h2 Revisiones
-%a{:href=>url("/revision/nuevo")}
-  %img{:src=>url("images/list-add.png")}
-  Nueva revisión sistemática
-%form{:method=>:post, :action=>url("/revisiones/actualizar")}
-  %table.reporte
-    %thead
-      %th ID
-      %th Nombre
-      %th Descripción
-      %th Foco
-      %th Objetivo
-      %th Perspectiva
-      %th Cobertura
-      %th Organización
-      %th Destinatario
-      %th Busquedas
-    -@revisiones.each do |r|
-      %tr
-        %td=r.id
-        %td
-          %a{:href=>"/revision/#{r.id}"}=r.nombre
-        %td=r.descripcion
-        %td=r.trs_foco.name
-        %td=r.trs_objetivo.name
-        %td=r.trs_perspectiva.name
-        %td=r.trs_cobertura.name
-        %td=r.trs_organizacion.name
-        %td=r.trs_destinatario.name
-        %td=partial(:revision_botones, :locals=>{:r=>r})
+.page-header
+  %h2 Revisiones
 
-          
-  %input{:type=>:submit}
+.btn-group
+  - if @inactivas
+    %a{:href=>url("/revisiones"), :role=>:button, :class=>"btn btn-default"}
+      Solo activas
+  - else
+    %a{:href=>url("/revisiones?inactivas=true"), :role=>:button, :class=>"btn btn-default"}
+      Activas e inactivas
+
+-@revisiones.each do |r|
+  %div{:class=>"panel panel-default"}
+    %div{:class=>"panel-heading"}
+      ="(#{r.id})"
+      %a{:href=>"/revision/#{r.id}"}=r.nombre
+    %div{:class=>"panel-body"}
+      %ul{:class=>"list-group"}
+        %li{:class=>'list-group-item'}
+          Descripción:
+          =r.descripcion
+        %li{:class=>'list-group-item'}
+          Foco:
+          =r.trs_foco.name
+        %li{:class=>'list-group-item'}
+          Objetivo:
+          =r.trs_objetivo.name
+        %li{:class=>'list-group-item'}
+          Perspectiva:
+          =r.trs_perspectiva.name
+        %li{:class=>'list-group-item'}
+          Cobertura:
+          =r.trs_cobertura.name
+        %li{:class=>'list-group-item'}
+          Organización:
+          =r.trs_organizacion.name
+        %li{:class=>'list-group-item'}
+          Destinatario:
+          =r.trs_destinatario.name
+        %li{:class=>'list-group-item'}
+          Activa:
+          =r.activa ? "Sí" : "No"
+        %li{:class=>'list-group-item'}
+          Etapa:
+          =r.etapa_nombre
+    %div{:class=>"panel-footer"}
+      =partial(:revision_botones, :locals=>{:r=>r})
+
+%a{:href=>url("/revision/nuevo")}
+  %button{:class=>"btn btn-default"}
+    %span{:class=>"glyphicon glyphicon-plus"}
+    Nueva revisión sistemática

@@ -1,15 +1,6 @@
-=partial :usuario
-
-%p Seleccione el proceso eleccionario y el tipo de análisis: 
-
-%table.reporte
-  %thead
-    %th Proceso 
-    %th Predicción
-  %tbody
-    -@subelecciones.each do |subeleccion|
-      %tr
-        %td=subeleccion[:nombre]
-        %td
-          %a{:href=>"/control/subeleccion/#{subeleccion[:id]}"} Predicción
-          
+%p
+  %strong Seleccion la revisión sistemática a analizar
+%ul.list-group
+- @rss.each do |rs|
+  %li.list-group-item
+    %a{:href=>"/revision/#{rs[:id]}/analisis"}=rs[:nombre]

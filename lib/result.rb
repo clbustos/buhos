@@ -17,7 +17,7 @@ class Result
     @events.push({type: :warning, message: message })
   end
   def success?
-    !@events.any {|v| v[:type]==:error}
+    !@events.any? {|v| v[:type]==:error}
   end
   def message
     @events.map {|v| "#{v[:type]}: #{v[:message]}"}.join("\n")

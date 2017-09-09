@@ -1,0 +1,41 @@
+- rmc_canonico=Canonico_Documento.where(:id=> referencias.exclude(canonico_documento_id: nil).map(:canonico_documento_id))
+- rmc_no_canonico=referencias.where(canonico_documento_id: nil)
+%h4 Referencias con canonico
+
+.list-group
+- rmc_canonico.each do |ref|
+  %div.list-group-item
+    %span{:class=>"badge"}=ref[:n_registros]
+    .list-group-item-text
+      ="#{ref[:author]} (#{ref[:year]}). #{ref[:title]}. <em>#{ref[:journal]},#{ref[:volume]}</em>, #{ref[:pages]} "
+      .btn-group
+        %button{:class=>"btn btn-default btn-sm buscar_similares_canonico",:id=>"buscar_similar-#{ref[:id]}"}
+          %span{:class=>"glyphicon glyphicon-search"}
+          Buscar similares
+        %a{:href=>url("/canonico_documento/#{ref[:id]}"), :role=>:button, :class=>"btn btn-success btn-sm"}
+          %span{:class=>"glyphicon glyphicon-king"}
+          Canónico
+        - if permiso("referencias_editar")
+          %a{:href=>url("/canonico_documento/#{ref[:id]}/limpiar_referencias"), :role=>:button, :class=>"btn btn-default btn-sm"}
+            %span{:class=>"glyphicon glyphicon-erase"}
+            Limpiar referencias
+      %div{:id=>"buscar_similar-#{ref[:id]}-campo", :style=>"max-height:200px;overflow:auto"}
+
+%p
+
+%h4 Referencias citadas sin canonico
+
+.list-group
+- rmc_no_canonico.each do |ref|
+  %div.list-group-item
+    %span{:class=>"badge"}=ref[:n]
+    .list-group-item-text
+      =ref[:texto]
+      - if ref[:doi]
+        =a_doi(ref[:doi])
+      .btn-group
+        - if permiso("referencias_editar") and permiso("acceder_crossref")
+          %a{:href=>url("/referencia/#{ref[:id]}/buscar_crossref"), :role=>:button, :class=>"btn btn-default btn-sm"}
+            %span{:class=>"glyphicon glyphicon-search"}
+            Buscar en Crossref
+      %div{:id=>"buscar_similar-#{ref[:id]}-campo"}

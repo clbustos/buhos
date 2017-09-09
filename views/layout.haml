@@ -38,13 +38,13 @@
             -if permiso('ingreso')
               %li{:class=>''}
                 %a{:class=>'nav-link', :href=>'/revisiones'} Revisiones sistematicas
-            -if permiso('canonico')
+            -if false and permiso('canonico')
               %li{:class=>''}
                 %a{:class=>'nav-link', :href=>'/canonicos'} Canónicos
-            -if permiso('grupos')
+            -if false and permiso('grupos')
               %li{:class=>''}
                 %a{:class=>'nav-link', :href=>'/grupos'} Usuarios y grupos
-            -if permiso('estadisticas')
+            -if false and permiso('estadisticas')
               %li{:class=>''}
                 %a{:class=>'nav-link', :href=>'/estadisticas'} Estadisticas de uso
             -if permiso('administracion')
@@ -61,7 +61,7 @@
             %p{:class=>'navbar-text'}
               =presentar_usuario
               -if settings.development?
-                %span{:class=>"alerta"} Desarrollo
+                %span{:class=>"alerta"} Dev
       %section#mensajes
         =imprimir_mensajes
       %section#content

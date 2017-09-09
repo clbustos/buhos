@@ -36,6 +36,7 @@ Sequel.inflections do |inflect|
   inflect.irregular 'trs_organizacion','trs_organizaciones'
   inflect.irregular 'base_bibliografica','bases_bibliograficas'
   inflect.irregular 'canonico_documento','canonicos_documentos'
-
+  inflect.irregular 'referencia_registro', 'referencias_registros'
+  inflect.irregular 'decision', 'decisiones'
 end
 
