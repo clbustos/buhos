@@ -1,15 +1,18 @@
 # encoding:utf-8
 require 'sequel'
 require 'logger'
+
+require 'dotenv'
+Dotenv.load("../.env")
+
 Sequel::Model.plugin :force_encoding, 'UTF-8' if RUBY_VERSION>="1.9"
 # Chanta, ¿no?
 
-if(ENV['USER']=="cdx")
-$db=Sequel.mysql2(:host=>"localhost",:user=>'root',:password=>'psr-400', :database=>'revsist', :encoding => 'utf8')
-
+if ENV['JAWSDB_URL'] and ENV['USE_JAWSDB']=='true'
+  url_mysql= ENV['JAWSDB_URL'].sub("mysql:","mysql2:")
+  $db=Sequel.connect(url_mysql, :encoding => 'utf8',:reconnect=>true)
 else
-#$db=Sequel.mysql(:host=>"mysql.apsique.cl",:user=>'biobio',:password=>'biobio018025', :database=>'biobio2012', :encoding => 'UTF8')
-raise("No sé donde conectarme")
+  $db=Sequel.connect(ENV['DATABASE_URL'], :encoding => 'utf8',:reconnect=>true)
 end
 
 $db.run("SET NAMES UTF8")
