@@ -10,7 +10,6 @@ require 'haml'
 require 'logger'
 
 
-require 'scopus'
 require 'dotenv'
 
 Dotenv.load("./.env")

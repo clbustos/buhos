@@ -1,4 +1,4 @@
-require 'scopus'
+require_relative 'scopus'
 
 class ScopusRemote
   attr_reader :scopus
