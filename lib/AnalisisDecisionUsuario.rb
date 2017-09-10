@@ -22,7 +22,7 @@ class AnalisisDecisionUsuario
   def procesar_cd_adecuados
 
     @cd_ids=case @etapa
-          when 'primera_revision'
+          when 'revision_titulo_resumen'
             revision_sistematica.cd_registro_id
           when 'segunda_revision'
             revision_sistematica.cd_referencia_id

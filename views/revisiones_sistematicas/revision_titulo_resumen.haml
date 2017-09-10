@@ -1,18 +1,18 @@
 .page-header
   %h2="Revision sistemática #{@revision.nombre} "
-  %h3 Primera etapa: Revisión de documentos en las búsquedas
+  %h3 Revisión de títulos y resúmenes (búsqueda)
 %ul.breadcrumb
   %li
     %a{:href=>url("/revision/#{@revision.id}")}=@revision.nombre
   %li
-    %a{:href=>url("/revision/#{@revision.id}/primera_revision")} Primera revision
+    %a{:href=>url("/revision/#{@revision.id}/revision_titulo_resumen")} Revisión de títulos y resúmenes en búsqueda
 
 .well
-  Objetivo de la primera etapa: Seleccionar aquellos textos que serán sujetos a una revisión de texto completo más adelante. Además, se considerarán las referencias de los documentos seleccionados para una segunda revisión.
+  Objetivo de la primera etapa: Seleccionar los textos obtenidos de la búsqueda en la literatura que serán sujetos a una revisión de texto completo más adelante. 
 
 :javascript
   $(document).ready(function() {
-    actualizar_decision('primera_revision');
+    actualizar_decision('revision_titulo_resumen');
     }
   );
 
@@ -39,7 +39,7 @@
   %strong Número de documentos total a revisar:
   = sprintf("%d", @ars.cd_count_reg)
 
-%form{:action=>url("/revision/#{@revision[:id]}/primera_revision"), :method=>:get,:class=>"form-check", :enctype=>"multipart/form-data"}
+%form{:action=>url("/revision/#{@revision[:id]}/revision_titulo_resumen"), :method=>:get,:class=>"form-check", :enctype=>"multipart/form-data"}
   %table.reporte
     %thead
       - Decision::N_EST.values.each do |k|
@@ -70,5 +70,5 @@
 .list-group
   - @cds.each do |cd|
     %div{:id=>"decision-cd-#{cd[:id]}"}
-      =partial(:decision, :locals=>{ revision_id: @revision[:id], cd: cd, decisiones: @decisiones, ars: @ars, usuario_id: @usuario_id, etapa: "primera_revision"})
+      =partial(:decision, :locals=>{ revision_id: @revision[:id], cd: cd, decisiones: @decisiones, ars: @ars, usuario_id: @usuario_id, etapa: "revision_titulo_resumen"})
 = partial(:pager,:locals=>{url: @url, pagina: @pagina, max_page: @max_page, :extra=>{busqueda:@busqueda}})

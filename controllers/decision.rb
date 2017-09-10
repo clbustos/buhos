@@ -22,7 +22,7 @@ put '/decision/revision/:revision_id/usuario/:usuario_id/canonico_documento/:cd_
     else
       Decision.insert(:revision_sistematica_id => revision_id,
                       :decision => nil,
-                      :usuario_id => usuario_id, :canonico_documento_id => pk, :etapa => 'primera_revision', :comentario => value.strip)
+                      :usuario_id => usuario_id, :canonico_documento_id => pk, :etapa => 'revision_titulo_resumen', :comentario => value.strip)
     end
   end
   return 200
@@ -42,7 +42,7 @@ post '/decision/revision/:revision_id/usuario/:usuario_id/canonico_documento/:cd
     else
       Decision.insert(:revision_sistematica_id => revision_id,
                       :decision => decision,
-                      :usuario_id => usuario_id, :canonico_documento_id => cd_id, :etapa => 'primera_revision')
+                      :usuario_id => usuario_id, :canonico_documento_id => cd_id, :etapa => 'revision_titulo_resumen')
     end
   end
   revision=Revision_Sistematica[revision_id]

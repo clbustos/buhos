@@ -11,7 +11,18 @@
     %a{:role=>:button, :href=>url("/revision/#{r.id}/busquedas"), :class=>"btn btn-default"}
       %span{:class=>"glyphicon glyphicon-book"}
       Búsquedas
-  - if permiso("primera_revision_ver") or revision_analizada_por(r.id, session['user_id'])
-    %a{:role=>:button, :href=>url("/revision/#{r.id}/primera_revision"), :class=>"btn btn-default"}
-      %span{:class=>"glyphicon glyphicon-ok-sign"}
-      Primera revisión
+  %div{:class=>"btn-group btn-group-sm", :role=>"group"}
+    %button{:id=>"btn_revisiones_#{r.id}", :type=>"button", :class=>"btn btn-default dropdown-toggle", "data-toggle"=>"dropdown", "aria-haspopup"=>"true", "aria-expanded"=>"false"}
+      Jueces
+      %span{:class=>"caret"}
+    %ul{:class=>"dropdown-menu", "aria-labelledby"=>"btn_revisiones_#{r.id}"}
+      - if permiso("revisiones_administrar") or revision_pertenece_a(r.id, session['user_id'])
+        %li
+          %a{:role=>:button, :href=>url("/revision/#{r.id}/administracion_etapas"), :class=>"btn btn-default"}
+            %span{:class=>"glyphicon glyphicon-cert-sign"}
+            Administrar etapas
+      - if permiso("revision_titulo_resumen_ver") or revision_analizada_por(r.id, session['user_id'])
+        %li
+          %a{:role=>:button, :href=>url("/revision/#{r.id}/revision_titulo_resumen"), :class=>"btn btn-default "}
+            %span{:class=>"glyphicon glyphicon-ok-sign"}
+            Primera revisión

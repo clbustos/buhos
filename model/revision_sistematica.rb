@@ -12,9 +12,19 @@ class Revision_Sistematica < Sequel::Model
   TRS_p=["focos","objetivos","perspectivas","coberturas","organizaciones","destinatarios"]
 
 
-  ETAPAS=[:busqueda, :primera_revision, :segunda_revision, :analisis, :sintesis]
+  ETAPAS=[:busqueda,
+          :revision_titulo_resumen,
+          :revision_referencias,
+          :revision_texto_completo,
+          :analisis,
+          :sintesis]
 
-  ETAPAS_NOMBRE={:busqueda => "Búsqueda", :primera_revision => "Primera revisión (titulo y resumen)", :segunda_revision => "Segunda revisión (lectura rápida)", :analisis => "Análisis", :sintesis => "Síntesis"}
+  ETAPAS_NOMBRE={:busqueda => "Búsqueda",
+                 :revision_titulo_resumen => "Revisión titulo y resumen",
+                 :revision_referencias => "Revisión referencias",
+                 :revision_texto_completo=> "Segunda revisión (lectura rápida)",
+                 :analisis => "Análisis",
+                 :sintesis => "Síntesis"}
 
   def palabras_claves_as_array
     palabras_claves.nil? ? nil : palabras_claves.split(";").map {|v| v.strip}

@@ -212,7 +212,7 @@ get '/revision/:id/analisis' do |id|
 end
 
 
-get '/revision/:id/primera_revision' do |id|
+get '/revision/:id/revision_titulo_resumen' do |id|
 
   @usuario=Usuario[session['user_id']]
   @usuario_id=@usuario[:id]
@@ -222,16 +222,16 @@ get '/revision/:id/primera_revision' do |id|
   @cpp||=20
   @busqueda=params['busqueda']
 
-  $log.info(params)
+ # $log.info(params)
   @revision=Revision_Sistematica[id]
   @ars=AnalisisRevisionSistematica.new(@revision)
   @cd_total_ds=@revision.canonicos_documentos
 
 
-  @url="/revision/#{id}/primera_revision"
+  @url="/revision/#{id}/revision_titulo_resumen"
   @cds_pre=@revision.canonicos_documentos(:registro)
 
-  @ads=AnalisisDecisionUsuario.new(id,@usuario_id, 'primera_revision')
+  @ads=AnalisisDecisionUsuario.new(id,@usuario_id, 'revision_titulo_resumen')
 
   @cds_pre=@ads.canonicos_documentos
 
@@ -258,10 +258,15 @@ get '/revision/:id/primera_revision' do |id|
   @cds=@cds_pre.offset((@pagina-1)*@cpp).limit(@cpp).order(:author, :year)
 
 
-  haml %s{revisiones_sistematicas/primera_revision}
+  haml %s{revisiones_sistematicas/revision_titulo_resumen}
 
 
 end
 
+get '/revision/:id/administracion_etapas' do |id|
+  @revision=Revision_Sistematica[id]
+
+  haml %s{revisiones_sistematicas/administracion_etapas}
+end
 
 
