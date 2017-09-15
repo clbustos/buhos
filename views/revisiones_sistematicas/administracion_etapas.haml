@@ -46,7 +46,7 @@
         - Decision::N_EST.each do |dec,nombre|
           %th=Decision.get_name_decision(dec)
       %tbody
-        - @ars.decisiones_primera_etapa.sort_by {|cd_id,a| a["yes"].to_i+2*a["no"].to_i+4*a["undecided"].to_i }.each do |cd_id,vals|
+        - @ars.decisiones_primera_etapa.sort_by {|cd_id,a| a["yes"].to_i+10*a["no"].to_i+100*a["undecided"].to_i }.each do |cd_id,vals|
           %tr
             %td=@ars.cd_hash[cd_id].title
             - Decision::N_EST.each do |dec,nombre|
