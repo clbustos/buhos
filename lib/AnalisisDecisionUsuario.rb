@@ -8,8 +8,7 @@ class AnalisisDecisionUsuario
     @rs_id=rs_id
     @usuario_id=usuario_id
     @etapa=etapa.to_s
-
-    procesar_cd_adecuados
+    procesar_cd_ids
     procesar_indicadores_basicos
     #procesar_numero_citas
   end
@@ -19,18 +18,9 @@ class AnalisisDecisionUsuario
   def canonicos_documentos
     Canonico_Documento.where(:id=>@cd_ids)
   end
-  def procesar_cd_adecuados
-
-    @cd_ids=case @etapa
-          when 'revision_titulo_resumen'
-            revision_sistematica.cd_registro_id
-          when 'segunda_revision'
-            revision_sistematica.cd_referencia_id
-          else
-            raise 'no definido'
-        end
+  def procesar_cd_ids
+    @cd_ids=revision_sistematica.cd_id_por_etapa(@etapa)
   end
-
   def procesar_indicadores_basicos
     @decisiones=Decision.where(:usuario_id => @usuario_id, :revision_sistematica_id => @rs_id,
                                :etapa => @etapa, :canonico_documento_id=>@cd_ids).as_hash(:canonico_documento_id)

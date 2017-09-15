@@ -142,5 +142,15 @@ HEREDOC
     [head, nodos, edges, footer].join("\n")
   end
 
-
+  # Entrega la lista de canónicos documentos apropiados para cada etapa
+  def cd_id_por_etapa(etapa)
+    case etapa.to_s
+      when 'revision_titulo_resumen'
+        cd_registro_id
+      when 'segunda_revision'
+        cd_referencia_id
+      else
+        raise 'no definido'
+    end
+  end
 end

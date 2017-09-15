@@ -33,9 +33,23 @@
         - Decision::N_EST.each do |dec,nombre|
           %th=Decision.get_name_decision(dec)
       %tbody
-        - @ars.estadisticas_decision_usuario(etapa).each do |usuario_id, edu|
+        - @ars.decisiones_usuarios(etapa).each do |usuario_id, edu|
           %tr
             %th=edu[:usuario].nombre
             - Decision::N_EST.each do |dec,nombre|
               - dec_i = dec == '--' ? nil : dec
               %td=edu[:adu].total_decisiones[dec_i].to_i
+    %h4 Decisiones por documento
+    %table.reporte
+      %thead
+        %th Documento
+        - Decision::N_EST.each do |dec,nombre|
+          %th=Decision.get_name_decision(dec)
+      %tbody
+        - Canonico_Documento.where(:id=>@revision.cd_id_por_etapa(etapa)).order(:title).each do |cd|
+          %tr
+            %td=cd.title
+            - Decision::N_EST.each do |dec,nombre|
+              - dec_i = dec == '--' ? nil : dec
+              %td= @ars.decisiones_primera_etapa[cd[:id]][dec_i].to_i
+

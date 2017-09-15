@@ -81,10 +81,27 @@ class AnalisisRevisionSistematica
     @ref_cuenta_salida.sort_by {|a| a[1]}.reverse[0...n]
   end
   # Señala cuales son los jueces (personas de deben evaluar) y cuantos juicios tienen
-  def estadisticas_decision_usuario(etapa)
+  def decisiones_usuarios(etapa)
     @rs.grupo_usuarios.inject({}) {|ac,usuario|
       ac[usuario.id]={usuario: usuario, adu: AnalisisDecisionUsuario.new(@rs.id,usuario.id, etapa )}
       ac
     }
   end
+  # Se analiza cada cd y se cuenta cuantas decisiones para cada tipo
+  def decisiones_primera_etapa
+    @decisiones_primera_etapa||=decisiones_primera_etapa_calculo
+  end
+  def decisiones_primera_etapa_calculo
+    decisiones=Decision.where(:canonico_documento_id=>@cd_reg_id, :usuario_id=>@rs.grupo_usuarios.map {|u| u[:id]}, :etapa=>"revision_titulo_resumen").group_and_count(:canonico_documento_id, :decision)
+    n_jueces=@rs.grupo_usuarios.count
+
+    total_por_cd=@cd_reg_id.inject({}) {|ac,v|
+      ac[v]=decisiones.find_all {|dec| dec[:canonico_documento_id]==v }.inject({}) {|ac1,v1|   ac1[v1[:decision]]=v1[:count]; ac1 }
+      suma=ac[v].inject(0) {|ac1,v1| ac1+v1[1]}
+      ac[v][nil]=n_jueces-suma
+      ac
+    }
+    total_por_cd
+  end
+
 end
