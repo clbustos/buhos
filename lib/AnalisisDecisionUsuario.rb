@@ -7,7 +7,7 @@ class AnalisisDecisionUsuario
   def initialize(rs_id,usuario_id,etapa)
     @rs_id=rs_id
     @usuario_id=usuario_id
-    @etapa=etapa
+    @etapa=etapa.to_s
 
     procesar_cd_adecuados
     procesar_indicadores_basicos
@@ -32,7 +32,6 @@ class AnalisisDecisionUsuario
   end
 
   def procesar_indicadores_basicos
-
     @decisiones=Decision.where(:usuario_id => @usuario_id, :revision_sistematica_id => @rs_id,
                                :etapa => @etapa, :canonico_documento_id=>@cd_ids).as_hash(:canonico_documento_id)
 
@@ -48,9 +47,6 @@ class AnalisisDecisionUsuario
       ac[ dec]+=1
       ac
     }
-
-
-
   end
 
 end

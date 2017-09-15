@@ -28,13 +28,16 @@ class Revision_Sistematica < Sequel::Model
 
   def palabras_claves_as_array
     palabras_claves.nil? ? nil : palabras_claves.split(";").map {|v| v.strip}
-
-
+  end
+  def etapas_avanzadas
+    ETAPAS[0..ETAPAS.find_index(self.etapa.to_sym)]
   end
   def grupo_nombre
     grupo.nil? ? "--Sin grupo asignado --" : grupo.name
   end
-
+  def grupo_usuarios
+    grupo.nil? ? nil : grupo.usuarios
+  end
   def etapa_nombre
     ETAPAS_NOMBRE[self.etapa.to_sym]
   end

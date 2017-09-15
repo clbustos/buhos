@@ -23,7 +23,9 @@ class AnalisisRevisionSistematica
     procesar_indicadores_basicos
     procesar_numero_citas
   end
-
+  def cd_hash
+    @cd_hash||=Canonico_Documento.where(:id=>@cd_todos_id).as_hash
+  end
   def cd_count_entrada(id)
     @ref_cuenta_entrada[id]
   end
@@ -72,6 +74,17 @@ class AnalisisRevisionSistematica
       ac[v[0]]=v[1].length; ac
     }
   end
-
-
+  def mas_citados(n=20)
+    @ref_cuenta_entrada.sort_by {|a| a[1]}.reverse[0...n]
+  end
+  def con_mas_referencias(n=20)
+    @ref_cuenta_salida.sort_by {|a| a[1]}.reverse[0...n]
+  end
+  # Señala cuales son los jueces (personas de deben evaluar) y cuantos juicios tienen
+  def estadisticas_decision_usuario(etapa)
+    @rs.grupo_usuarios.inject({}) {|ac,usuario|
+      ac[usuario.id]={usuario: usuario, adu: AnalisisDecisionUsuario.new(@rs.id,usuario.id, etapa )}
+      ac
+    }
+  end
 end

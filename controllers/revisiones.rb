@@ -263,10 +263,12 @@ get '/revision/:id/revision_titulo_resumen' do |id|
 
 end
 
+
 get '/revision/:id/administracion_etapas' do |id|
   @revision=Revision_Sistematica[id]
-
+  @ars=AnalisisRevisionSistematica.new(@revision)
   haml %s{revisiones_sistematicas/administracion_etapas}
+
 end
 
 
