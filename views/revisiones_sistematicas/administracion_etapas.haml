@@ -46,10 +46,10 @@
         - Decision::N_EST.each do |dec,nombre|
           %th=Decision.get_name_decision(dec)
       %tbody
-        - Canonico_Documento.where(:id=>@revision.cd_id_por_etapa(etapa)).order(:title).each do |cd|
+        - @ars.decisiones_primera_etapa.sort_by {|cd_id,a| a["yes"].to_i+2*a["no"].to_i+4*a["undecided"].to_i }.each do |cd_id,vals|
           %tr
-            %td=cd.title
+            %td=@ars.cd_hash[cd_id].title
             - Decision::N_EST.each do |dec,nombre|
               - dec_i = dec == '--' ? nil : dec
-              %td= @ars.decisiones_primera_etapa[cd[:id]][dec_i].to_i
+              %td= vals[dec_i].to_i
 

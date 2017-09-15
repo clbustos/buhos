@@ -92,6 +92,7 @@ class AnalisisRevisionSistematica
     @decisiones_primera_etapa||=decisiones_primera_etapa_calculo
   end
   def decisiones_primera_etapa_calculo
+
     decisiones=Decision.where(:canonico_documento_id=>@cd_reg_id, :usuario_id=>@rs.grupo_usuarios.map {|u| u[:id]}, :etapa=>"revision_titulo_resumen").group_and_count(:canonico_documento_id, :decision)
     n_jueces=@rs.grupo_usuarios.count
 
