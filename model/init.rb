@@ -42,5 +42,7 @@ Sequel.inflections do |inflect|
   inflect.irregular 'canonico_documento','canonicos_documentos'
   inflect.irregular 'referencia_registro', 'referencias_registros'
   inflect.irregular 'decision', 'decisiones'
+  inflect.irregular 'resolucion', 'resoluciones'
+
 end
 

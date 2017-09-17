@@ -21,6 +21,7 @@ GEM
     levenshtein-ffi (1.1.0)
       ffi (~> 1.9)
     mini_portile2 (2.2.0)
+    moneta (1.0.0)
     multi_json (1.12.1)
     multipart-post (2.0.0)
     mustermann (1.0.1)
@@ -76,6 +77,7 @@ DEPENDENCIES
   haml
   i18n
   levenshtein-ffi
+  moneta
   mysql2
   nokogiri
   rack-test

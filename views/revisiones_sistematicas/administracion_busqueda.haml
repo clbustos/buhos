@@ -1,0 +1,30 @@
+.heading
+  %h2="Revision sistematica #{@revision[:nombre]}: Administración búsqueda"
+
+=partial(:breadcrumb_revision_admin,:locals=>{:nombre=>"Búsqueda"})
+
+
+%h3 Busqueda
+%table.reporte
+  %tr
+    %th Total documentos
+    %td=@ars.cd_count_total
+  %tr
+    %th Registros canónicos
+    %td=@ars.cd_count_reg
+  %tr
+    %th Referencias canónicas
+    %td=@ars.cd_count_ref
+
+%h3 Más citados
+.list-group
+  -@ars.mas_citados(10).each do |cd_id,n|
+    .list-group-item
+      %span{:class=>"badge"}=n
+      =@ars.cd_hash[cd_id].ref_apa_6_breve_html
+%h4 Los que más citan
+.list-group
+  -@ars.con_mas_referencias(10).each do |cd_id,n|
+    .list-group-item
+      %span{:class=>"badge"}=n
+      =@ars.cd_hash[cd_id].ref_apa_6_breve_html

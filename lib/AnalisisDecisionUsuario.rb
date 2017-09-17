@@ -27,14 +27,15 @@ class AnalisisDecisionUsuario
 
     @decision_por_cd=@cd_ids.inject({}) {|ac, cd_id|
       dec_id=@decisiones[cd_id]
-      dec_dec=dec_id ? dec_id[:decision] : nil
+      dec_dec=dec_id ? dec_id[:decision] : Decision::NO_DECISION
       ac[cd_id]=dec_dec
       ac
     }
     @total_decisiones=@cd_ids.inject({}) {|ac,cd_id|
       dec=@decision_por_cd[cd_id]
-      ac[ dec]||=0
-      ac[ dec]+=1
+      dec_i= dec.nil? ? Decision::NO_DECISION : dec
+      ac[ dec_i]||=0
+      ac[ dec_i]+=1
       ac
     }
   end

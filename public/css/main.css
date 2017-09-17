@@ -710,3 +710,19 @@ float: left;
 span.titulo {
     font-weight: bold;
 }
+
+
+td.decision {
+   width:5em;
+}
+
+.decision-yes {
+    color:darkgreen;
+}
+.decision-no {
+    color:darkred;
+}
+
+.decision-undecided {
+    color:sandybrown;
+}

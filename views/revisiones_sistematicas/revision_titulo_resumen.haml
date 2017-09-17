@@ -47,8 +47,7 @@
     %tbody
       %tr
         - Decision::N_EST.keys.each do |k|
-          -key= k == '--' ? nil : k
-          %td=@ads.total_decisiones[key].to_i
+          %td=@ads.total_decisiones[k].to_i
       %tr
         - Decision::N_EST.keys.each do |k|
           - checked= @busqueda.nil?  ? false :  ( @busqueda.include?(k) )

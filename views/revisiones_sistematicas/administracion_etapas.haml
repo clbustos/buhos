@@ -1,55 +1,15 @@
 .heading
   %h2="Revision sistematica #{@revision[:nombre]}: Etapas de revisión"
 
-- @revision.etapas_avanzadas.each do |etapa|
-  %h3=Revision_Sistematica::ETAPAS_NOMBRE[etapa]
-  -if etapa==:busqueda
-    %table.reporte
-      %tr
-        %th Total documentos
-        %td=@ars.cd_count_total
-      %tr
-        %th Registros canónicos
-        %td=@ars.cd_count_reg
-      %tr
-        %th Referencias canónicas
-        %td=@ars.cd_count_ref
-    %h4 Más citados
-    .list-group
-      -@ars.mas_citados(10).each do |cd_id,n|
-        .list-group-item
-          %span{:class=>"badge"}=n
-          =@ars.cd_hash[cd_id].ref_apa_6_breve_html
-    %h4 Los que más citan
-    .list-group
-      -@ars.con_mas_referencias(10).each do |cd_id,n|
-        .list-group-item
-          %span{:class=>"badge"}=n
-          =@ars.cd_hash[cd_id].ref_apa_6_breve_html
-  - elsif etapa==:revision_titulo_resumen
-    %table.reporte
-      %thead
-        %th Usuario
-        - Decision::N_EST.each do |dec,nombre|
-          %th=Decision.get_name_decision(dec)
-      %tbody
-        - @ars.decisiones_usuarios(etapa).each do |usuario_id, edu|
-          %tr
-            %th=edu[:usuario].nombre
-            - Decision::N_EST.each do |dec,nombre|
-              - dec_i = dec == '--' ? nil : dec
-              %td=edu[:adu].total_decisiones[dec_i].to_i
-    %h4 Decisiones por documento
-    %table.reporte
-      %thead
-        %th Documento
-        - Decision::N_EST.each do |dec,nombre|
-          %th=Decision.get_name_decision(dec)
-      %tbody
-        - @ars.decisiones_primera_etapa.sort_by {|cd_id,a| a["yes"].to_i+10*a["no"].to_i+100*a["undecided"].to_i }.each do |cd_id,vals|
-          %tr
-            %td=@ars.cd_hash[cd_id].title
-            - Decision::N_EST.each do |dec,nombre|
-              - dec_i = dec == '--' ? nil : dec
-              %td= vals[dec_i].to_i
+%ul.breadcrumb
+  %li
+    %a{:href=>url("/revisiones")} Revisiones
+  %li
+    %a{:href=>url("/revision/#{@revision[:id]}")}=@revision[:nombre]
+  %li{:class=>"active"} Administración
 
+%ul
+  - @revision.etapas_avanzadas.each do |etapa|
+    %li
+      %a{:href=>"/revision/#{@revision[:id]}/administracion/#{etapa}"}
+        =Revision_Sistematica::ETAPAS_NOMBRE[etapa]

@@ -232,6 +232,22 @@ end
     index [:revision_sistematica_id, :usuario_id, :etapa]
     index [:usuario_id]
   end
+  $db.create_table? :resoluciones do
+    foreign_key :revision_sistematica_id, :revisiones_sistematicas, :null=>false, :key=>[:id]
+    foreign_key :canonico_documento_id, :canonicos_documentos, :null=>false, :key=>[:id]
+    foreign_key :usuario_id, :usuarios, :null=>false, :key=>[:id]
+    String :etapa, :size=>255, :null=>false
+    String :resolucion, :size=>255
+    String :comentario, :text=>true
+
+    primary_key [:revision_sistematica_id, :canonico_documento_id, :etapa]
+
+    index [:canonico_documento_id]
+    index [:revision_sistematica_id]
+    index [:revision_sistematica_id, :canonico_documento_id]
+  end
+
+
 
 end
 

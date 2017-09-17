@@ -50,6 +50,32 @@ function actualizar_decision(etapa) {
 
 }
 
+
+function actualizar_resolucion(etapa) {
+
+    $(".dc_resolucion").click(function () {
+        var pk_id = $(this).attr("data-pk");
+        var resolucion = $(this).attr("data-resolucion");
+        var user_id = $(this).attr("data-user");
+        var url = $(this).attr("data-url");
+        var etapa = $(this).attr("data-etapa");
+
+        //var comentario=$("#comentario-"+pk_id).val()
+        var boton = $(this);
+        boton.prop("disabled", true)
+        $.post(url, {pk_id: pk_id, resolucion: resolucion, user_id: user_id}, function (data) {
+            $("#botones_resolucion_"+etapa+"_"+ pk_id).html(data)
+            //actualizar_textarea_editable();
+            //setTimeout(function() {
+            //},2000);
+
+        }).fail(function () {
+            alert("No se pudo cargar la resolucion")
+        })
+    })
+
+}
+
 function actualizar_textarea_editable() {
 
     $('.textarea_editable').editable({

@@ -1,0 +1,8 @@
+%ul.breadcrumb
+  %li
+    %a{:href=>url("/revisiones")} Revisiones
+  %li
+    %a{:href=>url("/revision/#{@revision[:id]}")}=@revision[:nombre]
+  %li
+    %a{:href=>url("/revision/#{@revision[:id]}/administracion_etapas")} Administración
+  %li{:class=>"active"}=nombre

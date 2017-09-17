@@ -88,21 +88,89 @@ class AnalisisRevisionSistematica
     }
   end
   # Se analiza cada cd y se cuenta cuantas decisiones para cada tipo
-  def decisiones_primera_etapa
-    @decisiones_primera_etapa||=decisiones_primera_etapa_calculo
+  def decisiones_por_cd(etapa)
+    @decisiones_por_cd_h||={}
+    @decisiones_por_cd_h[etapa]||=decisiones_por_cd_calculo(etapa)
   end
-  def decisiones_primera_etapa_calculo
+  # Se analiza cada cd y se cuenta cuantas resuluciones para cada tipo
+  def resolucion_por_cd(etapa)
+    @resolucion_por_cd_h||={}
+    @resolucion_por_cd_h[etapa]||=resolucion_por_cd_calculo(etapa)
+  end
 
-    decisiones=Decision.where(:canonico_documento_id=>@cd_reg_id, :usuario_id=>@rs.grupo_usuarios.map {|u| u[:id]}, :etapa=>"revision_titulo_resumen").group_and_count(:canonico_documento_id, :decision)
+  def cd_desde_patron(etapa,patron)
+    decisiones_por_cd(etapa).find_all  {|v|
+      v[1]==patron
+    }.map {|v| v[0]}
+
+
+  end
+
+  # Define cuantos CD están en cada patrón
+  def decisiones_patron(etapa)
+    dpe=decisiones_por_cd(etapa)
     n_jueces=@rs.grupo_usuarios.count
+    dpe.inject({}) {|ac,v|
 
-    total_por_cd=@cd_reg_id.inject({}) {|ac,v|
-      ac[v]=decisiones.find_all {|dec| dec[:canonico_documento_id]==v }.inject({}) {|ac1,v1|   ac1[v1[:decision]]=v1[:count]; ac1 }
-      suma=ac[v].inject(0) {|ac1,v1| ac1+v1[1]}
-      ac[v][nil]=n_jueces-suma
+      ac[ v[1]] ||=0
+      ac[ v[1]] +=1
       ac
     }
-    total_por_cd
+
+  end
+  def suma_decisiones_vacia
+    Decision::N_EST.keys.inject({}) {|ac,v|  ac[v]=0;ac }
+  end
+  def decisiones_por_cd_calculo(etapa)
+    cds=@rs.cd_id_por_etapa(etapa)
+    decisiones=Decision.where(:canonico_documento_id=>cds, :usuario_id=>@rs.grupo_usuarios.map {|u| u[:id]}, :etapa=>etapa).group_and_count(:canonico_documento_id, :decision).all
+    n_jueces=@rs.grupo_usuarios.count
+    cds.inject({}) {|ac,v|
+        ac[v]=suma_decisiones_vacia
+        ac[v]=ac[v].merge decisiones.find_all   {|dec|      dec[:canonico_documento_id]==v }
+                        .inject({}) {|ac1,v1|   ac1[v1[:decision]]=v1[:count]; ac1 }
+        suma=ac[v].inject(0) {|ac1,v1| ac1+v1[1]}
+        ac[v][Decision::NO_DECISION]=n_jueces-suma
+        ac
+    }
+  end
+
+  private :decisiones_por_cd_calculo
+
+  def resolucion_por_cd_calculo(etapa)
+    cds=@rs.cd_id_por_etapa(etapa)
+    resoluciones=Resolucion.where(:canonico_documento_id=>cds, :etapa=>etapa).as_hash(:canonico_documento_id)
+    $log.info(resoluciones)
+    #$log.info(resoluciones)
+    cds.inject({}) {|ac,v|
+      val=resoluciones[v].nil? ? nil: resoluciones[v][:resolucion]
+      ac[v]=val
+      ac
+    }
+  end
+
+
+
+  def patron_orden(a)
+    - (1000*a["yes"].to_i + 100*a["no"].to_i + 10*a["undecided"].to_i + 1*a["ND"].to_i)
+  end
+  def patron_nombre(a)
+    Decision::N_EST.map {|key,nombre|
+      "#{nombre}:#{a[key]}"
+    }.join(";")
+  end
+  def patron_id(a)
+    Decision::N_EST.keys.map {|key|
+      "#{key}_#{a[key]}"
+    }.join("__")
+  end
+
+  def patron_desde_s(texto)
+    texto.split("__").inject({}){|ac,v|
+      key,value=v.split("_")
+      ac[key]=value.to_i
+      ac
+    }
   end
 
 end
