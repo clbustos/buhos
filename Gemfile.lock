@@ -12,7 +12,7 @@ GEM
     faraday_middleware (0.11.0.1)
       faraday (>= 0.7.4, < 1.0)
     ffi (1.9.18)
-    haml (5.0.2)
+    haml (5.0.3)
       temple (>= 0.8.0)
       tilt
     i18n (0.8.6)
@@ -22,10 +22,11 @@ GEM
       ffi (~> 1.9)
     mini_portile2 (2.2.0)
     moneta (1.0.0)
-    multi_json (1.12.1)
+    multi_json (1.12.2)
     multipart-post (2.0.0)
     mustermann (1.0.1)
     mysql2 (0.4.9)
+    nbayes (0.1.1)
     nokogiri (1.8.0)
       mini_portile2 (~> 2.2.0)
     rack (2.0.3)
@@ -47,7 +48,7 @@ GEM
       rspec-support (~> 3.6.0)
     rspec-support (3.6.0)
     scopus (0.1.0)
-    sequel (4.49.0)
+    sequel (5.0.0)
     serrano (0.3.6)
       faraday (~> 0.12.0.1)
       faraday_middleware (~> 0.11.0.1)
@@ -79,6 +80,7 @@ DEPENDENCIES
   levenshtein-ffi
   moneta
   mysql2
+  nbayes
   nokogiri
   rack-test
   rspec

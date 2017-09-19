@@ -21,7 +21,10 @@
       %li{:class=>"list-group-item"}
         %strong Revista
         =sprintf("%s, %s, %s", cd.journal, cd.volume, cd.pages)
-      %li{:class=>"list-group-item"}=sprintf("<strong>Referencias:</strong> citado por %d / referencia a %d", ars.cd_count_entrada(cd[:id]).to_i, ars.cd_count_salida(cd[:id]).to_i)
+      - texto_referencias=sprintf("<strong>Referencias:</strong> referencia a <strong>%d</strong> / citado por <strong>%d</strong> ", ars.cd_count_salida(cd[:id]).to_i, ars.cd_count_entrada(cd[:id]).to_i)
+      - if ars.cd_count_entrada_rtr(cd[:id])
+        -texto_referencias+=sprintf("/ citado desde textos RTR por <strong>%d</strong>", ars.cd_count_entrada_rtr(cd[:id]).to_i)
+      %li{:class=>"list-group-item"}=texto_referencias
     %p{:class=>""}
       %strong Resumen
       - if !cd.abstract
@@ -33,6 +36,10 @@
         =abs_pres.html_with_keywords
     -if permiso("documentos_canonicos_editar")
       =partial(:canonico_documento_boton, :locals=>{id: cd[:id]})
+    -if etapa=="revision_referencias" and ars.cd_nbayes_rtr(cd[:id])["no"]>0.5
+      %div{:class=>"alert alert-warning"} Según el clasificar bayes, este texto no se asemeja mucho a los seleccionados en la primera etapa
+
+
   %div{:class=>"panel-footer"}
     %strong Decisión:
     .btn-group

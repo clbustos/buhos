@@ -22,9 +22,7 @@ get '/canonico_documento/:id/buscar_referencias_crossref' do |id|
   @cd.referencias_realizadas.exclude(:doi=>nil).where(:canonico_documento_id=>nil).each do |ref|
       result.add_result(ref.agregar_doi(ref[:doi]))
   end
-
   agregar_resultado(result)
-
   redirect back
 end
 

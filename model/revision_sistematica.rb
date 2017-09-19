@@ -68,7 +68,9 @@ class Revision_Sistematica < Sequel::Model
   def cd_referencia_id
     $db["SELECT canonico_documento_id FROM busquedas b INNER JOIN busquedas_registros br ON b.id=br.busqueda_id INNER JOIN referencias_registros rr ON br.registro_id=rr.registro_id INNER JOIN referencias r ON rr.referencia_id=r.id  WHERE b.revision_sistematica_id=? and r.canonico_documento_id IS NOT NULL GROUP BY r.canonico_documento_id", self[:id]].select_map(:canonico_documento_id)
   end
-
+  def cd_todos_id
+    (cd_registro_id + cd_referencia_id).uniq
+  end
   # Presenta los documentos canonicos
   # para la revision. Une los por
   # registro y referencia
@@ -80,20 +82,14 @@ class Revision_Sistematica < Sequel::Model
              when :referencia
                cd_referencia_id
              when :todos
-               (cd_registro_id + cd_referencia_id).uniq
+                cd_todos_id
              else
                raise "Tipo no definido"
            end
     Canonico_Documento.where(:id => cd_ids)
   end
+  # Nombre de la tabla para referencias entre canonicos
 
-  # Entrega dataset con las referencias que existen entre
-  # canonicos.
-  # Los campos son cd_origen y cd_destino
-  def referencias_entre_canonicos
-    $db["SELECT r.canonico_documento_id as cd_origen, ref.canonico_documento_id as cd_destino FROM registros r INNER JOIN busquedas_registros br ON r.id=br.registro_id INNER JOIN busquedas b ON br.busqueda_id=b.id  INNER JOIN  referencias_registros rr ON rr.registro_id=r.id INNER JOIN referencias ref ON ref.id=rr.referencia_id   WHERE revision_sistematica_id=? AND ref.canonico_documento_id IS NOT NULL GROUP BY cd_origen, cd_destino", self[:id]]
-
-  end
 
   def generar_graphml
     ars=AnalisisRevisionSistematica.new(self)
@@ -111,9 +107,10 @@ http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
 <key id="d0" for="node" attr.name="doi"        attr.type="string"/>
 <key id="d1" for="node" attr.name="title"      attr.type="string"/>
 <key id="d2" for="node" attr.name="year"       attr.type="int"/>
+<key id="d3" for="node" attr.name="input_n"    attr.type="int"/>
 <key id="d5" for="node" attr.name="on_register" attr.type="boolean"/>
 <key id="d6" for="node" attr.name="on_reference" attr.type="boolean"/>
-<key id="d3" for="node" attr.name="input_n"    attr.type="int"/>
+<key id="d7" for="node" attr.name="on_title_abstract" attr.type="boolean"/>
 <key id="output_n" for="node" attr.name="output_n"   attr.type="int"/>
 
 <graph id="G" edgedefault="directed">
@@ -132,7 +129,7 @@ HEREDOC
 <data key='output_n'>#{ars.cd_count_salida(v[0]).to_i}</data>
 <data key='d5'>#{ars.cd_en_registro?(v[0]) ? "true" : "false"}</data>
 <data key='d6'>#{ars.cd_en_referencia?(v[0]) ? "true" : "false"}</data>
-
+<data key='d7'>#{ars.cd_en_resolucion_etapa?(v[0],"revision_titulo_resumen") ? "true" : "false"}</data>
 </node>"
     }.join("\n")
     edges=ars.rec.map {|v|
@@ -141,12 +138,63 @@ HEREDOC
     footer="\n</graph>\n</graphml>"
     [head, nodos, edges, footer].join("\n")
   end
+  def cd_id_resoluciones(etapa)
+    Resolucion.where(:revision_sistematica_id=>self[:id], :etapa=>etapa.to_s,:canonico_documento_id=>cd_todos_id,:resolucion=>'yes').map(:canonico_documento_id)
+  end
 
+
+  def referencias_entre_canonicos_tn
+    "referencias_entre_cn_#{self[:id]}"
+
+  end
+
+  # Entrega dataset con las referencias que existen entre
+  # canonicos.
+  # Los campos son cd_origen y cd_destino
+
+  def referencias_entre_canonicos
+    view_name=referencias_entre_canonicos_tn
+    if $db["SHOW FULL TABLES  LIKE '%#{view_name}%'"].empty?
+      $db.run("CREATE OR REPLACE VIEW #{view_name} AS SELECT r.canonico_documento_id as cd_origen, ref.canonico_documento_id as cd_destino FROM registros r INNER JOIN busquedas_registros br ON r.id=br.registro_id INNER JOIN busquedas b ON br.busqueda_id=b.id  INNER JOIN  referencias_registros rr ON rr.registro_id=r.id INNER JOIN referencias ref ON ref.id=rr.referencia_id   WHERE revision_sistematica_id='#{self[:id]}' AND ref.canonico_documento_id IS NOT NULL GROUP BY cd_origen, cd_destino")
+    end
+    $db[view_name.to_sym]
+  end
+
+
+  def resoluciones_titulo_resumen_tn
+    "resoluciones_rs_#{self[:id]}_rtr"
+  end
+  def resoluciones_titulo_resumen
+    view_name=resoluciones_titulo_resumen_tn
+    if $db["SHOW FULL TABLES  LIKE '%#{view_name}%'"].empty?
+      $db.run("CREATE OR REPLACE VIEW #{view_name} AS SELECT * FROM resoluciones  where revision_sistematica_id=#{self[:id]} and etapa='revision_titulo_resumen'")
+    end
+    $db[view_name.to_sym]
+  end
+
+
+  def cuenta_referencias_rtr_tn
+    "referencias_entre_cn_rtr_n_#{self[:id]}"
+  end
+  # Cuenta el número de referencias hechas a cada referencia para la segunda etapa
+  # Se eliminan como destinos aquellos documentos que ya fueron parte de la resolución de la primera etapa
+  def cuenta_referencias_rtr
+    resoluciones_titulo_resumen # Verifico que exista la tabla de resoluciones
+    view_name=cuenta_referencias_rtr_tn
+    if $db["SHOW FULL TABLES  LIKE '%#{view_name}%'"].empty?
+      $db.run("CREATE OR REPLACE VIEW #{view_name} AS SELECT cd_destino , COUNT(DISTINCT(cd_origen)) as n_referencias  FROM resoluciones r INNER JOIN #{referencias_entre_canonicos_tn} rec ON r.canonico_documento_id=rec.cd_origen LEFT JOIN #{resoluciones_titulo_resumen_tn} as r2 ON r2.canonico_documento_id=rec.cd_destino WHERE r.revision_sistematica_id=#{self[:id]} and r.etapa='revision_titulo_resumen' and r.resolucion='yes' and r2.canonico_documento_id IS NULL GROUP BY cd_destino")
+    end
+    $db[view_name.to_sym]
+
+  end
   # Entrega la lista de canónicos documentos apropiados para cada etapa
   def cd_id_por_etapa(etapa)
     case etapa.to_s
       when 'revision_titulo_resumen'
         cd_registro_id
+      when 'revision_referencias'
+        cuenta_referencias_rtr.where( Sequel.lit("n_referencias>1") ).map(:cd_destino)
+        # Solo dejamos aquellos que tengan más de una referencias
       when 'segunda_revision'
         cd_referencia_id
       else

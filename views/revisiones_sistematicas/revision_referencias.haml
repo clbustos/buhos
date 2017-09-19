@@ -1,0 +1,86 @@
+.page-header
+  %h2="Revision sistemática #{@revision.nombre} "
+  %h3 Revisión de referencias
+%ul.breadcrumb
+  %li
+    %a{:href=>url("/revision/#{@revision.id}")}=@revision.nombre
+  %li{:class=>"active"} Revisión de referencias
+
+.well
+  Objetivo de la etapa: Seleccionar las referencias más cercanas a los textos elegidos en la primera etapa
+
+:javascript
+  $(document).ready(function() {
+    actualizar_decision('revision_titulo_resumen');
+    }
+  );
+
+
+%div.list-group
+  %div{:class=>"list-group-item"}
+    %span{:class=>"titulo"} Objetivos:
+    %p=@revision[:objetivos].split("\n").join("<br/>")
+  %div{:class=>"list-group-item"}
+    %span{:class=>"titulo"} Año de inicio
+    %span{ :name=>"agno_inicio"}=@revision[:agno_inicio]
+  %div{:class=>"list-group-item"}
+    %span{:class=>"titulo"} Año de término
+    %span{ :name=>"agno_termino"}=@revision[:agno_termino]
+  %div{:class=>"list-group-item"}
+    %span{:class=>"titulo"} Descripción:
+    =@revision[:descripcion].split("\n").join("<br/>")
+  %div{:class=>"list-group-item"}
+    %span{:class=>"titulo"} Palabras claves
+    %span{ :name=>"palabras_claves"}=@revision[:palabras_claves]
+
+%h3 Estado de la revision
+%p
+  %strong Número de documentos total a revisar:
+  = sprintf("%d", @revision.cd_id_por_etapa("revision_referencias").length)
+
+%form{:action=>url("/revision/#{@revision[:id]}/revision_referencias"), :method=>:get,:class=>"form-check", :enctype=>"multipart/form-data"}
+  %input{:type=>:hidden,:name=>:orden, :value=>@orden}
+  %table.reporte
+    %thead
+      - Decision::N_EST.values.each do |k|
+        %th=k
+    %tbody
+      %tr
+        - Decision::N_EST.keys.each do |k|
+          %td=@ads.total_decisiones[k].to_i
+      %tr
+        - Decision::N_EST.keys.each do |k|
+          - checked= @busqueda.nil?  ? false :  ( @busqueda.include?(k) )
+          %td
+            %input{:type=>:radio,  :class=>"form-check-input",:name=>"busqueda", :value=>k, :checked=> checked }
+      %tr
+        %td{:colspan=>Decision::N_EST.keys.length}
+          %input{:type=>"submit", :class=>"btn btn-default", :value=>"Filtrar"}
+- if @busqueda
+  %p
+    %strong Número documentos búsqueda:
+    =@cds_total
+
+.btn-group
+  -@criterios_orden.each do |crit_orden|
+    -["asc","desc"].each do |dir|
+      -arrow_dir =  dir=="asc" ? "up" : "down"
+      -if @orden!="#{crit_orden}__#{dir}"
+        %a{:href=>url("/revision/#{@revision[:id]}/revision_referencias?busqueda=#{@busqueda}&orden=#{crit_orden}__#{dir}"), :class=>"btn btn-default btn-sm"}
+          %span{:class=>"glyphicon glyphicon-chevron-#{arrow_dir}"}
+          =crit_orden
+      -else
+        %button{:class=>"btn btn-primary btn-sm"}
+          %span{:class=>"glyphicon glyphicon-chevron-#{arrow_dir}"}
+          =crit_orden
+- if @ads.total_decisiones[Decision::NO_DECISION].to_i==0
+  %p
+    %strong Ha concluido la segunda fase de revision de referencias.
+
+
+= partial(:pager,:locals=>{url: @url, pagina: @pagina, max_page: @max_page, :extra=>{busqueda:@busqueda, orden:@orden}})
+.list-group
+  - @cds.each do |cd|
+    %div{:id=>"decision-cd-#{cd[:id]}"}
+      =partial(:decision, :locals=>{ revision_id: @revision[:id], cd: cd, decisiones: @decisiones, ars: @ars, usuario_id: @usuario_id, etapa: "revision_referencias"})
+= partial(:pager,:locals=>{url: @url, pagina: @pagina, max_page: @max_page, :extra=>{busqueda:@busqueda, orden:@orden}})

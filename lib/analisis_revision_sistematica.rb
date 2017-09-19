@@ -22,12 +22,17 @@ class AnalisisRevisionSistematica
     @rs=rs
     procesar_indicadores_basicos
     procesar_numero_citas
+    procesar_resoluciones
   end
   def cd_hash
     @cd_hash||=Canonico_Documento.where(:id=>@cd_todos_id).as_hash
   end
   def cd_count_entrada(id)
     @ref_cuenta_entrada[id]
+  end
+
+  def cd_count_entrada_rtr(id)
+    @cd_referencia_rtr[id]
   end
 
   def cd_count_salida(id)
@@ -47,7 +52,10 @@ class AnalisisRevisionSistematica
   def cd_en_registro?(id)
     @cd_reg_id.include? id
   end
+  def cd_en_resolucion_etapa?(id,etapa)
 
+    @cd_resoluciones[etapa.to_sym][id].nil? ? false : @cd_resoluciones[etapa.to_sym][id][:resolucion]=='yes'
+  end
   # Señala si un cd es parte de una referencia
   # Es decir, en algún momento fue citado por alguien.
   def cd_en_referencia?(id)
@@ -73,6 +81,20 @@ class AnalisisRevisionSistematica
     @ref_cuenta_salida=@rec.to_hash_groups(:cd_origen).inject({}) {|ac, v|
       ac[v[0]]=v[1].length; ac
     }
+
+    @cd_referencia_rtr=@rs.cuenta_referencias_rtr.inject({}){|ac,v|
+      ac[v[:cd_destino]]=v[:n_referencias];ac
+    }
+
+
+  end
+
+
+  def procesar_resoluciones
+    @cd_resoluciones=Revision_Sistematica::ETAPAS.inject({}) do |ac,etapa|
+      ac[etapa]=Resolucion.where(:revision_sistematica_id=>@rs.id, :etapa=>etapa.to_s).as_hash(:canonico_documento_id)
+      ac
+    end
   end
   def mas_citados(n=20)
     @ref_cuenta_entrada.sort_by {|a| a[1]}.reverse[0...n]
@@ -105,11 +127,20 @@ class AnalisisRevisionSistematica
 
 
   end
-
+  def resoluciones_desde_patron_decision(etapa)
+    cds=@rs.cd_id_por_etapa(etapa)
+    rpc=resolucion_por_cd(etapa)
+    dpc=decisiones_por_cd(etapa)
+    cds.inject({}) {|ac,cd_id|
+      patron=dpc[cd_id]
+      ac[patron]||={"yes"=>0,"no"=>0, Resolucion::NO_RESOLUCION=>0}
+      ac[patron][rpc[cd_id]]+=1
+      ac
+    }
+  end
   # Define cuantos CD están en cada patrón
   def decisiones_patron(etapa)
     dpe=decisiones_por_cd(etapa)
-    n_jueces=@rs.grupo_usuarios.count
     dpe.inject({}) {|ac,v|
 
       ac[ v[1]] ||=0
@@ -139,11 +170,11 @@ class AnalisisRevisionSistematica
 
   def resolucion_por_cd_calculo(etapa)
     cds=@rs.cd_id_por_etapa(etapa)
-    resoluciones=Resolucion.where(:canonico_documento_id=>cds, :etapa=>etapa).as_hash(:canonico_documento_id)
-    $log.info(resoluciones)
+    resoluciones=Resolucion.where(:revision_sistematica=>@rs.id, :canonico_documento_id=>cds, :etapa=>etapa).as_hash(:canonico_documento_id)
+    #$log.info(resoluciones)
     #$log.info(resoluciones)
     cds.inject({}) {|ac,v|
-      val=resoluciones[v].nil? ? nil: resoluciones[v][:resolucion]
+      val=resoluciones[v].nil? ? Resolucion::NO_RESOLUCION : resoluciones[v][:resolucion]
       ac[v]=val
       ac
     }
@@ -173,4 +204,25 @@ class AnalisisRevisionSistematica
     }
   end
 
+  def nbayes_rtr
+    @nbayes_rtr||=nbayes_rtr_calculo
+  end
+  def nbayes_rtr_calculo
+    require 'nbayes'
+    nbayes = NBayes::Base.new
+    nombres=Canonico_Documento.select(:title, :abstract, :journal,:resolucion).join_table(:inner, @rs.resoluciones_titulo_resumen, canonico_documento_id: :id).map {|v| {:nombre=>("#{v[:title]} #{v[:abstract]} #{v[:journal]}".split(/[\s-]+/).map {|vv| vv.downcase}), :resolucion=>v[:resolucion]} }
+
+    nombres.each do |n|
+      nbayes.train(n[:nombre],n[:resolucion])
+    end
+    #$log.info(nbayes)
+    nbayes
+  end
+  def cd_nbayes_rtr(cd_id)
+    cd=cd_hash[cd_id]
+    tokens="#{cd[:title]} #{cd[:abstract]} #{cd[:journal]}".split(/[\s-]+/)
+    res=nbayes_rtr.classify(tokens)
+    $log.info(res)
+    res
+  end
 end

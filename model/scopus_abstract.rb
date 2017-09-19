@@ -49,8 +49,9 @@ class Scopus_Abstract < Sequel::Model
     else
       xml=Scopus.process_xml(sa[:xml])
     end
-
-    if cd.abstract.to_s=="" and xml.abstract.to_s!=""
+    if xml.abstract.to_s==""
+      result.error("Scopus no tiene abstract para este paper")
+    elsif cd.abstract.to_s==""
       cd.update(:abstract => xml.abstract)
       result.success("Actualizado abstract via Scopus")
     end

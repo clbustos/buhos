@@ -26,3 +26,8 @@
           %a{:role=>:button, :href=>url("/revision/#{r.id}/revision_titulo_resumen"), :class=>"btn btn-default "}
             %span{:class=>"glyphicon glyphicon-ok-sign"}
             Título-Resumen
+      - if permiso("revision_referencias_ver") or revision_analizada_por(r.id, session['user_id'])
+        %li
+          %a{:role=>:button, :href=>url("/revision/#{r.id}/revision_referencias"), :class=>"btn btn-default "}
+            %span{:class=>"glyphicon glyphicon-ok-sign"}
+            Referencias
