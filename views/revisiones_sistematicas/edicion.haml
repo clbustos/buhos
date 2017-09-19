@@ -28,6 +28,10 @@
       - Grupo.all.each do |g|
         %input{:class=>"form-check-input",:type=>"radio", :name=>"grupo_id", :value=>g.id,
             :checked=>g.id==@revision[:grupo_id]}=g.name
+    %div{:class=>"form-group"}
+      %label{:for=>"etapa"} Etapa
+      -Revision_Sistematica::ETAPAS_NOMBRE.each do |etapa_id,etapa_nombre|
+        %input{:class=>"form-check-input",:type=>"radio", :name=>"etapa", :value=>etapa_id, :checked=>etapa_id.to_s==@revision[:etapa]}=etapa_nombre
     -if !@revision.grupo.nil?
       %div{:class=>"form-group"}
         %label Administrador

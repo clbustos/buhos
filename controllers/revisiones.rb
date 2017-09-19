@@ -58,8 +58,8 @@ post '/revision/actualizar' do
       :trs_perspectiva_id=>otros_params[:trs_perspectiva_id],
       :trs_cobertura_id=>otros_params[:trs_cobertura_id],
       :trs_organizacion_id=>otros_params[:trs_organizacion_id],
-      :trs_destinatario_id=>otros_params[:trs_destinario_id]
-      
+      :trs_destinatario_id=>otros_params[:trs_destinario_id],
+      :etapa=>otros_params[:etapa]
       )
   else
     revision=Revision_Sistematica[id]
