@@ -25,7 +25,7 @@ class AnalisisRevisionSistematica
     procesar_resoluciones
   end
   def cd_hash
-    @cd_hash||=Canonico_Documento.where(:id=>@cd_todos_id).as_hash
+    @rs.cd_hash
   end
   def cd_count_entrada(id)
     @ref_cuenta_entrada[id]
@@ -70,7 +70,7 @@ class AnalisisRevisionSistematica
   def procesar_indicadores_basicos
     @cd_reg_id=@rs.cd_registro_id
     @cd_ref_id=@rs.cd_referencia_id
-    @cd_todos_id=(@cd_reg_id + @cd_ref_id).uniq
+    @cd_todos_id=@rs.cd_todos_id
     @rec=@rs.referencias_entre_canonicos
   end
 
@@ -204,25 +204,5 @@ class AnalisisRevisionSistematica
     }
   end
 
-  def nbayes_rtr
-    @nbayes_rtr||=nbayes_rtr_calculo
-  end
-  def nbayes_rtr_calculo
-    require 'nbayes'
-    nbayes = NBayes::Base.new
-    nombres=Canonico_Documento.select(:title, :abstract, :journal,:resolucion).join_table(:inner, @rs.resoluciones_titulo_resumen, canonico_documento_id: :id).map {|v| {:nombre=>("#{v[:title]} #{v[:abstract]} #{v[:journal]}".split(/[\s-]+/).map {|vv| vv.downcase}), :resolucion=>v[:resolucion]} }
 
-    nombres.each do |n|
-      nbayes.train(n[:nombre],n[:resolucion])
-    end
-    #$log.info(nbayes)
-    nbayes
-  end
-  def cd_nbayes_rtr(cd_id)
-    cd=cd_hash[cd_id]
-    tokens="#{cd[:title]} #{cd[:abstract]} #{cd[:journal]}".split(/[\s-]+/)
-    res=nbayes_rtr.classify(tokens)
-    $log.info(res)
-    res
-  end
 end

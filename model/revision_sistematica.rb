@@ -71,6 +71,10 @@ class Revision_Sistematica < Sequel::Model
   def cd_todos_id
     (cd_registro_id + cd_referencia_id).uniq
   end
+  def cd_hash
+    @cd_hash||=Canonico_Documento.where(:id=>cd_todos_id).as_hash
+  end
+
   # Presenta los documentos canonicos
   # para la revision. Une los por
   # registro y referencia

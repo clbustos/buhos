@@ -47,6 +47,7 @@ GEM
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.6.0)
     rspec-support (3.6.0)
+    ruby-stemmer (0.9.6)
     scopus (0.1.0)
     sequel (5.0.0)
     serrano (0.3.6)
@@ -84,6 +85,7 @@ DEPENDENCIES
   nokogiri
   rack-test
   rspec
+  ruby-stemmer
   scopus
   sequel
   serrano
