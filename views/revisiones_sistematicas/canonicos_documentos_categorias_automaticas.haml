@@ -12,17 +12,18 @@
 %p
   %strong Número de documentos canónicos total:
   =@cd_hash.length
-- @categories.each do |cat, cd_orders|
+- @categorizador.categorias_cd_id.each do |cat, cd_id|
   .btn-group
     %a{:href=>"##{cat}",:role=>:button, :class=>"btn btn-default btn-sm"}=cat
-- @categories.each do |cat, cd_orders|
+- @categorizador.categorias_cd_id.each do |cat, cd_ids|
   %a{:name=>"#{cat}"}
   %h3=cat
   .list-group
-    - cd_orders.each do |cd_o|
+    - cd_ids.each do |cd_id|
       .list-group-item
-        - cd=@cd_hash.values[cd_o]
+        - cd=@cd_hash[cd_id]
         =CGI::escapeHTML cd.ref_apa_6_breve
+        ="[#{@categorizador.cd_categoria(cd_id)}]"
         %div
           =partial(:canonico_documento_boton,:locals=>{:id=>cd.id})
           -if !cd[:abstract].nil? and cd[:abstract]!=""

@@ -114,7 +114,7 @@ class AnalisisRevisionSistematica
     @decisiones_por_cd_h||={}
     @decisiones_por_cd_h[etapa]||=decisiones_por_cd_calculo(etapa)
   end
-  # Se analiza cada cd y se cuenta cuantas resuluciones para cada tipo
+  # Se entrega un hash de cada cd con su resolucion
   def resolucion_por_cd(etapa)
     @resolucion_por_cd_h||={}
     @resolucion_por_cd_h[etapa]||=resolucion_por_cd_calculo(etapa)
@@ -170,7 +170,7 @@ class AnalisisRevisionSistematica
 
   def resolucion_por_cd_calculo(etapa)
     cds=@rs.cd_id_por_etapa(etapa)
-    resoluciones=Resolucion.where(:revision_sistematica=>@rs.id, :canonico_documento_id=>cds, :etapa=>etapa).as_hash(:canonico_documento_id)
+    resoluciones=Resolucion.where(:revision_sistematica_id=>@rs.id, :canonico_documento_id=>cds, :etapa=>etapa).as_hash(:canonico_documento_id)
     #$log.info(resoluciones)
     #$log.info(resoluciones)
     cds.inject({}) {|ac,v|
@@ -180,7 +180,7 @@ class AnalisisRevisionSistematica
     }
   end
 
-
+  private :resolucion_por_cd_calculo
 
   def patron_orden(a)
     - (1000*a["yes"].to_i + 100*a["no"].to_i + 10*a["undecided"].to_i + 1*a["ND"].to_i)

@@ -114,6 +114,22 @@ get '/revision/:id/administracion/:etapa' do |id,etapa|
   @revision=Revision_Sistematica[id]
   @etapa=etapa
   @ars=AnalisisRevisionSistematica.new(@revision)
+  @categorizador=Categorizador_RS.new(@revision)
+  ## Aquí calcularé cuantos si y no hay por categoría
+  res_etapa=@ars.resolucion_por_cd(etapa)
+  @aprobacion_categorias=@categorizador.categorias_cd_id.inject({}) {|ac,v|
+    cd_validos=res_etapa.keys & (v[1])
+    n=cd_validos.length
+    if n==0
+      ac[v[0]] = {n:0, p:nil}
+    else
+      ac[v[0]] = {n:n, p: cd_validos.find_all {|vv|  res_etapa[vv]=='yes' }.length /   n.to_f}
+    end
+    ac
+  }
+#  $log.info(p_aprobaciones_categoria)
+
+
   @usuario_id=session['user_id']
   haml "revisiones_sistematicas/administracion_#{etapa}".to_sym
 end

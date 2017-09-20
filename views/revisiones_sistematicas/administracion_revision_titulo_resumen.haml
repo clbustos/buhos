@@ -65,10 +65,24 @@
 .btn-group
   %a{:href=>url("/revision/#{@revision[:id]}/etapa/revision_titulo_resumen/generar_referencias_crossref"), :role=>"button", :class=>"btn btn-default btn-sm"}Generar referencias crossref
 
+
+%h3 Estadísticas por categorías automáticas
+%table.reporte
+  %thead
+    %th Categoria
+    %th n
+    %th Porcentaje
+  %tbody
+    -@aprobacion_categorias.sort_by{|a| -a[1][:n] }.each do |categoria, datos|
+      %tr
+        %td=categoria
+        %td=datos[:n]
+        %td=datos[:p].nil? ? "--" : sprintf("%0.2f%",datos[:p]*100)
+
 %h3 Decisiones por documento
 
 - dep_ord=@ars.decisiones_por_cd(@etapa).sort_by {|cd_id,a| @ars.patron_orden a }
-- rpc=@ars.resolucion_por_cd_calculo(@etapa)
+- rpc=@ars.resolucion_por_cd(@etapa)
 - dep_ord.chunk_while {|antes, despues|  antes[1]==despues[1]}.each do |bloque|
   %a{:name=>"patron_#{@ars.patron_id(bloque.first[1])}"}
     %h4=@ars.patron_nombre bloque.first[1]
