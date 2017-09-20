@@ -17,7 +17,7 @@ get '/busqueda/:id/referencias' do |id|
   @busqueda=Busqueda[id]
   @revision=@busqueda.revision_sistematica
   @referencias=@busqueda.referencias
-  @referencias_con_canonico=@busqueda.referencias.where("canonico_documento_id IS NOT NULL")
+  @referencias_con_canonico=@busqueda.referencias.where($db.literal("canonico_documento_id IS NOT NULL"))
   @n_referencias = params['n_referencias'].nil? ? 20 : params['n_referencias']
 
   @rmc_canonico     = @busqueda.referencias_con_canonico_n(@n_referencias)
