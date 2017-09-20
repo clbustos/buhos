@@ -9,6 +9,13 @@ get '/revisiones' do
   haml :revisiones
 end
 
+
+get '/revision/nuevo' do
+  @revision=Revision_Sistematica.new
+  haml %s{revisiones_sistematicas/edicion}
+end
+
+
 get "/revision/:id" do |id|
   @revision=Revision_Sistematica[id]
   @nombres_trs=@revision.get_nombres_trs
@@ -23,19 +30,6 @@ get "/revision/:id/edicion" do |id|
 end
 
 
-get "/revision/:id" do |id|
-  @revision=Revision_Sistematica[id]
-  @nombres_trs=@revision.get_nombres_trs
-  ##$log.info(@nombres_trs)
-  haml %s{revisiones_sistematicas/ver}
-end
-
-
-get '/revision/nuevo' do
-  @revision=Revision_Sistematica.new
-  haml %s{revisiones_sistematicas/edicion}
-end
-
 
 post '/revision/actualizar' do
   id=params['revision_id']
@@ -48,7 +42,7 @@ post '/revision/actualizar' do
     ac[v[0].to_sym]=v[1];ac
   }
 #  aa=Revision_Sistematica.new
-  
+  $log.info(otros_params)
   if(id=="")
     revision=Revision_Sistematica.create(
       :nombre=>otros_params[:nombre],
@@ -58,7 +52,7 @@ post '/revision/actualizar' do
       :trs_perspectiva_id=>otros_params[:trs_perspectiva_id],
       :trs_cobertura_id=>otros_params[:trs_cobertura_id],
       :trs_organizacion_id=>otros_params[:trs_organizacion_id],
-      :trs_destinatario_id=>otros_params[:trs_destinario_id],
+      :trs_destinatario_id=>otros_params[:trs_destinatario_id],
       :etapa=>otros_params[:etapa]
       )
   else
