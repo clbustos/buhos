@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+gem 'rake'
 gem "daemons"
 gem "sinatra"
 gem "sequel"
@@ -17,3 +18,6 @@ gem 'nokogiri'
 gem 'moneta'
 gem 'nbayes'
 gem 'ruby-stemmer'
+gem 'classifier-reborn'
+gem 'categorize'
+gem 'ai4r'

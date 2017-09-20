@@ -39,6 +39,10 @@
     %a{:href=>url("/canonicos_documentos/revision/#{@revision.id}/completar_abstract")   , :role=>'button', :class=>"btn btn-default"}
       %span{:class=>""}
       Completar abstract Scopus
+  - if permiso("documentos_canonicos_editar")  or revision_pertenece_a(@revision.id, session['user_id'])
+    %a{:href=>url("/canonicos_documentos/revision/#{@revision.id}/categorizar_automatico")   , :role=>'button', :class=>"btn btn-default"}
+      %span{:class=>""}
+      Categorizar automatico
   %a{:href=>url("/revision/#{@revision.id}/canonicos_documentos_graphml"),  :role=>'button', :class=>"btn btn-default"}
     %span{:class=>"glyphicon glyphicon-save"}
     Graphml

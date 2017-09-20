@@ -210,10 +210,3 @@ get '/revision/:id/analisis' do |id|
   @revision=Revision_Sistematica[id]
   redirect to ("/revision/#{@revision[:id]}/#{@revision[:etapa]}")
 end
-
-
-
-
-
-
-

@@ -112,3 +112,18 @@ get '/canonico_documento/:ref_id/limpiar_referencias' do |cd_id|
   agregar_mensaje("Las referencias para canonico #{cd_id} estan limpias")
   redirect back
 end
+
+
+get '/canonicos_documentos/revision/:rev_id/categorizar_automatico' do |rev_id|
+  require 'categorize'
+  @revision=Revision_Sistematica[rev_id]
+  @cd_hash=@revision.cd_hash
+  bag_of_words = Categorize::Models::BagOfWords.new
+
+
+  bag_of_words.max_buckets = 30
+  bag_of_words.min_support = 0.01
+
+  @categories = Categorize::Model.make_model("busqueda", @cd_hash.map {|key,v|  "#{v[:title]}"}, bag_of_words)
+  haml %s{revisiones_sistematicas/canonicos_documentos_categorias_automaticas}
+end

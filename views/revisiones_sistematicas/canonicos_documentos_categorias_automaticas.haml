@@ -1,0 +1,31 @@
+.heading
+  %h2="Documentos Canónicos para Revisión #{@revision.nombre}: Categorías automáticas"
+
+%ul.breadcrumb
+  %li
+    %a{:href=>url("/revision/#{@revision.id}")}=@revision.nombre
+  %li
+    %a{:href=>url("/revision/#{@revision.id}/canonicos_documentos")} Documentos canónicos
+  %li{:class=>"active"} Categorías automáticas
+
+
+%p
+  %strong Número de documentos canónicos total:
+  =@cd_hash.length
+- @categories.each do |cat, cd_orders|
+  .btn-group
+    %a{:href=>"##{cat}",:role=>:button, :class=>"btn btn-default btn-sm"}=cat
+- @categories.each do |cat, cd_orders|
+  %a{:name=>"#{cat}"}
+  %h3=cat
+  .list-group
+    - cd_orders.each do |cd_o|
+      .list-group-item
+        - cd=@cd_hash.values[cd_o]
+        =CGI::escapeHTML cd.ref_apa_6_breve
+        %div
+          =partial(:canonico_documento_boton,:locals=>{:id=>cd.id})
+          -if !cd[:abstract].nil? and cd[:abstract]!=""
+            %button{:class=>"btn btn-primary btn-sm", :type=>"button",  "data-toggle"=>'collapse', "data-target"=>"#cd#{cd[:id]}", "aria-expanded"=>"false", "aria-controls"=>"cd#{cd[:id]}"}Abstract
+            %div{:class=>"collapse", :id=>"cd#{cd[:id]}"}
+              .well=cd[:abstract]

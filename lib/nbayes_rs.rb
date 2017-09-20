@@ -20,18 +20,18 @@ class NBayes_RS
     nombres.each do |n|
       nbayes.train(n[:nombre], n[:resolucion])
     end
-    $log.info(nbayes)
+    #$log.info(nbayes)
     nbayes
   end
 
   private :nbayes_rtr_calculo
 
   # Entrega la clasificación para un cd_id específico
-  def cd_nbayes_rtr(cd_id)
+  def cd_resultado(cd_id)
     cd=@rs.cd_hash[cd_id]
     tokens=get_stemmer("#{cd[:title]} #{cd[:abstract]}")+[cd[:journal]]
     res={"yes" => 0, "no" => 0}.merge(nbayes_rtr.classify(tokens))
-    $log.info(res)
+    #$log.info(res)
     res
   end
 end
