@@ -37,7 +37,7 @@
         =abs_pres.html_with_keywords
     -if permiso("documentos_canonicos_editar")
       =partial(:canonico_documento_boton, :locals=>{id: cd[:id]})
-    -if @nbayes_rs.cd_resultado(cd[:id])["no"]>0.5
+    -if false and @nbayes_rs.cd_resultado(cd[:id])["no"]>0.5
       %div{:class=>"alert alert-warning"} Según el clasificar bayes, este texto no se asemeja mucho a los seleccionados previamente
 
 
