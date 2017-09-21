@@ -20,7 +20,7 @@
 %div.list-group
   %div{:class=>"list-group-item"}
     %span{:class=>"titulo"} Objetivos:
-    %p=@revision[:objetivos].nil? ? "<em>Sin objetivos</em>" : @revision[:objetivos].split("\n").join("<br/>")
+    %p=lf_to_br(@revision[:objetivos])
   %div{:class=>"list-group-item"}
     %span{:class=>"titulo"} Año de inicio
     %span{ :name=>"agno_inicio"}=@revision[:agno_inicio]
@@ -29,7 +29,7 @@
     %span{ :name=>"agno_termino"}=@revision[:agno_termino]
   %div{:class=>"list-group-item"}
     %span{:class=>"titulo"} Descripción:
-    =@revision[:descripcion].split("\n").join("<br/>")
+    =lf_to_br(@revision[:descripcion])
   %div{:class=>"list-group-item"}
     %span{:class=>"titulo"} Palabras claves
     %span{ :name=>"palabras_claves"}=@revision[:palabras_claves]

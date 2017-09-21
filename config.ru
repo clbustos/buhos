@@ -37,5 +37,6 @@ else
       })
 end
 
+use Rack::ShowExceptions
 
 run Sinatra::Application

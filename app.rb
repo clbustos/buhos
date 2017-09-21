@@ -124,6 +124,12 @@ helpers do
   def log
     $log
   end
+  
+  def lf_to_br(t)
+    t.nil? "" : t.split("\n").join("<br/>")
+  end
+  
+  
   # Entrega el valor para un id de configuración
   def config_get(id)
     Configuracion.get(id)
