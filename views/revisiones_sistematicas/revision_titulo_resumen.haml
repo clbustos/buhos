@@ -20,7 +20,7 @@
 %div.list-group
   %div{:class=>"list-group-item"}
     %span{:class=>"titulo"} Objetivos:
-    %p=@revision[:objetivos].split("\n").join("<br/>")
+    %p=@revision[:objetivos].nil? ? "<em>Sin objetivos</em>" : @revision[:objetivos].split("\n").join("<br/>")
   %div{:class=>"list-group-item"}
     %span{:class=>"titulo"} Año de inicio
     %span{ :name=>"agno_inicio"}=@revision[:agno_inicio]
