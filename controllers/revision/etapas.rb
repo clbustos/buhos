@@ -128,10 +128,15 @@ get '/revision/:id/administracion/:etapa' do |id,etapa|
     ac
   }
 #  $log.info(p_aprobaciones_categoria)
-
+  @nombre_etapa=Revision_Sistematica.get_nombre_etapa(@etapa)
 
   @usuario_id=session['user_id']
-  haml "revisiones_sistematicas/administracion_#{etapa}".to_sym
+
+  if %w{revision_titulo_resumen revision_referencias}.include? etapa
+    haml "revisiones_sistematicas/administracion_revisiones".to_sym
+  else
+    haml "revisiones_sistematicas/administracion_#{etapa}".to_sym
+  end
 end
 
 

@@ -35,6 +35,9 @@ class Revision_Sistematica < Sequel::Model
   def grupo_nombre
     grupo.nil? ? "--Sin grupo asignado --" : grupo.name
   end
+  def self.get_nombre_etapa(etapa)
+    ETAPAS_NOMBRE[etapa.to_sym]
+  end
   def grupo_usuarios
     grupo.nil? ? nil : grupo.usuarios
   end

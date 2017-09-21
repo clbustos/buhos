@@ -1,15 +1,15 @@
 .heading
-  %h2="Revision sistematica #{@revision[:nombre]}: Administración Revisión título Resumen"
+  %h2="Revision sistematica #{@revision[:nombre]}: Administración #{@nombre_etapa}"
 
 :javascript
   $(document).ready(function() {
-    actualizar_resolucion('revision_titulo_resumen');
+    actualizar_resolucion('#{@etapa}');
     }
   );
 
 
 
-=partial(:breadcrumb_revision_admin,:locals=>{:nombre=>"Título Resumen"})
+=partial(:breadcrumb_revision_admin,:locals=>{:nombre=>@nombre_etapa})
 
 %h3 Estadísticas por usuario
 
@@ -48,9 +48,9 @@
         - Decision::N_EST.each do |dec,nombre|
           %td{:class=>"decision decision-#{dec}"}= patron[dec]
         %td=cuenta
-        %td=resoluciones_patron[patron]["yes"]
-        %td=resoluciones_patron[patron]["no"]
-        %td=resoluciones_patron[patron][Resolucion::NO_RESOLUCION]
+        %td{:class=>"decision decision-yes"}=resoluciones_patron[patron]["yes"]
+        %td{:class=>"decision decision-no"}=resoluciones_patron[patron]["no"]
+        %td{:class=>"decision decision-undecided"}=resoluciones_patron[patron][Resolucion::NO_RESOLUCION]
         %td
           %a{:href=>"#patron_#{@ars.patron_id(patron)}",:class=>"btn btn-default btn-sm", :role=>"button"}
             %span{:class=>"glyphicon glyphicon-triangle-bottom"}
@@ -102,5 +102,3 @@
           - Decision::N_EST.each do |dec,nombre|
             %td{:class=>"decision decision-#{dec}"}= vals[dec].to_i
           %td
-
-
