@@ -126,7 +126,7 @@ helpers do
   end
   
   def lf_to_br(t)
-    t.nil? "" : t.split("\n").join("<br/>")
+    t.nil? ? "" : t.split("\n").join("<br/>")
   end
   
   
