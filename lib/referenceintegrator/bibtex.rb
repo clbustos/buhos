@@ -179,6 +179,31 @@ module ReferenceIntegrator
         @records=@bb.map {|r| BibTex::Record.create(r)}
       end
     end
+
+    class Writer
+      def self.generate(canonicos_documentos)
+        bib = BibTeX::Bibliography.new
+
+        canonicos_documentos.each do |cd|
+
+
+          campos=[:title, :abstract, :journal, :year, :volume, :pages,
+               :doi, :url, :author]
+
+          hash_c=campos.inject({}) {|ac,v|
+            ac[v]=cd.send(v)
+            ac
+          }
+          hash_c[:bibtex_type]=:article
+          hash_c[:key]="key_#{cd[:id]}_#{cd[:year]}"
+          bib << BibTeX::Entry.new(hash_c)
+
+        end
+
+        bib
+      end
+    end
+
   end
 end
 

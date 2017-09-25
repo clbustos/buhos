@@ -222,3 +222,16 @@ end
 
 
 
+
+get '/revision/:id/bibtex_resueltos' do  |id|
+
+  @revision=Revision_Sistematica[id]
+  @canonicos_resueltos=@revision.canonicos_documentos.where(:id=>@revision.resoluciones_titulo_resumen.where(:resolucion=>'yes').map(:canonico_documento_id) ).order(:author,:year)
+  bib=ReferenceIntegrator::BibTex::Writer.generate(@canonicos_resueltos)
+  headers["Content-Disposition"] = "attachment;filename=revision_resueltos_#{id}.bib"
+
+  content_type 'text/x-bibtex'
+  bib.to_s
+
+
+end
