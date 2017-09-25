@@ -182,7 +182,7 @@ post '/resolucion/revision/:id/canonico_documento/:cd_id/etapa/:etapa/resolucion
   res=Resolucion.where(:revision_sistematica_id=>rev_id, :canonico_documento_id=>cd_id, :etapa=>etapa)
 
 
-  rpc=ars.resolucion_por_cd_calculo (etapa)
+  rpc=ars.resolucion_por_cd (etapa)
 
   partial(:botones_resolucion, :locals=>{:rpc=>rpc, :cd_id=>cd_id.to_i, :etapa=>etapa, :usuario_id=>user_id, :revision=>revision})
 end
