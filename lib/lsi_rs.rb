@@ -1,3 +1,5 @@
+# Clse que clasifica, usando LSI, los distintos artículos
+# Es muy lenta, así que debe usarse con no muchos artículos
 class LSI_RS
   attr_reader :lsi_rtr
   STOPWORDS=%w{the an a with we dont to in that these those from each @ i}

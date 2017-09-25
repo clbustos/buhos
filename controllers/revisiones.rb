@@ -134,6 +134,70 @@ get '/revision/:id/procesar' do |id|
 end
 
 
+
+
+
+get '/revision/:id/analisis' do |id|
+  @revision=Revision_Sistematica[id]
+  redirect to ("/revision/#{@revision[:id]}/#{@revision[:etapa]}")
+end
+
+
+#### DOCUMENTOS CANONICOS #####
+
+get '/revision/:id/canonicos_documentos' do |id|
+
+  @pager=get_pager
+
+  @pager.orden||="n_total_referencias_recibidas__desc"
+
+  @sin_abstract=params['sin_abstract']=='true'
+  @solo_registros=params['solo_registros']=='true'
+  @revision=Revision_Sistematica[id]
+  @ars=AnalisisRevisionSistematica.new(@revision)
+  @cd_total_ds=@revision.canonicos_documentos
+
+  # Repetidos doi
+  @cd_rep_doi=@revision.doi_repetidos
+  ##$log.info(@cd_rep_doi)
+
+  @url="/revision/#{id}/canonicos_documentos"
+  @cds_pre=@revision.canonicos_documentos.left_join(@revision.cuenta_referencias_entre_canonicos, cd_id: Sequel[:canonicos_documentos][:id]).left_join(@revision.cuenta_referencias_rtr, cd_destino: :cd_id)
+
+
+
+  if @pager.busqueda
+    @cds_pre=@cds_pre.where(Sequel.ilike(:title, "%#{@pager.busqueda}%"))
+  end
+  if @sin_abstract
+    @cds_pre=@cds_pre.where(:abstract=>nil)
+  end
+  if @solo_registros
+    @cds_pre=@cds_pre.where(:id=>@ars.cd_reg_id)
+  end
+
+
+
+  @cds_total=@cds_pre.count
+
+
+  @pager.max_page=(@cds_total/@pager.cpp.to_f).ceil
+
+#  $log.info(@pager)
+
+
+  @criterios_orden={:n_referencias_rtr=>"Referencias RTR", :n_total_referencias_recibidas=>"Citado por", :n_total_referencias_hechas=>"Cita a",  :title=>"Título", :year=> "Año", :author=>"Autor"}
+
+
+  @cds=@pager.ajustar_query(@cds_pre)
+
+  @ars=AnalisisRevisionSistematica.new(@revision)
+
+
+  haml %s{revisiones_sistematicas/canonicos_documentos}
+end
+
+
 get '/revision/:id/canonicos_documentos_repetidos' do |id|
   @revision=Revision_Sistematica[id]
   @cd_rep_doi=@revision.doi_repetidos
@@ -157,50 +221,4 @@ end
 
 
 
-get '/revision/:id/canonicos_documentos' do |id|
-  @busqueda=params['busqueda']
-  @busqueda=nil if @busqueda.to_s==""
-  @pagina=params['pagina'].to_i
-  @pagina=1 if @pagina<1
-  @cpp=params['cpp']
-  @cpp||=20
-  @sin_abstract=params['sin_abstract']=='true'
-  @solo_registros=params['solo_registros']=='true'
-  @revision=Revision_Sistematica[id]
-  @ars=AnalisisRevisionSistematica.new(@revision)
-  @cd_total_ds=@revision.canonicos_documentos
 
-  # Repetidos doi
-  @cd_rep_doi=@revision.doi_repetidos
-  ##$log.info(@cd_rep_doi)
-
-  @url="/revision/#{id}/canonicos_documentos"
-  @cds_pre=@revision.canonicos_documentos
-
-  if @busqueda
-    @cds_pre=@cds_pre.where(Sequel.ilike(:title, "%#{@busqueda}%"))
-  end
-  if @sin_abstract
-    @cds_pre=@cds_pre.where(:abstract=>nil)
-  end
-  if @solo_registros
-    @cds_pre=@cds_pre.where(:id=>@ars.cd_reg_id)
-  end
-  @cds_total=@cds_pre.count
-
-
-  @max_page=(@cds_total/@cpp.to_f).ceil
-  @pagina=1 if @pagina>@max_page
-
-  @cds=@cds_pre.offset((@pagina-1)*@cpp).limit(@cpp).order(:author, :year)
-
-  @ars=AnalisisRevisionSistematica.new(@revision)
-
-  haml %s{revisiones_sistematicas/canonicos_documentos}
-end
-
-
-get '/revision/:id/analisis' do |id|
-  @revision=Revision_Sistematica[id]
-  redirect to ("/revision/#{@revision[:id]}/#{@revision[:etapa]}")
-end

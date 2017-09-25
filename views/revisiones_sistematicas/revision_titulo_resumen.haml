@@ -61,7 +61,7 @@
     %strong Número documentos búsqueda:
     =@cds_total
 
-- if @ads.total_decisiones[nil].to_i==0
+- if @ads.total_decisiones[Decision::NO_DECISION].to_i==0
   %p
     %strong Ha concluido la primera fase de revision de documentos de la busqueda. Cuando todos los usuarios del grupo hayan contestado, comenzara la segunda fase de revision de referencias.
 

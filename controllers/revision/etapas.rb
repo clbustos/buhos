@@ -56,11 +56,11 @@ get '/revision/:id/revision_referencias' do |id|
   @cpp||=20
   @busqueda=params['busqueda']
   @orden=params['orden']
-  @orden||="n_referencias__desc"
+  @orden||="n_referencias_rtr__desc"
 
   orden_col, orden_dir=@orden.split("__")
 
-  @criterios_orden=%w{n_referencias title year author}
+  @criterios_orden=%w{n_referencias_rtr title year author}
   # $log.info(params)
   @revision=Revision_Sistematica[id]
   @ars=AnalisisRevisionSistematica.new(@revision)

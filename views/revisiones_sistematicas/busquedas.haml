@@ -27,10 +27,12 @@
           %a{:href=>url("/busqueda/#{g.id}/registros")}
             %button{:class=>"btn btn-default"}
               %span{:class=>"glyphicon glyphicon-list"}
+              %span{:class=>"badge"}=g.registros_n
               Registros
           %a{:href=>url("/busqueda/#{g.id}/referencias")}
             %button{:class=>"btn btn-default"}
               %span{:class=>"glyphicon glyphicon-plane"}
+
               Referencias
 
 

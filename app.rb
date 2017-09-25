@@ -141,90 +141,7 @@ helpers do
   def tiempo_sql(tiempo)
     tiempo.strftime("%Y-%m-%d %H:%M:%S")
   end
-  def rol_usuario
-    if(!session['user'].nil?)
-      "invitado"
-    else
-      session['rol_id']
-    end
-  end
-  def presentar_usuario
-    ##$log.info(session)
-    if(!session['user'].nil?)
-      haml :usuario
-    else
-      haml :visitante
-    end
-  end
-  
-  # Verifica que la persona tenga un permiso específico
-  def permiso(per)
-    #log.info(session['permisos'])    
-    if session['user'].nil?
-      false
-    else
-      if session['rol_id']=='administrador' and Permiso[per].nil?
-        Permiso.insert(:id=>per, :descripcion=>'Permiso creado por administracion')
-        Rol['administrador'].add_permiso(Permiso[per])
-        true
-      elsif session['permisos'].include? per
-        true
-      else
-        false
-      end
-    end
-  end
 
-  def revision_pertenece_a(revision_id,usuario_id)
-    permiso("revision_editar_propia") and Revision_Sistematica[:id=>revision_id, :administrador_revision=>usuario_id]
-  end
-  def revision_analizada_por(revision_id,usuario_id)
-    permiso("revision_analizar_propia") and !$db["SELECT * FROM grupos_usuarios gu INNER JOIN revisiones_sistematicas rs ON gu.grupo_id=rs.grupo_id WHERE rs.id=? AND gu.grupo_id=?", revision_id, usuario_id].empty?
-  end
-
-    def authorize(login, password)
-    u=Usuario.filter(:login=>login,:password=>Digest::SHA1.hexdigest(password))
-    ##$log.info(u.first)
-    if(u.first)
-      user=u.first
-      session['user']=user[:login]
-      session['user_id']=user[:id]
-      session['nombre']=user[:nombre]
-      session['rol_id']=user[:rol_id]      
-      session['permisos']=user.permisos.map {|v| v.id}
-      true
-    else
-      false
-    end
-  end
-
-    def desautorizar
-    session.delete('user')
-  end
-
-   def agregar_mensaje(mensaje,tipo=:info)
-    session['mensajes']||=[]
-    session['mensajes'].push([mensaje,tipo])
-   end
-  def agregar_resultado(result)
-    result.events.each do |event|
-      agregar_mensaje(event[:message],event[:type])
-    end
-  end
-
-  def imprimir_mensajes
-    if(session['mensajes'])
-      #$log.info(session['mensajes'])
-      out=session['mensajes'].map {|men,tipo|
-
-        "<div class='alert alert-#{tipo.to_s} #{tipo.to_s=='error' ? 'alert-danger' : ''}' role='alert'>#{men}</div>\n"
-      }
-      session.delete("mensajes")
-      out.join()
-    else
-      ""
-    end
-  end
   def url(ruta)
     if @mobile
       "/mob#{ruta}"
@@ -232,8 +149,6 @@ helpers do
       ruta
     end
   end
-
-
 
   def put_editable(b,&block)
     params=b.params
@@ -288,15 +203,8 @@ error 404 do
   haml :error404
 end
 
-before do
-  
-end
 
-before do
-  if session['user'].nil?
-    request.path_info='/login'
-  end
-end
+
 
 # INICIO
 
@@ -316,27 +224,7 @@ get '/' do
   end
 end
 
-get '/login' do
-  haml :login
-end
 
-post '/login' do
-  if(authorize(params['user'], params['password']))
-    agregar_mensaje "Autentificación exitosa"
-    log.info("Autentificación exitosa de #{params['user']}")
-    redirect(url("/"))
-  else
-    agregar_mensaje "Fallo en la autentificacion",:error
-    redirect(url("/login"))
-  end
-end
-
-
-get '/logout' do
-  desautorizar
-  redirect(url('/login'))
-end
-                                                             
 
 
 

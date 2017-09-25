@@ -7,6 +7,15 @@ class Busqueda < Sequel::Model
   many_to_one :revision_sistematica, :class=>Revision_Sistematica
   many_to_one :base_bibliografica, :class=>Base_Bibliografica
   many_to_many :registros, :class=>Registro
+
+
+  def registros_n
+    registros.count
+  end
+  def referencias_n
+    referencias.count
+  end
+
   def base_bibliografica_nombre
     base_bibliografica.nombre
   end
@@ -77,7 +86,6 @@ class Busqueda < Sequel::Model
       end
     end # db.transaction
   end
-
 
 
   def actualizar_registros(ref_ids)

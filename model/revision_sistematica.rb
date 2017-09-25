@@ -71,6 +71,11 @@ class Revision_Sistematica < Sequel::Model
   def cd_referencia_id
     $db["SELECT canonico_documento_id FROM busquedas b INNER JOIN busquedas_registros br ON b.id=br.busqueda_id INNER JOIN referencias_registros rr ON br.registro_id=rr.registro_id INNER JOIN referencias r ON rr.referencia_id=r.id  WHERE b.revision_sistematica_id=? and r.canonico_documento_id IS NOT NULL GROUP BY r.canonico_documento_id", self[:id]].select_map(:canonico_documento_id)
   end
+
+
+
+
+
   def cd_todos_id
     (cd_registro_id + cd_referencia_id).uniq
   end
@@ -93,7 +98,12 @@ class Revision_Sistematica < Sequel::Model
              else
                raise "Tipo no definido"
            end
-    Canonico_Documento.where(:id => cd_ids)
+    if tipo==:todos
+      Canonico_Documento.join(cd_id_table, canonico_documento_id: :id   )
+    else
+      Canonico_Documento.where(:id => cd_ids)
+
+    end
   end
   # Nombre de la tabla para referencias entre canonicos
 
@@ -149,6 +159,23 @@ HEREDOC
     Resolucion.where(:revision_sistematica_id=>self[:id], :etapa=>etapa.to_s,:canonico_documento_id=>cd_todos_id,:resolucion=>'yes').map(:canonico_documento_id)
   end
 
+# Vistas especiales
+
+  def cd_id_table_tn
+    "rs_cd_id_#{self[:id]}"
+  end
+  def cd_id_table
+    view_name=cd_id_table_tn
+    if $db["SHOW FULL TABLES  LIKE '%#{view_name}%'"].empty?
+      $db.run("CREATE OR REPLACE VIEW #{view_name} AS SELECT DISTINCT(r.canonico_documento_id) FROM registros r INNER JOIN busquedas_registros br ON r.id=br.registro_id INNER JOIN busquedas b ON br.busqueda_id=b.id WHERE b.revision_sistematica_id=#{self[:id]}
+
+      UNION DISTINCT
+
+      SELECT DISTINCT r.canonico_documento_id FROM busquedas b INNER JOIN busquedas_registros br ON b.id=br.busqueda_id INNER JOIN referencias_registros rr ON br.registro_id=rr.registro_id INNER JOIN referencias r ON rr.referencia_id=r.id  WHERE b.revision_sistematica_id=#{self[:id]} and r.canonico_documento_id IS NOT NULL GROUP BY r.canonico_documento_id")
+    end
+    $db[view_name.to_sym]
+  end
+
 
   def referencias_entre_canonicos_tn
     "referencias_entre_cn_#{self[:id]}"
@@ -167,6 +194,18 @@ HEREDOC
     $db[view_name.to_sym]
   end
 
+  def cuenta_referencias_entre_canonicos_tn
+    "referencias_entre_cn_n_#{self[:id]}"
+  end
+
+
+  def cuenta_referencias_entre_canonicos
+    view_name=cuenta_referencias_entre_canonicos_tn
+    if $db["SHOW FULL TABLES  LIKE '%#{view_name}%'"].empty?
+      $db.run("CREATE OR REPLACE VIEW #{view_name} AS SELECT cd.canonico_documento_id as cd_id, COUNT(DISTINCT(r1.cd_destino)) as n_total_referencias_hechas, COUNT(DISTINCT(r2.cd_origen)) as n_total_referencias_recibidas FROM #{cd_id_table_tn} cd LEFT JOIN #{referencias_entre_canonicos_tn} r1 ON cd.canonico_documento_id=r1.cd_origen LEFT JOIN #{referencias_entre_canonicos_tn} r2 ON cd.canonico_documento_id=r2.cd_destino GROUP BY cd.canonico_documento_id")
+    end
+    $db[view_name.to_sym]
+  end
 
   def resoluciones_titulo_resumen_tn
     "resoluciones_rs_#{self[:id]}_rtr"
@@ -189,7 +228,7 @@ HEREDOC
     resoluciones_titulo_resumen # Verifico que exista la tabla de resoluciones
     view_name=cuenta_referencias_rtr_tn
     if $db["SHOW FULL TABLES  LIKE '%#{view_name}%'"].empty?
-      $db.run("CREATE OR REPLACE VIEW #{view_name} AS SELECT cd_destino , COUNT(DISTINCT(cd_origen)) as n_referencias  FROM resoluciones r INNER JOIN #{referencias_entre_canonicos_tn} rec ON r.canonico_documento_id=rec.cd_origen LEFT JOIN #{resoluciones_titulo_resumen_tn} as r2 ON r2.canonico_documento_id=rec.cd_destino WHERE r.revision_sistematica_id=#{self[:id]} and r.etapa='revision_titulo_resumen' and r.resolucion='yes' and r2.canonico_documento_id IS NULL GROUP BY cd_destino")
+      $db.run("CREATE OR REPLACE VIEW #{view_name} AS SELECT cd_destino , COUNT(DISTINCT(cd_origen)) as n_referencias_rtr  FROM resoluciones r INNER JOIN #{referencias_entre_canonicos_tn} rec ON r.canonico_documento_id=rec.cd_origen LEFT JOIN #{resoluciones_titulo_resumen_tn} as r2 ON r2.canonico_documento_id=rec.cd_destino WHERE r.revision_sistematica_id=#{self[:id]} and r.etapa='revision_titulo_resumen' and r.resolucion='yes' and r2.canonico_documento_id IS NULL GROUP BY cd_destino")
     end
     $db[view_name.to_sym]
 
@@ -200,7 +239,7 @@ HEREDOC
       when 'revision_titulo_resumen'
         cd_registro_id
       when 'revision_referencias'
-        cuenta_referencias_rtr.where( Sequel.lit("n_referencias>1") ).map(:cd_destino)
+        cuenta_referencias_rtr.where( Sequel.lit("n_referencias_rtr >1") ).map(:cd_destino)
         # Solo dejamos aquellos que tengan más de una referencias
       when 'segunda_revision'
         cd_referencia_id

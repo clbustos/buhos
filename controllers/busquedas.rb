@@ -1,7 +1,7 @@
 get '/busqueda/:id/editar' do |id|
   @busqueda=Busqueda[id]
   @revision=@busqueda.revision_sistematica
-  haml %s{revisiones_sistematicas/busqueda_edicion}
+  haml %s{busquedas/busqueda_edicion}
 end
 
 get '/busqueda/:id/registros' do |id|
@@ -9,7 +9,7 @@ get '/busqueda/:id/registros' do |id|
   @revision=@busqueda.revision_sistematica
   @registros=@busqueda.registros_dataset.order(:author)
 
-  haml %s{revisiones_sistematicas/busqueda_registros}
+  haml %s{busquedas/busqueda_registros}
 end
 
 
@@ -28,8 +28,9 @@ get '/busqueda/:id/referencias' do |id|
 
   ##$log.info(@rmc_canonico)
 
-  haml %s{revisiones_sistematicas/busqueda_referencias}
+  haml %s{busquedas/busqueda_referencias}
 end
+
 
 get '/busqueda/:id/registros/completar_dois' do |id|
   @busqueda=Busqueda[id]
