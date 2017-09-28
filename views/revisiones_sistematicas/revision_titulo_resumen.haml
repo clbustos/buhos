@@ -4,11 +4,10 @@
 %ul.breadcrumb
   %li
     %a{:href=>url("/revision/#{@revision.id}")}=@revision.nombre
-  %li
-    %a{:href=>url("/revision/#{@revision.id}/revision_titulo_resumen")} Revisión de títulos y resúmenes en búsqueda
+  %li{:class=>:active} Revisión de títulos y resúmenes en búsqueda
 
 .well
-  Objetivo de la primera etapa: Seleccionar los textos obtenidos de la búsqueda en la literatura que serán sujetos a una revisión de texto completo más adelante.
+  Objetivo de la etapa: Seleccionar los textos obtenidos de la búsqueda en la literatura que serán sujetos a una revisión de texto completo más adelante.
 
 :javascript
   $(document).ready(function() {
@@ -37,9 +36,10 @@
 %h3 Estado de la revision
 %p
   %strong Número de documentos total a revisar:
-  = sprintf("%d", @ars.cd_count_reg)
+  = sprintf("%d", @revision.cd_id_por_etapa("revision_titulo_resumen").length)
 
 %form{:action=>url("/revision/#{@revision[:id]}/revision_titulo_resumen"), :method=>:get,:class=>"form-check", :enctype=>"multipart/form-data"}
+  %input{:type=>:hidden,:name=>:orden, :value=>@orden}
   %table.reporte
     %thead
       - Decision::N_EST.values.each do |k|

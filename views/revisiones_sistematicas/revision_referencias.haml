@@ -4,7 +4,7 @@
 %ul.breadcrumb
   %li
     %a{:href=>url("/revision/#{@revision.id}")}=@revision.nombre
-  %li{:class=>"active"} Revisión de referencias
+  %li{:class=>:active} Revisión de referencias
 
 .well
   Objetivo de la etapa: Seleccionar las referencias más cercanas a los textos elegidos en la primera etapa
@@ -39,7 +39,8 @@
   = sprintf("%d", @revision.cd_id_por_etapa("revision_referencias").length)
 
 %form{:action=>url("/revision/#{@revision[:id]}/revision_referencias"), :method=>:get,:class=>"form-check", :enctype=>"multipart/form-data"}
-  %input{:type=>:hidden,:name=>:orden, :value=>@orden}
+  %input{:type=>:hidden,:name=>:pagina, :value=>@pager.pagina}
+  %input{:type=>:hidden,:name=>:orden, :value=>@pager.orden}
   %table.reporte
     %thead
       - Decision::N_EST.values.each do |k|
@@ -50,37 +51,37 @@
           %td=@ads.total_decisiones[k].to_i
       %tr
         - Decision::N_EST.keys.each do |k|
-          - checked= @busqueda.nil?  ? false :  ( @busqueda.include?(k) )
+          - checked= @pager.busqueda.nil?  ? false :  ( @pager.busqueda.include?(k) )
           %td
             %input{:type=>:radio,  :class=>"form-check-input",:name=>"busqueda", :value=>k, :checked=> checked }
       %tr
         %td{:colspan=>Decision::N_EST.keys.length}
           %input{:type=>"submit", :class=>"btn btn-default", :value=>"Filtrar"}
-- if @busqueda
+- if @pager.busqueda
   %p
     %strong Número documentos búsqueda:
     =@cds_total
 
 .btn-group
-  -@criterios_orden.each do |crit_orden|
+  -@criterios_orden.each do |crit_orden,crit_nombre|
     -["asc","desc"].each do |dir|
       -arrow_dir =  dir=="asc" ? "up" : "down"
-      -if @orden!="#{crit_orden}__#{dir}"
-        %a{:href=>url("/revision/#{@revision[:id]}/revision_referencias?busqueda=#{@busqueda}&orden=#{crit_orden}__#{dir}"), :class=>"btn btn-default btn-sm"}
+      -if @pager.orden!="#{crit_orden}__#{dir}"
+        %a{:href=>url("/revision/#{@revision[:id]}/revision_referencias?busqueda=#{@pager.busqueda}&orden=#{crit_orden}__#{dir}"), :class=>"btn btn-default btn-sm"}
           %span{:class=>"glyphicon glyphicon-chevron-#{arrow_dir}"}
-          =crit_orden
+          =crit_nombre
       -else
         %button{:class=>"btn btn-primary btn-sm"}
           %span{:class=>"glyphicon glyphicon-chevron-#{arrow_dir}"}
-          =crit_orden
+          =crit_nombre
 - if @ads.total_decisiones[Decision::NO_DECISION].to_i==0
   %p
     %strong Ha concluido la segunda fase de revision de referencias.
 
 
-= partial(:pager,:locals=>{url: @url, pagina: @pagina, max_page: @max_page, :extra=>{busqueda:@busqueda, orden:@orden}})
+= partial(:pager,:locals=>{url: @url, pagina: @pager.pagina, max_page: @pager.max_page, :extra=>{busqueda:@pager.busqueda, orden:@pager.orden}})
 .list-group
   - @cds.each do |cd|
     %div{:id=>"decision-cd-#{cd[:id]}"}
       =partial(:decision, :locals=>{ revision_id: @revision[:id], cd: cd, decisiones: @decisiones, ars: @ars, usuario_id: @usuario_id, etapa: "revision_referencias"})
-= partial(:pager,:locals=>{url: @url, pagina: @pagina, max_page: @max_page, :extra=>{busqueda:@busqueda, orden:@orden}})
+= partial(:pager,:locals=>{url: @url, pagina: @pager.pagina, max_page: @pager.max_page, :extra=>{busqueda:@pager.busqueda, orden:@pager.orden}})

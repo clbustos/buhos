@@ -50,18 +50,29 @@ get '/revision/:id/revision_referencias' do |id|
 
   @usuario=Usuario[session['user_id']]
   @usuario_id=@usuario[:id]
-  @pagina=params['pagina'].to_i
-  @pagina=1 if @pagina<1
-  @cpp=params['cpp']
-  @cpp||=20
-  @busqueda=params['busqueda']
-  @orden=params['orden']
-  @orden||="n_referencias_rtr__desc"
 
-  orden_col, orden_dir=@orden.split("__")
 
-  @criterios_orden=%w{n_referencias_rtr title year author}
+  @pager=get_pager()
+  @pager.orden||="n_referencias_rtr__desc"
+
+
+
+  #@pagina=params['pagina'].to_i
+  #@pagina=1 if @pagina<1
+  #@cpp=params['cpp']
+  #@cpp||=20
+  #@busqueda=params['busqueda']
+  #@orden=params['orden']
+  #@orden||="n_referencias_rtr__desc"
+
+  #orden_col, orden_dir=@orden.split("__")
+
+  #@criterios_orden=%w{n_referencias_rtr title year author}
+
+  @criterios_orden={:n_referencias_rtr=>"Referencias RTR", :title=>"Título", :year=> "Año", :author=>"Autor"}
+
   # $log.info(params)
+
   @revision=Revision_Sistematica[id]
   @ars=AnalisisRevisionSistematica.new(@revision)
   @cd_total_ds=@revision.canonicos_documentos
@@ -73,12 +84,13 @@ get '/revision/:id/revision_referencias' do |id|
 
   @cds_pre=@ads.canonicos_documentos.join_table(:inner, @revision.cuenta_referencias_rtr_tn.to_sym, cd_destino: :id)
 
+
   @decisiones=@ads.decisiones
-  if @busqueda.to_s!=""
+  if @pager.busqueda.to_s!=""
     cd_ids=@ads.decision_por_cd.find_all {|v|
-      @busqueda==v[1]
+      @pager.busqueda==v[1]
     }.map {|v| v[0]}
-    ##$log.info(cd_ids)
+    #$log.info(cd_ids)
     @cds_pre=@cds_pre.where(:id => cd_ids)
   end
 
@@ -87,13 +99,15 @@ get '/revision/:id/revision_referencias' do |id|
 
   @cds_total=@cds_pre.count
 
-  @max_page=(@cds_total/@cpp.to_f).ceil
-  @pagina=1 if @pagina>@max_page
+  @pager.max_page=(@cds_total/@pager.cpp.to_f).ceil
+#  @pagina=1 if @pagina>@max_page
 
-  order_o= (orden_dir=='asc') ? orden_col.to_sym : Sequel.desc(orden_col.to_sym)
+#  order_o= (orden_dir=='asc') ? orden_col.to_sym : Sequel.desc(orden_col.to_sym)
 
-  @cds=@cds_pre.offset((@pagina-1)*@cpp).limit(@cpp).order(order_o)
+#  @cds=@cds_pre.offset((@pagina-1)*@cpp).limit(@cpp).order(order_o)
+  @cds=@pager.ajustar_query(@cds_pre)
 
+  #$log.info(@pager)
 
 
 

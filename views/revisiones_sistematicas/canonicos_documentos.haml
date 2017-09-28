@@ -18,7 +18,7 @@
 %form{:action=>url("/revision/#{@revision[:id]}/canonicos_documentos"), :method=>:get,:class=>"form-inline"}
   %div{:class=>"input-group mb-2 mr-sm-2"}
     %input{:type=>:hidden,:name=>:pagina, :value=>@pager.pagina}
-
+    %input{:type=>:hidden,:name=>:orden, :value=>@pager.orden}
     %label{:class=>"", :for=>:busqueda}Busqueda
     %input{:type=>:text, :value=>@pager.busqueda, :name=>:busqueda, :class=>"form-control"}
     .form-group-inline
