@@ -82,8 +82,12 @@ class AnalisisRevisionSistematica
       ac[v[0]]=v[1].length; ac
     }
 
-    @cd_referencia_rtr=@rs.cuenta_referencias_rtr.inject({}){|ac,v|
-      ac[v[:cd_destino]]=v[:n_referencias];ac
+
+    #cd[:n_referencias_rtr]
+
+
+    @cd_referencia_rtr = @rs.cuenta_referencias_rtr.inject({}){|ac,v|
+      ac[v[:cd_destino]]=v[:n_referencias_rtr];ac
     }
 
 
