@@ -23,6 +23,11 @@
     %div{:class=>"form-group"}
       %label Palabras claves
       %input{:class=>"form-control",:type=>"text", :name=>"palabras_claves",:value=>@revision[:palabras_claves]}
+    %div{:class=>'form-group'}
+      %label Mínimo número de RTR para revisión referencias
+      %select{:name=>:n_min_rr_rtr}
+        - 2.upto(20) do |i|
+          %option{:value=>i, :checked=>@revision.n_min_rr_rtr==i}=i
     %div{:class=>"form-group"}
       %label{:for=>"grupo_id"} Grupo
       - Grupo.all.each do |g|

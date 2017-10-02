@@ -43,6 +43,11 @@
         %li{:class=>'list-group-item'}
           Etapa:
           =r.etapa_nombre
+        %li{:class=>'list-group-item'}
+          Número mínimo de RTR para revisión referencias:
+          =r.n_min_rr_rtr
+
+
     %div{:class=>"panel-footer"}
       =partial(:revision_botones, :locals=>{:r=>r})
 

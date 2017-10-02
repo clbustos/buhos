@@ -53,7 +53,9 @@ post '/revision/actualizar' do
       :trs_cobertura_id=>otros_params[:trs_cobertura_id],
       :trs_organizacion_id=>otros_params[:trs_organizacion_id],
       :trs_destinatario_id=>otros_params[:trs_destinatario_id],
-      :etapa=>otros_params[:etapa]
+      :etapa=>otros_params[:etapa],
+      :activa=>otros_params[:activa],
+      :n_min_rr_rtr=>otros_params[:n_min_rr_rtr]
       )
   else
     revision=Revision_Sistematica[id]

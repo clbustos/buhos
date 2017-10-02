@@ -239,7 +239,7 @@ HEREDOC
       when 'revision_titulo_resumen'
         cd_registro_id
       when 'revision_referencias'
-        cuenta_referencias_rtr.where( Sequel.lit("n_referencias_rtr >1") ).map(:cd_destino)
+        cuenta_referencias_rtr.where( Sequel.lit("n_referencias_rtr >= #{self[:n_min_rr_rtr]}") ).map(:cd_destino)
         # Solo dejamos aquellos que tengan más de una referencias
       when 'segunda_revision'
         cd_referencia_id
