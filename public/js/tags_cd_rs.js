@@ -31,7 +31,7 @@ actualizar_tags_cd_rs=function(div_id=false) {
         })
 
     })
-    $(selector_accion).unbind("click");
+    $(selector_nuevo).unbind("click");
     $(selector_nuevo).click(function() {
         var url=$(this).attr("data-url");
         var cd_pk=$(this).attr("cd-pk");
