@@ -12,8 +12,12 @@ crear_tag=function(url,val,cd_pk,rs_pk) {
     }
 };
 actualizar_tags_cd_rs=function(div_id=false) {
-    var selector= div_id ? div_id+" .boton_accion_tag_cd_rs" : ".boton_accion_tag_cd_rs";
-    $(selector).click(function(){
+
+    var selector_accion= div_id ? div_id+" .boton_accion_tag_cd_rs" : ".boton_accion_tag_cd_rs";
+    var selector_nuevo = div_id ? div_id+" .boton_nuevo_tag_cd_rs" : ".boton_nuevo_tag_cd_rs";
+    var keypres_nuevo= div_id ? div_id+" .nuevo_tag_cd_rs" : ".nuevo_tag_cd_rs";
+    $(selector_accion).unbind("click");
+    $(selector_accion).click(function(){
         var url=$(this).attr("data-url");
         var cd_pk=$(this).attr("cd-pk");
         var rs_pk=$(this).attr("rs-pk");
@@ -27,8 +31,8 @@ actualizar_tags_cd_rs=function(div_id=false) {
         })
 
     })
-
-    $(".boton_nuevo_tag_cd_rs").click(function() {
+    $(selector_accion).unbind("click");
+    $(selector_nuevo).click(function() {
         var url=$(this).attr("data-url");
         var cd_pk=$(this).attr("cd-pk");
         var rs_pk=$(this).attr("rs-pk");
@@ -36,8 +40,8 @@ actualizar_tags_cd_rs=function(div_id=false) {
         crear_tag(url,val, cd_pk,rs_pk);
         return(false);
     });
-
-    $(".nuevo_tag_cd_rs").on('keypress', function(e) {
+    $(keypres_nuevo).unbind("keypress");
+    $(keypres_nuevo).on('keypress', function(e) {
         if(13==e.which && $(this).val().trim()!="") {
             var url=$(this).attr("data-url");
             var cd_pk=$(this).attr("cd-pk");
