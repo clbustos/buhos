@@ -12,20 +12,14 @@
   %div{:class=>"panel-heading"}
     =CGI::escapeHTML cd.title
   %div{:class=>"panel-body"}
-    %ul.list-group
-      %li{:class=>"list-group-item"}
-        %strong Autores
-        =CGI::escapeHTML cd.authors_apa_6
-      %li{:class=>"list-group-item"}
-        %strong Año
-        =cd.year
-      %li{:class=>"list-group-item"}
-        %strong Revista
-        =sprintf("%s, %s, %s", cd.journal, cd.volume, cd.pages)
-      - texto_referencias=sprintf("<strong>Referencias:</strong> referencia a <strong>%d</strong> / citado por <strong>%d</strong> ", ars.cd_count_salida(cd[:id]).to_i, ars.cd_count_entrada(cd[:id]).to_i)
+    %p
+      %strong Referencia APA:
+      =CGI::escapeHTML cd.ref_apa_6
+
+      - texto_referencias=sprintf("<strong>Citaciones:</strong> cita a <strong>%d</strong> / citado por <strong>%d</strong> ", ars.cd_count_salida(cd[:id]).to_i, ars.cd_count_entrada(cd[:id]).to_i)
       - if ars.cd_count_entrada_rtr(cd[:id])
         -texto_referencias+=sprintf("/ citado desde textos RTR por <strong>%d</strong>", ars.cd_count_entrada_rtr(cd[:id]).to_i)
-      %li{:class=>"list-group-item"}=texto_referencias
+      %p=texto_referencias
     %p{:class=>""}
       %strong Resumen
       - if !cd.abstract
