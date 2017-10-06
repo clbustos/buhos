@@ -77,3 +77,29 @@ post '/tags/cd/:cd_id/rs/:rs_id/:accion' do |cd_id,rs_id,accion|
   partial("tags/tags_cd_rs", :locals=>{cd:cd, revision:rs, :nuevo=>true, usuario_id: usuario_id})
 end
 
+
+
+get '/tags/basico_10.json' do
+  require 'json'
+  content_type :json
+  Tag.order(:texto).limit(10).map {|v|
+    {id:v[:id],
+     value:v[:texto],
+     tokens:v[:texto].split(/\s+/)
+    }
+  }.to_json
+end
+
+
+get '/tags/query_json/:query' do |query|
+  require 'json'
+  content_type :json
+  
+  res=$db["SELECT texto FROM tags WHERE LOCATE(?,texto)>0 LIMIT 10", query]
+  res.map {|v|
+    {id:v[:id],
+     value:v[:texto],
+     tokens:v[:texto].split(/\s+/)
+    }
+  }.to_json
+end

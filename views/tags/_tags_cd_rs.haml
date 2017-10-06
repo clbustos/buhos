@@ -1,6 +1,8 @@
 - nuevo||=false
 - if @_tags_cd_rs_js.nil? and !nuevo
+  %script{:type=>'text/javascript', :src=>url('/js/typeahead.bundle.min.js')}
   %script{:type=>'text/javascript', :src=>url('/js/tags_cd_rs.js')}
+
   -@_tags_cd_rs_js=true
 %div{:id=>"tags-cd-#{cd.id}-rs-#{revision.id}"}
   %ul.tags
@@ -15,6 +17,6 @@
 
     %li.tag{:id=>"tag-#{cd.id}-rs-#{revision.id}-nuevo"}
       %span.glyphicon.glyphicon-tag
-      %input.nuevo_tag_cd_rs{:type=>"text", :size=>10, :id=>"tag-cd-#{cd.id}-rs-#{revision.id}-nuevotag", "cd-pk"=>cd.id, "rs-pk"=>revision.id, "data-url"=>url("/tags/cd/#{cd.id}/rs/#{revision.id}/agregar_tag")}
+      %input.nuevo_tag_cd_rs{:type=>"text", :size=>10, :id=>"tag-cd-#{cd.id}-rs-#{revision.id}-nuevotag", "cd-pk"=>cd.id, "rs-pk"=>revision.id, "data-url"=>url("/tags/cd/#{cd.id}/rs/#{revision.id}/agregar_tag"), :placeholder=>"Nuevo tag"}
       %button.btn.btn-default.btn-sm.boton_nuevo_tag_cd_rs{"cd-pk"=>cd.id, "rs-pk"=>revision.id, "data-url"=>url("/tags/cd/#{cd.id}/rs/#{revision.id}/agregar_tag")}
         %span.glyphicon.glyphicon-plus

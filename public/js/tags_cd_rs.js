@@ -1,3 +1,13 @@
+var tagsQuery=new Bloodhound({
+    datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+    queryTokenizer: Bloodhound.tokenizers.whitespace,
+    prefetch: '/tags/basico_10.json',
+    remote: {
+        url: '/tags/query_json/%QUERY',
+        wildcard: '%QUERY'
+    }
+});
+
 crear_tag=function(url,val,cd_pk,rs_pk) {
     if(val.trim()=="") {
         alert("El tag no tiene texto")
@@ -6,12 +16,15 @@ crear_tag=function(url,val,cd_pk,rs_pk) {
             var div_id="#tags-cd-"+cd_pk+"-rs-"+rs_pk
             $(div_id).replaceWith(data);
             actualizar_tags_cd_rs(div_id);
+            actualizar_typeahead(div_id);
         }).fail(function () {
             alert("No se pudo crear el tag")
         })
     }
 };
-actualizar_tags_cd_rs=function(div_id=false) {
+actualizar_tags_cd_rs=function(div_id) {
+
+    div_id = typeof div_id !== 'undefined' ? div_id : false;
 
     var selector_accion= div_id ? div_id+" .boton_accion_tag_cd_rs" : ".boton_accion_tag_cd_rs";
     var selector_nuevo = div_id ? div_id+" .boton_nuevo_tag_cd_rs" : ".boton_nuevo_tag_cd_rs";
@@ -26,6 +39,7 @@ actualizar_tags_cd_rs=function(div_id=false) {
             var div_id="#tags-cd-"+cd_pk+"-rs-"+rs_pk
             $(div_id).replaceWith(data);
             actualizar_tags_cd_rs(div_id);
+            actualizar_typeahead(div_id);
         }).fail(function () {
             alert("No se pudo realizar la acción en el tag")
         })
@@ -53,7 +67,31 @@ actualizar_tags_cd_rs=function(div_id=false) {
     });
 };
 
+actualizar_typeahead=function(div_id) {
+    div_id = typeof div_id !== 'undefined' ? div_id : false;
+    var selector=div_id ? div_id+" .nuevo_tag_cd_rs" : '.nuevo_tag_cd_rs';
+    $(selector).unbind("typeahead");
+    $(selector).typeahead({
+
+            hint: true,
+            highlight: true,
+            minLength: 3
+        },
+        {
+            name: 'tags',
+            display:'value',
+            source: tagsQuery
+        });
+};
+
+
+
 $(document).ready(function() {
+    // Typeahead section
+
+
     actualizar_tags_cd_rs();
+    actualizar_typeahead();
+
 
 });
