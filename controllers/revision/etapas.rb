@@ -56,19 +56,6 @@ get '/revision/:id/revision_referencias' do |id|
   @pager.orden||="n_referencias_rtr__desc"
 
 
-
-  #@pagina=params['pagina'].to_i
-  #@pagina=1 if @pagina<1
-  #@cpp=params['cpp']
-  #@cpp||=20
-  #@busqueda=params['busqueda']
-  #@orden=params['orden']
-  #@orden||="n_referencias_rtr__desc"
-
-  #orden_col, orden_dir=@orden.split("__")
-
-  #@criterios_orden=%w{n_referencias_rtr title year author}
-
   @criterios_orden={:n_referencias_rtr=>"Referencias RTR", :title=>"Título", :year=> "Año", :author=>"Autor"}
 
   # $log.info(params)
@@ -90,31 +77,68 @@ get '/revision/:id/revision_referencias' do |id|
     cd_ids=@ads.decision_por_cd.find_all {|v|
       @pager.busqueda==v[1]
     }.map {|v| v[0]}
-    #$log.info(cd_ids)
     @cds_pre=@cds_pre.where(:id => cd_ids)
   end
 
 
-  #$log.info(@crr)
 
   @cds_total=@cds_pre.count
 
   @pager.max_page=(@cds_total/@pager.cpp.to_f).ceil
-#  @pagina=1 if @pagina>@max_page
 
-#  order_o= (orden_dir=='asc') ? orden_col.to_sym : Sequel.desc(orden_col.to_sym)
-
-#  @cds=@cds_pre.offset((@pagina-1)*@cpp).limit(@cpp).order(order_o)
   @cds=@pager.ajustar_query(@cds_pre)
-
-  #$log.info(@pager)
-
 
 
   haml %s{revisiones_sistematicas/revision_referencias}
-
-
 end
+
+
+get '/revision/:id/revision_texto_completo' do |id|
+
+  @usuario=Usuario[session['user_id']]
+  @usuario_id=@usuario[:id]
+
+
+  @pager=get_pager()
+  @pager.orden||="year__desc"
+
+
+  @criterios_orden={:n_referencias_rtr=>"Referencias RTR", :title=>"Título", :year=> "Año", :author=>"Autor"}
+
+  # $log.info(params)
+
+  @revision=Revision_Sistematica[id]
+  @ars=AnalisisRevisionSistematica.new(@revision)
+  @cd_total_ds=@revision.canonicos_documentos
+
+
+  @url="/revision/#{id}/revision_texto_completo"
+
+  @ads=AnalisisDecisionUsuario.new(id,@usuario_id, 'revision_texto_completo')
+
+  @cds_pre=@ads.canonicos_documentos.join_table(:left, @revision.cuenta_referencias_rtr_tn.to_sym, cd_destino: :id)
+
+
+  @decisiones=@ads.decisiones
+  if @pager.busqueda.to_s!=""
+    cd_ids=@ads.decision_por_cd.find_all {|v|
+      @pager.busqueda==v[1]
+    }.map {|v| v[0]}
+    @cds_pre=@cds_pre.where(:id => cd_ids)
+  end
+
+
+
+  @cds_total=@cds_pre.count
+
+  @pager.max_page=(@cds_total/@pager.cpp.to_f).ceil
+
+  @cds=@pager.ajustar_query(@cds_pre)
+
+
+  haml %s{revisiones_sistematicas/revision_texto_completo}
+end
+
 
 
 get '/revision/:id/administracion_etapas' do |id|
@@ -209,7 +233,7 @@ get '/revision/:rev_id/etapa/revision_titulo_resumen/generar_referencias_crossre
   cd_i=Resolucion.where(:revision_sistematica_id=>rev_id, :resolucion=>"yes", :etapa=>"revision_titulo_resumen").map {|v|v [:canonico_documento_id]}
   cd_i.each do |cd_id|
     @cd=Canonico_Documento[cd_id]
-    if(@cd.crossref_integrator)
+    if @cd.crossref_integrator
       begin
         @cd.referencias_realizadas.exclude(:doi=>nil).where(:canonico_documento_id=>nil).each do |ref|
           result.add_result(ref.agregar_doi(ref[:doi]))

@@ -180,14 +180,14 @@ helpers do
   def a_textarea_editable(id, prefix, data_url, v, default_value="--")
     url_s=url(data_url)
 
-    "<a class='textarea_editable' data-pk='#{id}' data-url=#{url_s} href='#' id='#{prefix}-2' 'data-defaultValue'='#{default_value}'>#{v}</a>"
+    "<a class='textarea_editable' data-pk='#{id}' data-url='#{url_s}' href='#' id='#{prefix}-2' data-default='#{default_value}'>#{v}</a>"
   end
 
 
   def a_editable(id, prefix, data_url, v,default_value="--")
     url_s=url(data_url)
     val=(v.nil? ? default_value : v)
-    "<a class='nombre_editable' data-pk='#{id}' data-url=#{url_s} href='#' id='#{prefix}-2'>#{val}</a>"
+    "<a class='nombre_editable' data-pk='#{id}' data-url='#{url_s}' href='#' id='#{prefix}-2'>#{val}</a>"
   end
 
 

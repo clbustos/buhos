@@ -11,6 +11,10 @@
     %a{:role=>:button, :href=>url("/revision/#{r.id}/busquedas"), :class=>"btn btn-default"}
       %span{:class=>"glyphicon glyphicon-book"}
       Búsquedas
+  - if permiso("tags_ver") or revision_pertenece_a(r.id, session['user_id'])
+    %a{:role=>:button, :href=>url("/revision/#{r.id}/tags"), :class=>"btn btn-default"}
+      %span{:class=>"glyphicon glyphicon-tag"}
+      Etiquetas
   %div{:class=>"btn-group btn-group-sm", :role=>"group"}
     %button{:id=>"btn_revisiones_#{r.id}", :type=>"button", :class=>"btn btn-default dropdown-toggle", "data-toggle"=>"dropdown", "aria-haspopup"=>"true", "aria-expanded"=>"false"}
       Etapas
@@ -31,3 +35,8 @@
           %a{:role=>:button, :href=>url("/revision/#{r.id}/revision_referencias"), :class=>"btn btn-default "}
             %span{:class=>"glyphicon glyphicon-ok-sign"}
             Referencias
+      - if permiso("revision_texto_completo_ver") or revision_analizada_por(r.id, session['user_id'])
+        %li
+          %a{:role=>:button, :href=>url("/revision/#{r.id}/revision_texto_completo"), :class=>"btn btn-default "}
+            %span{:class=>"glyphicon glyphicon-ok-sign"}
+            Texto completo

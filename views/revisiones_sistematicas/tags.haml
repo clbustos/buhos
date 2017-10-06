@@ -1,0 +1,88 @@
+%h2="Etiquetas para revisión <strong>#{@revision.nombre}</strong>"
+
+
+:javascript
+  crear_tag=function(url,val,clase_pk) {
+    if(val.trim()=="") {
+      alert("El tag no tiene texto")
+    } else {
+      $.post(url, {value: val}, function (data) {
+        $("#tags-clase-"+clase_pk).html(data);
+        actualizar_tags_clase();
+      }).fail(function () {
+            alert("No se pudo crear el tag")
+        })
+      }
+  };
+  actualizar_tags_clase=function() {
+      #{@select_etapa.javascript}
+      #{@select_tipo.javascript}
+
+      $(".boton_nuevo_tag").click(function() {
+        var url=$(this).attr("data-url");
+        var clase_pk=$(this).attr("data-pk");
+
+        var val=$("#clase-"+clase_pk+"-nuevotag").val().trim();
+        crear_tag(url,val, clase_pk);
+      });
+
+      $(".nuevo_tag").on('keypress', function(e) {
+        if(13==e.which && $(this).val().trim()!="") {
+          var url=$(this).attr("data-url");
+          var clase_pk=$(this).attr("data-pk");
+          var val=$(this).val().trim();
+          crear_tag(url,val,clase_pk);
+        }
+      });
+  };
+  $(document).ready(function() {
+    actualizar_tags_clase();
+
+  });
+
+
+%ul.breadcrumb
+  %li
+    %a{:href=>url("/revision/#{@revision.id}")}=@revision.nombre
+  %li{:class=>:active}Etiquetas
+
+
+%h3 Clases de etiquetas
+-@revision.t_clases.each do |t_clase|
+  .panel.panel-default
+    .panel-heading
+      =a_editable(t_clase.id, "t_clase", "/tags/clases/editar_campo/nombre", t_clase[:nombre],"")
+    .panel-body
+      .container
+        .row
+          .col-md-3
+            %p
+              Etapa:
+              =@select_etapa.html(t_clase.id, t_clase.etapa)
+            %p
+              Tipo:
+              =@select_tipo.html(t_clase.id, t_clase.tipo)
+          .col-md-9.col-lg-8
+            %div{:id=>"tags-clase-#{t_clase.id}"}
+              =partial("tags/tags_clase", :locals=>{t_clase: t_clase})
+
+.panel.panel-default
+  .panel-heading
+    Nueva clase
+  .panel-body
+    %form{:method=>"post",:action=>url("/tags/clases/nueva")}
+      %input{:type=>:hidden, :name=>:revision_id, :value=>@revision.id}
+      .form-group
+        %label{:for=>"nombre"}Nombre
+        %input{:class=>"form-control",:type=>"text", :name=>"nombre"}
+      .form-group
+        %label{:for=>"etapa"}Etapa
+        %select{:name=>"etapa", :class=>"form-control"}
+          - @etapas_lista.each do |etapa_id, etapa_nombre|
+            %option{:value=>etapa_id}=etapa_nombre
+      .form-group
+        %label{:for=>"tipo"}Tipo
+        %select{:name=>"tipo", :class=>"form-control"}
+          - @tipos_lista.each do |tipo_id, tipo_nombre|
+            %option{:value=>tipo_id}=tipo_nombre
+      %input{:type=>:submit, :value=>"Agregar clase nueva", :class=>"btn btn-default"}

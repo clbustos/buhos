@@ -1,5 +1,7 @@
+require_relative 'tag'
 class Revision_Sistematica < Sequel::Model
   one_to_many :busquedas
+  one_to_many :t_clases, :class=>T_Clase
   many_to_one :grupo
   many_to_one :trs_foco
   many_to_one :trs_objetivo
@@ -7,6 +9,7 @@ class Revision_Sistematica < Sequel::Model
   many_to_one :trs_cobertura
   many_to_one :trs_organizacion
   many_to_one :trs_destinatario
+
 
   TRS=["foco","objetivo","perspectiva","cobertura","organizacion","destinatario"]
   TRS_p=["focos","objetivos","perspectivas","coberturas","organizaciones","destinatarios"]
@@ -22,7 +25,7 @@ class Revision_Sistematica < Sequel::Model
   ETAPAS_NOMBRE={:busqueda => "Búsqueda",
                  :revision_titulo_resumen => "Revisión titulo y resumen",
                  :revision_referencias => "Revisión referencias",
-                 :revision_texto_completo=> "Segunda revisión (lectura rápida)",
+                 :revision_texto_completo=> "Revisión texto completo",
                  :analisis => "Análisis",
                  :sintesis => "Síntesis"}
 
@@ -34,6 +37,11 @@ class Revision_Sistematica < Sequel::Model
   end
   def grupo_nombre
     grupo.nil? ? "--Sin grupo asignado --" : grupo.name
+  end
+
+
+  def t_clases_documentos
+    @t_clases_documentos||=t_clases_dataset.where(:tipo=>"documento")
   end
   def self.get_nombre_etapa(etapa)
     ETAPAS_NOMBRE[etapa.to_sym]
@@ -164,6 +172,7 @@ HEREDOC
   def cd_id_table_tn
     "rs_cd_id_#{self[:id]}"
   end
+  # Entrega todos los id pertinentes para la revision sistematica
   def cd_id_table
     view_name=cd_id_table_tn
     if $db["SHOW FULL TABLES  LIKE '%#{view_name}%'"].empty?
@@ -218,6 +227,19 @@ HEREDOC
     $db[view_name.to_sym]
   end
 
+  def resoluciones_referencias_tn
+    "resoluciones_rs_#{self[:id]}_referencias"
+  end
+  def resoluciones_referencias
+    view_name=resoluciones_referencias_tn
+    if $db["SHOW FULL TABLES  LIKE '%#{view_name}%'"].empty?
+      $db.run("CREATE OR REPLACE VIEW #{view_name} AS SELECT * FROM resoluciones  where revision_sistematica_id=#{self[:id]} and etapa='revision_referencias'")
+    end
+    $db[view_name.to_sym]
+  end
+
+
+
 
   def cuenta_referencias_rtr_tn
     "referencias_entre_cn_rtr_n_#{self[:id]}"
@@ -241,8 +263,10 @@ HEREDOC
       when 'revision_referencias'
         cuenta_referencias_rtr.where( Sequel.lit("n_referencias_rtr >= #{self[:n_min_rr_rtr]}") ).map(:cd_destino)
         # Solo dejamos aquellos que tengan más de una referencias
-      when 'segunda_revision'
-        cd_referencia_id
+      when 'revision_texto_completo'
+        rtr=resoluciones_titulo_resumen.where(:resolucion=>'yes').select_map(:canonico_documento_id)
+        rr=resoluciones_referencias.where(:resolucion=>'yes').select_map(:canonico_documento_id)
+        (rtr+rr).uniq
       else
         raise 'no definido'
     end

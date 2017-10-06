@@ -43,6 +43,9 @@ Sequel.inflections do |inflect|
   inflect.irregular 'referencia_registro', 'referencias_registros'
   inflect.irregular 'decision', 'decisiones'
   inflect.irregular 'resolucion', 'resoluciones'
-
+  inflect.irregular 't_clase', 't_clases'
+  inflect.irregular 'tag_en_cd', 'tags_en_cds'
+  inflect.irregular 'tag_en_clase', 'tags_en_clases'
+  inflect.irregular 'tag_en_referencia_entre_cn', 'tags_en_referencias_entre_cn'
 end
 

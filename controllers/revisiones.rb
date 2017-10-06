@@ -237,3 +237,4 @@ get '/revision/:id/bibtex_resueltos' do  |id|
 
 
 end
+
