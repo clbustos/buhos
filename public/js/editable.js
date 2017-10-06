@@ -76,6 +76,18 @@ function actualizar_resolucion(etapa) {
 
 }
 
+function actualizar_nombre_editable() {
+    $('.nombre_editable').editable({
+        type: 'text',
+        emptytext: '--Vacio--',
+        title: 'Ingrese',
+        ajaxOptions: {
+            type: 'put'
+        }
+    });
+
+}
+
 function actualizar_textarea_editable() {
 
     $('.textarea_editable').editable({
@@ -93,15 +105,8 @@ function actualizar_textarea_editable() {
 
 $(document).ready(function () {
     actualizar_textarea_editable();
+    actualizar_nombre_editable();
 
-    $('.nombre_editable').editable({
-        type: 'text',
-        emptytext: '--Vacio--',
-        title: 'Ingrese',
-        ajaxOptions: {
-            type: 'put'
-        }
-    });
 
 
     $('.tipo_editable').editable({
