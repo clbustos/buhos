@@ -12,11 +12,11 @@
         - class_predeterminado = tag.predeterminado ? "tag-predeterminado" : ""
         %li{:class=>"tag #{class_predeterminado}",:id=>"tag-cd-#{cd.id}-rs-#{revision.id}-#{tag.id}"}
           %span.glyphicon.glyphicon-tag
-          =tag.texto
+          %span.texto=tag.texto
           =tag.botones_html(usuario_id)
 
     %li.tag{:id=>"tag-#{cd.id}-rs-#{revision.id}-nuevo"}
       %span.glyphicon.glyphicon-tag
-      %input.nuevo_tag_cd_rs{:type=>"text", :size=>15,:id=>"tag-cd-#{cd.id}-rs-#{revision.id}-nuevotag", "cd-pk"=>cd.id, "rs-pk"=>revision.id, "data-url"=>url("/tags/cd/#{cd.id}/rs/#{revision.id}/agregar_tag"), :placeholder=>"Nuevo tag"}
-      %button.btn.btn-default.btn-sm.boton_nuevo_tag_cd_rs{"cd-pk"=>cd.id, "rs-pk"=>revision.id, "data-url"=>url("/tags/cd/#{cd.id}/rs/#{revision.id}/agregar_tag")}
+      %input.nuevo_tag_cd_rs{:type=>"text", :class=>"texto", :size=>15,:id=>"tag-cd-#{cd.id}-rs-#{revision.id}-nuevotag", "cd-pk"=>cd.id, "rs-pk"=>revision.id, "data-url"=>url("/tags/cd/#{cd.id}/rs/#{revision.id}/agregar_tag"), :placeholder=>"Nuevo tag"}
+      %button.btn.btn-default.btn-xs.boton_nuevo_tag_cd_rs{"cd-pk"=>cd.id, "rs-pk"=>revision.id, "data-url"=>url("/tags/cd/#{cd.id}/rs/#{revision.id}/agregar_tag"), :id=>"boton-tag-cd-#{cd.id}-rs-#{revision.id}-nuevotag"}
         %span.glyphicon.glyphicon-plus

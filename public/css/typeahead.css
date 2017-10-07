@@ -26,6 +26,7 @@ span.twitter-typeahead .tt-suggestion {
     clear: both;
     font-weight: normal;
     line-height: 1.42857143;
+
     color: #666;
     white-space: nowrap;
 }

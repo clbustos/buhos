@@ -737,21 +737,24 @@ ul.tags {
 ul.tags li.tag {
     display: inline-block;
     margin: 0 .2em .2em 0;
-    height: 30px;
+    min-height: 30px;
     line-height: 25px;
     padding: 0 0.25em;
     background-color: #fff;
     border: 1px solid #aaa;
     border-radius: 3px;
-    white-space: nowrap;
+
     text-overflow: ellipsis;
-    overflow: hidden;
+    #overflow: hidden;
 
     font-size: 12px;
     -webkit-transition: .2s;
     transition: .2s;
 }
 
+ul.tags li.tag .texto {
+    white-space: nowrap;
+}
 ul.tags li.tag-predeterminado {
     background-color: lightyellow;
     border: 1px solid darkorange;
