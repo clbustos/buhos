@@ -20,6 +20,9 @@ module AnalisisTag
     def mostrar
       @predeterminado or @positivos>0
     end
+    def sin_votos?
+      positivos+negativos==0
+    end
     def resultado_usuario(usuario_id)
       @votos.find {|v| v[:usuario_id]==usuario_id}
     end

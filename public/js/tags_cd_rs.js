@@ -67,6 +67,18 @@ actualizar_tags_cd_rs=function(div_id) {
     });
 };
 
+actualizar_mostrar_pred=function(div) {
+    div_id = typeof div_id !== 'undefined' ? div_id : false;
+    var selector=div_id ? div_id+" .mostrar_pred" : '.mostrar_pred';
+    $(selector).unbind("click");
+    $(selector).click(function() {
+        var id=$(this).attr("id");
+        var partes=id.split("_");
+        var base=partes[0];
+        $("#"+base+" .tag-predeterminado").removeClass("hidden");
+        $("#"+base+"_mostrar_pred").hide();
+    });
+}
 actualizar_typeahead=function(div_id) {
     div_id = typeof div_id !== 'undefined' ? div_id : false;
     var selector=div_id ? div_id+" .nuevo_tag_cd_rs" : '.nuevo_tag_cd_rs';
@@ -92,6 +104,6 @@ $(document).ready(function() {
 
     actualizar_tags_cd_rs();
     actualizar_typeahead();
-
+    actualizar_mostrar_pred();
 
 });

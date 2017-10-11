@@ -238,3 +238,40 @@ get '/revision/:id/bibtex_resueltos' do  |id|
 
 end
 
+
+get '/revision/:id/tags' do |id|
+  @revision=Revision_Sistematica[id]
+
+  @etapas_lista={:NIL=>"--Todas--"}.merge(Revision_Sistematica::ETAPAS_NOMBRE)
+
+  @select_etapa=get_xeditable_select(@etapas_lista, "/tags/clases/editar_campo/etapa","select_etapa")
+  @select_etapa.nil_value=:NIL
+  @tipos_lista={general:"General", documento:"Documento", relacion:"Relación"}
+
+  @select_tipo=get_xeditable_select(@tipos_lista, "/tags/clases/editar_campo/tipo","select_tipo")
+
+  haml %s{revisiones_sistematicas/tags}
+end
+
+
+get '/revision/:id/mensajes' do |id|
+  @revision=Revision_Sistematica[id]
+  @mensajes_rs=@revision.mensajes_rs_dataset.order(Sequel.desc(:tiempo))
+  @mensajes_rs_vistos=Mensaje_Rs_Visto.where(:visto=>true,:m_rs_id=>@mensajes_rs.select_map(:id), :usuario_id=>session['user_id'])
+
+  @usuario=Usuario[session['user_id']]
+  haml %s{revisiones_sistematicas/mensajes}
+end
+
+post '/revision/:id/mensaje/nuevo' do |id|
+  @revision=Revision_Sistematica[id]
+  @usuario_id=params['user_id']
+  return 404 if @revision.nil? or @usuario_id.nil?
+  @asunto=params['asunto']
+  @texto=params['texto']
+  $db.transaction(:rollback=>:reraise) do
+    id=Mensaje_Rs.insert(:revision_sistematica_id=>id, :usuario_desde=>@usuario_id, :respuesta_a=>nil, :tiempo=>DateTime.now(), :asunto=>@asunto, :texto=>@texto)
+    agregar_mensaje("Agregado mensaje #{id}")
+  end
+  redirect back
+end

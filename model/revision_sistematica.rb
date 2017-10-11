@@ -1,6 +1,9 @@
 require_relative 'tag'
+require_relative 'mensajes'
 class Revision_Sistematica < Sequel::Model
   one_to_many :busquedas
+  one_to_many :mensajes_rs, :class=>Mensaje_Rs
+
   one_to_many :t_clases, :class=>T_Clase
   many_to_one :grupo
   many_to_one :trs_foco
