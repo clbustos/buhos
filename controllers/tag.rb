@@ -95,7 +95,7 @@ get '/tags/query_json/:query' do |query|
   require 'json'
   content_type :json
   
-  res=$db["SELECT id, texto,COUNT(*) as n from tags t INNER JOIN tags_en_cds tec ON t.id=tec.tag_id WHERE LOCATE('repl',texto)>0 and decision='yes' GROUP BY t.texto ORDER BY n DESC LIMIT 10", query]
+  res=$db["SELECT id, texto,COUNT(*) as n from tags t INNER JOIN tags_en_cds tec ON t.id=tec.tag_id WHERE LOCATE(?,texto)>0 and decision='yes' GROUP BY t.texto ORDER BY n DESC LIMIT 10", query]
   res.map {|v|
     {id:v[:id],
      value:v[:texto],
