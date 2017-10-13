@@ -40,6 +40,7 @@ actualizar_tags_cd_rs=function(div_id) {
             $(div_id).replaceWith(data);
             actualizar_tags_cd_rs(div_id);
             actualizar_typeahead(div_id);
+            actualizar_mostrar_pred(div_id)
         }).fail(function () {
             alert("No se pudo realizar la acción en el tag")
         })
