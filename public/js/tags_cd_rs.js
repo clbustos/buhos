@@ -17,6 +17,7 @@ crear_tag=function(url,val,cd_pk,rs_pk) {
             $(div_id).replaceWith(data);
             actualizar_tags_cd_rs(div_id);
             actualizar_typeahead(div_id);
+            actualizar_mostrar_pred(div_id);
         }).fail(function () {
             alert("No se pudo crear el tag")
         })
@@ -40,7 +41,7 @@ actualizar_tags_cd_rs=function(div_id) {
             $(div_id).replaceWith(data);
             actualizar_tags_cd_rs(div_id);
             actualizar_typeahead(div_id);
-            actualizar_mostrar_pred(div_id)
+            actualizar_mostrar_pred(div_id);
         }).fail(function () {
             alert("No se pudo realizar la acción en el tag")
         })
@@ -68,11 +69,12 @@ actualizar_tags_cd_rs=function(div_id) {
     });
 };
 
-actualizar_mostrar_pred=function(div) {
+actualizar_mostrar_pred=function(div_id) {
     div_id = typeof div_id !== 'undefined' ? div_id : false;
-    var selector=div_id ? div_id+" .mostrar_pred" : '.mostrar_pred';
-    $(selector).unbind("click");
-    $(selector).click(function() {
+    var selector_action=div_id ? div_id+" .mostrar_pred" : '.mostrar_pred';
+    //console.log(selector_action);
+    $(selector_action).unbind("click");
+    $(selector_action).click(function() {
         var id=$(this).attr("id");
         var partes=id.split("_");
         var base=partes[0];
@@ -83,6 +85,7 @@ actualizar_mostrar_pred=function(div) {
 actualizar_typeahead=function(div_id) {
     div_id = typeof div_id !== 'undefined' ? div_id : false;
     var selector=div_id ? div_id+" .nuevo_tag_cd_rs" : '.nuevo_tag_cd_rs';
+    //console.log(selector);
     $(selector).unbind("typeahead");
     $(selector).typeahead({
 
