@@ -49,6 +49,7 @@ Sequel.inflections do |inflect|
   inflect.irregular 'tag_en_referencia_entre_cn', 'tags_en_referencias_entre_cn'
   inflect.irregular 'mensaje_rs', 'mensajes_rs'
   inflect.irregular 'mensaje_rs_visto', 'mensajes_rs_vistos'
-
+  inflect.irregular 'archivo_cd', 'archivos_cds'
+  inflect.irregular 'archivo_rs', 'archivos_rs'
 end
 

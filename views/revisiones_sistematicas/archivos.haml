@@ -1,0 +1,51 @@
+%h2="Archivos para para revisión <strong>#{@revision.nombre}</strong>"
+
+
+%ul.breadcrumb
+  %li
+    %a{:href=>url("/revision/#{@revision.id}")}=@revision.nombre
+  %li{:class=>:active}Archivos
+
+
+%h3 Subir archivos
+
+%form{:method=>:post, :action=>url("/revision/archivos/agregar"), :enctype=>'multipart/form-data'}
+  %input{:type=>"hidden", :name=>"revision_sistematica_id",:value=>@revision[:id]}
+  .form-group
+    %label Archivo
+    %input{:type=>'file', :name=>'archivos[]', :multiple=>"multiple"}
+  %input{:type=>:submit, :class=>"btn btn-primary",:value=>"Enviar"}
+
+
+%h3 Archivos
+%p
+  %strong Total:
+  =@archivos_rs.count
+
+
+%div{:class=>"btn-group btn-group-sm", :role=>'group'}
+  %a{:role=>:button, :href=>url("/archivos/rs/#{@revision.id}/asignar_canonicos_documentos"), :class=>"btn btn-default"}
+    %span{:class=>"glyphicon glyphicon-king"}
+    Asignar a Documentos Canónicos
+
+%table.reporte
+  %thead
+    %th Nombre
+    %th Tipo
+    %th Documento Canónico
+    %th Acciones
+  %tbody
+    -@archivos_rs.each do |archivo|
+      %tr
+        %td{:style=>'max-width:300px;overflow:hidden;text-overflow:ellipsis;'}=archivo[:archivo_nombre]
+        %td=archivo[:archivo_tipo]
+        %td
+          -if archivo[:canonico_documento_id]
+            =@canonicos_documentos_h[archivo[:canonico_documento_id]].title
+          -else
+            %em{:class=>"alert"} Sin canónico
+        %td
+          .btn-group.btn-group-sm
+            %a.btn.btn-default{:href=>"/archivo/#{archivo.id}/ver",:role=>"button"}
+              %span.glyphicon.glyphicon-download
+                Ver

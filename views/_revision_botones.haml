@@ -19,6 +19,10 @@
     %a{:role=>:button, :href=>url("/revision/#{r.id}/mensajes"), :class=>"btn btn-default"}
       %span.glyphicon.glyphicon-envelope
       Mensajes
+  - if permiso("archivos_ver") or revision_pertenece_a(r.id, session['user_id'])
+    %a{:role=>:button, :href=>url("/revision/#{r.id}/archivos"), :class=>"btn btn-default"}
+      %span.glyphicon.glyphicon-file
+      Archivos
   %div{:class=>"btn-group btn-group-sm", :role=>"group"}
     %button{:id=>"btn_revisiones_#{r.id}", :type=>"button", :class=>"btn btn-default dropdown-toggle", "data-toggle"=>"dropdown", "aria-haspopup"=>"true", "aria-expanded"=>"false"}
       Etapas

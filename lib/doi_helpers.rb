@@ -15,4 +15,13 @@ module DOIHelpers
     return nil if doi.nil?
     doi.gsub(/http.+doi.org\// ,"")
   end
+
+
+  def encontrar_doi(texto)
+    if texto=~/\b(10[.][0-9]{4,}(?:[.][0-9]+)*\/(?:(?!["&\'<>])\S)+)\b/
+      return $1
+    else
+      return nil
+    end
+  end
 end

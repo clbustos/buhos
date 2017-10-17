@@ -230,7 +230,7 @@ get '/revision/:id/bibtex_resueltos' do  |id|
   @revision=Revision_Sistematica[id]
   canonicos_id=@revision.cd_id_por_etapa(@revision.etapa)
   @canonicos_resueltos=Canonico_Documento.where(:id=>canonicos_id).order(:author,:year)
-  
+
   bib=ReferenceIntegrator::BibTex::Writer.generate(@canonicos_resueltos)
   headers["Content-Disposition"] = "attachment;filename=revision_resueltos_#{id}.bib"
 
@@ -277,6 +277,33 @@ post '/revision/:id/mensaje/nuevo' do |id|
   $db.transaction(:rollback=>:reraise) do
     id=Mensaje_Rs.insert(:revision_sistematica_id=>id, :usuario_desde=>@usuario_id, :respuesta_a=>nil, :tiempo=>DateTime.now(), :asunto=>@asunto, :texto=>@texto)
     agregar_mensaje("Agregado mensaje #{id}")
+  end
+  redirect back
+end
+
+get '/revision/:id/archivos' do |id|
+  @revision=Revision_Sistematica[id]
+  @archivos_rs=Archivo.join(:archivos_rs, :archivo_id=>:id).left_join(:archivos_cds, :archivo_id=>:archivo_id).order_by(:archivo_nombre)
+  @canonicos_documentos_h=@revision.canonicos_documentos.as_hash
+  @usuario=Usuario[session['user_id']]
+  haml %s{revisiones_sistematicas/archivos}
+end
+
+post '/revision/archivos/agregar' do
+  require 'digest'
+  #$log.info(params)
+  @revision=Revision_Sistematica[params['revision_sistematica_id']]
+  return 404 if @revision.nil?
+  archivos=params['archivos']
+
+  if(archivos)
+    resultados=Result.new
+    archivos.each do |archivo|
+      resultados.add_result(Archivo.agregar_en_rs(archivo,@revision,dir_archivos))
+    end
+    agregar_resultado resultados
+  else
+    agregar_mensaje("No se han enviado archivos", :error)
   end
   redirect back
 end
