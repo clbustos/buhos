@@ -228,7 +228,8 @@ end
 get '/revision/:id/bibtex_resueltos' do  |id|
 
   @revision=Revision_Sistematica[id]
-  @canonicos_resueltos=@revision.canonicos_documentos.where(:id=>@revision.resoluciones_titulo_resumen.where(:resolucion=>'yes').map(:canonico_documento_id) ).order(:author,:year)
+  canonicos_id=@revision.cd_id_por_etapa(@revision.etapa)
+  @canonicos_resueltos=Canonico_Documento.where(:id=>canonicos_id).order(:author,:year)
   bib=ReferenceIntegrator::BibTex::Writer.generate(@canonicos_resueltos)
   headers["Content-Disposition"] = "attachment;filename=revision_resueltos_#{id}.bib"
 
