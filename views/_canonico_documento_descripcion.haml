@@ -1,0 +1,26 @@
+- # params cd, ars
+- ars||=nil
+- abs_pres=AbstractPresentation.new
+- revision||=Revision_Sistematica[revision_id]
+- abs_pres.keywords =revision.palabras_claves_as_array
+
+%div{:class=>"panel-heading"}
+  =CGI::escapeHTML cd.title
+%div{:class=>"panel-body"}
+  %p
+    %strong Referencia APA:
+    =CGI::escapeHTML cd.ref_apa_6
+    -unless ars.nil?
+      - texto_referencias=sprintf("<strong>Citaciones:</strong> cita a <strong>%d</strong> / citado por <strong>%d</strong> ", ars.cd_count_salida(cd[:id]).to_i, ars.cd_count_entrada(cd[:id]).to_i)
+      - if ars.cd_count_entrada_rtr(cd[:id])
+        -texto_referencias+=sprintf("/ citado desde textos RTR por <strong>%d</strong>", ars.cd_count_entrada_rtr(cd[:id]).to_i)
+      %p=texto_referencias
+  %p{:class=>""}
+    %strong Resumen
+    - if !cd.abstract
+      %em Sin abstract
+    -else
+      -#$log.info(cd)
+      -abs_pres.text=cd.abstract
+      -#$log.info(abs_pres)
+      =abs_pres.html_with_keywords

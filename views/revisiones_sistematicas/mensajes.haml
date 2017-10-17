@@ -1,19 +1,4 @@
 %h2="Mensajes para revisión <strong>#{@revision.nombre}</strong>"
-:javascript
-  $(document).ready(function() {
-    $(".marcar-visto").click(function() {
-      var id=$(this).attr("id");
-      var partes=id.split("-");
-      var ms_id=partes[1];
-      var user_id=partes[3];
-      $.post("/mensaje_rs/"+ms_id+"/visto_por/"+user_id, function (data) {
-        $("#mensaje_rs-"+ms_id+"-no_visto_por-"+user_id).addClass("hidden");
-        $("#mensaje_rs-"+ms_id+"-visto_por-"+user_id).removeClass("hidden");
-      }).fail(function () {
-            alert("No se pudo marcar el visto")
-        });
-    });
-  });
 
 %ul.breadcrumb
   %li
@@ -45,21 +30,4 @@
 - else
   .list-group
     - @mensajes_rs.each do |mensaje_rs|
-      - clase_marcar=!@mensajes_rs_vistos.include?(mensaje_rs[:id]) ? "" : "hidden"
-      - clase_visto= @mensajes_rs_vistos.include?(mensaje_rs[:id]) ? "" : "hidden"
-      .list-group-item
-        .row
-          .col-md-8
-            =sprintf("<strong>%s</strong> de %s en %s. Respuestas: <em>%i</em>.", mensaje_rs.asunto, mensaje_rs.usuario_nombre, mensaje_rs.tiempo,mensaje_rs.respuestas.count)
-            .mensaje-texto=mensaje_rs.texto
-          .col-md-4
-            .btn-group-sm
-              %button{:class=>"btn btn-warning marcar-visto #{clase_marcar}",:id=>"mensaje_rs-#{mensaje_rs.id}-no_visto_por-#{@usuario[:id]}"}
-                %span.glyphicon.glyphicon-inbox
-                Marcar como visto
-              %button{:class=>"btn btn-success #{clase_visto}", :id=>"mensaje_rs-#{mensaje_rs.id}-visto_por-#{@usuario[:id]}"}
-                %span.glyphicon.glyphicon-check
-                Visto
-              %a.btn.btn-default{:role=>:button, :href=>"/revision/#{@revision.id}/mensaje/respuesta_a/#{mensaje_rs.id}"}
-                %span.glyphicon.glyphicon-arrow-left
-                  Responder
+      =partial(:mensaje_rs, :locals=>{:mensaje_rs=>mensaje_rs,:usuario=>@usuario})

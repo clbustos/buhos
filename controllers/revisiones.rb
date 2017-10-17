@@ -250,15 +250,18 @@ get '/revision/:id/tags' do |id|
 
   @select_tipo=get_xeditable_select(@tipos_lista, "/tags/clases/editar_campo/tipo","select_tipo")
 
+  @tag_estadisticas=@revision.tags_estadisticas
+
+
   haml %s{revisiones_sistematicas/tags}
 end
 
 
 get '/revision/:id/mensajes' do |id|
   @revision=Revision_Sistematica[id]
-  @mensajes_rs=@revision.mensajes_rs_dataset.order(Sequel.desc(:tiempo))
-  @mensajes_rs_vistos=Mensaje_Rs_Visto.where(:visto=>true,:m_rs_id=>@mensajes_rs.select_map(:id), :usuario_id=>session['user_id'])
-
+  @mensajes_rs=@revision.mensajes_rs_dataset.where(:respuesta_a=>nil).order(Sequel.desc(:tiempo))
+  #@mensajes_rs_vistos=Mensaje_Rs_Visto.where(:visto=>true,:m_rs_id=>@mensajes_rs.select_map(:id), :usuario_id=>session['user_id']).select_map(:m_rs_id)
+  #$log.info(@mensajes_rs_vistos)
   @usuario=Usuario[session['user_id']]
   haml %s{revisiones_sistematicas/mensajes}
 end

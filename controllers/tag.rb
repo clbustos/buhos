@@ -43,6 +43,18 @@ post '/tags/clase/:t_clase_id/agregar_tag' do |t_clase_id|
   partial("tags/tags_clase", :locals=>{t_clase: t_clase})
 end
 
+
+get '/tag/:tag_id/rs/:rs_id/cds' do |tag_id, rs_id|
+  @tag=Tag[tag_id]
+  @revision=Revision_Sistematica[rs_id]
+  @ars=AnalisisRevisionSistematica.new(@revision)
+
+  @usuario=Usuario[session['user_id']]
+  return 404 if @tag.nil? or @revision.nil?
+  @cds_tag=Tag_En_Cd.cds_rs_tag(@revision,@tag)
+  haml '/tags/rs_cds'.to_sym
+end
+
 post '/tags/cd/:cd_id/rs/:rs_id/:accion' do |cd_id,rs_id,accion|
   cd=Canonico_Documento[cd_id]
   rs=Revision_Sistematica[rs_id]

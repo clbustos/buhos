@@ -3,6 +3,8 @@ module AnalisisTag
   def self.tag_en_cd_rs(revision,cd)
     Contenedor_Tags_En_Cd_Rs.new(revision,cd)
   end
+
+
   # Analiza un tag para un determinado documento canonico en una determina revision sistematica
   class Tag_En_Cd_Rs
     attr_reader :id, :texto, :positivos, :negativos
@@ -51,6 +53,8 @@ module AnalisisTag
       end
     end
   end
+
+
   class Contenedor_Tags_En_Cd_Rs
     include Enumerable
     attr_reader :tag_cd_rs
@@ -87,7 +91,6 @@ module AnalisisTag
     end
     def each
       tags_ordenados.each do |v|
-
         recs=Tag_En_Cd_Rs.new(v[1])
         recs.predeterminado=@predeterminados.include? v[0]
         yield recs

@@ -785,3 +785,12 @@ ul.tags li.tag span.badge {
     overflow:hidden;
     text-overflow: ellipsis;
 }
+
+.botones-texto {
+    padding: 0.5em 1px 0.5em 2em;
+}
+
+.respuesta-a-m_rs {
+    padding: 0.5em 1px 0.5em 2em;
+
+}
