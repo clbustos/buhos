@@ -2,6 +2,7 @@
 
 
 :javascript
+
   crear_tag=function(url,val,clase_pk) {
     if(val.trim()=="") {
       alert("El tag no tiene texto")
@@ -14,6 +15,18 @@
         })
       }
   };
+  actualizar_botones_tags=function() {
+    $(".borrar_tag").click(function() {
+      var tag_id=$(this).attr("tag-pk");
+      var rs_id=$(this).attr("rs-pk");
+
+      $.post("/tag/borrar_rs",{tag_id:tag_id, rs_id:rs_id},function(data) {
+        $("#tag-fila-"+tag_id).addClass("hidden");
+      }).fail(function(){
+        alert("No pude eliminar tag");
+      })
+    });
+  }
   actualizar_tags_clase=function() {
       #{@select_etapa.javascript}
       #{@select_tipo.javascript}
@@ -38,6 +51,7 @@
   $(document).ready(function() {
     actualizar_tags_clase();
     actualizar_nombre_editable();
+    actualizar_botones_tags();
 
   });
 
@@ -94,11 +108,18 @@
     %th En clase
     %th Documentos
     %th % positivos
+    %th Acciones
   %tbody
     - @tag_estadisticas.each do |tag|
-      %tr
+      %tr{:id=>"tag-fila-#{tag[:id]}"}
         %td=tag[:texto]
         %td=tag[:con_clase]==1 ? "Sí" : "No"
         %td
           %a{:href=>url("/tag/#{tag[:id]}/rs/#{@revision.id}/cds")}=tag[:n_documentos]
         %td=(tag[:p_yes]*100).to_i
+        %td
+          .btn-group.btn-group-sm
+            -if tag[:p_yes]==0
+              %button.btn.btn-default.borrar_tag{"tag-pk"=>tag[:id],"rs-pk"=>@revision.id}
+                %span.glyphicon.glyphicon-remove
+                  Borrar

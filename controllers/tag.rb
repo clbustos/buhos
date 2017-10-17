@@ -129,3 +129,16 @@ get '/tags/revision_sistematica/:rs_id/query_json/:query' do |rs_id,query|
     }
   }.to_json
 end
+
+post '/tag/borrar_rs'do
+  rs=Revision_Sistematica[params['rs_id']]
+  tag=Tag[params['tag_id']]
+  return 404 if rs.nil? or tag.nil?
+  $db.transaction(:rollback=>:reraise) {
+    Tag_En_Cd.where(:tag_id=>tag.id, :revision_sistematica_id=>rs.id).delete
+    if Tag_En_Cd.where(:tag_id=>tag.id).empty?
+      Tag[tag.id].delete
+    end
+  }
+  return 200
+end
