@@ -11,7 +11,7 @@ class Archivo < Sequel::Model
         #fp=File.open(archivo[:tempfile],"rb")
         archivo_o=Archivo.where(:sha256=>sha256)
         if archivo_o.empty?
-          archivo_ruta="rs_#{@revision.id}/#{filename}"
+          archivo_ruta="rs_#{rs.id}/#{filename}"
           ruta_completa="#{basedir}/#{archivo_ruta}"
           FileUtils.mkdir_p File.dirname(ruta_completa) unless File.exist?(File.dirname(ruta_completa))
           FileUtils.cp archivo[:tempfile],ruta_completa
