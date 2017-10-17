@@ -18,7 +18,7 @@ class Archivo < Sequel::Model
 
           archivo_id=Archivo.insert(:archivo_tipo=>filetype,:archivo_nombre=>filename, :archivo_ruta=>archivo_ruta, :sha256=>sha256)
         else
-          archivo_id=archivo_o[:id]
+          archivo_id=archivo_o.first[:id]
         end
 
         archivo_rs_o=Archivo_Rs.where(:archivo_id=>archivo_id,:revision_sistematica_id=>rs[:id])
