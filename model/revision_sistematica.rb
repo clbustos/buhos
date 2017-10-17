@@ -49,7 +49,7 @@ class Revision_Sistematica < Sequel::Model
 
   def tags_estadisticas
 
-    $db["SELECT `tags`.*, COUNT(DISTINCT(canonico_documento_id)) as n_documentos, 0+SUM(IF(decision='yes',1,0))/COUNT(*) as p_yes, IF(tc_id IS NOT NULL,1,0) as con_clase FROM `tags` INNER JOIN `tags_en_cds` tec ON (tec.`tag_id` = `tags`.`id`) LEFT JOIN `tags_en_clases` tcla ON tcla.`tag_id` = tec.`tag_id` WHERE tec.revision_sistematica_id=? GROUP BY tags.id ORDER BY n_documentos DESC",self.id]
+    $db["SELECT `tags`.*, COUNT(DISTINCT(canonico_documento_id)) as n_documentos, 0+SUM(IF(decision='yes',1,0))/COUNT(*) as p_yes, IF(tc_id IS NOT NULL,1,0) as con_clase FROM `tags` INNER JOIN `tags_en_cds` tec ON (tec.`tag_id` = `tags`.`id`) LEFT JOIN `tags_en_clases` tcla ON tcla.`tag_id` = tec.`tag_id` WHERE tec.revision_sistematica_id=? GROUP BY tags.id ORDER BY n_documentos,p_yes,tags.texto DESC",self.id]
 
   end
 
