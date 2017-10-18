@@ -71,6 +71,7 @@ get '/archivo/:id/pagina/:pagina/:formato' do |id,pagina,formato|
       return "No existe pagina" if pdf.count<pagina or pagina<1
       archivo.update(:paginas=>pdf.count) if archivo[:paginas].nil?
       filepath_image="#{dir_archivos}/pdf_imagenes/#{archivo[:sha256]}_#{pagina}.png"
+      $log.info(File.dirname(filepath_image))
       FileUtils.mkdir_p File.dirname(filepath_image) unless File.exist? File.dirname(filepath_image)
       unless File.exist? filepath_image
         pdf[pagina-1].save(filepath_image,{
