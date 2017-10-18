@@ -52,6 +52,58 @@ get '/archivo/:id/descargar' do |id|
   send_file(archivo.absolute_path(dir_archivos))
 end
 
+get '/archivo/:id/pagina/:pagina/:formato' do |id,pagina,formato|
+  archivo=Archivo[id]
+  pagina=pagina.to_i
+  return 404 if archivo.nil?
+  filepath=archivo.absolute_path(dir_archivos)
+  if archivo[:archivo_tipo]=="application/pdf"
+
+    if formato=='text'
+      require 'pdf-reader'
+      reader=PDF::Reader.new(filepath)
+      archivo.update(:paginas=>reader.pages.length) if archivo[:paginas].nil?
+      return "No existe pagina" if reader.pages.length<pagina
+      reader.pages[pagina-1].text
+    elsif formato=='image'
+      require 'grim'
+      pdf   = Grim.reap(filepath)
+      return "No existe pagina" if pdf.count<pagina or pagina<1
+      archivo.update(:paginas=>pdf.count) if archivo[:paginas].nil?
+      filepath_image="#{dir_archivos}/pdf_imagenes/#{archivo[:sha256]}_#{pagina}.png"
+      FileUtils.mkdir_p File.dirname(filepath_image) unless File.exist? File.dirname(filepath_image)
+      unless File.exist? filepath_image
+        pdf[pagina-1].save(filepath_image,{
+            :density=>300,
+        })
+      end
+      headers["Content-Disposition"] = "inline;filename=#{File.basename(filepath_image)}"
+      content_type "image/png"
+      send_file(filepath_image)
+    else
+      raise "No existe el formato"
+    end
+  else
+    return 500
+  end
+#  headers["Content-Disposition"] = "inline;filename=#{archivo[:archivo_nombre]}"
+
+#  content_type archivo[:archivo_tipo]
+#  send_file(archivo.absolute_path(dir_archivos))
+end
+
+
+get '/archivo/:id/ver' do |id|
+  archivo=Archivo[id]
+  return 404 if archivo.nil?
+
+  headers["Content-Disposition"] = "inline;filename=#{archivo[:archivo_nombre]}"
+
+  content_type archivo[:archivo_tipo]
+  send_file(archivo.absolute_path(dir_archivos))
+end
+
+
 
 
 post '/archivo/asignar_canonico' do

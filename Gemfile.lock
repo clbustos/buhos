@@ -19,6 +19,7 @@ GEM
       faraday (>= 0.7.4, < 1.0)
     fast-stemmer (1.0.2)
     ffi (1.9.18)
+    grim (1.3.3)
     haml (5.0.3)
       temple (>= 0.8.0)
       tilt
@@ -96,6 +97,7 @@ DEPENDENCIES
   classifier-reborn
   daemons
   dotenv
+  grim
   haml
   i18n
   levenshtein-ffi

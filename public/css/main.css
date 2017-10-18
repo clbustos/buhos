@@ -794,3 +794,10 @@ ul.tags li.tag span.badge {
     padding: 0.5em 1px 0.5em 2em;
 
 }
+
+img.archivo {
+    width:90%;
+    height: 75%;
+    min-height: 75%;
+    border:0;
+}
