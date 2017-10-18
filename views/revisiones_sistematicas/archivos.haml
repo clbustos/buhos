@@ -1,6 +1,19 @@
 %h2="Archivos para para revisión <strong>#{@revision.nombre}</strong>"
 
+:javascript
+  $(document).ready(function() {
+    $(".asignar_canonico").click(function() {
+       var arc_id=$(this).attr("archivo-pk");
+       var cd_id=$("#select_canonico_"+arc_id).val();
 
+         $.post("/archivo/asignar_canonico", {archivo_id:arc_id, cd_id:cd_id} ,function (data) {
+            $("#nombre_canonico-"+arc_id).html(data)
+          }).fail(function() {
+             alert("No pude actualizar el canonico");
+          })
+
+    })
+  })
 %ul.breadcrumb
   %li
     %a{:href=>url("/revision/#{@revision.id}")}=@revision.nombre
@@ -39,13 +52,19 @@
       %tr
         %td{:style=>'max-width:300px;overflow:hidden;text-overflow:ellipsis;'}=archivo[:archivo_nombre]
         %td=archivo[:archivo_tipo]
-        %td
+        %td{:id=>"nombre_canonico-#{archivo[:id]}"}
           -if archivo[:canonico_documento_id]
-            =@canonicos_documentos_h[archivo[:canonico_documento_id]].title
+            %a{:href=>"/canonico_documento/#{archivo[:canonico_documento_id]}"}=@canonicos_documentos_h[archivo[:canonico_documento_id]].title
           -else
-            %em{:class=>"alert"} Sin canónico
+            %select{:id=>"select_canonico_#{archivo[:id]}",:name=>"select_canonico_#{archivo[:id]}[]"}
+              %option{:value=>""}--Sin canónico--
+              -@cd_validos.each do |cd|
+                %option{:value=>cd[:id]}=CGI.escapeHTML(cd[:title][0..50])
+            %button.btn.btn-default.btn-sm.asignar_canonico{"archivo-pk"=>archivo[:id]}
+              Cambiar
+
         %td
           .btn-group.btn-group-sm
-            %a.btn.btn-default{:href=>"/archivo/#{archivo.id}/ver",:role=>"button"}
+            %a.btn.btn-default{:href=>"/archivo/#{archivo.id}/descargar",:role=>"button"}
               %span.glyphicon.glyphicon-download
-                Ver
+                Descargar

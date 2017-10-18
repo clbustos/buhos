@@ -284,7 +284,10 @@ end
 get '/revision/:id/archivos' do |id|
   @revision=Revision_Sistematica[id]
   @archivos_rs=Archivo.join(:archivos_rs, :archivo_id=>:id).left_join(:archivos_cds, :archivo_id=>:archivo_id).order_by(:archivo_nombre)
-  @canonicos_documentos_h=@revision.canonicos_documentos.as_hash
+
+  @canonicos_documentos_h=@revision.canonicos_documentos.order(:title).as_hash
+  @cd_validos_id=@revision.cd_id_por_etapa(@revision.etapa)
+  @cd_validos=@canonicos_documentos_h.find_all {|v| @cd_validos_id.include? v[0]}.map{|v| v[1]}
   @usuario=Usuario[session['user_id']]
   haml %s{revisiones_sistematicas/archivos}
 end

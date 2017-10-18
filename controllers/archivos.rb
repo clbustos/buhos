@@ -42,7 +42,7 @@ get '/archivos/rs/:revision_sistematica_id/asignar_canonicos_documentos' do |rs_
   redirect back
 end
 
-get '/archivo/:id/ver' do |id|
+get '/archivo/:id/descargar' do |id|
   archivo=Archivo[id]
   return 404 if archivo.nil?
 
@@ -50,4 +50,27 @@ get '/archivo/:id/ver' do |id|
 
   content_type archivo[:archivo_tipo]
   send_file(archivo.absolute_path(dir_archivos))
+end
+
+
+
+post '/archivo/asignar_canonico' do
+  archivo=Archivo[params['archivo_id']]
+  acd=Archivo_Cd.where(:archivo_id=>archivo.id)
+  return 404 if archivo.nil?
+
+  if params['cd_id']==""
+    acd.delete
+    return "--Sin canonico--"
+  else
+    cd=Canonico_Documento[params['cd_id']]
+    return 404 if !cd
+    if acd.empty?
+      Archivo_Cd.insert(:archivo_id=>archivo.id,:canonico_documento_id=>cd.id)
+    else
+      Archivo_Cd.where(:archivo_id=>archivo.id).update(:canonico_documento_id=>cd.id)
+    end
+    return "<a href='/canonico_documento/#{cd[:id]}'>#{cd[:title][0..50]}</a>"
+  end
+
 end
