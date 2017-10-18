@@ -76,6 +76,7 @@ get '/archivo/:id/pagina/:pagina/:formato' do |id,pagina,formato|
       unless File.exist? filepath_image
         pdf[pagina-1].save(filepath_image,{
             :density=>300,
+            :alpha=>"Deactivate"
         })
       end
       headers["Content-Disposition"] = "inline;filename=#{File.basename(filepath_image)}"
