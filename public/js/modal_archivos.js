@@ -62,6 +62,18 @@ $(document).ready(function() {
         ModalArchivo.actualizar_datos_modal();
     });
 
+    $(".archivo_eliminar_cd").click(function() {
+        var arc_id=$(this).data("aid");
+        var cd_id=$(this).data("cdid");
+        $.post("/archivo/desasignar_canonico", {archivo_id:arc_id, cd_id:cd_id} ,function () {
+            $("#botones_archivo_"+arc_id).html("Removido")
+        }).fail(function() {
+            alert("No pude actualizar el canonico");
+        })
+
+
+    });
+
     $(".asignar_canonico").click(function() {
         var arc_id=$(this).attr("archivo-pk");
         var cd_id=$("#select_canonico_"+arc_id).val();

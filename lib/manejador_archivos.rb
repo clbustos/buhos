@@ -50,20 +50,20 @@ HEREDOC
           if acd
             if acd[:no_considerar]
         boton_canonico= "
-        <a class='btn btn-default' href='/archivo/#{archivo[:id]}/agregar_cd/#{cd_id}' role='button'>
+        <button class='btn btn-default archivo_agregar_cd' data-aid='#{archivo[:id]}' data-cdid='#{cd_id}' role='button'>
         <span class='glyphicon glyphicon-add'>Agregar</span>
-        </a>"
+        </button>"
             else
         boton_canonico= "
-        <a class='btn btn-danger' href='/archivo/#{archivo[:id]}/remover_cd/#{cd_id}' role='button'>
+        <button class='btn btn-danger archivo_eliminar_cd' data-aid='#{archivo[:id]}' data-cdid='#{cd_id}' role='button'>
         <span class='glyphicon glyphicon-remove'>Remover</span>
-        </a>"
+        </button>"
 
         end
         end
       end
 <<HEREDOC
-<div class='btn-group btn-group-sm'>
+<div class='btn-group btn-group-sm' id='botones_archivo_#{archivo[:id]}'>
 <a class='btn btn-default' href='/archivo/#{archivo[:id]}/descargar' role='button'>
 <span class='glyphicon glyphicon-download'>Descargar</span>
 </a>

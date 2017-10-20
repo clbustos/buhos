@@ -129,9 +129,11 @@ post '/archivo/asignar_canonico' do
 
 end
 
-get '/archivo/:a_id/remover_cd/:cd_id' do |a_id,cd_id|
-  archivo=Archivo[a_id]
-  return 404 if !archivo
-  Archivo_Cd.where(:archivo_id=>a_id, :canonico_documento_id=>cd_id).update(:no_considerar=>true)
+post '/archivo/desasignar_canonico' do
+  archivo=Archivo[params['archivo_id']]
+  cd=Canonico_Documento[params['cd_id']]
+  return 404 if archivo.nil? or cd.nil?
+
+  Archivo_Cd.where(:archivo_id=>archivo.id, :canonico_documento_id=>cd.id).update(:no_considerar=>true)
   redirect back
 end
