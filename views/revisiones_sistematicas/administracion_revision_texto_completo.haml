@@ -92,6 +92,8 @@
               %div
                 =archivo[:id]
                 =@modal_archivos.botones(archivo, doc_c[:id])
+          - else
+            =@modal_archivos.cargador_archivo(@revision[:id],doc_c[:id])
 
         %td
 

@@ -1,6 +1,6 @@
 class Archivo < Sequel::Model
   # @return Result
-  def self.agregar_en_rs(archivo,rs,basedir)
+  def self.agregar_en_rs(archivo,rs,basedir, cd=nil)
     result=Result.new
     $db.transaction do
       filename=archivo[:filename].gsub(/[^A-Za-z0-9\.-_]/,"")
@@ -24,6 +24,12 @@ class Archivo < Sequel::Model
         archivo_rs_o=Archivo_Rs.where(:archivo_id=>archivo_id,:revision_sistematica_id=>rs[:id])
         if archivo_rs_o.empty?
           Archivo_Rs.insert(:archivo_id=>archivo_id,:revision_sistematica_id=>rs[:id])
+        end
+        if cd
+          archivo_cd_o=Archivo_Cd.where(:archivo_id=>archivo_id, :canonico_documento_id=>cd[:id])
+          if archivo_cd_o.empty?
+            Archivo_Cd.insert(:archivo_id=>archivo_id, :canonico_documento_id=>cd[:id])
+          end
         end
         result.success("Agregado archivo #{filename} con exito")
       end

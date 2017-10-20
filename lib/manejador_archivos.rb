@@ -43,6 +43,16 @@ module ManejadorArchivos
 </div>
 HEREDOC
       end
+      def cargador_archivo(rs_id,cd_id)
+        "<form method='post' action='/revision/archivos/agregar' enctype='multipart/form-data'>
+  <input type='hidden' name='revision_sistematica_id' value='#{rs_id}' />
+  <input type='hidden' name='canonico_documento_id' value='#{cd_id}' />
+  <div class='form-group'>
+    <input type='file' name='archivos[]'/>
+    <input type='submit' class='btn btn-primary btn-sm' value='Enviar'/>
+</div>
+</form>"
+      end
       def botones(archivo,cd_id=nil,rs_id=nil)
         boton_canonico=""
         boton_rs=""

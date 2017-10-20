@@ -294,16 +294,21 @@ get '/revision/:id/archivos' do |id|
 end
 
 post '/revision/archivos/agregar' do
-  require 'digest'
   #$log.info(params)
   @revision=Revision_Sistematica[params['revision_sistematica_id']]
   return 404 if @revision.nil?
   archivos=params['archivos']
+  cd=nil
+  cd_id=params['canonico_documento_id']
+  if cd_id
+    cd=Canonico_Documento[cd_id]
+    return 404 if cd.nil?
+  end
 
-  if(archivos)
+  if archivos
     resultados=Result.new
     archivos.each do |archivo|
-      resultados.add_result(Archivo.agregar_en_rs(archivo,@revision,dir_archivos))
+      resultados.add_result(Archivo.agregar_en_rs(archivo,@revision,dir_archivos,cd))
     end
     agregar_resultado resultados
   else

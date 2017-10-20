@@ -1,6 +1,8 @@
 get '/archivos/rs/:revision_sistematica_id/asignar_canonicos_documentos' do |rs_id|
   rs=Revision_Sistematica[rs_id]
   return 404 if rs.nil?
+
+
   require 'pdf-reader'
   # Solo buscar en los archivos que no tienen canonico asignado
   pdf_por_revisar=Archivo_Rs.archivos_sin_cd(rs_id).where(:archivo_tipo=>'application/pdf')
