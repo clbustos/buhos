@@ -153,6 +153,10 @@ get '/revision/:id/administracion/:etapa' do |id,etapa|
   @etapa=etapa
   @ars=AnalisisRevisionSistematica.new(@revision)
   @categorizador=Categorizador_RS.new(@revision)
+
+  @cds_id=@revision.cd_id_por_etapa(@revision.etapa)
+  @cds=Canonico_Documento.where(:id=>@cds_id)
+  @archivos_por_cd=$db["SELECT a.*,cds.canonico_documento_id FROM archivos a INNER JOIN archivos_cds cds ON a.id=cds.archivo_id INNER JOIN archivos_rs ars ON a.id=ars.archivo_id WHERE revision_sistematica_id=? AND (cds.no_considerar = ? OR cds.no_considerar IS NULL)", @revision.id , 0].to_hash_groups(:canonico_documento_id)
   ## Aquí calcularé cuantos si y no hay por categoría
   res_etapa=@ars.resolucion_por_cd(etapa)
   @aprobacion_categorias=@categorizador.categorias_cd_id.inject({}) {|ac,v|
@@ -169,7 +173,7 @@ get '/revision/:id/administracion/:etapa' do |id,etapa|
   @nombre_etapa=Revision_Sistematica.get_nombre_etapa(@etapa)
 
   @usuario_id=session['user_id']
-
+  @modal_archivos=get_modalarchivos
   if %w{revision_titulo_resumen revision_referencias}.include? etapa
     haml "revisiones_sistematicas/administracion_revisiones".to_sym
   else

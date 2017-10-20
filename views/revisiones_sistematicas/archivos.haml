@@ -1,92 +1,9 @@
 %h2="Archivos para para revisión <strong>#{@revision.nombre}</strong>"
-
+=@modal_archivos.javascript_header
 / Modal
-#myModal.modal.fade{"aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
-  .modal-dialog.modal-lg{:role => "document"}
-    .modal-content
-      .modal-header
-        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
-          %span{"aria-hidden" => "true"} ×
-        %h4#myModalLabel.modal-title Archivo
-      .modal-body
-
-      .modal-footer
-        .row
-          .col-md-6{:id=>"modal_cuenta_paginas"}
-            Página x de x
-          .col-md-6
-            .btn-group.btn-group-sm
-              %button.btn.btn-default{:id=>"boton_pagina_menos", :type => "button"}
-                %span.glyphicon.glyphicon-arrow-left
-              %button.btn.btn-default{:id=>"boton_pagina_mas", :type => "button"}
-                %span.glyphicon.glyphicon-arrow-right
-              %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
+=@modal_archivos.html_modal
 
 
-:javascript
-  var pagina=1;
-  var maximo_paginas=null;
-  var archivo_mostrado=null;
-  $(document).ready(function() {
-
-    $('#myModal').on('shown.bs.modal', function (event) {
-      var button = $(event.relatedTarget); // Button that triggered the modal
-      var recipient = button.data('pk'); // Extract info from data-* attributes
-      archivo_mostrado=recipient;
-      pagina=1;
-      maximo_paginas=button.data("paginas");
-      if(maximo_paginas=="") {
-          maximo_paginas=null;
-      } else {
-          maximo_paginas=parseInt(maximo_paginas);
-      }
-      // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-      // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-      var modal = $(this);
-        modal.find('.modal-title').text('Contenido archivo ' + recipient);
-        actualizar_datos_modal();
-    });
-    actualizar_datos_modal=function() {
-      if(pagina<=1) {
-        pagina=1;
-        $("#boton_pagina_menos").prop("disabled",true);
-      } else if(pagina>1) {
-        $("#boton_pagina_menos").prop("disabled",false);
-      }
-
-      if (maximo_paginas) {
-        if(pagina>=maximo_paginas) {
-          pagina=maximo_paginas;
-          $("#boton_pagina_mas").prop("disabled",true);
-        }
-      }
-
-      $('#modal_cuenta_paginas').html("Página "+pagina+ " de "+maximo_paginas)
-
-      $('#myModal').find('.modal-body').html("<img class='archivo' src='/archivo/"+archivo_mostrado+"/pagina/"+pagina+"/image'></img>");
-    };
-
-    $("#boton_pagina_mas").click(function(){
-      pagina=pagina+1;
-      actualizar_datos_modal();
-    });
-    $("#boton_pagina_menos").click(function(){
-      pagina=pagina-1;
-      actualizar_datos_modal();
-    });
-
-    $(".asignar_canonico").click(function() {
-       var arc_id=$(this).attr("archivo-pk");
-       var cd_id=$("#select_canonico_"+arc_id).val();
-
-         $.post("/archivo/asignar_canonico", {archivo_id:arc_id, cd_id:cd_id} ,function (data) {
-            $("#nombre_canonico-"+arc_id).html(data)
-          }).fail(function() {
-             alert("No pude actualizar el canonico");
-          })
-
-    })
-  })
 %ul.breadcrumb
   %li
     %a{:href=>url("/revision/#{@revision.id}")}=@revision.nombre
@@ -136,11 +53,4 @@
             %button.btn.btn-default.btn-sm.asignar_canonico{"archivo-pk"=>archivo[:id]}
               Cambiar
 
-        %td
-          .btn-group.btn-group-sm
-            %a.btn.btn-default{:href=>"/archivo/#{archivo.id}/descargar",:role=>"button"}
-              %span.glyphicon.glyphicon-download
-                Descargar
-            %button.btn.btn-default.btn-sm{"data-target" => "#myModal", "data-toggle" => "modal", :type => "button", "data-pk"=>archivo[:id],"data-paginas"=>archivo[:paginas]}
-              %span.glyphicon.glyphicon-eye-open Ver
-
+        %td=@modal_archivos.botones(archivo)

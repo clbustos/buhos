@@ -53,7 +53,6 @@ class AnalisisRevisionSistematica
     @cd_reg_id.include? id
   end
   def cd_en_resolucion_etapa?(id,etapa)
-
     @cd_resoluciones[etapa.to_sym][id].nil? ? false : @cd_resoluciones[etapa.to_sym][id][:resolucion]=='yes'
   end
   # Señala si un cd es parte de una referencia

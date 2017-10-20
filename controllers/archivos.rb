@@ -120,11 +120,18 @@ post '/archivo/asignar_canonico' do
     cd=Canonico_Documento[params['cd_id']]
     return 404 if !cd
     if acd.empty?
-      Archivo_Cd.insert(:archivo_id=>archivo.id,:canonico_documento_id=>cd.id)
+      Archivo_Cd.insert(:archivo_id=>archivo.id,:canonico_documento_id=>cd.id,:no_considerar=>false)
     else
       Archivo_Cd.where(:archivo_id=>archivo.id).update(:canonico_documento_id=>cd.id)
     end
     return "<a href='/canonico_documento/#{cd[:id]}'>#{cd[:title][0..50]}</a>"
   end
 
+end
+
+get '/archivo/:a_id/remover_cd/:cd_id' do |a_id,cd_id|
+  archivo=Archivo[a_id]
+  return 404 if !archivo
+  Archivo_Cd.where(:archivo_id=>a_id, :canonico_documento_id=>cd_id).update(:no_considerar=>true)
+  redirect back
 end

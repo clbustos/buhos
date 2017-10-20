@@ -800,4 +800,7 @@ img.archivo {
     height: 75%;
     min-height: 75%;
     border:0;
+/**    background-image: url("../images/ajax-loader.gif");
+    background-repeat:no-repeat;
+    */
 }

@@ -7,7 +7,8 @@
     }
   );
 
-
+=@modal_archivos.javascript_header
+=@modal_archivos.html_modal
 
 =partial(:breadcrumb_revision_admin,:locals=>{:nombre=>@nombre_etapa})
 
@@ -65,9 +66,44 @@
 .btn-group
   %a{:href=>url("/revision/#{@revision[:id]}/etapa/revision_titulo_resumen/generar_referencias_crossref"), :role=>"button", :class=>"btn btn-default btn-sm"}Generar referencias crossref
 
-%h3 Documentos canónicos
 
+%h3 Estado documentos canónicos
 
+%table.tablesorter.reporte
+  %thead
+    %th Id
+    %th Título
+    %th Autor
+    %th Journal
+    %th Documentos
+    %th Tags
+  %tbody
+    -@cds.each do |doc_c|
+      %tr
+        %td=doc_c[:id]
+        %td=doc_c[:title]
+        %td=doc_c[:author]
+        %td=doc_c[:journal]
+        %td
+          -if @archivos_por_cd[doc_c[:id]]
+            -@archivos_por_cd[doc_c[:id]].each do |archivo|
+              %div
+                =archivo[:id]
+                =@modal_archivos.botones(archivo, doc_c[:id])
+        %td
+
+%h3 Estadísticas por categorías automáticas
+%table.reporte
+  %thead
+    %th Categoria
+    %th n
+    %th Porcentaje
+  %tbody
+    -@aprobacion_categorias.sort_by{|a| -a[1][:n] }.each do |categoria, datos|
+      %tr
+        %td=categoria
+        %td=datos[:n]
+        %td=datos[:p].nil? ? "--" : sprintf("%0.2f%",datos[:p]*100)
 
 %h3 Decisiones por documento
 
