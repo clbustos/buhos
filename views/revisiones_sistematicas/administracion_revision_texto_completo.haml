@@ -85,11 +85,14 @@
         %td=doc_c[:author]
         %td=doc_c[:journal]
         %td
-          -if @archivos_por_cd[doc_c[:id]]
-            -@archivos_por_cd[doc_c[:id]].each do |archivo|
+          -apc_doc=@archivos_por_cd[doc_c[:id]]
+          ="Nº archivos:#{apc_doc.nil? ? 0 :apc_doc.length }"
+          -if apc_doc
+            -apc_doc.each do |archivo|
               %div
                 =archivo[:id]
                 =@modal_archivos.botones(archivo, doc_c[:id])
+
         %td
 
 %h3 Estadísticas por categorías automáticas
