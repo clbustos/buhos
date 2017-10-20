@@ -78,9 +78,21 @@ $(document).ready(function() {
         var arc_id=$(this).data("aid");
         var cd_id=$(this).data("cdid");
         $.post("/archivo/desasignar_cd", {archivo_id:arc_id, cd_id:cd_id} ,function () {
-            $("#botones_archivo_"+arc_id).html("<span class='glyphicon glyphicon-remove'>Desasignado</span>")
+            $("#botones_archivo_"+arc_id).html("<span class='glyphicon glyphicon-remove'>Desasignado a CD</span>")
         }).fail(function() {
             alert("No pude ocultar el canonico");
+        })
+
+
+    });
+
+    $(".archivo_desasignar_rs").click(function() {
+        var arc_id=$(this).data("aid");
+        var rs_id=$(this).data("rsid");
+        $.post("/archivo/desasignar_rs", {archivo_id:arc_id, rs_id:rs_id} ,function () {
+            $("#botones_archivo_"+arc_id).html("<span class='glyphicon glyphicon-remove'>Desasignado a RS</span>")
+        }).fail(function() {
+            alert("No pude remover de RS");
         })
 
 

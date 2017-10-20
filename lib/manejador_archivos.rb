@@ -43,20 +43,32 @@ module ManejadorArchivos
 </div>
 HEREDOC
       end
-      def botones(archivo,cd_id=nil)
+      def botones(archivo,cd_id=nil,rs_id=nil)
         boton_canonico=""
+        boton_rs=""
+        if rs_id
+          boton_rs="
+          <button class='btn btn-danger archivo_desasignar_rs' data-aid='#{archivo[:id]}' data-rsid='#{rs_id}' role='button'>
+          <span class='glyphicon glyphicon-remove'>Borrar RS</span>
+        </button>
+        "
+        end
         if cd_id
           acd=Archivo_Cd[:archivo_id=>archivo[:id], :canonico_documento_id=>cd_id]
           if acd
+            boton_canonico="
+          <button class='btn btn-danger archivo_desasignar_cd' data-aid='#{archivo[:id]}' data-cdid='#{cd_id}' role='button'>
+          <span class='glyphicon glyphicon-remove'>Desasignar</span>
+        </button>"
             if acd[:no_considerar]
-        boton_canonico= "
+        boton_canonico+= "
         <button class='btn btn-default archivo_mostrar_cd' data-aid='#{archivo[:id]}' data-cdid='#{cd_id}' role='button'>
-        <span class='glyphicon glyphicon-eye-open'>Agregar</span>
+        <span class='glyphicon glyphicon-eye-open'>Mostrar CD</span>
         </button>"
             else
-        boton_canonico= "
+        boton_canonico+= "
         <button class='btn btn-warning archivo_ocultar_cd' data-aid='#{archivo[:id]}' data-cdid='#{cd_id}' role='button'>
-        <span class='glyphicon glyphicon-eye-close'>Ocultar</span>
+        <span class='glyphicon glyphicon-eye-close'>Ocultar CD</span>
         </button>"
 
         end
@@ -69,10 +81,9 @@ HEREDOC
 </a>
 <button class='btn btn-default btn-sm' data-target='#modalArchivos' data-toggle='modal' type='button' data-pk='#{archivo[:id]}' data-paginas='#{archivo[:paginas]}'>
   <span class='glyphicon glyphicon-eye-open'>Ver</span></button>
-<button class='btn btn-danger archivo_desasignar_cd' data-aid='#{archivo[:id]}' data-cdid='#{cd_id}' role='button'>
-        <span class='glyphicon glyphicon-remove'>Desasignar</span>
-        </button>
+
 #{boton_canonico}
+#{boton_rs}
         </div>
 HEREDOC
       end

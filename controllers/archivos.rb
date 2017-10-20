@@ -146,3 +146,12 @@ post '/archivo/desasignar_cd' do
   Archivo_Cd.where(:archivo_id=>archivo.id, :canonico_documento_id=>cd.id).delete
   return 200
 end
+
+
+post '/archivo/desasignar_rs' do
+  archivo=Archivo[params['archivo_id']]
+  rs=Revision_Sistematica[params['rs_id']]
+  return 404 if archivo.nil? or rs.nil?
+  Archivo_Rs.where(:archivo_id=>archivo.id, :revision_sistematica_id=>rs.id).delete
+  return 200
+end

@@ -53,4 +53,4 @@
             %button.btn.btn-default.btn-sm.asignar_canonico{"archivo-pk"=>archivo[:id]}
               Cambiar
 
-        %td=@modal_archivos.botones(archivo)
+        %td=@modal_archivos.botones(archivo,archivo[:canonico_documento_id],@revision.id)
