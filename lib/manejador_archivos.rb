@@ -50,13 +50,13 @@ HEREDOC
           if acd
             if acd[:no_considerar]
         boton_canonico= "
-        <button class='btn btn-default archivo_agregar_cd' data-aid='#{archivo[:id]}' data-cdid='#{cd_id}' role='button'>
-        <span class='glyphicon glyphicon-add'>Agregar</span>
+        <button class='btn btn-default archivo_mostrar_cd' data-aid='#{archivo[:id]}' data-cdid='#{cd_id}' role='button'>
+        <span class='glyphicon glyphicon-eye-open'>Agregar</span>
         </button>"
             else
         boton_canonico= "
-        <button class='btn btn-danger archivo_eliminar_cd' data-aid='#{archivo[:id]}' data-cdid='#{cd_id}' role='button'>
-        <span class='glyphicon glyphicon-remove'>Remover</span>
+        <button class='btn btn-warning archivo_ocultar_cd' data-aid='#{archivo[:id]}' data-cdid='#{cd_id}' role='button'>
+        <span class='glyphicon glyphicon-eye-close'>Ocultar</span>
         </button>"
 
         end
@@ -69,6 +69,9 @@ HEREDOC
 </a>
 <button class='btn btn-default btn-sm' data-target='#modalArchivos' data-toggle='modal' type='button' data-pk='#{archivo[:id]}' data-paginas='#{archivo[:paginas]}'>
   <span class='glyphicon glyphicon-eye-open'>Ver</span></button>
+<button class='btn btn-danger archivo_desasignar_cd' data-aid='#{archivo[:id]}' data-cdid='#{cd_id}' role='button'>
+        <span class='glyphicon glyphicon-remove'>Desasignar</span>
+        </button>
 #{boton_canonico}
         </div>
 HEREDOC

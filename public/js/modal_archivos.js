@@ -62,17 +62,30 @@ $(document).ready(function() {
         ModalArchivo.actualizar_datos_modal();
     });
 
-    $(".archivo_eliminar_cd").click(function() {
+    $(".archivo_ocultar_cd").click(function() {
         var arc_id=$(this).data("aid");
         var cd_id=$(this).data("cdid");
-        $.post("/archivo/desasignar_canonico", {archivo_id:arc_id, cd_id:cd_id} ,function () {
-            $("#botones_archivo_"+arc_id).html("Removido")
+        $.post("/archivo/ocultar_cd", {archivo_id:arc_id, cd_id:cd_id} ,function () {
+            $("#botones_archivo_"+arc_id).html("<span class='glyphicon glyphicon-eye-close'>Ocultado</span>")
         }).fail(function() {
-            alert("No pude actualizar el canonico");
+            alert("No pude ocultar el canonico");
         })
 
 
     });
+
+    $(".archivo_desasignar_cd").click(function() {
+        var arc_id=$(this).data("aid");
+        var cd_id=$(this).data("cdid");
+        $.post("/archivo/desasignar_cd", {archivo_id:arc_id, cd_id:cd_id} ,function () {
+            $("#botones_archivo_"+arc_id).html("<span class='glyphicon glyphicon-remove'>Desasignado</span>")
+        }).fail(function() {
+            alert("No pude ocultar el canonico");
+        })
+
+
+    });
+
 
     $(".asignar_canonico").click(function() {
         var arc_id=$(this).attr("archivo-pk");

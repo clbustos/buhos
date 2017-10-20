@@ -129,11 +129,20 @@ post '/archivo/asignar_canonico' do
 
 end
 
-post '/archivo/desasignar_canonico' do
+post '/archivo/ocultar_cd' do
   archivo=Archivo[params['archivo_id']]
   cd=Canonico_Documento[params['cd_id']]
   return 404 if archivo.nil? or cd.nil?
 
   Archivo_Cd.where(:archivo_id=>archivo.id, :canonico_documento_id=>cd.id).update(:no_considerar=>true)
-  redirect back
+  return 200
+end
+
+post '/archivo/desasignar_cd' do
+  archivo=Archivo[params['archivo_id']]
+  cd=Canonico_Documento[params['cd_id']]
+  return 404 if archivo.nil? or cd.nil?
+
+  Archivo_Cd.where(:archivo_id=>archivo.id, :canonico_documento_id=>cd.id).delete
+  return 200
 end
