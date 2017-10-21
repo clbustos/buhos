@@ -74,6 +74,19 @@ $(document).ready(function() {
 
     });
 
+
+    $(".archivo_eliminar").click(function () {
+        var arc_id = $(this).data("aid");
+
+        $.post("/archivo/eliminar", {archivo_id: arc_id}, function () {
+            $("#botones_archivo_" + arc_id).html("<span class='glyphicon glyphicon-remove'>Eliminado</span>")
+        }).fail(function () {
+            alert("No pude eliminar el archivo");
+        })
+
+
+    });
+
     $(".archivo_desasignar_cd").click(function() {
         var arc_id=$(this).data("aid");
         var cd_id=$(this).data("cdid");

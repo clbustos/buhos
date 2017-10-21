@@ -92,7 +92,7 @@ get '/canonicos_documentos/revision/:revision_id/completar_abstract_scopus' do |
 
   @rev=Revision_Sistematica[rev_id]
 
-  @cd_sin_abstract=@rev.canonicos_documentos.where("abstract IS NULL OR abstract=''").select_map(:id)
+  @cd_sin_abstract=@rev.canonicos_documentos.where(Sequel.lit("abstract IS NULL OR abstract=''")).select_map(:id)
   agregar_mensaje("Se procesan #{@cd_sin_abstract.count} documentos canonicos")
   @cd_sin_abstract.each do |cd|
     agregar_resultado(Scopus_Abstract.obtener_abstract_cd(cd))

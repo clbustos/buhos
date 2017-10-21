@@ -41,8 +41,8 @@ post '/revision/actualizar' do
   otros_params=otros_params.inject({}) {|ac,v|
     ac[v[0].to_sym]=v[1];ac
   }
-#  aa=Revision_Sistematica.new
-  $log.info(otros_params)
+  #  aa=Revision_Sistematica.new
+  #$log.info(otros_params)
   if(id=="")
     revision=Revision_Sistematica.create(
       :nombre=>otros_params[:nombre],
@@ -76,7 +76,7 @@ get '/revision/:id/busqueda/nuevo' do |id|
   error(403) unless permiso('crear_busqueda_revision')
   @revision=Revision_Sistematica[id]
   @busqueda=Busqueda.new()
-  haml %s{revisiones_sistematicas/busqueda_edicion}
+  haml %s {busquedas/busqueda_edicion}
 end
 
 post '/revision/busqueda/actualizar' do
@@ -283,7 +283,7 @@ end
 
 get '/revision/:id/archivos' do |id|
   @revision=Revision_Sistematica[id]
-  @archivos_rs=Archivo.join(:archivos_rs, :archivo_id=>:id).left_join(:archivos_cds, :archivo_id=>:archivo_id).order_by(:archivo_nombre)
+  @archivos_rs=Archivo.join(:archivos_rs, :archivo_id => :id).left_join(:archivos_cds, :archivo_id => :archivo_id).where(:revision_sistematica_id => id).order_by(:archivo_nombre)
   @modal_archivos=get_modalarchivos
 
   @canonicos_documentos_h=@revision.canonicos_documentos.order(:title).as_hash

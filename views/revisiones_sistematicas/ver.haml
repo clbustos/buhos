@@ -17,7 +17,7 @@
     %span{ :name=>"fecha_inicio"}=@revision[:fecha_inicio]
   %div{:class=>"list-group-item"}
     %span{:class=>"titulo"} Objetivos:
-    =@revision[:objetivos].split("\n").join("<br/>")
+    =@revision[:objetivos] ? @revision[:objetivos].split("\n").join("<br/>") : '--'
   %div{:class=>"list-group-item"}
     %span{:class=>"titulo"} Año de inicio
     %span{ :name=>"agno_inicio"}=@revision[:agno_inicio]

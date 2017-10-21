@@ -23,6 +23,10 @@
     %div{:class=>"form-group"}
       %label Palabras claves
       %input{:class=>"form-control",:type=>"text", :name=>"palabras_claves",:value=>@revision[:palabras_claves]}
+    %div{:class=>"form-group"}
+      %label Activa
+      %input{:class=>"form-control",:type=>"checkbox", :name=>"activa",:checked=>@revision[:activa] }
+
     %div{:class=>'form-group'}
       %label Mínimo número de RTR para revisión referencias
       %select{:class=>"form-check-input", :name=>:n_min_rr_rtr}

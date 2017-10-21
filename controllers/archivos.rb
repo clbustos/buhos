@@ -7,8 +7,8 @@ get '/archivos/rs/:revision_sistematica_id/asignar_canonicos_documentos' do |rs_
   # Solo buscar en los archivos que no tienen canonico asignado
   pdf_por_revisar=Archivo_Rs.archivos_sin_cd(rs_id).where(:archivo_tipo=>'application/pdf')
   pdf_por_revisar.each do |pdf|
-    reader=PDF::Reader.new(pdf.absolute_path(dir_archivos))
-      begin
+    begin
+      reader=PDF::Reader.new(pdf.absolute_path(dir_archivos))
         doi=nil
         info=reader.info
         if(info[:doi])
@@ -59,6 +59,7 @@ get '/archivo/:id/pagina/:pagina/:formato' do |id,pagina,formato|
   pagina=pagina.to_i
   return 404 if archivo.nil?
   filepath=archivo.absolute_path(dir_archivos)
+
   if archivo[:archivo_tipo]=="application/pdf"
 
     if formato=='text'
@@ -156,4 +157,25 @@ post '/archivo/desasignar_rs' do
   return 404 if archivo.nil? or rs.nil?
   Archivo_Rs.where(:archivo_id=>archivo.id, :revision_sistematica_id=>rs.id).delete
   return 200
+end
+
+post '/archivo/eliminar' do
+  archivo=Archivo[params['archivo_id']]
+
+  return 404 if archivo.nil?
+  Archivo_Rs.where(:archivo_id => archivo.id).delete
+  Archivo_Cd.where(:archivo_id => archivo.id).delete
+  archivo.delete
+  return 200
+end
+
+# Method put
+
+put '/archivo/editar_campo/:campo' do |field|
+  return 505 unless %w{archivo_nombre archivo_tipo}.include? field
+  pk = params['pk']
+  value = params['value']
+  @arc=Archivo[pk]
+  @arc.update(field.to_sym => value.chomp)
+  return true
 end

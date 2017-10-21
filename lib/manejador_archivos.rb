@@ -53,12 +53,19 @@ HEREDOC
 </div>
 </form>"
       end
-      def botones(archivo,cd_id=nil,rs_id=nil)
+
+      def botones(archivo, cd_id=nil, rs_id=nil, eliminar=nil)
         boton_canonico=""
         boton_rs=""
+        boton_eliminar=""
+        if eliminar
+          boton_eliminar="<button class='btn btn-danger archivo_eliminar' role='button' data-aid='#{archivo[:id]}'>
+          <span class='glyphicon glyphicon-remove'>Borrar archivo</span>
+        </button>"
+        end
         if rs_id
           boton_rs="
-          <button class='btn btn-danger archivo_desasignar_rs' data-aid='#{archivo[:id]}' data-rsid='#{rs_id}' role='button'>
+          <button class='btn btn-warning archivo_desasignar_rs' data-aid='#{archivo[:id]}' data-rsid='#{rs_id}' role='button'>
           <span class='glyphicon glyphicon-remove'>Borrar RS</span>
         </button>
         "
@@ -67,8 +74,8 @@ HEREDOC
           acd=Archivo_Cd[:archivo_id=>archivo[:id], :canonico_documento_id=>cd_id]
           if acd
             boton_canonico="
-          <button class='btn btn-danger archivo_desasignar_cd' data-aid='#{archivo[:id]}' data-cdid='#{cd_id}' role='button'>
-          <span class='glyphicon glyphicon-remove'>Desasignar</span>
+          <button class='btn btn-warning archivo_desasignar_cd' data-aid='#{archivo[:id]}' data-cdid='#{cd_id}' role='button'>
+          <span class='glyphicon glyphicon-remove'>Desasignar CD</span>
         </button>"
             if acd[:no_considerar]
         boton_canonico+= "
@@ -94,6 +101,8 @@ HEREDOC
 
 #{boton_canonico}
 #{boton_rs}
+        #{boton_eliminar}
+
         </div>
 HEREDOC
       end

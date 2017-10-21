@@ -39,6 +39,12 @@ function actualizar_decision(etapa) {
         $.post(url, {pk_id: pk_id, decision: decision, user_id: user_id}, function (data) {
             $("#decision-cd-" + pk_id).html(data)
             actualizar_textarea_editable();
+
+            // Tengo que considerar los tags...
+            //actualizar_tags_cd_rs();
+            //actualizar_typeahead();
+            //actualizar_mostrar_pred();
+
             //setTimeout(function() {
             //    actualizar_decision(etapa);
             //},2000);
@@ -89,7 +95,7 @@ function actualizar_nombre_editable() {
 }
 
 function actualizar_textarea_editable() {
-
+    $('.textarea_editable').unbind("editable");
     $('.textarea_editable').editable({
         type: 'textarea',
         emptytext: '--Vacio--',

@@ -16,7 +16,7 @@ class LSI_RS
     nombres.each do |n|
       lsi.add_item n[:nombre], n[:resolucion]
     end
-    $log.info(lsi)
+    #$log.info(lsi)
     lsi
   end
 

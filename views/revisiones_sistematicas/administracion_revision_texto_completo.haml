@@ -97,18 +97,7 @@
 
         %td
 
-%h3 Estadísticas por categorías automáticas
-%table.reporte
-  %thead
-    %th Categoria
-    %th n
-    %th Porcentaje
-  %tbody
-    -@aprobacion_categorias.sort_by{|a| -a[1][:n] }.each do |categoria, datos|
-      %tr
-        %td=categoria
-        %td=datos[:n]
-        %td=datos[:p].nil? ? "--" : sprintf("%0.2f%",datos[:p]*100)
+=partial(:estadisticas_tags, :locals=>{revision:@revision, etapa:'revision_texto_completo'})
 
 %h3 Decisiones por documento
 

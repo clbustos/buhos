@@ -1,0 +1,25 @@
+- # Params: tag_estadisticas, revision
+- etapa||=nil
+- tags_estadisticas=revision.tags_estadisticas(etapa)
+%h3 Estadísticas Tags
+%table.reporte.tablesorter
+  %thead
+    %th Tag
+    %th En clase
+    %th Documentos
+    %th % positivos
+    %th Acciones
+  %tbody
+    - tags_estadisticas.each do |tag|
+      %tr{:id=>"tag-fila-#{tag[:id]}"}
+        %td=tag[:texto]
+        %td=tag[:con_clase]==1 ? "Sí" : "No"
+        %td
+          %a{:href=>url("/tag/#{tag[:id]}/rs/#{revision.id}/cds")}=tag[:n_documentos]
+        %td=(tag[:p_yes]*100).to_i
+        %td
+          .btn-group.btn-group-sm
+            -if tag[:p_yes]==0
+              %button.btn.btn-default.borrar_tag{"tag-pk"=>tag[:id],"rs-pk"=>revision.id}
+                %span.glyphicon.glyphicon-remove
+                  Borrar

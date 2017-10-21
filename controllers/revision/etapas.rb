@@ -174,6 +174,7 @@ get '/revision/:id/administracion/:etapa' do |id,etapa|
 
   @usuario_id=session['user_id']
   @modal_archivos=get_modalarchivos
+
   if %w{revision_titulo_resumen revision_referencias}.include? etapa
     haml "revisiones_sistematicas/administracion_revisiones".to_sym
   else

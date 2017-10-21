@@ -101,25 +101,5 @@
           - @tipos_lista.each do |tipo_id, tipo_nombre|
             %option{:value=>tipo_id}=tipo_nombre
       %input{:type=>:submit, :value=>"Agregar clase nueva", :class=>"btn btn-default"}
-%h3 Estadísticas
-%table.reporte
-  %thead
-    %th Tag
-    %th En clase
-    %th Documentos
-    %th % positivos
-    %th Acciones
-  %tbody
-    - @tag_estadisticas.each do |tag|
-      %tr{:id=>"tag-fila-#{tag[:id]}"}
-        %td=tag[:texto]
-        %td=tag[:con_clase]==1 ? "Sí" : "No"
-        %td
-          %a{:href=>url("/tag/#{tag[:id]}/rs/#{@revision.id}/cds")}=tag[:n_documentos]
-        %td=(tag[:p_yes]*100).to_i
-        %td
-          .btn-group.btn-group-sm
-            -if tag[:p_yes]==0
-              %button.btn.btn-default.borrar_tag{"tag-pk"=>tag[:id],"rs-pk"=>@revision.id}
-                %span.glyphicon.glyphicon-remove
-                  Borrar
+
+=partial(:estadisticas_tags, :locals=>{revision:@revision})

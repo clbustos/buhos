@@ -36,7 +36,7 @@
       %span{:class=>""}
       Referencias completar canonicos
   - if permiso("documentos_canonicos_editar")  or revision_pertenece_a(@revision.id, session['user_id'])
-    %a{:href=>url("/canonicos_documentos/revision/#{@revision.id}/completar_abstract")   , :role=>'button', :class=>"btn btn-default"}
+    %a{:href=>url("/canonicos_documentos/revision/#{@revision.id}/completar_abstract_scopus")   , :role=>'button', :class=>"btn btn-default"}
       %span{:class=>""}
       Completar abstract Scopus
   - if permiso("documentos_canonicos_editar")  or revision_pertenece_a(@revision.id, session['user_id'])

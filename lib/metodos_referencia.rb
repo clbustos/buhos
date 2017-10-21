@@ -7,6 +7,7 @@ module MetodosReferencia
     "#{author} (#{year}). #{title}. #{journal}, #{volume}, #{pages}.#{doi_t}"
   end
   def authors_apa_6
+    return "--NA--" if author.nil?
     authors=author.split(" and ").map {|v| v.strip}
     if authors.length>7
       author_ref=(authors[0..5]+["..."]+[authors.last]).join(", ")
