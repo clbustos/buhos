@@ -76,7 +76,7 @@ get '/revision/:id/busqueda/nuevo' do |id|
   error(403) unless permiso('crear_busqueda_revision')
   @revision=Revision_Sistematica[id]
   @busqueda=Busqueda.new()
-  haml %s {busquedas/busqueda_edicion}
+  haml %s{busquedas/busqueda_edicion}
 end
 
 post '/revision/busqueda/actualizar' do
