@@ -2,7 +2,6 @@
 
 
 :javascript
-
   crear_tag=function(url,val,clase_pk) {
     if(val.trim()=="") {
       alert("El tag no tiene texto")
@@ -26,7 +25,7 @@
         alert("No pude eliminar tag");
       })
     });
-  }
+  };
   actualizar_tags_clase=function() {
       #{@select_etapa.javascript}
       #{@select_tipo.javascript}
@@ -48,6 +47,7 @@
         }
       });
   };
+
   $(document).ready(function() {
     actualizar_tags_clase();
     actualizar_nombre_editable();

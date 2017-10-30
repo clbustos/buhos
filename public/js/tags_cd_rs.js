@@ -37,7 +37,7 @@ actualizar_tags_cd_rs=function(div_id) {
         var rs_pk=$(this).attr("rs-pk");
         var tag_id=$(this).attr("tag-pk");
         $.post(url, {tag_id:tag_id}, function (data) {
-            var div_id="#tags-cd-"+cd_pk+"-rs-"+rs_pk
+            var div_id="#tags-cd-"+cd_pk+"-rs-"+rs_pk;
             $(div_id).replaceWith(data);
             actualizar_tags_cd_rs(div_id);
             actualizar_typeahead(div_id);
@@ -46,7 +46,7 @@ actualizar_tags_cd_rs=function(div_id) {
             alert("No se pudo realizar la acción en el tag")
         })
 
-    })
+    });
     $(selector_nuevo).unbind("click");
     $(selector_nuevo).click(function() {
         var url=$(this).attr("data-url");

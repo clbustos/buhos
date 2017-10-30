@@ -7,6 +7,7 @@ class Tag < Sequel::Model
     end
     tag
   end
+
 end
 
 class T_Clase < Sequel::Model

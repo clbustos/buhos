@@ -5,6 +5,7 @@
 - abs_pres=AbstractPresentation.new
 - @revision||=Revision_Sistematica[revision_id]
 - @nbayes_rs||=NBayes_RS.new(@revision)
+- ajax||=false
 - abs_pres.keywords =@revision.palabras_claves_as_array
 
 
@@ -50,4 +51,4 @@
             %strong Comentario:
             =a_textarea_editable(cd[:id], "comentario-cd", url("/decision/revision/#{revision_id}/usuario/#{usuario_id}/canonico_documento/#{cd[:id]}/etapa/#{etapa}/comentario"), decision_o  ?  decision_o.comentario : nil, "Ingresar comentario")
         .col-md-8.col-sm-5
-          =partial("tags/tags_cd_rs", :locals=>{cd: cd, revision:@revision,usuario_id:usuario_id})
+          =partial("tags/tags_cd_rs", :locals=>{cd: cd, revision:@revision,usuario_id:usuario_id, ajax:ajax})

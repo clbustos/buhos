@@ -123,3 +123,26 @@ get '/canonicos_documentos/revision/:rev_id/categorizar_automatico' do |rev_id|
   @categorizador=Categorizador_RS.new(@revision,nil)
   haml %s{revisiones_sistematicas/canonicos_documentos_categorias_automaticas}
 end
+
+post '/canonico_documento/asignacion_usuario/:accion' do |accion|
+  revision=Revision_Sistematica[params['rs_id']]
+  cd=Canonico_Documento[params['cd_id']]
+  user=Usuario[params['user_id']]
+
+  return 404 if !revision or !cd or !user
+  a_cd=Asignacion_Cd[:revision_sistematica_id=>revision[:id],:canonico_documento_id=>cd[:id],:usuario_id=>user[:id]]
+  if accion=='asignar'
+    if !a_cd
+      Asignacion_Cd.insert(:revision_sistematica_id=>revision[:id],:canonico_documento_id=>cd[:id],:usuario_id=>user[:id],:estado=>"asignado")
+      return 200
+    end
+  elsif accion=='desasignar'
+    if a_cd
+      a_cd.delete
+      return 200
+    end
+  else
+    return [500, "No existe esa función"]
+  end
+
+end

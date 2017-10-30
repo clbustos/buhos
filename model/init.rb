@@ -51,5 +51,6 @@ Sequel.inflections do |inflect|
   inflect.irregular 'mensaje_rs_visto', 'mensajes_rs_vistos'
   inflect.irregular 'archivo_cd', 'archivos_cds'
   inflect.irregular 'archivo_rs', 'archivos_rs'
+  inflect.irregular 'asignacion_cd','asignaciones_cds'
 end
 

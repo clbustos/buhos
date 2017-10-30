@@ -191,8 +191,9 @@ helpers do
 
   def a_editable(id, prefix, data_url, v,default_value="--")
     url_s=url(data_url)
-    val=(v.nil? ? default_value : v)
-    "<a class='nombre_editable' data-pk='#{id}' data-url='#{url_s}' href='#' id='#{prefix}-2'>#{val}</a>"
+    #val=(v.nil? ? default_value : v)
+    val=v
+    "<a class='nombre_editable' data-pk='#{id}' data-url='#{url_s}' href='#' id='#{prefix}-2' data-placeholder='#{default_value}'>#{val}</a>"
   end
 
 

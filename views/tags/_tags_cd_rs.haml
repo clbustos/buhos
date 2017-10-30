@@ -1,5 +1,6 @@
 - nuevo||=false
-- if @_tags_cd_rs_js.nil? and !nuevo
+- ajax||=false
+- if @_tags_cd_rs_js.nil? and !nuevo and !ajax
   %link{:href=>url('/css/typeahead.css') , :media => 'screen', :rel=>'stylesheet', :type=>'text/css'}
   %script{:type=>'text/javascript', :src=>url('/js/typeahead.bundle.min.js')}
   %script{:type=>'text/javascript', :src=>url('/js/tags_cd_rs.js')}
@@ -7,14 +8,14 @@
     $(document).ready(function() {
 
     var tagsQuery=new Bloodhound({
-    datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
-    queryTokenizer: Bloodhound.tokenizers.whitespace,
-    prefetch: '/tags/basico_10.json',
-    remote: {
-        url: "/tags/revision_sistematica/#{revision.id}/query_json/%QUERY",
-        wildcard: '%QUERY'
-    }
-    });
+      datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+      queryTokenizer: Bloodhound.tokenizers.whitespace,
+      prefetch: '/tags/basico_10.json',
+      remote: {
+          url: "/tags/revision_sistematica/#{revision.id}/query_json/%QUERY",
+          wildcard: '%QUERY'
+      }
+      });
     });
   -@_tags_cd_rs_js=true
 
