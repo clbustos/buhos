@@ -4,10 +4,12 @@ class AnalisisDecisionUsuario
   attr_reader :decisiones
   attr_reader :decision_por_cd
   attr_reader :total_decisiones
+  attr_reader :asignaciones
   def initialize(rs_id,usuario_id,etapa)
     @rs_id=rs_id
     @usuario_id=usuario_id
     @etapa=etapa.to_s
+    @asignaciones=nil?
     procesar_cd_ids
     procesar_indicadores_basicos
     #procesar_numero_citas
@@ -18,8 +20,17 @@ class AnalisisDecisionUsuario
   def canonicos_documentos
     Canonico_Documento.where(:id=>@cd_ids)
   end
+  def tiene_asignaciones?
+    !@asignaciones.empty?
+  end
+  # Define @cd_ids. Si no se han asignado, los toma todos
+  # Si existen asignaciones, sólo se consideran estas
   def procesar_cd_ids
     @cd_ids=revision_sistematica.cd_id_por_etapa(@etapa)
+    @asignaciones=Asignacion_Cd.where(:revision_sistematica_id=>@rs_id, :usuario_id=>@usuario_id, :canonico_documento_id=>@cd_ids)
+    if !@asignaciones.empty?
+      @cd_ids=@asignaciones.select_map(:canonico_documento_id)
+    end
   end
   def procesar_indicadores_basicos
     @decisiones=Decision.where(:usuario_id => @usuario_id, :revision_sistematica_id => @rs_id,

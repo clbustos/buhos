@@ -100,7 +100,7 @@ get '/revision/:id/revision_texto_completo' do |id|
 
 
   @pager=get_pager()
-  @pager.orden||="year__desc"
+  @pager.orden||="year__asc"
 
 
   @criterios_orden={:n_referencias_rtr=>"Referencias RTR", :title=>"Título", :year=> "Año", :author=>"Autor"}
@@ -118,6 +118,7 @@ get '/revision/:id/revision_texto_completo' do |id|
 
   @cds_pre=@ads.canonicos_documentos.join_table(:left, @revision.cuenta_referencias_rtr_tn.to_sym, cd_destino: :id)
 
+  @asignaciones=@ads.asignaciones.to_hash(:canonico_documento_id)
 
   @decisiones=@ads.decisiones
   if @pager.busqueda.to_s!=""

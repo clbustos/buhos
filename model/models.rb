@@ -59,3 +59,4 @@ class Base_Bibliografica < Sequel::Model
     $db['SELECT * FROM bases_bibliograficas'].as_hash(:id, :nombre)
   end
 end
+

@@ -36,7 +36,7 @@
 %h3 Estado de la revision
 %p
   %strong Número de documentos total a revisar:
-  = sprintf("%d", @revision.cd_id_por_etapa("revision_referencias").length)
+  = sprintf("%d", @cds_total)
 
 %form{:action=>url("/revision/#{@revision[:id]}/revision_referencias"), :method=>:get,:class=>"form-check", :enctype=>"multipart/form-data"}
   %input{:type=>:hidden,:name=>:pagina, :value=>@pager.pagina}

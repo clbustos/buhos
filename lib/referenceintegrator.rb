@@ -1,3 +1,4 @@
+require_relative 'metodos_referencia'
 module ReferenceIntegrator
 
   module CommonRecordAttributes

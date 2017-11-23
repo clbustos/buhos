@@ -185,7 +185,7 @@ helpers do
   def a_textarea_editable(id, prefix, data_url, v, default_value="--")
     url_s=url(data_url)
 
-    "<a class='textarea_editable' data-pk='#{id}' data-url='#{url_s}' href='#' id='#{prefix}-2' data-default='#{default_value}'>#{v}</a>"
+    "<a class='textarea_editable' data-pk='#{id}' data-url='#{url_s}' href='#' id='#{prefix}-#{id}' data-placeholder='#{default_value}'>#{v}</a>"
   end
 
 
@@ -193,7 +193,7 @@ helpers do
     url_s=url(data_url)
     #val=(v.nil? ? default_value : v)
     val=v
-    "<a class='nombre_editable' data-pk='#{id}' data-url='#{url_s}' href='#' id='#{prefix}-2' data-placeholder='#{default_value}'>#{val}</a>"
+    "<a class='nombre_editable' data-pk='#{id}' data-url='#{url_s}' href='#' id='#{prefix}-#{id}' data-placeholder='#{default_value}'>#{val}</a>"
   end
 
 

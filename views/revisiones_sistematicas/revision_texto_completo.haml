@@ -7,7 +7,7 @@
   %li{:class=>:active} Revisión de referencias
 
 .well
-  Objetivo de la etapa: Seleccionar las referencias más cercanas a los textos elegidos en la primera etapa
+  Objetivo de la etapa: Analizar los textos, lo que implica asignar etiquetas(codificar) tanto a los documentos como a sus relaciones, llenar los formularios relativos a los objetivos y definir que textos se incluiran en la revision final.
 
 :javascript
   $(document).ready(function() {
@@ -36,7 +36,7 @@
 %h3 Estado de la revision
 %p
   %strong Número de documentos total a revisar:
-  = sprintf("%d", @revision.cd_id_por_etapa("revision_texto_completo").length)
+  = sprintf("%d", @cds_total)
 
 %form{:action=>url("/revision/#{@revision[:id]}/revision_texto_completo"), :method=>:get,:class=>"form-check", :enctype=>"multipart/form-data"}
   %input{:type=>:hidden,:name=>:pagina, :value=>@pager.pagina}
@@ -80,8 +80,22 @@
 
 
 = partial(:pager,:locals=>{url: @url, pagina: @pager.pagina, max_page: @pager.max_page, :extra=>{busqueda:@pager.busqueda, orden:@pager.orden}})
-.list-group
+.panel
   - @cds.each do |cd|
-    %div{:id=>"decision-cd-#{cd[:id]}"}
-      =partial(:decision, :locals=>{ revision_id: @revision[:id], cd: cd, decisiones: @decisiones, ars: @ars, usuario_id: @usuario_id, etapa: "revision_texto_completo"})
+    - decision_o=@decisiones[cd[:id]]
+    - decision = decision_o ? decision_o[:decision] : nil
+    - asignacion_o=@asignaciones[cd[:id]]
+    - clase_panel=decision_class_bootstrap(decision,"panel")
+    .list-group-item{:class=>clase_panel}
+      .row
+        .col-md-8=CGI::escapeHTML cd.ref_apa_6
+        .col-md-4
+          ="Decisión:#{Decision.get_name_decision(decision)}</br>"
+          - if asignacion_o
+            ="Estado asignación: #{asignacion_o[:estado]} <br />"
+            ="Instrucción asignación: #{asignacion_o[:instrucción] ? asignacion_o[:instrucción] : '<em>Ninguna</em>'}"
+          - else
+            %em No asignado
+
+
 = partial(:pager,:locals=>{url: @url, pagina: @pager.pagina, max_page: @pager.max_page, :extra=>{busqueda:@pager.busqueda, orden:@pager.orden}})

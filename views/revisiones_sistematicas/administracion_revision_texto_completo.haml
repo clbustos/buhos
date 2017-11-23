@@ -17,12 +17,14 @@
 %table.reporte
   %thead
     %th Usuario
+    %th Asignado
     - Decision::N_EST.each do |dec,nombre|
       %th=Decision.get_name_decision(dec)
   %tbody
     - @ars.decisiones_usuarios(@etapa).each do |usuario_id, edu|
       %tr
         %th=edu[:usuario].nombre
+        %td=edu[:adu].tiene_asignaciones? ? "Sí":"No"
         - Decision::N_EST.each do |dec,nombre|
           %td=edu[:adu].total_decisiones[dec].to_i
 

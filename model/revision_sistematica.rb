@@ -285,4 +285,18 @@ HEREDOC
         raise 'no definido'
     end
   end
+  def campos
+    Rs_Campo.where(:revision_sistematica_id=>self[:id]).order(:orden)
+  end
+  def analisis_cd_tn
+    "analisis_rs_#{self[:id]}"
+  end
+  # Entrega la tabla de texto completo
+  def analisis_cd
+    table_name=analisis_cd_tn
+    if $db["SHOW FULL TABLES  LIKE '%#{table}%'"].empty?
+      Rs_Campo.actualizar_tabla(self)
+    end
+    $db[view_name.to_sym]
+  end
 end

@@ -1,0 +1,51 @@
+%h2="Campos para revisión <strong>#{@revision.nombre}</strong>"
+
+%ul.breadcrumb
+  %li
+    %a{:href=>url("/revision/#{@revision.id}")}=@revision.nombre
+  %li{:class=>:active}Campos
+
+
+- if @campos.empty?
+  %p
+    %em Sin campos
+- else
+  %ul.list-group
+    -@campos.each do |campo|
+      %li.list-group-item
+        =a_editable(campo[:id], 'campo-orden', "/revision/editar_campo/#{campo[:id]}/orden", campo[:orden])
+        %span=".-"
+        =a_editable(campo[:id], 'campo-nombre', "/revision/editar_campo/#{campo[:id]}/nombre", campo[:nombre])
+        %span=":"
+        =a_textarea_editable(campo[:id], 'campo-descripcion', "/revision/editar_campo/#{campo[:id]}/descripcion", campo[:descripcion])
+        %span=". Tipo: "
+        =a_editable(campo[:id], 'campo-tipo', "/revision/editar_campo/#{campo[:id]}/tipo", campo[:tipo])
+        %span=". Opciones: "
+        =a_textarea_editable(campo[:id], 'campo-opciones', "/revision/editar_campo/#{campo[:id]}/opciones", campo[:opciones])
+
+%a.btn.btn-primary{:href=>"/revision/#{@revision[:id]}/actualizar_tabla"}Actualizar tabla
+
+%h3 Nuevo campo
+%form{:method=>"post", :action=>"/revision/#{@revision[:id]}/nuevo_campo",:class=>"form-group"}
+  .form-group
+    %label{:for=>'orden'}Orden
+    %input.form-control{:type=>'number', :min=>"1",:max=>100, :name=>'orden'}
+  .form-group
+    %label{:for=>'Nombre'}Nombre
+    %input.form-control{:type=>'text', :name=>'nombre'}
+  .form-group
+    %label{:for=>'descripcion'}Descripción
+    %input.form-control{:type=>'text', :name=>'descripcion'}
+  .form-group
+    %label{:for=>'tipo'}Tipo
+    %select.form-control{:name=>'tipo'}
+      %option{:value=>'text'}Texto corto
+      %option{:value=>'textarea'}Texto largo
+      %option{:value=>'select'}Opción múltiple
+  .form-group
+    %label{:for=>'opciones'}Opciones
+    %br
+    %p<Se escriben en formato
+    %pre opcion1=texto2;opcion2=texto2...
+    %input.form-control{:type=>'text', :name=>'opciones', :size=>20}
+  %input.btn.btn-default{:type=>:submit, :value=>"Crear nuevo campo"}
