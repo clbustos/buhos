@@ -38,14 +38,20 @@ get '/busqueda/:id/registros/completar_dois' do |id|
   result=Result.new()
   correcto=true
   @registros.each do |registro|
-    $db.transaction(:rollback => :reraise) do
-      result.add_result(registro.doi_automatico_crossref)
-      if registro.doi
-        #$log.info("Agregando referencias registro #{registro.ref_apa_6}")
-        result.add_result(registro.referencias_automatico_crossref)
+    $db.transaction() do
+      begin
+        result.add_result(registro.doi_automatico_crossref)
+        if registro.doi
+          #$log.info("Agregando referencias registro #{registro.ref_apa_6}")
+          result.add_result(registro.referencias_automatico_crossref)
+        end
+      rescue BadCrossrefResponseError=>e
+
+        result.error("Problema en registro #{registro[:id]}: #{e.message}. Se interrumpe sincronizacion")
+        raise Sequel::Rollback
       end
       $db.after_rollback {
-        result.error("Problema en registro #{registro[:id]}. Se interrumpe sincronizacion")
+        #result.error("Problema en registro #{registro[:id]}. Se interrumpe sincronizacion")
         correcto=false
       }
     end

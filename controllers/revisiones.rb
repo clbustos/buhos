@@ -316,3 +316,37 @@ post '/revision/archivos/agregar' do
   end
   redirect back
 end
+
+
+get '/revision/:rs_id/busquedas_comparar_registros' do |rs_id|
+  @revision=Revision_Sistematica[rs_id]
+  return 404 if !@revision
+  @cds={}
+  @errores=[]
+  @busquedas_id=@revision.busquedas_dataset.map(:id)
+  n_busquedas=@busquedas_id.length
+  @revision.busquedas.each do |busqueda|
+    busqueda.registros.each do |registro|
+      rcd_id=registro[:canonico_documento_id]
+
+      if rcd_id
+        @cds[rcd_id]||={:busquedas=>{}}
+        @cds[rcd_id][:busquedas][busqueda[:id]]=true
+      else
+        errores.push(registro[:id])
+      end
+    end
+  end
+  @cds_o=Canonico_Documento.where(:id=>@cds.keys).to_hash(:id)
+  @cds_ordenados=@cds.sort_by {|key,a|
+    #$log.info(@busquedas_id)
+    #$log.info(a)
+    base_n=1+a[:busquedas].length*(2**(n_busquedas+1))
+    #$log.info("Base:#{base_n}")
+    sec_n=(0...n_busquedas).inject(0) {|total,aa|  total+=(a[:busquedas][@busquedas_id[aa]].nil? ) ? 0 : 2**aa;total}
+    #$log.info("Sec:#{sec_n}")
+    base_n+sec_n
+  }
+
+  haml "busquedas/busquedas_comparar_registros".to_sym
+end

@@ -17,6 +17,7 @@ else
 end
 
 $db.run("SET NAMES UTF8")
+
 $log_sql = Logger.new(File.dirname(__FILE__)+'/../log/app_sql.log')
 
 $db.loggers << $log_sql

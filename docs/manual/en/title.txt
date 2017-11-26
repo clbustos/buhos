@@ -1,0 +1,6 @@
+---
+title: Manual RevSist
+author: Claudio Bustos
+right: Creative Commons Non-Commercial Share Alike 3.0
+language: es
+...

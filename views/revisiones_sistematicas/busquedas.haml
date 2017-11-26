@@ -35,13 +35,13 @@
 
               Referencias
 
-
-%a{:href=>url("/revision/#{@revision.id}/busqueda/nuevo")}
-  %button{:class=>"btn btn-default"}
+.btn-group-sm
+  %a.btn.btn-default{:role=>:button,:href=>url("/revision/#{@revision.id}/busqueda/nuevo")}
     %span{:class=>"glyphicon glyphicon-plus"}
     Nueva búsqueda
-
-%a{:href=>url("/revision/#{@revision.id}/procesar")}
-  %button{:class=>"btn btn-default"}
+  %a.btn.btn-default{:role=>:button, :href=>url("/revision/#{@revision.id}/procesar")}
     %span{:class=>"glyphicon glyphicon-play"}
     Procesar
+  %a.btn.btn-default{:role=>:button, :href=>url("/revision/#{@revision.id}/busquedas_comparar_registros")}
+    %span.glyphicon.glyphicon-dashboard
+    Comparar registros entre búsquedas

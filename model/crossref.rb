@@ -37,8 +37,11 @@ class Crossref_Doi < Sequel::Model
   end
 end
 
+class BadCrossrefResponseError < StandardError
 
+end
 class Crossref_Query < Sequel::Model
+
   # Se toma un texto y se transforma en un sha256
   def self.generar_query_desde_texto(t)
     require 'digest'
@@ -46,11 +49,13 @@ class Crossref_Query < Sequel::Model
     cq=Crossref_Query[digest]
 
     if !cq
-      url="http://search.crossref.org/dois?q=#{CGI.escape(t)}"
+      url="https://search.crossref.org/dois?q=#{CGI.escape(t)}"
       uri = URI(url)
       res = Net::HTTP.get_response(uri)
-      ##$log.info(res)
-      raise "No lo pude leer bien" if res.code!="200"
+      $log.info(res)
+      if res.code!="200"
+        raise BadCrossrefResponseError, "El texto #{t} no entrego una respuesta adecuada. Fue #{res.code}, #{res.body}"
+      end
       json_raw = res.body
       Crossref_Query.insert(:id=>digest,:query=>t,:json=>json_raw)
     else

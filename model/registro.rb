@@ -16,9 +16,9 @@ class Registro < Sequel::Model
       query=crossref_query
       if query[0]["score"]>100
         result.add_result(agregar_doi(query[0]["doi"]))
-        result.success("Registro #{self[:id]} tiene DOI #{query[0]["doi"]}")
+        result.success("Registro #{self[:id]} : #{self[:author]}-#{self[:title]} tiene DOI #{query[0]["doi"]}")
       else
-        result.warning("Registro #{self[:id]} no tiene un referente claro. Debe revisarse a mano")
+        result.warning("Registro #{self[:id]} : #{self[:author]}-#{self[:title]} no tiene un DOI claro al cual asignarse. Debe revisarse a mano")
       end
 
     elsif canonico_documento.doi.nil?
