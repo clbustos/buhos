@@ -27,7 +27,7 @@ After entering on the menu, you should create a new search with *New search*. Th
 
 After you insert all searchs, you should press 'process' to create *records* and *references* for each search. Now, on each search, you should see how many *records* you just create.
 
-If you want to update an old search, our recommendation is create a new search with the updated search, and compare the records using XXXXXX.
+If you want to update an old search, our recommendation is create a new search with the updated search, and compare the records using 'Comparing records by search'.
 
 ## Records
 
