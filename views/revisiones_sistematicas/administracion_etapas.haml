@@ -1,15 +1,15 @@
 .heading
-  %h2="Revision sistematica #{@revision[:nombre]}: Etapas de revisión"
+  %h2=t(:Systematic_review_stages,sr_name:@revision[:nombre])
 
 %ul.breadcrumb
   %li
-    %a{:href=>url("/revisiones")} Revisiones
+    %a{:href=>url("/revisiones")}=t(:Systematic_reviews)
   %li
     %a{:href=>url("/revision/#{@revision[:id]}")}=@revision[:nombre]
-  %li{:class=>"active"} Administración
+  %li{:class=>"active"}=t(:Administration)
 
 %ul
   - @revision.etapas_avanzadas.each do |etapa|
     %li
       %a{:href=>"/revision/#{@revision[:id]}/administracion/#{etapa}"}
-        =Revision_Sistematica::ETAPAS_NOMBRE[etapa]
+        =t(Revision_Sistematica::ETAPAS_NOMBRE[etapa])

@@ -78,7 +78,7 @@ module Sinatra
 
       app.post '/login' do
         if(authorize(params['user'], params['password']))
-          agregar_mensaje "Autentificación exitosa"
+          agregar_mensaje ::I18n.t(:Successful_authentification)
           log.info("Autentificación exitosa de #{params['user']}")
           redirect(url("/"))
         else

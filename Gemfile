@@ -23,3 +23,4 @@ gem 'categorize'
 gem 'ai4r'
 gem 'pdf-reader'
 gem 'grim'
+gem "i18n"

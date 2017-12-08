@@ -25,12 +25,12 @@ class Revision_Sistematica < Sequel::Model
           :analisis,
           :sintesis]
 
-  ETAPAS_NOMBRE={:busqueda => "Búsqueda",
-                 :revision_titulo_resumen => "Revisión titulo y resumen",
-                 :revision_referencias => "Revisión referencias",
-                 :revision_texto_completo=> "Revisión texto completo",
-                 :analisis => "Análisis",
-                 :sintesis => "Síntesis"}
+  ETAPAS_NOMBRE={:busqueda => "stage.search",
+                 :revision_titulo_resumen => "stage.review_title_and_abstract",
+                 :revision_referencias => "stage.review_references",
+                 :revision_texto_completo=> "stage.review_full_text",
+                 :analisis => "stage.analysis",
+                 :sintesis => "stage.synthesis"}
 
   def palabras_claves_as_array
     palabras_claves.nil? ? nil : palabras_claves.split(";").map {|v| v.strip}
@@ -39,7 +39,7 @@ class Revision_Sistematica < Sequel::Model
     ETAPAS[0..ETAPAS.find_index(self.etapa.to_sym)]
   end
   def grupo_nombre
-    grupo.nil? ? "--Sin grupo asignado --" : grupo.name
+    grupo.nil? ? "--#{t(:group_not_assigned)}--" : grupo.name
   end
 
 
@@ -67,7 +67,7 @@ class Revision_Sistematica < Sequel::Model
     ETAPAS_NOMBRE[self.etapa.to_sym]
   end
   def administrador_nombre
-    self[:administrador_revision].nil? ? "--Sin administrador asignado --" : Usuario[self[:administrador_revision]].nombre
+    self[:administrador_revision].nil? ? "-- #{t(:administrator_not_assigned)} --" : Usuario[self[:administrador_revision]].nombre
   end
   def get_nombres_trs
     (0...TRS.length).inject({}) {|ac,v|

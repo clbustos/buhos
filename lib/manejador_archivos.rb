@@ -17,7 +17,7 @@ module ManejadorArchivos
         <button aria-label='Cerrar' class='close' data-dismiss='modal' type='button'>
           <span aria-hidden='true'>×</span>
         </button>
-        <h4 class='modal-title' id='myModalLabel'>Archivo</h4>
+        <h4 class='modal-title' id='myModalLabel'>#{I18n.t(:File)}</h4>
       </div>
       <div class='modal-body'></div>
       <div class='modal-footer'>
@@ -33,7 +33,7 @@ module ManejadorArchivos
               <button class='btn btn-default' id='boton_pagina_mas' type='button'>
                 <span class='glyphicon glyphicon-arrow-right'></span>
               </button>
-              <button class='btn btn-default' data-dismiss='modal' type='button'>Close</button>
+              <button class='btn btn-default' data-dismiss='modal' type='button'>#{I18n.t(:Close)}</button>
             </div>
           </div>
         </div>
@@ -49,7 +49,7 @@ HEREDOC
   <input type='hidden' name='canonico_documento_id' value='#{cd_id}' />
   <div class='form-group'>
     <input type='file' name='archivos[]'/>
-    <input type='submit' class='btn btn-primary btn-sm' value='Enviar'/>
+    <input type='submit' class='btn btn-primary btn-sm' value='#{I18n.t(:Send)}'/>
 </div>
 </form>"
       end
@@ -60,13 +60,13 @@ HEREDOC
         boton_eliminar=""
         if eliminar
           boton_eliminar="<button class='btn btn-danger archivo_eliminar' role='button' data-aid='#{archivo[:id]}'>
-          <span class='glyphicon glyphicon-remove'>Borrar archivo</span>
+          <span class='glyphicon glyphicon-remove'>#{I18n.t(:Delete_file)}</span>
         </button>"
         end
         if rs_id
           boton_rs="
           <button class='btn btn-warning archivo_desasignar_rs' data-aid='#{archivo[:id]}' data-rsid='#{rs_id}' role='button'>
-          <span class='glyphicon glyphicon-remove'>Borrar RS</span>
+          <span class='glyphicon glyphicon-remove'>#{I18n.t(:Delete_from_systematic_review)}</span>
         </button>
         "
         end
@@ -75,17 +75,17 @@ HEREDOC
           if acd
             boton_canonico="
           <button class='btn btn-warning archivo_desasignar_cd' data-aid='#{archivo[:id]}' data-cdid='#{cd_id}' role='button'>
-          <span class='glyphicon glyphicon-remove'>Desasignar CD</span>
+          <span class='glyphicon glyphicon-remove'>#{I18n.t(:Unassign_from_canonical_document)}</span>
         </button>"
             if acd[:no_considerar]
         boton_canonico+= "
         <button class='btn btn-default archivo_mostrar_cd' data-aid='#{archivo[:id]}' data-cdid='#{cd_id}' role='button'>
-        <span class='glyphicon glyphicon-eye-open'>Mostrar CD</span>
+        <span class='glyphicon glyphicon-eye-open'>#{I18n.t(:Show_on_canonical_document)}</span>
         </button>"
             else
         boton_canonico+= "
         <button class='btn btn-warning archivo_ocultar_cd' data-aid='#{archivo[:id]}' data-cdid='#{cd_id}' role='button'>
-        <span class='glyphicon glyphicon-eye-close'>Ocultar CD</span>
+        <span class='glyphicon glyphicon-eye-close'>#{I18n.t(:Hide_from_canonical_document)}</span>
         </button>"
 
         end
@@ -94,10 +94,10 @@ HEREDOC
 <<HEREDOC
 <div class='btn-group btn-group-sm' id='botones_archivo_#{archivo[:id]}'>
 <a class='btn btn-default' href='/archivo/#{archivo[:id]}/descargar' role='button'>
-<span class='glyphicon glyphicon-download'>Descargar</span>
+<span class='glyphicon glyphicon-download'>#{I18n.t(:Download)}</span>
 </a>
 <button class='btn btn-default btn-sm' data-target='#modalArchivos' data-toggle='modal' type='button' data-pk='#{archivo[:id]}' data-paginas='#{archivo[:paginas]}'>
-  <span class='glyphicon glyphicon-eye-open'>Ver</span></button>
+  <span class='glyphicon glyphicon-eye-open'>#{I18n.t(:View)}</span></button>
 
 #{boton_canonico}
 #{boton_rs}

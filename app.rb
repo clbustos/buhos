@@ -15,6 +15,33 @@ require 'dotenv'
 Dotenv.load("./.env")
 
 
+require 'i18n'
+#require 'i18n/backend/fallbacks'
+
+
+
+module Sinatra
+  module I18n
+    module Helpers
+      def t(*args)
+        ::I18n::t(*args)
+      end
+    end
+
+    def self.registered(app)
+      app.helpers I18n::Helpers
+      #$log.info(app.root)
+      unless defined?(app.locales)
+        app.set :locales, File.join(app.root, 'locales', '*.yml')
+      end
+      ::I18n.config.available_locales = [:es,:en]
+      ::I18n.load_path+=Dir[app.locales]
+      #::I18n.backend.load_translations(app.locales)
+    end
+  end
+  register I18n
+end
+
 set :session_secret, 'super secret2'
 
 # Arreglo a lo bestia para el force_encoding
@@ -60,12 +87,18 @@ require 'digest/sha1'
 
 enable :logging, :dump_errors, :raise_errors, :sessions
 
+
+
+
 configure :development do |c|
-  c.enable :logging, :dump_errors, :raise_errors, :sessions, :show_errors, :show_exceptions 
+  c.enable :logging, :dump_errors, :raise_errors, :sessions, :show_errors, :show_exceptions
+
+
 end
 
 configure :production do |c|
   c.enable :logging, :dump_errors, :raise_errors, :sessions, :show_errors, :show_exceptions
+
 end
 
 
@@ -74,33 +107,12 @@ helpers Sinatra::Partials
 helpers Sinatra::Mobile
 
 # Internacionalización!
-require 'i18n'
+#require 'i18n'
 
 
+#::I18n::Backend::Simple.send(:include, I18n::Backend::Fallbacks)
 
-module Sinatra
-  module I18n
-    module Helpers
-      def t(*args)
-        ::I18n::t(*args)
-      end
-      def _(*args)
-        ::I18n::t(*args)
-      end
-    end
 
-    def self.registered(app)
-      app.helpers I18n::Helpers
-
-      unless defined?(app.locales)
-        app.set :locales, File.join(app.root, 'locales', '*.yml')
-      end
-
-      ::I18n.load_path+=Dir[app.locales]
-    end
-  end
-  register I18n
-end
 
 
 
@@ -120,6 +132,18 @@ set :root, File.dirname(__FILE__)
 helpers do
 
   include DOIHelpers
+
+  def get_lang(http_lang)
+    accepted=["en","es"]
+    unless http_lang.nil?
+      langs=http_lang.split(",").map {|v|
+        v.split(";")[0].split("-")[0]
+      }.each  {|l|
+        return l if accepted.include? l
+      }
+    end
+    "en"
+  end
   # Entrega el acceso al log
   def log
     $log
@@ -210,6 +234,13 @@ error 404 do
 end
 
 
+before do
+  http_lang=request.env['HTTP_ACCEPT_LANGUAGE']||'en'
+  session['lang']||=get_lang(http_lang)
+  session['lang']=='en' unless ['en','es'].include? session['lang']
+  I18n.locale = session['lang'].to_sym
+
+end
 
 
 # INICIO

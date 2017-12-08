@@ -1,13 +1,13 @@
-%p Ingrese su nombre de usuario y password
+%p=t("login.instruction")
 %form{:method=>"post",:action=>url("login"), :class=>"horizontal"}
   .form-group
-    %label{:class=>"control-label col-sm-2", :for=>:name}Nombre de usuario
+    %label{:class=>"control-label col-sm-2", :for=>:name}=t("User_name")
     .col-sm-10
-      %input{:class=>"form-control",:type=>'text', :name=>"user",:placeholder=>"Nombre de usuario"}
+      %input{:class=>"form-control",:type=>'text', :name=>"user",:placeholder=>t("User_name")}
   .form-group
-    %label{:class=>"control-label col-sm-2", :for=>:password}Password
+    %label{:class=>"control-label col-sm-2", :for=>:password}=t("Password")
     .col-sm-10
       %input{:class=>"form-control",:type=>'password', :name=>"password"}
   .form-group
     %div{:class=>"col-sm-offset-2 col-sm-10"}
-      %input.enviar{:class=>"btn btn-default",:type=>'submit', :value=>"Ingresar al sistema"}
+      %input.enviar{:class=>"btn btn-default",:type=>'submit', :value=>t("login.submit")}

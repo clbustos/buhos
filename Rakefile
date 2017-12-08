@@ -3,10 +3,13 @@ Dotenv.load("./.env")
 
 require 'rake'
 require 'rspec/core/rake_task'
+require 'gettext'
 
 task :doc do |t|
   sh %{yardoc -e lib_doc/yard_extra.rb *.rb controllers/**/*.rb lib/**/*.rb model/**/*.rb}
 end
+
+
 
 
 RSpec::Core::RakeTask.new(:spec) do |t|

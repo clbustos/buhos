@@ -5,10 +5,10 @@ require_relative 'revision_sistematica'
 class Decision < Sequel::Model
   NO_DECISION='ND'
   N_EST={
-      "yes" => "Sí",
-      "no" => "No",
-      "undecided" => "Indeciso",
-      Decision::NO_DECISION => "Sin decisión",
+      "yes" => :Yes,
+      "no" => :No,
+      "undecided" => :Undecided,
+      Decision::NO_DECISION =>  :Without_decision,
 
   }
 

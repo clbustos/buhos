@@ -6,7 +6,7 @@
     %meta{:name=>'viewport',:content=>'width=device-width, initial-scale=1'}
 
     
-    %title= @title.nil? ? 'Sistema de revisiones sistemáticas' : @title
+    %title= @title.nil? ? t(:App_title) : t(@title)
 
     %script{:type=>'text/javascript', :src=>url('/js/jquery-3.1.0.min.js')}
     %script{:type=>'text/javascript', :src=>url('/js/bootstrap.min.js')}
@@ -33,38 +33,38 @@
       %header
       %nav{:class=>'navbar navbar-default'}
         .container-fluid
-          %a{:class=>'navbar-brand', :href=>'#'}RevSist
+          %a{:class=>'navbar-brand', :href=>'#'}=t(:App_title)
           %ul{:class=>'nav navbar-nav'}
             -if permiso('ingreso')
               %li{:class=>''}
-                %a{:class=>'nav-link', :href=>'/revisiones'} Revisiones sistematicas
+                %a{:class=>'nav-link', :href=>'/revisiones'}=t(:Systematic_reviews)
             -if false and permiso('canonico')
               %li{:class=>''}
-                %a{:class=>'nav-link', :href=>'/canonicos'} Canónicos
+                %a{:class=>'nav-link', :href=>'/canonicos'}=t(:Canonicals)
             -if false and permiso('grupos')
               %li{:class=>''}
-                %a{:class=>'nav-link', :href=>'/grupos'} Usuarios y grupos
+                %a{:class=>'nav-link', :href=>'/grupos'}=t(".Users_and_groups")
             -if false and permiso('estadisticas')
               %li{:class=>''}
-                %a{:class=>'nav-link', :href=>'/estadisticas'} Estadisticas de uso
+                %a{:class=>'nav-link', :href=>'/estadisticas'}=t(".Use_Statistics")
             -if permiso('administracion')
               %li{:class=>'dropdown'}
                 %a{:href=>'#', :class=>'dropdown-toggle', 'data-toggle'=>'dropdown', :role=>'button', 'aria-haspopup'=>'true', 'aria-expanded'=>'false', :id=>'navbarDropdownMenuLink'}
-                  Administración
+                  =t(:Administration)
                   %span{:class=>:caret}>
                 %ul.dropdown-menu
                   %li<
-                    %a{:class=>'dropdown-item', :href=>url('/admin/usuarios')} Usuarios
+                    %a{:class=>'dropdown-item', :href=>url('/admin/usuarios')}=t(:Users)
                   %li<
-                    %a{:class=>'dropdown-item', :href=>url('/admin/roles')} Roles
+                    %a{:class=>'dropdown-item', :href=>url('/admin/roles')}=t(:Roles)
           %div{:class=>'nav navbar-nav navbar-right'}
             %p{:class=>'navbar-text'}
               =presentar_usuario
               -if settings.development?
-                %span{:class=>"alerta"} Dev
+                %span{:class=>"alerta"}=t(".Dev_alert")
       %section#mensajes
         =imprimir_mensajes
       %section#content
         =yield
       %footer
-        %p Copyright (c) 2016-2017 , Bustos y Morales
+        %p=t(:footer_copyright)
