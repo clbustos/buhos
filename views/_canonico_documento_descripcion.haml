@@ -8,17 +8,17 @@
   =CGI::escapeHTML cd.title
 %div{:class=>"panel-body"}
   %p
-    %strong Referencia APA:
+    %strong="#{t(:APA_Reference)}:"
     =CGI::escapeHTML cd.ref_apa_6
     -unless ars.nil?
-      - texto_referencias=sprintf("<strong>Citaciones:</strong> cita a <strong>%d</strong> / citado por <strong>%d</strong> ", ars.cd_count_salida(cd[:id]).to_i, ars.cd_count_entrada(cd[:id]).to_i)
+      - texto_referencias=sprintf("<strong>#{t(:Citations)}</strong>#{t(:this_document_cites)}<strong>%d</strong> / #{t(:this_document_cited_by)}<strong>%d</strong> ", ars.cd_count_salida(cd[:id]).to_i, ars.cd_count_entrada(cd[:id]).to_i)
       - if ars.cd_count_entrada_rtr(cd[:id])
-        -texto_referencias+=sprintf("/ citado desde textos RTR por <strong>%d</strong>", ars.cd_count_entrada_rtr(cd[:id]).to_i)
+        -texto_referencias+=sprintf("/ #{t(:this_document_cited_by_rta_document)}<strong>%d</strong>", ars.cd_count_entrada_rtr(cd[:id]).to_i)
       %p=texto_referencias
   %p{:class=>""}
-    %strong Resumen
+    %strong=t(:Abstract)
     - if !cd.abstract
-      %em Sin abstract
+      %em=t(:No_abstract)
     -else
       -#$log.info(cd)
       -abs_pres.text=cd.abstract

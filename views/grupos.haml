@@ -1,15 +1,15 @@
-%h2 Grupos
+%h2=t(:Groups)
 %a{:href=>url("/grupo/nuevo")}
   %img{:src=>url("images/list-add.png")}
-  Nuevo grupo
+  =t(:New_group)
 %form{:method=>:post, :action=>url("/grupos/actualizar")}
   %table
     %thead
-      %th Id
-      %th Nombre
-      %th Descripcion
-      %th Administrador
-      %th Usuarios
+      %th=t(:Id)
+      %th=t(:Name)
+      %th=t(:Description)
+      %th=t(:Administrator)
+      %th=t(:Usuarios)
     %tbody
       - @grupos.each do |g|
         %tr

@@ -16,6 +16,6 @@
         %button{:class=>"btn btn-success btn-xs usuario_asignar", "data-rsid"=>revision[:id], "data-cdid"=>cd[:id], "data-uid"=>user[:id]}
           %span.glyphicon.glyphicon-hand-up
       %span{:class=>clase_desasignar, :id=>"usuario-desasignar-#{revision[:id]}-#{cd[:id]}-#{user[:id]}"}
-        =a_editable(user[:id], "asignacion-instruccion-#{user[:id]}-#{revision[:id]}-#{cd[:id]}", "/asignacion/usuario/#{user[:id]}/revision/#{revision[:id]}/cd/#{cd[:id]}/editar_instruccion", user_asignaciones[user[:id]] ? user_asignaciones[user[:id]][:instruccion] : nil, "Definir instrucciones")
+        =a_editable(user[:id], "asignacion-instruccion-#{user[:id]}-#{revision[:id]}-#{cd[:id]}", "/asignacion/usuario/#{user[:id]}/revision/#{revision[:id]}/cd/#{cd[:id]}/editar_instruccion", user_asignaciones[user[:id]] ? user_asignaciones[user[:id]][:instruccion] : nil, t(:set_instructions))
         %button{:class=>"btn btn-warning btn-xs usuario_desasignar", "data-rsid"=>revision[:id], "data-cdid"=>cd[:id], "data-uid"=>user[:id]}
           %span.glyphicon.glyphicon-hand-down

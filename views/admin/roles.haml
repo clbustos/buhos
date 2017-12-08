@@ -1,8 +1,8 @@
-%h2 Roles
+%h2=t(:Roles)
 %form{:method=>:post, :action=>url("/admin/roles/actualizar")}
   -@roles.each do |rol|
     %h3
-      Rol
+      =t(:Rol)
       =rol[:id]
     %select{:multiple=>true, :size=>@permisos.count, :name=>"permisos[#{rol[:id]}[]"}
       - @permisos.each do |permiso|

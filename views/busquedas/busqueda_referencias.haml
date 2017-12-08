@@ -1,4 +1,4 @@
-%h3 Referencias
+%h3="#{t(:References_on_search,sn:@busqueda.nombre)}"
 
 :javascript
   $(document).ready(function() {
@@ -10,30 +10,30 @@
     %a{:href=>url("/revision/#{@revision.id}")}=@revision.nombre
   %li
     %a{:href=>url("/busqueda/#{@busqueda.id}")}=@busqueda.nombre
-  %li
-    Referencias
+  %li=t(:References)
 
 %p
-  Número de referencias:
+  =t(:Count_references_total)
+  :
   =@referencias.count
 
 
 
 %p
-  Número de referencias con canónico:
+  =t(:Count_references_with_canonical)
   =@referencias_con_canonico.count
 .btn-group
-  %a{:href=>"/busqueda/#{@busqueda.id}/referencias/buscar_dois", :class=>"btn btn-default btn-sm", :role=>:button}Buscar DOIs
-  %a{:href=>"/busqueda/#{@busqueda.id}/referencias/generar_canonicos_doi/#{@n_referencias}", :class=>"btn btn-default btn-sm", :role=>:button}Generar canónicos por DOI
+  %a{:href=>"/busqueda/#{@busqueda.id}/referencias/buscar_dois", :class=>"btn btn-default btn-sm", :role=>:button}=t(:Search_DOI_for_references)
+  %a{:href=>"/busqueda/#{@busqueda.id}/referencias/generar_canonicos_doi/#{@n_referencias}", :class=>"btn btn-default btn-sm", :role=>:button}=t(:Assign_canonical_to_references)
 
 
 %form{:method=>"get",:action=>url("/busqueda/#{@busqueda.id}/referencias"), :class=>"form-inline"}
   .form-group
-    %label{:for=>"n_referencias"}Número referencias
+    %label{:for=>"n_referencias"}=t(:Number_of_references)
     %input{:type=>"input",:class=>"form-control",:id=>"n_referencias", :name=>"n_referencias",:value=>@n_referencias}
     %input{:type=>:submit, :class=>"btn btn-primary",:value=>"Enviar"}
 
-%h4 Referencias más citadas con canonico
+%h4=t(:More_cited_references_with_canonical)
 
 .list-group
 - @rmc_canonico.each do |ref|
@@ -43,14 +43,15 @@
       ="#{ref[:author]} (#{ref[:year]}). #{ref[:title]}. <em>#{ref[:journal]},#{ref[:volume]}</em>, #{ref[:pages]} "
       %button{:class=>"btn btn-default btn-sm buscar_similares_canonico",:id=>"buscar_similar-#{ref[:id]}"}
         %span{:class=>"glyphicon glyphicon-search"}
-        Buscar similares
+        =t(:Search_references_like_this)
       %a{:href=>url("/canonico_documento/#{ref[:id]}")}
         %button{:class=>"btn btn-success btn-sm"}
           %span{:class=>"glyphicon glyphicon-king"}
-          Canónico
+          =t(:Canonical)
       %div{:id=>"buscar_similar-#{ref[:id]}-campo", :style=>"max-height:200px;overflow:auto"}
 
-%h4 Referencias más citadas con DOI sin canonico
+%h4=t(:More_cited_references_with_canonical_without_DOI)
+
 
 .list-group
 - @rmc_sin_canonico_con_doi.each do |ref|
@@ -62,12 +63,12 @@
       %a{:href=>url("/referencias/buscar_crossref_por_doi/#{CGI.escape(ref[:doi].gsub("/","***"))}")}
         %button{:class=>"btn btn-default btn-sm"}
           %span{:class=>"glyphicon glyphicon-search"}
-          Buscar en Crossref
+          =t(:Search_on_crossref)
       %div{:id=>"buscar_similar-#{ref[:id]}-campo"}
 
 %p
 
-%h4 Referencias más citadas sin DOI y sin canonico
+%h4=t(:More_cited_references_without_canonical_without_DOI)
 
 .list-group
 - @rmc_sin_canonico.each do |ref|
@@ -77,10 +78,10 @@
       =ref[:texto]
       %button{:class=>"btn btn-default btn-sm buscar_similares_no_canonico",:id=>"buscar_similar-#{ref[:id]}"}
         %span{:class=>"glyphicon glyphicon-search"}
-        Buscar similares
+        =t(:Search_references_like_this)
       %a{:href=>url("/referencia/#{ref[:id]}/buscar_crossref")}
         %button{:class=>"btn btn-default btn-sm"}
           %span{:class=>"glyphicon glyphicon-search"}
-          Buscar en Crossref
+          =t(:Search_on_crossref)
       %div{:id=>"buscar_similar-#{ref[:id]}-campo"}
 

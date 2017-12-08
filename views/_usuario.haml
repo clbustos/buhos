@@ -1,9 +1,9 @@
 %table
   %tr
-    %th Nombre
+    %th=t(:Name)
     %td=@usuario[:nombre]
   %tr
-    %th Rol
+    %th=t(:Role)
     %td
       %p
         =@usuario.rol[:descripcion]
@@ -11,7 +11,7 @@
         =@usuario.rol[:id]
         )
   %tr
-    %th Permisos
+    %th=t(:Permissions)
     %td 
       -@usuario.permisos.each do |per|
         %span=per[:id]

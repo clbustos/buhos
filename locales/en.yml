@@ -4,3 +4,5 @@ en:
   copyright: "2016-2017 Claudio Bustos & Gabriela Morales"
   login_form:
     instruction: "Fill with your username and password"
+  Roles: "Roles"
+  Searchs_for_systematic_review: "Searchs for Systematic Review %{sr_name}"
