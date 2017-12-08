@@ -1,15 +1,13 @@
 - if !@ajax
-  %h3 Referencia, búsqueda similares
-
-
+  %h3=t(:Search_for_similar_references)
   %p
-    %strong Original:
+    %strong="#{t(:Original)}:"
     =@cd.ref_apa_6
     %a{:href=>url("/canonico_documento/#{@cd.id}")}="(#{@cd[:id]})"
 
 -if @ref_similares.length==0
   %p
-    %em No hay referencias similares sin canonico
+    %em=t(:No_similar_references_without_canonical)
 -else
   %form{:action=>url("/canonico_documento/#{@cd.id}/unir_referencias_similares"),:method=>:post}
     .list-group
@@ -23,9 +21,8 @@
             %a{:href=>url("/canonico/#{resp[:canonico_documento_id]}")}
               %button{:class=>"btn btn-success btn-sm"}
                 %span{:class=>"glyphicon glyphicon-king"}
-                Canónico
+                =t(:Canonical)
           - if resp[:doi]
             %strong
               =a_doi(resp[:doi])
-
-    %input{:type=>:submit, :value=>"Unir",:class=>"form-control"}
+    %input{:type=>:submit, :value=>t(:Merge),:class=>"form-control"}

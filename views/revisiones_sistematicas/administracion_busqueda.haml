@@ -1,5 +1,5 @@
 .heading
-  %h2="Revision sistematica #{@revision[:nombre]}: Administración búsqueda"
+  %h2=t(:Systematic_review_search_administration, sr_name:@revision[:nombre])
 
 =partial(:breadcrumb_revision_admin,:locals=>{:nombre=>t(:Search)})
 

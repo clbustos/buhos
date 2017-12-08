@@ -1,15 +1,15 @@
-%h3 Registros
+%h3=t(:Compare_records_by_search)
 %ul.breadcrumb
   %li
     %a{:href=>url("/revision/#{@revision.id}")}=@revision.nombre
   %li
-    %a{:href=>url("/revision/#{@revision.id}/busquedas")} Búsquedas
+    %a{:href=>url("/revision/#{@revision.id}/busquedas")}=t(:Searchs)
   %li.active
-    Comparación de registro por búsquedas
+    =t(:Compare_records_by_search)
 
 %table.tablesorter
   %thead
-    %th{:style=>'width:50%'} Documento
+    %th{:style=>'width:50%'}=t(:Document)
     - @busquedas_id.each do |busqueda_id|
       -busqueda=Busqueda[busqueda_id]
       %th="#{busqueda.base_bibliografica[:nombre]}<br>#{busqueda[:fecha]}"

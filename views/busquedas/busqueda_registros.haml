@@ -1,13 +1,12 @@
-%h3 Registros
+%h3=t(:Records_on_search,sn: @busqueda.nombre)
 %ul.breadcrumb
   %li
     %a{:href=>url("/revision/#{@revision.id}")}=@revision.nombre
   %li
     %a{:href=>url("/busqueda/#{@busqueda.id}")}=@busqueda.nombre
   %li
-    Registros
+    =t(:Records)
 
 %a{:href=>"/busqueda/#{@busqueda.id}/registros/completar_dois"}
-  %button{:class=>"btn btn-default btn-sm"}Descargar información Crossref para todos los documentos
-
+  %button{:class=>"btn btn-default btn-sm"}=t(:Download_Crossref_information_for_all_documents)
 =partial(:registros_lista, :locals=>{:registros=>@registros})

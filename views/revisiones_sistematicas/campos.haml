@@ -1,14 +1,14 @@
-%h2="Campos para revisión <strong>#{@revision.nombre}</strong>"
+%h2=t(:Systematic_review_fields, sr_name:@revision.nombre)
 
 %ul.breadcrumb
   %li
     %a{:href=>url("/revision/#{@revision.id}")}=@revision.nombre
-  %li{:class=>:active}Campos
+  %li{:class=>:active}=t(:Fields)
 
 
 - if @campos.empty?
   %p
-    %em Sin campos
+    %em=t(:No_fields)
 - else
   %ul.list-group
     -@campos.each do |campo|
@@ -25,27 +25,27 @@
 
 %a.btn.btn-primary{:href=>"/revision/#{@revision[:id]}/actualizar_tabla"}Actualizar tabla
 
-%h3 Nuevo campo
+%h3=t(:Field_new)
 %form{:method=>"post", :action=>"/revision/#{@revision[:id]}/nuevo_campo",:class=>"form-group"}
   .form-group
-    %label{:for=>'orden'}Orden
+    %label{:for=>'orden'}=t(:Order)
     %input.form-control{:type=>'number', :min=>"1",:max=>100, :name=>'orden'}
   .form-group
-    %label{:for=>'Nombre'}Nombre
+    %label{:for=>'Nombre'}=t(:Name)
     %input.form-control{:type=>'text', :name=>'nombre'}
   .form-group
-    %label{:for=>'descripcion'}Descripción
+    %label{:for=>'descripcion'}=t(:Description)
     %input.form-control{:type=>'text', :name=>'descripcion'}
   .form-group
-    %label{:for=>'tipo'}Tipo
+    %label{:for=>'tipo'}=t(:Type)
     %select.form-control{:name=>'tipo'}
-      %option{:value=>'text'}Texto corto
-      %option{:value=>'textarea'}Texto largo
-      %option{:value=>'select'}Opción múltiple
+      %option{:value=>'text'}=t(:Short_text)
+      %option{:value=>'textarea'}=t(:Long_text)
+      %option{:value=>'select'}=t(:Multiple_option)
   .form-group
-    %label{:for=>'opciones'}Opciones
+    %label{:for=>'opciones'}=t(:Options)
     %br
-    %p<Se escriben en formato
+    %p<= t('fields.format_instruction')
     %pre opcion1=texto2;opcion2=texto2...
     %input.form-control{:type=>'text', :name=>'opciones', :size=>20}
   %input.btn.btn-default{:type=>:submit, :value=>"Crear nuevo campo"}

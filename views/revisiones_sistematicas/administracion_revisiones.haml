@@ -1,5 +1,5 @@
 .heading
-  %h2="Revision sistematica #{@revision[:nombre]}: Administración #{@nombre_etapa}"
+  %h2=t(:Systematic_review_administration_stage, sn_name:@revision[:nombre], stage_name:@nombre_etapa)
 
 :javascript
   $(document).ready(function() {
@@ -11,13 +11,13 @@
 
 =partial(:breadcrumb_revision_admin,:locals=>{:nombre=>@nombre_etapa})
 
-%h3 Estadísticas por usuario
+%h3=t(:Statistics_by_user)
 
 %table.reporte
   %thead
-    %th Usuario
+    %th=t(:User)
     - Decision::N_EST.each do |dec,nombre|
-      %th=Decision.get_name_decision(dec)
+      %th=t(Decision.get_name_decision(dec))
   %tbody
     - @ars.decisiones_usuarios(@etapa).each do |usuario_id, edu|
       %tr
@@ -25,23 +25,23 @@
         - Decision::N_EST.each do |dec,nombre|
           %td=edu[:adu].total_decisiones[dec].to_i
 
-%h3 Estadistica de Decisiones
+%h3=t(:Decisions_stastistics)
 
 - decisiones_orden=@ars.decisiones_patron(@etapa).sort_by {|a|  @ars.patron_orden(a[0]) }
 - resoluciones_patron=@ars.resoluciones_desde_patron_decision(@etapa)
 %table.reporte
   %thead
     %tr
-      %th{:colspan=>4} Decisiones
-      %th{:rowspan=>2}n
-      %th{:colspan=>3}Resoluciones
-      %th{:rowspan=>2}Acciones
+      %th{:colspan=>4}=t(:Decisions)
+      %th{:rowspan=>2}=t(:n)
+      %th{:colspan=>3}=t(:Resolutions)
+      %th{:rowspan=>2}=t(:Actions)
     %tr
       - Decision::N_EST.each do |dec,nombre|
-        %th=Decision.get_name_decision(dec)
-      %th Sí
-      %th No
-      %th S/R
+        %th=t(Decision.get_name_decision(dec))
+      %th=t(:Yes)
+      %th=t(:No)
+      %th=t(:Without_Resolution)
   %tbody
     - decisiones_orden.each do |patron, cuenta|
       %tr
@@ -54,20 +54,20 @@
         %td
           %a{:href=>"#patron_#{@ars.patron_id(patron)}",:class=>"btn btn-default btn-sm", :role=>"button"}
             %span{:class=>"glyphicon glyphicon-triangle-bottom"}
-            Ver
+            =t(:View)
           %a{:href=>url("/revision/#{@revision[:id]}/etapa/#{@etapa}/patron/#{@ars.patron_id(patron)}/resolucion/yes"),:class=>"btn btn-success btn-sm", :role=>"button"}
             %span{:class=>"glyphicon glyphicon glyphicon-ok-circle"}
-            Aceptar
+            =t(:Accept)
           %a{:href=>url("/revision/#{@revision[:id]}/etapa/#{@etapa}/patron/#{@ars.patron_id(patron)}/resolucion/no"),:class=>"btn btn-danger btn-sm", :role=>"button"}
             %span{:class=>"glyphicon glyphicon glyphicon-ban-circle"}
-            Rechazar
+            =t(:Reject)
 
 .btn-group
-  %a{:href=>url("/revision/#{@revision[:id]}/etapa/revision_titulo_resumen/generar_referencias_crossref"), :role=>"button", :class=>"btn btn-default btn-sm"}Generar referencias crossref
+  %a{:href=>url("/revision/#{@revision[:id]}/etapa/revision_titulo_resumen/generar_referencias_crossref"), :role=>"button", :class=>"btn btn-default btn-sm"}=t(:Generate_crossref_references)
 
 
 
-%h3 Decisiones por documento
+%h3=t(:Decisions_by_document)
 
 - dep_ord=@ars.decisiones_por_cd(@etapa).sort_by {|cd_id,a| @ars.patron_orden a }
 - rpc=@ars.resolucion_por_cd(@etapa)
@@ -76,10 +76,10 @@
     %h4=@ars.patron_nombre bloque.first[1]
   %table.reporte
     %thead
-      %th Documento
+      %th=t(:Document)
       - Decision::N_EST.each do |dec,nombre|
         %th=Decision.get_name_decision(dec)
-      %th Resolución
+      %th=t(Resolution)
     %tbody
       - bloque.each do |cd_id,vals|
         %tr

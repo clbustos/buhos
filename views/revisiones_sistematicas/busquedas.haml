@@ -1,15 +1,15 @@
-%h2="Búsquedas para Revisión #{@revision.nombre}"
+%h2=t(:Systematic_review_searchs, sr_name: @revision.nombre)
 
 %p
 %table.reporte
   %thead
-    %th Id
-    %th Base
-    %th Fecha
-    %th Criterio Busqueda
-    %th Descripcion
-    %th Archivo
-    %th Registros
+    %th=t(:Id)
+    %th=t(:Bibliographic_database)
+    %th=t(:Date)
+    %th=t(:Search_criteria)
+    %th=t(:Description)
+    %th=t(:File)
+    %th=t(:Records)
   %tbody
     - @busquedas.each do |g|
       %tr
@@ -23,25 +23,24 @@
           %a{:href=>url("/busqueda/#{g.id}/editar")}
             %button{:class=>"btn btn-default"}
               %span{:class=>"glyphicon glyphicon-pencil"}
-              Editar
+              =t(:Edit)
           %a{:href=>url("/busqueda/#{g.id}/registros")}
             %button{:class=>"btn btn-default"}
               %span{:class=>"glyphicon glyphicon-list"}
               %span{:class=>"badge"}=g.registros_n
-              Registros
+              =t(:Records)
           %a{:href=>url("/busqueda/#{g.id}/referencias")}
             %button{:class=>"btn btn-default"}
               %span{:class=>"glyphicon glyphicon-plane"}
-
-              Referencias
+              =t(:References)
 
 .btn-group-sm
   %a.btn.btn-default{:role=>:button,:href=>url("/revision/#{@revision.id}/busqueda/nuevo")}
     %span{:class=>"glyphicon glyphicon-plus"}
-    Nueva búsqueda
+    =t(:Search_new)
   %a.btn.btn-default{:role=>:button, :href=>url("/revision/#{@revision.id}/procesar")}
     %span{:class=>"glyphicon glyphicon-play"}
-    Procesar
+    =t(:Search_process)
   %a.btn.btn-default{:role=>:button, :href=>url("/revision/#{@revision.id}/busquedas_comparar_registros")}
     %span.glyphicon.glyphicon-dashboard
-    Comparar registros entre búsquedas
+    =t(:Compare_records_by_search)

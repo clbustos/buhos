@@ -1,18 +1,18 @@
-%h3 Edición de grupo
+%h3=t(:Group_edit)
 %form{:method=>:post, :action=>url("/grupo/actualizar")}
   %input{:type=>"hidden", :name=>"grupo_id",:value=>@grupo[:id]}
   %table.informe
     %tr
-      %th Nombre
+      %th=t(:Name)
       %td
         %input{:type=>"text", :name=>"name",:value=>@grupo[:name]}
       
     %tr
-      %th Descripción
+      %th=t(:Description)
       %td
         %input{:type=>"text", :name=>"description",:value=>@grupo[:description]}
     %tr
-      %th Administrador
+      %th=t(:Administrator)
       %td
         - Usuario.all.each do |u|
           %p
@@ -20,11 +20,11 @@
             :checked=>u.id==@grupo[:administrador_grupo]}
             =u.nombre
     %tr
-      %th Usuarios
+      %th=t(:Users)
       %td
         - Usuario.all.each do |u|
           %p
             %input{:type=>"checkbox", :name=>"usuarios[#{u.id}]", 
             :checked=> @usuarios_id.include?(u.id)}
             =u.nombre     
-  %input{:type=>:submit, :value=>"Enviar"}
+  %input{:type=>:submit, :value=>t(:Update)}
