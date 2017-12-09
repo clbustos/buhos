@@ -1,12 +1,12 @@
 .heading
-  %h2="Documentos Canónicos para Revisión #{@revision.nombre}: Categorías automáticas"
+  %h2=t(:Systematic_review_automatic_categories, sr_name:@revision.nombre)
 
 %ul.breadcrumb
   %li
     %a{:href=>url("/revision/#{@revision.id}")}=@revision.nombre
   %li
-    %a{:href=>url("/revision/#{@revision.id}/canonicos_documentos")} Documentos canónicos
-  %li{:class=>"active"} Categorías automáticas
+    %a{:href=>url("/revision/#{@revision.id}/canonicos_documentos")}=t(:Canonical_documents)
+  %li{:class=>"active"}=t(:Automatic_categories)
 
 
 %p

@@ -20,27 +20,7 @@ require 'i18n'
 
 
 
-module Sinatra
-  module I18n
-    module Helpers
-      def t(*args)
-        ::I18n::t(*args)
-      end
-    end
 
-    def self.registered(app)
-      app.helpers I18n::Helpers
-      #$log.info(app.root)
-      unless defined?(app.locales)
-        app.set :locales, File.join(app.root, 'locales', '*.yml')
-      end
-      ::I18n.config.available_locales = [:es,:en]
-      ::I18n.load_path+=Dir[app.locales]
-      #::I18n.backend.load_translations(app.locales)
-    end
-  end
-  register I18n
-end
 
 set :session_secret, 'super secret2'
 
@@ -55,11 +35,13 @@ unless "".respond_to? :force_encoding
 end
 
 
-Dir.glob("controllers/**/*.rb").each do |f|
+
+
+Dir.glob("lib/*.rb").each do |f|
   require_relative(f)
 end
 
-Dir.glob("lib/*.rb").each do |f|
+Dir.glob("controllers/**/*.rb").each do |f|
   require_relative(f)
 end
 

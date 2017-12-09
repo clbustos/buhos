@@ -1,57 +1,55 @@
-%h2="Documentos Canónicos para Revisión #{@revision.nombre}"
+%h2=t(:Systematic_review_canonical_documents, sr_name:@revision.nombre)
 
 %ul.breadcrumb
   %li
     %a{:href=>url("/revision/#{@revision.id}")}=@revision.nombre
   %li
-    %a{:href=>url("/revision/#{@revision.id}/canonicos_documentos")} Documentos canónicos
+    %a{:href=>url("/revision/#{@revision.id}/canonicos_documentos")}=t(:Canonical_documents)
 
 
 %p
-  %strong Número de documentos canónicos total (registro/referencia):
-  = sprintf("%d (%d / %d)", @ars.cd_count_total, @ars.cd_count_reg, @ars.cd_count_ref)
+  =sprintf("<strong>#{t(:Count_canonical_documents)}</strong>: #{t(:Total)}=%d, #{t(:Records)}=%d, #{t(:References)}=%d",@ars.cd_count_total, @ars.cd_count_reg, @ars.cd_count_ref)
 
 %p
-  %strong DOI repetidos:
-  = @cd_rep_doi.length
+  =t_desc_count(:Duplicated_DOI,@cd_rep_doi.length)
 
 %form{:action=>url("/revision/#{@revision[:id]}/canonicos_documentos"), :method=>:get,:class=>"form-inline"}
   %div{:class=>"input-group mb-2 mr-sm-2"}
     %input{:type=>:hidden,:name=>:pagina, :value=>@pager.pagina}
     %input{:type=>:hidden,:name=>:orden, :value=>@pager.orden}
-    %label{:class=>"", :for=>:busqueda}Busqueda
+    %label{:class=>"", :for=>:busqueda}=t(:Search)
     %input{:type=>:text, :value=>@pager.busqueda, :name=>:busqueda, :class=>"form-control"}
     .form-group-inline
-      %label{:for=>:sin_abstract} Revisar solo sin abstract
+      %label{:for=>:sin_abstract}=t(:Check_only_documents_without_abstract)
       %input{:type=>:checkbox, :name=>:sin_abstract, :class=>"form-control-checkbox", :value=>'true',:checked=>@sin_abstract}
     .form-group-inline
-      %label{:for=>:solo_registros} Sólo documentos en búsquedas (no referencias)
+      %label{:for=>:solo_registros}=t(:Check_only_documents_on_search_no_references)
       %input{:type=>:checkbox, :name=>:solo_registros, :class=>"form-control-checkbox", :checked=>@solo_registros, :value=>'true'}
   %input{:type=>:submit, :class=>'btn btn-default '}
 %div{:class=>"btn-group btn-group-sm", :role=>"group"}
   - if permiso("documentos_canonicos_editar")  or revision_pertenece_a(@revision.id, session['user_id'])
-    %a{:href=>url("/revision/#{@revision.id}/canonicos_documentos_repetidos"), :role=>'button', :class=>"btn btn-default"} Revisar duplicaciones
+    %a{:href=>url("/revision/#{@revision.id}/canonicos_documentos_repetidos"), :role=>'button', :class=>"btn btn-default"}==t(:Check_duplicated)
   - if permiso("documentos_canonicos_editar")  or revision_pertenece_a(@revision.id, session['user_id'])
     %a{:href=>url("/referencias/completar_canonicos"), :role=>'button', :class=>"btn btn-default", :tooltip=>"Se revisan todas las referencias con DOI y se le une al canónico correspondiente"}
       %span{:class=>""}
-      Referencias completar canonicos
+      =t(:References_assign_canonical_documents)
   - if permiso("documentos_canonicos_editar")  or revision_pertenece_a(@revision.id, session['user_id'])
     %a{:href=>url("/canonicos_documentos/revision/#{@revision.id}/completar_abstract_scopus")   , :role=>'button', :class=>"btn btn-default"}
       %span{:class=>""}
-      Completar abstract Scopus
+      =t(:Complete_abstract_using_Scopus)
   - if permiso("documentos_canonicos_editar")  or revision_pertenece_a(@revision.id, session['user_id'])
     %a{:href=>url("/canonicos_documentos/revision/#{@revision.id}/categorizar_automatico")   , :role=>'button', :class=>"btn btn-default"}
       %span{:class=>""}
-      Categorizar automatico
+      =t(:Automatic_categories)
   %a{:href=>url("/revision/#{@revision.id}/canonicos_documentos_graphml"),  :role=>'button', :class=>"btn btn-default"}
     %span{:class=>"glyphicon glyphicon-save"}
-    Graphml
+    =t(:Export_to_Graphml)
   %a{:href=>url("/revision/#{@revision.id}/bibtex_resueltos"),  :role=>'button', :class=>"btn btn-default"}
     %span{:class=>"glyphicon glyphicon-save"}
-    Bibtex resueltos
+    =t(:Export_to_Bibtex)
 
 %p
-  %strong Número documentos búsqueda:
+  %strong="#{t(:Count_search_documents)}:"
   =@cds_total
 
 
