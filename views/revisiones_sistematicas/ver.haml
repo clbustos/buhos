@@ -1,41 +1,41 @@
-%h3="Revision sistematica #{@revision[:nombre]}"
+%h2=t("systematic_review.view", :sr_name=>@revision[:nombre])
 
 
 
 %div.list-group
   %div{:class=>"list-group-item"}
-    %span{:class=>"titulo"} Id:
+    %span{:class=>"titulo"}=t(:Id)
     %span{ :name=>"nombre"}=@revision[:id]
   %div{:class=>"list-group-item"}
-    %span{:class=>"titulo"}Nombre
+    %span{:class=>"titulo"}=t(:Name)
     %span{ :name=>"nombre"}=@revision[:nombre]
   %div{:class=>"list-group-item"}
-    %span{:class=>"titulo"} Descripción:
+    %span{:class=>"titulo"}=t(:Description)
     =@revision[:descripcion]
   %div{:class=>"list-group-item"}
-    %span{:class=>"titulo"} Fecha de Inicio:
+    %span{:class=>"titulo"}=t(:Date_start)
     %span{ :name=>"fecha_inicio"}=@revision[:fecha_inicio]
   %div{:class=>"list-group-item"}
-    %span{:class=>"titulo"} Objetivos:
+    %span{:class=>"titulo"}=t(:Objectives)
     =@revision[:objetivos] ? @revision[:objetivos].split("\n").join("<br/>") : '--'
   %div{:class=>"list-group-item"}
-    %span{:class=>"titulo"} Año de inicio
+    %span{:class=>"titulo"}=t(:Start_year)
     %span{ :name=>"agno_inicio"}=@revision[:agno_inicio]
   %div{:class=>"list-group-item"}
-    %span{:class=>"titulo"} Año de término
+    %span{:class=>"titulo"}=t(:End_year)
     %span{ :name=>"agno_termino"}=@revision[:agno_termino]
   %div{:class=>"list-group-item"}
-    %span{:class=>"titulo"} Palabras claves
+    %span{:class=>"titulo"}=t(:Keywords)
     %span{ :name=>"palabras_claves"}=@revision[:palabras_claves]
   %div{:class=>"list-group-item"}
-    %span{:class=>"titulo"} Grupo
+    %span{:class=>"titulo"}=t(:Group)
     %span=@revision.grupo_nombre
   -if !@revision.grupo.nil?
     %div{:class=>"list-group-item"}
-      %span{:class=>"titulo"} Administrador
+      %span{:class=>"titulo"}=t(:Administrator)
       %span=@revision.administrador_nombre
   %div{:class=>"list-group-item"}
-    %h4{:class=>"list-group-item-heading"}Taxonomía
+    %h4{:class=>"list-group-item-heading"}=t(:Taxonomy)
     %table.reporte
       - l=Revision_Sistematica::TRS.length
       - (0...l).each do |i|
@@ -45,5 +45,5 @@
           %td=@nombres_trs[Revision_Sistematica::TRS[i]]
 
   %div{:class=>"list-group-item"}
-    %h4{:class=>"list-group-item-heading"}Acciones
+    %h4{:class=>"list-group-item-heading"}=t(:Actions)
     %p=partial(:revision_botones, :locals=>{:r=>@revision})

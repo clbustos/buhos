@@ -217,9 +217,10 @@ end
 
 
 before do
-  http_lang=request.env['HTTP_ACCEPT_LANGUAGE']||'en'
-  session['lang']||=get_lang(http_lang)
-  session['lang']=='en' unless ['en','es'].include? session['lang']
+  if session['lang'].nil?
+    session['lang']=get_lang(request.env['HTTP_ACCEPT_LANGUAGE'])
+    session['lang']=='en' unless ['en','es'].include? session['lang']
+  end
   I18n.locale = session['lang'].to_sym
 
 end

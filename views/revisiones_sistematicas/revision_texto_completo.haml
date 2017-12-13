@@ -1,13 +1,13 @@
 .page-header
-  %h2="Revision sistemática #{@revision.nombre} "
-  %h3 Revisión de referencias
+  %h2=t(:Systematic_review_stage_full_text, sr_name:@revision[:nombre])
 %ul.breadcrumb
   %li
     %a{:href=>url("/revision/#{@revision.id}")}=@revision.nombre
-  %li{:class=>:active} Revisión de referencias
+  %li{:class=>:active}=t(:Review_full_text)
 
 .well
-  Objetivo de la etapa: Analizar los textos, lo que implica asignar etiquetas(codificar) tanto a los documentos como a sus relaciones, llenar los formularios relativos a los objetivos y definir que textos se incluiran en la revision final.
+  =t("review_full_text.objective")
+
 
 :javascript
   $(document).ready(function() {
@@ -16,27 +16,10 @@
   );
 
 
-%div.list-group
-  %div{:class=>"list-group-item"}
-    %span{:class=>"titulo"} Objetivos:
-    %p=@revision[:objetivos].split("\n").join("<br/>")
-  %div{:class=>"list-group-item"}
-    %span{:class=>"titulo"} Año de inicio
-    %span{ :name=>"agno_inicio"}=@revision[:agno_inicio]
-  %div{:class=>"list-group-item"}
-    %span{:class=>"titulo"} Año de término
-    %span{ :name=>"agno_termino"}=@revision[:agno_termino]
-  %div{:class=>"list-group-item"}
-    %span{:class=>"titulo"} Descripción:
-    =@revision[:descripcion].split("\n").join("<br/>")
-  %div{:class=>"list-group-item"}
-    %span{:class=>"titulo"} Palabras claves
-    %span{ :name=>"palabras_claves"}=@revision[:palabras_claves]
+=partial(:systematic_review_info, :locals=>{systematic_review: @revision})
 
-%h3 Estado de la revision
-%p
-  %strong Número de documentos total a revisar:
-  = sprintf("%d", @cds_total)
+%h3=t(:Review_status)
+%p=t_desc_value(:Count_total_documents_to_review, sprintf("%d", @cds_total))
 
 %form{:action=>url("/revision/#{@revision[:id]}/revision_texto_completo"), :method=>:get,:class=>"form-check", :enctype=>"multipart/form-data"}
   %input{:type=>:hidden,:name=>:pagina, :value=>@pager.pagina}
@@ -44,7 +27,7 @@
   %table.reporte
     %thead
       - Decision::N_EST.values.each do |k|
-        %th=k
+        %th=t(k)
     %tbody
       %tr
         - Decision::N_EST.keys.each do |k|

@@ -1,18 +1,18 @@
-%h2 Usuarios
+%h2=t(:Users)
 %form{:method=>'get',:action=>url('/admin/usuarios')}
   %p 
-    %label{:for=>'usuarios_busqueda'}Busqueda
+    %label{:for=>'usuarios_busqueda'}=t(:Search)
     %input#usuarios_busqueda{:type=>'text',:name=>"usuarios_busqueda",:value=>@usr_bus}
     %input{:type=>"submit",:value=>"Buscar"}
 %form{:method=>'post',:action=>url('/admin/usuarios/actualizar')}    
   %table
     %thead
       %th 
-      %th Nombre
-      %th User
-      %th Password
-      %th Activo
-      %th Rol
+      %th=t(:Name)
+      %th=t(:User_name)
+      %th=t(:Password)
+      %th=t(:Active)
+      %th=t(:Role)
     %tbody
       -@usuarios.each do |per|
         %tr
@@ -44,4 +44,4 @@
           %select{:name=>"usuario[N][rol_id]"}
             -@roles.each do |rol|
               %option{:value=>rol[:id], :checked=>rol[:id]=='usuario'}=rol[:id]
-  %input{:type=>"submit",:name=>"Actualizar"}
+  %input{:type=>"submit",:name=>t(:Update)}

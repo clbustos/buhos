@@ -31,7 +31,7 @@
           $("#mensaje_rs-"+ms_id+"-no_visto_por-"+user_id).addClass("hidden");
           $("#mensaje_rs-"+ms_id+"-visto_por-"+user_id).removeClass("hidden");
         }).fail(function () {
-              alert("No se pudo marcar el visto")
+              alert("#{t(:Cant_mark_as_read)}")
           });
       });
     });
@@ -49,30 +49,30 @@
       .btn-group-xs.botones-texto
         %button{:class=>"btn btn-warning marcar-visto #{clase_marcar}",:id=>"mensaje_rs-#{mensaje_rs.id}-no_visto_por-#{usuario[:id]}"}
           %span.glyphicon.glyphicon-inbox
-          Marcar como visto
+          =t(:Mark_as_read)
         %button{:class=>"btn btn-success #{clase_visto}", :id=>"mensaje_rs-#{mensaje_rs.id}-visto_por-#{usuario[:id]}"}
           %span.glyphicon.glyphicon-check
-          Visto
+          =t(:Read)
         %button.btn.btn-default.responder-mensaje{:role=>:button,:id_mostrar=>"mensaje-#{mensaje_rs.id}-respuesta"}
           %span.glyphicon.glyphicon-arrow-left
-            Responder
+            =t(:Reply)
         %button.btn.btn-default.toggle-mensaje{:role=>:button,:id_toggle=>"mensaje-#{mensaje_rs.id}-hijos", :id_glyph=>"mensaje-#{mensaje_rs.id}-glyph-toggle"}
           %span.glyphicon.glyphicon-eye-close{:id=>"mensaje-#{mensaje_rs.id}-glyph-toggle"}
-            Colapsar
+            =t(:Collapse)
   .row.hidden{:id=>"mensaje-#{mensaje_rs.id}-respuesta"}
     .col-md-10
       %form.respuesta-a-m_rs{:method=>"post",:action=>url("/mensaje_rs/#{mensaje_rs.id}/respuesta")}
         .form-group
-          %label{:for=>"nombre"}Autor
+          %label{:for=>"nombre"}=t(:Author)
           %p=usuario[:nombre]
           %input{:type=>"hidden",:name=>:user_id, :value=>usuario[:id]}
         .form-group
-          %label{:for=>"asunto"}Asunto
+          %label{:for=>"asunto"}=t(:Subject)
           %input{:class=>"form-control",:type=>"text", :name=>"asunto", :value=>"Re:#{mensaje_rs.asunto}"}
         .form-group
-          %label{:for=>"texto"}Texto
+          %label{:for=>"texto"}=t(:Text)
           %textarea{:class=>"form-control",:name=>'texto'}
-        %input{:type=>:submit, :value=>"Enviar mensaje a grupo", :class=>"btn btn-default"}
+        %input{:type=>:submit, :value=>t(:Send_message_to_group), :class=>"btn btn-default"}
   - if !mensajes_hijos.empty?
     .row{:id=>"mensaje-#{mensaje_rs.id}-hijos"}
       .col-md-12

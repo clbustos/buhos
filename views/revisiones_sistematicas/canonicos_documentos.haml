@@ -11,7 +11,7 @@
   =sprintf("<strong>#{t(:Count_canonical_documents)}</strong>: #{t(:Total)}=%d, #{t(:Records)}=%d, #{t(:References)}=%d",@ars.cd_count_total, @ars.cd_count_reg, @ars.cd_count_ref)
 
 %p
-  =t_desc_count(:Duplicated_DOI,@cd_rep_doi.length)
+  =t_desc_value(:Duplicated_DOI,@cd_rep_doi.length)
 
 %form{:action=>url("/revision/#{@revision[:id]}/canonicos_documentos"), :method=>:get,:class=>"form-inline"}
   %div{:class=>"input-group mb-2 mr-sm-2"}
@@ -28,7 +28,7 @@
   %input{:type=>:submit, :class=>'btn btn-default '}
 %div{:class=>"btn-group btn-group-sm", :role=>"group"}
   - if permiso("documentos_canonicos_editar")  or revision_pertenece_a(@revision.id, session['user_id'])
-    %a{:href=>url("/revision/#{@revision.id}/canonicos_documentos_repetidos"), :role=>'button', :class=>"btn btn-default"}==t(:Check_duplicated)
+    %a{:href=>url("/revision/#{@revision.id}/canonicos_documentos_repetidos"), :role=>'button', :class=>"btn btn-default"}=t(:Check_duplications)
   - if permiso("documentos_canonicos_editar")  or revision_pertenece_a(@revision.id, session['user_id'])
     %a{:href=>url("/referencias/completar_canonicos"), :role=>'button', :class=>"btn btn-default", :tooltip=>"Se revisan todas las referencias con DOI y se le une al canónico correspondiente"}
       %span{:class=>""}

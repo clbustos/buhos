@@ -26,10 +26,10 @@
   %li
     %a{:href=>url("/revision/#{@revision.id}/canonicos_documentos")}=t(:Canonical_documents)
   %li
-    %a{:href=>url("/revision/#{@revision.id}/canonicos_documentos_repetidos")}=t(:Repeated_Documents)
+    %a{:href=>url("/revision/#{@revision.id}/canonicos_documentos_repetidos")}=t(:Duplicated_documents)
 
-%p=t_desc_count(:count_canonical_documents, @cd_total)
-%p=t_desc_count(:count_duplicated_DOI,@cd_rep_doi.length)
+%p=t_desc_value(:count_canonical_documents, @cd_total.to_i)
+%p=t_desc_value(:count_duplicated_DOI,@cd_rep_doi.length)
 
 %h3=t(:Canonical_documents_duplicated_by_DOI)
 

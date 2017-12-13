@@ -9,4 +9,4 @@
           =a_doi(resp['doi'])
         %a{:href=>"#{base_url}/#{CGI.escape(doi_sin_http(resp['doi']).gsub('/','***'))}?volver_url=#{volver_url}"}
           %button{:class=>"btn btn-default btn-sm"}
-            Asignar DOI
+            =t(:Assign_DOI)

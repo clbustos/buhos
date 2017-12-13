@@ -1,13 +1,12 @@
 .page-header
-  %h2="Revision sistemática #{@revision.nombre} "
-  %h3 Revisión de títulos y resúmenes (búsqueda)
+  %h2=t(:Systematic_review_stage_review_title_abstract, sr_name:@revision[:nombre])
 %ul.breadcrumb
   %li
     %a{:href=>url("/revision/#{@revision.id}")}=@revision.nombre
-  %li{:class=>:active} Revisión de títulos y resúmenes en búsqueda
+  %li{:class=>:active}=t(:Review_title_and_abstract)
 
 .well
-  Objetivo de la etapa: Seleccionar los textos obtenidos de la búsqueda en la literatura que serán sujetos a una revisión de texto completo más adelante.
+  =t("review_title_and_abstract.objective")
 
 :javascript
   $(document).ready(function() {
@@ -15,35 +14,17 @@
     }
   );
 
+=partial(:systematic_review_info, :locals=>{systematic_review: @revision})
 
-%div.list-group
-  %div{:class=>"list-group-item"}
-    %span{:class=>"titulo"} Objetivos:
-    %p=lf_to_br(@revision[:objetivos])
-  %div{:class=>"list-group-item"}
-    %span{:class=>"titulo"} Año de inicio
-    %span{ :name=>"agno_inicio"}=@revision[:agno_inicio]
-  %div{:class=>"list-group-item"}
-    %span{:class=>"titulo"} Año de término
-    %span{ :name=>"agno_termino"}=@revision[:agno_termino]
-  %div{:class=>"list-group-item"}
-    %span{:class=>"titulo"} Descripción:
-    =lf_to_br(@revision[:descripcion])
-  %div{:class=>"list-group-item"}
-    %span{:class=>"titulo"} Palabras claves
-    %span{ :name=>"palabras_claves"}=@revision[:palabras_claves]
-
-%h3 Estado de la revision
-%p
-  %strong Número de documentos total a revisar:
-  = sprintf("%d", @cds_total)
+%h3=t(:Review_status)
+%p=t_desc_value(:Count_total_documents_to_review, sprintf("%d", @cds_total))
 
 %form{:action=>url("/revision/#{@revision[:id]}/revision_titulo_resumen"), :method=>:get,:class=>"form-check", :enctype=>"multipart/form-data"}
   %input{:type=>:hidden,:name=>:orden, :value=>@orden}
   %table.reporte
     %thead
       - Decision::N_EST.values.each do |k|
-        %th=k
+        %th=t(k)
     %tbody
       %tr
         - Decision::N_EST.keys.each do |k|
@@ -55,15 +36,13 @@
             %input{:type=>:radio,  :class=>"form-check-input",:name=>"busqueda", :value=>k, :checked=> checked }
       %tr
         %td{:colspan=>Decision::N_EST.keys.length}
-          %input{:type=>"submit", :class=>"btn btn-default", :value=>"Filtrar"}
+          %input{:type=>"submit", :class=>"btn btn-default", :value=>t(:Filter)}
 - if @busqueda
-  %p
-    %strong Número documentos búsqueda:
-    =@cds_total
+  %p=t_desc_value(:Count_documents_search, @cds_total)
 
 - if @ads.total_decisiones[Decision::NO_DECISION].to_i==0
   %p
-    %strong Ha concluido la primera fase de revision de documentos de la busqueda. Cuando todos los usuarios del grupo hayan contestado, comenzara la segunda fase de revision de referencias.
+    %strong=t("review_title_and_abstract.stage_complete_message")
 
 = partial(:pager,:locals=>{url: @url, pagina: @pagina, max_page: @max_page, :extra=>{busqueda:@busqueda}})
 .list-group

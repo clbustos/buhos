@@ -1,14 +1,14 @@
 - # Params: tag_estadisticas, revision
 - etapa||=nil
 - tags_estadisticas=revision.tags_estadisticas(etapa)
-%h3 Estadísticas Tags
+%h3=t(:Tags_statistics)
 %table.reporte.tablesorter
   %thead
-    %th Tag
-    %th En clase
-    %th Documentos
-    %th % positivos
-    %th Acciones
+    %th=t(:Tag)
+    %th=t(:On_class)
+    %th=t(:Documents)
+    %th=t(:percent_positive)
+    %th=t(:Actions)
   %tbody
     - tags_estadisticas.each do |tag|
       %tr{:id=>"tag-fila-#{tag[:id]}"}

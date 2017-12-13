@@ -1,7 +1,5 @@
 - bb=Base_Bibliografica.id_a_nombre_h
-%p
-  Número de registros:
-  =registros.count
+%p=t_desc_value(:Count_records, registros.count)
 
   .list-group
     - i=1
@@ -24,7 +22,7 @@
         - if registro[:canonico_documento_id]
           =partial(:canonico_documento_boton, :locals=>{:id=>registro[:canonico_documento_id]})
         -if registro[:abstract]!=""
-          %button{:class=>"btn btn-primary btn-sm", :type=>"button",  "data-toggle"=>'collapse', "data-target"=>"#registro#{registro[:id]}", "aria-expanded"=>"false", "aria-controls"=>"registro#{registro[:id]}"}Abstract
+          %button{:class=>"btn btn-primary btn-sm", :type=>"button",  "data-toggle"=>'collapse', "data-target"=>"#registro#{registro[:id]}", "aria-expanded"=>"false", "aria-controls"=>"registro#{registro[:id]}"}=t(:Abstract)
           %div{:class=>"collapse", :id=>"registro#{registro[:id]}"}
             .well=registro[:abstract]
 

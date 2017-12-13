@@ -142,7 +142,7 @@ post '/canonico_documento/asignacion_usuario/:accion' do |accion|
       return 200
     end
   else
-    return [500, "No existe esa función"]
+    return [500, I18n.t(:that_function_doesn_exists)]
   end
 
 end

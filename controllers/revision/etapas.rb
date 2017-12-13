@@ -56,7 +56,7 @@ get '/revision/:id/revision_referencias' do |id|
   @pager.orden||="n_referencias_rtr__desc"
 
 
-  @criterios_orden={:n_referencias_rtr=>"Referencias RTR", :title=>"Título", :year=> "Año", :author=>"Autor"}
+  @criterios_orden={:n_referencias_rtr=>I18n.t(:RTA_references), :title=>I18n.t(:Title), :year=> I18n.t(:Year), :author=>I18n.t(:Author)}
 
   # $log.info(params)
 
@@ -103,7 +103,7 @@ get '/revision/:id/revision_texto_completo' do |id|
   @pager.orden||="year__asc"
 
 
-  @criterios_orden={:n_referencias_rtr=>"Referencias RTR", :title=>"Título", :year=> "Año", :author=>"Autor"}
+  @criterios_orden={:n_referencias_rtr=>I18n.t(:RTA_references), :title=>I18n.t(:Title), :year=> I18n.t(:Year), :author=>I18n.t(:Author)}
 
   # $log.info(params)
 

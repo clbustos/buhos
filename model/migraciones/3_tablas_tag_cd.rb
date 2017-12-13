@@ -16,7 +16,7 @@ Sequel.migration do
       primary_key :id
       String :nombre
       foreign_key :revision_sistematica_id, :revisiones_sistematicas, :null=>false, :key=>[:id]
-      String :etapa, :size=>255, :null=>true
+      String :etapa, :size=>50, :null=>true
       String :tipo,  :null=>true
     end
 

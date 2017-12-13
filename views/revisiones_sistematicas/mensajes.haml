@@ -1,32 +1,32 @@
-%h2="Mensajes para revisión <strong>#{@revision.nombre}</strong>"
+%h2=t(:Systematic_review_messages, sr_name:@revision.nombre)
 
 %ul.breadcrumb
   %li
     %a{:href=>url("/revision/#{@revision.id}")}=@revision.nombre
-  %li{:class=>:active}Mensajes
+  %li{:class=>:active}=t(:Messages)
 
 
 .panel.panel-default
   .panel-heading
-    Nuevo mensaje
+    =t(:New_message)
   .panel-body
     %form{:method=>"post",:action=>url("/revision/#{@revision.id}/mensaje/nuevo")}
       .form-group
-        %label{:for=>"nombre"}Autor
+        %label{:for=>"nombre"}=t(:Author)
         %p=@usuario[:nombre]
         %input{:type=>"hidden",:name=>:user_id, :value=>@usuario[:id]}
       .form-group
-        %label{:for=>"asunto"}Asunto
+        %label{:for=>"asunto"}=t(:Subject)
         %input{:class=>"form-control",:type=>"text", :name=>"asunto"}
       .form-group
-        %label{:for=>"texto"}Texto
+        %label{:for=>"texto"}=t(:Text)
         %textarea{:class=>"form-control",:name=>'texto'}
       %input{:type=>:submit, :value=>"Enviar mensaje a grupo", :class=>"btn btn-default"}
 
-%h3 Mensajes
+%h3=t(:Messages)
 - if @mensajes_rs.count==0
   %p
-    %em No hay mensajes para esta revisión sistemática
+    %em=t(:No_messages_on_this_systematic_review)
 - else
   .list-group
     - @mensajes_rs.each do |mensaje_rs|

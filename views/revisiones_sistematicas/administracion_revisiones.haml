@@ -1,5 +1,5 @@
 .heading
-  %h2=t(:Systematic_review_administration_stage, sn_name:@revision[:nombre], stage_name:@nombre_etapa)
+  %h2=t(:Systematic_review_administration_stage, sr_name:@revision[:nombre], stage_name:t(@nombre_etapa))
 
 :javascript
   $(document).ready(function() {
@@ -9,7 +9,7 @@
 
 
 
-=partial(:breadcrumb_revision_admin,:locals=>{:nombre=>@nombre_etapa})
+=partial(:breadcrumb_revision_admin,:locals=>{:nombre=>t(@nombre_etapa)})
 
 %h3=t(:Statistics_by_user)
 
@@ -78,8 +78,8 @@
     %thead
       %th=t(:Document)
       - Decision::N_EST.each do |dec,nombre|
-        %th=Decision.get_name_decision(dec)
-      %th=t(Resolution)
+        %th=t(Decision.get_name_decision(dec))
+      %th=t(:Resolution)
     %tbody
       - bloque.each do |cd_id,vals|
         %tr

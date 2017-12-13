@@ -1,13 +1,13 @@
 .page-header
-  %h2 Revisiones
+  %h2=t(:Systematic_reviews)
 
 .btn-group
   - if @inactivas
     %a{:href=>url("/revisiones"), :role=>:button, :class=>"btn btn-default"}
-      Solo activas
+      =t(:Only_active)
   - else
     %a{:href=>url("/revisiones?inactivas=true"), :role=>:button, :class=>"btn btn-default"}
-      Activas e inactivas
+      =t(:Active_and_inactive)
 
 -@revisiones.each do |r|
   %div{:class=>"panel panel-default"}
@@ -17,8 +17,7 @@
     %div{:class=>"panel-body"}
       %ul{:class=>"list-group"}
         %li{:class=>'list-group-item'}
-          Descripción:
-          =r.descripcion
+          =t_desc_value(:Description,r.descripcion)
         %li{:class=>'list-group-item'}
           Foco:
           =r.trs_foco.name
@@ -38,14 +37,11 @@
           Destinatario:
           =r.trs_destinatario.name
         %li{:class=>'list-group-item'}
-          Activa:
-          =r.activa ? "Sí" : "No"
+          =t_desc_value(:Active, r.activa ? t(:Yes) : t(:No))
         %li{:class=>'list-group-item'}
-          Etapa:
-          =r.etapa_nombre
+          =t_desc_value(:Stage, t(r.etapa_nombre))
         %li{:class=>'list-group-item'}
-          Número mínimo de RTR para revisión referencias:
-          =r.n_min_rr_rtr
+          =t_desc_value(:Minimum_RTA_documents_for_reference_review, r.n_min_rr_rtr)
 
 
     %div{:class=>"panel-footer"}
@@ -54,4 +50,4 @@
 %a{:href=>url("/revision/nuevo")}
   %button{:class=>"btn btn-default"}
     %span{:class=>"glyphicon glyphicon-plus"}
-    Nueva revisión sistemática
+    =t(:Systematic_review_new)

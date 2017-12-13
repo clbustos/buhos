@@ -1,5 +1,5 @@
 .heading
-  %h2=t(:Systematic_review_search_administration, sr_name:@revision[:nombre])
+  =t_systematic_review_title(@revision[:nombre], "systematic_review_page.search_administration")
 
 =partial(:breadcrumb_revision_admin,:locals=>{:nombre=>t(:Search)})
 

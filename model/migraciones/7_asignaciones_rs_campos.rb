@@ -6,6 +6,7 @@ Sequel.migration do
       foreign_key :revision_sistematica_id, :revisiones_sistematicas, :null=>false, :key=>[:id]
       foreign_key :canonico_documento_id, :canonicos_documentos, :null=>false, :key=>[:id]
       foreign_key :usuario_id, :usuarios, :null=>false, :key=>[:id]
+      String :etapa, :size=>50, :null=>true
       String      :instruccion
       String      :estado
       primary_key [:revision_sistematica_id, :canonico_documento_id,:usuario_id]

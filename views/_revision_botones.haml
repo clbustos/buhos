@@ -2,53 +2,53 @@
   - if permiso("revisiones_editar") or revision_pertenece_a(r.id, session['user_id'])
     %a{:role=>:button, :href=>url("/revision/#{r.id}/edicion"), :class=>"btn btn-default"}
       %span{:class=>"glyphicon glyphicon-pencil"}
-      Editar
+      =t(:Edit)
   - if permiso("documentos_canonicos_ver") or revision_pertenece_a(r.id, session['user_id'])
     %a{:role=>:button, :href=>url("/revision/#{r.id}/canonicos_documentos"), :class=>"btn btn-default"}
       %span{:class=>"glyphicon glyphicon-king"}
-      Documentos Canónicos
+      =t(:Canonical_documents)
   - if permiso("busquedas_ver") or revision_pertenece_a(r.id, session['user_id'])
     %a{:role=>:button, :href=>url("/revision/#{r.id}/busquedas"), :class=>"btn btn-default"}
       %span{:class=>"glyphicon glyphicon-book"}
-      Búsquedas
+      =t(:Searchs)
   - if permiso("tags_ver") or revision_pertenece_a(r.id, session['user_id'])
     %a{:role=>:button, :href=>url("/revision/#{r.id}/tags"), :class=>"btn btn-default"}
       %span{:class=>"glyphicon glyphicon-tag"}
-      Etiquetas
+      =t(:Tags)
   - if permiso("mensajes_ver") or revision_pertenece_a(r.id, session['user_id'])
     %a{:role=>:button, :href=>url("/revision/#{r.id}/mensajes"), :class=>"btn btn-default"}
       %span.glyphicon.glyphicon-envelope
-      Mensajes
+      =t(:Messages)
   - if permiso("rs_campos_ver") or revision_pertenece_a(r.id, session['user_id'])
     %a{:role=>:button, :href=>url("/revision/#{r.id}/campos"), :class=>"btn btn-default"}
       %span.glyphicon.glyphicon-list
-      Campos análisis
+      =t(:Fields_analysis)
   - if permiso("archivos_ver") or revision_pertenece_a(r.id, session['user_id'])
     %a{:role=>:button, :href=>url("/revision/#{r.id}/archivos"), :class=>"btn btn-default"}
       %span.glyphicon.glyphicon-file
-      Archivos
+      =t(:Files)
   %div{:class=>"btn-group btn-group-sm", :role=>"group"}
     %button{:id=>"btn_revisiones_#{r.id}", :type=>"button", :class=>"btn btn-default dropdown-toggle", "data-toggle"=>"dropdown", "aria-haspopup"=>"true", "aria-expanded"=>"false"}
-      Etapas
+      =t(:Stages)
       %span{:class=>"caret"}
     %ul{:class=>"dropdown-menu", "aria-labelledby"=>"btn_revisiones_#{r.id}"}
       - if permiso("revisiones_administrar") or revision_pertenece_a(r.id, session['user_id'])
         %li
           %a{:role=>:button, :href=>url("/revision/#{r.id}/administracion_etapas"), :class=>"btn btn-default"}
             %span{:class=>"glyphicon glyphicon-cert-sign"}
-            Administrar etapas
+            =t(:Stages_administration)
       - if permiso("revision_titulo_resumen_ver") or revision_analizada_por(r.id, session['user_id'])
         %li
           %a{:role=>:button, :href=>url("/revision/#{r.id}/revision_titulo_resumen"), :class=>"btn btn-default "}
             %span{:class=>"glyphicon glyphicon-ok-sign"}
-            Título-Resumen
+            =t("stage.review_title_and_abstract")
       - if permiso("revision_referencias_ver") or revision_analizada_por(r.id, session['user_id'])
         %li
           %a{:role=>:button, :href=>url("/revision/#{r.id}/revision_referencias"), :class=>"btn btn-default "}
             %span{:class=>"glyphicon glyphicon-ok-sign"}
-            Referencias
+            =t("stage.review_references")
       - if permiso("revision_texto_completo_ver") or revision_analizada_por(r.id, session['user_id'])
         %li
           %a{:role=>:button, :href=>url("/revision/#{r.id}/revision_texto_completo"), :class=>"btn btn-default "}
             %span{:class=>"glyphicon glyphicon-ok-sign"}
-            Texto completo
+            =t("stage.review_full_text")
