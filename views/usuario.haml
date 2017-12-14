@@ -1,6 +1,41 @@
-%span.usuario>
-  =t(:Welcome_comma)
-  %a{:href=>url("/usuario/#{session['user_id']}")}=session['nombre']
-  |
-  %a{:href=>url("/logout")}=t(:Logout)
-  |
+%h2=t(:User_title, :user_name=>@usuario.nombre, :login=>@usuario.login)
+- have_permit=permiso("editar_usuarios") or @session['user_id']==@usuario.id
+:javascript
+  #{@select_role.javascript}
+  #{@select_active_user.javascript}
+  #{@select_language.javascript}
+
+%table.bordered
+  %tr
+    %th=t(:Id)
+    %td=@usuario[:id]
+  %tr
+    %th=t(:Login)
+    %td=permission_a_editable(have_permit, @usuario[:id], 'user-login', '/user/edit/login', @usuario[:login], t(:Login))
+  %tr
+    %th=t(:User_name)
+    %td=permission_a_editable(have_permit, @usuario[:id], 'user-name', '/user/edit/nombre', @usuario[:nombre], t(:Name))
+  %tr
+    %th=t(:Role)
+    %td=@select_role.html(@usuario[:id], @usuario[:rol_id])
+  %tr
+    %th=t(:Active_user)
+    %td=@select_active_user.html(@usuario[:id], @usuario[:activa])
+  %tr
+    %th=t(:Language)
+    %td=@select_language.html(@usuario[:id], @usuario[:language])
+
+%h3=t(:Groups)
+- if @usuario.grupos.count==0
+  %p
+    %em=t(:No_groups_for_user)
+- else
+  %ul
+    -@usuario.grupos.each do |group|
+      %li
+        %strong="#{group[:name]}:"
+        =group[:description]
+        %ul
+          - group.revisiones_sistematicas.each do |rs|
+            %li
+              %a{:href=>url("/revision/#{rs[:id]}")}=rs[:nombre]

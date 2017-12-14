@@ -5,7 +5,7 @@ module Sinatra
       attr_reader :values
       # Url to send information to
       attr_reader :url_data
-      # Class of link to select. Appended to id
+      # Class of the text that links to the editable select. Should be unique for every type of select.
       attr_reader :html_class
       # Title of dialog
       attr_accessor :title
@@ -14,12 +14,15 @@ module Sinatra
       attr_accessor :nil_value
       # Method to send the request. By default, is put
       attr_accessor :method
+      # By default, true. Could be set to false conditional on permission
+      attr_accessor :active
       def initialize(values, url,html_class)
         process_values(values)
         @url_data=url
         @html_class=html_class
-        @title="Ingrese su opción"
+        @title=::I18n.t(:Select_an_option)
         @method="put"
+        @active=true
       end
       def process_values(x)
         @values={}
@@ -52,6 +55,7 @@ source: [#{source}]
 
         value_value = value.nil? ? nil_value.to_s : value.to_s
         value_text = value.nil? ? values[nil_value.to_s] : values[value.to_s]
+        return value_text if !active
         "<a href='#' class='#{html_class}' id='select-#{html_class}-#{id}' data-value='#{value_value}' data-pk='#{id}'>#{value_text}</a>"
       end
     end
@@ -59,7 +63,14 @@ source: [#{source}]
       def  get_xeditable_select(values,url,html_class)
         Select.new(values,url,html_class)
       end
+      def get_xeditable_select_bool(url,html_class)
+        values={0 =>::I18n.t("No"),
+                1 => ::I18n.t("Yes")
+        }
+        Select.new(values,url,html_class)
+      end
     end
+
     def self.registered(app)
       app.helpers Xeditable_Select::Helpers
     end

@@ -1,3 +1,4 @@
+#\ -w 
 require 'sinatra'
 require 'rack/session/moneta'
 #Sinatra::Application.default_options.merge!(

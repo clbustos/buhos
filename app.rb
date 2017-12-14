@@ -21,7 +21,6 @@ require 'i18n'
 
 
 
-
 set :session_secret, 'super secret2'
 
 # Arreglo a lo bestia para el force_encoding
@@ -46,7 +45,7 @@ Dir.glob("controllers/**/*.rb").each do |f|
 end
 
 
-if !File.exists?("log")
+unless File.exists?("log")
   FileUtils.mkdir("log")
 end
 $log = Logger.new('log/app.log')
@@ -115,6 +114,12 @@ helpers do
 
   include DOIHelpers
 
+  def a_tag(href,text)
+    "<a href='#{href}'>#{text}</a>"
+  end
+  def a_tag_badge(href,text)
+    "<a href='#{href}'><span class='badge'>#{text}</span></a>"
+  end
   def get_lang(http_lang)
     accepted=["en","es"]
     unless http_lang.nil?
@@ -188,21 +193,32 @@ helpers do
     "#{prefix}-#{suffix}"
   end
 
+
   def a_textarea_editable(id, prefix, data_url, v, default_value="--")
     url_s=url(data_url)
 
     "<a class='textarea_editable' data-pk='#{id}' data-url='#{url_s}' href='#' id='#{prefix}-#{id}' data-placeholder='#{default_value}'>#{v}</a>"
   end
 
-
-  def a_editable(id, prefix, data_url, v,default_value="--")
+  # Generates a text input for x-editable.
+  # @param id Primary key of object to edit
+  # @param prefix the id for the element is 'prefix'-'id'
+  # @param data_url URL for edition of text
+  # @param v Current value
+  # @param placeholder Placeholder for field before entering data
+  # @example a_editable(user.id, 'user-name', 'user/edit/name', user.name, t(:user_name))
+  def a_editable(id, prefix, data_url, v,placeholder='--')
     url_s=url(data_url)
-    #val=(v.nil? ? default_value : v)
-    val=v
-    "<a class='nombre_editable' data-pk='#{id}' data-url='#{url_s}' href='#' id='#{prefix}-#{id}' data-placeholder='#{default_value}'>#{val}</a>"
+    "<a class='nombre_editable' data-pk='#{id}' data-url='#{url_s}' href='#' id='#{prefix}-#{id}' data-placeholder='#{placeholder}'>#{v}</a>"
   end
-
-
+  # Check if we have permission to do an edit
+  def permission_a_editable(have_permit, id, prefix, data_url, v,placeholder)
+    if have_permit
+      a_editable(id,prefix,data_url,v,placeholder)
+    else
+      v
+    end
+  end
 end
 
 
@@ -217,12 +233,14 @@ end
 
 
 before do
-  if session['lang'].nil?
-    session['lang']=get_lang(request.env['HTTP_ACCEPT_LANGUAGE'])
-    session['lang']=='en' unless ['en','es'].include? session['lang']
+  if session['language'].nil?
+    language=get_lang(request.env['HTTP_ACCEPT_LANGUAGE'])
+    $log.info(language)
+    language=='en' unless ['en','es'].include? language
+    I18n.locale = language
+  else
+    I18n.locale = session['language'].to_sym
   end
-  I18n.locale = session['lang'].to_sym
-
 end
 
 
@@ -234,13 +252,8 @@ get '/' do
     log.info("/ sin id: basico")
     redirect url('/login')
   else
-    #begin
-      redirect url('/'+session['rol_id'])
-      raise "Error"
-    #rescue
-    #  session['id']=nil
-    #  redirect('/error')
-    #end
+    @user=Usuario[session['user_id']]
+    haml :main
   end
 end
 

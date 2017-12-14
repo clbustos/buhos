@@ -21,7 +21,7 @@
       .form-group
         %label{:for=>"texto"}=t(:Text)
         %textarea{:class=>"form-control",:name=>'texto'}
-      %input{:type=>:submit, :value=>"Enviar mensaje a grupo", :class=>"btn btn-default"}
+      %input{:type=>:submit, :value=>t(:Send_message_to_group), :class=>"btn btn-default"}
 
 %h3=t(:Messages)
 - if @mensajes_rs.count==0

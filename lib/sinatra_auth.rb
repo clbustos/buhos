@@ -11,9 +11,9 @@ module Sinatra
       def presentar_usuario
         ##$log.info(session)
         if(!session['user'].nil?)
-          haml :usuario
+          partial(:usuario)
         else
-          haml :visitante
+          partial(:visitante)
         end
       end
 
@@ -52,6 +52,7 @@ module Sinatra
           session['nombre']=user[:nombre]
           session['rol_id']=user[:rol_id]
           session['permisos']=user.permisos.map {|v| v.id}
+          session['language']=user.language
           true
         else
           false

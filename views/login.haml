@@ -1,11 +1,11 @@
 %p=t("login.instruction")
 %form{:method=>"post",:action=>url("login"), :class=>"horizontal"}
   .form-group
-    %label{:class=>"control-label col-sm-2", :for=>:name}=t("User_name")
+    %label{:class=>"control-label col-sm-2", :for=>:name}=t(:Login)
     .col-sm-10
-      %input{:class=>"form-control",:type=>'text', :name=>"user",:placeholder=>t("User_name")}
+      %input{:class=>"form-control",:type=>'text', :name=>"user",:placeholder=>t(:Login)}
   .form-group
-    %label{:class=>"control-label col-sm-2", :for=>:password}=t("Password")
+    %label{:class=>"control-label col-sm-2", :for=>:password}=t(:Password)
     .col-sm-10
       %input{:class=>"form-control",:type=>'password', :name=>"password"}
   .form-group

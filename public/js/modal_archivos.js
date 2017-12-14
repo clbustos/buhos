@@ -7,7 +7,7 @@ var ModalArchivo ={
         this.pagina=pagina;
         this.maximo_paginas=maximo_paginas;
         this.archivo_mostrado=archivo_mostrado;
-        if(maximo_paginas=="") {
+        if(String(maximo_paginas)==="") {
             this.maximo_paginas=null;
         } else {
             this.maximo_paginas=parseInt(maximo_paginas);

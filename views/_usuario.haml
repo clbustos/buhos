@@ -1,17 +1,6 @@
-%table
-  %tr
-    %th=t(:Name)
-    %td=@usuario[:nombre]
-  %tr
-    %th=t(:Role)
-    %td
-      %p
-        =@usuario.rol[:descripcion]
-        (
-        =@usuario.rol[:id]
-        )
-  %tr
-    %th=t(:Permissions)
-    %td 
-      -@usuario.permisos.each do |per|
-        %span=per[:id]
+%span.usuario>
+  =t(:Welcome_comma)
+  %a{:href=>url("/usuario/#{session['user_id']}")}=session['nombre']
+  |
+  %a{:href=>url("/logout")}=t(:Logout)
+  |

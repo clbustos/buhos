@@ -39,7 +39,7 @@ class Revision_Sistematica < Sequel::Model
     ETAPAS[0..ETAPAS.find_index(self.etapa.to_sym)]
   end
   def grupo_nombre
-    grupo.nil? ? "--#{t(:group_not_assigned)}--" : grupo.name
+    grupo.nil? ? "--#{::I18n::t(:group_not_assigned)}--" : grupo.name
   end
 
 
@@ -53,7 +53,12 @@ class Revision_Sistematica < Sequel::Model
       cd_ids=cd_id_por_etapa(etapa)
       cd_query=" canonico_documento_id IN (#{cd_ids.join(",")}) "
     end
-    $db["SELECT `tags`.*, COUNT(DISTINCT(canonico_documento_id)) as n_documentos, 0+SUM(IF(decision='yes',1,0))/COUNT(*) as p_yes, IF(tc_id IS NOT NULL,1,0) as con_clase FROM `tags` INNER JOIN `tags_en_cds` tec ON (tec.`tag_id` = `tags`.`id`) LEFT JOIN `tags_en_clases` tcla ON tcla.`tag_id` = tec.`tag_id` WHERE tec.revision_sistematica_id=? AND #{cd_query} GROUP BY tags.id ORDER BY n_documentos DESC ,p_yes DESC,tags.texto ASC", self.id]
+
+    $db["SELECT t.*, IF(tecl.tag_id IS NOT NULL,1,0) as tag_en_clases FROM (SELECT `tags`.*, COUNT(DISTINCT(canonico_documento_id)) as n_documentos, 0+SUM(IF(decision='yes',1,0))/COUNT(*) as p_yes FROM `tags` INNER JOIN `tags_en_cds` tec ON (tec.`tag_id` = `tags`.`id`)
+WHERE tec.revision_sistematica_id=?
+AND  #{cd_query} GROUP BY tags.id ORDER BY n_documentos DESC ,p_yes DESC,tags.texto ASC) as t LEFT JOIN tags_en_clases tecl ON t.id=tecl.tag_id GROUP BY t.id
+ ", self.id]
+
 
   end
 
@@ -118,7 +123,7 @@ class Revision_Sistematica < Sequel::Model
              when :todos
                 cd_todos_id
              else
-               raise "Tipo no definido"
+               raise (I18n::t(:Not_defined_for_this_stage))
            end
     if tipo==:todos
       Canonico_Documento.join(cd_id_table, canonico_documento_id: :id   )
@@ -272,10 +277,12 @@ HEREDOC
   # Entrega la lista de canónicos documentos apropiados para cada etapa
   def cd_id_por_etapa(etapa)
     case etapa.to_s
+      when 'busqueda'
+        cd_registro_id # TODO: Check this
       when 'revision_titulo_resumen'
         cd_registro_id
       when 'revision_referencias'
-        cuenta_referencias_rtr.where( Sequel.lit("n_referencias_rtr >= #{self[:n_min_rr_rtr]}") ).map(:cd_destino)
+        cuenta_referencias_rtr.where( Sequel.lit("n_referencias >= #{self[:n_min_rr_rtr]}") ).map(:cd_destino)
         # Solo dejamos aquellos que tengan más de una referencias
       when 'revision_texto_completo'
         rtr=resoluciones_titulo_resumen.where(:resolucion=>'yes').select_map(:canonico_documento_id)

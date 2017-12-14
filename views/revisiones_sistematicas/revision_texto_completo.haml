@@ -73,12 +73,12 @@
       .row
         .col-md-8=CGI::escapeHTML cd.ref_apa_6
         .col-md-4
-          ="Decisión:#{Decision.get_name_decision(decision)}</br>"
+          %p=t_desc_value(:Decision, t(Decision.get_name_decision(decision)))
           - if asignacion_o
-            ="Estado asignación: #{asignacion_o[:estado]} <br />"
-            ="Instrucción asignación: #{asignacion_o[:instrucción] ? asignacion_o[:instrucción] : '<em>Ninguna</em>'}"
+            %p=t_desc_value(:Assignation_status, asignacion_o[:estado])
+            %p=t_desc_value(:Assignation_instructions, asignacion_o[:instrucción] ? asignacion_o[:instrucción] : t(:No_assignation_instructions))
           - else
-            %em No asignado
+            %em=t(:Not_assigned)
 
 
 = partial(:pager,:locals=>{url: @url, pagina: @pager.pagina, max_page: @pager.max_page, :extra=>{busqueda:@pager.busqueda, orden:@pager.orden}})

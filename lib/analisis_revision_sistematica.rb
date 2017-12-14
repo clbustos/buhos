@@ -3,21 +3,22 @@
 # y para cada uno de sus artículos
 
 class AnalisisRevisionSistematica
+  # Object Systematic_Review
   attr_reader :rs
-  # Identificadores de los canonicos ingresados por registro
+  # Id for canonical documents associated to records
   attr_reader :cd_reg_id
-  # Identificación de los canónicos ingresados por referencia
+  # Id for canonical documents associated to references
   attr_reader :cd_ref_id
-  # Identificacion de todos los documentos canonicos
+  # Id for all canonical documents
   attr_reader :cd_todos_id
-  # Referencias entre canonicos
+  # References between canonical documents
   attr_reader :rec
-  # Hash de canonico, con citas recibidas
+  # Hash for canonical documents, with incoming citations
   attr_reader :ref_cuenta_entrada
-  # Hash de canonico, con citas recibidas
+  # Hash for canonical documents, with out citations
   attr_reader :ref_cuenta_salida
   #
-  # @param rs objeto Revision_Sistematica
+  # @param rs object Systematic_Review
   def initialize(rs)
     @rs=rs
     procesar_indicadores_basicos
@@ -72,7 +73,7 @@ class AnalisisRevisionSistematica
     @cd_todos_id=@rs.cd_todos_id
     @rec=@rs.referencias_entre_canonicos
   end
-
+  private :procesar_indicadores_basicos
   def procesar_numero_citas
     @ref_cuenta_entrada=@rec.to_hash_groups(:cd_destino).inject({}) {|ac, v|
       ac[v[0]]=v[1].length; ac
@@ -92,13 +93,17 @@ class AnalisisRevisionSistematica
 
   end
 
-
+  private :procesar_numero_citas
   def procesar_resoluciones
     @cd_resoluciones=Revision_Sistematica::ETAPAS.inject({}) do |ac,etapa|
       ac[etapa]=Resolucion.where(:revision_sistematica_id=>@rs.id, :etapa=>etapa.to_s).as_hash(:canonico_documento_id)
       ac
     end
   end
+
+  private :procesar_resoluciones
+
+
   def mas_citados(n=20)
     @ref_cuenta_entrada.sort_by {|a| a[1]}.reverse[0...n]
   end
@@ -130,6 +135,8 @@ class AnalisisRevisionSistematica
 
 
   end
+  # provides a hash, with keys containing the users decisions and values
+  # with the pattern for resolutions
   def resoluciones_desde_patron_decision(etapa)
     cds=@rs.cd_id_por_etapa(etapa)
     rpc=resolucion_por_cd(etapa)
@@ -150,8 +157,18 @@ class AnalisisRevisionSistematica
       ac[ v[1]] +=1
       ac
     }
-
   end
+
+  def resolution_pattern(stage)
+    rbd=resolucion_por_cd(stage)
+    rbd.inject({}) {|ac,v|
+
+      ac[ v[1]] ||=0
+      ac[ v[1]] +=1
+      ac
+    }
+  end
+
   def suma_decisiones_vacia
     Decision::N_EST.keys.inject({}) {|ac,v|  ac[v]=0;ac }
   end
@@ -168,7 +185,6 @@ class AnalisisRevisionSistematica
         ac
     }
   end
-
   private :decisiones_por_cd_calculo
 
   def resolucion_por_cd_calculo(etapa)

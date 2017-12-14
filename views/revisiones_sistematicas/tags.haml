@@ -4,7 +4,7 @@
 
 :javascript
   crear_tag=function(url,val,clase_pk) {
-    if(val.trim()=="") {
+    if(String(val).trim()==="") {
       alert("El tag no tiene texto")
     } else {
       $.post(url, {value: val}, function (data) {
@@ -40,7 +40,7 @@
       });
 
       $(".nuevo_tag").on('keypress', function(e) {
-        if(13==e.which && $(this).val().trim()!="") {
+        if(13==e.which && String($(this).val()).trim()!=="") {
           var url=$(this).attr("data-url");
           var clase_pk=$(this).attr("data-pk");
           var val=$(this).val().trim();

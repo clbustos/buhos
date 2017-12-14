@@ -221,7 +221,7 @@ end
     foreign_key :revision_sistematica_id, :revisiones_sistematicas, :null=>false, :key=>[:id]
     foreign_key :usuario_id, :usuarios, :null=>false, :key=>[:id]
     foreign_key :canonico_documento_id, :canonicos_documentos, :null=>false, :key=>[:id]
-    String :etapa, :size=>255, :null=>false
+    String :etapa, :size=>32, :null=>false
     String :decision, :size=>255
     String :comentario, :text=>true
 
@@ -236,7 +236,7 @@ end
     foreign_key :revision_sistematica_id, :revisiones_sistematicas, :null=>false, :key=>[:id]
     foreign_key :canonico_documento_id, :canonicos_documentos, :null=>false, :key=>[:id]
     foreign_key :usuario_id, :usuarios, :null=>false, :key=>[:id]
-    String :etapa, :size=>255, :null=>false
+    String :etapa, :size=>32, :null=>false
     String :resolucion, :size=>255
     String :comentario, :text=>true
 

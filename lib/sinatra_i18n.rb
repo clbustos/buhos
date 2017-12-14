@@ -9,11 +9,20 @@ module Sinatra
       # @param term Term to be i18n and marked with strong tag
       # @param value Value to be presented, without changes
       def t_desc_value(term, value)
-        "<strong>#{::I18n::t(term)}:</strong>#{value}"
+        "<strong>#{::I18n::t(term)}:</strong>&nbsp;#{value}"
       end
       # Canonical title for systematic review pages
       def t_systematic_review_title(sr_name, secondary)
         "<h2>#{::I18n::t(:systematic_review_title, sr_name:sr_name)}</h2><h3>#{::I18n::t(secondary)}</h3>"
+      end
+      def available_locales
+        [:es,:en]
+      end
+      def available_locales_hash
+        available_locales.inject({}) {|ac,v|
+          ac[v] = ::I18n.t("locale.#{v}");ac
+        }
+
       end
     end
 
@@ -23,8 +32,9 @@ module Sinatra
       unless defined?(app.locales)
         app.set :locales, File.join(app.root, 'config','locales', '*.yml')
       end
-      ::I18n.config.available_locales = [:es,:en]
       ::I18n.load_path+=Dir[app.locales]
+      ::I18n.config.available_locales = [:es,:en]
+      ::I18n.default_locale=:en
       #::I18n.backend.load_translations(app.locales)
     end
   end

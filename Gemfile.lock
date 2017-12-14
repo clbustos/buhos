@@ -19,14 +19,7 @@ GEM
     faraday_middleware (0.11.0.1)
       faraday (>= 0.7.4, < 1.0)
     fast-stemmer (1.0.2)
-    fast_gettext (1.6.0)
     ffi (1.9.18)
-    gettext (3.2.4)
-      locale (>= 2.0.5)
-      text (>= 1.3.0)
-    gettext-setup (0.9)
-      fast_gettext (~> 1.1)
-      gettext (>= 3.0.2)
     grim (1.3.3)
     haml (5.0.4)
       temple (>= 0.8.0)
@@ -37,7 +30,6 @@ GEM
     latex-decode (0.3.1)
     levenshtein-ffi (1.1.0)
       ffi (~> 1.9)
-    locale (2.1.2)
     mini_portile2 (2.3.0)
     moneta (1.0.0)
     multi_json (1.12.2)
@@ -86,7 +78,6 @@ GEM
       rack-protection (= 2.0.0)
       tilt (~> 2.0)
     temple (0.8.0)
-    text (1.3.1)
     thin (1.7.2)
       daemons (~> 1.0, >= 1.0.9)
       eventmachine (~> 1.0, >= 1.0.4)
@@ -105,8 +96,6 @@ DEPENDENCIES
   classifier-reborn
   daemons
   dotenv
-  fast_gettext
-  gettext-setup
   grim
   haml
   i18n
