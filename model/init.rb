@@ -15,8 +15,11 @@ else
   $db=Sequel.connect(ENV['DATABASE_URL'], :encoding => 'utf8',:reconnect=>true)
 end
 
-$db.run("SET NAMES UTF8")
-
+begin
+  $db.run("SET NAMES UTF8")
+rescue Sequel::DatabaseError
+  # Es esperable
+end
 $log_sql = Logger.new(File.dirname(__FILE__)+'/../log/app_sql.log')
 
 $db.loggers << $log_sql

@@ -359,4 +359,7 @@ es:
     end_installation: "Finalizar instalación"
     end_installation_instructions: "La instalación ha finalizado. Reinie la aplicación e ingrese con usuario <pre>admin</pre> y password <pre>admin</pre>"
     press_button_and_wait: "Presione el botón para iniciar el proceso"
+    error_populate_database_stage: "Error al poblar la base de datos"
+    schema_creation: "Creación del esquema"
+    please_wait: "Por favor, espere"
 

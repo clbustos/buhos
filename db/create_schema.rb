@@ -167,8 +167,8 @@ module BibRevSys
           String :abstract, :text => true
           String :url, :text => true
 
-          index [:base_bibliografica_id], :name => :base_bibliografica_id
-          index [:canonico_documento_id], :name => :canonico_documento_id
+          index [:base_bibliografica_id]
+          index [:canonico_documento_id]
         end
 
         db.create_table? :referencias do
