@@ -6,6 +6,7 @@
 :javascript
   $(document).ready(function() {
     $("#populate_database").click(function() {
+      $("#result_population_wait").html("#{t("installer.please_wait")}")
       $( "#result_population" ).load( "/installer/populate_database_2");
     });
   });
@@ -28,3 +29,4 @@
   %a.btn.btn-primary#populate_database=t("installer.do_database_population")
   %br
   %div#result_population
+    #result_population_wait=t("installer.press_button_and_wait")

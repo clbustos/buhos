@@ -47,7 +47,8 @@
     %div{:class=>"panel-footer"}
       =partial(:revision_botones, :locals=>{:r=>r})
 
-%a{:href=>url("/revision/nuevo")}
-  %button{:class=>"btn btn-default"}
-    %span{:class=>"glyphicon glyphicon-plus"}
-    =t(:Systematic_review_new)
+- if permiso("revisiones_crear_propia")
+  %a{:href=>url("/revision/nuevo")}
+    %button{:class=>"btn btn-default"}
+      %span{:class=>"glyphicon glyphicon-plus"}
+      =t(:Systematic_review_new)

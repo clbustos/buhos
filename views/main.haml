@@ -1,1 +1,7 @@
 =partial(:dashboard_user, :locals=>{:user=>@user})
+
+- if permiso("revisiones_crear_propia")
+  %a{:href=>url("/revision/nuevo")}
+    %button{:class=>"btn btn-default"}
+      %span{:class=>"glyphicon glyphicon-plus"}
+      =t(:Systematic_review_new)

@@ -24,7 +24,17 @@ end
 class Configuracion < Sequel::Model
 end
 
+class Sr_Taxonomy < Sequel::Model
 
+end
+
+class Sr_Taxonomy_Category < Sequel::Model
+
+end
+
+class Systematic_Review_SRTC < Sequel::Model
+
+end
 
 class Grupo_Usuario < Sequel::Model
   many_to_one :usuario

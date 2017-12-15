@@ -49,16 +49,14 @@
   
   %h3=t(:Taxonomy)
   %table.reporte
-    - l=Revision_Sistematica::TRS.length
-    - (0...l).each do |i|
+    - Sr_Taxonomy.each do |sr_taxonomy|
       %tr
-        - trs=Revision_Sistematica::TRS[i]
-        %th=trs.capitalize
+        %th=t("sr_taxonomy.#{sr_taxonomy[:name]}")
         %td
-          - $db["SELECT * FROM trs_#{Revision_Sistematica::TRS_p[i]} "].all.each do |tip|
+          - Sr_Taxonomy_Category.where(:srt_id=>sr_taxonomy[:id]).each do |srtc|
             %p 
-              %input{:class=>"form-check-input",:type=>"radio", :name=>"trs_#{trs}_id", :value=>tip[:id], :checked=>(tip[:id]==@revision["trs_#{trs}_id".to_sym])}
-              =t(tip[:name])
+              %input{:class=>"form-check-input",:type=>"checkbox", :name=>"srtc[#{srtc[:id]}]", :value=>1}
+              =t("sr_taxonomy_category.#{srtc[:name]}")
   %input{:type=>:submit, :value=>"Enviar"}             
   
   

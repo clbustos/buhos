@@ -6,16 +6,8 @@ class Revision_Sistematica < Sequel::Model
 
   one_to_many :t_clases, :class=>T_Clase
   many_to_one :grupo
-  many_to_one :trs_foco
-  many_to_one :trs_objetivo
-  many_to_one :trs_perspectiva
-  many_to_one :trs_cobertura
-  many_to_one :trs_organizacion
-  many_to_one :trs_destinatario
 
 
-  TRS=["foco","objetivo","perspectiva","cobertura","organizacion","destinatario"]
-  TRS_p=["focos","objetivos","perspectivas","coberturas","organizaciones","destinatarios"]
 
 
   ETAPAS=[:busqueda,

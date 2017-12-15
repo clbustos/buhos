@@ -1,4 +1,16 @@
 require 'sequel'
+require 'haml'
+require 'logger'
+require 'i18n'
+require 'dotenv'
+
+#require 'i18n/backend/fallbacks'
+
+
+Dir.glob("lib/*.rb").each do |f|
+  require_relative(f)
+end
+
 module BibRevSys
   # This modular Sinatra app generates a simple form to install
   # BibSysRev
@@ -10,7 +22,6 @@ module BibRevSys
     helpers HTMLHelpers
     register Sinatra::I18n
     register Sinatra::Mensajes
-
     helpers do
       def permiso(p)
         true
@@ -159,8 +170,9 @@ module BibRevSys
       rescue StandardError=>e
         @e=e
       end
+      haml "installer/end_installation".to_sym, :layout=>"installer/layout".to_sym
+
     end
-    haml "installer/end_installation".to_sym, :layout=>nil
   end
 
 

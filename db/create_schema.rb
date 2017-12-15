@@ -63,7 +63,7 @@ module BibRevSys
         end
 
 
-        db.create_table? :systematic_reviews_srtc do
+        db.create_table? :systematic_review_srtcs do
           foreign_key :srtc_id, :sr_taxonomy_categories, :null => false, :key => [:id]
           foreign_key :sr_id, :revisiones_sistematicas, :null => false, :key => [:id]
           primary_key [:srtc_id, :sr_id]
@@ -258,8 +258,8 @@ module BibRevSys
       db.transaction do
         db[:roles].insert(:id=>'administrator',:descripcion=>'App administrator')
         db[:roles].insert(:id=>'analyst',:descripcion=>'App analyst')
-        db[:usuarios].insert(:login=>'admin',:nombre=>'Administrator', :password=>Digest::SHA1.hexdigest('admin'), :rol_id=>'administrator', :activa=>1, :language=>language)
-        db[:usuarios].insert(:login=>'analyst',:nombre=>'Analyst', :password=>Digest::SHA1.hexdigest('analyst'), :rol_id=>'analyst', :activa=>1, :language=>language)
+        id_admin=db[:usuarios].insert(:login=>'admin',:nombre=>'Administrator', :password=>Digest::SHA1.hexdigest('admin'), :rol_id=>'administrator', :activa=>1, :language=>language)
+        id_analyst=db[:usuarios].insert(:login=>'analyst',:nombre=>'Analyst', :password=>Digest::SHA1.hexdigest('analyst'), :rol_id=>'analyst', :activa=>1, :language=>language)
         permits=['acceder_crossref',
           'administracion',
           'archivos_ver',
@@ -328,6 +328,10 @@ module BibRevSys
         db[:sr_taxonomy_categories].insert(:srt_id=>f_id, :name=>"academics_general")
         db[:sr_taxonomy_categories].insert(:srt_id=>f_id, :name=>"practicians_politics")
         db[:sr_taxonomy_categories].insert(:srt_id=>f_id, :name=>"general_public")
+
+        grupo_id=db[:grupos].insert(:administrador_grupo=>id_admin, :description=>"First group, just for demostration", :name=>"demo group")
+        db[:grupos_usuarios].insert(:grupo_id=>grupo_id, :usuario_id=>id_admin)
+        db[:grupos_usuarios].insert(:grupo_id=>grupo_id, :usuario_id=>id_analyst)
       end
     end
   end

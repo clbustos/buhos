@@ -29,3 +29,6 @@
         - if ars.resolution_pattern(sr[:etapa])[Resolucion::NO_RESOLUCION].to_i>0
           %p=t_desc_value("user_dashboard.count_canonical_document_without_resolution", a_tag("/revision/#{sr[:id]}/administracion/#{sr[:etapa]}#decision_statistics",  t("user_dashboard.check_n_canonical_documents_without_resolution", count:ars.resolution_pattern(sr[:etapa])[Resolucion::NO_RESOLUCION])))
 
+- if user.revisiones_sistematicas.where(:activa=>true).count==0
+  %p
+    %em=t(:No_systematic_review_for_this_user)
