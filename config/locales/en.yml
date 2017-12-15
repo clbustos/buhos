@@ -253,3 +253,7 @@ en:
   Current_stage: "Current stage"
   You_re_the_administrator_of_this_systematic_review: "You're the administrator of this systematic review"
   Dashboard_user: "User %{user_name} dashboard"
+  installer:
+    installer_title: "Installation"
+    language_selection: "Language selection"
+    language_selection_instruction: "Please, select language for installation"

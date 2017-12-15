@@ -1,0 +1,22 @@
+%h2
+  =t("installer.installer_title")
+  =":"
+  =t("installer.basic_data_form")
+
+%ul.breadcrumb
+  %li
+    %a{:href=>'/installer/select_language'}=t("installer.language_selection")
+  %li.active
+    =t(:basic_data_form)
+
+%p=t_desc_value(:Language,session['language'])
+
+%p=t("installer.basic_data_form_instruction")
+
+
+
+%form{:action=>"/installer/basic_data_form", :method=>:post}
+  .form-group
+    %label{:for=>'mysql_user'}=t("installer.mysql_user")
+    %input.form-control{:type=>:text,:name=>:mysql_user, :id=>:form_mysql_user}
+  %input{:type=>:submit}

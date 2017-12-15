@@ -11,13 +11,24 @@ require 'logger'
 
 
 require 'dotenv'
+require 'i18n'
 
 Dotenv.load("./.env")
-
-
-require 'i18n'
 #require 'i18n/backend/fallbacks'
 
+
+Dir.glob("lib/*.rb").each do |f|
+  require_relative(f)
+end
+
+
+# If .env doesn't exists, we should call the installer
+#
+unless File.exist?(".env")
+  load('installer.rb')
+  BibRevSys::Installer.run!
+end
+exit 1
 
 
 
@@ -36,16 +47,13 @@ end
 
 
 
-Dir.glob("lib/*.rb").each do |f|
-  require_relative(f)
-end
 
 Dir.glob("controllers/**/*.rb").each do |f|
   require_relative(f)
 end
 
 
-unless File.exists?("log")
+unless File.exist?("log")
   FileUtils.mkdir("log")
 end
 $log = Logger.new('log/app.log')
@@ -64,28 +72,19 @@ end
 
 
 require 'digest/sha1'
-
-
 enable :logging, :dump_errors, :raise_errors, :sessions
-
-
-
 
 configure :development do |c|
   c.enable :logging, :dump_errors, :raise_errors, :sessions, :show_errors, :show_exceptions
-
-
 end
 
 configure :production do |c|
   c.enable :logging, :dump_errors, :raise_errors, :sessions, :show_errors, :show_exceptions
-
 end
 
 
 
-helpers Sinatra::Partials
-helpers Sinatra::Mobile
+
 
 # Internacionalización!
 #require 'i18n'
@@ -100,37 +99,13 @@ helpers Sinatra::Mobile
 # this is required if you want to assume the default path
 set :root, File.dirname(__FILE__)
 
-# an alternative would be to set the locales path
-#set :locales, File.join(File.dirname(__FILE__), 'locales/es.yml')
 
-# then just register the extension
-#register Sinatra::I18n
-
-
-
-
+helpers Sinatra::Partials
+helpers Sinatra::Mobile
+helpers DOIHelpers
+helpers HTMLHelpers
 
 helpers do
-
-  include DOIHelpers
-
-  def a_tag(href,text)
-    "<a href='#{href}'>#{text}</a>"
-  end
-  def a_tag_badge(href,text)
-    "<a href='#{href}'><span class='badge'>#{text}</span></a>"
-  end
-  def get_lang(http_lang)
-    accepted=["en","es"]
-    unless http_lang.nil?
-      langs=http_lang.split(",").map {|v|
-        v.split(";")[0].split("-")[0]
-      }.each  {|l|
-        return l if accepted.include? l
-      }
-    end
-    "en"
-  end
   # Entrega el acceso al log
   def log
     $log
@@ -141,10 +116,7 @@ helpers do
     dir
   end
   
-  def lf_to_br(t)
-    t.nil? ? "" : t.split("\n").join("<br/>")
-  end
-  
+
   
   # Entrega el valor para un id de configuración
   def config_get(id)
@@ -158,67 +130,7 @@ helpers do
     tiempo.strftime("%Y-%m-%d %H:%M:%S")
   end
 
-  def url(ruta)
-    if @mobile
-      "/mob#{ruta}"
-    else
-      ruta
-    end
-  end
 
-  def put_editable(b,&block)
-    params=b.params
-    value=params['value'].chomp
-    return 505 if value==""
-    id=params['pk']
-    block.call(id, value)
-    return 200
-  end
-
-  def class_bootstrap_contextual(cond, prefix, clase, clase_no="default")
-    cond ? "#{prefix}-#{clase}" : "#{prefix}-#{clase_no}"
-  end
-
-  def decision_class_bootstrap(tipo, prefix)
-    suffix=case tipo
-             when nil
-               "default"
-             when "yes"
-               "success"
-             when "no"
-               "danger"
-             when "undecided"
-               "warning"
-           end
-    "#{prefix}-#{suffix}"
-  end
-
-
-  def a_textarea_editable(id, prefix, data_url, v, default_value="--")
-    url_s=url(data_url)
-
-    "<a class='textarea_editable' data-pk='#{id}' data-url='#{url_s}' href='#' id='#{prefix}-#{id}' data-placeholder='#{default_value}'>#{v}</a>"
-  end
-
-  # Generates a text input for x-editable.
-  # @param id Primary key of object to edit
-  # @param prefix the id for the element is 'prefix'-'id'
-  # @param data_url URL for edition of text
-  # @param v Current value
-  # @param placeholder Placeholder for field before entering data
-  # @example a_editable(user.id, 'user-name', 'user/edit/name', user.name, t(:user_name))
-  def a_editable(id, prefix, data_url, v,placeholder='--')
-    url_s=url(data_url)
-    "<a class='nombre_editable' data-pk='#{id}' data-url='#{url_s}' href='#' id='#{prefix}-#{id}' data-placeholder='#{placeholder}'>#{v}</a>"
-  end
-  # Check if we have permission to do an edit
-  def permission_a_editable(have_permit, id, prefix, data_url, v,placeholder)
-    if have_permit
-      a_editable(id,prefix,data_url,v,placeholder)
-    else
-      v
-    end
-  end
 end
 
 
@@ -232,16 +144,7 @@ error 404 do
 end
 
 
-before do
-  if session['language'].nil?
-    language=get_lang(request.env['HTTP_ACCEPT_LANGUAGE'])
-    $log.info(language)
-    language=='en' unless ['en','es'].include? language
-    I18n.locale = language
-  else
-    I18n.locale = session['language'].to_sym
-  end
-end
+
 
 
 # INICIO
@@ -256,9 +159,4 @@ get '/' do
     haml :main
   end
 end
-
-
-
-
-
 

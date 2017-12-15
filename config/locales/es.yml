@@ -272,3 +272,8 @@ es:
   Canonical_Document_Status: "Estado del Documento Canónico"
   percent_positive: "% positivos"
   Not_assigned: "No asignado"
+  App_title_installer: "Installer - BibSysRev"
+  installer:
+    installer_title: "Instalación"
+    language_selection: "Selección de lenguaje"
+    language_selection_instruction: "Por favor, seleccione el lenguaje para la instalación"

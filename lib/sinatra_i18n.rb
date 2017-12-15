@@ -1,6 +1,18 @@
 module Sinatra
   module I18n
     module Helpers
+      def get_lang(http_lang)
+        accepted=["en","es"]
+        unless http_lang.nil?
+          langs=http_lang.split(",").map {|v|
+            v.split(";")[0].split("-")[0]
+          }.each  {|l|
+            return l if accepted.include? l
+          }
+        end
+        "en"
+      end
+
       # Just a wrapper for I18n::t method
       def t(*args)
         ::I18n::t(*args)
@@ -28,6 +40,20 @@ module Sinatra
 
     def self.registered(app)
       app.helpers I18n::Helpers
+
+      app.before do
+        if session['language'].nil?
+          language=get_lang(request.env['HTTP_ACCEPT_LANGUAGE'])
+          #$log.info(language)
+          language=='en' unless ['en','es'].include? language
+          ::I18n.locale = language
+        else
+          ::I18n.locale = session['language'].to_sym
+        end
+      end
+
+
+
       #$log.info(app.root)
       unless defined?(app.locales)
         app.set :locales, File.join(app.root, 'config','locales', '*.yml')
