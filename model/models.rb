@@ -24,21 +24,6 @@ end
 class Configuracion < Sequel::Model
 end
 
-class TrsFoco < Sequel::Model
-end
-
-class TrsDestinatario < Sequel::Model
-end
-
-class TrsObjetivo  < Sequel::Model
-end
-class TrsPerspectiva  < Sequel::Model
-end
-
-class TrsCobertura  < Sequel::Model
-end
-class TrsOrganizacion  < Sequel::Model
-end
 
 
 class Grupo_Usuario < Sequel::Model

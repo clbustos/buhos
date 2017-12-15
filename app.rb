@@ -8,12 +8,9 @@ require 'sinatra'
 # Como el sistema está en vivo, es más peligroso hacer lo otro
 require 'haml'
 require 'logger'
-
-
-require 'dotenv'
 require 'i18n'
+require 'dotenv'
 
-Dotenv.load("./.env")
 #require 'i18n/backend/fallbacks'
 
 
@@ -22,17 +19,34 @@ Dir.glob("lib/*.rb").each do |f|
 end
 
 
+
 # If .env doesn't exists, we should call the installer
 #
-unless File.exist?(".env")
+unless File.exist?("config/installed")
   load('installer.rb')
   BibRevSys::Installer.run!
+  exit 1
 end
-exit 1
 
+Dotenv.load("./.env")
 
 
 set :session_secret, 'super secret2'
+
+enable :logging, :dump_errors, :raise_errors, :sessions
+
+configure :development do |c|
+  c.enable :logging, :dump_errors, :raise_errors, :sessions, :show_errors, :show_exceptions
+end
+
+configure :production do |c|
+  c.enable :logging, :dump_errors, :raise_errors, :sessions, :show_errors, :show_exceptions
+end
+
+# this is required if you want to assume the default path
+set :root, File.dirname(__FILE__)
+
+
 
 # Arreglo a lo bestia para el force_encoding
 
@@ -72,15 +86,6 @@ end
 
 
 require 'digest/sha1'
-enable :logging, :dump_errors, :raise_errors, :sessions
-
-configure :development do |c|
-  c.enable :logging, :dump_errors, :raise_errors, :sessions, :show_errors, :show_exceptions
-end
-
-configure :production do |c|
-  c.enable :logging, :dump_errors, :raise_errors, :sessions, :show_errors, :show_exceptions
-end
 
 
 
@@ -96,8 +101,6 @@ end
 
 
 
-# this is required if you want to assume the default path
-set :root, File.dirname(__FILE__)
 
 
 helpers Sinatra::Partials

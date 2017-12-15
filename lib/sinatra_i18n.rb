@@ -45,13 +45,12 @@ module Sinatra
         if session['language'].nil?
           language=get_lang(request.env['HTTP_ACCEPT_LANGUAGE'])
           #$log.info(language)
-          language=='en' unless ['en','es'].include? language
+          language='en' unless ['en','es'].include? language
           ::I18n.locale = language
         else
           ::I18n.locale = session['language'].to_sym
         end
       end
-
 
 
       #$log.info(app.root)

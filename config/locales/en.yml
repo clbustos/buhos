@@ -257,3 +257,4 @@ en:
     installer_title: "Installation"
     language_selection: "Language selection"
     language_selection_instruction: "Please, select language for installation"
+    no_env_file_access: "The installer can't modify .env file. Please, provide read/write access to this file"
