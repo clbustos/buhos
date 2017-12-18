@@ -8,7 +8,6 @@ gem "thin"
 gem "haml"
 gem "rspec"
 gem "rack-test"
-gem "i18n"
 gem 'bibtex-ruby'
 gem 'levenshtein-ffi', :require => 'levenshtein'
 gem 'serrano'
@@ -23,4 +22,4 @@ gem 'categorize'
 gem 'ai4r'
 gem 'pdf-reader'
 gem 'grim'
-gem "i18n"
+gem 'i18n'
