@@ -5,7 +5,7 @@ require 'rack/session/moneta'
 #  :run => false,
 #  :env => :production
 #)
-require_relative 'app.rb'
+
 disable :run
 set :session_secret, "Secreto"
 set :show_exceptions, true
@@ -40,4 +40,10 @@ end
 
 use Rack::ShowExceptions
 
-run Sinatra::Application
+if File.exist?("config/installed")
+  require_relative 'app.rb'
+  run Sinatra::Application
+else
+  require_relative 'installer.rb'
+  run BibRevSys::Installer
+end

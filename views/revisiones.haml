@@ -18,24 +18,10 @@
       %ul{:class=>"list-group"}
         %li{:class=>'list-group-item'}
           =t_desc_value(:Description,r.descripcion)
-        %li{:class=>'list-group-item'}
-          Foco:
-          =r.trs_foco.name
-        %li{:class=>'list-group-item'}
-          Objetivo:
-          =r.trs_objetivo.name
-        %li{:class=>'list-group-item'}
-          Perspectiva:
-          =r.trs_perspectiva.name
-        %li{:class=>'list-group-item'}
-          Cobertura:
-          =r.trs_cobertura.name
-        %li{:class=>'list-group-item'}
-          Organización:
-          =r.trs_organizacion.name
-        %li{:class=>'list-group-item'}
-          Destinatario:
-          =r.trs_destinatario.name
+        -r.taxonomy_categories_hash.each do |group, categories|
+          %li{:class=>'list-group-item'}
+            ="#{t_taxonomy_group(group)}:"
+            =categories.map {|v| t_taxonomy_category(v[:cat_name])}.join(",")
         %li{:class=>'list-group-item'}
           =t_desc_value(:Active, r.activa ? t(:Yes) : t(:No))
         %li{:class=>'list-group-item'}
@@ -47,7 +33,8 @@
     %div{:class=>"panel-footer"}
       =partial(:revision_botones, :locals=>{:r=>r})
 
-%a{:href=>url("/revision/nuevo")}
-  %button{:class=>"btn btn-default"}
-    %span{:class=>"glyphicon glyphicon-plus"}
-    =t(:Systematic_review_new)
+- if permiso("revisiones_crear_propia")
+  %a{:href=>url("/revision/nuevo")}
+    %button{:class=>"btn btn-default"}
+      %span{:class=>"glyphicon glyphicon-plus"}
+      =t(:Systematic_review_new)

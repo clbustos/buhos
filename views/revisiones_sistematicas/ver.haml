@@ -1,6 +1,4 @@
-%h2=t("systematic_review.view", :sr_name=>@revision[:nombre])
-
-
+.heading=t_systematic_review_title(@revision[:nombre],:View)
 
 %div.list-group
   %div{:class=>"list-group-item"}
@@ -36,14 +34,11 @@
       %span=@revision.administrador_nombre
   %div{:class=>"list-group-item"}
     %h4{:class=>"list-group-item-heading"}=t(:Taxonomy)
-    %table.reporte
-      - l=Revision_Sistematica::TRS.length
-      - (0...l).each do |i|
-        %tr
-          - trs=Revision_Sistematica::TRS[i]
-          %th=trs.capitalize
-          %td=@nombres_trs[Revision_Sistematica::TRS[i]]
-
+    %ul
+      - @taxonomy_categories.each_pair do |group, categories|
+        %li
+          %em="#{t("sr_taxonomy.#{group}")}:"
+          =categories.map {|v| t("sr_taxonomy_category.#{v[:cat_name]}")}. join(", ")
   %div{:class=>"list-group-item"}
     %h4{:class=>"list-group-item-heading"}=t(:Actions)
     %p=partial(:revision_botones, :locals=>{:r=>@revision})

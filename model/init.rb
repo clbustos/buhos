@@ -12,12 +12,14 @@ if ENV['JAWSDB_URL'] and ENV['USE_JAWSDB']=='true'
   url_mysql= ENV['JAWSDB_URL'].sub("mysql:","mysql2:")
   $db=Sequel.connect(url_mysql, :encoding => 'utf8',:reconnect=>true)
 else
-
   $db=Sequel.connect(ENV['DATABASE_URL'], :encoding => 'utf8',:reconnect=>true)
 end
 
-$db.run("SET NAMES UTF8")
-
+begin
+  $db.run("SET NAMES UTF8")
+rescue Sequel::DatabaseError
+  # Es esperable
+end
 $log_sql = Logger.new(File.dirname(__FILE__)+'/../log/app_sql.log')
 
 $db.loggers << $log_sql

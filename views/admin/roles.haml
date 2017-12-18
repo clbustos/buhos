@@ -3,9 +3,14 @@
   -@roles.each do |rol|
     %h3
       =t(:Rol)
-      =rol[:id]
-    %select{:multiple=>true, :size=>@permisos.count, :name=>"permisos[#{rol[:id]}[]"}
-      - @permisos.each do |permiso|
-        %option{:value=>permiso[:id], :selected=>rol.incluye_permiso?(permiso[:id])}=permiso[:id]
+      =t("role.#{rol[:id]}")
+    -if rol[:id]=='administrator'
+      %ul
+        - @permisos.each do |permiso|
+          %li=t("permit.#{permiso.id}")
+    -else
+      %select{:multiple=>true, :size=>@permisos.count, :name=>"permisos[#{rol[:id]}[]"}
+        - @permisos.each do |permiso|
+          %option{:value=>permiso[:id], :selected=>rol.incluye_permiso?(permiso[:id])}=t("permit.#{permiso[:id]}")
   %p
   %input{:type=>:submit}

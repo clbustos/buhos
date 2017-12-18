@@ -1,0 +1,32 @@
+%h2
+  =t("installer.installer_title")
+  =":"
+  =t("installer.populate_database")
+
+:javascript
+  $(document).ready(function() {
+    $("#populate_database").click(function() {
+      $("#result_population_wait").html("#{t("installer.please_wait")}")
+      $( "#result_population" ).load( "/installer/populate_database_2");
+    });
+  });
+%ul.breadcrumb
+  %li
+    %a{:href=>'/installer/select_language'}=t("installer.language_selection")
+  %li
+    %a{:href=>'/installer/basic_data_form'}=t("installer.basic_data_form")
+  %li.active
+    =t("installer.populate_database")
+
+
+- if @error_conexion
+  %div.alert.alert-danger
+    =t("installer.error_connection_database")
+
+  %pre.alert.alert-danger=@error_conexion.message
+- else
+  %div.alert.alert-success=t("installer.successful_connection")
+  %a.btn.btn-primary#populate_database=t("installer.do_database_population")
+  %br
+  %div#result_population
+    #result_population_wait=t("installer.press_button_and_wait")

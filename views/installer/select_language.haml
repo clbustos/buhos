@@ -1,0 +1,17 @@
+%h2
+  =t("installer.installer_title")
+  =":"
+  =t("installer.language_selection")
+
+%ul.breadcrumb
+  %li.active=t("installer.language_selection")
+
+%p=t("installer.language_selection_instruction")
+
+%form{:action=>"/installer/select_language", :method=>:post}
+  .form-group
+    %label{:for=>'language'}=t(:Language)
+    %select.form-control{:name=>'language', :id=>'language'}
+      - available_locales_hash.each_pair do |key,val|
+        %option{:value=>key, :selected=>key==::I18n.locale}=val
+  %input{:type=>:submit}

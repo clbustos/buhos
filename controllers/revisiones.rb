@@ -11,21 +11,30 @@ end
 
 
 get '/revision/nuevo' do
-  @revision=Revision_Sistematica.new
+  title(t(:Systematic_review_new))
+  first_group=Usuario[session['user_id']].grupos.first
+  administrator=first_group[:administrador_grupo]
+  @revision=Revision_Sistematica.new(activa:true, etapa: "busqueda", grupo:first_group, administrador_revision:administrator )
+  @taxonomy_categories_id=[]
+
   haml %s{revisiones_sistematicas/edicion}
 end
 
 
 get "/revision/:id" do |id|
   @revision=Revision_Sistematica[id]
-  @nombres_trs=@revision.get_nombres_trs
   ##$log.info(@nombres_trs)
+
+  @taxonomy_categories=@revision.taxonomy_categories_hash
+
+
   haml %s{revisiones_sistematicas/ver}
 end
 
 get "/revision/:id/edicion" do |id|
   @revision=Revision_Sistematica[id]
-
+  @taxonomy_categories_id=@revision.taxonomy_categories_id
+  title(t(:Systematic_review_edit, sr_name:@revision.nombre))
   haml %s{revisiones_sistematicas/edicion}
 end
 
@@ -36,33 +45,31 @@ post '/revision/actualizar' do
   otros_params=params
   otros_params.delete("revision_id")
   otros_params.delete("captures")
+  strc=params.delete("srtc")
   #No nulos
   ##$log.info(otros_params)
   otros_params=otros_params.inject({}) {|ac,v|
     ac[v[0].to_sym]=v[1];ac
   }
   #  aa=Revision_Sistematica.new
-  #$log.info(otros_params)
-  if(id=="")
-    revision=Revision_Sistematica.create(
-      :nombre=>otros_params[:nombre],
-      :grupo_id=>otros_params[:grupo_id],
-      :trs_foco_id=>otros_params[:trs_foco_id],
-      :trs_objetivo_id=>otros_params[:trs_objetivo_id],
-      :trs_perspectiva_id=>otros_params[:trs_perspectiva_id],
-      :trs_cobertura_id=>otros_params[:trs_cobertura_id],
-      :trs_organizacion_id=>otros_params[:trs_organizacion_id],
-      :trs_destinatario_id=>otros_params[:trs_destinatario_id],
-      :etapa=>otros_params[:etapa],
-      :activa=>otros_params[:activa],
-      :n_min_rr_rtr=>otros_params[:n_min_rr_rtr]
-      )
-  else
-    revision=Revision_Sistematica[id]
-    revision.update(otros_params)
+  $log.info(otros_params)
+
+  $db.transaction(:rollback=>:reraise) do
+    if(id=="")
+      id=Revision_Sistematica.insert(otros_params)
+    else
+      revision=Revision_Sistematica[id]
+      revision.update(otros_params)
+    end
+
+    Systematic_Review_SRTC.where(:sr_id=>id).delete
+    strc.keys.each {|key|
+      Systematic_Review_SRTC.insert(:sr_id=>id, :srtc_id=>key.to_i)
+    }
+  # Procesamos los srtc
   end
 
-  redirect url("/revisiones")
+  redirect url("/revision/#{id}")
 end
 
 

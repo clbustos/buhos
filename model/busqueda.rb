@@ -118,7 +118,7 @@ class Busqueda < Sequel::Model
       ref_ids=[]
       integrator.each do |reference|
         bb_id = bb[ reference.type.to_s ]
-        raise "No existe base de datos" if bb_id.nil?
+        raise t("error.doesnt_exist_integrator", integrator: bb_id ) if bb_id.nil?
         reg_o=Registro[:uid => reference.uid, :base_bibliografica_id=> bb_id]
 
         if reg_o.nil?

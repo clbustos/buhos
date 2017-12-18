@@ -28,10 +28,10 @@ namespace :db do
     db = Sequel.connect(ENV["DATABASE_URL"])
     if args[:version]
       puts "Migrating to version #{args[:version]}"
-      Sequel::Migrator.run(db, "#{base_dir}/model/migraciones", target: args[:version].to_i)
+      Sequel::Migrator.run(db, "#{base_dir}/db/migrations", target: args[:version].to_i)
     else
       puts "Migrating to latest"
-      Sequel::Migrator.run(db, "#{base_dir}/model/migraciones")
+      Sequel::Migrator.run(db, "#{base_dir}/db/migrations")
     end
   end
 end

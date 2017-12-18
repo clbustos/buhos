@@ -1,0 +1,17 @@
+%h2
+  =t("installer.installer_title")
+  =":"
+  =t("installer.end_installation")
+
+%ul.breadcrumb
+  %li
+    %a{:href=>'/installer/select_language'}=t("installer.language_selection")
+  %li
+    %a{:href=>'/installer/basic_data_form'}=t("installer.basic_data_form")
+  %li
+    %a{:href=>'/installer/basic_data_form'}=t("installer.populate_database")
+  %li.active
+    =t("installer.end_installation")
+
+.alert.alert-success
+  =t("installer.end_installation_instructions")

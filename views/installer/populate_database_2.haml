@@ -1,0 +1,9 @@
+- if @error
+  %div.alert.alert-danger
+    =t("installer.error_populate_database")
+    %br
+    =t_desc_value("installer.error_populate_database_stage",t(@pdb_stage))
+  %pre.alert.alert-danger=@error.message
+- else
+  %div.alert.alert-success=t("installer.successful_population")
+  %a.btn.btn-primary{:href=>"/installer/end_installation.rb"}=t("installer.end_installation")

@@ -24,22 +24,17 @@ end
 class Configuracion < Sequel::Model
 end
 
-class TrsFoco < Sequel::Model
+class Sr_Taxonomy < Sequel::Model
+
 end
 
-class TrsDestinatario < Sequel::Model
+class Sr_Taxonomy_Category < Sequel::Model
+
 end
 
-class TrsObjetivo  < Sequel::Model
-end
-class TrsPerspectiva  < Sequel::Model
-end
+class Systematic_Review_SRTC < Sequel::Model
 
-class TrsCobertura  < Sequel::Model
 end
-class TrsOrganizacion  < Sequel::Model
-end
-
 
 class Grupo_Usuario < Sequel::Model
   many_to_one :usuario

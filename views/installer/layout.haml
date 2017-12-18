@@ -6,7 +6,7 @@
     %meta{:name=>'viewport',:content=>'width=device-width, initial-scale=1'}
 
     
-    %title= @title.nil? ?  t(:App_title) : "#{@title} - #{t(:App_title)}"
+    %title= @title.nil? ? t(:App_title_installer) : t(@title)
 
     %script{:type=>'text/javascript', :src=>url('/js/jquery-3.1.0.min.js')}
     %script{:type=>'text/javascript', :src=>url('/js/bootstrap.min.js')}
@@ -34,34 +34,8 @@
       %nav{:class=>'navbar navbar-default'}
         .container-fluid
           %a{:class=>'navbar-brand', :href=>url('/')}=t(:App_title)
-          %ul{:class=>'nav navbar-nav'}
-            -if permiso('ingreso')
-              %li{:class=>''}
-                %a{:class=>'nav-link', :href=>'/revisiones'}=t(:Systematic_reviews)
-            -if false and permiso('canonico')
-              %li{:class=>''}
-                %a{:class=>'nav-link', :href=>'/canonicos'}=t(:Canonicals)
-            -if false and permiso('grupos')
-              %li{:class=>''}
-                %a{:class=>'nav-link', :href=>'/grupos'}=t(:Users_and_groups)
-            -if false and permiso('estadisticas')
-              %li{:class=>''}
-                %a{:class=>'nav-link', :href=>'/estadisticas'}=t(:Use_Statistics)
-            -if permiso('administracion')
-              %li{:class=>'dropdown'}
-                %a{:href=>'#', :class=>'dropdown-toggle', 'data-toggle'=>'dropdown', :role=>'button', 'aria-haspopup'=>'true', 'aria-expanded'=>'false', :id=>'navbarDropdownMenuLink'}
-                  =t(:Administration)
-                  %span{:class=>:caret}>
-                %ul.dropdown-menu
-                  %li<
-                    %a{:class=>'dropdown-item', :href=>url('/admin/usuarios')}=t(:Users)
-                  %li<
-                    %a{:class=>'dropdown-item', :href=>url('/admin/roles')}=t(:Roles)
           %div{:class=>'nav navbar-nav navbar-right'}
             %p{:class=>'navbar-text'}
-              =presentar_usuario
-              -if settings.development?
-                %span{:class=>"alerta"}=t(:Dev_alert)
       %section#mensajes
         =imprimir_mensajes
       %section#content
