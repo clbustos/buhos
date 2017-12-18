@@ -6,7 +6,7 @@
     %meta{:name=>'viewport',:content=>'width=device-width, initial-scale=1'}
 
     
-    %title= @title.nil? ? t(:App_title) : t(@title)
+    %title= @title.nil? ?  t(:App_title) : "#{@title} - #{t(:App_title)}"
 
     %script{:type=>'text/javascript', :src=>url('/js/jquery-3.1.0.min.js')}
     %script{:type=>'text/javascript', :src=>url('/js/bootstrap.min.js')}

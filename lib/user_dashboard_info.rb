@@ -15,7 +15,10 @@ class UserDashboardInfo
     ids=$db["SELECT mr.id FROM mensajes_rs mr LEFT JOIN mensajes_rs_vistos mrv ON mr.id=mrv.m_rs_id WHERE mr.revision_sistematica_id=? AND ( usuario_id IS NULL OR (usuario_id=? AND visto!=1))",sr_id, @user[:id]].map(:id)
     Mensaje_Rs.where(:id=>ids)
   end
-
+  # Return the searchs not ready for review
+  def searchs_not_ready(sr_id)
+    Busqueda.where(:user_id=>user[:id], :review_ready=>false, :revision_sistematica_id=>sr_id)
+  end
   def adu_for_sr(sr)
     @adu_hash[sr[:id]]
   end

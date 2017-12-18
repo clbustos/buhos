@@ -183,10 +183,7 @@ module ReferenceIntegrator
     class Writer
       def self.generate(canonicos_documentos)
         bib = BibTeX::Bibliography.new
-
         canonicos_documentos.each do |cd|
-
-
           campos=[:title, :abstract, :journal, :year, :volume, :pages,
                :doi, :url, :author]
 

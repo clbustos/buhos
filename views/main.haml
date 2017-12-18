@@ -1,7 +1,12 @@
+- title(t(:Dashboard_user, :user_name=>@user.nombre))
 =partial(:dashboard_user, :locals=>{:user=>@user})
-
-- if permiso("revisiones_crear_propia")
-  %a{:href=>url("/revision/nuevo")}
-    %button{:class=>"btn btn-default"}
+.btn-group.btn-group-sm
+  - if permiso("revisiones_crear_propia")
+    %a.btn.btn-default{:href=>url("/revision/nuevo")}
       %span{:class=>"glyphicon glyphicon-plus"}
       =t(:Systematic_review_new)
+  - if permiso("grupos_crear")
+    %a.btn.btn-default{:href=>url("/grupo/nuevo")}
+      %span{:class=>"glyphicon glyphicon-plus"}
+      =t(:Group_new)
+

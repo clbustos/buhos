@@ -14,7 +14,7 @@ module BibRevSys
           String :nombre, :size => 255
           String :password, :size => 255, :null => false
           foreign_key :rol_id, :roles, :type => String, :size => 50, :null => false, :key => [:id]
-          Integer :activa
+          TrueClass :activa, :default=>true, :null=>false
         end
 
 
@@ -256,6 +256,7 @@ module BibRevSys
     end
     def self.create_bootstrap_data(db,language='en')
       db.transaction do
+
         db[:roles].insert(:id=>'administrator',:descripcion=>'App administrator')
         db[:roles].insert(:id=>'analyst',:descripcion=>'App analyst')
         id_admin=db[:usuarios].insert(:login=>'admin',:nombre=>'Administrator', :password=>Digest::SHA1.hexdigest('admin'), :rol_id=>'administrator', :activa=>1, :language=>language)
@@ -263,8 +264,8 @@ module BibRevSys
         permits=['acceder_crossref',
           'administracion',
           'archivos_ver',
-          'busquedas_ver',
-          'crear_busqueda_revision',
+          'busquedas_revision_ver',
+          'busquedas_revision_crear',
           'crossref_acceder',
           'documentos_canonicos_editar',
           'documentos_canonicos_ver',
@@ -295,12 +296,19 @@ module BibRevSys
               db[:permisos_roles].insert(:permiso_id=>permit,:rol_id=>'administrator')
             end
 
-        analyst_permits=["busquedas_ver","documentos_canonicos_ver","revision_analizar_propia","revision_editar_propia", "ver_revisiones"]
+        analyst_permits=["busquedas_revision_ver","documentos_canonicos_ver","revision_analizar_propia","revision_editar_propia", "ver_revisiones"]
         analyst_permits.each do |permit|
 
           db[:permisos_roles].insert(:permiso_id=>permit,:rol_id=>'analyst')
         end
 
+        # Bibliographic databases
+
+        ["scopus", "wos","scielo","ebscohost", "refworks","generic"].each do |bib_db|
+          db[:bases_bibliograficas].insert(:nombre=>bib_db)
+        end
+        # Taxonomies
+        #
         f_id=db[:sr_taxonomies].insert(:name=>"focus")
         db[:sr_taxonomy_categories].insert(:srt_id=>f_id, :name=>"practice_or_application")
         db[:sr_taxonomy_categories].insert(:srt_id=>f_id, :name=>"theory")

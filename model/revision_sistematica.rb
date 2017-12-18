@@ -34,6 +34,9 @@ class Revision_Sistematica < Sequel::Model
     grupo.nil? ? "--#{::I18n::t(:group_not_assigned)}--" : grupo.name
   end
 
+  def taxonomy_categories_id
+    Systematic_Review_SRTC.where(:sr_id=>self[:id]).map(:srtc_id)
+  end
 
   def t_clases_documentos
     @t_clases_documentos||=t_clases_dataset.where(:tipo=>"documento")
@@ -186,8 +189,8 @@ HEREDOC
   # Entrega todos los id pertinentes para la revision sistematica
   def cd_id_table
     view_name=cd_id_table_tn
-    if $db["SHOW FULL TABLES  LIKE '%#{view_name}%'"].empty?
-      $db.run("CREATE OR REPLACE VIEW #{view_name} AS SELECT DISTINCT(r.canonico_documento_id) FROM registros r INNER JOIN busquedas_registros br ON r.id=br.registro_id INNER JOIN busquedas b ON br.busqueda_id=b.id WHERE b.revision_sistematica_id=#{self[:id]}
+    if !$db.table_exists?(view_name)
+      $db.run("CREATE VIEW #{view_name} AS SELECT DISTINCT(r.canonico_documento_id) FROM registros r INNER JOIN busquedas_registros br ON r.id=br.registro_id INNER JOIN busquedas b ON br.busqueda_id=b.id WHERE b.revision_sistematica_id=#{self[:id]}
 
       UNION DISTINCT
 
@@ -208,8 +211,8 @@ HEREDOC
 
   def referencias_entre_canonicos
     view_name=referencias_entre_canonicos_tn
-    if $db["SHOW FULL TABLES  LIKE '%#{view_name}%'"].empty?
-      $db.run("CREATE OR REPLACE VIEW #{view_name} AS SELECT r.canonico_documento_id as cd_origen, ref.canonico_documento_id as cd_destino FROM registros r INNER JOIN busquedas_registros br ON r.id=br.registro_id INNER JOIN busquedas b ON br.busqueda_id=b.id  INNER JOIN  referencias_registros rr ON rr.registro_id=r.id INNER JOIN referencias ref ON ref.id=rr.referencia_id   WHERE revision_sistematica_id='#{self[:id]}' AND ref.canonico_documento_id IS NOT NULL GROUP BY cd_origen, cd_destino")
+    if !$db.table_exists?(view_name)
+      $db.run("CREATE VIEW #{view_name} AS SELECT r.canonico_documento_id as cd_origen, ref.canonico_documento_id as cd_destino FROM registros r INNER JOIN busquedas_registros br ON r.id=br.registro_id INNER JOIN busquedas b ON br.busqueda_id=b.id  INNER JOIN  referencias_registros rr ON rr.registro_id=r.id INNER JOIN referencias ref ON ref.id=rr.referencia_id   WHERE revision_sistematica_id='#{self[:id]}' AND ref.canonico_documento_id IS NOT NULL GROUP BY cd_origen, cd_destino")
     end
     $db[view_name.to_sym]
   end
@@ -221,8 +224,8 @@ HEREDOC
 
   def cuenta_referencias_entre_canonicos
     view_name=cuenta_referencias_entre_canonicos_tn
-    if $db["SHOW FULL TABLES  LIKE '%#{view_name}%'"].empty?
-      $db.run("CREATE OR REPLACE VIEW #{view_name} AS SELECT cd.canonico_documento_id as cd_id, COUNT(DISTINCT(r1.cd_destino)) as n_total_referencias_hechas, COUNT(DISTINCT(r2.cd_origen)) as n_total_referencias_recibidas FROM #{cd_id_table_tn} cd LEFT JOIN #{referencias_entre_canonicos_tn} r1 ON cd.canonico_documento_id=r1.cd_origen LEFT JOIN #{referencias_entre_canonicos_tn} r2 ON cd.canonico_documento_id=r2.cd_destino GROUP BY cd.canonico_documento_id")
+    if !$db.table_exists?(view_name)
+      $db.run("CREATE VIEW #{view_name} AS SELECT cd.canonico_documento_id as cd_id, COUNT(DISTINCT(r1.cd_destino)) as n_total_referencias_hechas, COUNT(DISTINCT(r2.cd_origen)) as n_total_referencias_recibidas FROM #{cd_id_table_tn} cd LEFT JOIN #{referencias_entre_canonicos_tn} r1 ON cd.canonico_documento_id=r1.cd_origen LEFT JOIN #{referencias_entre_canonicos_tn} r2 ON cd.canonico_documento_id=r2.cd_destino GROUP BY cd.canonico_documento_id")
     end
     $db[view_name.to_sym]
   end
@@ -232,8 +235,8 @@ HEREDOC
   end
   def resoluciones_titulo_resumen
     view_name=resoluciones_titulo_resumen_tn
-    if $db["SHOW FULL TABLES  LIKE '%#{view_name}%'"].empty?
-      $db.run("CREATE OR REPLACE VIEW #{view_name} AS SELECT * FROM resoluciones  where revision_sistematica_id=#{self[:id]} and etapa='revision_titulo_resumen'")
+    if !$db.table_exists?(view_name)
+      $db.run("CREATE VIEW #{view_name} AS SELECT * FROM resoluciones  where revision_sistematica_id=#{self[:id]} and etapa='revision_titulo_resumen'")
     end
     $db[view_name.to_sym]
   end
@@ -243,8 +246,8 @@ HEREDOC
   end
   def resoluciones_referencias
     view_name=resoluciones_referencias_tn
-    if $db["SHOW FULL TABLES  LIKE '%#{view_name}%'"].empty?
-      $db.run("CREATE OR REPLACE VIEW #{view_name} AS SELECT * FROM resoluciones  where revision_sistematica_id=#{self[:id]} and etapa='revision_referencias'")
+    if !$db.table_exists?(view_name)
+      $db.run("CREATE VIEW #{view_name} AS SELECT * FROM resoluciones  where revision_sistematica_id=#{self[:id]} and etapa='revision_referencias'")
     end
     $db[view_name.to_sym]
   end
@@ -260,8 +263,8 @@ HEREDOC
   def cuenta_referencias_rtr
     resoluciones_titulo_resumen # Verifico que exista la tabla de resoluciones
     view_name=cuenta_referencias_rtr_tn
-    if $db["SHOW FULL TABLES  LIKE '%#{view_name}%'"].empty?
-      $db.run("CREATE OR REPLACE VIEW #{view_name} AS SELECT cd_destino , COUNT(DISTINCT(cd_origen)) as n_referencias_rtr  FROM resoluciones r INNER JOIN #{referencias_entre_canonicos_tn} rec ON r.canonico_documento_id=rec.cd_origen LEFT JOIN #{resoluciones_titulo_resumen_tn} as r2 ON r2.canonico_documento_id=rec.cd_destino WHERE r.revision_sistematica_id=#{self[:id]} and r.etapa='revision_titulo_resumen' and r.resolucion='yes' and r2.canonico_documento_id IS NULL GROUP BY cd_destino")
+    if !$db.table_exists?(view_name)
+      $db.run("CREATE VIEW #{view_name} AS SELECT cd_destino , COUNT(DISTINCT(cd_origen)) as n_referencias_rtr  FROM resoluciones r INNER JOIN #{referencias_entre_canonicos_tn} rec ON r.canonico_documento_id=rec.cd_origen LEFT JOIN #{resoluciones_titulo_resumen_tn} as r2 ON r2.canonico_documento_id=rec.cd_destino WHERE r.revision_sistematica_id=#{self[:id]} and r.etapa='revision_titulo_resumen' and r.resolucion='yes' and r2.canonico_documento_id IS NULL GROUP BY cd_destino")
     end
     $db[view_name.to_sym]
 
@@ -293,9 +296,14 @@ HEREDOC
   # Entrega la tabla de texto completo
   def analisis_cd
     table_name=analisis_cd_tn
-    if $db["SHOW FULL TABLES  LIKE '%#{table}%'"].empty?
+    if !$db.table_exists?(table_name)
       Rs_Campo.actualizar_tabla(self)
     end
     $db[view_name.to_sym]
+  end
+
+
+  def taxonomy_categories_hash
+    $db["SELECT sr.name as sr_name, src.name as cat_name FROM sr_taxonomies sr INNER JOIN sr_taxonomy_categories src ON sr.id=src.srt_id INNER JOIN systematic_review_srtcs  srsrtcs ON srsrtcs.srtc_id=src.id WHERE srsrtcs.sr_id=? ORDER BY sr_name, cat_name",self[:id]].to_hash_groups(:sr_name)
   end
 end

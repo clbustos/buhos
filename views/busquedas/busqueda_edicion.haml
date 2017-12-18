@@ -1,4 +1,5 @@
-%h3="#{t(:Edit_search,sn:@busqueda.nombre)}"
+.header=@header
+%p=t_desc_value(:User,@usuario[:nombre])
 %form{:method=>:post, :action=>url("/revision/busqueda/actualizar"), :enctype=>'multipart/form-data'}
   %input{:type=>"hidden", :name=>"revision_sistematica_id",:value=>@revision[:id]}
   %input{:type=>"hidden", :name=>"busqueda_id",:value=>@busqueda[:id]}
@@ -18,4 +19,4 @@
   .form-group
     %label=t(:File)
     %input{:type=>'file', :name=>'archivo'}
-  %input{:type=>:submit, :class=>"btn btn-primary",:value=>t('Enviar')}
+  %input.btn.btn-primary{:type=>:submit,:value=>t('Send')}

@@ -9,9 +9,10 @@ class Categorizador_RS
 
     if(model.nil?)
       @model = Categorize::Models::BagOfWords.new
-      @model.max_buckets = Math.log(@rs.cd_todos_id.length).floor*2
-      @model.min_support = 0.01
+
+      @model.max_buckets = @rs.cd_todos_id.length>0 ? Math.log(@rs.cd_todos_id.length).floor*2 : 1
     else
+      @model.min_support = 0.01
       @model=model
     end
     categorizador_calculo

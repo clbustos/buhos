@@ -118,7 +118,9 @@ helpers do
     FileUtils.mkdir_p(dir) unless File.exist? dir
     dir
   end
-  
+  def title(title)
+    @title=title
+  end
 
   
   # Entrega el valor para un id de configuración

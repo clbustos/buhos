@@ -116,8 +116,6 @@ $(document).ready(function () {
     actualizar_textarea_editable();
     actualizar_nombre_editable();
 
-
-
     $('.tipo_editable').editable({
         type: 'text',
         title: 'Ingrese nuevo tipo',
@@ -128,7 +126,7 @@ $(document).ready(function () {
 
 
     $('.select_editable').change(function() {
-        pais_id=$(this).val()
+        pais_id=$(this).val();
         url=$(this).attr('data-url');
         pk=$(this).attr('data-pk');
         td_parent=$(this).parents("td");

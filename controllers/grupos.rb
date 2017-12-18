@@ -9,13 +9,25 @@ get "/grupo/:id/edicion" do |id|
   @usuarios_id=@grupo.usuarios.map {|v| v.id}
   haml %s{grupos/edicion}
 end
+
+
 get '/grupo/nuevo' do
   @grupo={:id=>"NA",:description=>"",:administrador_grupo=>nil}
   @usuarios_id=[]
   haml %s{grupos/edicion}
 end
 
-
+get '/grupo/:id/datos.json' do |id|
+  require 'json'
+  @grupo=Grupo[id]
+  content_type :json
+  {:id=>id,
+  :name=>@grupo.name,
+  :group_administrator=>@grupo.administrador_grupo,
+   :description=>@grupo.description,
+   :users=>@grupo.usuarios_dataset.order(:nombre).map {|u| {id:u[:id], name:u[:nombre]}}
+  }.to_json
+end
 post '/grupo/actualizar' do
   id=params['grupo_id']
   name=params['name']
