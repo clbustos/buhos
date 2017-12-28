@@ -3,6 +3,8 @@
 - if @udi.unread_personal_messages.count>0
   %p=t_desc_value("user_dashboard.unread_personal_messages", a_tag("/user/#{user[:id]}/messages#personal", t("user_dashboard.check_n_unread_messages", count:@udi.unread_personal_messages.count)))
 - user.revisiones_sistematicas.where(:activa=>true).each do |sr|
+  - adu=@udi.adu_for_sr(sr)
+  - n_cd_assigned = adu.canonicos_documentos.count
   -es_administrador=@udi.is_administrator_sr?(sr)
   %div{:class=>"panel #{es_administrador ? "panel-primary" : "panel-default"}"}
     .panel-heading
@@ -30,8 +32,6 @@
             =t("user_dashboard.search_new")
 
       - else
-        - adu=@udi.adu_for_sr(sr)
-        - n_cd_assigned=adu.canonicos_documentos.count
         - if es_administrador
           %p
             %a{:href=>"/revision/#{sr[:id]}/administracion/#{sr[:etapa]}"}
