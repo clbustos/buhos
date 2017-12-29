@@ -2,3 +2,4 @@
 log
 usr/archivos
 db.sqlite
+config/installed
