@@ -1,3 +1,4 @@
+- # TODO: Give a meaningful date picker for start date
 :javascript
   $(document).ready(function () {
     $(".seleccion_grupo").change(function() {
@@ -41,6 +42,7 @@
     %input{:class=>"form-control",:type=>"text", :name=>"agno_termino",:value=>@revision[:agno_termino]}
   %div{:class=>"form-group"}
     %label=t(:Keywords)
+    %p.instructions=t(:separe_keywords_with_semicolon)
     %input{:class=>"form-control",:type=>"text", :name=>"palabras_claves",:value=>@revision[:palabras_claves]}
   %div{:class=>"form-group"}
     %label=t(:Active)

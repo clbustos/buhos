@@ -45,6 +45,7 @@ es:
   To_process: "Procesar"
   Compare_records_between_searchs: "Comparar registros entre búsquedas"
   Searchs_for_systematic_review: "Búsquedas para Revisión Sistemática %{sr_name}"
+  separe_keywords_with_semicolon: "Separa las palabras claves con punto y coma (;)"
   stage:
     search: "Búsqueda"
     review_title_and_abstract: "Revisión título y resumen"

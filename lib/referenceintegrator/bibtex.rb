@@ -169,9 +169,21 @@ module ReferenceIntegrator
         b=BibTeX.open(filename, :strip => false)
         Reader.new(b)
       end
-
+      # If ID for a bibtex contains a single quote, class just fail
+      # This method just delete the quote, until Bibtex class fix it
+      def self.fix_string(string)
+        string.each_line.map { |line|
+          if line=~/^\s*\@.+\{(.+),$/
+            line.gsub("'","")
+          else
+            line
+          end
+        }.join("\n")
+      end
       def self.parse(string)
-        b=BibTeX.parse(string, :strip => false)
+        # Scopus generates bibtex with quotes on names. That brokes Bibtex package
+        string_fixed=fix_string(string)
+        b=BibTeX.parse(string_fixed, :strip => false)
         Reader.new(b)
       end
 
