@@ -1,10 +1,12 @@
-%h3=t(:Records_on_search,sn: @busqueda.nombre)
+.header=t_search_title(@revision[:nombre], @busqueda.nombre,:Records_on_search)
 %ul.breadcrumb
   %li
     %a{:href=>url("/revision/#{@revision.id}")}=@revision.nombre
   %li
-    %a{:href=>url("/busqueda/#{@busqueda.id}")}=@busqueda.nombre
+    %a{:href=>url("/revision/#{@revision.id}/busquedas")}=t(:Searchs)
   %li
+    %a{:href=>url("/busqueda/#{@busqueda.id}")}=@busqueda.nombre
+  %li.active
     =t(:Records)
 
 %a{:href=>"/busqueda/#{@busqueda.id}/registros/completar_dois"}

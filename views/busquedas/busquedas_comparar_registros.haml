@@ -1,9 +1,12 @@
-%h3=t(:Compare_records_by_search)
+.header=t_search_title(@revision[:nombre], @busqueda.nombre,:Compare_records_by_search)
+
 %ul.breadcrumb
   %li
     %a{:href=>url("/revision/#{@revision.id}")}=@revision.nombre
   %li
     %a{:href=>url("/revision/#{@revision.id}/busquedas")}=t(:Searchs)
+  %li
+    %a{:href=>url("/busqueda/#{@busqueda.id}")}=@busqueda.nombre
   %li.active
     =t(:Compare_records_by_search)
 

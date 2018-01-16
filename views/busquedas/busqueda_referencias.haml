@@ -1,4 +1,14 @@
-%h3="#{t(:References_on_search,sn:@busqueda.nombre)}"
+.header=t_search_title(@revision[:nombre], @busqueda.nombre,:References_on_search)
+
+%ul.breadcrumb
+  %li
+    %a{:href=>url("/revision/#{@revision.id}")}=@revision.nombre
+  %li
+    %a{:href=>url("/revision/#{@revision.id}/busquedas")}=t(:Searchs)
+  %li
+    %a{:href=>url("/busqueda/#{@busqueda.id}")}=@busqueda.nombre
+  %li.active
+    =t(:References_on_search)
 
 :javascript
   $(document).ready(function() {
@@ -13,9 +23,7 @@
   %li=t(:References)
 
 %p
-  =t(:Count_references_total)
-  :
-  =@referencias.count
+  =t_desc_value(:Count_references_total, @referencias.count)
 
 
 

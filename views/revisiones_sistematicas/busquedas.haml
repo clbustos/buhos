@@ -1,4 +1,9 @@
 .heading=@header
+%ul.breadcrumb
+  %li
+    %a{:href=>url("/revision/#{@revision.id}")}=@revision.nombre
+  %li.active
+    =t(:Searchs)
 %p
 %table.reporte
   %thead

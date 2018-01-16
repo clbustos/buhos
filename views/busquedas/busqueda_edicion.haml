@@ -1,5 +1,15 @@
-.header=@header
-%h2=@title
+.header=t_search_title(@revision[:nombre], @busqueda.nombre,:Edit_search)
+
+%ul.breadcrumb
+  %li
+    %a{:href=>url("/revision/#{@revision.id}")}=@revision.nombre
+  %li
+    %a{:href=>url("/revision/#{@revision.id}/busquedas")}=t(:Searchs)
+  %li
+    %a{:href=>url("/busqueda/#{@busqueda.id}")}=@busqueda.nombre
+  %li.active
+    =t(:Edit)
+
 %form{:method=>:post, :action=>url("/revision/busqueda/actualizar"), :enctype=>'multipart/form-data'}
   %input{:type=>"hidden", :name=>"revision_sistematica_id",:value=>@revision[:id]}
   %input{:type=>"hidden", :name=>"busqueda_id",:value=>@busqueda[:id]}

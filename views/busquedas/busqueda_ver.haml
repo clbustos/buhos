@@ -1,4 +1,15 @@
-%h2=@title
+.header=t_search_title(@revision[:nombre], @busqueda.nombre,:Search_view)
+
+%ul.breadcrumb
+  %li
+    %a{:href=>url("/revision/#{@revision.id}")}=@revision.nombre
+  %li
+    %a{:href=>url("/revision/#{@revision.id}/busquedas")}=t(:Searchs)
+  %li
+    %a{:href=>url("/busqueda/#{@busqueda.id}")}=@busqueda.nombre
+  %li.active
+    =t(:View)
+
 %table.reporte
   %tr
     %th=t(:Bibliographic_database)

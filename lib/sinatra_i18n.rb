@@ -45,7 +45,7 @@ module Sinatra
       end
       def t_search_title(sr_name, search_name, secondary)
         @title="#{::I18n::t(secondary)} - #{::I18n::t(:search_title, search_name:search_name)} - #{::I18n::t(:systematic_review_title_abbrev, sr_name:sr_name)}"
-        "<h2>#{::I18n::t(:search_title, sr_name:search_name)} - #{::I18n::t(:systematic_review_title_abbrev, sr_name:sr_name)}</h2><h3>#{::I18n::t(secondary)}</h3>"
+        "<h2>#{::I18n::t(:search_title, search_name: search_name)} - #{::I18n::t(:systematic_review_title_abbrev, sr_name:sr_name)}</h2><h3>#{::I18n::t(secondary)}</h3>"
 
       end
       def available_locales
