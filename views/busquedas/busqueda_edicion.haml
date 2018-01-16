@@ -1,5 +1,5 @@
 .header=@header
-%p=t_desc_value(:User,@usuario[:nombre])
+%h2=@title
 %form{:method=>:post, :action=>url("/revision/busqueda/actualizar"), :enctype=>'multipart/form-data'}
   %input{:type=>"hidden", :name=>"revision_sistematica_id",:value=>@revision[:id]}
   %input{:type=>"hidden", :name=>"busqueda_id",:value=>@busqueda[:id]}

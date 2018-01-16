@@ -1,5 +1,13 @@
+get '/busqueda/:id' do |id|
+  @busqueda=Busqueda[id]
+  title(t(:Search_view, search_name:@busqueda.nombre))
+  @revision=@busqueda.revision_sistematica
+  haml %s{busquedas/busqueda_ver}
+end
+
 get '/busqueda/:id/editar' do |id|
   @busqueda=Busqueda[id]
+  title(t(:Search_edit, search_name:@busqueda.nombre))
   @revision=@busqueda.revision_sistematica
   haml %s{busquedas/busqueda_edicion}
 end

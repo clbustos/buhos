@@ -73,8 +73,8 @@ AND  #{cd_query} GROUP BY tags.id ORDER BY n_documentos DESC ,p_yes DESC,tags.te
     (0...TRS.length).inject({}) {|ac,v|
 
       res=$db["trs_#{TRS_p[v]}".to_sym].where(:id=>self["trs_#{TRS[v]}_id".to_sym]).get(:name)
-      ac[TRS[v]]=res;
-      ac;
+      ac[TRS[v]]=res
+      ac
     }
   end
   def self.get_revisiones_por_usuario(us_id)

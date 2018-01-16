@@ -16,9 +16,9 @@ class Registro < Sequel::Model
       query=crossref_query
       if query[0]["score"]>100
         result.add_result(agregar_doi(query[0]["doi"]))
-        result.success("Registro #{self[:id]} : #{self[:author]}-#{self[:title]} tiene DOI #{query[0]["doi"]}")
+        result.success(I18n.t(:Assigned_DOI_to_record, record_id: self[:id], author: self[:author], title: self[:title], doi:query[0]["doi"] ))
       else
-        result.warning("Registro #{self[:id]} : #{self[:author]}-#{self[:title]} no tiene un DOI claro al cual asignarse. Debe revisarse a mano")
+        result.warning(I18n.t(:DOI_not_assigned_to_record, record_id: self[:id], author: self[:author], title: self[:title] ))
       end
 
     elsif canonico_documento.doi.nil?
@@ -39,12 +39,12 @@ class Registro < Sequel::Model
     $db.transaction do
       if cit_rep_por_ingresar.length>0
         $db[:referencias_registros].multi_insert(cit_rep_por_ingresar.map {|v| {:referencia_id => v, :registro_id => self[:id]}})
-        result.info("Agregadas #{cit_rep_por_ingresar.length} referencias a registro #{self[:id]}")
+        result.info( ::I18n.t(:Added_references_to_record, :record_id=>self[:id], :count_references=>cit_rep_por_ingresar.length))
       end
 
       if cit_rep_por_borrar.length>0 and modo==:sincronia
         $db[:referencias_registros].where(:registro_id => self[:id], :referencia_id => cit_rep_por_borrar).delete
-        result.info("Eliminadas #{cit_rep_por_borrar.length} referencias a registro #{self[:id]}")
+        result.info( ::I18n.t(:Deleted_references_to_record, :record_id=>self[:id], :count_references=>cit_rep_por_borrar.length))
       end
     end
     result

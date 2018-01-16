@@ -1,0 +1,18 @@
+%h2=@title
+%table.reporte
+  %tr
+    %th=t(:Bibliographic_database)
+    %td=Base_Bibliografica[@busqueda[:base_bibliografica_id]][:nombre]
+  %tr
+    %th=t(:Date)
+    %td=@busqueda[:fecha]
+  %tr
+    %th=t(:Search_criteria)
+    %td=@busqueda[:criterio_busqueda]
+  %tr
+    %th=t(:Description)
+    %td=@busqueda[:descripcion]
+  %tr
+    %th=t(:File)
+    %td
+      POR HACER
