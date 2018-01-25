@@ -36,7 +36,7 @@ class Busqueda < Sequel::Model
 
   def referencias_sin_canonico_con_doi_n(limit=nil)
     sql_limit= limit.nil? ? "" : "LIMIT #{limit.to_i}"
-    $db["SELECT r.doi, r.texto, COUNT(DISTINCT(br.registro_id)) as n FROM referencias r INNER JOIN referencias_registros rr ON r.id=rr.referencia_id INNER JOIN busquedas_registros br ON rr.registro_id=br.registro_id WHERE br.busqueda_id=? AND canonico_documento_id IS NULL AND doi IS NOT NULL GROUP BY r.doi ORDER BY n DESC #{sql_limit}", self[:id]]
+    $db["SELECT r.doi, MIN(r.texto) as texto , COUNT(DISTINCT(br.registro_id)) as n FROM referencias r INNER JOIN referencias_registros rr ON r.id=rr.referencia_id INNER JOIN busquedas_registros br ON rr.registro_id=br.registro_id WHERE br.busqueda_id=? AND canonico_documento_id IS NULL AND doi IS NOT NULL GROUP BY r.doi ORDER BY n DESC #{sql_limit}", self[:id]]
   end
 
   def nombre
