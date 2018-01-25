@@ -24,6 +24,7 @@ get '/busqueda/:id/referencias' do |id|
   @revision=@busqueda.revision_sistematica
   @referencias=@busqueda.referencias
   @referencias_con_canonico=@busqueda.referencias.where(Sequel.lit("canonico_documento_id IS NOT NULL"))
+  @referencias_solo_doi=@busqueda.referencias.where(Sequel.lit("canonico_documento_id IS NULL AND doi IS NOT NULL"))
   @n_referencias = params['n_referencias'].nil? ? 20 : params['n_referencias']
 
   @rmc_canonico     = @busqueda.referencias_con_canonico_n(@n_referencias)
@@ -38,6 +39,7 @@ get '/busqueda/:id/referencias' do |id|
 end
 
 
+# Completa la información desde Crossref para cada registro
 get '/busqueda/:id/registros/completar_dois' do |id|
   @busqueda=Busqueda[id]
   @registros=@busqueda.registros_dataset
@@ -86,7 +88,7 @@ get '/busqueda/:id/referencias/buscar_dois' do |id|
       end
     end
   end
-  agregar_mensaje("Actualizadas #{exitos} referencias con DOI en texto")
+  agregar_mensaje(I18n::t(:Search_add_doi_references, :count=>exitos))
   redirect back
 end
 

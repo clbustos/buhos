@@ -17,12 +17,12 @@ end
 
 get '/revision/:id/busqueda/nuevo' do |id|
   error(403) unless permiso('busqueda_revision_crear')
-
+  require 'date'
 
   @revision=Revision_Sistematica[id]
   @header=t_systematic_review_title(@revision[:nombre], :New_search)
 
-  @busqueda=Busqueda.new(:user_id=>session['user_id'], :review_ready=>false)
+  @busqueda=Busqueda.new(:user_id=>session['user_id'], :review_ready=>false, :fecha=>Date.today)
   @usuario=Usuario[session['user_id']]
   haml "busquedas/busqueda_edicion".to_sym
 end
@@ -66,7 +66,7 @@ post '/revision/busqueda/actualizar' do
 end
 
 
-get '/revision/:id/procesar' do |id|
+get '/revision/:id/busquedas/procesar' do |id|
   revision=Revision_Sistematica[id]
   busquedas=revision.busquedas
   # Primero, procesamos las busquedas individuales
@@ -84,7 +84,7 @@ get '/revision/:id/procesar' do |id|
 end
 
 
-get '/revision/:rs_id/busquedas_comparar_registros' do |rs_id|
+get '/revision/:rs_id/busquedas/comparar_registros' do |rs_id|
   @revision=Revision_Sistematica[rs_id]
   return 404 if !@revision
   @cds={}

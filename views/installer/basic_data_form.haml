@@ -3,6 +3,35 @@
   =":"
   =t("installer.basic_data_form")
 
+:javascript
+  update_field_db_adapter=function(val) {
+    var div_no_sqlite=["db_hostname","db_port","db_username","db_password","db_database"];
+      var div_sqlite=["db_filename"];
+      if(val=="sqlite") {
+        div_to_show=div_sqlite;
+        div_to_hide=div_no_sqlite;
+      } else {
+        div_to_show=div_no_sqlite;
+        div_to_hide=div_sqlite;
+
+      }
+      for(i=0; i<div_to_show.length; i++) {
+        $("#form-container-"+div_to_show[i]).show();
+      }
+      for(i=0; i<div_to_hide.length; i++) {
+        $("#form-container-"+div_to_hide[i]).hide();
+      }
+  };
+
+  $(document).ready(function() {
+    $("#form-db_adapter").change(function() {
+      var val=$(this).val();
+      update_field_db_adapter(val);
+    });
+
+    update_field_db_adapter("#{@form_fields[:db_adapter][:default]}");
+  });
+
 %ul.breadcrumb
   %li
     %a{:href=>'/installer/select_language'}=t("installer.language_selection")
@@ -22,8 +51,14 @@
 
 %form{:action=>"/installer/basic_data_form", :method=>:post}
   -@form_fields.each_pair do |field,val|
-    .form-group
-      %label{:for=>'mysql_user'}=t("installer.#{field}")
-      %input.form-control{:type=>:text,:name=>field, :id=>"form-#{field}",
-      :value=>session[field].nil? ? val[:default] : session[field] }
+    .form-group{:id=>"form-container-#{field}"}
+      - if field==:db_adapter
+        %label{:for=>field}=t("installer.#{field}")
+        %select.form-control{:name=>field, :id=>"form-db_adapter"}
+          - @available_db_adapters.each do |db_adapter|
+            %option{:selected=>(session[field].nil? ? val[:default] : session[field])==db_adapter, :value=>db_adapter}=db_adapter
+      - else
+        %label{:for=>field}=t("installer.#{field}")
+        %input.form-control{:type=>:text,:name=>field, :id=>"form-#{field}",
+        :value=>session[field].nil? ? val[:default] : session[field] }
   %input.btn.btn-default{:type=>:submit}

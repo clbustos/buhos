@@ -17,7 +17,7 @@ class Busqueda < Sequel::Model
   end
 
   def base_bibliografica_nombre
-    base_bibliografica.nombre
+    base_bibliografica ? base_bibliografica.nombre : nil
   end
   def referencias
     ref_ids=$db["SELECT DISTINCT(rr.referencia_id) FROM referencias_registros rr INNER JOIN busquedas_registros br ON rr.registro_id=br.registro_id WHERE br.busqueda_id=?", self[:id]].map {|v| v[:referencia_id]}

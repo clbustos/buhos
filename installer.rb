@@ -26,6 +26,10 @@ module BibRevSys
       def permiso(p)
         true
       end
+      def available_db_adapters
+        ["mysql2","sqlite"]
+      end
+
       def form_fields
         {
                       db_adapter:     {default:'mysql2'},
@@ -34,6 +38,7 @@ module BibRevSys
                       db_username:    {default: 'bibsysrev'},
                       db_password:    {default: nil},
                       db_database:    {default: 'bibsysrev'},
+                      db_filename:    {default: 'db.sqlite'},
                       proxy_hostname: {default:nil},
                       proxy_port:     {default:nil},
                       proxy_user:     {default:nil},
@@ -88,6 +93,7 @@ module BibRevSys
       @form_fields=form_fields
       @env_exists=File.exist?(".env")
       @env_text=File.read(".env") if @env_exists
+      @available_db_adapters=available_db_adapters
       haml "installer/basic_data_form".to_sym, :layout=>"installer/layout".to_sym
     end
     post '/installer/basic_data_form' do
@@ -102,7 +108,7 @@ module BibRevSys
         end
       }
       if params["db_adapter"]=='sqlite'
-        connection_string=sprintf("DATABASE_URL=%s://%s", params['db_adapter'], params['db_database'])
+        connection_string=sprintf("DATABASE_URL=%s://%s", params['db_adapter'], params['db_filename'])
       else
         connection_string=sprintf("DATABASE_URL=%s://%s:%s@%s:%d/%s", params['db_adapter'],params['db_username'], params['db_password'], params['db_hostname'], params['db_port'], params['db_database'])
       end

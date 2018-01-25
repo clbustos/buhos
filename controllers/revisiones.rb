@@ -11,10 +11,16 @@ end
 
 
 get '/revision/nuevo' do
+  require 'date'
   title(t(:Systematic_review_new))
   first_group=Usuario[session['user_id']].grupos.first
   administrator=first_group[:administrador_grupo]
-  @revision=Revision_Sistematica.new(activa:true, etapa: "busqueda", grupo:first_group, administrador_revision:administrator )
+  @revision=Revision_Sistematica.new(activa:true,
+                                     etapa: "busqueda",
+                                     grupo:first_group,
+                                     administrador_revision:administrator,
+                                     fecha_inicio: Date.today
+                                     )
   @taxonomy_categories_id=[]
 
   haml %s{revisiones_sistematicas/edicion}
@@ -63,9 +69,11 @@ post '/revision/actualizar' do
     end
 
     Systematic_Review_SRTC.where(:sr_id=>id).delete
-    strc.keys.each {|key|
-      Systematic_Review_SRTC.insert(:sr_id=>id, :srtc_id=>key.to_i)
-    }
+    if !strc.nil? and !strc.keys.nil?
+      strc.keys.each {|key|
+        Systematic_Review_SRTC.insert(:sr_id=>id, :srtc_id=>key.to_i)
+      }
+    end
   # Procesamos los srtc
   end
 
@@ -79,68 +87,9 @@ get '/revision/:id/busquedas' do |id|
   @busquedas=@revision.busquedas
   haml %s{revisiones_sistematicas/busquedas}
 end
-get '/revision/:id/busqueda/nuevo' do |id|
-  error(403) unless permiso('crear_busqueda_revision')
-  @revision=Revision_Sistematica[id]
-  @busqueda=Busqueda.new()
-  haml %s{busquedas/busqueda_edicion}
-end
-
-post '/revision/busqueda/actualizar' do
-  error(403) unless permiso('crear_busqueda_revision')
-
-  id=params['busqueda_id']
-  otros_params=params
-  otros_params.delete("busqueda_id")
-  otros_params.delete("captures")
-
-  archivo=otros_params.delete("archivo")
-  #No nulos
-
-  otros_params=otros_params.inject({}) {|ac,v|
-    ac[v[0].to_sym]=v[1];ac
-  }
-  #  aa=Revision_Sistematica.new
-
-  if id==""
-    busqueda=Busqueda.create(
-        :revision_sistematica_id=>otros_params[:revision_sistematica_id],
-        :base_bibliografica_id=>otros_params[:base_bibliografica_id],
-        :fecha=>otros_params[:fecha],
-        :criterio_busqueda=>otros_params[:criterio_busqueda],
-        :descripcion=>otros_params[:descripcion]
-    )
-  else
-    busqueda=Busqueda[id]
-    busqueda.update(otros_params)
-  end
-
-  if(archivo)
-    fp=File.open(archivo[:tempfile],"rb")
-    busqueda.update(:archivo_cuerpo=>fp.read, :archivo_tipo=>archivo[:type],:archivo_nombre=>archivo[:filename])
-    fp.close
-  end
-
-  redirect "/revision/#{otros_params[:revision_sistematica_id]}/busquedas"
-end
 
 
-get '/revision/:id/procesar' do |id|
-  revision=Revision_Sistematica[id]
-  busquedas=revision.busquedas
-  # Primero, procesamos las busquedas individuales
-  busquedas.each do |busqueda|
-    agregar_mensaje("Archivo de busqueda #{busqueda[:id]} procesada exitosamente") if busqueda.procesar_archivo
-  end
 
-  # Segundo, procesamos los canonicos
-  busquedas.each do |busqueda|
-    agregar_mensaje("Canónicos de #{busqueda[:id]} procesada exitosamente") if busqueda.procesar_canonicos
-  end
-
-  redirect back
-
-end
 
 
 
@@ -322,38 +271,4 @@ post '/revision/archivos/agregar' do
     agregar_mensaje("No se han enviado archivos", :error)
   end
   redirect back
-end
-
-
-get '/revision/:rs_id/busquedas_comparar_registros' do |rs_id|
-  @revision=Revision_Sistematica[rs_id]
-  return 404 if !@revision
-  @cds={}
-  @errores=[]
-  @busquedas_id=@revision.busquedas_dataset.map(:id)
-  n_busquedas=@busquedas_id.length
-  @revision.busquedas.each do |busqueda|
-    busqueda.registros.each do |registro|
-      rcd_id=registro[:canonico_documento_id]
-
-      if rcd_id
-        @cds[rcd_id]||={:busquedas=>{}}
-        @cds[rcd_id][:busquedas][busqueda[:id]]=true
-      else
-        errores.push(registro[:id])
-      end
-    end
-  end
-  @cds_o=Canonico_Documento.where(:id=>@cds.keys).to_hash(:id)
-  @cds_ordenados=@cds.sort_by {|key,a|
-    #$log.info(@busquedas_id)
-    #$log.info(a)
-    base_n=1+a[:busquedas].length*(2**(n_busquedas+1))
-    #$log.info("Base:#{base_n}")
-    sec_n=(0...n_busquedas).inject(0) {|total,aa|  total+=(a[:busquedas][@busquedas_id[aa]].nil? ) ? 0 : 2**aa;total}
-    #$log.info("Sec:#{sec_n}")
-    base_n+sec_n
-  }
-
-  haml "busquedas/busquedas_comparar_registros".to_sym
 end

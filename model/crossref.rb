@@ -57,7 +57,7 @@ class Crossref_Query < Sequel::Model
         raise BadCrossrefResponseError, "El texto #{t} no entrego una respuesta adecuada. Fue #{res.code}, #{res.body}"
       end
       json_raw = res.body
-      Crossref_Query.insert(:id=>digest,:query=>t,:json=>json_raw)
+      Crossref_Query.insert(:id=>digest.force_encoding(Encoding::UTF_8),:query=>t.force_encoding(Encoding::UTF_8),:json=>json_raw.force_encoding(Encoding::UTF_8))
     else
       json_raw=cq[:json]
     end

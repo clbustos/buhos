@@ -5,46 +5,49 @@
   %li.active
     =t(:Searchs)
 %p
-%table.reporte
-  %thead
-    %th=t(:Id)
-    %th=t(:Bibliographic_database)
-    %th=t(:Date)
-    %th=t(:Search_criteria)
-    %th=t(:Description)
-    %th=t(:File)
-    %th=t(:Records)
-  %tbody
-    - @busquedas.each do |g|
-      %tr
-        %td=g.id
-        %td=g.base_bibliografica_nombre
-        %td=g.fecha
-        %td=g.criterio_busqueda
-        %td=g.descripcion
-        %td="#{g.archivo_nombre} [#{g.archivo_tipo}]"
-        %td
-          %a{:href=>url("/busqueda/#{g.id}/editar")}
-            %button{:class=>"btn btn-default"}
-              %span{:class=>"glyphicon glyphicon-pencil"}
-              =t(:Edit)
-          %a{:href=>url("/busqueda/#{g.id}/registros")}
-            %button{:class=>"btn btn-default"}
-              %span{:class=>"glyphicon glyphicon-list"}
-              %span{:class=>"badge"}=g.registros_n
-              =t(:Records)
-          %a{:href=>url("/busqueda/#{g.id}/referencias")}
-            %button{:class=>"btn btn-default"}
-              %span{:class=>"glyphicon glyphicon-plane"}
-              =t(:References)
+- if @busquedas.count>0
+  %table.reporte
+    %thead
+      %th=t(:Id)
+      %th=t(:Bibliographic_database)
+      %th=t(:Date)
+      %th=t(:Search_criteria)
+      %th=t(:Description)
+      %th=t(:File)
+      %th=t(:Records)
+    %tbody
+      - @busquedas.each do |g|
+        %tr
+          %td=g.id
+          %td=g.base_bibliografica_nombre
+          %td=g.fecha
+          %td=g.criterio_busqueda
+          %td=g.descripcion
+          %td="#{g.archivo_nombre} [#{g.archivo_tipo}]"
+          %td
+            %a{:href=>url("/busqueda/#{g.id}/editar")}
+              %button{:class=>"btn btn-default"}
+                %span{:class=>"glyphicon glyphicon-pencil"}
+                =t(:Edit)
+            %a{:href=>url("/busqueda/#{g.id}/registros")}
+              %button{:class=>"btn btn-default"}
+                %span{:class=>"glyphicon glyphicon-list"}
+                %span{:class=>"badge"}=g.registros_n
+                =t(:Records)
+            %a{:href=>url("/busqueda/#{g.id}/referencias")}
+              %button{:class=>"btn btn-default"}
+                %span{:class=>"glyphicon glyphicon-plane"}
+                =t(:References)
+- else
+  .alert.alert-warning=t(:No_search_on_systematic_review_for_this_user)
 
 .btn-group-sm
   %a.btn.btn-default{:role=>:button,:href=>url("/revision/#{@revision.id}/busqueda/nuevo")}
     %span{:class=>"glyphicon glyphicon-plus"}
     =t(:Search_new)
-  %a.btn.btn-default{:role=>:button, :href=>url("/revision/#{@revision.id}/procesar")}
+  %a.btn.btn-default{:role=>:button, :href=>url("/revision/#{@revision.id}/busquedas/procesar")}
     %span{:class=>"glyphicon glyphicon-play"}
     =t(:Search_process)
-  %a.btn.btn-default{:role=>:button, :href=>url("/revision/#{@revision.id}/busquedas_comparar_registros")}
+  %a.btn.btn-default{:role=>:button, :href=>url("/revision/#{@revision.id}/busquedas/comparar_registros")}
     %span.glyphicon.glyphicon-dashboard
     =t(:Compare_records_by_search)

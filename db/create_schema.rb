@@ -104,7 +104,7 @@ module BibRevSys
           Integer :duplicated
           String :url, :text => true
           String :scielo_id, :size => 255
-          String :refworks_id, :size => 255, :null => false
+          String :refworks_id, :size => 255
         end
 
         db.create_table? :canonicos_autores do
@@ -163,7 +163,7 @@ module BibRevSys
           String :arxiv_id, :size => 255
           foreign_key :canonico_documento_id, :canonicos_documentos, :key => [:id]
           String :journal_abbr, :size => 128
-          Integer :year, :null => false
+          Integer :year
           String :abstract, :text => true
           String :url, :text => true
 

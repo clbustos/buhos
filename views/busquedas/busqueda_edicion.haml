@@ -1,5 +1,22 @@
 .header=t_search_title(@revision[:nombre], @busqueda.nombre,:Edit_search)
 
+
+%script{:type=>'text/javascript', :src=>url('/jquery-ui/jquery-ui.min.js')}
+%link{:href=>url('/jquery-ui/jquery-ui.css') , :media => 'screen', :rel=>'stylesheet', :type=>'text/css'}
+%link{:href=>url('/jquery-ui/jquery-ui.theme.css') , :media => 'screen', :rel=>'stylesheet', :type=>'text/css'}
+
+
+:javascript
+  $(document).ready(function () {
+    $( "#form-fecha" ).datepicker(
+      $.datepicker.regional[ "#{session['language']}" ]
+    )
+
+    $( "#form-fecha" ).datepicker( "option", "dateFormat", "yy-mm-dd" );
+
+    $( "#form-fecha" ).datepicker("setDate",new Date(#{@busqueda[:fecha].year},#{@busqueda[:fecha].month-1},#{@busqueda[:fecha].day},0,0,0,0))
+    });
+
 %ul.breadcrumb
   %li
     %a{:href=>url("/revision/#{@revision.id}")}=@revision.nombre
@@ -19,7 +36,7 @@
       %input{:class=>"form-check",:type=>"radio", :name=>"base_bibliografica_id",:value=>bb.id, :checked=>@busqueda[:base_bibliografica_id]==bb.id}= bb.nombre
   .form-group
     %label=t(:Date)
-    %input{:class=>"form-control",:type=>"text", :name=>"fecha",:value=>@busqueda[:fecha]}
+    %input{:class=>"form-control",:type=>"text", :name=>"fecha",:value=>@busqueda[:fecha], :id=>"form-fecha"}
   .form-group
     %label=t(:Search_criteria)
     %textarea{:class=>"form-control",:name=>"criterio_busqueda"}=@busqueda[:criterio_busqueda]
