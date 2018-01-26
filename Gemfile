@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 gem 'rake'
-gem "daemons"
 gem "sinatra"
 gem "sequel"
 gem "mysql2"

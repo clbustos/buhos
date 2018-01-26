@@ -11,7 +11,7 @@ Dir.glob("lib/*.rb").each do |f|
   require_relative(f)
 end
 
-module BibRevSys
+module Buhos
   # This modular Sinatra app generates a simple form to install
   # BibSysRev
   class Installer < Sinatra::Base
@@ -35,9 +35,9 @@ module BibRevSys
                       db_adapter:     {default:'mysql2'},
                       db_hostname:    {default: 'localhost'},
                       db_port:        {default: 3306},
-                      db_username:    {default: 'bibsysrev'},
-                      db_password:    {default: nil},
-                      db_database:    {default: 'bibsysrev'},
+                      db_username:    {default: 'buhos_user'},
+                      db_password:    {default: 'password'},
+                      db_database:    {default: 'buhos'},
                       db_filename:    {default: 'db.sqlite'},
                       proxy_hostname: {default:nil},
                       proxy_port:     {default:nil},

@@ -3,28 +3,20 @@
 
 =partial(:breadcrumb_revision_admin,:locals=>{:nombre=>t(:Search)})
 
+%p.instructions=t("systematic_review_page.search_administration_instructions")
 
-%h3=t(:Search)
+=t_desc_value(:Count_searchs_on_systematic_review, @revision.busquedas.count)
+
 %table.reporte
-  %tr
-    %th=t(:Count_canonical_total)
-    %td=@ars.cd_count_total
-  %tr
-    %th=t(:Count_canonical_records)
-    %td=@ars.cd_count_reg
-  %tr
-    %th=t(:Count_canonical_references)
-    %td=@ars.cd_count_ref
-
-%h3=t(:More_incoming_citations)
-.list-group
-  -@ars.mas_citados(10).each do |cd_id,n|
-    .list-group-item
-      %span{:class=>"badge"}=n
-      =@ars.cd_hash[cd_id].ref_apa_6_breve_html
-%h4=t(:More_outgoing_citations)
-.list-group
-  -@ars.con_mas_referencias(10).each do |cd_id,n|
-    .list-group-item
-      %span{:class=>"badge"}=n
-      =@ars.cd_hash[cd_id].ref_apa_6_breve_html
+  %thead
+    %th=t(:Busqueda)
+    %th=t(:Count_records)
+    %th=t(:Count_references_total)
+    %th=t(:Count_references_with_canonical)
+  %tbody
+    - @revision.busquedas.each do |busqueda|
+      %tr
+        %td=busqueda.nombre
+        %td=busqueda.registros_n
+        %td=busqueda.referencias_n
+        %td=busqueda.referencias_con_canonico_n.count

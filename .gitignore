@@ -3,3 +3,4 @@ log
 usr/archivos
 db.sqlite
 config/installed
+vendor/vagrant/.vagrant

@@ -1,6 +1,6 @@
 es:
-  App_title: "BibSysRev"
-  App_title_installer: "Instalación - BibSysRev"
+  App_title: "Buhos"
+  App_title_installer: "Instalación - Buhos"
   Dev_alert: "Desarrollo"
   Password: "Contraseña"
   No_systematic_review_for_this_user: "No hay revisiones sistemáticas para este usuario"
@@ -11,7 +11,7 @@ es:
   "yes": "sí"
   Json_cant_obtain_information: "No pude obtener información remota(JSON)"
   Active_user: "Activo"
-  footer_copyright: "2016-2017 Claudio Bustos y Gabriela Morales"
+  footer_copyright: "2016-2017 Claudio Bustos"
   login_submit: "Ingresar"
   Login: "Nombre de usuario"
   User_title: "Usuario %{user_name} (%{login})"
@@ -237,9 +237,18 @@ es:
   searchs_user: "Busquedas de usuario %{user_name}"
   Title: "Título"
   Journal: "Journal"
+  Count_canonical_records_and_references: "Número de registros y referencias con documento canónico asignado"
+  Count_canonical_records: "Número de registros con documento canónico asignado"
+  Count_canonical_references: "Número de referencias con documento canónico asignado"
+
+  More_incoming_citations: "Documentos canónicos que reciben más citas desde canónicos"
+  More_outgoing_citations: "Documentos canónicos que realizan más citas a canónicos"
+
   systematic_review_page:
     stages: Etapas
+    search_administration: "Administración de búsquedas"
     review_full_text_administration: "Administración de la etapa de Texto Completo"
+    search_administration_instructions: "Revise cada revisión sistemática, para estar seguro que cuenta con información sobre la fuente, fecha y criterios de búsqueda. Marque como 'no válida' todas las búsquedas problemáticas. Sólo las búsquedas validadas serán usadas en etapas posteriores."
   Successful_authentification: "Autentificación exitosa"
   Count_records: "Número de registros"
   References_assigned_to_canonical_document: "Referencias asignadas a un documento canónico"
@@ -331,7 +340,8 @@ es:
   Canonical_Document_Status: "Estado del Documento Canónico"
   percent_positive: "% positivos"
   Not_assigned: "No asignado"
-  App_title_installer: "Installer - BibSysRev"
+  App_title_installer: "Installer - Buho"
+  Count_searchs_on_systematic_review: "Número de búsquedas en revisión sistemática"
   sr_taxonomy:
     focus: "Foco"
     objectives: "Objetivos"

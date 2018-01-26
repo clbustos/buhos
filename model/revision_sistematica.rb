@@ -192,7 +192,7 @@ HEREDOC
     if !$db.table_exists?(view_name)
       $db.run("CREATE VIEW #{view_name} AS SELECT DISTINCT(r.canonico_documento_id) FROM registros r INNER JOIN busquedas_registros br ON r.id=br.registro_id INNER JOIN busquedas b ON br.busqueda_id=b.id WHERE b.revision_sistematica_id=#{self[:id]}
 
-      UNION DISTINCT
+      UNION
 
       SELECT DISTINCT r.canonico_documento_id FROM busquedas b INNER JOIN busquedas_registros br ON b.id=br.busqueda_id INNER JOIN referencias_registros rr ON br.registro_id=rr.registro_id INNER JOIN referencias r ON rr.referencia_id=r.id  WHERE b.revision_sistematica_id=#{self[:id]} and r.canonico_documento_id IS NOT NULL GROUP BY r.canonico_documento_id")
     end
