@@ -20,9 +20,7 @@ Web based platform to develop collaborative systematic reviews and meta-analysis
 
 ### Using source code (latest)
 
-You need a ruby 2.2 or later installed, and bundler gem. To install mysql and sqlite gems, development libraries should be installed.
- 
-Copy the source code using
+Once you have all necesary dependencies (see **Prerequisites**), copy the source code using
 
    > git clone git@github.com:clbustos/buhos.git
 
@@ -40,7 +38,7 @@ A portable version of software, for Windows, can be obtained from https://www.bu
 
 ### Using vagrant
 
-On vendor/vagrant directory you could find a working vagrant configuration. You could run it using
+On vendor/vagrant_alpine and vendor/vagrant_ubuntu_16 directories you could find working vagrant configurations for Alpine and Ubuntu 16.04, respectively. You could run it using
     
     > vagrant up
     
@@ -51,18 +49,52 @@ By default, the application is configured to run on port 4567.
 
 On linux, you need a ruby 2.2 installation with bundler, and development libraries for mysql and sqlite. We recommend using [RVM](https://rvm.io/).
 
-A script on Ubuntu 16.06 that install RVM and system dependencies is:
 
-    # Install RVM
-    gpg --keyserver hkp://keys.gnupg.net \
-      --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
-    curl -sSL https://get.rvm.io | bash -s $1
-    sudo apt-get install -y \
+On Ubuntu, this script install all required dependencies
+
+
+    # Update system
+    apt-get update
+    apt-get upgrade -y
+    
+    apt-get install -y \
+      cloc \
+      gdal-bin \
+      gdebi-core \
+      git \
+      libcurl4-openssl-dev \
+      libgdal-dev \
+      libproj-dev \
+      libxml2-dev \
+      libxml2-dev \
       build-essential \
       libmysqlclient-dev \
       libsqlite3-dev
-    gem install bundler
+    
+    # Install RVM
+    
+    gpg --keyserver hkp://keys.gnupg.net \
+          --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
+    curl -sSL https://get.rvm.io | bash -s $1
+    
       
+On alpine, the basic configuration is   
+
+    apk update
+    apk upgrade
+    apk --update add --virtual \
+        build-dependencies \
+        ruby-dev \
+        build-base \
+        ruby \
+        libffi-dev \
+        libxml2-dev \
+        libxslt-dev \
+        mariadb-dev \
+        sqlite-dev \
+        ruby-json \
+        ruby-bigdecimal \
+        ruby-etc    
 
 ## Installing
 

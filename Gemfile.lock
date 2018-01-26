@@ -1,7 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    Ascii85 (1.0.2)
+    Ascii85 (1.0.3)
     afm (0.2.2)
     ai4r (1.13)
     bibtex-ruby (4.4.5)
@@ -116,4 +116,4 @@ DEPENDENCIES
   thin
 
 BUNDLED WITH
-   1.16.0
+   1.16.1
