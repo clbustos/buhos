@@ -105,3 +105,47 @@ get '/busqueda/:id/referencias/generar_canonicos_doi/:n' do |id, n|
   redirect back
 end
 
+
+post '/busquedas/update' do
+  $log.info(params)
+  if params["action"].nil?
+    agregar_mensaje(I18n::t(:No_valid_action), :error)
+  elsif params['search'].nil?
+    agregar_mensaje(I18n::t(:No_search_selected), :error)
+  else
+    searchs=Busqueda.where(:id=>params['search'])
+    if params['action']=='valid'
+      searchs.update(:valid=>true)
+    elsif params['action']=='invalid'
+      searchs.update(:valid=>false)
+    elsif params['action']=='delete'
+      searchs.delete()
+    elsif params['action']=='process'
+      busquedas.each do |busqueda|
+        agregar_mensaje("Archivo de busqueda #{busqueda[:id]} procesada exitosamente") if busqueda.procesar_archivo
+      end
+
+      # Segundo, procesamos los canonicos
+      busquedas.each do |busqueda|
+        agregar_mensaje("Canónicos de #{busqueda[:id]} procesada exitosamente") if busqueda.procesar_canonicos
+      end
+
+    else
+      agregar_mensaje(I18n::t(:Action_not_defined), :error)
+    end
+  end
+  redirect params['url_back']
+end
+
+
+get '/busqueda/:id/validate' do |id|
+  Busqueda[id].update(:valid=>true)
+  agregar_mensaje(I18n::t(:Search_marked_as_valid))
+  redirect back
+end
+
+get '/busqueda/:id/invalidate' do |id|
+  Busqueda[id].update(:valid=>false)
+  agregar_mensaje(I18n::t(:Search_marked_as_invalid))
+  redirect back
+end

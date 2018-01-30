@@ -1,14 +1,23 @@
 .page-header
   %h2=t(:Systematic_reviews)
 
-.btn-group
-  - if @inactivas
-    %a{:href=>url("/revisiones"), :role=>:button, :class=>"btn btn-default"}
-      =t(:Only_active)
-  - else
-    %a{:href=>url("/revisiones?inactivas=true"), :role=>:button, :class=>"btn btn-default"}
-      =t(:Active_and_inactive)
+- if @show_inactives
+  %p
+    %em="#{t(:Type_of_systematic_review_show)}:"
+    ="#{t(:actives_and_inactives_systematic_reviews)}.&nbsp;"
+    %a{:href=>url("/revisiones")}=t(:Show_only_actives)
+- else
+  %p
+    %em="#{t(:Type_of_systematic_review_show)}:"
+    ="#{t(:only_actives_systematic_reviews)}.&nbsp;"
+    %a{:href=>url("/revisiones?show_inactives=true")}=t(:Show_actives_and_inactives)
 
+.btn-group
+  - if permiso("revisiones_crear_propia")
+    %a{:href=>url("/revision/nuevo")}
+      %button{:class=>"btn btn-default"}
+        %span{:class=>"glyphicon glyphicon-plus"}
+        =t(:Systematic_review_new)
 -@revisiones.each do |r|
   %div{:class=>"panel panel-default"}
     %div{:class=>"panel-heading"}
@@ -33,8 +42,3 @@
     %div{:class=>"panel-footer"}
       =partial(:revision_botones, :locals=>{:r=>r})
 
-- if permiso("revisiones_crear_propia")
-  %a{:href=>url("/revision/nuevo")}
-    %button{:class=>"btn btn-default"}
-      %span{:class=>"glyphicon glyphicon-plus"}
-      =t(:Systematic_review_new)

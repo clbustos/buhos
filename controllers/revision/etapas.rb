@@ -153,7 +153,7 @@ get '/revision/:id/administracion/:etapa' do |id,etapa|
   @revision=Revision_Sistematica[id]
   @etapa=etapa
   @ars=AnalisisRevisionSistematica.new(@revision)
-  @categorizador=Categorizador_RS.new(@revision)
+  @categorizador=Categorizador_RS.new(@revision) unless etapa==:busqueda
 
   @cds_id=@revision.cd_id_por_etapa(@revision.etapa)
   @cds=Canonico_Documento.where(:id=>@cds_id)

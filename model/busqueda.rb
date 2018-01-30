@@ -8,7 +8,9 @@ class Busqueda < Sequel::Model
   many_to_one :base_bibliografica, :class=>Base_Bibliografica
   many_to_many :registros, :class=>Registro
 
-
+  def user_name
+    user_id.nil? ? I18n::t(:No_username) : Usuario[self.user_id].nombre
+  end
   def registros_n
     registros.count
   end

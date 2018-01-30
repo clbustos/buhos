@@ -1,6 +1,6 @@
 - title(t(:Dashboard_user, :user_name=>@user.nombre))
 %div.main-actions
-  .btn-group.btn-group-sm
+  .btn-group.btn-group-sm{:role=>:group}
     - if permiso("revisiones_crear_propia")
       %a.btn.btn-default{:href=>url("/revision/nuevo")}
         %span{:class=>"glyphicon glyphicon-plus"}
@@ -10,5 +10,6 @@
         %span{:class=>"glyphicon glyphicon-plus"}
         =t(:Group_new)
 
+%br
 
 =partial(:dashboard_user, :locals=>{:user=>@user})

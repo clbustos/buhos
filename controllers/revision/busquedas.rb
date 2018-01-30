@@ -2,6 +2,9 @@ get '/revision/:id/busquedas' do |id|
   error(403) unless permiso('busqueda_revision_ver')
   @revision=Revision_Sistematica[id]
   @busquedas=@revision.busquedas
+  @header=t_systematic_review_title(@revision[:nombre], :systematic_review_searchs)
+
+  @url_back="/revision/#{id}/busquedas"
   haml "revisiones_sistematicas/busquedas".to_sym
 end
 
@@ -10,10 +13,14 @@ get '/revision/:id/busquedas/user/:user_id' do |id,user_id|
   @revision=Revision_Sistematica[id]
 
   @header=t_systematic_review_title(@revision[:nombre], t(:searchs_user, :user_name=>Usuario[user_id][:nombre]), false)
-
+  @url_back="/revision/#{id}/busquedas/user/#{user_id}"
   @busquedas=@revision.busquedas_dataset.where(:user_id=>user_id)
   haml "revisiones_sistematicas/busquedas".to_sym
 end
+
+
+
+
 
 get '/revision/:id/busqueda/nuevo' do |id|
   error(403) unless permiso('busqueda_revision_crear')
@@ -22,14 +29,12 @@ get '/revision/:id/busqueda/nuevo' do |id|
   @revision=Revision_Sistematica[id]
   @header=t_systematic_review_title(@revision[:nombre], :New_search)
 
-  @busqueda=Busqueda.new(:user_id=>session['user_id'], :review_ready=>false, :fecha=>Date.today)
+  @busqueda=Busqueda.new(:user_id=>session['user_id'], :valid=>false, :fecha=>Date.today)
   @usuario=Usuario[session['user_id']]
   haml "busquedas/busqueda_edicion".to_sym
 end
 
 post '/revision/busqueda/actualizar' do
-  error(403) unless permiso('busqueda_revision_crear')
-
   id=params['busqueda_id']
   otros_params=params
   otros_params.delete("busqueda_id")
@@ -43,29 +48,37 @@ post '/revision/busqueda/actualizar' do
   }
   #  aa=Revision_Sistematica.new
 
-  if id==""
-    busqueda=Busqueda.create(
-        :revision_sistematica_id=>otros_params[:revision_sistematica_id],
-        :base_bibliografica_id=>otros_params[:base_bibliografica_id],
-        :fecha=>otros_params[:fecha],
-        :criterio_busqueda=>otros_params[:criterio_busqueda],
-        :descripcion=>otros_params[:descripcion]
-    )
+  if !permiso('busqueda_revision_crear')
+    agregar_mensaje(I18n::t(:Not_allowed_with_user_permissions),:error)
+  elsif params['base_bibliografica_id'].nil?
+    agregar_mensaje(I18n::t(:No_empty_bibliographic_database_on_search),:error)
   else
-    busqueda=Busqueda[id]
-    busqueda.update(otros_params)
-  end
 
-  if(archivo)
-    fp=File.open(archivo[:tempfile],"rb")
-    busqueda.update(:archivo_cuerpo=>fp.read, :archivo_tipo=>archivo[:type],:archivo_nombre=>archivo[:filename])
-    fp.close
+
+    if id==""
+      busqueda=Busqueda.create(
+          :revision_sistematica_id=>otros_params[:revision_sistematica_id],
+          :base_bibliografica_id=>otros_params[:base_bibliografica_id],
+          :fecha=>otros_params[:fecha],
+          :criterio_busqueda=>otros_params[:criterio_busqueda],
+          :descripcion=>otros_params[:descripcion]
+      )
+    else
+      busqueda=Busqueda[id]
+      busqueda.update(otros_params)
+    end
+
+    if archivo
+      fp=File.open(archivo[:tempfile],"rb")
+      busqueda.update(:archivo_cuerpo=>fp.read, :archivo_tipo=>archivo[:type],:archivo_nombre=>archivo[:filename])
+      fp.close
+    end
   end
 
   redirect "/revision/#{otros_params[:revision_sistematica_id]}/busquedas"
 end
 
-
+# To process all search
 get '/revision/:id/busquedas/procesar' do |id|
   revision=Revision_Sistematica[id]
   busquedas=revision.busquedas

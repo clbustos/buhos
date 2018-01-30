@@ -3,9 +3,9 @@
 get '/revisiones' do 
   error(403) unless permiso('ver_revisiones')
   @usuario=Usuario[session['user_id']]
-  @inactivas=params['inactivas']
+  @show_inactives=params['show_inactives']
   @revisiones=Revision_Sistematica.get_revisiones_por_usuario(@usuario.id)
-  @revisiones=@revisiones.where(:activa => 1) unless @inactivas
+  @revisiones=@revisiones.where(:activa => 1) unless @show_inactives
   haml :revisiones
 end
 
@@ -271,4 +271,10 @@ post '/revision/archivos/agregar' do
     agregar_mensaje("No se han enviado archivos", :error)
   end
   redirect back
+end
+
+
+get '/revision/:id/advance_stage' do
+
+
 end

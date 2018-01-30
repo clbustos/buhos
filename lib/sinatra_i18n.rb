@@ -29,6 +29,13 @@ module Sinatra
           terms.map {|term| ::I18n::t("sr_taxonomy_category.#{term}")}.join("," )
         end
       end
+      def t_yes_no_nil(x)
+        if x.nil?
+          ::I18n::t(:Not_defined)
+        else
+          x ? ::I18n::t(:Yes) : ::I18n::t(:No)
+        end
+      end
 
       # Put the term on strong tag, double colon, and later the value
       # @param term Term to be i18n and marked with strong tag

@@ -30,7 +30,13 @@ module HTMLHelpers
   def class_bootstrap_contextual(cond, prefix, clase, clase_no="default")
     cond ? "#{prefix}-#{clase}" : "#{prefix}-#{clase_no}"
   end
-
+  def bool_class(x, yes,no,nil_class)
+    if x.nil?
+      nil_class
+    else
+      x ? yes : no
+    end
+  end
   def decision_class_bootstrap(tipo, prefix)
     suffix=case tipo
              when nil

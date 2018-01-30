@@ -2,7 +2,6 @@ require_relative 'metodos_referencia'
 module ReferenceIntegrator
 
   module CommonRecordAttributes
-    attr_reader :type
     attr_accessor :uid
     attr_accessor  :title
     attr_accessor  :abstract

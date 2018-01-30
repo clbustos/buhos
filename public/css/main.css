@@ -303,6 +303,11 @@ table.reporte {
     font-size:98%;
     margin-left:0px;
     margin-right:1em;
+    margin-top:0.5em;
+    margin-bottom:0.5em;
+    border-radius:6px;
+    -moz-border-radius:6px;
+    -webkit-border-radius: 6px;
 } 
 table.blanco td {
     border:0px solid #666;
@@ -315,12 +320,15 @@ table.reporte td {
     text-align:right;
     
 }
-
+table.reporte thead th {
+    text-align:center;
+}
 table.reporte th {
     background: #eee;
     font-weight: bold;
     color:black;
     border:1px solid black;
+    padding:0.3em;
 }
 
 table.reporte th.chico {

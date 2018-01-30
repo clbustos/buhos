@@ -7,16 +7,33 @@
 
 =t_desc_value(:Count_searchs_on_systematic_review, @revision.busquedas.count)
 
-%table.reporte
+%table.table.table-bordered
   %thead
-    %th=t(:Busqueda)
+    %th=t(:Search_name)
+    %th=t(:User_name)
     %th=t(:Count_records)
     %th=t(:Count_references_total)
     %th=t(:Count_references_with_canonical)
+    %th=t(:Search_valid)
   %tbody
     - @revision.busquedas.each do |busqueda|
-      %tr
-        %td=busqueda.nombre
-        %td=busqueda.registros_n
-        %td=busqueda.referencias_n
+      %tr{:class=>bool_class(busqueda.valid, "success","danger","warning")}
+        %td
+          %a{:href=>"/busqueda/#{busqueda[:id]}"}=busqueda.nombre
+        %td=busqueda.user_name
+        %td
+          %a{:href=>"/busqueda/#{busqueda[:id]}/registros"}=busqueda.registros_n
+        %td
+          %a{:href=>"/busqueda/#{busqueda[:id]}/referencias"}=busqueda.referencias_n
         %td=busqueda.referencias_con_canonico_n.count
+        %td
+          - class_validate= (!busqueda.valid.nil? and busqueda.valid)  ? "btn-success" : "btn-default"
+          - class_invalidate= (busqueda.valid.nil? or busqueda.valid)  ? "btn-default" : "btn-danger"
+          %a{:class=>"btn btn-sm #{class_validate}", :href=>"/busqueda/#{busqueda[:id]}/validate"}=t(:Search_valid)
+          %a{:class=>"btn btn-sm #{class_invalidate}", :href=>"/busqueda/#{busqueda[:id]}/invalidate"}=t(:Search_invalid)
+
+
+
+- if @ars.stage_complete? :busqueda
+  %p.info=t(:stage_search_complete_instruction)
+  %a.btn.btn-primary{:href=>"/revision/#{@revision[:id]}/advance_stage"}=t(:Advance_next_stage)

@@ -6,7 +6,7 @@ Sequel.migration do
     end
     alter_table(:busquedas) do
       add_foreign_key :user_id, :usuarios, :null=>false, :key=>[:id], :default=>1
-      add_column :review_ready, TrueClass, :default=>false, :null=>false
+      add_column :valid, TrueClass, :default=>nil, :null=>true
     end
 
   end

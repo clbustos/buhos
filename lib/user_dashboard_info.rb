@@ -17,7 +17,7 @@ class UserDashboardInfo
   end
   # Return the searchs not ready for review
   def searchs_not_ready(sr_id)
-    Busqueda.where(:user_id=>user[:id], :review_ready=>false, :revision_sistematica_id=>sr_id)
+    Busqueda.where(:user_id=>user[:id], :valid=>nil, :revision_sistematica_id=>sr_id)
   end
   def adu_for_sr(sr)
     @adu_hash[sr[:id]]

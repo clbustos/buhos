@@ -66,6 +66,14 @@ class AnalisisRevisionSistematica
     @cd_todos_id.length
   end
 
+  def stage_complete?(stage)
+    if stage==:busqueda
+      bds=@rs.busquedas_dataset
+      bds.where(:valid=>nil).count==0 and bds.exclude(:valid=>nil).count>0
+    else
+      raise('Not defined yet')
+    end
+  end
 
   def procesar_indicadores_basicos
     @cd_reg_id=@rs.cd_registro_id
