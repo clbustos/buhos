@@ -255,3 +255,29 @@ get '/revision/:rev_id/etapa/revision_titulo_resumen/generar_referencias_crossre
   agregar_resultado(result)
   redirect back
 end
+
+
+
+get '/revision/:rev_id/administracion/:stage/cd_assignations' do |rev_id, stage|
+  @revision=Revision_Sistematica[rev_id]
+  @cds_id=@revision.cd_id_por_etapa(stage)
+  @ars=AnalisisRevisionSistematica.new(@revision)
+  @stage=stage
+  @cds=Canonico_Documento.where(:id=>@cds_id).order(:author)
+  haml("revisiones_sistematicas/cd_assignations_to_user".to_sym)
+end
+
+get '/revision/:rev_id/stage/:stage/add_assign_user/:user_id' do |rev_id, stage, user_id|
+  @revision=Revision_Sistematica[rev_id]
+  @cds_id=@revision.cd_id_por_etapa(stage)
+  agregar_resultado(Asignacion_Cd.update_assignation(rev_id, @cds_id, user_id,stage, 'massive_assigment'))
+  redirect back
+end
+
+
+get '/revision/:rev_id/stage/:stage/rem_assign_user/:user_id' do |rev_id, stage, user_id|
+  @revision=Revision_Sistematica[rev_id]
+
+  agregar_resultado(Asignacion_Cd.update_assignation(rev_id, [], user_id,stage))
+  redirect back
+end

@@ -274,7 +274,22 @@ post '/revision/archivos/agregar' do
 end
 
 
-get '/revision/:id/advance_stage' do
+get '/revision/:id/advance_stage' do |id|
+  @revision=Revision_Sistematica[id]
+  return 404 if @revision.nil?
+
+  @ars=AnalisisRevisionSistematica.new(@revision)
+  if (@ars.stage_complete?(@revision.etapa))
 
 
+    etapa_i=Revision_Sistematica::ETAPAS.index(@revision[:etapa].to_sym)
+    $log.info(etapa_i)
+    return 405 if etapa_i.nil?
+    @revision.update(:etapa=>Revision_Sistematica::ETAPAS[etapa_i+1])
+    agregar_mensaje(I18n::t(:stage_complete))
+    redirect("/revision/#{@revision[:id]}/administracion/#{@revision[:etapa]}")
+  else
+    agregar_mensaje(I18n::t(:stage_not_yet_complete), :error)
+    redirect back
+  end
 end

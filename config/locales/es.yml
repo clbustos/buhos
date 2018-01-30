@@ -1,5 +1,6 @@
 es:
   App_title: "Buhos"
+  Stage_title: "Etapa: %{stage_name}"
   App_title_installer: "Instalación - Buhos"
   Type_of_systematic_review_show: "Tipo de revisión mostrada"
   actives_and_inactives_systematic_reviews: "activas y no activas"
@@ -12,6 +13,9 @@ es:
   Not_defined: "No definido"
   No_file: "Sin archivo"
   Action_not_defined: "Acción no definida"
+  Search_process_file_successfully: "Archivo de búsqueda procesado exitosamente"
+  Search_canonical_documents_successfully: "Archivos canónicos de búsqueda procesados exitosamente"
+  Review_title_and_abstract: "Revisión título y resumen"
   Search_name: "Nombre de la búsqueda"
   Search_marked_as_valid: "Búsqueda marcada como válida"
   Search_marked_as_invalid: "Búsqueda marcada como no válida"
@@ -191,6 +195,7 @@ es:
   Search_view: "Ver búsqueda"
   Search_edit: "Edición búsqueda %{search_name}"
   Review_status: "Estado de la revisión"
+  Check_CD_assignations: "Revisar asignaciones de DC"
   Automatic_categories: "Categorías automáticas"
   Systematic_review_automatic_categories: "Categorias automáticas para la revisión sistemática"
   Decisions_by_document: "Decisiones por documento"
@@ -263,17 +268,20 @@ es:
 
   More_incoming_citations: "Documentos canónicos que reciben más citas desde canónicos"
   More_outgoing_citations: "Documentos canónicos que realizan más citas a canónicos"
-
+  result_assignation_cd_to_user: "Se agregaron %{added} documentos y se quitaron %{removed} documentos al usuario %{user_name}"
   systematic_review_page:
     stages: Etapas
     search_administration: "Administración de búsquedas"
     review_full_text_administration: "Administración de la etapa de Texto Completo"
     search_administration_instructions: "Revise cada revisión sistemática, para estar seguro que cuenta con información sobre la fuente, fecha y criterios de búsqueda. Marque como 'no válida' todas las búsquedas problemáticas. Sólo las búsquedas validadas serán usadas en etapas posteriores."
+    cd_assignations: "Asignación de Documentos Canónicos a usuarios"
   Successful_authentification: "Autentificación exitosa"
   Count_records: "Número de registros"
   References_assigned_to_canonical_document: "Referencias asignadas a un documento canónico"
   References_not_assigned_to_canonical_document: "Referencias no asignadas a un documento canónico"
   Language: "Lenguaje"
+  Assign: "Asignar"
+  Remove_assign: "Quitar asignación"
   locale:
     es: "Español"
     en: "English"
@@ -322,6 +330,9 @@ es:
     Collapse: "Colapsar"
     Read: "Leído"
   Send_message_to_group: "Enviar mensaje al grupo"
+  Count_total_documents_to_review: "Número de documentos a revisar"
+  Count_canonical_documents_assigned: "Nº documentos asignados"
+  Assigned_CD: "DC asignados"
   user_dashboard:
     count_total_canonical_documents_stage: "Número de documentos canónicos para esta etapa"
     unread_personal_messages: "Mensajes personales sin leer"

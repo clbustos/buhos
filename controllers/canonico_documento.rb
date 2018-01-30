@@ -128,12 +128,12 @@ post '/canonico_documento/asignacion_usuario/:accion' do |accion|
   revision=Revision_Sistematica[params['rs_id']]
   cd=Canonico_Documento[params['cd_id']]
   user=Usuario[params['user_id']]
-
-  return 404 if !revision or !cd or !user
-  a_cd=Asignacion_Cd[:revision_sistematica_id=>revision[:id],:canonico_documento_id=>cd[:id],:usuario_id=>user[:id]]
+  stage=params['stage']
+  return 404 if !revision or !cd or !user or !stage
+  a_cd=Asignacion_Cd[:revision_sistematica_id=>revision[:id],:canonico_documento_id=>cd[:id],:usuario_id=>user[:id], :etapa=>stage]
   if accion=='asignar'
     if !a_cd
-      Asignacion_Cd.insert(:revision_sistematica_id=>revision[:id],:canonico_documento_id=>cd[:id],:usuario_id=>user[:id],:estado=>"asignado")
+      Asignacion_Cd.insert(:revision_sistematica_id=>revision[:id],:canonico_documento_id=>cd[:id],:usuario_id=>user[:id],:etapa=>stage,:estado=>"assigned")
       return 200
     end
   elsif accion=='desasignar'

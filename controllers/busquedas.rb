@@ -107,7 +107,7 @@ end
 
 
 post '/busquedas/update' do
-  $log.info(params)
+  #$log.info(params)
   if params["action"].nil?
     agregar_mensaje(I18n::t(:No_valid_action), :error)
   elsif params['search'].nil?
@@ -121,15 +121,12 @@ post '/busquedas/update' do
     elsif params['action']=='delete'
       searchs.delete()
     elsif params['action']=='process'
-      busquedas.each do |busqueda|
-        agregar_mensaje("Archivo de busqueda #{busqueda[:id]} procesada exitosamente") if busqueda.procesar_archivo
+      results=Result.new
+      searchs.each do |search|
+        sp=SearchProcessor.new(search)
+        results.add_result(sp.result)
       end
-
-      # Segundo, procesamos los canonicos
-      busquedas.each do |busqueda|
-        agregar_mensaje("Canónicos de #{busqueda[:id]} procesada exitosamente") if busqueda.procesar_canonicos
-      end
-
+      agregar_resultado(results)
     else
       agregar_mensaje(I18n::t(:Action_not_defined), :error)
     end

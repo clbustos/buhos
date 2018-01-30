@@ -13,15 +13,22 @@
 
 %h3=t(:Statistics_by_user)
 
+.btn-group
+  %a.btn.btn-sm.btn-default{:href=>"/revision/#{@revision[:id]}/administracion/#{@etapa}/cd_assignations"}
+    %span.glyphicon.glyphicon-list
+    =t(:Check_CD_assignations)
+
 %table.reporte
   %thead
     %th=t(:User)
+    %th=t(:Count_canonical_documents_assigned)
     - Decision::N_EST.each do |dec,nombre|
       %th=t(Decision.get_name_decision(dec))
   %tbody
     - @ars.decisiones_usuarios(@etapa).each do |usuario_id, edu|
       %tr
         %th=edu[:usuario].nombre
+        %td=edu[:adu].asignaciones.count
         - Decision::N_EST.each do |dec,nombre|
           %td=edu[:adu].total_decisiones[dec].to_i
 

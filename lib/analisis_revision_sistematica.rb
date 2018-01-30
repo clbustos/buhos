@@ -67,6 +67,8 @@ class AnalisisRevisionSistematica
   end
 
   def stage_complete?(stage)
+    stage=stage.to_sym
+    $log.info(stage)
     if stage==:busqueda
       bds=@rs.busquedas_dataset
       bds.where(:valid=>nil).count==0 and bds.exclude(:valid=>nil).count>0

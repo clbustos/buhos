@@ -31,6 +31,9 @@
   %div{:class=>"list-group-item"}
     %span{:class=>"titulo"}=t(:Group)
     %span=@revision.grupo_nombre
+  %div{:class=>"list-group-item"}
+    %span{:class=>"titulo"}=t(:Stage)
+    %span=t(Revision_Sistematica.get_nombre_etapa(@revision[:etapa]))
   -if !@revision.grupo.nil?
     %div{:class=>"list-group-item"}
       %span{:class=>"titulo"}=t(:Administrator)

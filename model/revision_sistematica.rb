@@ -87,11 +87,11 @@ AND  #{cd_query} GROUP BY tags.id ORDER BY n_documentos DESC ,p_yes DESC,tags.te
   end
 
   def cd_registro_id
-    Registro.join(:busquedas_registros, :registro_id => :id).join(:busquedas, :id => :busqueda_id).join(Revision_Sistematica.where(:id => self[:id]), :id => :revision_sistematica_id).select_all(:canonicos_documentos).group(:canonico_documento_id).select_map(:canonico_documento_id)
+    Registro.join(:busquedas_registros, :registro_id => :id).join(:busquedas, :id => :busqueda_id).join(Revision_Sistematica.where(:id => self[:id]), :id => :revision_sistematica_id).select_all(:canonicos_documentos).where(:valid=>true).group(:canonico_documento_id).select_map(:canonico_documento_id)
   end
 
   def cd_referencia_id
-    $db["SELECT canonico_documento_id FROM busquedas b INNER JOIN busquedas_registros br ON b.id=br.busqueda_id INNER JOIN referencias_registros rr ON br.registro_id=rr.registro_id INNER JOIN referencias r ON rr.referencia_id=r.id  WHERE b.revision_sistematica_id=? and r.canonico_documento_id IS NOT NULL GROUP BY r.canonico_documento_id", self[:id]].select_map(:canonico_documento_id)
+    $db["SELECT canonico_documento_id FROM busquedas b INNER JOIN busquedas_registros br ON b.id=br.busqueda_id INNER JOIN referencias_registros rr ON br.registro_id=rr.registro_id INNER JOIN referencias r ON rr.referencia_id=r.id  WHERE b.revision_sistematica_id=? and r.canonico_documento_id IS NOT NULL AND b.valid=1 GROUP BY r.canonico_documento_id", self[:id]].select_map(:canonico_documento_id)
   end
 
 
@@ -190,11 +190,11 @@ HEREDOC
   def cd_id_table
     view_name=cd_id_table_tn
     if !$db.table_exists?(view_name)
-      $db.run("CREATE VIEW #{view_name} AS SELECT DISTINCT(r.canonico_documento_id) FROM registros r INNER JOIN busquedas_registros br ON r.id=br.registro_id INNER JOIN busquedas b ON br.busqueda_id=b.id WHERE b.revision_sistematica_id=#{self[:id]}
+      $db.run("CREATE VIEW #{view_name} AS SELECT DISTINCT(r.canonico_documento_id) FROM registros r INNER JOIN busquedas_registros br ON r.id=br.registro_id INNER JOIN busquedas b ON br.busqueda_id=b.id WHERE b.revision_sistematica_id=#{self[:id]} AND b.valid=1
 
       UNION
 
-      SELECT DISTINCT r.canonico_documento_id FROM busquedas b INNER JOIN busquedas_registros br ON b.id=br.busqueda_id INNER JOIN referencias_registros rr ON br.registro_id=rr.registro_id INNER JOIN referencias r ON rr.referencia_id=r.id  WHERE b.revision_sistematica_id=#{self[:id]} and r.canonico_documento_id IS NOT NULL GROUP BY r.canonico_documento_id")
+      SELECT DISTINCT r.canonico_documento_id FROM busquedas b INNER JOIN busquedas_registros br ON b.id=br.busqueda_id INNER JOIN referencias_registros rr ON br.registro_id=rr.registro_id INNER JOIN referencias r ON rr.referencia_id=r.id  WHERE b.revision_sistematica_id=#{self[:id]} and r.canonico_documento_id IS NOT NULL and b.valid=1 GROUP BY r.canonico_documento_id")
     end
     $db[view_name.to_sym]
   end
@@ -212,7 +212,7 @@ HEREDOC
   def referencias_entre_canonicos
     view_name=referencias_entre_canonicos_tn
     if !$db.table_exists?(view_name)
-      $db.run("CREATE VIEW #{view_name} AS SELECT r.canonico_documento_id as cd_origen, ref.canonico_documento_id as cd_destino FROM registros r INNER JOIN busquedas_registros br ON r.id=br.registro_id INNER JOIN busquedas b ON br.busqueda_id=b.id  INNER JOIN  referencias_registros rr ON rr.registro_id=r.id INNER JOIN referencias ref ON ref.id=rr.referencia_id   WHERE revision_sistematica_id='#{self[:id]}' AND ref.canonico_documento_id IS NOT NULL GROUP BY cd_origen, cd_destino")
+      $db.run("CREATE VIEW #{view_name} AS SELECT r.canonico_documento_id as cd_origen, ref.canonico_documento_id as cd_destino FROM registros r INNER JOIN busquedas_registros br ON r.id=br.registro_id INNER JOIN busquedas b ON br.busqueda_id=b.id  INNER JOIN  referencias_registros rr ON rr.registro_id=r.id INNER JOIN referencias ref ON ref.id=rr.referencia_id   WHERE revision_sistematica_id='#{self[:id]}' AND ref.canonico_documento_id IS NOT NULL AND b.valid=1 GROUP BY cd_origen, cd_destino")
     end
     $db[view_name.to_sym]
   end

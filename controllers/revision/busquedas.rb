@@ -83,15 +83,12 @@ get '/revision/:id/busquedas/procesar' do |id|
   revision=Revision_Sistematica[id]
   busquedas=revision.busquedas
   # Primero, procesamos las busquedas individuales
+  results=Result.new
   busquedas.each do |busqueda|
-    agregar_mensaje("Archivo de busqueda #{busqueda[:id]} procesada exitosamente") if busqueda.procesar_archivo
+    sp=SearchProcessor.new(busqueda)
+    results.add_result(sp.result)
   end
-
-  # Segundo, procesamos los canonicos
-  busquedas.each do |busqueda|
-    agregar_mensaje("Canónicos de #{busqueda[:id]} procesada exitosamente") if busqueda.procesar_canonicos
-  end
-
+  agregar_resultado(results)
   redirect back
 
 end

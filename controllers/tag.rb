@@ -154,7 +154,7 @@ get '/tag/:tag_id/revision/:rs_id/asignar_usuario/:usuario_id' do |tag_id,rs_id,
     if por_agregar.length>0
       $db.transaction(:rollback=>:reraise) do
         por_agregar.each do |cd_id|
-        Asignacion_Cd.insert(:revision_sistematica_id=>rs_id,:usuario_id=>user_id, :canonico_documento_id=>cd_id, :estado=>'asignado')
+        Asignacion_Cd.insert(:revision_sistematica_id=>rs_id,:usuario_id=>user_id, :canonico_documento_id=>cd_id, :estado=>'assigned')
         end
       end
       agregar_mensaje("Agregados cd #{por_agregar.join(',')}  a usuario #{user_id} en revision sistematica #{revision.nombre}")
