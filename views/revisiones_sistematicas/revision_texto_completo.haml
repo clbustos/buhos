@@ -1,5 +1,4 @@
-.page-header
-  %h2=t(:Systematic_review_stage_full_text, sr_name:@revision[:nombre])
+.header=t_systematic_review_title(@revision[:nombre], :Systematic_review_stage_full_text)
 %ul.breadcrumb
   %li
     %a{:href=>url("/revision/#{@revision.id}")}=@revision.nombre

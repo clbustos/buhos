@@ -843,3 +843,10 @@ p.instructions {
  margin:1em;
     padding:0.5em;
 }
+
+
+
+.btn-pending {
+    background: #bbb;
+    color:white;
+}

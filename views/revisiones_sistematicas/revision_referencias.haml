@@ -1,10 +1,8 @@
-.page-header
-  %h2="Revision sistemática #{@revision.nombre} "
-  %h3 Revisión de referencias
+.header=t_systematic_review_title(@revision[:nombre], :Systematic_review_stage_review_references)
 %ul.breadcrumb
   %li
     %a{:href=>url("/revision/#{@revision.id}")}=@revision.nombre
-  %li{:class=>:active} Revisión de referencias
+  %li{:class=>:active}=t(:Review_references)
 
 .well
   =t("review_references.objective")
@@ -15,14 +13,10 @@
     }
   );
 
-
-
 =partial(:systematic_review_info, :locals=>{systematic_review: @revision})
-
 
 %h3=t(:Review_status)
 %p=t_desc_value(:Count_total_documents_to_review, sprintf("%d", @cds_total))
-
 
 %form{:action=>url("/revision/#{@revision[:id]}/revision_referencias"), :method=>:get,:class=>"form-check", :enctype=>"multipart/form-data"}
   %input{:type=>:hidden,:name=>:pagina, :value=>@pager.pagina}
@@ -42,7 +36,7 @@
             %input{:type=>:radio,  :class=>"form-check-input",:name=>"busqueda", :value=>k, :checked=> checked }
       %tr
         %td{:colspan=>Decision::N_EST.keys.length}
-          %input{:type=>"submit", :class=>"btn btn-default", :value=>"Filtrar"}
+          %input{:type=>"submit", :class=>"btn btn-default", :value=>t(:Filter)}
 - if @pager.busqueda
   %p=t_desc_value(:Count_documents_search, @cds_total)
 
@@ -63,9 +57,9 @@
     %strong=t("review_references.stage_complete_message")
 
 
-= partial(:pager,:locals=>{url: @url, pagina: @pager.pagina, max_page: @pager.max_page, :extra=>{busqueda:@pager.busqueda, orden:@pager.orden}})
+=partial(:pager,:locals=>{url: @url, pagina: @pager.pagina, max_page: @pager.max_page, :extra=>{busqueda:@pager.busqueda, orden:@pager.orden}})
 .list-group
   - @cds.each do |cd|
     %div{:id=>"decision-cd-#{cd[:id]}"}
       =partial(:decision, :locals=>{ revision_id: @revision[:id], cd: cd, decisiones: @decisiones, ars: @ars, usuario_id: @usuario_id, etapa: "revision_referencias"})
-= partial(:pager,:locals=>{url: @url, pagina: @pager.pagina, max_page: @pager.max_page, :extra=>{busqueda:@pager.busqueda, orden:@pager.orden}})
+=partial(:pager,:locals=>{url: @url, pagina: @pager.pagina, max_page: @pager.max_page, :extra=>{busqueda:@pager.busqueda, orden:@pager.orden}})

@@ -1,5 +1,8 @@
 es:
   App_title: "Buhos"
+  current: "En proceso"
+  pending: "Pendiente"
+  complete: "Completo"
   Stage_title: "Etapa: %{stage_name}"
   App_title_installer: "Instalación - Buhos"
   Type_of_systematic_review_show: "Tipo de revisión mostrada"
@@ -12,6 +15,7 @@ es:
   Search_valid: "Válida"
   Not_defined: "No definido"
   No_file: "Sin archivo"
+  Count_documents_search: "Nº documentos búsqueda"
   Action_not_defined: "Acción no definida"
   Search_process_file_successfully: "Archivo de búsqueda procesado exitosamente"
   Search_canonical_documents_successfully: "Archivos canónicos de búsqueda procesados exitosamente"
@@ -99,7 +103,7 @@ es:
   review_title_and_abstract:
     objective: "Objetivo de la etapa: Seleccionar los textos obtenidos de la búsqueda en la literatura que serán sujetos a una revisión de texto completo más adelante"
     stage_complete_message: "Ha concluido la primera fase de revision de documentos de la busqueda. Cuando todos los usuarios del grupo hayan contestado, comenzara la segunda fase de revision de referencias"
-  Systematic_review_stage_review_title_abstract: "Revisión de Título y Resumen para Revisión Sistemática %{sr_name}"
+  Systematic_review_stage_review_title_abstract: "Revisión de Título y Resumen"
   review_full_text:
     objective: "Objetivo de la etapa: Analizar los textos, lo que implica asignar etiquetas(codificar) tanto a los documentos como a sus relaciones, llenar los formularios relativos a los objetivos y definir que textos se incluiran en la revision final."
   review_references:
@@ -155,7 +159,7 @@ es:
   Active: "Activo"
   Active_user: "Usuario activo"
   Search: "Búsqueda"
-  Welcome_guest: "Bienvenido, visitante"
+  Welcome_guest: "Bienvenido,&nbsp;visitante"
   Permissions: "Permisos"
   Group_edit: "Edición de grupo"
   Systematic_review_new: "Nueva revisión sistemática"
@@ -436,4 +440,4 @@ es:
     please_wait: "Por favor, espere"
   stage_search_complete_instruction: "Todas las búsquedas han sido revisadas, así que puede seguir con la siguiente etapa"
   Advance_next_stage: "Avanzar a la siguiente etapa"
-
+  No_document_for_this_criteria: "Sin documentos para este criterio"

@@ -40,7 +40,9 @@ class AnalisisDecisionUsuario
 
     @decision_por_cd=@cd_ids.inject({}) {|ac, cd_id|
       dec_id=@decisiones[cd_id]
-      dec_dec=dec_id ? dec_id[:decision] : Decision::NO_DECISION
+
+      dec_dec=dec_id  ? dec_id[:decision] : Decision::NO_DECISION
+      dec_dec=Decision::NO_DECISION if dec_dec.nil?
       ac[cd_id]=dec_dec
       ac
     }

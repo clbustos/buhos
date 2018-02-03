@@ -11,6 +11,7 @@ get '/canonico_documento/:id' do |id|
   end
 
   @referencias_realizadas=@cd.referencias_realizadas
+  title(t(:Canonical_document_title, cd_name:@cd.ref_apa_6))
   haml "canonico_documento".to_sym
 end
 

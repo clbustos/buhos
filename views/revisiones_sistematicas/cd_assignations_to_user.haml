@@ -1,0 +1,18 @@
+.heading
+  =t_systematic_review_title(@revision[:nombre], t("systematic_review_page.cd_assignations")+". "+t(:Stage_title, :stage_name=>t(Revision_Sistematica.get_nombre_etapa(@revision.etapa))),false)
+.list-group
+  -@revision.grupo_usuarios.each do |usuario|
+    .list-group-item
+      =usuario.nombre
+      %a{:href=>"/revision/#{@revision.id}/stage/#{@stage}/add_assign_user/#{usuario.id}",:class=>"btn btn-default"}
+        %span.glyphicon.glyphicon-hand-up
+        =t(:Assign)
+      %a{:href=>"/revision/#{@revision.id}/stage/#{@stage}/rem_assign_user/#{usuario.id}",:class=>"btn btn-default"}
+        %span.glyphicon.glyphicon-hand-down
+        =t(:Remove_assign)
+
+
+- @cds.each do |cd|
+  %div{:class=>"panel panel-default"}
+    =partial(:canonico_documento_descripcion , :locals=>{revision: @revision, cd: cd, ars:@ars})
+    =partial(:canonico_documento_asignaciones, :locals=>{revision: @revision, cd: cd, stage:@stage})

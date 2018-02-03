@@ -2,13 +2,16 @@ get '/revision/:id/revision_titulo_resumen' do |id|
 
   @usuario=Usuario[session['user_id']]
   @usuario_id=@usuario[:id]
-  @pagina=params['pagina'].to_i
-  @pagina=1 if @pagina<1
-  @cpp=params['cpp']
-  @cpp||=20
-  @busqueda=params['busqueda']
+
+
+  @pager=get_pager
+  @pager.orden||="year__asc"
+
+
+  @criterios_orden={:title=>I18n.t(:Title), :year=> I18n.t(:Year), :author=>I18n.t(:Author)}
 
   # $log.info(params)
+
   @revision=Revision_Sistematica[id]
   @ars=AnalisisRevisionSistematica.new(@revision)
   @cd_total_ds=@revision.canonicos_documentos
@@ -21,27 +24,23 @@ get '/revision/:id/revision_titulo_resumen' do |id|
   @cds_pre=@ads.canonicos_documentos
 
   @decisiones=@ads.decisiones
-  if @busqueda
-
+  if @pager.busqueda.to_s!=""
     cd_ids=@ads.decision_por_cd.find_all {|v|
-      @busqueda==v[1]
+      @pager.busqueda==v[1]
     }.map {|v| v[0]}
-    ##$log.info(cd_ids)
     @cds_pre=@cds_pre.where(:id => cd_ids)
   end
 
 
+
   @cds_total=@cds_pre.count
 
-  @max_page=(@cds_total/@cpp.to_f).ceil
-  @pagina=1 if @pagina>@max_page
+  @pager.max_page=(@cds_total/@pager.cpp.to_f).ceil
 
-
-  @cds=@cds_pre.offset((@pagina-1)*@cpp).limit(@cpp).order(:author, :year)
+  @cds=@pager.ajustar_query(@cds_pre)
 
 
   haml %s{revisiones_sistematicas/revision_titulo_resumen}
-
 
 end
 

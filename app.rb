@@ -122,7 +122,14 @@ helpers do
     @title=title
   end
 
-  
+  def get_title_head
+    if @title.length>80
+      @title[0..80]+"..."
+    else
+      @title
+    end
+
+  end
   # Entrega el valor para un id de configuración
   def config_get(id)
     Configuracion.get(id)
