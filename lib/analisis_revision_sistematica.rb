@@ -72,6 +72,9 @@ class AnalisisRevisionSistematica
     if stage==:busqueda
       bds=@rs.busquedas_dataset
       bds.where(:valid=>nil).count==0 and bds.exclude(:valid=>nil).count>0
+    elsif stage==:revision_titulo_resumen or :revision_referencias or :revision_texto_completo
+      res=resolucion_por_cd(stage.to_s)
+      res.all? {|v| v[1]=='yes' or v[1]=='no'}
     else
       raise('Not defined yet')
     end

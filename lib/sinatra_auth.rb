@@ -39,7 +39,7 @@ module Sinatra
         permiso("revision_editar_propia") and Revision_Sistematica[:id=>revision_id, :administrador_revision=>usuario_id]
       end
       def revision_analizada_por(revision_id,usuario_id)
-        permiso("revision_analizar_propia") and !$db["SELECT * FROM grupos_usuarios gu INNER JOIN revisiones_sistematicas rs ON gu.grupo_id=rs.grupo_id WHERE rs.id=? AND gu.grupo_id=?", revision_id, usuario_id].empty?
+        permiso("revision_analizar_propia") and !$db["SELECT * FROM grupos_usuarios gu INNER JOIN revisiones_sistematicas rs ON gu.grupo_id=rs.grupo_id WHERE rs.id=? AND gu.usuario_id=?", revision_id, usuario_id].empty?
       end
 
       def authorize(login, password)

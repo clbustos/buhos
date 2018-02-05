@@ -1,5 +1,5 @@
 .heading
-  %h2=t(:Systematic_review_administration_stage, sr_name:@revision[:nombre], stage_name:t(@nombre_etapa))
+  =t_systematic_review_title(@revision[:nombre], "systematic_review_page.#{@etapa}_administration")
 
 :javascript
   $(document).ready(function() {
@@ -69,8 +69,14 @@
             %span{:class=>"glyphicon glyphicon glyphicon-ban-circle"}
             =t(:Reject)
 
-.btn-group
-  %a{:href=>url("/revision/#{@revision[:id]}/etapa/revision_titulo_resumen/generar_referencias_crossref"), :role=>"button", :class=>"btn btn-default btn-sm"}=t(:Generate_crossref_references)
+- if @ars.stage_complete? @etapa
+  %p.info=t("stage_#{@etapa}_complete_instruction")
+  .btn-group
+    - if @etapa.to_sym==:revision_titulo_resumen
+      %a{:href=>url("/revision/#{@revision[:id]}/etapa/revision_titulo_resumen/generar_referencias_crossref"), :role=>"button", :class=>"btn btn-default btn-sm"}=t(:Generate_crossref_references)
+
+  %a.btn.btn-primary{:href=>"/revision/#{@revision[:id]}/advance_stage"}=t(:Advance_next_stage)
+
 
 
 
@@ -92,6 +98,7 @@
         %tr
           %td
             =@ars.cd_hash[cd_id].title
+            =partial(:canonico_documento_boton, :locals=>{id:cd_id})
             %br
             =partial(:botones_resolucion, :locals=>{:rpc=>rpc, :cd_id=>cd_id, :etapa=>@etapa, :usuario_id=>@usuario_id, :revision=>@revision})
           - Decision::N_EST.each do |dec,nombre|

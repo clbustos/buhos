@@ -276,6 +276,7 @@ es:
   systematic_review_page:
     stages: Etapas
     search_administration: "Administración de búsquedas"
+    revision_titulo_resumen_administration: "Administración de revisión de título y resumen"
     review_full_text_administration: "Administración de la etapa de Texto Completo"
     search_administration_instructions: "Revise cada revisión sistemática, para estar seguro que cuenta con información sobre la fuente, fecha y criterios de búsqueda. Marque como 'no válida' todas las búsquedas problemáticas. Sólo las búsquedas validadas serán usadas en etapas posteriores."
     cd_assignations: "Asignación de Documentos Canónicos a usuarios"
@@ -439,5 +440,6 @@ es:
     schema_creation: "Creación del esquema"
     please_wait: "Por favor, espere"
   stage_search_complete_instruction: "Todas las búsquedas han sido revisadas, así que puede seguir con la siguiente etapa"
+  stage_revision_titulo_resumen_complete_instruction: "Se han resuelto acerca de todos los documentos canónicos en función de su título y resumen. Genere las referencias crossref necesarias y avance a la siguiente etapa"
   Advance_next_stage: "Avanzar a la siguiente etapa"
   No_document_for_this_criteria: "Sin documentos para este criterio"

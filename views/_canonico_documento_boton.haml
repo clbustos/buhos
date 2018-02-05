@@ -1,4 +1,3 @@
-%a{:href=>url("/canonico_documento/#{id}")}
-  %button{:class=>"btn btn-success btn-sm"}
-    %span{:class=>"glyphicon glyphicon-king"}
-    =t(:Canonical)
+%a.btn.btn-sm.btn-default{:href=>url("/canonico_documento/#{id}"), :role=>:button}
+  %span{:class=>"glyphicon glyphicon-king"}
+  =t(:Canonical)

@@ -14,7 +14,6 @@ get '/usuario/:user_id' do |user_id|
   @select_language=get_xeditable_select(available_locales_hash, '/user/edit/language','select_language')
   @select_language.active=false if(!permiso("editar_usuarios") and user_id.to_i!=session['user_id'])
 
-
   haml :usuario
 end
 

@@ -1,3 +1,4 @@
+- etapas_avanzadas=r.etapas_avanzadas
 %div{:class=>"btn-group btn-group-sm", :role=>'group'}
   - if permiso("revisiones_editar") or revision_pertenece_a(r.id, session['user_id'])
     %a{:role=>:button, :href=>url("/revision/#{r.id}/edicion"), :class=>"btn btn-default"}
@@ -37,17 +38,17 @@
           %a{:role=>:button, :href=>url("/revision/#{r.id}/administracion_etapas"), :class=>"btn btn-default"}
             %span{:class=>"glyphicon glyphicon-cert-sign"}
             =t(:Stages_administration)
-      - if permiso("revision_titulo_resumen_ver") or revision_analizada_por(r.id, session['user_id'])
+      - if etapas_avanzadas.include? :revision_titulo_resumen and (permiso("revision_titulo_resumen_ver") or revision_analizada_por(r.id, session['user_id']))
         %li
           %a{:role=>:button, :href=>url("/revision/#{r.id}/revision_titulo_resumen"), :class=>"btn btn-default "}
             %span{:class=>"glyphicon glyphicon-ok-sign"}
             =t("stage.review_title_and_abstract")
-      - if permiso("revision_referencias_ver") or revision_analizada_por(r.id, session['user_id'])
+      - if etapas_avanzadas.include? :revision_referencias and (permiso("revision_referencias_ver") or revision_analizada_por(r.id, session['user_id']))
         %li
           %a{:role=>:button, :href=>url("/revision/#{r.id}/revision_referencias"), :class=>"btn btn-default "}
             %span{:class=>"glyphicon glyphicon-ok-sign"}
             =t("stage.review_references")
-      - if permiso("revision_texto_completo_ver") or revision_analizada_por(r.id, session['user_id'])
+      - if etapas_avanzadas.include? :revision_referencias and (permiso("revision_texto_completo_ver") or revision_analizada_por(r.id, session['user_id']))
         %li
           %a{:role=>:button, :href=>url("/revision/#{r.id}/revision_texto_completo"), :class=>"btn btn-default "}
             %span{:class=>"glyphicon glyphicon-ok-sign"}

@@ -1,17 +1,9 @@
-:javascript
-  $(document).ready(function() {
-
-  })
 %h2=t(:Dashboard_user, user_name:user[:nombre])
 - @udi=UserDashboardInfo.new(user)
-
 - if @udi.unread_personal_messages.count>0
   %p=t_desc_value("user_dashboard.unread_personal_messages", a_tag("/user/#{user[:id]}/messages#personal", t("user_dashboard.check_n_unread_messages", count:@udi.unread_personal_messages.count)))
 - user.revisiones_sistematicas.where(:activa=>true).each do |sr|
-  - adu=@udi.adu_for_sr(sr)
-  - n_cd_assigned = adu.canonicos_documentos.count
   - es_administrador=@udi.is_administrator_sr?(sr)
-
   %div{:class=>"panel #{es_administrador ? "panel-primary" : "panel-default"}"}
     .panel-heading
       .panel-title
@@ -20,50 +12,7 @@
           %span.badge=t(:Administrator)
     .panel-body
       =t_desc_value(:Objectives, sr.objetivos)
-      - if @udi.unread_sr_messages(sr[:id]).count>0
-        %p=t_desc_value("user_dashboard.unread_sr_messages", a_tag("/user/#{user[:id]}/messages#sr_#{sr[:id]}",  t("user_dashboard.check_n_unread_messages", count:@udi.unread_sr_messages(sr[:id]).count)))
-      - et_av=sr.etapas_avanzadas
-      %div
-        %ul.nav.nav-tabs{:role=>:tablist}
-          - Revision_Sistematica::ETAPAS.each do |etapa|
-            - clase_sr = sr.etapa.to_sym==etapa ? "active" : ( et_av.include?(etapa) ? "default" : "disabled" )
-            %li{:role=>'presentation', :class=> clase_sr  }
-              %a{:href=>"#sr-#{sr.id}-#{etapa}", "data-toggle"=>"tab"}
-                =t(Revision_Sistematica.get_nombre_etapa(etapa))
-                %br
-                -clase_bt_sr = sr.etapa.to_sym==etapa ? "primary" : ( et_av.include?(etapa) ? "success" : "pending" )
-                %button{:style=>"margin-top:1em;", :class=>"btn btn-default btn-sm btn-#{clase_bt_sr}"}= sr.etapa.to_sym==etapa ? t(:current) : ( et_av.include?(etapa) ? t(:complete) : t(:pending) )
-        %div{:class=>"tab-content"}
-          - et_av.each do |etapa_visualizar|
-            %div{:id=>"sr-#{sr.id}-#{etapa_visualizar}", :class=>"tab-pane #{etapa_visualizar==sr[:etapa].to_sym ? 'active' : ''}"}
-              %p
-              - if etapa_visualizar==:busqueda
-                - if es_administrador
-                  %p
-                    %a{:href=>"/revision/#{sr[:id]}/administracion/#{etapa_visualizar}"}
-                      =t_desc_value("user_dashboard.count_total_searchs", sr.busquedas.count)
-                - else
-                  %p=t_desc_value("user_dashboard.count_total_searchs", sr.busquedas.count)
-                %p=t_desc_value("user_dashboard.count_search_not_ready", a_tag("/revision/#{sr[:id]}/busquedas/user/#{user[:id]}", t("user_dashboard.check_n_not_ready_search", count: @udi.searchs_not_ready(sr[:id]).count)))
-                - if permiso("crear_busqueda_revision")
-                  %a.btn.btn-default.btn-sm{:role=>:button, :href=>"/revision/#{sr[:id]}/busqueda/nuevo"}
-                    %span.glyphicon.glyphicon-plus
-                    =t("user_dashboard.search_new")
-              - else
-                - if es_administrador
-                  - ars=AnalisisRevisionSistematica.new(sr)
-                  %p
-                    %a{:href=>"/revision/#{sr[:id]}/administracion/#{sr[:etapa]}"}
-                      =t_desc_value("user_dashboard.count_total_canonical_documents_stage", sr.cd_id_por_etapa(sr[:etapa]).count)
-                  - if ars.resolution_pattern(sr[:etapa])[Resolucion::NO_RESOLUCION].to_i>0
-                    %p=t_desc_value("user_dashboard.count_canonical_document_without_resolution", a_tag("/revision/#{sr[:id]}/administracion/#{sr[:etapa]}#decision_statistics",  t("user_dashboard.check_n_canonical_documents_without_resolution", count:ars.resolution_pattern(sr[:etapa])[Resolucion::NO_RESOLUCION])))
-                - else
-                  %p=t_desc_value("user_dashboard.count_total_canonical_documents_stage", sr.cd_id_por_etapa(sr[:etapa]).count)
-
-                %p=t_desc_value("user_dashboard.count_canonical_document_assigned", a_tag("/revision/#{sr[:id]}/#{sr[:etapa]}", t("user_dashboard.check_n_assigned_canonical_documents", count: n_cd_assigned) ) )
-                - if adu.total_decisiones[Decision::NO_DECISION].to_i>0
-                  %p=t_desc_value("user_dashboard.count_canonical_document_without_decision", a_tag("/revision/#{sr[:id]}/#{sr[:etapa]}?busqueda=#{Decision::NO_DECISION}", t("user_dashboard.check_n_undecided_canonical_documents", count: adu.total_decisiones[Decision::NO_DECISION])))
-
+      =partial(:dashboard_user_sr,:locals=>{user:user, sr:sr})
 
 - if user.revisiones_sistematicas.where(:activa=>true).count==0
   %p

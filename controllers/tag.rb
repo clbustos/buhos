@@ -108,7 +108,7 @@ get '/tags/query_json/:query' do |query|
   require 'json'
   content_type :json
 
-  res=$db["SELECT id, texto,COUNT(*) as n from tags t INNER JOIN tags_en_cds tec ON t.id=tec.tag_id WHERE LOCATE(?,texto)>0 and decision='yes' GROUP BY t.texto ORDER BY n DESC LIMIT 10", query]
+  res=$db["SELECT id, texto,COUNT(*) as n from tags t INNER JOIN tags_en_cds tec ON t.id=tec.tag_id WHERE INSTR(texto,?)>0 and decision='yes' GROUP BY t.texto ORDER BY n DESC LIMIT 10", query]
   res.map {|v|
     {id:v[:id],
      value:v[:texto],
@@ -122,7 +122,7 @@ get '/tags/revision_sistematica/:rs_id/query_json/:query' do |rs_id,query|
   require 'json'
   content_type :json
   
-  res=$db["SELECT id, texto,COUNT(*) as n from tags t INNER JOIN tags_en_cds tec ON t.id=tec.tag_id WHERE LOCATE(?,texto)>0 and decision='yes' and revision_sistematica_id=? GROUP BY t.texto ORDER BY n DESC LIMIT 10", query, rs_id ]
+  res=$db["SELECT id, texto,COUNT(*) as n from tags t INNER JOIN tags_en_cds tec ON t.id=tec.tag_id WHERE INSTR(texto,?)>0 and decision='yes' and revision_sistematica_id=? GROUP BY t.texto ORDER BY n DESC LIMIT 10", query, rs_id ]
   res.map {|v|
     {id:v[:id],
      value:v[:texto],

@@ -17,7 +17,7 @@
       %strong="#{t(:APA_references)}:"
       =CGI::escapeHTML cd.ref_apa_6
 
-      - texto_referencias=sprintf("<strong>#{t(:Citations)}:</strong> #{t(:cites)} <strong>%d</strong> / #{t(:cited_by)}<strong>%d</strong> ", ars.cd_count_salida(cd[:id]).to_i, ars.cd_count_entrada(cd[:id]).to_i)
+      - texto_referencias=sprintf("<strong>#{t(:Citations)}:</strong> #{t(:cites)} <strong>%d</strong> / #{t(:cited_by)} <strong>%d</strong> ", ars.cd_count_salida(cd[:id]).to_i, ars.cd_count_entrada(cd[:id]).to_i)
       - if ars.cd_count_entrada_rtr(cd[:id])
         -texto_referencias+=sprintf("/ #{t(:cited_by_RTR_documents)} <strong>%d</strong>", ars.cd_count_entrada_rtr(cd[:id]).to_i)
       %p=texto_referencias
