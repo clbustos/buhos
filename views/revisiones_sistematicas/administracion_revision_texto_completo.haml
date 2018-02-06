@@ -73,8 +73,8 @@
             %span{:class=>"glyphicon glyphicon glyphicon-ban-circle"}
             =t(:Reject)
 
-.btn-group
-  %a{:href=>url("/revision/#{@revision[:id]}/etapa/revision_titulo_resumen/generar_referencias_crossref"), :role=>"button", :class=>"btn btn-default btn-sm"}=t(:Generate_Crossref_references)
+=partial(:sr_administration_actions, :locals=>{revision:@revision, etapa:@etapa})
+
 
 
 %h3=t(:Canonical_Document_Status)

@@ -28,7 +28,7 @@ class Categorizador_RS
     @cd_hash=@rs.cd_hash
     titulos=@cd_hash.map {|key,v|  get_stemmer_text("#{v[:title]}")}
     @categorias=Categorize::Model.make_model("busqueda",titulos , @model)
-    $log.info(@categorias)
+    #$log.info(@categorias)
     @categorias_cd_id=@categorias.inject({}) {|ac,v|
       ac[v[0]]=v[1].map{|orden_i|  @cd_hash.keys[orden_i] }
       ac

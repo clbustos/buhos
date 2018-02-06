@@ -156,7 +156,7 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 ## Authors
 
 * **Claudio  Bustos** - *Main developer* - [clbustos](https://github.com/clbustos)
-* **Daniel Lermanda** - *Web page designer*
+* **Daniel Lermanda** - *Web page designer and UX advisor*
 
 
 

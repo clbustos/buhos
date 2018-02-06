@@ -31,7 +31,7 @@ class Archivo < Sequel::Model
             Archivo_Cd.insert(:archivo_id=>archivo_id, :canonico_documento_id=>cd[:id])
           end
         end
-        result.success("Agregado archivo #{filename} con exito")
+        result.success( I18n::t("archivo.successful_file_added", filename:filename))
       end
     end
     result

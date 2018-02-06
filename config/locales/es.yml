@@ -15,10 +15,9 @@ es:
   Search_valid: "Válida"
   Not_defined: "No definido"
   No_file: "Sin archivo"
+  Export_graphml_for_this_stage: "Exportar Graphml para esta etapa"
   Count_documents_search: "Nº documentos búsqueda"
   Action_not_defined: "Acción no definida"
-  Search_process_file_successfully: "Archivo de búsqueda procesado exitosamente"
-  Search_canonical_documents_successfully: "Archivos canónicos de búsqueda procesados exitosamente"
   Review_title_and_abstract: "Revisión título y resumen"
   Search_name: "Nombre de la búsqueda"
   Search_marked_as_valid: "Búsqueda marcada como válida"
@@ -298,6 +297,8 @@ es:
     administrator: "Administrador"
     analyst:      "Analyst"
   permit:
+    busquedas_revision_crear: "Búsqueda de revisión: crear"
+    busquedas_revision_ver: "Búsqueda de revisión: crear"
     acceder_crossref: "Acceder Crossref 1"
     administracion: "Administración"
     archivos_ver: "Archivos:ver"
@@ -456,11 +457,23 @@ es:
   Reference_with_new_doi: "Referencia %{reference_id} tiene nuevo DOI %{doi}"
   Review_references: "Revisar referencias"
   Systematic_review_stage_review_references: "Revisión de referencias"
-  error:
+  count_canonical_documents: "Nº de documentos canónicos"
+  count_duplicated_DOI: "Nº de documentos con DOI duplicado"
+  search_processor:
+    no_integrator_for_filetype: "No hay integrador para este tipo de archivo"
+    Search_process_file_successfully: "Archivo de búsqueda procesado exitosamente"
+    Search_canonical_documents_successfully: "Archivos canónicos de búsqueda procesados exitosamente"
     no_unique_id_for_integrator: "No existe un id que permita identificar a los archivos"
+  error:
     error_on_add_crossref_for_cd: "No se pudo agregar información de Crossref para DC %{cd_title}"
   scopus_abstract:
     cant_obtain_identificator_suitable_for_scopus: "No se pudo encontrar identificador válido para usar Scopus, documento %{cd_title}"
     cant_obtain_scopus_error: "No se pudo utilizar documento Scopus, documento %{cd_title}, error: %{sr_error}"
     no_scopus_abstract: "Scopus no tiene resument para documento %{cd_title}"
     updated_abstract: "Se actualizó el resumen del documento %{cd_title} usando Scopus"
+  sinatra_auth:
+    permission_created_by_administrator: "Permiso creado por administrador"
+    sucessful_auth_for_user: "Autentificación exitosa para usuario %{user}"
+    error_on_auth: "Error en autentificación"
+  archivo:
+    successful_file_added: "Archivo %{filename} agregado con éxito"

@@ -26,7 +26,7 @@ class LSI_RS
   def cd_nbayes_rtr(cd_id)
     cd=@rs.cd_hash[cd_id]
     res=lsi.classify "#{cd[:title]}.#{cd[:abstract]}"
-    $log.info(res)
+    #$log.info(res)
     res
   end
 end

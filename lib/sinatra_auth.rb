@@ -24,7 +24,7 @@ module Sinatra
           false
         else
           if session['rol_id']=='administrator' and Permiso[per].nil?
-            Permiso.insert(:id=>per, :descripcion=>'Permiso creado por administracion')
+            Permiso.insert(:id=>per, :descripcion=>I18n::t("sinatra_auth.permission_created_by_administrator"))
             Rol['administrator'].add_permiso(Permiso[per])
             true
           elsif session['permisos'].include? per
@@ -80,10 +80,10 @@ module Sinatra
       app.post '/login' do
         if(authorize(params['user'], params['password']))
           agregar_mensaje ::I18n.t(:Successful_authentification)
-          log.info("Autentificación exitosa de #{params['user']}")
+          log.info( I18n::t("sinatra_auth.sucessful_auth_for_user", user:params['user']))
           redirect(url("/"))
         else
-          agregar_mensaje "Fallo en la autentificacion",:error
+          agregar_mensaje I18n::t("sinatra_auth.error_on_auth"),:error
           redirect(url("/login"))
         end
       end

@@ -70,20 +70,7 @@
             =t(:Reject)
 
 
-- if @ars.stage_complete? @etapa
-  %p.info=t("stage_#{@etapa}_complete_instruction")
-
-.btn-group.btn-group-sm
-  - if [:revision_titulo_resumen, :revision_referencias].include? @etapa.to_sym and @ars.cd_without_abstract(@etapa).count>0
-    %a{:href=>url("/revision/#{@revision[:id]}/stage/#{@etapa}/complete_empty_abstract_manual"), :role=>"button", :class=>"btn btn-default "}=t(:Complete_abstract_manually)
-    - if scopus_available?
-      %a{:href=>url("/revision/#{@revision[:id]}/stage/#{@etapa}/complete_empty_abstract_scopus"), :role=>"button", :class=>"btn btn-default "}=t(:Complete_abstract_using_Scopus)
-  - if @ars.stage_complete? @etapa
-    - if @etapa.to_sym==:revision_titulo_resumen
-      %a{:href=>url("/revision/#{@revision[:id]}/etapa/#{@etapa}/generar_referencias_crossref"), :role=>"button", :class=>"btn btn-default btn-sm"}=t(:Generate_crossref_references)
-    - if @etapa==@revision[:etapa].to_s
-      %a.btn.btn-primary{:href=>"/revision/#{@revision[:id]}/advance_stage"}=t(:Advance_next_stage)
-
+=partial(:sr_administration_actions, :locals=>{revision:@revision, etapa:@etapa})
 
 
 

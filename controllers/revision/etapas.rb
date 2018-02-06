@@ -239,6 +239,7 @@ get '/revision/:rev_id/etapa/:stage/generar_referencias_crossref' do |rev_id,sta
   cd_i=Resolucion.where(:revision_sistematica_id=>rev_id, :resolucion=>"yes", :etapa=>stage.to_s).map {|v|v [:canonico_documento_id]}
   cd_i.each do |cd_id|
     @cd=Canonico_Documento[cd_id]
+
     if @cd.crossref_integrator
       begin
         # Agregar dois a referencias
@@ -314,4 +315,15 @@ get '/revision/:rev_id/stage/:stage/complete_empty_abstract_scopus' do |rev_id, 
   end
   agregar_resultado(result)
   redirect back
+end
+
+
+get '/revision/:rev_id/stage/:stage/generate_graphml' do |rev_id, stage|
+  @revision=Revision_Sistematica[rev_id]
+
+  headers["Content-Disposition"] = "attachment;filename=graphml_revision_#{rev_id}_stage_#{stage}.graphml"
+
+  content_type 'application/graphml+xml'
+  graphml=GraphML_Generator.new(@revision,stage)
+  graphml.generate_graphml
 end

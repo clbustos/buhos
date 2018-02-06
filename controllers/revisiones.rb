@@ -173,8 +173,8 @@ get '/revision/:id/canonicos_documentos_graphml' do |id|
   headers["Content-Disposition"] = "attachment;filename=graphml_revision_#{id}.graphml"
 
   content_type 'application/graphml+xml'
-  graphml=@revision.generar_graphml
-  graphml
+  graphml=GraphML_Generator.new(@revision,nil)
+  graphml.generate_graphml
 end
 
 

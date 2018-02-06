@@ -28,7 +28,7 @@ class SearchProcessor
       #$log.info(base_bibliografica_nombre)
       integrator=ReferenceIntegrator::CSV::Reader.parse(@search[:archivo_cuerpo], @search.base_bibliografica_nombre)
     else
-      log_error("error.no_integrator_for_filetype")
+      log_error("search_processor.no_integrator_for_filetype")
       return false
     end
     #$log.info(integrator)
@@ -40,7 +40,7 @@ class SearchProcessor
         bb_id = bb[ reference.type.to_s ]
         $log.info(reference.type.to_s )
         if bb_id.nil?
-          @result.error(::I18n::t("error.no_unique_id_for_integrator", integrator: bb_id ))
+          @result.error(::I18n::t("search_processor.no_unique_id_for_integrator", integrator: bb_id ))
           correct=false
           break
         end
@@ -69,7 +69,7 @@ class SearchProcessor
         # Procesar referencias
         cited_references=reference.cited_references
         unless cited_references.nil?
-          sha256 = Digest::SHA256.new
+
           cit_refs_ids=[]
           cited_references.each do |cr|
             dig=Digest::SHA256.hexdigest cr
@@ -86,7 +86,7 @@ class SearchProcessor
       end
       @search.actualizar_registros(ref_ids) if correct
     end
-    log_success(:Search_process_file_successfully) if correct
+    log_success("search_processor.Search_process_file_successfully") if correct
   end
 
   def process_canonical_documents
@@ -125,7 +125,7 @@ class SearchProcessor
         end
       end
     end # db.transaction
-    log_success(:Search_canonical_documents_successfully)
+    log_success("search_processor.Search_canonical_documents_successfully")
   end
   def crear_hash_update(fields, registro)
     fields.inject({}) {|ac,v|
