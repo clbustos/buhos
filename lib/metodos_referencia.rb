@@ -3,7 +3,7 @@ module MetodosReferencia
   include DOIHelpers
   def ref_apa_6
     ##$log.info("#{self.class} #{author}")
-    doi_t = doi ? "doi: #{doi}" : ""
+    doi_t = doi.to_s!="" ? "doi: #{doi}" : ""
     "#{author} (#{year}). #{title}. #{journal}, #{volume}, #{pages}.#{doi_t}"
   end
   def authors_apa_6
@@ -20,7 +20,7 @@ module MetodosReferencia
     author_ref
   end
   def ref_apa_6_breve
-    doi_t = doi ? "doi: #{doi}" : ""
+    doi_t = doi.to_s!="" ? "doi: #{doi}" : ""
     "#{authors_apa_6} (#{year}). #{title}. #{journal}, #{volume}, #{pages}.#{doi_t}"
 
   end

@@ -1,4 +1,5 @@
-%h2="Canónicos documentos para tag '#{@tag.texto}' en revisión sistemática '#{@revision.nombre}'"
+.heading
+  =t_systematic_review_title(@revision[:nombre], I18n::t("systematic_review_page.cd_for_tag", tag_text:@tag.texto), false)
 
 %h3 Asignaciones a usuarios
 .list-group
@@ -14,6 +15,6 @@
   - c_doc=Canonico_Documento[cd[:id]]
   %div{:class=>"panel panel-default"}
     =partial(:canonico_documento_descripcion , :locals=>{revision: @revision, cd: c_doc,ars:@ars})
-    =partial(:canonico_documento_asignaciones, :locals=>{revision: @revision, cd: c_doc})
+    =partial(:canonico_documento_asignaciones, :locals=>{revision: @revision, cd: c_doc, stage:@etapa})
     %div{:class=>"panel-footer"}
       =partial("tags/tags_cd_rs", :locals=>{cd: c_doc, revision:@revision,usuario_id:@usuario[:id]})

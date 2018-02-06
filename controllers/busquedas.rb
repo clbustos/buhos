@@ -77,15 +77,8 @@ get '/busqueda/:id/referencias/buscar_dois' do |id|
   @referencias=@busqueda.referencias.where(:doi=>nil)
   $db.transaction do
     @referencias.each do |referencia|
-      if referencia.texto =~/\b(10[.][0-9]{4,}(?:[.][0-9]+)*\/(?:(?!["&\'<>])\S)+)\b/
-        exitos+=1
-        doi=$1
-        ##$log.info(doi)
-        update_fields={:doi=>doi}
-        cd=Canonico_Documento[:doi => doi]
-        update_fields[:canonico_documento_id]=cd[:id] if cd
-        referencia.update(update_fields)
-      end
+      rp=ReferenceProcessor.new(referencia)
+      exitos+=1 if rp.process_doi
     end
   end
   agregar_mensaje(I18n::t(:Search_add_doi_references, :count=>exitos))

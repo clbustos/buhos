@@ -121,7 +121,9 @@ helpers do
   def title(title)
     @title=title
   end
-
+  def scopus_available?
+    !ENV['SCOPUS_KEY'].nil?
+  end
   def get_title_head
     if @title.length>80
       @title[0..80]+"..."

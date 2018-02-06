@@ -149,7 +149,21 @@ module ReferenceIntegrator
       end
     end
     class Record_Generic < Record
-
+      def parse_specific
+        if @doi.to_s!=""
+          uid="doi:#{@doi}"
+        else
+          self.extend MetodosReferencia
+          uid=ref_apa_6_breve[0..255]
+        end
+        @uid=uid
+      end
+      def cited_references
+        nil
+      end
+      def type
+        :generic
+      end
     end
 
     class Reader

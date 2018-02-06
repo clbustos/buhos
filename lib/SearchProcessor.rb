@@ -6,16 +6,16 @@ class SearchProcessor
   def initialize(search)
     @search=search
     @result=Result.new
-    process_file
-    process_canonical_documents
-
+    if process_file
+      process_canonical_documents
+    end
   end
 
   def log_error(message)
-    @result.error("#{::I18n::t(message)}:#{@search[:id]}")
+    @result.error("#{::I18n::t(message)}: ID #{@search[:id]}")
   end
   def log_success(message)
-    @result.success("#{::I18n::t(message)}:#{@search[:id]}")
+    @result.success("#{::I18n::t(message)}:ID #{@search[:id]}")
   end
 
   def process_file
@@ -28,16 +28,20 @@ class SearchProcessor
       #$log.info(base_bibliografica_nombre)
       integrator=ReferenceIntegrator::CSV::Reader.parse(@search[:archivo_cuerpo], @search.base_bibliografica_nombre)
     else
-      log_error(:No_integrator_available_for_filetype)
+      log_error("error.no_integrator_for_filetype")
       return false
     end
+    #$log.info(integrator)
+    correct=true
     $db.transaction do
       bb=Base_Bibliografica.nombre_a_id_h
       ref_ids=[]
       integrator.each do |reference|
         bb_id = bb[ reference.type.to_s ]
+        $log.info(reference.type.to_s )
         if bb_id.nil?
-          @result.error(::I18n::t("error.doesnt_exist_integrator", integrator: bb_id ))
+          @result.error(::I18n::t("error.no_unique_id_for_integrator", integrator: bb_id ))
+          correct=false
           break
         end
         reg_o=Registro[:uid => reference.uid, :base_bibliografica_id=> bb_id]
@@ -80,9 +84,9 @@ class SearchProcessor
           reg_o.actualizar_referencias(cit_refs_ids)
         end
       end
-      @search.actualizar_registros(ref_ids)
+      @search.actualizar_registros(ref_ids) if correct
     end
-    log_success(:Search_process_file_successfully)
+    log_success(:Search_process_file_successfully) if correct
   end
 
   def process_canonical_documents

@@ -27,7 +27,7 @@ class AnalisisDecisionUsuario
   # Si existen asignaciones, sólo se consideran estas
   def procesar_cd_ids
     cd_etapa=revision_sistematica.cd_id_por_etapa(@etapa)
-    @asignaciones=Asignacion_Cd.where(:revision_sistematica_id=>@rs_id, :usuario_id=>@usuario_id, :canonico_documento_id=>cd_etapa)
+    @asignaciones=Asignacion_Cd.where(:revision_sistematica_id=>@rs_id, :usuario_id=>@usuario_id, :canonico_documento_id=>cd_etapa, :etapa=>@etapa)
     if @asignaciones.empty?
       @cd_ids=[]
     else

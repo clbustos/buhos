@@ -49,7 +49,7 @@ class Revision_Sistematica < Sequel::Model
       cd_query=" canonico_documento_id IN (#{cd_ids.join(",")}) "
     end
 
-    $db["SELECT t.*, IF(tecl.tag_id IS NOT NULL,1,0) as tag_en_clases FROM (SELECT `tags`.*, COUNT(DISTINCT(canonico_documento_id)) as n_documentos, 0+SUM(IF(decision='yes',1,0))/COUNT(*) as p_yes FROM `tags` INNER JOIN `tags_en_cds` tec ON (tec.`tag_id` = `tags`.`id`)
+    $db["SELECT t.*, CASE WHEN tecl.tag_id IS NOT NULL THEN 1 ELSE 0 END  as tag_en_clases FROM (SELECT `tags`.*, COUNT(DISTINCT(canonico_documento_id)) as n_documentos, 0+SUM(CASE WHEN decision='yes' THEN 1 ELSE 0 END)/COUNT(*) as p_yes FROM `tags` INNER JOIN `tags_en_cds` tec ON (tec.`tag_id` = `tags`.`id`)
 WHERE tec.revision_sistematica_id=?
 AND  #{cd_query} GROUP BY tags.id ORDER BY n_documentos DESC ,p_yes DESC,tags.texto ASC) as t LEFT JOIN tags_en_clases tecl ON t.id=tecl.tag_id GROUP BY t.id
  ", self.id]
@@ -277,7 +277,7 @@ HEREDOC
       when 'revision_titulo_resumen'
         cd_registro_id
       when 'revision_referencias'
-        cuenta_referencias_rtr.where( Sequel.lit("n_referencias >= #{self[:n_min_rr_rtr]}") ).map(:cd_destino)
+        cuenta_referencias_rtr.where( Sequel.lit("n_referencias_rtr >= #{self[:n_min_rr_rtr]}") ).map(:cd_destino)
         # Solo dejamos aquellos que tengan más de una referencias
       when 'revision_texto_completo'
         rtr=resoluciones_titulo_resumen.where(:resolucion=>'yes').select_map(:canonico_documento_id)

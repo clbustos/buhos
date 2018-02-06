@@ -28,7 +28,7 @@ class Scopus_Abstract < Sequel::Model
       tipo='doi'
       id=cd.doi
     else
-      result.error("No hay como identificar en Scopus canónico #{cd[:id]}")
+      result.error(I18n::t("scopus_abstract.cant_obtain_identificator_suitable_for_scopus", cd_title:cd[:title]))
       return result
     end
 
@@ -43,17 +43,17 @@ class Scopus_Abstract < Sequel::Model
 
       else
 
-        result.error("No se pudo obtener el Scopus para CD #{cd[:id]} : #{sr.error}")
+        result.error(I18n::t("scopus_abstract.cant_obtain_scopus_error", cd_title:cd[:title], sr_error: sr.error))
         return result
       end
     else
       xml=Scopus.process_xml(sa[:xml])
     end
     if xml.abstract.to_s==""
-      result.error("Scopus no tiene abstract para este paper")
+      result.error(I18n::t("scopus_abstract.no_scopus_abstract",cd_title:cd[:title]))
     elsif cd.abstract.to_s==""
       cd.update(:abstract => xml.abstract)
-      result.success("Actualizado abstract via Scopus")
+      result.success(I18n::t("scopus_abstract.updated_abstract",cd_title:cd[:title]))
     end
 
     result

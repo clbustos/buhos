@@ -78,7 +78,7 @@ post '/revision/busqueda/actualizar' do
   redirect "/revision/#{otros_params[:revision_sistematica_id]}/busquedas"
 end
 
-# To process all search
+# To process all searchs on a systematic review
 get '/revision/:id/busquedas/procesar' do |id|
   revision=Revision_Sistematica[id]
   busquedas=revision.busquedas

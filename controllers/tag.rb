@@ -44,7 +44,7 @@ post '/tags/clase/:t_clase_id/agregar_tag' do |t_clase_id|
 end
 
 
-get '/tag/:tag_id/rs/:rs_id/cds' do |tag_id, rs_id|
+get '/tag/:tag_id/rs/:rs_id/stage/:stage/cds' do |tag_id, rs_id, stage|
   @tag=Tag[tag_id]
   @revision=Revision_Sistematica[rs_id]
 
@@ -52,6 +52,7 @@ get '/tag/:tag_id/rs/:rs_id/cds' do |tag_id, rs_id|
 
   @usuario=Usuario[session['user_id']]
   return 404 if @tag.nil? or @revision.nil?
+  @stage=stage
   @cds_tag=Tag_En_Cd.cds_rs_tag(@revision,@tag)
   haml '/tags/rs_cds'.to_sym
 end

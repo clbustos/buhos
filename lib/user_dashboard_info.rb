@@ -4,9 +4,6 @@ class UserDashboardInfo
   def initialize(user)
     @user=user
     @sr_active=user.revisiones_sistematicas.where(:activa=>true)
-    @adu_hash=@sr_active.inject({}) {|ac,sr|
-      ac[sr[:id]]=AnalisisDecisionUsuario.new(sr[:id],user[:id],sr.etapa);ac
-    }
   end
   def unread_personal_messages
     Mensaje.where(:usuario_hacia=>@user[:id]).exclude(:visto=>true)
@@ -19,8 +16,8 @@ class UserDashboardInfo
   def searchs_not_ready(sr_id)
     Busqueda.where(:user_id=>user[:id], :valid=>nil, :revision_sistematica_id=>sr_id)
   end
-  def adu_for_sr(sr)
-    @adu_hash[sr[:id]]
+  def adu_for_sr(sr,stage)
+    AnalisisDecisionUsuario.new(sr[:id], @user[:id],stage)
   end
   def is_administrator_sr?(sr)
     user[:id]==sr[:administrador_revision]

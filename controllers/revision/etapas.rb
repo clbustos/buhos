@@ -232,25 +232,38 @@ end
 
 
 
-get '/revision/:rev_id/etapa/revision_titulo_resumen/generar_referencias_crossref' do |rev_id|
+get '/revision/:rev_id/etapa/:stage/generar_referencias_crossref' do |rev_id,stage|
   @revision=Revision_Sistematica[rev_id]
   result=Result.new
-  cd_i=Resolucion.where(:revision_sistematica_id=>rev_id, :resolucion=>"yes", :etapa=>"revision_titulo_resumen").map {|v|v [:canonico_documento_id]}
+  dois_agregados=0
+  cd_i=Resolucion.where(:revision_sistematica_id=>rev_id, :resolucion=>"yes", :etapa=>stage.to_s).map {|v|v [:canonico_documento_id]}
   cd_i.each do |cd_id|
     @cd=Canonico_Documento[cd_id]
     if @cd.crossref_integrator
       begin
-        @cd.referencias_realizadas.exclude(:doi=>nil).where(:canonico_documento_id=>nil).each do |ref|
-          result.add_result(ref.agregar_doi(ref[:doi]))
+        # Agregar dois a referencias
+        #
+        @cd.referencias_realizadas.where(:canonico_documento_id=>nil).each do |ref|
+          # primero agregamos doi si podemos
+          # Si tiene doi, tratamos de
+          rp=ReferenceProcessor.new(ref)
+          if ref.doi.nil?
+            dois_agregados+=1 if rp.process_doi
+          end
+          rp.check_doi
+          if !ref.doi.nil?
+            result.add_result(ref.agregar_doi(ref[:doi]))
+          end
         end
       rescue Exception=>e
         result.error(e.message)
       end
-      agregar_resultado(result)
     else
-      result.error("Error al agregar Crossref para #{cd_id}")
+      result.error(I18n::t("error.error_on_add_crossref_for_cd", cd_title:@cd[:title]))
     end
   end
+  result.info(I18n::t(:Search_add_doi_references, :count=>dois_agregados))
+
   agregar_resultado(result)
   redirect back
 end
@@ -278,5 +291,27 @@ get '/revision/:rev_id/stage/:stage/rem_assign_user/:user_id' do |rev_id, stage,
   @revision=Revision_Sistematica[rev_id]
 
   agregar_resultado(Asignacion_Cd.update_assignation(rev_id, [], user_id,stage))
+  redirect back
+end
+
+
+get '/revision/:rev_id/stage/:stage/complete_empty_abstract_manual' do |rev_id, stage|
+  @revision=Revision_Sistematica[rev_id]
+  @ars=AnalisisRevisionSistematica.new(@revision)
+  @stage=stage
+  @cd_sin_abstract=@ars.cd_without_abstract(stage)
+  haml("revisiones_sistematicas/complete_abstract_manual".to_sym)
+end
+
+get '/revision/:rev_id/stage/:stage/complete_empty_abstract_scopus' do |rev_id, stage|
+  @revision=Revision_Sistematica[rev_id]
+  @ars=AnalisisRevisionSistematica.new(@revision)
+  result=Result.new
+  @cd_sin_abstract=@ars.cd_without_abstract(stage)
+  agregar_mensaje(I18n::t(:Processing_n_canonical_documents, count:@cd_sin_abstract.count))
+  @cd_sin_abstract.each do |cd|
+    result.add_result(Scopus_Abstract.obtener_abstract_cd(cd[:id]))
+  end
+  agregar_resultado(result)
   redirect back
 end

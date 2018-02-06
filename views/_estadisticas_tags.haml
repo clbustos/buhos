@@ -1,4 +1,4 @@
-- # Params: tag_estadisticas, revision
+- # Params: tag_estadisticas, revision, etapa
 - etapa||=nil
 - tags_estadisticas=revision.tags_estadisticas(etapa)
 %h3=t(:Tags_statistics)
@@ -15,7 +15,8 @@
         %td=tag[:texto]
         %td=tag[:con_clase]==1 ? "Sí" : "No"
         %td
-          %a{:href=>url("/tag/#{tag[:id]}/rs/#{revision.id}/cds")}=tag[:n_documentos]
+          - url_link= etapa.nil? ? "/tag/#{tag[:id]}/rs/#{revision.id}/cds" : "/tag/#{tag[:id]}/rs/#{revision.id}/stage/#{etapa}/cds"
+          %a{:href=>url(url_link)}=tag[:n_documentos]
         %td=(tag[:p_yes]*100).to_i
         %td
           .btn-group.btn-group-sm

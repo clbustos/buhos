@@ -68,7 +68,7 @@ class AnalisisRevisionSistematica
 
   def stage_complete?(stage)
     stage=stage.to_sym
-    $log.info(stage)
+    #$log.info(stage)
     if stage==:busqueda
       bds=@rs.busquedas_dataset
       bds.where(:valid=>nil).count==0 and bds.exclude(:valid=>nil).count>0
@@ -116,7 +116,9 @@ class AnalisisRevisionSistematica
 
   private :procesar_resoluciones
 
-
+  def cd_without_abstract(stage)
+    Canonico_Documento.where(id:@rs.cd_id_por_etapa(stage)).where(Sequel.lit("abstract IS NULL OR abstract=''"))
+  end
   def mas_citados(n=20)
     @ref_cuenta_entrada.sort_by {|a| a[1]}.reverse[0...n]
   end
@@ -202,7 +204,7 @@ class AnalisisRevisionSistematica
 
   def resolucion_por_cd_calculo(etapa)
     cds=@rs.cd_id_por_etapa(etapa)
-    resoluciones=Resolucion.where(:revision_sistematica_id=>@rs.id, :canonico_documento_id=>cds, :etapa=>etapa).as_hash(:canonico_documento_id)
+    resoluciones=Resolucion.where(:revision_sistematica_id=>@rs.id, :canonico_documento_id=>cds, :etapa=>etapa.to_s).as_hash(:canonico_documento_id)
     #$log.info(resoluciones)
     #$log.info(resoluciones)
     cds.inject({}) {|ac,v|

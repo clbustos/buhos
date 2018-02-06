@@ -268,7 +268,7 @@ post '/revision/archivos/agregar' do
     end
     agregar_resultado resultados
   else
-    agregar_mensaje("No se han enviado archivos", :error)
+    agregar_mensaje(I18n::t(:Files_not_uploaded), :error)
   end
   redirect back
 end

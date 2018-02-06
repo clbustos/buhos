@@ -46,10 +46,6 @@ class Busqueda < Sequel::Model
   end
 
 
-
-
-
-
   def actualizar_registros(ref_ids)
     registros_ya_ingresados=$db["SELECT registro_id FROM busquedas_registros WHERE busqueda_id=?", self[:id]].map {|v| v[:registro_id]}
     registros_por_ingresar = ref_ids - registros_ya_ingresados
