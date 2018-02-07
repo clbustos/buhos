@@ -1,0 +1,23 @@
+- revision_id = revision[:id]
+- ajax||=ajax
+- decision_o=decisiones[cd[:id]]
+- decision = decision_o ? decision_o[:decision] : nil
+.container-fluid
+  .row
+    .col-md-12
+      %strong=t(:Decision)
+      .btn-group
+        - crits={'yes'=>{bs:'success',nombre:t(:Yes)}, 'no'=>{bs:'danger',nombre:t(:No)}, 'undecided'=>{bs:'warning',nombre:t(:Undecided)}}
+        - crits.each_pair do |dec_id, crit|
+          -cbc=class_bootstrap_contextual( decision==dec_id, 'btn',crit[:bs] )
+          -dc_dec= (decision==dec_id) ? '' : 'dc_decision'
+          %button{:class=>"btn #{cbc} #{dc_dec}", "data-pk"=>cd[:id], "data-decision"=>dec_id, "data-user"=>usuario_id, "data-etapa"=>etapa ,:id=>"decision-#{cd[:id]}-#{dec_id}", 'data-url'=>"/decision/revision/#{revision_id}/usuario/#{usuario_id}/canonico_documento/#{cd[:id]}/etapa/#{etapa}/decision"}=crit[:nombre]
+      %div
+        %strong="#{t(:Commentary)}:"
+        =a_textarea_editable(cd[:id], "comentario-cd", url("/decision/revision/#{revision_id}/usuario/#{usuario_id}/canonico_documento/#{cd[:id]}/etapa/#{etapa}/comentario"), decision_o  ?  decision_o.comentario : nil, t(:Enter_commentary))
+  .row
+    .col-md-12
+      %strong=t(:Tags)
+  .row
+    .col-md-12
+      =partial("tags/tags_cd_rs", :locals=>{cd: cd, revision:revision,usuario_id:usuario_id, ajax:ajax})

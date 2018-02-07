@@ -1,10 +1,13 @@
-%h2=t(:Systematic_review_canonical_documents, sr_name:@revision.nombre)
+.heading
+  %h2=title(t(:Systematic_review_canonical_documents, sr_name:@revision.nombre))
+
 
 %ul.breadcrumb
   %li
-    %a{:href=>url("/revision/#{@revision.id}")}=@revision.nombre
+    %a{:href=>url("/revisiones")}=t(:Systematic_reviews)
   %li
-    %a{:href=>url("/revision/#{@revision.id}/canonicos_documentos")}=t(:Canonical_documents)
+    %a{:href=>url("/revision/#{@revision.id}")}=@revision.nombre
+  %li.active=t(:Canonical_documents)
 
 
 %p

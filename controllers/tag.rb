@@ -67,9 +67,9 @@ post '/tags/cd/:cd_id/rs/:rs_id/:accion' do |cd_id,rs_id,accion|
     tag_nombre=params['value'].chomp
     return 405 if tag_nombre==""
     tag=Tag.get_tag(tag_nombre)
-  $db.transaction(:rollback=>:reraise) do
-    Tag_En_Cd.aprobar_tag(cd,rs,tag,usuario_id)
-  end
+    $db.transaction(:rollback=>:reraise) do
+      Tag_En_Cd.aprobar_tag(cd,rs,tag,usuario_id)
+    end
   elsif accion=='aprobar_tag'
     tag_id=params['tag_id']
     tag=Tag[tag_id]

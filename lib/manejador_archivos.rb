@@ -6,9 +6,33 @@ module ManejadorArchivos
 
       end
       def javascript_header
-        "<script src='/js/modal_archivos.js'></script>"
+        "<script src='/js/modal_archivos_viewerjs.js'></script>"
       end
+
       def html_modal
+        <<HEREDOC
+<div aria-labelledby='myModalLabel' class='modal fade' id='modalArchivos' role='dialog' tabindex='-1'>
+  <div class='modal-dialog modal-lg' role='document'>
+    <div class='modal-content'>
+      <div class='modal-header'>
+        <button aria-label='Cerrar' class='close' data-dismiss='modal' type='button'>
+          <span aria-hidden='true'>×</span>
+        </button>
+        <h4 class='modal-title' id='myModalLabel'>#{I18n.t(:File)}</h4>
+      </div>
+      <div class='modal-body'>
+        
+      </div>
+    </div>
+  </div>
+</div>
+HEREDOC
+      end
+
+
+
+
+      def html_modal_antiguo
         <<HEREDOC
 <div aria-labelledby='myModalLabel' class='modal fade' id='modalArchivos' role='dialog' tabindex='-1'>
   <div class='modal-dialog modal-lg' role='document'>
@@ -60,13 +84,13 @@ HEREDOC
         boton_eliminar=""
         if eliminar
           boton_eliminar="<button class='btn btn-danger archivo_eliminar' role='button' data-aid='#{archivo[:id]}'>
-          <span class='glyphicon glyphicon-remove'>#{I18n.t(:Delete_file)}</span>
+          <span class='glyphicon glyphicon-remove'>#{I18n.t("file_handler.delete_file")}</span>
         </button>"
         end
         if rs_id
           boton_rs="
           <button class='btn btn-warning archivo_desasignar_rs' data-aid='#{archivo[:id]}' data-rsid='#{rs_id}' role='button'>
-          <span class='glyphicon glyphicon-remove'>#{I18n.t(:Delete_from_systematic_review)}</span>
+          <span class='glyphicon glyphicon-remove'>#{I18n.t("file_handler.unassign_systematic_review")}</span>
         </button>
         "
         end
@@ -75,17 +99,17 @@ HEREDOC
           if acd
             boton_canonico="
           <button class='btn btn-warning archivo_desasignar_cd' data-aid='#{archivo[:id]}' data-cdid='#{cd_id}' role='button'>
-          <span class='glyphicon glyphicon-remove'>#{I18n.t(:Unassign_from_canonical_document)}</span>
+          <span class='glyphicon glyphicon-remove'>#{I18n.t("file_handler.unassign_canonical_document")}</span>
         </button>"
             if acd[:no_considerar]
         boton_canonico+= "
         <button class='btn btn-default archivo_mostrar_cd' data-aid='#{archivo[:id]}' data-cdid='#{cd_id}' role='button'>
-        <span class='glyphicon glyphicon-eye-open'>#{I18n.t(:Show_on_canonical_document)}</span>
+        <span class='glyphicon glyphicon-eye-open'>#{I18n.t("file_handler.show_canonical_document")}</span>
         </button>"
             else
         boton_canonico+= "
         <button class='btn btn-warning archivo_ocultar_cd' data-aid='#{archivo[:id]}' data-cdid='#{cd_id}' role='button'>
-        <span class='glyphicon glyphicon-eye-close'>#{I18n.t(:Hide_from_canonical_document)}</span>
+        <span class='glyphicon glyphicon-eye-close'>#{I18n.t("file_handler.hide_canonical_document")}</span>
         </button>"
 
         end
@@ -93,15 +117,15 @@ HEREDOC
       end
 <<HEREDOC
 <div class='btn-group btn-group-sm' id='botones_archivo_#{archivo[:id]}'>
-<a class='btn btn-default' href='/archivo/#{archivo[:id]}/descargar' role='button'>
-<span class='glyphicon glyphicon-download'>#{I18n.t(:Download)}</span>
-</a>
-<button class='btn btn-default btn-sm' data-target='#modalArchivos' data-toggle='modal' type='button' data-pk='#{archivo[:id]}' data-paginas='#{archivo[:paginas]}'>
+  <a class='btn btn-default' href='/archivo/#{archivo[:id]}/descargar' role='button'>
+    <span class='glyphicon glyphicon-download'>#{I18n.t(:Download)}</span>
+  </a>
+<button class='btn btn-default btn-sm' data-target='#modalArchivos' data-toggle='modal' type='button' data-name='#{archivo[:archivo_nombre]}' data-pk='#{archivo[:id]}' data-paginas='#{archivo[:paginas]}'>
   <span class='glyphicon glyphicon-eye-open'>#{I18n.t(:View)}</span></button>
 
 #{boton_canonico}
 #{boton_rs}
-        #{boton_eliminar}
+#{boton_eliminar}
 
         </div>
 HEREDOC

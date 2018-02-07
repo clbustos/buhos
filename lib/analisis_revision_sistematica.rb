@@ -1,3 +1,4 @@
+require_relative("analysis_sr_stage")
 # Genera estadísticas para una
 # revision sistematica en general
 # y para cada uno de sus artículos
@@ -66,18 +67,12 @@ class AnalisisRevisionSistematica
     @cd_todos_id.length
   end
 
+  def get_asrs(stage)
+    Analysis_SR_Stage.new(@rs,stage)
+  end
+
   def stage_complete?(stage)
-    stage=stage.to_sym
-    #$log.info(stage)
-    if stage==:busqueda
-      bds=@rs.busquedas_dataset
-      bds.where(:valid=>nil).count==0 and bds.exclude(:valid=>nil).count>0
-    elsif stage==:revision_titulo_resumen or :revision_referencias or :revision_texto_completo
-      res=resolucion_por_cd(stage.to_s)
-      res.all? {|v| v[1]=='yes' or v[1]=='no'}
-    else
-      raise('Not defined yet')
-    end
+    get_asrs(stage).stage_complete?
   end
 
   def procesar_indicadores_basicos
@@ -116,9 +111,17 @@ class AnalisisRevisionSistematica
 
   private :procesar_resoluciones
 
+
   def cd_without_abstract(stage)
-    Canonico_Documento.where(id:@rs.cd_id_por_etapa(stage)).where(Sequel.lit("abstract IS NULL OR abstract=''"))
+    get_asrs(stage).cd_without_abstract
   end
+  def cd_without_assignations(stage)
+    get_asrs(stage).cd_without_assignations
+  end
+  def cd_id_assigned_by_user(stage,user_id)
+    get_asrs(stage).cd_id_assigned_by_user(user_id)
+  end
+
   def mas_citados(n=20)
     @ref_cuenta_entrada.sort_by {|a| a[1]}.reverse[0...n]
   end
@@ -135,12 +138,12 @@ class AnalisisRevisionSistematica
   # Se analiza cada cd y se cuenta cuantas decisiones para cada tipo
   def decisiones_por_cd(etapa)
     @decisiones_por_cd_h||={}
-    @decisiones_por_cd_h[etapa]||=decisiones_por_cd_calculo(etapa)
+    @decisiones_por_cd_h[etapa]||=get_asrs(etapa).decisions_by_cd
   end
   # Se entrega un hash de cada cd con su resolucion
   def resolucion_por_cd(etapa)
     @resolucion_por_cd_h||={}
-    @resolucion_por_cd_h[etapa]||=resolucion_por_cd_calculo(etapa)
+    @resolucion_por_cd_h[etapa]||=get_asrs(etapa).resolutions_by_cd
   end
 
   def cd_desde_patron(etapa,patron)
@@ -177,44 +180,13 @@ class AnalisisRevisionSistematica
   def resolution_pattern(stage)
     rbd=resolucion_por_cd(stage)
     rbd.inject({}) {|ac,v|
-
       ac[ v[1]] ||=0
       ac[ v[1]] +=1
       ac
     }
   end
 
-  def suma_decisiones_vacia
-    Decision::N_EST.keys.inject({}) {|ac,v|  ac[v]=0;ac }
-  end
-  def decisiones_por_cd_calculo(etapa)
-    cds=@rs.cd_id_por_etapa(etapa)
-    decisiones=Decision.where(:canonico_documento_id=>cds, :usuario_id=>@rs.grupo_usuarios.map {|u| u[:id]}, :etapa=>etapa).group_and_count(:canonico_documento_id, :decision).all
-    n_jueces=@rs.grupo_usuarios.count
-    cds.inject({}) {|ac,v|
-        ac[v]=suma_decisiones_vacia
-        ac[v]=ac[v].merge decisiones.find_all   {|dec|      dec[:canonico_documento_id]==v }
-                        .inject({}) {|ac1,v1|   ac1[v1[:decision]]=v1[:count]; ac1 }
-        suma=ac[v].inject(0) {|ac1,v1| ac1+v1[1]}
-        ac[v][Decision::NO_DECISION]=n_jueces-suma
-        ac
-    }
-  end
-  private :decisiones_por_cd_calculo
 
-  def resolucion_por_cd_calculo(etapa)
-    cds=@rs.cd_id_por_etapa(etapa)
-    resoluciones=Resolucion.where(:revision_sistematica_id=>@rs.id, :canonico_documento_id=>cds, :etapa=>etapa.to_s).as_hash(:canonico_documento_id)
-    #$log.info(resoluciones)
-    #$log.info(resoluciones)
-    cds.inject({}) {|ac,v|
-      val=resoluciones[v].nil? ? Resolucion::NO_RESOLUCION : resoluciones[v][:resolucion]
-      ac[v]=val
-      ac
-    }
-  end
-
-  private :resolucion_por_cd_calculo
 
   def patron_orden(a)
     - (1000*a["yes"].to_i + 100*a["no"].to_i + 10*a["undecided"].to_i + 1*a["ND"].to_i)

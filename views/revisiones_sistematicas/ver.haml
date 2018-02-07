@@ -1,7 +1,8 @@
 .heading=t_systematic_review_title(@revision[:nombre],:View)
 %ul.breadcrumb
-  %li.active
-    =@revision.nombre
+  %li
+    %a{:href=>url("/revisiones")}=t(:Systematic_reviews)
+  %li.active=@revision[:nombre]
 
 %div.list-group
   %div{:class=>"list-group-item"}

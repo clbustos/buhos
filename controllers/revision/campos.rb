@@ -33,11 +33,21 @@ put '/revision/editar_campo/:campo_id/:campo' do |campo_id,campo|
 end
 
 
-get '/revision/:rs_id/actualizar_tabla' do |rs_id|
+get '/revision/:rs_id/update_field_table' do |rs_id|
   @revision=Revision_Sistematica[rs_id]
   return 404 if !@revision
   @campos=@revision.campos
   Rs_Campo.actualizar_tabla(@revision)
-  agregar_mensaje(t("sr_table_update.success"))
+  agregar_mensaje(t("fields.sr_table_update_success"))
+  redirect back
+end
+
+
+get '/revision/:rs_id/field/:fid/delete' do  |rs_id, fid|
+  sr_field=Rs_Campo[fid]
+  name=sr_field[:nombre]
+  return 404 if !sr_field
+  sr_field.delete
+  agregar_mensaje(t("fields.field_deleted", name:name))
   redirect back
 end

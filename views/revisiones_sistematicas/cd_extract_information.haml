@@ -1,0 +1,38 @@
+.heading
+  =t_systematic_review_title(@sr[:nombre], t(:Cd_extract_information, cd_title:@cd[:title]),false)
+
+
+:javascript
+  $(document).ready(function() {
+    actualizar_decision('revision_texto_completo');
+    }
+  );
+
+%ul.breadcrumb
+  %li
+    %a{:href=>url("/revisiones")}=t(:Systematic_reviews)
+  %li
+    %a{:href=>url("/revision/#{@sr[:id]}")}=@sr[:nombre]
+  %li
+    %a{:href=>url("/revision/#{@sr[:id]}/revision_texto_completo")}=t(:Review_full_text)
+  %li{:class=>:active}
+    =t(:Cd_extract_information, cd_title:@cd[:title])
+
+.container
+  .row
+    .col-md-7.col-sm-7
+      .embed-responsive.embed-responsive-4by3
+        %iframe{:src=>"/ViewerJS/#../archivo/#{@current_file_id}/descargar",  :allowfullscreen=>true, :webkitallowfullscreen=>true}
+    .col-md-5.col-sm-5
+      .container
+        .row
+          .col-sm-5
+            %div{:id=>"decision-cd-#{@cd[:id]}"}
+              =partial(:decision, :locals=>{revision:@sr, cd:@cd, ars:@ars, usuario_id:@user[:id], etapa: "revision_texto_completo" , decisiones:@decisiones, only_buttons:true})
+        - @form_creator.each_field do |field|
+          .row
+            .col-sm-5
+              %strong=field.description
+          .row
+            .col-sm-5=field.html
+

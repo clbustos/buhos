@@ -1,0 +1,8 @@
+.heading
+  =t_canonical_document_title(@cd[:title], t(:view_crossref_information, doi:@cd.doi), false)
+
+.well=@cr_doi.ref_apa_6_breve_html
+
+%h3 JSON
+
+%pre=JSON.pretty_generate(JSON.parse(@doi_json))

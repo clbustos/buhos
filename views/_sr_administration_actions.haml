@@ -6,6 +6,8 @@
 .btn-group.btn-group-sm
   - if [:revision_titulo_resumen, :revision_referencias, :revision_texto_completo].include? etapa.to_sym
     %a{:href=>url("/revision/#{revision[:id]}/stage/#{etapa}/generate_graphml"), :role=>"button", :class=>"btn btn-default "}=t(:Export_graphml_for_this_stage)
+    %a{:href=>url("/revision/#{revision[:id]}/stage/#{etapa}/generate_bibtex"), :role=>"button", :class=>"btn btn-default "}=t(:Export_bibtex_for_this_stage)
+
   - if [:revision_titulo_resumen, :revision_referencias].include? etapa.to_sym and ars.cd_without_abstract(etapa).count>0
     %a{:href=>url("/revision/#{revision[:id]}/stage/#{etapa}/complete_empty_abstract_manual"), :role=>"button", :class=>"btn btn-default "}=t(:Complete_abstract_manually)
     - if scopus_available?

@@ -755,7 +755,7 @@ ul.tags li.tag {
     text-overflow: ellipsis;
     #overflow: hidden;
 
-    font-size: 12px;
+    font-size: 11px;
     -webkit-transition: .2s;
     transition: .2s;
 }

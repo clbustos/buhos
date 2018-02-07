@@ -1,6 +1,11 @@
 - # Params: tag_estadisticas, revision, etapa
 - etapa||=nil
 - tags_estadisticas=revision.tags_estadisticas(etapa)
+
+- if @estadisticas_tags_js.nil?
+  - @estadisticas_tags_js=true
+  %script{:type=>'text/javascript', :src=>url('/js/estadisticas_tags.js')}
+
 %h3=t(:Tags_statistics)
 %table.reporte.tablesorter
   %thead

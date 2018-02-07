@@ -26,21 +26,29 @@
 .btn-group
   -if permiso("scopus_acceder")
     - if !@cd.abstract
-      %a{:href=>url("/canonico_documento/#{@cd[:id]}/buscar_abstract_scopus"), :role=>:button, :class=>"btn btn-default"}Buscar abstract en Scopus
-  -if permiso("crossref_acceder")
-    - if @cd.doi
-      %a{:href=>url("/canonico_documento/#{@cd[:id]}/buscar_referencias_crossref"), :role=>:button, :class=>"btn btn-default"} Buscar referencias en Crossref
+      %a{:href=>url("/canonico_documento/#{@cd[:id]}/buscar_abstract_scopus"), :role=>:button, :class=>"btn btn-default"}=t(:Complete_abstract_using_Scopus)
+
 
 %h3 Crossref
-- if @cr_doi
-  =@cr_doi.ref_apa_6_breve_html
-- elsif @cd.doi
-  %a{:href=>url("/canonico_documento/#{@cd[:id]}/obtener_crossref")}
-    %button{:class=>"btn btn-primary"}
-      =t(:Obtain_information_from_Crossref)
-- else
-  %p
-    %em=t(:No_DOI_to_obtain_information_from_Crossref)
+
+%p.info=t(:Information_about_this_cd_on_crossref)
+
+.well
+  - if @cr_doi
+    =@cr_doi.ref_apa_6_breve_html
+  - elsif @cd.doi
+    %a{:href=>url("/canonico_documento/#{@cd[:id]}/obtener_crossref")}
+      %button{:class=>"btn btn-primary"}
+        =t(:Obtain_information_from_Crossref)
+  - else
+    %p
+      %em=t(:No_DOI_to_obtain_information_from_Crossref)
+
+%p
+-if permiso("crossref_acceder") and @cr_doi
+  .btn-group.btn-group-sm
+    %a{:href=>url("/canonico_documento/#{@cd[:id]}/buscar_referencias_crossref"), :role=>:button, :class=>"btn btn-default btn-sm"}=t(:Add_info_references_using_crossref)
+    %a{:href=>url("/canonico_documento/#{@cd[:id]}/view_doi"), :role=>:button, :class=>"btn btn-default btn-sm"}=t(:View_DOI_record)
 
 %h3=t("canonical_document.records_on_which_appears")
 

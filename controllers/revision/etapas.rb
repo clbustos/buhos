@@ -140,6 +140,7 @@ get '/revision/:id/revision_texto_completo' do |id|
 end
 
 
+##### ADMINISTRATION #####
 
 get '/revision/:id/administracion_etapas' do |id|
   @revision=Revision_Sistematica[id]
@@ -152,9 +153,11 @@ get '/revision/:id/administracion/:etapa' do |id,etapa|
   @revision=Revision_Sistematica[id]
   @etapa=etapa
   @ars=AnalisisRevisionSistematica.new(@revision)
+  @cd_without_assignation=@ars.cd_without_assignations(etapa)
+
   @categorizador=Categorizador_RS.new(@revision) unless etapa==:busqueda
 
-  @cds_id=@revision.cd_id_por_etapa(@revision.etapa)
+  @cds_id=@revision.cd_id_por_etapa(etapa)
   @cds=Canonico_Documento.where(:id=>@cds_id)
   @archivos_por_cd=$db["SELECT a.*,cds.canonico_documento_id FROM archivos a INNER JOIN archivos_cds cds ON a.id=cds.archivo_id INNER JOIN archivos_rs ars ON a.id=ars.archivo_id WHERE revision_sistematica_id=? AND (cds.no_considerar = ? OR cds.no_considerar IS NULL)", @revision.id , 0].to_hash_groups(:canonico_documento_id)
   ## Aquí calcularé cuantos si y no hay por categoría
@@ -175,7 +178,7 @@ get '/revision/:id/administracion/:etapa' do |id,etapa|
   @usuario_id=session['user_id']
   @modal_archivos=get_modalarchivos
 
-  if %w{revision_titulo_resumen revision_referencias}.include? etapa
+  if %w{revision_titulo_resumen revision_referencias revision_texto_completo}.include? etapa
     haml "revisiones_sistematicas/administracion_revisiones".to_sym
   else
     haml "revisiones_sistematicas/administracion_#{etapa}".to_sym
@@ -277,18 +280,42 @@ get '/revision/:rev_id/administracion/:stage/cd_assignations' do |rev_id, stage|
   @ars=AnalisisRevisionSistematica.new(@revision)
   @stage=stage
   @cds=Canonico_Documento.where(:id=>@cds_id).order(:author)
+  @type="all"
   haml("revisiones_sistematicas/cd_assignations_to_user".to_sym)
 end
 
-get '/revision/:rev_id/stage/:stage/add_assign_user/:user_id' do |rev_id, stage, user_id|
+
+get '/revision/:rev_id/administracion/:stage/cd_without_assignations' do |rev_id, stage|
   @revision=Revision_Sistematica[rev_id]
-  @cds_id=@revision.cd_id_por_etapa(stage)
+
+  @ars=AnalisisRevisionSistematica.new(@revision)
+
+  @stage=stage
+  @cds=@ars.cd_without_assignations(stage).order(:author)
+  @type="without_assignation"
+  haml("revisiones_sistematicas/cd_assignations_to_user".to_sym)
+end
+
+
+
+
+get '/revision/:rev_id/stage/:stage/add_assign_user/:user_id/:type' do |rev_id, stage, user_id,type|
+  @revision=Revision_Sistematica[rev_id]
+  if type=='all'
+    @cds_id=@revision.cd_id_por_etapa(stage)
+  elsif type=='without_assignation'
+    ars=AnalisisRevisionSistematica.new(@revision)
+    @cds_id_previous=ars.cd_id_assigned_by_user(stage,user_id)
+    @cds_id_add=ars.cd_without_assignations(stage).map(:id)
+    @cds_id=(@cds_id_previous+@cds_id_add).uniq
+  end
   agregar_resultado(Asignacion_Cd.update_assignation(rev_id, @cds_id, user_id,stage, 'massive_assigment'))
   redirect back
 end
 
 
-get '/revision/:rev_id/stage/:stage/rem_assign_user/:user_id' do |rev_id, stage, user_id|
+get '/revision/:rev_id/stage/:stage/rem_assign_user/:user_id/:type' do |rev_id, stage, user_id, type|
+  # Type doesn't have meaning here
   @revision=Revision_Sistematica[rev_id]
 
   agregar_resultado(Asignacion_Cd.update_assignation(rev_id, [], user_id,stage))
@@ -303,6 +330,7 @@ get '/revision/:rev_id/stage/:stage/complete_empty_abstract_manual' do |rev_id, 
   @cd_sin_abstract=@ars.cd_without_abstract(stage)
   haml("revisiones_sistematicas/complete_abstract_manual".to_sym)
 end
+
 
 get '/revision/:rev_id/stage/:stage/complete_empty_abstract_scopus' do |rev_id, stage|
   @revision=Revision_Sistematica[rev_id]
@@ -326,4 +354,20 @@ get '/revision/:rev_id/stage/:stage/generate_graphml' do |rev_id, stage|
   content_type 'application/graphml+xml'
   graphml=GraphML_Generator.new(@revision,stage)
   graphml.generate_graphml
+end
+
+get '/revision/:rev_id/stage/:stage/generate_bibtex' do |rev_id, stage|
+  @revision=Revision_Sistematica[rev_id]
+
+  canonicos_id=@revision.cd_id_por_etapa(stage)
+  @canonicos_resueltos=Canonico_Documento.where(:id=>canonicos_id).order(:author,:year)
+
+  bib=ReferenceIntegrator::BibTex::Writer.generate(@canonicos_resueltos)
+  headers["Content-Disposition"] = "attachment;filename=systematic_review_#{rev_id}_#{stage}.bib"
+  content_type 'text/x-bibtex'
+  bib.to_s
+
+
+
+
 end

@@ -1,9 +1,13 @@
-# Genera estadísticas para un conjunto de decisiones de un usuario
+# Information about decisions taken by an user, on a systematic review of a scecific stage
 
 class AnalisisDecisionUsuario
+  # Raw dataset of Decision
   attr_reader :decisiones
+  # Decision for each assignment
   attr_reader :decision_por_cd
+  # Number of document for each type of decision
   attr_reader :total_decisiones
+  # Raw dataset of Asignacion_Cd
   attr_reader :asignaciones
   def initialize(rs_id,usuario_id,etapa)
     @rs_id=rs_id
@@ -22,6 +26,9 @@ class AnalisisDecisionUsuario
   end
   def tiene_asignaciones?
     !@asignaciones.empty?
+  end
+  def asignado_a_cd_id(cd_id)
+    @cd_ids.include? cd_id.to_i
   end
   # Define @cd_ids. Si no se han asignado, los toma todos
   # Si existen asignaciones, sólo se consideran estas

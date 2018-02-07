@@ -11,7 +11,9 @@ class Rs_Campo <Sequel::Model
   def self.actualizar_tabla(rs)
     table=rs.analisis_cd_tn
     $db.transaction(:rollback=>:reraise) do
-      if $db["SHOW FULL TABLES  LIKE '%#{table}%'"].empty?
+      #$log.info(table)
+      #$log.info()
+      if !$db.tables.include? table.to_sym
         $db.create_table? table.to_sym do
           primary_key :id
           foreign_key :usuario_id, :usuarios, :null=>false, :key=>[:id]

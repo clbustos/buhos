@@ -62,22 +62,28 @@
 
 
 = partial(:pager,:locals=>{url: @url, pagina: @pager.pagina, max_page: @pager.max_page, :extra=>{busqueda:@pager.busqueda, orden:@pager.orden}})
-.panel
-  - @cds.each do |cd|
-    - decision_o=@decisiones[cd[:id]]
-    - decision = decision_o ? decision_o[:decision] : nil
-    - asignacion_o=@asignaciones[cd[:id]]
-    - clase_panel=decision_class_bootstrap(decision,"panel")
-    .list-group-item{:class=>clase_panel}
-      .row
-        .col-md-8=CGI::escapeHTML cd.ref_apa_6
-        .col-md-4
-          %p=t_desc_value(:Decision, t(Decision.get_name_decision(decision)))
-          - if asignacion_o
-            %p=t_desc_value(:Assignation_status, asignacion_o[:estado])
-            %p=t_desc_value(:Assignation_instructions, asignacion_o[:instrucción] ? asignacion_o[:instrucción] : t(:No_assignation_instructions))
-          - else
+%table.table.table-rounded.table-bordered
+  %thead
+    %th=t(:Document)
+    %th=t(:Decision)
+    %th=t(:Assignation_status)
+    %th=t(:Assignation_instructions)
+  %tbody
+    - @cds.each do |cd|
+      - decision_o=@decisiones[cd[:id]]
+      - decision = decision_o ? decision_o[:decision] : nil
+      - asignacion_o=@asignaciones[cd[:id]]
+      - clase_panel=decision_class_bootstrap(decision,"panel")
+      %tr{:class=>clase_panel}
+        %td
+          =CGI::escapeHTML cd.ref_apa_6
+          %a.btn.btn-primary.btn-sm{:href=>"/revision/#{@revision[:id]}/extract_information/cd/#{cd[:id]}"}=t(:Extract_information)
+        %td=t(Decision.get_name_decision(decision))
+        - if asignacion_o
+          %td=asignacion_o[:estado]
+          %td=asignacion_o[:instrucción] ? asignacion_o[:instrucción] : t(:No_assignation_instructions)
+        - else
+          %td{:colspan=>2}
             %em=t(:Not_assigned)
-
 
 = partial(:pager,:locals=>{url: @url, pagina: @pager.pagina, max_page: @pager.max_page, :extra=>{busqueda:@pager.busqueda, orden:@pager.orden}})

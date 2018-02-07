@@ -1,5 +1,5 @@
 .heading
-  %h2=t(:Systematic_review_tags, sr_name:@revision[:nombre])
+  %h2=title(t(:Systematic_review_tags, sr_name:@revision[:nombre]))
 
 
 :javascript
@@ -15,18 +15,7 @@
         })
       }
   };
-  actualizar_botones_tags=function() {
-    $(".borrar_tag").click(function() {
-      var tag_id=$(this).attr("tag-pk");
-      var rs_id=$(this).attr("rs-pk");
 
-      $.post("/tag/borrar_rs",{tag_id:tag_id, rs_id:rs_id},function(data) {
-        $("#tag-fila-"+tag_id).addClass("hidden");
-      }).fail(function(){
-        alert("#{t(:tag_cant_be_deleted)}");
-      })
-    });
-  };
   actualizar_tags_clase=function() {
       #{@select_etapa.javascript}
       #{@select_tipo.javascript}
@@ -52,8 +41,6 @@
   $(document).ready(function() {
     actualizar_tags_clase();
     actualizar_nombre_editable();
-    actualizar_botones_tags();
-
   });
 
 

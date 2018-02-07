@@ -44,15 +44,35 @@ get '/archivos/rs/:revision_sistematica_id/asignar_canonicos_documentos' do |rs_
   redirect back
 end
 
+
+
+get '/ViewerJS/' do
+  send_file("#{dir_base}/public/ViewerJS/index.html")
+end
+
+get '/ViewerJS/..archivo/:id/descargar' do |id|
+  archivo=Archivo[id]
+  return 404 if archivo.nil?
+
+  #headers["Content-Disposition"] = "attachment;filename=#{archivo[:archivo_nombre]}"
+
+  content_type archivo[:archivo_tipo]
+  send_file(archivo.absolute_path(dir_archivos))
+
+end
+
 get '/archivo/:id/descargar' do |id|
   archivo=Archivo[id]
   return 404 if archivo.nil?
 
-  headers["Content-Disposition"] = "attachment;filename=#{archivo[:archivo_nombre]}"
+  #headers["Content-Disposition"] = "attachment;filename=#{archivo[:archivo_nombre]}"
 
   content_type archivo[:archivo_tipo]
   send_file(archivo.absolute_path(dir_archivos))
 end
+
+
+
 
 get '/archivo/:id/pagina/:pagina/:formato' do |id,pagina,formato|
   archivo=Archivo[id]

@@ -11,12 +11,19 @@
 
 =partial(:breadcrumb_revision_admin,:locals=>{:nombre=>t(@nombre_etapa)})
 
+%p.info=t_desc_value(:Count_canonical_documents, @cds_id.length)
+
 %h3=t(:Statistics_by_user)
 
 .btn-group
   %a.btn.btn-sm.btn-default{:href=>"/revision/#{@revision[:id]}/administracion/#{@etapa}/cd_assignations"}
     %span.glyphicon.glyphicon-list
     =t(:Check_CD_assignations)
+  - if !@cd_without_assignation.empty?
+    %a.btn.btn-sm.btn-warning{:href=>"/revision/#{@revision[:id]}/administracion/#{@etapa}/cd_without_assignations"}
+      %span.glyphicon.glyphicon-list
+      =t(:Check_CD_without_assignations)
+      %span.badge=@cd_without_assignation.count
 
 %table.reporte
   %thead
@@ -72,8 +79,47 @@
 
 =partial(:sr_administration_actions, :locals=>{revision:@revision, etapa:@etapa})
 
+-if @etapa.to_sym==:revision_texto_completo
+  =@modal_archivos.javascript_header
+  =@modal_archivos.html_modal
 
 
+  %h3=t(:Canonical_Document_Status)
+
+  .btn-group.btn-group-sm
+    %a{:href=>url("/revision/#{@revision[:id]}/archivos"),:class=>"btn btn-default btn-sm", :role=>"button"}
+      %span.glyphicon.glyphicon-file
+      =t(:File_batch_management)
+
+
+  %table.tablesorter.reporte
+    %thead
+      %th=t(:Id)
+      %th=t(:Title)
+      %th=t(:Author)
+      %th=t(:Journal)
+      %th=t(:Documents)
+
+    %tbody
+      -@cds.each do |doc_c|
+        %tr
+          %td=doc_c[:id]
+          %td=doc_c[:title]
+          %td=doc_c[:author]
+          %td=doc_c[:journal]
+          %td
+            -apc_doc=@archivos_por_cd[doc_c[:id]]
+            ="Nº archivos:#{apc_doc.nil? ? 0 :apc_doc.length }"
+            -if apc_doc
+              -apc_doc.each do |archivo|
+                %div
+                  =archivo[:id]
+                  =@modal_archivos.botones(archivo, doc_c[:id])
+            - else
+              =@modal_archivos.cargador_archivo(@revision[:id],doc_c[:id])
+
+
+  =partial(:estadisticas_tags, :locals=>{revision:@revision, etapa:@etapa})
 
 %h3=t(:Decisions_by_document)
 

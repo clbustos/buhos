@@ -1,4 +1,4 @@
-%h2=t(:Systematic_review_fields, sr_name:@revision.nombre)
+.header=t_systematic_review_title(@revision[:nombre], :fields_management)
 
 %ul.breadcrumb
   %li
@@ -18,12 +18,16 @@
         =a_editable(campo[:id], 'campo-nombre', "/revision/editar_campo/#{campo[:id]}/nombre", campo[:nombre])
         %span=":"
         =a_textarea_editable(campo[:id], 'campo-descripcion', "/revision/editar_campo/#{campo[:id]}/descripcion", campo[:descripcion])
-        %span=". Tipo: "
+        %span=". #{t(:Type)}: "
         =a_editable(campo[:id], 'campo-tipo', "/revision/editar_campo/#{campo[:id]}/tipo", campo[:tipo])
-        %span=". Opciones: "
+        %span=". #{t(:Options)}: "
         =a_textarea_editable(campo[:id], 'campo-opciones', "/revision/editar_campo/#{campo[:id]}/opciones", campo[:opciones])
+        .btn-group.btn-group-sm
+          %a.btn.btn-danger{:href=>"/revision/#{@revision[:id]}/field/#{campo[:id]}/delete"}
+            %span.glyphicon.glyphicon-remove
+            =t(:Delete)
 
-%a.btn.btn-primary{:href=>"/revision/#{@revision[:id]}/actualizar_tabla"}Actualizar tabla
+%a.btn.btn-primary{:href=>"/revision/#{@revision[:id]}/update_field_table"}=t("fields.update_fields_table")
 
 %h3=t(:Field_new)
 %form{:method=>"post", :action=>"/revision/#{@revision[:id]}/nuevo_campo",:class=>"form-group"}
@@ -31,7 +35,8 @@
     %label{:for=>'orden'}=t(:Order)
     %input.form-control{:type=>'number', :min=>"1",:max=>100, :name=>'orden'}
   .form-group
-    %label{:for=>'Nombre'}=t(:Name)
+    %label{:for=>'Nombre'}=t("fields.code")
+    %p=t("fields.code_instructions")
     %input.form-control{:type=>'text', :name=>'nombre'}
   .form-group
     %label{:for=>'descripcion'}=t(:Description)

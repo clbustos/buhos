@@ -113,6 +113,9 @@ helpers do
   def log
     $log
   end
+  def dir_base
+    File.expand_path(File.dirname(__FILE__))
+  end
   def dir_archivos
     dir=File.expand_path(File.dirname(__FILE__)+"/usr/archivos")
     FileUtils.mkdir_p(dir) unless File.exist? dir

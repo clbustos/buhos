@@ -19,10 +19,15 @@ end
 get '/canonico_documento/:id/buscar_referencias_crossref' do |id|
   @cd=Canonico_Documento[id]
   result=Result.new
-
-  @cd.referencias_realizadas.exclude(:doi=>nil).where(:canonico_documento_id=>nil).each do |ref|
+  referencias=@cd.referencias_realizadas.exclude(:doi=>nil).where(:canonico_documento_id=>nil)
+  if referencias.empty?
+    result.info(I18n::t(:no_references_to_search_on_crossref))
+  else
+    referencias.each do |ref|
       result.add_result(ref.agregar_doi(ref[:doi]))
+    end
   end
+
   agregar_resultado(result)
   redirect back
 end
@@ -146,4 +151,12 @@ post '/canonico_documento/asignacion_usuario/:accion' do |accion|
     return [500, I18n.t(:that_function_doesn_exists)]
   end
 
+end
+
+get '/canonico_documento/:id/view_doi' do |id|
+  @cd=Canonico_Documento[id]
+  return 404 if @cd.nil?
+  @cr_doi=@cd.crossref_integrator
+  @doi_json=Crossref_Doi[doi_sin_http(@cd.doi)][:json]
+  haml "canonicos_documentos/view_doi".to_sym
 end

@@ -8,7 +8,7 @@ get '/decision/revision/:revision_id/usuario/:usuario_id/canonico_documento/:cd_
   if !revision or !cd or !usuario
     return [500, "No existe alguno de los componentes"]
   end
-  return partial(:decision, :locals => {revision_id: revision[:id], cd: cd, decisiones: decisiones, ars: ars, usuario_id: usuario_id, etapa: etapa})
+  return partial(:decision, :locals => {revision: revision, cd: cd, decisiones: decisiones, ars: ars, usuario_id: usuario_id, etapa: etapa})
 end
 
 
@@ -53,7 +53,7 @@ post '/decision/revision/:revision_id/usuario/:usuario_id/canonico_documento/:cd
                             :etapa => etapa).as_hash(:canonico_documento_id)
 
 
-  return partial(:decision, :locals => {revision_id: revision_id, cd: cd, decisiones: decisiones, ars: ars, usuario_id: usuario_id, etapa: etapa, ajax: true})
+  return partial(:decision, :locals => {revision: revision, cd: cd, decisiones: decisiones, ars: ars, usuario_id: usuario_id, etapa: etapa, ajax: true})
 
 
 end

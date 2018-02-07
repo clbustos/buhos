@@ -80,10 +80,10 @@ module Sinatra
       app.post '/login' do
         if(authorize(params['user'], params['password']))
           agregar_mensaje ::I18n.t(:Successful_authentification)
-          log.info( I18n::t("sinatra_auth.sucessful_auth_for_user", user:params['user']))
+          log.info( ::I18n::t("sinatra_auth.sucessful_auth_for_user", user:params['user']))
           redirect(url("/"))
         else
-          agregar_mensaje I18n::t("sinatra_auth.error_on_auth"),:error
+          agregar_mensaje ::I18n::t("sinatra_auth.error_on_auth"),:error
           redirect(url("/login"))
         end
       end

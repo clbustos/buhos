@@ -37,6 +37,8 @@ class Crossref_Doi < Sequel::Model
   end
 end
 
+
+
 class BadCrossrefResponseError < StandardError
 
 end

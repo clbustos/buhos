@@ -1,5 +1,7 @@
-.page-header
-  %h2=t(:Systematic_reviews)
+.header
+  %h2=title(t(:Systematic_reviews))
+%ul.breadcrumb
+  %li.active=t(:Systematic_reviews)
 
 - if @show_inactives
   %p
