@@ -73,7 +73,7 @@
       - decision_o=@decisiones[cd[:id]]
       - decision = decision_o ? decision_o[:decision] : nil
       - asignacion_o=@asignaciones[cd[:id]]
-      - clase_panel=decision_class_bootstrap(decision,"panel")
+      - clase_panel=decision_class_bootstrap(decision,nil)
       %tr{:class=>clase_panel}
         %td
           =CGI::escapeHTML cd.ref_apa_6

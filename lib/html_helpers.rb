@@ -48,7 +48,7 @@ module HTMLHelpers
              when "undecided"
                "warning"
            end
-    "#{prefix}-#{suffix}"
+    prefix.nil? ? suffix  : "#{prefix}-#{suffix}"
   end
 
 

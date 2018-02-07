@@ -258,7 +258,7 @@ AND  #{cd_query} GROUP BY tags.id ORDER BY n_documentos DESC ,p_yes DESC,tags.te
 
   def analisis_cd_user_row(cd,user)
     out=analisis_cd[:canonico_documento_id=>cd[:id], :usuario_id=>user[:id]]
-    if out.empty?
+    if !out
       out_id=analisis_cd.insert(:canonico_documento_id=>cd[:id], :usuario_id=>user[:id])
       out=analisis_cd[:id=>out_id]
     end

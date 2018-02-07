@@ -34,6 +34,7 @@ post '/decision/revision/:revision_id/usuario/:usuario_id/canonico_documento/:cd
   #cd_id=params['pk_id']
   decision=params['decision']
   #usuario_id=params['user_id']
+  only_buttons = params['only_buttons'] == "1"
 
   $db.transaction do
     des=Decision.where(:revision_sistematica_id => revision_id, :usuario_id => usuario_id, :canonico_documento_id => cd_id, :etapa => etapa).first
@@ -53,7 +54,7 @@ post '/decision/revision/:revision_id/usuario/:usuario_id/canonico_documento/:cd
                             :etapa => etapa).as_hash(:canonico_documento_id)
 
 
-  return partial(:decision, :locals => {revision: revision, cd: cd, decisiones: decisiones, ars: ars, usuario_id: usuario_id, etapa: etapa, ajax: true})
+  return partial(:decision, :locals => {revision: revision, cd: cd, decisiones: decisiones, ars: ars, usuario_id: usuario_id, etapa: etapa, ajax: true, only_buttons:only_buttons})
 
 
 end

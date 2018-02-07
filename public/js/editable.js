@@ -35,12 +35,13 @@ function actualizar_decision(etapa,div_id) {
         var pk_id = $(this).attr("data-pk");
         var decision = $(this).attr("data-decision");
         var user_id = $(this).attr("data-user");
+        var only_buttons= $(this).attr("data-onlybuttons");
         var url = $(this).attr("data-url");
         //var comentario=$("#comentario-"+pk_id).val()
         var boton = $(this);
         boton.prop("disabled", true);
         var div_replace="#decision-cd-" + pk_id;
-        $.post(url, {pk_id: pk_id, decision: decision, user_id: user_id}, function (data) {
+        $.post(url, {pk_id: pk_id, decision: decision, user_id: user_id, only_buttons:only_buttons}, function (data) {
             $(div_replace).html(data);
             actualizar_decision(etapa,div_replace);
             actualizar_textarea_editable(div_replace);

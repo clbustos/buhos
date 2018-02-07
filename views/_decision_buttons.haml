@@ -11,7 +11,7 @@
         - crits.each_pair do |dec_id, crit|
           -cbc=class_bootstrap_contextual( decision==dec_id, 'btn',crit[:bs] )
           -dc_dec= (decision==dec_id) ? '' : 'dc_decision'
-          %button{:class=>"btn #{cbc} #{dc_dec}", "data-pk"=>cd[:id], "data-decision"=>dec_id, "data-user"=>usuario_id, "data-etapa"=>etapa ,:id=>"decision-#{cd[:id]}-#{dec_id}", 'data-url'=>"/decision/revision/#{revision_id}/usuario/#{usuario_id}/canonico_documento/#{cd[:id]}/etapa/#{etapa}/decision"}=crit[:nombre]
+          %button{:class=>"btn #{cbc} #{dc_dec}", "data-onlybuttons"=>only_buttons ? "1":"0" , "data-pk"=>cd[:id], "data-decision"=>dec_id, "data-user"=>usuario_id, "data-etapa"=>etapa ,:id=>"decision-#{cd[:id]}-#{dec_id}", 'data-url'=>"/decision/revision/#{revision_id}/usuario/#{usuario_id}/canonico_documento/#{cd[:id]}/etapa/#{etapa}/decision"}=crit[:nombre]
       %div
         %strong="#{t(:Commentary)}:"
         =a_textarea_editable(cd[:id], "comentario-cd", url("/decision/revision/#{revision_id}/usuario/#{usuario_id}/canonico_documento/#{cd[:id]}/etapa/#{etapa}/comentario"), decision_o  ?  decision_o.comentario : nil, t(:Enter_commentary))

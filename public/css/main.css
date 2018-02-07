@@ -850,3 +850,8 @@ p.instructions {
     background: #bbb;
     color:white;
 }
+
+sidebar {
+    resize: both;
+    overflow: auto;
+}
