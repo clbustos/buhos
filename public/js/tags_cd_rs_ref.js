@@ -66,6 +66,7 @@ actualizar_tags_cd_rs_ref=function(div_id) {
             var url=$(this).attr("data-url");
             var cd_start_pk=$(this).attr("cd_start-pk");
             var cd_end_pk=$(this).attr("cd_end-pk");
+            var rs_pk=$(this).attr("rs-pk");
             var val=$(this).val().trim();
             crear_tag_ref(url,val,cd_start_pk,cd_end_pk, rs_pk);
             return(false);
@@ -75,15 +76,16 @@ actualizar_tags_cd_rs_ref=function(div_id) {
 
 actualizar_mostrar_pred_ref=function(div_id) {
     div_id = typeof div_id !== 'undefined' ? div_id : false;
-    var selector_action=div_id ? div_id+" .mostrar_pred" : '.mostrar_pred';
+    var selector_action=div_id ? div_id+" .mostrar_pred_ref" : '.mostrar_pred_ref';
     //console.log(selector_action);
     $(selector_action).unbind("click");
     $(selector_action).click(function() {
         var id=$(this).attr("id");
-        var partes=id.split("_");
+        var partes=id.split("__");
         var base=partes[0];
+
         $("#"+base+" .tag-predeterminado").removeClass("hidden");
-        $("#"+base+"_mostrar_pred").hide();
+        $("#"+base+"__mostrar_pred").hide();
     });
 }
 actualizar_typeahead_ref=function(div_id) {
