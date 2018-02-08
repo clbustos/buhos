@@ -1,8 +1,10 @@
 - nuevo||=false
 - ajax||=false
-- if @_tags_cd_rs_js.nil? and !nuevo and !ajax
+- if @_typeahead.nil?
   %link{:href=>url('/css/typeahead.css') , :media => 'screen', :rel=>'stylesheet', :type=>'text/css'}
   %script{:type=>'text/javascript', :src=>url('/js/typeahead.bundle.min.js')}
+  - @_typeahead=true
+- if @_tags_cd_rs_js.nil? and !nuevo and !ajax
   %script{:type=>'text/javascript', :src=>url('/js/tags_cd_rs.js')}
   :javascript
     $(document).ready(function() {

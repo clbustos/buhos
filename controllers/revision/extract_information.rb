@@ -3,7 +3,8 @@ get '/revision/:sr_id/extract_information/cd/:cd_id' do |sr_id,cd_id|
   @cd=Canonico_Documento[cd_id]
   @user=Usuario[session['user_id']]
   return 404 if @sr.nil? or @cd.nil?
-  cds_id=@sr.cd_id_por_etapa('revision_texto_completo')
+  @stage='revision_texto_completo'
+  cds_id=@sr.cd_id_por_etapa(@stage)
 
   if !cds_id.include?(cd_id.to_i)
     agregar_mensaje(t(:Canonical_documento_not_assigned_to_this_systematic_review), :error)
@@ -24,11 +25,13 @@ get '/revision/:sr_id/extract_information/cd/:cd_id' do |sr_id,cd_id|
 
   @ars=AnalisisRevisionSistematica.new(@sr)
 
-  @ads=AnalisisDecisionUsuario.new( sr_id, @user[:id], 'revision_texto_completo')
+  @ads=AnalisisDecisionUsuario.new( sr_id, @user[:id], @stage)
 
   @decisiones=@ads.decisiones
 
   @form_creator=FormCreator.new(@sr,@cd, @user)
+  @incoming_citations=Canonico_Documento.where(:id=>@ars.incoming_citations(@stage,cd_id)).order(:year,:author)
+  @outgoing_citations=Canonico_Documento.where(:id=>@ars.outgoing_citations(@stage,cd_id)).order(:year,:author)
 
   haml "revisiones_sistematicas/cd_extract_information".to_sym
 end

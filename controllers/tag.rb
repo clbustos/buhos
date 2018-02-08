@@ -53,9 +53,28 @@ get '/tag/:tag_id/rs/:rs_id/stage/:stage/cds' do |tag_id, rs_id, stage|
   @usuario=Usuario[session['user_id']]
   return 404 if @tag.nil? or @revision.nil?
   @stage=stage
+  @cds_tag=Tag_En_Cd.cds_rs_tag(@revision,@tag,false,stage)
+  haml '/tags/rs_cds'.to_sym
+end
+
+
+get '/tag/:tag_id/rs/:rs_id/cds' do |tag_id, rs_id|
+  @tag=Tag[tag_id]
+  @revision=Revision_Sistematica[rs_id]
+
+  @ars=AnalisisRevisionSistematica.new(@revision)
+
+  @usuario=Usuario[session['user_id']]
+  return 404 if @tag.nil? or @revision.nil?
+
   @cds_tag=Tag_En_Cd.cds_rs_tag(@revision,@tag)
   haml '/tags/rs_cds'.to_sym
 end
+
+
+
+
+
 
 post '/tags/cd/:cd_id/rs/:rs_id/:accion' do |cd_id,rs_id,accion|
   cd=Canonico_Documento[cd_id]
@@ -93,6 +112,44 @@ end
 
 
 
+post '/tags/cd_start/:cd_start_id/cd_end/:cd_end_id/rs/:rs_id/:accion' do |cd_start_id,cd_end_id,rs_id,accion|
+  cd_start=Canonico_Documento[cd_start_id]
+  cd_end=Canonico_Documento[cd_end_id]
+  rs=Revision_Sistematica[rs_id]
+  return 405 if cd_start.nil? or cd_end.nil? or rs.nil?
+
+  usuario_id = session['user_id']
+
+  if accion=='agregar_tag'
+    tag_nombre=params['value'].chomp
+    return 405 if tag_nombre==""
+    tag=Tag.get_tag(tag_nombre)
+    $db.transaction(:rollback=>:reraise) do
+      Tag_En_Referencia_Entre_Cn.aprobar_tag(cd_start,cd_end,rs,tag,usuario_id)
+    end
+  elsif accion=='aprobar_tag'
+    tag_id=params['tag_id']
+    tag=Tag[tag_id]
+    return 404 if tag.nil?
+    $db.transaction(:rollback=>:reraise) do
+      Tag_En_Referencia_Entre_Cn.aprobar_tag(cd_start,cd_end,rs,tag,usuario_id)
+    end
+  elsif accion=='rechazar_tag'
+    tag_id=params['tag_id']
+    tag=Tag[tag_id]
+    return 404 if tag.nil?
+    $db.transaction(:rollback=>:reraise) do
+      Tag_En_Referencia_Entre_Cn.rechazar_tag(cd_start,cd_end,rs,tag,usuario_id)
+    end
+  else
+    [405,"No se cual es la accion"]
+  end
+
+  partial("tags/tags_cd_rs_ref", :locals=>{cd_start: cd_start, cd_end:cd_end, revision:rs, :nuevo=>true, usuario_id: usuario_id})
+end
+
+
+
 get '/tags/basico_10.json' do
   require 'json'
   content_type :json
@@ -104,6 +161,17 @@ get '/tags/basico_10.json' do
   }.to_json
 end
 
+
+get '/tags/basico_ref_10.json' do
+  require 'json'
+  content_type :json
+  Tag.order(:texto).limit(10).map {|v|
+    {id:v[:id],
+     value:v[:texto],
+     tokens:v[:texto].split(/\s+/)
+    }
+  }.to_json
+end
 
 get '/tags/query_json/:query' do |query|
   require 'json'
@@ -119,6 +187,21 @@ get '/tags/query_json/:query' do |query|
 end
 
 
+get '/tags/refs/query_json/:query' do |query|
+  require 'json'
+  content_type :json
+
+  res=$db["SELECT id, texto,COUNT(*) as n from tags t INNER JOIN tags_en_referencias_entre_cn tec ON t.id=tec.tag_id WHERE INSTR(texto,?)>0 and decision='yes' GROUP BY t.texto ORDER BY n DESC LIMIT 10", query]
+  res.map {|v|
+    {id:v[:id],
+     value:v[:texto],
+     tokens:v[:texto].split(/\s+/)
+    }
+  }.to_json
+end
+
+
+
 get '/tags/revision_sistematica/:rs_id/query_json/:query' do |rs_id,query|
   require 'json'
   content_type :json
@@ -131,6 +214,21 @@ get '/tags/revision_sistematica/:rs_id/query_json/:query' do |rs_id,query|
     }
   }.to_json
 end
+
+get '/tags/revision_sistematica/:rs_id/ref/query_json/:query' do |rs_id,query|
+  require 'json'
+  content_type :json
+
+  res=$db["SELECT id, texto,COUNT(*) as n from tags t INNER JOIN tags_en_referencias_entre_cn tec ON t.id=tec.tag_id WHERE INSTR(texto,?)>0 and decision='yes' and revision_sistematica_id=? GROUP BY t.texto ORDER BY n DESC LIMIT 10", query, rs_id ]
+  res.map {|v|
+    {id:v[:id],
+     value:v[:texto],
+     tokens:v[:texto].split(/\s+/)
+    }
+  }.to_json
+end
+
+
 
 post '/tag/borrar_rs'do
   rs=Revision_Sistematica[params['rs_id']]

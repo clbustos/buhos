@@ -55,6 +55,6 @@ Sequel.inflections do |inflect|
   inflect.irregular 'archivo_cd', 'archivos_cds'
   inflect.irregular 'archivo_rs', 'archivos_rs'
   inflect.irregular 'asignacion_cd','asignaciones_cds'
-
+  inflect.irregular 'tag_en_referencia_entre_cn', 'tags_en_referencias_entre_cn'
 end
 

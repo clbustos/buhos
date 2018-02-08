@@ -121,6 +121,12 @@ class AnalisisRevisionSistematica
   def cd_id_assigned_by_user(stage,user_id)
     get_asrs(stage).cd_id_assigned_by_user(user_id)
   end
+  def incoming_citations(stage,cd_id)
+    get_asrs(stage).incoming_citations cd_id
+  end
+  def outgoing_citations(stage,cd_id)
+    get_asrs(stage).outcoming_citations cd_id
+  end
 
   def mas_citados(n=20)
     @ref_cuenta_entrada.sort_by {|a| a[1]}.reverse[0...n]

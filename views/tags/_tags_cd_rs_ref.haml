@@ -1,0 +1,42 @@
+- nuevo||=false
+- ajax||=false
+- if @_typeahead.nil?
+  %link{:href=>url('/css/typeahead.css') , :media => 'screen', :rel=>'stylesheet', :type=>'text/css'}
+  %script{:type=>'text/javascript', :src=>url('/js/typeahead.bundle.min.js')}
+  - @_typeahead=true
+- if @_tags_cd_rs_ref_js.nil? and !nuevo and !ajax
+  %script{:type=>'text/javascript', :src=>url('/js/tags_cd_rs_ref.js')}
+  :javascript
+    $(document).ready(function() {
+
+    var tagsRefQuery=new Bloodhound({
+      datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+      queryTokenizer: Bloodhound.tokenizers.whitespace,
+      prefetch: '/tags/basico_ref_10.json',
+      remote: {
+          url: "/tags/revision_sistematica/#{revision.id}/refs/query_json/%QUERY",
+          wildcard: '%QUERY'
+      }
+      });
+    });
+  -@_tags_cd_rs_ref_js=true
+
+%div{:id=>"tags-cd_start-#{cd_start.id}-cd_end-#{cd_end.id}-rs-#{revision.id}"}
+  %ul.tags
+    -AnalisisTag.tag_ref_cd_rs(revision,cd_start,cd_end).each do |tag|
+      -res_usuario=tag.resultado_usuario(usuario_id)
+      -if tag.mostrar
+        - class_predeterminado = tag.predeterminado ? "tag-predeterminado" : ""
+        - class_escondido = tag.sin_votos? ? "hidden" : ""
+        %li{:class=>"tag #{class_predeterminado} #{class_escondido}",:id=>"tag-cd_start-#{cd_start.id}-cd_start-#{cd_end.id}-rs-#{revision.id}-#{tag.id}"}
+          %span.glyphicon.glyphicon-tag
+          %span.texto=tag.texto
+          =tag.botones_html(usuario_id)
+
+    %li.tag.nuevo_tag{:id=>"tag-cd_start-#{cd_start.id}-cd_end-#{cd_end.id}-rs-#{revision.id}-nuevo"}
+      %span.glyphicon.glyphicon-tag
+      %input.nuevo_tag_cd_rs_ref{:type=>"text", :class=>"texto", :size=>15,:id=>"tag-cd_start-#{cd_start.id}-cd_end-#{cd_end.id}-rs-#{revision.id}-nuevotag", "cd_start-pk"=>cd_start.id, "cd_end-pk"=>cd_end.id,  "rs-pk"=>revision.id, "data-url"=>url("/tags/cd_start/#{cd_start.id}/cd_end/#{cd_end.id}/rs/#{revision.id}/agregar_tag"), :placeholder=>"Nuevo tag"}
+      %button.btn.btn-default.btn-xs.boton_nuevo_tag_cd_rs_ref{"cd_start-pk"=>cd_start.id, "cd_end-pk"=>cd_end.id, "rs-pk"=>revision.id, "data-url"=>url("/tags/cd_start/#{cd_start.id}/cd_end/#{cd_end.id}/rs/#{revision.id}/agregar_tag"), :id=>"boton-tag-cd_start-#{cd_start.id}-cd_end-#{cd_end.id}-rs-#{revision.id}-nuevotag"}
+        %span.glyphicon.glyphicon-plus
+    %botton.btn.btn-default.mostrar_pred{:id=>"tags-cd_start-#{cd_start.id}-cd_end-#{cd_end.id}-rs-#{revision.id}_mostrar_pred"}
+      %span.glyphicon.glyphicon-eye-open

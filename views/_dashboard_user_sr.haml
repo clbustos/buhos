@@ -24,6 +24,7 @@
           - if es_administrador
             %p
               %a{:href=>"/revision/#{sr[:id]}/administracion/#{etapa_visualizar}"}
+                %snap.glyphicon.glyphicon-tower
                 =t_desc_value("user_dashboard.count_total_searchs", sr.busquedas.count)
           - else
             %p=t_desc_value("user_dashboard.count_total_searchs", sr.busquedas.count)
@@ -37,9 +38,12 @@
             - ars=AnalisisRevisionSistematica.new(sr)
             %p
               %a{:href=>"/revision/#{sr[:id]}/administracion/#{etapa_visualizar}"}
+                %snap.glyphicon.glyphicon-tower
                 =t_desc_value("user_dashboard.count_total_canonical_documents_stage", sr.cd_id_por_etapa(etapa_visualizar).count)
             - if ars.resolution_pattern(etapa_visualizar)[Resolucion::NO_RESOLUCION].to_i>0
-              %p=t_desc_value("user_dashboard.count_canonical_document_without_resolution", a_tag("/revision/#{sr[:id]}/administracion/#{etapa_visualizar}#decision_statistics",  t("user_dashboard.check_n_canonical_documents_without_resolution", count:ars.resolution_pattern(etapa_visualizar)[Resolucion::NO_RESOLUCION])))
+              %p
+                %snap.glyphicon.glyphicon-tower
+                =t_desc_value("user_dashboard.count_canonical_document_without_resolution", a_tag("/revision/#{sr[:id]}/administracion/#{etapa_visualizar}#decision_statistics",  t("user_dashboard.check_n_canonical_documents_without_resolution", count:ars.resolution_pattern(etapa_visualizar)[Resolucion::NO_RESOLUCION])))
           - else
             %p=t_desc_value("user_dashboard.count_total_canonical_documents_stage", sr.cd_id_por_etapa(etapa_visualizar).count)
 

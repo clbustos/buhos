@@ -28,6 +28,3 @@ class Tag_En_Clase < Sequel::Model
 
 end
 
-class Tag_En_Referencia_Entre_Cn  < Sequel::Model
-
-end

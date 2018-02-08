@@ -8,8 +8,17 @@ class Analysis_SR_Stage
     @stage=stage.to_sym
   end
 
+  def incoming_citations(cd_id)
+    cd_etapa=@sr.cd_id_por_etapa(@stage)
+    rec=@sr.referencias_entre_canonicos.where(:cd_destino=>cd_id).map(:cd_origen)
+    rec & cd_etapa
+  end
+  def outcoming_citations(cd_id)
+    cd_etapa=@sr.cd_id_por_etapa(@stage)
+    rec=@sr.referencias_entre_canonicos.where(:cd_origen=>cd_id).map(:cd_destino)
+    rec & cd_etapa
+  end
   def stage_complete?
-
     #$log.info(stage)
     if @stage==:busqueda
       bds=@sr.busquedas_dataset
