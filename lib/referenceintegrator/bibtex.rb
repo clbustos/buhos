@@ -1,3 +1,4 @@
+# encoding: utf-8
 require 'bibtex'
 #require 'citeproc'
 
@@ -18,6 +19,7 @@ module ReferenceIntegrator
 
 
       def self.create(bibtex_value)
+		return nil if bibtex_value.is_a? BibTeX::Error
         type=self.determine_type(bibtex_value)
         klass="Record_#{type.capitalize}".to_sym
         ReferenceIntegrator::BibTex.const_get(klass).send(:new, bibtex_value)

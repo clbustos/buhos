@@ -1,4 +1,5 @@
 *~
+.env
 log
 usr/archivos
 db.sqlite

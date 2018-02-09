@@ -1,5 +1,5 @@
 get '/revision/:id/busquedas' do |id|
-  error(403) unless permiso('busqueda_revision_ver')
+  error(403) unless permiso('busquedas_revision_ver')
   @revision=Revision_Sistematica[id]
   @busquedas=@revision.busquedas
   @header=t_systematic_review_title(@revision[:nombre], :systematic_review_searchs)
@@ -9,7 +9,7 @@ get '/revision/:id/busquedas' do |id|
 end
 
 get '/revision/:id/busquedas/user/:user_id' do |id,user_id|
-  error(403) unless permiso('busqueda_revision_ver')
+  error(403) unless permiso('busquedas_revision_ver')
   @revision=Revision_Sistematica[id]
 
   @header=t_systematic_review_title(@revision[:nombre], t(:searchs_user, :user_name=>Usuario[user_id][:nombre]), false)
@@ -23,7 +23,7 @@ end
 
 
 get '/revision/:id/busqueda/nuevo' do |id|
-  error(403) unless permiso('busqueda_revision_crear')
+  error(403) unless permiso('busquedas_revision_crear')
   require 'date'
 
   @revision=Revision_Sistematica[id]
@@ -48,7 +48,7 @@ post '/revision/busqueda/actualizar' do
   }
   #  aa=Revision_Sistematica.new
 
-  if !permiso('busqueda_revision_crear')
+  if !permiso('busquedas_revision_crear')
     agregar_mensaje(I18n::t(:Not_allowed_with_user_permissions),:error)
   elsif params['base_bibliografica_id'].nil?
     agregar_mensaje(I18n::t(:No_empty_bibliographic_database_on_search),:error)

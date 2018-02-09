@@ -154,15 +154,9 @@ get '/revision/:id/administracion/:etapa' do |id,etapa|
   @etapa=etapa
   @ars=AnalisisRevisionSistematica.new(@revision)
   @cd_without_assignation=@ars.cd_without_assignations(etapa)
-
-  @categorizador=Categorizador_RS.new(@revision) unless etapa==:busqueda
-
-  @cds_id=@revision.cd_id_por_etapa(etapa)
-  @cds=Canonico_Documento.where(:id=>@cds_id)
-  @archivos_por_cd=$db["SELECT a.*,cds.canonico_documento_id FROM archivos a INNER JOIN archivos_cds cds ON a.id=cds.archivo_id INNER JOIN archivos_rs ars ON a.id=ars.archivo_id WHERE revision_sistematica_id=? AND (cds.no_considerar = ? OR cds.no_considerar IS NULL)", @revision.id , 0].to_hash_groups(:canonico_documento_id)
-  ## Aquí calcularé cuantos si y no hay por categoría
-  res_etapa=@ars.resolucion_por_cd(etapa)
-  @aprobacion_categorias=@categorizador.categorias_cd_id.inject({}) {|ac,v|
+  begin
+	@categorizador=Categorizador_RS.new(@revision) unless etapa==:busqueda
+	@aprobacion_categorias=@categorizador.categorias_cd_id.inject({}) {|ac,v|
     cd_validos=res_etapa.keys & (v[1])
     n=cd_validos.length
     if n==0
@@ -172,6 +166,15 @@ get '/revision/:id/administracion/:etapa' do |id,etapa|
     end
     ac
   }
+	rescue LoadError
+	@categorizador=nil
+  end
+  @cds_id=@revision.cd_id_por_etapa(etapa)
+  @cds=Canonico_Documento.where(:id=>@cds_id)
+  @archivos_por_cd=$db["SELECT a.*,cds.canonico_documento_id FROM archivos a INNER JOIN archivos_cds cds ON a.id=cds.archivo_id INNER JOIN archivos_rs ars ON a.id=ars.archivo_id WHERE revision_sistematica_id=? AND (cds.no_considerar = ? OR cds.no_considerar IS NULL)", @revision.id , 0].to_hash_groups(:canonico_documento_id)
+  ## Aquí calcularé cuantos si y no hay por categoría
+  res_etapa=@ars.resolucion_por_cd(etapa)
+  
 #  $log.info(p_aprobaciones_categoria)
   @nombre_etapa=Revision_Sistematica.get_nombre_etapa(@etapa)
 

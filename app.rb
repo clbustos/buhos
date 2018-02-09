@@ -1,7 +1,5 @@
 # encoding: UTF-8
 
-
-
 require "bundler/setup"
 require 'sinatra'
 # Vamos a activar el reloader en todos los casos
@@ -24,7 +22,7 @@ end
 #
 unless File.exist?("config/installed")
   load('installer.rb')
-  BibRevSys::Installer.run!
+  Buhos::Installer.run!
   exit 1
 end
 
@@ -74,6 +72,7 @@ $log = Logger.new('log/app.log')
 $log_sql = Logger.new('log/app_sql.log')
 
 
+#$log.info(Encoding.default_external)
 
 require_relative 'model/init.rb'
 require_relative 'model/models.rb'
