@@ -143,6 +143,7 @@ If you using [RVM](https://rvm.io/) with passenger, check [this page](https://rv
 * [Sequel](https://github.com/jeremyevans/sequel) - Sequel is a simple, flexible, and powerful SQL database access toolkit for Ruby.
 * [Bootstrap](https://getbootstrap.com/) -  Bootstrap is an open source toolkit for developing with HTML, CSS, and JS.
 * [jQuery](https://jquery.com/) - jQuery is a fast, small, and feature-rich JavaScript library. 
+* [ViewerJS](http://viewerjs.org/) - ViewerJS allows to use presentations, spreadsheets, PDF's and other documents on your website or blog without any external dependencies.
 * [RubyMine](https://www.jetbrains.com/ruby/) - A good Ruby IDE
 
 ## Contributing

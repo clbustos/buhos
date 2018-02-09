@@ -106,6 +106,8 @@ function actualizar_textarea_editable(div_id) {
         title: 'Ingrese',
         rows: 10,
         mode: "inline",
+        showbuttons:'bottom',
+        onblur:'ignore',
         ajaxOptions: {
             type: 'put'
         }

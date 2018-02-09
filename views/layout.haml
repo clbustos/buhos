@@ -66,5 +66,9 @@
         =imprimir_mensajes
       %section#content
         =yield
-      %footer
-        %p=t(:footer_copyright)
+      %footer.center-block.clearfix
+        .container.text-center
+          .row
+            .col-md-12
+              .text-muted.credit=t(:footer_copyright)
+              .text-muted.credit=t(:footer_conicyt)

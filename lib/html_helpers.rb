@@ -69,6 +69,7 @@ module HTMLHelpers
     url_s=url(data_url)
     "<a class='nombre_editable' data-pk='#{id}' data-url='#{url_s}' href='#' id='#{prefix}-#{id}' data-placeholder='#{placeholder}'>#{v}</a>"
   end
+
   # Check if we have permission to do an edit
   def permission_a_editable(have_permit, id, prefix, data_url, v,placeholder)
     if have_permit

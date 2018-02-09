@@ -851,7 +851,11 @@ p.instructions {
     color:white;
 }
 
-sidebar {
+.sidebar {
     resize: both;
     overflow: auto;
+}
+
+.dashboard-user {
+    margin-top:1em;
 }

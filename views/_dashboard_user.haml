@@ -11,8 +11,12 @@
         - if es_administrador
           %span.badge=t(:Administrator)
     .panel-body
-      =t_desc_value(:Objectives, sr.objetivos)
-      =partial(:dashboard_user_sr,:locals=>{user:user, sr:sr})
+      .container
+        .row
+          .col-md-8=t_desc_value(:Objectives, lf_to_br(sr.objetivos))
+          .col-md-2
+            %a.btn.btn-default.btn-sm{:href=>"/revision/#{sr.id}"}=t(:View_technical_record)
+      .dashboard-user=partial(:dashboard_user_sr,:locals=>{user:user, sr:sr})
 
 - if user.revisiones_sistematicas.where(:activa=>true).count==0
   %p

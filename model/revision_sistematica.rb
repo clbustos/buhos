@@ -14,15 +14,16 @@ class Revision_Sistematica < Sequel::Model
           :revision_titulo_resumen,
           :revision_referencias,
           :revision_texto_completo,
-          :analisis,
-          :sintesis]
+          #:analisis,
+          :report
+  ]
 
   ETAPAS_NOMBRE={:busqueda => "stage.search",
                  :revision_titulo_resumen => "stage.review_title_and_abstract",
                  :revision_referencias => "stage.review_references",
                  :revision_texto_completo=> "stage.review_full_text",
-                 :analisis => "stage.analysis",
-                 :sintesis => "stage.synthesis"}
+                 #:analisis => "stage.analysis",
+                 :report=> "stage.report"}
 
   def palabras_claves_as_array
     palabras_claves.nil? ? nil : palabras_claves.split(";").map {|v| v.strip}

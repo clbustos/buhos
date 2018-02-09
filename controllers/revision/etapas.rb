@@ -367,7 +367,18 @@ get '/revision/:rev_id/stage/:stage/generate_bibtex' do |rev_id, stage|
   content_type 'text/x-bibtex'
   bib.to_s
 
+end
 
 
+get '/revision/:rev_id/stage/:stage/generate_doi_list' do |rev_id, stage|
+  @revision=Revision_Sistematica[rev_id]
+
+  canonicos_id=@revision.cd_id_por_etapa(stage)
+  @canonicos_resueltos=Canonico_Documento.where(:id=>canonicos_id).order(:author,:year).exclude(:doi=>nil)
+  dois=@canonicos_resueltos.map {|v| v.doi}.join("\n")
+
+#  headers["Content-Disposition"] = "attachment;filename=systematic_review_#{rev_id}_#{stage}.bib"
+  content_type 'text/plain'
+  dois
 
 end
