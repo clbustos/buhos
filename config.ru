@@ -1,4 +1,6 @@
+# encoding: utf-8
 #\ -w 
+
 require 'sinatra'
 require 'dotenv'
 require 'rack/session/moneta'
@@ -55,5 +57,5 @@ if File.exist?("config/installed")
   run Sinatra::Application
 else
   require_relative 'installer.rb'
-  run BibRevSys::Installer
+  run Buhos::Installer
 end

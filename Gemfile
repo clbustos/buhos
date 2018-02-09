@@ -8,7 +8,8 @@ gem "haml"
 gem "rspec"
 gem "rack-test"
 gem 'bibtex-ruby'
-gem 'levenshtein-ffi', :require => 'levenshtein'
+gem "unicode"
+gem 'levenshtein-ffi', :require => 'levenshtein', :platforms => :ruby
 gem 'serrano'
 gem 'dotenv'
 #gem 'scopus'
@@ -17,7 +18,7 @@ gem 'moneta'
 gem 'nbayes'
 gem 'ruby-stemmer'
 gem 'classifier-reborn'
-gem 'categorize'
+gem 'categorize' , :platforms => :ruby
 gem 'ai4r'
 gem 'pdf-reader'
 gem 'grim'

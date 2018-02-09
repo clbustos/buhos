@@ -507,6 +507,7 @@ es:
     Search_process_file_successfully: "Archivo de búsqueda procesado exitosamente"
     Search_canonical_documents_successfully: "Archivos canónicos de búsqueda procesados exitosamente"
     no_unique_id_for_integrator: "No existe un id que permita identificar a los archivos"
+    error_on_reference: "Error en referencia Nº %{i}"
   error:
     error_on_add_crossref_for_cd: "No se pudo agregar información de Crossref para DC %{cd_title}"
   scopus_abstract:

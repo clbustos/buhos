@@ -1,3 +1,4 @@
+# encoding: utf-8
 # Search on systematic review should be processed, to obtain all necessary information
 #
 class SearchProcessor
@@ -19,33 +20,49 @@ class SearchProcessor
   end
 
   def process_file
-    if @search[:archivo_cuerpo].nil?
-      log_error(:No_file_available)
-      return false
-    elsif @search[:archivo_tipo]=="text/x-bibtex"
-      integrator=ReferenceIntegrator::BibTex::Reader.parse(@search[:archivo_cuerpo])
-    elsif @search[:archivo_tipo]=="text/csv" # Por trabajar
-      #$log.info(base_bibliografica_nombre)
-      integrator=ReferenceIntegrator::CSV::Reader.parse(@search[:archivo_cuerpo], @search.base_bibliografica_nombre)
-    else
-      log_error("search_processor.no_integrator_for_filetype")
-      return false
-    end
+	begin 
+		if @search[:archivo_cuerpo].nil?
+		  log_error(:No_file_available)
+		  return false
+		elsif @search[:archivo_tipo]=="text/x-bibtex" or @search[:archivo_nombre]=~/\.bib$/
+		  integrator=ReferenceIntegrator::BibTex::Reader.parse(@search[:archivo_cuerpo])
+		elsif @search[:archivo_tipo]=="text/csv" # Por trabajar
+		  #$log.info(base_bibliografica_nombre)
+		  integrator=ReferenceIntegrator::CSV::Reader.parse(@search[:archivo_cuerpo], @search.base_bibliografica_nombre)
+		else
+		  log_error("search_processor.no_integrator_for_filetype")
+		  return false
+		end
+	rescue ReferenceIntegrator::BibTex::RecordBibtexError
+		  log_error("search_processor.error_processing_file")
+		  return false
+	end
+		
     #$log.info(integrator)
     correct=true
     $db.transaction do
       bb=Base_Bibliografica.nombre_a_id_h
       ref_ids=[]
+	  ref_i=0
       integrator.each do |reference|
+		ref_i+=1
+		if reference.nil?
+		  @result.error(::I18n::t("search_processor.error_on_reference", i:ref_i))
+          correct=false
+		  next
+		end
+		#$log.info(Encoding::default_external)
+		#$log.info(reference.to_s.encoding)
         bb_id = bb[ reference.type.to_s ]
-        $log.info(reference.type.to_s )
+        #$log.info(reference.type.to_s )
         if bb_id.nil?
           @result.error(::I18n::t("search_processor.no_unique_id_for_integrator", integrator: bb_id ))
           correct=false
           break
         end
+		
         reg_o=Registro[:uid => reference.uid, :base_bibliografica_id=> bb_id]
-
+		
         if reg_o.nil?
           reg_o_id=Registro.insert(:uid => reference.uid, :base_bibliografica_id=> bb_id)
           reg_o=Registro[reg_o_id]
@@ -84,9 +101,10 @@ class SearchProcessor
           reg_o.actualizar_referencias(cit_refs_ids)
         end
       end
-      @search.actualizar_registros(ref_ids) if correct
+      @search.actualizar_registros(ref_ids)
     end
     log_success("search_processor.Search_process_file_successfully") if correct
+	true
   end
 
   def process_canonical_documents
