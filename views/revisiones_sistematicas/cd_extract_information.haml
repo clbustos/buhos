@@ -25,10 +25,10 @@
     .col-md-2
       =partial(:canonico_documento_boton, :locals=>{id:@cd[:id]})
   .row
-    .col-md-7.col-sm-7.resizable
+    .col-md-7.col-sm-7.resizable#document_viewer
       .embed-responsive.embed-responsive-4by3
         %iframe{:src=>"/ViewerJS/#../archivo/#{@current_file_id}/descargar",  :allowfullscreen=>true, :webkitallowfullscreen=>true}
-    .col-md-5.col-sm-5
+    .col-md-5.col-sm-5#extract_form
       .container
         .row
           .col-sm-5

@@ -14,15 +14,16 @@ class Revision_Sistematica < Sequel::Model
           :revision_titulo_resumen,
           :revision_referencias,
           :revision_texto_completo,
-          :analisis,
-          :sintesis]
+          #:analisis,
+          :report
+  ]
 
   ETAPAS_NOMBRE={:busqueda => "stage.search",
                  :revision_titulo_resumen => "stage.review_title_and_abstract",
                  :revision_referencias => "stage.review_references",
                  :revision_texto_completo=> "stage.review_full_text",
-                 :analisis => "stage.analysis",
-                 :sintesis => "stage.synthesis"}
+                 #:analisis => "stage.analysis",
+                 :report=> "stage.report"}
 
   def palabras_claves_as_array
     palabras_claves.nil? ? nil : palabras_claves.split(";").map {|v| v.strip}
@@ -206,7 +207,16 @@ AND  #{cd_query} GROUP BY tags.id ORDER BY n_documentos DESC ,p_yes DESC,tags.te
     $db[view_name.to_sym]
   end
 
-
+  def resoluciones_texto_completo_tn
+    "resoluciones_rs_#{self[:id]}_texto_completo"
+  end
+  def resoluciones_texto_completo
+    view_name=resoluciones_texto_completo_tn
+    if !$db.table_exists?(view_name)
+      $db.run("CREATE VIEW #{view_name} AS SELECT * FROM resoluciones  where revision_sistematica_id=#{self[:id]} and etapa='revision_texto_completo'")
+    end
+    $db[view_name.to_sym]
+  end
 
 
   def cuenta_referencias_rtr_tn
@@ -237,7 +247,10 @@ AND  #{cd_query} GROUP BY tags.id ORDER BY n_documentos DESC ,p_yes DESC,tags.te
         rtr=resoluciones_titulo_resumen.where(:resolucion=>'yes').select_map(:canonico_documento_id)
         rr=resoluciones_referencias.where(:resolucion=>'yes').select_map(:canonico_documento_id)
         (rtr+rr).uniq
+      when 'report'
+        resoluciones_texto_completo.where(:resolucion=>'yes').select_map(:canonico_documento_id)
       else
+
         raise 'no definido'
     end
   end

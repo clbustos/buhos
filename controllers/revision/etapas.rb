@@ -154,27 +154,27 @@ get '/revision/:id/administracion/:etapa' do |id,etapa|
   @etapa=etapa
   @ars=AnalisisRevisionSistematica.new(@revision)
   @cd_without_assignation=@ars.cd_without_assignations(etapa)
-  begin
-	@categorizador=Categorizador_RS.new(@revision) unless etapa==:busqueda
-	@aprobacion_categorias=@categorizador.categorias_cd_id.inject({}) {|ac,v|
-    cd_validos=res_etapa.keys & (v[1])
-    n=cd_validos.length
-    if n==0
-      ac[v[0]] = {n:0, p:nil}
-    else
-      ac[v[0]] = {n:n, p: cd_validos.find_all {|vv|  res_etapa[vv]=='yes' }.length /   n.to_f}
-    end
-    ac
-  }
-	rescue LoadError
-	@categorizador=nil
-  end
+
   @cds_id=@revision.cd_id_por_etapa(etapa)
   @cds=Canonico_Documento.where(:id=>@cds_id)
   @archivos_por_cd=$db["SELECT a.*,cds.canonico_documento_id FROM archivos a INNER JOIN archivos_cds cds ON a.id=cds.archivo_id INNER JOIN archivos_rs ars ON a.id=ars.archivo_id WHERE revision_sistematica_id=? AND (cds.no_considerar = ? OR cds.no_considerar IS NULL)", @revision.id , 0].to_hash_groups(:canonico_documento_id)
   ## Aquí calcularé cuantos si y no hay por categoría
   res_etapa=@ars.resolucion_por_cd(etapa)
-  
+  begin
+    @categorizador=Categorizador_RS.new(@revision) unless etapa==:busqueda
+    @aprobacion_categorias=@categorizador.categorias_cd_id.inject({}) {|ac,v|
+      cd_validos=res_etapa.keys & (v[1])
+      n=cd_validos.length
+      if n==0
+        ac[v[0]] = {n:0, p:nil}
+      else
+        ac[v[0]] = {n:n, p: cd_validos.find_all {|vv|  res_etapa[vv]=='yes' }.length /   n.to_f}
+      end
+      ac
+    }
+  rescue LoadError
+    @categorizador=nil
+  end
 #  $log.info(p_aprobaciones_categoria)
   @nombre_etapa=Revision_Sistematica.get_nombre_etapa(@etapa)
 
@@ -370,7 +370,18 @@ get '/revision/:rev_id/stage/:stage/generate_bibtex' do |rev_id, stage|
   content_type 'text/x-bibtex'
   bib.to_s
 
+end
 
 
+get '/revision/:rev_id/stage/:stage/generate_doi_list' do |rev_id, stage|
+  @revision=Revision_Sistematica[rev_id]
+
+  canonicos_id=@revision.cd_id_por_etapa(stage)
+  @canonicos_resueltos=Canonico_Documento.where(:id=>canonicos_id).order(:author,:year).exclude(:doi=>nil)
+  dois=@canonicos_resueltos.map {|v| v.doi}.join("\n")
+
+#  headers["Content-Disposition"] = "attachment;filename=systematic_review_#{rev_id}_#{stage}.bib"
+  content_type 'text/plain'
+  dois
 
 end

@@ -34,6 +34,6 @@
 
 
 
-- if @ars.stage_complete? :busqueda
+- if @ars.stage_complete? :busqueda and @revision[:etapa].to_sym==:busqueda
   %p.info=t(:stage_search_complete_instruction)
   %a.btn.btn-primary{:href=>"/revision/#{@revision[:id]}/advance_stage"}=t(:Advance_next_stage)
