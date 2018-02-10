@@ -27,12 +27,12 @@ module Buhos
         true
       end
       def available_db_adapters
-        ["mysql2","sqlite"]
+        ["sqlite","mysql2"]
       end
 
       def form_fields
         {
-                      db_adapter:     {default:'mysql2'},
+                      db_adapter:     {default:'sqlite'},
                       db_hostname:    {default: 'localhost'},
                       db_port:        {default: 3306},
                       db_username:    {default: 'buhos_user'},
