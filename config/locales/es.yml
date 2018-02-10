@@ -302,6 +302,7 @@ es:
   More_incoming_citations: "Documentos canónicos que reciben más citas desde canónicos"
   More_outgoing_citations: "Documentos canónicos que realizan más citas a canónicos"
   result_assignation_cd_to_user: "Se agregaron %{added} documentos y se quitaron %{removed} documentos al usuario %{user_name}"
+  stage_revision_texto_completo_complete_instruction: "Se ha completado la selección y extracción de datos del texto completo. Puede proceder a realizar los reportes del proceso"
   systematic_review_page:
     stages: Etapas
     cd_for_tag: "Documentos canónicos para tag '%{tag_text}'"
