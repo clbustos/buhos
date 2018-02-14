@@ -29,7 +29,7 @@ get '/revision/:sr_id/extract_information/cd/:cd_id' do |sr_id,cd_id|
 
   @decisiones=@ads.decisiones
 
-  @form_creator=FormCreator.new(@sr,@cd, @user)
+  @form_creator=FormBuilder.new(@sr, @cd, @user)
   @incoming_citations=Canonico_Documento.where(:id=>@ars.incoming_citations(@stage,cd_id)).order(:year,:author)
   @outgoing_citations=Canonico_Documento.where(:id=>@ars.outgoing_citations(@stage,cd_id)).order(:year,:author)
 

@@ -1,4 +1,4 @@
-class GraphML_Generator
+class GraphML_Builder
   def initialize(sr, stage)
     @sr=sr
     @stage=stage

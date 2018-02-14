@@ -1,6 +1,19 @@
 require_relative 'doi_helpers'
 module MetodosReferencia
   include DOIHelpers
+
+  def cita_apa_6
+    text_authors=author.split(" and ").map {|v| v.split(",")[0]}
+    n_authors=text_authors.length
+
+    if n_authors==1
+      "(#{text_authors[0]}, #{year})"
+    else
+      "(#{text_authors[0...(n_authors-1)].join(", ")} & #{text_authors[n_authors-1]} , #{year})"
+    end
+
+  end
+
   def ref_apa_6
     ##$log.info("#{self.class} #{author}")
     doi_t = doi.to_s!="" ? "doi: #{doi}" : ""

@@ -290,13 +290,14 @@ module BibRevSys
           'scopus_acceder',
           'tags_ver',
           'ver_revisiones',
-          'ver_usuarios']
+          'ver_usuarios',
+          'ver_reportes']
             permits.each do |permit|
               db[:permisos].insert(:id=>permit)
               db[:permisos_roles].insert(:permiso_id=>permit,:rol_id=>'administrator')
             end
 
-        analyst_permits=["busquedas_revision_ver","documentos_canonicos_ver","revision_analizar_propia","revision_editar_propia", "ver_revisiones"]
+        analyst_permits=["busquedas_revision_ver","documentos_canonicos_ver","revision_analizar_propia","revision_editar_propia", "ver_revisiones","ver_reportes"]
         analyst_permits.each do |permit|
 
           db[:permisos_roles].insert(:permiso_id=>permit,:rol_id=>'analyst')

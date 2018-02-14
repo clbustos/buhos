@@ -1,6 +1,7 @@
 require_relative "html_helpers"
-class FormCreator
-
+# Create custom forms for complete text data extraction phase
+#
+class FormBuilder
   def initialize(sr, cd,user)
     @sr=sr
     @cd=cd

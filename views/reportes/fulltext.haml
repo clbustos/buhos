@@ -1,0 +1,7 @@
+.header=t_systematic_review_title(@sr[:nombre], :Full_text_report)
+%p.instructions=t("fulltext_report.instructions")
+
+
+- @report.sr.campos.each do |campo|
+  .panel.panel-default
+    .panel-heading="#{campo.descripcion} (#{campo.nombre})"

@@ -28,8 +28,8 @@ get '/revision/:id/busqueda/nuevo' do |id|
 
   @revision=Revision_Sistematica[id]
   @header=t_systematic_review_title(@revision[:nombre], :New_search)
-
-  @busqueda=Busqueda.new(:user_id=>session['user_id'], :valid=>false, :fecha=>Date.today)
+  @bb_general_id=Base_Bibliografica[:nombre=>'generic'][:id]
+  @busqueda=Busqueda.new(:user_id=>session['user_id'], :source=>"database_search",:valid=>false, :fecha=>Date.today, :base_bibliografica_id=>@bb_general_id)
   @usuario=Usuario[session['user_id']]
   haml "busquedas/busqueda_edicion".to_sym
 end
@@ -58,6 +58,7 @@ post '/revision/busqueda/actualizar' do
     if id==""
       busqueda=Busqueda.create(
           :revision_sistematica_id=>otros_params[:revision_sistematica_id],
+          :source=>otros_params[:source],
           :base_bibliografica_id=>otros_params[:base_bibliografica_id],
           :fecha=>otros_params[:fecha],
           :criterio_busqueda=>otros_params[:criterio_busqueda],

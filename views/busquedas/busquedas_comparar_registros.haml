@@ -14,7 +14,7 @@
     %th{:style=>'width:50%'}=t(:Document)
     - @busquedas_id.each do |busqueda_id|
       -busqueda=Busqueda[busqueda_id]
-      %th="#{busqueda.base_bibliografica[:nombre]}<br>#{busqueda[:fecha]}"
+      %th=busqueda.nombre
     %th n
   %tbody
     - @cds_ordenados.each do |key,val|

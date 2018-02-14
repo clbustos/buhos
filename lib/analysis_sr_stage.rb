@@ -56,6 +56,17 @@ class Analysis_SR_Stage
     Decision::N_EST.keys.inject({}) {|ac,v|  ac[v]=0;ac }
   end
 
+  def cd_screened_id
+    cds=@sr.cd_id_por_etapa(@stage)
+    Decision.where(:canonico_documento_id=>cds, :usuario_id=>@sr.grupo_usuarios.map {|u| u[:id]}, :etapa=>@stage.to_s).group(:canonico_documento_id).map(:canonico_documento_id)
+  end
+
+  def cd_rejected_id
+    resolutions_by_cd.find_all {|v| v[1]=='no'}.map {|v| v[0]}
+  end
+  def cd_accepted_id
+    resolutions_by_cd.find_all {|v| v[1]=='yes'}.map {|v| v[0]}
+  end
   def decisions_by_cd
     cds=@sr.cd_id_por_etapa(@stage)
     decisions=Decision.where(:canonico_documento_id=>cds, :usuario_id=>@sr.grupo_usuarios.map {|u| u[:id]}, :etapa=>@stage.to_s).group_and_count(:canonico_documento_id, :decision).all

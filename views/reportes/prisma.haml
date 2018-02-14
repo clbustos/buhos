@@ -1,0 +1,10 @@
+.header=t_systematic_review_title(@sr[:nombre], :PRISMA_flow_diagram)
+
+%p.instructions=t("prisma_report.instructions")
+
+
+.btn-group
+  %a.btn.btn-default.btn-sm{:href=>"/revision/#{@sr[:id]}/reporte/PRISMA/svg_download"}=t(:Download)
+
+%div
+  %img{:src=>"/revision/#{@sr[:id]}/reporte/PRISMA/svg"}

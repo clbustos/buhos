@@ -35,6 +35,7 @@
     %table.table.table-bordered
       %thead
         %th{:colspan=>2}=t(:Id)
+        %th=t("search.Source")
         %th=t(:Bibliographic_database)
         %th=t(:Date)
         %th=t(:Search_criteria)
@@ -48,6 +49,7 @@
             %td
               %input{:type=>'checkbox', :name=>"search[]", :value=>g[:id], :class=>'checkbox_interactive'}
             %td=g.id
+            %td=t(g.source_name)
             %td=g.base_bibliografica_nombre
             %td=g.fecha
             %td=g.criterio_busqueda

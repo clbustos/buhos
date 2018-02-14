@@ -1,0 +1,6 @@
+%p=t_desc_value("user_dashboard.count_total_canonical_documents_stage", sr.cd_id_por_etapa(etapa).count)
+- if permiso("ver_reportes")
+  .btn-group.btn-group-sm
+    %a.btn.btn-default{:href=>"/revision/#{sr[:id]}/reporte/PRISMA/html"}=t(:PRISMA_flow_diagram)
+    %a.btn.btn-default{:href=>"/revision/#{sr[:id]}/reporte/fulltext/html"}=t(:Full_text_report)
+    %a.btn.btn-default{:href=>"/revision/#{sr[:id]}/reporte/process/html"}=t(:Process_report)
