@@ -578,5 +578,9 @@ es:
   fulltext_report:
     instructions: "Se presentan los distintos análisis realizados por los evaluadores a los textos completos."
     no_analysis_for_this_user: "No hay análisis por este usuario"
+    inline_codes: "Códigos en vivo"
+    inline_code: "Código en vivo"
+    custom_form: "Formulario personalizado"
+    check_full_text_form: "Revisar formulario texto completo"
     
 

@@ -1,19 +1,47 @@
 .header=t_systematic_review_title(@sr[:nombre], :Full_text_report)
 %p.instructions=t("fulltext_report.instructions")
 
+%h4=t("fulltext_report.inline_codes")
 
-- @report.sr.campos.each do |campo|
-  .panel.panel-default
-    .panel-heading="#{campo.descripcion} (#{campo.nombre})"
-    .panel-body
-      - @sr.grupo_usuarios.each do |gu|
-        %p
-          %strong=gu[:nombre]
-        - analysis_cd=@report.analisis_rs.where(:usuario_id=>gu[:id], :canonico_documento_id=>@report.cd_h.keys).order(:canonico_documento_id)
-        - if analysis_cd.empty?
-          %em=t("fulltext_report.no_analysis_for_this_user")
-        - else
+- @report.get_inline_codes.each_pair do |type, codes0|
+  - if codes0.length>0
+  %p
+    %strong=@report.fields[type][:descripcion]
+  - codes=codes0.sort {|a,b|  a[0]<=>b[0] }
+
+    %table.tablesorter
+      %thead
+        %th{:style=>'width:20%'}=t("fulltext_report.inline_code")
+        %th{:style=>'width:3em'} n
+        %th=t(:Documents)
+      %tbody
+        - codes.each do |v|
+          %tr
+            %td=v[0]
+            %td=v[1].length
+            %td
+              - v[1].each do |use_data|
+                -cd_id=use_data[:cd_id]
+                .div
+                  -use_data[:uses].each do |use|
+                    =use
+                  =@report.cd_h[cd_id].cita_apa_6
+                  %a.btn.btn-default.btn-xs{:href=>"/revision/#{@sr[:id]}/extract_information/cd/#{cd_id}"}=t("fulltext_report.check_full_text_form")
+
+
+%h4=t("fulltext_report.custom_form")
+- @report.fields.each_pair do |campo_id, campo|
+  - @sr.grupo_usuarios.each do |gu|
+    - analysis_cd=@report.analisis_rs.where(:usuario_id=>gu[:id], :canonico_documento_id=>@report.cd_h.keys).order(:canonico_documento_id)
+    - if analysis_cd.empty?
+      %p
+        %em="#{campo.descripcion} (#{campo.nombre} ) - #{t("fulltext_report.no_analysis_for_this_user")}"
+    - else
+      .panel.panel-default
+        .panel-heading="#{campo.descripcion} (#{campo.nombre}) - #{gu[:nombre]}"
+
+        .list-group
           - analysis_cd.each do |an|
-            %p
+            .list-group-item
               =lf_to_br(an[campo[:nombre].to_sym])
               =@report.cd_h[an[:canonico_documento_id]].cita_apa_6
