@@ -7,7 +7,6 @@ module ReportBuilder
       @ars=AnalisisRevisionSistematica.new(sr)
       @cd_h=Canonico_Documento.where(:id=>@sr.cd_id_por_etapa(:report)).to_hash
       @analisis_rs=@sr.analisis_cd
-
     end
 
     def output(format)

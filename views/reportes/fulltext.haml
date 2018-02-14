@@ -5,3 +5,15 @@
 - @report.sr.campos.each do |campo|
   .panel.panel-default
     .panel-heading="#{campo.descripcion} (#{campo.nombre})"
+    .panel-body
+      - @sr.grupo_usuarios.each do |gu|
+        %p
+          %strong=gu[:nombre]
+        - analysis_cd=@report.analisis_rs.where(:usuario_id=>gu[:id], :canonico_documento_id=>@report.cd_h.keys).order(:canonico_documento_id)
+        - if analysis_cd.empty?
+          %em=t("fulltext_report.no_analysis_for_this_user")
+        - else
+          - analysis_cd.each do |an|
+            %p
+              =lf_to_br(an[campo[:nombre].to_sym])
+              =@report.cd_h[an[:canonico_documento_id]].cita_apa_6
