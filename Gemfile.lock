@@ -7,14 +7,12 @@ GEM
     bibtex-ruby (4.4.5)
       latex-decode (~> 0.0)
     categorize (0.0.12)
+    certified (1.0.0)
     classifier-reborn (2.2.0)
       fast-stemmer (~> 1.0)
     concurrent-ruby (1.0.5)
-    daemons (1.2.6)
     diff-lcs (1.3)
     dotenv (2.2.1)
-    eventmachine (1.2.5)
-    eventmachine (1.2.5-x86-mingw32)
     faraday (0.12.0.1)
       multipart-post (>= 1.2, < 3)
     faraday_middleware (0.11.0.1)
@@ -26,7 +24,7 @@ GEM
       temple (>= 0.8.0)
       tilt
     hashery (2.1.2)
-    i18n (0.9.3)
+    i18n (0.9.4)
       concurrent-ruby (~> 1.0)
     latex-decode (0.3.1)
     levenshtein-ffi (1.1.0)
@@ -49,6 +47,7 @@ GEM
       hashery (~> 2.0)
       ruby-rc4
       ttfunk
+    puma (3.11.2)
     rack (2.0.4)
     rack-protection (2.0.0)
       rack
@@ -85,10 +84,6 @@ GEM
     sqlite3 (1.3.13)
     sqlite3 (1.3.13-x86-mingw32)
     temple (0.8.0)
-    thin (1.7.2)
-      daemons (~> 1.0, >= 1.0.9)
-      eventmachine (~> 1.0, >= 1.0.4)
-      rack (>= 1, < 3)
     thor (0.19.4)
     tilt (2.0.8)
     ttfunk (1.5.1)
@@ -103,6 +98,7 @@ DEPENDENCIES
   ai4r
   bibtex-ruby
   categorize
+  certified
   classifier-reborn
   dotenv
   grim
@@ -114,6 +110,7 @@ DEPENDENCIES
   nbayes
   nokogiri
   pdf-reader
+  puma
   rack-test
   rake
   rspec
@@ -122,7 +119,6 @@ DEPENDENCIES
   serrano
   sinatra
   sqlite3
-  thin
   unicode
 
 BUNDLED WITH

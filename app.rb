@@ -1,6 +1,14 @@
 # encoding: UTF-8
 
+
 require "bundler/setup"
+if (/cygwin|mswin|mingw|bccwin|wince|emx/ =~ RUBY_PLATFORM) != nil
+	# Windows doesn't have proper management of certificates for SSL. 
+	# So, we have to user 'certified' gem to fix it
+	require 'certified'
+end
+
+
 require 'sinatra'
 # Vamos a activar el reloader en todos los casos
 # Como el sistema está en vivo, es más peligroso hacer lo otro

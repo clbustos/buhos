@@ -3,7 +3,7 @@ gem 'rake'
 gem "sinatra"
 gem "sequel"
 gem "mysql2"
-gem "thin"
+gem "puma"
 gem "haml"
 gem "rspec"
 gem "rack-test"
@@ -24,3 +24,4 @@ gem 'pdf-reader'
 gem 'grim'
 gem "i18n"
 gem "sqlite3"
+gem "certified", :platforms => :mingw
