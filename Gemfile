@@ -3,7 +3,8 @@ gem 'rake'
 gem "sinatra"
 gem "sequel"
 gem "mysql2"
-gem "puma"
+gem "puma", :platforms => :mingw
+gem "thin", :platforms => :ruby
 gem "haml"
 gem "rspec"
 gem "rack-test"

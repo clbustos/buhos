@@ -355,7 +355,7 @@ get '/revision/:rev_id/stage/:stage/generate_graphml' do |rev_id, stage|
   headers["Content-Disposition"] = "attachment;filename=graphml_revision_#{rev_id}_stage_#{stage}.graphml"
 
   content_type 'application/graphml+xml'
-  graphml=GraphML_Generator.new(@revision,stage)
+  graphml=GraphML_Builder.new(@revision, stage)
   graphml.generate_graphml
 end
 

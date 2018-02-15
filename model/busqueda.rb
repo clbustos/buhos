@@ -8,6 +8,46 @@ class Busqueda < Sequel::Model
   many_to_one :base_bibliografica, :class=>Base_Bibliografica
   many_to_many :registros, :class=>Registro
 
+
+  SOURCES=[:database_search,
+           :informal_search,
+           :backward_snowballing,
+           :forward_snowballing
+  ]
+
+  SOURCES_NAMES={:database_search=> "source.database_search",
+                 :informal_search => "source.informal_search",
+                 :backward_snowballing=> "source.backward_snowballing",
+                 :forward_snowballing=> "source.forward_snowballing"}
+
+  SOURCES_NAMES_SHORT={:database_search=> "source.database_search_short",
+                 :informal_search => "source.informal_search_short",
+                 :backward_snowballing=> "source.backward_snowballing_short",
+                 :forward_snowballing=> "source.forward_snowballing_short"}
+
+
+  def nombre
+    "#{self[:id]} - #{I18n::t(Busqueda.get_source_name(self[:source]))} - #{self.fecha} - #{self.base_bibliografica_nombre}"
+  end
+
+
+  def self.get_source_name(source)
+    source.nil? ? "source.error_no_source" : SOURCES_NAMES[source.to_sym]
+  end
+
+  def self.get_source_name_short(source)
+    source.nil? ? "source.error_no_source" : SOURCES_NAMES_SHORT[source.to_sym]
+
+  end
+
+  def source_name
+    Busqueda.get_source_name(self[:source])
+  end
+
+  def source_name_short
+    Busqueda.get_source_name_short(self[:source])
+  end
+
   def user_name
     user_id.nil? ? I18n::t(:No_username) : Usuario[self.user_id].nombre
   end
@@ -41,9 +81,6 @@ class Busqueda < Sequel::Model
     $db["SELECT r.doi, MIN(r.texto) as texto , COUNT(DISTINCT(br.registro_id)) as n FROM referencias r INNER JOIN referencias_registros rr ON r.id=rr.referencia_id INNER JOIN busquedas_registros br ON rr.registro_id=br.registro_id WHERE br.busqueda_id=? AND canonico_documento_id IS NULL AND doi IS NOT NULL GROUP BY r.doi ORDER BY n DESC #{sql_limit}", self[:id]]
   end
 
-  def nombre
-    "#{self.base_bibliografica_nombre} - #{self.fecha}"
-  end
 
 
   def actualizar_registros(ref_ids)
