@@ -66,3 +66,36 @@ post '/user/:user_id/compose_message/send' do |user_id|
   redirect "/user/#{user_id}/messages"
 
 end
+
+
+get '/user/new' do
+  return 403 unless permiso('usuarios_crear')
+  ultimo_usuario=$db["SELECT max(id) as max_id from usuarios"].get(:max_id).to_i
+  n_id=ultimo_usuario+1
+  usuario_nuevo_id=Usuario.insert(:login=>"user_#{n_id}", :nombre=>t(:User_only_name, :user_name=>n_id), :password=>Digest::SHA256.hexdigest("user_#{n_id}") , :rol_id=>'analyst', :activa=>true,:language=>session['language'])
+  redirect "/usuario/#{usuario_nuevo_id}".to_sym
+end
+
+
+get '/user/:user_id/change_password' do |user_id|
+  @user=Usuario[user_id]
+  return 403 unless session['user_id']==@user.id or permiso("editar_usuarios")
+
+  haml "users/change_password".to_sym
+end
+
+post '/user/:user_id/change_password' do |user_id|
+  @user=Usuario[user_id]
+  return 403 unless session['user_id']==@user.id or permiso("editar_usuarios")
+
+  password_1=params['password']
+  password_2=params['repeat_password']
+  if password_1!=password_2
+    agregar_mensaje(I18n::t("password.not_equal_password"), :error)
+    redirect back
+  else
+    @user.change_password(password_1)
+    agregar_mensaje(I18n::t("password.password_updated"))
+    redirect "/usuario/#{@user[:id]}".to_sym
+  end
+end

@@ -14,4 +14,7 @@ class Usuario < Sequel::Model
 
     Usuario.where(:id=>$db["SELECT DISTINCT(usuario_id) FROM grupos_usuarios WHERE grupo_id IN (SELECT grupo_id FROM grupos_usuarios WHERE usuario_id=?)", self[:id]].map(:usuario_id))
   end
+  def change_password(password)
+    Usuario[self[:id]].update(:password=>Digest::SHA1.hexdigest(password))
+  end
 end
