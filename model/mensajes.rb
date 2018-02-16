@@ -1,5 +1,10 @@
 class Mensaje < Sequel::Model
-
+  def usuario_nombre
+    Usuario[self[:usuario_desde]].nombre
+  end
+  def respuestas
+    Mensaje.where(:respuesta_a=>self[:id])
+  end
 end
 
 

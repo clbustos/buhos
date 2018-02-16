@@ -232,7 +232,7 @@ post '/revision/:id/mensaje/nuevo' do |id|
   @texto=params['texto']
   $db.transaction(:rollback=>:reraise) do
     id=Mensaje_Rs.insert(:revision_sistematica_id=>id, :usuario_desde=>@usuario_id, :respuesta_a=>nil, :tiempo=>DateTime.now(), :asunto=>@asunto, :texto=>@texto)
-    agregar_mensaje("Agregado mensaje #{id}")
+    agregar_mensaje(t("messages.new_message_for_sr", sr_name:@revision[:nombre]))
   end
   redirect back
 end

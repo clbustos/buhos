@@ -49,6 +49,7 @@ es:
   Canonical_documents: "Documentos canónicos"
   Canonical_documents_duplicated_by_DOI: "Documentos canónicos duplicador por DOI"
   Canonicals: "Canónicos"
+  Cant_mark_as_read: "No puedo marcar como leído"
   Cd_extract_information: "Extraer información de: %{cd_title}"
   Change: "Cambiar"
   Check_CD_assignations: "Revisar asignaciones de DC"
@@ -213,6 +214,7 @@ es:
   Merge: "Unir"
   Messages: "Mensajes"
   messages:
+    add_reply_to: "Agregada respuesta a '%{subject}'"
     Collapse: "Colapsar"
     Mark_as_read: "Marcar como leído"
     Read: "Leído"
@@ -224,8 +226,10 @@ es:
     No_messages_for_this_SR: "Sin mensajes para esta revisión sistemática"
     Compose: "Componer mensaje"
     Send_message_to_user: "Enviar mensaje a usuario"
-    To: "Hacia"
+    Send_to: "Enviar a"
     Select_user: "-- Seleccionar usuario --"
+    new_message_for_sr: "Nuevo mensaje para revisión sistemática %{sr_name}"
+    new_message_for_user: "Nuevo mensaje para usuario %{user_name}"
   Minimum_RTA_documents_for_reference_review: "Mínimo número de documentos RTR para revisión referencias"
   More_cited_references_with_canonical: "Referencias más citadas con canónico"
   More_cited_references_with_canonical_without_DOI: "Referencias más citadas con canónico, sin DOI"
@@ -538,6 +542,7 @@ es:
   Upload_files: "Subir archivos"
   Use_Statistics: "Estadísticas de uso"
   User: "Usuario"
+  User_not_exists: "Usuario con id %{user_id} no existe"
   user_dashboard:
     check_n_assigned_canonical_documents:
       one:    "Revisar %{count} documento canónico asignado"

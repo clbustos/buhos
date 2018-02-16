@@ -34,10 +34,10 @@ get '/user/:user_id/messages' do |user_id|
   @user=Usuario[user_id]
 
   return 403 unless user_id.to_s==session['user_id'].to_s
-  @messages_personal=Mensaje.where(:usuario_hacia=>user_id).order(Sequel.desc(:tiempo))
+  @messages_personal=Mensaje.where(:usuario_hacia=>user_id, :respuesta_a=>nil).order(Sequel.desc(:tiempo))
   @n_not_readed=@messages_personal.where(:visto=>false).count
   @srs=@user.revisiones_sistematicas
-  @messages_sr_checked=Mensaje_Rs_Visto.where(:usuario_id=>user_id).as_hash(:m_rs_id)
+
   haml "users/messages".to_sym
 end
 
@@ -47,4 +47,22 @@ get '/user/:user_id/compose_message' do |user_id|
   @ms_text=""
   return 403 unless user_id.to_s==session['user_id'].to_s
   haml "users/compose_message".to_sym
+end
+
+post '/user/:user_id/compose_message/send' do |user_id|
+  @user=Usuario[user_id]
+  return 403 unless user_id.to_s==session['user_id'].to_s
+  asunto=params['asunto'].chomp
+  texto=params['texto'].chomp
+  destination=params['to']
+  @user_to=Usuario[destination]
+  if @user_to
+    Mensaje.insert(:usuario_desde=>user_id, :usuario_hacia=>destination, :respuesta_a=>nil, :tiempo=>DateTime.now(), :asunto=>asunto, :texto=>texto, :visto=>false)
+    agregar_mensaje(t("messages.new_message_for_user", user_name:@user_to[:nombre]))
+
+  else
+    agregar_mensaje(t(:User_not_exists, user_id:destination), :error)
+  end
+  redirect "/user/#{user_id}/messages"
+
 end

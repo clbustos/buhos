@@ -20,10 +20,7 @@
 - else
   %table.table-bordered
     - @messages_personal.each do |message|
-      %tr
-        %td=User[message[:usuario_desde]][:nombre]
-        %td=message[:tiempo]
-        %td=message[:asunto]
+      =partial(:message_personal, :locals=>{:usuario=>@user, :message_per=>message})
 %h3=t("messages.Systematic_review_messages")
 - @srs.each do |sr|
   %a{:name=>"sr_#{sr[:id]}"}

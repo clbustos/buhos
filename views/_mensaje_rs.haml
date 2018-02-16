@@ -53,13 +53,13 @@
         %button{:class=>"btn btn-success #{clase_visto}", :id=>"mensaje_rs-#{mensaje_rs.id}-visto_por-#{usuario[:id]}"}
           %span.glyphicon.glyphicon-check
           =t("messages.Read")
-        %button.btn.btn-default.responder-mensaje{:role=>:button,:id_mostrar=>"mensaje-#{mensaje_rs.id}-respuesta"}
+        %button.btn.btn-default.responder-mensaje{:role=>:button,:id_mostrar=>"mensaje-rs-#{mensaje_rs.id}-respuesta"}
           %span.glyphicon.glyphicon-arrow-left
             =t("messages.Reply")
         %button.btn.btn-default.toggle-mensaje{:role=>:button,:id_toggle=>"mensaje-#{mensaje_rs.id}-hijos", :id_glyph=>"mensaje-#{mensaje_rs.id}-glyph-toggle"}
           %span.glyphicon.glyphicon-eye-close{:id=>"mensaje-#{mensaje_rs.id}-glyph-toggle"}
             =t("messages.Collapse")
-  .row.hidden{:id=>"mensaje-#{mensaje_rs.id}-respuesta"}
+  .row.hidden{:id=>"mensaje-rs-#{mensaje_rs.id}-respuesta"}
     .col-md-10
       %form.respuesta-a-m_rs{:method=>"post",:action=>url("/mensaje_rs/#{mensaje_rs.id}/respuesta")}
         .form-group
