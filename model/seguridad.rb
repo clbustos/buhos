@@ -1,4 +1,5 @@
 class Rol < Sequel::Model(:roles)
+
   many_to_many :permisos, :join_table=>:permisos_roles, :left_key=>:rol_id, :right_key=>:permiso_id
   def incluye_permiso?(permiso)
     ##$log.info("POR BUSCAR:#{permiso}")

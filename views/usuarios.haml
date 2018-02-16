@@ -1,15 +1,21 @@
-%h2=t(:Users)
+%h2=title(t(:Users))
+
+- if permiso("usuarios_crear")
+  %a.btn.btn-default{:href=>url("/user/new")}
+    %span{:class=>"glyphicon glyphicon-plus"}
+    =t(:User_new)
+
 %form{:method=>'get',:action=>url('/admin/usuarios')}
   %p 
     %label{:for=>'usuarios_busqueda'}=t(:Search)
     %input#usuarios_busqueda{:type=>'text',:name=>"usuarios_busqueda",:value=>@usr_bus}
-    %input{:type=>"submit",:value=>"Buscar"}
+    %input.btn.btn-default{:type=>"submit",:value=>"Buscar"}
 %form{:method=>'post',:action=>url('/admin/usuarios/actualizar')}    
-  %table
+  %table.table.table-bordered
     %thead
-      %th 
-      %th=t(:Name)
+      %th=t(:Delete)
       %th=t(:User_name)
+      %th=t(:Login)
       %th=t(:Password)
       %th=t(:Active)
       %th=t(:Role)
@@ -44,4 +50,4 @@
           %select{:name=>"usuario[N][rol_id]"}
             -@roles.each do |rol|
               %option{:value=>rol[:id], :checked=>rol[:id]=='usuario'}=rol[:id]
-  %input{:type=>"submit",:name=>t(:Update)}
+  %input.btn.btn-default{:type=>"submit",:name=>t(:Update)}

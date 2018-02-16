@@ -1,4 +1,4 @@
-%h2=t(:Record_title, rid: @reg[:id])
+%h2=title(t(:Record_title, rid: @reg[:id]))
 
 =partial(:registros_lista,:locals=>{:registros=>[@reg]})
 

@@ -1,9 +1,20 @@
-%h2=t(:Roles)
+%h2=title(t(:Roles))
+
+- if permiso("roles_crear")
+  %a.btn.btn-default{:href=>url("/role/new")}
+    %span{:class=>"glyphicon glyphicon-plus"}
+    =t(:Role_new)
+
+
 %form{:method=>:post, :action=>url("/admin/roles/actualizar")}
   -@roles.each do |rol|
     %h3
       =t(:Rol)
-      =t("role.#{rol[:id]}")
+      =rol[:id]
+      - if (rol[:id]!='administrator' and rol[:id]!='analyst') and permiso('editar_roles')
+        %a.btn.btn-default.btn-sm{:href=>url("/role/#{rol[:id]}/edit")}
+          %span{:class=>"glyphicon glyphicon-pencil"}
+          =t(:Role_edit)
     -if rol[:id]=='administrator'
       %ul
         - @permisos.each do |permiso|
