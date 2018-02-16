@@ -10,4 +10,7 @@ class Usuario < Sequel::Model
   def revisiones_sistematicas
     Revision_Sistematica.where(:id => revisiones_sistematicas_id)
   end
+  def accesible_users
+    Usuario.where(:id=>$db["SELECT DISTINCT(usuario_id) FROM grupos_usuarios WHERE grupo_id IN (SELECT grupo_id FROM grupos_usuarios WHERE usuario_id=?)", self[:id]].map(:usuario_id))
+  end
 end

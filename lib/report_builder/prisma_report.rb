@@ -70,7 +70,7 @@ module ReportBuilder
       svg.gsub!("%{fte}", @svg_reasons)
 
 
-      ["Identification","Screening","Elegibility","Included", "Records identified through", "database searching","Additional records identified", "through other sources", "Records after","duplicates removed", "Records screened", "Records excluded", "Full-text articles", "assessed for eligibility", "Full-text articles","excluded", "Studies included in", "qualitative synthesis"].each do |text|
+      ["Identification","Screening","Eligibility","Included", "Records identified through", "database searching","Additional records identified", "through other sources", "Records after","duplicates removed", "Records screened", "Records excluded", "Full-text articles", "assessed for eligibility", "Full-text articles","excluded", "Studies included in", "qualitative synthesis"].each do |text|
         svg.gsub!(text, I18n::t("prisma_report.#{text}"))
       end
 

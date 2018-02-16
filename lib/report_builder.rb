@@ -8,3 +8,4 @@ end
 
 require_relative "report_builder/prisma_report"
 require_relative "report_builder/fulltext_report"
+require_relative "report_builder/process_report"

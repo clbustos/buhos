@@ -39,3 +39,8 @@
           - group.revisiones_sistematicas.each do |rs|
             %li
               %a{:href=>url("/revision/#{rs[:id]}")}=rs[:nombre]
+
+- if session['user_id']==@usuario.id
+  %a.btn.btn-default{:href=>"/user/#{@usuario.id}/messages"}
+    %span.glyphicon.glyphicon-envelope
+    =t(:Messages)

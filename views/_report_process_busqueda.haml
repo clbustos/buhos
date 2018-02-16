@@ -1,0 +1,25 @@
+%table.table.table-ordered
+  %thead
+    %th=t(:Id)
+    %th=t(:User_name)
+    %th=t("search.Source")
+    %th=t(:Bibliographic_database)
+    %th=t(:Date)
+    %th=t(:Search_criteria)
+    %th=t(:Description)
+    %th=t(:File)
+    %th=t(:Search_valid)
+    %th=t(:Count_records)
+  %tbody
+    - @sr.busquedas.each do |g|
+      %tr
+        %td=g.id
+        %td=Usuario[g[:user_id]][:nombre]
+        %td=t(g.source_name)
+        %td=g.base_bibliografica_nombre
+        %td=g.fecha
+        %td=g.criterio_busqueda
+        %td=g.descripcion
+        %td=g.archivo_nombre.nil? ? t(:No_file) : "#{g.archivo_nombre} [#{g.archivo_tipo}]"
+        %td= t_yes_no_nil(g.valid)
+        %td=g.registros_n

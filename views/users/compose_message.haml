@@ -1,0 +1,28 @@
+.header
+  %h2=title(t("messages.Compose"))
+%ul.breadcrumb
+  %li
+    %a{:href=>"/usuario/#{@user[:id]}"}=@user[:nombre]
+  %li
+    %a{:href=>"/usuario/#{@user[:id]}/messages"}=t(:Messages)
+  %li.active
+    =t("messages.Compose")
+%form.respuesta-a-m_rs{:method=>"post",:action=>url("/mensaje_rs/#{@ms_id}/respuesta")}
+  .form-group
+    %label{:for=>"nombre"}=t(:Author)
+    %p=@user[:nombre]
+    %input{:type=>"hidden",:name=>:user_id, :value=>@user[:id]}
+  .form-group
+    %label{:to=>"nombre"}=t(:To)
+    %select.form-control{:name=>:to, :id=>:form_to}
+      %option{:value=>"NULL"}=t("messages.Select_user")
+      - @user.accesible_users do |user_to|
+        %option{:value=>user_to[:id]}=user_to[:nombre]
+
+  .form-group
+    %label{:for=>"asunto"}=t(:Subject)
+    %input{:class=>"form-control",:type=>"text", :name=>"asunto", :value=>@ms_text}
+  .form-group
+    %label{:for=>"texto"}=t(:Text)
+    %textarea{:class=>"form-control",:name=>'texto'}
+  %input{:type=>:submit, :value=>t("messages.Send_message_to_user"), :class=>"btn btn-default"}

@@ -28,3 +28,23 @@ put '/user/edit/:field' do |field|
     user.update(field.to_sym=>value)
   }
 end
+
+
+get '/user/:user_id/messages' do |user_id|
+  @user=Usuario[user_id]
+
+  return 403 unless user_id.to_s==session['user_id'].to_s
+  @messages_personal=Mensaje.where(:usuario_hacia=>user_id).order(Sequel.desc(:tiempo))
+  @n_not_readed=@messages_personal.where(:visto=>false).count
+  @srs=@user.revisiones_sistematicas
+  @messages_sr_checked=Mensaje_Rs_Visto.where(:usuario_id=>user_id).as_hash(:m_rs_id)
+  haml "users/messages".to_sym
+end
+
+get '/user/:user_id/compose_message' do |user_id|
+  @user=Usuario[user_id]
+  @ms_id="NEW"
+  @ms_text=""
+  return 403 unless user_id.to_s==session['user_id'].to_s
+  haml "users/compose_message".to_sym
+end

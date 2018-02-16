@@ -1,4 +1,4 @@
-- # Params: usuario_id, ms_id
+- # Params: usuario, mensaje_rs
 - mensaje_rs_visto=Mensaje_Rs_Visto[:visto=>true,:m_rs_id=>mensaje_rs.id, :usuario_id=>usuario.id]
 - mensajes_hijos=Mensaje_Rs.where(:respuesta_a=>mensaje_rs.id).order(Sequel.desc(:tiempo))
 - clase_marcar =!mensaje_rs_visto  ? "" : "hidden"
