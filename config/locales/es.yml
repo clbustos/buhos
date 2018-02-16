@@ -161,6 +161,7 @@ es:
   Group: "Grupo"
   Group_edit: "Edición de grupo"
   Group_new: "Nuevo grupo"
+  Group_administrator: "Administrador del grupo"
   group_not_assigned: "grupo no asignado"
   Groups: "Grupos"
   Id: "Id"
