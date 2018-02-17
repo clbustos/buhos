@@ -15,6 +15,6 @@
       %a{:href=>url("/revision/#{revision[:id]}/stage/#{etapa}/complete_empty_abstract_scopus"), :role=>"button", :class=>"btn btn-default "}=t(:Complete_abstract_using_Scopus)
   - if ars.stage_complete? etapa
     - if [:revision_titulo_resumen, :revision_referencias, :revision_texto_completo].include? etapa.to_sym
-      %a{:href=>url("/revision/#{revision[:id]}/etapa/#{etapa}/generar_referencias_crossref"), :role=>"button", :class=>"btn btn-default btn-sm"}=t(:Generate_crossref_references)
+      %a{:href=>url("/revision/#{revision[:id]}/etapa/#{etapa}/generar_referencias_crossref"), :role=>"button", :class=>"btn btn-default btn-sm"}=t(:Generate_Crossref_references)
     - if etapa==revision[:etapa].to_s
       %a.btn.btn-primary{:href=>"/revision/#{revision[:id]}/advance_stage"}=t(:Advance_next_stage)
