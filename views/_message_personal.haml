@@ -1,0 +1,81 @@
+- # Params: usuario, mensaje
+- mensaje_visto=message_per[:visto]
+- mensajes_hijos=Mensaje.where(:respuesta_a=>message_per.id).order(Sequel.desc(:tiempo))
+- clase_marcar =!mensaje_visto  ? "" : "hidden"
+- clase_visto  = mensaje_visto ? "" : "hidden"
+- if @message_personal_js.nil?
+  :javascript
+    $(document).ready(function() {
+
+      $(".toggle-message-per").click(function() {
+        var id=$(this).attr("id_toggle");
+        var id_glyph=$(this).attr("id_glyph");
+
+        $("#"+id).toggleClass("hidden");
+        $("#"+id_glyph).toggleClass("glyphicon-eye-close").toggleClass("glyphicon-eye-open");
+
+
+      });
+
+      $(".responder-message-per").click(function() {
+        var id=$(this).attr("id_mostrar");
+        $("#"+id).removeClass("hidden")
+      });
+
+      $(".marcar-visto-per").click(function() {
+        var id=$(this).attr("id");
+        var partes=id.split("-");
+        var ms_id=partes[1];
+        var user_id=partes[3];
+        $.post("/mensaje/"+ms_id+"/visto_por/"+user_id, function (data) {
+          $("#message_per-"+ms_id+"-no_visto_por-"+user_id).addClass("hidden");
+          $("#message_per-"+ms_id+"-visto_por-"+user_id).removeClass("hidden");
+        }).fail(function () {
+              alert("#{t(:Cant_mark_as_read)}")
+          });
+      });
+    });
+  - @message_personal_js=true
+
+
+
+.list-group-item
+  .row
+    .col-md-12
+      =sprintf("<strong>%s</strong> de %s en %s. Respuestas: <em>%i</em>.", message_per.asunto, message_per.usuario_nombre, message_per.tiempo,message_per.respuestas.count)
+      .mensaje-texto=message_per.texto
+  .row
+    .col-md-12
+      .btn-group-xs.botones-texto
+        %button{:class=>"btn btn-warning marcar-visto-per #{clase_marcar}",:id=>"message_per-#{message_per.id}-no_visto_por-#{usuario[:id]}"}
+          %span.glyphicon.glyphicon-inbox
+          =t("messages.Mark_as_read")
+        %button{:class=>"btn btn-success #{clase_visto}", :id=>"message_per-#{message_per.id}-visto_por-#{usuario[:id]}"}
+          %span.glyphicon.glyphicon-check
+          =t("messages.Read")
+        %button.btn.btn-default.responder-message-per{:role=>:button,:id_mostrar=>"mensaje-per-#{message_per.id}-respuesta"}
+          %span.glyphicon.glyphicon-arrow-left
+            =t("messages.Reply")
+        %button.btn.btn-default.toggle-message-per{:role=>:button,:id_toggle=>"mensaje-#{message_per.id}-hijos", :id_glyph=>"mensaje-#{message_per.id}-glyph-toggle"}
+          %span.glyphicon.glyphicon-eye-close{:id=>"mensaje-#{message_per.id}-glyph-toggle"}
+            =t("messages.Collapse")
+  .row.hidden{:id=>"mensaje-per-#{message_per.id}-respuesta"}
+    .col-md-10
+      %form.respuesta-a-m_rs{:method=>"post",:action=>url("/message_per/#{message_per.id}/reply")}
+        .form-group
+          %label{:for=>"nombre"}=t(:Author)
+          %p=usuario[:nombre]
+          %input{:type=>"hidden",:name=>:user_id, :value=>usuario[:id]}
+        .form-group
+          %label{:for=>"asunto"}=t(:Subject)
+          %input{:class=>"form-control",:type=>"text", :name=>"asunto", :value=>"Re:#{message_per.asunto}"}
+        .form-group
+          %label{:for=>"texto"}=t(:Text)
+          %textarea{:class=>"form-control",:name=>'texto'}
+        %input{:type=>:submit, :value=>t("messages.Send_message_to_user"), :class=>"btn btn-default"}
+  - if !mensajes_hijos.empty?
+    .row{:id=>"mensaje-#{message_per.id}-hijos"}
+      .col-md-12
+        .list-group
+          - mensajes_hijos.each do |child_mes|
+            =partial(:message_personal, :locals=>{:message_per=>child_mes,:usuario=>usuario})

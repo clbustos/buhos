@@ -1,6 +1,6 @@
 # Buhos
 
-Web based platform to develop collaborative systematic reviews and meta-analysis. Developed usign Sinatra, a Ruby DSL.
+Web based platform to develop collaborative systematic literatute reviews. Developed usign Sinatra, a Ruby DSL.
 
 
 ## Features
@@ -10,11 +10,11 @@ Web based platform to develop collaborative systematic reviews and meta-analysis
 * Messaging system for members and reviews.
 * Internationalization, using *I18n*. Available in english and spanish
 * Flexible workflow
-* Import information from several databases - WoS, Scopus, Scielo - using BibteX and CSV.
+* Import information from several databases - WoS, Scopus, Scielo - using BibTeX and CSV.
 * Integration with Crossref, that allows deduplication of records using DOI, recollection of references
-* File repository, with PDF viewing support
+* File repository, with PDF viewing support via [ViewerJS](http://viewerjs.org/)
 * Multiple ways to analyze data: commentaries and tagging on each stage of review, custom forms for complete text analysis
-* Multiple outputs.
+* Reports: PRISMA flowchart, data extraction of complete text and process report
 
 ## Getting Started
 

@@ -1,0 +1,34 @@
+.header
+  %h2=title(t("messages.Messages_for_user", user:@user[:nombre]))
+
+%ul.breadcrumb
+  %li
+    %a{:href=>"/usuario/#{@user[:id]}"}=@user[:nombre]
+  %li.active
+    =t(:Messages)
+
+%h3=t("messages.Personal_messages")
+
+.btn-group.btn-group-sm
+  %a.btn.btn-default{:href=>"/user/#{@user[:id]}/compose_message"}
+    %span.glyphicon.glyphicon-pencil
+    =t("messages.Compose")
+
+- if @messages_personal.empty?
+  %p
+    %em=t("messages.No_personal_messages")
+- else
+  %table.table-bordered
+    - @messages_personal.each do |message|
+      =partial(:message_personal, :locals=>{:usuario=>@user, :message_per=>message})
+%h3=t("messages.Systematic_review_messages")
+- @srs.each do |sr|
+  %a{:name=>"sr_#{sr[:id]}"}
+  %h4=sr[:nombre]
+  - base_messages=sr.mensajes_rs_dataset.where(:respuesta_a=>nil).order(Sequel.desc(:tiempo))
+    - if base_messages.empty?
+      %p
+        %em=t("messages.No_messages_for_this_SR")
+    - else
+      - base_messages.each do |ms|
+      =partial(:mensaje_rs, :locals=>{:usuario=>@user, :mensaje_rs=>ms})

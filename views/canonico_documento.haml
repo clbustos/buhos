@@ -37,9 +37,12 @@
   - if @cr_doi
     =@cr_doi.ref_apa_6_breve_html
   - elsif @cd.doi
-    %a{:href=>url("/canonico_documento/#{@cd[:id]}/obtener_crossref")}
-      %button{:class=>"btn btn-primary"}
-        =t(:Obtain_information_from_Crossref)
+    - if permiso("crossref_acceder")
+      %a{:href=>url("/canonico_documento/#{@cd[:id]}/obtener_crossref")}
+        %button{:class=>"btn btn-primary"}
+          =t(:Obtain_information_from_Crossref)
+    - else
+      =t(:Ask_information_from_Crossref_for_admin)
   - else
     %p
       %em=t(:No_DOI_to_obtain_information_from_Crossref)

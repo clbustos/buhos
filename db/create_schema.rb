@@ -274,6 +274,7 @@ module BibRevSys
           'editar_roles',
           'editar_usuarios',
           'grupos_editar',
+          'grupos_crear',
           'ingreso',
           'mensajes_ver',
           'primera_revision_ver',
@@ -289,6 +290,8 @@ module BibRevSys
           'rs_campos_ver',
           'scopus_acceder',
           'tags_ver',
+          'roles_crear',
+          'usuarios_crear',
           'ver_revisiones',
           'ver_usuarios',
           'ver_reportes']

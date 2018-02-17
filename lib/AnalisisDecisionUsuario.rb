@@ -30,6 +30,9 @@ class AnalisisDecisionUsuario
   def asignado_a_cd_id(cd_id)
     @cd_ids.include? cd_id.to_i
   end
+  def decision_cd_id(cd_id)
+    @decision_por_cd[cd_id]
+  end
   # Define @cd_ids. Si no se han asignado, los toma todos
   # Si existen asignaciones, sólo se consideran estas
   def procesar_cd_ids

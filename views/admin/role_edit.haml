@@ -1,0 +1,16 @@
+%h2=title(t(:Role_name, role_name:@role[:id]))
+
+%form{:method=>:post, :action=>url("/role/update")}
+  %input{:type=>"hidden", :name=>"role_id_old",:value=>@role[:id]}
+  .form-group
+    %label{:for=>"role_id_new"}=t(:Role_id)
+    %input.form-control{:type=>"text", :name=>"role_id_new",:value=>@role[:id]}
+  .form-group
+    %label{:for=>"description"}=t(:Description)
+    %input.form-control{:type=>"text", :name=>"description",:value=>@role[:description]}
+  .form-group
+    %label{:for=>"permits"}=t(:Permissions)
+    %select.form-control{:multiple=>true, :size=>@permisos.count, :name=>"permits[]"}
+      - @permisos.each do |permiso|
+        %option{:value=>permiso[:id], :selected=>@role.incluye_permiso?(permiso[:id])}=t("permit.#{permiso[:id]}")
+  %input.btn.btn-default{:type=>:submit, :value=>t(:Update)}

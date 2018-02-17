@@ -1,4 +1,5 @@
-%h2=t(:User_title, :user_name=>@usuario.nombre, :login=>@usuario.login)
+.heading
+  %h2=title(t(:User_title, :user_name=>@usuario.nombre, :login=>@usuario.login))
 - have_permit=permiso("editar_usuarios") or session['user_id']==@usuario.id
 :javascript
   #{@select_role.javascript}
@@ -39,3 +40,14 @@
           - group.revisiones_sistematicas.each do |rs|
             %li
               %a{:href=>url("/revision/#{rs[:id]}")}=rs[:nombre]
+
+
+.btn-group
+  - if session['user_id']==@usuario.id
+    %a.btn.btn-default{:href=>"/user/#{@usuario.id}/messages"}
+      %span.glyphicon.glyphicon-envelope
+      =t(:Messages)
+  - if session['user_id']==@usuario.id or have_permit
+    %a.btn.btn-default{:href=>"/user/#{@usuario.id}/change_password"}
+      %span.glyphicon.glyphicon-lock
+      =t(:Change_password)
