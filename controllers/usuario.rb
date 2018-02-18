@@ -5,7 +5,7 @@ get '/usuario/:user_id' do |user_id|
 
 
 
-  @select_role=get_xeditable_select(Rol.inject({}) {|ac,v| ac[v[:id]]=t("role.#{v[:id]}");ac},'/user/edit/rol_id','select_role')
+  @select_role=get_xeditable_select(Rol.inject({}) {|ac,v| ac[v[:id]]=v[:id];ac},'/user/edit/rol_id','select_role')
   @select_role.active=false if(!permiso("editar_usuarios") or user_id.to_i==session['user_id'])
 
   @select_active_user=get_xeditable_select_bool('/user/edit/activa','select_active')
@@ -23,7 +23,8 @@ put '/user/edit/:field' do |field|
     user=Usuario[id]
     return 404 if !user
     if field=='login'
-      return 505 if Usuario.where(:login=>value).exclude(:id=>id).count>0
+      return 405 if Usuario.where(:login=>value).exclude(:id=>id).count>0
+      return 405 if value.chomp==""
     end
     user.update(field.to_sym=>value)
   }

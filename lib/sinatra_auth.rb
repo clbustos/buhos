@@ -23,9 +23,9 @@ module Sinatra
         if session['user'].nil?
           false
         else
-          if session['rol_id']=='administrator' and Permiso[per].nil?
-            Permiso.insert(:id=>per, :descripcion=>::I18n::t("sinatra_auth.permission_created_by_administrator"))
-            Rol['administrator'].add_permiso(Permiso[per])
+          if session['rol_id']=='administrator'
+            Permiso.insert(:id=>per, :descripcion=>::I18n::t("sinatra_auth.permission_created_by_administrator")) if Permiso[per].nil?
+            Rol['administrator'].add_permiso(Permiso[per]) unless PermisosRol[permiso_id:per, rol_id:'administrator']
             true
           elsif session['permisos'].include? per
             true

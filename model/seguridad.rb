@@ -1,13 +1,19 @@
 class Rol < Sequel::Model(:roles)
 
   many_to_many :permisos, :join_table=>:permisos_roles, :left_key=>:rol_id, :right_key=>:permiso_id
+  one_to_many :usuarios
   def incluye_permiso?(permiso)
     ##$log.info("POR BUSCAR:#{permiso}")
     ##$log.info(permisos)
     permisos.any? {|v|
     ##$log.info(v[:id]);
      v[:id]==permiso}
-    end
+  end
+
+  def delete
+    PermisosRol.where(:rol_id=>self[:id]).delete
+    super
+  end
 end
 
 class PermisosRol < Sequel::Model

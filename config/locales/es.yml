@@ -118,6 +118,7 @@ es:
   Enter_commentary: "Ingresar comentario"
   error:
     error_on_add_crossref_for_cd: "No se pudo agregar información de Crossref para DC %{cd_title}"
+    no_valid_cd_for_this_systematic_review: "El DC %{cd_id} no es válido para esta revisión sistemática. Revise la resolución para este DC en etapas anteriores."
   error403_message: "No tiene los permisos necesarios para ver esta página"
   Error_403: "Error 403 - Acceso no permitido"
   Error_404: "Error 404 - Recurso no existe"
@@ -164,7 +165,9 @@ es:
   Group_new: "Nuevo grupo"
   Group_administrator: "Administrador del grupo"
   group_not_assigned: "grupo no asignado"
+  group_without_name: "Cada grupo debe tener un nombre"
   Groups: "Grupos"
+  Group_deleted: "Grupo %{group_name} eliminado"
   Id: "Id"
   Im_sorry_the_page_you_request_doesnt_exists: "Lo siento, la página que solicitó no existe"
   Incoming_citations: "Citaciones hacia este documento"
@@ -391,6 +394,9 @@ es:
     stage_complete_message: "Ha concluido la primera fase de revision de documentos de la busqueda. Cuando todos los usuarios del grupo hayan contestado, comenzara la segunda fase de revision de referencias"
   Rol: "Rol"
   Role: "Rol"
+  role_without_name: "Cada rol debe tener un nombre"
+  Role_delete: "Eliminar rol"
+  Role_deleted_name: "Rol %{role} eliminado"
   role:
     administrator: "Administrador"
     analyst:      "Analyst"

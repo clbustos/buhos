@@ -1,4 +1,4 @@
-module BibRevSys
+module Buhos
   module SchemaCreation
     def self.create_schema(db)
 
@@ -42,8 +42,8 @@ module BibRevSys
           TrueClass :activa, :default => true, :null => false
           String :etapa, :default => "busqueda", :size => 32, :null => false
 
-          index [:administrador_revision], :name => :administrador_revision
-          index [:grupo_id], :name => :grupo_id
+          index [:administrador_revision], :name => :administrador_revision_index
+          index [:grupo_id], :name => :grupo_id_i
         end
 
         # Systematic review taxonomies
@@ -270,7 +270,6 @@ module BibRevSys
           'documentos_canonicos_editar',
           'documentos_canonicos_ver',
           'editar_documentos_canonicos',
-          'editar_grupos',
           'editar_roles',
           'editar_usuarios',
           'grupos_editar',

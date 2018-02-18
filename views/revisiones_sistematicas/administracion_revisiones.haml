@@ -138,7 +138,7 @@
       - bloque.each do |cd_id,vals|
         %tr
           %td
-            =@ars.cd_hash[cd_id].title
+            = (@ars.cd_hash[cd_id]) ? @ars.cd_hash[cd_id].title : t("error.no_valid_cd_for_this_systematic_review", cd_id:cd_id)
             =partial(:canonico_documento_boton, :locals=>{id:cd_id})
             %br
             =partial(:botones_resolucion, :locals=>{:rpc=>rpc, :cd_id=>cd_id, :etapa=>@etapa, :usuario_id=>@usuario_id, :revision=>@revision})
