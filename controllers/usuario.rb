@@ -5,7 +5,7 @@ get '/usuario/:user_id' do |user_id|
 
 
 
-  @select_role=get_xeditable_select(Rol.inject({}) {|ac,v| ac[v[:id]]=t("role.#{v[:id]}");ac},'/user/edit/rol_id','select_role')
+  @select_role=get_xeditable_select(Rol.inject({}) {|ac,v| ac[v[:id]]=v[:id];ac},'/user/edit/rol_id','select_role')
   @select_role.active=false if(!permiso("editar_usuarios") or user_id.to_i==session['user_id'])
 
   @select_active_user=get_xeditable_select_bool('/user/edit/activa','select_active')
