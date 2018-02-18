@@ -23,7 +23,8 @@ put '/user/edit/:field' do |field|
     user=Usuario[id]
     return 404 if !user
     if field=='login'
-      return 505 if Usuario.where(:login=>value).exclude(:id=>id).count>0
+      return 405 if Usuario.where(:login=>value).exclude(:id=>id).count>0
+      return 405 if value.chomp==""
     end
     user.update(field.to_sym=>value)
   }
