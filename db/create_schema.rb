@@ -1,4 +1,4 @@
-module BibRevSys
+module Buhos
   module SchemaCreation
     def self.create_schema(db)
 

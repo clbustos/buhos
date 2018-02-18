@@ -13,7 +13,6 @@ end
 
 module Buhos
   # This modular Sinatra app generates a simple form to install
-  # BibSysRev
   class Installer < Sinatra::Base
 
     helpers Sinatra::Partials
@@ -156,7 +155,7 @@ module Buhos
       begin
         @pdb_stage="installer.schema_creation"
 
-        BibRevSys::SchemaCreation.create_schema(db)
+        Buhos::SchemaCreation.create_schema(db)
 
         @pdb_stage="installer.schema_migrations"
         Sequel.extension :migration
@@ -164,7 +163,7 @@ module Buhos
         Sequel::Migrator.run(db, "db/migrations")
         if db[:sr_taxonomies].count==0
           @pdb_stage="installer.basic_data"
-          BibRevSys::SchemaCreation.create_bootstrap_data(db,session['language'])
+          Buhos::SchemaCreation.create_bootstrap_data(db,session['language'])
         end
       rescue StandardError=>e
         @error=e
