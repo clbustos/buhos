@@ -17,6 +17,8 @@ post '/admin/roles/actualizar' do
 end
 
 
+
+
 get '/role/new' do
   error(403) unless permiso('roles_crear')
   role_id="Role #{Digest::SHA1.hexdigest(DateTime.now.to_s)}"
@@ -33,9 +35,22 @@ get '/role/:role_id/edit' do |role_id|
   haml "admin/role_edit".to_sym
 end
 
+get '/role/:role_id/delete' do |role_id|
+  error(403) unless permiso('editar_roles')
+  error(403) if role_id=="administrator" or role_id=="analyst"
+  Rol[role_id].delete
+  agregar_mensaje(t(:Role_deleted_name, role:role_id))
+  redirect back
+end
+
 post '/role/update' do
   old_id=params['role_id_old']
   new_id=params['role_id_new']
+
+  if new_id.chomp==""
+    agregar_mensaje(t(:role_without_name), :error)
+    redirect back
+  end
 
   @role=Rol[old_id]
   return 404 if !@role

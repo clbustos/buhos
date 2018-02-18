@@ -166,6 +166,7 @@ es:
   group_not_assigned: "grupo no asignado"
   group_without_name: "Cada grupo debe tener un nombre"
   Groups: "Grupos"
+  Group_deleted: "Grupo %{group_name} eliminado"
   Id: "Id"
   Im_sorry_the_page_you_request_doesnt_exists: "Lo siento, la página que solicitó no existe"
   Incoming_citations: "Citaciones hacia este documento"
@@ -390,6 +391,9 @@ es:
     stage_complete_message: "Ha concluido la primera fase de revision de documentos de la busqueda. Cuando todos los usuarios del grupo hayan contestado, comenzara la segunda fase de revision de referencias"
   Rol: "Rol"
   Role: "Rol"
+  role_without_name: "Cada rol debe tener un nombre"
+  Role_delete: "Eliminar rol"
+  Role_deleted_name: "Rol %{role} eliminado"
   role:
     administrator: "Administrador"
     analyst:      "Analyst"

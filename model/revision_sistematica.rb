@@ -68,7 +68,7 @@ AND  #{cd_query} GROUP BY tags.id ORDER BY n_documentos DESC ,p_yes DESC,tags.te
     ETAPAS_NOMBRE[self.etapa.to_sym]
   end
   def administrador_nombre
-    self[:administrador_revision].nil? ? "-- #{t(:administrator_not_assigned)} --" : Usuario[self[:administrador_revision]].nombre
+    self[:administrador_revision].nil? ? "-- #{I18n::t(:administrator_not_assigned)} --" : Usuario[self[:administrador_revision]].nombre
   end
   def get_nombres_trs
     (0...TRS.length).inject({}) {|ac,v|
@@ -225,6 +225,7 @@ AND  #{cd_query} GROUP BY tags.id ORDER BY n_documentos DESC ,p_yes DESC,tags.te
   # Cuenta el número de referencias hechas a cada referencia para la segunda etapa
   # Se eliminan como destinos aquellos documentos que ya fueron parte de la resolución de la primera etapa
   def cuenta_referencias_rtr
+    referencias_entre_canonicos
     resoluciones_titulo_resumen # Verifico que exista la tabla de resoluciones
     view_name=cuenta_referencias_rtr_tn
     if !$db.table_exists?(view_name)

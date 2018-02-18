@@ -15,13 +15,17 @@
         %a.btn.btn-default.btn-sm{:href=>url("/role/#{rol[:id]}/edit")}
           %span{:class=>"glyphicon glyphicon-pencil"}
           =t(:Role_edit)
+        - if rol.usuarios_dataset.empty?
+          %a.btn.btn-default.btn-sm{:href=>url("/role/#{rol[:id]}/delete")}
+            %span{:class=>"glyphicon glyphicon-remove"}
+            =t(:Role_delete)
     -if rol[:id]=='administrator'
       %ul
         - @permisos.each do |permiso|
           %li=t("permit.#{permiso.id}")
     -else
-      %select{:multiple=>true, :size=>@permisos.count, :name=>"permisos[#{rol[:id]}[]"}
+      %select.form-control{:multiple=>true, :size=>@permisos.count, :name=>"permisos[#{rol[:id]}[]"}
         - @permisos.each do |permiso|
           %option{:value=>permiso[:id], :selected=>rol.incluye_permiso?(permiso[:id])}=t("permit.#{permiso[:id]}")
   %p
-  %input{:type=>:submit}
+  %input.form-control{:type=>:submit}
