@@ -3,7 +3,15 @@ require 'sequel'
 require 'logger'
 
 require 'dotenv'
-Dotenv.load("../.env")
+
+if ENV['RACK_ENV'].to_s == "test"
+  Dotenv.load("../.env_test")
+else
+  Dotenv.load("../.env")
+
+end
+
+
 
 Sequel::Model.plugin :force_encoding, 'UTF-8' if RUBY_VERSION>="1.9"
 # Chanta, ¿no?

@@ -24,17 +24,28 @@ Dir.glob("lib/*.rb").each do |f|
   require_relative(f)
 end
 
+$test_mode=ENV['RACK_ENV'].to_s == "test"
 
+installed_file= $test_mode ? "config/installed_test" : "config/installed"
 
-# If .env doesn't exists, we should call the installer
+# If installed doesn't exists, we should call the installer
 #
-unless File.exist?("config/installed")
+#
+#
+unless File.exist?(installed_file)
   load('installer.rb')
   Buhos::Installer.run!
   exit 1
 end
 
-Dotenv.load("./.env")
+
+if $test_mode == "test"
+  Dotenv.load("./.env_test")
+  else
+    Dotenv.load("./.env")
+
+end
+
 
 
 set :session_secret, 'super secret2'

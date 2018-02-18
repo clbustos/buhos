@@ -26,6 +26,15 @@ module Buhos
       def permiso(p)
         true
       end
+
+
+      def env_file
+        (ENV['RACK_ENV'].to_s == "test") ? ".env_test" : ".env"
+      end
+      def installed_file
+        (ENV['RACK_ENV'].to_s == "test") ? "config/installed_test" : "config/installed"
+      end
+
       def available_db_adapters
         ["sqlite","mysql2"]
       end
@@ -93,8 +102,8 @@ module Buhos
 
     get '/installer/basic_data_form' do
       @form_fields=form_fields
-      @env_exists=File.exist?(".env")
-      @env_text=File.read(".env") if @env_exists
+      @env_exists=File.exist?(env_file)
+      @env_text=File.read(env_file) if @env_exists
       @available_db_adapters=available_db_adapters
       haml "installer/basic_data_form".to_sym, :layout=>"installer/layout".to_sym
     end
@@ -116,15 +125,15 @@ module Buhos
       end
       final_env=connection_string+("\n")+extra_env.join("\n")
       begin
-        File.open(".env","w") {|file|
+        File.open(env_file,"w") {|file|
           file.puts final_env
         }
         # Only the user that runs the server have access to .env
-        File.chmod(0700,".env")
+        File.chmod(0700,env_file)
 
 
         #begin
-        Dotenv.load(".env")
+        Dotenv.load(env_file)
       rescue Errno::EACCES
         halt(500,t("installer.no_env_file_access"))
       rescue StandardError
@@ -134,7 +143,7 @@ module Buhos
     end
     get '/installer/populate_database' do
 
-      Dotenv.load(".env")
+      Dotenv.load(env_file)
       @error_conexion=false
       begin
         db=Sequel.connect(ENV['DATABASE_URL'], :encoding => 'utf8',:reconnect=>true)
@@ -145,7 +154,7 @@ module Buhos
     end
 
     get '/installer/populate_database_2' do
-      Dotenv.load(".env")
+      Dotenv.load(env_file)
 
       log_db_install=Logger.new("log/installer_sql.log")
       db=Sequel.connect(ENV['DATABASE_URL'], :encoding => 'utf8',:reconnect=>true)
@@ -174,7 +183,7 @@ module Buhos
 
     get '/installer/end_installation.rb' do
       begin
-      File.open("config/installed","w") {|file| file.puts "Installed on #{DateTime.now()}"}
+      File.open(installed_file,"w") {|file| file.puts "Installed on #{DateTime.now()}"}
       rescue StandardError=>e
         @e=e
       end
