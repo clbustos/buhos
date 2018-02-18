@@ -1,9 +1,11 @@
 *~
 .env
+.env_test
 log
 usr/archivos
-db.sqlite
+*.sqlite
 config/installed
+config/installed_test
 vendor/vagrant_alpine/.vagrant
 vendor/vagrant_ubuntu_16/.vagrant
 vendor/vagrant_alpine/*.log
