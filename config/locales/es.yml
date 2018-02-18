@@ -164,6 +164,7 @@ es:
   Group_new: "Nuevo grupo"
   Group_administrator: "Administrador del grupo"
   group_not_assigned: "grupo no asignado"
+  group_without_name: "Cada grupo debe tener un nombre"
   Groups: "Grupos"
   Id: "Id"
   Im_sorry_the_page_you_request_doesnt_exists: "Lo siento, la página que solicitó no existe"

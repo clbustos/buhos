@@ -31,10 +31,15 @@ end
 post '/grupo/actualizar' do
   id=params['grupo_id']
   name=params['name']
+
+  if name.chomp==""
+    agregar_mensaje(t(:group_without_name), :error)
+    redirect back
+  end
   description=params['description']
 
   administrador=params['administrador_grupo']
-  usuarios=params['usuarios'].keys
+  usuarios=params['usuarios'] ? params['usuarios'].keys : []
   if id=="NA"
     grupo=Grupo.create(:name=>name,:description=>description, :administrador_grupo=>administrador)
     id=grupo.id
