@@ -3,16 +3,23 @@
 %ul.breadcrumb
   %li.active=t(:Systematic_reviews)
 
-- if @show_inactives
-  %p
-    %em="#{t(:Type_of_systematic_review_show)}:"
-    ="#{t(:actives_and_inactives_systematic_reviews)}.&nbsp;"
-    %a{:href=>url("/revisiones")}=t(:Show_only_actives)
-- else
-  %p
-    %em="#{t(:Type_of_systematic_review_show)}:"
-    ="#{t(:only_actives_systematic_reviews)}.&nbsp;"
-    %a{:href=>url("/revisiones?show_inactives=true")}=t(:Show_actives_and_inactives)
+%form.form-inline{:action=>'/revisiones', :method=>'get'}
+  .form-group
+    %label{:for=>:show_inactives}=t(:Systematic_review_active_inactive)
+    %select{:name=>  :show_inactives}
+      %option{:value=>:only_actives, :selected=>@show_inactives=='only_actives'}=t(:Show_only_actives)
+      %option{:value=>:actives_and_inactives, :selected=>@show_inactives=='actives_and_inactives'}=t(:Show_actives_and_inactives)
+    %label{:for=>:show_only_user}=t(:Systematic_review_all_user)
+    %select{:name=>  :show_only_user}
+      %option{:value=>:yes, :selected=>@show_only_user=='yes'}=t(:Show_sr_only_user)
+      %option{:value=>:no , :selected=>@show_only_user=='no'}=t(:Show_sr_all)
+
+  %input.btn.btn-default.btn-sm{:type=>:submit, :value=>t(:Show_systematic_review)}
+
+
+- if @revisiones.count>0
+  %p=t_desc_value(:Count_systematic_review, @revisiones.count)
+
 
 .btn-group
   - if permiso("revisiones_crear_propia")
@@ -20,6 +27,8 @@
       %button{:class=>"btn btn-default"}
         %span{:class=>"glyphicon glyphicon-plus"}
         =t(:Systematic_review_new)
+
+
 -@revisiones.each do |r|
   %div{:class=>"panel panel-default"}
     %div{:class=>"panel-heading"}

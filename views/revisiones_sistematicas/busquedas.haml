@@ -71,9 +71,10 @@
   .alert.alert-warning=t(:No_search_on_systematic_review_for_this_user)
 
 .btn-group.btn-group-sm
-  %a.btn.btn-default{:role=>:button,:href=>url("/revision/#{@revision.id}/busqueda/nuevo")}
-    %span{:class=>"glyphicon glyphicon-plus"}
-    =t(:Search_new)
+  - if permiso("crear_busqueda_revision") and @user.revisiones_sistematicas_id.include? @revision[:id]
+    %a.btn.btn-default{:role=>:button,:href=>url("/revision/#{@revision.id}/busqueda/nuevo")}
+      %span{:class=>"glyphicon glyphicon-plus"}
+      =t(:Search_new)
   %a.btn.btn-default{:role=>:button, :href=>url("/revision/#{@revision.id}/busquedas/comparar_registros")}
     %span.glyphicon.glyphicon-dashboard
     =t(:Compare_records_by_search)

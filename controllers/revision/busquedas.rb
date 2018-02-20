@@ -3,6 +3,7 @@ get '/revision/:id/busquedas' do |id|
   @revision=Revision_Sistematica[id]
   @busquedas=@revision.busquedas
   @header=t_systematic_review_title(@revision[:nombre], :systematic_review_searchs)
+  @user=Usuario[session['user_id']]
 
   @url_back="/revision/#{id}/busquedas"
   haml "revisiones_sistematicas/busquedas".to_sym
@@ -90,7 +91,7 @@ get '/revision/:id/busquedas/procesar' do |id|
     results.add_result(sp.result)
   end
   agregar_resultado(results)
-  redirect back
+  redirect "/revision/#{id}/busquedas"
 
 end
 

@@ -56,9 +56,10 @@
     %label=t(:Keywords)
     %p.instructions=t(:separe_keywords_with_semicolon)
     %input{:class=>"form-control",:type=>"text", :name=>"palabras_claves",:value=>@revision[:palabras_claves]}
-  %div{:class=>"form-group"}
-    %label=t(:Active)
-    %input{:class=>"form-control",:type=>"checkbox", :name=>"activa", :value=>1, :checked=>@revision[:activa] }
+  .checkbox
+    %label
+      %input{:type=>"checkbox", :name=>"activa", :value=>1, :checked=>@revision[:activa] }
+      =t(:Active)
   %div{:class=>'form-group'}
     %label=t(:Minimum_RTA_documents_for_reference_review)
     %select{:class=>"form-check-input", :name=>:n_min_rr_rtr}
@@ -90,6 +91,6 @@
             %p 
               %input{:class=>"form-check-input",:type=>"checkbox", :name=>"srtc[#{srtc[:id]}]", :value=>1, :checked=>@taxonomy_categories_id.include?(srtc[:id])}
               =t("sr_taxonomy_category.#{srtc[:name]}")
-  %input{:type=>:submit, :value=>"Enviar"}             
+  %input.form-control{:type=>:submit, :value=>"Enviar"}
 
 

@@ -87,6 +87,7 @@ es:
   Count_references_with_doi_without_canonical: "Número de referencias con DOI, sin canónico"
   Count_search_documents: "Documentos ajustados a búsqueda"
   Count_searchs_on_systematic_review: "Número de búsquedas en revisión sistemática"
+  Count_systematic_review: "Nº de revisiones sistemáticas"
   Count_total_documents_to_review: "Número de documentos a revisar"
   Count_total_files: "Nº de archivos total"
   current: "En proceso"
@@ -447,6 +448,9 @@ es:
   Short_text: "Texto corto"
   Show_actives_and_inactives: "Mostrar activas y no activas"
   Show_only_actives: "Mostrar sólo activas"
+  Show_systematic_review: "Mostrar revisiones sistemáticas"
+  Show_sr_only_user: "Sólo del usuario"
+  Show_sr_all: "Todos"
   sinatra_auth:
     error_on_auth: "Error en autentificación"
     permission_created_by_administrator: "Permiso creado por administrador"
@@ -528,6 +532,8 @@ es:
   Systematic_review_messages: "Mensajes para revisión sistemática"
   Systematic_review_new: "Nueva revisión sistemática"
   Systematic_review_new: "Nueva revisión sistemática"
+  Systematic_review_active_inactive: "RS Activa / Inactiva"
+  Systematic_review_all_user: "RS usuario / todos"
   systematic_review_page:
     cd_assignations: "Asignación de Documentos Canónicos a usuarios"
     cd_for_tag: "Documentos canónicos para tag '%{tag_text}'"

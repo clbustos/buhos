@@ -4,8 +4,19 @@ get '/revisiones' do
   error(403) unless permiso('ver_revisiones')
   @usuario=Usuario[session['user_id']]
   @show_inactives=params['show_inactives']
-  @revisiones=Revision_Sistematica.get_revisiones_por_usuario(@usuario.id)
-  @revisiones=@revisiones.where(:activa => 1) unless @show_inactives
+  @show_inactives||='only_actives'
+  @show_only_user=params['show_only_user']
+  @show_only_user||='yes'
+  if @show_only_user=='yes'
+    @revisiones=Revision_Sistematica.get_revisiones_por_usuario(@usuario.id)
+  else
+    @revisiones=Revision_Sistematica
+  end
+
+
+  @revisiones=@revisiones.where(:activa => 1) if @show_inactives=='only_actives'
+
+
   haml :revisiones
 end
 
@@ -81,12 +92,6 @@ post '/revision/actualizar' do
 end
 
 
-get '/revision/:id/busquedas' do |id|
-  error(403) unless permiso('ver_revisiones')
-  @revision=Revision_Sistematica[id]
-  @busquedas=@revision.busquedas
-  haml %s{revisiones_sistematicas/busquedas}
-end
 
 
 

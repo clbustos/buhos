@@ -6,7 +6,7 @@
 - else
   %p=t_desc_value("user_dashboard.count_total_searchs", sr.busquedas.count)
 %p=t_desc_value("user_dashboard.count_search_not_ready", a_tag("/revision/#{sr[:id]}/busquedas/user/#{user[:id]}", t("user_dashboard.check_n_not_ready_search", count: @udi.searchs_not_ready(sr[:id]).count)))
-- if permiso("crear_busqueda_revision")
+- if permiso("crear_busqueda_revision") and user.revisiones_sistematicas_id.include? sr[:id]
   %a.btn.btn-default.btn-sm{:role=>:button, :href=>"/revision/#{sr[:id]}/busqueda/nuevo"}
     %span.glyphicon.glyphicon-plus
     =t("user_dashboard.search_new")
