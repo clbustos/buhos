@@ -221,6 +221,7 @@ es:
   login_submit: "Ingresar"
   Logout: "Salir"
   Long_text: "Texto largo"
+  Manual_references_enter: "Ingreso manual de referencia"
   Merge: "Unir"
   Messages: "Mensajes"
   messages:
@@ -363,6 +364,7 @@ es:
   Processing_n_canonical_documents: "Procesando %{count} documentos canónicos"
   Record_crossref_search: "Búsqueda de registro en Crossref"
   Record_crossref_search_instructions: "Se presentan los resultados de la busqueda de documentos similares en Crossref. Presione el botón 'Asignar DOI' si usted considera que el registro de Crossref es el mismo que se obtuvo desde la base bibliográfica."
+  Record_title: "Registro"
   Records: "Registros"
   Records_on_search: "Registros en búsqueda"
   Records_that_cites_this_reference: "Registros de búsqueda que citan esta referencia"
@@ -564,6 +566,7 @@ es:
   Tags_statistics: "Estadísticas de la etiqueta"
   Taxonomy: "Taxonomía"
   Text: "Texto"
+  Test_alert: "Entorno de prueba"
   that_function_doesn_exists: "Esa función no existe"
   The_error_will_be_reported_to_administrator: "El error será reportado al administrador"
   this_document_cited_by: "citado por"

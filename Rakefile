@@ -1,4 +1,5 @@
 require 'dotenv'
+
 Dotenv.load("./.env")
 
 require 'rake'
@@ -34,4 +35,13 @@ namespace :db do
       Sequel::Migrator.run(db, "#{base_dir}/db/migrations")
     end
   end
+  desc "Update sqlite blank file"
+  file "blank.sqlite" => ["db/create_schema.rb"] do
+    require_relative 'db/create_schema'
+    File.rm("blank.sqlite") if File.exists? "blank.sqlite"
+    Buhos::SchemaCreation.create_db_from_scratch("sqlite://blank.sqlite", "en")
+
+  end
+
+
 end

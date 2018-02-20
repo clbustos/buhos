@@ -1,8 +1,20 @@
 module Buhos
   module SchemaCreation
+    def self.create_db_from_scratch(db_url, language='en')
+      require 'sequel'
+      db=Sequel.connect(db_url, :encoding => 'utf8',:reconnect=>true)
+      Buhos::SchemaCreation.create_schema(db)
+      Sequel.extension :migration
+      Sequel::Migrator.run(db, "db/migrations")
+      if db[:sr_taxonomies].count==0
+        @pdb_stage="installer.basic_data"
+        Buhos::SchemaCreation.create_bootstrap_data(db,language)
+      end
+    end
+
     def self.create_schema(db)
 
-
+      db.transaction do
         db.create_table? :roles do
           String :id, :size => 50, :primary_key => true
           String :descripcion
@@ -252,11 +264,11 @@ module Buhos
           index [:revision_sistematica_id]
           index [:revision_sistematica_id, :canonico_documento_id]
         end
+      end
 
     end
     def self.create_bootstrap_data(db,language='en')
       db.transaction do
-
         db[:roles].insert(:id=>'administrator',:descripcion=>'App administrator')
         db[:roles].insert(:id=>'analyst',:descripcion=>'App analyst')
         id_admin=db[:usuarios].insert(:login=>'admin',:nombre=>'Administrator', :password=>Digest::SHA1.hexdigest('admin'), :rol_id=>'administrator', :activa=>1, :language=>language)
