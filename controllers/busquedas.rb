@@ -99,7 +99,54 @@ get '/busqueda/:id/referencias/generar_canonicos_doi/:n' do |id, n|
 end
 
 
-post '/busquedas/update' do
+post '/search/update' do
+  id=params['busqueda_id']
+  otros_params=params
+  otros_params.delete("busqueda_id")
+  otros_params.delete("captures")
+
+  archivo=otros_params.delete("archivo")
+  #No nulos
+
+  otros_params=otros_params.inject({}) {|ac,v|
+    ac[v[0].to_sym]=v[1];ac
+  }
+  #  aa=Revision_Sistematica.new
+
+  if !permiso('busquedas_revision_crear')
+    agregar_mensaje(I18n::t(:Not_allowed_with_user_permissions),:error)
+  elsif params['base_bibliografica_id'].nil?
+    agregar_mensaje(I18n::t(:No_empty_bibliographic_database_on_search),:error)
+  else
+
+
+    if id==""
+      busqueda=Busqueda.create(
+          :revision_sistematica_id=>otros_params[:revision_sistematica_id],
+          :source=>otros_params[:source],
+          :base_bibliografica_id=>otros_params[:base_bibliografica_id],
+          :fecha=>otros_params[:fecha],
+          :criterio_busqueda=>otros_params[:criterio_busqueda],
+          :descripcion=>otros_params[:descripcion]
+      )
+    else
+      busqueda=Busqueda[id]
+      busqueda.update(otros_params)
+    end
+
+    if archivo
+      fp=File.open(archivo[:tempfile],"rb")
+      busqueda.update(:archivo_cuerpo=>fp.read, :archivo_tipo=>archivo[:type],:archivo_nombre=>archivo[:filename])
+      fp.close
+    end
+  end
+
+  redirect "/revision/#{otros_params[:revision_sistematica_id]}/busquedas"
+end
+
+
+
+post '/busquedas/update_batch' do
   #$log.info(params)
   if params["action"].nil?
     agregar_mensaje(I18n::t(:No_valid_action), :error)

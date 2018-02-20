@@ -13,7 +13,7 @@
   });
 %p
 - if @busquedas.count>0
-  %form{:method=>:post, :action=>"/busquedas/update"}
+  %form{:method=>:post, :action=>"/busquedas/update_batch"}
     %input{:type=>:hidden, :name=>:action, :id=>'form-action'}
     %input{:type=>:hidden, :name=>:url_back, :value=>@url_back}
     .btn-toolbar

@@ -10,6 +10,7 @@ end
 
 
 require 'sinatra'
+
 # Vamos a activar el reloader en todos los casos
 # Como el sistema está en vivo, es más peligroso hacer lo otro
 require 'haml'

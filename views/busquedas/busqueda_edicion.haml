@@ -27,7 +27,7 @@
   %li.active
     =t(:Edit)
 
-%form{:method=>:post, :action=>url("/revision/busqueda/actualizar"), :enctype=>'multipart/form-data'}
+%form{:method=>:post, :action=>url("/search/update"), :enctype=>'multipart/form-data'}
   %input{:type=>"hidden", :name=>"revision_sistematica_id",:value=>@revision[:id]}
   %input{:type=>"hidden", :name=>"busqueda_id",:value=>@busqueda[:id]}
   .form-group
