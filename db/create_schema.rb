@@ -1,15 +1,16 @@
 module Buhos
   module SchemaCreation
-    def self.create_db_from_scratch(db_url, language='en')
+    def self.create_db_from_scratch(db_url, language='en',logger=nil)
       require 'sequel'
       db=Sequel.connect(db_url, :encoding => 'utf8',:reconnect=>true)
+
+
+      db.logger=logger if logger
+
       Buhos::SchemaCreation.create_schema(db)
       Sequel.extension :migration
       Sequel::Migrator.run(db, "db/migrations")
-      if db[:sr_taxonomies].count==0
-        @pdb_stage="installer.basic_data"
-        Buhos::SchemaCreation.create_bootstrap_data(db,language)
-      end
+      Buhos::SchemaCreation.create_bootstrap_data(db,language)
     end
 
     def self.create_schema(db)
@@ -269,10 +270,10 @@ module Buhos
     end
     def self.create_bootstrap_data(db,language='en')
       db.transaction do
-        db[:roles].insert(:id=>'administrator',:descripcion=>'App administrator')
-        db[:roles].insert(:id=>'analyst',:descripcion=>'App analyst')
-        id_admin=db[:usuarios].insert(:login=>'admin',:nombre=>'Administrator', :password=>Digest::SHA1.hexdigest('admin'), :rol_id=>'administrator', :activa=>1, :language=>language)
-        id_analyst=db[:usuarios].insert(:login=>'analyst',:nombre=>'Analyst', :password=>Digest::SHA1.hexdigest('analyst'), :rol_id=>'analyst', :activa=>1, :language=>language)
+        db[:roles].replace(:id=>'administrator',:descripcion=>'App administrator')
+        db[:roles].replace(:id=>'analyst',:descripcion=>'App analyst')
+        id_admin=db[:usuarios].replace(:login=>'admin',:nombre=>'Administrator', :password=>Digest::SHA1.hexdigest('admin'), :rol_id=>'administrator', :activa=>1, :language=>language)
+        id_analyst=db[:usuarios].replace(:login=>'analyst',:nombre=>'Analyst', :password=>Digest::SHA1.hexdigest('analyst'), :rol_id=>'analyst', :activa=>1, :language=>language)
         permits=['acceder_crossref',
           'administracion',
           'archivos_ver',
@@ -307,54 +308,45 @@ module Buhos
           'ver_usuarios',
           'ver_reportes']
             permits.each do |permit|
-              db[:permisos].insert(:id=>permit)
-              db[:permisos_roles].insert(:permiso_id=>permit,:rol_id=>'administrator')
+              db[:permisos].replace(:id=>permit)
+              db[:permisos_roles].replace(:permiso_id=>permit,:rol_id=>'administrator')
             end
 
         analyst_permits=["busquedas_revision_ver","documentos_canonicos_ver","revision_analizar_propia","revision_editar_propia", "ver_revisiones","ver_reportes"]
         analyst_permits.each do |permit|
 
-          db[:permisos_roles].insert(:permiso_id=>permit,:rol_id=>'analyst')
+          db[:permisos_roles].replace(:permiso_id=>permit,:rol_id=>'analyst')
         end
 
         # Bibliographic databases
 
         ["scopus", "wos","scielo","ebscohost", "refworks","generic"].each do |bib_db|
-          db[:bases_bibliograficas].insert(:nombre=>bib_db)
+          db[:bases_bibliograficas].replace(:nombre=>bib_db)
         end
         # Taxonomies
         #
-        f_id=db[:sr_taxonomies].insert(:name=>"focus")
-        db[:sr_taxonomy_categories].insert(:srt_id=>f_id, :name=>"practice_or_application")
-        db[:sr_taxonomy_categories].insert(:srt_id=>f_id, :name=>"theory")
-        db[:sr_taxonomy_categories].insert(:srt_id=>f_id, :name=>"research_methods")
-        db[:sr_taxonomy_categories].insert(:srt_id=>f_id, :name=>"research_results")
+        #
 
-        f_id=db[:sr_taxonomies].insert(:name=>"objectives")
-        db[:sr_taxonomy_categories].insert(:srt_id=>f_id, :name=>"critical")
-        db[:sr_taxonomy_categories].insert(:srt_id=>f_id, :name=>"main_themes")
-        db[:sr_taxonomy_categories].insert(:srt_id=>f_id, :name=>"integration")
-        f_id=db[:sr_taxonomies].insert(:name=>"perspective")
-        db[:sr_taxonomy_categories].insert(:srt_id=>f_id, :name=>"neutral")
-        db[:sr_taxonomy_categories].insert(:srt_id=>f_id, :name=>"adoption_of_posture")
-        f_id=db[:sr_taxonomies].insert(:name=>"coverage")
-        db[:sr_taxonomy_categories].insert(:srt_id=>f_id, :name=>"exhaustive")
-        db[:sr_taxonomy_categories].insert(:srt_id=>f_id, :name=>"exhaustive_with_selection")
-        db[:sr_taxonomy_categories].insert(:srt_id=>f_id, :name=>"representative")
-        db[:sr_taxonomy_categories].insert(:srt_id=>f_id, :name=>"essential")
-        f_id=db[:sr_taxonomies].insert(:name=>"organization")
-        db[:sr_taxonomy_categories].insert(:srt_id=>f_id, :name=>"methodology")
-        db[:sr_taxonomy_categories].insert(:srt_id=>f_id, :name=>"conceptual")
-        db[:sr_taxonomy_categories].insert(:srt_id=>f_id, :name=>"historic")
-        f_id=db[:sr_taxonomies].insert(:name=>"receiver")
-        db[:sr_taxonomy_categories].insert(:srt_id=>f_id, :name=>"academics_specialist")
-        db[:sr_taxonomy_categories].insert(:srt_id=>f_id, :name=>"academics_general")
-        db[:sr_taxonomy_categories].insert(:srt_id=>f_id, :name=>"practicians_politics")
-        db[:sr_taxonomy_categories].insert(:srt_id=>f_id, :name=>"general_public")
+        taxonomies={
+            "focus"=>["practice_or_application", "theory", "research_methods", "research_results"],
+            "objectives"=>["critical", "main_themes","integration"],
+            "perspective"=>["neutral","adoption_of_posture"],
+            "coverage"=>["exhaustive", "exhaustive_with_selection", "representative", "essential"],
+            "organization"=>["methodology","conceptual","historical"],
+            "receiver"=>["academics_specialist","academics_general","practicians_politics", "general_public"]
 
-        grupo_id=db[:grupos].insert(:administrador_grupo=>id_admin, :description=>"First group, just for demostration", :name=>"demo group")
-        db[:grupos_usuarios].insert(:grupo_id=>grupo_id, :usuario_id=>id_admin)
-        db[:grupos_usuarios].insert(:grupo_id=>grupo_id, :usuario_id=>id_analyst)
+        }
+
+        taxonomies.each_pair do |category, values|
+            f_id=db[:sr_taxonomies].replace(:name=>category)
+            values.each do |name|
+              db[:sr_taxonomy_categories].replace(:srt_id=>f_id, :name=>name)
+            end
+        end
+
+        grupo_id=db[:grupos].replace(:administrador_grupo=>id_admin, :description=>"First group, just for demostration", :name=>"demo group")
+        db[:grupos_usuarios].replace(:grupo_id=>grupo_id, :usuario_id=>id_admin)
+        db[:grupos_usuarios].replace(:grupo_id=>grupo_id, :usuario_id=>id_analyst)
       end
     end
   end

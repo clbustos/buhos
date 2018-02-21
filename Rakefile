@@ -1,5 +1,6 @@
 require 'dotenv'
-
+require 'logger'
+require 'fileutils'
 Dotenv.load("./.env")
 
 require 'rake'
@@ -38,9 +39,9 @@ namespace :db do
   desc "Update sqlite blank file"
   file "blank.sqlite" => ["db/create_schema.rb"] do
     require_relative 'db/create_schema'
-    File.rm("blank.sqlite") if File.exists? "blank.sqlite"
-    Buhos::SchemaCreation.create_db_from_scratch("sqlite://blank.sqlite", "en")
-
+    log = Logger.new(STDOUT)
+    FileUtils.rm("blank.sqlite") if File.exist? "blank.sqlite"
+    Buhos::SchemaCreation.create_db_from_scratch("sqlite://blank.sqlite", "en",log)
   end
 
 
