@@ -26,3 +26,8 @@ gem 'grim'
 gem "i18n"
 gem "sqlite3"
 gem "certified", :platforms => :mingw
+
+group :development do
+  gem 'pkgr'
+end
+
