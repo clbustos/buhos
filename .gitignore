@@ -10,3 +10,5 @@ vendor/vagrant_alpine/.vagrant
 vendor/vagrant_ubuntu_16/.vagrant
 vendor/vagrant_alpine/*.log
 vendor/vagrant_ubuntu_16/*.log
+vendor/vagrant_pkgr/.vagrant
+vendor/vagrant_pkgr/*.log

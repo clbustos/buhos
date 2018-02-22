@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 gem 'rake'
-gem "sinatra"
+gem "sinatra",  '>=2.0.1'
 gem "sequel"
 gem "mysql2"
 gem "puma", :platforms => :mingw
@@ -26,3 +26,8 @@ gem 'grim'
 gem "i18n"
 gem "sqlite3"
 gem "certified", :platforms => :mingw
+
+group :development do
+  gem 'pkgr'
+end
+

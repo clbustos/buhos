@@ -5,12 +5,12 @@ Web based platform to develop collaborative systematic literatute reviews. Devel
 
 ## Features
 
-* Multiplatform: Runs on Linux and Windows
+* Multiplatform: Runs on Linux (tested on Ubuntu 14.04 and 16.06) and Windows (tested on Windows 7 and 10)
 * Support individual and group based systematic reviews. 
 * Messaging system for members and reviews.
 * Internationalization, using *I18n*. Available in english and spanish
 * Flexible workflow
-* Import information from several databases - WoS, Scopus, Scielo - using BibTeX and CSV.
+* Import information from several databases - WoS, Scopus, Scielo - using BibTeX.
 * Integration with Crossref, that allows deduplication of records using DOI, recollection of references
 * File repository, with PDF viewing support via [ViewerJS](http://viewerjs.org/)
 * Multiple ways to analyze data: commentaries and tagging on each stage of review, custom forms for complete text analysis
@@ -18,23 +18,22 @@ Web based platform to develop collaborative systematic literatute reviews. Devel
 
 ## Getting Started
 
-### Using source code (latest)
+### On Windows
 
-Once you have all necesary dependencies (see **Prerequisites**), copy the source code using
+A installer for the latest version of software, for Windows, can be obtained from [Buhos Windows Toolkit](https://github.com/clbustos/buhos-windows-tk/tree/master/output)
 
-   > git clone git@github.com:clbustos/buhos.git
+### On *nix
 
-Install necessary dependencies using bundler
+For Debian, Ubuntu y CentOS, packages and instructions to install are availables on [packager.io](https://packager.io/gh/clbustos/buhos).  As example, this instructions allows to install buhos on Ubuntu, using localhost:4567 as URL
 
-   > bundle install
-   
-And run the application using
-
-   > ruby app.rb
-
-### Using portable installer
-
-A portable version of software, for Windows, can be obtained from https://www.buhos.org/
+    wget -qO- https://dl.packager.io/srv/clbustos/buhos/key | sudo apt-key add -
+    sudo wget -O /etc/apt/sources.list.d/buhos.list \
+      https://dl.packager.io/srv/clbustos/buhos/master/installer/ubuntu/16.04.repo
+    sudo apt-get update
+    sudo apt-get install buhos
+    sudo buhos config:set PORT=4567
+    sudo buhos scale web=1
+    sudo buhos restart 
 
 ### Using vagrant
 
@@ -42,12 +41,14 @@ On vendor/vagrant_alpine and vendor/vagrant_ubuntu_16 directories you could find
     
     > vagrant up
     
-By default, the application is configured to run on port 4567.    
+By default, the application is configured to run on port 4567. 
+    
+### Using source code (latest)
 
-### Prerequisites
+#### Prerequisites
 
 
-On linux, you need a ruby 2.2 installation with bundler, and development libraries for mysql and sqlite. We recommend using [RVM](https://rvm.io/).
+On linux, you need a ruby 2.4 installation with bundler, and development libraries for mysql and sqlite. We recommend using [RVM](https://rvm.io/).
 
 
 On Ubuntu, this script install all required dependencies
@@ -96,13 +97,21 @@ On alpine, the basic configuration is
         ruby-bigdecimal \
         ruby-etc    
 
-## Installing
+Once you have all necesary dependencies , copy the source code using
 
-The app uses a web-based installer. Once you start the server with
+   > git clone git@github.com:clbustos/buhos.git
 
-    > ruby app.rb
-    
-you should point your browser to localhost:4567 and the installation process should began.
+Install necessary dependencies using bundler
+
+   > bundle install
+   
+And run the application using
+
+   > ruby app.rb
+
+## Post-install configuration
+
+The app uses a web-based installer. Once you start the server with you should point your browser to localhost:4567 and the installation process should began.
 
 If you want to use a Mysql database, you should create it before installing the sofware. As mysql root user, you could use something like
 
@@ -118,7 +127,7 @@ Finnaly, the database will be populated and you should restart the application t
 
 ## Deployment
 
-For individual users, the application could be run without problem running app.rb using a local sqlite.
+For individual users, the application could be run without problem using the windows installer or the packages for Ubuntu, Debian or CentOS
 
 For multiple users, you should deploy on a web server and a more powerful database. The development is tested on nginx ussing passenger+ Mysql, but should  work on Apache, too.
 

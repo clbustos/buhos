@@ -21,6 +21,24 @@ RSpec::Core::RakeTask.new(:spec) do |t|
 end
 task :default => :spec
 
+
+desc "Build .deb package"
+task :build_deb do |t|
+  require 'tmpdir'
+  current_dir=File.expand_path(File.dirname(__FILE__))
+  puts current_dir
+  Dir.mktmpdir("buhos_pkgr") {|dir|
+    sh %{git clone ./ "#{dir}"}
+    sh %{rvmsudo pkgr package --name buhos "#{dir}"}
+  }
+
+  Dir.mkdir 'packages' unless Dir.exist? "packages"
+  Dir.glob("*.deb") do |f|
+    FileUtils.move f, "packages"
+  end
+
+end
+
 namespace :db do
   desc "Run migrations"
   task :migrate, [:version] do |t, args|
@@ -43,6 +61,4 @@ namespace :db do
     FileUtils.rm("blank.sqlite") if File.exist? "blank.sqlite"
     Buhos::SchemaCreation.create_db_from_scratch("sqlite://blank.sqlite", "en",log)
   end
-
-
 end
