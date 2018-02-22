@@ -56,7 +56,7 @@ es:
   Change_password: "Cambiar password"
   Change_password_for_user: "Cambiar password de usuario %{user_name}"
 
-  Check_CD_assignations: "Revisar asignaciones de DC"
+  Check_CD_assignations: "Asignaciones de DC"
   Check_CD_without_assignations: "Revisar DC sin asignación"
   Check_duplications: "Revisar duplicados"
   Check_only_documents_on_search_no_references: "Revisar sólo documentos que aparecen en búsquedas"
@@ -490,7 +490,7 @@ es:
     exhaustive: "Exhaustiva"
     exhaustive_with_selection: "Exhaustiva con selección"
     general_public: "Público en general"
-    historic: "Historic"
+    historic: "Histórica"
     integration: "Integración"
     main_themes: "Temas principales"
     methodology: "Metodología"

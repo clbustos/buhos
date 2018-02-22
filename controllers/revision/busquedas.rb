@@ -12,7 +12,7 @@ end
 get '/revision/:id/busquedas/user/:user_id' do |id,user_id|
   error(403) unless permiso('busquedas_revision_ver')
   @revision=Revision_Sistematica[id]
-
+  @user=Usuario[user_id]
   @header=t_systematic_review_title(@revision[:nombre], t(:searchs_user, :user_name=>Usuario[user_id][:nombre]), false)
   @url_back="/revision/#{id}/busquedas/user/#{user_id}"
   @busquedas=@revision.busquedas_dataset.where(:user_id=>user_id)
