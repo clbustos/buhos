@@ -145,6 +145,7 @@ class SearchProcessor
     end # db.transaction
     log_success("search_processor.Search_canonical_documents_successfully")
   end
+
   def crear_hash_update(fields, registro)
     fields.inject({}) {|ac,v|
       ac[v]= registro.send(v); ac;

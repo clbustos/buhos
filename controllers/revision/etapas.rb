@@ -246,10 +246,13 @@ get '/revision/:rev_id/etapa/:stage/generar_referencias_crossref' do |rev_id,sta
   cd_i.each do |cd_id|
     @cd=Canonico_Documento[cd_id]
 
+    # first, we process all records pertinent with this canonical document.
+    records=Registro.where(:canonico_documento_id=>cd_id)
+    rcp=RecordCrossrefProcessor.new(records,$db)
+    result.add_result(rcp.result)
     if @cd.crossref_integrator
       begin
         # Agregar dois a referencias
-        #
         @cd.referencias_realizadas.where(:canonico_documento_id=>nil).each do |ref|
           # primero agregamos doi si podemos
           # Si tiene doi, tratamos de

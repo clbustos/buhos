@@ -56,7 +56,7 @@ es:
   Change_password: "Cambiar password"
   Change_password_for_user: "Cambiar password de usuario %{user_name}"
 
-  Check_CD_assignations: "Revisar asignaciones de DC"
+  Check_CD_assignations: "Asignaciones de DC"
   Check_CD_without_assignations: "Revisar DC sin asignación"
   Check_duplications: "Revisar duplicados"
   Check_only_documents_on_search_no_references: "Revisar sólo documentos que aparecen en búsquedas"
@@ -120,6 +120,7 @@ es:
   error:
     error_on_add_crossref_for_cd: "No se pudo agregar información de Crossref para DC %{cd_title}"
     no_valid_cd_for_this_systematic_review: "El DC %{cd_id} no es válido para esta revisión sistemática. Revise la resolución para este DC en etapas anteriores."
+    problem_record_stop_sync: "Problema en obtención de información para registro %{record_id}: %{e_message}. Se interrumpe sincronización"
   error403_message: "No tiene los permisos necesarios para ver esta página"
   Error_403: "Error 403 - Acceso no permitido"
   Error_404: "Error 404 - Recurso no existe"
@@ -492,7 +493,7 @@ es:
     exhaustive: "Exhaustiva"
     exhaustive_with_selection: "Exhaustiva con selección"
     general_public: "Público en general"
-    historical: "Histórico"
+    historic: "Histórica"
     integration: "Integración"
     main_themes: "Temas principales"
     methodology: "Metodología"

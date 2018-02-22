@@ -208,7 +208,7 @@ class AnalisisRevisionSistematica
   end
   def patron_nombre(a)
     Decision::N_EST.map {|key,nombre|
-      "#{nombre}:#{a[key]}"
+      "#{::I18n::t(nombre)}:#{a[key]}"
     }.join(";")
   end
   def patron_id(a)
