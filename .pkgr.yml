@@ -1,0 +1,13 @@
+build_dependencies:
+  - cloc 
+  - gdal-bin
+  - gdebi-core
+  - git 
+  - libcurl4-openssl-dev 
+  - libgdal-dev 
+  - libproj-dev 
+  - libxml2-dev 
+  - libxml2-dev 
+  - build-essential 
+  - libmysqlclient-dev 
+  - libsqlite3-dev
