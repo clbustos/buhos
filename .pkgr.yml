@@ -1,3 +1,4 @@
+name: buhos
 build_dependencies:
   - cloc 
   - gdal-bin
