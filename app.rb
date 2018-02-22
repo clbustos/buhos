@@ -33,18 +33,15 @@ installed_file= $test_mode ? "config/installed_test" : "config/installed"
 #
 #
 #
-unless File.exist?(installed_file)
+if !$test_mode and !File.exist?(installed_file)
   load('installer.rb')
   Buhos::Installer.run!
   exit 1
 end
 
 
-if $test_mode == "test"
-  Dotenv.load("./.env_test")
-  else
-    Dotenv.load("./.env")
-
+if !$test_mode
+  Dotenv.load("./.env")
 end
 
 

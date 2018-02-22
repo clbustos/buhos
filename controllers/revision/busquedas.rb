@@ -5,6 +5,8 @@ get '/revision/:id/busquedas' do |id|
   @header=t_systematic_review_title(@revision[:nombre], :systematic_review_searchs)
   @user=Usuario[session['user_id']]
 
+  $log.info(@user)
+
   @url_back="/revision/#{id}/busquedas"
   haml "revisiones_sistematicas/busquedas".to_sym
 end

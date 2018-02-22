@@ -36,6 +36,8 @@
             =t(:App_title)
             -if settings.development?
               %span{:class=>"alerta"}="(#{t(:Dev_alert)})"
+            -if settings.test?
+              %span{:class=>"alerta"}="(#{t(:Test_alert)})"
           %ul{:class=>'nav navbar-nav'}
             -if permiso('ingreso')
               %li{:class=>''}

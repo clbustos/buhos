@@ -1,5 +1,6 @@
 require 'rspec'
 require 'sinatra'
+require 'i18n'
 require_relative '../lib/../lib/sinatra_xeditable_select'
 describe 'Sinatra Select Ajax (with xeditable) presentation' do
   before do
@@ -8,6 +9,10 @@ describe 'Sinatra Select Ajax (with xeditable) presentation' do
     @values={:nil=>"No option",:first=>"First", :second=>"Second"}
     @ssa=Sinatra::Xeditable_Select::Select.new(@values,@url,@html_class)
     @ssa.nil_value =:nil
+    ::I18n.load_path+=Dir[File.join("..", 'config','locales', '*.yml')]
+    ::I18n.config.available_locales = [:es,:en]
+
+
   end
   it "javascript should include correct class" do
     expect(@ssa.javascript).to include("$('.#{@html_class}')")
