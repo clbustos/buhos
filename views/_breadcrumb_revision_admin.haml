@@ -1,8 +1,0 @@
-%ul.breadcrumb
-  %li
-    %a{:href=>url("/revisiones")}=t(:Systematic_reviews)
-  %li
-    %a{:href=>url("/revision/#{@revision[:id]}")}=@revision[:nombre]
-  %li
-    %a{:href=>url("/revision/#{@revision[:id]}/administracion_etapas")}=t(:Administration)
-  %li{:class=>"active"}=nombre

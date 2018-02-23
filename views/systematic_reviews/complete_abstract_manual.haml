@@ -1,0 +1,30 @@
+.heading
+  =t_systematic_review_title(@revision[:nombre], t("systematic_review_page.complete_empty_abstract")+". "+t(:Stage_title, :stage_name=>t(Revision_Sistematica.get_nombre_etapa(@stage))),false)
+
+%ul.breadcrumb
+  %li
+    %a{:href=>url("/reviews")}=t(:Systematic_reviews)
+  %li
+    %a{:href=>url("/review/#{@revision[:id]}")}=@revision[:nombre]
+  %li
+    %a{:href=>url("/review/#{@revision[:id]}/administration_stages")}=t(:Administration)
+  %li
+    %a{:href=>url("/reviews/#{@revision[:id]}/administration/#{@stage}")}=t(Revision_Sistematica.get_nombre_etapa(@stage))
+  %li{:class=>:active}
+    =t("systematic_review_page.complete_empty_abstract")
+
+.list-group
+  - @cd_sin_abstract.each do |cd|
+    .list-group-item
+      =cd.ref_apa_6_breve_html
+      %p=sprintf("<strong>Referencias canónicas:</strong> citado por %d / referencia a %d / citado por %d RTR ", cd[:n_total_referencias_recibidas].to_i, cd[:n_total_referencias_hechas].to_i, cd[:n_referencias_rtr].to_i )
+
+      %div
+        =partial(:canonical_document_button,:locals=>{:id=>cd.id})
+        %p
+        %strong=t(:Abstract)
+        %div
+          - if permiso("documentos_canonicos_editar")
+            =a_textarea_editable(cd[:id], "canonico_documento", "/canonical_document/edit_field/abstract", cd[:abstract],"")
+          - else
+            =@cd[:abstract]

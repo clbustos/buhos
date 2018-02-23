@@ -1,0 +1,55 @@
+- etapas_avanzadas=r.etapas_avanzadas
+%div{:class=>"btn-group btn-group-sm", :role=>'group'}
+  - if permiso("revisiones_editar") or revision_pertenece_a(r.id, session['user_id'])
+    %a{:role=>:button, :href=>url("/review/#{r.id}/edit"), :class=>"btn btn-default"}
+      %span{:class=>"glyphicon glyphicon-pencil"}
+      =t(:Edit)
+  - if permiso("documentos_canonicos_ver") or revision_pertenece_a(r.id, session['user_id'])
+    %a{:role=>:button, :href=>url("/review/#{r.id}/canonical_documents"), :class=>"btn btn-default"}
+      %span{:class=>"glyphicon glyphicon-king"}
+      =t(:Canonical_documents)
+  - if permiso("busquedas_ver") or revision_pertenece_a(r.id, session['user_id'])
+    %a{:role=>:button, :href=>url("/review/#{r.id}/searchs"), :class=>"btn btn-default"}
+      %span{:class=>"glyphicon glyphicon-book"}
+      =t(:Searchs)
+  - if permiso("tags_ver") or revision_pertenece_a(r.id, session['user_id'])
+    %a{:role=>:button, :href=>url("/review/#{r.id}/tags"), :class=>"btn btn-default"}
+      %span{:class=>"glyphicon glyphicon-tag"}
+      =t(:Tags)
+  - if permiso("mensajes_ver") or revision_pertenece_a(r.id, session['user_id'])
+    %a{:role=>:button, :href=>url("/review/#{r.id}/messages"), :class=>"btn btn-default"}
+      %span.glyphicon.glyphicon-envelope
+      =t(:Messages)
+  - if permiso("rs_campos_ver") or revision_pertenece_a(r.id, session['user_id'])
+    %a{:role=>:button, :href=>url("/review/#{r.id}/fields"), :class=>"btn btn-default"}
+      %span.glyphicon.glyphicon-list
+      =t(:Fields_analysis)
+  - if permiso("archivos_ver") or revision_pertenece_a(r.id, session['user_id'])
+    %a{:role=>:button, :href=>url("/review/#{r.id}/files"), :class=>"btn btn-default"}
+      %span.glyphicon.glyphicon-file
+      =t(:Files)
+  %div{:class=>"btn-group btn-group-sm", :role=>"group"}
+    %button{:id=>"btn_revisiones_#{r.id}", :type=>"button", :class=>"btn btn-default dropdown-toggle", "data-toggle"=>"dropdown", "aria-haspopup"=>"true", "aria-expanded"=>"false"}
+      =t(:Stages)
+      %span{:class=>"caret"}
+    %ul{:class=>"dropdown-menu", "aria-labelledby"=>"btn_revisiones_#{r.id}"}
+      - if permiso("revisiones_administrar") or revision_pertenece_a(r.id, session['user_id'])
+        %li
+          %a{:role=>:button, :href=>url("/review/#{r.id}/administration_stages"), :class=>"btn btn-default"}
+            %span{:class=>"glyphicon glyphicon-cert-sign"}
+            =t(:Stages_administration)
+      - if etapas_avanzadas.include? :screening_title_abstract and (permiso("screening_title_abstract_ver") or revision_analizada_por(r.id, session['user_id']))
+        %li
+          %a{:role=>:button, :href=>url("/review/#{r.id}/screening_title_abstract"), :class=>"btn btn-default "}
+            %span{:class=>"glyphicon glyphicon-ok-sign"}
+            =t("stage.review_title_and_abstract")
+      - if etapas_avanzadas.include? :screening_references and (permiso("screening_references_ver") or revision_analizada_por(r.id, session['user_id']))
+        %li
+          %a{:role=>:button, :href=>url("/review/#{r.id}/screening_references"), :class=>"btn btn-default "}
+            %span{:class=>"glyphicon glyphicon-ok-sign"}
+            =t("stage.review_references")
+      - if etapas_avanzadas.include? :screening_references and (permiso("review_full_text_ver") or revision_analizada_por(r.id, session['user_id']))
+        %li
+          %a{:role=>:button, :href=>url("/review/#{r.id}/full_text_review"), :class=>"btn btn-default "}
+            %span{:class=>"glyphicon glyphicon-ok-sign"}
+            =t("stage.review_full_text")

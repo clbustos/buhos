@@ -53,7 +53,7 @@ module Buhos
           foreign_key :grupo_id, :grupos, :null => false, :key => [:id]
           foreign_key :administrador_revision, :usuarios, :key => [:id]
           TrueClass :activa, :default => true, :null => false
-          String :etapa, :default => "busqueda", :size => 32, :null => false
+          String :etapa, :default => "search", :size => 32, :null => false
 
           index [:administrador_revision], :name => :administrador_revision_index
           index [:grupo_id], :name => :grupo_id_i
@@ -296,9 +296,9 @@ module Buhos
           'revision_analizar_propia',
           'revision_editar',
           'revision_editar_propia',
-          'revision_referencias_ver',
-          'revision_texto_completo_ver',
-          'revision_titulo_resumen_ver',
+          'screening_references_ver',
+          'review_full_text_ver',
+          'screening_title_abstract_ver',
           'rs_campos_ver',
           'scopus_acceder',
           'tags_ver',

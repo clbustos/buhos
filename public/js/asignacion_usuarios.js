@@ -4,7 +4,7 @@ asignacion_general=function(e,accion,f_divs) {
     var user_id=e.data("uid");
     var stage  =e.data("stage");
     console.log([cd_id,user_id,stage]);
-    $.post("/canonico_documento/asignacion_usuario/"+accion, {rs_id:rs_id, cd_id:cd_id, user_id:user_id, stage:stage}, function (data) {
+    $.post("/canonical_document/user_assignation/"+accion, {rs_id:rs_id, cd_id:cd_id, user_id:user_id, stage:stage}, function (data) {
         var div_asignar="usuario-asignar-"+rs_id+"-"+cd_id+"-"+user_id+"-"+stage;
         var div_desasignar="usuario-desasignar-"+rs_id+"-"+cd_id+"-"+user_id+"-"+stage;
         f_divs(div_asignar,div_desasignar);

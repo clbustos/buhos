@@ -1,8 +1,7 @@
 require 'rspec'
-require 'sinatra'
 require_relative 'spec_helper.rb'
 require_relative '../lib/../lib/sinatra_xeditable_select'
-describe 'Sinatra Select Ajax (with xeditable) presentation' do
+describe 'Sinatra::Xeditable_Select::Select class ' do
   before do
 
     @url="/reference/change"

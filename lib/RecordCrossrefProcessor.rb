@@ -16,7 +16,7 @@ class RecordCrossrefProcessor
         begin
           @result.add_result(record.doi_automatico_crossref)
           if record.doi
-            #$log.info("Agregando referencias registro #{registro.ref_apa_6}")
+
             result.add_result(record.referencias_automatico_crossref)
           end
         rescue BadCrossrefResponseError=>e

@@ -4,6 +4,7 @@ require 'fileutils'
 Dotenv.load("./.env")
 
 require 'rake'
+require 'rspec/core'
 require 'rspec/core/rake_task'
 
 task :doc do |t|
@@ -16,6 +17,7 @@ end
 RSpec::Core::RakeTask.new(:spec) do |t|
   t.pattern = Dir.glob('spec/**/*_spec.rb')
   t.rspec_opts = '--format documentation'
+
 # t.rspec_opts << ' more options'
   #t.rcov = true
 end

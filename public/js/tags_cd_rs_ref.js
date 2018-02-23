@@ -1,7 +1,7 @@
 var tagsRefQuery=new Bloodhound({
     datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
     queryTokenizer: Bloodhound.tokenizers.whitespace,
-    prefetch: '/tags/basico_ref_10.json',
+    prefetch: '/tags/basic_ref_10.json',
     remote: {
         url: '/tags/refs/query_json/%QUERY',
         wildcard: '%QUERY'

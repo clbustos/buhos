@@ -638,3 +638,4 @@ en:
   "Yes": "Sí"
   "yes": "sí"
   You_re_the_administrator_of_this_systematic_review: "Usted es el administrador de esta revisión sistemática"
+  References_count_to_canonical: "<strong>Referencias canónicas:</strong> citado por %{in} / referencia a %{out} / %{in_sta} citado por  RTR "

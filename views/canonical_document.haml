@@ -1,0 +1,84 @@
+%h2=@title
+
+:javascript
+  $(document).ready(function() {
+    buscar_similares_canonico();
+  });
+
+%table.reporte
+  - [:author, :year,:title,:journal, :volume,:pages,:doi,:url].each do |field|
+    %tr
+      %th=field.capitalize
+      %td
+        - if permiso("documentos_canonicos_editar")
+          =a_editable(@cd[:id], "canonico_documento", "/canonical_document/edit_field/#{field}", @cd[field],"")
+        -else
+          =@cd[field]
+
+
+%h3=t(:Abstract)
+%p
+  - if permiso("documentos_canonicos_editar")
+    =a_textarea_editable(@cd[:id], "canonico_documento", "/canonical_document/edit_field/abstract", @cd[:abstract],"")
+  - else
+    =@cd[:abstract]
+
+.btn-group
+  -if permiso("scopus_acceder")
+    - if !@cd.abstract
+      %a{:href=>url("/canonical_document/#{@cd[:id]}/search_abstract_scopus"), :role=>:button, :class=>"btn btn-default"}=t(:Complete_abstract_using_Scopus)
+
+
+%h3 Crossref
+
+%p.info=t(:Information_about_this_cd_on_crossref)
+
+.well
+  - if @cr_doi
+    =@cr_doi.ref_apa_6_breve_html
+  - elsif @cd.doi
+    - if permiso("crossref_acceder")
+      %a{:href=>url("/canonical_document/#{@cd[:id]}/get_crossref_data")}
+        %button{:class=>"btn btn-primary"}
+          =t(:Obtain_information_from_Crossref)
+    - else
+      =t(:Ask_information_from_Crossref_for_admin)
+  - else
+    %p
+      %em=t(:No_DOI_to_obtain_information_from_Crossref)
+
+%p
+-if permiso("crossref_acceder") and @cr_doi
+  .btn-group.btn-group-sm
+    %a{:href=>url("/canonical_document/#{@cd[:id]}/search_crossref_references"), :role=>:button, :class=>"btn btn-default btn-sm"}=t(:Add_info_references_using_crossref)
+    %a{:href=>url("/canonical_document/#{@cd[:id]}/view_doi"), :role=>:button, :class=>"btn btn-default btn-sm"}=t(:View_DOI_record)
+
+%h3=t("canonical_document.records_on_which_appears")
+
+=partial(:records_list, :locals=>{:registros=>@registros})
+
+%h3=t("canonical_document.references_on_which_appears")
+
+- if @referencias.count==0
+  %div{:class=>"alert alert-warning"}=t(:Doesnt_appears_on_any_reference)
+- else
+
+  .list-group
+  - @referencias.each do |ref|
+    %div.list-group-item
+      %span{:class=>"badge"}=ref[:n]
+      .list-group-item-text
+        =ref[:texto]
+        - if ref[:doi]
+          =a_doi(ref[:doi])
+        - else
+          %a{:href=>url("/reference/#{ref[:id]}/search_crossref")}
+            %button{:class=>"btn btn-default btn-sm"}
+              %span{:class=>"glyphicon glyphicon-search"}
+              =t(:Search_on_Crossref)
+        %div{:class=>:small}
+          %a{:href=>url("/reference/#{ref[:id]}")}=ref[:id]
+%h3=t("canonical_document.references")
+
+=partial(:references_list, :locals=>{:referencias=>@referencias_realizadas})
+

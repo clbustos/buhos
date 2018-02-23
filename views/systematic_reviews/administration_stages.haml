@@ -1,0 +1,16 @@
+.heading
+  =t_systematic_review_title(@revision[:nombre], "systematic_review_page.stages")
+
+
+%ul.breadcrumb
+  %li
+    %a{:href=>url("/reviews")}=t(:Systematic_reviews)
+  %li
+    %a{:href=>url("/review/#{@revision[:id]}")}=@revision[:nombre]
+  %li{:class=>"active"}=t(:Administration)
+
+%ul
+  - @revision.etapas_avanzadas.each do |etapa|
+    %li
+      %a{:href=>"/review/#{@revision[:id]}/administration/#{etapa}"}
+        =t(Revision_Sistematica::ETAPAS_NOMBRE[etapa])

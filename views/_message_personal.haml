@@ -27,7 +27,7 @@
         var partes=id.split("-");
         var ms_id=partes[1];
         var user_id=partes[3];
-        $.post("/mensaje/"+ms_id+"/visto_por/"+user_id, function (data) {
+        $.post("/message/"+ms_id+"/seen_by/"+user_id, function (data) {
           $("#message_per-"+ms_id+"-no_visto_por-"+user_id).addClass("hidden");
           $("#message_per-"+ms_id+"-visto_por-"+user_id).removeClass("hidden");
         }).fail(function () {

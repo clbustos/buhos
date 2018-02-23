@@ -4,7 +4,7 @@ get '/admin/roles' do
   haml "admin/roles".to_sym
 end
 
-post '/admin/roles/actualizar' do
+post '/admin/roles/update' do
   error(403) unless permiso('editar_roles')
   roles=params['permisos']
   roles.each {|rol_i, permisos|

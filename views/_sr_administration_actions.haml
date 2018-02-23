@@ -4,17 +4,17 @@
   %p.info=t("stage_#{etapa}_complete_instruction")
 
 .btn-group.btn-group-sm
-  - if [:revision_titulo_resumen, :revision_referencias, :revision_texto_completo].include? etapa.to_sym
-    %a{:href=>url("/revision/#{revision[:id]}/stage/#{etapa}/generate_graphml"), :role=>"button", :class=>"btn btn-default "}=t(:Export_graphml_for_this_stage)
-    %a{:href=>url("/revision/#{revision[:id]}/stage/#{etapa}/generate_doi_list"), :role=>"button", :class=>"btn btn-default "}=t(:Export_doi_list_for_this_stage)
-    %a{:href=>url("/revision/#{revision[:id]}/stage/#{etapa}/generate_bibtex"), :role=>"button", :class=>"btn btn-default "}=t(:Export_bibtex_for_this_stage)
+  - if [:screening_title_abstract, :screening_references, :review_full_text].include? etapa.to_sym
+    %a{:href=>url("/review/#{revision[:id]}/stage/#{etapa}/generate_graphml"), :role=>"button", :class=>"btn btn-default "}=t(:Export_graphml_for_this_stage)
+    %a{:href=>url("/review/#{revision[:id]}/stage/#{etapa}/generate_doi_list"), :role=>"button", :class=>"btn btn-default "}=t(:Export_doi_list_for_this_stage)
+    %a{:href=>url("/review/#{revision[:id]}/stage/#{etapa}/generate_bibtex"), :role=>"button", :class=>"btn btn-default "}=t(:Export_bibtex_for_this_stage)
 
-  - if [:revision_titulo_resumen, :revision_referencias].include? etapa.to_sym and ars.cd_without_abstract(etapa).count>0
-    %a{:href=>url("/revision/#{revision[:id]}/stage/#{etapa}/complete_empty_abstract_manual"), :role=>"button", :class=>"btn btn-default "}=t(:Complete_abstract_manually)
+  - if [:screening_title_abstract, :screening_references].include? etapa.to_sym and ars.cd_without_abstract(etapa).count>0
+    %a{:href=>url("/review/#{revision[:id]}/stage/#{etapa}/complete_empty_abstract_manual"), :role=>"button", :class=>"btn btn-default "}=t(:Complete_abstract_manually)
     - if scopus_available?
-      %a{:href=>url("/revision/#{revision[:id]}/stage/#{etapa}/complete_empty_abstract_scopus"), :role=>"button", :class=>"btn btn-default "}=t(:Complete_abstract_using_Scopus)
+      %a{:href=>url("/review/#{revision[:id]}/stage/#{etapa}/complete_empty_abstract_scopus"), :role=>"button", :class=>"btn btn-default "}=t(:Complete_abstract_using_Scopus)
   - if ars.stage_complete? etapa
-    - if [:revision_titulo_resumen, :revision_referencias, :revision_texto_completo].include? etapa.to_sym
-      %a{:href=>url("/revision/#{revision[:id]}/etapa/#{etapa}/generar_referencias_crossref"), :role=>"button", :class=>"btn btn-default btn-sm"}=t(:Generate_Crossref_references)
+    - if [:screening_title_abstract, :screening_references, :review_full_text].include? etapa.to_sym
+      %a{:href=>url("/review/#{revision[:id]}/stage/#{etapa}/generar_referencias_crossref"), :role=>"button", :class=>"btn btn-default btn-sm"}=t(:Generate_Crossref_references)
     - if etapa==revision[:etapa].to_s
-      %a.btn.btn-primary{:href=>"/revision/#{revision[:id]}/advance_stage"}=t(:Advance_next_stage)
+      %a.btn.btn-primary{:href=>"/review/#{revision[:id]}/advance_stage"}=t(:Advance_next_stage)

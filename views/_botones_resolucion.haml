@@ -1,7 +1,0 @@
-- # parametros: rpc, cd_id, etapa, usuario_id, revision
-%div{:class=>"btn-group", :id=>"botones_resolucion_#{etapa}_#{cd_id}"}
-  - crits={'yes'=>{bs:'success', nombre:t(:Yes)}, 'no'=>{bs:'danger', nombre:t('No')}}
-  - crits.each_pair do |res_id, crit|
-    -cbc=class_bootstrap_contextual( rpc[cd_id]==res_id, 'btn',crit[:bs] )
-    -dc_dec= (rpc[cd_id]==res_id) ? '' : 'dc_resolucion'
-    %button{:class=>"btn btn-sm #{cbc} #{dc_dec}", "data-etapa"=>etapa_id, "data-pk"=>cd_id, "data-resolucion"=>res_id, "data-etapa"=>etapa , "data-user"=>usuario_id, :id=>"resolucion-#{cd_id}-#{res_id}", 'data-url'=>"/resolucion/revision/#{revision[:id]}/canonico_documento/#{cd_id}/etapa/#{etapa}/resolucion"}=crit[:nombre]

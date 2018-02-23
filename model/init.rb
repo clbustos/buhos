@@ -11,27 +11,36 @@ else
 
 end
 
+
+module Buhos
+  def self.connect_to_db(db_url)
+
+    $db.disconnect if !$db.nil? and $db.is_a? Sequel::Database
+    $db=Sequel.connect(db_url, :encoding => 'utf8',:reconnect=>true)
+    begin
+      $db.run("SET NAMES UTF8")
+    rescue Sequel::DatabaseError
+      # Not available
+    end
+    $log_sql = Logger.new(File.dirname(__FILE__)+'/../log/app_sql.log')
+    $db.loggers << $log_sql
+    $db
+  end
+end
+
 #$log.info(ENV['RACK_ENV'])
 #$log.info(ENV['DATABASE_URL'])
 
 Sequel::Model.plugin :force_encoding, 'UTF-8' if RUBY_VERSION>="1.9"
-# Chanta, ¿no?
+# Bad, isn't?
 
 if ENV['JAWSDB_URL'] and ENV['USE_JAWSDB']=='true'
   url_mysql= ENV['JAWSDB_URL'].sub("mysql:","mysql2:")
-  $db=Sequel.connect(url_mysql, :encoding => 'utf8',:reconnect=>true)
+  Buhos.connect_to_db(url_mysql)
 else
-  $db=Sequel.connect(ENV['DATABASE_URL'], :encoding => 'utf8',:reconnect=>true)
+  Buhos.connect_to_db(ENV['DATABASE_URL'])
 end
 
-begin
-  $db.run("SET NAMES UTF8")
-rescue Sequel::DatabaseError
-  # Es esperable
-end
-$log_sql = Logger.new(File.dirname(__FILE__)+'/../log/app_sql.log')
-
-$db.loggers << $log_sql
 
 
 

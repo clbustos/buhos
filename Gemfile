@@ -31,3 +31,7 @@ group :development do
   gem 'pkgr'
 end
 
+group :test do
+  gem 'simplecov', :require => false
+end
+

@@ -15,18 +15,18 @@ module ReportBuilder
         ac
       }
       @n_rec_database=@sources_identification["database_search"].to_i # records identified on databases
-      @n_rec_back_snow=sr.cd_id_por_etapa("revision_referencias").length # records obtained by snowballing
+      @n_rec_back_snow=sr.cd_id_por_etapa("screening_references").length # records obtained by snowballing
       @n_rec_other=@sources_identification.inject(0) {|ac,v| ac+v[1]} - @n_rec_database+ @n_rec_back_snow
-      @n_rec_non_duplicated=sr.cd_id_por_etapa("revision_referencias").length + sr.cd_id_por_etapa("revision_titulo_resumen").length
-      @n_rec_screened=@ars.cd_screened_id("revision_referencias").count+@ars.cd_screened_id("revision_titulo_resumen").count
-      @n_rec_rej_screen=@ars.cd_rejected_id("revision_referencias").count+@ars.cd_rejected_id("revision_titulo_resumen").count
-      @n_rec_full_assed=sr.cd_id_por_etapa("revision_texto_completo").count
-      @n_rec_full_rej=@ars.cd_rejected_id("revision_texto_completo").count
-      @n_rec_full_ace=@ars.cd_accepted_id("revision_texto_completo").count
+      @n_rec_non_duplicated=sr.cd_id_por_etapa("screening_references").length + sr.cd_id_por_etapa("screening_title_abstract").length
+      @n_rec_screened=@ars.cd_screened_id("screening_references").count+@ars.cd_screened_id("screening_title_abstract").count
+      @n_rec_rej_screen=@ars.cd_rejected_id("screening_references").count+@ars.cd_rejected_id("screening_title_abstract").count
+      @n_rec_full_assed=sr.cd_id_por_etapa("review_full_text").count
+      @n_rec_full_rej=@ars.cd_rejected_id("review_full_text").count
+      @n_rec_full_ace=@ars.cd_accepted_id("review_full_text").count
 
       # We need to recover the tag for exclusions
       #
-      reason_to_exclude=@ars.cd_rejected_id("revision_texto_completo").map {|v|
+      reason_to_exclude=@ars.cd_rejected_id("review_full_text").map {|v|
         AnalisisTag.tag_en_cd_rs(@sr, Canonico_Documento[v]).find_all {
             |vv|  vv.texto=~/^ex:/  and vv.mostrar
         }.map {|vv| vv.texto.gsub(/^ex:/,'')}.join("; ")

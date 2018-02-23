@@ -1,9 +1,0 @@
-%p
-  %strong=t(:Select_systematic_review_to_analyze)
-
-- @rss.each do |rs|
-  %h3=rs[:nombre]
-  %ul.list-group
-    - rs.etapas_avanzadas.each do |etapa|
-      %li.list-group-item
-        %a{:href=>"/revision/#{rs[:id]}/#{etapa}"}=t(Revision_Sistematica::ETAPAS_NOMBRE[etapa])

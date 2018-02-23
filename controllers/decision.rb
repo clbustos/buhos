@@ -1,4 +1,4 @@
-get '/decision/revision/:revision_id/usuario/:usuario_id/canonico_documento/:cd_id/etapa/:etapa' do |revision_id, usuario_id, cd_id, etapa|
+get '/decision/review/:revision_id/user/:usuario_id/canonical_document/:cd_id/stage/:etapa' do |revision_id, usuario_id, cd_id, etapa|
   revision=Revision_Sistematica[revision_id]
   cd=Canonico_Documento[cd_id]
   ars=AnalisisRevisionSistematica.new(revision)
@@ -12,7 +12,7 @@ get '/decision/revision/:revision_id/usuario/:usuario_id/canonico_documento/:cd_
 end
 
 
-put '/decision/revision/:revision_id/usuario/:usuario_id/canonico_documento/:cd_id/etapa/:etapa/comentario' do |revision_id, usuario_id, cd_id, etapa|
+put '/decision/review/:revision_id/user/:usuario_id/canonical_document/:cd_id/stage/:etapa/commentary' do |revision_id, usuario_id, cd_id, etapa|
   pk = params['pk']
   value = params['value']
   $db.transaction(:rollback => :reraise) do
@@ -29,7 +29,7 @@ put '/decision/revision/:revision_id/usuario/:usuario_id/canonico_documento/:cd_
 end
 
 
-post '/decision/revision/:revision_id/usuario/:usuario_id/canonico_documento/:cd_id/etapa/:etapa/decision' do |revision_id, usuario_id, cd_id, etapa|
+post '/decision/review/:revision_id/user/:usuario_id/canonical_document/:cd_id/stage/:etapa/decision' do |revision_id, usuario_id, cd_id, etapa|
 
   #cd_id=params['pk_id']
   decision=params['decision']

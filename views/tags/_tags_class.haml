@@ -1,0 +1,10 @@
+%ul.tags
+  -t_clase.tags.each do |tag|
+    %li.tag{:id=>"tag-#{tag.id}"}
+      %span.glyphicon.glyphicon-tag
+      =a_editable(tag.id,"tag_texto","/tag/edit",tag.texto,"")
+  %li.tag{:id=>"tag-nuevo"}
+    %span.glyphicon.glyphicon-tag
+    %input.nuevo_tag{:type=>"text", :size=>10, :id=>"clase-#{t_clase.id}-nuevotag", "data-pk"=>t_clase.id, "data-url"=>url("/tags/clase/#{t_clase.id}/add_tag")}
+    %button.btn.btn-default.btn-sm.boton_nuevo_tag{"data-pk"=>t_clase.id, "data-url"=>url("/tags/clase/#{t_clase.id}/add_tag")}
+      %span.glyphicon.glyphicon-plus

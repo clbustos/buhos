@@ -1,0 +1,84 @@
+.header=t_search_title(@revision[:nombre], @search.nombre,:References_on_search)
+
+%ul.breadcrumb
+  %li
+    %a{:href=>url("/review/#{@revision.id}")}=@revision.nombre
+  %li
+    %a{:href=>url("/review/#{@revision.id}/searchs")}=t(:Searchs)
+  %li
+    %a{:href=>url("/search/#{@search.id}")}=@search.nombre
+  %li.active
+    =t(:References_on_search)
+
+:javascript
+  $(document).ready(function() {
+    buscar_similares_canonico();
+  });
+
+
+%p=t_desc_value(:Count_references_total, @referencias.count)
+%p=t_desc_value(:Count_references_with_canonical, @referencias_con_canonico.count)
+%p=t_desc_value(:Count_references_with_doi_without_canonical, @referencias_solo_doi.count)
+
+
+.btn-group
+  %a{:href=>"/search/#{@search.id}/references/search_doi", :class=>"btn btn-default btn-sm", :role=>:button}=t(:Add_DOI_to_references)
+  %a{:style=>"display:none", :href=>"/search/#{@search.id}/references/generate_canonical_doi/#{@n_referencias}", :class=>"btn btn-default btn-sm", :role=>:button}=t(:Assign_canonical_to_references)
+%form{:method=>"get",:action=>url("/search/#{@search.id}/references"), :class=>"form-inline"}
+  .form-group
+    %label{:for=>"n_referencias"}=t(:Number_of_references_to_view)
+    %input{:type=>"input",:class=>"form-control",:id=>"n_referencias", :name=>"n_referencias",:value=>@n_referencias}
+    %input{:type=>:submit, :class=>"btn btn-primary",:value=>"Enviar"}
+
+%h4=t(:More_cited_references_with_canonical)
+
+.list-group
+- @rmc_canonico.each do |ref|
+  %div.list-group-item
+    %span{:class=>"badge"}=ref[:n_registros]
+    .list-group-item-text
+      ="#{ref[:author]} (#{ref[:year]}). #{ref[:title]}. <em>#{ref[:journal]},#{ref[:volume]}</em>, #{ref[:pages]} "
+      %button{:style=>"display:none",:class=>"btn btn-default btn-sm buscar_similares_canonico",:id=>"buscar_similar-#{ref[:id]}"}
+        %span{:class=>"glyphicon glyphicon-search"}
+        =t(:Search_references_like_this)
+      %a{:href=>url("/canonical_document/#{ref[:id]}")}
+        %button{:class=>"btn btn-success btn-sm"}
+          %span{:class=>"glyphicon glyphicon-king"}
+          =t(:Canonical)
+      %div{:id=>"buscar_similar-#{ref[:id]}-campo", :style=>"max-height:200px;overflow:auto"}
+
+%h4=t(:More_cited_references_without_canonical_with_DOI)
+
+
+.list-group
+- @rmc_sin_canonico_con_doi.each do |ref|
+  %div.list-group-item
+    -#$log.info(ref)
+    %span{:class=>"badge"}=ref[:n]
+    .list-group-item-text
+      =ref[:texto]
+      %a{:href=>url("/references/search_crossref_by_doi/#{CGI.escape(ref[:doi].gsub("/","***"))}")}
+        %button{:class=>"btn btn-default btn-sm"}
+          %span{:class=>"glyphicon glyphicon-search"}
+          =t(:Search_on_crossref)
+      %div{:id=>"buscar_similar-#{ref[:id]}-campo"}
+
+%p
+
+%h4=t(:More_cited_references_without_canonical_without_DOI)
+
+.list-group
+- @rmc_sin_canonico.each do |ref|
+  %div.list-group-item
+    %span{:class=>"badge"}=ref[:n]
+    .list-group-item-text
+      =ref[:texto]
+      %button{:style=>"display:none", :class=>"btn btn-default btn-sm buscar_similares_no_canonico",:id=>"buscar_similar-#{ref[:id]}"}
+        %span{:class=>"glyphicon glyphicon-search"}
+        =t(:Search_references_like_this)
+      %a{:href=>url("/reference/#{ref[:id]}/search_crossref")}
+        %button{:class=>"btn btn-default btn-sm"}
+          %span{:class=>"glyphicon glyphicon-search"}
+          =t(:Search_on_crossref)
+      %div{:id=>"buscar_similar-#{ref[:id]}-campo"}
+

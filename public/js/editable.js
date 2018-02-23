@@ -8,7 +8,7 @@ function buscar_similares_canonico() {
         var contenedor="#buscar_similar-"+id+"-campo"
         boton.prop("disabled",true);
         $(contenedor).html("<em>Espere, por favor...</em>");
-        $.get("/canonico_documento/"+id+"/buscar_similar",{"ajax":1}, function(html_div) {
+        $.get("/canonical_document/"+id+"/search_similar",{"ajax":1}, function(html_div) {
 
             //autor_id=resultado[0]
             //html_div=resultado[1]
@@ -73,7 +73,7 @@ function actualizar_resolucion(etapa) {
         boton.prop("disabled", true)
         $.post(url, {pk_id: pk_id, resolucion: resolucion, user_id: user_id}, function (data) {
             $("#botones_resolucion_"+etapa+"_"+ pk_id).html(data)
-            //actualizar_textarea_editable();
+            //update_textarea_editable();
             //setTimeout(function() {
             //},2000);
 
@@ -121,7 +121,7 @@ $(document).ready(function () {
 
     $('.tipo_editable').editable({
         type: 'text',
-        title: 'Ingrese nuevo tipo',
+        title: 'Add new type',
         ajaxOptions: {
             type: 'put'
         }

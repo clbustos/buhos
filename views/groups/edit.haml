@@ -1,0 +1,22 @@
+%h2=title(t(:Group_edit))
+%form{:method=>:post, :action=>url("/group/update")}
+  %input{:type=>"hidden", :name=>"grupo_id",:value=>@grupo[:id]}
+  .form-group
+    %label{:for=>"name"}=t(:Name)
+    %input.form-control{:type=>"text", :name=>"name",:value=>@grupo[:name]}
+  .form-group
+    %label{:for=>"description"}=t(:Description)
+    %input.form-control{:type=>"text", :name=>"description",:value=>@grupo[:description]}
+  .form-group
+    %label{:for=>"administrador_grupo"}=t(:Group_administrator)
+    %select.form-control{:name=>:administrador_grupo}
+      - Usuario.all.each do |u|
+        %option{:value=>u.id, :selected=>u.id==@grupo[:administrador_grupo]}=u.nombre
+  .form-group
+    %label{:for=>"usuarios"}=t(:Users)
+    - Usuario.all.each do |u|
+      %p
+        %input{:type=>"checkbox", :name=>"usuarios[#{u.id}]",
+        :checked=> @usuarios_id.include?(u.id)}
+        =u.nombre
+  %input{:type=>:submit, :value=>t(:Update)}

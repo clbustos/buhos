@@ -1,13 +1,12 @@
 require 'rspec'
-require 'sinatra'
+
 require_relative 'spec_helper'
 
 
-describe 'Sinatra APP login' do
+describe 'Buhos login' do
   before(:all) do
     RSpec.configure { |c| c.include RSpecMixin }
     configure_test_sqlite
-    require_relative("../app")
   end
 
   it "/login should show a valid page" do
@@ -33,10 +32,10 @@ describe 'Sinatra APP login' do
 
   it "Correct login redirect to main page and show dashboard" do
     post '/login' , :user=>'admin', :password=>'admin'
-    get '/'
+    get '/' , 'HTTP_ACCEPT_LANGUAGE'=>'es'
     expect(last_response).to be_ok
     expect(last_response.body).to_not be_empty
-    expect(last_response.body).to include ("Dashboard")
+    expect(last_response.body).to include ("Tablero")
   end
 
 

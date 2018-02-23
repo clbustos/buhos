@@ -11,9 +11,9 @@ module Sinatra
       def presentar_usuario
         ##$log.info(session)
         if(!session['user'].nil?)
-          partial(:usuario)
+          partial(:user)
         else
-          partial(:visitante)
+          partial(:guest)
         end
       end
 

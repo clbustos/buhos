@@ -1,0 +1,33 @@
+%h2=t(:Systematic_review_messages, sr_name:@revision.nombre)
+
+%ul.breadcrumb
+  %li
+    %a{:href=>url("/review/#{@revision.id}")}=@revision.nombre
+  %li{:class=>:active}=t(:Messages)
+
+
+.panel.panel-default
+  .panel-heading
+    =t(:New_message)
+  .panel-body
+    %form{:method=>"post",:action=>url("/review/#{@revision.id}/message/new")}
+      .form-group
+        %label{:for=>"nombre"}=t(:Author)
+        %p=@usuario[:nombre]
+        %input{:type=>"hidden",:name=>:user_id, :value=>@usuario[:id]}
+      .form-group
+        %label{:for=>"asunto"}=t(:Subject)
+        %input{:class=>"form-control",:type=>"text", :name=>"asunto"}
+      .form-group
+        %label{:for=>"texto"}=t(:Text)
+        %textarea{:class=>"form-control",:name=>'texto'}
+      %input{:type=>:submit, :value=>t(:Send_message_to_group), :class=>"btn btn-default"}
+
+%h3=t(:Messages)
+- if @mensajes_rs.count==0
+  %p
+    %em=t(:No_messages_on_this_systematic_review)
+- else
+  .list-group
+    - @mensajes_rs.each do |mensaje_rs|
+      =partial(:mensaje_rs, :locals=>{:mensaje_rs=>mensaje_rs,:usuario=>@usuario})

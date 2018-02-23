@@ -1,6 +1,11 @@
 require 'rspec'
+require_relative 'spec_helper'
 require_relative '../lib/abstract_presentation'
-describe 'Abstract presentation' do
+
+
+
+
+describe 'AbstractPresentation class' do
   it 'could be initialized with' do
     @ap=AbstractPresentation.new
     expect(@ap.html_with_keywords).to eq ""

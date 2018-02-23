@@ -68,7 +68,7 @@ HEREDOC
 HEREDOC
       end
       def cargador_archivo(rs_id,cd_id)
-        "<form method='post' action='/revision/archivos/agregar' enctype='multipart/form-data'>
+        "<form method='post' action='/review/files/add' enctype='multipart/form-data'>
   <input type='hidden' name='revision_sistematica_id' value='#{rs_id}' />
   <input type='hidden' name='canonico_documento_id' value='#{cd_id}' />
   <div class='form-group'>
@@ -117,7 +117,7 @@ HEREDOC
       end
 <<HEREDOC
 <div class='btn-group btn-group-sm' id='botones_archivo_#{archivo[:id]}'>
-  <a class='btn btn-default' href='/archivo/#{archivo[:id]}/descargar' role='button'>
+  <a class='btn btn-default' href='/file/#{archivo[:id]}/download' role='button'>
     <span class='glyphicon glyphicon-download'>#{I18n.t(:Download)}</span>
   </a>
 <button class='btn btn-default btn-sm' data-target='#modalArchivos' data-toggle='modal' type='button' data-name='#{archivo[:archivo_nombre]}' data-pk='#{archivo[:id]}' data-paginas='#{archivo[:paginas]}'>

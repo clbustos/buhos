@@ -29,7 +29,7 @@
       - adu=udi.adu_for_sr(sr,etapa_visualizar)
       %div{:id=>"sr-#{sr.id}-#{etapa_visualizar}", :class=>"tab-pane #{etapa_visualizar==sr[:etapa].to_sym ? 'active' : ''}"}
         %p
-        - if etapa_visualizar==:busqueda
+        - if etapa_visualizar==:search
           =partial(:dashboard_user_sr_search, :locals=>{es_administrador:es_administrador, sr:sr, etapa:etapa_visualizar, user:user})
         - elsif etapa_visualizar==:report
           =partial(:dashboard_user_sr_report, :locals=>{es_administrador:es_administrador, sr:sr, etapa:etapa_visualizar, user:user})

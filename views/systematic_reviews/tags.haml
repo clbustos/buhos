@@ -1,0 +1,92 @@
+.heading
+  %h2=title(t(:Systematic_review_tags, sr_name:@revision[:nombre]))
+
+
+:javascript
+  crear_tag=function(url,val,clase_pk) {
+    if(String(val).trim()==="") {
+      alert("El tag no tiene texto")
+    } else {
+      $.post(url, {value: val}, function (data) {
+        $("#tags-clase-"+clase_pk).html(data);
+        actualizar_tags_clase();
+      }).fail(function () {
+            alert("#{t(:tag_cant_be_created)}")
+        })
+      }
+  };
+
+  actualizar_tags_clase=function() {
+      #{@select_etapa.javascript}
+      #{@select_tipo.javascript}
+
+      $(".boton_nuevo_tag").click(function() {
+        var url=$(this).attr("data-url");
+        var clase_pk=$(this).attr("data-pk");
+
+        var val=$("#clase-"+clase_pk+"-nuevotag").val().trim();
+        crear_tag(url,val, clase_pk);
+      });
+
+      $(".nuevo_tag").on('keypress', function(e) {
+        if(13==e.which && String($(this).val()).trim()!=="") {
+          var url=$(this).attr("data-url");
+          var clase_pk=$(this).attr("data-pk");
+          var val=$(this).val().trim();
+          crear_tag(url,val,clase_pk);
+        }
+      });
+  };
+
+  $(document).ready(function() {
+    actualizar_tags_clase();
+    actualizar_nombre_editable();
+  });
+
+
+%ul.breadcrumb
+  %li
+    %a{:href=>url("/review/#{@revision.id}")}=@revision.nombre
+  %li{:class=>:active}=t(:Tags)
+
+
+%h3=t(:Tag_classes)
+-@revision.t_clases.each do |t_clase|
+  .panel.panel-default
+    .panel-heading
+      =a_editable(t_clase.id, "t_clase", "/tags/classes/edit_field/nombre", t_clase[:nombre],"")
+    .panel-body
+      .container
+        .row
+          .col-md-3
+            %p
+              =t("#{t(:Stage)}:")
+              =@select_etapa.html(t_clase.id, t_clase.etapa)
+            %p
+              =t("#{t(:Type)}:")
+              =@select_tipo.html(t_clase.id, t_clase.tipo)
+          .col-md-9.col-lg-8
+            %div{:id=>"tags-clase-#{t_clase.id}"}
+              =partial("tags/tags_class", :locals=>{t_clase: t_clase})
+
+.panel.panel-default
+  .panel-heading
+    =t(:New_class)
+  .panel-body
+    %form{:method=>"post",:action=>url("/tags/classes/new")}
+      %input{:type=>:hidden, :name=>:revision_id, :value=>@revision.id}
+      .form-group
+        %label{:for=>"nombre"}=t(:Name)
+        %input{:class=>"form-control",:type=>"text", :name=>"nombre"}
+      .form-group
+        %label{:for=>"etapa"}=t(:Stage)
+        %select{:name=>"etapa", :class=>"form-control"}
+          - @etapas_lista.each do |etapa_id, etapa_nombre|
+            %option{:value=>etapa_id}=etapa_nombre
+      .form-group
+        %label{:for=>"tipo"}=t(:Type)
+        %select{:name=>"tipo", :class=>"form-control"}
+          - @tipos_lista.each do |tipo_id, tipo_nombre|
+            %option{:value=>tipo_id}=tipo_nombre
+      %input{:type=>:submit, :value=>"Agregar clase nueva", :class=>"btn btn-default"}
+=partial(:estadisticas_tags, :locals=>{revision:@revision})

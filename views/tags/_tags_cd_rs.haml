@@ -12,9 +12,9 @@
     var tagsQuery=new Bloodhound({
       datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
       queryTokenizer: Bloodhound.tokenizers.whitespace,
-      prefetch: '/tags/basico_10.json',
+      prefetch: '/tags/basic_10.json',
       remote: {
-          url: "/tags/revision_sistematica/#{revision.id}/query_json/%QUERY",
+          url: "/tags/systematic_review/#{revision.id}/query_json/%QUERY",
           wildcard: '%QUERY'
       }
       });
@@ -35,8 +35,8 @@
 
     %li.tag.nuevo_tag{:id=>"tag-#{cd.id}-rs-#{revision.id}-nuevo"}
       %span.glyphicon.glyphicon-tag
-      %input.nuevo_tag_cd_rs{:type=>"text", :class=>"texto", :size=>15,:id=>"tag-cd-#{cd.id}-rs-#{revision.id}-nuevotag", "cd-pk"=>cd.id, "rs-pk"=>revision.id, "data-url"=>url("/tags/cd/#{cd.id}/rs/#{revision.id}/agregar_tag"), :placeholder=>"Nuevo tag"}
-      %button.btn.btn-default.btn-xs.boton_nuevo_tag_cd_rs{"cd-pk"=>cd.id, "rs-pk"=>revision.id, "data-url"=>url("/tags/cd/#{cd.id}/rs/#{revision.id}/agregar_tag"), :id=>"boton-tag-cd-#{cd.id}-rs-#{revision.id}-nuevotag"}
+      %input.nuevo_tag_cd_rs{:type=>"text", :class=>"texto", :size=>15,:id=>"tag-cd-#{cd.id}-rs-#{revision.id}-nuevotag", "cd-pk"=>cd.id, "rs-pk"=>revision.id, "data-url"=>url("/tags/cd/#{cd.id}/rs/#{revision.id}/add_tag"), :placeholder=>"Nuevo tag"}
+      %button.btn.btn-default.btn-xs.boton_nuevo_tag_cd_rs{"cd-pk"=>cd.id, "rs-pk"=>revision.id, "data-url"=>url("/tags/cd/#{cd.id}/rs/#{revision.id}/add_tag"), :id=>"boton-tag-cd-#{cd.id}-rs-#{revision.id}-nuevotag"}
         %span.glyphicon.glyphicon-plus
     %botton.btn.btn-default.mostrar_pred{:id=>"tags-cd-#{cd.id}-rs-#{revision.id}_mostrar_pred"}
       %span.glyphicon.glyphicon-eye-open

@@ -20,10 +20,11 @@ class Analysis_SR_Stage
   end
   def stage_complete?
     #$log.info(stage)
-    if @stage==:busqueda
+    if @stage==:search
       bds=@sr.busquedas_dataset
       bds.where(:valid=>nil).count==0 and bds.exclude(:valid=>nil).count>0
-    elsif [:revision_titulo_resumen,:revision_referencias,:revision_texto_completo].include? @stage
+
+    elsif [:screening_title_abstract,:screening_references,:review_full_text].include? @stage
       res=resolutions_by_cd
       res.all? {|v| v[1]=='yes' or v[1]=='no'}
     else

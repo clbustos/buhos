@@ -1,0 +1,57 @@
+.header=t_search_title(@revision[:nombre], @search.nombre,:Edit_search)
+
+
+%script{:type=>'text/javascript', :src=>url('/jquery-ui/jquery-ui.min.js')}
+%link{:href=>url('/jquery-ui/jquery-ui.css') , :media => 'screen', :rel=>'stylesheet', :type=>'text/css'}
+%link{:href=>url('/jquery-ui/jquery-ui.theme.css') , :media => 'screen', :rel=>'stylesheet', :type=>'text/css'}
+
+
+:javascript
+  $(document).ready(function () {
+    $( "#form-fecha" ).datepicker(
+      $.datepicker.regional[ "#{session['language']}" ]
+    )
+
+    $( "#form-fecha" ).datepicker( "option", "dateFormat", "yy-mm-dd" );
+
+    $( "#form-fecha" ).datepicker("setDate",new Date(#{@search[:fecha].year},#{@search[:fecha].month-1},#{@search[:fecha].day},0,0,0,0))
+    });
+
+%ul.breadcrumb
+  %li
+    %a{:href=>url("/review/#{@revision.id}")}=@revision.nombre
+  %li
+    %a{:href=>url("/review/#{@revision.id}/searchs")}=t(:Searchs)
+  %li
+    %a{:href=>url("/search/#{@search.id}")}=@search.nombre
+  %li.active
+    =t(:Edit)
+
+%form{:method=>:post, :action=>url("/search/update"), :enctype=>'multipart/form-data'}
+  %input{:type=>"hidden", :name=>"revision_sistematica_id",:value=>@revision[:id]}
+  %input{:type=>"hidden", :name=>"busqueda_id",:value=>@search[:id]}
+  .form-group
+    %label{:for=>"source"}=t("search.Source")
+    %select.form-control{:id=>"source",:name=>"source"}
+      -Busqueda::SOURCES.each do |source|
+        %option{:value=>source, :selected=>source.to_s==@search[:source]}=t(Busqueda.get_source_name(source))
+  .form-group
+    %label{:for=>"base_bibliografica_id"}=t(:Bibliographic_database)
+    %select.form-control{:id=>:base_bibliografica_id, :name=>:base_bibliografica_id}
+      -Base_Bibliografica.all.each do |bb|
+        %option{:value=>bb.id, :selected=>@search[:base_bibliografica_id]==bb.id}= bb.nombre
+  .form-group
+    %label=t(:Date)
+    %input{:class=>"form-control",:type=>"text", :name=>"fecha",:value=>@search[:fecha], :id=>"form-fecha"}
+  .form-group
+    %label=t(:Search_criteria)
+    %p.instructions=t("search.Search_criteria_instructions")
+    %textarea{:class=>"form-control",:name=>"criterio_busqueda"}=@search[:criterio_busqueda]
+  .form-group
+    %label=t(:Description)
+    %input{:class=>"form-control",:type=>"text", :name=>"descripcion",:value=>@search[:descripcion]}
+  .form-group
+    %label=t(:File)
+    %p.instructions=t("search.Search_file_instructions")
+    %input{:type=>'file', :name=>'archivo'}
+  %input.btn.btn-primary{:type=>:submit,:value=>t('Send')}

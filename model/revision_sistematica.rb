@@ -10,18 +10,18 @@ class Revision_Sistematica < Sequel::Model
 
 
 
-  ETAPAS=[:busqueda,
-          :revision_titulo_resumen,
-          :revision_referencias,
-          :revision_texto_completo,
+  ETAPAS=[:search,
+          :screening_title_abstract,
+          :screening_references,
+          :review_full_text,
           #:analisis,
           :report
   ]
 
-  ETAPAS_NOMBRE={:busqueda => "stage.search",
-                 :revision_titulo_resumen => "stage.review_title_and_abstract",
-                 :revision_referencias => "stage.review_references",
-                 :revision_texto_completo=> "stage.review_full_text",
+  ETAPAS_NOMBRE={:search=> "stage.search",
+                 :screening_title_abstract=> "stage.screening_title_abstract",
+                 :screening_references => "stage.screening_references",
+                 :review_full_text=> "stage.review_full_text",
                  #:analisis => "stage.analysis",
                  :report=> "stage.report"}
 
@@ -156,7 +156,7 @@ AND  #{cd_query} GROUP BY tags.id ORDER BY n_documentos DESC ,p_yes DESC,tags.te
 
 
   def referencias_entre_canonicos_tn
-    "referencias_entre_cn_#{self[:id]}"
+    "sr_#{self[:id]}_references_between_cd"
 
   end
 
@@ -173,7 +173,7 @@ AND  #{cd_query} GROUP BY tags.id ORDER BY n_documentos DESC ,p_yes DESC,tags.te
   end
 
   def cuenta_referencias_entre_canonicos_tn
-    "referencias_entre_cn_n_#{self[:id]}"
+    "sr_#{self[:id]}_references_between_cd_n"
   end
 
 
@@ -186,41 +186,41 @@ AND  #{cd_query} GROUP BY tags.id ORDER BY n_documentos DESC ,p_yes DESC,tags.te
   end
 
   def resoluciones_titulo_resumen_tn
-    "resoluciones_rs_#{self[:id]}_rtr"
+    "sr_#{self[:id]}_resolutions_sta"
   end
   def resoluciones_titulo_resumen
     view_name=resoluciones_titulo_resumen_tn
     if !$db.table_exists?(view_name)
-      $db.run("CREATE VIEW #{view_name} AS SELECT * FROM resoluciones  where revision_sistematica_id=#{self[:id]} and etapa='revision_titulo_resumen'")
+      $db.run("CREATE VIEW #{view_name} AS SELECT * FROM resoluciones  where revision_sistematica_id=#{self[:id]} and etapa='screening_title_abstract'")
     end
     $db[view_name.to_sym]
   end
 
   def resoluciones_referencias_tn
-    "resoluciones_rs_#{self[:id]}_referencias"
+    "sr_#{self[:id]}_resolutions_references"
   end
   def resoluciones_referencias
     view_name=resoluciones_referencias_tn
     if !$db.table_exists?(view_name)
-      $db.run("CREATE VIEW #{view_name} AS SELECT * FROM resoluciones  where revision_sistematica_id=#{self[:id]} and etapa='revision_referencias'")
+      $db.run("CREATE VIEW #{view_name} AS SELECT * FROM resoluciones  where revision_sistematica_id=#{self[:id]} and etapa='screening_references'")
     end
     $db[view_name.to_sym]
   end
 
   def resoluciones_texto_completo_tn
-    "resoluciones_rs_#{self[:id]}_texto_completo"
+    "sr_#{self[:id]}_resolutions_full_text"
   end
   def resoluciones_texto_completo
     view_name=resoluciones_texto_completo_tn
     if !$db.table_exists?(view_name)
-      $db.run("CREATE VIEW #{view_name} AS SELECT * FROM resoluciones  where revision_sistematica_id=#{self[:id]} and etapa='revision_texto_completo'")
+      $db.run("CREATE VIEW #{view_name} AS SELECT * FROM resoluciones  where revision_sistematica_id=#{self[:id]} and etapa='review_full_text'")
     end
     $db[view_name.to_sym]
   end
 
 
   def cuenta_referencias_rtr_tn
-    "referencias_entre_cn_rtr_n_#{self[:id]}"
+    "sr_#{self[:id]}_references_between_cd_rtr_n"
   end
   # Cuenta el número de referencias hechas a cada referencia para la segunda etapa
   # Se eliminan como destinos aquellos documentos que ya fueron parte de la resolución de la primera etapa
@@ -229,7 +229,7 @@ AND  #{cd_query} GROUP BY tags.id ORDER BY n_documentos DESC ,p_yes DESC,tags.te
     resoluciones_titulo_resumen # Verifico que exista la tabla de resoluciones
     view_name=cuenta_referencias_rtr_tn
     if !$db.table_exists?(view_name)
-      $db.run("CREATE VIEW #{view_name} AS SELECT cd_destino , COUNT(DISTINCT(cd_origen)) as n_referencias_rtr  FROM resoluciones r INNER JOIN #{referencias_entre_canonicos_tn} rec ON r.canonico_documento_id=rec.cd_origen LEFT JOIN #{resoluciones_titulo_resumen_tn} as r2 ON r2.canonico_documento_id=rec.cd_destino WHERE r.revision_sistematica_id=#{self[:id]} and r.etapa='revision_titulo_resumen' and r.resolucion='yes' and r2.canonico_documento_id IS NULL GROUP BY cd_destino")
+      $db.run("CREATE VIEW #{view_name} AS SELECT cd_destino , COUNT(DISTINCT(cd_origen)) as n_referencias_rtr  FROM resoluciones r INNER JOIN #{referencias_entre_canonicos_tn} rec ON r.canonico_documento_id=rec.cd_origen LEFT JOIN #{resoluciones_titulo_resumen_tn} as r2 ON r2.canonico_documento_id=rec.cd_destino WHERE r.revision_sistematica_id=#{self[:id]} and r.etapa='screening_title_abstract' and r.resolucion='yes' and r2.canonico_documento_id IS NULL GROUP BY cd_destino")
     end
     $db[view_name.to_sym]
 
@@ -237,14 +237,14 @@ AND  #{cd_query} GROUP BY tags.id ORDER BY n_documentos DESC ,p_yes DESC,tags.te
   # Entrega la lista de canónicos documentos apropiados para cada etapa
   def cd_id_por_etapa(etapa)
     case etapa.to_s
-      when 'busqueda'
+      when 'search'
         cd_registro_id # TODO: Check this
-      when 'revision_titulo_resumen'
+      when 'screening_title_abstract'
         cd_registro_id
-      when 'revision_referencias'
+      when 'screening_references'
         cuenta_referencias_rtr.where( Sequel.lit("n_referencias_rtr >= #{self[:n_min_rr_rtr]}") ).map(:cd_destino)
         # Solo dejamos aquellos que tengan más de una referencias
-      when 'revision_texto_completo'
+      when 'review_full_text'
         rtr=resoluciones_titulo_resumen.where(:resolucion=>'yes').select_map(:canonico_documento_id)
         rr=resoluciones_referencias.where(:resolucion=>'yes').select_map(:canonico_documento_id)
         (rtr+rr).uniq

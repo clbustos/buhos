@@ -33,7 +33,7 @@ module AnalisisTag
     end
     def boton_positivo_html(ru)
       if ru.nil? or ru[:decision]=='no'
-        url_t="/tags/cd_start/#{@cd_start_id}/cd_end/#{@cd_end_id}/rs/#{@rs_id}/aprobar_tag"
+        url_t="/tags/cd_start/#{@cd_start_id}/cd_end/#{@cd_end_id}/rs/#{@rs_id}/aprove_tag"
         "<button class='btn btn-default boton_accion_tag_cd_rs_ref' cd_start-pk='#{@cd_start_id}' cd_end-pk='#{@cd_end_id}' rs-pk='#{@rs_id}' tag-pk='#{@tag_id}' data-url='#{url_t}'><span class='glyphicon glyphicon-plus'></span> <span class='badge '>#{positivos}</span></button>"
       else
         "<button class='btn btn-success'><span class='glyphicon glyphicon-plus'></span> <span class='badge '>#{positivos}</span></button>"
@@ -41,7 +41,7 @@ module AnalisisTag
     end
     def boton_negativo_html(ru)
       if ru.nil? or ru[:decision]=='yes'
-        url_t="/tags/cd_start/#{@cd_start_id}/cd_end/#{@cd_end_id}/rs/#{@rs_id}/rechazar_tag"
+        url_t="/tags/cd_start/#{@cd_start_id}/cd_end/#{@cd_end_id}/rs/#{@rs_id}/reject_tag"
         "<button class='btn btn-default boton_accion_tag_cd_rs_ref' cd_start-pk='#{@cd_start_id}' cd_end-pk='#{@cd_end_id}' rs-pk='#{@rs_id}' tag-pk='#{@tag_id}' data-url='#{url_t}'><span class='glyphicon glyphicon-minus'></span> <span class='badge '>#{negativos}</span></button>"
       else
         "<button class='btn btn-danger'><span class='glyphicon glyphicon-minus'></span> <span class='badge '>#{negativos}</span></button>"

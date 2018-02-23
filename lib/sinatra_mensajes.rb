@@ -5,7 +5,7 @@ module Sinatra
         session['mensajes']||=[]
         session['mensajes'].push([mensaje,tipo])
       end
-      def agregar_resultado(result)
+      def add_result(result)
         result.events.each do |event|
           agregar_mensaje(event[:message],event[:type])
         end

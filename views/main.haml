@@ -2,11 +2,11 @@
 %div.main-actions
   .btn-group.btn-group-sm{:role=>:group}
     - if permiso("revisiones_crear_propia")
-      %a.btn.btn-default{:href=>url("/revision/nuevo")}
+      %a.btn.btn-default{:href=>url("/review/new")}
         %span{:class=>"glyphicon glyphicon-plus"}
         =t(:Systematic_review_new)
     - if permiso("grupos_crear")
-      %a.btn.btn-default{:href=>url("/grupo/nuevo")}
+      %a.btn.btn-default{:href=>url("/group/new")}
         %span{:class=>"glyphicon glyphicon-plus"}
         =t(:Group_new)
     - if permiso("usuarios_crear")

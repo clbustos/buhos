@@ -9,7 +9,7 @@ var ModalArchivo ={
     },
     actualizar_datos_modal:function() {
 
-        $('#modalArchivos').find('.modal-body').html("<iframe src = '/ViewerJS/#../archivo/"+this.archivo_mostrado+"/descargar' width='800' height='600' allowfullscreen webkitallowfullscreen></iframe>")
+        $('#modalArchivos').find('.modal-body').html("<iframe src = '/ViewerJS/#../file/"+this.archivo_mostrado+"/download' width='800' height='600' allowfullscreen webkitallowfullscreen></iframe>")
 
 
 
@@ -30,7 +30,7 @@ $(document).ready(function() {
     $(".archivo_ocultar_cd").click(function() {
         var arc_id=$(this).data("aid");
         var cd_id=$(this).data("cdid");
-        $.post("/archivo/ocultar_cd", {archivo_id:arc_id, cd_id:cd_id} ,function () {
+        $.post("/file/hide_cd", {archivo_id:arc_id, cd_id:cd_id} ,function () {
             $("#botones_archivo_"+arc_id).html("<span class='glyphicon glyphicon-eye-close'>Ocultado</span>")
         }).fail(function() {
             alert("No pude ocultar el canonico");
@@ -43,7 +43,7 @@ $(document).ready(function() {
     $(".archivo_eliminar").click(function () {
         var arc_id = $(this).data("aid");
 
-        $.post("/archivo/eliminar", {archivo_id: arc_id}, function () {
+        $.post("/file/delete", {archivo_id: arc_id}, function () {
             $("#botones_archivo_" + arc_id).html("<span class='glyphicon glyphicon-remove'>Eliminado</span>")
         }).fail(function () {
             alert("No pude eliminar el archivo");
@@ -55,7 +55,7 @@ $(document).ready(function() {
     $(".archivo_desasignar_cd").click(function() {
         var arc_id=$(this).data("aid");
         var cd_id=$(this).data("cdid");
-        $.post("/archivo/desasignar_cd", {archivo_id:arc_id, cd_id:cd_id} ,function () {
+        $.post("/file/unassign_cd", {archivo_id:arc_id, cd_id:cd_id} ,function () {
             $("#botones_archivo_"+arc_id).html("<span class='glyphicon glyphicon-remove'>Desasignado a CD</span>")
         }).fail(function() {
             alert("No pude ocultar el canonico");
@@ -67,7 +67,7 @@ $(document).ready(function() {
     $(".archivo_desasignar_rs").click(function() {
         var arc_id=$(this).data("aid");
         var rs_id=$(this).data("rsid");
-        $.post("/archivo/desasignar_rs", {archivo_id:arc_id, rs_id:rs_id} ,function () {
+        $.post("/file/unassign_sr", {archivo_id:arc_id, rs_id:rs_id} ,function () {
             $("#botones_archivo_"+arc_id).html("<span class='glyphicon glyphicon-remove'>Desasignado a RS</span>")
         }).fail(function() {
             alert("No pude remover de RS");
@@ -81,7 +81,7 @@ $(document).ready(function() {
         var arc_id=$(this).attr("archivo-pk");
         var cd_id=$("#select_canonico_"+arc_id).val();
 
-        $.post("/archivo/asignar_canonico", {archivo_id:arc_id, cd_id:cd_id} ,function (data) {
+        $.post("/file/assign_to_canonical", {archivo_id:arc_id, cd_id:cd_id} ,function (data) {
             $("#nombre_canonico-"+arc_id).html(data)
         }).fail(function() {
             alert("No pude actualizar el canonico");

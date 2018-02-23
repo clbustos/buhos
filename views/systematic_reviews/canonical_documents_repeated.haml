@@ -1,0 +1,48 @@
+.heading
+  %h2=t(:Systematic_review_repeated_documents, sr_name:@revision.nombre)
+:javascript
+  $(document).ready(function() {
+    $(".unir_cd_por_doi").click(function() {
+
+      var doi=$(this).attr("data-doi");
+      var pk_ids=$(this).attr("data-pk");
+      var div_i=$(this).attr("data-i");
+      var boton=$(this);
+      boton.prop('disabled',true);
+
+      //console.log(doi);
+      //console.log(pk_ids);
+      $.post("#{url('/canonical_document/merge')}",{doi:doi, pk_ids:pk_ids},function() {
+        $("#doi-"+div_i).hide()
+      }).fail(function() {
+            boton.prop('disabled',false)
+        alert("#{t(:Union_doesnt_work)}")
+      })
+    });
+  });
+%ul.breadcrumb
+  %li
+    %a{:href=>url("/review/#{@revision.id}")}=@revision.nombre
+  %li
+    %a{:href=>url("/review/#{@revision.id}/canonical_documents")}=t(:Canonical_documents)
+  %li
+    %a{:href=>url("/review/#{@revision.id}/repeated_canonical_documents")}=t(:Duplicated_documents)
+
+%p=t_desc_value(:count_canonical_documents, @cd_total.to_i)
+%p=t_desc_value(:count_duplicated_DOI,@cd_rep_doi.length)
+
+%h3=t(:Canonical_documents_duplicated_by_DOI)
+
+- if @cd_por_doi.length>0
+  - i=0
+  - @cd_por_doi.each_pair do |doi, cds_id|
+    - i=i+1
+    %div{:class=>"panel panel-default", :id=>"doi-#{i}"}
+      .panel-heading="DOI: #{doi}"
+      .panel-body
+        %button{:class=>"btn btn-default unir_cd_por_doi", "data-i"=>i, "data-doi"=>doi, "data-pk"=>cds_id.join(",") }Unir
+      %ul.list-group
+        - cds_id.each do |cd_id|
+          %li.list-group-item=@cd_hash[cd_id].ref_apa_6
+- else
+  %em=t(:No_duplicated_DOI)

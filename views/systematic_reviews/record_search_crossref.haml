@@ -1,0 +1,14 @@
+%h2=t(:Record_crossref_search)
+
+%p
+  =@reg.ref_apa_6
+
+
+.btn-group
+  %a.btn.btn-default{:href=>"javascript:window.history.back();"}
+    =t(:Redirect_back)
+%br
+
+%p.instructions=t(:Record_crossref_search_instructions)
+
+=partial(:respuesta_crossref,:locals=>{:respuesta=>@respuesta,:base_url=>"/record/#{@reg.id}/assign_doi/", :volver_url=>"/record/#{@reg.id}"})

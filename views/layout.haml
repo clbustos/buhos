@@ -41,13 +41,13 @@
           %ul{:class=>'nav navbar-nav'}
             -if permiso('ingreso')
               %li{:class=>''}
-                %a{:class=>'nav-link', :href=>'/revisiones'}=t(:Systematic_reviews)
+                %a{:class=>'nav-link', :href=>'/reviews'}=t(:Systematic_reviews)
             -if false and permiso('canonico')
               %li{:class=>''}
                 %a{:class=>'nav-link', :href=>'/canonicos'}=t(:Canonicals)
             -if false and permiso('grupos')
               %li{:class=>''}
-                %a{:class=>'nav-link', :href=>'/grupos'}=t(:Users_and_groups)
+                %a{:class=>'nav-link', :href=>'/groups'}=t(:Users_and_groups)
             -if false and permiso('estadisticas')
               %li{:class=>''}
                 %a{:class=>'nav-link', :href=>'/estadisticas'}=t(:Use_Statistics)
@@ -58,9 +58,9 @@
                   %span{:class=>:caret}>
                 %ul.dropdown-menu
                   %li<
-                    %a{:class=>'dropdown-item', :href=>url('/admin/usuarios')}=t(:Users)
+                    %a{:class=>'dropdown-item', :href=>url('/admin/users')}=t(:Users)
                   %li<
-                    %a{:class=>'dropdown-item', :href=>url('/grupos')}=t(:Groups)
+                    %a{:class=>'dropdown-item', :href=>url('/admin/groups')}=t(:Groups)
                   %li<
                     %a{:class=>'dropdown-item', :href=>url('/admin/roles')}=t(:Roles)
           %div{:class=>'nav navbar-nav navbar-right'}

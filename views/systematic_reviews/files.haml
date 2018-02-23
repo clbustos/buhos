@@ -1,0 +1,57 @@
+.header=t_systematic_review_title(@revision[:nombre], :File_batch_management)
+=@modal_archivos.javascript_header
+/ Modal
+=@modal_archivos.html_modal
+
+
+%ul.breadcrumb
+  %li
+    %a{:href=>url("/review/#{@revision.id}")}=@revision.nombre
+  %li{:class=>:active}=t(:Files)
+
+
+%h3=t(:Upload_files)
+
+%form{:method=>:post, :action=>url("/review/files/add"), :enctype=>'multipart/form-data'}
+  %input{:type=>"hidden", :name=>"revision_sistematica_id",:value=>@revision[:id]}
+  .form-group
+    %label=t(:File)
+    %input{:type=>'file', :name=>'archivos[]', :multiple=>"multiple"}
+  %input{:type=>:submit, :class=>"btn btn-primary",:value=>"Enviar"}
+
+
+%h3=t(:Files)
+%p
+  %strong="#{t(:Count_total_files)}:"
+  =@archivos_rs.count
+
+
+%div{:class=>"btn-group btn-group-sm", :role=>'group'}
+  %a{:role=>:button, :href=>url("/files/rs/#{@revision.id}/assign_to_canonical_documents"), :class=>"btn btn-default"}
+    %span{:class=>"glyphicon glyphicon-king"}
+    =t(:Assign_automaticly_to_canonical_documents)
+
+%table.reporte
+  %thead
+    %th=t(:Name)
+    %th=t(:Type)
+    %th=t(:Canonical_document)
+    %th=t(:Actions)
+  %tbody
+    -@archivos_rs.each do |archivo|
+      %tr
+        %td{:style=>'max-width:300px;overflow:hidden;text-overflow:ellipsis;'}
+          =a_editable(archivo[:id], 'archivo_nombre', "/file/edit_field/archivo_nombre", archivo[:archivo_nombre])
+        %td
+          =a_editable(archivo[:id], 'archivo_tipo', "/file/edit_field/archivo_tipo", archivo[:archivo_tipo])
+        %td{:id=>"nombre_canonico-#{archivo[:id]}"}
+          -if archivo[:canonico_documento_id]
+            %a{:href=>"/canonical_document/#{archivo[:canonico_documento_id]}"}=@canonicos_documentos_h[archivo[:canonico_documento_id]] ? @canonicos_documentos_h[archivo[:canonico_documento_id]].title : "<em>#{t(:No_title)}</em>"
+          -else
+            %select{:id=>"select_canonico_#{archivo[:id]}",:name=>"select_canonico_#{archivo[:id]}[]"}
+              %option{:value=>""}="--#{t(:Without_canonical_document)}--"
+              -@cd_validos.each do |cd|
+                %option{:value=>cd[:id]}=CGI.escapeHTML(cd[:title][0..50])
+            %button.btn.btn-default.btn-sm.asignar_canonico{"archivo-pk"=>archivo[:id]}
+              =t(:Change)
+        %td=@modal_archivos.botones(archivo,archivo[:canonico_documento_id],@revision.id,true)

@@ -37,10 +37,10 @@ class FormBuilder
       end
     end
     def textarea_html
-      a_textarea_editable(@rs_campo.nombre, "form-cd-extraction", "/revision/#{@sr[:id]}/extract_information/cd/#{@cd[:id]}/user/#{@user[:id]}/update_field", @value)
+      a_textarea_editable(@rs_campo.nombre, "form-cd-extraction", "/review/#{@sr[:id]}/extract_information/cd/#{@cd[:id]}/user/#{@user[:id]}/update_field", @value)
     end
     def text_html
-      a_editable(@rs_campo.nombre, "form-cd-extraction", "/revision/#{@sr[:id]}/extract_information/cd/#{@cd[:id]}/user/#{@user[:id]}/update_field", @value)
+      a_editable(@rs_campo.nombre, "form-cd-extraction", "/review/#{@sr[:id]}/extract_information/cd/#{@cd[:id]}/user/#{@user[:id]}/update_field", @value)
     end
   end
 end

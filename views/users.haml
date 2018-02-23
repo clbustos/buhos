@@ -1,0 +1,53 @@
+%h2=title(t(:Users))
+
+- if permiso("usuarios_crear")
+  %a.btn.btn-default{:href=>url("/user/new")}
+    %span{:class=>"glyphicon glyphicon-plus"}
+    =t(:User_new)
+
+%form{:method=>'get',:action=>url('/admin/usuarios')}
+  %p 
+    %label{:for=>'usuarios_busqueda'}=t(:Search)
+    %input#usuarios_busqueda{:type=>'text',:name=>"usuarios_busqueda",:value=>@usr_bus}
+    %input.btn.btn-default{:type=>"submit",:value=>"Buscar"}
+%form{:method=>'post',:action=>url('/admin/users/update')}
+  %table.table.table-bordered
+    %thead
+      %th=t(:Delete)
+      %th=t(:User_name)
+      %th=t(:Login)
+      %th=t(:Password)
+      %th=t(:Active)
+      %th=t(:Role)
+    %tbody
+      -@usuarios.each do |per|
+        %tr
+          %td
+            %input{:type=>:checkbox, :name=>"usuario[#{per[:id]}][borrar]"}
+          %td
+            %input{:type=>:text, :size=>40, :name=>"usuario[#{per[:id]}][nombre]", :value=>per[:nombre].force_encoding("UTF-8")}
+          %td
+            %input{:type=>:text, :user=>10, :name=>"usuario[#{per[:id]}][login]", :value=>per[:login]}                
+          %td
+            %input{:type=>:password, :password=>10, :name=>"usuario[#{per[:id]}][password]"}
+          %td
+            %input{:type=>:checkbox, :name=>"usuario[#{per[:id]}][activa]", :checked=>per[:activa]}
+          %td
+            %select{:name=>"usuario[#{per[:id]}][rol_id]"}
+              -@roles.each do |rol|
+                %option{:value=>rol[:id], :selected=>(rol[:id]==per[:rol_id])}=rol[:id]
+      %tr
+        %td
+        %td
+          %input{:type=>:text, :name=>"usuario[N][nombre]"}
+        %td
+          %input{:type=>:text, :name=>"usuario[N][login]"}                
+        %td
+          %input{:type=>:password, :name=>"usuario[N][password]"}
+        %td
+          %input{:type=>:checkbox, :name=>"usuario[N][activa]", :checked=>true}
+        %td
+          %select{:name=>"usuario[N][rol_id]"}
+            -@roles.each do |rol|
+              %option{:value=>rol[:id], :checked=>rol[:id]=='usuario'}=rol[:id]
+  %input.btn.btn-default{:type=>"submit",:name=>t(:Update)}

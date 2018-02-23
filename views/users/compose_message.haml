@@ -2,9 +2,9 @@
   %h2=title(t("messages.Compose"))
 %ul.breadcrumb
   %li
-    %a{:href=>"/usuario/#{@user[:id]}"}=@user[:nombre]
+    %a{:href=>"/user/#{@user[:id]}"}=@user[:nombre]
   %li
-    %a{:href=>"/usuario/#{@user[:id]}/messages"}=t(:Messages)
+    %a{:href=>"/user/#{@user[:id]}/messages"}=t(:Messages)
   %li.active
     =t("messages.Compose")
 %form.new_message{:method=>"post",:action=>url("/user/#{@user[:id]}/compose_message/send")}

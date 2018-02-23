@@ -4,7 +4,7 @@ module Sinatra
       attr_reader :pagina,:busqueda, :cpp, :max_page, :orden
       def initialize
         @pagina=1
-        @busqueda=nil
+        @search=nil
         @cpp=20
         @max_page=nil
         @orden=nil
@@ -21,7 +21,7 @@ module Sinatra
       end
       def busqueda=(b)
         b=b.to_s.chomp
-        @busqueda= b=="" ? nil : b
+        @search= b=="" ? nil : b
       end
       def cpp=(cpp)
         @cpp=cpp.to_i if cpp.to_i>0

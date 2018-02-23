@@ -1,0 +1,55 @@
+.header
+  %h2=title(t(:Systematic_reviews))
+%ul.breadcrumb
+  %li.active=t(:Systematic_reviews)
+
+%form.form-inline{:action=>'/reviews', :method=>'get'}
+  .form-group
+    %label{:for=>:show_inactives}=t(:Systematic_review_active_inactive)
+    %select{:name=>  :show_inactives}
+      %option{:value=>:only_actives, :selected=>@show_inactives=='only_actives'}=t(:Show_only_actives)
+      %option{:value=>:actives_and_inactives, :selected=>@show_inactives=='actives_and_inactives'}=t(:Show_actives_and_inactives)
+    %label{:for=>:show_only_user}=t(:Systematic_review_all_user)
+    %select{:name=>  :show_only_user}
+      %option{:value=>:yes, :selected=>@show_only_user=='yes'}=t(:Show_sr_only_user)
+      %option{:value=>:no , :selected=>@show_only_user=='no'}=t(:Show_sr_all)
+
+  %input.btn.btn-default.btn-sm{:type=>:submit, :value=>t(:Show_systematic_review)}
+
+
+- if @revisiones.count>0
+  %p=t_desc_value(:Count_systematic_review, @revisiones.count)
+
+
+.btn-group
+  - if permiso("revisiones_crear_propia")
+    %a{:href=>url("/review/new")}
+      %button{:class=>"btn btn-default"}
+        %span{:class=>"glyphicon glyphicon-plus"}
+        =t(:Systematic_review_new)
+
+
+-@revisiones.each do |r|
+  %div{:class=>"panel panel-default"}
+    %div{:class=>"panel-heading"}
+      ="(#{r.id})"
+      %a{:href=>"/review/#{r.id}"}=r.nombre
+    %div{:class=>"panel-body"}
+      %ul{:class=>"list-group"}
+        %li{:class=>'list-group-item'}
+          =t_desc_value(:Description,r.descripcion)
+        -r.taxonomy_categories_hash.each do |group, categories|
+          %li{:class=>'list-group-item'}
+            ="#{t_taxonomy_group(group)}:"
+            =categories.map {|v| t_taxonomy_category(v[:cat_name])}.join(",")
+        %li{:class=>'list-group-item'}
+          =t_desc_value(:Active, r.activa ? t(:Yes) : t(:No))
+        %li{:class=>'list-group-item'}
+          =t_desc_value(:Stage, t(r.etapa_nombre))
+        %li{:class=>'list-group-item'}
+          =t_desc_value(:Minimum_RTA_documents_for_reference_review, r.n_min_rr_rtr)
+
+
+    %div{:class=>"panel-footer"}
+      =partial(:review_buttons, :locals=>{:r=>r})
+

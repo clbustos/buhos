@@ -6,7 +6,7 @@
     =t(:Role_new)
 
 
-%form{:method=>:post, :action=>url("/admin/roles/actualizar")}
+%form{:method=>:post, :action=>url("/admin/roles/update")}
   -@roles.each do |rol|
     %h3
       =t(:Rol)

@@ -4,6 +4,7 @@ class Usuario < Sequel::Model
   end
 
   def revisiones_sistematicas_id
+    $log.info($db)
     $db["SELECT id FROM revisiones_sistematicas rs INNER JOIN grupos_usuarios gu ON rs.grupo_id=gu.grupo_id WHERE usuario_id=?", self[:id]].select_map(:id)
   end
 
@@ -16,5 +17,13 @@ class Usuario < Sequel::Model
 
   def change_password(password)
     Usuario[self[:id]].update(:password=>Digest::SHA1.hexdigest(password))
+  end
+
+
+
+  def self.create_new_user(language='en')
+    ultimo_usuario=$db["SELECT max(id) as max_id from usuarios"].get(:max_id).to_i
+    n_id=ultimo_usuario+1
+    Usuario.insert(:login=>"user_#{n_id}", :nombre=>I18n::t(:User_only_name, :user_name=>n_id), :password=>Digest::SHA256.hexdigest("user_#{n_id}") , :rol_id=>'analyst', :activa=>true,:language=>language)
   end
 end

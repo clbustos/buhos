@@ -1,4 +1,4 @@
-post '/tags/clases/nueva' do
+post '/tags/classes/new' do
   @revision=Revision_Sistematica[params['revision_id']]
   etapa=  params['etapa']
   etapa=nil if etapa=="NIL"
@@ -15,7 +15,7 @@ post '/tags/clases/nueva' do
 end
 
 
-put '/tags/clases/editar_campo/:campo' do |campo|
+put '/tags/classes/edit_field/:campo' do |campo|
   pk = params['pk']
   value = params['value']
   value = nil if value=="NIL"
@@ -25,7 +25,7 @@ put '/tags/clases/editar_campo/:campo' do |campo|
 end
 
 
-put "/tag/editar" do
+put "/tag/edit" do
   pk = params['pk']
   value = params['value'].chomp
   return [404,"Debe ingresar algun texto"] if value==""
@@ -33,14 +33,14 @@ put "/tag/editar" do
   return 200
 end
 
-post '/tags/clase/:t_clase_id/agregar_tag' do |t_clase_id|
+post '/tags/clase/:t_clase_id/add_tag' do |t_clase_id|
   t_clase=T_Clase[t_clase_id]
   return 404 if t_clase.nil?
   tag_nombre=params['value'].chomp
   return 405 if tag_nombre==""
   tag=Tag.get_tag(tag_nombre)
   t_clase.asignar_tag(tag)
-  partial("tags/tags_clase", :locals=>{t_clase: t_clase})
+  partial("tags/tags_class", :locals=>{t_clase: t_clase})
 end
 
 
@@ -150,7 +150,7 @@ end
 
 
 
-get '/tags/basico_10.json' do
+get '/tags/basic_10.json' do
   require 'json'
   content_type :json
   Tag.order(:texto).limit(10).map {|v|
@@ -162,7 +162,7 @@ get '/tags/basico_10.json' do
 end
 
 
-get '/tags/basico_ref_10.json' do
+get '/tags/basic_ref_10.json' do
   require 'json'
   content_type :json
   Tag.order(:texto).limit(10).map {|v|
@@ -202,7 +202,7 @@ end
 
 
 
-get '/tags/revision_sistematica/:rs_id/query_json/:query' do |rs_id,query|
+get '/tags/systematic_review/:rs_id/query_json/:query' do |rs_id,query|
   require 'json'
   content_type :json
   
@@ -215,7 +215,7 @@ get '/tags/revision_sistematica/:rs_id/query_json/:query' do |rs_id,query|
   }.to_json
 end
 
-get '/tags/revision_sistematica/:rs_id/ref/query_json/:query' do |rs_id,query|
+get '/tags/systematic_review/:rs_id/ref/query_json/:query' do |rs_id,query|
   require 'json'
   content_type :json
 
@@ -230,7 +230,7 @@ end
 
 
 
-post '/tag/borrar_rs'do
+post '/tag/delete_rs'do
   rs=Revision_Sistematica[params['rs_id']]
   tag=Tag[params['tag_id']]
   return 404 if rs.nil? or tag.nil?
@@ -243,7 +243,7 @@ post '/tag/borrar_rs'do
   return 200
 end
 
-get '/tag/:tag_id/revision/:rs_id/asignar_usuario/:usuario_id' do |tag_id,rs_id,user_id|
+get '/tag/:tag_id/review/:rs_id/assign_user/:usuario_id' do |tag_id,rs_id,user_id|
   tag=Tag[tag_id]
   revision=Revision_Sistematica[rs_id]
   usuario=Usuario[user_id]
