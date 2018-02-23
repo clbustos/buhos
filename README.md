@@ -20,7 +20,7 @@ Web based platform to develop collaborative systematic literatute reviews. Devel
 
 ### On Windows
 
-A installer for the latest version of software, for Windows, can be obtained from [Buhos Windows Toolkit](https://github.com/clbustos/buhos-windows-tk/tree/master/output)
+A installer for the latest version of software, for Windows, can be obtained from [Buhos Windows Toolkit](https://github.com/clbustos/buhos-windows-tk/tree/master/windows_installer)
 
 ### On *nix
 
