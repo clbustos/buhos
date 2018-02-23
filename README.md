@@ -1,6 +1,8 @@
 # Buhos
 
-Web based platform to develop collaborative systematic literatute reviews. Developed usign Sinatra, a Ruby DSL.
+[![Build Status](https://travis-ci.org/clbustos/buhos.svg?branch=master)](https://travis-ci.org/clbustos/buhos)
+
+Web based platform to manage the complete process of a systematic literatute reviews. Developed usign Sinatra, a Ruby DSL.
 
 
 ## Features
@@ -14,7 +16,9 @@ Web based platform to develop collaborative systematic literatute reviews. Devel
 * Integration with Crossref, that allows deduplication of records using DOI, recollection of references
 * File repository, with PDF viewing support via [ViewerJS](http://viewerjs.org/)
 * Multiple ways to analyze data: commentaries and tagging on each stage of review, custom forms for complete text analysis
-* Reports: PRISMA flowchart, data extraction of complete text and process report
+* Multiple Reports: PRISMA flowchart, data extraction of complete text and process report. 
+* Exports references on each stage to BibTeX and Graphml, to graph relations between papers
+* Unit and integration tests for main features.
 
 ## Documentation
 
