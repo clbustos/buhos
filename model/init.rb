@@ -11,8 +11,8 @@ else
 
 end
 
-$log.info(ENV['RACK_ENV'])
-$log.info(ENV['DATABASE_URL'])
+#$log.info(ENV['RACK_ENV'])
+#$log.info(ENV['DATABASE_URL'])
 
 Sequel::Model.plugin :force_encoding, 'UTF-8' if RUBY_VERSION>="1.9"
 # Chanta, ¿no?

@@ -85,8 +85,16 @@ end
 unless File.exist?("log")
   FileUtils.mkdir("log")
 end
-$log = Logger.new('log/app.log')
-$log_sql = Logger.new('log/app_sql.log')
+
+if $test_mode
+  $log = Logger.new('log/test_app.log')
+  $log_sql = Logger.new('log/test_app_sql.log')
+
+else
+  $log = Logger.new('log/app.log')
+  $log_sql = Logger.new('log/app_sql.log')
+
+end
 
 
 #$log.info(Encoding.default_external)
