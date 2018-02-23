@@ -28,7 +28,7 @@ module AnalisisTag
       "
 <div class='btn-group btn-group-xs'>
   #{boton_positivo_html(ru)}
-      #{boton_negativo_html(ru)}
+  #{boton_negativo_html(ru)}
 </div>"
     end
     def boton_positivo_html(ru)
