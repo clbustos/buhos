@@ -18,7 +18,7 @@ Web based platform to develop collaborative systematic literatute reviews. Devel
 
 ## Documentation
 
-There is a user [manual available](https://github.com/clbustos/buhos/tree/master/docs). Contains a guide to understand the systematic review process.
+There is a user [manual available](https://github.com/clbustos/buhos/tree/master/docs/manual). Contains a guide to understand the systematic review process.
 
 ## Getting Started
 
