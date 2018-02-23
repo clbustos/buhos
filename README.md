@@ -5,22 +5,26 @@ Web based platform to develop collaborative systematic literatute reviews. Devel
 
 ## Features
 
-* Multiplatform: Runs on Linux (tested on Ubuntu 14.04 and 16.06) and Windows (tested on Windows 7 and 10)
+* Multi-platform: Runs on Linux (tested on Ubuntu 14.04 and 16.06) and Windows (tested on Windows 7 and 10)
 * Support individual and group based systematic reviews. 
 * Messaging system for members and reviews.
 * Internationalization, using *I18n*. Available in english and spanish
-* Flexible workflow
+* Flexible work-flow. The main stages of search texts, screening, extract data and reports are clearly defined, but past decisions can be changed and automatically later stages will be affected.
 * Import information from several databases - WoS, Scopus, Scielo - using BibTeX.
 * Integration with Crossref, that allows deduplication of records using DOI, recollection of references
 * File repository, with PDF viewing support via [ViewerJS](http://viewerjs.org/)
 * Multiple ways to analyze data: commentaries and tagging on each stage of review, custom forms for complete text analysis
 * Reports: PRISMA flowchart, data extraction of complete text and process report
 
+## Documentation
+
+There is a user [manual available](https://github.com/clbustos/buhos/tree/master/docs/manual). Contains a guide to understand the systematic review process.
+
 ## Getting Started
 
 ### On Windows
 
-A installer for the latest version of software, for Windows, can be obtained from [Buhos Windows Toolkit](https://github.com/clbustos/buhos-windows-tk/tree/master/output)
+A installer for the latest version of software, for Windows, can be obtained from [Buhos Windows Toolkit](https://github.com/clbustos/buhos-windows-tk/tree/master/windows_installer)
 
 ### On *nix
 
