@@ -193,8 +193,8 @@ en:
     error_connection_database: "Se produjo un error al intentar conectarse a la base de datos. Por favor, soluciónelo antes de continuar"
     error_populate_database_stage: "Error al poblar la base de datos"
     go_to_populate_database: "Saltar modificación de archivo .env y poblar base de datos"
-    installer_title: "Instalador"
-    language_selection: "Selección de lenguaje"
+    installer_title: "Installer"
+    language_selection: "Language selection"
     language_selection_instruction: "Por favor, seleccione el lenguaje para la instalación"
     no_env_file_access: "El instalador no puede modificar el archivo .env. Por favor, provea acceso a este archivo"
     please_wait: "Por favor, espere"
@@ -214,7 +214,7 @@ en:
   Language: "Lenguaje"
   locale:
     en: "English"
-    es: "Español"
+    es: "Spanish"
   Login: "Nombre de usuario"
   login:
     instruction: "Ingrese su usuario y password"

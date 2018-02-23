@@ -1,16 +1,15 @@
 require 'rspec'
 require 'sinatra'
-require 'i18n'
+require_relative 'spec_helper.rb'
 require_relative '../lib/../lib/sinatra_xeditable_select'
 describe 'Sinatra Select Ajax (with xeditable) presentation' do
   before do
+
     @url="/reference/change"
     @html_class="reference"
     @values={:nil=>"No option",:first=>"First", :second=>"Second"}
     @ssa=Sinatra::Xeditable_Select::Select.new(@values,@url,@html_class)
     @ssa.nil_value =:nil
-    ::I18n.load_path+=Dir[File.join("..", 'config','locales', '*.yml')]
-    ::I18n.config.available_locales = [:es,:en]
 
 
   end
