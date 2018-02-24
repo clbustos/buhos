@@ -6,23 +6,36 @@ require 'rake'
 require 'rspec/core'
 require 'rspec/core/rake_task'
 
-
 Dotenv.load("./.env")
 
 task :doc do |t|
   sh %{yardoc -e lib_doc/yard_extra.rb *.rb controllers/**/*.rb lib/**/*.rb model/**/*.rb}
 end
 
+desc "Test with output external coverage"
+task :spec_cov=>[:before_spec, :spec, :after_spec]
 
+
+task :before_spec do |t|
+  sh %{cc-test-reporter before-build}
+
+end
+
+
+task :after_spec do |t|
+  sh %{CC_TEST_REPORTER_ID=#{ENV['CC_TEST_REPORTER_ID']} cc-test-reporter after-build --exit-code 0}
+
+end
 
 
 RSpec::Core::RakeTask.new(:spec) do |t|
+
   t.pattern = Dir.glob('spec/**/*_spec.rb')
   t.rspec_opts = '--format documentation'
-
 # t.rspec_opts << ' more options'
   #t.rcov = true
 end
+
 task :default => :spec
 
 
