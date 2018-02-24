@@ -42,12 +42,12 @@
         %li
           %a{:role=>:button, :href=>url("/review/#{r.id}/screening_title_abstract"), :class=>"btn btn-default "}
             %span{:class=>"glyphicon glyphicon-ok-sign"}
-            =t("stage.review_title_and_abstract")
+            =t("stage.screening_title_abstract")
       - if etapas_avanzadas.include? :screening_references and (permiso("screening_references_ver") or revision_analizada_por(r.id, session['user_id']))
         %li
           %a{:role=>:button, :href=>url("/review/#{r.id}/screening_references"), :class=>"btn btn-default "}
             %span{:class=>"glyphicon glyphicon-ok-sign"}
-            =t("stage.review_references")
+            =t("stage.screening_references")
       - if etapas_avanzadas.include? :screening_references and (permiso("review_full_text_ver") or revision_analizada_por(r.id, session['user_id']))
         %li
           %a{:role=>:button, :href=>url("/review/#{r.id}/full_text_review"), :class=>"btn btn-default "}

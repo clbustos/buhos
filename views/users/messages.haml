@@ -31,4 +31,4 @@
         %em=t("messages.No_messages_for_this_SR")
     - else
       - base_messages.each do |ms|
-      =partial(:mensaje_rs, :locals=>{:usuario=>@user, :mensaje_rs=>ms})
+      =partial(:message_sr, :locals=>{:usuario=>@user, :mensaje_rs=>ms})

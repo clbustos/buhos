@@ -1,11 +1,13 @@
 require 'dotenv'
 require 'logger'
 require 'fileutils'
-Dotenv.load("./.env")
 
 require 'rake'
 require 'rspec/core'
 require 'rspec/core/rake_task'
+
+
+Dotenv.load("./.env")
 
 task :doc do |t|
   sh %{yardoc -e lib_doc/yard_extra.rb *.rb controllers/**/*.rb lib/**/*.rb model/**/*.rb}

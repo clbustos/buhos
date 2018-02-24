@@ -136,7 +136,7 @@ get '/review/:id/full_text_review' do |id|
   @cds=@pager.ajustar_query(@cds_pre)
 
 
-  haml %s{systematic_reviews/full_text_review}
+  haml %s{systematic_reviews/review_full_text}
 end
 
 

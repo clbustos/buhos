@@ -4,7 +4,7 @@ class Usuario < Sequel::Model
   end
 
   def revisiones_sistematicas_id
-    $log.info($db)
+
     $db["SELECT id FROM revisiones_sistematicas rs INNER JOIN grupos_usuarios gu ON rs.grupo_id=gu.grupo_id WHERE usuario_id=?", self[:id]].select_map(:id)
   end
 

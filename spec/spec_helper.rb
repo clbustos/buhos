@@ -1,10 +1,17 @@
 require 'simplecov'
 SimpleCov.start
+ENV['RACK_ENV'] = 'test'
+ENV['DATABASE_URL']=nil
 
+require 'rspec'
 require 'i18n'
 require 'fileutils'
 require 'sinatra'
-require_relative '../app'
+require 'rack/test'
+require 'tempfile'
+
+
+
 
 #SimpleCov.formatter = SimpleCov::Formatter::Codecov
 # Load available locales
@@ -15,9 +22,6 @@ app_path=File.expand_path(File.dirname(__FILE__)+"/..")
 # Load rack test
 #
 
-require 'rack/test'
-
-ENV['RACK_ENV'] = 'test'
 
 
 
@@ -25,15 +29,23 @@ module RSpecMixin
   include Rack::Test::Methods
   def app() Sinatra::Application end
   def configure_test_sqlite
+
     blank_sqlite=File.expand_path(File.dirname(__FILE__)+"/../db/blank.sqlite")
-     @tempdir= Dir.mktmpdir("buhos_test")
-     @tempfile= "#{@tempdir}/db_#{Random.rand(1000)}.sqlite"
-     FileUtils.cp blank_sqlite, @tempfile
-     Buhos.connect_to_db("sqlite://#{@tempfile}")
+
+     @tempfile= Tempfile.new
+     FileUtils.cp blank_sqlite, @tempfile.path
+     sql_con="sqlite://#{@tempfile.path}"
+     ENV['DATABASE_URL']=sql_con
+     require_relative '../app'
+     Buhos.connect_to_db(sql_con)
+     $log.info("DB is:#{$db}")
   end
+
   def close_sqlite
-    FileUtils.rm @tempfile
+    $log.info("Closing #{$db}")
+    #@tempfile.unlink
     $db=nil
+
   end
 
   def not_permitted(url)

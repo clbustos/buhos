@@ -78,4 +78,4 @@
       .col-md-12
         .list-group
           - mensajes_hijos.each do |mensaje_rs_hijo|
-            =partial(:mensaje_rs, :locals=>{:mensaje_rs=>mensaje_rs_hijo,:usuario=>usuario})
+            =partial(:message_sr, :locals=>{:mensaje_rs=>mensaje_rs_hijo,:usuario=>usuario})

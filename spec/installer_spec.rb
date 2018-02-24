@@ -38,5 +38,6 @@ describe 'When Buhos installer is activated' do
 
   end
 
+  it '/installer'
 
 end

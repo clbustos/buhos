@@ -89,4 +89,4 @@
           - @tipos_lista.each do |tipo_id, tipo_nombre|
             %option{:value=>tipo_id}=tipo_nombre
       %input{:type=>:submit, :value=>"Agregar clase nueva", :class=>"btn btn-default"}
-=partial(:estadisticas_tags, :locals=>{revision:@revision})
+=partial(:statistics_tags, :locals=>{revision:@revision})

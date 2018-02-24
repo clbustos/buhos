@@ -5,8 +5,7 @@ require 'sinatra'
 require 'dotenv'
 require 'rack/session/moneta'
 
-
-Dotenv.load("./.env") if File.exist? "./env"
+Dotenv.load("./.env") if File.exist? "./env" and ENV['RACK_ENV']!="test"
 
 session_key         = ENV['PRODUCTION_SESSION_KEY']        || 'key'
 session_domain      = ENV['PRODUCTION_SESSION_DOMAIN']     || 'localhost'

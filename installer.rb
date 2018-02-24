@@ -28,7 +28,11 @@ module Buhos
 
 
       def env_file
-        (ENV['RACK_ENV'].to_s == "test") ? ".env_test" : ".env"
+        if ENV['RACK_ENV'].to_s == "test"
+          ENV['DOT_ENV'] ? ENV['DOT_ENV'] : ".env.test"
+        else
+          ".env"
+        end
       end
       def installed_file
         (ENV['RACK_ENV'].to_s == "test") ? "config/installed_test" : "config/installed"

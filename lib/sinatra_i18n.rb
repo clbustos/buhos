@@ -78,9 +78,10 @@ module Sinatra
       app.helpers I18n::Helpers
 
       app.before do
+        #$log.info("Sesion es:#{session['language']}")
         if session['language'].nil?
           language=get_lang(request.env['HTTP_ACCEPT_LANGUAGE'])
-          #$log.info(language)
+          #$log.info("Desde HTTP:#{language}")
           language='en' unless ['en','es'].include? language
           ::I18n.locale = language
         else

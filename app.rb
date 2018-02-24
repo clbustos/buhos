@@ -1,6 +1,5 @@
 # encoding: UTF-8
 
-
 require "bundler/setup"
 if (/cygwin|mswin|mingw|bccwin|wince|emx/ =~ RUBY_PLATFORM) != nil
 	# Windows doesn't have proper management of certificates for SSL. 
@@ -29,11 +28,9 @@ $test_mode=ENV['RACK_ENV'].to_s == "test"
 
 installed_file= $test_mode ? "config/installed_test" : "config/installed"
 
-# If installed doesn't exists, we should call the installer
-#
-#
-#
-if ENV['TEST_INSTALLER'] or (!$test_mode and !File.exist?(installed_file))
+
+
+if ENV['TEST_INSTALLER'] or !File.exist?(installed_file)
   load('installer.rb')
   Buhos::Installer.run!
   exit 1

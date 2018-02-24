@@ -1,5 +1,3 @@
-require 'rspec'
-
 require_relative 'spec_helper'
 
 
@@ -15,7 +13,14 @@ describe 'Buhos login' do
     expect(last_response.body).to_not be_empty
     expect(last_response.body).to include("Password")
   end
-
+  it "/login should change according to HTTP_ACCEPT_LANGUAGE" do
+    get 'logout'
+    #$log.info("Trato es")
+    request '/' , 'HTTP_ACCEPT_LANGUAGE'=>'es'
+    expect(last_response).to be_ok
+    expect(last_response.body).to_not be_empty
+    expect(last_response.body).to include("Contraseña")
+  end
   it "Incorrect login redirect to login page" do
     post '/login' , :user=>'noone', :password=>'noone'
     expect(last_response).to_not be_ok
@@ -32,10 +37,10 @@ describe 'Buhos login' do
 
   it "Correct login redirect to main page and show dashboard" do
     post '/login' , :user=>'admin', :password=>'admin'
-    get '/' , 'HTTP_ACCEPT_LANGUAGE'=>'es'
+    get '/'
     expect(last_response).to be_ok
     expect(last_response.body).to_not be_empty
-    expect(last_response.body).to include ("Tablero")
+    expect(last_response.body).to include("Dashboard")
   end
 
 

@@ -4,11 +4,9 @@ require 'logger'
 
 require 'dotenv'
 
-if ENV['RACK_ENV'].to_s == "test"
-  Dotenv.load("../.env_test")
-else
-  Dotenv.load("../.env")
 
+if ENV['RACK_ENV'].to_s != "test"
+  Dotenv.load("../.env")
 end
 
 
@@ -34,14 +32,13 @@ end
 Sequel::Model.plugin :force_encoding, 'UTF-8' if RUBY_VERSION>="1.9"
 # Bad, isn't?
 
-if ENV['JAWSDB_URL'] and ENV['USE_JAWSDB']=='true'
-  url_mysql= ENV['JAWSDB_URL'].sub("mysql:","mysql2:")
-  Buhos.connect_to_db(url_mysql)
-else
-  Buhos.connect_to_db(ENV['DATABASE_URL'])
-end
-
-
+  if ENV['JAWSDB_URL'] and ENV['USE_JAWSDB']=='true'
+    url_mysql= ENV['JAWSDB_URL'].sub("mysql:","mysql2:")
+    Buhos.connect_to_db(url_mysql)
+  else
+    Buhos.connect_to_db(ENV['DATABASE_URL'])
+    $log.info("Init app connects to :#{ENV['DATABASE_URL']}")
+  end
 
 
 #before do
