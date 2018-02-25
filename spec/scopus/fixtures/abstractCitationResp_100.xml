@@ -1,0 +1,2019 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<abstract-citations-response xmlns:xocs="http://www.elsevier.com/xml/xocs/dtd" xmlns:ns2="http://webservices.elsevier.com/schemas/metadata/cto/types/v4" xmlns:ctom="http://www.elsevier.com/xml/ctom/dtd" xmlns:cto="http://www.elsevier.com/xml/cto/dtd" xmlns:prism="http://prismstandard.org/namespaces/basic/2.0/" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <h-index>20</h-index>
+  <identifier-legend>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84862229244</dc:identifier>
+      <scopus_id>84862229244</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84861938195</dc:identifier>
+      <scopus_id>84861938195</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84906951911</dc:identifier>
+      <scopus_id>84906951911</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84856196848</dc:identifier>
+      <scopus_id>84856196848</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84860905572</dc:identifier>
+      <scopus_id>84860905572</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84860904131</dc:identifier>
+      <scopus_id>84860904131</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84871453467</dc:identifier>
+      <scopus_id>84871453467</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84863096279</dc:identifier>
+      <scopus_id>84863096279</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84867396413</dc:identifier>
+      <scopus_id>84867396413</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84856852712</dc:identifier>
+      <scopus_id>84856852712</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84864259543</dc:identifier>
+      <scopus_id>84864259543</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84867545178</dc:identifier>
+      <scopus_id>84867545178</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84858794941</dc:identifier>
+      <scopus_id>84858794941</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84872726615</dc:identifier>
+      <scopus_id>84872726615</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84857825813</dc:identifier>
+      <scopus_id>84857825813</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84860908675</dc:identifier>
+      <scopus_id>84860908675</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84864609020</dc:identifier>
+      <scopus_id>84864609020</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84873961265</dc:identifier>
+      <scopus_id>84873961265</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84865776841</dc:identifier>
+      <scopus_id>84865776841</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84856191442</dc:identifier>
+      <scopus_id>84856191442</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84856886624</dc:identifier>
+      <scopus_id>84856886624</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84860318240</dc:identifier>
+      <scopus_id>84860318240</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84863644532</dc:identifier>
+      <scopus_id>84863644532</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84055212189</dc:identifier>
+      <scopus_id>84055212189</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84863477670</dc:identifier>
+      <scopus_id>84863477670</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84864151238</dc:identifier>
+      <scopus_id>84864151238</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84871456950</dc:identifier>
+      <scopus_id>84871456950</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84857019538</dc:identifier>
+      <scopus_id>84857019538</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84858450704</dc:identifier>
+      <scopus_id>84858450704</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84866460367</dc:identifier>
+      <scopus_id>84866460367</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84856770806</dc:identifier>
+      <scopus_id>84856770806</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84855910108</dc:identifier>
+      <scopus_id>84855910108</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84870769102</dc:identifier>
+      <scopus_id>84870769102</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84867857841</dc:identifier>
+      <scopus_id>84867857841</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84868652276</dc:identifier>
+      <scopus_id>84868652276</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84864018555</dc:identifier>
+      <scopus_id>84864018555</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84866736374</dc:identifier>
+      <scopus_id>84866736374</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84865321336</dc:identifier>
+      <scopus_id>84865321336</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84871420054</dc:identifier>
+      <scopus_id>84871420054</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84861420873</dc:identifier>
+      <scopus_id>84861420873</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84861305912</dc:identifier>
+      <scopus_id>84861305912</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84862520138</dc:identifier>
+      <scopus_id>84862520138</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84864360223</dc:identifier>
+      <scopus_id>84864360223</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84863779092</dc:identifier>
+      <scopus_id>84863779092</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84862273955</dc:identifier>
+      <scopus_id>84862273955</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84892072637</dc:identifier>
+      <scopus_id>84892072637</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84856859458</dc:identifier>
+      <scopus_id>84856859458</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84917477950</dc:identifier>
+      <scopus_id>84917477950</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84878286234</dc:identifier>
+      <scopus_id>84878286234</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84871576912</dc:identifier>
+      <scopus_id>84871576912</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84862333355</dc:identifier>
+      <scopus_id>84862333355</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84875261594</dc:identifier>
+      <scopus_id>84875261594</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84866752092</dc:identifier>
+      <scopus_id>84866752092</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84867289204</dc:identifier>
+      <scopus_id>84867289204</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84865780860</dc:identifier>
+      <scopus_id>84865780860</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84921719665</dc:identifier>
+      <scopus_id>84921719665</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84873047849</dc:identifier>
+      <scopus_id>84873047849</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84986244129</dc:identifier>
+      <scopus_id>84986244129</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84986309692</dc:identifier>
+      <scopus_id>84986309692</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84986274479</dc:identifier>
+      <scopus_id>84986274479</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84994009751</dc:identifier>
+      <scopus_id>84994009751</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84994050001</dc:identifier>
+      <scopus_id>84994050001</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84872717742</dc:identifier>
+      <scopus_id>84872717742</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84864328478</dc:identifier>
+      <scopus_id>84864328478</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84863853318</dc:identifier>
+      <scopus_id>84863853318</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84861515172</dc:identifier>
+      <scopus_id>84861515172</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84863425115</dc:identifier>
+      <scopus_id>84863425115</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84870819504</dc:identifier>
+      <scopus_id>84870819504</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84866769122</dc:identifier>
+      <scopus_id>84866769122</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84864342396</dc:identifier>
+      <scopus_id>84864342396</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84866238079</dc:identifier>
+      <scopus_id>84866238079</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84883483004</dc:identifier>
+      <scopus_id>84883483004</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84867537286</dc:identifier>
+      <scopus_id>84867537286</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84867694111</dc:identifier>
+      <scopus_id>84867694111</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84866650075</dc:identifier>
+      <scopus_id>84866650075</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84856995634</dc:identifier>
+      <scopus_id>84856995634</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84857361665</dc:identifier>
+      <scopus_id>84857361665</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84858794205</dc:identifier>
+      <scopus_id>84858794205</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84861531371</dc:identifier>
+      <scopus_id>84861531371</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84864153841</dc:identifier>
+      <scopus_id>84864153841</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84871574428</dc:identifier>
+      <scopus_id>84871574428</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84856327668</dc:identifier>
+      <scopus_id>84856327668</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84862998073</dc:identifier>
+      <scopus_id>84862998073</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84859852444</dc:identifier>
+      <scopus_id>84859852444</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84861675226</dc:identifier>
+      <scopus_id>84861675226</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84857163401</dc:identifier>
+      <scopus_id>84857163401</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84857007487</dc:identifier>
+      <scopus_id>84857007487</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84858331982</dc:identifier>
+      <scopus_id>84858331982</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84866252943</dc:identifier>
+      <scopus_id>84866252943</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84869079911</dc:identifier>
+      <scopus_id>84869079911</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84862212584</dc:identifier>
+      <scopus_id>84862212584</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84865342867</dc:identifier>
+      <scopus_id>84865342867</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84856888415</dc:identifier>
+      <scopus_id>84856888415</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84862280689</dc:identifier>
+      <scopus_id>84862280689</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84872409771</dc:identifier>
+      <scopus_id>84872409771</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84858304453</dc:identifier>
+      <scopus_id>84858304453</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84860913560</dc:identifier>
+      <scopus_id>84860913560</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84856479447</dc:identifier>
+      <scopus_id>84856479447</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84861990978</dc:identifier>
+      <scopus_id>84861990978</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84856812923</dc:identifier>
+      <scopus_id>84856812923</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84866901530</dc:identifier>
+      <scopus_id>84866901530</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84879633509</dc:identifier>
+      <scopus_id>84879633509</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84862757969</dc:identifier>
+      <scopus_id>84862757969</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84856979708</dc:identifier>
+      <scopus_id>84856979708</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84655169269</dc:identifier>
+      <scopus_id>84655169269</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84867507302</dc:identifier>
+      <scopus_id>84867507302</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84858176267</dc:identifier>
+      <scopus_id>84858176267</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84860259184</dc:identifier>
+      <scopus_id>84860259184</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84857020772</dc:identifier>
+      <scopus_id>84857020772</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84859158550</dc:identifier>
+      <scopus_id>84859158550</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84859197446</dc:identifier>
+      <scopus_id>84859197446</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84875238964</dc:identifier>
+      <scopus_id>84875238964</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84886563876</dc:identifier>
+      <scopus_id>84886563876</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84861498593</dc:identifier>
+      <scopus_id>84861498593</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84860892583</dc:identifier>
+      <scopus_id>84860892583</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84863466560</dc:identifier>
+      <scopus_id>84863466560</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84870672203</dc:identifier>
+      <scopus_id>84870672203</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84857027748</dc:identifier>
+      <scopus_id>84857027748</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84866263715</dc:identifier>
+      <scopus_id>84866263715</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84861325676</dc:identifier>
+      <scopus_id>84861325676</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84861804792</dc:identifier>
+      <scopus_id>84861804792</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84860535085</dc:identifier>
+      <scopus_id>84860535085</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84856394590</dc:identifier>
+      <scopus_id>84856394590</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84866702353</dc:identifier>
+      <scopus_id>84866702353</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84866243456</dc:identifier>
+      <scopus_id>84866243456</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84879669702</dc:identifier>
+      <scopus_id>84879669702</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84897261446</dc:identifier>
+      <scopus_id>84897261446</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84866334555</dc:identifier>
+      <scopus_id>84866334555</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84863709401</dc:identifier>
+      <scopus_id>84863709401</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84879612616</dc:identifier>
+      <scopus_id>84879612616</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84864094621</dc:identifier>
+      <scopus_id>84864094621</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84896417515</dc:identifier>
+      <scopus_id>84896417515</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84858589913</dc:identifier>
+      <scopus_id>84858589913</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84921668259</dc:identifier>
+      <scopus_id>84921668259</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84895851731</dc:identifier>
+      <scopus_id>84895851731</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:85011320315</dc:identifier>
+      <scopus_id>85011320315</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84864270456</dc:identifier>
+      <scopus_id>84864270456</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84861001940</dc:identifier>
+      <scopus_id>84861001940</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84856829414</dc:identifier>
+      <scopus_id>84856829414</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84859121372</dc:identifier>
+      <scopus_id>84859121372</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84861230419</dc:identifier>
+      <scopus_id>84861230419</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84862504858</dc:identifier>
+      <scopus_id>84862504858</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84857373626</dc:identifier>
+      <scopus_id>84857373626</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84855453466</dc:identifier>
+      <scopus_id>84855453466</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84867715877</dc:identifier>
+      <scopus_id>84867715877</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:82855178759</dc:identifier>
+      <scopus_id>82855178759</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84879656439</dc:identifier>
+      <scopus_id>84879656439</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84872455702</dc:identifier>
+      <scopus_id>84872455702</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84857367666</dc:identifier>
+      <scopus_id>84857367666</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84871245628</dc:identifier>
+      <scopus_id>84871245628</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84866770870</dc:identifier>
+      <scopus_id>84866770870</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:81055134797</dc:identifier>
+      <scopus_id>81055134797</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84857536338</dc:identifier>
+      <scopus_id>84857536338</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84858211606</dc:identifier>
+      <scopus_id>84858211606</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84857361873</dc:identifier>
+      <scopus_id>84857361873</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84868334477</dc:identifier>
+      <scopus_id>84868334477</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84865601087</dc:identifier>
+      <scopus_id>84865601087</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84863874525</dc:identifier>
+      <scopus_id>84863874525</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84864288445</dc:identifier>
+      <scopus_id>84864288445</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84864698320</dc:identifier>
+      <scopus_id>84864698320</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84867653899</dc:identifier>
+      <scopus_id>84867653899</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84857700698</dc:identifier>
+      <scopus_id>84857700698</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84873624951</dc:identifier>
+      <scopus_id>84873624951</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84867239255</dc:identifier>
+      <scopus_id>84867239255</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84863483210</dc:identifier>
+      <scopus_id>84863483210</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84862658993</dc:identifier>
+      <scopus_id>84862658993</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84864016594</dc:identifier>
+      <scopus_id>84864016594</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84930721177</dc:identifier>
+      <scopus_id>84930721177</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84859582239</dc:identifier>
+      <scopus_id>84859582239</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84857021676</dc:identifier>
+      <scopus_id>84857021676</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84859735959</dc:identifier>
+      <scopus_id>84859735959</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:85007810137</dc:identifier>
+      <scopus_id>85007810137</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84862922020</dc:identifier>
+      <scopus_id>84862922020</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84866746659</dc:identifier>
+      <scopus_id>84866746659</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84867998932</dc:identifier>
+      <scopus_id>84867998932</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84871228568</dc:identifier>
+      <scopus_id>84871228568</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84870244564</dc:identifier>
+      <scopus_id>84870244564</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84922761213</dc:identifier>
+      <scopus_id>84922761213</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84856875431</dc:identifier>
+      <scopus_id>84856875431</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84867796298</dc:identifier>
+      <scopus_id>84867796298</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84986278049</dc:identifier>
+      <scopus_id>84986278049</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84986271101</dc:identifier>
+      <scopus_id>84986271101</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84864676131</dc:identifier>
+      <scopus_id>84864676131</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84867534868</dc:identifier>
+      <scopus_id>84867534868</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84986269495</dc:identifier>
+      <scopus_id>84986269495</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84870484356</dc:identifier>
+      <scopus_id>84870484356</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84866758015</dc:identifier>
+      <scopus_id>84866758015</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84873703406</dc:identifier>
+      <scopus_id>84873703406</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84874156774</dc:identifier>
+      <scopus_id>84874156774</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84866451183</dc:identifier>
+      <scopus_id>84866451183</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84055217964</dc:identifier>
+      <scopus_id>84055217964</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84862874768</dc:identifier>
+      <scopus_id>84862874768</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84860211474</dc:identifier>
+      <scopus_id>84860211474</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84355162043</dc:identifier>
+      <scopus_id>84355162043</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84866564208</dc:identifier>
+      <scopus_id>84866564208</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84855872587</dc:identifier>
+      <scopus_id>84855872587</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84857783261</dc:identifier>
+      <scopus_id>84857783261</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84859224130</dc:identifier>
+      <scopus_id>84859224130</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84867629010</dc:identifier>
+      <scopus_id>84867629010</scopus_id>
+    </identifier>
+    <identifier>
+      <dc:identifier>SCOPUS_ID:84856838526</dc:identifier>
+      <scopus_id>84856838526</scopus_id>
+    </identifier>
+  </identifier-legend>
+  <citeInfoMatrix>
+    <citeInfoMatrixXML>
+      <citationMatrix xmlns="http://www.elsevier.com/xml/ctom/dtd">
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84862229244</dc:identifier>
+          <sort-year>2012</sort-year>
+          <pcc>0</pcc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>2</cc>
+          <cc>10</cc>
+          <cc>14</cc>
+          <cc>12</cc>
+          <cc>6</cc>
+          <cc>3</cc>
+          <lcc>0</lcc>
+          <rangeCount>47</rangeCount>
+          <rowTotal>47</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84861938195</dc:identifier>
+          <sort-year>2012</sort-year>
+          <pcc>0</pcc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>2</cc>
+          <cc>5</cc>
+          <cc>2</cc>
+          <cc>3</cc>
+          <cc>1</cc>
+          <lcc>0</lcc>
+          <rangeCount>13</rangeCount>
+          <rowTotal>13</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84906951911</dc:identifier>
+          <sort-year>2012</sort-year>
+          <pcc>0</pcc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>1</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <lcc>0</lcc>
+          <rangeCount>1</rangeCount>
+          <rowTotal>1</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84856196848</dc:identifier>
+          <sort-year>2012</sort-year>
+          <pcc>0</pcc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>2</cc>
+          <cc>3</cc>
+          <cc>3</cc>
+          <cc>4</cc>
+          <cc>1</cc>
+          <cc>0</cc>
+          <lcc>0</lcc>
+          <rangeCount>13</rangeCount>
+          <rowTotal>13</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84860905572</dc:identifier>
+          <sort-year>2012</sort-year>
+          <pcc>0</pcc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>1</cc>
+          <cc>0</cc>
+          <cc>3</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <lcc>0</lcc>
+          <rangeCount>4</rangeCount>
+          <rowTotal>4</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84860904131</dc:identifier>
+          <sort-year>2012</sort-year>
+          <pcc>0</pcc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>1</cc>
+          <cc>1</cc>
+          <cc>1</cc>
+          <cc>0</cc>
+          <lcc>0</lcc>
+          <rangeCount>3</rangeCount>
+          <rowTotal>3</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84871453467</dc:identifier>
+          <sort-year>2012</sort-year>
+          <pcc>0</pcc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>2</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <lcc>0</lcc>
+          <rangeCount>2</rangeCount>
+          <rowTotal>2</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84863096279</dc:identifier>
+          <sort-year>2012</sort-year>
+          <pcc>0</pcc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>1</cc>
+          <cc>3</cc>
+          <cc>1</cc>
+          <cc>4</cc>
+          <cc>0</cc>
+          <lcc>0</lcc>
+          <rangeCount>9</rangeCount>
+          <rowTotal>9</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84867396413</dc:identifier>
+          <sort-year>2012</sort-year>
+          <pcc>0</pcc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>3</cc>
+          <cc>6</cc>
+          <cc>4</cc>
+          <cc>6</cc>
+          <cc>1</cc>
+          <lcc>0</lcc>
+          <rangeCount>20</rangeCount>
+          <rowTotal>20</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84856852712</dc:identifier>
+          <sort-year>2012</sort-year>
+          <pcc>0</pcc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>1</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>3</cc>
+          <cc>1</cc>
+          <lcc>0</lcc>
+          <rangeCount>5</rangeCount>
+          <rowTotal>5</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84864259543</dc:identifier>
+          <sort-year>2012</sort-year>
+          <pcc>0</pcc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>2</cc>
+          <lcc>0</lcc>
+          <rangeCount>2</rangeCount>
+          <rowTotal>2</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84867545178</dc:identifier>
+          <sort-year>2012</sort-year>
+          <pcc>0</pcc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>1</cc>
+          <cc>3</cc>
+          <cc>2</cc>
+          <cc>0</cc>
+          <lcc>0</lcc>
+          <rangeCount>6</rangeCount>
+          <rowTotal>6</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84858794941</dc:identifier>
+          <sort-year>2012</sort-year>
+          <pcc>0</pcc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>4</cc>
+          <cc>3</cc>
+          <cc>3</cc>
+          <cc>1</cc>
+          <cc>0</cc>
+          <lcc>0</lcc>
+          <rangeCount>11</rangeCount>
+          <rowTotal>11</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84872726615</dc:identifier>
+          <sort-year>2012</sort-year>
+          <pcc>0</pcc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>1</cc>
+          <cc>0</cc>
+          <cc>2</cc>
+          <cc>3</cc>
+          <cc>0</cc>
+          <lcc>0</lcc>
+          <rangeCount>6</rangeCount>
+          <rowTotal>6</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84857825813</dc:identifier>
+          <sort-year>2012</sort-year>
+          <pcc>0</pcc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>1</cc>
+          <cc>0</cc>
+          <cc>1</cc>
+          <lcc>0</lcc>
+          <rangeCount>2</rangeCount>
+          <rowTotal>2</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84860908675</dc:identifier>
+          <sort-year>2012</sort-year>
+          <pcc>0</pcc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>1</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>1</cc>
+          <lcc>0</lcc>
+          <rangeCount>2</rangeCount>
+          <rowTotal>2</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84864609020</dc:identifier>
+          <sort-year>2012</sort-year>
+          <pcc>0</pcc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>2</cc>
+          <cc>1</cc>
+          <cc>1</cc>
+          <lcc>0</lcc>
+          <rangeCount>4</rangeCount>
+          <rowTotal>4</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84873961265</dc:identifier>
+          <sort-year>2012</sort-year>
+          <pcc>0</pcc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>3</cc>
+          <cc>1</cc>
+          <lcc>0</lcc>
+          <rangeCount>4</rangeCount>
+          <rowTotal>4</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84865776841</dc:identifier>
+          <sort-year>2012</sort-year>
+          <pcc>0</pcc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>2</cc>
+          <cc>6</cc>
+          <cc>2</cc>
+          <cc>6</cc>
+          <cc>3</cc>
+          <lcc>0</lcc>
+          <rangeCount>19</rangeCount>
+          <rowTotal>19</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84856191442</dc:identifier>
+          <sort-year>2012</sort-year>
+          <pcc>0</pcc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>3</cc>
+          <cc>2</cc>
+          <cc>3</cc>
+          <cc>4</cc>
+          <cc>2</cc>
+          <cc>0</cc>
+          <lcc>0</lcc>
+          <rangeCount>14</rangeCount>
+          <rowTotal>14</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84856886624</dc:identifier>
+          <sort-year>2012</sort-year>
+          <pcc>0</pcc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>1</cc>
+          <cc>2</cc>
+          <cc>1</cc>
+          <cc>3</cc>
+          <cc>0</cc>
+          <lcc>0</lcc>
+          <rangeCount>7</rangeCount>
+          <rowTotal>7</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84860318240</dc:identifier>
+          <sort-year>2012</sort-year>
+          <pcc>0</pcc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>3</cc>
+          <cc>6</cc>
+          <cc>6</cc>
+          <cc>8</cc>
+          <cc>2</cc>
+          <lcc>0</lcc>
+          <rangeCount>25</rangeCount>
+          <rowTotal>25</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84863644532</dc:identifier>
+          <sort-year>2012</sort-year>
+          <pcc>0</pcc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>1</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>1</cc>
+          <cc>3</cc>
+          <cc>1</cc>
+          <lcc>0</lcc>
+          <rangeCount>6</rangeCount>
+          <rowTotal>6</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84055212189</dc:identifier>
+          <sort-year>2012</sort-year>
+          <pcc>0</pcc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>1</cc>
+          <cc>0</cc>
+          <cc>1</cc>
+          <cc>2</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <lcc>0</lcc>
+          <rangeCount>4</rangeCount>
+          <rowTotal>4</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84863477670</dc:identifier>
+          <sort-year>2012</sort-year>
+          <pcc>0</pcc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>0</cc>
+          <cc>2</cc>
+          <cc>1</cc>
+          <cc>3</cc>
+          <cc>0</cc>
+          <lcc>0</lcc>
+          <rangeCount>6</rangeCount>
+          <rowTotal>6</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84864151238</dc:identifier>
+          <rowTotal>9</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84871456950</dc:identifier>
+          <rowTotal>2</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84857019538</dc:identifier>
+          <rowTotal>5</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84858450704</dc:identifier>
+          <rowTotal>13</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84866460367</dc:identifier>
+          <rowTotal>4</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84856770806</dc:identifier>
+          <rowTotal>7</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84855910108</dc:identifier>
+          <rowTotal>7</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84870769102</dc:identifier>
+          <rowTotal>4</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84867857841</dc:identifier>
+          <rowTotal>4</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84868652276</dc:identifier>
+          <rowTotal>6</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84864018555</dc:identifier>
+          <rowTotal>9</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84866736374</dc:identifier>
+          <rowTotal>3</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84865321336</dc:identifier>
+          <rowTotal>8</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84871420054</dc:identifier>
+          <rowTotal>4</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84861420873</dc:identifier>
+          <rowTotal>12</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84861305912</dc:identifier>
+          <rowTotal>1</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84862520138</dc:identifier>
+          <rowTotal>18</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84864360223</dc:identifier>
+          <rowTotal>6</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84863779092</dc:identifier>
+          <rowTotal>32</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84862273955</dc:identifier>
+          <rowTotal>1</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84892072637</dc:identifier>
+          <rowTotal>0</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84856859458</dc:identifier>
+          <rowTotal>0</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84917477950</dc:identifier>
+          <rowTotal>0</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84878286234</dc:identifier>
+          <rowTotal>0</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84871576912</dc:identifier>
+          <rowTotal>0</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84862333355</dc:identifier>
+          <rowTotal>0</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84875261594</dc:identifier>
+          <rowTotal>0</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84866752092</dc:identifier>
+          <rowTotal>0</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84867289204</dc:identifier>
+          <rowTotal>0</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84865780860</dc:identifier>
+          <rowTotal>0</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84921719665</dc:identifier>
+          <rowTotal>0</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84873047849</dc:identifier>
+          <rowTotal>0</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84986244129</dc:identifier>
+          <rowTotal>0</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84986309692</dc:identifier>
+          <rowTotal>0</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84986274479</dc:identifier>
+          <rowTotal>0</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84994009751</dc:identifier>
+          <rowTotal>0</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84994050001</dc:identifier>
+          <rowTotal>0</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84872717742</dc:identifier>
+          <rowTotal>0</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84864328478</dc:identifier>
+          <rowTotal>0</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84863853318</dc:identifier>
+          <rowTotal>16</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84861515172</dc:identifier>
+          <rowTotal>1</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84863425115</dc:identifier>
+          <rowTotal>16</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84870819504</dc:identifier>
+          <rowTotal>2</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84866769122</dc:identifier>
+          <rowTotal>2</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84864342396</dc:identifier>
+          <rowTotal>4</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84866238079</dc:identifier>
+          <rowTotal>7</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84883483004</dc:identifier>
+          <rowTotal>1</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84867537286</dc:identifier>
+          <rowTotal>17</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84867694111</dc:identifier>
+          <rowTotal>2</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84866650075</dc:identifier>
+          <rowTotal>24</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84856995634</dc:identifier>
+          <rowTotal>5</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84857361665</dc:identifier>
+          <rowTotal>29</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84858794205</dc:identifier>
+          <rowTotal>11</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84861531371</dc:identifier>
+          <rowTotal>4</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84864153841</dc:identifier>
+          <rowTotal>1</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84871574428</dc:identifier>
+          <rowTotal>1</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84856327668</dc:identifier>
+          <rowTotal>31</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84862998073</dc:identifier>
+          <rowTotal>16</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84859852444</dc:identifier>
+          <rowTotal>32</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84861675226</dc:identifier>
+          <rowTotal>3</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84857163401</dc:identifier>
+          <rowTotal>12</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84857007487</dc:identifier>
+          <rowTotal>4</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84858331982</dc:identifier>
+          <rowTotal>2</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84866252943</dc:identifier>
+          <rowTotal>9</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84869079911</dc:identifier>
+          <rowTotal>11</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84862212584</dc:identifier>
+          <rowTotal>5</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84865342867</dc:identifier>
+          <rowTotal>17</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84856888415</dc:identifier>
+          <rowTotal>7</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84862280689</dc:identifier>
+          <rowTotal>20</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84872409771</dc:identifier>
+          <rowTotal>7</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84858304453</dc:identifier>
+          <rowTotal>16</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84860913560</dc:identifier>
+          <rowTotal>1</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84856479447</dc:identifier>
+          <rowTotal>6</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84861990978</dc:identifier>
+          <rowTotal>3</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84856812923</dc:identifier>
+          <rowTotal>46</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84866901530</dc:identifier>
+          <rowTotal>1</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84879633509</dc:identifier>
+          <rowTotal>4</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84862757969</dc:identifier>
+          <rowTotal>28</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84856979708</dc:identifier>
+          <rowTotal>1</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84655169269</dc:identifier>
+          <rowTotal>4</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84867507302</dc:identifier>
+          <rowTotal>4</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84858176267</dc:identifier>
+          <rowTotal>8</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84860259184</dc:identifier>
+          <rowTotal>6</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84857020772</dc:identifier>
+          <rowTotal>26</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84859158550</dc:identifier>
+          <rowTotal>12</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84859197446</dc:identifier>
+          <rowTotal>10</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84875238964</dc:identifier>
+          <rowTotal>1</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84886563876</dc:identifier>
+          <rowTotal>1</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84861498593</dc:identifier>
+          <rowTotal>10</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84860892583</dc:identifier>
+          <rowTotal>6</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84863466560</dc:identifier>
+          <rowTotal>5</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84870672203</dc:identifier>
+          <rowTotal>42</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84857027748</dc:identifier>
+          <rowTotal>7</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84866263715</dc:identifier>
+          <rowTotal>7</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84861325676</dc:identifier>
+          <rowTotal>1</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84861804792</dc:identifier>
+          <rowTotal>2</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84860535085</dc:identifier>
+          <rowTotal>2</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84856394590</dc:identifier>
+          <rowTotal>6</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84866702353</dc:identifier>
+          <rowTotal>6</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84866243456</dc:identifier>
+          <rowTotal>0</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84879669702</dc:identifier>
+          <rowTotal>0</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84897261446</dc:identifier>
+          <rowTotal>0</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84866334555</dc:identifier>
+          <rowTotal>0</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84863709401</dc:identifier>
+          <rowTotal>0</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84879612616</dc:identifier>
+          <rowTotal>0</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84864094621</dc:identifier>
+          <rowTotal>0</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84896417515</dc:identifier>
+          <rowTotal>0</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84858589913</dc:identifier>
+          <rowTotal>0</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84921668259</dc:identifier>
+          <rowTotal>0</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84895851731</dc:identifier>
+          <rowTotal>0</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:85011320315</dc:identifier>
+          <rowTotal>0</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84864270456</dc:identifier>
+          <rowTotal>0</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84861001940</dc:identifier>
+          <rowTotal>1</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84856829414</dc:identifier>
+          <rowTotal>10</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84859121372</dc:identifier>
+          <rowTotal>29</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84861230419</dc:identifier>
+          <rowTotal>5</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84862504858</dc:identifier>
+          <rowTotal>8</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84857373626</dc:identifier>
+          <rowTotal>61</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84855453466</dc:identifier>
+          <rowTotal>29</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84867715877</dc:identifier>
+          <rowTotal>4</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:82855178759</dc:identifier>
+          <rowTotal>23</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84879656439</dc:identifier>
+          <rowTotal>1</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84872455702</dc:identifier>
+          <rowTotal>7</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84857367666</dc:identifier>
+          <rowTotal>18</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84871245628</dc:identifier>
+          <rowTotal>4</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84866770870</dc:identifier>
+          <rowTotal>1</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:81055134797</dc:identifier>
+          <rowTotal>4</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84857536338</dc:identifier>
+          <rowTotal>7</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84858211606</dc:identifier>
+          <rowTotal>1</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84857361873</dc:identifier>
+          <rowTotal>16</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84868334477</dc:identifier>
+          <rowTotal>7</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84865601087</dc:identifier>
+          <rowTotal>33</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84863874525</dc:identifier>
+          <rowTotal>2</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84864288445</dc:identifier>
+          <rowTotal>4</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84864698320</dc:identifier>
+          <rowTotal>3</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84867653899</dc:identifier>
+          <rowTotal>3</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84857700698</dc:identifier>
+          <rowTotal>2</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84873624951</dc:identifier>
+          <rowTotal>2</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84867239255</dc:identifier>
+          <rowTotal>11</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84863483210</dc:identifier>
+          <rowTotal>2</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84862658993</dc:identifier>
+          <rowTotal>1</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84864016594</dc:identifier>
+          <rowTotal>11</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84930721177</dc:identifier>
+          <rowTotal>2</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84859582239</dc:identifier>
+          <rowTotal>3</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84857021676</dc:identifier>
+          <rowTotal>4</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84859735959</dc:identifier>
+          <rowTotal>7</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:85007810137</dc:identifier>
+          <rowTotal>1</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84862922020</dc:identifier>
+          <rowTotal>11</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84866746659</dc:identifier>
+          <rowTotal>9</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84867998932</dc:identifier>
+          <rowTotal>2</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84871228568</dc:identifier>
+          <rowTotal>0</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84870244564</dc:identifier>
+          <rowTotal>0</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84922761213</dc:identifier>
+          <rowTotal>0</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84856875431</dc:identifier>
+          <rowTotal>0</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84867796298</dc:identifier>
+          <rowTotal>0</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84986278049</dc:identifier>
+          <rowTotal>0</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84986271101</dc:identifier>
+          <rowTotal>0</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84864676131</dc:identifier>
+          <rowTotal>0</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84867534868</dc:identifier>
+          <rowTotal>0</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84986269495</dc:identifier>
+          <rowTotal>0</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84870484356</dc:identifier>
+          <rowTotal>0</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84866758015</dc:identifier>
+          <rowTotal>2</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84873703406</dc:identifier>
+          <rowTotal>1</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84874156774</dc:identifier>
+          <rowTotal>2</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84866451183</dc:identifier>
+          <rowTotal>5</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84055217964</dc:identifier>
+          <rowTotal>7</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84862874768</dc:identifier>
+          <rowTotal>10</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84860211474</dc:identifier>
+          <rowTotal>1</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84355162043</dc:identifier>
+          <rowTotal>20</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84866564208</dc:identifier>
+          <rowTotal>12</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84855872587</dc:identifier>
+          <rowTotal>4</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84857783261</dc:identifier>
+          <rowTotal>10</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84859224130</dc:identifier>
+          <rowTotal>27</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84867629010</dc:identifier>
+          <rowTotal>1</rowTotal>
+        </citeInfo>
+        <citeInfo xmlns="">
+          <dc:identifier>SCOPUS_ID:84856838526</dc:identifier>
+          <rowTotal>6</rowTotal>
+        </citeInfo>
+      </citationMatrix>
+    </citeInfoMatrixXML>
+  </citeInfoMatrix>
+  <citeColumnTotalXML>
+    <citeCountHeader>
+      <prevColumnHeading>previous</prevColumnHeading>
+      <columnHeading>2007</columnHeading>
+      <columnHeading>2008</columnHeading>
+      <columnHeading>2009</columnHeading>
+      <columnHeading>2010</columnHeading>
+      <columnHeading>2011</columnHeading>
+      <columnHeading>2012</columnHeading>
+      <columnHeading>2013</columnHeading>
+      <columnHeading>2014</columnHeading>
+      <columnHeading>2015</columnHeading>
+      <columnHeading>2016</columnHeading>
+      <columnHeading>2017</columnHeading>
+      <laterColumnHeading>later</laterColumnHeading>
+      <prevColumnTotal>0</prevColumnTotal>
+      <columnTotal>0</columnTotal>
+      <columnTotal>0</columnTotal>
+      <columnTotal>0</columnTotal>
+      <columnTotal>0</columnTotal>
+      <columnTotal>0</columnTotal>
+      <columnTotal>70</columnTotal>
+      <columnTotal>204</columnTotal>
+      <columnTotal>324</columnTotal>
+      <columnTotal>373</columnTotal>
+      <columnTotal>356</columnTotal>
+      <columnTotal>111</columnTotal>
+      <laterColumnTotal>0</laterColumnTotal>
+      <rangeColumnTotal>1438</rangeColumnTotal>
+      <grandTotal>1438</grandTotal>
+    </citeCountHeader>
+  </citeColumnTotalXML>
+</abstract-citations-response>

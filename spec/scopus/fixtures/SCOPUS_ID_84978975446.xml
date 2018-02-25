@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<abstracts-retrieval-response xmlns="http://www.elsevier.com/xml/svapi/abstract/dtd" xmlns:ait="http://www.elsevier.com/xml/ani/ait" xmlns:ce="http://www.elsevier.com/xml/ani/common" xmlns:cto="http://www.elsevier.com/xml/cto/dtd" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:prism="http://prismstandard.org/namespaces/basic/2.0/" xmlns:xocs="http://www.elsevier.com/xml/xocs/dtd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <coredata>
+    <prism:url>http://api.elsevier.com/content/abstract/scopus_id/84978975446</prism:url>
+    <dc:identifier>SCOPUS_ID:84978975446</dc:identifier>
+    <eid>2-s2.0-84978975446</eid>
+    <dc:title>Opto-electronic plethysmography: Noninvasive and accurate measurement of the volume of the chest wall and its different thoraco-abdominal compartments</dc:title>
+    <prism:aggregationType>Journal</prism:aggregationType>
+    <srctype>j</srctype>
+    <citedby-count>0</citedby-count>
+    <prism:publicationName>Medical Science Technology</prism:publicationName>
+    <dc:publisher> International Scientific Information, Inc. redakcja@achilles.wam.lodz.pl </dc:publisher>
+    <source-id>21100468984</source-id>
+    <prism:issn>23290072</prism:issn>
+    <prism:volume>54</prism:volume>
+    <prism:issueIdentifier>1</prism:issueIdentifier>
+    <prism:startingPage>147</prism:startingPage>
+    <prism:endingPage>150</prism:endingPage>
+    <prism:pageRange>147-150</prism:pageRange>
+    <prism:coverDate>2013-10-14</prism:coverDate>
+    <dc:creator>
+      <author auid="37030643100" seq="1">
+        <ce:initials>N.S.</ce:initials>
+        <ce:indexed-name>de Faria Junior N.S.</ce:indexed-name>
+        <ce:surname>de Faria Júnior</ce:surname>
+        <ce:given-name>Newton Santos</ce:given-name>
+        <preferred-name> <ce:initials>N.S.</ce:initials> <ce:indexed-name>de Faria Júnior N.</ce:indexed-name> <ce:surname>de Faria Júnior</ce:surname> <ce:given-name>Newton Santos</ce:given-name> </preferred-name>
+        <author-url>http://api.elsevier.com/content/author/author_id/37030643100</author-url>
+        <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60084124" id="60084124"/>
+      </author>
+    </dc:creator>
+    <dc:description>
+      <abstract original="y" xml:lang="eng"> <publishercopyright>© 2013, Med Sci Tech. All rights reserved.</publishercopyright> <ce:para>Background: Opto-electronic plethysmography (OEP) is an innovative, new method to evaluate the ventilation pattern through an external measurement of chest wall surface motion. The OEP system measures changes in the complex shape of the chest wall during breathing by modeling the thoracoabdominal surface with a large number of points belonging to selected anatomical reference sites of the rib cage and abdomen. Material/Methods: The automatic motion analyzer on which it is based uses passive markers composed of a thin film of retro-reflective paper on plastic hemispheres (5-10 mm diameter). The markers are placed on the skin by bi-adhesive hypoallergenic tape. Special video cameras (solid state CCDs) operate up to 140 frames per second synchronized with coaxial infrared flashing LEDs. Dedicated software computes the 3D coordinates of the different markers with high accuracy. No specific calibration is required besides the initial one performed during the installation of the system. The OEP System uses the accurate measurement of the 3-dimensional micro-movement of the points belonging to the chest wall to compute chest wall volumes. Special algorithms compute volume variations of the whole chest wall and of the different compartments. Time courses of these signals can be obtained at different sampling frequencies, up to 140 Hz. Results: Several studies have been conducted under different conditions and have shown that the method provides a very accurate measurement of the volume of the chest wall and its variations during respiration. Conclusions: The OEP System has the great advantage that it can measure breathing patterns in any condition, both in health and disease. It can be used to study respiratory kinematics and, if combined with pressure measurements, it can be used to study statics, dynamics, and energetics.</ce:para> </abstract>
+    </dc:description>
+    <intid>84978975446</intid>
+    <link href="http://api.elsevier.com/content/abstract/scopus_id/84978975446" rel="self"/>
+    <link href="https://www.scopus.com/inward/record.uri?partnerID=HzOxMe3b&amp;scp=84978975446&amp;origin=inward" rel="scopus"/>
+    <link href="https://www.scopus.com/inward/citedby.uri?partnerID=HzOxMe3b&amp;scp=84978975446&amp;origin=inward" rel="scopus-citedby"/>
+  </coredata>
+  <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60101657" id="60101657">
+    <affilname>Universidade Estadual de Ciencias da Saude de Alagoas</affilname>
+    <affiliation-city>Maceio</affiliation-city>
+    <affiliation-country>Brazil</affiliation-country>
+  </affiliation>
+  <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60015440" id="60015440">
+    <affilname>Universidade de Fortaleza</affilname>
+    <affiliation-city>Fortaleza</affiliation-city>
+    <affiliation-country>Brazil</affiliation-country>
+  </affiliation>
+  <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60023857" id="60023857">
+    <affilname>Universidade Federal do Rio Grande do Norte</affilname>
+    <affiliation-city>Natal</affiliation-city>
+    <affiliation-country>Brazil</affiliation-country>
+  </affiliation>
+  <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60023256" id="60023256">
+    <affilname>Politecnico di Milano</affilname>
+    <affiliation-city>Milan</affiliation-city>
+    <affiliation-country>Italy</affiliation-country>
+  </affiliation>
+  <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60084124" id="60084124">
+    <affilname>Universidade Nove de Julho</affilname>
+    <affiliation-city>Sao Paulo</affiliation-city>
+    <affiliation-country>Brazil</affiliation-country>
+  </affiliation>
+  <authors>
+    <author auid="37030643100" seq="1">
+      <ce:initials>N.S.</ce:initials>
+      <ce:indexed-name>de Faria Junior N.S.</ce:indexed-name>
+      <ce:surname>de Faria Júnior</ce:surname>
+      <ce:given-name>Newton Santos</ce:given-name>
+      <preferred-name> <ce:initials>N.S.</ce:initials> <ce:indexed-name>de Faria Júnior N.</ce:indexed-name> <ce:surname>de Faria Júnior</ce:surname> <ce:given-name>Newton Santos</ce:given-name> </preferred-name>
+      <author-url>http://api.elsevier.com/content/author/author_id/37030643100</author-url>
+      <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60084124" id="60084124"/>
+    </author>
+    <author auid="54417999300" seq="2">
+      <ce:initials>I.R.</ce:initials>
+      <ce:indexed-name>Santos I.R.</ce:indexed-name>
+      <ce:surname>Santos</ce:surname>
+      <ce:given-name>Israel Reis</ce:given-name>
+      <preferred-name> <ce:initials>I.R.</ce:initials> <ce:indexed-name>Santos I.</ce:indexed-name> <ce:surname>Santos</ce:surname> <ce:given-name>Israel Reis</ce:given-name> </preferred-name>
+      <author-url>http://api.elsevier.com/content/author/author_id/54417999300</author-url>
+      <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60084124" id="60084124"/>
+    </author>
+    <author auid="55926927000" seq="3">
+      <ce:initials>I.S.</ce:initials>
+      <ce:indexed-name>Dias I.S.</ce:indexed-name>
+      <ce:surname>Dias</ce:surname>
+      <ce:given-name>Ismael Sousa</ce:given-name>
+      <preferred-name> <ce:initials>I.S.</ce:initials> <ce:indexed-name>Dias I.</ce:indexed-name> <ce:surname>Dias</ce:surname> <ce:given-name>Ismael Sousa</ce:given-name> </preferred-name>
+      <author-url>http://api.elsevier.com/content/author/author_id/55926927000</author-url>
+      <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60084124" id="60084124"/>
+    </author>
+    <author auid="55889884500" seq="4">
+      <ce:initials>J.J.</ce:initials>
+      <ce:indexed-name>Urbano J.J.</ce:indexed-name>
+      <ce:surname>Urbano</ce:surname>
+      <ce:given-name>Jéssica Julioti</ce:given-name>
+      <preferred-name> <ce:initials>J.J.</ce:initials> <ce:indexed-name>Urbano J.</ce:indexed-name> <ce:surname>Urbano</ce:surname> <ce:given-name>Jéssica Julioti</ce:given-name> </preferred-name>
+      <author-url>http://api.elsevier.com/content/author/author_id/55889884500</author-url>
+      <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60084124" id="60084124"/>
+    </author>
+    <author auid="55927595300" seq="5">
+      <ce:initials>R.K.</ce:initials>
+      <ce:indexed-name>da Palma R.K.</ce:indexed-name>
+      <ce:surname>da Palma</ce:surname>
+      <ce:given-name>Renata Kelly</ce:given-name>
+      <preferred-name> <ce:initials>R.K.</ce:initials> <ce:indexed-name>da Palma R.</ce:indexed-name> <ce:surname>da Palma</ce:surname> <ce:given-name>Renata Kelly</ce:given-name> </preferred-name>
+      <author-url>http://api.elsevier.com/content/author/author_id/55927595300</author-url>
+      <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60084124" id="60084124"/>
+    </author>
+    <author auid="55890152500" seq="6">
+      <ce:initials>N.T.</ce:initials>
+      <ce:indexed-name>Fonseca N.T.</ce:indexed-name>
+      <ce:surname>Fonsêca</ce:surname>
+      <ce:given-name>Nina Teixeira</ce:given-name>
+      <preferred-name> <ce:initials>N.T.</ce:initials> <ce:indexed-name>Fonsêca N.</ce:indexed-name> <ce:surname>Fonsêca</ce:surname> <ce:given-name>Nina Teixeira</ce:given-name> </preferred-name>
+      <author-url>http://api.elsevier.com/content/author/author_id/55890152500</author-url>
+      <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60101657" id="60101657"/>
+    </author>
+    <author auid="22950954700" seq="7">
+      <ce:initials>S.R.</ce:initials>
+      <ce:indexed-name>Nacif S.R.</ce:indexed-name>
+      <ce:surname>Nacif</ce:surname>
+      <ce:given-name>Sergio Roberto</ce:given-name>
+      <preferred-name> <ce:initials>S.R.</ce:initials> <ce:indexed-name>Nacif S.</ce:indexed-name> <ce:surname>Nacif</ce:surname> <ce:given-name>Sergio Roberto</ce:given-name> </preferred-name>
+      <author-url>http://api.elsevier.com/content/author/author_id/22950954700</author-url>
+      <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60084124" id="60084124"/>
+    </author>
+    <author auid="53983904200" seq="8">
+      <ce:initials>F.S.S.L.</ce:initials>
+      <ce:indexed-name>Filho F.S.S.L.</ce:indexed-name>
+      <ce:surname>Filho</ce:surname>
+      <ce:given-name>Fernando Sergio Studart Leitão</ce:given-name>
+      <preferred-name> <ce:initials>F.S.S.L.</ce:initials> <ce:indexed-name>Filho F.</ce:indexed-name> <ce:surname>Filho</ce:surname> <ce:given-name>Fernando Sergio Studart Leitão</ce:given-name> </preferred-name>
+      <author-url>http://api.elsevier.com/content/author/author_id/53983904200</author-url>
+      <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60015440" id="60015440"/>
+    </author>
+    <author auid="55926747200" seq="9">
+      <ce:initials>D.</ce:initials>
+      <ce:indexed-name>Costa D.</ce:indexed-name>
+      <ce:surname>Costa</ce:surname>
+      <ce:given-name>Dirceu</ce:given-name>
+      <preferred-name> <ce:initials>D.</ce:initials> <ce:indexed-name>Costa D.</ce:indexed-name> <ce:surname>Costa</ce:surname> <ce:given-name>Dirceu</ce:given-name> </preferred-name>
+      <author-url>http://api.elsevier.com/content/author/author_id/55926747200</author-url>
+      <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60084124" id="60084124"/>
+    </author>
+    <author auid="55927962800" seq="10">
+      <ce:initials>A.C.M.G.</ce:initials>
+      <ce:indexed-name>Maciel A.C.M.G.</ce:indexed-name>
+      <ce:surname>Maciel</ce:surname>
+      <ce:given-name>Ana Cristina de Medeiros Garcia</ce:given-name>
+      <preferred-name> <ce:initials>A.C.d.M.G.</ce:initials> <ce:indexed-name>Maciel A.</ce:indexed-name> <ce:surname>Maciel</ce:surname> <ce:given-name>Ana Cristina de Medeiros Garcia</ce:given-name> </preferred-name>
+      <author-url>http://api.elsevier.com/content/author/author_id/55927962800</author-url>
+      <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60023857" id="60023857"/>
+    </author>
+    <author auid="55926931100" seq="11">
+      <ce:initials>G.</ce:initials>
+      <ce:indexed-name>Fregonessi G.</ce:indexed-name>
+      <ce:surname>Fregonessi</ce:surname>
+      <ce:given-name>Guilherme</ce:given-name>
+      <preferred-name> <ce:initials>G.</ce:initials> <ce:indexed-name>Fregonessi G.</ce:indexed-name> <ce:surname>Fregonessi</ce:surname> <ce:given-name>Guilherme</ce:given-name> </preferred-name>
+      <author-url>http://api.elsevier.com/content/author/author_id/55926931100</author-url>
+      <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60023857" id="60023857"/>
+    </author>
+    <author auid="56785570300" seq="12">
+      <ce:initials>A.</ce:initials>
+      <ce:indexed-name>Pedotti A.</ce:indexed-name>
+      <ce:surname>Pedotti</ce:surname>
+      <ce:given-name>Antonio</ce:given-name>
+      <preferred-name> <ce:initials>A.</ce:initials> <ce:indexed-name>Pedotti A.</ce:indexed-name> <ce:surname>Pedotti</ce:surname> <ce:given-name>Antonio</ce:given-name> </preferred-name>
+      <author-url>http://api.elsevier.com/content/author/author_id/56785570300</author-url>
+      <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60023256" id="60023256"/>
+    </author>
+    <author auid="7006361013" seq="13">
+      <ce:initials>A.</ce:initials>
+      <ce:indexed-name>Aliverti A.</ce:indexed-name>
+      <ce:surname>Aliverti</ce:surname>
+      <ce:given-name>Andrea</ce:given-name>
+      <preferred-name> <ce:initials>A.</ce:initials> <ce:indexed-name>Aliverti A.</ce:indexed-name> <ce:surname>Aliverti</ce:surname> <ce:given-name>Andrea</ce:given-name> </preferred-name>
+      <author-url>http://api.elsevier.com/content/author/author_id/7006361013</author-url>
+      <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60023256" id="60023256"/>
+    </author>
+    <author auid="54387166100" seq="14">
+      <ce:initials>L.V.F.</ce:initials>
+      <ce:indexed-name>Oliveira L.V.F.</ce:indexed-name>
+      <ce:surname>Oliveira</ce:surname>
+      <ce:given-name>Luis Vicente Franco</ce:given-name>
+      <preferred-name> <ce:initials>L.V.F.</ce:initials> <ce:indexed-name>Oliveira L.</ce:indexed-name> <ce:surname>Oliveira</ce:surname> <ce:given-name>Luis Vicente Franco</ce:given-name> </preferred-name>
+      <author-url>http://api.elsevier.com/content/author/author_id/54387166100</author-url>
+      <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60084124" id="60084124"/>
+    </author>
+  </authors>
+  <language xml:lang="eng"/>
+  <authkeywords>
+    <author-keyword>Lung</author-keyword>
+    <author-keyword>Movement</author-keyword>
+    <author-keyword>Plethysmography</author-keyword>
+    <author-keyword>Total lung capacity</author-keyword>
+  </authkeywords>
+  <idxterms/>
+  <subject-areas>
+    <subject-area abbrev="PSYC" code="3200">Psychology (all)</subject-area>
+    <subject-area abbrev="MEDI" code="2700">Medicine (all)</subject-area>
+    <subject-area abbrev="ENGI" code="2204">Biomedical Engineering</subject-area>
+    <subject-area abbrev="CENG" code="1502">Bioengineering</subject-area>
+  </subject-areas>
+  <item xmlns="">
+    <ait:process-info>
+      <ait:date-delivered day="28" month="07" timestamp="2016-07-28T16:47:42.000042+01:00" year="2016"/>
+      <ait:date-sort day="14" month="10" year="2013"/>
+      <ait:status stage="S300" state="new" type="core"/>
+    </ait:process-info>
+    <bibrecord>
+      <item-info>
+        <copyright type="Elsevier">Copyright 2016 Elsevier B.V., All rights reserved.</copyright>
+        <itemidlist> <itemid idtype="PUI">611105286</itemid> <itemid idtype="CAR-ID">652255045</itemid> <itemid idtype="EMBASE">20160515146</itemid> <itemid idtype="REAXYSCAR">20161540435</itemid> <itemid idtype="SCP">84978975446</itemid> <itemid idtype="SGR">84978975446</itemid> </itemidlist>
+        <history> <date-created day="15" month="07" timestamp="BST 07:03:56" year="2016"/> </history>
+        <dbcollection>EMBASE</dbcollection>
+        <dbcollection>REAXYSCAR</dbcollection>
+        <dbcollection>Scopusbase</dbcollection>
+      </item-info>
+      <head>
+        <citation-info>
+          <citation-type code="no"/>
+          <citation-language language="English" xml:lang="eng"/>
+          <abstract-language language="English" xml:lang="eng"/>
+          <author-keywords> <author-keyword>Lung</author-keyword> <author-keyword>Movement</author-keyword> <author-keyword>Plethysmography</author-keyword> <author-keyword>Total lung capacity</author-keyword> </author-keywords>
+        </citation-info>
+        <citation-title>
+          <titletext language="English" original="y" xml:lang="eng">Opto-electronic plethysmography: Noninvasive and accurate measurement of the volume of the chest wall and its different thoraco-abdominal compartments</titletext>
+        </citation-title>
+        <author-group>
+          <author auid="37030643100" seq="1" type="auth"> <ce:initials>N.S.</ce:initials> <ce:indexed-name>de Faria Junior N.S.</ce:indexed-name> <ce:surname>de Faria Júnior</ce:surname> <ce:given-name>Newton Santos</ce:given-name> <preferred-name> <ce:initials>N.S.</ce:initials> <ce:indexed-name>de Faria Júnior N.</ce:indexed-name> <ce:surname>de Faria Júnior</ce:surname> <ce:given-name>Newton Santos</ce:given-name> </preferred-name> </author>
+          <author auid="54417999300" seq="2" type="auth"> <ce:initials>I.R.</ce:initials> <ce:indexed-name>Santos I.R.</ce:indexed-name> <ce:surname>Santos</ce:surname> <ce:given-name>Israel Reis</ce:given-name> <preferred-name> <ce:initials>I.R.</ce:initials> <ce:indexed-name>Santos I.</ce:indexed-name> <ce:surname>Santos</ce:surname> <ce:given-name>Israel Reis</ce:given-name> </preferred-name> </author>
+          <author auid="55926927000" seq="3" type="auth"> <ce:initials>I.S.</ce:initials> <ce:indexed-name>Dias I.S.</ce:indexed-name> <ce:surname>Dias</ce:surname> <ce:given-name>Ismael Sousa</ce:given-name> <preferred-name> <ce:initials>I.S.</ce:initials> <ce:indexed-name>Dias I.</ce:indexed-name> <ce:surname>Dias</ce:surname> <ce:given-name>Ismael Sousa</ce:given-name> </preferred-name> </author>
+          <author auid="55889884500" seq="4" type="auth"> <ce:initials>J.J.</ce:initials> <ce:indexed-name>Urbano J.J.</ce:indexed-name> <ce:surname>Urbano</ce:surname> <ce:given-name>Jéssica Julioti</ce:given-name> <preferred-name> <ce:initials>J.J.</ce:initials> <ce:indexed-name>Urbano J.</ce:indexed-name> <ce:surname>Urbano</ce:surname> <ce:given-name>Jéssica Julioti</ce:given-name> </preferred-name> </author>
+          <author auid="55927595300" seq="5" type="auth"> <ce:initials>R.K.</ce:initials> <ce:indexed-name>da Palma R.K.</ce:indexed-name> <ce:surname>da Palma</ce:surname> <ce:given-name>Renata Kelly</ce:given-name> <preferred-name> <ce:initials>R.K.</ce:initials> <ce:indexed-name>da Palma R.</ce:indexed-name> <ce:surname>da Palma</ce:surname> <ce:given-name>Renata Kelly</ce:given-name> </preferred-name> </author>
+          <author auid="22950954700" seq="7" type="auth"> <ce:initials>S.R.</ce:initials> <ce:indexed-name>Nacif S.R.</ce:indexed-name> <ce:surname>Nacif</ce:surname> <ce:given-name>Sergio Roberto</ce:given-name> <preferred-name> <ce:initials>S.R.</ce:initials> <ce:indexed-name>Nacif S.</ce:indexed-name> <ce:surname>Nacif</ce:surname> <ce:given-name>Sergio Roberto</ce:given-name> </preferred-name> </author>
+          <author auid="55926747200" seq="9" type="auth"> <ce:initials>D.</ce:initials> <ce:indexed-name>Costa D.</ce:indexed-name> <ce:surname>Costa</ce:surname> <ce:given-name>Dirceu</ce:given-name> <preferred-name> <ce:initials>D.</ce:initials> <ce:indexed-name>Costa D.</ce:indexed-name> <ce:surname>Costa</ce:surname> <ce:given-name>Dirceu</ce:given-name> </preferred-name> </author>
+          <author auid="54387166100" seq="14" type="auth"> <ce:initials>L.V.F.</ce:initials> <ce:indexed-name>Oliveira L.V.F.</ce:indexed-name> <ce:surname>Oliveira</ce:surname> <ce:given-name>Luis Vicente Franco</ce:given-name> <preferred-name> <ce:initials>L.V.F.</ce:initials> <ce:indexed-name>Oliveira L.</ce:indexed-name> <ce:surname>Oliveira</ce:surname> <ce:given-name>Luis Vicente Franco</ce:given-name> </preferred-name> <ce:e-address type="email">oliveira.lvf@uninove.br</ce:e-address> </author>
+          <affiliation afid="60084124" country="bra" dptid="112304960">
+            <organization>Sleep Laboratory</organization>
+            <organization>Nove de Julho University - UNINOVE</organization>
+            <city>Sao Paulo</city>
+            <state>SP</state>
+            <country>Brazil</country>
+          </affiliation>
+        </author-group>
+        <author-group>
+          <author auid="55890152500" seq="6" type="auth"> <ce:initials>N.T.</ce:initials> <ce:indexed-name>Fonseca N.T.</ce:indexed-name> <ce:surname>Fonsêca</ce:surname> <ce:given-name>Nina Teixeira</ce:given-name> <preferred-name> <ce:initials>N.T.</ce:initials> <ce:indexed-name>Fonsêca N.</ce:indexed-name> <ce:surname>Fonsêca</ce:surname> <ce:given-name>Nina Teixeira</ce:given-name> </preferred-name> </author>
+          <affiliation afid="60101657" country="bra" dptid="113927782">
+            <organization>Physical Therapy School</organization>
+            <organization>Universidade Estadual de Ciências da Saúde de Alagoas - UNCISAL</organization>
+            <city>Maceió</city>
+            <state>AL</state>
+            <country>Brazil</country>
+          </affiliation>
+        </author-group>
+        <author-group>
+          <author auid="53983904200" seq="8" type="auth"> <ce:initials>F.S.S.L.</ce:initials> <ce:indexed-name>Filho F.S.S.L.</ce:indexed-name> <ce:surname>Filho</ce:surname> <ce:given-name>Fernando Sergio Studart Leitão</ce:given-name> <preferred-name> <ce:initials>F.S.S.L.</ce:initials> <ce:indexed-name>Filho F.</ce:indexed-name> <ce:surname>Filho</ce:surname> <ce:given-name>Fernando Sergio Studart Leitão</ce:given-name> </preferred-name> </author>
+          <affiliation afid="60015440" country="bra" dptid="117033796">
+            <organization>Department of Pulmonology</organization>
+            <organization>Medicine School of Fortaleza University - UNIFOR</organization>
+            <city>Fortaleza</city>
+            <state>CE</state>
+            <country>Brazil</country>
+          </affiliation>
+        </author-group>
+        <author-group>
+          <author auid="55927962800" seq="10" type="auth"> <ce:initials>A.C.M.G.</ce:initials> <ce:indexed-name>Maciel A.C.M.G.</ce:indexed-name> <ce:surname>Maciel</ce:surname> <ce:given-name>Ana Cristina de Medeiros Garcia</ce:given-name> <preferred-name> <ce:initials>A.C.d.M.G.</ce:initials> <ce:indexed-name>Maciel A.</ce:indexed-name> <ce:surname>Maciel</ce:surname> <ce:given-name>Ana Cristina de Medeiros Garcia</ce:given-name> </preferred-name> </author>
+          <author auid="55926931100" seq="11" type="auth"> <ce:initials>G.</ce:initials> <ce:indexed-name>Fregonessi G.</ce:indexed-name> <ce:surname>Fregonessi</ce:surname> <ce:given-name>Guilherme</ce:given-name> <preferred-name> <ce:initials>G.</ce:initials> <ce:indexed-name>Fregonessi G.</ce:indexed-name> <ce:surname>Fregonessi</ce:surname> <ce:given-name>Guilherme</ce:given-name> </preferred-name> </author>
+          <affiliation afid="60023857" country="bra" dptid="113994637">
+            <organization>Laboratório de Fisioterapia PneumoCardioVascular</organization>
+            <organization>Universidade Federal do Rio Grande do Norte - UFRN</organization>
+            <city>Natal</city>
+            <state>RN</state>
+            <country>Brazil</country>
+          </affiliation>
+        </author-group>
+        <author-group>
+          <author auid="56785570300" seq="12" type="auth"> <ce:initials>A.</ce:initials> <ce:indexed-name>Pedotti A.</ce:indexed-name> <ce:surname>Pedotti</ce:surname> <ce:given-name>Antonio</ce:given-name> <preferred-name> <ce:initials>A.</ce:initials> <ce:indexed-name>Pedotti A.</ce:indexed-name> <ce:surname>Pedotti</ce:surname> <ce:given-name>Antonio</ce:given-name> </preferred-name> </author>
+          <author auid="7006361013" seq="13" type="auth"> <ce:initials>A.</ce:initials> <ce:indexed-name>Aliverti A.</ce:indexed-name> <ce:surname>Aliverti</ce:surname> <ce:given-name>Andrea</ce:given-name> <preferred-name> <ce:initials>A.</ce:initials> <ce:indexed-name>Aliverti A.</ce:indexed-name> <ce:surname>Aliverti</ce:surname> <ce:given-name>Andrea</ce:given-name> </preferred-name> </author>
+          <affiliation afid="60023256" country="ita" dptid="110785651">
+            <organization>Department of Bioengineering</organization>
+            <organization>Politecnico di Milano</organization>
+            <city>Milano</city>
+            <state>MI</state>
+            <country>Italy</country>
+          </affiliation>
+        </author-group>
+        <correspondence>
+          <person> <ce:initials>L.V.F.</ce:initials> <ce:indexed-name>Oliveira L.V.F.</ce:indexed-name> <ce:surname>Oliveira</ce:surname> <ce:given-name>Luis Vicente Franco</ce:given-name> </person>
+          <affiliation country="bra">
+            <address-part>Rua Itapicuru 380, apto 111, Perdizes</address-part>
+            <city>São Paulo</city>
+            <state>SP</state>
+            <postal-code>CEP 05006-000</postal-code>
+            <country>Brazil</country>
+          </affiliation>
+          <ce:e-address type="email">oliveira.lvf@uninove.br</ce:e-address>
+        </correspondence>
+        <abstracts>
+          <abstract original="y" xml:lang="eng"> <publishercopyright>© 2013, Med Sci Tech. All rights reserved.</publishercopyright> <ce:para>Background: Opto-electronic plethysmography (OEP) is an innovative, new method to evaluate the ventilation pattern through an external measurement of chest wall surface motion. The OEP system measures changes in the complex shape of the chest wall during breathing by modeling the thoracoabdominal surface with a large number of points belonging to selected anatomical reference sites of the rib cage and abdomen. Material/Methods: The automatic motion analyzer on which it is based uses passive markers composed of a thin film of retro-reflective paper on plastic hemispheres (5-10 mm diameter). The markers are placed on the skin by bi-adhesive hypoallergenic tape. Special video cameras (solid state CCDs) operate up to 140 frames per second synchronized with coaxial infrared flashing LEDs. Dedicated software computes the 3D coordinates of the different markers with high accuracy. No specific calibration is required besides the initial one performed during the installation of the system. The OEP System uses the accurate measurement of the 3-dimensional micro-movement of the points belonging to the chest wall to compute chest wall volumes. Special algorithms compute volume variations of the whole chest wall and of the different compartments. Time courses of these signals can be obtained at different sampling frequencies, up to 140 Hz. Results: Several studies have been conducted under different conditions and have shown that the method provides a very accurate measurement of the volume of the chest wall and its variations during respiration. Conclusions: The OEP System has the great advantage that it can measure breathing patterns in any condition, both in health and disease. It can be used to study respiratory kinematics and, if combined with pressure measurements, it can be used to study statics, dynamics, and energetics.</ce:para> </abstract>
+        </abstracts>
+        <source country="usa" srcid="21100468984" type="j">
+          <sourcetitle>Medical Science Technology</sourcetitle>
+          <sourcetitle-abbrev>Med. Sci. Technol.</sourcetitle-abbrev>
+          <translated-sourcetitle xml:lang="eng"/>
+          <issn type="electronic">23290072</issn>
+          <volisspag> <voliss issue="1" volume="54"/> <pagerange first="147" last="150"/> </volisspag>
+          <publicationyear first="2013"/>
+          <publicationdate> <year>2013</year> <month>10</month> <day>14</day> <date-text xfab-added="true">14 October 2013</date-text></publicationdate>
+          <website> <ce:e-address type="email">http://www.medscitechnol.com/</ce:e-address> </website>
+          <publisher> <publishername>International Scientific Information, Inc.</publishername> <ce:e-address type="email">redakcja@achilles.wam.lodz.pl</ce:e-address> </publisher>
+        </source>
+        <enhancement>
+          <classificationgroup>
+            <classifications type="ASJC"> <classification>3200</classification> <classification>2700</classification> <classification>2204</classification> <classification>1502</classification> </classifications>
+            <classifications type="SUBJABBR">
+              <classification>PSYC</classification>
+              <classification>MEDI</classification>
+              <classification>ENGI</classification>
+              <classification>CENG</classification>
+            </classifications>
+          </classificationgroup>
+        </enhancement>
+      </head>
+      <tail>
+        <bibliography refcount="25"> <reference id="1"> <ref-info> <ref-title> <ref-titletext>Changes in tidal volume, frequency, and ventilation induced by their measurement</ref-titletext> </ref-title> <refd-itemidlist> <itemid idtype="SGR">0015384501</itemid> </refd-itemidlist> <ref-authors> <author seq="1"> <ce:initials>R.</ce:initials> <ce:indexed-name>Gilbert R.</ce:indexed-name> <ce:surname>Gilbert</ce:surname> </author> <author seq="2"> <ce:initials>J.H.</ce:initials> <ce:indexed-name>Auchincloss J.H.</ce:indexed-name> <ce:surname>Auchincloss</ce:surname> <ce:suffix>Jr.</ce:suffix> </author> <author seq="3"> <ce:initials>J.</ce:initials> <ce:indexed-name>Brodsky J.</ce:indexed-name> <ce:surname>Brodsky</ce:surname> </author> <author seq="4"> <ce:initials>W.</ce:initials> <ce:indexed-name>Boden W.</ce:indexed-name> <ce:surname>Boden</ce:surname> </author> </ref-authors> <ref-sourcetitle>J Appl Physiol</ref-sourcetitle> <ref-publicationyear first="1972"/> <ref-volisspag> <voliss issue="2" volume="33"/> <pagerange first="252" last="254"/> </ref-volisspag> </ref-info> <ref-fulltext>Gilbert R, Auchincloss JH Jr, Brodsky J, Boden W: Changes in tidal volume, frequency, and ventilation induced by their measurement. J Appl Physiol, 1972; 33(2): 252-54</ref-fulltext> </reference> <reference id="2"> <ref-info> <ref-title> <ref-titletext>Noninvasive Evaluation of Respiratory Movement</ref-titletext> </ref-title> <refd-itemidlist> <itemid idtype="SGR">0342393455</itemid> </refd-itemidlist> <ref-authors> <author seq="1"> <ce:initials>M.J.</ce:initials> <ce:indexed-name>Tobin M.J.</ce:indexed-name> <ce:surname>Tobin</ce:surname> </author> </ref-authors> <ref-sourcetitle>Contemporary Issues in Pulmonary Disease</ref-sourcetitle> <ref-publicationyear first="1986"/> <ref-volisspag> <voliss volume="3"/> </ref-volisspag> <ref-text>Noninvasive respiratory monitoring. Nochomovitz ML, Cherniack NS (eds). Churchill Livingstone, New York</ref-text> </ref-info> <ref-fulltext>Tobin MJ: Noninvasive Evaluation of Respiratory Movement. In: Contemporary Issues in Pulmonary disease, Vol. 3. Noninvasive respiratory monitoring. Nochomovitz ML, Cherniack NS (eds). Churchill Livingstone, New York, 1986</ref-fulltext> </reference> <reference id="3"> <ref-info> <ref-title> <ref-titletext>Opto-Electronic Plethysmography</ref-titletext> </ref-title> <refd-itemidlist> <itemid idtype="SGR">0141794260</itemid> </refd-itemidlist> <ref-authors> <author seq="1"> <ce:initials>A.</ce:initials> <ce:indexed-name>Aliverti A.</ce:indexed-name> <ce:surname>Aliverti</ce:surname> </author> <author seq="2"> <ce:initials>A.</ce:initials> <ce:indexed-name>Pedotti A.</ce:indexed-name> <ce:surname>Pedotti</ce:surname> </author> </ref-authors> <ref-sourcetitle>Monaldi Arch Chest Dis</ref-sourcetitle> <ref-publicationyear first="2003"/> <ref-volisspag> <voliss issue="1" volume="59"/> <pagerange first="12" last="16"/> </ref-volisspag> </ref-info> <ref-fulltext>Aliverti A, Pedotti A: Opto-Electronic Plethysmography. Monaldi Arch Chest Dis, 2003; 59(1): 12-16</ref-fulltext> </reference> <reference id="4"> <ref-info> <ref-title> <ref-titletext>The Abdominal Circulatory Pump</ref-titletext> </ref-title> <refd-itemidlist> <itemid idtype="SGR">65849443540</itemid> </refd-itemidlist> <ref-authors> <author seq="1"> <ce:initials>A.</ce:initials> <ce:indexed-name>Aliverti A.</ce:indexed-name> <ce:surname>Aliverti</ce:surname> </author> <author seq="2"> <ce:initials>D.</ce:initials> <ce:indexed-name>Bovio D.</ce:indexed-name> <ce:surname>Bovio</ce:surname> </author> <author seq="3"> <ce:initials>I.</ce:initials> <ce:indexed-name>Fullin I.</ce:indexed-name> <ce:surname>Fullin</ce:surname> </author> <et-al/> </ref-authors> <ref-sourcetitle>Plos ONE</ref-sourcetitle> <ref-publicationyear first="2009"/> <ref-volisspag> <voliss issue="5" volume="4"/> <pagerange first="1" last="15"/> </ref-volisspag> </ref-info> <ref-fulltext>Aliverti A, Bovio D, Fullin I et al: The Abdominal Circulatory Pump. PLoS ONE, 2009; 4(5): 1-15</ref-fulltext> </reference> <reference id="5"> <ref-info> <ref-title> <ref-titletext>Sleep-disordered breathing and neuropsychological deficits: A population-based study</ref-titletext> </ref-title> <refd-itemidlist> <itemid idtype="SGR">0031467946</itemid> </refd-itemidlist> <ref-authors> <author seq="1"> <ce:initials>H.C.</ce:initials> <ce:indexed-name>Kim H.C.</ce:indexed-name> <ce:surname>Kim</ce:surname> </author> <author seq="2"> <ce:initials>T.</ce:initials> <ce:indexed-name>Young T.</ce:indexed-name> <ce:surname>Young</ce:surname> </author> <author seq="3"> <ce:initials>C.G.</ce:initials> <ce:indexed-name>Matthews C.G.</ce:indexed-name> <ce:surname>Matthews</ce:surname> </author> <et-al/> </ref-authors> <ref-sourcetitle>Am J Respir Crit Care Med</ref-sourcetitle> <ref-publicationyear first="1997"/> <ref-volisspag> <voliss volume="156"/> <pagerange first="1813" last="1819"/> </ref-volisspag> </ref-info> <ref-fulltext>Kim HC, Young T, Matthews CG et al: Sleep-disordered breathing and neuropsychological deficits: a population-based study. Am J Respir Crit Care Med, 1997; 156: 1813-19</ref-fulltext> </reference> <reference id="6"> <ref-info> <ref-title> <ref-titletext>Three-dimensional Optical Analysis of Chest Wall Motion</ref-titletext> </ref-title> <refd-itemidlist> <itemid idtype="SGR">0028124459</itemid> </refd-itemidlist> <ref-authors> <author seq="1"> <ce:initials>G.</ce:initials> <ce:indexed-name>Ferrigno G.</ce:indexed-name> <ce:surname>Ferrigno</ce:surname> </author> <author seq="2"> <ce:initials>P.</ce:initials> <ce:indexed-name>Carnevali P.</ce:indexed-name> <ce:surname>Carnevali</ce:surname> </author> <author seq="3"> <ce:initials>A.</ce:initials> <ce:indexed-name>Aliverti A.</ce:indexed-name> <ce:surname>Aliverti</ce:surname> </author> <et-al/> </ref-authors> <ref-sourcetitle>J Appl Physiol</ref-sourcetitle> <ref-publicationyear first="1994"/> <ref-volisspag> <voliss issue="3" volume="77"/> <pagerange first="1224" last="1231"/> </ref-volisspag> </ref-info> <ref-fulltext>Ferrigno G, Carnevali P, Aliverti A et al: Three-dimensional Optical Analysis of Chest Wall Motion. J Appl Physiol, 1994; 77(3): 1224-31</ref-fulltext> </reference> <reference id="7"> <ref-info> <ref-title> <ref-titletext>Chest wall and lung volume estimation by optical reflectance motion analysis</ref-titletext> </ref-title> <refd-itemidlist> <itemid idtype="SGR">0030467205</itemid> </refd-itemidlist> <ref-authors> <author seq="1"> <ce:initials>S.J.</ce:initials> <ce:indexed-name>Cala S.J.</ce:indexed-name> <ce:surname>Cala</ce:surname> </author> <author seq="2"> <ce:initials>C.</ce:initials> <ce:indexed-name>Kenyon C.</ce:indexed-name> <ce:surname>Kenyon</ce:surname> </author> <author seq="3"> <ce:initials>G.</ce:initials> <ce:indexed-name>Ferrigno G.</ce:indexed-name> <ce:surname>Ferrigno</ce:surname> </author> <et-al/> </ref-authors> <ref-sourcetitle>J Appl Physiol</ref-sourcetitle> <ref-publicationyear first="1996"/> <ref-volisspag> <voliss issue="6" volume="81"/> <pagerange first="2680" last="2689"/> </ref-volisspag> </ref-info> <ref-fulltext>Cala SJ, Kenyon C, Ferrigno G et al: Chest wall and lung volume estimation by optical reflectance motion analysis. J Appl Physiol, 1996; 81(6): 2680-89</ref-fulltext> </reference> <reference id="8"> <ref-info> <ref-title> <ref-titletext>Effects of gender and posture on thoraco-abdominal kinematics during quiet breathing in healthy adults</ref-titletext> </ref-title> <refd-itemidlist> <itemid idtype="SGR">77954383660</itemid> </refd-itemidlist> <ref-authors> <author seq="1"> <ce:initials>M.</ce:initials> <ce:indexed-name>Romei M.</ce:indexed-name> <ce:surname>Romei</ce:surname> </author> <author seq="2"> <ce:initials>A.</ce:initials> <ce:indexed-name>Lo Mauro A.</ce:indexed-name> <ce:surname>Lo Mauro</ce:surname> </author> <author seq="3"> <ce:initials>M.G.</ce:initials> <ce:indexed-name>D'Angelo M.G.</ce:indexed-name> <ce:surname>D’Angelo</ce:surname> </author> <et-al/> </ref-authors> <ref-sourcetitle>Respir Physiol Neurobiol</ref-sourcetitle> <ref-publicationyear first="2010"/> <ref-volisspag> <voliss issue="3" volume="172"/> <pagerange first="184" last="191"/> </ref-volisspag> </ref-info> <ref-fulltext>Romei M, Lo Mauro A, D’Angelo MG et al: Effects of gender and posture on thoraco-abdominal kinematics during quiet breathing in healthy adults. Respir Physiol Neurobiol, 2010; 172(3): 184-91</ref-fulltext> </reference> <reference id="9"> <ref-info> <ref-title> <ref-titletext>Optoelectronic plethysmography in intensive care patients</ref-titletext> </ref-title> <refd-itemidlist> <itemid idtype="SGR">0034113754</itemid> </refd-itemidlist> <ref-authors> <author seq="1"> <ce:initials>A.</ce:initials> <ce:indexed-name>Aliverti A.</ce:indexed-name> <ce:surname>Aliverti</ce:surname> </author> <author seq="2"> <ce:initials>R.</ce:initials> <ce:indexed-name>Dellaca R.</ce:indexed-name> <ce:surname>Dellacà</ce:surname> </author> <author seq="3"> <ce:initials>P.</ce:initials> <ce:indexed-name>Pelosi P.</ce:indexed-name> <ce:surname>Pelosi</ce:surname> </author> <et-al/> </ref-authors> <ref-sourcetitle>Am J Respir Crit Care Med</ref-sourcetitle> <ref-publicationyear first="2000"/> <ref-volisspag> <voliss volume="161"/> <pagerange first="1546" last="1552"/> </ref-volisspag> </ref-info> <ref-fulltext>Aliverti A, Dellacà R, Pelosi P et al: Optoelectronic plethysmography in intensive care patients. Am J Respir Crit Care Med, 2000; 161: 1546-52</ref-fulltext> </reference> <reference id="10"> <ref-info> <ref-title> <ref-titletext>Compartmental analysis of breathing in the supine and prone positions by Opto-Electronic Plethysmography</ref-titletext> </ref-title> <refd-itemidlist> <itemid idtype="SGR">0034745190</itemid> </refd-itemidlist> <ref-authors> <author seq="1"> <ce:initials>A.</ce:initials> <ce:indexed-name>Aliverti A.</ce:indexed-name> <ce:surname>Aliverti</ce:surname> </author> <author seq="2"> <ce:initials>R.</ce:initials> <ce:indexed-name>Dellaca R.</ce:indexed-name> <ce:surname>Dellacà</ce:surname> </author> <author seq="3"> <ce:initials>P.</ce:initials> <ce:indexed-name>Pelosi P.</ce:indexed-name> <ce:surname>Pelosi</ce:surname> </author> <et-al/> </ref-authors> <ref-sourcetitle>Ann Biomed Eng</ref-sourcetitle> <ref-publicationyear first="2001"/> <ref-volisspag> <voliss volume="29"/> <pagerange first="60" last="70"/> </ref-volisspag> </ref-info> <ref-fulltext>Aliverti A, Dellacà R, Pelosi P et al: Compartmental analysis of breathing in the supine and prone positions by Opto-Electronic Plethysmography. Ann Biomed Eng, 2001; 29: 60-70</ref-fulltext> </reference> <reference id="11"> <ref-info> <ref-title> <ref-titletext>Chest wall kinematics in patients with hemiplegia</ref-titletext> </ref-title> <refd-itemidlist> <itemid idtype="SGR">0042304214</itemid> </refd-itemidlist> <ref-authors> <author seq="1"> <ce:initials>B.</ce:initials> <ce:indexed-name>Lanini B.</ce:indexed-name> <ce:surname>Lanini</ce:surname> </author> <author seq="2"> <ce:initials>R.</ce:initials> <ce:indexed-name>Bianchi R.</ce:indexed-name> <ce:surname>Bianchi</ce:surname> </author> <author seq="3"> <ce:initials>I.</ce:initials> <ce:indexed-name>Romangnoli I.</ce:indexed-name> <ce:surname>Romangnoli</ce:surname> </author> <et-al/> </ref-authors> <ref-sourcetitle>Am J Resp Crit Care Med</ref-sourcetitle> <ref-publicationyear first="2003"/> <ref-volisspag> <voliss volume="168"/> <pagerange first="109" last="113"/> </ref-volisspag> </ref-info> <ref-fulltext>Lanini B, Bianchi R, Romangnoli I et al: Chest wall kinematics in patients with hemiplegia. Am J Resp Crit Care Med, 2003; 168: 109-13</ref-fulltext> </reference> <reference id="12"> <ref-info> <ref-title> <ref-titletext>Chest wall kinematics and respiratory muscle action in ankylosing spondylitis patients</ref-titletext> </ref-title> <refd-itemidlist> <itemid idtype="SGR">4544303238</itemid> </refd-itemidlist> <ref-authors> <author seq="1"> <ce:initials>I.</ce:initials> <ce:indexed-name>Romagnoli I.</ce:indexed-name> <ce:surname>Romagnoli</ce:surname> </author> <author seq="2"> <ce:initials>F.</ce:initials> <ce:indexed-name>Gigliotti F.</ce:indexed-name> <ce:surname>Gigliotti</ce:surname> </author> <author seq="3"> <ce:initials>A.</ce:initials> <ce:indexed-name>Galarducci A.</ce:indexed-name> <ce:surname>Galarducci</ce:surname> </author> <et-al/> </ref-authors> <ref-sourcetitle>Eur Respir J</ref-sourcetitle> <ref-publicationyear first="2004"/> <ref-volisspag> <voliss volume="24"/> <pagerange first="453" last="460"/> </ref-volisspag> </ref-info> <ref-fulltext>Romagnoli I, Gigliotti F, Galarducci A et al: Chest wall kinematics and respiratory muscle action in ankylosing spondylitis patients. Eur Respir J, 2004; 24: 453-60</ref-fulltext> </reference> <reference id="13"> <ref-info> <ref-title> <ref-titletext>Regional chest wall volumes during exercise in chronic obstructive pulmonary disease</ref-titletext> </ref-title> <refd-itemidlist> <itemid idtype="SGR">1542509966</itemid> </refd-itemidlist> <ref-authors> <author seq="1"> <ce:initials>A.</ce:initials> <ce:indexed-name>Aliverti A.</ce:indexed-name> <ce:surname>Aliverti</ce:surname> </author> <author seq="2"> <ce:initials>N.</ce:initials> <ce:indexed-name>Stevenson N.</ce:indexed-name> <ce:surname>Stevenson</ce:surname> </author> <author seq="3"> <ce:initials>R.L.</ce:initials> <ce:indexed-name>Dellaca R.L.</ce:indexed-name> <ce:surname>Dellaca</ce:surname> </author> <et-al/> </ref-authors> <ref-sourcetitle>Thorax</ref-sourcetitle> <ref-publicationyear first="2004"/> <ref-volisspag> <voliss volume="59"/> <pagerange first="210" last="216"/> </ref-volisspag> </ref-info> <ref-fulltext>Aliverti A, Stevenson N, Dellaca RL et al: Regional chest wall volumes during exercise in chronic obstructive pulmonary disease. Thorax, 2004; 59: 210-16</ref-fulltext> </reference> <reference id="14"> <ref-info> <ref-title> <ref-titletext>Statics of the chest wall</ref-titletext> </ref-title> <refd-itemidlist> <itemid idtype="SGR">0010404572</itemid> </refd-itemidlist> <ref-authors> <author seq="1"> <ce:initials>E.</ce:initials> <ce:indexed-name>Agostoni E.</ce:indexed-name> <ce:surname>Agostoni</ce:surname> </author> <author seq="2"> <ce:initials>E.</ce:initials> <ce:indexed-name>D'Angelo E.</ce:indexed-name> <ce:surname>D’Angelo</ce:surname> </author> </ref-authors> <ref-sourcetitle>In: The Thorax</ref-sourcetitle> <ref-publicationyear first="1988"/> <ref-volisspag> <pagerange first="259" last="295"/> </ref-volisspag> <ref-text>edited by Roussos C, Macklem PT (eds.). New York: Dekker, Lung Biol Health Dis Ser)</ref-text> </ref-info> <ref-fulltext>Agostoni E, D’Angelo E: Statics of the chest wall. In: The Thorax, edited by Roussos C, Macklem PT (eds.). New York: Dekker, 1988; 259-95 (Lung Biol Health Dis Ser)</ref-fulltext> </reference> <reference id="15"> <ref-info> <ref-title> <ref-titletext>Measurement of the separate volume changes of rib cage and abdomen during breathing</ref-titletext> </ref-title> <refd-itemidlist> <itemid idtype="SGR">0014060388</itemid> </refd-itemidlist> <ref-authors> <author seq="1"> <ce:initials>K.</ce:initials> <ce:indexed-name>Konno K.</ce:indexed-name> <ce:surname>Konno</ce:surname> </author> <author seq="2"> <ce:initials>J.</ce:initials> <ce:indexed-name>Mead J.</ce:indexed-name> <ce:surname>Mead</ce:surname> </author> </ref-authors> <ref-sourcetitle>J Appl Physiol</ref-sourcetitle> <ref-publicationyear first="1967"/> <ref-volisspag> <voliss volume="22"/> <pagerange first="407" last="422"/> </ref-volisspag> </ref-info> <ref-fulltext>Konno K, Mead J: Measurement of the separate volume changes of rib cage and abdomen during breathing. J Appl Physiol, 1967; 22: 407-22</ref-fulltext> </reference> <reference id="16"> <ref-info> <ref-title> <ref-titletext>Human Respiratory Muscle Actions and Control during Exercise</ref-titletext> </ref-title> <refd-itemidlist> <itemid idtype="SGR">0030879657</itemid> </refd-itemidlist> <ref-authors> <author seq="1"> <ce:initials>A.</ce:initials> <ce:indexed-name>Aliverti A.</ce:indexed-name> <ce:surname>Aliverti</ce:surname> </author> <author seq="2"> <ce:initials>S.J.</ce:initials> <ce:indexed-name>Cala S.J.</ce:indexed-name> <ce:surname>Cala</ce:surname> </author> <author seq="3"> <ce:initials>R.</ce:initials> <ce:indexed-name>Duranti R.</ce:indexed-name> <ce:surname>Duranti</ce:surname> </author> <et-al/> </ref-authors> <ref-sourcetitle>J Appl Physiol</ref-sourcetitle> <ref-publicationyear first="1997"/> <ref-volisspag> <voliss issue="4" volume="83"/> <pagerange first="1256" last="1269"/> </ref-volisspag> </ref-info> <ref-fulltext>Aliverti A, Cala SJ, Duranti R et al: Human Respiratory Muscle Actions and Control during Exercise. J Appl Physiol, 1997; 83(4): 1256-69</ref-fulltext> </reference> <reference id="17"> <ref-info> <ref-title> <ref-titletext>Respiratory muscle dynamics and control during exercise with externally imposed expiratory flowlimitation</ref-titletext> </ref-title> <refd-itemidlist> <itemid idtype="SGR">0036082035</itemid> </refd-itemidlist> <ref-authors> <author seq="1"> <ce:initials>A.</ce:initials> <ce:indexed-name>Aliverti A.</ce:indexed-name> <ce:surname>Aliverti</ce:surname> </author> <author seq="2"> <ce:initials>I.</ce:initials> <ce:indexed-name>Iandelli I.</ce:indexed-name> <ce:surname>Iandelli</ce:surname> </author> <author seq="3"> <ce:initials>R.</ce:initials> <ce:indexed-name>Duranti R.</ce:indexed-name> <ce:surname>Duranti</ce:surname> </author> <et-al/> </ref-authors> <ref-sourcetitle>J Appl Physiol</ref-sourcetitle> <ref-publicationyear first="2002"/> <ref-volisspag> <voliss volume="92"/> <pagerange first="1953" last="1963"/> </ref-volisspag> </ref-info> <ref-fulltext>Aliverti A, Iandelli I, Duranti R et al: Respiratory muscle dynamics and control during exercise with externally imposed expiratory flowlimitation. J Appl Physiol, 2002; 92: 1953-63</ref-fulltext> </reference> <reference id="18"> <ref-info> <ref-title> <ref-titletext>Determinants of exercise performance in normal men with externally imposed expiratory flowlimitation</ref-titletext> </ref-title> <refd-itemidlist> <itemid idtype="SGR">0036085585</itemid> </refd-itemidlist> <ref-authors> <author seq="1"> <ce:initials>I.</ce:initials> <ce:indexed-name>Iandelli I.</ce:indexed-name> <ce:surname>Iandelli</ce:surname> </author> <author seq="2"> <ce:initials>A.</ce:initials> <ce:indexed-name>Aliverti A.</ce:indexed-name> <ce:surname>Aliverti</ce:surname> </author> <author seq="3"> <ce:initials>B.</ce:initials> <ce:indexed-name>Kayser B.</ce:indexed-name> <ce:surname>Kayser</ce:surname> </author> <et-al/> </ref-authors> <ref-sourcetitle>J Appl Physiol</ref-sourcetitle> <ref-publicationyear first="2002"/> <ref-volisspag> <voliss volume="92"/> <pagerange first="1943" last="1952"/> </ref-volisspag> </ref-info> <ref-fulltext>Iandelli I, Aliverti A, Kayser B et al: Determinants of exercise performance in normal men with externally imposed expiratory flowlimitation. J Appl Physiol, 2002; 92: 1943-52</ref-fulltext> </reference> <reference id="19"> <ref-info> <ref-title> <ref-titletext>A human model of the pathophysiology of chronic obstructive pulmonary disease</ref-titletext> </ref-title> <refd-itemidlist> <itemid idtype="SGR">34250723825</itemid> </refd-itemidlist> <ref-authors> <author seq="1"> <ce:initials>A.</ce:initials> <ce:indexed-name>Aliverti A.</ce:indexed-name> <ce:surname>Aliverti</ce:surname> </author> <author seq="2"> <ce:initials>B.</ce:initials> <ce:indexed-name>Kayser B.</ce:indexed-name> <ce:surname>Kayser</ce:surname> </author> <author seq="3"> <ce:initials>P.T.</ce:initials> <ce:indexed-name>Macklem P.T.</ce:indexed-name> <ce:surname>Macklem</ce:surname> </author> </ref-authors> <ref-sourcetitle>Respirology</ref-sourcetitle> <ref-publicationyear first="2007"/> <ref-volisspag> <voliss volume="12"/> <pagerange first="478" last="485"/> </ref-volisspag> </ref-info> <ref-fulltext>Aliverti A, Kayser B, Macklem PT: A human model of the pathophysiology of chronic obstructive pulmonary disease. Respirology, 2007; 12: 478-85</ref-fulltext> </reference> <reference id="20"> <ref-info> <ref-title> <ref-titletext>Optoelectronic plethysmography: A review of the literatue</ref-titletext> </ref-title> <refd-itemidlist> <itemid idtype="SGR">84873140613</itemid> </refd-itemidlist> <ref-authors> <author seq="1"> <ce:initials>V.F.</ce:initials> <ce:indexed-name>Parreira V.F.</ce:indexed-name> <ce:surname>Parreira</ce:surname> </author> <author seq="2"> <ce:initials>D.S.</ce:initials> <ce:indexed-name>Vieira D.S.</ce:indexed-name> <ce:surname>Vieira</ce:surname> </author> <author seq="3"> <ce:initials>M.A.</ce:initials> <ce:indexed-name>Myrrha M.A.</ce:indexed-name> <ce:surname>Myrrha</ce:surname> </author> <et-al/> </ref-authors> <ref-sourcetitle>Rev Bras Fisioter</ref-sourcetitle> <ref-publicationyear first="2012"/> <ref-volisspag> <voliss issue="6" volume="16"/> <pagerange first="439" last="453"/> </ref-volisspag> </ref-info> <ref-fulltext>Parreira VF, Vieira DS, Myrrha MA et al: Optoelectronic plethysmography: a review of the literatue. Rev Bras Fisioter, 2012; 16(6): 439-53</ref-fulltext> </reference> <reference id="21"> <ref-info> <ref-title> <ref-titletext>Rib Cage Deformities Alter Respiratory Muscle Action and Chest Wall Function in Patients with Severe Osteogenesis</ref-titletext> </ref-title> <refd-itemidlist> <itemid idtype="SGR">84979063255</itemid> </refd-itemidlist> <ref-authors> <author seq="1"> <ce:initials>A.</ce:initials> <ce:indexed-name>Lomauro A.</ce:indexed-name> <ce:surname>Lomauro</ce:surname> </author> <author seq="2"> <ce:initials>S.</ce:initials> <ce:indexed-name>Pochintesta S.</ce:indexed-name> <ce:surname>Pochintesta</ce:surname> </author> <author seq="3"> <ce:initials>M.</ce:initials> <ce:indexed-name>Romei M.</ce:indexed-name> <ce:surname>Romei</ce:surname> </author> <et-al/> </ref-authors> <ref-sourcetitle>Plos One</ref-sourcetitle> <ref-publicationyear first="2012"/> <ref-volisspag> <voliss issue="4" volume="7"/> <pagerange first="1" last="8"/> </ref-volisspag> </ref-info> <ref-fulltext>LoMauro A, Pochintesta S, Romei M et al: Rib Cage Deformities Alter Respiratory Muscle Action and Chest Wall Function in Patients with Severe Osteogenesis. PLoS One, 2012; 7(4): 1-8</ref-fulltext> </reference> <reference id="22"> <ref-info> <ref-title> <ref-titletext>Inductive plethysmography - A new respiratory transducer [proceedings]</ref-titletext> </ref-title> <refd-itemidlist> <itemid idtype="SGR">0017486586</itemid> </refd-itemidlist> <ref-authors> <author seq="1"> <ce:initials>J.S.</ce:initials> <ce:indexed-name>Milledge J.S.</ce:indexed-name> <ce:surname>Milledge</ce:surname> </author> <author seq="2"> <ce:initials>F.D.</ce:initials> <ce:indexed-name>Stott F.D.</ce:indexed-name> <ce:surname>Stott</ce:surname> </author> </ref-authors> <ref-sourcetitle>J Physiol</ref-sourcetitle> <ref-publicationyear first="1977"/> <ref-volisspag> <voliss issue="1" volume="267"/> <pagerange first="4P" last="5P"/> </ref-volisspag> </ref-info> <ref-fulltext>Milledge JS, Stott FD: Inductive plethysmography - a new respiratory transducer [proceedings]. J Physiol, 1977; 267(1): 4P-5P</ref-fulltext> </reference> <reference id="23"> <ref-info> <ref-title> <ref-titletext>ELITE: A digital dedicated hardware system for movement analysis via real-time TV signal processing</ref-titletext> </ref-title> <refd-itemidlist> <itemid idtype="SGR">0022270338</itemid> </refd-itemidlist> <ref-authors> <author seq="1"> <ce:initials>G.</ce:initials> <ce:indexed-name>Ferrigno G.</ce:indexed-name> <ce:surname>Ferrigno</ce:surname> </author> <author seq="2"> <ce:initials>A.</ce:initials> <ce:indexed-name>Pedotti A.</ce:indexed-name> <ce:surname>Pedotti</ce:surname> </author> </ref-authors> <ref-sourcetitle>IEEE Trans Biomed Eng</ref-sourcetitle> <ref-publicationyear first="1985"/> <ref-volisspag> <voliss volume="32"/> <pagerange first="943" last="950"/> </ref-volisspag> </ref-info> <ref-fulltext>Ferrigno G, Pedotti A: ELITE: A digital dedicated hardware system for movement analysis via real-time TV signal processing. IEEE Trans Biomed Eng, 1985; 32: 943-50</ref-fulltext> </reference> <reference id="24"> <ref-info> <ref-title> <ref-titletext>Compartmental analysis of breathin on the supine and prone positions by optoeletronic plethysmography</ref-titletext> </ref-title> <refd-itemidlist> <itemid idtype="SGR">0034745190</itemid> </refd-itemidlist> <ref-authors> <author seq="1"> <ce:initials>A.</ce:initials> <ce:indexed-name>Aliverti A.</ce:indexed-name> <ce:surname>Aliverti</ce:surname> </author> <author seq="2"> <ce:initials>R.</ce:initials> <ce:indexed-name>Dellaca R.</ce:indexed-name> <ce:surname>Dellaca</ce:surname> </author> <author seq="3"> <ce:initials>P.</ce:initials> <ce:indexed-name>Pelosi P.</ce:indexed-name> <ce:surname>Pelosi</ce:surname> </author> <et-al/> </ref-authors> <ref-sourcetitle>Anna Biomed Eng</ref-sourcetitle> <ref-publicationyear first="2001"/> <ref-volisspag> <voliss volume="29"/> <pagerange first="60" last="70"/> </ref-volisspag> </ref-info> <ref-fulltext>Aliverti A, Dellaca R, Pelosi P et al: Compartmental analysis of breathin on the supine and prone positions by optoeletronic plethysmography. Anna Biomed Eng, 2001; 29: 60-70</ref-fulltext> </reference> <reference id="25"> <ref-info> <ref-title> <ref-titletext>Chest wall and lung volume estimation by optical reflectance motion analysis</ref-titletext> </ref-title> <refd-itemidlist> <itemid idtype="SGR">0030467205</itemid> </refd-itemidlist> <ref-authors> <author seq="1"> <ce:initials>S.J.</ce:initials> <ce:indexed-name>Cala S.J.</ce:indexed-name> <ce:surname>Cala</ce:surname> </author> <author seq="2"> <ce:initials>C.M.</ce:initials> <ce:indexed-name>Kenyon C.M.</ce:indexed-name> <ce:surname>Kenyon</ce:surname> </author> <author seq="3"> <ce:initials>G.</ce:initials> <ce:indexed-name>Ferrigno G.</ce:indexed-name> <ce:surname>Ferrigno</ce:surname> </author> <et-al/> </ref-authors> <ref-sourcetitle>J Appl Physiol</ref-sourcetitle> <ref-publicationyear first="1996"/> <ref-volisspag> <voliss issue="6" volume="81"/> <pagerange first="2680" last="2689"/> </ref-volisspag> </ref-info> <ref-fulltext>Cala S J, Kenyon CM, Ferrigno G et al: Chest wall and lung volume estimation by optical reflectance motion analysis. J Appl Physiol, 1996; 81(6): 2680-89</ref-fulltext> </reference> </bibliography>
+      </tail>
+    </bibrecord>
+  </item>
+</abstracts-retrieval-response>

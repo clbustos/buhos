@@ -100,7 +100,7 @@ end
 
 require_relative 'model/init.rb'
 require_relative 'model/models.rb'
-require_relative 'lib/partials.rb'
+require_relative 'lib/sinatra/partials.rb'
 
 
 Dir.glob("model/*.rb").each do |f|

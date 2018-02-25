@@ -1,0 +1,95 @@
+<abstract-citations-response xmlns:cto="http://www.elsevier.com/xml/cto/dtd" xmlns:ctom="http://www.elsevier.com/xml/ctom/dtd" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:ns2="http://webservices.elsevier.com/schemas/metadata/cto/types/v4" xmlns:prism="http://prismstandard.org/namespaces/basic/2.0/" xmlns:xocs="http://www.elsevier.com/xml/xocs/dtd">
+	<h-index>1</h-index>
+	<identifier-legend xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:prism="http://prismstandard.org/namespaces/basic/2.0/">
+		<identifier>
+			<dc:identifier>SCOPUS_ID:0033001756</dc:identifier>
+			<prism:doi>10.1016/S0003-4975(99)00326-4</prism:doi>
+			<pii>S0003497599003264</pii>
+			<scopus_id>0033001756</scopus_id>
+		</identifier>
+	</identifier-legend>
+	<citeInfoMatrix>
+		<citeInfoMatrixXML>
+			<citationMatrix xmlns="http://www.elsevier.com/xml/ctom/dtd">
+				<citeInfo xmlns="">
+					<dc:identifier>SCOPUS_ID:0033001756</dc:identifier>
+					<prism:url>http://api.elsevier.com/content/abstract/scopus_id/0033001756</prism:url>
+					<dc:title>Insulin improves functional and metabolic recovery of reperfused working rat heart</dc:title>
+					<author>
+						<initials>T.</initials>
+						<index-name>Doenst T.</index-name>
+						<surname>Doenst</surname>
+						<authid>7003954480</authid>
+						<author-url>http://api.elsevier.com/content/author/author_id/7003954480</author-url>
+					</author>
+					<author>
+						<initials>R.T.</initials>
+						<index-name>Richwine R.T.</index-name>
+						<surname>Richwine</surname>
+						<authid>36891641100</authid>
+						<author-url>http://api.elsevier.com/content/author/author_id/36891641100</author-url>
+					</author>
+					<author>
+						<initials>M.S.</initials>
+						<index-name>Bray M.S.</index-name>
+						<surname>Bray</surname>
+						<authid>55181046000</authid>
+						<author-url>http://api.elsevier.com/content/author/author_id/55181046000</author-url>
+					</author>
+					<author>
+						<initials>G.W.</initials>
+						<index-name>Goodwin G.W.</index-name>
+						<surname>Goodwin</surname>
+						<authid>16143735900</authid>
+						<author-url>http://api.elsevier.com/content/author/author_id/16143735900</author-url>
+					</author>
+					<author>
+						<initials>O.H.</initials>
+						<index-name>Frazier O.H.</index-name>
+						<surname>Frazier</surname>
+						<authid>35371482400</authid>
+						<author-url>http://api.elsevier.com/content/author/author_id/35371482400</author-url>
+					</author>
+					<author>
+						<initials>H.</initials>
+						<index-name>Taegtmeyer H.</index-name>
+						<surname>Taegtmeyer</surname>
+						<authid>7102044748</authid>
+						<author-url>http://api.elsevier.com/content/author/author_id/7102044748</author-url>
+					</author>
+					<citationType code="ar">Article</citationType>
+					<sort-year>1999</sort-year>
+					<prism:publicationName>Annals of Thoracic Surgery</prism:publicationName>
+					<prism:volume>67</prism:volume>
+					<prism:issueIdentifier>6</prism:issueIdentifier>
+					<prism:startingPage>1682</prism:startingPage>
+					<prism:endingPage>1688</prism:endingPage>
+					<prism:issn>0003-4975</prism:issn>
+					<pcc>54</pcc>
+					<cc>3</cc>
+					<cc>1</cc>
+					<cc>5</cc>
+					<lcc>0</lcc>
+					<rangeCount>9</rangeCount>
+					<rowTotal>63</rowTotal>
+				</citeInfo>
+			</citationMatrix>
+		</citeInfoMatrixXML>
+	</citeInfoMatrix>
+	<citeColumnTotalXML>
+		<citeCountHeader>
+			<prevColumnHeading>previous</prevColumnHeading>
+			<columnHeading>2011</columnHeading>
+			<columnHeading>2012</columnHeading>
+			<columnHeading>2013</columnHeading>
+			<laterColumnHeading>later</laterColumnHeading>
+			<prevColumnTotal>54</prevColumnTotal>
+			<columnTotal>3</columnTotal>
+			<columnTotal>1</columnTotal>
+			<columnTotal>5</columnTotal>
+			<laterColumnTotal>0</laterColumnTotal>
+			<rangeColumnTotal>9</rangeColumnTotal>
+			<grandTotal>63</grandTotal>
+		</citeCountHeader>
+	</citeColumnTotalXML>
+</abstract-citations-response>

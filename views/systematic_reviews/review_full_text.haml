@@ -20,7 +20,7 @@
 %h3=t(:Review_status)
 %p=t_desc_value(:Count_total_documents_to_review, sprintf("%d", @cds_total))
 
-%form{:action=>url("/review/#{@revision[:id]}/full_text_review"), :method=>:get,:class=>"form-check", :enctype=>"multipart/form-data"}
+%form{:action=>url(@url), :method=>:get,:class=>"form-check", :enctype=>"multipart/form-data"}
   %input{:type=>:hidden,:name=>:pagina, :value=>@pager.pagina}
   %input{:type=>:hidden,:name=>:orden, :value=>@pager.orden}
   %table.reporte
@@ -49,7 +49,7 @@
     -["asc","desc"].each do |dir|
       -arrow_dir =  dir=="asc" ? "up" : "down"
       -if @pager.orden!="#{crit_orden}__#{dir}"
-        %a{:href=>url("/review/#{@revision[:id]}/full_text_review?busqueda=#{@pager.busqueda}&orden=#{crit_orden}__#{dir}"), :class=>"btn btn-default btn-sm"}
+        %a{:href=>url("#{@url}?busqueda=#{@pager.busqueda}&orden=#{crit_orden}__#{dir}"), :class=>"btn btn-default btn-sm"}
           %span{:class=>"glyphicon glyphicon-chevron-#{arrow_dir}"}
           =crit_nombre
       -else

@@ -1,0 +1,1084 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<abstracts-retrieval-response xmlns="http://www.elsevier.com/xml/svapi/abstract/dtd" xmlns:ait="http://www.elsevier.com/xml/ani/ait" xmlns:ce="http://www.elsevier.com/xml/ani/common" xmlns:cto="http://www.elsevier.com/xml/cto/dtd" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:prism="http://prismstandard.org/namespaces/basic/2.0/" xmlns:xocs="http://www.elsevier.com/xml/xocs/dtd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <coredata>
+    <prism:url>http://api.elsevier.com/content/abstract/scopus_id/34247568435</prism:url>
+    <dc:identifier>SCOPUS_ID:34247568435</dc:identifier>
+    <eid>2-s2.0-34247568435</eid>
+    <pubmed-id>17391343</pubmed-id>
+    <prism:doi>10.1111/j.1399-5618.2007.00441.x</prism:doi>
+    <dc:title>Functional outcome and disability in bipolar disorders: Ongoing research and future directions</dc:title>
+    <prism:aggregationType>Journal</prism:aggregationType>
+    <srctype>j</srctype>
+    <citedby-count>32</citedby-count>
+    <prism:publicationName>Bipolar Disorders</prism:publicationName>
+    <source-id>14313</source-id>
+    <prism:issn>13985647</prism:issn>
+    <prism:volume>9</prism:volume>
+    <prism:issueIdentifier>1-2</prism:issueIdentifier>
+    <prism:startingPage>1</prism:startingPage>
+    <prism:endingPage>2</prism:endingPage>
+    <prism:pageRange>1-2</prism:pageRange>
+    <prism:coverDate>2007-02-01</prism:coverDate>
+    <dc:creator>
+      <author auid="36972825700" seq="1">
+        <ce:initials>J.</ce:initials>
+        <ce:indexed-name>Jaeger J.</ce:indexed-name>
+        <ce:surname>Jaeger</ce:surname>
+        <ce:given-name>Judith</ce:given-name>
+        <preferred-name>
+<ce:initials>J.</ce:initials>
+<ce:indexed-name>Jaeger J.</ce:indexed-name>
+<ce:surname>Jaeger</ce:surname>
+<ce:given-name>Judith</ce:given-name>
+</preferred-name>
+        <author-url>http://api.elsevier.com/content/author/author_id/36972825700</author-url>
+        <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60020942" id="60020942"/>
+        <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60004219" id="60004219"/>
+      </author>
+    </dc:creator>
+    <intid>34247568435</intid>
+    <link href="http://api.elsevier.com/content/abstract/scopus_id/34247568435" rel="self"/>
+    <link href="https://www.scopus.com/inward/record.uri?partnerID=HzOxMe3b&amp;scp=34247568435&amp;origin=inward" rel="scopus"/>
+    <link href="https://www.scopus.com/inward/citedby.uri?partnerID=HzOxMe3b&amp;scp=34247568435&amp;origin=inward" rel="scopus-citedby"/>
+  </coredata>
+  <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60020942" id="60020942">
+    <affilname>The Zucker Hillside Hospital</affilname>
+    <affiliation-city>New York</affiliation-city>
+    <affiliation-country>United States</affiliation-country>
+  </affiliation>
+  <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60004219" id="60004219">
+    <affilname>AstraZeneca</affilname>
+    <affiliation-city>London</affiliation-city>
+    <affiliation-country>United Kingdom</affiliation-country>
+  </affiliation>
+  <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60001576" id="60001576">
+    <affilname>Universitat de Barcelona</affilname>
+    <affiliation-city>Barcelona</affiliation-city>
+    <affiliation-country>Spain</affiliation-country>
+  </affiliation>
+  <authors>
+    <author auid="36972825700" seq="1">
+      <ce:initials>J.</ce:initials>
+      <ce:indexed-name>Jaeger J.</ce:indexed-name>
+      <ce:surname>Jaeger</ce:surname>
+      <ce:given-name>Judith</ce:given-name>
+      <preferred-name>
+<ce:initials>J.</ce:initials>
+<ce:indexed-name>Jaeger J.</ce:indexed-name>
+<ce:surname>Jaeger</ce:surname>
+<ce:given-name>Judith</ce:given-name>
+</preferred-name>
+      <author-url>http://api.elsevier.com/content/author/author_id/36972825700</author-url>
+      <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60020942" id="60020942"/>
+      <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60004219" id="60004219"/>
+    </author>
+    <author auid="7006850485" seq="2">
+      <ce:initials>E.</ce:initials>
+      <ce:indexed-name>Vieta E.</ce:indexed-name>
+      <ce:surname>Vieta</ce:surname>
+      <ce:given-name>Eduard</ce:given-name>
+      <preferred-name>
+<ce:initials>E.</ce:initials>
+<ce:indexed-name>Vieta E.</ce:indexed-name>
+<ce:surname>Vieta</ce:surname>
+<ce:given-name>Eduard</ce:given-name>
+</preferred-name>
+      <author-url>http://api.elsevier.com/content/author/author_id/7006850485</author-url>
+      <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60001576" id="60001576"/>
+    </author>
+  </authors>
+  <language xml:lang="eng"/>
+  <authkeywords/>
+  <idxterms/>
+  <subject-areas>
+    <subject-area abbrev="NEUR" code="2800">Neuroscience (all)</subject-area>
+    <subject-area abbrev="PSYC" code="3206">Neuropsychology and Physiological Psychology</subject-area>
+  </subject-areas>
+  <item xmlns="">
+    <ait:process-info>
+      <ait:date-delivered day="09" month="12" timestamp="2015-12-09T12:38:14.000014+00:00" year="2015"/>
+      <ait:date-sort day="01" month="02" year="2007"/>
+      <ait:status stage="S300" state="update" type="core"/>
+    </ait:process-info>
+    <bibrecord>
+      <item-info>
+        <copyright type="Elsevier">Copyright 2008 Elsevier B.V., All rights reserved.</copyright>
+        <copyright type="Medline Descriptors">MEDLINE® is the source for the MeSH terms of this document.</copyright>
+        <itemidlist>
+<ce:doi>10.1111/j.1399-5618.2007.00441.x</ce:doi>
+<itemid idtype="PUI">46671667</itemid>
+<itemid idtype="EMBASE">2007213293</itemid>
+<itemid idtype="MEDL">17391343</itemid>
+<itemid idtype="SCP">34247568435</itemid>
+<itemid idtype="SGR">34247568435</itemid>
+</itemidlist>
+        <history>
+<date-created day="07" month="05" year="2007"/>
+</history>
+        <dbcollection>EMBASE</dbcollection>
+        <dbcollection>MEDL</dbcollection>
+        <dbcollection>Scopusbase</dbcollection>
+      </item-info>
+      <head>
+        <citation-info>
+          <citation-type code="ed"/>
+          <citation-language language="English" xml:lang="eng"/>
+        </citation-info>
+        <citation-title>
+          <titletext language="English" original="y" xml:lang="eng">Functional outcome and disability in bipolar disorders: Ongoing research and future directions</titletext>
+        </citation-title>
+        <author-group>
+          <author auid="36972825700" seq="1">
+<ce:initials>J.</ce:initials>
+<ce:indexed-name>Jaeger J.</ce:indexed-name>
+<ce:surname>Jaeger</ce:surname>
+<ce:given-name>Judith</ce:given-name>
+<preferred-name>
+<ce:initials>J.</ce:initials>
+<ce:indexed-name>Jaeger J.</ce:indexed-name>
+<ce:surname>Jaeger</ce:surname>
+<ce:given-name>Judith</ce:given-name>
+</preferred-name>
+<ce:e-address type="email">judith.jaeger@astrazeneca.com</ce:e-address>
+</author>
+          <affiliation afid="60020942" country="usa" dptid="104061272">
+            <organization>The Center for Neuropsychiatric Outcome and Rehabilitation Research</organization>
+            <organization>The Zucker Hillside Hospital</organization>
+            <organization>North Shore Long Island Jewish Health System</organization>
+            <city-group>Glen Oaks, NY</city-group>
+            <country>United States</country>
+          </affiliation>
+        </author-group>
+        <author-group>
+          <author auid="7006850485" seq="2">
+<ce:initials>E.</ce:initials>
+<ce:indexed-name>Vieta E.</ce:indexed-name>
+<ce:surname>Vieta</ce:surname>
+<ce:given-name>Eduard</ce:given-name>
+<preferred-name>
+<ce:initials>E.</ce:initials>
+<ce:indexed-name>Vieta E.</ce:indexed-name>
+<ce:surname>Vieta</ce:surname>
+<ce:given-name>Eduard</ce:given-name>
+</preferred-name>
+</author>
+          <affiliation afid="60001576" country="esp" dptid="103129648">
+            <organization>Bipolar Disorders Programme</organization>
+            <organization>Institute of Neuroscience</organization>
+            <organization>University of Barcelona</organization>
+            <city-group>Barcelona</city-group>
+            <country>Spain</country>
+          </affiliation>
+        </author-group>
+        <author-group>
+          <author auid="36972825700" seq="1">
+<ce:initials>J.</ce:initials>
+<ce:indexed-name>Jaeger J.</ce:indexed-name>
+<ce:surname>Jaeger</ce:surname>
+<ce:given-name>Judith</ce:given-name>
+<preferred-name>
+<ce:initials>J.</ce:initials>
+<ce:indexed-name>Jaeger J.</ce:indexed-name>
+<ce:surname>Jaeger</ce:surname>
+<ce:given-name>Judith</ce:given-name>
+</preferred-name>
+<ce:e-address type="email">judith.jaeger@astrazeneca.com</ce:e-address>
+</author>
+          <affiliation afid="60004219" country="usa" dptid="106487427">
+            <organization>AstraZeneca Pharmaceutical Company</organization>
+            <address-part>1800 Concord Pike</address-part>
+            <city-group>Wilmington, DE 19803</city-group>
+            <country>United States</country>
+          </affiliation>
+        </author-group>
+        <correspondence>
+          <person>
+<ce:initials>J.</ce:initials>
+<ce:indexed-name>Jaeger J.</ce:indexed-name>
+<ce:degrees>Dr.</ce:degrees>
+<ce:surname>Jaeger</ce:surname>
+</person>
+          <affiliation country="usa">
+            <organization>AstraZeneca Pharmaceutical Company</organization>
+            <address-part>1800 Concord Pike</address-part>
+            <city-group>Wilmington, DE 19803</city-group>
+            <country>United States</country>
+          </affiliation>
+          <ce:e-address type="email">judith.jaeger@astrazeneca.com</ce:e-address>
+        </correspondence>
+        <source country="dnk" srcid="14313" type="j">
+          <sourcetitle>Bipolar Disorders</sourcetitle>
+          <sourcetitle-abbrev>Bipolar Disord.</sourcetitle-abbrev>
+          <issn type="print">13985647</issn>
+          <issn type="electronic">13995618</issn>
+          <codencode>BDIIA</codencode>
+          <volisspag>
+<voliss issue="1-2" volume="9"/>
+<pagerange first="1" last="2"/>
+</volisspag>
+          <publicationyear first="2007"/>
+          <publicationdate>
+<year>2007</year>
+<month>02</month>
+<date-text xfab-added="true">February 2007</date-text></publicationdate>
+        </source>
+        <enhancement>
+          <classificationgroup>
+            <classifications type="ASJC">
+<classification>2800</classification>
+<classification>3206</classification>
+</classifications>
+            <classifications type="EMCLASS">
+<classification>32</classification>
+</classifications>
+            <classifications type="SUBJABBR">
+              <classification>NEUR</classification>
+              <classification>PSYC</classification>
+            </classifications>
+          </classificationgroup>
+        </enhancement>
+      </head>
+      <tail>
+        <bibliography refcount="23">
+<reference id="1">
+<ref-info>
+<refd-itemidlist>
+<itemid idtype="SGR">34247553682</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>E.</ce:initials>
+<ce:indexed-name>Kraepelin E.</ce:indexed-name>
+<ce:surname>Kraepelin</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>A Textbook for Students and Physicians</ref-sourcetitle>
+<ref-publicationyear first="1899"/>
+<ref-volisspag>
+<voliss volume="1"/>
+</ref-volisspag>
+<ref-text>New Delhi: Amerind Publishing Co</ref-text>
+</ref-info>
+<ref-fulltext>Kraepelin E. Psychiatry: A Textbook for Students and Physicians, Vol. 1. New Delhi: Amerind Publishing Co., 1899.</ref-fulltext>
+</reference>
+<reference id="2">
+<ref-info>
+<ref-title>
+<ref-titletext>Ends and means of psychiatric research</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">0000114483</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>E.</ce:initials>
+<ce:indexed-name>Kraepelin E.</ce:indexed-name>
+<ce:surname>Kraepelin</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>J Mental Sci</ref-sourcetitle>
+<ref-publicationyear first="1922"/>
+<ref-volisspag>
+<voliss volume="68"/>
+<pagerange first="115" last="143"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Kraepelin E. Ends and means of psychiatric research. J Mental Sci 1922; 68: 115-143.</ref-fulltext>
+</reference>
+<reference id="3">
+<ref-info>
+<refd-itemidlist>
+<itemid idtype="SGR">0003433982</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>C.J.L.</ce:initials>
+<ce:indexed-name>Murray C.J.L.</ce:indexed-name>
+<ce:surname>Murray</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>A.D.</ce:initials>
+<ce:indexed-name>Lopez A.D.</ce:indexed-name>
+<ce:surname>Lopez</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>The Global Burden of Disease: A Comprehensive Assessment of Mortality and Disability from Diseases, Injuries, and Risk Factors in 1990 and Projected to 2020</ref-sourcetitle>
+<ref-publicationyear first="1996"/>
+<ref-text>Cambridge, MA: Harvard University Press</ref-text>
+</ref-info>
+<ref-fulltext>Murray CJL, Lopez AD. The Global Burden of Disease: A Comprehensive Assessment of Mortality and Disability from Diseases, Injuries, and Risk Factors in 1990 and Projected to 2020. Cambridge, MA: Harvard University Press, 1996.</ref-fulltext>
+</reference>
+<reference id="4">
+<ref-info>
+<ref-title>
+<ref-titletext>The long-term natural history of the weekly symptomatic status of bipolar I disorder</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">0036270011</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>L.L.</ce:initials>
+<ce:indexed-name>Judd L.L.</ce:indexed-name>
+<ce:surname>Judd</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>H.S.</ce:initials>
+<ce:indexed-name>Akiskal H.S.</ce:indexed-name>
+<ce:surname>Akiskal</ce:surname>
+</author>
+<author seq="3">
+<ce:initials>P.J.</ce:initials>
+<ce:indexed-name>Schettler P.J.</ce:indexed-name>
+<ce:surname>Schettler</ce:surname>
+</author>
+<et-al/>
+</ref-authors>
+<ref-sourcetitle>Arch Gen Psychiatry</ref-sourcetitle>
+<ref-publicationyear first="2002"/>
+<ref-volisspag>
+<voliss volume="59"/>
+<pagerange first="530" last="537"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Judd LL, Akiskal HS, Schettler PJ et al. The long-term natural history of the weekly symptomatic status of bipolar I disorder. Arch Gen Psychiatry 2002; 59: 530-537.</ref-fulltext>
+</reference>
+<reference id="5">
+<ref-info>
+<ref-title>
+<ref-titletext>Two-year syndromal and functional recovery in 219 cases of first-episode major affective disorder with psychotic features</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">0033961747</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>M.</ce:initials>
+<ce:indexed-name>Tohen M.</ce:indexed-name>
+<ce:surname>Tohen</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>J.</ce:initials>
+<ce:indexed-name>Hennen J.</ce:indexed-name>
+<ce:surname>Hennen</ce:surname>
+</author>
+<author seq="3">
+<ce:initials>C.M.</ce:initials>
+<ce:indexed-name>Zarate Jr. C.M.</ce:indexed-name>
+<ce:surname>Zarate Jr.</ce:surname>
+</author>
+<et-al/>
+</ref-authors>
+<ref-sourcetitle>Am J Psychiatry</ref-sourcetitle>
+<ref-publicationyear first="2000"/>
+<ref-volisspag>
+<voliss volume="157"/>
+<pagerange first="220" last="228"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Tohen M, Hennen J, Zarate CM Jr et al. Two-year syndromal and functional recovery in 219 cases of first-episode major affective disorder with psychotic features. Am J Psychiatry 2000; 157: 220-228.</ref-fulltext>
+</reference>
+<reference id="6">
+<ref-info>
+<ref-title>
+<ref-titletext>Relapse and impairment in bipolar disorder</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">0028815588</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>M.J.</ce:initials>
+<ce:indexed-name>Gitlin M.J.</ce:indexed-name>
+<ce:surname>Gitlin</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>J.</ce:initials>
+<ce:indexed-name>Swendsen J.</ce:indexed-name>
+<ce:surname>Swendsen</ce:surname>
+</author>
+<author seq="3">
+<ce:initials>T.L.</ce:initials>
+<ce:indexed-name>Heller T.L.</ce:indexed-name>
+<ce:surname>Heller</ce:surname>
+</author>
+<author seq="4">
+<ce:initials>C.</ce:initials>
+<ce:indexed-name>Hammen C.</ce:indexed-name>
+<ce:surname>Hammen</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Am J Psychiatry</ref-sourcetitle>
+<ref-publicationyear first="1995"/>
+<ref-volisspag>
+<voliss volume="152"/>
+<pagerange first="1635" last="1640"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Gitlin MJ, Swendsen J, Heller TL, Hammen C. Relapse and impairment in bipolar disorder. Am J Psychiatry 1995; 152: 1635-1640.</ref-fulltext>
+</reference>
+<reference id="7">
+<ref-info>
+<ref-title>
+<ref-titletext>Long-term social functioning after depression treated by psychiatrists: A review</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">34247568434</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>N.</ce:initials>
+<ce:indexed-name>Kennedy N.</ce:indexed-name>
+<ce:surname>Kennedy</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>K.</ce:initials>
+<ce:indexed-name>Foy K.</ce:indexed-name>
+<ce:surname>Foy</ce:surname>
+</author>
+<author seq="3">
+<ce:initials>R.</ce:initials>
+<ce:indexed-name>Sherazi R.</ce:indexed-name>
+<ce:surname>Sherazi</ce:surname>
+</author>
+<author seq="4">
+<ce:initials>M.</ce:initials>
+<ce:indexed-name>McDonough M.</ce:indexed-name>
+<ce:surname>McDonough</ce:surname>
+</author>
+<author seq="5">
+<ce:initials>P.</ce:initials>
+<ce:indexed-name>McKeon P.</ce:indexed-name>
+<ce:surname>McKeon</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Bipolar Disord</ref-sourcetitle>
+<ref-publicationyear first="2007"/>
+<ref-volisspag>
+<voliss volume="9"/>
+<pagerange first="23" last="35"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Kennedy N, Foy K, Sherazi R, McDonough M, McKeon P. Long-term social functioning after depression treated by psychiatrists: A review. Bipolar Disord 2007; 9: 23-35.</ref-fulltext>
+</reference>
+<reference id="8">
+<ref-info>
+<ref-title>
+<ref-titletext>Determinants of social functioning in bipolar disorder</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">34247603059</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>M.</ce:initials>
+<ce:indexed-name>Pope M.</ce:indexed-name>
+<ce:surname>Pope</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>R.</ce:initials>
+<ce:indexed-name>Dudley R.</ce:indexed-name>
+<ce:surname>Dudley</ce:surname>
+</author>
+<author seq="3">
+<ce:initials>J.</ce:initials>
+<ce:indexed-name>Scott J.</ce:indexed-name>
+<ce:surname>Scott</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Bipolar Disord</ref-sourcetitle>
+<ref-publicationyear first="2007"/>
+<ref-volisspag>
+<voliss volume="9"/>
+<pagerange first="36" last="42"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Pope M, Dudley R, Scott J. Determinants of social functioning in bipolar disorder. Bipolar Disord 2007; 9: 36-42.</ref-fulltext>
+</reference>
+<reference id="9">
+<ref-info>
+<ref-title>
+<ref-titletext>Functional impairment in patients with mania: Baseline results of the EMBLEM Study</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">34247613536</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>I.</ce:initials>
+<ce:indexed-name>Goetz I.</ce:indexed-name>
+<ce:surname>Goetz</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>M.</ce:initials>
+<ce:indexed-name>Tohen M.</ce:indexed-name>
+<ce:surname>Tohen</ce:surname>
+</author>
+<author seq="3">
+<ce:initials>C.</ce:initials>
+<ce:indexed-name>Reed C.</ce:indexed-name>
+<ce:surname>Reed</ce:surname>
+</author>
+<author seq="4">
+<ce:initials>M.</ce:initials>
+<ce:indexed-name>Lorenzo M.</ce:indexed-name>
+<ce:surname>Lorenzo</ce:surname>
+</author>
+<author seq="5">
+<ce:initials>E.</ce:initials>
+<ce:indexed-name>Vieta E.</ce:indexed-name>
+<ce:surname>Vieta</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Bipolar Disord</ref-sourcetitle>
+<ref-publicationyear first="2007"/>
+<ref-volisspag>
+<voliss volume="9"/>
+<pagerange first="43" last="50"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Goetz I, Tohen M, Reed C, Lorenzo M, Vieta E, The EMBLEM Advisory Board. Functional impairment in patients with mania: Baseline results of the EMBLEM Study. Bipolar Disord 2007; 9: 43-50.</ref-fulltext>
+</reference>
+<reference id="10">
+<ref-info>
+<ref-title>
+<ref-titletext>Social adjustment based on reported behavior in bipolar affective disorder</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">34247610303</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>R.</ce:initials>
+<ce:indexed-name>Morriss R.</ce:indexed-name>
+<ce:surname>Morriss</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>J.</ce:initials>
+<ce:indexed-name>Scott J.</ce:indexed-name>
+<ce:surname>Scott</ce:surname>
+</author>
+<author seq="3">
+<ce:initials>E.</ce:initials>
+<ce:indexed-name>Paykel E.</ce:indexed-name>
+<ce:surname>Paykel</ce:surname>
+</author>
+<author seq="4">
+<ce:initials>R.</ce:initials>
+<ce:indexed-name>Bentall R.</ce:indexed-name>
+<ce:surname>Bentall</ce:surname>
+</author>
+<author seq="5">
+<ce:initials>H.</ce:initials>
+<ce:indexed-name>Hayhurst H.</ce:indexed-name>
+<ce:surname>Hayhurst</ce:surname>
+</author>
+<author seq="6">
+<ce:initials>T.</ce:initials>
+<ce:indexed-name>Johnson T.</ce:indexed-name>
+<ce:surname>Johnson</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Bipolar Disord</ref-sourcetitle>
+<ref-publicationyear first="2007"/>
+<ref-volisspag>
+<voliss volume="9"/>
+<pagerange first="51" last="60"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Morriss R, Scott J, Paykel E, Bentall R, Hayhurst H, Johnson T. Social adjustment based on reported behavior in bipolar affective disorder. Bipolar Disord 2007; 9: 51-60.</ref-fulltext>
+</reference>
+<reference id="11">
+<ref-info>
+<ref-title>
+<ref-titletext>Neuropsychological symptom dimensions in bipolar disorder and schizophrenia</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">34247570940</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>P.</ce:initials>
+<ce:indexed-name>Czobor P.</ce:indexed-name>
+<ce:surname>Czobor</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>J.</ce:initials>
+<ce:indexed-name>Jaeger J.</ce:indexed-name>
+<ce:surname>Jaeger</ce:surname>
+</author>
+<author seq="3">
+<ce:initials>S.M.</ce:initials>
+<ce:indexed-name>Berns S.M.</ce:indexed-name>
+<ce:surname>Berns</ce:surname>
+</author>
+<author seq="4">
+<ce:initials>C.</ce:initials>
+<ce:indexed-name>Gonzalez C.</ce:indexed-name>
+<ce:surname>Gonzalez</ce:surname>
+</author>
+<author seq="5">
+<ce:initials>S.</ce:initials>
+<ce:indexed-name>Loftus S.</ce:indexed-name>
+<ce:surname>Loftus</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Bipolar Disord</ref-sourcetitle>
+<ref-publicationyear first="2007"/>
+<ref-volisspag>
+<voliss volume="9"/>
+<pagerange first="69" last="89"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Czobor P, Jaeger J, Berns SM, Gonzalez C, Loftus S. Neuropsychological symptom dimensions in bipolar disorder and schizophrenia. Bipolar Disord 2007; 9: 69-89.</ref-fulltext>
+</reference>
+<reference id="12">
+<ref-info>
+<ref-title>
+<ref-titletext>Neurocognitive test performance predicts functional recovery from acute exacerbation leading to hospitalization in bipolar disorder</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">34247620292</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>J.</ce:initials>
+<ce:indexed-name>Jaeger J.</ce:indexed-name>
+<ce:surname>Jaeger</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>S.</ce:initials>
+<ce:indexed-name>Berns S.</ce:indexed-name>
+<ce:surname>Berns</ce:surname>
+</author>
+<author seq="3">
+<ce:initials>S.</ce:initials>
+<ce:indexed-name>Loftus S.</ce:indexed-name>
+<ce:surname>Loftus</ce:surname>
+</author>
+<author seq="4">
+<ce:initials>C.</ce:initials>
+<ce:indexed-name>Gonzalez C.</ce:indexed-name>
+<ce:surname>Gonzalez</ce:surname>
+</author>
+<author seq="5">
+<ce:initials>P.</ce:initials>
+<ce:indexed-name>Czobor P.</ce:indexed-name>
+<ce:surname>Czobor</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Bipolar Disord</ref-sourcetitle>
+<ref-publicationyear first="2007"/>
+<ref-volisspag>
+<voliss volume="9"/>
+<pagerange first="90" last="99"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Jaeger J, Berns S, Loftus S, Gonzalez C, Czobor P. Neurocognitive test performance predicts functional recovery from acute exacerbation leading to hospitalization in bipolar disorder. Bipolar Disord 2007; 9: 90-99.</ref-fulltext>
+</reference>
+<reference id="13">
+<ref-info>
+<ref-title>
+<ref-titletext>Association of cognitive deficits with elevated homocysteine levels in euthymic bipolar patients and its impact on psychosocial functioning: Preliminary results</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">34247592984</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>S.</ce:initials>
+<ce:indexed-name>Dittmann S.</ce:indexed-name>
+<ce:surname>Dittmann</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>F.</ce:initials>
+<ce:indexed-name>Seemuller F.</ce:indexed-name>
+<ce:surname>Seemüller</ce:surname>
+</author>
+<author seq="3">
+<ce:initials>M.J.</ce:initials>
+<ce:indexed-name>Schwarz M.J.</ce:indexed-name>
+<ce:surname>Schwarz</ce:surname>
+</author>
+<et-al/>
+</ref-authors>
+<ref-sourcetitle>Bipolar Disord</ref-sourcetitle>
+<ref-publicationyear first="2007"/>
+<ref-volisspag>
+<voliss volume="9"/>
+<pagerange first="61" last="68"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Dittmann S, Seemüller F, Schwarz MJ et al. Association of cognitive deficits with elevated homocysteine levels in euthymic bipolar patients and its impact on psychosocial functioning: Preliminary results. Bipolar Disord 2007; 9: 61-68.</ref-fulltext>
+</reference>
+<reference id="14">
+<ref-info>
+<ref-title>
+<ref-titletext>Functional outcome in bipolar disorder: The role of clinical and cognitive factors</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">34247597344</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>A.</ce:initials>
+<ce:indexed-name>Martinez-Aran A.</ce:indexed-name>
+<ce:surname>Martinez-Aran</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>E.</ce:initials>
+<ce:indexed-name>Vieta E.</ce:indexed-name>
+<ce:surname>Vieta</ce:surname>
+</author>
+<author seq="3">
+<ce:initials>C.</ce:initials>
+<ce:indexed-name>Torrent C.</ce:indexed-name>
+<ce:surname>Torrent</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Bipolar Disord</ref-sourcetitle>
+<ref-publicationyear first="2007"/>
+<ref-volisspag>
+<voliss volume="9"/>
+<pagerange first="100" last="110"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Martinez-Aran A, Vieta E, Torrent C et al. Functional outcome in bipolar disorder: The role of clinical and cognitive factors. Bipolar Disord 2007; 9: 100-110.</ref-fulltext>
+</reference>
+<reference id="15">
+<ref-info>
+<ref-title>
+<ref-titletext>Neuropsychological deficits and functional impairment in bipolar depression, hypomania and euthymia</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">34247609293</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>G.S.</ce:initials>
+<ce:indexed-name>Malhi G.S.</ce:indexed-name>
+<ce:surname>Malhi</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>B.</ce:initials>
+<ce:indexed-name>Ivanovski B.</ce:indexed-name>
+<ce:surname>Ivanovski</ce:surname>
+</author>
+<author seq="3">
+<ce:initials>D.</ce:initials>
+<ce:indexed-name>Hadzi-Pavlovic D.</ce:indexed-name>
+<ce:surname>Hadzi-Pavlovic</ce:surname>
+</author>
+<author seq="4">
+<ce:initials>P.B.</ce:initials>
+<ce:indexed-name>Mitchell P.B.</ce:indexed-name>
+<ce:surname>Mitchell</ce:surname>
+</author>
+<author seq="5">
+<ce:initials>E.</ce:initials>
+<ce:indexed-name>Vieta E.</ce:indexed-name>
+<ce:surname>Vieta</ce:surname>
+</author>
+<author seq="6">
+<ce:initials>P.</ce:initials>
+<ce:indexed-name>Sachdev P.</ce:indexed-name>
+<ce:surname>Sachdev</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Bipolar Disord</ref-sourcetitle>
+<ref-publicationyear first="2007"/>
+<ref-volisspag>
+<voliss volume="9"/>
+<pagerange first="111" last="122"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Malhi GS, Ivanovski B, Hadzi-Pavlovic D, Mitchell PB, Vieta E, Sachdev P. Neuropsychological deficits and functional impairment in bipolar depression, hypomania and euthymia. Bipolar Disord 2007; 9: 111-122.</ref-fulltext>
+</reference>
+<reference id="16">
+<ref-info>
+<ref-title>
+<ref-titletext>The impact of bipolar disorder upon work functioning: A qualitative analysis</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">34247605501</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>E.E.</ce:initials>
+<ce:indexed-name>Michalak E.E.</ce:indexed-name>
+<ce:surname>Michalak</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>L.N.</ce:initials>
+<ce:indexed-name>Yatham L.N.</ce:indexed-name>
+<ce:surname>Yatham</ce:surname>
+</author>
+<author seq="3">
+<ce:initials>V.</ce:initials>
+<ce:indexed-name>Maxwell V.</ce:indexed-name>
+<ce:surname>Maxwell</ce:surname>
+</author>
+<author seq="4">
+<ce:initials>S.</ce:initials>
+<ce:indexed-name>Hale S.</ce:indexed-name>
+<ce:surname>Hale</ce:surname>
+</author>
+<author seq="5">
+<ce:initials>R.W.</ce:initials>
+<ce:indexed-name>Lam R.W.</ce:indexed-name>
+<ce:surname>Lam</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Bipolar Disord</ref-sourcetitle>
+<ref-publicationyear first="2007"/>
+<ref-volisspag>
+<voliss volume="9"/>
+<pagerange first="123" last="140"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Michalak EE, Yatham LN, Maxwell V, Hale S, Lam RW. The impact of bipolar disorder upon work functioning: A qualitative analysis. Bipolar Disord 2007; 9: 123-140.</ref-fulltext>
+</reference>
+<reference id="17">
+<ref-info>
+<ref-title>
+<ref-titletext>Social functioning in bipolar patients: The perception and perspective of patients, relatives and advocacy organizations - A review</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">34247606722</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>R.</ce:initials>
+<ce:indexed-name>Elgie R.</ce:indexed-name>
+<ce:surname>Elgie</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>P.L.</ce:initials>
+<ce:indexed-name>Morselli P.L.</ce:indexed-name>
+<ce:surname>Morselli</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Bipolar Disord</ref-sourcetitle>
+<ref-publicationyear first="2007"/>
+<ref-volisspag>
+<voliss volume="9"/>
+<pagerange first="141" last="154"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Elgie R, Morselli PL. Social functioning in bipolar patients: The perception and perspective of patients, relatives and advocacy organizations - a review. Bipolar Disord 2007; 9: 141-154.</ref-fulltext>
+</reference>
+<reference id="18">
+<ref-info>
+<ref-title>
+<ref-titletext>Working, receiving disability benefits, and access to mental health care in individuals with bipolar disorder</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">34247589733</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>L.</ce:initials>
+<ce:indexed-name>Elinson L.</ce:indexed-name>
+<ce:surname>Elinson</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>P.</ce:initials>
+<ce:indexed-name>Houck P.</ce:indexed-name>
+<ce:surname>Houck</ce:surname>
+</author>
+<author seq="3">
+<ce:initials>H.A.</ce:initials>
+<ce:indexed-name>Pincus H.A.</ce:indexed-name>
+<ce:surname>Pincus</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Bipolar Disord</ref-sourcetitle>
+<ref-publicationyear first="2007"/>
+<ref-volisspag>
+<voliss volume="9"/>
+<pagerange first="155" last="162"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Elinson L, Houck P, Pincus HA. Working, receiving disability benefits, and access to mental health care in individuals with bipolar disorder. Bipolar Disord 2007; 9: 155-162.</ref-fulltext>
+</reference>
+<reference id="19">
+<ref-info>
+<ref-title>
+<ref-titletext>Employment functioning and disability among community residents with bipolar affective disorder: Results from an Australian community survey</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">34247627406</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>G.</ce:initials>
+<ce:indexed-name>Waghorn G.</ce:indexed-name>
+<ce:surname>Waghorn</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>D.</ce:initials>
+<ce:indexed-name>Chant D.</ce:indexed-name>
+<ce:surname>Chant</ce:surname>
+</author>
+<author seq="3">
+<ce:initials>J.</ce:initials>
+<ce:indexed-name>Jaeger J.</ce:indexed-name>
+<ce:surname>Jaeger</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Bipolar Disord</ref-sourcetitle>
+<ref-publicationyear first="2007"/>
+<ref-volisspag>
+<voliss volume="9"/>
+<pagerange first="163" last="179"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Waghorn G, Chant D, Jaeger J. Employment functioning and disability among community residents with bipolar affective disorder: Results from an Australian community survey. Bipolar Disord 2007; 9: 163-179.</ref-fulltext>
+</reference>
+<reference id="20">
+<ref-info>
+<ref-title>
+<ref-titletext>Disability associated with mood states and comparator conditions: Application of the Life Skills Profile measure of disability</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">34247631161</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>G.</ce:initials>
+<ce:indexed-name>Parker G.</ce:indexed-name>
+<ce:surname>Parker</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>A.</ce:initials>
+<ce:indexed-name>Rosen A.</ce:indexed-name>
+<ce:surname>Rosen</ce:surname>
+</author>
+<author seq="3">
+<ce:initials>T.</ce:initials>
+<ce:indexed-name>Trauer T.</ce:indexed-name>
+<ce:surname>Trauer</ce:surname>
+</author>
+<author seq="4">
+<ce:initials>D.</ce:initials>
+<ce:indexed-name>Hadzi-Pavlovic D.</ce:indexed-name>
+<ce:surname>Hadzi-Pavlovic</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Bipolar Disord</ref-sourcetitle>
+<ref-publicationyear first="2007"/>
+<ref-volisspag>
+<voliss volume="9"/>
+<pagerange first="9" last="13"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Parker G, Rosen A, Trauer T, Hadzi-Pavlovic D. Disability associated with mood states and comparator conditions: Application of the Life Skills Profile measure of disability. Bipolar Disord 2007; 9: 9-13.</ref-fulltext>
+</reference>
+<reference id="21">
+<ref-info>
+<ref-title>
+<ref-titletext>Methodological considerations of measuring disability in bipolar disorder: Validity of the Multidimensional Scale of Independent Functioning</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">34247614024</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>S.</ce:initials>
+<ce:indexed-name>Berns S.</ce:indexed-name>
+<ce:surname>Berns</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>S.</ce:initials>
+<ce:indexed-name>Uzelac S.</ce:indexed-name>
+<ce:surname>Uzelac</ce:surname>
+</author>
+<author seq="3">
+<ce:initials>C.</ce:initials>
+<ce:indexed-name>Gonzalez C.</ce:indexed-name>
+<ce:surname>Gonzalez</ce:surname>
+</author>
+<author seq="4">
+<ce:initials>J.</ce:initials>
+<ce:indexed-name>Jaeger J.</ce:indexed-name>
+<ce:surname>Jaeger</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Bipolar Disord</ref-sourcetitle>
+<ref-publicationyear first="2007"/>
+<ref-volisspag>
+<voliss volume="9"/>
+<pagerange first="3" last="8"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Berns S, Uzelac S, Gonzalez C, Jaeger J. Methodological considerations of measuring disability in bipolar disorder: Validity of the Multidimensional Scale of Independent Functioning. Bipolar Disord 2007; 9: 3-8.</ref-fulltext>
+</reference>
+<reference id="22">
+<ref-info>
+<ref-title>
+<ref-titletext>Developing core sets for persons with bipolar disorder based on the International Classification of Functioning, Disability and Health</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">34247618800</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>E.</ce:initials>
+<ce:indexed-name>Vieta E.</ce:indexed-name>
+<ce:surname>Vieta</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>A.</ce:initials>
+<ce:indexed-name>Cieza A.</ce:indexed-name>
+<ce:surname>Cieza</ce:surname>
+</author>
+<author seq="3">
+<ce:initials>G.</ce:initials>
+<ce:indexed-name>Stucki G.</ce:indexed-name>
+<ce:surname>Stucki</ce:surname>
+</author>
+<et-al/>
+</ref-authors>
+<ref-sourcetitle>Bipolar Disord</ref-sourcetitle>
+<ref-publicationyear first="2007"/>
+<ref-volisspag>
+<voliss volume="9"/>
+<pagerange first="14" last="22"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Vieta E, Cieza A, Stucki G et al. Developing core sets for persons with bipolar disorder based on the International Classification of Functioning, Disability and Health. Bipolar Disord 2007; 9: 14-22.</ref-fulltext>
+</reference>
+<reference id="23">
+<ref-info>
+<ref-title>
+<ref-titletext>Disability and its treatment in bipolar disorder</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">34247597769</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>N.</ce:initials>
+<ce:indexed-name>Huxley N.</ce:indexed-name>
+<ce:surname>Huxley</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>R.J.</ce:initials>
+<ce:indexed-name>Baldessarini R.J.</ce:indexed-name>
+<ce:surname>Baldessarini</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Bipolar Disord</ref-sourcetitle>
+<ref-publicationyear first="2007"/>
+<ref-volisspag>
+<voliss volume="9"/>
+<pagerange first="180" last="193"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Huxley N, Baldessarini RJ. Disability and its treatment in bipolar disorder. Bipolar Disord 2007; 9: 180-193.</ref-fulltext>
+</reference>
+</bibliography>
+      </tail>
+    </bibrecord>
+  </item>
+</abstracts-retrieval-response>

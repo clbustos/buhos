@@ -99,7 +99,7 @@ get '/review/:id/screening_references' do |id|
 end
 
 
-get '/review/:id/full_text_review' do |id|
+get '/review/:id/review_full_text' do |id|
 
   @revision=Revision_Sistematica[id]
   raise Buhos::NoReviewIdError, id if !@revision
@@ -121,7 +121,7 @@ get '/review/:id/full_text_review' do |id|
   @cd_total_ds=@revision.canonicos_documentos
 
 
-  @url="/review/#{id}/full_text_review"
+  @url="/review/#{id}/review_full_text"
 
   @ads=AnalisisDecisionUsuario.new(id,@usuario_id, 'review_full_text')
 

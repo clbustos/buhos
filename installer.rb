@@ -20,7 +20,7 @@ module Buhos
     helpers DOIHelpers
     helpers HTMLHelpers
     register Sinatra::I18n
-    register Sinatra::Mensajes
+    register Sinatra::Messages
     helpers do
       def permiso(p)
         true

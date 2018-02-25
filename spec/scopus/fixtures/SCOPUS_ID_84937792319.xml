@@ -1,0 +1,1304 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<abstracts-retrieval-response xmlns="http://www.elsevier.com/xml/svapi/abstract/dtd" xmlns:dn="http://www.elsevier.com/xml/svapi/abstract/dtd" xmlns:ait="http://www.elsevier.com/xml/ani/ait" xmlns:ce="http://www.elsevier.com/xml/ani/common" xmlns:cto="http://www.elsevier.com/xml/cto/dtd" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:prism="http://prismstandard.org/namespaces/basic/2.0/" xmlns:xocs="http://www.elsevier.com/xml/xocs/dtd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <coredata>
+    <prism:url>http://api.elsevier.com/content/abstract/scopus_id/84937792319</prism:url>
+    <dc:identifier>SCOPUS_ID:84937792319</dc:identifier>
+    <eid>2-s2.0-84937792319</eid>
+    <pubmed-id>26214497</pubmed-id>
+    <prism:doi>10.1037/met0000051</prism:doi>
+    <dc:title>There's more than one way to conduct a replication study: Beyond statistical significance</dc:title>
+    <prism:aggregationType>Journal</prism:aggregationType>
+    <srctype>j</srctype>
+    <citedby-count>9</citedby-count>
+    <prism:publicationName>Psychological Methods</prism:publicationName>
+    <dc:publisher>American Psychological Association Inc.journals@apa.org</dc:publisher>
+    <source-id>13461</source-id>
+    <prism:issn>1082989X</prism:issn>
+    <prism:volume>21</prism:volume>
+    <prism:issueIdentifier>1</prism:issueIdentifier>
+    <prism:startingPage>1</prism:startingPage>
+    <prism:endingPage>12</prism:endingPage>
+    <prism:pageRange>1-12</prism:pageRange>
+    <prism:coverDate>2016-03-01</prism:coverDate>
+    <dc:creator>
+      <author seq="1" auid="56733970700">
+        <ce:initials>S.F.</ce:initials>
+        <ce:indexed-name>Anderson S.F.</ce:indexed-name>
+        <ce:surname>Anderson</ce:surname>
+        <ce:given-name>Samantha F.</ce:given-name>
+        <preferred-name>
+          <ce:initials>S.F.</ce:initials>
+          <ce:indexed-name>Anderson S.</ce:indexed-name>
+          <ce:surname>Anderson</ce:surname>
+          <ce:given-name>Samantha F.</ce:given-name>
+        </preferred-name>
+        <author-url>http://api.elsevier.com/content/author/author_id/56733970700</author-url>
+        <affiliation id="60021508" href="http://api.elsevier.com/content/affiliation/affiliation_id/60021508"/>
+      </author>
+    </dc:creator>
+    <dc:description>
+      <abstract xmlns="" original="y" xml:lang="eng">
+        <publishercopyright>© 2015 American Psychological Association.</publishercopyright>
+        <ce:para>As the field of psychology struggles to trust published findings, replication research has begun to become more of a priority to both scientists and journals. With this increasing emphasis placed on reproducibility, it is essential that replication studies be capable of advancing the field. However, we argue that many researchers have been only narrowly interpreting the meaning of replication, with studies being designed with a simple statistically significant or nonsignificant results framework in mind. Although this interpretation may be desirable in some cases, we develop a variety of additional "replication goals" that researchers could consider when planning studies. Even if researchers are aware of these goals, we show that they are rarely used in practice-as results are typically analyzed in a manner only appropriate to a simple significance test. We discuss each goal conceptually, explain appropriate analysis procedures, and provide 1 or more examples to illustrate these analyses in practice. We hope that these various goals will allow researchers to develop a more nuanced understanding of replication that can be flexible enough to answer the various questions that researchers might seek to understand.</ce:para>
+      </abstract>
+    </dc:description>
+    <link href="http://api.elsevier.com/content/abstract/scopus_id/84937792319" rel="self"/>
+    <link href="https://www.scopus.com/inward/record.uri?partnerID=HzOxMe3b&amp;scp=84937792319&amp;origin=inward" rel="scopus"/>
+    <link href="https://www.scopus.com/inward/citedby.uri?partnerID=HzOxMe3b&amp;scp=84937792319&amp;origin=inward" rel="scopus-citedby"/>
+  </coredata>
+  <affiliation id="60021508" href="http://api.elsevier.com/content/affiliation/affiliation_id/60021508">
+    <affilname>University of Notre Dame</affilname>
+    <affiliation-city>Notre Dame</affiliation-city>
+    <affiliation-country>United States</affiliation-country>
+  </affiliation>
+  <authors>
+    <author seq="1" auid="56733970700">
+      <ce:initials>S.F.</ce:initials>
+      <ce:indexed-name>Anderson S.F.</ce:indexed-name>
+      <ce:surname>Anderson</ce:surname>
+      <ce:given-name>Samantha F.</ce:given-name>
+      <preferred-name>
+        <ce:initials>S.F.</ce:initials>
+        <ce:indexed-name>Anderson S.</ce:indexed-name>
+        <ce:surname>Anderson</ce:surname>
+        <ce:given-name>Samantha F.</ce:given-name>
+      </preferred-name>
+      <author-url>http://api.elsevier.com/content/author/author_id/56733970700</author-url>
+      <affiliation id="60021508" href="http://api.elsevier.com/content/affiliation/affiliation_id/60021508"/>
+    </author>
+    <author seq="2" auid="56734150100">
+      <ce:initials>S.E.</ce:initials>
+      <ce:indexed-name>Maxwell S.E.</ce:indexed-name>
+      <ce:surname>Maxwell</ce:surname>
+      <ce:given-name>Scott E.</ce:given-name>
+      <preferred-name>
+        <ce:initials>S.E.</ce:initials>
+        <ce:indexed-name>Maxwell S.</ce:indexed-name>
+        <ce:surname>Maxwell</ce:surname>
+        <ce:given-name>Scott E.</ce:given-name>
+      </preferred-name>
+      <author-url>http://api.elsevier.com/content/author/author_id/56734150100</author-url>
+      <affiliation id="60021508" href="http://api.elsevier.com/content/affiliation/affiliation_id/60021508"/>
+    </author>
+  </authors>
+  <language xml:lang="eng"/>
+  <authkeywords>
+    <author-keyword>Confidence interval</author-keyword>
+    <author-keyword>Data analysis</author-keyword>
+    <author-keyword>Effect size</author-keyword>
+    <author-keyword>Equivalence test</author-keyword>
+    <author-keyword>Replication</author-keyword>
+  </authkeywords>
+  <idxterms>
+    <mainterm weight="b" candidate="n">Behavioral Research</mainterm>
+    <mainterm weight="a" candidate="n">Data Interpretation, Statistical</mainterm>
+    <mainterm weight="b" candidate="n">Humans</mainterm>
+    <mainterm weight="a" candidate="n">Reproducibility of Results</mainterm>
+  </idxterms>
+  <subject-areas>
+    <subject-area code="3201" abbrev="PSYC">Psychology (miscellaneous)</subject-area>
+  </subject-areas>
+  <item xmlns="">
+    <ait:process-info>
+      <ait:date-delivered year="2017" month="08" day="20" timestamp="2017-08-20T22:29:25.000025-04:00"/>
+      <ait:date-sort year="2016" month="03" day="01"/>
+      <ait:status type="core" state="update" stage="S300"/>
+    </ait:process-info>
+    <bibrecord>
+      <item-info>
+        <copyright type="Elsevier">Copyright 2016 Elsevier B.V., All rights reserved.</copyright>
+        <itemidlist>
+          <ce:doi>10.1037/met0000051</ce:doi>
+          <itemid idtype="PUI">605351217</itemid>
+          <itemid idtype="CAR-ID">638216701</itemid>
+          <itemid idtype="NURSNG">2015866971</itemid>
+          <itemid idtype="SNPSYB">2015122447</itemid>
+          <itemid idtype="SCP">84937792319</itemid>
+          <itemid idtype="SGR">84937792319</itemid>
+          <itemid idtype="PUIsecondary">614447959</itemid>
+          <itemid idtype="MEDL">26214497</itemid>
+        </itemidlist>
+        <history>
+          <date-created year="2015" month="07" day="29" timestamp="BST 08:26:18"/>
+        </history>
+        <dbcollection>NURSNG</dbcollection>
+        <dbcollection>SNPSYB</dbcollection>
+        <dbcollection>Scopusbase</dbcollection>
+        <dbcollection>MEDL</dbcollection>
+      </item-info>
+      <head>
+        <citation-info>
+          <citation-type code="ar"/>
+          <citation-language xml:lang="eng" language="English"/>
+          <abstract-language xml:lang="eng" language="English"/>
+          <author-keywords>
+            <author-keyword>Confidence interval</author-keyword>
+            <author-keyword>Data analysis</author-keyword>
+            <author-keyword>Effect size</author-keyword>
+            <author-keyword>Equivalence test</author-keyword>
+            <author-keyword>Replication</author-keyword>
+          </author-keywords>
+        </citation-info>
+        <citation-title>
+          <titletext xml:lang="eng" original="y" language="English">There's more than one way to conduct a replication study: Beyond statistical significance</titletext>
+        </citation-title>
+        <author-group>
+          <author auid="56733970700" seq="1" type="auth">
+            <ce:initials>S.F.</ce:initials>
+            <ce:indexed-name>Anderson S.F.</ce:indexed-name>
+            <ce:surname>Anderson</ce:surname>
+            <ce:given-name>Samantha F.</ce:given-name>
+            <preferred-name>
+              <ce:initials>S.F.</ce:initials>
+              <ce:indexed-name>Anderson S.</ce:indexed-name>
+              <ce:surname>Anderson</ce:surname>
+              <ce:given-name>Samantha F.</ce:given-name>
+            </preferred-name>
+            <ce:e-address type="email">sander10@nd.edu</ce:e-address>
+          </author>
+          <author auid="56734150100" seq="2" type="auth">
+            <ce:initials>S.E.</ce:initials>
+            <ce:indexed-name>Maxwell S.E.</ce:indexed-name>
+            <ce:surname>Maxwell</ce:surname>
+            <ce:given-name>Scott E.</ce:given-name>
+            <preferred-name>
+              <ce:initials>S.E.</ce:initials>
+              <ce:indexed-name>Maxwell S.</ce:indexed-name>
+              <ce:surname>Maxwell</ce:surname>
+              <ce:given-name>Scott E.</ce:given-name>
+            </preferred-name>
+          </author>
+          <affiliation afid="60021508" dptid="100280529" country="usa">
+            <organization>Department of Psychology</organization>
+            <organization>University of Notre Dame</organization>
+            <affiliation-id afid="60021508" dptid="100280529"/>
+            <country>United States</country>
+          </affiliation>
+        </author-group>
+        <correspondence>
+          <person>
+            <ce:initials>S.F.</ce:initials>
+            <ce:indexed-name>Anderson S.F.</ce:indexed-name>
+            <ce:surname>Anderson</ce:surname>
+            <ce:given-name>Samantha F.</ce:given-name>
+          </person>
+          <affiliation country="usa">
+            <organization>Department of Psychology</organization>
+            <organization>University of Notre Dame</organization>
+            <address-part>118 Haggar Hall</address-part>
+            <city>Notre Dame</city>
+            <state>IN</state>
+            <postal-code>46556</postal-code>
+            <country>United States</country>
+          </affiliation>
+          <ce:e-address type="email">sander10@nd.edu</ce:e-address>
+        </correspondence>
+        <abstracts>
+          <abstract original="y" xml:lang="eng">
+            <publishercopyright>© 2015 American Psychological Association.</publishercopyright>
+            <ce:para>As the field of psychology struggles to trust published findings, replication research has begun to become more of a priority to both scientists and journals. With this increasing emphasis placed on reproducibility, it is essential that replication studies be capable of advancing the field. However, we argue that many researchers have been only narrowly interpreting the meaning of replication, with studies being designed with a simple statistically significant or nonsignificant results framework in mind. Although this interpretation may be desirable in some cases, we develop a variety of additional "replication goals" that researchers could consider when planning studies. Even if researchers are aware of these goals, we show that they are rarely used in practice-as results are typically analyzed in a manner only appropriate to a simple significance test. We discuss each goal conceptually, explain appropriate analysis procedures, and provide 1 or more examples to illustrate these analyses in practice. We hope that these various goals will allow researchers to develop a more nuanced understanding of replication that can be flexible enough to answer the various questions that researchers might seek to understand.</ce:para>
+          </abstract>
+        </abstracts>
+        <source srcid="13461" type="j" country="usa">
+          <sourcetitle>Psychological Methods</sourcetitle>
+          <sourcetitle-abbrev>Psychol. Methods</sourcetitle-abbrev>
+          <translated-sourcetitle xml:lang="eng">Psychological Methods</translated-sourcetitle>
+          <issn type="print">1082989X</issn>
+          <volisspag>
+            <voliss volume="21" issue="1"/>
+            <pagerange first="1" last="12"/>
+          </volisspag>
+          <publicationyear first="2016"/>
+          <publicationdate>
+            <year>2016</year>
+            <month>03</month>
+            <day>01</day>
+            <date-text xfab-added="true">1 March 2016</date-text>
+          </publicationdate>
+          <website>
+            <ce:e-address type="email">http://dx.doi.org/10.1037/met0000051</ce:e-address>
+          </website>
+          <publisher>
+            <publishername>American Psychological Association Inc.</publishername>
+            <ce:e-address type="email">journals@apa.org</ce:e-address>
+          </publisher>
+        </source>
+        <enhancement>
+          <classificationgroup>
+            <classifications type="ASJC">
+              <classification>3201</classification>
+            </classifications>
+            <classifications type="SUBJABBR">
+              <classification>PSYC</classification>
+            </classifications>
+          </classificationgroup>
+        </enhancement>
+      </head>
+      <tail>
+        <bibliography refcount="69">
+          <reference id="1">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Feeling the future: Experimental evidence for anomalous retroactive influences on cognition and affect</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">79952093573</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>D.J.</ce:initials>
+                  <ce:indexed-name>Bem D.J.</ce:indexed-name>
+                  <ce:surname>Bem</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Journal of Personality and Social Psychology</ref-sourcetitle>
+              <ref-publicationyear first="2011"/>
+              <ref-volisspag>
+                <voliss volume="100"/>
+                <pagerange first="407" last="425"/>
+              </ref-volisspag>
+              <ref-website>
+                <ce:e-address type="email">http://dx.doi.org/10.1037/a0021524</ce:e-address>
+              </ref-website>
+            </ref-info>
+            <ref-fulltext>Bem, D. J. (2011). Feeling the future: Experimental evidence for anomalous retroactive influences on cognition and affect. Journal of Personality and Social Psychology, 100, 407-425. http://dx.doi.org/10.1037/a0021524</ref-fulltext>
+          </reference>
+          <reference id="2">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Testing precise hypotheses</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">84963968154</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>J.</ce:initials>
+                  <ce:indexed-name>Berger J.</ce:indexed-name>
+                  <ce:surname>Berger</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>M.</ce:initials>
+                  <ce:indexed-name>Delampady M.</ce:indexed-name>
+                  <ce:surname>Delampady</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Statistical Science</ref-sourcetitle>
+              <ref-publicationyear first="1987"/>
+              <ref-volisspag>
+                <voliss volume="2"/>
+                <pagerange first="317" last="335"/>
+              </ref-volisspag>
+              <ref-website>
+                <ce:e-address type="email">http://dx.doi.org/10.1214/ss/1177013238</ce:e-address>
+              </ref-website>
+            </ref-info>
+            <ref-fulltext>Berger, J., &amp; Delampady, M. (1987). Testing precise hypotheses. Statistical Science, 2, 317-335. http://dx.doi.org/10.1214/ss/1177013238</ref-fulltext>
+          </reference>
+          <reference id="3">
+            <ref-info>
+              <refd-itemidlist>
+                <itemid idtype="SGR">84963950639</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>J.C.</ce:initials>
+                  <ce:indexed-name>Biesanz J.C.</ce:indexed-name>
+                  <ce:surname>Biesanz</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>S.M.</ce:initials>
+                  <ce:indexed-name>Schrager S.M.</ce:indexed-name>
+                  <ce:surname>Schrager</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Sample size planning with effect size estimates</ref-sourcetitle>
+              <ref-publicationyear first="2010"/>
+              <ref-text>Manuscript under review. Vancouver, Canada: University of British Columbia School of Psychology.</ref-text>
+            </ref-info>
+            <ref-fulltext>Biesanz, J. C., &amp; Schrager, S. M. (2010). Sample size planning with effect size estimates. Manuscript under review. Vancouver, Canada: University of British Columbia School of Psychology.</ref-fulltext>
+          </reference>
+          <reference id="4">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Meta-analysis of raw mean differences</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">0347460675</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>C.F.</ce:initials>
+                  <ce:indexed-name>Bond C.F.</ce:indexed-name>
+                  <ce:surname>Bond</ce:surname>
+                  <ce:suffix>Jr.</ce:suffix>
+                </author>
+                <author seq="2">
+                  <ce:initials>W.L.</ce:initials>
+                  <ce:indexed-name>Wiitala W.L.</ce:indexed-name>
+                  <ce:surname>Wiitala</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>F.D.</ce:initials>
+                  <ce:indexed-name>Richard F.D.</ce:indexed-name>
+                  <ce:surname>Richard</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Psychological Methods</ref-sourcetitle>
+              <ref-publicationyear first="2003"/>
+              <ref-volisspag>
+                <voliss volume="8"/>
+                <pagerange first="406" last="418"/>
+              </ref-volisspag>
+              <ref-website>
+                <ce:e-address type="email">http://dx.doi.org/10.1037/1082-989X.8.4.406</ce:e-address>
+              </ref-website>
+            </ref-info>
+            <ref-fulltext>Bond, C. F., Jr., Wiitala, W. L., &amp; Richard, F. D. (2003). Meta-analysis of raw mean differences. Psychological Methods, 8, 406-418. http://dx.doi .org/10.1037/1082-989X.8.4.406</ref-fulltext>
+          </reference>
+          <reference id="5">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Meta-analytic interval estimation for bivariate correlations</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">54549127457</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>D.G.</ce:initials>
+                  <ce:indexed-name>Bonett D.G.</ce:indexed-name>
+                  <ce:surname>Bonett</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Psychological Methods</ref-sourcetitle>
+              <ref-publicationyear first="2008"/>
+              <ref-volisspag>
+                <voliss volume="13"/>
+                <pagerange first="173" last="181"/>
+              </ref-volisspag>
+              <ref-website>
+                <ce:e-address type="email">http://dx.doi.org/10.1037/a0012868</ce:e-address>
+              </ref-website>
+            </ref-info>
+            <ref-fulltext>Bonett, D. G. (2008). Meta-analytic interval estimation for bivariate correlations. Psychological Methods, 13, 173-181. http://dx.doi.org/ 10.1037/a0012868</ref-fulltext>
+          </reference>
+          <reference id="6">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Meta-analytic interval estimation for standardized and unstandardized mean differences</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">70249089102</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>D.G.</ce:initials>
+                  <ce:indexed-name>Bonett D.G.</ce:indexed-name>
+                  <ce:surname>Bonett</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Psychological Methods</ref-sourcetitle>
+              <ref-publicationyear first="2009"/>
+              <ref-volisspag>
+                <voliss volume="14"/>
+                <pagerange first="225" last="238"/>
+              </ref-volisspag>
+              <ref-website>
+                <ce:e-address type="email">http://dx.doi.org/10.1037/a0016619</ce:e-address>
+              </ref-website>
+            </ref-info>
+            <ref-fulltext>Bonett, D. G. (2009). Meta-analytic interval estimation for standardized and unstandardized mean differences. Psychological Methods, 14, 225-238. http://dx.doi.org/10.1037/a0016619</ref-fulltext>
+          </reference>
+          <reference id="7">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Meta-analysis methods for risk differences</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">84907887350</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>D.G.</ce:initials>
+                  <ce:indexed-name>Bonett D.G.</ce:indexed-name>
+                  <ce:surname>Bonett</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>R.M.</ce:initials>
+                  <ce:indexed-name>Price R.M.</ce:indexed-name>
+                  <ce:surname>Price</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>British Journal of Mathematical and Statistical Psychology</ref-sourcetitle>
+              <ref-publicationyear first="2014"/>
+              <ref-volisspag>
+                <voliss volume="67"/>
+                <pagerange first="371" last="387"/>
+              </ref-volisspag>
+              <ref-website>
+                <ce:e-address type="email">http://dx.doi.org/10.1111/bmsp.12024</ce:e-address>
+              </ref-website>
+            </ref-info>
+            <ref-fulltext>Bonett, D. G., &amp; Price, R. M. (2014). Meta-analysis methods for risk differences. British Journal of Mathematical and Statistical Psychology, 67, 371-387. http://dx.doi.org/10.1111/bmsp.12024</ref-fulltext>
+          </reference>
+          <reference id="8">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Comments and recommendations regarding the hypothesis testing controversy</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">34548088083</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>D.G.</ce:initials>
+                  <ce:indexed-name>Bonett D.G.</ce:indexed-name>
+                  <ce:surname>Bonett</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>T.A.</ce:initials>
+                  <ce:indexed-name>Wright T.A.</ce:indexed-name>
+                  <ce:surname>Wright</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Journal of Organizational Behavior</ref-sourcetitle>
+              <ref-publicationyear first="2007"/>
+              <ref-volisspag>
+                <voliss volume="28"/>
+                <pagerange first="647" last="659"/>
+              </ref-volisspag>
+              <ref-website>
+                <ce:e-address type="email">http://dx.doi.org/10.1002/job.448</ce:e-address>
+              </ref-website>
+            </ref-info>
+            <ref-fulltext>Bonett, D. G., &amp; Wright, T. A. (2007). Comments and recommendations regarding the hypothesis testing controversy. Journal of Organizational Behavior, 28, 647-659. http://dx.doi.org/10.1002/job.448</ref-fulltext>
+          </reference>
+          <reference id="9">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Continuously cumulating meta-analysis and replicability</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">84899830518</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>S.L.</ce:initials>
+                  <ce:indexed-name>Braver S.L.</ce:indexed-name>
+                  <ce:surname>Braver</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>F.J.</ce:initials>
+                  <ce:indexed-name>Thoemmes F.J.</ce:indexed-name>
+                  <ce:surname>Thoemmes</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>R.</ce:initials>
+                  <ce:indexed-name>Rosenthal R.</ce:indexed-name>
+                  <ce:surname>Rosenthal</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Perspectives on Psychological Science</ref-sourcetitle>
+              <ref-publicationyear first="2014"/>
+              <ref-volisspag>
+                <voliss volume="9"/>
+                <pagerange first="333" last="342"/>
+              </ref-volisspag>
+              <ref-website>
+                <ce:e-address type="email">http://dx.doi.org/10.1177/1745691614529796</ce:e-address>
+              </ref-website>
+            </ref-info>
+            <ref-fulltext>Braver, S. L., Thoemmes, F. J., &amp; Rosenthal, R. (2014). Continuously cumulating meta-analysis and replicability. Perspectives on Psychological Science, 9, 333-342. http://dx.doi.org/10.1177/1745691614529796</ref-fulltext>
+          </reference>
+          <reference id="10">
+            <ref-info>
+              <refd-itemidlist>
+                <itemid idtype="SGR">84963968149</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <collaboration seq="1">
+                  <ce:indexed-name>Center for Open Science</ce:indexed-name>
+                  <ce:text>Center for Open Science</ce:text>
+                </collaboration>
+              </ref-authors>
+              <ref-sourcetitle>Reproducibility project</ref-sourcetitle>
+              <ref-publicationyear first="2012"/>
+              <ref-website>
+                <ce:e-address type="email">https://osf.io/ezcuj/wiki/home/</ce:e-address>
+              </ref-website>
+              <ref-text>Retrieved from</ref-text>
+            </ref-info>
+            <ref-fulltext>Center for Open Science. (2012). Reproducibility project. Retrieved from https://osf.io/ezcuj/wiki/home/</ref-fulltext>
+          </reference>
+          <reference id="11">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>The combination of estimates from different experiments</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">0000107301</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>W.G.</ce:initials>
+                  <ce:indexed-name>Cochran W.G.</ce:indexed-name>
+                  <ce:surname>Cochran</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Biometrics</ref-sourcetitle>
+              <ref-publicationyear first="1954"/>
+              <ref-volisspag>
+                <voliss volume="10"/>
+                <pagerange first="101" last="129"/>
+              </ref-volisspag>
+              <ref-website>
+                <ce:e-address type="email">http://dx.doi.org/10.2307/3001666</ce:e-address>
+              </ref-website>
+            </ref-info>
+            <ref-fulltext>Cochran, W. G. (1954). The combination of estimates from different experiments. Biometrics, 10, 101-129. http://dx.doi.org/10.2307/ 3001666</ref-fulltext>
+          </reference>
+          <reference id="12">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>How meta-analysis increases statistical power</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">0142136688</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>L.D.</ce:initials>
+                  <ce:indexed-name>Cohn L.D.</ce:indexed-name>
+                  <ce:surname>Cohn</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>B.J.</ce:initials>
+                  <ce:indexed-name>Becker B.J.</ce:indexed-name>
+                  <ce:surname>Becker</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Psychological Methods</ref-sourcetitle>
+              <ref-publicationyear first="2003"/>
+              <ref-volisspag>
+                <voliss volume="8"/>
+                <pagerange first="243" last="253"/>
+              </ref-volisspag>
+              <ref-website>
+                <ce:e-address type="email">http://dx.doi.org/10.1037/1082-989X.8.3.243</ce:e-address>
+              </ref-website>
+            </ref-info>
+            <ref-fulltext>Cohn, L. D., &amp; Becker, B. J. (2003). How meta-analysis increases statistical power. Psychological Methods, 8, 243-253. http://dx.doi.org/ 10.1037/1082-989X.8.3.243</ref-fulltext>
+          </reference>
+          <reference id="13">
+            <ref-info>
+              <refd-itemidlist>
+                <itemid idtype="SGR">0004293938</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>H.M.</ce:initials>
+                  <ce:indexed-name>Collins H.M.</ce:indexed-name>
+                  <ce:surname>Collins</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Changing order</ref-sourcetitle>
+              <ref-publicationyear first="1985"/>
+              <ref-text>London, UK: SAGE.</ref-text>
+            </ref-info>
+            <ref-fulltext>Collins, H. M. (1985). Changing order. London, UK: SAGE.</ref-fulltext>
+          </reference>
+          <reference id="14">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Behavioral priming: It's all in the mind, but whose mind?</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">84855964721</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>S.</ce:initials>
+                  <ce:indexed-name>Doyen S.</ce:indexed-name>
+                  <ce:surname>Doyen</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>O.</ce:initials>
+                  <ce:indexed-name>Klein O.</ce:indexed-name>
+                  <ce:surname>Klein</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>C.L.</ce:initials>
+                  <ce:indexed-name>Pichon C.L.</ce:indexed-name>
+                  <ce:surname>Pichon</ce:surname>
+                </author>
+                <author seq="4">
+                  <ce:initials>A.</ce:initials>
+                  <ce:indexed-name>Cleeremans A.</ce:indexed-name>
+                  <ce:surname>Cleeremans</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>PLoS ONE</ref-sourcetitle>
+              <ref-publicationyear first="2012"/>
+              <ref-volisspag>
+                <voliss volume="7"/>
+                <pagerange first="e29081"/>
+              </ref-volisspag>
+              <ref-website>
+                <ce:e-address type="email">http://dx.doi.org/10.1371/journal.pone.0029081</ce:e-address>
+              </ref-website>
+            </ref-info>
+            <ref-fulltext>Doyen, S., Klein, O., Pichon, C. L., &amp; Cleeremans, A. (2012). Behavioral priming: It's all in the mind, but whose mind? PLoS ONE, 7, e29081. http://dx.doi.org/10.1371/journal.pone.0029081</ref-fulltext>
+          </reference>
+          <reference id="15">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>The arrangement of field experiments</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">0001348040</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>R.A.</ce:initials>
+                  <ce:indexed-name>Fisher R.A.</ce:indexed-name>
+                  <ce:surname>Fisher</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Journal of the Ministry of Agriculture of Great Britain</ref-sourcetitle>
+              <ref-publicationyear first="1926"/>
+              <ref-volisspag>
+                <voliss volume="33"/>
+                <pagerange first="503" last="513"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Fisher, R. A. (1926). The arrangement of field experiments. Journal of the Ministry of Agriculture of Great Britain, 33, 503-513.</ref-fulltext>
+          </reference>
+          <reference id="16">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Correcting the past: Failures to replicate _</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">84874471578</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>J.</ce:initials>
+                  <ce:indexed-name>Galak J.</ce:indexed-name>
+                  <ce:surname>Galak</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>R.A.</ce:initials>
+                  <ce:indexed-name>Leboeuf R.A.</ce:indexed-name>
+                  <ce:surname>Leboeuf</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>L.D.</ce:initials>
+                  <ce:indexed-name>Nelson L.D.</ce:indexed-name>
+                  <ce:surname>Nelson</ce:surname>
+                </author>
+                <author seq="4">
+                  <ce:initials>J.P.</ce:initials>
+                  <ce:indexed-name>Simmons J.P.</ce:indexed-name>
+                  <ce:surname>Simmons</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Journal of Personality and Social Psychology</ref-sourcetitle>
+              <ref-publicationyear first="2012"/>
+              <ref-volisspag>
+                <voliss volume="103"/>
+                <pagerange first="933" last="948"/>
+              </ref-volisspag>
+              <ref-website>
+                <ce:e-address type="email">http://dx.doi.org/10.1037/a0029709</ce:e-address>
+              </ref-website>
+            </ref-info>
+            <ref-fulltext>Galak, J., Leboeuf, R. A., Nelson, L. D., &amp; Simmons, J. P. (2012). Correcting the past: Failures to replicate _. Journal of Personality and Social Psychology, 103, 933-948. http://dx.doi.org/10.1037/a0029709</ref-fulltext>
+          </reference>
+          <reference id="17">
+            <ref-info>
+              <refd-itemidlist>
+                <itemid idtype="SGR">0004012196</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>A.</ce:initials>
+                  <ce:indexed-name>Gelman A.</ce:indexed-name>
+                  <ce:surname>Gelman</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>J.B.</ce:initials>
+                  <ce:indexed-name>Carlin J.B.</ce:indexed-name>
+                  <ce:surname>Carlin</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>H.S.</ce:initials>
+                  <ce:indexed-name>Stern H.S.</ce:indexed-name>
+                  <ce:surname>Stern</ce:surname>
+                </author>
+                <author seq="4">
+                  <ce:initials>D.B.</ce:initials>
+                  <ce:indexed-name>Dunson D.B.</ce:indexed-name>
+                  <ce:surname>Dunson</ce:surname>
+                </author>
+                <author seq="5">
+                  <ce:initials>A.</ce:initials>
+                  <ce:indexed-name>Vehtari A.</ce:indexed-name>
+                  <ce:surname>Vehtari</ce:surname>
+                </author>
+                <author seq="6">
+                  <ce:initials>D.B.</ce:initials>
+                  <ce:indexed-name>Rubin D.B.</ce:indexed-name>
+                  <ce:surname>Rubin</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Bayesian data analysis</ref-sourcetitle>
+              <ref-publicationyear first="2013"/>
+              <ref-text>3rd ed.). Boca Raton, FL:CRC Press</ref-text>
+            </ref-info>
+            <ref-fulltext>Gelman, A., Carlin, J. B., Stern, H. S., Dunson, D. B., Vehtari, A., &amp; Rubin, D. B. (2013). Bayesian data analysis (3rd ed.). Boca Raton, FL:CRC Press.</ref-fulltext>
+          </reference>
+          <reference id="18">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>The difference between "significant" and "not significant" is not itself statistically significant</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">33750898613</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>A.</ce:initials>
+                  <ce:indexed-name>Gelman A.</ce:indexed-name>
+                  <ce:surname>Gelman</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>H.</ce:initials>
+                  <ce:indexed-name>Stern H.</ce:indexed-name>
+                  <ce:surname>Stern</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>The American Statistician</ref-sourcetitle>
+              <ref-publicationyear first="2006"/>
+              <ref-volisspag>
+                <voliss volume="60"/>
+                <pagerange first="328" last="331"/>
+              </ref-volisspag>
+              <ref-website>
+                <ce:e-address type="email">http://dx.doi.org/10.1198/000313006X152649</ce:e-address>
+              </ref-website>
+            </ref-info>
+            <ref-fulltext>Gelman, A., &amp; Stern, H. (2006). The difference between "significant" and "not significant" is not itself statistically significant. The American Statistician, 60, 328-331. http://dx.doi.org/10.1198/ 000313006X152649</ref-fulltext>
+          </reference>
+          <reference id="19">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Visual following and pattern discrimination of face-like stimuli by newborn infants</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">0016754195</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>C.C.</ce:initials>
+                  <ce:indexed-name>Goren C.C.</ce:indexed-name>
+                  <ce:surname>Goren</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>M.</ce:initials>
+                  <ce:indexed-name>Sarty M.</ce:indexed-name>
+                  <ce:surname>Sarty</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>P.Y.K.</ce:initials>
+                  <ce:indexed-name>Wu P.Y.K.</ce:indexed-name>
+                  <ce:surname>Wu</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Pediatrics</ref-sourcetitle>
+              <ref-publicationyear first="1975"/>
+              <ref-volisspag>
+                <voliss volume="56"/>
+                <pagerange first="544" last="549"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Goren, C. C., Sarty, M., &amp; Wu, P. Y. K. (1975). Visual following and pattern discrimination of face-like stimuli by newborn infants. Pediatrics, 56, 544-549.</ref-fulltext>
+          </reference>
+          <reference id="20">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Estimation of effect size from a series of independent experiments</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">58149404513</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>L.V.</ce:initials>
+                  <ce:indexed-name>Hedges L.V.</ce:indexed-name>
+                  <ce:surname>Hedges</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Psychological Bulletin</ref-sourcetitle>
+              <ref-publicationyear first="1982"/>
+              <ref-volisspag>
+                <voliss volume="92"/>
+                <pagerange first="490" last="499"/>
+              </ref-volisspag>
+              <ref-website>
+                <ce:e-address type="email">http://dx.doi.org/10.1037/0033-2909.92.2.490</ce:e-address>
+              </ref-website>
+            </ref-info>
+            <ref-fulltext>Hedges, L. V. (1982). Estimation of effect size from a series of independent experiments. Psychological Bulletin, 92, 490-499. http://dx.doi .org/10.1037/0033-2909.92.2.490</ref-fulltext>
+          </reference>
+          <reference id="21">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Fixed-and random-effects models in meta-analysis</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">0032271151</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>L.V.</ce:initials>
+                  <ce:indexed-name>Hedges L.V.</ce:indexed-name>
+                  <ce:surname>Hedges</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>J.L.</ce:initials>
+                  <ce:indexed-name>Vevea J.L.</ce:indexed-name>
+                  <ce:surname>Vevea</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Psychological Methods</ref-sourcetitle>
+              <ref-publicationyear first="1998"/>
+              <ref-volisspag>
+                <voliss volume="3"/>
+                <pagerange first="486" last="501"/>
+              </ref-volisspag>
+              <ref-website>
+                <ce:e-address type="email">http://dx.doi.org/10.1037/1082-989X.3.4.486</ce:e-address>
+              </ref-website>
+            </ref-info>
+            <ref-fulltext>Hedges, L. V., &amp; Vevea, J. L. (1998). Fixed-and random-effects models in meta-analysis. Psychological Methods, 3, 486-501. http://dx.doi.org/ 10.1037/1082-989X.3.4.486</ref-fulltext>
+          </reference>
+          <reference id="22">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Measuring inconsistency in meta-analyses</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">0041876133</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>J.P.</ce:initials>
+                  <ce:indexed-name>Higgins J.P.</ce:indexed-name>
+                  <ce:surname>Higgins</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>S.G.</ce:initials>
+                  <ce:indexed-name>Thompson S.G.</ce:indexed-name>
+                  <ce:surname>Thompson</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>J.J.</ce:initials>
+                  <ce:indexed-name>Deeks J.J.</ce:indexed-name>
+                  <ce:surname>Deeks</ce:surname>
+                </author>
+                <author seq="4">
+                  <ce:initials>D.G.</ce:initials>
+                  <ce:indexed-name>Altman D.G.</ce:indexed-name>
+                  <ce:surname>Altman</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>British Medical Journal</ref-sourcetitle>
+              <ref-publicationyear first="2003"/>
+              <ref-volisspag>
+                <voliss volume="327"/>
+                <pagerange first="557" last="560"/>
+              </ref-volisspag>
+              <ref-website>
+                <ce:e-address type="email">http://dx.doi.org/10.1136/bmj.327.7414.557</ce:e-address>
+              </ref-website>
+            </ref-info>
+            <ref-fulltext>Higgins, J. P., Thompson, S. G., Deeks, J. J., &amp; Altman, D. G. (2003). Measuring inconsistency in meta-analyses. British Medical Journal, 327, 557-560. http://dx.doi.org/10.1136/bmj.327.7414.557</ref-fulltext>
+          </reference>
+          <reference id="23">
+            <ref-info>
+              <refd-itemidlist>
+                <itemid idtype="SGR">84867113240</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>H.</ce:initials>
+                  <ce:indexed-name>Hoijtink H.</ce:indexed-name>
+                  <ce:surname>Hoijtink</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Informative hypotheses: Theory and practice for behavioral and social scientists</ref-sourcetitle>
+              <ref-publicationyear first="2011"/>
+              <ref-website>
+                <ce:e-address type="email">http://dx.doi.org/10.1201/b11158</ce:e-address>
+              </ref-website>
+              <ref-text>Boca Raton, FL: CRC Press.</ref-text>
+            </ref-info>
+            <ref-fulltext>Hoijtink, H. (2011). Informative hypotheses: Theory and practice for behavioral and social scientists. Boca Raton, FL: CRC Press. http://dx .doi.org/10.1201/b11158</ref-fulltext>
+          </reference>
+          <reference id="24">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Comparison of hypothesis testing and Bayesian model selection</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">33845930360</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>H.</ce:initials>
+                  <ce:indexed-name>Hoijtink H.</ce:indexed-name>
+                  <ce:surname>Hoijtink</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>I.</ce:initials>
+                  <ce:indexed-name>Klugkist I.</ce:indexed-name>
+                  <ce:surname>Klugkist</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Quality &amp; Quantity: International Journal of Methodology</ref-sourcetitle>
+              <ref-publicationyear first="2007"/>
+              <ref-volisspag>
+                <voliss volume="41"/>
+                <pagerange first="73" last="91"/>
+              </ref-volisspag>
+              <ref-website>
+                <ce:e-address type="email">http://dx.doi.org/10.1007/s11135-005-6224-6</ce:e-address>
+              </ref-website>
+            </ref-info>
+            <ref-fulltext>Hoijtink, H., &amp; Klugkist, I. (2007). Comparison of hypothesis testing and Bayesian model selection. Quality &amp; Quantity: International Journal of Methodology, 41, 73-91. http://dx.doi.org/10.1007/s11135-005-6224-6</ref-fulltext>
+          </reference>
+          <reference id="25">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Tests of differences in p levels as tests of differences in effect sizes</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">58149411636</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>L.M.</ce:initials>
+                  <ce:indexed-name>Hsu L.M.</ce:indexed-name>
+                  <ce:surname>Hsu</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Psychological Bulletin</ref-sourcetitle>
+              <ref-publicationyear first="1980"/>
+              <ref-volisspag>
+                <voliss volume="88"/>
+                <pagerange first="705" last="708"/>
+              </ref-volisspag>
+              <ref-website>
+                <ce:e-address type="email">http://dx.doi.org/10.1037/0033-2909.88.3.705</ce:e-address>
+              </ref-website>
+            </ref-info>
+            <ref-fulltext>Hsu, L. M. (1980). Tests of differences in p levels as tests of differences in effect sizes. Psychological Bulletin, 88, 705-708. http://dx.doi.org/ 10.1037/0033-2909.88.3.705</ref-fulltext>
+          </reference>
+          <reference id="26">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>The desperate need for replications</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">0035540385</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>J.E.</ce:initials>
+                  <ce:indexed-name>Hunter J.E.</ce:indexed-name>
+                  <ce:surname>Hunter</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Journal of Consumer Research</ref-sourcetitle>
+              <ref-publicationyear first="2001"/>
+              <ref-volisspag>
+                <voliss volume="28"/>
+                <pagerange first="149" last="158"/>
+              </ref-volisspag>
+              <ref-website>
+                <ce:e-address type="email">http://dx.doi.org/10.1086/321953</ce:e-address>
+              </ref-website>
+            </ref-info>
+            <ref-fulltext>Hunter, J. E. (2001). The desperate need for replications. Journal of Consumer Research, 28, 149-158. http://dx.doi.org/10.1086/321953</ref-fulltext>
+          </reference>
+          <reference id="27">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Uncertainty in heterogeneity estimates in meta-analyses</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">35948951588</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>J.P.</ce:initials>
+                  <ce:indexed-name>Ioannidis J.P.</ce:indexed-name>
+                  <ce:surname>Ioannidis</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>N.A.</ce:initials>
+                  <ce:indexed-name>Patsopoulos N.A.</ce:indexed-name>
+                  <ce:surname>Patsopoulos</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>E.</ce:initials>
+                  <ce:indexed-name>Evangelou E.</ce:indexed-name>
+                  <ce:surname>Evangelou</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>British Medical Journal</ref-sourcetitle>
+              <ref-publicationyear first="2007"/>
+              <ref-volisspag>
+                <voliss volume="335"/>
+                <pagerange first="914" last="916"/>
+              </ref-volisspag>
+              <ref-website>
+                <ce:e-address type="email">http://dx.doi.org/10.1136/bmj.39343.408449.80</ce:e-address>
+              </ref-website>
+            </ref-info>
+            <ref-fulltext>Ioannidis, J. P., Patsopoulos, N. A., &amp; Evangelou, E. (2007). Uncertainty in heterogeneity estimates in meta-analyses. British Medical Journal, 335, 914-916. http://dx.doi.org/10.1136/bmj.39343.408449.80</ref-fulltext>
+          </reference>
+          <reference id="28">
+            <ref-info>
+              <refd-itemidlist>
+                <itemid idtype="SGR">0003414592</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>H.</ce:initials>
+                  <ce:indexed-name>Jeffreys H.</ce:indexed-name>
+                  <ce:surname>Jeffreys</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Theory of probability</ref-sourcetitle>
+              <ref-publicationyear first="1961"/>
+              <ref-text>3rd ed.). Oxford, UK: Oxford University Press</ref-text>
+            </ref-info>
+            <ref-fulltext>Jeffreys, H. (1961). Theory of probability (3rd ed.). Oxford, UK: Oxford University Press.</ref-fulltext>
+          </reference>
+          <reference id="29">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Bayes factors</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">84950934893</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>R.E.</ce:initials>
+                  <ce:indexed-name>Kass R.E.</ce:indexed-name>
+                  <ce:surname>Kass</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>A.E.</ce:initials>
+                  <ce:indexed-name>Raftery A.E.</ce:indexed-name>
+                  <ce:surname>Raftery</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Journal of the American Statistical Association</ref-sourcetitle>
+              <ref-publicationyear first="1995"/>
+              <ref-volisspag>
+                <voliss volume="90"/>
+                <pagerange first="773" last="795"/>
+              </ref-volisspag>
+              <ref-website>
+                <ce:e-address type="email">http://dx.doi.org/10.1080/01621459.1995.10476572</ce:e-address>
+              </ref-website>
+            </ref-info>
+            <ref-fulltext>Kass, R. E., &amp; Raftery, A. E. (1995). Bayes factors. Journal of the American Statistical Association, 90, 773-795. http://dx.doi.org/ 10.1080/01621459.1995.10476572</ref-fulltext>
+          </reference>
+          <reference id="30">
+            <ref-info>
+              <refd-itemidlist>
+                <itemid idtype="SGR">84963950624</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>K.</ce:initials>
+                  <ce:indexed-name>Kelley K.</ce:indexed-name>
+                  <ce:surname>Kelley</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>K.</ce:initials>
+                  <ce:indexed-name>Lai K.</ce:indexed-name>
+                  <ce:surname>Lai</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Package "MBESS."</ref-sourcetitle>
+              <ref-publicationyear first="2012"/>
+              <ref-website>
+                <ce:e-address type="email">http://cran.r-project.org/web/packages/MBESS/MBESS.pdf</ce:e-address>
+              </ref-website>
+              <ref-text>Retrieved from</ref-text>
+            </ref-info>
+            <ref-fulltext>Kelley, K., &amp; Lai, K. (2012). Package "MBESS." Retrieved from http://cran.r-project.org/web/packages/MBESS/MBESS.pdf</ref-fulltext>
+          </reference>
+          <reference id="31">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Bayesian assessment of null values via parameter estimation and model comparison</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">80051811264</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>J.K.</ce:initials>
+                  <ce:indexed-name>Kruschke J.K.</ce:indexed-name>
+                  <ce:surname>Kruschke</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Perspectives on Psychological Science</ref-sourcetitle>
+              <ref-publicationyear first="2011"/>
+              <ref-volisspag>
+                <voliss volume="6"/>
+                <pagerange first="299" last="312"/>
+              </ref-volisspag>
+              <ref-website>
+                <ce:e-address type="email">http://dx.doi.org/10.1177/1745691611406925</ce:e-address>
+              </ref-website>
+            </ref-info>
+            <ref-fulltext>Kruschke, J. K. (2011). Bayesian assessment of null values via parameter estimation and model comparison. Perspectives on Psychological Science, 6, 299-312. http://dx.doi.org/10.1177/1745691611406925</ref-fulltext>
+          </reference>
+          <reference id="32">
+            <ref-info>
+              <refd-itemidlist>
+                <itemid idtype="SGR">77954032966</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>J.K.</ce:initials>
+                  <ce:indexed-name>Kruschke J.K.</ce:indexed-name>
+                  <ce:surname>Kruschke</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Doing Bayesian data analysis: A tutorial with R, JAGS, and Stan</ref-sourcetitle>
+              <ref-publicationyear first="2014"/>
+              <ref-text>2nd ed.). San Diego, CA: Academic Press</ref-text>
+            </ref-info>
+            <ref-fulltext>Kruschke, J. K. (2014). Doing Bayesian data analysis: A tutorial with R, JAGS, and Stan (2nd ed.). San Diego, CA: Academic Press.</ref-fulltext>
+          </reference>
+          <reference id="33">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Estimating effect size: Bias resulting from the significance criterion in editorial decisions</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">84963933535</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>D.M.</ce:initials>
+                  <ce:indexed-name>Lane D.M.</ce:indexed-name>
+                  <ce:surname>Lane</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>W.P.</ce:initials>
+                  <ce:indexed-name>Dunlap W.P.</ce:indexed-name>
+                  <ce:surname>Dunlap</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>British Journal of Mathematical and Statistical Psychology</ref-sourcetitle>
+              <ref-publicationyear first="1978"/>
+              <ref-volisspag>
+                <voliss volume="31"/>
+                <pagerange first="107" last="112"/>
+              </ref-volisspag>
+              <ref-website>
+                <ce:e-address type="email">http://dx.doi.org/10.1111/j.2044-8317.1978.tb00578.x</ce:e-address>
+              </ref-website>
+            </ref-info>
+            <ref-fulltext>Lane, D. M., &amp; Dunlap, W. P. (1978). Estimating effect size: Bias resulting from the significance criterion in editorial decisions. British Journal of Mathematical and Statistical Psychology, 31, 107-112. http://dx.doi .org/10.1111/j.2044-8317.1978.tb00578.x</ref-fulltext>
+          </reference>
+          <reference id="34">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Cumulative meta-analysis of therapeutic trials for myocardial infarction</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">0026652019</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>J.</ce:initials>
+                  <ce:indexed-name>Lau J.</ce:indexed-name>
+                  <ce:surname>Lau</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>E.M.</ce:initials>
+                  <ce:indexed-name>Antman E.M.</ce:indexed-name>
+                  <ce:surname>Antman</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>J.</ce:initials>
+                  <ce:indexed-name>Jimenez-Silva J.</ce:indexed-name>
+                  <ce:surname>Jimenez-Silva</ce:surname>
+                </author>
+                <author seq="4">
+                  <ce:initials>B.</ce:initials>
+                  <ce:indexed-name>Kupelnick B.</ce:indexed-name>
+                  <ce:surname>Kupelnick</ce:surname>
+                </author>
+                <author seq="5">
+                  <ce:initials>F.</ce:initials>
+                  <ce:indexed-name>Mosteller F.</ce:indexed-name>
+                  <ce:surname>Mosteller</ce:surname>
+                </author>
+                <author seq="6">
+                  <ce:initials>T.C.</ce:initials>
+                  <ce:indexed-name>Chalmers T.C.</ce:indexed-name>
+                  <ce:surname>Chalmers</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>The New England Journal of Medicine</ref-sourcetitle>
+              <ref-publicationyear first="1992"/>
+              <ref-volisspag>
+                <voliss volume="327"/>
+                <pagerange first="248" last="254"/>
+              </ref-volisspag>
+              <ref-website>
+                <ce:e-address type="email">http://dx.doi.org/10.1056/NEJM199207233270406</ce:e-address>
+              </ref-website>
+            </ref-info>
+            <ref-fulltext>Lau, J., Antman, E. M., Jimenez-Silva, J., Kupelnick, B., Mosteller, F., &amp; Chalmers, T. C. (1992). Cumulative meta-analysis of therapeutic trials for myocardial infarction. The New England Journal of Medicine, 327, 248-254. http://dx.doi.org/10.1056/NEJM199207233270406</ref-fulltext>
+          </reference>
+          <reference id="35">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>The persistence of underpowered studies in psychological research: Causes, consequences, and remedies</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">2542567331</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>S.E.</ce:initials>
+                  <ce:indexed-name>Maxwell S.E.</ce:indexed-name>
+                  <ce:surname>Maxwell</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Psychological Methods</ref-sourcetitle>
+              <ref-publicationyear first="2004"/>
+              <ref-volisspag>
+                <voliss volume="9"/>
+                <pagerange first="147" last="163"/>
+              </ref-volisspag>
+              <ref-website>
+                <ce:e-address type="email">http://dx.doi.org/10.1037/1082-989X.9.2.147</ce:e-address>
+              </ref-website>
+            </ref-info>
+            <ref-fulltext>Maxwell, S. E. (2004). The persistence of underpowered studies in psychological research: Causes, consequences, and remedies. Psychological Methods, 9, 147-163. http://dx.doi.org/10.1037/1082-989X.9.2.147</ref-fulltext>
+ 

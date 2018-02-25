@@ -2,10 +2,13 @@
 get '/user/:user_id' do |user_id|
   if user_id=='new'
     return 403 unless permiso('usuarios_crear')
-    user_id=Usuario.create_new_user(session['language'])
+    new_user_id=Usuario.create_new_user(session['language'])
+    @usuario=Usuario[new_user_id]
+  else
+    @usuario=Usuario[user_id]
   end
-  @usuario=Usuario[user_id]
-  raise Buhos::NoUserIdError, user_id if !@user
+
+  raise Buhos::NoUserIdError, user_id if !@usuario
 
   # Debo reemplazar por las elecciones de acuerdo a equipo
 

@@ -1,5 +1,5 @@
 module Sinatra
-  module Mensajes
+  module Messages
     module Helpers
       def agregar_mensaje(mensaje,tipo=:info)
         session['mensajes']||=[]
@@ -26,8 +26,8 @@ module Sinatra
       end
     end
     def self.registered(app)
-      app.helpers Mensajes::Helpers
+      app.helpers Messages::Helpers
     end
   end
-  register Mensajes
+  register Messages
 end

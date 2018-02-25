@@ -1,0 +1,1110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<abstracts-retrieval-response xmlns="http://www.elsevier.com/xml/svapi/abstract/dtd" xmlns:ait="http://www.elsevier.com/xml/ani/ait" xmlns:ce="http://www.elsevier.com/xml/ani/common" xmlns:cto="http://www.elsevier.com/xml/cto/dtd" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:prism="http://prismstandard.org/namespaces/basic/2.0/" xmlns:xocs="http://www.elsevier.com/xml/xocs/dtd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <coredata>
+    <prism:url>http://api.elsevier.com/content/abstract/scopus_id/75249099053</prism:url>
+    <dc:identifier>SCOPUS_ID:75249099053</dc:identifier>
+    <eid>2-s2.0-75249099053</eid>
+    <dc:title>Psychosocial impact of information and communication technologies (ICT): Technostress, physical damage and professional satisfaction</dc:title>
+    <prism:aggregationType>Journal</prism:aggregationType>
+    <srctype>j</srctype>
+    <citedby-count>0</citedby-count>
+    <prism:publicationName>Acta Colombiana de Psicologia</prism:publicationName>
+    <source-id>10600153356</source-id>
+    <prism:issn>01239155</prism:issn>
+    <prism:volume>11</prism:volume>
+    <prism:issueIdentifier>2</prism:issueIdentifier>
+    <prism:startingPage>127</prism:startingPage>
+    <prism:endingPage>139</prism:endingPage>
+    <prism:pageRange>127-139</prism:pageRange>
+    <prism:coverDate>2009-07-01</prism:coverDate>
+    <dc:creator>
+      <author auid="27067906600" seq="1">
+        <ce:initials>M.</ce:initials>
+        <ce:indexed-name>Dias Pocinho M.</ce:indexed-name>
+        <ce:surname>Dias Pocinho</ce:surname>
+        <ce:given-name>Margarida</ce:given-name>
+        <preferred-name>
+<ce:initials>M.</ce:initials>
+<ce:indexed-name>Dias Pocinho M.</ce:indexed-name>
+<ce:surname>Dias Pocinho</ce:surname>
+<ce:given-name>Margarida</ce:given-name>
+</preferred-name>
+        <author-url>http://api.elsevier.com/content/author/author_id/27067906600</author-url>
+        <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60016979" id="60016979"/>
+      </author>
+    </dc:creator>
+    <dc:description>
+      <abstract original="y" xml:lang="eng">
+<ce:para>The introduction of information and communication technologies (ICT) in the organizations produced and still produces substantial changes in these structures at the modus operandi level and also with respect to the physical and psychological health of the workers using them. This phenomenon conditions the organizations' operational skills, because it depends on the abilities, skills and capacities of the individuals who use these tools. Due to this relationship, the user might be at risk of a number of damages, such as anxiety, stress, depression and other psychosocial and physical disorders. Techno-stress is the concept that defines such illnesses. This study fits the concept. The research focused on a group of intensive users of a computer software manufacturing company in the area of security and defence, located in Portugal. It intends to acknowledge the psychosocial impact that ICT produce in these individuals. It also aims to verify to what extent the socio-demographic variables (gender, age, marital status, household composition, chores, and experience with computers) influence the levels of the existing techno-stress. The relationship between the level of techno-stress and professional satisfaction, as well as the factors which influence this relationship are also subject of this research.</ce:para>
+</abstract>
+    </dc:description>
+    <intid>75249099053</intid>
+    <link href="http://api.elsevier.com/content/abstract/scopus_id/75249099053" rel="self"/>
+    <link href="https://www.scopus.com/inward/record.uri?partnerID=HzOxMe3b&amp;scp=75249099053&amp;origin=inward" rel="scopus"/>
+    <link href="https://www.scopus.com/inward/citedby.uri?partnerID=HzOxMe3b&amp;scp=75249099053&amp;origin=inward" rel="scopus-citedby"/>
+  </coredata>
+  <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/108227642" id="108227642">
+    <affilname>Secretaria Regional de EducaçÃo da Madeira</affilname>
+    <affiliation-city/>
+    <affiliation-country/>
+  </affiliation>
+  <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60016979" id="60016979">
+    <affilname>Universidade da Madeira</affilname>
+    <affiliation-city>Funchal</affiliation-city>
+    <affiliation-country>Portugal</affiliation-country>
+  </affiliation>
+  <authors>
+    <author auid="27067906600" seq="1">
+      <ce:initials>M.</ce:initials>
+      <ce:indexed-name>Dias Pocinho M.</ce:indexed-name>
+      <ce:surname>Dias Pocinho</ce:surname>
+      <ce:given-name>Margarida</ce:given-name>
+      <preferred-name>
+<ce:initials>M.</ce:initials>
+<ce:indexed-name>Dias Pocinho M.</ce:indexed-name>
+<ce:surname>Dias Pocinho</ce:surname>
+<ce:given-name>Margarida</ce:given-name>
+</preferred-name>
+      <author-url>http://api.elsevier.com/content/author/author_id/27067906600</author-url>
+      <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60016979" id="60016979"/>
+    </author>
+    <author auid="35334021300" seq="2">
+      <ce:initials>J.</ce:initials>
+      <ce:indexed-name>Costa Garcia J.</ce:indexed-name>
+      <ce:surname>Costa Garcia</ce:surname>
+      <ce:given-name>João</ce:given-name>
+      <preferred-name>
+<ce:initials>J.</ce:initials>
+<ce:indexed-name>Costa Garcia J.</ce:indexed-name>
+<ce:surname>Costa Garcia</ce:surname>
+<ce:given-name>João</ce:given-name>
+</preferred-name>
+      <author-url>http://api.elsevier.com/content/author/author_id/35334021300</author-url>
+      <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/108227642" id="108227642"/>
+    </author>
+  </authors>
+  <language xml:lang="spa"/>
+  <authkeywords>
+    <author-keyword>Ict</author-keyword>
+    <author-keyword>Professional satisfaction</author-keyword>
+    <author-keyword>Psychosocial impact</author-keyword>
+    <author-keyword>Techno-stress</author-keyword>
+  </authkeywords>
+  <idxterms/>
+  <subject-areas>
+    <subject-area abbrev="PSYC" code="3200">Psychology (all)</subject-area>
+    <subject-area abbrev="MEDI" code="2738">Psychiatry and Mental Health</subject-area>
+  </subject-areas>
+  <item xmlns="">
+    <ait:process-info>
+      <ait:date-delivered day="05" month="07" timestamp="2015-07-05T08:11:48.000048+01:00" year="2015"/>
+      <ait:date-sort day="01" month="07" year="2009"/>
+      <ait:status stage="S300" state="update" type="core"/>
+    </ait:process-info>
+    <bibrecord>
+      <item-info>
+        <copyright type="Elsevier">Copyright 2010 Elsevier B.V., All rights reserved.</copyright>
+        <itemidlist>
+<itemid idtype="PUI">358186701</itemid>
+<itemid idtype="SNPSYB">2010001305</itemid>
+<itemid idtype="SCP">75249099053</itemid>
+<itemid idtype="SGR">75249099053</itemid>
+</itemidlist>
+        <history>
+<date-created day="02" month="02" year="2010"/>
+</history>
+        <dbcollection>SNPSYB</dbcollection>
+        <dbcollection>Scopusbase</dbcollection>
+      </item-info>
+      <head>
+        <citation-info>
+          <citation-type code="ar"/>
+          <citation-language language="Spanish" xml:lang="spa"/>
+          <abstract-language language="English" xml:lang="eng"/>
+          <abstract-language language="Spanish" xml:lang="spa"/>
+          <abstract-language language="Portuguese" xml:lang="por"/>
+          <author-keywords>
+<author-keyword>Ict</author-keyword>
+<author-keyword>Professional satisfaction</author-keyword>
+<author-keyword>Psychosocial impact</author-keyword>
+<author-keyword>Techno-stress</author-keyword>
+</author-keywords>
+        </citation-info>
+        <citation-title>
+          <titletext language="English" original="n" xml:lang="eng">Psychosocial impact of information and communication technologies (ICT): Technostress, physical damage and professional satisfaction</titletext>
+          <titletext language="Spanish" original="y" xml:lang="spa">Impacto psicosocial de la tecnología de información y comunicación (TIC): Tecnoestrés, daños físicos y satisfacción laboral</titletext>
+        </citation-title>
+        <author-group>
+          <author auid="27067906600" seq="1">
+<ce:initials>M.</ce:initials>
+<ce:indexed-name>Dias Pocinho M.</ce:indexed-name>
+<ce:surname>Dias Pocinho</ce:surname>
+<ce:given-name>Margarida</ce:given-name>
+<preferred-name>
+<ce:initials>M.</ce:initials>
+<ce:indexed-name>Dias Pocinho M.</ce:indexed-name>
+<ce:surname>Dias Pocinho</ce:surname>
+<ce:given-name>Margarida</ce:given-name>
+</preferred-name>
+<ce:e-address type="email">mpocinho@uma.pt</ce:e-address>
+</author>
+          <affiliation afid="60016979" country="prt">
+            <organization>Universidade da Madeira</organization>
+            <country>Portugal</country>
+          </affiliation>
+        </author-group>
+        <author-group>
+          <author auid="35334021300" seq="2">
+<ce:initials>J.</ce:initials>
+<ce:indexed-name>Costa Garcia J.</ce:indexed-name>
+<ce:surname>Costa Garcia</ce:surname>
+<ce:given-name>João</ce:given-name>
+<preferred-name>
+<ce:initials>J.</ce:initials>
+<ce:indexed-name>Costa Garcia J.</ce:indexed-name>
+<ce:surname>Costa Garcia</ce:surname>
+<ce:given-name>João</ce:given-name>
+</preferred-name>
+<ce:e-address type="email">joaogarcia@msn.com</ce:e-address>
+</author>
+          <affiliation afid="108227642" country="prt">
+            <organization>Secretaria Regional de EducaçÃo da Madeira</organization>
+            <country>Portugal</country>
+          </affiliation>
+        </author-group>
+        <correspondence>
+          <person>
+<ce:initials>M.</ce:initials>
+<ce:indexed-name>Dias Pocinho M.</ce:indexed-name>
+<ce:surname>Dias Pocinho</ce:surname>
+</person>
+          <affiliation country="prt">
+            <organization>Departamento de Psicologia e Estudos Humanísticos</organization>
+            <organization>Universidade da Madeira</organization>
+            <address-part>Campus Universitario da Penteada</address-part>
+            <city-group>9000 Funchal</city-group>
+            <country>Portugal</country>
+          </affiliation>
+          <ce:e-address type="email">mpocinho@uma.pt</ce:e-address>
+        </correspondence>
+        <abstracts>
+          <abstract original="y" xml:lang="eng">
+<ce:para>The introduction of information and communication technologies (ICT) in the organizations produced and still produces substantial changes in these structures at the modus operandi level and also with respect to the physical and psychological health of the workers using them. This phenomenon conditions the organizations' operational skills, because it depends on the abilities, skills and capacities of the individuals who use these tools. Due to this relationship, the user might be at risk of a number of damages, such as anxiety, stress, depression and other psychosocial and physical disorders. Techno-stress is the concept that defines such illnesses. This study fits the concept. The research focused on a group of intensive users of a computer software manufacturing company in the area of security and defence, located in Portugal. It intends to acknowledge the psychosocial impact that ICT produce in these individuals. It also aims to verify to what extent the socio-demographic variables (gender, age, marital status, household composition, chores, and experience with computers) influence the levels of the existing techno-stress. The relationship between the level of techno-stress and professional satisfaction, as well as the factors which influence this relationship are also subject of this research.</ce:para>
+</abstract>
+        </abstracts>
+        <source country="col" srcid="10600153356" type="j">
+          <sourcetitle>Acta Colombiana de Psicologia</sourcetitle>
+          <sourcetitle-abbrev>Acta Colomb. Psicol.</sourcetitle-abbrev>
+          <issn type="print">01239155</issn>
+          <issn type="electronic">19099711</issn>
+          <volisspag>
+<voliss issue="2" volume="11"/>
+<pagerange first="127" last="139"/>
+</volisspag>
+          <publicationyear first="2009"/>
+          <publicationdate>
+<year>2009</year>
+<month>07</month>
+<date-text xfab-added="true">July 2009</date-text></publicationdate>
+          <website>
+<ce:e-address type="url">http://www.scielo.org.co/pdf/acp/v11n2/v11n2a12.pdf</ce:e-address>
+</website>
+        </source>
+        <enhancement>
+          <classificationgroup>
+<classifications type="ASJC">
+<classification>3200</classification>
+<classification>2738</classification>
+</classifications><classifications type="SUBJABBR"><classification>PSYC</classification><classification>MEDI</classification></classifications>
+</classificationgroup>
+        </enhancement>
+      </head>
+      <tail>
+        <bibliography refcount="32">
+<reference id="1">
+<ref-info>
+<refd-itemidlist>
+<itemid idtype="SGR">0003855980</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>C.</ce:initials>
+<ce:indexed-name>Brod C.</ce:indexed-name>
+<ce:surname>Brod</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Technostress: The Human Cost of The Computer Revolution</ref-sourcetitle>
+<ref-publicationyear first="1984"/>
+<ref-text>Addison-Wesley: Reading Mass</ref-text>
+</ref-info>
+<ref-fulltext>Brod, C. (1984). Technostress: The human cost of the computer revolution. Addison-Wesley: Reading Mass.</ref-fulltext>
+</reference>
+<reference id="2">
+<ref-info>
+<refd-itemidlist>
+<itemid idtype="SGR">84933476305</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>M.</ce:initials>
+<ce:indexed-name>Brosnan M.</ce:indexed-name>
+<ce:surname>Brosnan</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>The Psychological Impact of Information Technology</ref-sourcetitle>
+<ref-publicationyear first="1998"/>
+<ref-text>London: Routledge</ref-text>
+</ref-info>
+<ref-fulltext>Brosnan, M. (1998). The psychological impact of information technology. London: Routledge.</ref-fulltext>
+</reference>
+<reference id="3">
+<ref-info>
+<refd-itemidlist>
+<itemid idtype="SGR">75249086345</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>M.V.</ce:initials>
+<ce:indexed-name>Cabral M.V.</ce:indexed-name>
+<ce:surname>Cabral</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>J.</ce:initials>
+<ce:indexed-name>Vala J.</ce:indexed-name>
+<ce:surname>Vala</ce:surname>
+</author>
+<author seq="3">
+<ce:initials>J.</ce:initials>
+<ce:indexed-name>Freire J.</ce:indexed-name>
+<ce:surname>Freire</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Atitudes Sociais Dos Portugueses: Trabalho E Cidadania</ref-sourcetitle>
+<ref-publicationyear first="2000"/>
+<ref-text>Lisboa: Instituto das Ciências Sociais da Universidade de Lisboa</ref-text>
+</ref-info>
+<ref-fulltext>Cabral, M. V., Vala, J., &amp; Freire, J. (2000). Atitudes sociais dos portugueses: Trabalho e cidadania. Lisboa: Instituto das Ciências Sociais da Universidade de Lisboa.</ref-fulltext>
+</reference>
+<reference id="4">
+<ref-info>
+<refd-itemidlist>
+<itemid idtype="SGR">20744460311</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>K.</ce:initials>
+<ce:indexed-name>Davis K.</ce:indexed-name>
+<ce:surname>Davis</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>J.</ce:initials>
+<ce:indexed-name>Newtrom J.</ce:indexed-name>
+<ce:surname>Newtrom</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Comportamiento Humano En Le Trabajo</ref-sourcetitle>
+<ref-publicationyear first="1999"/>
+<ref-text>México: Mc Graw Hill</ref-text>
+</ref-info>
+<ref-fulltext>Davis, K. &amp; Newtrom, J. (1999): Comportamiento humano en le trabajo. México: Mc Graw Hill.</ref-fulltext>
+</reference>
+<reference id="5">
+<ref-info>
+<ref-title>
+<ref-titletext>The Job Demands- Resources model of burnout</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">0035374084</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>E.</ce:initials>
+<ce:indexed-name>Demerouti E.</ce:indexed-name>
+<ce:surname>Demerouti</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>A.B.</ce:initials>
+<ce:indexed-name>Bakker A.B.</ce:indexed-name>
+<ce:surname>Bakker</ce:surname>
+</author>
+<author seq="3">
+<ce:initials>F.</ce:initials>
+<ce:indexed-name>Nachreiner F.</ce:indexed-name>
+<ce:surname>Nachreiner</ce:surname>
+</author>
+<author seq="4">
+<ce:initials>W.B.</ce:initials>
+<ce:indexed-name>Schaufeli W.B.</ce:indexed-name>
+<ce:surname>Schaufeli</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Journal of Applied Psychology</ref-sourcetitle>
+<ref-publicationyear first="2001"/>
+<ref-volisspag>
+<voliss volume="86"/>
+<pagerange first="499" last="512"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Demerouti, E., Bakker, A. B., Nachreiner, F. &amp; Schaufeli, W.B. (2001). The Job Demands- Resources model of burnout. Journal of Applied Psychology, 86, 499-512.</ref-fulltext>
+</reference>
+<reference id="6">
+<ref-info>
+<ref-title>
+<ref-titletext>Satisfação profissional do enfermeiro educador: Uma revisão da literatura</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">75249092435</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>E.M.</ce:initials>
+<ce:indexed-name>Ferreira E.M.</ce:indexed-name>
+<ce:surname>Ferreira</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>M.R.</ce:initials>
+<ce:indexed-name>Friedlander M.R.</ce:indexed-name>
+<ce:surname>Friedländer</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Revista De Enfermagem Ufpe</ref-sourcetitle>
+<ref-publicationyear first="2007"/>
+<ref-volisspag>
+<voliss volume="1"/>
+<pagerange first="72" last="81"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Ferreira, E.M., &amp; Friedländer, M. R. (2007). Satisfação profissional do enfermeiro educador: uma revisão da literatura. Revista de Enfermagem UFPE,1, 72-81.</ref-fulltext>
+</reference>
+<reference id="7">
+<ref-info>
+<ref-title>
+<ref-titletext>Exposición a las tecnologías de la información, burnout y engagement: El rol modulador de la autoeficacia profesional</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">33744823935</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>R.M.</ce:initials>
+<ce:indexed-name>Grau R.M.</ce:indexed-name>
+<ce:surname>Grau</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>M.</ce:initials>
+<ce:indexed-name>Salanova M.</ce:indexed-name>
+<ce:surname>Salanova</ce:surname>
+</author>
+<author seq="3">
+<ce:initials>B.</ce:initials>
+<ce:indexed-name>Wilmar B.</ce:indexed-name>
+<ce:surname>Wilmar</ce:surname>
+</author>
+<author seq="4">
+<ce:initials>S.</ce:initials>
+<ce:indexed-name>Llorens S.</ce:indexed-name>
+<ce:surname>Llorens</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Revista De Psicología Social Aplicada</ref-sourcetitle>
+<ref-publicationyear first="2001"/>
+<ref-volisspag>
+<voliss issue="1" volume="11"/>
+<pagerange first="69" last="87"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Grau, R. M., Salanova, M., Wilmar B. &amp; Llorens, S. (2001). Exposición a las tecnologías de la información, burnout y engagement: el rol modulador de la autoeficacia profesional, Revista de psicología social aplicada, 11 (1), 69-87.</ref-fulltext>
+</reference>
+<reference id="8">
+<ref-info>
+<refd-itemidlist>
+<itemid idtype="SGR">75249084532</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>M.I.</ce:initials>
+<ce:indexed-name>Heitor M.I.</ce:indexed-name>
+<ce:surname>Heitor</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Satisfação Laboral E Liderança Transformacional</ref-sourcetitle>
+<ref-publicationyear first="1996"/>
+<ref-text>Dissertação de Mestrado em Psicologia Social. Lisboa: Instituto Superior de Psicologia Aplicada</ref-text>
+</ref-info>
+<ref-fulltext>Heitor, M. I. (1996). Satisfação laboral e liderança transformacional. Dissertação de Mestrado em Psicologia Social. Lisboa: Instituto Superior de Psicologia Aplicada.</ref-fulltext>
+</reference>
+<reference id="9">
+<ref-info>
+<ref-title>
+<ref-titletext>Computer-assisted learning in urban classrooms</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">22644451799</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>M.F.</ce:initials>
+<ce:indexed-name>Hess M.F.</ce:indexed-name>
+<ce:surname>Hess</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>D.L.</ce:initials>
+<ce:indexed-name>Leal D.L.</ce:indexed-name>
+<ce:surname>Leal</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Urban Education</ref-sourcetitle>
+<ref-publicationyear first="1999"/>
+<ref-volisspag>
+<voliss volume="34"/>
+<pagerange first="370" last="388"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Hess, M.F &amp; Leal, D.L. (1999). Computer-assisted learning in urban classrooms. Urban Education, 34, 370-388.</ref-fulltext>
+</reference>
+<reference id="10">
+<ref-info>
+<ref-title>
+<ref-titletext>Computerphobia: What to do about it?</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">0002834946</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>T.</ce:initials>
+<ce:indexed-name>Jay T.</ce:indexed-name>
+<ce:surname>Jay</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Educational Technology</ref-sourcetitle>
+<ref-publicationyear first="1981"/>
+<ref-volisspag>
+<voliss volume="21"/>
+<pagerange first="47" last="48"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Jay, T. (1981). Computerphobia: What to do about it? Educational Technology, 21, 47-48.</ref-fulltext>
+</reference>
+<reference id="11">
+<ref-info>
+<ref-title>
+<ref-titletext>Efectos de la tecnología asistida por ordenador en el bienestar psicológico afectivo</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">0036344773</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>S.</ce:initials>
+<ce:indexed-name>Llorens S.</ce:indexed-name>
+<ce:surname>Llorens</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>M.</ce:initials>
+<ce:indexed-name>Salanova M.</ce:indexed-name>
+<ce:surname>Salanova</ce:surname>
+</author>
+<author seq="3">
+<ce:initials>E.</ce:initials>
+<ce:indexed-name>Cifre E.</ce:indexed-name>
+<ce:surname>Cifre</ce:surname>
+</author>
+<author seq="4">
+<ce:initials>I.M.</ce:initials>
+<ce:indexed-name>Martinez I.M.</ce:indexed-name>
+<ce:surname>Martinez</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Psicothema</ref-sourcetitle>
+<ref-publicationyear first="2002"/>
+<ref-volisspag>
+<voliss issue="1" volume="14"/>
+<pagerange first="118" last="123"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Llorens, S.; Salanova, M., Cifre, E. &amp; Martinez, I. M. (2002). Efectos de la tecnología asistida por ordenador en el bienestar psicológico afectivo, Psicothema, 14, (1) 118-123.</ref-fulltext>
+</reference>
+<reference id="12">
+<ref-info>
+<ref-title>
+<ref-titletext>Efectos del tecnoestrés en las creencias de eficacia y el burnout docente: Un estudio longitudinal</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">75249085665</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>S.</ce:initials>
+<ce:indexed-name>Llorens S.</ce:indexed-name>
+<ce:surname>Llorens</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>M.</ce:initials>
+<ce:indexed-name>Salanova M.</ce:indexed-name>
+<ce:surname>Salanova</ce:surname>
+</author>
+<author seq="3">
+<ce:initials>M.</ce:initials>
+<ce:indexed-name>Ventura M.</ce:indexed-name>
+<ce:surname>Ventura</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Revista De Orientacion Educacional</ref-sourcetitle>
+<ref-publicationyear first="2007"/>
+<ref-volisspag>
+<voliss volume="39"/>
+<pagerange first="47" last="65"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Llorens, S.; Salanova, M. &amp; Ventura, M. (2007). Efectos del tecnoestrés en las creencias de eficacia y el burnout docente: un estudio longitudinal, Revista de orientacion educacional, 39, 47-65.</ref-fulltext>
+</reference>
+<reference id="13">
+<ref-info>
+<ref-title>
+<ref-titletext>Assessing teachers' context beliefs about technology use</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">29144535929</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>A.T.</ce:initials>
+<ce:indexed-name>Lumpe A.T.</ce:indexed-name>
+<ce:surname>Lumpe</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>E.</ce:initials>
+<ce:indexed-name>Chambers E.</ce:indexed-name>
+<ce:surname>Chambers</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Journal of Research On Technology Education</ref-sourcetitle>
+<ref-publicationyear first="2001"/>
+<ref-volisspag>
+<voliss volume="34"/>
+<pagerange first="93" last="107"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Lumpe, A.T. &amp; Chambers, E. (2001). Assessing teachers' context beliefs about technology use. Journal of Research on Technology Education, 34, 93-107.</ref-fulltext>
+</reference>
+<reference id="14">
+<ref-info>
+<ref-title>
+<ref-titletext>A Validation of Hoppock's Job Satisfaction Measure</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">0001416104</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>C.W.</ce:initials>
+<ce:indexed-name>McNichols C.W.</ce:indexed-name>
+<ce:surname>McNichols</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>M.J.</ce:initials>
+<ce:indexed-name>Stahl M.J.</ce:indexed-name>
+<ce:surname>Stahl</ce:surname>
+</author>
+<author seq="3">
+<ce:initials>T.R.</ce:initials>
+<ce:indexed-name>Manley T.R.</ce:indexed-name>
+<ce:surname>Manley</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>The Academy of Management Journal</ref-sourcetitle>
+<ref-publicationyear first="1978"/>
+<ref-volisspag>
+<voliss issue="4" volume="21"/>
+<pagerange first="737" last="742"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>McNichols, C. W., Stahl, M. J. &amp; Manley, T. R. (1978). A Validation of Hoppock's Job Satisfaction Measure, The Academy of Management Journal, 21(4), 737-742</ref-fulltext>
+</reference>
+<reference id="15">
+<ref-info>
+<ref-title>
+<ref-titletext>La medida de la satisfacción laboral en contextos organizacionales: El cuestionário de satisfacción S20/23</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">0348000788</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>J.L.</ce:initials>
+<ce:indexed-name>Melia J.L.</ce:indexed-name>
+<ce:surname>Melià</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>J.M.</ce:initials>
+<ce:indexed-name>Peiro J.M.</ce:indexed-name>
+<ce:surname>Peiró</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Psicologemas</ref-sourcetitle>
+<ref-publicationyear first="1989"/>
+<ref-volisspag>
+<voliss volume="3"/>
+<pagerange first="59" last="74"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Melià, J. L. &amp; Peiró, J. M. (1989). La medida de la satisfacción laboral en contextos organizacionales: El cuestionário de satisfacción S20/23, Psicologemas, 3, 59-74.</ref-fulltext>
+</reference>
+<reference id="16">
+<ref-info>
+<ref-title>
+<ref-titletext>Domesticating the personal computer: The mainstreaming of a new technology and the cultural management of a widespread Technophobia</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">0001047753</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>L.</ce:initials>
+<ce:indexed-name>Reed L.</ce:indexed-name>
+<ce:surname>Reed</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Critical Studies In Media Technology</ref-sourcetitle>
+<ref-publicationyear first="2000"/>
+<ref-volisspag>
+<voliss volume="17"/>
+<pagerange first="159" last="185"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Reed, L. (2000). Domesticating the personal computer: The mainstreaming of a new technology and the cultural management of a widespread Technophobia. Critical studies in media technology, 17, 159-185.</ref-fulltext>
+</reference>
+<reference id="17">
+<ref-info>
+<refd-itemidlist>
+<itemid idtype="SGR">0004136381</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>S.</ce:initials>
+<ce:indexed-name>Robbins S.</ce:indexed-name>
+<ce:surname>Robbins</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Comportamiento Organizacional</ref-sourcetitle>
+<ref-publicationyear first="1999"/>
+<ref-text>(8<sup>th</sup>.ed.). México: Pearson Prentice-Hall</ref-text>
+</ref-info>
+<ref-fulltext>Robbins, S. (1999) Comportamiento organizacional. (8<sup>th</sup>.ed.). México: Pearson Prentice-Hall.</ref-fulltext>
+</reference>
+<reference id="18">
+<ref-info>
+<ref-title>
+<ref-titletext>Psychologists and Technology: A look at the future</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">0030517624</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>L.D.</ce:initials>
+<ce:indexed-name>Rosen L.D.</ce:indexed-name>
+<ce:surname>Rosen</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Professional Psychology: Research and Practice</ref-sourcetitle>
+<ref-publicationyear first="1997"/>
+<ref-volisspag>
+<voliss issue="6" volume="27"/>
+<pagerange first="635" last="638"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Rosen, L.D. (1997). Psychologists and Technology: A look at the future. Professional Psychology: Research and Practice, 27(6), 635-638.</ref-fulltext>
+</reference>
+<reference id="19">
+<ref-info>
+<refd-itemidlist>
+<itemid idtype="SGR">0003844103</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>L.D.</ce:initials>
+<ce:indexed-name>Rosen L.D.</ce:indexed-name>
+<ce:surname>Rosen</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>M.M.</ce:initials>
+<ce:indexed-name>Weil M.M.</ce:indexed-name>
+<ce:surname>Weil</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Measuring Technophobia: A Manual For the Administration and Scoring of the Computer Anxiety Rating Scale, The Computer Thoughts Survey and The General Attitude Toward Computer Scale</ref-sourcetitle>
+<ref-publicationyear first="1992"/>
+<ref-text>USA: Chapman University</ref-text>
+</ref-info>
+<ref-fulltext>Rosen, L.D. &amp; Weil, M.M.(1992). Measuring technophobia: a manual for the administration and scoring of the Computer Anxiety Rating Scale, the Computer Thoughts Survey and the General Attitude Toward Computer Scale. USA: Chapman University.</ref-fulltext>
+</reference>
+<reference id="20">
+<ref-info>
+<ref-title>
+<ref-titletext>Computer Anxiety: A Cross-Cultural Comparison of University Students in 10 Countries</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">27244461746</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>L.D.</ce:initials>
+<ce:indexed-name>Rosen L.D.</ce:indexed-name>
+<ce:surname>Rosen</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>M.M.</ce:initials>
+<ce:indexed-name>Weil M.M.</ce:indexed-name>
+<ce:surname>Weil</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Computers In Human Behavior</ref-sourcetitle>
+<ref-publicationyear first="1995"/>
+<ref-volisspag>
+<voliss issue="1" volume="11"/>
+<pagerange first="45" last="64"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Rosen, L.D. &amp; Weil, M.M. (1995a). Computer Anxiety: A Cross-Cultural Comparison of University Students in 10 Countries. Computers in Human Behavior, 11(1), 45-64.</ref-fulltext>
+</reference>
+<reference id="21">
+<ref-info>
+<ref-title>
+<ref-titletext>Computer Availability, Computer Experience and Technophobia Among Public School Teachers</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">14644438039</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>L.D.</ce:initials>
+<ce:indexed-name>Rosen L.D.</ce:indexed-name>
+<ce:surname>Rosen</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>M.M.</ce:initials>
+<ce:indexed-name>Weil M.M.</ce:indexed-name>
+<ce:surname>Weil</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Computers In Human Behavior</ref-sourcetitle>
+<ref-publicationyear first="1995"/>
+<ref-volisspag>
+<voliss issue="1" volume="11"/>
+<pagerange first="9" last="31"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Rosen, L.D., &amp; Weil, M.M. (1995b). Computer Availability, Computer Experience and Technophobia Among Public School Teachers. Computers in Human Behavior, 11(1), 9-31.</ref-fulltext>
+</reference>
+<reference id="22">
+<ref-info>
+<ref-title>
+<ref-titletext>Multitasking Madness</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">33947310556</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>L.D.</ce:initials>
+<ce:indexed-name>Rosen L.D.</ce:indexed-name>
+<ce:surname>Rosen</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>M.M.</ce:initials>
+<ce:indexed-name>Weil M.M.</ce:indexed-name>
+<ce:surname>Weil</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Context Magazine</ref-sourcetitle>
+<ref-publicationyear first="1998"/>
+<ref-volisspag>
+<pagerange first="70" last="72"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Rosen, L.D, &amp; Weil, M.M. (1998). Multitasking Madness. Context Magazine, 70-72.</ref-fulltext>
+</reference>
+<reference id="23">
+<ref-info>
+<ref-title>
+<ref-titletext>Treating Technophobia: A Longitudinal Evaluation of the Computerphobia Reduction Program</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">0002214227</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>L.D.</ce:initials>
+<ce:indexed-name>Rosen L.D.</ce:indexed-name>
+<ce:surname>Rosen</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>D.C.</ce:initials>
+<ce:indexed-name>Sears D.C.</ce:indexed-name>
+<ce:surname>Sears</ce:surname>
+</author>
+<author seq="3">
+<ce:initials>M.M.</ce:initials>
+<ce:indexed-name>Weil M.M.</ce:indexed-name>
+<ce:surname>Weil</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Computers In Human Behavior</ref-sourcetitle>
+<ref-publicationyear first="1993"/>
+<ref-volisspag>
+<voliss volume="9"/>
+<pagerange first="27" last="50"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Rosen, L.D., Sears, D.C., &amp; Weil, M.M. (1993). Treating Technophobia: A Longitudinal Evaluation of the Computerphobia Reduction Program. Computers in Human Behavior, 9, 27-50.</ref-fulltext>
+</reference>
+<reference id="24">
+<ref-info>
+<ref-title>
+<ref-titletext>Trabajando con tecnologías y afrontando el tecnoestrés: El rol de las creencias de eficacia</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">33744798608</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>M.</ce:initials>
+<ce:indexed-name>Salanova M.</ce:indexed-name>
+<ce:surname>Salanova</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Revista De Psicología Del Trabajo Y De Las Organizaciones</ref-sourcetitle>
+<ref-publicationyear first="2003"/>
+<ref-volisspag>
+<voliss volume="19"/>
+<pagerange first="225" last="247"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Salanova, M. (2003). Trabajando con tecnologías y afrontando el tecnoestrés: el rol de las creencias de eficacia. Revista de Psicología del Trabajo y de las Organizaciones, 19, 225-247.</ref-fulltext>
+</reference>
+<reference id="25">
+<ref-info>
+<ref-title>
+<ref-titletext>Metodología WONT para la evaluación y prevención de riesgos psicosociales</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">75249101352</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>M.</ce:initials>
+<ce:indexed-name>Salanova M.</ce:indexed-name>
+<ce:surname>Salanova</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Gestón Práctica De Riesgos Lanorales</ref-sourcetitle>
+<ref-publicationyear first="2005"/>
+<ref-volisspag>
+<voliss volume="14"/>
+<pagerange first="22" last="32"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Salanova, M. (2005). Metodología WONT para la evaluación y prevención de riesgos psicosociales. Gestón Práctica de Riesgos Lanorales, 14, 22-32.</ref-fulltext>
+</reference>
+<reference id="26">
+<ref-info>
+<ref-title>
+<ref-titletext>Nuevas tecnologías y nuevos riesgos psicosociales en el trabajo. Veintiocho de Abril</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">75249102568</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>M.</ce:initials>
+<ce:indexed-name>Salanova M.</ce:indexed-name>
+<ce:surname>Salanova</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Revista Digital De Prevención</ref-sourcetitle>
+<ref-publicationyear first="2007"/>
+<ref-volisspag>
+<voliss issue="3" volume="1"/>
+<pagerange first="25" last="34"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Salanova, M. (2007). Nuevas tecnologías y nuevos riesgos psicosociales en el trabajo. Veintiocho de Abril. Revista Digital de Prevención, 1(3). 25-34.</ref-fulltext>
+</reference>
+<reference id="27">
+<ref-info>
+<ref-title>
+<ref-titletext>El proceso de 'Tecnoestrés' y estrategias para supervención</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">0342371657</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>M.</ce:initials>
+<ce:indexed-name>Salanova M.</ce:indexed-name>
+<ce:surname>Salanova</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>E.</ce:initials>
+<ce:indexed-name>Cifre E.</ce:indexed-name>
+<ce:surname>Cifre</ce:surname>
+</author>
+<author seq="3">
+<ce:initials>P.</ce:initials>
+<ce:indexed-name>Martin P.</ce:indexed-name>
+<ce:surname>Martín</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Prevención, Trabajo Y Salud</ref-sourcetitle>
+<ref-publicationyear first="1999"/>
+<ref-volisspag>
+<voliss volume="1"/>
+<pagerange first="18" last="28"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Salanova, M., Cifre, E. &amp; Martín, P. (1999). El proceso de 'Tecnoestrés' y estrategias para supervención. Prevención, Trabajo y Salud, 1, 18-28.</ref-fulltext>
+</reference>
+<reference id="28">
+<ref-info>
+<refd-itemidlist>
+<itemid idtype="SGR">75249088069</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>M.</ce:initials>
+<ce:indexed-name>Salanova M.</ce:indexed-name>
+<ce:surname>Salanova</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>S.</ce:initials>
+<ce:indexed-name>Llorens S.</ce:indexed-name>
+<ce:surname>Llorens</ce:surname>
+</author>
+<author seq="3">
+<ce:initials>E.</ce:initials>
+<ce:indexed-name>Cifre E.</ce:indexed-name>
+<ce:surname>Cifre</ce:surname>
+</author>
+<author seq="4">
+<ce:initials>C.</ce:initials>
+<ce:indexed-name>Nogareda C.</ce:indexed-name>
+<ce:surname>Nogareda</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>El Tecnoestrés: Concepto, Medida E Intervención Psicosocial</ref-sourcetitle>
+<ref-publicationyear first="2007"/>
+<ref-text>Nota Técnica de Prevención, 730, 21<sup>a</sup> Serie. Instituto Nacional de Seguridad e Higiene en el trabajo</ref-text>
+</ref-info>
+<ref-fulltext>Salanova, M., Llorens, S., Cifre, E. &amp; Nogareda, C. (2007). El tecnoestrés: concepto, medida e intervención psicosocial. Nota Técnica de Prevención, 730, 21a Serie. Instituto Nacional de Seguridad e Higiene en el trabajo.</ref-fulltext>
+</reference>
+<reference id="29">
+<ref-info>
+<ref-title>
+<ref-titletext>Sef-efficacy specificity and burnout among information technology workers: Na extension of</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">0038161812</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>M.</ce:initials>
+<ce:indexed-name>Salanova M.</ce:indexed-name>
+<ce:surname>Salanova</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>J.M.</ce:initials>
+<ce:indexed-name>Peiro J.M.</ce:indexed-name>
+<ce:surname>Peiró</ce:surname>
+</author>
+<author seq="3">
+<ce:initials>W.B.</ce:initials>
+<ce:indexed-name>Schaufeli W.B.</ce:indexed-name>
+<ce:surname>Schaufeli</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>The Job Demands-control Model, European Jounal On Work and Organizational Psychology</ref-sourcetitle>
+<ref-publicationyear first="2002"/>
+<ref-volisspag>
+<voliss volume="11"/>
+<pagerange first="1" last="25"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Salanova, M., Peiró, J. M. &amp; Schaufeli, W. B. (2002). Sef-efficacy specificity and burnout among information technology workers: na extension of. The job demands-control model, European Jounal on Work and Organizational Psychology, 11, 1-25.</ref-fulltext>
+</reference>
+<reference id="30">
+<ref-info>
+<refd-itemidlist>
+<itemid idtype="SGR">75249105997</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>G.B.</ce:initials>
+<ce:indexed-name>Seco G.B.</ce:indexed-name>
+<ce:surname>Seco</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>A Satisfação Na Actividade Docente</ref-sourcetitle>
+<ref-publicationyear first="2000"/>
+<ref-text>Coimbra: Universidade de Coimbra</ref-text>
+</ref-info>
+<ref-fulltext>Seco, G. B. (2000). A satisfação na actividade docente. Coimbra: Universidade de Coimbra.</ref-fulltext>
+</reference>
+<reference id="31">
+<ref-info>
+<refd-itemidlist>
+<itemid idtype="SGR">0003428424</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>M.M.</ce:initials>
+<ce:indexed-name>Weil M.M.</ce:indexed-name>
+<ce:surname>Weil</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>L.D.</ce:initials>
+<ce:indexed-name>Rosen L.D.</ce:indexed-name>
+<ce:surname>Rosen</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Technostress: Coping With Technology @work,@home, @play</ref-sourcetitle>
+<ref-publicationyear first="1997"/>
+<ref-text>New York: John Wiley and Sons</ref-text>
+</ref-info>
+<ref-fulltext>Weil, M. M. &amp; Rosen, L. D. (1997). Technostress: Coping with technology @work,@home, @play; New York: John Wiley and Sons.</ref-fulltext>
+</reference>
+<reference id="32">
+<ref-info>
+<ref-title>
+<ref-titletext>The Psychological Impact of Technology From a Global Perspective: A study of technological sophistication and technophobia in university students from 23 countries</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">0002030999</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>M.M.</ce:initials>
+<ce:indexed-name>Weil M.M.</ce:indexed-name>
+<ce:surname>Weil</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>L.D.</ce:initials>
+<ce:indexed-name>Rosen L.D.</ce:indexed-name>
+<ce:surname>Rosen</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Computers In Human Behavior</ref-sourcetitle>
+<ref-publicationyear first="1995"/>
+<ref-volisspag>
+<voliss issue="1" volume="11"/>
+<pagerange first="95" last="133"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Weil, M.M., &amp; Rosen, L.D. (1995). The Psychological Impact of Technology From a Global Perspective: A study of technological sophistication and technophobia in university students from 23 countries. Computers in Human Behavior, 11(1), 95-133.</ref-fulltext>
+</reference>
+</bibliography>
+      </tail>
+    </bibrecord>
+  </item>
+</abstracts-retrieval-response>

@@ -1,0 +1,6 @@
+require_relative "sinatra/i18n"
+require_relative "sinatra/messages"
+require_relative "sinatra/pagers"
+require_relative "sinatra/sessionauth"
+require_relative "sinatra/xeditable_select"
+require_relative "sinatra/partials"

@@ -1,0 +1,495 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<abstracts-retrieval-response xmlns="http://www.elsevier.com/xml/svapi/abstract/dtd" xmlns:ait="http://www.elsevier.com/xml/ani/ait" xmlns:ce="http://www.elsevier.com/xml/ani/common" xmlns:cto="http://www.elsevier.com/xml/cto/dtd" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:prism="http://prismstandard.org/namespaces/basic/2.0/" xmlns:xocs="http://www.elsevier.com/xml/xocs/dtd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <coredata>
+    <prism:url>http://api.elsevier.com/content/abstract/scopus_id/77953000590</prism:url>
+    <dc:identifier>SCOPUS_ID:77953000590</dc:identifier>
+    <eid>2-s2.0-77953000590</eid>
+    <dc:title>A new protocol test for physical activity research in obese children (Etiobe Project)</dc:title>
+    <prism:aggregationType>Journal</prism:aggregationType>
+    <srctype>j</srctype>
+    <citedby-count>1</citedby-count>
+    <prism:publicationName>Annual Review of CyberTherapy and Telemedicine</prism:publicationName>
+    <source-id>19700174668</source-id>
+    <prism:issn>15548716</prism:issn>
+    <prism:volume>7</prism:volume>
+    <prism:issueIdentifier>1</prism:issueIdentifier>
+    <prism:startingPage>281</prism:startingPage>
+    <prism:endingPage>283</prism:endingPage>
+    <prism:pageRange>281-283</prism:pageRange>
+    <prism:coverDate>2009-12-01</prism:coverDate>
+    <dc:creator>
+      <author auid="26423690300" seq="1">
+        <ce:initials>J.</ce:initials>
+        <ce:indexed-name>Guixeres J.</ce:indexed-name>
+        <ce:surname>Guixeres</ce:surname>
+        <ce:given-name>Jaime</ce:given-name>
+        <preferred-name>
+<ce:initials>J.</ce:initials>
+<ce:indexed-name>Guixeres J.</ce:indexed-name>
+<ce:surname>Guixeres</ce:surname>
+<ce:given-name>Jaime</ce:given-name>
+</preferred-name>
+        <author-url>http://api.elsevier.com/content/author/author_id/26423690300</author-url>
+        <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/108788134" id="108788134"/>
+      </author>
+    </dc:creator>
+    <dc:description>
+      <abstract original="y" xml:lang="eng">
+<ce:para>A new protocol is presented to validate TIPS (portable physiological monitoring device designed by I3BH that can get respiration, ecg and activity of the patient) for physical habits detection. Physiological and activity parameters and data from questionnaires have been acquired from a group of obese &amp; nonobese children (n=20). Children completed activities from sedentary level to vigorous level. Preliminary results show variability on the response of children's effort and feasibility of TIPS platform as an ambulatory tool.</ce:para>
+</abstract>
+    </dc:description>
+    <intid>77953000590</intid>
+    <link href="http://api.elsevier.com/content/abstract/scopus_id/77953000590" rel="self"/>
+    <link href="https://www.scopus.com/inward/record.uri?partnerID=HzOxMe3b&amp;scp=77953000590&amp;origin=inward" rel="scopus"/>
+    <link href="https://www.scopus.com/inward/citedby.uri?partnerID=HzOxMe3b&amp;scp=77953000590&amp;origin=inward" rel="scopus-citedby"/>
+  </coredata>
+  <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/108788134" id="108788134">
+    <affilname>Institute of Research and Innovation on Bioengineering for Human Beings I3BH</affilname>
+    <affiliation-city/>
+    <affiliation-country>Spain</affiliation-country>
+  </affiliation>
+  <authors>
+    <author auid="26423690300" seq="1">
+      <ce:initials>J.</ce:initials>
+      <ce:indexed-name>Guixeres J.</ce:indexed-name>
+      <ce:surname>Guixeres</ce:surname>
+      <ce:given-name>Jaime</ce:given-name>
+      <preferred-name>
+<ce:initials>J.</ce:initials>
+<ce:indexed-name>Guixeres J.</ce:indexed-name>
+<ce:surname>Guixeres</ce:surname>
+<ce:given-name>Jaime</ce:given-name>
+</preferred-name>
+      <author-url>http://api.elsevier.com/content/author/author_id/26423690300</author-url>
+      <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/108788134" id="108788134"/>
+    </author>
+    <author auid="18937989500" seq="2">
+      <ce:initials>I.</ce:initials>
+      <ce:indexed-name>Zaragoza I.</ce:indexed-name>
+      <ce:surname>Zaragozá</ce:surname>
+      <ce:given-name>Irene</ce:given-name>
+      <preferred-name>
+<ce:initials>I.</ce:initials>
+<ce:indexed-name>Zaragozá I.</ce:indexed-name>
+<ce:surname>Zaragozá</ce:surname>
+<ce:given-name>Irene</ce:given-name>
+</preferred-name>
+      <author-url>http://api.elsevier.com/content/author/author_id/18937989500</author-url>
+      <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/108788134" id="108788134"/>
+    </author>
+    <author auid="7003335420" seq="3">
+      <ce:initials>M.</ce:initials>
+      <ce:indexed-name>Alcaniz M.</ce:indexed-name>
+      <ce:surname>Alcañiz</ce:surname>
+      <ce:given-name>Mariano</ce:given-name>
+      <preferred-name>
+<ce:initials>M.</ce:initials>
+<ce:indexed-name>Alcañiz M.</ce:indexed-name>
+<ce:surname>Alcañiz</ce:surname>
+<ce:given-name>Mariano</ce:given-name>
+</preferred-name>
+      <author-url>http://api.elsevier.com/content/author/author_id/7003335420</author-url>
+      <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/108788134" id="108788134"/>
+    </author>
+    <author auid="35217871400" seq="4">
+      <ce:initials>J.</ce:initials>
+      <ce:indexed-name>Gomistena J.</ce:indexed-name>
+      <ce:surname>Gomistena</ce:surname>
+      <ce:given-name>Julio</ce:given-name>
+      <preferred-name>
+<ce:initials>J.</ce:initials>
+<ce:indexed-name>Gomistena J.</ce:indexed-name>
+<ce:surname>Gomistena</ce:surname>
+<ce:given-name>Julio</ce:given-name>
+</preferred-name>
+      <author-url>http://api.elsevier.com/content/author/author_id/35217871400</author-url>
+      <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/108788134" id="108788134"/>
+    </author>
+    <author auid="36088831800" seq="5">
+      <ce:initials>A.</ce:initials>
+      <ce:indexed-name>Cebolla A.</ce:indexed-name>
+      <ce:surname>Cebolla</ce:surname>
+      <ce:given-name>Ausiàs</ce:given-name>
+      <preferred-name>
+<ce:initials>A.</ce:initials>
+<ce:indexed-name>Cebolla A.</ce:indexed-name>
+<ce:surname>Cebolla</ce:surname>
+<ce:given-name>Ausiàs</ce:given-name>
+</preferred-name>
+      <author-url>http://api.elsevier.com/content/author/author_id/36088831800</author-url>
+    </author>
+  </authors>
+  <language xml:lang="eng"/>
+  <authkeywords>
+    <author-keyword>Children Obesity</author-keyword>
+    <author-keyword>E-therapy</author-keyword>
+    <author-keyword>Physical Activity Detection</author-keyword>
+    <author-keyword>Wireless Monitoring</author-keyword>
+  </authkeywords>
+  <idxterms/>
+  <subject-areas>
+    <subject-area abbrev="MEDI" code="2742">Rehabilitation</subject-area>
+    <subject-area abbrev="COMP" code="1701">Computer Science (miscellaneous)</subject-area>
+    <subject-area abbrev="PSYC" code="3201">Psychology (miscellaneous)</subject-area>
+    <subject-area abbrev="NEUR" code="2801">Neuroscience (miscellaneous)</subject-area>
+  </subject-areas>
+  <item xmlns="">
+    <ait:process-info>
+      <ait:date-delivered day="22" month="07" timestamp="2015-07-22T13:29:49.000049+01:00" year="2015"/>
+      <ait:date-sort day="01" month="12" year="2009"/>
+      <ait:status stage="S300" state="update" type="core"/>
+    </ait:process-info>
+    <bibrecord>
+      <item-info>
+        <copyright type="Elsevier">Copyright 2010 Elsevier B.V., All rights reserved.</copyright>
+        <itemidlist>
+<itemid idtype="PUI">358918739</itemid>
+<itemid idtype="EMBASE">2010307249</itemid>
+<itemid idtype="NURSNG">2010130177</itemid>
+<itemid idtype="SCP">77953000590</itemid>
+<itemid idtype="SGR">77953000590</itemid>
+</itemidlist>
+        <history>
+<date-created day="07" month="06" year="2010"/>
+</history>
+        <dbcollection>EMBASE</dbcollection>
+        <dbcollection>NURSNG</dbcollection>
+        <dbcollection>Scopusbase</dbcollection>
+      </item-info>
+      <head>
+        <citation-info>
+          <citation-type code="ar"/>
+          <citation-language language="English" xml:lang="eng"/>
+          <abstract-language language="English" xml:lang="eng"/>
+          <author-keywords>
+<author-keyword>Children Obesity</author-keyword>
+<author-keyword>E-therapy</author-keyword>
+<author-keyword>Physical Activity Detection</author-keyword>
+<author-keyword>Wireless Monitoring</author-keyword>
+</author-keywords>
+        </citation-info>
+        <citation-title>
+          <titletext language="English" original="y" xml:lang="eng">A new protocol test for physical activity research in obese children (Etiobe Project)</titletext>
+        </citation-title>
+        <author-group>
+          <author auid="26423690300" seq="1">
+<ce:initials>J.</ce:initials>
+<ce:indexed-name>Guixeres J.</ce:indexed-name>
+<ce:surname>Guixeres</ce:surname>
+<ce:given-name>Jaime</ce:given-name>
+<preferred-name>
+<ce:initials>J.</ce:initials>
+<ce:indexed-name>Guixeres J.</ce:indexed-name>
+<ce:surname>Guixeres</ce:surname>
+<ce:given-name>Jaime</ce:given-name>
+</preferred-name>
+<ce:e-address type="email">jaiguipr@etsii.upv.es</ce:e-address>
+</author>
+          <author auid="18937989500" seq="2">
+<ce:initials>I.</ce:initials>
+<ce:indexed-name>Zaragoza I.</ce:indexed-name>
+<ce:surname>Zaragozá</ce:surname>
+<ce:given-name>Irene</ce:given-name>
+<preferred-name>
+<ce:initials>I.</ce:initials>
+<ce:indexed-name>Zaragozá I.</ce:indexed-name>
+<ce:surname>Zaragozá</ce:surname>
+<ce:given-name>Irene</ce:given-name>
+</preferred-name>
+</author>
+          <author auid="7003335420" seq="3">
+<ce:initials>M.</ce:initials>
+<ce:indexed-name>Alcaniz M.</ce:indexed-name>
+<ce:surname>Alcañiz</ce:surname>
+<ce:given-name>Mariano</ce:given-name>
+<preferred-name>
+<ce:initials>M.</ce:initials>
+<ce:indexed-name>Alcañiz M.</ce:indexed-name>
+<ce:surname>Alcañiz</ce:surname>
+<ce:given-name>Mariano</ce:given-name>
+</preferred-name>
+</author>
+          <author auid="35217871400" seq="4">
+<ce:initials>J.</ce:initials>
+<ce:indexed-name>Gomistena J.</ce:indexed-name>
+<ce:surname>Gomistena</ce:surname>
+<ce:given-name>Julio</ce:given-name>
+<preferred-name>
+<ce:initials>J.</ce:initials>
+<ce:indexed-name>Gomistena J.</ce:indexed-name>
+<ce:surname>Gomistena</ce:surname>
+<ce:given-name>Julio</ce:given-name>
+</preferred-name>
+</author>
+          <affiliation afid="108788134" country="esp">
+            <organization>Institute of Research and Innovation on Bioengineering for Human Beings I3BH</organization>
+            <country>Spain</country>
+          </affiliation>
+        </author-group>
+        <author-group>
+          <author auid="18937989500" seq="2">
+<ce:initials>I.</ce:initials>
+<ce:indexed-name>Zaragoza I.</ce:indexed-name>
+<ce:surname>Zaragozá</ce:surname>
+<ce:given-name>Irene</ce:given-name>
+<preferred-name>
+<ce:initials>I.</ce:initials>
+<ce:indexed-name>Zaragozá I.</ce:indexed-name>
+<ce:surname>Zaragozá</ce:surname>
+<ce:given-name>Irene</ce:given-name>
+</preferred-name>
+</author>
+          <author auid="7003335420" seq="3">
+<ce:initials>M.</ce:initials>
+<ce:indexed-name>Alcaniz M.</ce:indexed-name>
+<ce:surname>Alcañiz</ce:surname>
+<ce:given-name>Mariano</ce:given-name>
+<preferred-name>
+<ce:initials>M.</ce:initials>
+<ce:indexed-name>Alcañiz M.</ce:indexed-name>
+<ce:surname>Alcañiz</ce:surname>
+<ce:given-name>Mariano</ce:given-name>
+</preferred-name>
+</author>
+          <author auid="36088831800" seq="5">
+<ce:initials>A.</ce:initials>
+<ce:indexed-name>Cebolla A.</ce:indexed-name>
+<ce:surname>Cebolla</ce:surname>
+<ce:given-name>Ausiàs</ce:given-name>
+<preferred-name>
+<ce:initials>A.</ce:initials>
+<ce:indexed-name>Cebolla A.</ce:indexed-name>
+<ce:surname>Cebolla</ce:surname>
+<ce:given-name>Ausiàs</ce:given-name>
+</preferred-name>
+</author>
+          <affiliation country="esp">
+            <organization>CIBER de Fisiopatología de la Obesidad y Nutrición (CIBEROBN)</organization>
+            <country>Spain</country>
+          </affiliation>
+        </author-group>
+        <correspondence>
+          <person>
+<ce:initials>J.</ce:initials>
+<ce:indexed-name>Guixeres J.</ce:indexed-name>
+<ce:surname>Guixeres</ce:surname>
+</person>
+          <affiliation country="esp">
+            <organization>Institute of Research and Innovation on Bioengineering for Human Beings I3BH</organization>
+            <country>Spain</country>
+          </affiliation>
+          <ce:e-address type="email">jaiguipr@etsii.upv.es</ce:e-address>
+        </correspondence>
+        <abstracts>
+          <abstract original="y" xml:lang="eng">
+<ce:para>A new protocol is presented to validate TIPS (portable physiological monitoring device designed by I3BH that can get respiration, ecg and activity of the patient) for physical habits detection. Physiological and activity parameters and data from questionnaires have been acquired from a group of obese &amp; nonobese children (n=20). Children completed activities from sedentary level to vigorous level. Preliminary results show variability on the response of children's effort and feasibility of TIPS platform as an ambulatory tool.</ce:para>
+</abstract>
+        </abstracts>
+        <source country="bel" srcid="19700174668" type="j">
+          <sourcetitle>Annual Review of CyberTherapy and Telemedicine</sourcetitle>
+          <sourcetitle-abbrev>Annu. Rev. Cyber Ther. Telemedicine</sourcetitle-abbrev>
+          <issn type="print">15548716</issn>
+          <volisspag>
+<voliss issue="1" volume="7"/>
+<pagerange first="281" last="283"/>
+</volisspag>
+          <publicationyear first="2009"/>
+          <publicationdate>
+<year>2009</year>
+<date-text xfab-added="true">2009</date-text></publicationdate>
+        </source>
+        <enhancement>
+          <classificationgroup>
+<classifications type="ASJC">
+<classification>2742</classification>
+<classification>1701</classification>
+<classification>3201</classification>
+<classification>2801</classification>
+</classifications><classifications type="SUBJABBR"><classification>MEDI</classification><classification>COMP</classification><classification>PSYC</classification><classification>NEUR</classification></classifications>
+<classifications type="EMCLASS">
+<classification> <classification-code>17</classification-code> <classification-description>Public Health, Social Medicine and Epidemiology</classification-description> </classification>
+<classification> <classification-code>19</classification-code> <classification-description>Rehabilitation and Physical Medicine</classification-description> </classification>
+<classification> <classification-code>27</classification-code> <classification-description>Biophysics, Bioengineering and Medical Instrumentation</classification-description> </classification>
+<classification> <classification-code>7</classification-code> <classification-description>Pediatrics and Pediatric Surgery</classification-description> </classification>
+</classifications>
+</classificationgroup>
+        </enhancement>
+      </head>
+      <tail>
+        <bibliography refcount="5">
+<reference id="1">
+<ref-info>
+<ref-title>
+<ref-titletext>Validation and calibration of an accelerometer in preschool children</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">33846293276</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>R.</ce:initials>
+<ce:indexed-name>Pate Russell R.</ce:indexed-name>
+<ce:surname>Pate Russell</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>J.</ce:initials>
+<ce:indexed-name>Almeida Maria J.</ce:indexed-name>
+<ce:surname>Almeida Maria</ce:surname>
+</author>
+<author seq="3">
+<ce:initials>L.</ce:initials>
+<ce:indexed-name>McClever Kerry L.</ce:indexed-name>
+<ce:surname>McClever Kerry</ce:surname>
+</author>
+<author seq="4">
+<ce:initials>A.</ce:initials>
+<ce:indexed-name>Pfeiffer Karin A.</ce:indexed-name>
+<ce:surname>Pfeiffer Karin</ce:surname>
+</author>
+<author seq="5">
+<ce:initials>D.</ce:initials>
+<ce:indexed-name>Marsha D.</ce:indexed-name>
+<ce:surname>Marsha</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Obesity</ref-sourcetitle>
+<ref-publicationyear first="2006"/>
+<ref-volisspag>
+<voliss issue="11" volume="14"/>
+<pagerange first="2000" last="2006"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>R. Pate Russell, J. Almeida Maria; L. McClever Kerry, A. Pfeiffer Karin, Dowda Marsha; Validation and calibration of an accelerometer in preschool children, Obesity 14 11 (2006), 2000-2006</ref-fulltext>
+</reference>
+<reference id="2">
+<ref-info>
+<ref-title>
+<ref-titletext>Implementation of a real-time human movement classifier using a triaxial accelerometer for ambulatory monitoring</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">30744436064</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>M.</ce:initials>
+<ce:indexed-name>Mathie M.</ce:indexed-name>
+<ce:surname>Mathie</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>M.R.</ce:initials>
+<ce:indexed-name>Narayanan M.R.</ce:indexed-name>
+<ce:surname>Narayanan</ce:surname>
+</author>
+<et-al/>
+</ref-authors>
+<ref-sourcetitle>IEEE Transactions on Information Technology in Biomedicine</ref-sourcetitle>
+<ref-publicationyear first="2006"/>
+<ref-volisspag>
+<voliss issue="1" volume="10"/>
+<pagerange first="156" last="167"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>M. Mathie, M.R. Narayanan, et al., Implementation of a real-time human movement classifier using a triaxial accelerometer for ambulatory monitoring, IEEE transactions on information technology in biomedicine 10.(1) (2006),156-167.</ref-fulltext>
+</reference>
+<reference id="3">
+<ref-info>
+<ref-title>
+<ref-titletext>Calibration of accelerometer output for children</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">28044468818</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>D.</ce:initials>
+<ce:indexed-name>Pober D.</ce:indexed-name>
+<ce:surname>Pober</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>K.F.</ce:initials>
+<ce:indexed-name>Janz K.F.</ce:indexed-name>
+<ce:surname>Janz</ce:surname>
+</author>
+<author seq="3">
+<ce:initials>P.F.</ce:initials>
+<ce:indexed-name>Reedson P.F.</ce:indexed-name>
+<ce:surname>Reedson</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Medicine and Science in Sports and Exercise</ref-sourcetitle>
+<ref-publicationyear first="2005"/>
+<ref-volisspag>
+<voliss issue="11" volume="37"/>
+<pages>S523-S530</pages>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>D. Pober, K.F. Janz, and P.F. Reedson, Calibration of accelerometer output for children, Medicine and science in sports and exercise 37.(11) (2005), S523-S530.</ref-fulltext>
+</reference>
+<reference id="4">
+<ref-info>
+<ref-title>
+<ref-titletext>Defining accelerometer thresholds for activity intensities in adolescent girls</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">3042734797</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>M.S.</ce:initials>
+<ce:indexed-name>Treuth M.S.</ce:indexed-name>
+<ce:surname>Treuth</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Medicine and Science in Sports and Exercise</ref-sourcetitle>
+<ref-publicationyear first="2004"/>
+<ref-volisspag>
+<voliss issue="7" volume="36"/>
+<pagerange first="1259" last="1266"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>M.S. Treuth, Defining accelerometer thresholds for activity intensities in adolescent girls, Medicine and science in sports and exercise 36 7 (2004),1259-1266.</ref-fulltext>
+</reference>
+<reference id="5">
+<ref-info>
+<ref-title>
+<ref-titletext>Factorial validity and invariance of a self-report measure of physical activity among adolescent girls</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">71749100730</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>M.W.</ce:initials>
+<ce:indexed-name>Robert M.W.</ce:indexed-name>
+<ce:surname>Robert</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>D.K.</ce:initials>
+<ce:indexed-name>Rod D.K.</ce:indexed-name>
+<ce:surname>Rod</ce:surname>
+</author>
+<author seq="3">
+<ce:initials>D.</ce:initials>
+<ce:indexed-name>Marsha D.</ce:indexed-name>
+<ce:surname>Marsha</ce:surname>
+</author>
+<author seq="4">
+<ce:initials>P.R.</ce:initials>
+<ce:indexed-name>Russell P.R.</ce:indexed-name>
+<ce:surname>Russell</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Research Quarterly for Exercise and Sports</ref-sourcetitle>
+<ref-publicationyear first="2004"/>
+<ref-volisspag>
+<voliss volume="38"/>
+<pagerange first="523" last="529"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Motl, W. Robert; Dishman, K. Rod; Dowda Marsha; Pate, R. Russell, Factorial validity and invariance of a self-report measure of physical activity among adolescent girls. Research Quarterly for Exercise and Sports 38 (2004), 523-529.</ref-fulltext>
+</reference>
+</bibliography>
+      </tail>
+    </bibrecord>
+  </item>
+</abstracts-retrieval-response>

@@ -1,4 +1,4 @@
-require_relative 'sinatra_i18n'
+require_relative 'sinatra/i18n'
 module Buhos
   class NoReviewIdError < StandardError
 

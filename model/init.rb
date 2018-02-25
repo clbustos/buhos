@@ -4,7 +4,7 @@ require 'logger'
 
 require 'dotenv'
 
-require_relative "../lib/buhos_dbadapter"
+require_relative "../lib/buhos/dbadapter"
 if ENV['RACK_ENV'].to_s != "test"
   Dotenv.load("../.env")
 end

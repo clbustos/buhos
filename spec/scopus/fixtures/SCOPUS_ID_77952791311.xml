@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<abstracts-retrieval-response xmlns="http://www.elsevier.com/xml/svapi/abstract/dtd" xmlns:ait="http://www.elsevier.com/xml/ani/ait" xmlns:ce="http://www.elsevier.com/xml/ani/common" xmlns:cto="http://www.elsevier.com/xml/cto/dtd" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:prism="http://prismstandard.org/namespaces/basic/2.0/" xmlns:xocs="http://www.elsevier.com/xml/xocs/dtd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <coredata>
+    <prism:url>http://api.elsevier.com/content/abstract/scopus_id/77952791311</prism:url>
+    <dc:identifier>SCOPUS_ID:77952791311</dc:identifier>
+    <eid>2-s2.0-77952791311</eid>
+    <pubmed-id>20339803</pubmed-id>
+    <prism:doi>10.1590/S0104-56872010000100005</prism:doi>
+    <dc:title>Assessment of receptive and expressive auditory and visual functions in pre-term children</dc:title>
+    <prism:aggregationType>Journal</prism:aggregationType>
+    <srctype>j</srctype>
+    <citedby-count>7</citedby-count>
+    <prism:publicationName>Pro-Fono</prism:publicationName>
+    <source-id>145183</source-id>
+    <prism:issn>01045687</prism:issn>
+    <prism:volume>22</prism:volume>
+    <prism:issueIdentifier>1</prism:issueIdentifier>
+    <prism:startingPage>19</prism:startingPage>
+    <prism:endingPage>24</prism:endingPage>
+    <prism:pageRange>19-24</prism:pageRange>
+    <prism:coverDate>2010-01-01</prism:coverDate>
+    <dc:creator>
+      <author auid="19835877900" seq="1">
+        <ce:initials>D.A.C.</ce:initials>
+        <ce:indexed-name>Lamonica D.A.C.</ce:indexed-name>
+        <ce:surname>Lamônica</ce:surname>
+        <ce:given-name>Dionísia Aparecida Cusin</ce:given-name>
+        <preferred-name> <ce:initials>D.A.C.</ce:initials> <ce:indexed-name>Lamônica D.</ce:indexed-name> <ce:surname>Lamônica</ce:surname> <ce:given-name>Dionísia Aparecida Cusin</ce:given-name> </preferred-name>
+        <author-url>http://api.elsevier.com/content/author/author_id/19835877900</author-url>
+        <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60008088" id="60008088"/>
+      </author>
+    </dc:creator>
+    <dc:description>
+      <abstract original="y" xml:lang="eng"> <ce:para>Background: prematurity as a risk factor for delay in language development. Aim: to verify the performance of premature children regarding their receptive and expressive auditory and visual abilities. Method: participants were 40 children with chronological ages between 12 and 24 months. The experimental group (G1) was composed by 20 children who presented report of prematurity and low or very low weight. The birth age varied from 22 to 34 weeks and weight was below 2500gr. This group was divided according to weight, i.e. children with low and very low weight. The control group (G2) was composed by 20 children born at term, with weight above 2500gr and with no report of development delay. The procedures consisted of an interview with the parents and the application of the Early Language Milestone Scale -ELM. Results: when comparing the groups, the results indicate statistically significant differences. Children of G1 presented a poorer performance in the Expressive Hearing (EH), Receptive Hearing (RH) and Visual (V) areas, although a few children of this group presented the expected results for their age group in some of the tested abilities. The expressive auditory ability was the most affected. Conclusion: children of G1 presented deficits in the expressive and receptive auditory and visual functions. Premature children with very low weight presented higher deficits in the tested abilities.</ce:para> </abstract>
+    </dc:description>
+    <intid>77952791311</intid>
+    <link href="http://api.elsevier.com/content/abstract/scopus_id/77952791311" rel="self"/>
+    <link href="https://www.scopus.com/inward/record.uri?partnerID=HzOxMe3b&amp;scp=77952791311&amp;origin=inward" rel="scopus"/>
+    <link href="https://www.scopus.com/inward/citedby.uri?partnerID=HzOxMe3b&amp;scp=77952791311&amp;origin=inward" rel="scopus-citedby"/>
+  </coredata>
+  <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60013792" id="60013792">
+    <affilname>Universidade Federal de Sao Carlos</affilname>
+    <affiliation-city>Sao Carlos</affiliation-city>
+    <affiliation-country>Brazil</affiliation-country>
+  </affiliation>
+  <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60008088" id="60008088">
+    <affilname>Universidade de Sao Paulo - USP</affilname>
+    <affiliation-city>Sao Paulo</affiliation-city>
+    <affiliation-country>Brazil</affiliation-country>
+  </affiliation>
+  <authors>
+    <author auid="19835877900" seq="1">
+      <ce:initials>D.A.C.</ce:initials>
+      <ce:indexed-name>Lamonica D.A.C.</ce:indexed-name>
+      <ce:surname>Lamônica</ce:surname>
+      <ce:given-name>Dionísia Aparecida Cusin</ce:given-name>
+      <preferred-name> <ce:initials>D.A.C.</ce:initials> <ce:indexed-name>Lamônica D.</ce:indexed-name> <ce:surname>Lamônica</ce:surname> <ce:given-name>Dionísia Aparecida Cusin</ce:given-name> </preferred-name>
+      <author-url>http://api.elsevier.com/content/author/author_id/19835877900</author-url>
+      <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60008088" id="60008088"/>
+    </author>
+    <author auid="47360936600" seq="2">
+      <ce:initials>F.C.</ce:initials>
+      <ce:indexed-name>Carlino F.C.</ce:indexed-name>
+      <ce:surname>Carlino</ce:surname>
+      <ce:given-name>Fabiana Cristina</ce:given-name>
+      <preferred-name> <ce:initials>F.C.</ce:initials> <ce:indexed-name>Carlino F.</ce:indexed-name> <ce:surname>Carlino</ce:surname> <ce:given-name>Fabiana Cristina</ce:given-name> </preferred-name>
+      <author-url>http://api.elsevier.com/content/author/author_id/47360936600</author-url>
+      <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60013792" id="60013792"/>
+    </author>
+    <author auid="8222013800" seq="3">
+      <ce:initials>K.</ce:initials>
+      <ce:indexed-name>de Freitas Alvarenga K.</ce:indexed-name>
+      <ce:surname>de Freitas Alvarenga</ce:surname>
+      <ce:given-name>Kátia</ce:given-name>
+      <preferred-name> <ce:initials>K.</ce:initials> <ce:indexed-name>de Freitas Alvarenga K.</ce:indexed-name> <ce:surname>de Freitas Alvarenga</ce:surname> <ce:given-name>Kátia</ce:given-name> </preferred-name>
+      <author-url>http://api.elsevier.com/content/author/author_id/8222013800</author-url>
+      <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60008088" id="60008088"/>
+    </author>
+  </authors>
+  <language xml:lang="por"/>
+  <authkeywords>
+    <author-keyword>Child development</author-keyword>
+    <author-keyword>Child language</author-keyword>
+    <author-keyword>Language disorders</author-keyword>
+    <author-keyword>Premature</author-keyword>
+  </authkeywords>
+  <idxterms/>
+  <subject-areas>
+    <subject-area abbrev="NEUR" code="2800">Neuroscience (all)</subject-area>
+    <subject-area abbrev="MEDI" code="2733">Otorhinolaryngology</subject-area>
+    <subject-area abbrev="MEDI" code="2700">Medicine (all)</subject-area>
+    <subject-area abbrev="HEAL" code="3600">Health Professions  (all)</subject-area>
+    <subject-area abbrev="ARTS" code="1200">Arts and Humanities (all)</subject-area>
+    <subject-area abbrev="SOCI" code="3300">Social Sciences (all)</subject-area>
+    <subject-area abbrev="MULT" code="1000">Multidisciplinary</subject-area>
+    <subject-area abbrev="PSYC" code="3200">Psychology (all)</subject-area>
+    <subject-area abbrev="HEAL" code="3616">Speech and Hearing</subject-area>
+  </subject-areas>
+  <item xmlns="">
+    <ait:process-info>
+      <ait:date-delivered day="18" month="10" timestamp="2016-10-18T21:24:32.000032+01:00" year="2016"/>
+      <ait:date-sort day="01" month="01" year="2010"/>
+      <ait:status stage="S300" state="update" type="core"/>
+    </ait:process-info>
+    <bibrecord>
+      <item-info>
+        <copyright type="Elsevier">Copyright 2011 Elsevier B.V., All rights reserved.</copyright>
+        <copyright type="Medline Descriptors">MEDLINE® is the source for the MeSH terms of this document.</copyright>
+        <itemidlist> <ce:doi>10.1590/S0104-56872010000100005</ce:doi> <itemid idtype="PUI">358897178</itemid> <itemid idtype="SNEMB">2010049550</itemid> <itemid idtype="NURSNG">2010126861</itemid> <itemid idtype="MEDL">20339803</itemid> <itemid idtype="SCP">77952791311</itemid> <itemid idtype="SGR">77952791311</itemid> </itemidlist>
+        <history> <date-created day="02" month="06" year="2010"/> </history>
+        <dbcollection>SNEMB</dbcollection>
+        <dbcollection>NURSNG</dbcollection>
+        <dbcollection>MEDL</dbcollection>
+        <dbcollection>Scopusbase</dbcollection>
+      </item-info>
+      <head>
+        <citation-info>
+          <citation-type code="ar"/>
+          <citation-language language="Portuguese" xml:lang="por"/>
+          <abstract-language language="Portuguese" xml:lang="por"/>
+          <abstract-language language="English" xml:lang="eng"/>
+          <author-keywords> <author-keyword>Child development</author-keyword> <author-keyword>Child language</author-keyword> <author-keyword>Language disorders</author-keyword> <author-keyword>Premature</author-keyword> </author-keywords>
+        </citation-info>
+        <citation-title>
+          <titletext language="English" original="n" xml:lang="eng">Assessment of receptive and expressive auditory and visual functions in pre-term children</titletext>
+          <titletext language="Portuguese" original="y" xml:lang="por">Avaliação da função auditiva receptiva, expressiva e visual em crianças prematuras</titletext>
+        </citation-title>
+        <author-group>
+          <author auid="19835877900" seq="1"> <ce:initials>D.A.C.</ce:initials> <ce:indexed-name>Lamonica D.A.C.</ce:indexed-name> <ce:surname>Lamônica</ce:surname> <ce:given-name>Dionísia Aparecida Cusin</ce:given-name> <preferred-name> <ce:initials>D.A.C.</ce:initials> <ce:indexed-name>Lamônica D.</ce:indexed-name> <ce:surname>Lamônica</ce:surname> <ce:given-name>Dionísia Aparecida Cusin</ce:given-name> </preferred-name> <ce:e-address type="email">dionelam@uol.com.br</ce:e-address> </author>
+          <author auid="8222013800" seq="3"> <ce:initials>K.</ce:initials> <ce:indexed-name>de Freitas Alvarenga K.</ce:indexed-name> <ce:surname>de Freitas Alvarenga</ce:surname> <ce:given-name>Kátia</ce:given-name> <preferred-name> <ce:initials>K.</ce:initials> <ce:indexed-name>de Freitas Alvarenga K.</ce:indexed-name> <ce:surname>de Freitas Alvarenga</ce:surname> <ce:given-name>Kátia</ce:given-name> </preferred-name> </author>
+          <affiliation afid="60008088" country="bra" dptid="111116797">
+            <organization>Departamento de Fonoaudiologia da Faculdade de Odontologia de Bauru</organization>
+            <organization>Universidade de São Paulo (FOB - USP)</organization>
+            <country>Brazil</country>
+          </affiliation>
+        </author-group>
+        <author-group>
+          <author auid="47360936600" seq="2"> <ce:initials>F.C.</ce:initials> <ce:indexed-name>Carlino F.C.</ce:indexed-name> <ce:surname>Carlino</ce:surname> <ce:given-name>Fabiana Cristina</ce:given-name> <preferred-name> <ce:initials>F.C.</ce:initials> <ce:indexed-name>Carlino F.</ce:indexed-name> <ce:surname>Carlino</ce:surname> <ce:given-name>Fabiana Cristina</ce:given-name> </preferred-name> </author>
+          <affiliation afid="60013792" country="bra">
+            <organization>Universidade Federal de São Carlos (SP)</organization>
+            <country>Brazil</country>
+          </affiliation>
+        </author-group>
+        <correspondence>
+          <person> <ce:initials>D.A.C.</ce:initials> <ce:indexed-name>Lamonica D.A.C.</ce:indexed-name> <ce:surname>Lamônica</ce:surname> </person>
+          <affiliation country="bra">
+            <address-part>Rua Al. Dr. Octávio Pinheiro Brisolla, 9-75</address-part>
+            <city-group>Baurum, SP, CEP 17012-901</city-group>
+            <country>Brazil</country>
+          </affiliation>
+          <ce:e-address type="email">dionelam@uol.com.br</ce:e-address>
+        </correspondence>
+        <abstracts>
+          <abstract original="y" xml:lang="eng"> <ce:para>Background: prematurity as a risk factor for delay in language development. Aim: to verify the performance of premature children regarding their receptive and expressive auditory and visual abilities. Method: participants were 40 children with chronological ages between 12 and 24 months. The experimental group (G1) was composed by 20 children who presented report of prematurity and low or very low weight. The birth age varied from 22 to 34 weeks and weight was below 2500gr. This group was divided according to weight, i.e. children with low and very low weight. The control group (G2) was composed by 20 children born at term, with weight above 2500gr and with no report of development delay. The procedures consisted of an interview with the parents and the application of the Early Language Milestone Scale -ELM. Results: when comparing the groups, the results indicate statistically significant differences. Children of G1 presented a poorer performance in the Expressive Hearing (EH), Receptive Hearing (RH) and Visual (V) areas, although a few children of this group presented the expected results for their age group in some of the tested abilities. The expressive auditory ability was the most affected. Conclusion: children of G1 presented deficits in the expressive and receptive auditory and visual functions. Premature children with very low weight presented higher deficits in the tested abilities.</ce:para> </abstract>
+        </abstracts>
+        <source country="bra" srcid="145183" type="j">
+          <sourcetitle>Pro-Fono</sourcetitle>
+          <sourcetitle-abbrev>Pro-Fono</sourcetitle-abbrev>
+          <issn type="print">01045687</issn>
+          <volisspag> <voliss issue="1" volume="22"/> <pagerange first="19" last="24"/> </volisspag>
+          <publicationyear first="2010"/>
+          <publicationdate> <year>2010</year> <month>01</month> <date-text xfab-added="true">January 2010</date-text></publicationdate>
+          <website> <ce:e-address type="url">http://www.scielo.br/pdf/pfono/v22n1/05.pdf</ce:e-address> </website>
+        </source>
+        <enhancement>
+          <classificationgroup>
+            <classifications type="ASJC"> <classification>2800</classification> <classification>2733</classification> <classification>2700</classification> <classification>3600</classification> <classification>1200</classification> <classification>3300</classification> <classification>1000</classification> <classification>3200</classification> <classification>3616</classification> </classifications>
+            <classifications type="SUBJABBR">
+              <classification>NEUR</classification>
+              <classification>MEDI</classification>
+              <classification>HEAL</classification>
+              <classification>ARTS</classification>
+              <classification>SOCI</classification>
+              <classification>MULT</classification>
+              <classification>PSYC</classification>
+            </classifications>
+          </classificationgroup>
+        </enhancement>
+      </head>
+      <tail>
+        <bibliography refcount="19"> <reference id="1"> <ref-info> <ref-title> <ref-titletext>New developments in the management of speech and language disorders</ref-titletext> </ref-title> <refd-itemidlist> <itemid idtype="SGR">47749083895</itemid> </refd-itemidlist> <ref-authors> <author seq="1"> <ce:initials>C.</ce:initials> <ce:indexed-name>Harding C.</ce:indexed-name> <ce:surname>Harding</ce:surname> </author> <author seq="2"> <ce:initials>S.</ce:initials> <ce:indexed-name>Gourlay S.</ce:indexed-name> <ce:surname>Gourlay</ce:surname> </author> </ref-authors> <ref-sourcetitle>Arc Dis Child</ref-sourcetitle> <ref-publicationyear first="2008"/> <ref-volisspag> <voliss issue="7" volume="93"/> <pagerange first="425" last="427"/> </ref-volisspag> </ref-info> <ref-fulltext>Harding C, Gourlay S. New developments in the management of speech and language disorders. Arc Dis Child. 2008;93(7):425-27</ref-fulltext> </reference> <reference id="2"> <ref-info> <ref-title> <ref-titletext>Risck factors for infant developmental problems</ref-titletext> </ref-title> <refd-itemidlist> <itemid idtype="SGR">77952826047</itemid> </refd-itemidlist> <ref-authors> <author seq="1"> <ce:initials>M.R.S.</ce:initials> <ce:indexed-name>Maria-Mengel M.R.S.</ce:indexed-name> <ce:surname>Maria-Mengel</ce:surname> </author> <author seq="2"> <ce:initials>M.B.M.</ce:initials> <ce:indexed-name>Linhares M.B.M.</ce:indexed-name> <ce:surname>Linhares</ce:surname> </author> </ref-authors> <ref-sourcetitle>Rev Lat Enf</ref-sourcetitle> <ref-publicationyear first="2007"/> <ref-volisspag> <voliss issue="SPECIAL ISSUE" volume="15"/> <pagerange first="937" last="942"/> </ref-volisspag> </ref-info> <ref-fulltext>Maria-Mengel MRS, Linhares MBM. Risck factors for infant developmental problems. Rev Lat Enf. 2007;15(special issue):937-42</ref-fulltext> </reference> <reference id="3"> <ref-info> <ref-title> <ref-titletext>How should we report early childhood outcomes of very low bird weight infants?</ref-titletext> </ref-title> <refd-itemidlist> <itemid idtype="SGR">34548530888</itemid> </refd-itemidlist> <ref-authors> <author seq="1"> <ce:initials>B.R.</ce:initials> <ce:indexed-name>Wohr B.R.</ce:indexed-name> <ce:surname>Wohr</ce:surname> </author> </ref-authors> <ref-sourcetitle>Seminars In Fetal Neonatal Med</ref-sourcetitle> <ref-publicationyear first="2007"/> <ref-volisspag> <voliss issue="5" volume="12"/> <pagerange first="355" last="412"/> </ref-volisspag> </ref-info> <ref-fulltext>Wohr BR. How should we report early childhood outcomes of very low bird weight infants? Seminars In Fetal Neonatal Med. 2007;12(5)355-12</ref-fulltext> </reference> <reference id="4"> <ref-info> <refd-itemidlist> <itemid idtype="SGR">0003758543</itemid> </refd-itemidlist> <ref-sourcetitle>International Classification of Impairments, Disabilities and Handicaps</ref-sourcetitle> <ref-publicationyear first="1980"/> <ref-text>World Health OrganizationGeneva: World Health Organization</ref-text> </ref-info> <ref-fulltext>World Health Organization. International Classification of Impairments, Disabilities and Handicaps. Geneva: World Health Organization; 1980</ref-fulltext> </reference> <reference id="5"> <ref-info> <ref-title> <ref-titletext>Language Development in very low birth weight preterm children: a follow-up study</ref-titletext> </ref-title> <refd-itemidlist> <itemid idtype="SGR">1542286688</itemid> </refd-itemidlist> <ref-authors> <author seq="1"> <ce:initials>E.</ce:initials> <ce:indexed-name>Jansson-Verkasalo E.</ce:indexed-name> <ce:surname>Jansson-Verkasalo</ce:surname> </author> <author seq="2"> <ce:initials>M.</ce:initials> <ce:indexed-name>Valkama M.</ce:indexed-name> <ce:surname>Valkama</ce:surname> </author> <author seq="3"> <ce:initials>l.</ce:initials> <ce:indexed-name>Vainionpaa l.</ce:indexed-name> <ce:surname>Vainionpää</ce:surname> </author> <author seq="4"> <ce:initials>E.</ce:initials> <ce:indexed-name>Paakko E.</ce:indexed-name> <ce:surname>Pääkkö</ce:surname> </author> <author seq="5"> <ce:initials>E.</ce:initials> <ce:indexed-name>Ilkko E.</ce:indexed-name> <ce:surname>Ilkko</ce:surname> </author> <author seq="6"> <ce:initials>M.</ce:initials> <ce:indexed-name>Lehtihalmes M.</ce:indexed-name> <ce:surname>Lehtihalmes</ce:surname> </author> </ref-authors> <ref-sourcetitle>Folia Phoniatr et Logop.</ref-sourcetitle> <ref-publicationyear first="2004"/> <ref-volisspag> <voliss issue="2" volume="56"/> <pagerange first="109" last="119"/> </ref-volisspag> </ref-info> <ref-fulltext>Jansson-Verkasalo E, Valkama M, Vainionpää l, Pääkkö E, Ilkko E, Lehtihalmes M. Language Development in very low birth weight preterm children: a follow-up study. Folia Phoniatr et Logop. 2004;56(2):109-19</ref-fulltext> </reference> <reference id="6"> <ref-info> <ref-title> <ref-titletext>Understanding language and cognitive deficits in very low birth weight children</ref-titletext> </ref-title> <refd-itemidlist> <itemid idtype="SGR">41649093160</itemid> </refd-itemidlist> <ref-authors> <author seq="1"> <ce:initials>S.</ce:initials> <ce:indexed-name>Ortiz-Mantilla S.</ce:indexed-name> <ce:surname>Ortiz-Mantilla</ce:surname> </author> <author seq="2"> <ce:initials>N.</ce:initials> <ce:indexed-name>Choudhurd N.</ce:indexed-name> <ce:surname>Choudhurd</ce:surname> </author> <author seq="3"> <ce:initials>H.</ce:initials> <ce:indexed-name>Leevers H.</ce:indexed-name> <ce:surname>Leevers</ce:surname> </author> <author seq="4"> <ce:initials>A.A.</ce:initials> <ce:indexed-name>Benasich A.A.</ce:indexed-name> <ce:surname>Benasich</ce:surname> </author> </ref-authors> <ref-sourcetitle>Dev Psychobiol</ref-sourcetitle> <ref-publicationyear first="2008"/> <ref-volisspag> <voliss issue="2" volume="50"/> <pagerange first="107" last="126"/> </ref-volisspag> </ref-info> <ref-fulltext>Ortiz-Mantilla S, Choudhurd N, Leevers H, Benasich AA. Understanding language and cognitive deficits in very low birth weight children. Dev Psychobiol. 2008;50(2):107-26</ref-fulltext> </reference> <reference id="7"> <ref-info> <ref-title> <ref-titletext>Pathways from Premature and Infants Abilities to Later</ref-titletext> </ref-title> <refd-itemidlist> <itemid idtype="SGR">28144435980</itemid> </refd-itemidlist> <ref-authors> <author seq="1"> <ce:initials>S.A.</ce:initials> <ce:indexed-name>Rose S.A.</ce:indexed-name> <ce:surname>Rose</ce:surname> </author> <author seq="2"> <ce:initials>J.J.</ce:initials> <ce:indexed-name>Jankowski J.J.</ce:indexed-name> <ce:surname>Jankowski</ce:surname> </author> <author seq="3"> <ce:initials>J.F.</ce:initials> <ce:indexed-name>Feldman J.F.</ce:indexed-name> <ce:surname>Feldman</ce:surname> </author> <author seq="4"> <ce:initials>R.V.</ce:initials> <ce:indexed-name>Rossem R.V.</ce:indexed-name> <ce:surname>Rossem</ce:surname> </author> </ref-authors> <ref-sourcetitle>Cognition Child Development</ref-sourcetitle> <ref-publicationyear first="2005"/> <ref-volisspag> <voliss issue="6" volume="76"/> <pagerange first="1172" last="1184"/> </ref-volisspag> </ref-info> <ref-fulltext>Rose SA, Jankowski JJ, Feldman JF, Rossem RV. Pathways from Premature and Infants Abilities to Later Cognition. Child Development. 2005;76(6):1172-84</ref-fulltext> </reference> <reference id="8"> <ref-info> <ref-title> <ref-titletext>Acompanhamento de lactentes com baixo peso ao nascimento: aquisição de linguagem</ref-titletext> </ref-title> <refd-itemidlist> <itemid idtype="SGR">0141987450</itemid> </refd-itemidlist> <ref-authors> <author seq="1"> <ce:initials>L.N.</ce:initials> <ce:indexed-name>Oliveira L.N.</ce:indexed-name> <ce:surname>Oliveira</ce:surname> </author> <author seq="2"> <ce:initials>M.C.M.</ce:initials> <ce:indexed-name>Lima M.C.M.</ce:indexed-name> <ce:surname>Lima</ce:surname> </author> <author seq="3"> <ce:initials>V.M.G.</ce:initials> <ce:indexed-name>Goncalves V.M.G.</ce:indexed-name> <ce:surname>Gonçalves</ce:surname> </author> </ref-authors> <ref-sourcetitle>Arquivos de Neuro-Psiquiatria</ref-sourcetitle> <ref-publicationyear first="2003"/> <ref-volisspag> <voliss issue="3" volume="61"/> <pagerange first="802" last="810"/> </ref-volisspag> </ref-info> <ref-fulltext>Oliveira LN, Lima MCM, Gonçalves VMG. Acompanhamento de lactentes com baixo peso ao nascimento: aquisição de linguagem. Arquivos de Neuro-Psiquiatria. 2003;61(3):802-10</ref-fulltext> </reference> <reference id="9"> <ref-info> <ref-title> <ref-titletext>Early delayed language development in very preterm infants: evidence from MacArthur-Bates CDI</ref-titletext> </ref-title> <refd-itemidlist> <itemid idtype="SGR">34547203991</itemid> </refd-itemidlist> <ref-authors> <author seq="1"> <ce:initials>S.</ce:initials> <ce:indexed-name>Foster-Cohen S.</ce:indexed-name> <ce:surname>Foster-Cohen</ce:surname> </author> <author seq="2"> <ce:initials>J.O.</ce:initials> <ce:indexed-name>Edgin J.O.</ce:indexed-name> <ce:surname>Edgin</ce:surname> </author> <author seq="3"> <ce:initials>P.R.</ce:initials> <ce:indexed-name>Champion P.R.</ce:indexed-name> <ce:surname>Champion</ce:surname> </author> <author seq="4"> <ce:initials>I.J.</ce:initials> <ce:indexed-name>Woodward I.J.</ce:indexed-name> <ce:surname>Woodward</ce:surname> </author> </ref-authors> <ref-sourcetitle>J Child Lang</ref-sourcetitle> <ref-publicationyear first="2007"/> <ref-volisspag> <voliss issue="3" volume="34"/> <pagerange first="655" last="675"/> </ref-volisspag> </ref-info> <ref-fulltext>Foster-Cohen S, Edgin JO, Champion PR, Woodward IJ. Early delayed language development in very preterm infants: evidence from MacArthur-Bates CDI. J Child Lang. 2007;34(3):655-75</ref-fulltext> </reference> <reference id="10"> <ref-info> <ref-title> <ref-titletext>Caracterização de comportamentos linguísticos de crianças nascidas prematuras, aos quatro anos de idade</ref-titletext> </ref-title> <refd-itemidlist> <itemid idtype="SGR">40049086979</itemid> </refd-itemidlist> <ref-authors> <author seq="1"> <ce:initials>C.</ce:initials> <ce:indexed-name>Ishii C.</ce:indexed-name> <ce:surname>Ishii</ce:surname> </author> <author seq="2"> <ce:initials>C.S.</ce:initials> <ce:indexed-name>Miranda C.S.</ce:indexed-name> <ce:surname>Miranda</ce:surname> </author> <author seq="3"> <ce:initials>S.M.</ce:initials> <ce:indexed-name>Isotani S.M.</ce:indexed-name> <ce:surname>Isotani</ce:surname> </author> <author seq="4"> <ce:initials>J.</ce:initials> <ce:indexed-name>Perissinoto J.</ce:indexed-name> <ce:surname>Perissinoto</ce:surname> </author> </ref-authors> <ref-sourcetitle>Rev Cefac</ref-sourcetitle> <ref-publicationyear first="2006"/> <ref-volisspag> <voliss issue="2" volume="8"/> <pagerange first="147" last="154"/> </ref-volisspag> </ref-info> <ref-fulltext>Ishii C, Miranda CS, Isotani SM, Perissinoto J. Caracterização de comportamentos linguísticos de crianças nascidas prematuras, aos quatro anos de idade. Rev Cefac. 2006;8(2):147-54</ref-fulltext> </reference> <reference id="11"> <ref-info> <ref-title> <ref-titletext>Clinical assessment of language development in children at age 3 year that very born preterm</ref-titletext> </ref-title> <refd-itemidlist> <itemid idtype="SGR">33846392953</itemid> </refd-itemidlist> <ref-authors> <author seq="1"> <ce:initials>C.R.</ce:initials> <ce:indexed-name>Schimer C.R.</ce:indexed-name> <ce:surname>Schimer</ce:surname> </author> <author seq="2"> <ce:initials>M.W.</ce:initials> <ce:indexed-name>Portuguez M.W.</ce:indexed-name> <ce:surname>Portuguez</ce:surname> </author> <author seq="3"> <ce:initials>M.L.</ce:initials> <ce:indexed-name>Nunes M.L.</ce:indexed-name> <ce:surname>Nunes</ce:surname> </author> </ref-authors> <ref-sourcetitle>Arq Neuropsiquiat</ref-sourcetitle> <ref-publicationyear first="2006"/> <ref-volisspag> <voliss issue="4" volume="64"/> <pagerange first="926" last="931"/> </ref-volisspag> </ref-info> <ref-fulltext>Schimer CR, Portuguez MW, Nunes ML. Clinical assessment of language development in children at age 3 year that very born preterm. Arq Neuropsiquiat. 2006;64(4)926-931</ref-fulltext> </reference> <reference id="12"> <ref-info> <ref-title> <ref-titletext>Cognitive development in low risk preterm infants at 3-4 years of life</ref-titletext> </ref-title> <refd-itemidlist> <itemid idtype="SGR">27644529978</itemid> </refd-itemidlist> <ref-authors> <author seq="1"> <ce:initials>B.</ce:initials> <ce:indexed-name>Caravale B.</ce:indexed-name> <ce:surname>Caravale</ce:surname> </author> <author seq="2"> <ce:initials>C.</ce:initials> <ce:indexed-name>Tozzi C.</ce:indexed-name> <ce:surname>Tozzi</ce:surname> </author> <author seq="3"> <ce:initials>G.</ce:initials> <ce:indexed-name>Albino G.</ce:indexed-name> <ce:surname>Albino</ce:surname> </author> <author seq="4"> <ce:initials>S.</ce:initials> <ce:indexed-name>Vicari S.</ce:indexed-name> <ce:surname>Vicari</ce:surname> </author> </ref-authors> <ref-sourcetitle>Arch Dis Child Fetal Neonatal</ref-sourcetitle> <ref-publicationyear first="2005"/> <ref-volisspag> <voliss issue="6" volume="90"/> <pagerange first="474" last="479"/> </ref-volisspag> </ref-info> <ref-fulltext>Caravale B, Tozzi C; Albino G, Vicari S. Cognitive development in low risk preterm infants at 3-4 years of life. Arch Dis Child Fetal Neonatal. 2005;90(6):474-9</ref-fulltext> </reference> <reference id="13"> <ref-info> <ref-title> <ref-titletext>Avaliação de alguns aspectos da aquisição e desenvolvimento da linguagem em crianças pré-termo</ref-titletext> </ref-title> <refd-itemidlist> <itemid idtype="SGR">4644326824</itemid> </refd-itemidlist> <ref-authors> <author seq="1"> <ce:initials>M.R.</ce:initials> <ce:indexed-name>Pereira M.R.</ce:indexed-name> <ce:surname>Pereira</ce:surname> </author> <author seq="2"> <ce:initials>C.A.R.</ce:initials> <ce:indexed-name>Funayama C.A.R.</ce:indexed-name> <ce:surname>Funayama</ce:surname> </author> </ref-authors> <ref-sourcetitle>Arq Neuropsiquiatr</ref-sourcetitle> <ref-publicationyear first="2004"/> <ref-volisspag> <voliss issue="3-A" volume="62"/> <pagerange first="641" last="648"/> </ref-volisspag> </ref-info> <ref-fulltext>Pereira MR, Funayama CAR. Avaliação de alguns aspectos da aquisição e desenvolvimento da linguagem em crianças pré-termo. Arq Neuropsiquiatr. 2004;62(3-A):641-48</ref-fulltext> </reference> <reference id="14"> <ref-info> <ref-title> <ref-titletext>Problemas oftalmológicos mais freqüentes e desenvolvimento visual em pré-termo extremo</ref-titletext> </ref-title> <refd-itemidlist> <itemid idtype="SGR">27744564744</itemid> </refd-itemidlist> <ref-authors> <author seq="1"> <ce:initials>R.M.</ce:initials> <ce:indexed-name>Graziano R.M.</ce:indexed-name> <ce:surname>Graziano</ce:surname> </author> <author seq="2"> <ce:initials>C.R.</ce:initials> <ce:indexed-name>Leone C.R.</ce:indexed-name> <ce:surname>Leone</ce:surname> </author> </ref-authors> <ref-sourcetitle>J Pediatr</ref-sourcetitle> <ref-publicationyear first="2005"/> <ref-volisspag> <voliss issue="SUPPL 1" volume="81"/> <pages>S95-S100</pages> </ref-volisspag> </ref-info> <ref-fulltext>Graziano RM, Leone CR. Problemas oftalmológicos mais freqüentes e desenvolvimento visual em pré-termo extremo. J Pediatr. 2005;81(Suppl 1):S95-S100</ref-fulltext> </reference> <reference id="15"> <ref-info> <ref-title> <ref-titletext>Habilidades neurocognitivas de niños con leucomalácia periventricular Resultados preliminares em 15 sujetos</ref-titletext> </ref-title> <refd-itemidlist> <itemid idtype="SGR">3242796808</itemid> </refd-itemidlist> <ref-authors> <author seq="1"> <ce:initials>N.</ce:initials> <ce:indexed-name>Crespo-Eguilaz N.</ce:indexed-name> <ce:surname>Crespo-Eguiláz</ce:surname> </author> <author seq="2"> <ce:initials>J.</ce:initials> <ce:indexed-name>Narbona J.</ce:indexed-name> <ce:surname>Narbona</ce:surname> </author> </ref-authors> <ref-sourcetitle>Rev Neurol</ref-sourcetitle> <ref-publicationyear first="2004"/> <ref-volisspag> <voliss issue="SUPPL 1" volume="38"/> <pages>S80-S84</pages> </ref-volisspag> </ref-info> <ref-fulltext>Crespo-Eguiláz N, Narbona J. Habilidades neurocognitivas de niños con leucomalácia periventricular Resultados preliminares em 15 sujetos. Rev Neurol. 2004;38(Suppl 1):S80-4</ref-fulltext> </reference> <reference id="16"> <ref-info> <ref-title> <ref-titletext>Specific language difficulties and school achievement in child Born at 25 weeks of gestation or less</ref-titletext> </ref-title> <refd-itemidlist> <itemid idtype="SGR">38149051353</itemid> </refd-itemidlist> <ref-authors> <author seq="1"> <ce:initials>D.</ce:initials> <ce:indexed-name>Wolke D.</ce:indexed-name> <ce:surname>Wolke</ce:surname> </author> <author seq="2"> <ce:initials>M.</ce:initials> <ce:indexed-name>Samara M.</ce:indexed-name> <ce:surname>Samara</ce:surname> </author> <author seq="3"> <ce:initials>M.</ce:initials> <ce:indexed-name>Bracewell M.</ce:indexed-name> <ce:surname>Bracewell</ce:surname> </author> <author seq="4"> <ce:initials>N.</ce:initials> <ce:indexed-name>Marlow N.</ce:indexed-name> <ce:surname>Marlow</ce:surname> </author> </ref-authors> <ref-sourcetitle>J Pediatr</ref-sourcetitle> <ref-publicationyear first="2008"/> <ref-volisspag> <voliss issue="2" volume="152"/> <pagerange first="256" last="262"/> </ref-volisspag> </ref-info> <ref-fulltext>Wolke D, Samara M, Bracewell M, Marlow N. Specific language difficulties and school achievement in child Born at 25 weeks of gestation or less. J Pediatr. 2008;152(2):256-262</ref-fulltext> </reference> <reference id="17"> <ref-info> <ref-title> <ref-titletext>Periventricular leukomalacia and spastic diplegia: implications in the psycholinguistic abilities</ref-titletext> </ref-title> <refd-itemidlist> <itemid idtype="SGR">40049108755</itemid> </refd-itemidlist> <ref-authors> <author seq="1"> <ce:initials>D.A.C.</ce:initials> <ce:indexed-name>Lamonica D.A.C.</ce:indexed-name> <ce:surname>Lamônica</ce:surname> </author> <author seq="2"> <ce:initials>P.M.D.P.</ce:initials> <ce:indexed-name>Ferraz P.M.D.P.</ce:indexed-name> <ce:surname>Ferraz</ce:surname> </author> </ref-authors> <ref-sourcetitle>Pró-Fono R. Atual. Cient. [online].</ref-sourcetitle> <ref-publicationyear first="2007"/> <ref-volisspag> <voliss issue="4" volume="19"/> <pagerange first="357" last="362"/> </ref-volisspag> </ref-info> <ref-fulltext>Lamônica DAC, Ferraz PMDP. Periventricular leukomalacia and spastic diplegia: implications in the psycholinguistic abilities. Pró-Fono R. Atual. Cient. [online]. 2007;19,(4):357-62</ref-fulltext> </reference> <reference id="18"> <ref-info> <ref-title> <ref-titletext>Visual outcome and perinatal adversity</ref-titletext> </ref-title> <refd-itemidlist> <itemid idtype="SGR">34548596826</itemid> </refd-itemidlist> <ref-authors> <author seq="1"> <ce:initials>A.R.</ce:initials> <ce:indexed-name>O'Connor A.R.</ce:indexed-name> <ce:surname>O'Connor</ce:surname> </author> <author seq="2"> <ce:initials>A.R.</ce:initials> <ce:indexed-name>Fielder A.R.</ce:indexed-name> <ce:surname>Fielder</ce:surname> </author> </ref-authors> <ref-sourcetitle>Seminars In Fetal Neonatal Med</ref-sourcetitle> <ref-publicationyear first="2007"/> <ref-volisspag> <voliss issue="5" volume="12"/> <pagerange first="408" last="414"/> </ref-volisspag> </ref-info> <ref-fulltext>O'Connor AR, Fielder AR. Visual outcome and perinatal adversity. Seminars In Fetal Neonatal Med. 2007;12(5):408-14</ref-fulltext> </reference> <reference id="19"> <ref-info> <refd-itemidlist> <itemid idtype="SGR">0004046705</itemid> </refd-itemidlist> <ref-authors> <author seq="1"> <ce:initials>J.</ce:initials> <ce:indexed-name>Coplan J.</ce:indexed-name> <ce:surname>Coplan</ce:surname> </author> </ref-authors> <ref-sourcetitle>Early Language Milestone Scale</ref-sourcetitle> <ref-publicationyear first="1994"/> <ref-text>2nd. Texas: Pro-ed</ref-text> </ref-info> <ref-fulltext>Coplan J. Early Language Milestone Scale. 2nd. Texas: Pro-ed, 1994</ref-fulltext> </reference> </bibliography>
+      </tail>
+    </bibrecord>
+  </item>
+</abstracts-retrieval-response>

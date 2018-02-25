@@ -1,0 +1,1488 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<abstracts-retrieval-response xmlns="http://www.elsevier.com/xml/svapi/abstract/dtd" xmlns:ait="http://www.elsevier.com/xml/ani/ait" xmlns:ce="http://www.elsevier.com/xml/ani/common" xmlns:cto="http://www.elsevier.com/xml/cto/dtd" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:prism="http://prismstandard.org/namespaces/basic/2.0/" xmlns:xocs="http://www.elsevier.com/xml/xocs/dtd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <coredata>
+    <prism:url>http://api.elsevier.com/content/abstract/scopus_id/33847321982</prism:url>
+    <dc:identifier>SCOPUS_ID:33847321982</dc:identifier>
+    <eid>2-s2.0-33847321982</eid>
+    <pubmed-id>17336765</pubmed-id>
+    <pii>S0924977X07000235</pii>
+    <prism:doi>10.1016/j.euroneuro.2007.02.004</prism:doi>
+    <dc:title>Management of agitation in the acute psychotic patient - Efficacy without excessive sedation</dc:title>
+    <prism:aggregationType>Journal</prism:aggregationType>
+    <srctype>j</srctype>
+    <citedby-count>27</citedby-count>
+    <prism:publicationName>European Neuropsychopharmacology</prism:publicationName>
+    <source-id>15576</source-id>
+    <prism:issn>0924977X</prism:issn>
+    <prism:volume>17</prism:volume>
+    <prism:issueIdentifier>SUPPL. 2</prism:issueIdentifier>
+    <prism:coverDate>2007-03-01</prism:coverDate>
+    <dc:creator>
+      <author auid="7003648080" seq="1">
+        <ce:initials>F.</ce:initials>
+        <ce:indexed-name>Canas F.</ce:indexed-name>
+        <ce:surname>Cañas</ce:surname>
+        <ce:given-name>Fernando</ce:given-name>
+        <preferred-name> <ce:initials>F.</ce:initials> <ce:indexed-name>Cañas F.</ce:indexed-name> <ce:surname>Cañas</ce:surname> <ce:given-name>Fernando</ce:given-name> </preferred-name>
+        <author-url>http://api.elsevier.com/content/author/author_id/7003648080</author-url>
+        <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60026796" id="60026796"/>
+      </author>
+    </dc:creator>
+    <dc:description>
+      <abstract original="y" xml:lang="eng">
+        <ce:para>Rapid-acting intramuscular (IM) formulations of atypical antipsychotics offer a significant advance over IM haloperidol in the short-term management of acute schizophrenic episodes. Several short-term open-label randomised studies, typically enrolling two- to three-hundred patients, have compared an atypical antipsychotic with haloperidol. These studies show that IM ziprasidone, IM olanzapine and IM aripiprazole are at least as effective and better tolerated than IM haloperidol, with lower extrapyramidal side effects. Successful transitions from an IM to oral formulation of the same agent have been performed in double-blind randomised trials assessing haloperidol, olanzapine, ziprasidone and aripiprazole. Avoiding over-sedation is now recognised as important, and randomised clinical trial data indicate that oral ziprasone, quetiapine, and IM olanzapine have high dose-related sedative potential while oral risperidone and IM aripiprazole have low sedative potential. In summary, IM formulations of atypical antipsychotics are recommended as first-line treatment of acute agitation with subsequent transition to an oral formulation of the same agent for ongoing management. © 2007 Elsevier B.V. All rights reserved.</ce:para>
+      </abstract>
+    </dc:description>
+    <intid>33847321982</intid>
+    <link href="http://api.elsevier.com/content/abstract/scopus_id/33847321982" rel="self"/>
+    <link href="https://www.scopus.com/inward/record.uri?partnerID=HzOxMe3b&amp;scp=33847321982&amp;origin=inward" rel="scopus"/>
+    <link href="https://www.scopus.com/inward/citedby.uri?partnerID=HzOxMe3b&amp;scp=33847321982&amp;origin=inward" rel="scopus-citedby"/>
+  </coredata>
+  <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60026796" id="60026796">
+    <affilname>Universidad Autonoma de Madrid</affilname>
+    <affiliation-city>Madrid</affiliation-city>
+    <affiliation-country>Spain</affiliation-country>
+  </affiliation>
+  <authors>
+    <author auid="7003648080" seq="1">
+      <ce:initials>F.</ce:initials>
+      <ce:indexed-name>Canas F.</ce:indexed-name>
+      <ce:surname>Cañas</ce:surname>
+      <ce:given-name>Fernando</ce:given-name>
+      <preferred-name> <ce:initials>F.</ce:initials> <ce:indexed-name>Cañas F.</ce:indexed-name> <ce:surname>Cañas</ce:surname> <ce:given-name>Fernando</ce:given-name> </preferred-name>
+      <author-url>http://api.elsevier.com/content/author/author_id/7003648080</author-url>
+      <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60026796" id="60026796"/>
+    </author>
+  </authors>
+  <language xml:lang="eng"/>
+  <authkeywords>
+    <author-keyword>Acute agitation</author-keyword>
+    <author-keyword>Atypical antipsychotics</author-keyword>
+    <author-keyword>Intramuscular</author-keyword>
+    <author-keyword>Schizophrenia</author-keyword>
+    <author-keyword>Sedation</author-keyword>
+  </authkeywords>
+  <idxterms/>
+  <subject-areas>
+    <subject-area abbrev="MEDI" code="2728">Neurology (clinical)</subject-area>
+    <subject-area abbrev="MEDI" code="2738">Psychiatry and Mental Health</subject-area>
+    <subject-area abbrev="NEUR" code="2803">Biological Psychiatry</subject-area>
+    <subject-area abbrev="NEUR" code="2808">Neurology</subject-area>
+    <subject-area abbrev="PHAR" code="3004">Pharmacology</subject-area>
+    <subject-area abbrev="PSYC" code="3200">Psychology (all)</subject-area>
+  </subject-areas>
+  <item xmlns="">
+    <ait:process-info>
+      <ait:date-delivered day="5" month="6" timestamp="2010-06-05T23:58:10.000010+01:00" year="2010"/>
+      <ait:date-sort day="01" month="03" year="2007"/>
+      <ait:status stage="S300" state="update" type="core"/>
+    </ait:process-info>
+    <bibrecord>
+      <item-info>
+        <copyright type="Elsevier">Copyright 2008 Elsevier B.V., All rights reserved.</copyright>
+        <copyright type="Medline Descriptors">MEDLINE® is the source for the MeSH terms of this document.</copyright>
+        <itemidlist>
+          <ce:pii>S0924977X07000235</ce:pii>
+          <ce:doi>10.1016/j.euroneuro.2007.02.004</ce:doi>
+          <itemid idtype="CABS">2007064077</itemid>
+          <itemid idtype="EMBASE">2007106701</itemid>
+          <itemid idtype="MEDL">17336765</itemid>
+          <itemid idtype="PUI">46320965</itemid>
+          <itemid idtype="SCP">33847321982</itemid>
+          <itemid idtype="SGR">33847321982</itemid>
+        </itemidlist>
+        <history>
+          <date-created day="02" month="03" year="2007"/>
+        </history>
+        <dbcollection>CABS</dbcollection>
+        <dbcollection>EMBASE</dbcollection>
+        <dbcollection>MEDL</dbcollection>
+        <dbcollection>Scopusbase</dbcollection>
+      </item-info>
+      <head>
+        <citation-info>
+          <citation-type code="ar"/>
+          <citation-language language="English" xml:lang="eng"/>
+          <abstract-language language="English" xml:lang="eng"/>
+          <author-keywords>
+            <author-keyword>Acute agitation</author-keyword>
+            <author-keyword>Atypical antipsychotics</author-keyword>
+            <author-keyword>Intramuscular</author-keyword>
+            <author-keyword>Schizophrenia</author-keyword>
+            <author-keyword>Sedation</author-keyword>
+          </author-keywords>
+        </citation-info>
+        <citation-title>
+          <titletext language="English" original="y" xml:lang="eng">Management of agitation in the acute psychotic patient - Efficacy without excessive sedation</titletext>
+        </citation-title>
+        <author-group>
+          <author auid="7003648080" seq="1"><ce:initials>F.</ce:initials><ce:indexed-name>Canas F.</ce:indexed-name><ce:surname>Cañas</ce:surname><ce:given-name>Fernando</ce:given-name><preferred-name> <ce:initials>F.</ce:initials> <ce:indexed-name>Cañas F.</ce:indexed-name> <ce:surname>Cañas</ce:surname> <ce:given-name>Fernando</ce:given-name> </preferred-name> <ce:e-address type="email">fcanasd@hotmail.com</ce:e-address> </author>
+          <affiliation afid="60026796" country="esp">
+            <organization>Department of Psychiatry</organization>
+            <organization>Hospital Dr. R. Lafora</organization>
+            <city-group>Madrid</city-group>
+            <country>Spain</country>
+          </affiliation>
+        </author-group>
+        <correspondence>
+          <person>
+            <ce:initials>F.</ce:initials>
+            <ce:indexed-name>Canas F.</ce:indexed-name>
+            <ce:surname>Cañas</ce:surname>
+          </person>
+          <affiliation country="esp">
+            <organization>Department of Psychiatry</organization>
+            <organization>Hospital Dr. R. Lafora</organization>
+            <city-group>Madrid</city-group>
+            <country>Spain</country>
+          </affiliation>
+          <ce:e-address type="email">fcanasd@hotmail.com</ce:e-address>
+        </correspondence>
+        <abstracts>
+          <abstract original="y" xml:lang="eng">
+            <ce:para>Rapid-acting intramuscular (IM) formulations of atypical antipsychotics offer a significant advance over IM haloperidol in the short-term management of acute schizophrenic episodes. Several short-term open-label randomised studies, typically enrolling two- to three-hundred patients, have compared an atypical antipsychotic with haloperidol. These studies show that IM ziprasidone, IM olanzapine and IM aripiprazole are at least as effective and better tolerated than IM haloperidol, with lower extrapyramidal side effects. Successful transitions from an IM to oral formulation of the same agent have been performed in double-blind randomised trials assessing haloperidol, olanzapine, ziprasidone and aripiprazole. Avoiding over-sedation is now recognised as important, and randomised clinical trial data indicate that oral ziprasone, quetiapine, and IM olanzapine have high dose-related sedative potential while oral risperidone and IM aripiprazole have low sedative potential. In summary, IM formulations of atypical antipsychotics are recommended as first-line treatment of acute agitation with subsequent transition to an oral formulation of the same agent for ongoing management. © 2007 Elsevier B.V. All rights reserved.</ce:para>
+          </abstract>
+        </abstracts>
+        <source country="nld" srcid="15576" type="j">
+          <sourcetitle>European Neuropsychopharmacology</sourcetitle>
+          <sourcetitle-abbrev>Eur. Neuropsychopharmacol.</sourcetitle-abbrev>
+          <issn type="print">0924977X</issn>
+          <codencode>EURNE</codencode>
+          <volisspag>
+            <voliss issue="SUPPL. 2" volume="17"/>
+            <pages>S108-S114</pages>
+          </volisspag>
+          <publicationyear first="2007"/>
+          <publicationdate>
+            <year>2007</year>
+            <month>03</month>
+            <date-text xfab-added="true">March 2007</date-text>
+          </publicationdate>
+        </source>
+        <enhancement>
+          <classificationgroup>
+            <classifications type="ASJC">
+              <classification>2728</classification>
+              <classification>2738</classification>
+              <classification>2803</classification>
+              <classification>2808</classification>
+              <classification>3004</classification>
+              <classification>3200</classification>
+            </classifications>
+            <classifications type="SUBJABBR">
+              <classification>MEDI</classification>
+              <classification>NEUR</classification>
+              <classification>PHAR</classification>
+              <classification>PSYC</classification>
+            </classifications>
+            <classifications type="CABSCLASS">
+              <classification>88.5.7</classification>
+            </classifications>
+            <classifications type="EMCLASS">
+              <classification>32.4.1</classification>
+              <classification>32.8</classification>
+              <classification>37</classification>
+              <classification>38.8</classification>
+            </classifications>
+          </classificationgroup>
+          <chemicalgroup>
+            <chemicals source="esbd">
+              <chemical>
+                <chemical-name>aripiprazole</chemical-name>
+                <cas-registry-number>129722-12-9</cas-registry-number>
+              </chemical>
+              <chemical>
+                <chemical-name>haloperidol</chemical-name>
+                <cas-registry-number>52-86-8</cas-registry-number>
+              </chemical>
+              <chemical>
+                <chemical-name>lorazepam</chemical-name>
+                <cas-registry-number>846-49-1</cas-registry-number>
+              </chemical>
+              <chemical>
+                <chemical-name>olanzapine</chemical-name>
+                <cas-registry-number>132539-06-1</cas-registry-number>
+              </chemical>
+              <chemical>
+                <chemical-name>quetiapine</chemical-name>
+                <cas-registry-number>111974-72-2</cas-registry-number>
+              </chemical>
+              <chemical>
+                <chemical-name>risperidone</chemical-name>
+                <cas-registry-number>106266-06-2</cas-registry-number>
+              </chemical>
+              <chemical>
+                <chemical-name>ziprasidone</chemical-name>
+                <cas-registry-number>118289-78-4</cas-registry-number>
+                <cas-registry-number>122883-93-6</cas-registry-number>
+                <cas-registry-number>138982-67-9</cas-registry-number>
+                <cas-registry-number>199191-69-0</cas-registry-number>
+              </chemical>
+            </chemicals>
+            <chemicals source="nlm">
+              <chemical>
+                <chemical-name>Antipsychotic Agents</chemical-name>
+                <cas-registry-number>0</cas-registry-number>
+              </chemical>
+              <chemical>
+                <chemical-name>Benzodiazepines</chemical-name>
+                <cas-registry-number>0</cas-registry-number>
+              </chemical>
+            </chemicals>
+          </chemicalgroup>
+        </enhancement>
+      </head>
+      <tail>
+        <bibliography refcount="33">
+          <reference>
+            <ref-info>
+              <ref-title>
+                <ref-titletext>The expert consensus guideline series: treatment of behavioral emergencies</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">0038478197</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>M.H.</ce:initials>
+                  <ce:indexed-name>Allen M.H.</ce:indexed-name>
+                  <ce:surname>Allen</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>G.W.</ce:initials>
+                  <ce:indexed-name>Currier G.W.</ce:indexed-name>
+                  <ce:surname>Currier</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>D.H.</ce:initials>
+                  <ce:indexed-name>Hughes D.H.</ce:indexed-name>
+                  <ce:surname>Hughes</ce:surname>
+                </author>
+                <author seq="4">
+                  <ce:initials>M.</ce:initials>
+                  <ce:indexed-name>Reyes-Harde M.</ce:indexed-name>
+                  <ce:surname>Reyes-Harde</ce:surname>
+                </author>
+                <author seq="5">
+                  <ce:initials>J.P.</ce:initials>
+                  <ce:indexed-name>Docherty J.P.</ce:indexed-name>
+                  <ce:surname>Docherty</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Postgrad. Med. Special Rep.</ref-sourcetitle>
+              <ref-publicationyear first="2001"/>
+              <ref-text>Expert Consensus Panel for Behavioral Emergencies (May, 1-88)</ref-text>
+            </ref-info>
+            <ref-fulltext>Allen M.H., Currier G.W., Hughes D.H., Reyes-Harde M., Docherty J.P., and Expert Consensus Panel for Behavioral Emergencies. The expert consensus guideline series: treatment of behavioral emergencies. Postgrad. Med. Special Rep. (2001) (May, 1-88)</ref-fulltext>
+          </reference>
+          <reference>
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Expert consensus guidelines on the treatment of behavioral emergencies</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">33746855617</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>M.H.</ce:initials>
+                  <ce:indexed-name>Allen M.H.</ce:indexed-name>
+                  <ce:surname>Allen</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>G.W.</ce:initials>
+                  <ce:indexed-name>Currier G.W.</ce:indexed-name>
+                  <ce:surname>Currier</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>D.</ce:initials>
+                  <ce:indexed-name>Carpenter D.</ce:indexed-name>
+                  <ce:surname>Carpenter</ce:surname>
+                </author>
+                <author seq="4">
+                  <ce:initials>R.W.</ce:initials>
+                  <ce:indexed-name>Ross R.W.</ce:indexed-name>
+                  <ce:surname>Ross</ce:surname>
+                </author>
+                <author seq="5">
+                  <ce:initials>J.P.</ce:initials>
+                  <ce:indexed-name>Docherty J.P.</ce:indexed-name>
+                  <ce:surname>Docherty</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>J. Psychiatr. Pract.</ref-sourcetitle>
+              <ref-publicationyear first="2005"/>
+              <ref-volisspag>
+                <voliss issue="SUPPL. 1" volume="11"/>
+                <pagerange first="1" last="108"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Allen M.H., Currier G.W., Carpenter D., Ross R.W., and Docherty J.P. Expert consensus guidelines on the treatment of behavioral emergencies. J. Psychiatr. Pract. 11 Suppl. 1 (2005) 1-108</ref-fulltext>
+          </reference>
+          <reference>
+            <ref-info>
+              <refd-itemidlist>
+                <itemid idtype="SGR">0004050325</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:indexed-name>American Psychiatric Association (APA)</ce:indexed-name>
+                  <ce:surname>American Psychiatric Association (APA)</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Practice Guideline for the Treatment of Patients with Schizophrenia</ref-sourcetitle>
+              <ref-publicationyear first="2004"/>
+              <ref-text>American Psychiatric Press, Washington, DC February</ref-text>
+            </ref-info>
+            <ref-fulltext>American Psychiatric Association (APA). Practice Guideline for the Treatment of Patients with Schizophrenia (2004), American Psychiatric Press, Washington, DC February</ref-fulltext>
+          </reference>
+          <reference>
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Intramuscular aripiprazole or haloperidol and transition to oral therapy in patients with agitation associated with schizophrenia: sub-analysis of a double-blind study.</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">33751247015</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>R.</ce:initials>
+                  <ce:indexed-name>Andrezina R.</ce:indexed-name>
+                  <ce:surname>Andrezina</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>R.N.</ce:initials>
+                  <ce:indexed-name>Marcus R.N.</ce:indexed-name>
+                  <ce:surname>Marcus</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>D.A.</ce:initials>
+                  <ce:indexed-name>Oren D.A.</ce:indexed-name>
+                  <ce:surname>Oren</ce:surname>
+                </author>
+                <author seq="4">
+                  <ce:initials>G.</ce:initials>
+                  <ce:indexed-name>Manos G.</ce:indexed-name>
+                  <ce:surname>Manos</ce:surname>
+                </author>
+                <author seq="5">
+                  <ce:initials>E.</ce:initials>
+                  <ce:indexed-name>Stock E.</ce:indexed-name>
+                  <ce:surname>Stock</ce:surname>
+                </author>
+                <author seq="6">
+                  <ce:initials>W.H.</ce:initials>
+                  <ce:indexed-name>Carson W.H.</ce:indexed-name>
+                  <ce:surname>Carson</ce:surname>
+                </author>
+                <author seq="7">
+                  <ce:initials>R.D.</ce:initials>
+                  <ce:indexed-name>McQuade R.D.</ce:indexed-name>
+                  <ce:surname>McQuade</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Current Medical Research and Opinion</ref-sourcetitle>
+              <ref-publicationyear first="2006"/>
+              <ref-volisspag>
+                <voliss volume="22"/>
+                <pagerange first="2209" last="2219"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Andrezina R., Marcus R.N., Oren D.A., Manos G., Stock E., Carson W.H., and McQuade R.D. Intramuscular aripiprazole or haloperidol and transition to oral therapy in patients with agitation associated with schizophrenia: sub-analysis of a double-blind study. Current Medical Research and Opinion 22 (2006) 2209-2219</ref-fulltext>
+          </reference>
+          <reference>
+            <ref-info>
+              <refd-itemidlist>
+                <itemid idtype="SGR">33847264647</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:indexed-name>AstraZeneca Pharmaceuticals LP</ce:indexed-name>
+                  <ce:surname>AstraZeneca Pharmaceuticals LP</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Quetiapine (Seroquel) Package Insert</ref-sourcetitle>
+              <ref-publicationyear first="2003"/>
+              <ref-text>AstraZeneca Pharmaceuticals LP, Willmington, DE, USA</ref-text>
+            </ref-info>
+            <ref-fulltext>AstraZeneca Pharmaceuticals LP. Quetiapine (Seroquel) Package Insert (2003), AstraZeneca Pharmaceuticals LP, Willmington, DE, USA</ref-fulltext>
+          </reference>
+          <reference>
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Pharmacological management of acute agitation</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">22744449459</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>J.</ce:initials>
+                  <ce:indexed-name>Battaglia J.</ce:indexed-name>
+                  <ce:surname>Battaglia</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Drugs</ref-sourcetitle>
+              <ref-publicationyear first="2005"/>
+              <ref-volisspag>
+                <voliss volume="65"/>
+                <pagerange first="1207" last="1222"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Battaglia J. Pharmacological management of acute agitation. Drugs 65 (2005) 1207-1222</ref-fulltext>
+          </reference>
+          <reference>
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Attenuation of benzodiazepine withdrawal anxiety in the rat by serotonin antagonists</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">19544371577</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>D.P.</ce:initials>
+                  <ce:indexed-name>Begg D.P.</ce:indexed-name>
+                  <ce:surname>Begg</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>K.T.</ce:initials>
+                  <ce:indexed-name>Hallam K.T.</ce:indexed-name>
+                  <ce:surname>Hallam</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>T.R.</ce:initials>
+                  <ce:indexed-name>Norman T.R.</ce:indexed-name>
+                  <ce:surname>Norman</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Behav. Brain Res.</ref-sourcetitle>
+              <ref-publicationyear first="2005"/>
+              <ref-volisspag>
+                <voliss volume="161"/>
+                <pagerange first="286" last="290"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Begg D.P., Hallam K.T., and Norman T.R. Attenuation of benzodiazepine withdrawal anxiety in the rat by serotonin antagonists. Behav. Brain Res. 161 (2005) 286-290</ref-fulltext>
+          </reference>
+          <reference>
+            <ref-info>
+              <ref-title>
+                <ref-titletext>A double-blind, placebo-controlled dose-response comparison of intramuscular olanzapine and haloperidol in the treatment of acute agitation in schizophrenia</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">0036244492</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>A.</ce:initials>
+                  <ce:indexed-name>Breier A.</ce:indexed-name>
+                  <ce:surname>Breier</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>K.</ce:initials>
+                  <ce:indexed-name>Meehan K.</ce:indexed-name>
+                  <ce:surname>Meehan</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>M.</ce:initials>
+                  <ce:indexed-name>Birkett M.</ce:indexed-name>
+                  <ce:surname>Birkett</ce:surname>
+                </author>
+                <author seq="4">
+                  <ce:initials>S.</ce:initials>
+                  <ce:indexed-name>David S.</ce:indexed-name>
+                  <ce:surname>David</ce:surname>
+                </author>
+                <author seq="5">
+                  <ce:initials>I.</ce:initials>
+                  <ce:indexed-name>Ferchland I.</ce:indexed-name>
+                  <ce:surname>Ferchland</ce:surname>
+                </author>
+                <author seq="6">
+                  <ce:initials>V.</ce:initials>
+                  <ce:indexed-name>Sutton V.</ce:indexed-name>
+                  <ce:surname>Sutton</ce:surname>
+                </author>
+                <author seq="7">
+                  <ce:initials>C.C.</ce:initials>
+                  <ce:indexed-name>Taylor C.C.</ce:indexed-name>
+                  <ce:surname>Taylor</ce:surname>
+                </author>
+                <author seq="8">
+                  <ce:initials>R.</ce:initials>
+                  <ce:indexed-name>Palmer R.</ce:indexed-name>
+                  <ce:surname>Palmer</ce:surname>
+                </author>
+                <author seq="9">
+                  <ce:initials>M.</ce:initials>
+                  <ce:indexed-name>Dossenbach M.</ce:indexed-name>
+                  <ce:surname>Dossenbach</ce:surname>
+                </author>
+                <author seq="10">
+                  <ce:initials>G.</ce:initials>
+                  <ce:indexed-name>Kiesler G.</ce:indexed-name>
+                  <ce:surname>Kiesler</ce:surname>
+                </author>
+                <author seq="11">
+                  <ce:initials>S.</ce:initials>
+                  <ce:indexed-name>Brook S.</ce:indexed-name>
+                  <ce:surname>Brook</ce:surname>
+                </author>
+                <author seq="12">
+                  <ce:initials>P.</ce:initials>
+                  <ce:indexed-name>Wright P.</ce:indexed-name>
+                  <ce:surname>Wright</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Arch. Gen. Psychiatry</ref-sourcetitle>
+              <ref-publicationyear first="2002"/>
+              <ref-volisspag>
+                <voliss volume="59"/>
+                <pagerange first="441" last="448"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Breier A., Meehan K., Birkett M., David S., Ferchland I., Sutton V., Taylor C.C., Palmer R., Dossenbach M., Kiesler G., Brook S., and Wright P. A double-blind, placebo-controlled dose-response comparison of intramuscular olanzapine and haloperidol in the treatment of acute agitation in schizophrenia. Arch. Gen. Psychiatry 59 (2002) 441-448</ref-fulltext>
+          </reference>
+          <reference>
+            <ref-info>
+              <refd-itemidlist>
+                <itemid idtype="SGR">33847320845</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>Co.</ce:initials>
+                  <ce:indexed-name>Bristol-Myers Squibb Co.</ce:indexed-name>
+                  <ce:surname>Bristol-Myers Squibb</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Aripiprazole (Abilify) Package Insert</ref-sourcetitle>
+              <ref-publicationyear first="2003"/>
+              <ref-text>Bristol-Myers Squibb Co., Princeton, NJ, USA</ref-text>
+            </ref-info>
+            <ref-fulltext>Bristol-Myers Squibb Co. Aripiprazole (Abilify) Package Insert (2003), Bristol-Myers Squibb Co., Princeton, NJ, USA</ref-fulltext>
+          </reference>
+          <reference>
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Intramuscular ziprasidone compared with intramuscular haloperidol in the treatment of acute psychosis</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">0034531178</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>S.</ce:initials>
+                  <ce:indexed-name>Brook S.</ce:indexed-name>
+                  <ce:surname>Brook</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>J.V.</ce:initials>
+                  <ce:indexed-name>Lucey J.V.</ce:indexed-name>
+                  <ce:surname>Lucey</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>K.P.</ce:initials>
+                  <ce:indexed-name>Gunn K.P.</ce:indexed-name>
+                  <ce:surname>Gunn</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>J. Clin. Psychiatry</ref-sourcetitle>
+              <ref-publicationyear first="2000"/>
+              <ref-volisspag>
+                <voliss volume="61"/>
+                <pagerange first="933" last="941"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Brook S., Lucey J.V., and Gunn K.P. Intramuscular ziprasidone compared with intramuscular haloperidol in the treatment of acute psychosis. J. Clin. Psychiatry 61 (2000) 933-941</ref-fulltext>
+          </reference>
+          <reference>
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Aripiprazole, a novel antipsychotic, is a high affinity partial agonist at human dopamine D2 receptors</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">0036089687</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>K.D.</ce:initials>
+                  <ce:indexed-name>Burris K.D.</ce:indexed-name>
+                  <ce:surname>Burris</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>T.F.</ce:initials>
+                  <ce:indexed-name>Molski T.F.</ce:indexed-name>
+                  <ce:surname>Molski</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>C.</ce:initials>
+                  <ce:indexed-name>Xu C.</ce:indexed-name>
+                  <ce:surname>Xu</ce:surname>
+                </author>
+                <author seq="4">
+                  <ce:initials>E.</ce:initials>
+                  <ce:indexed-name>Ryan E.</ce:indexed-name>
+                  <ce:surname>Ryan</ce:surname>
+                </author>
+                <author seq="5">
+                  <ce:initials>K.</ce:initials>
+                  <ce:indexed-name>Tottori K.</ce:indexed-name>
+                  <ce:surname>Tottori</ce:surname>
+                </author>
+                <author seq="6">
+                  <ce:initials>T.</ce:initials>
+                  <ce:indexed-name>Kikuchi T.</ce:indexed-name>
+                  <ce:surname>Kikuchi</ce:surname>
+                </author>
+                <author seq="7">
+                  <ce:initials>F.D.</ce:initials>
+                  <ce:indexed-name>Yocca F.D.</ce:indexed-name>
+                  <ce:surname>Yocca</ce:surname>
+                </author>
+                <author seq="8">
+                  <ce:initials>P.B.</ce:initials>
+                  <ce:indexed-name>Molinoff P.B.</ce:indexed-name>
+                  <ce:surname>Molinoff</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>J. Pharmacol. Exp. Ther.</ref-sourcetitle>
+              <ref-publicationyear first="2002"/>
+              <ref-volisspag>
+                <voliss volume="302"/>
+                <pagerange first="381" last="389"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Burris K.D., Molski T.F., Xu C., Ryan E., Tottori K., Kikuchi T., Yocca F.D., and Molinoff P.B. Aripiprazole, a novel antipsychotic, is a high affinity partial agonist at human dopamine D2 receptors. J. Pharmacol. Exp. Ther. 302 (2002) 381-389</ref-fulltext>
+          </reference>
+          <reference>
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Benzodiazepine prescription practices and substance abuse in persons with severe mental illness</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">1842844964</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>R.E.</ce:initials>
+                  <ce:indexed-name>Clark R.E.</ce:indexed-name>
+                  <ce:surname>Clark</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>H.</ce:initials>
+                  <ce:indexed-name>Xie H.</ce:indexed-name>
+                  <ce:surname>Xie</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>M.F.</ce:initials>
+                  <ce:indexed-name>Brunette M.F.</ce:indexed-name>
+                  <ce:surname>Brunette</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>J. Clin. Psychiatry</ref-sourcetitle>
+              <ref-publicationyear first="2004"/>
+              <ref-volisspag>
+                <voliss volume="65"/>
+                <pagerange first="151" last="155"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Clark R.E., Xie H., and Brunette M.F. Benzodiazepine prescription practices and substance abuse in persons with severe mental illness. J. Clin. Psychiatry 65 (2004) 151-155</ref-fulltext>
+          </reference>
+          <reference>
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Development of a scale for assessment of agitation following traumatic brain injury</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">0024515441</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>J.D.</ce:initials>
+                  <ce:indexed-name>Corrigan J.D.</ce:indexed-name>
+                  <ce:surname>Corrigan</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>J. Clin. Exp. Neuropsychol.</ref-sourcetitle>
+              <ref-publicationyear first="1989"/>
+              <ref-volisspag>
+                <voliss volume="11"/>
+                <pagerange first="261" last="277"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Corrigan J.D. Development of a scale for assessment of agitation following traumatic brain injury. J. Clin. Exp. Neuropsychol. 11 (1989) 261-277</ref-fulltext>
+          </reference>
+          <reference>
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Acute treatment of psychotic agitation: a randomized comparison of oral treatment with risperidone and lorazepam versus intramuscular treatment with haloperidol and lorazepam</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">2342639584</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>G.W.</ce:initials>
+                  <ce:indexed-name>Currier G.W.</ce:indexed-name>
+                  <ce:surname>Currier</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>J.C.Y.</ce:initials>
+                  <ce:indexed-name>Chou J.C.Y.</ce:indexed-name>
+                  <ce:surname>Chou</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>D.</ce:initials>
+                  <ce:indexed-name>Feifel D.</ce:indexed-name>
+                  <ce:surname>Feifel</ce:surname>
+                </author>
+                <author seq="4">
+                  <ce:initials>C.A.</ce:initials>
+                  <ce:indexed-name>Bossie C.A.</ce:indexed-name>
+                  <ce:surname>Bossie</ce:surname>
+                </author>
+                <author seq="5">
+                  <ce:initials>I.</ce:initials>
+                  <ce:indexed-name>Turkoz I.</ce:indexed-name>
+                  <ce:surname>Turkoz</ce:surname>
+                </author>
+                <author seq="6">
+                  <ce:initials>R.A.</ce:initials>
+                  <ce:indexed-name>Mahmoud R.A.</ce:indexed-name>
+                  <ce:surname>Mahmoud</ce:surname>
+                </author>
+                <author seq="7">
+                  <ce:initials>G.M.</ce:initials>
+                  <ce:indexed-name>Gharabawi G.M.</ce:indexed-name>
+                  <ce:surname>Gharabawi</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>J. Clin. Psychiatry</ref-sourcetitle>
+              <ref-publicationyear first="2004"/>
+              <ref-volisspag>
+                <voliss volume="65"/>
+                <pagerange first="386" last="394"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Currier G.W., Chou J.C.Y., Feifel D., Bossie C.A., Turkoz I., Mahmoud R.A., and Gharabawi G.M. Acute treatment of psychotic agitation: a randomized comparison of oral treatment with risperidone and lorazepam versus intramuscular treatment with haloperidol and lorazepam. J. Clin. Psychiatry 65 (2004) 386-394</ref-fulltext>
+          </reference>
+          <reference>
+            <ref-info>
+              <ref-title>
+                <ref-titletext>The tolerability of intramuscular ziprasidone and haloperidol treatment and the transition to oral therapy</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">1642493839</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>D.G.</ce:initials>
+                  <ce:indexed-name>Daniel D.G.</ce:indexed-name>
+                  <ce:surname>Daniel</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>D.L.</ce:initials>
+                  <ce:indexed-name>Zimbroff D.L.</ce:indexed-name>
+                  <ce:surname>Zimbroff</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>R.H.</ce:initials>
+                  <ce:indexed-name>Swift R.H.</ce:indexed-name>
+                  <ce:surname>Swift</ce:surname>
+                </author>
+                <author seq="4">
+                  <ce:initials>E.P.</ce:initials>
+                  <ce:indexed-name>Harrigan E.P.</ce:indexed-name>
+                  <ce:surname>Harrigan</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Int. Clin. Psychopharmacol.</ref-sourcetitle>
+              <ref-publicationyear first="2004"/>
+              <ref-volisspag>
+                <voliss volume="19"/>
+                <pagerange first="9" last="15"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Daniel D.G., Zimbroff D.L., Swift R.H., and Harrigan E.P. The tolerability of intramuscular ziprasidone and haloperidol treatment and the transition to oral therapy. Int. Clin. Psychopharmacol. 19 (2004) 9-15</ref-fulltext>
+          </reference>
+          <reference>
+            <ref-info>
+              <refd-itemidlist>
+                <itemid idtype="SGR">33847256130</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:indexed-name>Eli Lilly and Company</ce:indexed-name>
+                  <ce:surname>Eli Lilly and Company</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Olanzapine (Zyprexa) US Prescribing Information</ref-sourcetitle>
+              <ref-publicationyear first="2006"/>
+              <ref-text>Eli Lilly and Company, Indianapolis, IN, USA</ref-text>
+            </ref-info>
+            <ref-fulltext>Eli Lilly and Company. Olanzapine (Zyprexa) US Prescribing Information (2006), Eli Lilly and Company, Indianapolis, IN, USA</ref-fulltext>
+          </reference>
+          <reference>
+            <ref-info>
+              <ref-title>
+                <ref-titletext>The Brief Psychiatric Rating Scale (BPRS). A comprehensive review</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">0001927869</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>J.L.</ce:initials>
+                  <ce:indexed-name>Hedlund J.L.</ce:indexed-name>
+                  <ce:surname>Hedlund</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>B.M.</ce:initials>
+                  <ce:indexed-name>Vieweg B.M.</ce:indexed-name>
+                  <ce:surname>Vieweg</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>J. Oper. Psych.</ref-sourcetitle>
+              <ref-publicationyear first="1980"/>
+              <ref-volisspag>
+                <voliss volume="11"/>
+                <pagerange first="48" last="65"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Hedlund J.L., and Vieweg B.M. The Brief Psychiatric Rating Scale (BPRS). A comprehensive review. J. Oper. Psych. 11 (1980) 48-65</ref-fulltext>
+          </reference>
+          <reference>
+            <ref-info>
+              <refd-itemidlist>
+                <itemid idtype="SGR">33847332302</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:indexed-name>Janssen Pharmaceutica</ce:indexed-name>
+                  <ce:surname>Janssen Pharmaceutica</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Risperidone (Risperdal) Package Insert</ref-sourcetitle>
+              <ref-publicationyear first="2003"/>
+              <ref-text>Janssen Pharmaceutica, Titusville, NJ, USA</ref-text>
+            </ref-info>
+            <ref-fulltext>Janssen Pharmaceutica. Risperidone (Risperdal) Package Insert (2003), Janssen Pharmaceutica, Titusville, NJ, USA</ref-fulltext>
+          </reference>
+          <reference>
+            <ref-info>
+              <ref-title>
+                <ref-titletext>The positive and negative syndrome scale (PANSS) for schizophrenia</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">0023606101</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>S.R.</ce:initials>
+                  <ce:indexed-name>Kay S.R.</ce:indexed-name>
+                  <ce:surname>Kay</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>A.</ce:initials>
+                  <ce:indexed-name>Fiszbein A.</ce:indexed-name>
+                  <ce:surname>Fiszbein</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>L.A.</ce:initials>
+                  <ce:indexed-name>Opler L.A.</ce:indexed-name>
+                  <ce:surname>Opler</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Schizophr. Bull.</ref-sourcetitle>
+              <ref-publicationyear first="1987"/>
+              <ref-volisspag>
+                <voliss volume="13"/>
+                <pagerange first="261" last="276"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Kay S.R., Fiszbein A., and Opler L.A. The positive and negative syndrome scale (PANSS) for schizophrenia. Schizophr. Bull. 13 (1987) 261-276</ref-fulltext>
+          </reference>
+          <reference>
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Sedation in acute and chronic agitation</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">0029909852</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>R.H.</ce:initials>
+                  <ce:indexed-name>Levy R.H.</ce:indexed-name>
+                  <ce:surname>Levy</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Pharmacotherapy</ref-sourcetitle>
+              <ref-publicationyear first="1996"/>
+              <ref-volisspag>
+                <voliss volume="16"/>
+                <pages>152S-159S</pages>
+              </ref-volisspag>
+              <ref-text>(discussion 166S-168S)</ref-text>
+            </ref-info>
+            <ref-fulltext>Levy R.H. Sedation in acute and chronic agitation. Pharmacotherapy 16 (1996) 152S-159S (discussion 166S-168S)</ref-fulltext>
+          </reference>
+          <reference>
+            <ref-info>
+              <ref-title>
+                <ref-titletext>The early stages of schizophrenia: speculations on pathogenesis, pathophysiology, and therapeutic approaches</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">0035666578</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>J.A.</ce:initials>
+                  <ce:indexed-name>Lieberman J.A.</ce:indexed-name>
+                  <ce:surname>Lieberman</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>P.</ce:initials>
+                  <ce:indexed-name>Perkins P.</ce:indexed-name>
+                  <ce:surname>Perkins</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>A.</ce:initials>
+                  <ce:indexed-name>Belger A.</ce:indexed-name>
+                  <ce:surname>Belger</ce:surname>
+                </author>
+                <author seq="4">
+                  <ce:initials>M.</ce:initials>
+                  <ce:indexed-name>Chakos M.</ce:indexed-name>
+                  <ce:surname>Chakos</ce:surname>
+                </author>
+                <author seq="5">
+                  <ce:initials>F.</ce:initials>
+                  <ce:indexed-name>Jarskog F.</ce:indexed-name>
+                  <ce:surname>Jarskog</ce:surname>
+                </author>
+                <author seq="6">
+                  <ce:initials>K.</ce:initials>
+                  <ce:indexed-name>Boteva K.</ce:indexed-name>
+                  <ce:surname>Boteva</ce:surname>
+                </author>
+                <author seq="7">
+                  <ce:initials>J.</ce:initials>
+                  <ce:indexed-name>Gilmore J.</ce:indexed-name>
+                  <ce:surname>Gilmore</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Biol. Psychiatry</ref-sourcetitle>
+              <ref-publicationyear first="2001"/>
+              <ref-volisspag>
+                <voliss volume="50"/>
+                <pagerange first="884" last="897"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Lieberman J.A., Perkins P., Belger A., Chakos M., Jarskog F., Boteva K., and Gilmore J. The early stages of schizophrenia: speculations on pathogenesis, pathophysiology, and therapeutic approaches. Biol. Psychiatry 50 (2001) 884-897</ref-fulltext>
+          </reference>
+          <reference>
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Managing the first episode of schizophrenia: the role of new therapies</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">0029975405</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>R.G.</ce:initials>
+                  <ce:indexed-name>McCreadie R.G.</ce:indexed-name>
+                  <ce:surname>McCreadie</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Eur. Neuropsychopharmacol.</ref-sourcetitle>
+              <ref-publicationyear first="1996"/>
+              <ref-volisspag>
+                <voliss issue="SUPPL. 2" volume="6"/>
+                <pages>S3-S5</pages>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>McCreadie R.G. Managing the first episode of schizophrenia: the role of new therapies. Eur. Neuropsychopharmacol. 6 Suppl. 2 (1996) S3-S5</ref-fulltext>
+          </reference>
+          <reference>
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Expert consensus guideline series treatment of schizophrenia</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">0002278232</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>J.P.</ce:initials>
+                  <ce:indexed-name>McEvoy J.P.</ce:indexed-name>
+                  <ce:surname>McEvoy</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>P.L.</ce:initials>
+                  <ce:indexed-name>Scheifler P.L.</ce:indexed-name>
+                  <ce:surname>Scheifler</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>A.</ce:initials>
+                  <ce:indexed-name>Frances A.</ce:indexed-name>
+                  <ce:surname>Frances</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>J. Clin. Psychiatry</ref-sourcetitle>
+              <ref-publicationyear first="1999"/>
+              <ref-volisspag>
+                <voliss issue="SUPPL. 11" volume="60"/>
+                <pagerange first="1" last="80"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>McEvoy J.P., Scheifler P.L., and Frances A. Expert consensus guideline series treatment of schizophrenia. J. Clin. Psychiatry 60 Suppl. 11 (1999) 1-80</ref-fulltext>
+          </reference>
+          <reference>
+            <ref-info>
+              <ref-title>
+                <ref-titletext>A double-blind, randomized comparison of the efficacy and safety of intramuscular injections of olanzapine, lorazepam, or placebo in treating acutely agitated patients diagnosed with bipolar mania</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">0034924403</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>K.</ce:initials>
+                  <ce:indexed-name>Meehan K.</ce:indexed-name>
+                  <ce:surname>Meehan</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>F.</ce:initials>
+                  <ce:indexed-name>Zhang F.</ce:indexed-name>
+                  <ce:surname>Zhang</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>S.</ce:initials>
+                  <ce:indexed-name>David S.</ce:indexed-name>
+                  <ce:surname>David</ce:surname>
+                </author>
+                <author seq="4">
+                  <ce:initials>M.</ce:initials>
+                  <ce:indexed-name>Tohen M.</ce:indexed-name>
+                  <ce:surname>Tohen</ce:surname>
+                </author>
+                <author seq="5">
+                  <ce:initials>P.</ce:initials>
+                  <ce:indexed-name>Janicak P.</ce:indexed-name>
+                  <ce:surname>Janicak</ce:surname>
+                </author>
+                <author seq="6">
+                  <ce:initials>J.</ce:initials>
+                  <ce:indexed-name>Small J.</ce:indexed-name>
+                  <ce:surname>Small</ce:surname>
+                </author>
+                <author seq="7">
+                  <ce:initials>K.</ce:initials>
+                  <ce:indexed-name>Koch K.</ce:indexed-name>
+                  <ce:surname>Koch</ce:surname>
+                </author>
+                <author seq="8">
+                  <ce:initials>R.</ce:initials>
+                  <ce:indexed-name>Rizk R.</ce:indexed-name>
+                  <ce:surname>Rizk</ce:surname>
+                </author>
+                <author seq="9">
+                  <ce:initials>D.</ce:initials>
+                  <ce:indexed-name>Walker D.</ce:indexed-name>
+                  <ce:surname>Walker</ce:surname>
+                </author>
+                <author seq="10">
+                  <ce:initials>P.</ce:initials>
+                  <ce:indexed-name>Tran P.</ce:indexed-name>
+                  <ce:surname>Tran</ce:surname>
+                </author>
+                <author seq="11">
+                  <ce:initials>A.</ce:initials>
+                  <ce:indexed-name>Breier A.</ce:indexed-name>
+                  <ce:surname>Breier</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>J. Clin. Psychopharmacol.</ref-sourcetitle>
+              <ref-publicationyear first="2001"/>
+              <ref-volisspag>
+                <voliss volume="21"/>
+                <pagerange first="389" last="397"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Meehan K., Zhang F., David S., Tohen M., Janicak P., Small J., Koch K., Rizk R., Walker D., Tran P., and Breier A. A double-blind, randomized comparison of the efficacy and safety of intramuscular injections of olanzapine, lorazepam, or placebo in treating acutely agitated patients diagnosed with bipolar mania. J. Clin. Psychopharmacol. 21 (2001) 389-397</ref-fulltext>
+          </reference>
+          <reference>
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Atypical antipsychotics: sleep, sedation, and efficacy</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">25444533069</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>D.D.</ce:initials>
+                  <ce:indexed-name>Miller D.D.</ce:indexed-name>
+                  <ce:surname>Miller</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Prim. Care Companion J. Clin. Psychiat.</ref-sourcetitle>
+              <ref-publicationyear first="2004"/>
+              <ref-volisspag>
+                <voliss issue="SUPPL. 2" volume="6"/>
+                <pagerange first="3" last="7"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Miller D.D. Atypical antipsychotics: sleep, sedation, and efficacy. Prim. Care Companion J. Clin. Psychiat. 6 Suppl. 2 (2004) 3-7</ref-fulltext>
+          </reference>
+          <reference>
+            <ref-info>
+              <refd-itemidlist>
+                <itemid idtype="SGR">1642518081</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:indexed-name>National Institute for Clinical Excellence (NICE)</ce:indexed-name>
+                  <ce:surname>National Institute for Clinical Excellence (NICE)</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Clinical Guideline 1: Schizophrenia</ref-sourcetitle>
+              <ref-publicationyear first="2002"/>
+              <ref-text>London</ref-text>
+            </ref-info>
+            <ref-fulltext>National Institute for Clinical Excellence (NICE). Clinical Guideline 1: Schizophrenia (2002) London</ref-fulltext>
+          </reference>
+          <reference>
+            <ref-info>
+              <ref-title>
+                <ref-titletext>The place of partial agonism in psychiatry: recent developments</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">22344458106</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>R.I.</ce:initials>
+                  <ce:indexed-name>Ohlsen R.I.</ce:indexed-name>
+                  <ce:surname>Ohlsen</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>L.S.</ce:initials>
+                  <ce:indexed-name>Pilowsky L.S.</ce:indexed-name>
+                  <ce:surname>Pilowsky</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>J. Psychopharmacol.</ref-sourcetitle>
+              <ref-publicationyear first="2005"/>
+              <ref-volisspag>
+                <voliss volume="19"/>
+                <pagerange first="408" last="413"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Ohlsen R.I., and Pilowsky L.S. The place of partial agonism in psychiatry: recent developments. J. Psychopharmacol. 19 (2005) 408-413</ref-fulltext>
+          </reference>
+          <reference>
+            <ref-info>
+              <ref-title>
+                <ref-titletext>The brief psychiatric rating scale</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">0000503515</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>J.E.</ce:initials>
+                  <ce:indexed-name>Overall J.E.</ce:indexed-name>
+                  <ce:surname>Overall</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>D.R.</ce:initials>
+                  <ce:indexed-name>Gorham D.R.</ce:indexed-name>
+                  <ce:surname>Gorham</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Psychol. Rep.</ref-sourcetitle>
+              <ref-publicationyear first="1962"/>
+              <ref-volisspag>
+                <voliss volume="10"/>
+                <pagerange first="799" last="812"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Overall J.E., and Gorham D.R. The brief psychiatric rating scale. Psychol. Rep. 10 (1962) 799-812</ref-fulltext>
+          </reference>
+          <reference>
+            <ref-info>
+              <refd-itemidlist>
+                <itemid idtype="SGR">33847325979</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:indexed-name>Pfizer</ce:indexed-name>
+                  <ce:surname>Pfizer</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Ziprasidone (Geodon) Package Insert</ref-sourcetitle>
+              <ref-publicationyear first="2003"/>
+              <ref-text>Pfizer, New York, NY, USA</ref-text>
+            </ref-info>
+            <ref-fulltext>Pfizer. Ziprasidone (Geodon) Package Insert (2003), Pfizer, New York, NY, USA</ref-fulltext>
+          </reference>
+          <reference>
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Involuntary return to a psychiatric emergency service within twelve months</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">0036379403</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>S.P.</ce:initials>
+                  <ce:indexed-name>Segal S.P.</ce:indexed-name>
+                  <ce:surname>Segal</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>P.D.</ce:initials>
+                  <ce:indexed-name>Akutsu P.D.</ce:indexed-name>
+                  <ce:surname>Akutsu</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>M.A.</ce:initials>
+                  <ce:indexed-name>Watson M.A.</ce:indexed-name>
+                  <ce:surname>Watson</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Soc. Work Health Care</ref-sourcetitle>
+              <ref-publicationyear first="2002"/>
+              <ref-volisspag>
+                <voliss volume="35"/>
+                <pagerange first="591" last="603"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Segal S.P., Akutsu P.D., and Watson M.A. Involuntary return to a psychiatric emergency service within twelve months. Soc. Work Health Care 35 (2002) 591-603</ref-fulltext>
+          </reference>
+          <reference>
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Double-blind, placebo-controlled comparison of intramuscular olanzapine and intramuscular haloperidol in the treatment of acute agitation in schizophrenia</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">0034935303</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>P.</ce:initials>
+                  <ce:indexed-name>Wright P.</ce:indexed-name>
+                  <ce:surname>Wright</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>M.</ce:initials>
+                  <ce:indexed-name>Birkett M.</ce:indexed-name>
+                  <ce:surname>Birkett</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>S.R.</ce:initials>
+                  <ce:indexed-name>David S.R.</ce:indexed-name>
+                  <ce:surname>David</ce:surname>
+                </author>
+                <author seq="4">
+                  <ce:initials>K.</ce:initials>
+                  <ce:indexed-name>Meehan K.</ce:indexed-name>
+                  <ce:surname>Meehan</ce:surname>
+                </author>
+                <author seq="5">
+                  <ce:initials>I.</ce:initials>
+                  <ce:indexed-name>Ferchland I.</ce:indexed-name>
+                  <ce:surname>Ferchland</ce:surname>
+                </author>
+                <author seq="6">
+                  <ce:initials>K.J.</ce:initials>
+                  <ce:indexed-name>Alaka K.J.</ce:indexed-name>
+                  <ce:surname>Alaka</ce:surname>
+                </author>
+                <author seq="7">
+                  <ce:initials>J.C.</ce:initials>
+                  <ce:indexed-name>Saunders J.C.</ce:indexed-name>
+                  <ce:surname>Saunders</ce:surname>
+                </author>
+                <author seq="8">
+                  <ce:initials>J.</ce:initials>
+                  <ce:indexed-name>Krueger J.</ce:indexed-name>
+                  <ce:surname>Krueger</ce:surname>
+                </author>
+                <author seq="9">
+                  <ce:initials>P.</ce:initials>
+                  <ce:indexed-name>Bradley P.</ce:indexed-name>
+                  <ce:surname>Bradley</ce:surname>
+                </author>
+                <author seq="10">
+                  <ce:initials>L.</ce:initials>
+                  <ce:indexed-name>San L.</ce:indexed-name>
+                  <ce:surname>San</ce:surname>
+                </author>
+                <author seq="11">
+                  <ce:initials>M.</ce:initials>
+                  <ce:indexed-name>Bernardo M.</ce:indexed-name>
+                  <ce:surname>Bernardo</ce:surname>
+                </author>
+                <author seq="12">
+                  <ce:initials>M.</ce:initials>
+                  <ce:indexed-name>Reinstein M.</ce:indexed-name>
+                  <ce:surname>Reinstein</ce:surname>
+                </author>
+                <author seq="13">
+                  <ce:initials>A.</ce:initials>
+                  <ce:indexed-name>Breier A.</ce:indexed-name>
+                  <ce:surname>Breier</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Am. J. Psychiatry</ref-sourcetitle>
+              <ref-publicationyear first="2001"/>
+              <ref-volisspag>
+                <voliss volume="158"/>
+                <pagerange first="1149" last="1151"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Wright P., Birkett M., David S.R., Meehan K., Ferchland I., Alaka K.J., Saunders J.C., Krueger J., Bradley P., San L., Bernardo M., Reinstein M., and Breier A. Double-blind, placebo-controlled comparison of intramuscular olanzapine and intramuscular haloperidol in the treatment of acute agitation in schizophrenia. Am. J. Psychiatry 158 (2001) 1149-1151</ref-fulltext>
+          </reference>
+          <reference>
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Intramuscular olanzapine and intramuscular haloperidol in acute schizophrenia: antipsychotic efficacy and extrapyramidal safety during the first 24 hours of treatment</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">10744226266</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>P.</ce:initials>
+                  <ce:indexed-name>Wright P.</ce:indexed-name>
+                  <ce:surname>Wright</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>M.R.C.</ce:initials>
+                  <ce:indexed-name>Psych M.R.C.</ce:indexed-name>
+                  <ce:surname>Psych</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>S.R.</ce:initials>
+                  <ce:indexed-name>Lindborg S.R.</ce:indexed-name>
+                  <ce:surname>Lindborg</ce:surname>
+                </author>
+                <author seq="4">
+                  <ce:initials>M.</ce:initials>
+                  <ce:indexed-name>Birkett M.</ce:indexed-name>
+                  <ce:surname>Birkett</ce:surname>
+                </author>
+                <author seq="5">
+                  <ce:initials>K.</ce:initials>
+                  <ce:indexed-name>Meehan K.</ce:indexed-name>
+                  <ce:surname>Meehan</ce:surname>
+                </author>
+                <author seq="6">
+                  <ce:initials>B.</ce:initials>
+                  <ce:indexed-name>Jones B.</ce:indexed-name>
+                  <ce:surname>Jones</ce:surname>
+                </author>
+                <author seq="7">
+                  <ce:initials>K.</ce:initials>
+                  <ce:indexed-name>Alaka K.</ce:indexed-name>
+                  <ce:surname>Alaka</ce:surname>
+                </author>
+                <author seq="8">
+                  <ce:initials>I.</ce:initials>
+                  <ce:indexed-name>Ferchland-Howe I.</ce:indexed-name>
+                  <ce:surname>Ferchland-Howe</ce:surname>
+                </author>
+                <author seq="9">
+                  <ce:initials>A.</ce:initials>
+                  <ce:indexed-name>Pickard A.</ce:indexed-name>
+                  <ce:surname>Pickard</ce:surname>
+                </author>
+                <author seq="10">
+                  <ce:initials>C.C.</ce:initials>
+                  <ce:indexed-name>Taylor C.C.</ce:indexed-name>
+                  <ce:surname>Taylor</ce:surname>
+                </author>
+                <author seq="11">
+                  <ce:initials>J.</ce:initials>
+                  <ce:indexed-name>Roth J.</ce:indexed-name>
+                  <ce:surname>Roth</ce:surname>
+                </author>
+                <author seq="12">
+                  <ce:initials>J.</ce:initials>
+                  <ce:indexed-name>Battaglia J.</ce:indexed-name>
+                  <ce:surname>Battaglia</ce:surname>
+                </author>
+                <author seq="13">
+                  <ce:initials>I.</ce:initials>
+                  <ce:indexed-name>Bitter I.</ce:indexed-name>
+                  <ce:surname>Bitter</ce:surname>
+                </author>
+                <author seq="14">
+                  <ce:initials>G.</ce:initials>
+                  <ce:indexed-name>Chouinard G.</ce:indexed-name>
+                  <ce:surname>Chouinard</ce:surname>
+                </author>
+                <author seq="15">
+                  <ce:initials>P.L.P.</ce:initials>
+                  <ce:indexed-name>Morris P.L.P.</ce:indexed-name>
+                  <ce:surname>Morris</ce:surname>
+                </author>
+                <author seq="16">
+                  <ce:initials>A.</ce:initials>
+                  <ce:indexed-name>Breier A.</ce:indexed-name>
+                  <ce:surname>Breier</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Can. J. Psychiatry</ref-sourcetitle>
+              <ref-publicationyear first="2003"/>
+              <ref-volisspag>
+                <voliss volume="48"/>
+                <pagerange first="716" last="721"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Wright P., Psych M.R.C., Lindborg S.R., Birkett M., Meehan K., Jones B., Alaka K., Ferchland-Howe I., Pickard A., Taylor C.C., Roth J., Battaglia J., Bitter I., Chouinard G., Morris P.L.P., and Breier A. Intramuscular olanzapine and intramuscular haloperidol in acute schizophrenia: antipsychotic efficacy and extrapyramidal safety during the first 24 hours of treatment. Can. J. Psychiatry 48 (2003) 716-721</ref-fulltext>
+          </reference>
+          <reference>
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Pharmacological management of agitation in emergency settings</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">0038298396</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>A.</ce:initials>
+                  <ce:indexed-name>Yildiz A.</ce:indexed-name>
+                  <ce:surname>Yildiz</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>G.S.</ce:initials>
+                  <ce:indexed-name>Sachs G.S.</ce:indexed-name>
+                  <ce:surname>Sachs</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>A.</ce:initials>
+                  <ce:indexed-name>Turgay A.</ce:indexed-name>
+                  <ce:surname>Turgay</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Emerg. Med. J.</ref-sourcetitle>
+              <ref-publicationyear first="2003"/>
+              <ref-volisspag>
+                <voliss volume="20"/>
+                <pagerange first="339" last="346"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Yildiz A., Sachs G.S., and Turgay A. Pharmacological management of agitation in emergency settings. Emerg. Med. J. 20 (2003) 339-346</ref-fulltext>
+          </reference>
+        </bibliography>
+      </tail>
+    </bibrecord>
+  </item>
+</abstracts-retrieval-response>

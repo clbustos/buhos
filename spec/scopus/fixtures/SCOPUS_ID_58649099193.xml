@@ -1,0 +1,2006 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<abstracts-retrieval-response xmlns="http://www.elsevier.com/xml/svapi/abstract/dtd" xmlns:ait="http://www.elsevier.com/xml/ani/ait" xmlns:ce="http://www.elsevier.com/xml/ani/common" xmlns:cto="http://www.elsevier.com/xml/cto/dtd" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:prism="http://prismstandard.org/namespaces/basic/2.0/" xmlns:xocs="http://www.elsevier.com/xml/xocs/dtd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <coredata>
+    <prism:url>http://api.elsevier.com/content/abstract/scopus_id/58649099193</prism:url>
+    <dc:identifier>SCOPUS_ID:58649099193</dc:identifier>
+    <eid>2-s2.0-58649099193</eid>
+    <prism:doi>10.1177/1059601108329717</prism:doi>
+    <dc:title>Rituals in organizations: A review and expansion of current theory</dc:title>
+    <prism:aggregationType>Journal</prism:aggregationType>
+    <srctype>j</srctype>
+    <citedby-count>27</citedby-count>
+    <prism:publicationName>Group and Organization Management</prism:publicationName>
+    <source-id>29412</source-id>
+    <prism:issn>10596011</prism:issn>
+    <prism:volume>34</prism:volume>
+    <prism:issueIdentifier>1</prism:issueIdentifier>
+    <prism:startingPage>114</prism:startingPage>
+    <prism:endingPage>139</prism:endingPage>
+    <prism:pageRange>114-139</prism:pageRange>
+    <prism:coverDate>2009-02-01</prism:coverDate>
+    <dc:creator>
+      <author auid="55890864500" seq="1">
+        <ce:initials>G.</ce:initials>
+        <ce:indexed-name>Islam G.</ce:indexed-name>
+        <ce:surname>Islam</ce:surname>
+        <ce:given-name>Gazi</ce:given-name>
+        <preferred-name>
+<ce:initials>G.</ce:initials>
+<ce:indexed-name>Islam G.</ce:indexed-name>
+<ce:surname>Islam</ce:surname>
+<ce:given-name>Gazi</ce:given-name>
+</preferred-name>
+        <author-url>http://api.elsevier.com/content/author/author_id/55890864500</author-url>
+      </author>
+    </dc:creator>
+    <dc:description>
+      <abstract original="y" xml:lang="eng">
+<ce:para>This article integrates material from the study of rites, rituals, and ceremonies to apply these constructs to the study of organizations. A brief history of the study of the constructs is offered. Theories concerning the components, types, and functions of rites, rituals, and ceremonies are described, followed by a survey of field research in organizations that applies these theories. Conclusions about the current state of knowledge in the field are followed by implications for future study. © 2009 Sage Publications.</ce:para>
+</abstract>
+    </dc:description>
+    <intid>58649099193</intid>
+    <link href="http://api.elsevier.com/content/abstract/scopus_id/58649099193" rel="self"/>
+    <link href="https://www.scopus.com/inward/record.uri?partnerID=HzOxMe3b&amp;scp=58649099193&amp;origin=inward" rel="scopus"/>
+    <link href="https://www.scopus.com/inward/citedby.uri?partnerID=HzOxMe3b&amp;scp=58649099193&amp;origin=inward" rel="scopus-citedby"/>
+  </coredata>
+  <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60016643" id="60016643">
+    <affilname>University of Washington-Bothell</affilname>
+    <affiliation-city>Bothell</affiliation-city>
+    <affiliation-country>United States</affiliation-country>
+  </affiliation>
+  <authors>
+    <author auid="55890864500" seq="1">
+      <ce:initials>G.</ce:initials>
+      <ce:indexed-name>Islam G.</ce:indexed-name>
+      <ce:surname>Islam</ce:surname>
+      <ce:given-name>Gazi</ce:given-name>
+      <preferred-name>
+<ce:initials>G.</ce:initials>
+<ce:indexed-name>Islam G.</ce:indexed-name>
+<ce:surname>Islam</ce:surname>
+<ce:given-name>Gazi</ce:given-name>
+</preferred-name>
+      <author-url>http://api.elsevier.com/content/author/author_id/55890864500</author-url>
+    </author>
+    <author auid="8609618300" seq="2">
+      <ce:initials>M.J.</ce:initials>
+      <ce:indexed-name>Zyphur M.J.</ce:indexed-name>
+      <ce:surname>Zyphur</ce:surname>
+      <ce:given-name>Michael J.</ce:given-name>
+      <preferred-name>
+<ce:initials>M.J.</ce:initials>
+<ce:indexed-name>Zyphur M.</ce:indexed-name>
+<ce:surname>Zyphur</ce:surname>
+<ce:given-name>Michael J.</ce:given-name>
+</preferred-name>
+      <author-url>http://api.elsevier.com/content/author/author_id/8609618300</author-url>
+      <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60016643" id="60016643"/>
+    </author>
+  </authors>
+  <language xml:lang="eng"/>
+  <authkeywords>
+    <author-keyword>Organizational change</author-keyword>
+    <author-keyword>Organizational culture</author-keyword>
+    <author-keyword>Ritual</author-keyword>
+    <author-keyword>Symbolic management</author-keyword>
+  </authkeywords>
+  <idxterms/>
+  <subject-areas>
+    <subject-area abbrev="BUSI" code="1407">Organizational Behavior and Human Resource Management</subject-area>
+    <subject-area abbrev="PSYC" code="3202">Applied Psychology</subject-area>
+  </subject-areas>
+  <item xmlns="">
+    <ait:process-info>
+      <ait:date-delivered day="25" month="07" timestamp="2015-07-25T07:40:59.000059+01:00" year="2015"/>
+      <ait:date-sort day="01" month="02" year="2009"/>
+      <ait:status stage="S300" state="update" type="core"/>
+    </ait:process-info>
+    <bibrecord>
+      <item-info>
+        <copyright type="Elsevier">Copyright 2013 Elsevier B.V., All rights reserved.</copyright>
+        <itemidlist>
+<ce:doi>10.1177/1059601108329717</ce:doi>
+<itemid idtype="PUI">354103153</itemid>
+<itemid idtype="SNPSYB">2009000955</itemid>
+<itemid idtype="SCP">58649099193</itemid>
+<itemid idtype="SGR">58649099193</itemid>
+</itemidlist>
+        <history>
+<date-created day="29" month="01" year="2009"/>
+</history>
+        <dbcollection>SNPSYB</dbcollection>
+        <dbcollection>Scopusbase</dbcollection>
+      </item-info>
+      <head>
+        <citation-info>
+          <citation-type code="ar"/>
+          <citation-language language="English" xml:lang="eng"/>
+          <abstract-language language="English" xml:lang="eng"/>
+          <author-keywords>
+<author-keyword>Organizational change</author-keyword>
+<author-keyword>Organizational culture</author-keyword>
+<author-keyword>Ritual</author-keyword>
+<author-keyword>Symbolic management</author-keyword>
+</author-keywords>
+        </citation-info>
+        <citation-title>
+          <titletext language="English" original="y" xml:lang="eng">Rituals in organizations: A review and expansion of current theory</titletext>
+        </citation-title>
+        <author-group>
+          <author auid="55890864500" seq="1">
+<ce:initials>G.</ce:initials>
+<ce:indexed-name>Islam G.</ce:indexed-name>
+<ce:surname>Islam</ce:surname>
+<ce:given-name>Gazi</ce:given-name>
+<preferred-name>
+<ce:initials>G.</ce:initials>
+<ce:indexed-name>Islam G.</ce:indexed-name>
+<ce:surname>Islam</ce:surname>
+<ce:given-name>Gazi</ce:given-name>
+</preferred-name>
+<ce:e-address type="email">gislamster@gmail.com</ce:e-address>
+</author>
+          <affiliation country="bra">
+            <organization>Ibmec São Paulo</organization>
+            <country>Brazil</country>
+          </affiliation>
+        </author-group>
+        <author-group>
+          <author auid="8609618300" seq="2">
+<ce:initials>M.J.</ce:initials>
+<ce:indexed-name>Zyphur M.J.</ce:indexed-name>
+<ce:surname>Zyphur</ce:surname>
+<ce:given-name>Michael J.</ce:given-name>
+<preferred-name>
+<ce:initials>M.J.</ce:initials>
+<ce:indexed-name>Zyphur M.</ce:indexed-name>
+<ce:surname>Zyphur</ce:surname>
+<ce:given-name>Michael J.</ce:given-name>
+</preferred-name>
+</author>
+          <affiliation afid="60016643" country="usa">
+            <organization>University of Washington</organization>
+            <city-group>Bothell</city-group>
+            <country>United States</country>
+          </affiliation>
+        </author-group>
+        <author-group>
+          <author auid="55890864500" seq="1">
+<ce:initials>G.</ce:initials>
+<ce:indexed-name>Islam G.</ce:indexed-name>
+<ce:surname>Islam</ce:surname>
+<ce:given-name>Gazi</ce:given-name>
+<preferred-name>
+<ce:initials>G.</ce:initials>
+<ce:indexed-name>Islam G.</ce:indexed-name>
+<ce:surname>Islam</ce:surname>
+<ce:given-name>Gazi</ce:given-name>
+</preferred-name>
+<ce:e-address type="email">gislamster@gmail.com</ce:e-address>
+</author>
+          <affiliation country="bra">
+            <organization>Ibmec São Paulo</organization>
+            <address-part>Rua Quatá 300</address-part>
+            <city-group>São Paulo SP 04546-042</city-group>
+            <country>Brazil</country>
+          </affiliation>
+        </author-group>
+        <correspondence>
+          <person>
+<ce:initials>G.</ce:initials>
+<ce:indexed-name>Islam G.</ce:indexed-name>
+<ce:degrees>Prof.</ce:degrees>
+<ce:surname>Islam</ce:surname>
+</person>
+          <affiliation country="bra">
+            <organization>Ibmec São Paulo</organization>
+            <address-part>Rua Quatá 300</address-part>
+            <city-group>São Paulo SP 04546-042</city-group>
+            <country>Brazil</country>
+          </affiliation>
+          <ce:e-address type="email">gislamster@gmail.com</ce:e-address>
+        </correspondence>
+        <abstracts>
+          <abstract original="y" xml:lang="eng">
+<ce:para>This article integrates material from the study of rites, rituals, and ceremonies to apply these constructs to the study of organizations. A brief history of the study of the constructs is offered. Theories concerning the components, types, and functions of rites, rituals, and ceremonies are described, followed by a survey of field research in organizations that applies these theories. Conclusions about the current state of knowledge in the field are followed by implications for future study. © 2009 Sage Publications.</ce:para>
+</abstract>
+        </abstracts>
+        <source country="usa" srcid="29412" type="j">
+          <sourcetitle>Group and Organization Management</sourcetitle>
+          <sourcetitle-abbrev>Group Organ. Manage.</sourcetitle-abbrev>
+          <issn type="print">10596011</issn>
+          <issn type="electronic">15523993</issn>
+          <volisspag>
+<voliss issue="1" volume="34"/>
+<pagerange first="114" last="139"/>
+</volisspag>
+          <publicationyear first="2009"/>
+          <publicationdate>
+<year>2009</year>
+<month>02</month>
+<date-text xfab-added="true">February 2009</date-text></publicationdate>
+        </source>
+        <enhancement>
+          <classificationgroup>
+<classifications type="ASJC">
+<classification>1407</classification>
+<classification>3202</classification>
+</classifications><classifications type="SUBJABBR"><classification>BUSI</classification><classification>PSYC</classification></classifications>
+</classificationgroup>
+        </enhancement>
+      </head>
+      <tail>
+        <bibliography refcount="71">
+<reference id="1">
+<ref-info>
+<ref-title>
+<ref-titletext>How service agents manage the person-role interface</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">37649003043</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>B.E.</ce:initials>
+<ce:indexed-name>Ashforth B.E.</ce:indexed-name>
+<ce:surname>Ashforth</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>C.T.</ce:initials>
+<ce:indexed-name>Kulik C.T.</ce:indexed-name>
+<ce:surname>Kulik</ce:surname>
+</author>
+<author seq="3">
+<ce:initials>M.A.</ce:initials>
+<ce:indexed-name>Tomiuk M.A.</ce:indexed-name>
+<ce:surname>Tomiuk</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Group &amp; Organization Management</ref-sourcetitle>
+<ref-publicationyear first="2008"/>
+<ref-volisspag>
+<voliss volume="33"/>
+<pagerange first="5" last="45"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Ashforth, B.E., Kulik, C.T., &amp; Tomiuk, M.A. (2008). How service agents manage the person-role interface. Group &amp; Organization Management, 33, 5-45.</ref-fulltext>
+</reference>
+<reference id="2">
+<ref-info>
+<refd-itemidlist>
+<itemid idtype="SGR">0003586486</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>J.L.</ce:initials>
+<ce:indexed-name>Austin J.L.</ce:indexed-name>
+<ce:surname>Austin</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>How to Do Things with Words</ref-sourcetitle>
+<ref-publicationyear first="1962"/>
+<ref-text>Cambridge, MA: Harvard University Press.</ref-text>
+</ref-info>
+<ref-fulltext>Austin, J.L. (1962). How to do things with words. Cambridge, MA: Harvard University Press.</ref-fulltext>
+</reference>
+<reference id="3">
+<ref-info>
+<refd-itemidlist>
+<itemid idtype="SGR">0003764451</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>A.</ce:initials>
+<ce:indexed-name>Bandura A.</ce:indexed-name>
+<ce:surname>Bandura</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Self-efficacy: The Exercise of Control</ref-sourcetitle>
+<ref-publicationyear first="1997"/>
+<ref-text>New York: Freeman.</ref-text>
+</ref-info>
+<ref-fulltext>Bandura, A. (1997). Self-efficacy: The exercise of control. New York: Freeman.</ref-fulltext>
+</reference>
+<reference id="4">
+<ref-info>
+<ref-title>
+<ref-titletext>Technology as an occasion for structuring: Observations on CT scanners and the social order of radiology departments</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">0022627077</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>S.R.</ce:initials>
+<ce:indexed-name>Barley S.R.</ce:indexed-name>
+<ce:surname>Barley</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Administrative Science Quarterly</ref-sourcetitle>
+<ref-publicationyear first="1986"/>
+<ref-volisspag>
+<voliss volume="31"/>
+<pagerange first="78" last="108"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Barley, S.R. (1986). Technology as an occasion for structuring: Observations on CT scanners and the social order of radiology departments. Administrative Science Quarterly, 31, 78-108.</ref-fulltext>
+</reference>
+<reference id="5">
+<ref-info>
+<ref-title>
+<ref-titletext>Whatever happened to organizational anthropology? A review of the field of organizational ethnography and anthropological studies</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">0040050923</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>S.P.</ce:initials>
+<ce:indexed-name>Bate S.P.</ce:indexed-name>
+<ce:surname>Bate</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Human Relations</ref-sourcetitle>
+<ref-publicationyear first="1997"/>
+<ref-volisspag>
+<voliss issue="9" volume="50"/>
+<pagerange first="1147" last="1175"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Bate, S.P. (1997). Whatever happened to organizational anthropology? A review of the field of organizational ethnography and anthropological studies. Human Relations, 50 (9). 1147-1175.</ref-fulltext>
+</reference>
+<reference id="6">
+<ref-info>
+<refd-itemidlist>
+<itemid idtype="SGR">0003792632</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>H.S.</ce:initials>
+<ce:indexed-name>Baum H.S.</ce:indexed-name>
+<ce:surname>Baum</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Organizational Membership: Personal Development in the Workplace</ref-sourcetitle>
+<ref-publicationyear first="1990"/>
+<ref-text>Albany: State University of New York Press.</ref-text>
+</ref-info>
+<ref-fulltext>Baum, H.S. (1990). Organizational membership: Personal development in the workplace. Albany: State University of New York Press.</ref-fulltext>
+</reference>
+<reference id="7">
+<ref-info>
+<ref-title>
+<ref-titletext>Discourse and dichotomies: The structure of ritual theory</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">45949116244</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>C.</ce:initials>
+<ce:indexed-name>Bell C.</ce:indexed-name>
+<ce:surname>Bell</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Religion</ref-sourcetitle>
+<ref-publicationyear first="1987"/>
+<ref-volisspag>
+<voliss volume="17"/>
+<pagerange first="95" last="118"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Bell, C. (1987). Discourse and dichotomies: The structure of ritual theory. Religion, 17, 95-118.</ref-fulltext>
+</reference>
+<reference id="8">
+<ref-info>
+<refd-itemidlist>
+<itemid idtype="SGR">0004286741</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>C.</ce:initials>
+<ce:indexed-name>Bell C.</ce:indexed-name>
+<ce:surname>Bell</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Ritual: Perspectives and Dimensions</ref-sourcetitle>
+<ref-publicationyear first="1997"/>
+<ref-text>New York: Oxford University Press.</ref-text>
+</ref-info>
+<ref-fulltext>Bell, C. (1997). Ritual: Perspectives and dimensions. New York: Oxford University Press.</ref-fulltext>
+</reference>
+<reference id="9">
+<ref-info>
+<ref-title>
+<ref-titletext>Organization Change As A Symbolic Transformation Process</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">0000204918</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>P.O.</ce:initials>
+<ce:indexed-name>Berg P.O.</ce:indexed-name>
+<ce:surname>Berg</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Organizational Culture</ref-sourcetitle>
+<ref-publicationyear first="1985"/>
+<ref-volisspag>
+<pagerange first="281" last="299"/>
+</ref-volisspag>
+<ref-text>P. J. Frost, L. F. Moore, M. R. Louis, C. C. Lundberg, &amp; J. Martin (Eds.), Beverly Hills, CA: Sage.</ref-text>
+</ref-info>
+<ref-fulltext>Berg, P.O. (1985). Organization change as a symbolic transformation process. In P. J. Frost, L. F. Moore, M. R. Louis, C. C. Lundberg, &amp; J. Martin (Eds.), Organizational culture (pp. 281-299). Beverly Hills, CA: Sage.</ref-fulltext>
+</reference>
+<reference id="10">
+<ref-info>
+<ref-title>
+<ref-titletext>Culture as a source, expression, and reinforcer of emotions in organizations</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">34548300381</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>J.</ce:initials>
+<ce:indexed-name>Beyer J.</ce:indexed-name>
+<ce:surname>Beyer</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Emotions at Work: Theory, Research, and Applications in Management</ref-sourcetitle>
+<ref-publicationyear first="2000"/>
+<ref-volisspag>
+<pagerange first="173" last="198"/>
+</ref-volisspag>
+<ref-text>R. L. Payne &amp; C. L. Cooper (Eds.), New York: John Wiley.</ref-text>
+</ref-info>
+<ref-fulltext>Beyer, J. (2000). Culture as a source, expression, and reinforcer of emotions in organizations. In R. L. Payne &amp; C. L. Cooper (Eds.), Emotions at work: Theory, research, and applications in management (pp. 173-198). New York: John Wiley.</ref-fulltext>
+</reference>
+<reference id="11">
+<ref-info>
+<ref-title>
+<ref-titletext>The communication of power relations in organizations through cultural rites</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">0001069508</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>J.</ce:initials>
+<ce:indexed-name>Beyer J.</ce:indexed-name>
+<ce:surname>Beyer</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>H.</ce:initials>
+<ce:indexed-name>Trice H.</ce:indexed-name>
+<ce:surname>Trice</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Inside Organizations: Understanding the Human Dimension</ref-sourcetitle>
+<ref-publicationyear first="1988"/>
+<ref-volisspag>
+<pagerange first="141" last="157"/>
+</ref-volisspag>
+<ref-text>M. O. Jones, M. D. Moore, &amp; Newbury Park, CA: Sage</ref-text>
+</ref-info>
+<ref-fulltext>Beyer, J., &amp; Trice, H. (1988). The communication of power relations in organizations through cultural rites. In M. O. Jones, M. D. Moore, &amp; R. C. Snyder (Eds.), Inside organizations: Understanding the human dimension (pp. 141-157). Newbury Park, CA: Sage.</ref-fulltext>
+</reference>
+<reference id="12">
+<ref-info>
+<ref-title>
+<ref-titletext>The creative-destructive process of organizational change: The case of the post office</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">84925907087</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>N.W.</ce:initials>
+<ce:indexed-name>Biggart N.W.</ce:indexed-name>
+<ce:surname>Biggart</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Administrative Science Quarterly</ref-sourcetitle>
+<ref-publicationyear first="1977"/>
+<ref-volisspag>
+<voliss volume="22"/>
+<pagerange first="410" last="426"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Biggart, N.W. (1977). The creative-destructive process of organizational change: The case of the post office. Administrative Science Quarterly, 22, 410-426.</ref-fulltext>
+</reference>
+<reference id="13">
+<ref-info>
+<refd-itemidlist>
+<itemid idtype="SGR">0004050122</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>D.C.</ce:initials>
+<ce:indexed-name>Bok D.C.</ce:indexed-name>
+<ce:surname>Bok</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>J.T.</ce:initials>
+<ce:indexed-name>Dunlop J.T.</ce:indexed-name>
+<ce:surname>Dunlop</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Labor and the American Community</ref-sourcetitle>
+<ref-publicationyear first="1970"/>
+<ref-text>New York: Simon &amp; Schuster.</ref-text>
+</ref-info>
+<ref-fulltext>Bok, D.C., &amp; Dunlop, J.T. (1970). Labor and the American community. New York: Simon &amp; Schuster.</ref-fulltext>
+</reference>
+<reference id="14">
+<ref-info>
+<refd-itemidlist>
+<itemid idtype="SGR">84888504582</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>P.</ce:initials>
+<ce:indexed-name>Bordia P.</ce:indexed-name>
+<ce:surname>Bordia</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>E.</ce:initials>
+<ce:indexed-name>Jones E.</ce:indexed-name>
+<ce:surname>Jones</ce:surname>
+</author>
+<author seq="3">
+<ce:initials>C.</ce:initials>
+<ce:indexed-name>Gallois C.</ce:indexed-name>
+<ce:surname>Gallois</ce:surname>
+</author>
+<author seq="4">
+<ce:initials>V.J.</ce:initials>
+<ce:indexed-name>Callan V.J.</ce:indexed-name>
+<ce:surname>Callan</ce:surname>
+</author>
+<author seq="5">
+<ce:initials>N.</ce:initials>
+<ce:indexed-name>Difonzo N.</ce:indexed-name>
+<ce:surname>Difonzo</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Managers Are Aliens! Group &amp; Organization Management</ref-sourcetitle>
+<ref-publicationyear first="2006"/>
+<ref-volisspag>
+<pagerange first="601" last="621"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Bordia, P., Jones, E., Gallois, C., Callan, V.J., &amp; DiFonzo, N. (2006). Managers are aliens! Group &amp; Organization Management, 31, 601-621.</ref-fulltext>
+</reference>
+<reference id="15">
+<ref-info>
+<refd-itemidlist>
+<itemid idtype="SGR">0003984746</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>P.</ce:initials>
+<ce:indexed-name>Bordieu P.</ce:indexed-name>
+<ce:surname>Bordieu</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Outline of A Theory of Practice</ref-sourcetitle>
+<ref-publicationyear first="1977"/>
+<ref-text>Cambridge, UK: Cambridge University Press.</ref-text>
+</ref-info>
+<ref-fulltext>Bordieu, P. (1977). Outline of a theory of practice. Cambridge, UK: Cambridge University Press.</ref-fulltext>
+</reference>
+<reference id="16">
+<ref-info>
+<refd-itemidlist>
+<itemid idtype="SGR">0003520266</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>J.</ce:initials>
+<ce:indexed-name>Clifford J.</ce:indexed-name>
+<ce:surname>Clifford</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>The Predicament of Culture</ref-sourcetitle>
+<ref-publicationyear first="2002"/>
+<ref-text>Cambridge, MA: Harvard University Press.</ref-text>
+</ref-info>
+<ref-fulltext>Clifford, J. (2002). The predicament of culture. Cambridge, MA: Harvard University Press.</ref-fulltext>
+</reference>
+<reference id="17">
+<ref-info>
+<ref-title>
+<ref-titletext>Organizational power: Faces and symbolic forms</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">0040394953</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>C.</ce:initials>
+<ce:indexed-name>Conrad C.</ce:indexed-name>
+<ce:surname>Conrad</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Communications and Organizations: An Interpretive Approach</ref-sourcetitle>
+<ref-publicationyear first="1983"/>
+<ref-volisspag>
+<pagerange first="173" last="195"/>
+</ref-volisspag>
+<ref-text>L. L. Putnam &amp; M. Pananowsky (Eds.), Beverly Hills, CA: Sage.</ref-text>
+</ref-info>
+<ref-fulltext>Conrad, C. (1983). Organizational power: Faces and symbolic forms. In L. L. Putnam &amp; M. Pananowsky (Eds.), Communications and organizations: An interpretive approach (pp. 173-195). Beverly Hills, CA: Sage.</ref-fulltext>
+</reference>
+<reference id="18">
+<ref-info>
+<ref-title>
+<ref-titletext>Organizational symbolism: A topic to expand organizational analysis</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">0002967687</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>T.C.</ce:initials>
+<ce:indexed-name>Dandridge T.C.</ce:indexed-name>
+<ce:surname>Dandridge</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>I.</ce:initials>
+<ce:indexed-name>Mitroff I.</ce:indexed-name>
+<ce:surname>Mitroff</ce:surname>
+</author>
+<author seq="3">
+<ce:initials>W.F.</ce:initials>
+<ce:indexed-name>Joyce W.F.</ce:indexed-name>
+<ce:surname>Joyce</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Academy of Management Review</ref-sourcetitle>
+<ref-publicationyear first="1980"/>
+<ref-volisspag>
+<voliss volume="5"/>
+<pagerange first="77" last="82"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Dandridge, T.C., Mitroff, I., &amp; Joyce, W.F. (1980). Organizational symbolism: A topic to expand organizational analysis. Academy of Management Review, 5, 77-82.</ref-fulltext>
+</reference>
+<reference id="19">
+<ref-info>
+<refd-itemidlist>
+<itemid idtype="SGR">0003727636</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>T.</ce:initials>
+<ce:indexed-name>Deal T.</ce:indexed-name>
+<ce:surname>Deal</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>A.A.</ce:initials>
+<ce:indexed-name>Kennedy A.A.</ce:indexed-name>
+<ce:surname>Kennedy</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Corporate Cultures: The Rites and Rituals of Corporate Life</ref-sourcetitle>
+<ref-publicationyear first="1982"/>
+<ref-text>Reading, MA: Addison-Wesley.</ref-text>
+</ref-info>
+<ref-fulltext>Deal, T., &amp; Kennedy, A.A. (1982). Corporate cultures: The rites and rituals of corporate life. Reading, MA: Addison-Wesley.</ref-fulltext>
+</reference>
+<reference id="20">
+<ref-info>
+<ref-title>
+<ref-titletext>What is the difference between organizational culture and organizational climate? A native's point of view on a decade of paradigm wars</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">0030492892</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>D.R.</ce:initials>
+<ce:indexed-name>Denison D.R.</ce:indexed-name>
+<ce:surname>Denison</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Academy of Management Review</ref-sourcetitle>
+<ref-publicationyear first="1996"/>
+<ref-volisspag>
+<voliss volume="21"/>
+<pagerange first="619" last="654"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Denison, D.R. (1996). What is the difference between organizational culture and organizational climate? A native's point of view on a decade of paradigm wars. Academy of Management Review, 21, 619-654.</ref-fulltext>
+</reference>
+<reference id="21">
+<ref-info>
+<refd-itemidlist>
+<itemid idtype="SGR">58649100978</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>E.</ce:initials>
+<ce:indexed-name>Durkheim E.</ce:indexed-name>
+<ce:surname>Durkheim</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>The Elementary Forms of Religious Life (J. W. Swain, Trans.)</ref-sourcetitle>
+<ref-publicationyear first="1961"/>
+<ref-text>New York: Collier. (Original work published 1915)</ref-text>
+</ref-info>
+<ref-fulltext>Durkheim, E. (1961). The elementary forms of religious life (J. W. Swain, Trans.). New York: Collier. (Original work published 1915)</ref-fulltext>
+</reference>
+<reference id="22">
+<ref-info>
+<refd-itemidlist>
+<itemid idtype="SGR">0004181580</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>E.</ce:initials>
+<ce:indexed-name>Durkheim E.</ce:indexed-name>
+<ce:surname>Durkheim</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>The Division of Labor in Society (G. Simpson</ref-sourcetitle>
+<ref-publicationyear first="1964"/>
+<ref-text>London: Collier-Macmillan.</ref-text>
+</ref-info>
+<ref-fulltext>Durkheim, E. (1964). The division of labor in society (G. Simpson, Trans.). London: Collier-Macmillan.</ref-fulltext>
+</reference>
+<reference id="23">
+<ref-info>
+<refd-itemidlist>
+<itemid idtype="SGR">0003839213</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>E.E.</ce:initials>
+<ce:indexed-name>Evans-Pritchard E.E.</ce:indexed-name>
+<ce:surname>Evans-Pritchard</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Theories of Primitive Religion</ref-sourcetitle>
+<ref-publicationyear first="1965"/>
+<ref-text>Oxford, UK: Clarendon.</ref-text>
+</ref-info>
+<ref-fulltext>Evans-Pritchard, E.E. (1965). Theories of primitive religion. Oxford, UK: Clarendon.</ref-fulltext>
+</reference>
+<reference id="24">
+<ref-info>
+<ref-title>
+<ref-titletext>Verbal and bodily rituals of greeting and parting</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">0012890954</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>R.</ce:initials>
+<ce:indexed-name>Firth R.</ce:indexed-name>
+<ce:surname>Firth</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>The Interpretation of Ritual</ref-sourcetitle>
+<ref-publicationyear first="1972"/>
+<ref-volisspag>
+<pagerange first="1" last="38"/>
+</ref-volisspag>
+<ref-text>J. S. La Fontaine (Ed.), London: Tavistock.</ref-text>
+</ref-info>
+<ref-fulltext>Firth, R. (1972). Verbal and bodily rituals of greeting and parting. In J. S. La Fontaine (Ed.), The interpretation of ritual (pp. 1-38). London: Tavistock.</ref-fulltext>
+</reference>
+<reference id="25">
+<ref-info>
+<ref-title>
+<ref-titletext>Ritualism, symbolism and magic in consultancy practice: An exploratory investigation</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">27844589485</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>G.</ce:initials>
+<ce:indexed-name>Gbadamosi G.</ce:indexed-name>
+<ce:surname>Gbadamosi</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Management Decision</ref-sourcetitle>
+<ref-publicationyear first="2005"/>
+<ref-volisspag>
+<voliss volume="43"/>
+<pagerange first="1129" last="1146"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Gbadamosi, G. (2005). Ritualism, symbolism and magic in consultancy practice: An exploratory investigation. Management Decision, 43, 1129-1146.</ref-fulltext>
+</reference>
+<reference id="26">
+<ref-info>
+<ref-title>
+<ref-titletext>Status degradation and organizational succession: An ethnomethodological approach</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">61849156084</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>R.J.</ce:initials>
+<ce:indexed-name>Gephart R.J.</ce:indexed-name>
+<ce:surname>Gephart</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Administrative Science Quarterly</ref-sourcetitle>
+<ref-publicationyear first="1978"/>
+<ref-volisspag>
+<voliss volume="23"/>
+<pagerange first="553" last="581"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Gephart, R.J. (1978). Status degradation and organizational succession: An ethnomethodological approach. Administrative Science Quarterly, 23, 553-581.</ref-fulltext>
+</reference>
+<reference id="27">
+<ref-info>
+<ref-title>
+<ref-titletext>Les rites de passage. [rites of passage]</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">0002718203</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>M.</ce:initials>
+<ce:indexed-name>Gluckman M.</ce:indexed-name>
+<ce:surname>Gluckman</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Essays on the Ritual of Social Relations</ref-sourcetitle>
+<ref-publicationyear first="1962"/>
+<ref-volisspag>
+<pagerange first="1" last="53"/>
+</ref-volisspag>
+<ref-text>M. Gluckman (Ed.), Manchester, UK: Manchester University Press.</ref-text>
+</ref-info>
+<ref-fulltext>Gluckman, M. (1962). Les rites de passage. [rites of passage] In M. Gluckman (Ed.), Essays on the ritual of social relations (pp. 1-53). Manchester, UK: Manchester University Press.</ref-fulltext>
+</reference>
+<reference id="28">
+<ref-info>
+<ref-title>
+<ref-titletext>Religion and ritual: The definitional problem</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">0000850696</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>J.</ce:initials>
+<ce:indexed-name>Goody J.</ce:indexed-name>
+<ce:surname>Goody</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>British Journal of Sociology</ref-sourcetitle>
+<ref-publicationyear first="1961"/>
+<ref-volisspag>
+<voliss volume="12"/>
+<pagerange first="142" last="164"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Goody, J. (1961). Religion and ritual: The definitional problem. British Journal of Sociology, 12, 142-164.</ref-fulltext>
+</reference>
+<reference id="29">
+<ref-info>
+<refd-itemidlist>
+<itemid idtype="SGR">58649114142</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>R.L.</ce:initials>
+<ce:indexed-name>Grimes R.L.</ce:indexed-name>
+<ce:surname>Grimes</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Ritual Criticism</ref-sourcetitle>
+<ref-publicationyear first="1990"/>
+<ref-text>Columbia : University of South Carolina Press.</ref-text>
+</ref-info>
+<ref-fulltext>Grimes, R.L. (1990). Ritual criticism. Columbia: University of South Carolina Press.</ref-fulltext>
+</reference>
+<reference id="30">
+<ref-info>
+<ref-title>
+<ref-titletext>Group rites and trainer wrongs in employee experiences of job change</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">0032622778</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>J.</ce:initials>
+<ce:indexed-name>Hallier J.</ce:indexed-name>
+<ce:surname>Hallier</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>P.</ce:initials>
+<ce:indexed-name>James P.</ce:indexed-name>
+<ce:surname>James</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Journal of Management Studies</ref-sourcetitle>
+<ref-publicationyear first="1999"/>
+<ref-volisspag>
+<voliss volume="36"/>
+<pagerange first="45" last="65"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Hallier, J., &amp; James, P. (1999). Group rites and trainer wrongs in employee experiences of job change. Journal of Management Studies, 36, 45-65.</ref-fulltext>
+</reference>
+<reference id="31">
+<ref-info>
+<ref-title>
+<ref-titletext>Functions of parting ceremonies in dying organizations</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">0002653815</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>S.</ce:initials>
+<ce:indexed-name>Harris S.</ce:indexed-name>
+<ce:surname>Harris</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>R.</ce:initials>
+<ce:indexed-name>Sutton R.</ce:indexed-name>
+<ce:surname>Sutton</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Academy of Management Journal</ref-sourcetitle>
+<ref-publicationyear first="1986"/>
+<ref-volisspag>
+<voliss volume="29"/>
+<pagerange first="5" last="30"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Harris, S., &amp; Sutton, R. (1986). Functions of parting ceremonies in dying organizations. Academy of Management Journal, 29, 5-30.</ref-fulltext>
+</reference>
+<reference id="32">
+<ref-info>
+<ref-title>
+<ref-titletext>The meso paradigm: A framework for the integration of micro and macro organizational behavior</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">21844526194</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>R.J.</ce:initials>
+<ce:indexed-name>House R.J.</ce:indexed-name>
+<ce:surname>House</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>D.M.</ce:initials>
+<ce:indexed-name>Rousseau D.M.</ce:indexed-name>
+<ce:surname>Rousseau</ce:surname>
+</author>
+<author seq="3">
+<ce:initials>M.</ce:initials>
+<ce:indexed-name>Thomas-Hunt M.</ce:indexed-name>
+<ce:surname>Thomas-Hunt</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Research in Organizational Behavior</ref-sourcetitle>
+<ref-publicationyear first="1995"/>
+<ref-volisspag>
+<pagerange first="71" last="114"/>
+</ref-volisspag>
+<ref-text>B. M. Staw &amp; L. L. Cummings (Eds.), Greenwich, CT: JAI.</ref-text>
+</ref-info>
+<ref-fulltext>House, R.J., Rousseau, D.M., &amp; Thomas-Hunt, M. (1995). The meso paradigm: A framework for the integration of micro and macro organizational behavior. In B. M. Staw &amp; L. L. Cummings (Eds.), Research in organizational behavior (Vol. 17, pp. 71-114). Greenwich, CT: JAI.</ref-fulltext>
+</reference>
+<reference id="33">
+<ref-info>
+<ref-title>
+<ref-titletext>Rhetoric, ritualism and totemism in human resource management</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">84937288179</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>K.</ce:initials>
+<ce:indexed-name>Kamoche K.</ce:indexed-name>
+<ce:surname>Kamoche</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Human Relations</ref-sourcetitle>
+<ref-publicationyear first="1995"/>
+<ref-volisspag>
+<voliss volume="48"/>
+<pagerange first="367" last="382"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Kamoche, K. (1995). Rhetoric, ritualism and totemism in human resource management. Human Relations, 48, 367-382.</ref-fulltext>
+</reference>
+<reference id="34">
+<ref-info>
+<ref-title>
+<ref-titletext>Using interpretive research: The development of a socialization program at R.C.A</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">33747627469</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>G.L.</ce:initials>
+<ce:indexed-name>Kreps G.L.</ce:indexed-name>
+<ce:surname>Kreps</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Communication and Organizations: An Interpretive Approach</ref-sourcetitle>
+<ref-publicationyear first="1983"/>
+<ref-volisspag>
+<pagerange first="243" last="256"/>
+</ref-volisspag>
+<ref-text>L. L. Putnam &amp; M. M. Pananowsky (Eds.), Beverly Hills, CA: Sage.</ref-text>
+</ref-info>
+<ref-fulltext>Kreps, G.L. (1983). Using interpretive research: The development of a socialization program at R.C.A. In L. L. Putnam &amp; M. M. Pananowsky (Eds.), Communication and organizations: An interpretive approach (pp. 243-256). Beverly Hills, CA: Sage.</ref-fulltext>
+</reference>
+<reference id="35">
+<ref-info>
+<ref-title>
+<ref-titletext>Stability and change as simultaneous experiences in organizational life</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">0034287677</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>C.R.</ce:initials>
+<ce:indexed-name>Leanna C.R.</ce:indexed-name>
+<ce:surname>Leanna</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>B.</ce:initials>
+<ce:indexed-name>Barry B.</ce:indexed-name>
+<ce:surname>Barry</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Academy of Management Review</ref-sourcetitle>
+<ref-publicationyear first="2000"/>
+<ref-volisspag>
+<voliss volume="25"/>
+<pagerange first="753" last="759"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Leanna, C.R., &amp; Barry, B. (2000). Stability and change as simultaneous experiences in organizational life. Academy of Management Review, 25, 753-759.</ref-fulltext>
+</reference>
+<reference id="36">
+<ref-info>
+<ref-title>
+<ref-titletext>French Sociology</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">0012232862</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>C.</ce:initials>
+<ce:indexed-name>Livi-Strauss C.</ce:indexed-name>
+<ce:surname>Lívi-Strauss</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Twentieth Century Socology</ref-sourcetitle>
+<ref-publicationyear first="1945"/>
+<ref-volisspag>
+<pagerange first="503" last="537"/>
+</ref-volisspag>
+<ref-text>Gurvitch and Moore, Eds, pp. New York: The Philosophical Library.</ref-text>
+</ref-info>
+<ref-fulltext>Lívi-Strauss, C. (1945). French Sociology. In Twentieth Century Socology, Gurvitch and Moore, Eds, pp. 503-537. New York: The Philosophical Library.</ref-fulltext>
+</reference>
+<reference id="37">
+<ref-info>
+<ref-title>
+<ref-titletext>Shared ordeal and induction to work</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">0008983497</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>D.C.</ce:initials>
+<ce:indexed-name>Lortie D.C.</ce:indexed-name>
+<ce:surname>Lortie</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Institutions and the Person</ref-sourcetitle>
+<ref-publicationyear first="1968"/>
+<ref-volisspag>
+<pagerange first="252" last="264"/>
+</ref-volisspag>
+<ref-text>H. Beeken, B. Geer, D. Riesman, &amp; R. S. Weiss (Eds.), Chicago: Aldine.</ref-text>
+</ref-info>
+<ref-fulltext>Lortie, D.C. (1968). Shared ordeal and induction to work. In H. Beeken, B. Geer, D. Riesman, &amp; R. S. Weiss (Eds.), Institutions and the person (pp. 252-264). Chicago: Aldine.</ref-fulltext>
+</reference>
+<reference id="38">
+<ref-info>
+<ref-title>
+<ref-titletext>Symbolic responses to layoffs in a software manufacturing firm: Managing the meaning of an event</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">0346926732</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>J.</ce:initials>
+<ce:indexed-name>Martin J.</ce:indexed-name>
+<ce:surname>Martin</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Inside Organizations: Understanding the Human Dimension</ref-sourcetitle>
+<ref-publicationyear first="1988"/>
+<ref-volisspag>
+<pagerange first="209" last="227"/>
+</ref-volisspag>
+<ref-text>M. O. Jones, M. D. Moore, &amp; R. C. Snyder (Eds.), Newbury Park, CA: Sage.</ref-text>
+</ref-info>
+<ref-fulltext>Martin, J. (1988). Symbolic responses to layoffs in a software manufacturing firm: Managing the meaning of an event. In M. O. Jones, M. D. Moore, &amp; R. C. Snyder (Eds.), Inside organizations: Understanding the human dimension (pp. 209-227). Newbury Park, CA: Sage.</ref-fulltext>
+</reference>
+<reference id="39">
+<ref-info>
+<ref-title>
+<ref-titletext>Organizational festivals and the uses of ambiguity: The case of Picnic Day at Davis</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">58649091377</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>J.</ce:initials>
+<ce:indexed-name>Mechling J.</ce:indexed-name>
+<ce:surname>Mechling</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>D.S.</ce:initials>
+<ce:indexed-name>Wilson D.S.</ce:indexed-name>
+<ce:surname>Wilson</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Inside Organizations: Understanding the Human Dimension</ref-sourcetitle>
+<ref-publicationyear first="1988"/>
+<ref-volisspag>
+<pagerange first="303" last="319"/>
+</ref-volisspag>
+<ref-text>M. O. Jones, M. D. Moore, &amp; R. C. Snyder (Eds.), Newbury Park, CA: Sage.</ref-text>
+</ref-info>
+<ref-fulltext>Mechling, J., &amp; Wilson, D.S. (1988). Organizational festivals and the uses of ambiguity: The case of Picnic Day at Davis. In M. O. Jones, M. D. Moore, &amp; R. C. Snyder (Eds.), Inside organizations: Understanding the human dimension (pp. 303-319). Newbury Park, CA: Sage.</ref-fulltext>
+</reference>
+<reference id="40">
+<ref-info>
+<ref-title>
+<ref-titletext>How ideologies supplant formal structures and shape responses to environments</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">0002191114</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>A.D.</ce:initials>
+<ce:indexed-name>Meyer A.D.</ce:indexed-name>
+<ce:surname>Meyer</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Journal of Management Studies</ref-sourcetitle>
+<ref-publicationyear first="1982"/>
+<ref-volisspag>
+<voliss issue="1" volume="19"/>
+<pagerange first="45" last="61"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Meyer, A.D. (1982). How ideologies supplant formal structures and shape responses to environments. Journal of Management Studies, 19 (1). 45-61.</ref-fulltext>
+</reference>
+<reference id="41">
+<ref-info>
+<ref-title>
+<ref-titletext>Secular ritual: Forms and meaning</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">0002544259</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>S.F.</ce:initials>
+<ce:indexed-name>Moore S.F.</ce:indexed-name>
+<ce:surname>Moore</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>B.G.</ce:initials>
+<ce:indexed-name>Myerhoff B.G.</ce:indexed-name>
+<ce:surname>Myerhoff</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Symbols and Politics in Communal Ideology</ref-sourcetitle>
+<ref-publicationyear first="1977"/>
+<ref-volisspag>
+<pagerange first="3" last="25"/>
+</ref-volisspag>
+<ref-text>S. F. Moore &amp; B. G. Myerhoff (Eds.), Ithaca, NY: Cornell University Press.</ref-text>
+</ref-info>
+<ref-fulltext>Moore, S.F., &amp; Myerhoff, B.G. (1977). Secular ritual: Forms and meaning. In S. F. Moore &amp; B. G. Myerhoff (Eds.), Symbols and politics in communal ideology (pp. 3-25). Ithaca, NY: Cornell University Press.</ref-fulltext>
+</reference>
+<reference id="42">
+<ref-info>
+<ref-title>
+<ref-titletext>Symbolism in a ritual context</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">4243556091</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>N.</ce:initials>
+<ce:indexed-name>Mum N.</ce:indexed-name>
+<ce:surname>Mum</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Handbook of Social and Cultural Anthropology</ref-sourcetitle>
+<ref-publicationyear first="1973"/>
+<ref-volisspag>
+<pagerange first="583"/>
+</ref-volisspag>
+<ref-text>J. J. Honigmann (Ed.), Chicago: Rand McNally.</ref-text>
+</ref-info>
+<ref-fulltext>Mum, N. (1973). Symbolism in a ritual context. In J. J. Honigmann (Ed.), Handbook of social and cultural anthropology (p. 583). Chicago: Rand McNally.</ref-fulltext>
+</reference>
+<reference id="43">
+<ref-info>
+<ref-title>
+<ref-titletext>The creation of trust through interaction and exchange: The role of consideration in organizations</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">33750433926</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>P.D.</ce:initials>
+<ce:indexed-name>Nugent P.D.</ce:indexed-name>
+<ce:surname>Nugent</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>M.Y.</ce:initials>
+<ce:indexed-name>Abolafia M.Y.</ce:indexed-name>
+<ce:surname>Abolafia</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Group &amp; Organization Management</ref-sourcetitle>
+<ref-publicationyear first="2006"/>
+<ref-volisspag>
+<voliss volume="31"/>
+<pagerange first="628" last="650"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Nugent, P.D., &amp; Abolafia, M.Y. (2006). The creation of trust through interaction and exchange: The role of consideration in organizations. Group &amp; Organization Management, 31, 628-650.</ref-fulltext>
+</reference>
+<reference id="44">
+<ref-info>
+<ref-title>
+<ref-titletext>Organizational commitment and psychological attachment: The effects of compliance, identification, and internalization on prosocial behavior</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">84888494976</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>O.C.</ce:initials>
+<ce:indexed-name>Iii O.C.</ce:indexed-name>
+<ce:surname>Iii</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>J.</ce:initials>
+<ce:indexed-name>Chatman J.</ce:indexed-name>
+<ce:surname>Chatman</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Journal of Applied Psychology</ref-sourcetitle>
+<ref-publicationyear first="1996"/>
+<ref-volisspag>
+<voliss volume="71"/>
+<pagerange first="492" last="499"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>O'Reilly, C., III, &amp; Chatman, J. (1996). Organizational commitment and psychological attachment: The effects of compliance, identification, and internalization on prosocial behavior. Journal of Applied Psychology, 71, 492-499.</ref-fulltext>
+</reference>
+<reference id="45">
+<ref-info>
+<ref-title>
+<ref-titletext>The case of the disappearing shamans, or, no individualism, no relationism</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">84937291225</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>S.</ce:initials>
+<ce:indexed-name>Ortner S.</ce:indexed-name>
+<ce:surname>Ortner</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Ethos</ref-sourcetitle>
+<ref-publicationyear first="1995"/>
+<ref-volisspag>
+<voliss volume="23"/>
+<pagerange first="355" last="390"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Ortner, S. (1995). The case of the disappearing shamans, or, no individualism, no relationism. Ethos, 23, 355-390.</ref-fulltext>
+</reference>
+<reference id="46">
+<ref-info>
+<ref-title>
+<ref-titletext>Management as symbolic action: The creation and maintenance of organizational paradigms</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">0002714901</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>J.</ce:initials>
+<ce:indexed-name>Pfeffer J.</ce:indexed-name>
+<ce:surname>Pfeffer</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Research in Organizational Behavior</ref-sourcetitle>
+<ref-publicationyear first="1981"/>
+<ref-volisspag>
+<voliss volume="31"/>
+<pagerange first="1" last="52"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Pfeffer, J. (1981). Management as symbolic action: The creation and maintenance of organizational paradigms. Research in Organizational Behavior, 31, 1-52.</ref-fulltext>
+</reference>
+<reference id="47">
+<ref-info>
+<ref-title>
+<ref-titletext>The good, the bad, and the ambivalent: Managing identification among Amway distributors</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">0034336949</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>M.G.</ce:initials>
+<ce:indexed-name>Pratt M.G.</ce:indexed-name>
+<ce:surname>Pratt</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Administrative Science Quarterly</ref-sourcetitle>
+<ref-publicationyear first="2000"/>
+<ref-volisspag>
+<voliss volume="45"/>
+<pagerange first="456" last="493"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Pratt, M.G. (2000). The good, the bad, and the ambivalent: Managing identification among Amway distributors. Administrative Science Quarterly, 45, 456-493.</ref-fulltext>
+</reference>
+<reference id="48">
+<ref-info>
+<ref-title>
+<ref-titletext>Organizational dress as a symbol of multilayered social identities</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">0031285031</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>M.G.</ce:initials>
+<ce:indexed-name>Pratt M.G.</ce:indexed-name>
+<ce:surname>Pratt</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>A.</ce:initials>
+<ce:indexed-name>Rafaeli A.</ce:indexed-name>
+<ce:surname>Rafaeli</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Academy of Management Journal</ref-sourcetitle>
+<ref-publicationyear first="1997"/>
+<ref-volisspag>
+<voliss volume="40"/>
+<pagerange first="862" last="898"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Pratt, M.G., &amp; Rafaeli, A. (1997). Organizational dress as a symbol of multilayered social identities. Academy of Management Journal, 40, 862-898.</ref-fulltext>
+</reference>
+<reference id="49">
+<ref-info>
+<refd-itemidlist>
+<itemid idtype="SGR">0003468773</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>A.R.</ce:initials>
+<ce:indexed-name>Radcliffe-Brown A.R.</ce:indexed-name>
+<ce:surname>Radcliffe-Brown</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Structure and Function in Primitive Society: Essays and Addresses</ref-sourcetitle>
+<ref-publicationyear first="1952"/>
+<ref-text>London: Cohen &amp; West.</ref-text>
+</ref-info>
+<ref-fulltext>Radcliffe-Brown, A.R. (1952). Structure and function in primitive society: Essays and addresses. London: Cohen &amp; West.</ref-fulltext>
+</reference>
+<reference id="50">
+<ref-info>
+<ref-title>
+<ref-titletext>Organizational culture: An examination of its effect on the internalization process and member performance</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">0006308121</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>M.</ce:initials>
+<ce:indexed-name>Ritchie M.</ce:indexed-name>
+<ce:surname>Ritchie</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Southern Business Review</ref-sourcetitle>
+<ref-publicationyear first="2000"/>
+<ref-volisspag>
+<voliss issue="2" volume="25"/>
+<pagerange first="1" last="13"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Ritchie, M. (2000). Organizational culture: An examination of its effect on the internalization process and member performance. Southern Business Review, 25, 2, 1-13.</ref-fulltext>
+</reference>
+<reference id="51">
+<ref-info>
+<ref-title>
+<ref-titletext>Breakfast at Spiro's: Dramaturgy and dominance</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">0002398289</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>M.</ce:initials>
+<ce:indexed-name>Rosen M.</ce:indexed-name>
+<ce:surname>Rosen</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Journal of Management</ref-sourcetitle>
+<ref-publicationyear first="1985"/>
+<ref-volisspag>
+<voliss issue="2" volume="11"/>
+<pagerange first="31" last="48"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Rosen, M. (1985). Breakfast at Spiro's: Dramaturgy and dominance. Journal of Management, 11 (2). 31-48.</ref-fulltext>
+</reference>
+<reference id="52">
+<ref-info>
+<refd-itemidlist>
+<itemid idtype="SGR">0004289574</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>M.</ce:initials>
+<ce:indexed-name>Sahlins M.</ce:indexed-name>
+<ce:surname>Sahlins</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Culture and Practical Reason</ref-sourcetitle>
+<ref-publicationyear first="1976"/>
+<ref-text>Chicago: University of Chicago Press.</ref-text>
+</ref-info>
+<ref-fulltext>Sahlins, M. (1976). Culture and practical reason. Chicago: University of Chicago Press.</ref-fulltext>
+</reference>
+<reference id="53">
+<ref-info>
+<ref-title>
+<ref-titletext>West Coast Camelot: The rise and fall of an organizational culture</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">34250833228</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>T.</ce:initials>
+<ce:indexed-name>Schumacher T.</ce:indexed-name>
+<ce:surname>Schumacher</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Cultural Complexity in Organizations: Inherent Contrasts and Contradictions</ref-sourcetitle>
+<ref-publicationyear first="1997"/>
+<ref-volisspag>
+<pagerange first="107" last="132"/>
+</ref-volisspag>
+<ref-text>S. A. Sackmann (Ed.), Thousand Oaks, CA: Sage.</ref-text>
+</ref-info>
+<ref-fulltext>Schumacher, T. (1997). West Coast Camelot: The rise and fall of an organizational culture. In S. A. Sackmann (Ed.), Cultural complexity in organizations: Inherent contrasts and contradictions (pp. 107-132). Thousand Oaks, CA: Sage.</ref-fulltext>
+</reference>
+<reference id="54">
+<ref-info>
+<ref-title>
+<ref-titletext>Service encounters as rites of integration: An information processing model</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">84933487401</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>C.</ce:initials>
+<ce:indexed-name>Seihl C.</ce:indexed-name>
+<ce:surname>Seihl</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>D.</ce:initials>
+<ce:indexed-name>Bowen D.</ce:indexed-name>
+<ce:surname>Bowen</ce:surname>
+</author>
+<author seq="3">
+<ce:initials>C.M.</ce:initials>
+<ce:indexed-name>Pearson C.M.</ce:indexed-name>
+<ce:surname>Pearson</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Organization Science</ref-sourcetitle>
+<ref-publicationyear first="1992"/>
+<ref-volisspag>
+<voliss volume="3"/>
+<pagerange first="537" last="555"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Seihl, C., Bowen, D., &amp; Pearson, C.M. (1992). Service encounters as rites of integration: An information processing model. Organization Science, 3, 537-555.</ref-fulltext>
+</reference>
+<reference id="55">
+<ref-info>
+<ref-title>
+<ref-titletext>Organizational culture change: An inter-group attributional analysis</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">0033240674</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>J.</ce:initials>
+<ce:indexed-name>Silvester J.</ce:indexed-name>
+<ce:surname>Silvester</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>N.</ce:initials>
+<ce:indexed-name>Anderson N.</ce:indexed-name>
+<ce:surname>Anderson</ce:surname>
+</author>
+<author seq="3">
+<ce:initials>F.</ce:initials>
+<ce:indexed-name>Patterson F.</ce:indexed-name>
+<ce:surname>Patterson</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Journal of Occupational and Organizational Psychology</ref-sourcetitle>
+<ref-publicationyear first="1999"/>
+<ref-volisspag>
+<voliss volume="72"/>
+<pagerange first="1" last="23"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Silvester, J., Anderson, N. and Patterson, F. (1999). Organizational culture change: An inter-group attributional analysis. Journal of Occupational and Organizational Psychology, 72, 1-23.</ref-fulltext>
+</reference>
+<reference id="56">
+<ref-info>
+<ref-title>
+<ref-titletext>Concepts of culture and organizational analysis</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">0000472274</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>L.</ce:initials>
+<ce:indexed-name>Smircich L.</ce:indexed-name>
+<ce:surname>Smircich</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Administrative Science Quarterly</ref-sourcetitle>
+<ref-publicationyear first="1983"/>
+<ref-volisspag>
+<voliss volume="28"/>
+<pagerange first="339" last="358"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Smircich, L. (1983). Concepts of culture and organizational analysis. Administrative Science Quarterly, 28, 339-358.</ref-fulltext>
+</reference>
+<reference id="57">
+<ref-info>
+<ref-title>
+<ref-titletext>Strategic management in an enacted world</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">0000236521</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>L.</ce:initials>
+<ce:indexed-name>Smircich L.</ce:indexed-name>
+<ce:surname>Smircich</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>C.</ce:initials>
+<ce:indexed-name>Stubbart C.</ce:indexed-name>
+<ce:surname>Stubbart</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Academy of Management Review</ref-sourcetitle>
+<ref-publicationyear first="1985"/>
+<ref-volisspag>
+<voliss volume="10"/>
+<pagerange first="724" last="736"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Smircich, L., &amp; Stubbart, C. (1985). Strategic management in an enacted world. Academy of Management Review, 10, 724-736.</ref-fulltext>
+</reference>
+<reference id="58">
+<ref-info>
+<ref-title>
+<ref-titletext>Within ritual, about ritual and beyond</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">44949272110</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>F.</ce:initials>
+<ce:indexed-name>Staal F.</ce:indexed-name>
+<ce:surname>Staal</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Religion</ref-sourcetitle>
+<ref-publicationyear first="1991"/>
+<ref-volisspag>
+<voliss volume="21"/>
+<pagerange first="227" last="234"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Staal, F. (1991). Within ritual, about ritual and beyond. Religion, 21, 227-234.</ref-fulltext>
+</reference>
+<reference id="59">
+<ref-info>
+<ref-title>
+<ref-titletext>Workers participation in management: An international perspective</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">0004010736</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>G.</ce:initials>
+<ce:indexed-name>Strauss G.</ce:indexed-name>
+<ce:surname>Strauss</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Research in Organizational Behavior</ref-sourcetitle>
+<ref-publicationyear first="1982"/>
+<ref-volisspag>
+<pagerange first="173" last="265"/>
+</ref-volisspag>
+<ref-text>B. M. Staw &amp; L. L. Cummings (Eds.), Greenwich, CT: JAI.</ref-text>
+</ref-info>
+<ref-fulltext>Strauss, G. (1982). Workers participation in management: An international perspective. In B. M. Staw &amp; L. L. Cummings (Eds.), Research in organizational behavior (Vol. 4, pp. 173-265). Greenwich, CT: JAI.</ref-fulltext>
+</reference>
+<reference id="60">
+<ref-info>
+<ref-title>
+<ref-titletext>The role of ceremonials in organizational behavior</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">33646566056</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>H.M.</ce:initials>
+<ce:indexed-name>Trice H.M.</ce:indexed-name>
+<ce:surname>Trice</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>J.</ce:initials>
+<ce:indexed-name>Belasco J.</ce:indexed-name>
+<ce:surname>Belasco</ce:surname>
+</author>
+<author seq="3">
+<ce:initials>J.A.</ce:initials>
+<ce:indexed-name>Alutto J.A.</ce:indexed-name>
+<ce:surname>Alutto</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Industrial and Labor Relations Review</ref-sourcetitle>
+<ref-publicationyear first="1969"/>
+<ref-volisspag>
+<voliss volume="23"/>
+<pagerange first="40" last="51"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Trice, H.M., Belasco, J., &amp; Alutto, J.A. (1969). The role of ceremonials in organizational behavior. Industrial and Labor Relations Review, 23, 40-51.</ref-fulltext>
+</reference>
+<reference id="61">
+<ref-info>
+<ref-title>
+<ref-titletext>Studying organizational cultures through rites and ceremonials</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">0000455429</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>H.M.</ce:initials>
+<ce:indexed-name>Trice H.M.</ce:indexed-name>
+<ce:surname>Trice</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>J.</ce:initials>
+<ce:indexed-name>Beyer J.</ce:indexed-name>
+<ce:surname>Beyer</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Academy of Management Review</ref-sourcetitle>
+<ref-publicationyear first="1984"/>
+<ref-volisspag>
+<voliss volume="9"/>
+<pagerange first="653" last="669"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Trice, H.M., &amp; Beyer, J. (1984). Studying organizational cultures through rites and ceremonials. Academy of Management Review, 9, 653-669.</ref-fulltext>
+</reference>
+<reference id="62">
+<ref-info>
+<ref-title>
+<ref-titletext>Using six organizational rites to change cultures</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">0040599184</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>H.M.</ce:initials>
+<ce:indexed-name>Trice H.M.</ce:indexed-name>
+<ce:surname>Trice</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>J.</ce:initials>
+<ce:indexed-name>Beyer J.</ce:indexed-name>
+<ce:surname>Beyer</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Gaining Control of the Corporate Culture</ref-sourcetitle>
+<ref-publicationyear first="1985"/>
+<ref-volisspag>
+<pagerange first="370" last="399"/>
+</ref-volisspag>
+<ref-text>R. H. Kilmann, M. J. Saxton, &amp; R. Serpa (Eds.), San Francisco: Jossey-Bass.</ref-text>
+</ref-info>
+<ref-fulltext>Trice, H.M., &amp; Beyer, J. (1985). Using six organizational rites to change cultures. In R. H. Kilmann, M. J. Saxton, &amp; R. Serpa (Eds.), Gaining control of the corporate culture (pp. 370-399). San Francisco: Jossey-Bass.</ref-fulltext>
+</reference>
+<reference id="63">
+<ref-info>
+<refd-itemidlist>
+<itemid idtype="SGR">0003647429</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>H.M.</ce:initials>
+<ce:indexed-name>Trice H.M.</ce:indexed-name>
+<ce:surname>Trice</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>J.</ce:initials>
+<ce:indexed-name>Beyer J.</ce:indexed-name>
+<ce:surname>Beyer</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>The Cultures of Work Organizations</ref-sourcetitle>
+<ref-publicationyear first="1993"/>
+<ref-text>Englewood Cliffs, NJ: Prentice Hall.</ref-text>
+</ref-info>
+<ref-fulltext>Trice, H.M., &amp; Beyer, J. (1993). The cultures of work organizations. Englewood Cliffs, NJ: Prentice Hall.</ref-fulltext>
+</reference>
+<reference id="64">
+<ref-info>
+<refd-itemidlist>
+<itemid idtype="SGR">0003997042</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>V.W.</ce:initials>
+<ce:indexed-name>Turner V.W.</ce:indexed-name>
+<ce:surname>Turner</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>The Ritual Process</ref-sourcetitle>
+<ref-publicationyear first="1969"/>
+<ref-text>Chicago : Aldine.</ref-text>
+</ref-info>
+<ref-fulltext>Turner, V.W. (1969). The ritual process. Chicago: Aldine.</ref-fulltext>
+</reference>
+<reference id="65">
+<ref-info>
+<refd-itemidlist>
+<itemid idtype="SGR">0344051206</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>A.</ce:initials>
+<ce:indexed-name>Van Gennep A.</ce:indexed-name>
+<ce:surname>Van Gennep</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Rites of Passage (M. B. Vizedom &amp; G. L. Caffee, Trans.)</ref-sourcetitle>
+<ref-publicationyear first="1960"/>
+<ref-text>Chicago: University of Chicago Press. (Original work published 1909)</ref-text>
+</ref-info>
+<ref-fulltext>Van Gennep, A. (1960). Rites of passage (M. B. Vizedom &amp; G. L. Caffee, Trans.). Chicago: University of Chicago Press. (Original work published 1909)</ref-fulltext>
+</reference>
+<reference id="66">
+<ref-info>
+<ref-title>
+<ref-titletext>Observations on the making of policemen</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">0000048749</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>J.</ce:initials>
+<ce:indexed-name>Van Maanen J.</ce:indexed-name>
+<ce:surname>Van Maanen</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Human Organization</ref-sourcetitle>
+<ref-publicationyear first="1973"/>
+<ref-volisspag>
+<voliss volume="32"/>
+<pagerange first="407" last="417"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Van Maanen, J. (1973). Observations on the making of policemen. Human Organization, 32, 407-417.</ref-fulltext>
+</reference>
+<reference id="67">
+<ref-info>
+<ref-title>
+<ref-titletext>Police socialization: A longitudinal examination of job attitudes in an urban police department</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">84876595161</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>J.</ce:initials>
+<ce:indexed-name>Van Maanen J.</ce:indexed-name>
+<ce:surname>Van Maanen</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Administrate Science Quarterly</ref-sourcetitle>
+<ref-publicationyear first="1975"/>
+<ref-volisspag>
+<voliss volume="20"/>
+<pagerange first="207" last="228"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Van Maanen, J. (1975). Police socialization: A longitudinal examination of job attitudes in an urban police department. Administrate Science Quarterly, 20, 207-228.</ref-fulltext>
+</reference>
+<reference id="68">
+<ref-info>
+<ref-title>
+<ref-titletext>Toward a theory of organizational socialization</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">0000269001</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>J.</ce:initials>
+<ce:indexed-name>Van Maanen J.</ce:indexed-name>
+<ce:surname>Van Maanen</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>E.H.</ce:initials>
+<ce:indexed-name>Schein E.H.</ce:indexed-name>
+<ce:surname>Schein</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Research in Organizational Behavior</ref-sourcetitle>
+<ref-publicationyear first="1976"/>
+<ref-volisspag>
+<pagerange first="209" last="264"/>
+</ref-volisspag>
+<ref-text>B. M. Staw (Ed.), Greenwich, CT: JAI.</ref-text>
+</ref-info>
+<ref-fulltext>Van Maanen, J., &amp; Schein, E.H. (1976). Toward a theory of organizational socialization. In B. M. Staw (Ed.), Research in organizational behavior (Vol. 1, pp. 209-264). Greenwich, CT: JAI.</ref-fulltext>
+</reference>
+<reference id="69">
+<ref-info>
+<ref-title>
+<ref-titletext>Incorporation and mechanical solidarity in an underground coal mine</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">84925923389</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>C.</ce:initials>
+<ce:indexed-name>Vaught C.</ce:indexed-name>
+<ce:surname>Vaught</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>D.L.</ce:initials>
+<ce:indexed-name>Smith D.L.</ce:indexed-name>
+<ce:surname>Smith</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Sociology of Work and Occupation</ref-sourcetitle>
+<ref-publicationyear first="1980"/>
+<ref-volisspag>
+<voliss volume="7"/>
+<pagerange first="159" last="167"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Vaught, C., &amp; Smith, D.L. (1980). Incorporation and mechanical solidarity in an underground coal mine. Sociology of Work and Occupation, 7, 159-167.</ref-fulltext>
+</reference>
+<reference id="70">
+<ref-info>
+<ref-title>
+<ref-titletext>The paradox of functional dysfunction in a Girl Scout camp: Implications of cultural diversity for achieving organizational goals</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">58649116983</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>P.A.</ce:initials>
+<ce:indexed-name>Wells P.A.</ce:indexed-name>
+<ce:surname>Wells</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Inside Organizations: Understanding the Human Dimension</ref-sourcetitle>
+<ref-publicationyear first="1988"/>
+<ref-volisspag>
+<pagerange first="109" last="117"/>
+</ref-volisspag>
+<ref-text>M. O. Jones, M. D. Moore, &amp; R. C. Snyder (Eds.), Newbury Park, CA: Sage.</ref-text>
+</ref-info>
+<ref-fulltext>Wells, P.A. (1988). The paradox of functional dysfunction in a Girl Scout camp: Implications of cultural diversity for achieving organizational goals. In M. O. Jones, M. D. Moore, &amp; R. C. Snyder (Eds.), Inside organizations: Understanding the human dimension (pp. 109-117). Newbury Park, CA: Sage.</ref-fulltext>
+</reference>
+<reference id="71">
+<ref-info>
+<ref-title>
+<ref-titletext>Efficient cultures: Exploring the relationship between culture and organizational performance</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">0001187873</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>A.L.</ce:initials>
+<ce:indexed-name>Wilkins A.L.</ce:indexed-name>
+<ce:surname>Wilkins</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>W.G.</ce:initials>
+<ce:indexed-name>Ouichi W.G.</ce:indexed-name>
+<ce:surname>Ouichi</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Administrative Science Quarterly</ref-sourcetitle>
+<ref-publicationyear first="1983"/>
+<ref-volisspag>
+<voliss volume="28"/>
+<pagerange first="468" last="481"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Wilkins, A.L., &amp; Ouichi, W.G. (1983). Efficient cultures: Exploring the relationship between culture and organizational performance. Administrative Science Quarterly, 28, 468-481.</ref-fulltext>
+</reference>
+</bibliography>
+      </tail>
+    </bibrecord>
+  </item>
+</abstracts-retrieval-response>

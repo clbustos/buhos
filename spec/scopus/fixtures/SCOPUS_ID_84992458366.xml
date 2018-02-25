@@ -1,0 +1,2156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<abstracts-retrieval-response xmlns="http://www.elsevier.com/xml/svapi/abstract/dtd" xmlns:ait="http://www.elsevier.com/xml/ani/ait" xmlns:ce="http://www.elsevier.com/xml/ani/common" xmlns:cto="http://www.elsevier.com/xml/cto/dtd" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:prism="http://prismstandard.org/namespaces/basic/2.0/" xmlns:xocs="http://www.elsevier.com/xml/xocs/dtd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <coredata>
+    <prism:url>http://api.elsevier.com/content/abstract/scopus_id/84992458366</prism:url>
+    <dc:identifier>SCOPUS_ID:84992458366</dc:identifier>
+    <eid>2-s2.0-84992458366</eid>
+    <prism:doi>10.1002/erv.2473</prism:doi>
+    <dc:title>Food Addiction in Bulimia Nervosa: Clinical Correlates and Association with Response to a Brief Psychoeducational Intervention</dc:title>
+    <prism:aggregationType>Journal</prism:aggregationType>
+    <srctype>j</srctype>
+    <citedby-count>0</citedby-count>
+    <prism:publicationName>European Eating Disorders Review</prism:publicationName>
+    <dc:publisher>John Wiley and Sons LtdSouthern GateChichester, West SussexPO19 8SQ</dc:publisher>
+    <source-id>14097</source-id>
+    <prism:issn>10990968</prism:issn>
+    <prism:volume>24</prism:volume>
+    <prism:issueIdentifier>6</prism:issueIdentifier>
+    <prism:startingPage>482</prism:startingPage>
+    <prism:endingPage>488</prism:endingPage>
+    <prism:pageRange>482-488</prism:pageRange>
+    <prism:coverDate>2016-11-01</prism:coverDate>
+    <dc:creator>
+      <author auid="55356227600" seq="1">
+        <ce:initials>I.</ce:initials>
+        <ce:indexed-name>Hilker I.</ce:indexed-name>
+        <ce:surname>Hilker</ce:surname>
+        <ce:given-name>Ines</ce:given-name>
+        <preferred-name>
+          <ce:initials>I.</ce:initials>
+          <ce:indexed-name>Hilker I.</ce:indexed-name>
+          <ce:surname>Hilker</ce:surname>
+          <ce:given-name>Ines</ce:given-name>
+        </preferred-name>
+        <author-url>http://api.elsevier.com/content/author/author_id/55356227600</author-url>
+        <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60011805" id="60011805"/>
+        <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60030315" id="60030315"/>
+      </author>
+    </dc:creator>
+    <dc:description>
+      <abstract original="y" xml:lang="eng">
+        <publishercopyright>Copyright © 2016 John Wiley &amp; Sons, Ltd and Eating Disorders Association.</publishercopyright>
+        <ce:para>Food addiction (FA) has been examined in different populations. Although high FA levels are associated with greater eating disorder severity, few studies have addressed how FA relates to treatment outcome. Goals: The study aims (1) to determine whether a brief intervention for bulimia nervosa (BN) reduces FA diagnosis or severity compared with baseline and (2) to determine if FA is predictive of treatment outcome. Method: Sixty-six female BN patients participated in the study. The Yale Food Addiction Scale was administered at two time points: prior to and following a 6-week intervention. The number of weekly binging/purging episodes, dropout and abstinence from bulimic behaviour were used as primary outcome measures. Results: This brief intervention reduced FA severity and FA diagnosis in the 55 patients who completed treatment. FA severity was a short-term predictor of abstinence from binging/purging episodes after treatment (p =.018). Conclusions: Food addiction appears to be prevalent in BN although FA severity can improve following a short-term intervention. Copyright © 2016 John Wiley &amp; Sons, Ltd and Eating Disorders Association.</ce:para>
+      </abstract>
+    </dc:description>
+    <intid>84992458366</intid>
+    <link href="http://api.elsevier.com/content/abstract/scopus_id/84992458366" rel="self"/>
+    <link href="https://www.scopus.com/inward/record.uri?partnerID=HzOxMe3b&amp;scp=84992458366&amp;origin=inward" rel="scopus"/>
+    <link href="https://www.scopus.com/inward/citedby.uri?partnerID=HzOxMe3b&amp;scp=84992458366&amp;origin=inward" rel="scopus-citedby"/>
+  </coredata>
+  <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60002983" id="60002983">
+    <affilname>Complejo Hospitalario Universitario de Santiago</affilname>
+    <affiliation-city>Santiago de Compostela</affiliation-city>
+    <affiliation-country>Spain</affiliation-country>
+  </affiliation>
+  <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60011805" id="60011805">
+    <affilname>Hospital Universitari de Bellvitge</affilname>
+    <affiliation-city>Barcelona</affiliation-city>
+    <affiliation-country>Spain</affiliation-country>
+  </affiliation>
+  <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60001602" id="60001602">
+    <affilname>Instituto de Salud Carlos III</affilname>
+    <affiliation-city>Madrid</affiliation-city>
+    <affiliation-country>Spain</affiliation-country>
+  </affiliation>
+  <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60104561" id="60104561">
+    <affilname>Centro de Investigacion Biomedica En Red de Salud Mental</affilname>
+    <affiliation-city>Madrid</affiliation-city>
+    <affiliation-country>Spain</affiliation-country>
+  </affiliation>
+  <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60001576" id="60001576">
+    <affilname>Universitat de Barcelona</affilname>
+    <affiliation-city>Barcelona</affiliation-city>
+    <affiliation-country>Spain</affiliation-country>
+  </affiliation>
+  <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60025778" id="60025778">
+    <affilname>University Michigan Ann Arbor</affilname>
+    <affiliation-city>Ann Arbor</affiliation-city>
+    <affiliation-country>United States</affiliation-country>
+  </affiliation>
+  <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60030315" id="60030315">
+    <affilname>Hospital Clinic Barcelona</affilname>
+    <affiliation-city>Barcelona</affiliation-city>
+    <affiliation-country>Spain</affiliation-country>
+  </affiliation>
+  <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60023020" id="60023020">
+    <affilname>Universitat Autònoma de Barcelona</affilname>
+    <affiliation-city>Barcelona</affiliation-city>
+    <affiliation-country>Spain</affiliation-country>
+  </affiliation>
+  <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60028419" id="60028419">
+    <affilname>Universidad de Santiago de Compostela</affilname>
+    <affiliation-city>Santiago de Compostela</affiliation-city>
+    <affiliation-country>Spain</affiliation-country>
+  </affiliation>
+  <authors>
+    <author auid="55356227600" seq="1">
+      <ce:initials>I.</ce:initials>
+      <ce:indexed-name>Hilker I.</ce:indexed-name>
+      <ce:surname>Hilker</ce:surname>
+      <ce:given-name>Ines</ce:given-name>
+      <preferred-name>
+        <ce:initials>I.</ce:initials>
+        <ce:indexed-name>Hilker I.</ce:indexed-name>
+        <ce:surname>Hilker</ce:surname>
+        <ce:given-name>Ines</ce:given-name>
+      </preferred-name>
+      <author-url>http://api.elsevier.com/content/author/author_id/55356227600</author-url>
+      <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60011805" id="60011805"/>
+      <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60030315" id="60030315"/>
+    </author>
+    <author auid="16639904700" seq="2">
+      <ce:initials>I.</ce:initials>
+      <ce:indexed-name>Sanchez I.</ce:indexed-name>
+      <ce:surname>Sánchez</ce:surname>
+      <ce:given-name>Isabel</ce:given-name>
+      <preferred-name>
+        <ce:initials>I.</ce:initials>
+        <ce:indexed-name>Sánchez I.</ce:indexed-name>
+        <ce:surname>Sánchez</ce:surname>
+        <ce:given-name>Isabel</ce:given-name>
+      </preferred-name>
+      <author-url>http://api.elsevier.com/content/author/author_id/16639904700</author-url>
+      <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60011805" id="60011805"/>
+    </author>
+    <author auid="24172020400" seq="3">
+      <ce:initials>T.</ce:initials>
+      <ce:indexed-name>Steward T.</ce:indexed-name>
+      <ce:surname>Steward</ce:surname>
+      <ce:given-name>Trevor</ce:given-name>
+      <preferred-name>
+        <ce:initials>T.</ce:initials>
+        <ce:indexed-name>Steward T.</ce:indexed-name>
+        <ce:surname>Steward</ce:surname>
+        <ce:given-name>Trevor</ce:given-name>
+      </preferred-name>
+      <author-url>http://api.elsevier.com/content/author/author_id/24172020400</author-url>
+      <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60011805" id="60011805"/>
+      <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60001602" id="60001602"/>
+    </author>
+    <author auid="7801631922" seq="4">
+      <ce:initials>S.</ce:initials>
+      <ce:indexed-name>Jimenez-Murcia S.</ce:indexed-name>
+      <ce:surname>Jiménez-Murcia</ce:surname>
+      <ce:given-name>Susana</ce:given-name>
+      <preferred-name>
+        <ce:initials>S.</ce:initials>
+        <ce:indexed-name>Jiménez-Murcia S.</ce:indexed-name>
+        <ce:surname>Jiménez-Murcia</ce:surname>
+        <ce:given-name>Susana</ce:given-name>
+      </preferred-name>
+      <author-url>http://api.elsevier.com/content/author/author_id/7801631922</author-url>
+      <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60011805" id="60011805"/>
+      <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60001602" id="60001602"/>
+      <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60001576" id="60001576"/>
+    </author>
+    <author auid="23484971500" seq="5">
+      <ce:initials>R.</ce:initials>
+      <ce:indexed-name>Granero R.</ce:indexed-name>
+      <ce:surname>Granero</ce:surname>
+      <ce:given-name>Roser</ce:given-name>
+      <preferred-name>
+        <ce:initials>R.</ce:initials>
+        <ce:indexed-name>Granero R.</ce:indexed-name>
+        <ce:surname>Granero</ce:surname>
+        <ce:given-name>Roser</ce:given-name>
+      </preferred-name>
+      <author-url>http://api.elsevier.com/content/author/author_id/23484971500</author-url>
+      <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60001602" id="60001602"/>
+      <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60023020" id="60023020"/>
+    </author>
+    <author auid="23049655000" seq="6">
+      <ce:initials>A.N.</ce:initials>
+      <ce:indexed-name>Gearhardt A.N.</ce:indexed-name>
+      <ce:surname>Gearhardt</ce:surname>
+      <ce:given-name>Ashley N.</ce:given-name>
+      <preferred-name>
+        <ce:initials>A.N.</ce:initials>
+        <ce:indexed-name>Gearhardt A.</ce:indexed-name>
+        <ce:surname>Gearhardt</ce:surname>
+        <ce:given-name>Ashley N.</ce:given-name>
+      </preferred-name>
+      <author-url>http://api.elsevier.com/content/author/author_id/23049655000</author-url>
+      <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60025778" id="60025778"/>
+    </author>
+    <author auid="57191693263" seq="7">
+      <ce:initials>R.C.</ce:initials>
+      <ce:indexed-name>Rodriguez-Munoz R.C.</ce:indexed-name>
+      <ce:surname>Rodríguez-Muñoz</ce:surname>
+      <ce:given-name>Rita Cristina</ce:given-name>
+      <preferred-name>
+        <ce:initials>R.C.</ce:initials>
+        <ce:indexed-name>Rodríguez-Muñoz R.</ce:indexed-name>
+        <ce:surname>Rodríguez-Muñoz</ce:surname>
+        <ce:given-name>Rita Cristina</ce:given-name>
+      </preferred-name>
+      <author-url>http://api.elsevier.com/content/author/author_id/57191693263</author-url>
+      <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60011805" id="60011805"/>
+    </author>
+    <author auid="56765416100" seq="8">
+      <ce:initials>C.</ce:initials>
+      <ce:indexed-name>Dieguez C.</ce:indexed-name>
+      <ce:surname>Dieguez</ce:surname>
+      <ce:given-name>Carlos</ce:given-name>
+      <preferred-name>
+        <ce:initials>C.</ce:initials>
+        <ce:indexed-name>Dieguez C.</ce:indexed-name>
+        <ce:surname>Dieguez</ce:surname>
+        <ce:given-name>Carlos</ce:given-name>
+      </preferred-name>
+      <author-url>http://api.elsevier.com/content/author/author_id/56765416100</author-url>
+      <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60001602" id="60001602"/>
+      <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60028419" id="60028419"/>
+    </author>
+    <author auid="13404506000" seq="9">
+      <ce:initials>A.B.</ce:initials>
+      <ce:indexed-name>Crujeiras A.B.</ce:indexed-name>
+      <ce:surname>Crujeiras</ce:surname>
+      <ce:given-name>Ana B.</ce:given-name>
+      <preferred-name>
+        <ce:initials>A.B.</ce:initials>
+        <ce:indexed-name>Crujeiras A.</ce:indexed-name>
+        <ce:surname>Crujeiras</ce:surname>
+        <ce:given-name>Ana B.</ce:given-name>
+      </preferred-name>
+      <author-url>http://api.elsevier.com/content/author/author_id/13404506000</author-url>
+      <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60001602" id="60001602"/>
+      <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60002983" id="60002983"/>
+    </author>
+    <author auid="57191624779" seq="10">
+      <ce:initials>I.</ce:initials>
+      <ce:indexed-name>Tolosa-Sola I.</ce:indexed-name>
+      <ce:surname>Tolosa-Sola</ce:surname>
+      <ce:given-name>Iris</ce:given-name>
+      <preferred-name>
+        <ce:initials>I.</ce:initials>
+        <ce:indexed-name>Tolosa-Sola I.</ce:indexed-name>
+        <ce:surname>Tolosa-Sola</ce:surname>
+        <ce:given-name>Iris</ce:given-name>
+      </preferred-name>
+      <author-url>http://api.elsevier.com/content/author/author_id/57191624779</author-url>
+      <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60011805" id="60011805"/>
+    </author>
+    <author auid="7103087629" seq="11">
+      <ce:initials>F.F.</ce:initials>
+      <ce:indexed-name>Casanueva F.F.</ce:indexed-name>
+      <ce:surname>Casanueva</ce:surname>
+      <ce:given-name>Felipe F.</ce:given-name>
+      <preferred-name>
+        <ce:initials>F.F.</ce:initials>
+        <ce:indexed-name>Casanueva F.</ce:indexed-name>
+        <ce:surname>Casanueva</ce:surname>
+        <ce:given-name>Felipe F.</ce:given-name>
+      </preferred-name>
+      <author-url>http://api.elsevier.com/content/author/author_id/7103087629</author-url>
+      <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60001602" id="60001602"/>
+      <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60002983" id="60002983"/>
+    </author>
+    <author auid="6604044797" seq="12">
+      <ce:initials>J.M.</ce:initials>
+      <ce:indexed-name>Menchon J.M.</ce:indexed-name>
+      <ce:surname>Menchón</ce:surname>
+      <ce:given-name>José M.</ce:given-name>
+      <preferred-name>
+        <ce:initials>J.M.</ce:initials>
+        <ce:indexed-name>Menchón J.</ce:indexed-name>
+        <ce:surname>Menchón</ce:surname>
+        <ce:given-name>José M.</ce:given-name>
+      </preferred-name>
+      <author-url>http://api.elsevier.com/content/author/author_id/6604044797</author-url>
+      <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60011805" id="60011805"/>
+      <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60001576" id="60001576"/>
+      <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60104561" id="60104561"/>
+    </author>
+    <author auid="6602871103" seq="13">
+      <ce:initials>F.</ce:initials>
+      <ce:indexed-name>Fernandez-Aranda F.</ce:indexed-name>
+      <ce:surname>Fernández-Aranda</ce:surname>
+      <ce:given-name>Fernando</ce:given-name>
+      <preferred-name>
+        <ce:initials>F.</ce:initials>
+        <ce:indexed-name>Fernández-Aranda F.</ce:indexed-name>
+        <ce:surname>Fernández-Aranda</ce:surname>
+        <ce:given-name>Fernando</ce:given-name>
+      </preferred-name>
+      <author-url>http://api.elsevier.com/content/author/author_id/6602871103</author-url>
+      <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60011805" id="60011805"/>
+      <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60001602" id="60001602"/>
+      <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60001576" id="60001576"/>
+    </author>
+  </authors>
+  <language xml:lang="eng"/>
+  <authkeywords>
+    <author-keyword>bulimia nervosa</author-keyword>
+    <author-keyword>clinical</author-keyword>
+    <author-keyword>food addiction</author-keyword>
+    <author-keyword>outcome</author-keyword>
+    <author-keyword>treatment</author-keyword>
+  </authkeywords>
+  <idxterms/>
+  <subject-areas>
+    <subject-area abbrev="PSYC" code="3203">Clinical Psychology</subject-area>
+    <subject-area abbrev="MEDI" code="2738">Psychiatry and Mental Health</subject-area>
+  </subject-areas>
+  <item xmlns="">
+    <ait:process-info>
+      <ait:date-delivered day="19" month="11" timestamp="2016-11-19T00:27:31.000031+00:00" year="2016"/>
+      <ait:date-sort day="01" month="11" year="2016"/>
+      <ait:status stage="S300" state="update" type="core"/>
+    </ait:process-info>
+    <bibrecord>
+      <item-info>
+        <copyright type="Elsevier">Copyright 2016 Elsevier B.V., All rights reserved.</copyright>
+        <itemidlist>
+          <ce:doi>10.1002/erv.2473</ce:doi>
+          <itemid idtype="PUI">612956621</itemid>
+          <itemid idtype="CAR-ID">657520486</itemid>
+          <itemid idtype="EMBASE">20160780631</itemid>
+          <itemid idtype="NURSNG">2016374644</itemid>
+          <itemid idtype="SCP">84992458366</itemid>
+          <itemid idtype="SGR">84992458366</itemid>
+        </itemidlist>
+        <history>
+          <date-created day="01" month="11" timestamp="BST 06:11:57" year="2016"/>
+        </history>
+        <dbcollection>EMBASE</dbcollection>
+        <dbcollection>NURSNG</dbcollection>
+        <dbcollection>Scopusbase</dbcollection>
+      </item-info>
+      <head>
+        <citation-info>
+          <citation-type code="ar"/>
+          <citation-language language="English" xml:lang="eng"/>
+          <abstract-language language="English" xml:lang="eng"/>
+          <author-keywords>
+            <author-keyword>bulimia nervosa</author-keyword>
+            <author-keyword>clinical</author-keyword>
+            <author-keyword>food addiction</author-keyword>
+            <author-keyword>outcome</author-keyword>
+            <author-keyword>treatment</author-keyword>
+          </author-keywords>
+        </citation-info>
+        <citation-title>
+          <titletext language="English" original="y" xml:lang="eng">Food Addiction in Bulimia Nervosa: Clinical Correlates and Association with Response to a Brief Psychoeducational Intervention</titletext>
+        </citation-title>
+        <author-group>
+          <author auid="55356227600" seq="1" type="auth">
+            <ce:initials>I.</ce:initials>
+            <ce:indexed-name>Hilker I.</ce:indexed-name>
+            <ce:surname>Hilker</ce:surname>
+            <ce:given-name>Ines</ce:given-name>
+            <preferred-name>
+              <ce:initials>I.</ce:initials>
+              <ce:indexed-name>Hilker I.</ce:indexed-name>
+              <ce:surname>Hilker</ce:surname>
+              <ce:given-name>Ines</ce:given-name>
+            </preferred-name>
+          </author>
+          <author auid="16639904700" seq="2" type="auth">
+            <ce:initials>I.</ce:initials>
+            <ce:indexed-name>Sanchez I.</ce:indexed-name>
+            <ce:surname>Sánchez</ce:surname>
+            <ce:given-name>Isabel</ce:given-name>
+            <preferred-name>
+              <ce:initials>I.</ce:initials>
+              <ce:indexed-name>Sánchez I.</ce:indexed-name>
+              <ce:surname>Sánchez</ce:surname>
+              <ce:given-name>Isabel</ce:given-name>
+            </preferred-name>
+          </author>
+          <author auid="24172020400" seq="3" type="auth">
+            <ce:initials>T.</ce:initials>
+            <ce:indexed-name>Steward T.</ce:indexed-name>
+            <ce:surname>Steward</ce:surname>
+            <ce:given-name>Trevor</ce:given-name>
+            <preferred-name>
+              <ce:initials>T.</ce:initials>
+              <ce:indexed-name>Steward T.</ce:indexed-name>
+              <ce:surname>Steward</ce:surname>
+              <ce:given-name>Trevor</ce:given-name>
+            </preferred-name>
+          </author>
+          <author auid="7801631922" seq="4" type="auth">
+            <ce:initials>S.</ce:initials>
+            <ce:indexed-name>Jimenez-Murcia S.</ce:indexed-name>
+            <ce:surname>Jiménez-Murcia</ce:surname>
+            <ce:given-name>Susana</ce:given-name>
+            <preferred-name>
+              <ce:initials>S.</ce:initials>
+              <ce:indexed-name>Jiménez-Murcia S.</ce:indexed-name>
+              <ce:surname>Jiménez-Murcia</ce:surname>
+              <ce:given-name>Susana</ce:given-name>
+            </preferred-name>
+          </author>
+          <author auid="57191693263" seq="7" type="auth">
+            <ce:initials>R.C.</ce:initials>
+            <ce:indexed-name>Rodriguez-Munoz R.C.</ce:indexed-name>
+            <ce:surname>Rodríguez-Muñoz</ce:surname>
+            <ce:given-name>Rita Cristina</ce:given-name>
+            <preferred-name>
+              <ce:initials>R.C.</ce:initials>
+              <ce:indexed-name>Rodríguez-Muñoz R.</ce:indexed-name>
+              <ce:surname>Rodríguez-Muñoz</ce:surname>
+              <ce:given-name>Rita Cristina</ce:given-name>
+            </preferred-name>
+          </author>
+          <author auid="57191624779" seq="10" type="auth">
+            <ce:initials>I.</ce:initials>
+            <ce:indexed-name>Tolosa-Sola I.</ce:indexed-name>
+            <ce:surname>Tolosa-Sola</ce:surname>
+            <ce:given-name>Iris</ce:given-name>
+            <preferred-name>
+              <ce:initials>I.</ce:initials>
+              <ce:indexed-name>Tolosa-Sola I.</ce:indexed-name>
+              <ce:surname>Tolosa-Sola</ce:surname>
+              <ce:given-name>Iris</ce:given-name>
+            </preferred-name>
+          </author>
+          <author auid="6604044797" seq="12" type="auth">
+            <ce:initials>J.M.</ce:initials>
+            <ce:indexed-name>Menchon J.M.</ce:indexed-name>
+            <ce:surname>Menchón</ce:surname>
+            <ce:given-name>José M.</ce:given-name>
+            <preferred-name>
+              <ce:initials>J.M.</ce:initials>
+              <ce:indexed-name>Menchón J.</ce:indexed-name>
+              <ce:surname>Menchón</ce:surname>
+              <ce:given-name>José M.</ce:given-name>
+            </preferred-name>
+          </author>
+          <author auid="6602871103" seq="13" type="auth">
+            <ce:initials>F.</ce:initials>
+            <ce:indexed-name>Fernandez-Aranda F.</ce:indexed-name>
+            <ce:surname>Fernández-Aranda</ce:surname>
+            <ce:given-name>Fernando</ce:given-name>
+            <preferred-name>
+              <ce:initials>F.</ce:initials>
+              <ce:indexed-name>Fernández-Aranda F.</ce:indexed-name>
+              <ce:surname>Fernández-Aranda</ce:surname>
+              <ce:given-name>Fernando</ce:given-name>
+            </preferred-name>
+            <ce:e-address type="email">ffernandez@bellvitgehospital.cat</ce:e-address>
+          </author>
+          <affiliation afid="60011805" country="esp" dptid="110028634">
+            <organization>Department of Psychiatry</organization>
+            <organization>University Hospital of Bellvitge-IDIBELL</organization>
+            <city>Barcelona</city>
+            <country>Spain</country>
+          </affiliation>
+        </author-group>
+        <author-group>
+          <author auid="24172020400" seq="3" type="auth">
+            <ce:initials>T.</ce:initials>
+            <ce:indexed-name>Steward T.</ce:indexed-name>
+            <ce:surname>Steward</ce:surname>
+            <ce:given-name>Trevor</ce:given-name>
+            <preferred-name>
+              <ce:initials>T.</ce:initials>
+              <ce:indexed-name>Steward T.</ce:indexed-name>
+              <ce:surname>Steward</ce:surname>
+              <ce:given-name>Trevor</ce:given-name>
+            </preferred-name>
+          </author>
+          <author auid="7801631922" seq="4" type="auth">
+            <ce:initials>S.</ce:initials>
+            <ce:indexed-name>Jimenez-Murcia S.</ce:indexed-name>
+            <ce:surname>Jiménez-Murcia</ce:surname>
+            <ce:given-name>Susana</ce:given-name>
+            <preferred-name>
+              <ce:initials>S.</ce:initials>
+              <ce:indexed-name>Jiménez-Murcia S.</ce:indexed-name>
+              <ce:surname>Jiménez-Murcia</ce:surname>
+              <ce:given-name>Susana</ce:given-name>
+            </preferred-name>
+          </author>
+          <author auid="23484971500" seq="5" type="auth">
+            <ce:initials>R.</ce:initials>
+            <ce:indexed-name>Granero R.</ce:indexed-name>
+            <ce:surname>Granero</ce:surname>
+            <ce:given-name>Roser</ce:given-name>
+            <preferred-name>
+              <ce:initials>R.</ce:initials>
+              <ce:indexed-name>Granero R.</ce:indexed-name>
+              <ce:surname>Granero</ce:surname>
+              <ce:given-name>Roser</ce:given-name>
+            </preferred-name>
+          </author>
+          <author auid="56765416100" seq="8" type="auth">
+            <ce:initials>C.</ce:initials>
+            <ce:indexed-name>Dieguez C.</ce:indexed-name>
+            <ce:surname>Dieguez</ce:surname>
+            <ce:given-name>Carlos</ce:given-name>
+            <preferred-name>
+              <ce:initials>C.</ce:initials>
+              <ce:indexed-name>Dieguez C.</ce:indexed-name>
+              <ce:surname>Dieguez</ce:surname>
+              <ce:given-name>Carlos</ce:given-name>
+            </preferred-name>
+          </author>
+          <author auid="13404506000" seq="9" type="auth">
+            <ce:initials>A.B.</ce:initials>
+            <ce:indexed-name>Crujeiras A.B.</ce:indexed-name>
+            <ce:surname>Crujeiras</ce:surname>
+            <ce:given-name>Ana B.</ce:given-name>
+            <preferred-name>
+              <ce:initials>A.B.</ce:initials>
+              <ce:indexed-name>Crujeiras A.</ce:indexed-name>
+              <ce:surname>Crujeiras</ce:surname>
+              <ce:given-name>Ana B.</ce:given-name>
+            </preferred-name>
+          </author>
+          <author auid="7103087629" seq="11" type="auth">
+            <ce:initials>F.F.</ce:initials>
+            <ce:indexed-name>Casanueva F.F.</ce:indexed-name>
+            <ce:surname>Casanueva</ce:surname>
+            <ce:given-name>Felipe F.</ce:given-name>
+            <preferred-name>
+              <ce:initials>F.F.</ce:initials>
+              <ce:indexed-name>Casanueva F.</ce:indexed-name>
+              <ce:surname>Casanueva</ce:surname>
+              <ce:given-name>Felipe F.</ce:given-name>
+            </preferred-name>
+          </author>
+          <author auid="6602871103" seq="13" type="auth">
+            <ce:initials>F.</ce:initials>
+            <ce:indexed-name>Fernandez-Aranda F.</ce:indexed-name>
+            <ce:surname>Fernández-Aranda</ce:surname>
+            <ce:given-name>Fernando</ce:given-name>
+            <preferred-name>
+              <ce:initials>F.</ce:initials>
+              <ce:indexed-name>Fernández-Aranda F.</ce:indexed-name>
+              <ce:surname>Fernández-Aranda</ce:surname>
+              <ce:given-name>Fernando</ce:given-name>
+            </preferred-name>
+            <ce:e-address type="email">ffernandez@bellvitgehospital.cat</ce:e-address>
+          </author>
+          <affiliation afid="60001602" country="esp">
+            <organization>Ciber Fisiopatologia Obesidad y Nutrición (CIBERObn)</organization>
+            <organization>Instituto Salud Carlos III</organization>
+            <city>Barcelona</city>
+            <country>Spain</country>
+          </affiliation>
+        </author-group>
+        <author-group>
+          <author auid="7801631922" seq="4" type="auth">
+            <ce:initials>S.</ce:initials>
+            <ce:indexed-name>Jimenez-Murcia S.</ce:indexed-name>
+            <ce:surname>Jiménez-Murcia</ce:surname>
+            <ce:given-name>Susana</ce:given-name>
+            <preferred-name>
+              <ce:initials>S.</ce:initials>
+              <ce:indexed-name>Jiménez-Murcia S.</ce:indexed-name>
+              <ce:surname>Jiménez-Murcia</ce:surname>
+              <ce:given-name>Susana</ce:given-name>
+            </preferred-name>
+          </author>
+          <author auid="6604044797" seq="12" type="auth">
+            <ce:initials>J.M.</ce:initials>
+            <ce:indexed-name>Menchon J.M.</ce:indexed-name>
+            <ce:surname>Menchón</ce:surname>
+            <ce:given-name>José M.</ce:given-name>
+            <preferred-name>
+              <ce:initials>J.M.</ce:initials>
+              <ce:indexed-name>Menchón J.</ce:indexed-name>
+              <ce:surname>Menchón</ce:surname>
+              <ce:given-name>José M.</ce:given-name>
+            </preferred-name>
+          </author>
+          <author auid="6602871103" seq="13" type="auth">
+            <ce:initials>F.</ce:initials>
+            <ce:indexed-name>Fernandez-Aranda F.</ce:indexed-name>
+            <ce:surname>Fernández-Aranda</ce:surname>
+            <ce:given-name>Fernando</ce:given-name>
+            <preferred-name>
+              <ce:initials>F.</ce:initials>
+              <ce:indexed-name>Fernández-Aranda F.</ce:indexed-name>
+              <ce:surname>Fernández-Aranda</ce:surname>
+              <ce:given-name>Fernando</ce:given-name>
+            </preferred-name>
+            <ce:e-address type="email">ffernandez@bellvitgehospital.cat</ce:e-address>
+          </author>
+          <affiliation afid="60001576" country="esp" dptid="111585115">
+            <organization>Department of Clinical Sciences</organization>
+            <organization>School of Medicine</organization>
+            <organization>University of Barcelona</organization>
+            <country>Spain</country>
+          </affiliation>
+        </author-group>
+        <author-group>
+          <author auid="23484971500" seq="5" type="auth">
+            <ce:initials>R.</ce:initials>
+            <ce:indexed-name>Granero R.</ce:indexed-name>
+            <ce:surname>Granero</ce:surname>
+            <ce:given-name>Roser</ce:given-name>
+            <preferred-name>
+              <ce:initials>R.</ce:initials>
+              <ce:indexed-name>Granero R.</ce:indexed-name>
+              <ce:surname>Granero</ce:surname>
+              <ce:given-name>Roser</ce:given-name>
+            </preferred-name>
+          </author>
+          <affiliation afid="60023020" country="esp" dptid="115472365">
+            <organization>Department of Psychobiology and Methodology</organization>
+            <organization>University Autònoma of Barcelona</organization>
+            <country>Spain</country>
+          </affiliation>
+        </author-group>
+        <author-group>
+          <author auid="23049655000" seq="6" type="auth">
+            <ce:initials>A.N.</ce:initials>
+            <ce:indexed-name>Gearhardt A.N.</ce:indexed-name>
+            <ce:surname>Gearhardt</ce:surname>
+            <ce:given-name>Ashley N.</ce:given-name>
+            <preferred-name>
+              <ce:initials>A.N.</ce:initials>
+              <ce:indexed-name>Gearhardt A.</ce:indexed-name>
+              <ce:surname>Gearhardt</ce:surname>
+              <ce:given-name>Ashley N.</ce:given-name>
+            </preferred-name>
+          </author>
+          <affiliation afid="60025778" country="usa" dptid="113720849">
+            <organization>Department of Psychology</organization>
+            <organization>University of Michigan</organization>
+            <city>Ann Arbor</city>
+            <state>MI</state>
+            <country>United States</country>
+          </affiliation>
+        </author-group>
+        <author-group>
+          <author auid="56765416100" seq="8" type="auth">
+            <ce:initials>C.</ce:initials>
+            <ce:indexed-name>Dieguez C.</ce:indexed-name>
+            <ce:surname>Dieguez</ce:surname>
+            <ce:given-name>Carlos</ce:given-name>
+            <preferred-name>
+              <ce:initials>C.</ce:initials>
+              <ce:indexed-name>Dieguez C.</ce:indexed-name>
+              <ce:surname>Dieguez</ce:surname>
+              <ce:given-name>Carlos</ce:given-name>
+            </preferred-name>
+          </author>
+          <affiliation afid="60028419" country="esp" dptid="113517942">
+            <organization>Department of Physiology</organization>
+            <organization>CIMUS</organization>
+            <organization>University of Santiago de Compostela-Instituto de Investigación Sanitaria</organization>
+            <city>Santiago de Compostela</city>
+            <country>Spain</country>
+          </affiliation>
+        </author-group>
+        <author-group>
+          <author auid="13404506000" seq="9" type="auth">
+            <ce:initials>A.B.</ce:initials>
+            <ce:indexed-name>Crujeiras A.B.</ce:indexed-name>
+            <ce:surname>Crujeiras</ce:surname>
+            <ce:given-name>Ana B.</ce:given-name>
+            <preferred-name>
+              <ce:initials>A.B.</ce:initials>
+              <ce:indexed-name>Crujeiras A.</ce:indexed-name>
+              <ce:surname>Crujeiras</ce:surname>
+              <ce:given-name>Ana B.</ce:given-name>
+            </preferred-name>
+          </author>
+          <author auid="7103087629" seq="11" type="auth">
+            <ce:initials>F.F.</ce:initials>
+            <ce:indexed-name>Casanueva F.F.</ce:indexed-name>
+            <ce:surname>Casanueva</ce:surname>
+            <ce:given-name>Felipe F.</ce:given-name>
+            <preferred-name>
+              <ce:initials>F.F.</ce:initials>
+              <ce:indexed-name>Casanueva F.</ce:indexed-name>
+              <ce:surname>Casanueva</ce:surname>
+              <ce:given-name>Felipe F.</ce:given-name>
+            </preferred-name>
+          </author>
+          <affiliation afid="60002983" country="esp" dptid="103204067">
+            <organization>Laboratory of Molecular and Cellular Endocrinology</organization>
+            <organization>Research Area</organization>
+            <organization>Complejo Hospitalario Universitario de Santiago de Compostela</organization>
+            <city>A Coruña</city>
+            <country>Spain</country>
+          </affiliation>
+        </author-group>
+        <author-group>
+          <author auid="6604044797" seq="12" type="auth">
+            <ce:initials>J.M.</ce:initials>
+            <ce:indexed-name>Menchon J.M.</ce:indexed-name>
+            <ce:surname>Menchón</ce:surname>
+            <ce:given-name>José M.</ce:given-name>
+            <preferred-name>
+              <ce:initials>J.M.</ce:initials>
+              <ce:indexed-name>Menchón J.</ce:indexed-name>
+              <ce:surname>Menchón</ce:surname>
+              <ce:given-name>José M.</ce:given-name>
+            </preferred-name>
+          </author>
+          <affiliation afid="60104561" country="esp">
+            <organization>Ciber Salud Mental (CIBERSAM)</organization>
+            <organization>Instituto Salud Carlos III</organization>
+            <city>Barcelona</city>
+            <country>Spain</country>
+          </affiliation>
+        </author-group>
+        <author-group>
+          <author auid="55356227600" seq="1" type="auth">
+            <ce:initials>I.</ce:initials>
+            <ce:indexed-name>Hilker I.</ce:indexed-name>
+            <ce:surname>Hilker</ce:surname>
+            <ce:given-name>Ines</ce:given-name>
+            <preferred-name>
+              <ce:initials>I.</ce:initials>
+              <ce:indexed-name>Hilker I.</ce:indexed-name>
+              <ce:surname>Hilker</ce:surname>
+              <ce:given-name>Ines</ce:given-name>
+            </preferred-name>
+          </author>
+          <affiliation afid="60030315" country="esp" dptid="104530872">
+            <organization>Department of Child and Adolescent Psychiatry and Psychology</organization>
+            <organization>Hospital Clínic of Barcelona</organization>
+            <city>Barcelona</city>
+            <country>Spain</country>
+          </affiliation>
+        </author-group>
+        <correspondence>
+          <person>
+            <ce:initials>F.</ce:initials>
+            <ce:indexed-name>Fernandez-Aranda F.</ce:indexed-name>
+            <ce:surname>Fernández-Aranda</ce:surname>
+            <ce:given-name>Fernando</ce:given-name>
+          </person>
+          <affiliation country="esp">
+            <organization>Department of Psychiatry</organization>
+            <organization>University Hospital of Bellvitge-IDIBELL</organization>
+            <city>Barcelona</city>
+            <country>Spain</country>
+          </affiliation>
+          <ce:e-address type="email">ffernandez@bellvitgehospital.cat</ce:e-address>
+        </correspondence>
+        <grantlist complete="y">
+          <grant>
+            <grant-id>PI14/00290</grant-id>
+            <grant-acronym>ISCIII</grant-acronym>
+            <grant-agency>Instituto de Salud Carlos III</grant-agency>
+          </grant>
+          <grant-text xml:lang="eng">This manuscript was supported by grants from Instituto de Salud Carlos III (FIS PI14/00290, CIBERObn, CIBERSAM) and co-funded by Fondos Europeos de Desarrollo Regional (FEDER). CIBERObn and CIBERSAM are both initiatives of ISCIII. This study was co-funded by FEDER funds/European Regional Development Fund (ERDF) — a way to build Europe and by a Ministerio de Economía y Competitividad grant (PSI2015-68701-R). The funders had no role in the study design, data collection and analysis, decision to publish, or preparation of the manuscript.</grant-text>
+        </grantlist>
+        <abstracts>
+          <abstract original="y" xml:lang="eng">
+            <publishercopyright>Copyright © 2016 John Wiley &amp; Sons, Ltd and Eating Disorders Association.</publishercopyright>
+            <ce:para>Food addiction (FA) has been examined in different populations. Although high FA levels are associated with greater eating disorder severity, few studies have addressed how FA relates to treatment outcome. Goals: The study aims (1) to determine whether a brief intervention for bulimia nervosa (BN) reduces FA diagnosis or severity compared with baseline and (2) to determine if FA is predictive of treatment outcome. Method: Sixty-six female BN patients participated in the study. The Yale Food Addiction Scale was administered at two time points: prior to and following a 6-week intervention. The number of weekly binging/purging episodes, dropout and abstinence from bulimic behaviour were used as primary outcome measures. Results: This brief intervention reduced FA severity and FA diagnosis in the 55 patients who completed treatment. FA severity was a short-term predictor of abstinence from binging/purging episodes after treatment (p =.018). Conclusions: Food addiction appears to be prevalent in BN although FA severity can improve following a short-term intervention. Copyright © 2016 John Wiley &amp; Sons, Ltd and Eating Disorders Association.</ce:para>
+          </abstract>
+        </abstracts>
+        <source country="gbr" srcid="14097" type="j">
+          <sourcetitle>European Eating Disorders Review</sourcetitle>
+          <sourcetitle-abbrev>Eur. Eating Disord. Rev.</sourcetitle-abbrev>
+          <translated-sourcetitle xml:lang="eng">European Eating Disorders Review</translated-sourcetitle>
+          <issn type="electronic">10990968</issn>
+          <issn type="print">10724133</issn>
+          <codencode>EEDRE</codencode>
+          <volisspag>
+            <voliss issue="6" volume="24"/>
+            <pagerange first="482" last="488"/>
+          </volisspag>
+          <publicationyear first="2016"/>
+          <publicationdate>
+            <year>2016</year>
+            <month>11</month>
+            <day>01</day>
+            <date-text xfab-added="true">1 November 2016</date-text>
+          </publicationdate>
+          <website>
+            <ce:e-address type="email">http://onlinelibrary.wiley.com/journal/10.1002/(ISSN)1099-0968</ce:e-address>
+          </website>
+          <publisher>
+            <publishername>John Wiley and Sons Ltd</publishername>
+            <affiliation country="gbr">
+              <address-part>Southern Gate</address-part>
+              <city>Chichester, West Sussex</city>
+              <postal-code>PO19 8SQ</postal-code>
+            </affiliation>
+          </publisher>
+        </source>
+        <enhancement>
+          <classificationgroup>
+            <classifications type="ASJC">
+              <classification>3203</classification>
+              <classification>2738</classification>
+            </classifications>
+            <classifications type="SUBJABBR">
+              <classification>PSYC</classification>
+              <classification>MEDI</classification>
+            </classifications>
+          </classificationgroup>
+        </enhancement>
+      </head>
+      <tail>
+        <bibliography refcount="35">
+          <reference id="1">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Outcome predictors for the cognitive behavior treatment of bulimia nervosa: Data from a multisite study</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">0033847502</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>W.S.</ce:initials>
+                  <ce:indexed-name>Agras W.S.</ce:indexed-name>
+                  <ce:surname>Agras</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>S.J.</ce:initials>
+                  <ce:indexed-name>Crow S.J.</ce:indexed-name>
+                  <ce:surname>Crow</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>K.A.</ce:initials>
+                  <ce:indexed-name>Halmi K.A.</ce:indexed-name>
+                  <ce:surname>Halmi</ce:surname>
+                </author>
+                <author seq="4">
+                  <ce:initials>J.E.</ce:initials>
+                  <ce:indexed-name>Mitchell J.E.</ce:indexed-name>
+                  <ce:surname>Mitchell</ce:surname>
+                </author>
+                <author seq="5">
+                  <ce:initials>G.T.</ce:initials>
+                  <ce:indexed-name>Wilson G.T.</ce:indexed-name>
+                  <ce:surname>Wilson</ce:surname>
+                </author>
+                <author seq="6">
+                  <ce:initials>H.C.</ce:initials>
+                  <ce:indexed-name>Kraemer H.C.</ce:indexed-name>
+                  <ce:surname>Kraemer</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>The American Journal of Psychiatry</ref-sourcetitle>
+              <ref-publicationyear first="2000"/>
+              <ref-volisspag>
+                <voliss issue="8" volume="157"/>
+                <pagerange first="1302" last="1308"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Agras, W. S., Crow, S. J., Halmi, K. A., Mitchell, J. E., Wilson, G. T., &amp; Kraemer, H. C. (2000). Outcome predictors for the cognitive behavior treatment of bulimia nervosa: Data from a multisite study. The American Journal of Psychiatry, 157(8), 1302–1308.</ref-fulltext>
+          </reference>
+          <reference id="2">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Cognitive behaviour therapy response and dropout rate across purging and nonpurging bulimia nervosa and binge eating disorder: DSM-5 implications</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">84887906119</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>Z.</ce:initials>
+                  <ce:indexed-name>Aguera Z.</ce:indexed-name>
+                  <ce:surname>Agüera</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>N.</ce:initials>
+                  <ce:indexed-name>Riesco N.</ce:indexed-name>
+                  <ce:surname>Riesco</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>S.</ce:initials>
+                  <ce:indexed-name>Jimenez-Murcia S.</ce:indexed-name>
+                  <ce:surname>Jiménez-Murcia</ce:surname>
+                </author>
+                <author seq="4">
+                  <ce:initials>M.A.</ce:initials>
+                  <ce:indexed-name>Islam M.A.</ce:indexed-name>
+                  <ce:surname>Islam</ce:surname>
+                </author>
+                <author seq="5">
+                  <ce:initials>R.</ce:initials>
+                  <ce:indexed-name>Granero R.</ce:indexed-name>
+                  <ce:surname>Granero</ce:surname>
+                </author>
+                <author seq="6">
+                  <ce:initials>E.</ce:initials>
+                  <ce:indexed-name>Vicente E.</ce:indexed-name>
+                  <ce:surname>Vicente</ce:surname>
+                </author>
+                <et-al/>
+              </ref-authors>
+              <ref-sourcetitle>BMC Psychiatry</ref-sourcetitle>
+              <ref-publicationyear first="2013"/>
+              <ref-volisspag>
+                <voliss volume="13"/>
+                <pagerange first="285"/>
+              </ref-volisspag>
+              <ref-website>
+                <ce:e-address type="email">http://doi.org/10.1186/1471-244X-13-285</ce:e-address>
+              </ref-website>
+            </ref-info>
+            <ref-fulltext>Agüera, Z., Riesco, N., Jiménez-Murcia, S., Islam, M. A., Granero, R., Vicente, E., et al. (2013). Cognitive behaviour therapy response and dropout rate across purging and nonpurging bulimia nervosa and binge eating disorder: DSM-5 implications. BMC Psychiatry, 13, 285. http://doi.org/10.1186/1471-244X-13-285</ref-fulltext>
+          </reference>
+          <reference id="3">
+            <ref-info>
+              <refd-itemidlist>
+                <itemid idtype="SGR">0003472502</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <collaboration seq="1">
+                  <ce:indexed-name>APA</ce:indexed-name>
+                  <ce:text>APA</ce:text>
+                </collaboration>
+              </ref-authors>
+              <ref-sourcetitle>Diagnostic and statistical manual of mental disorders: DSM-5</ref-sourcetitle>
+              <ref-publicationyear first="2013"/>
+              <ref-text>Washington, DC, American Psychiatric Assocation</ref-text>
+            </ref-info>
+            <ref-fulltext>APA (2013). Diagnostic and statistical manual of mental disorders: DSM-5. Washington, DC: American Psychiatric Assocation.</ref-fulltext>
+          </reference>
+          <reference id="4">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>The therapeutic process in psychological treatments for eating disorders: A systematic review</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">84904414208</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>A.</ce:initials>
+                  <ce:indexed-name>Brauhardt A.</ce:indexed-name>
+                  <ce:surname>Brauhardt</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>M.</ce:initials>
+                  <ce:indexed-name>De Zwaan M.</ce:indexed-name>
+                  <ce:surname>De Zwaan</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>A.</ce:initials>
+                  <ce:indexed-name>Hilbert A.</ce:indexed-name>
+                  <ce:surname>Hilbert</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>International Journal of Eating Disorders</ref-sourcetitle>
+              <ref-publicationyear first="2014"/>
+              <ref-volisspag>
+                <voliss issue="6" volume="47"/>
+                <pagerange first="565" last="584"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Brauhardt, A., De Zwaan, M., &amp; Hilbert, A. (2014). The therapeutic process in psychological treatments for eating disorders: A systematic review. International Journal of Eating Disorders, 47(6), 565–584.</ref-fulltext>
+          </reference>
+          <reference id="5">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Food addiction in adults seeking weight loss treatment. Implications for psychosocial health and weight loss</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">84868588124</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>J.M.</ce:initials>
+                  <ce:indexed-name>Burmeister J.M.</ce:indexed-name>
+                  <ce:surname>Burmeister</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>N.</ce:initials>
+                  <ce:indexed-name>Hinman N.</ce:indexed-name>
+                  <ce:surname>Hinman</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>A.</ce:initials>
+                  <ce:indexed-name>Koball A.</ce:indexed-name>
+                  <ce:surname>Koball</ce:surname>
+                </author>
+                <author seq="4">
+                  <ce:initials>D.A.</ce:initials>
+                  <ce:indexed-name>Hoffmann D.A.</ce:indexed-name>
+                  <ce:surname>Hoffmann</ce:surname>
+                </author>
+                <author seq="5">
+                  <ce:initials>R.A.</ce:initials>
+                  <ce:indexed-name>Carels R.A.</ce:indexed-name>
+                  <ce:surname>Carels</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Appetite</ref-sourcetitle>
+              <ref-publicationyear first="2013"/>
+              <ref-volisspag>
+                <voliss issue="1" volume="60"/>
+                <pagerange first="103" last="110"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Burmeister, J. M., Hinman, N., Koball, A., Hoffmann, D. A., &amp; Carels, R. A. (2013). Food addiction in adults seeking weight loss treatment. Implications for psychosocial health and weight loss. Appetite, 60(1), 103–110.</ref-fulltext>
+          </reference>
+          <reference id="6">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Validation of the Yale Food Addiction Scale among a weight-loss surgery population</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">84875785061</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>S.M.</ce:initials>
+                  <ce:indexed-name>Clark S.M.</ce:indexed-name>
+                  <ce:surname>Clark</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>K.K.</ce:initials>
+                  <ce:indexed-name>Saules K.K.</ce:indexed-name>
+                  <ce:surname>Saules</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Eating Behaviors</ref-sourcetitle>
+              <ref-publicationyear first="2013"/>
+              <ref-volisspag>
+                <voliss issue="2" volume="14"/>
+                <pagerange first="216" last="219"/>
+              </ref-volisspag>
+              <ref-website>
+                <ce:e-address type="email">http://doi.org/10.1016/j.eatbeh.2013.01.002</ce:e-address>
+              </ref-website>
+            </ref-info>
+            <ref-fulltext>Clark, S. M., &amp; Saules, K. K. (2013). Validation of the Yale Food Addiction Scale among a weight-loss surgery population. Eating Behaviors, 14(2), 216–219. http://doi.org/10.1016/j.eatbeh.2013.01.002</ref-fulltext>
+          </reference>
+          <reference id="7">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Brief group psychoeducation for bulimia nervosa: Assessing the clinical significance of change</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">0025601674</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>R.</ce:initials>
+                  <ce:indexed-name>Davis R.</ce:indexed-name>
+                  <ce:surname>Davis</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>M.P.</ce:initials>
+                  <ce:indexed-name>Olmsted M.P.</ce:indexed-name>
+                  <ce:surname>Olmsted</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>W.</ce:initials>
+                  <ce:indexed-name>Rockert W.</ce:indexed-name>
+                  <ce:surname>Rockert</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Journal of Consulting and Clinical Psychology</ref-sourcetitle>
+              <ref-publicationyear first="1990"/>
+              <ref-volisspag>
+                <voliss issue="6" volume="58"/>
+                <pagerange first="882" last="885"/>
+              </ref-volisspag>
+              <ref-website>
+                <ce:e-address type="email">http://doi.org/10.1037/0022-006X.58.6.882</ce:e-address>
+              </ref-website>
+            </ref-info>
+            <ref-fulltext>Davis, R., Olmsted, M. P., &amp; Rockert, W. (1990). Brief group psychoeducation for bulimia nervosa: Assessing the clinical significance of change. Journal of Consulting and Clinical Psychology, 58(6), 882–885. http://doi.org/10.1037/0022-006X.58.6.882</ref-fulltext>
+          </reference>
+          <reference id="8">
+            <ref-info>
+              <refd-itemidlist>
+                <itemid idtype="SGR">0038151402</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>L.R.</ce:initials>
+                  <ce:indexed-name>Derogatis L.R.</ce:indexed-name>
+                  <ce:surname>Derogatis</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>SCL-90-R. Administration, scoring and procedures manual</ref-sourcetitle>
+              <ref-publicationyear first="1990"/>
+              <ref-text>Baltimore, MD, Clinical Psychometric Research</ref-text>
+            </ref-info>
+            <ref-fulltext>Derogatis, L. R. (1990). SCL-90-R. Administration, scoring and procedures manual. Baltimore, MD: Clinical Psychometric Research.</ref-fulltext>
+          </reference>
+          <reference id="9">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Prediction of outcome in bulimia nervosa by early change in treatment</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">9744219623</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>C.G.</ce:initials>
+                  <ce:indexed-name>Fairburn C.G.</ce:indexed-name>
+                  <ce:surname>Fairburn</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>W.S.</ce:initials>
+                  <ce:indexed-name>Agras W.S.</ce:indexed-name>
+                  <ce:surname>Agras</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>B.T.</ce:initials>
+                  <ce:indexed-name>Walsh B.T.</ce:indexed-name>
+                  <ce:surname>Walsh</ce:surname>
+                </author>
+                <author seq="4">
+                  <ce:initials>G.T.</ce:initials>
+                  <ce:indexed-name>Wilson G.T.</ce:indexed-name>
+                  <ce:surname>Wilson</ce:surname>
+                </author>
+                <author seq="5">
+                  <ce:initials>E.</ce:initials>
+                  <ce:indexed-name>Stice E.</ce:indexed-name>
+                  <ce:surname>Stice</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>The American Journal of Psychiatry</ref-sourcetitle>
+              <ref-publicationyear first="2004"/>
+              <ref-volisspag>
+                <voliss issue="12" volume="161"/>
+                <pagerange first="2322" last="2324"/>
+              </ref-volisspag>
+              <ref-website>
+                <ce:e-address type="email">http://doi.org/10.1176/appi.ajp.161.12.2322</ce:e-address>
+              </ref-website>
+            </ref-info>
+            <ref-fulltext>Fairburn, C. G., Agras, W. S., Walsh, B. T., Wilson, G. T., &amp; Stice, E. (2004). Prediction of outcome in bulimia nervosa by early change in treatment. The American Journal of Psychiatry, 161(12), 2322–2324. http://doi.org/10.1176/appi.ajp.161.12.2322</ref-fulltext>
+          </reference>
+          <reference id="10">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Predictors of early change in bulimia nervosa after a brief psychoeducational therapy</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">67349231447</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>F.</ce:initials>
+                  <ce:indexed-name>Fernandez-Aranda F.</ce:indexed-name>
+                  <ce:surname>Fernández-Aranda</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>E.M.</ce:initials>
+                  <ce:indexed-name>Alvarez-Moya E.M.</ce:indexed-name>
+                  <ce:surname>Alvarez-Moya</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>C.</ce:initials>
+                  <ce:indexed-name>Martinez-Viana C.</ce:indexed-name>
+                  <ce:surname>Martínez-Viana</ce:surname>
+                </author>
+                <author seq="4">
+                  <ce:initials>I.</ce:initials>
+                  <ce:indexed-name>Sanchez I.</ce:indexed-name>
+                  <ce:surname>Sánchez</ce:surname>
+                </author>
+                <author seq="5">
+                  <ce:initials>R.</ce:initials>
+                  <ce:indexed-name>Granero R.</ce:indexed-name>
+                  <ce:surname>Granero</ce:surname>
+                </author>
+                <author seq="6">
+                  <ce:initials>E.</ce:initials>
+                  <ce:indexed-name>Penelo E.</ce:indexed-name>
+                  <ce:surname>Penelo</ce:surname>
+                </author>
+                <et-al/>
+              </ref-authors>
+              <ref-sourcetitle>Appetite</ref-sourcetitle>
+              <ref-publicationyear first="2009"/>
+              <ref-volisspag>
+                <voliss issue="3" volume="52"/>
+                <pagerange first="805" last="808"/>
+              </ref-volisspag>
+              <ref-website>
+                <ce:e-address type="email">http://doi.org/10.1016/j.appet.2009.03.013</ce:e-address>
+              </ref-website>
+            </ref-info>
+            <ref-fulltext>Fernández-Aranda, F., Alvarez-Moya, E. M., Martínez-Viana, C., Sánchez, I., Granero, R., Penelo, E., et al. (2009). Predictors of early change in bulimia nervosa after a brief psychoeducational therapy. Appetite, 52(3), 805–808. http://doi.org/10.1016/j.appet.2009.03.013</ref-fulltext>
+          </reference>
+          <reference id="11">
+            <ref-info>
+              <refd-itemidlist>
+                <itemid idtype="SGR">84983155398</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>F.</ce:initials>
+                  <ce:indexed-name>Fernandez-Aranda F.</ce:indexed-name>
+                  <ce:surname>Fernandez-Aranda</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>V.</ce:initials>
+                  <ce:indexed-name>Turon V.</ce:indexed-name>
+                  <ce:surname>Turon</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Trastornos de la alimentación</ref-sourcetitle>
+              <ref-publicationyear first="1998"/>
+              <ref-text>#x0026;, Barcelona, Masson</ref-text>
+            </ref-info>
+            <ref-fulltext>Fernandez-Aranda, F., &amp; Turon, V. (1998). Trastornos de la alimentación. Barcelona: Masson.</ref-fulltext>
+          </reference>
+          <reference id="12">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>On a monotonicity problem in step-down multiple test procedures</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">21144459575</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>H.</ce:initials>
+                  <ce:indexed-name>Finner H.</ce:indexed-name>
+                  <ce:surname>Finner</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Journal of the American Statistical Association</ref-sourcetitle>
+              <ref-publicationyear first="1993"/>
+              <ref-volisspag>
+                <voliss issue="423" volume="88"/>
+                <pagerange first="920" last="923"/>
+              </ref-volisspag>
+              <ref-website>
+                <ce:e-address type="email">http://doi.org/10.1080/01621459.1993.10476358</ce:e-address>
+              </ref-website>
+            </ref-info>
+            <ref-fulltext>Finner, H. (1993). On a monotonicity problem in step-down multiple test procedures. Journal of the American Statistical Association, 88(423), 920–923. http://doi.org/10.1080/01621459.1993.10476358</ref-fulltext>
+          </reference>
+          <reference id="13">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Food-addiction scale measurement in 2 cohorts of middle-aged and older women</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">84896866978</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>A.J.</ce:initials>
+                  <ce:indexed-name>Flint A.J.</ce:indexed-name>
+                  <ce:surname>Flint</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>A.N.</ce:initials>
+                  <ce:indexed-name>Gearhardt A.N.</ce:indexed-name>
+                  <ce:surname>Gearhardt</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>W.R.</ce:initials>
+                  <ce:indexed-name>Corbin W.R.</ce:indexed-name>
+                  <ce:surname>Corbin</ce:surname>
+                </author>
+                <author seq="4">
+                  <ce:initials>K.D.</ce:initials>
+                  <ce:indexed-name>Brownell K.D.</ce:indexed-name>
+                  <ce:surname>Brownell</ce:surname>
+                </author>
+                <author seq="5">
+                  <ce:initials>A.E.</ce:initials>
+                  <ce:indexed-name>Field A.E.</ce:indexed-name>
+                  <ce:surname>Field</ce:surname>
+                </author>
+                <author seq="6">
+                  <ce:initials>E.B.</ce:initials>
+                  <ce:indexed-name>Rimm E.B.</ce:indexed-name>
+                  <ce:surname>Rimm</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>American Journal of Clinical Nutrition</ref-sourcetitle>
+              <ref-publicationyear first="2014"/>
+              <ref-volisspag>
+                <voliss issue="3" volume="99"/>
+                <pagerange first="578" last="586"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Flint, A. J., Gearhardt, A. N., Corbin, W. R., Brownell, K. D., Field, A. E., &amp; Rimm, E. B. (2014). Food-addiction scale measurement in 2 cohorts of middle-aged and older women. American Journal of Clinical Nutrition, 99(3), 578–586.</ref-fulltext>
+          </reference>
+          <reference id="14">
+            <ref-info>
+              <refd-itemidlist>
+                <itemid idtype="SGR">0004020832</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>D.M.</ce:initials>
+                  <ce:indexed-name>Garner D.M.</ce:indexed-name>
+                  <ce:surname>Garner</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Eating Disorder Inventory-2</ref-sourcetitle>
+              <ref-publicationyear first="1991"/>
+              <ref-text>Odessa, Psychological Assessment Resources</ref-text>
+            </ref-info>
+            <ref-fulltext>Garner, D. M. (1991). Eating Disorder Inventory-2. Odessa: Psychological Assessment Resources.</ref-fulltext>
+          </reference>
+          <reference id="15">
+            <ref-info>
+              <refd-itemidlist>
+                <itemid idtype="SGR">84973117925</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>D.M.</ce:initials>
+                  <ce:indexed-name>Garner D.M.</ce:indexed-name>
+                  <ce:surname>Garner</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Inventario de Trastornos de la Conducta Alimentaria (EDI-2)-Manual</ref-sourcetitle>
+              <ref-publicationyear first="1998"/>
+              <ref-text>Madrid, TEA</ref-text>
+            </ref-info>
+            <ref-fulltext>Garner, D. M. (1998). Inventario de Trastornos de la Conducta Alimentaria (EDI-2)-Manual. Madrid: TEA.</ref-fulltext>
+          </reference>
+          <reference id="16">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>The association of “food addiction” with disordered eating and body mass index</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">84902002248</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>A.N.</ce:initials>
+                  <ce:indexed-name>Gearhardt A.N.</ce:indexed-name>
+                  <ce:surname>Gearhardt</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>R.G.</ce:initials>
+                  <ce:indexed-name>Boswell R.G.</ce:indexed-name>
+                  <ce:surname>Boswell</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>M.A.</ce:initials>
+                  <ce:indexed-name>White M.A.</ce:indexed-name>
+                  <ce:surname>White</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Eating Behaviors</ref-sourcetitle>
+              <ref-publicationyear first="2014"/>
+              <ref-volisspag>
+                <voliss issue="3" volume="15"/>
+                <pagerange first="427" last="433"/>
+              </ref-volisspag>
+              <ref-website>
+                <ce:e-address type="email">http://doi.org/10.1016/j.eatbeh.2014.05.001</ce:e-address>
+              </ref-website>
+            </ref-info>
+            <ref-fulltext>Gearhardt, A. N., Boswell, R. G., &amp; White, M. A. (2014). The association of “food addiction” with disordered eating and body mass index. Eating Behaviors, 15(3), 427–433. http://doi.org/10.1016/j.eatbeh.2014.05.001</ref-fulltext>
+          </reference>
+          <reference id="17">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Preliminary validation of the Yale Food Addiction Scale</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">60749120851</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>A.N.</ce:initials>
+                  <ce:indexed-name>Gearhardt A.N.</ce:indexed-name>
+                  <ce:surname>Gearhardt</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>W.</ce:initials>
+                  <ce:indexed-name>Corbin W.</ce:indexed-name>
+                  <ce:surname>Corbin</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>K.</ce:initials>
+                  <ce:indexed-name>Brownell K.</ce:indexed-name>
+                  <ce:surname>Brownell</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Appetite</ref-sourcetitle>
+              <ref-publicationyear first="2009"/>
+              <ref-volisspag>
+                <voliss issue="2" volume="52"/>
+                <pagerange first="430" last="436"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Gearhardt, A. N., Corbin, W., &amp; Brownell, K. (2009). Preliminary validation of the Yale Food Addiction Scale. Appetite, 52(2), 430–436.</ref-fulltext>
+          </reference>
+          <reference id="18">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>An examination of food addiction in a racially diverse sample of obese patients with binge eating disorder in primary care settings</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">84879105573</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>A.N.</ce:initials>
+                  <ce:indexed-name>Gearhardt A.N.</ce:indexed-name>
+                  <ce:surname>Gearhardt</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>M.</ce:initials>
+                  <ce:indexed-name>White M.</ce:indexed-name>
+                  <ce:surname>White</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>R.</ce:initials>
+                  <ce:indexed-name>Masheb R.</ce:indexed-name>
+                  <ce:surname>Masheb</ce:surname>
+                </author>
+                <author seq="4">
+                  <ce:initials>C.</ce:initials>
+                  <ce:indexed-name>Grilo C.</ce:indexed-name>
+                  <ce:surname>Grilo</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Comprehensive Psychiatry</ref-sourcetitle>
+              <ref-publicationyear first="2013"/>
+              <ref-volisspag>
+                <voliss issue="5" volume="54"/>
+                <pagerange first="500" last="505"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Gearhardt, A. N., White, M., Masheb, R., &amp; Grilo, C. (2013). An examination of food addiction in a racially diverse sample of obese patients with binge eating disorder in primary care settings. Comprehensive Psychiatry, 54(5), 500–505.</ref-fulltext>
+          </reference>
+          <reference id="19">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>An examination of the food addiction construct in obese patients with binge eating disorder</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">84862214743</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>A.N.</ce:initials>
+                  <ce:indexed-name>Gearhardt A.N.</ce:indexed-name>
+                  <ce:surname>Gearhardt</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>M.</ce:initials>
+                  <ce:indexed-name>White M.</ce:indexed-name>
+                  <ce:surname>White</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>R.</ce:initials>
+                  <ce:indexed-name>Masheb R.</ce:indexed-name>
+                  <ce:surname>Masheb</ce:surname>
+                </author>
+                <author seq="4">
+                  <ce:initials>P.</ce:initials>
+                  <ce:indexed-name>Morgan P.</ce:indexed-name>
+                  <ce:surname>Morgan</ce:surname>
+                </author>
+                <author seq="5">
+                  <ce:initials>R.</ce:initials>
+                  <ce:indexed-name>Crosby R.</ce:indexed-name>
+                  <ce:surname>Crosby</ce:surname>
+                </author>
+                <author seq="6">
+                  <ce:initials>C.</ce:initials>
+                  <ce:indexed-name>Grilo C.</ce:indexed-name>
+                  <ce:surname>Grilo</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>International Journal of Eating Disorders</ref-sourcetitle>
+              <ref-publicationyear first="2012"/>
+              <ref-volisspag>
+                <voliss issue="5" volume="45"/>
+                <pagerange first="657" last="663"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Gearhardt, A. N., White, M., Masheb, R., Morgan, P., Crosby, R., &amp; Grilo, C. (2012). An examination of the food addiction construct in obese patients with binge eating disorder. International Journal of Eating Disorders, 45(5), 657–663.</ref-fulltext>
+          </reference>
+          <reference id="20">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Food addiction in a Spanish sample of eating disorders: DSM-5 diagnostic subtype differentiation and validation data</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">84912110341</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>R.</ce:initials>
+                  <ce:indexed-name>Granero R.</ce:indexed-name>
+                  <ce:surname>Granero</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>I.</ce:initials>
+                  <ce:indexed-name>Hilker I.</ce:indexed-name>
+                  <ce:surname>Hilker</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>Z.</ce:initials>
+                  <ce:indexed-name>Aguera Z.</ce:indexed-name>
+                  <ce:surname>Agüera</ce:surname>
+                </author>
+                <author seq="4">
+                  <ce:initials>S.</ce:initials>
+                  <ce:indexed-name>Jimenez-Murcia S.</ce:indexed-name>
+                  <ce:surname>Jiménez-Murcia</ce:surname>
+                </author>
+                <author seq="5">
+                  <ce:initials>S.</ce:initials>
+                  <ce:indexed-name>Sauchelli S.</ce:indexed-name>
+                  <ce:surname>Sauchelli</ce:surname>
+                </author>
+                <author seq="6">
+                  <ce:initials>M.A.</ce:initials>
+                  <ce:indexed-name>Islam M.A.</ce:indexed-name>
+                  <ce:surname>Islam</ce:surname>
+                  <ce:given-name>M. a.</ce:given-name>
+                </author>
+                <et-al/>
+              </ref-authors>
+              <ref-sourcetitle>European Eating Disorders Review</ref-sourcetitle>
+              <ref-publicationyear first="2014"/>
+              <ref-volisspag>
+                <voliss volume="22"/>
+                <pagerange first="389" last="396"/>
+              </ref-volisspag>
+              <ref-website>
+                <ce:e-address type="email">http://doi.org/10.1002/erv.2311</ce:e-address>
+              </ref-website>
+            </ref-info>
+            <ref-fulltext>Granero, R., Hilker, I., Agüera, Z., Jiménez-Murcia, S., Sauchelli, S., Islam, M. a., et al. (2014). Food addiction in a Spanish sample of eating disorders: DSM-5 diagnostic subtype differentiation and validation data. European Eating Disorders Review, 22, 389–396. http://doi.org/10.1002/erv.2311</ref-fulltext>
+          </reference>
+          <reference id="21">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Eating addiction”, rather than “food addiction”, better captures addictive-like eating behavior</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">84921398610</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>J.</ce:initials>
+                  <ce:indexed-name>Hebebrand J.</ce:indexed-name>
+                  <ce:surname>Hebebrand</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>Ö.</ce:initials>
+                  <ce:indexed-name>Albayrak O.</ce:indexed-name>
+                  <ce:surname>Albayrak</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>R.</ce:initials>
+                  <ce:indexed-name>Adan R.</ce:indexed-name>
+                  <ce:surname>Adan</ce:surname>
+                </author>
+                <author seq="4">
+                  <ce:initials>J.</ce:initials>
+                  <ce:indexed-name>Antel J.</ce:indexed-name>
+                  <ce:surname>Antel</ce:surname>
+                </author>
+                <author seq="5">
+                  <ce:initials>C.</ce:initials>
+                  <ce:indexed-name>Dieguez C.</ce:indexed-name>
+                  <ce:surname>Dieguez</ce:surname>
+                </author>
+                <author seq="6">
+                  <ce:initials>J.</ce:initials>
+                  <ce:indexed-name>de Jong J.</ce:indexed-name>
+                  <ce:surname>de Jong</ce:surname>
+                </author>
+                <et-al/>
+              </ref-authors>
+              <ref-sourcetitle>Neuroscience &amp; Biobehavioral Reviews</ref-sourcetitle>
+              <ref-publicationyear first="2014"/>
+              <ref-volisspag>
+                <voliss volume="47"/>
+                <pagerange first="295" last="306"/>
+              </ref-volisspag>
+              <ref-website>
+                <ce:e-address type="email">http://doi.org/10.1016/j.neubiorev.2014.08.016</ce:e-address>
+              </ref-website>
+            </ref-info>
+            <ref-fulltext>Hebebrand, J., Albayrak, Ö., Adan, R., Antel, J., Dieguez, C., de Jong, J., et al. (2014). “Eating addiction”, rather than “food addiction”, better captures addictive-like eating behavior. Neuroscience &amp; Biobehavioral Reviews, 47, 295–306. http://doi.org/10.1016/j.neubiorev.2014.08.016</ref-fulltext>
+          </reference>
+          <reference id="22">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>SCL-90-R: aplicación y análisis de sus propiedades psicométricas en una muestra de sujetos clínicos españoles</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">84992474085</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>J.</ce:initials>
+                  <ce:indexed-name>Ignacio J.</ce:indexed-name>
+                  <ce:surname>Ignacio</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>R.</ce:initials>
+                  <ce:indexed-name>Sanchez R.</ce:indexed-name>
+                  <ce:surname>Sánchez</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Psicopatología Clínica Legal Y Forense</ref-sourcetitle>
+              <ref-publicationyear first="2002"/>
+              <ref-volisspag>
+                <voliss issue="1" volume="2"/>
+                <pagerange first="5" last="19"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Ignacio, J., &amp; Sánchez, R. (2002). SCL-90-R: aplicación y análisis de sus propiedades psicométricas en una muestra de sujetos clínicos españoles. Psicopatología Clínica Legal Y Forense, 2(1), 5–19.</ref-fulltext>
+          </reference>
+          <reference id="23">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Relationship of food addiction to weight loss and attrition during obesity treatment</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">84892374439</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>M.R.</ce:initials>
+                  <ce:indexed-name>Lent M.R.</ce:indexed-name>
+                  <ce:surname>Lent</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>D.M.</ce:initials>
+                  <ce:indexed-name>Eichen D.M.</ce:indexed-name>
+                  <ce:surname>Eichen</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>E.</ce:initials>
+                  <ce:indexed-name>Goldbacher E.</ce:indexed-name>
+                  <ce:surname>Goldbacher</ce:surname>
+                </author>
+                <author seq="4">
+                  <ce:initials>T.A.</ce:initials>
+                  <ce:indexed-name>Wadden T.A.</ce:indexed-name>
+                  <ce:surname>Wadden</ce:surname>
+                </author>
+                <author seq="5">
+                  <ce:initials>G.D.</ce:initials>
+                  <ce:indexed-name>Foster G.D.</ce:indexed-name>
+                  <ce:surname>Foster</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Obesity (Silver Spring, Md.)</ref-sourcetitle>
+              <ref-publicationyear first="2014"/>
+              <ref-volisspag>
+                <voliss issue="1" volume="22"/>
+                <pagerange first="52" last="55"/>
+              </ref-volisspag>
+              <ref-website>
+                <ce:e-address type="email">http://doi.org/10.1002/oby.20512</ce:e-address>
+              </ref-website>
+            </ref-info>
+            <ref-fulltext>Lent, M. R., Eichen, D. M., Goldbacher, E., Wadden, T. A., &amp; Foster, G. D. (2014). Relationship of food addiction to weight loss and attrition during obesity treatment. Obesity (Silver Spring, Md.), 22(1), 52–55. http://doi.org/10.1002/oby.20512</ref-fulltext>
+          </reference>
+          <reference id="24">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Factorial variance of the SCL-90-R in a Spanish out-patient psychiatric sample</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">0035287399</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>O.</ce:initials>
+                  <ce:indexed-name>Martinez-Azumendi O.</ce:indexed-name>
+                  <ce:surname>Martínez-Azumendi</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>C.</ce:initials>
+                  <ce:indexed-name>Fernandez-Gomez C.</ce:indexed-name>
+                  <ce:surname>Fernández-Gómez</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>M.</ce:initials>
+                  <ce:indexed-name>Beitia-Fernandez M.</ce:indexed-name>
+                  <ce:surname>Beitia-Fernández</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Actas Españolas de Psiquiatría</ref-sourcetitle>
+              <ref-publicationyear first="2001"/>
+              <ref-volisspag>
+                <voliss issue="2" volume="29"/>
+                <pagerange first="95" last="102"/>
+              </ref-volisspag>
+              <ref-website>
+                <ce:e-address type="email">http://www.ncbi.nlm.nih.gov/pubmed/11333527</ce:e-address>
+              </ref-website>
+              <ref-text>#x0026;, Retrieved from</ref-text>
+            </ref-info>
+            <ref-fulltext>Martínez-Azumendi, O., Fernández-Gómez, C., &amp; Beitia-Fernández, M. (2001). [Factorial variance of the SCL-90-R in a Spanish out-patient psychiatric sample]. Actas Españolas de Psiquiatría, 29(2), 95–102. Retrieved from http://www.ncbi.nlm.nih.gov/pubmed/11333527</ref-fulltext>
+          </reference>
+          <reference id="25">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Five years of the Yale Food Addiction Scale: Taking stock and moving forward</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">84992463814</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>A.</ce:initials>
+                  <ce:indexed-name>Meule A.</ce:indexed-name>
+                  <ce:surname>Meule</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>A.N.</ce:initials>
+                  <ce:indexed-name>Gearhardt A.N.</ce:indexed-name>
+                  <ce:surname>Gearhardt</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Current Addiction Reports</ref-sourcetitle>
+              <ref-publicationyear first="2014"/>
+              <ref-volisspag>
+                <voliss issue="3" volume="1"/>
+                <pagerange first="193" last="205"/>
+              </ref-volisspag>
+              <ref-website>
+                <ce:e-address type="email">http://doi.org/10.1007/s40429-014-0021-z</ce:e-address>
+              </ref-website>
+            </ref-info>
+            <ref-fulltext>Meule, A., &amp; Gearhardt, A. N. (2014a). Five years of the Yale Food Addiction Scale: Taking stock and moving forward. Current Addiction Reports, 1(3), 193–205. http://doi.org/10.1007/s40429-014-0021-z</ref-fulltext>
+          </reference>
+          <reference id="26">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Food addiction in the light of DSM-5</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">84907221231</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>A.</ce:initials>
+                  <ce:indexed-name>Meule A.</ce:indexed-name>
+                  <ce:surname>Meule</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>A.N.</ce:initials>
+                  <ce:indexed-name>Gearhardt A.N.</ce:indexed-name>
+                  <ce:surname>Gearhardt</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Nutrients</ref-sourcetitle>
+              <ref-publicationyear first="2014"/>
+              <ref-volisspag>
+                <voliss issue="9" volume="6"/>
+                <pagerange first="3653" last="3671"/>
+              </ref-volisspag>
+              <ref-website>
+                <ce:e-address type="email">http://doi.org/10.3390/nu6093653</ce:e-address>
+              </ref-website>
+            </ref-info>
+            <ref-fulltext>Meule, A., &amp; Gearhardt, A. N. (2014b). Food addiction in the light of DSM-5. Nutrients, 6(9), 3653–3671. http://doi.org/10.3390/nu6093653</ref-fulltext>
+          </reference>
+          <reference id="27">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Food addiction in overweight and obese adolescents seeking weight-loss treatment</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">84927746715</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>A.</ce:initials>
+                  <ce:indexed-name>Meule A.</ce:indexed-name>
+                  <ce:surname>Meule</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>T.</ce:initials>
+                  <ce:indexed-name>Hermann T.</ce:indexed-name>
+                  <ce:surname>Hermann</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>A.</ce:initials>
+                  <ce:indexed-name>Kubler A.</ce:indexed-name>
+                  <ce:surname>Kübler</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>European Eating Disorders Review</ref-sourcetitle>
+              <ref-publicationyear first="2015"/>
+              <ref-volisspag>
+                <voliss issue="3" volume="23"/>
+                <pagerange first="193" last="198"/>
+              </ref-volisspag>
+              <ref-website>
+                <ce:e-address type="email">http://doi.org/10.1002/erv.2355</ce:e-address>
+              </ref-website>
+            </ref-info>
+            <ref-fulltext>Meule, A., Hermann, T., &amp; Kübler, A. (2015). Food addiction in overweight and obese adolescents seeking weight-loss treatment. European Eating Disorders Review, 23(3), 193–198. http://doi.org/10.1002/erv.2355</ref-fulltext>
+          </reference>
+          <reference id="28">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Food addiction and bulimia nervosa</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">84906101137</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>A.</ce:initials>
+                  <ce:indexed-name>Meule A.</ce:indexed-name>
+                  <ce:surname>Meule</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>V.</ce:initials>
+                  <ce:indexed-name>von Rezori V.</ce:indexed-name>
+                  <ce:surname>von Rezori</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>J.</ce:initials>
+                  <ce:indexed-name>Blechert J.</ce:indexed-name>
+                  <ce:surname>Blechert</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>European Eating Disorders Review</ref-sourcetitle>
+              <ref-publicationyear first="2014"/>
+              <ref-volisspag>
+                <voliss volume="22"/>
+                <pagerange first="331" last="337"/>
+              </ref-volisspag>
+              <ref-website>
+                <ce:e-address type="email">http://doi.org/10.1002/erv.2306</ce:e-address>
+              </ref-website>
+            </ref-info>
+            <ref-fulltext>Meule, A., von Rezori, V., &amp; Blechert, J. (2014). Food addiction and bulimia nervosa. European Eating Disorders Review, 22, 331–337. http://doi.org/10.1002/erv.2306</ref-fulltext>
+          </reference>
+          <reference id="29">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Outcome of Eating Disorders in a Japanese Sample: A 4- to 9-year Follow-up Study</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">84898808773</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>Y.</ce:initials>
+                  <ce:indexed-name>Nakai Y.</ce:indexed-name>
+                  <ce:surname>Nakai</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>K.</ce:initials>
+                  <ce:indexed-name>Nin K.</ce:indexed-name>
+                  <ce:surname>Nin</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>S.</ce:initials>
+                  <ce:indexed-name>Noma S.</ce:indexed-name>
+                  <ce:surname>Noma</ce:surname>
+                </author>
+                <author seq="4">
+                  <ce:initials>S.</ce:initials>
+                  <ce:indexed-name>Hamagaki S.</ce:indexed-name>
+                  <ce:surname>Hamagaki</ce:surname>
+                </author>
+                <author seq="5">
+                  <ce:initials>R.</ce:initials>
+                  <ce:indexed-name>Takagi R.</ce:indexed-name>
+                  <ce:surname>Takagi</ce:surname>
+                </author>
+                <author seq="6">
+                  <ce:initials>S.A.</ce:initials>
+                  <ce:indexed-name>Wonderlich S.A.</ce:indexed-name>
+                  <ce:surname>Wonderlich</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>European Eating Disorders Review</ref-sourcetitle>
+              <ref-publicationyear first="2014"/>
+              <ref-volisspag>
+                <voliss volume="22"/>
+                <pagerange first="206" last="211"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Nakai, Y., Nin, K., Noma, S., Hamagaki, S., Takagi, R., &amp; Wonderlich, S. A. (2014). Outcome of Eating Disorders in a Japanese Sample: A 4- to 9-year Follow-up Study. European Eating Disorders Review, 22, 206–211. doi: 10.1002/erv.2290</ref-fulltext>
+          </reference>
+          <reference id="30">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Bariatric surgery-induced weight loss causes remission of food addiction in extreme obesity</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">84904906943</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>M.Y.</ce:initials>
+                  <ce:indexed-name>Pepino M.Y.</ce:indexed-name>
+                  <ce:surname>Pepino</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>R.I.</ce:initials>
+                  <ce:indexed-name>Stein R.I.</ce:indexed-name>
+                  <ce:surname>Stein</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>J.C.</ce:initials>
+                  <ce:indexed-name>Eagon J.C.</ce:indexed-name>
+                  <ce:surname>Eagon</ce:surname>
+                </author>
+                <author seq="4">
+                  <ce:initials>S.</ce:initials>
+                  <ce:indexed-name>Klein S.</ce:indexed-name>
+                  <ce:surname>Klein</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Obesity (Silver Spring, Md.)</ref-sourcetitle>
+              <ref-publicationyear first="2014"/>
+              <ref-volisspag>
+                <voliss issue="8" volume="22"/>
+                <pagerange first="1792" last="1798"/>
+              </ref-volisspag>
+              <ref-website>
+                <ce:e-address type="email">http://doi.org/10.1002/oby.20797</ce:e-address>
+              </ref-website>
+            </ref-info>
+            <ref-fulltext>Pepino, M. Y., Stein, R. I., Eagon, J. C., &amp; Klein, S. (2014). Bariatric surgery-induced weight loss causes remission of food addiction in extreme obesity. Obesity (Silver Spring, Md.), 22(8), 1792–1798. http://doi.org/10.1002/oby.20797</ref-fulltext>
+          </reference>
+          <reference id="31">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>The stability of “food addiction” as assessed by the Yale Food Addiction Scale in a non-clinical population over 18-months</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">84946423224</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>K.M.</ce:initials>
+                  <ce:indexed-name>Pursey K.M.</ce:indexed-name>
+                  <ce:surname>Pursey</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>C.E.</ce:initials>
+                  <ce:indexed-name>Collins C.E.</ce:indexed-name>
+                  <ce:surname>Collins</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>P.</ce:initials>
+                  <ce:indexed-name>Stanwell P.</ce:indexed-name>
+                  <ce:surname>Stanwell</ce:surname>
+                </author>
+                <author seq="4">
+                  <ce:initials>T.L.</ce:initials>
+                  <ce:indexed-name>Burrows T.L.</ce:indexed-name>
+                  <ce:surname>Burrows</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Appetite</ref-sourcetitle>
+              <ref-publicationyear first="2016"/>
+              <ref-volisspag>
+                <voliss volume="96"/>
+                <pagerange first="533" last="538"/>
+              </ref-volisspag>
+              <ref-website>
+                <ce:e-address type="email">http://doi.org/10.1016/j.appet.2015.10.015</ce:e-address>
+              </ref-website>
+            </ref-info>
+            <ref-fulltext>Pursey, K. M., Collins, C. E., Stanwell, P., &amp; Burrows, T. L. (2016). The stability of “food addiction” as assessed by the Yale Food Addiction Scale in a non-clinical population over 18-months. Appetite, 96, 533–538. http://doi.org/10.1016/j.appet.2015.10.015</ref-fulltext>
+          </reference>
+          <reference id="32">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>The prevalence of food addiction as assessed by the Yale Food Addiction Scale: a systematic review</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">84908180944</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>K.M.</ce:initials>
+                  <ce:indexed-name>Pursey K.M.</ce:indexed-name>
+                  <ce:surname>Pursey</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>P.</ce:initials>
+                  <ce:indexed-name>Stanwell P.</ce:indexed-name>
+                  <ce:surname>Stanwell</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>A.N.</ce:initials>
+                  <ce:indexed-name>Gearhardt A.N.</ce:indexed-name>
+                  <ce:surname>Gearhardt</ce:surname>
+                </author>
+                <author seq="4">
+                  <ce:initials>C.E.</ce:initials>
+                  <ce:indexed-name>Collins C.E.</ce:indexed-name>
+                  <ce:surname>Collins</ce:surname>
+                </author>
+                <author seq="5">
+                  <ce:initials>T.L.</ce:initials>
+                  <ce:indexed-name>Burrows T.L.</ce:indexed-name>
+                  <ce:surname>Burrows</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Nutrients</ref-sourcetitle>
+              <ref-publicationyear first="2014"/>
+              <ref-volisspag>
+                <voliss issue="10" volume="6"/>
+                <pagerange first="4552" last="4590"/>
+              </ref-volisspag>
+              <ref-website>
+                <ce:e-address type="email">http://doi.org/10.3390/nu6104552</ce:e-address>
+              </ref-website>
+            </ref-info>
+            <ref-fulltext>Pursey, K. M., Stanwell, P., Gearhardt, A. N., Collins, C. E., &amp; Burrows, T. L. (2014). The prevalence of food addiction as assessed by the Yale Food Addiction Scale: a systematic review. Nutrients, 6(10), 4552–4590. http://doi.org/10.3390/nu6104552</ref-fulltext>
+          </reference>
+          <reference id="33">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Bulimia nervosa treatment: a systematic review of randomized controlled trials</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">34247483979</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>J.R.</ce:initials>
+                  <ce:indexed-name>Shapiro J.R.</ce:indexed-name>
+                  <ce:surname>Shapiro</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>N.D.</ce:initials>
+                  <ce:indexed-name>Berkman N.D.</ce:indexed-name>
+                  <ce:surname>Berkman</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>K.A.</ce:initials>
+                  <ce:indexed-name>Brownley K.A.</ce:indexed-name>
+                  <ce:surname>Brownley</ce:surname>
+                </author>
+                <author seq="4">
+                  <ce:initials>J.A.</ce:initials>
+                  <ce:indexed-name>Sedway J.A.</ce:indexed-name>
+                  <ce:surname>Sedway</ce:surname>
+                </author>
+                <author seq="5">
+                  <ce:initials>K.N.</ce:initials>
+                  <ce:indexed-name>Lohr K.N.</ce:indexed-name>
+                  <ce:surname>Lohr</ce:surname>
+                </author>
+                <author seq="6">
+                  <ce:initials>C.M.</ce:initials>
+                  <ce:indexed-name>Bulik C.M.</ce:indexed-name>
+                  <ce:surname>Bulik</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>The International Journal of Eating Disorders</ref-sourcetitle>
+              <ref-publicationyear first="2007"/>
+              <ref-volisspag>
+                <voliss issue="4" volume="40"/>
+                <pagerange first="321" last="336"/>
+              </ref-volisspag>
+              <ref-website>
+                <ce:e-address type="email">http://doi.org/10.1002/eat.20372</ce:e-address>
+              </ref-website>
+            </ref-info>
+            <ref-fulltext>Shapiro, J. R., Berkman, N. D., Brownley, K. A., Sedway, J. A., Lohr, K. N., &amp; Bulik, C. M. (2007). Bulimia nervosa treatment: a systematic review of randomized controlled trials. The International Journal of Eating Disorders, 40(4), 321–336. http://doi.org/10.1002/eat.20372</ref-fulltext>
+          </reference>
+          <reference id="34">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Cognitive-behavioral therapy for bulimia nervosa</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">84992453559</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>G.T.</ce:initials>
+                  <ce:indexed-name>Wilson G.T.</ce:indexed-name>
+                  <ce:surname>Wilson</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>C.G.</ce:initials>
+                  <ce:indexed-name>Fairburn C.G.</ce:indexed-name>
+                  <ce:surname>Fairburn</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>W.S.</ce:initials>
+                  <ce:indexed-name>Agras W.S.</ce:indexed-name>
+                  <ce:surname>Agras</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Handbook of treatment for eating disorders</ref-sourcetitle>
+              <ref-publicationyear first="1997"/>
+              <ref-volisspag>
+                <pagerange first="67" last="93"/>
+              </ref-volisspag>
+              <ref-text>#x0026;, In, D. M. Garner, #x0026;, P. E. Garfinkel, (Eds.),, New York, Guilford</ref-text>
+            </ref-info>
+            <ref-fulltext>Wilson, G. T., Fairburn, C. G., &amp; Agras, W. S. (1997). Cognitive-behavioral therapy for bulimia nervosa. In D. M. Garner, &amp; P. E. Garfinkel (Eds.), Handbook of treatment for eating disorders (pp. 67–93). New York: Guilford.</ref-fulltext>
+          </reference>
+          <reference id="35">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Food addiction” in patients with eating disorders is associated with negative urgency and difficulties to focus on long-term goals</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">84975722502</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>I.</ce:initials>
+                  <ce:indexed-name>Wolz I.</ce:indexed-name>
+                  <ce:surname>Wolz</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>I.</ce:initials>
+                  <ce:indexed-name>Hilker I.</ce:indexed-name>
+                  <ce:surname>Hilker</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>R.</ce:initials>
+                  <ce:indexed-name>Granero R.</ce:indexed-name>
+                  <ce:surname>Granero</ce:surname>
+                </author>
+                <author seq="4">
+                  <ce:initials>S.</ce:initials>
+                  <ce:indexed-name>Jimenez-Murcia S.</ce:indexed-name>
+                  <ce:surname>Jiménez-Murcia</ce:surname>
+                </author>
+                <author seq="5">
+                  <ce:initials>A.N.</ce:initials>
+                  <ce:indexed-name>Gearhardt A.N.</ce:indexed-name>
+                  <ce:surname>Gearhardt</ce:surname>
+                </author>
+                <author seq="6">
+                  <ce:initials>C.</ce:initials>
+                  <ce:indexed-name>Dieguez C.</ce:indexed-name>
+                  <ce:surname>Dieguez</ce:surname>
+                </author>
+                <et-al/>
+              </ref-authors>
+              <ref-sourcetitle>Frontiers in Psychology</ref-sourcetitle>
+              <ref-publicationyear first="2016"/>
+              <ref-volisspag>
+                <voliss volume="7"/>
+                <pagerange first="61"/>
+              </ref-volisspag>
+              <ref-website>
+                <ce:e-address type="email">http://doi.org/10.3389/fpsyg.2016.00061</ce:e-address>
+              </ref-website>
+            </ref-info>
+            <ref-fulltext>Wolz, I., Hilker, I., Granero, R., Jiménez-Murcia, S., Gearhardt, A. N., Dieguez, C., et al. (2016). “Food addiction” in patients with eating disorders is associated with negative urgency and difficulties to focus on long-term goals. Frontiers in Psychology, 7, 61. http://doi.org/10.3389/fpsyg.2016.00061</ref-fulltext>
+          </reference>
+        </bibliography>
+      </tail>
+    </bibrecord>
+  </item>
+</abstracts-retrieval-response>

@@ -1,0 +1,1085 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<abstracts-retrieval-response xmlns="http://www.elsevier.com/xml/svapi/abstract/dtd" xmlns:ait="http://www.elsevier.com/xml/ani/ait" xmlns:ce="http://www.elsevier.com/xml/ani/common" xmlns:cto="http://www.elsevier.com/xml/cto/dtd" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:prism="http://prismstandard.org/namespaces/basic/2.0/" xmlns:xocs="http://www.elsevier.com/xml/xocs/dtd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <coredata>
+    <prism:url>http://api.elsevier.com/content/abstract/scopus_id/69549138468</prism:url>
+    <dc:identifier>SCOPUS_ID:69549138468</dc:identifier>
+    <eid>2-s2.0-69549138468</eid>
+    <pubmed-id>19360262</pubmed-id>
+    <prism:doi>10.1590/S0104-56872009000100012</prism:doi>
+    <dc:title>Augmentative and alternative communication: Scope and peculiarities of terms and concepts in Brazil</dc:title>
+    <prism:aggregationType>Journal</prism:aggregationType>
+    <srctype>j</srctype>
+    <citedby-count>0</citedby-count>
+    <prism:publicationName>Pro-Fono</prism:publicationName>
+    <source-id>145183</source-id>
+    <prism:issn>01045687</prism:issn>
+    <prism:volume>21</prism:volume>
+    <prism:issueIdentifier>1</prism:issueIdentifier>
+    <prism:startingPage>69</prism:startingPage>
+    <prism:endingPage>75</prism:endingPage>
+    <prism:pageRange>69-75</prism:pageRange>
+    <prism:coverDate>2009-01-01</prism:coverDate>
+    <dc:creator>
+      <author auid="34168434000" seq="1">
+        <ce:initials>R.Y.</ce:initials>
+        <ce:indexed-name>Shon Chun R.Y.</ce:indexed-name>
+        <ce:surname>Shon Chun</ce:surname>
+        <ce:given-name>Regina Yu</ce:given-name>
+        <preferred-name>
+          <ce:initials>R.Y.</ce:initials>
+          <ce:indexed-name>Shon Chun R.</ce:indexed-name>
+          <ce:surname>Shon Chun</ce:surname>
+          <ce:given-name>Regina Yu</ce:given-name>
+        </preferred-name>
+        <author-url>http://api.elsevier.com/content/author/author_id/34168434000</author-url>
+        <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60029570" id="60029570"/>
+      </author>
+    </dc:creator>
+    <dc:description>
+      <abstract original="y" xml:lang="eng">
+        <ce:para>Background: Augmentative and Alternative Communication (AAC) is expanding in our country, however it is still not a widely recognized practice. Although the term "Augmentative and Alternative Communication" is well defined in the international literature, in our country there is no official and/or accepted version. Aim: to review the terms used in Brazil and to discuss their implications, taking as a reference the policies and recommendations of Isaac - International Society for Augmentative and Alternative Communication. Method: a review of national Journals was made, consulting Lilacs and SciELO database, until the year of 2007. Results: the following versions were found: Comunicação Alternativa e Suplementar, Comunicação Alternativa, Comunicação Suplementar e/ou Alternativa, Sistemas Alternativos e Facilitadores de Comunicação, Comunicação Suplementar, Comunicação Alternativa e Ampliada. Conclusion: it is important for a given version/term, besides being adopted by its own use, to maintain the original intended sense and to be in consonance with recommendations/policies of the field it belongs, such as those proposed by Isaac. This is a relevant discussion for the consolidation and strengthening of AAC in Brazil and also for the establishment of descriptors in the field of Health Sciences. © 2009 Pró-Fono Departamento Editorial.</ce:para>
+      </abstract>
+    </dc:description>
+    <intid>69549138468</intid>
+    <link href="http://api.elsevier.com/content/abstract/scopus_id/69549138468" rel="self"/>
+    <link href="https://www.scopus.com/inward/record.uri?partnerID=HzOxMe3b&amp;scp=69549138468&amp;origin=inward" rel="scopus"/>
+    <link href="https://www.scopus.com/inward/citedby.uri?partnerID=HzOxMe3b&amp;scp=69549138468&amp;origin=inward" rel="scopus-citedby"/>
+  </coredata>
+  <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60029570" id="60029570">
+    <affilname>Universidade Estadual de Campinas</affilname>
+    <affiliation-city>Campinas</affiliation-city>
+    <affiliation-country>Brazil</affiliation-country>
+  </affiliation>
+  <authors>
+    <author auid="34168434000" seq="1">
+      <ce:initials>R.Y.</ce:initials>
+      <ce:indexed-name>Shon Chun R.Y.</ce:indexed-name>
+      <ce:surname>Shon Chun</ce:surname>
+      <ce:given-name>Regina Yu</ce:given-name>
+      <preferred-name>
+        <ce:initials>R.Y.</ce:initials>
+        <ce:indexed-name>Shon Chun R.</ce:indexed-name>
+        <ce:surname>Shon Chun</ce:surname>
+        <ce:given-name>Regina Yu</ce:given-name>
+      </preferred-name>
+      <author-url>http://api.elsevier.com/content/author/author_id/34168434000</author-url>
+      <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60029570" id="60029570"/>
+    </author>
+  </authors>
+  <language xml:lang="por"/>
+  <authkeywords>
+    <author-keyword>Nonverbal communication</author-keyword>
+    <author-keyword>Speech-language pathology</author-keyword>
+    <author-keyword>Terminology</author-keyword>
+  </authkeywords>
+  <idxterms/>
+  <subject-areas>
+    <subject-area abbrev="NEUR" code="2800">Neuroscience (all)</subject-area>
+    <subject-area abbrev="MEDI" code="2733">Otorhinolaryngology</subject-area>
+    <subject-area abbrev="MEDI" code="2700">Medicine (all)</subject-area>
+    <subject-area abbrev="HEAL" code="3600">Health Professions  (all)</subject-area>
+    <subject-area abbrev="ARTS" code="1200">Arts and Humanities (all)</subject-area>
+    <subject-area abbrev="SOCI" code="3300">Social Sciences (all)</subject-area>
+    <subject-area abbrev="MULT" code="1000">Multidisciplinary</subject-area>
+    <subject-area abbrev="PSYC" code="3200">Psychology (all)</subject-area>
+    <subject-area abbrev="HEAL" code="3616">Speech and Hearing</subject-area>
+  </subject-areas>
+  <item xmlns="">
+    <ait:process-info>
+      <ait:date-delivered day="20" month="10" timestamp="2016-10-20T22:09:10.000010+01:00" year="2016"/>
+      <ait:date-sort day="01" month="01" year="2009"/>
+      <ait:status stage="S300" state="update" type="core"/>
+    </ait:process-info>
+    <bibrecord>
+      <item-info>
+        <copyright type="Elsevier">Copyright 2009 Elsevier B.V., All rights reserved.</copyright>
+        <copyright type="Medline Descriptors">MEDLINE® is the source for the MeSH terms of this document.</copyright>
+        <itemidlist>
+          <ce:doi>10.1590/S0104-56872009000100012</ce:doi>
+          <itemid idtype="PUI">355192788</itemid>
+          <itemid idtype="SNEMB">2009059680</itemid>
+          <itemid idtype="NURSNG">2009181657</itemid>
+          <itemid idtype="MEDL">19360262</itemid>
+          <itemid idtype="SCP">69549138468</itemid>
+          <itemid idtype="SGR">69549138468</itemid>
+        </itemidlist>
+        <history>
+          <date-created day="07" month="09" year="2009"/>
+        </history>
+        <dbcollection>SNEMB</dbcollection>
+        <dbcollection>NURSNG</dbcollection>
+        <dbcollection>MEDL</dbcollection>
+        <dbcollection>Scopusbase</dbcollection>
+      </item-info>
+      <head>
+        <citation-info>
+          <citation-type code="ar"/>
+          <citation-language language="Portuguese" xml:lang="por"/>
+          <citation-language language="English" xml:lang="eng"/>
+          <abstract-language language="English" xml:lang="eng"/>
+          <abstract-language language="Portuguese" xml:lang="por"/>
+          <author-keywords>
+            <author-keyword>Nonverbal communication</author-keyword>
+            <author-keyword>Speech-language pathology</author-keyword>
+            <author-keyword>Terminology</author-keyword>
+          </author-keywords>
+        </citation-info>
+        <citation-title>
+          <titletext language="English" original="n" xml:lang="eng">Augmentative and alternative communication: Scope and peculiarities of terms and concepts in Brazil</titletext>
+          <titletext language="Portuguese" original="y" xml:lang="por">Comunicação suplementar e/ou alternativa: Abrangência e peculiaridades dos termos e conceitos em uso no Brasil</titletext>
+        </citation-title>
+        <author-group>
+          <author auid="34168434000" seq="1">
+            <ce:initials>R.Y.</ce:initials>
+            <ce:indexed-name>Shon Chun R.Y.</ce:indexed-name>
+            <ce:surname>Shon Chun</ce:surname>
+            <ce:given-name>Regina Yu</ce:given-name>
+            <preferred-name>
+              <ce:initials>R.Y.</ce:initials>
+              <ce:indexed-name>Shon Chun R.</ce:indexed-name>
+              <ce:surname>Shon Chun</ce:surname>
+              <ce:given-name>Regina Yu</ce:given-name>
+            </preferred-name>
+            <ce:e-address type="email">reginayu@fcm.unicamp.br</ce:e-address>
+          </author>
+          <affiliation afid="60029570" country="bra" dptid="107775939">
+            <organization>Universidade Estadual de Campinas (Unicamp)</organization>
+            <organization>Docente do Curso de Fonoaudiologia da Unicamp e do Programa de Mestrado Profissional</organization>
+            <organization>Saúde Interdisciplinaridade e Reabilitação da FCM/Unicamp</organization>
+            <country>Brazil</country>
+          </affiliation>
+        </author-group>
+        <correspondence>
+          <person>
+            <ce:initials>R.Y.</ce:initials>
+            <ce:indexed-name>Shon Chun R.Y.</ce:indexed-name>
+            <ce:surname>Shon Chun</ce:surname>
+          </person>
+          <affiliation country="bra">
+            <organization>Vieira de Camargo</organization>
+            <address-part>126, Cidade Universitária Zeferino Vaz</address-part>
+            <city-group>Campinas, São Paulo, CEP 13084-971</city-group>
+            <country>Brazil</country>
+          </affiliation>
+          <ce:e-address type="email">reginayu@fcm.unicamp.br</ce:e-address>
+        </correspondence>
+        <abstracts>
+          <abstract original="y" xml:lang="eng">
+            <ce:para>Background: Augmentative and Alternative Communication (AAC) is expanding in our country, however it is still not a widely recognized practice. Although the term "Augmentative and Alternative Communication" is well defined in the international literature, in our country there is no official and/or accepted version. Aim: to review the terms used in Brazil and to discuss their implications, taking as a reference the policies and recommendations of Isaac - International Society for Augmentative and Alternative Communication. Method: a review of national Journals was made, consulting Lilacs and SciELO database, until the year of 2007. Results: the following versions were found: Comunicação Alternativa e Suplementar, Comunicação Alternativa, Comunicação Suplementar e/ou Alternativa, Sistemas Alternativos e Facilitadores de Comunicação, Comunicação Suplementar, Comunicação Alternativa e Ampliada. Conclusion: it is important for a given version/term, besides being adopted by its own use, to maintain the original intended sense and to be in consonance with recommendations/policies of the field it belongs, such as those proposed by Isaac. This is a relevant discussion for the consolidation and strengthening of AAC in Brazil and also for the establishment of descriptors in the field of Health Sciences. © 2009 Pró-Fono Departamento Editorial.</ce:para>
+          </abstract>
+        </abstracts>
+        <source country="bra" srcid="145183" type="j">
+          <sourcetitle>Pro-Fono</sourcetitle>
+          <sourcetitle-abbrev>Pro-Fono</sourcetitle-abbrev>
+          <issn type="print">01045687</issn>
+          <volisspag>
+            <voliss issue="1" volume="21"/>
+            <pagerange first="69" last="75"/>
+          </volisspag>
+          <publicationyear first="2009"/>
+          <publicationdate>
+            <year>2009</year>
+            <month>01</month>
+            <date-text xfab-added="true">January 2009</date-text>
+          </publicationdate>
+          <website>
+            <ce:e-address type="url">http://www.scielo.br/pdf/pfono/v21n1/en_12.pdf</ce:e-address>
+          </website>
+        </source>
+        <enhancement>
+          <classificationgroup>
+            <classifications type="ASJC">
+              <classification>2800</classification>
+              <classification>2733</classification>
+              <classification>2700</classification>
+              <classification>3600</classification>
+              <classification>1200</classification>
+              <classification>3300</classification>
+              <classification>1000</classification>
+              <classification>3200</classification>
+              <classification>3616</classification>
+            </classifications>
+            <classifications type="SUBJABBR">
+              <classification>NEUR</classification>
+              <classification>MEDI</classification>
+              <classification>HEAL</classification>
+              <classification>ARTS</classification>
+              <classification>SOCI</classification>
+              <classification>MULT</classification>
+              <classification>PSYC</classification>
+            </classifications>
+          </classificationgroup>
+        </enhancement>
+      </head>
+      <tail>
+        <bibliography refcount="30">
+          <reference id="1">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Sobre como o Sistema Bliss de Comunicação foi introduzido no Brasil</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">69549091350</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>L.</ce:initials>
+                  <ce:indexed-name>Reily L.</ce:indexed-name>
+                  <ce:surname>Reily</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Um retrato da Comunicação Alternativa no Brasil: Relato de Experiências</ref-sourcetitle>
+              <ref-publicationyear first="2007"/>
+              <ref-volisspag>
+                <voliss volume="2"/>
+                <pagerange first="19" last="45"/>
+              </ref-volisspag>
+              <ref-text>Nunes LR d'O de P, Pelosi M, Gomes MR (orgs). Rio de Janeiro: 4 Pontos Estúdio Gráfico e Papéis</ref-text>
+            </ref-info>
+            <ref-fulltext>Reily L. Sobre como o Sistema Bliss de Comunicação foi introduzido no Brasil. In: Nunes LR d'O de P, Pelosi M, Gomes MR (orgs). Um retrato da Comunicação Alternativa no Brasil: Relato de Experiências, vol II. Rio de Janeiro: 4 Pontos Estúdio Gráfico e Papéis; 2007. p. 19-45.</ref-fulltext>
+          </reference>
+          <reference id="2">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>O desenvolvimento da comunicação não verbal através dos símbolos Bliss em indivíduo não falante portador de paralisia cerebral</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">69549107236</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>R.Y.S.</ce:initials>
+                  <ce:indexed-name>Chun R.Y.S.</ce:indexed-name>
+                  <ce:surname>Chun</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Distúr. Comun.</ref-sourcetitle>
+              <ref-publicationyear first="1991"/>
+              <ref-volisspag>
+                <voliss issue="2" volume="4"/>
+                <pagerange first="121" last="36"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Chun RYS. O desenvolvimento da comunicação não verbal através dos símbolos Bliss em indivíduo não falante portador de paralisia cerebral. Distúr. Comun. 1991;4(2):121-36.</ref-fulltext>
+          </reference>
+          <reference id="3">
+            <ref-info>
+              <refd-itemidlist>
+                <itemid idtype="SGR">69549125425</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>P.</ce:initials>
+                  <ce:indexed-name>Nunes L.R. d'O de P.</ce:indexed-name>
+                  <ce:surname>Nunes L.R. d'O de</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Linguagem e Comunicação Alternativa.</ref-sourcetitle>
+              <ref-publicationyear first="2002"/>
+              <ref-text>Tese (Doutorado). Faculdade de Educação. UERJ, Rio de Janeiro</ref-text>
+            </ref-info>
+            <ref-fulltext>Nunes LR d'O de P. Linguagem e Comunicação Alternativa. Tese (Doutorado). Faculdade de Educação. UERJ, Rio de Janeiro; 2002.</ref-fulltext>
+          </reference>
+          <reference id="4">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>AAC Terminology Policy and Issues Update</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">26444502132</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>L.L.</ce:initials>
+                  <ce:indexed-name>Lloyd L.L.</ce:indexed-name>
+                  <ce:surname>Lloyd</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>K.</ce:initials>
+                  <ce:indexed-name>Kangas K.</ce:indexed-name>
+                  <ce:surname>Kangas</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Augmentative and Alternative Communication.</ref-sourcetitle>
+              <ref-publicationyear first="1988"/>
+              <ref-volisspag>
+                <voliss issue="1" volume="4"/>
+                <pagerange first="167" last="70"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Lloyd LL, Kangas K. AAC Terminology Policy and Issues Update. Augmentative and Alternative Communication. 1988;4(1):167-70.</ref-fulltext>
+          </reference>
+          <reference id="5">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Comments on Terminology</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">0008838952</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>L.L.</ce:initials>
+                  <ce:indexed-name>Lloyd L.L.</ce:indexed-name>
+                  <ce:surname>Lloyd</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Augmentative and Alternative Communication.</ref-sourcetitle>
+              <ref-publicationyear first="1985"/>
+              <ref-volisspag>
+                <voliss issue="3" volume="1"/>
+                <pagerange first="95" last="7"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Lloyd LL. Comments on Terminology. Augmentative and Alternative Communication. 1985;1(3):95-7.</ref-fulltext>
+          </reference>
+          <reference id="6">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Toward an Augmentative and Alternative Communication Symbol Taxonomy: a proposed superordinated classification</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">0008831254</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>L.L.</ce:initials>
+                  <ce:indexed-name>Lloyd L.L.</ce:indexed-name>
+                  <ce:surname>Lloyd</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>D.R.</ce:initials>
+                  <ce:indexed-name>Fuller D.R.</ce:indexed-name>
+                  <ce:surname>Fuller</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Augmentative and Alternative Communication.</ref-sourcetitle>
+              <ref-publicationyear first="1986"/>
+              <ref-volisspag>
+                <voliss issue="4" volume="2"/>
+                <pagerange first="165" last="71"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Lloyd LL, Fuller DR. Toward an Augmentative and Alternative Communication Symbol Taxonomy: a proposed superordinated classification. Augmentative and Alternative Communication. 1986;2(4):165-71.</ref-fulltext>
+          </reference>
+          <reference id="7">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>AAC Terminology Policy and Issues update</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">26444502132</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>L.L.</ce:initials>
+                  <ce:indexed-name>Lloyd L.L.</ce:indexed-name>
+                  <ce:surname>Lloyd</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>K.</ce:initials>
+                  <ce:indexed-name>Kangas K.</ce:indexed-name>
+                  <ce:surname>Kangas</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Augmentative and Alternative Communication.</ref-sourcetitle>
+              <ref-publicationyear first="1990"/>
+              <ref-volisspag>
+                <voliss issue="2" volume="6"/>
+                <pagerange first="67" last="70"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Lloyd LL, Kangas K. AAC Terminology Policy and Issues update. Augmentative and Alternative Communication. 1990;6(2):67-70.</ref-fulltext>
+          </reference>
+          <reference id="8">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>AAC Terminology Policy and Issues update</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">0000646910</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>L.L.</ce:initials>
+                  <ce:indexed-name>Lloyd L.L.</ce:indexed-name>
+                  <ce:surname>Lloyd</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>D.M.</ce:initials>
+                  <ce:indexed-name>Blischak D.M.</ce:indexed-name>
+                  <ce:surname>Blischak</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Augmentative and Alternative Communication.</ref-sourcetitle>
+              <ref-publicationyear first="1992"/>
+              <ref-volisspag>
+                <voliss issue="2" volume="8"/>
+                <pagerange first="104" last="109"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Lloyd LL, Blischak DM. AAC Terminology Policy and Issues update. Augmentative and Alternative Communication. 1992;8(2):104-9.</ref-fulltext>
+          </reference>
+          <reference id="9">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Comunicação Alternativa e Suplementar: as oportunidades da inclusão</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">69549115848</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>E.C.</ce:initials>
+                  <ce:indexed-name>Moreira E.C.</ce:indexed-name>
+                  <ce:surname>Moreira</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Temas Desenvolv.</ref-sourcetitle>
+              <ref-publicationyear first="2001"/>
+              <ref-volisspag>
+                <voliss issue="58-59" volume="10"/>
+                <pages>69CE-74CE</pages>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Moreira EC. Comunicação Alternativa e Suplementar: as oportunidades da inclusão. Temas Desenvolv. 2001;10(58-59):69CE-74CE.</ref-fulltext>
+          </reference>
+          <reference id="10">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>A tecnologia no espaço clínico terapêutico fonoaudiológico</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">69549089527</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>H.</ce:initials>
+                  <ce:indexed-name>Panhan H.</ce:indexed-name>
+                  <ce:surname>Panhan</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Temas Desenvolv.</ref-sourcetitle>
+              <ref-publicationyear first="2001"/>
+              <ref-volisspag>
+                <voliss issue="58-59" volume="10"/>
+                <pages>55CE-58CE</pages>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Panhan H. A tecnologia no espaço clínico terapêutico fonoaudiológico. Temas Desenvolv. 2001;10(58-59):55CE-58CE.</ref-fulltext>
+          </reference>
+          <reference id="11">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Paralisia cerebral e comunicação alternativa e suplementar: linguagem em funcionamento</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">69549129050</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>R.</ce:initials>
+                  <ce:indexed-name>Vasconcelos R.</ce:indexed-name>
+                  <ce:surname>Vasconcelos</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Temas Desenvolv.</ref-sourcetitle>
+              <ref-publicationyear first="2001"/>
+              <ref-volisspag>
+                <voliss issue="58-59" volume="10"/>
+                <pages>79CE-84CE</pages>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Vasconcelos R. Paralisia cerebral e comunicação alternativa e suplementar: linguagem em funcionamento. Temas Desenvolv. 2001;10(58-59):79CE-84CE.</ref-fulltext>
+          </reference>
+          <reference id="12">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>A comunicaçäo como fator relevante para a viabilizaçäo da inclusão</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">69549136733</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>A.B.</ce:initials>
+                  <ce:indexed-name>Zapata A.B.</ce:indexed-name>
+                  <ce:surname>Zapata</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Temas Desenvolv.</ref-sourcetitle>
+              <ref-publicationyear first="2001"/>
+              <ref-volisspag>
+                <voliss issue="58-59" volume="10"/>
+                <pages>65CE-68CE</pages>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Zapata AB. A comunicaçäo como fator relevante para a viabilizaçäo da inclusão. Temas Desenvolv. 2001;10(58- 59):65CE-68CE.</ref-fulltext>
+          </reference>
+          <reference id="13">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Inclusão de crianças em educação pré-escolar regular utilizando Comunicação Suplementar e Alternativa</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">69549104432</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>S.</ce:initials>
+                  <ce:indexed-name>Von Tetzchner S.</ce:indexed-name>
+                  <ce:surname>Von Tetzchner</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>K.M.</ce:initials>
+                  <ce:indexed-name>Brekke K.M.</ce:indexed-name>
+                  <ce:surname>Brekke</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>B.</ce:initials>
+                  <ce:indexed-name>Sjothun B.</ce:indexed-name>
+                  <ce:surname>Sjøthun</ce:surname>
+                </author>
+                <author seq="4">
+                  <ce:initials>E.</ce:initials>
+                  <ce:indexed-name>Grindheim E.</ce:indexed-name>
+                  <ce:surname>Grindheim</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Rev. Bras. Ed. Esp.</ref-sourcetitle>
+              <ref-publicationyear first="2005"/>
+              <ref-volisspag>
+                <voliss issue="2" volume="11"/>
+                <pagerange first="51" last="184"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Tetzchner S. Von, Brekke KM, Sjøthun B, Grindheim E. Inclusão de crianças em educação pré-escolar regular utilizando Comunicação Suplementar e Alternativa. Rev. Bras. Ed. Esp. 2005;11(2):51-184.</ref-fulltext>
+          </reference>
+          <reference id="14">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Julgamento de translucência em sistemas de comunicação alternativa e suplementar por universitários</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">69549127558</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>V.O.</ce:initials>
+                  <ce:indexed-name>Thiers V.O.</ce:indexed-name>
+                  <ce:surname>Thiers</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>F.C.</ce:initials>
+                  <ce:indexed-name>Capovilla F.C.</ce:indexed-name>
+                  <ce:surname>Capovilla</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Alethéia.</ref-sourcetitle>
+              <ref-publicationyear first="2006"/>
+              <ref-volisspag>
+                <voliss volume="24"/>
+                <pagerange first="49" last="56"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Thiers VO, Capovilla FC. Julgamento de translucência em sistemas de comunicação alternativa e suplementar por universitários. Alethéia. 2006; (24):49-56.</ref-fulltext>
+          </reference>
+          <reference id="15">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Caracterização dos enunciados de um aluno não-falante usuário de recurso suplementar de comunicação durante a construção de histórias</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">69549104431</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>N.S.</ce:initials>
+                  <ce:indexed-name>da Guarda N.S.</ce:indexed-name>
+                  <ce:surname>da Guarda</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>D.</ce:initials>
+                  <ce:indexed-name>Deliberato D.</ce:indexed-name>
+                  <ce:surname>Deliberato</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Rev. Bras. Ed. Esp.</ref-sourcetitle>
+              <ref-publicationyear first="2006"/>
+              <ref-volisspag>
+                <voliss issue="2" volume="12"/>
+                <pagerange first="269" last="88"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Guarda NS da, Deliberato D. Caracterização dos enunciados de um aluno não-falante usuário de recurso suplementar de comunicação durante a construção de histórias. Rev. Bras. Ed. Esp. 2006;12(2):269-88.</ref-fulltext>
+          </reference>
+          <reference id="16">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>A Comunicação Alternativa na escola especial</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">69549119627</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>A.S.</ce:initials>
+                  <ce:indexed-name>Fernandes A.S.</ce:indexed-name>
+                  <ce:surname>Fernandes</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Temas Desenvolv.</ref-sourcetitle>
+              <ref-publicationyear first="2001"/>
+              <ref-volisspag>
+                <voliss issue="58-59" volume="10"/>
+                <pages>85CE-88CE</pages>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Fernandes AS. A Comunicação Alternativa na escola especial. Temas Desenvolv. 2001;10(58-59):85CE-88CE.</ref-fulltext>
+          </reference>
+          <reference id="17">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Comunicação Alternativa na USP na década de 1991-2001: tecnologia e pesquisa em reabilitação, educação e inclusão</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">15944366297</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>F.C.</ce:initials>
+                  <ce:indexed-name>Capovilla F.C.</ce:indexed-name>
+                  <ce:surname>Capovilla</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>A.G.S.</ce:initials>
+                  <ce:indexed-name>Capovilla A.G.S.</ce:indexed-name>
+                  <ce:surname>Capovilla</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>E.C.</ce:initials>
+                  <ce:indexed-name>Macedo E.C.</ce:indexed-name>
+                  <ce:surname>Macedo</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Temas Desenvolv.</ref-sourcetitle>
+              <ref-publicationyear first="2001"/>
+              <ref-volisspag>
+                <voliss issue="58-59" volume="10"/>
+                <pages>18CE-42CE</pages>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Capovilla FC, Capovilla AGS, Macedo EC. Comunicação Alternativa na USP na década de 1991-2001: tecnologia e pesquisa em reabilitação, educação e inclusão. Temas Desenvolv. 2001;10(58-59):18CE-42CE.</ref-fulltext>
+          </reference>
+          <reference id="18">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Adaptações do sistema de comunicação por troca de figuras no contexto escolar</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">34248691152</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>M.A.</ce:initials>
+                  <ce:indexed-name>Almeida M.A.</ce:indexed-name>
+                  <ce:surname>Almeida</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>M.H.M.</ce:initials>
+                  <ce:indexed-name>Piza M.H.M.</ce:indexed-name>
+                  <ce:surname>Piza</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>D.A.C.</ce:initials>
+                  <ce:indexed-name>Lamonica D.A.C.</ce:indexed-name>
+                  <ce:surname>Lamônica</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Pró-Fono Revista de Atualização Científica.</ref-sourcetitle>
+              <ref-publicationyear first="2005"/>
+              <ref-volisspag>
+                <voliss issue="2" volume="17"/>
+                <pagerange first="233" last="40"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Almeida MA, Piza MHM, Lamônica, DAC. Adaptações do sistema de comunicação por troca de figuras no contexto escolar. Pró-Fono Revista de Atualização Científica. 2005,17(2):233-40.</ref-fulltext>
+          </reference>
+          <reference id="19">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Comunicação suplementar e/ou alternativa: favorecimento da linguagem de um sujeito não falante</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">34248691443</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>R.Y.S.</ce:initials>
+                  <ce:indexed-name>Chun R.Y.S.</ce:indexed-name>
+                  <ce:surname>Chun</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Pró-Fono Revista de Atualização Científica.</ref-sourcetitle>
+              <ref-publicationyear first="2003"/>
+              <ref-volisspag>
+                <voliss issue="1" volume="15"/>
+                <pagerange first="55" last="64"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Chun RYS. Comunicação suplementar e/ou alternativa: favorecimento da linguagem de um sujeito não falante. Pró-Fono Revista de Atualização Científica. 2003;15(1):55-64.</ref-fulltext>
+          </reference>
+          <reference id="20">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>O desenvolvimento da linguagem por meio do Sistema Pictográfico de Comunicação</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">21644439431</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>T.T.</ce:initials>
+                  <ce:indexed-name>Trevizor T.T.</ce:indexed-name>
+                  <ce:surname>Trevizor</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>R.Y.S.</ce:initials>
+                  <ce:indexed-name>Chun R.Y.S.</ce:indexed-name>
+                  <ce:surname>Chun</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Pró-Fono Revista Atualização Científica.</ref-sourcetitle>
+              <ref-publicationyear first="2004"/>
+              <ref-volisspag>
+                <voliss issue="3" volume="16"/>
+                <pagerange first="323" last="32"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Trevizor TT, Chun RYS. O desenvolvimento da linguagem por meio do Sistema Pictográfico de Comunicação. Pró-Fono Revista Atualização Científica. 2004;16 (3):323-32.</ref-fulltext>
+          </reference>
+          <reference id="21">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>O uso de sistemas alternativos e facilitadores de comunicaçäo nas aphasias</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">69549114047</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>F.C.</ce:initials>
+                  <ce:indexed-name>Capovilla F.C.</ce:indexed-name>
+                  <ce:surname>Capovilla</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>A.G.S.</ce:initials>
+                  <ce:indexed-name>Capovilla A.G.S.</ce:indexed-name>
+                  <ce:surname>Capovilla</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>E.C.</ce:initials>
+                  <ce:indexed-name>de Macedo E.C.</ce:indexed-name>
+                  <ce:surname>de Macedo</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Distúr. Comun.</ref-sourcetitle>
+              <ref-publicationyear first="1998"/>
+              <ref-volisspag>
+                <voliss issue="2" volume="9"/>
+                <pagerange first="233" last="59"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Capovilla FC, Capovilla AGS, Macedo EC de. O uso de sistemas alternativos e facilitadores de comunicaçäo nas afasias. Distúr. Comun. 1998;9(2):233-59.</ref-fulltext>
+          </reference>
+          <reference id="22">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>O uso de sistemas alternativos e facilitadores de comunicação para o tratamento e a melhoria da qualidade de vida de afásicos</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">69549127557</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>F.C.</ce:initials>
+                  <ce:indexed-name>Capovilla F.C.</ce:indexed-name>
+                  <ce:surname>Capovilla</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>E.C.</ce:initials>
+                  <ce:indexed-name>de Macedo E.C.</ce:indexed-name>
+                  <ce:surname>de Macedo</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>A.G.S.</ce:initials>
+                  <ce:indexed-name>Capovilla A.G.S.</ce:indexed-name>
+                  <ce:surname>Capovilla</ce:surname>
+                </author>
+                <author seq="4">
+                  <ce:initials>M.</ce:initials>
+                  <ce:indexed-name>Duduchi M.</ce:indexed-name>
+                  <ce:surname>Duduchi</ce:surname>
+                </author>
+                <author seq="5">
+                  <ce:initials>M.J.</ce:initials>
+                  <ce:indexed-name>de Goncalves M.J.</ce:indexed-name>
+                  <ce:surname>de Gonçalves</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Mundo Saúde.</ref-sourcetitle>
+              <ref-publicationyear first="1996"/>
+              <ref-volisspag>
+                <voliss issue="10" volume="20"/>
+                <pagerange first="337" last="42"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Capovilla FC, Macedo EC de, Capovilla AGS, Duduchi M, Gonçalves M de J. O uso de sistemas alternativos e facilitadores de comunicação para o tratamento e a melhoria da qualidade de vida de afásicos. Mundo Saúde. 1996;20(10):337-42.</ref-fulltext>
+          </reference>
+          <reference id="23">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Introdução de Comunicação Suplementar em pacientes com paralisia cerebral atetóide</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">84937375177</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>S.C.F.</ce:initials>
+                  <ce:indexed-name>Pires S.C.F.</ce:indexed-name>
+                  <ce:surname>Pires</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>S.C.O.</ce:initials>
+                  <ce:indexed-name>Limongi S.C.O.</ce:indexed-name>
+                  <ce:surname>Limongi</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Pró-Fono Revista Atualização Científica.</ref-sourcetitle>
+              <ref-publicationyear first="2002"/>
+              <ref-volisspag>
+                <voliss issue="1" volume="14"/>
+                <pagerange first="51" last="60"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Pires SCF, Limongi SCO. Introdução de Comunicação Suplementar em pacientes com paralisia cerebral atetóide. Pró-Fono Revista Atualização Científica. 2002;14(1):51-60.</ref-fulltext>
+          </reference>
+          <reference id="24">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Avaliação assistida e comunicação alternativa: procedimentos para a educação inclusiva</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">69549114048</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>K.M.P.</ce:initials>
+                  <ce:indexed-name>de Paula K.M.P.</ce:indexed-name>
+                  <ce:surname>de Paula</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>S.R.F.</ce:initials>
+                  <ce:indexed-name>Enumo S.R.F.</ce:indexed-name>
+                  <ce:surname>Enumo</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Rev. bras. educ. espec.</ref-sourcetitle>
+              <ref-publicationyear first="2007"/>
+              <ref-volisspag>
+                <voliss issue="1" volume="13"/>
+                <pagerange first="3" last="26"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Paula KMP de, Enumo SRF. Avaliação assistida e comunicação alternativa: procedimentos para a educação inclusiva. Rev. bras. educ. espec. 2007;13(1):3-26.</ref-fulltext>
+          </reference>
+          <reference id="25">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Comunicação através de símbolos: abordagem clínica baseada em diversos estudos</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">69549109603</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>N.G.</ce:initials>
+                  <ce:indexed-name>Gill N.G.</ce:indexed-name>
+                  <ce:surname>Gill</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Temas Desenvolv.</ref-sourcetitle>
+              <ref-publicationyear first="1997"/>
+              <ref-volisspag>
+                <voliss issue="34" volume="6"/>
+                <pagerange first="34" last="43"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Gill NG. Comunicação através de símbolos: abordagem clínica baseada em diversos estudos. Temas Desenvolv. 1997;6(34):34-43.</ref-fulltext>
+          </reference>
+          <reference id="26">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>A memória de trabalho do paralisado alfabetizado: análise experimental via sistema computadorizado de comunicação alternativa</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">69549084189</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>F.C.</ce:initials>
+                  <ce:indexed-name>Capovilla F.C.</ce:indexed-name>
+                  <ce:surname>Capovilla</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>L.</ce:initials>
+                  <ce:indexed-name>Nunes L.</ce:indexed-name>
+                  <ce:surname>Nunes</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>D.</ce:initials>
+                  <ce:indexed-name>Nunes D.</ce:indexed-name>
+                  <ce:surname>Nunes</ce:surname>
+                </author>
+                <author seq="4">
+                  <ce:initials>I.</ce:initials>
+                  <ce:indexed-name>Araujo I.</ce:indexed-name>
+                  <ce:surname>Araújo</ce:surname>
+                </author>
+                <author seq="5">
+                  <ce:initials>D.</ce:initials>
+                  <ce:indexed-name>Nogueira D.</ce:indexed-name>
+                  <ce:surname>Nogueira</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Mundo Saúde.</ref-sourcetitle>
+              <ref-publicationyear first="1997"/>
+              <ref-volisspag>
+                <voliss issue="2" volume="21"/>
+                <pagerange first="98" last="101"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Capovilla FC, Nunes L, Nunes D, Araújo I, Nogueira D. A memória de trabalho do paralisado alfabetizado: análise experimental via sistema computadorizado de comunicação alternativa. Mundo Saúde. 1997;21(2):98-101.</ref-fulltext>
+          </reference>
+          <reference id="27">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Paralanguage</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">69549109604</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>D.</ce:initials>
+                  <ce:indexed-name>Abercrombie D.</ce:indexed-name>
+                  <ce:surname>Abercrombie</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Communication in Face to Face Interaction.</ref-sourcetitle>
+              <ref-publicationyear first="1968"/>
+              <ref-volisspag>
+                <pagerange first="64" last="70"/>
+              </ref-volisspag>
+              <ref-text>Laver J, Hutcheson S. Great Britain: Penguin Books</ref-text>
+            </ref-info>
+            <ref-fulltext>Abercrombie D. Paralanguage. In: Laver J, Hutcheson S. Communication in Face to Face Interaction. Great Britain: Penguin Books; 1968. p. 64-70.</ref-fulltext>
+          </reference>
+          <reference id="28">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>A Classificação Internacional de Funcionalidade, Incapacidade e Saúde: conceitos, usos e perspectivas</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">33845339128</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>C.M.</ce:initials>
+                  <ce:indexed-name>Buchalla C.M.</ce:indexed-name>
+                  <ce:surname>Buchalla</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Rev. Bras. Epidemiol.</ref-sourcetitle>
+              <ref-publicationyear first="2005"/>
+              <ref-volisspag>
+                <voliss issue="2" volume="8"/>
+                <pagerange first="107" last="93"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Buchalla CM. A Classificação Internacional de Funcionalidade, Incapacidade e Saúde: conceitos, usos e perspectivas. Rev. Bras. Epidemiol. 2005;8(2):107-93.</ref-fulltext>
+          </reference>
+          <reference id="29">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Decision Making in AAC Intervention</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">1542360207</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>K.M.</ce:initials>
+                  <ce:indexed-name>Yorston K.M.</ce:indexed-name>
+                  <ce:surname>Yorston</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>D.R.</ce:initials>
+                  <ce:indexed-name>Beukelman D.R.</ce:indexed-name>
+                  <ce:surname>Beukelman</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Augmentative and Alternative Communication for adults with acquired neurologic disorders.</ref-sourcetitle>
+              <ref-publicationyear first="2000"/>
+              <ref-volisspag>
+                <pagerange first="55" last="82"/>
+              </ref-volisspag>
+              <ref-text>Beukelman DR, Yorston KM, Reichle J. Baltimore: Paul H. Brookes Publishing Co.</ref-text>
+            </ref-info>
+            <ref-fulltext>Yorston KM, Beukelman DR. Decision Making in AAC Intervention. In: Beukelman DR, Yorston KM, Reichle J. Augmentative and Alternative Communication for adults with acquired neurologic disorders. Baltimore: Paul H. Brookes Publishing Co.; 2000. p. 55-82.</ref-fulltext>
+          </reference>
+          <reference id="30">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>The World Health Organization's International Classification of Functioning, Disability and Health: Implications for Clinical and Research Practice in the field of Augmentative and Alternative Communication</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">36248976035</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>P.</ce:initials>
+                  <ce:indexed-name>Raghavendra P.</ce:indexed-name>
+                  <ce:surname>Raghavendra</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>J.</ce:initials>
+                  <ce:indexed-name>Bornman J.</ce:indexed-name>
+                  <ce:surname>Bornman</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>M.</ce:initials>
+                  <ce:indexed-name>Grandlund M.</ce:indexed-name>
+                  <ce:surname>Grandlund</ce:surname>
+                </author>
+                <author seq="4">
+                  <ce:initials>E.</ce:initials>
+                  <ce:indexed-name>Bjorck-Akesson E.</ce:indexed-name>
+                  <ce:surname>Björck-Akesson</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Augmentative and Alternative Communication.</ref-sourcetitle>
+              <ref-publicationyear first="2007"/>
+              <ref-volisspag>
+                <voliss issue="4" volume="23"/>
+                <pagerange first="349" last="61"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Raghavendra P, Bornman J, Grandlund M, Björck-Akesson E. The World Health Organization's International Classification of Functioning, Disability and Health: Implications for Clinical and Research Practice in the field of Augmentative and Alternative Communication. Augmentative and Alternative Communication. 2007;23(4):349-61.</ref-fulltext>
+          </reference>
+        </bibliography>
+      </tail>
+    </bibrecord>
+  </item>
+</abstracts-retrieval-response>

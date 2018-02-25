@@ -53,7 +53,7 @@ class Canonico_Documento < Sequel::Model
     d=d_max if d.nil? or d>d_max
     canonico_sql= sin_canonico ? " OR canonico_documento_id IS NULL ": ""
 
-    distancias=Referencia.where("canonico_documento_id!='#{self[:id]}' #{canonico_sql}").map {|v|
+    distancias=Referencia.where(Sequel.lit("canonico_documento_id!='#{self[:id]}' #{canonico_sql}")).map {|v|
       dis_apa_6=Levenshtein.distance(v[:texto],ref_apa_6)
       dis_solo_titulo=Levenshtein.distance(v[:texto],self[:title])
       distancia=[dis_apa_6,dis_solo_titulo].min

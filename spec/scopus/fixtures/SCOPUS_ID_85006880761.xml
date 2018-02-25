@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<abstracts-retrieval-response xmlns="http://www.elsevier.com/xml/svapi/abstract/dtd" xmlns:ait="http://www.elsevier.com/xml/ani/ait" xmlns:ce="http://www.elsevier.com/xml/ani/common" xmlns:cto="http://www.elsevier.com/xml/cto/dtd" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:prism="http://prismstandard.org/namespaces/basic/2.0/" xmlns:xocs="http://www.elsevier.com/xml/xocs/dtd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <coredata>
+    <prism:url>http://api.elsevier.com/content/abstract/scopus_id/85006880761</prism:url>
+    <dc:identifier>SCOPUS_ID:85006880761</dc:identifier>
+    <eid>2-s2.0-85006880761</eid>
+    <prism:doi>10.1109/LACLO.2016.7751750</prism:doi>
+    <article-number>7751750</article-number>
+    <dc:title>Customizable templates as helpers in graphical interfaces adaptation</dc:title>
+    <prism:aggregationType>Conference Proceeding</prism:aggregationType>
+    <srctype>p</srctype>
+    <citedby-count>0</citedby-count>
+    <prism:publicationName>Proceedings - 2016 11th Latin American Conference on Learning Objects and Technology, LACLO 2016</prism:publicationName>
+    <dc:publisher> Institute of Electrical and Electronics Engineers Inc. </dc:publisher>
+    <source-id>21100790040</source-id>
+    <prism:isbn>9781509061495</prism:isbn>
+    <prism:coverDate>2016-11-21</prism:coverDate>
+    <dc:creator>
+      <author auid="57192590677" seq="1">
+        <ce:initials>P.</ce:initials>
+        <ce:indexed-name>David Netto Silveira P.</ce:indexed-name>
+        <ce:surname>David Netto Silveira</ce:surname>
+        <ce:given-name>Pedro</ce:given-name>
+        <preferred-name> <ce:initials>P.</ce:initials> <ce:indexed-name>David Netto Silveira P.</ce:indexed-name> <ce:surname>David Netto Silveira</ce:surname> <ce:given-name>Pedro</ce:given-name> </preferred-name>
+        <author-url>http://api.elsevier.com/content/author/author_id/57192590677</author-url>
+        <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60101677" id="60101677"/>
+      </author>
+    </dc:creator>
+    <dc:description>
+      <abstract original="y" xml:lang="eng"> <publishercopyright>© 2016 IEEE.</publishercopyright> <ce:para>This electronic document describes a solution to the flexibility problems in the presentation layer of virtual environments for people who have special educational needs. In many cases, for a better cognitive adaptation to the environment a custom view is required. In current virtual environments, there is a lack in this aspect. Then, we will demonstrate an architecture description for customizing the graphical interface and providing a visual perception of tailored contents for the participants. This is the template editor, a tool that can be used to assist people with some special educational needs to overcome barriers that could hinder their participation.</ce:para> </abstract>
+    </dc:description>
+    <intid>85006880761</intid>
+    <link href="http://api.elsevier.com/content/abstract/scopus_id/85006880761" rel="self"/>
+    <link href="https://www.scopus.com/inward/record.uri?partnerID=HzOxMe3b&amp;scp=85006880761&amp;origin=inward" rel="scopus"/>
+    <link href="https://www.scopus.com/inward/citedby.uri?partnerID=HzOxMe3b&amp;scp=85006880761&amp;origin=inward" rel="scopus-citedby"/>
+  </coredata>
+  <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60101677" id="60101677">
+    <affilname>Instituto Federal do Espirito Santo</affilname>
+    <affiliation-city>Vitoria</affiliation-city>
+    <affiliation-country>Brazil</affiliation-country>
+  </affiliation>
+  <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60028426" id="60028426">
+    <affilname>Universidade Federal do Espirito Santo</affilname>
+    <affiliation-city>Vitoria</affiliation-city>
+    <affiliation-country>Brazil</affiliation-country>
+  </affiliation>
+  <authors>
+    <author auid="57192590677" seq="1">
+      <ce:initials>P.</ce:initials>
+      <ce:indexed-name>David Netto Silveira P.</ce:indexed-name>
+      <ce:surname>David Netto Silveira</ce:surname>
+      <ce:given-name>Pedro</ce:given-name>
+      <preferred-name> <ce:initials>P.</ce:initials> <ce:indexed-name>David Netto Silveira P.</ce:indexed-name> <ce:surname>David Netto Silveira</ce:surname> <ce:given-name>Pedro</ce:given-name> </preferred-name>
+      <author-url>http://api.elsevier.com/content/author/author_id/57192590677</author-url>
+      <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60101677" id="60101677"/>
+    </author>
+    <author auid="57192589637" seq="2">
+      <ce:initials>F.P.</ce:initials>
+      <ce:indexed-name>Simao F.P.</ce:indexed-name>
+      <ce:surname>Simão</ce:surname>
+      <ce:given-name>Flavio Pavesi</ce:given-name>
+      <preferred-name> <ce:initials>F.P.</ce:initials> <ce:indexed-name>Simão F.</ce:indexed-name> <ce:surname>Simão</ce:surname> <ce:given-name>Flavio Pavesi</ce:given-name> </preferred-name>
+      <author-url>http://api.elsevier.com/content/author/author_id/57192589637</author-url>
+      <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60101677" id="60101677"/>
+    </author>
+    <author auid="57192575069" seq="3">
+      <ce:initials>O.L.</ce:initials>
+      <ce:indexed-name>Dos Santos O.L.</ce:indexed-name>
+      <ce:surname>Dos Santos</ce:surname>
+      <ce:given-name>Otávio Lube</ce:given-name>
+      <preferred-name> <ce:initials>O.L.</ce:initials> <ce:indexed-name>Dos Santos O.</ce:indexed-name> <ce:surname>Dos Santos</ce:surname> <ce:given-name>Otávio Lube</ce:given-name> </preferred-name>
+      <author-url>http://api.elsevier.com/content/author/author_id/57192575069</author-url>
+      <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60028426" id="60028426"/>
+    </author>
+    <author auid="57192574864" seq="4">
+      <ce:initials>J.</ce:initials>
+      <ce:indexed-name>Do Prado Rafalski J.</ce:indexed-name>
+      <ce:surname>Do Prado Rafalski</ce:surname>
+      <ce:given-name>Jadson</ce:given-name>
+      <preferred-name> <ce:initials>J.</ce:initials> <ce:indexed-name>Do Prado Rafalski J.</ce:indexed-name> <ce:surname>Do Prado Rafalski</ce:surname> <ce:given-name>Jadson</ce:given-name> </preferred-name>
+      <author-url>http://api.elsevier.com/content/author/author_id/57192574864</author-url>
+      <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60028426" id="60028426"/>
+    </author>
+  </authors>
+  <language xml:lang="eng"/>
+  <authkeywords>
+    <author-keyword>Adaptation</author-keyword>
+    <author-keyword>Customization</author-keyword>
+    <author-keyword>Flexibilit</author-keyword>
+    <author-keyword>Special needs</author-keyword>
+    <author-keyword>Template</author-keyword>
+  </authkeywords>
+  <idxterms candidate="n" weight="b">
+    <mainterm>Adaptation</mainterm>
+    <mainterm>Customization</mainterm>
+    <mainterm>Flexibilit</mainterm>
+    <mainterm>Special needs</mainterm>
+    <mainterm>Template</mainterm>
+  </idxterms>
+  <subject-areas>
+    <subject-area abbrev="COMP" code="1702">Artificial Intelligence</subject-area>
+    <subject-area abbrev="COMP" code="1706">Computer Science Applications</subject-area>
+    <subject-area abbrev="PSYC" code="3204">Developmental and Educational Psychology</subject-area>
+    <subject-area abbrev="SOCI" code="3304">Education</subject-area>
+  </subject-areas>
+  <item xmlns="">
+    <ait:process-info>
+      <ait:date-delivered day="01" month="01" timestamp="2017-01-01T21:24:21.000021+00:00" year="2017"/>
+      <ait:date-sort day="21" month="11" year="2016"/>
+      <ait:status stage="S300" state="new" type="core"/>
+    </ait:process-info>
+    <bibrecord>
+      <item-info>
+        <copyright type="Elsevier">Copyright 2016 Elsevier B.V., All rights reserved.</copyright>
+        <itemidlist> <ce:doi>10.1109/LACLO.2016.7751750</ce:doi> <itemid idtype="PUI">613845349</itemid> <itemid idtype="CAR-ID">659471106</itemid> <itemid idtype="CPX">20165203180620</itemid> <itemid idtype="SCP">85006880761</itemid> <itemid idtype="SGR">85006880761</itemid> </itemidlist>
+        <history> <date-created day="27" month="12" timestamp="BST 06:16:37" year="2016"/> </history>
+        <dbcollection>CPX</dbcollection>
+        <dbcollection>Scopusbase</dbcollection>
+      </item-info>
+      <head>
+        <citation-info>
+          <citation-type code="cp"/>
+          <citation-language language="Portuguese" xml:lang="por"/>
+          <abstract-language language="English" xml:lang="eng"/>
+          <author-keywords> <author-keyword>Adaptation</author-keyword> <author-keyword>Customization</author-keyword> <author-keyword>Flexibilit</author-keyword> <author-keyword>Special needs</author-keyword> <author-keyword>Template</author-keyword> </author-keywords>
+        </citation-info>
+        <citation-title>
+          <titletext language="English" original="y" xml:lang="eng">Customizable templates as helpers in graphical interfaces adaptation</titletext>
+        </citation-title>
+        <author-group>
+          <author auid="57192590677" seq="1" type="auth"> <ce:initials>P.</ce:initials> <ce:indexed-name>David Netto Silveira P.</ce:indexed-name> <ce:surname>David Netto Silveira</ce:surname> <ce:given-name>Pedro</ce:given-name> <preferred-name> <ce:initials>P.</ce:initials> <ce:indexed-name>David Netto Silveira P.</ce:indexed-name> <ce:surname>David Netto Silveira</ce:surname> <ce:given-name>Pedro</ce:given-name> </preferred-name> <ce:e-address type="email">pedro.silveira@ifes.edu.br</ce:e-address> </author>
+          <author auid="57192589637" seq="2" type="auth"> <ce:initials>F.P.</ce:initials> <ce:indexed-name>Simao F.P.</ce:indexed-name> <ce:surname>Simão</ce:surname> <ce:given-name>Flavio Pavesi</ce:given-name> <preferred-name> <ce:initials>F.P.</ce:initials> <ce:indexed-name>Simão F.</ce:indexed-name> <ce:surname>Simão</ce:surname> <ce:given-name>Flavio Pavesi</ce:given-name> </preferred-name> <ce:e-address type="email">fpsimao@ifes.edu.br</ce:e-address> </author>
+          <affiliation afid="60101677" country="bra">
+            <organization>Núcleo de Informática-IFES Campus de Alegre</organization>
+            <organization>Instituto Federal Do Espírito Santo-IFES</organization>
+            <city>Alegre-ES</city>
+            <country>Brazil</country>
+          </affiliation>
+        </author-group>
+        <author-group>
+          <author auid="57192575069" seq="3" type="auth"> <ce:initials>O.L.</ce:initials> <ce:indexed-name>Dos Santos O.L.</ce:indexed-name> <ce:surname>Dos Santos</ce:surname> <ce:given-name>Otávio Lube</ce:given-name> <preferred-name> <ce:initials>O.L.</ce:initials> <ce:indexed-name>Dos Santos O.</ce:indexed-name> <ce:surname>Dos Santos</ce:surname> <ce:given-name>Otávio Lube</ce:given-name> </preferred-name> <ce:e-address type="email">olube@inf.ufes.br</ce:e-address> </author>
+          <author auid="57192574864" seq="4" type="auth"> <ce:initials>J.</ce:initials> <ce:indexed-name>Do Prado Rafalski J.</ce:indexed-name> <ce:surname>Do Prado Rafalski</ce:surname> <ce:given-name>Jadson</ce:given-name> <preferred-name> <ce:initials>J.</ce:initials> <ce:indexed-name>Do Prado Rafalski J.</ce:indexed-name> <ce:surname>Do Prado Rafalski</ce:surname> <ce:given-name>Jadson</ce:given-name> </preferred-name> <ce:e-address type="email">jrafalski@inf.ufes.br</ce:e-address> </author>
+          <affiliation afid="60028426" country="bra" dptid="113659409">
+            <organization>Departamento de Informática</organization>
+            <organization>Universidade Federal Do Espírito Santo-UFES</organization>
+            <city>Vitória-ES</city>
+            <country>Brazil</country>
+          </affiliation>
+        </author-group>
+        <abstracts>
+          <abstract original="y" xml:lang="eng"> <publishercopyright>© 2016 IEEE.</publishercopyright> <ce:para>This electronic document describes a solution to the flexibility problems in the presentation layer of virtual environments for people who have special educational needs. In many cases, for a better cognitive adaptation to the environment a custom view is required. In current virtual environments, there is a lack in this aspect. Then, we will demonstrate an architecture description for customizing the graphical interface and providing a visual perception of tailored contents for the participants. This is the template editor, a tool that can be used to assist people with some special educational needs to overcome barriers that could hinder their participation.</ce:para> </abstract>
+        </abstracts>
+        <source country="usa" srcid="21100790040" type="p">
+          <sourcetitle>Proceedings - 2016 11th Latin American Conference on Learning Objects and Technology, LACLO 2016</sourcetitle>
+          <sourcetitle-abbrev>Proceedings - Lat. Am. Conf. Learn. Objects Technol., LACLO</sourcetitle-abbrev>
+          <translated-sourcetitle xml:lang="eng">Proceedings - 2016 11th Latin American Conference on Learning Objects and Technology, LACLO 2016</translated-sourcetitle>
+          <issuetitle>Proceedings - 2016 11th Latin American Conference on Learning Objects and Technology, LACLO 2016</issuetitle>
+          <isbn length="13" type="electronic">9781509061495</isbn>
+          <article-number>7751750</article-number>
+          <publicationyear first="2016"/>
+          <publicationdate> <year>2016</year> <month>11</month> <day>21</day> <date-text xfab-added="true">21 November 2016</date-text></publicationdate>
+          <contributor-group> <contributor role="edit" seq="1"> <ce:initials>I.A.</ce:initials> <ce:indexed-name>Chacon I.A.</ce:indexed-name> <ce:surname>Chacon</ce:surname> <ce:given-name>Isaac Alpizar</ce:given-name> </contributor> </contributor-group>
+          <contributor-group> <contributor role="edit" seq="1"> <ce:initials>M.C.</ce:initials> <ce:indexed-name>Rivas M.C.</ce:indexed-name> <ce:surname>Rivas</ce:surname> <ce:given-name>Mario Chacon</ce:given-name> </contributor> </contributor-group>
+          <contributor-group> <contributor role="edit" seq="1"> <ce:initials>C.</ce:initials> <ce:indexed-name>Cechinel C.</ce:indexed-name> <ce:surname>Cechinel</ce:surname> <ce:given-name>Cristian</ce:given-name> </contributor> </contributor-group>
+          <contributor-group> <contributor role="edit" seq="1"> <ce:initials>A.F.</ce:initials> <ce:indexed-name>Alfaro A.F.</ce:indexed-name> <ce:surname>Alfaro</ce:surname> <ce:given-name>Agustin Francesa</ce:given-name> </contributor> </contributor-group>
+          <publisher> <publishername>Institute of Electrical and Electronics Engineers Inc.</publishername> </publisher>
+          <additional-srcinfo> <conferenceinfo> <confevent> <confname>11th Latin American Conference on Learning Objects and Technology, LACLO 2016</confname> <confnumber>11</confnumber> <confseriestitle>Latin American Conference on Learning Objects and Technology</confseriestitle> <conflocation country="cri"> <city>San Carlos</city> </conflocation> <confdate> <startdate day="03" month="10" year="2016"/> <enddate day="07" month="10" year="2016"/> </confdate> <confcatnumber>CFP16H36-ART</confcatnumber> <confcode>125026</confcode> <confsponsors complete="n"> <confsponsor/> </confsponsors> </confevent> </conferenceinfo> </additional-srcinfo>
+        </source>
+        <enhancement>
+          <classificationgroup>
+            <classifications type="ASJC"> <classification>1702</classification> <classification>1706</classification> <classification>3204</classification> <classification>3304</classification> </classifications>
+            <classifications type="CPXCLASS"> <classification> <classification-code>723</classification-code> <classification-description>Computer Software, Data Handling and Applications</classification-description> </classification> <classification> <classification-code>901.2</classification-code> <classification-description>Education</classification-description> </classification> </classifications>
+            <classifications type="FLXCLASS"> <classification> <classification-code>902</classification-code> <classification-description>FLUIDEX; Related Topics</classification-description> </classification> </classifications>
+            <classifications type="SUBJABBR">
+              <classification>COMP</classification>
+              <classification>PSYC</classification>
+              <classification>SOCI</classification>
+            </classifications>
+          </classificationgroup>
+        </enhancement>
+      </head>
+      <tail>
+        <bibliography refcount="9"> <reference id="1"> <ref-info> <ref-title> <ref-titletext>Colour perception in ADHD</ref-titletext> </ref-title> <refd-itemidlist> <itemid idtype="SGR">33646745499</itemid> </refd-itemidlist> <ref-authors> <author seq="1"> <ce:initials>T.</ce:initials> <ce:indexed-name>Banaschewsky T.</ce:indexed-name> <ce:surname>Banaschewsky</ce:surname> </author> <author seq="2"> <ce:initials>S.</ce:initials> <ce:indexed-name>Rupprt S.</ce:indexed-name> <ce:surname>Rupprt</ce:surname> </author> <author seq="3"> <ce:initials>R.</ce:initials> <ce:indexed-name>Tannock R.</ce:indexed-name> <ce:surname>Tannock</ce:surname> </author> <author seq="4"> <ce:initials>B.</ce:initials> <ce:indexed-name>Albrecht B.</ce:indexed-name> <ce:surname>Albrecht</ce:surname> </author> <author seq="5"> <ce:initials>A.</ce:initials> <ce:indexed-name>Becker A.</ce:indexed-name> <ce:surname>Becker</ce:surname> </author> <author seq="6"> <ce:initials>H.</ce:initials> <ce:indexed-name>Uebel H.</ce:indexed-name> <ce:surname>Uebel</ce:surname> </author> <author seq="7"> <ce:initials>J.A.</ce:initials> <ce:indexed-name>Sergeant J.A.</ce:indexed-name> <ce:surname>Sergeant</ce:surname> </author> <author seq="8"> <ce:initials>A.</ce:initials> <ce:indexed-name>Rothenberger A.</ce:indexed-name> <ce:surname>Rothenberger</ce:surname> </author> </ref-authors> <ref-sourcetitle>Journal of Child Psychology and Psychiatry</ref-sourcetitle> <ref-publicationyear first="2006"/> <ref-volisspag> <voliss issue="6" volume="47"/> <pagerange first="568" last="572"/> </ref-volisspag> <ref-text>Washington.</ref-text> </ref-info> <ref-fulltext>Banaschewsky, T., Rupprt, S., Tannock, R., Albrecht, B., Becker, A., Uebel, H., Sergeant, J. A., Rothenberger, A. "Colour perception in ADHD". Journal of Child Psychology and Psychiatry. Washington. v. 47, n. 6, p. 568-572, 2006.</ref-fulltext> </reference> <reference id="2"> <ref-info> <ref-title> <ref-titletext>Methods and techniques of adaptive hypermedia</ref-titletext> </ref-title> <refd-itemidlist> <itemid idtype="SGR">0030192824</itemid> </refd-itemidlist> <ref-authors> <author seq="1"> <ce:initials>P.</ce:initials> <ce:indexed-name>Brusilovsky P.</ce:indexed-name> <ce:surname>Brusilovsky</ce:surname> </author> </ref-authors> <ref-sourcetitle>Adaptive Hypertext and Hypermedia. Netherlands</ref-sourcetitle> <ref-publicationyear first="1996"/> <ref-volisspag> <voliss issue="2" volume="6"/> <pagerange first="87" last="129"/> </ref-volisspag> <ref-text>jul.</ref-text> </ref-info> <ref-fulltext>Brusilovsky, P. "Methods and techniques of adaptive hypermedia". Adaptive hypertext and hypermedia. Netherlands, v. 6, n. 2, p. 87-129, jul. 1996.</ref-fulltext> </reference> <reference id="3"> <ref-info> <refd-itemidlist> <itemid idtype="SGR">84878834422</itemid> </refd-itemidlist> <ref-authors> <author seq="1"> <ce:initials>G.</ce:initials> <ce:indexed-name>Guedes G.</ce:indexed-name> <ce:surname>Guedes</ce:surname> </author> </ref-authors> <ref-sourcetitle>Interface Humano Computador: Prática Pedagógica para Ambientes Virtuais, 1 Ed</ref-sourcetitle> <ref-publicationyear first="2008"/> <ref-volisspag> <pagerange first="218"/> </ref-volisspag> <ref-text>Teresina: EDUFPI</ref-text> </ref-info> <ref-fulltext>Guedes, G. "Interface humano computador: prática pedagógica para ambientes virtuais", 1 ed. Teresina: EDUFPI, 2008. 218 p.</ref-fulltext> </reference> <reference id="4"> <ref-info> <ref-title> <ref-titletext>Um modelo de cores na usabilidade das interfaces computacionais para os deficientes de baixa visão</ref-titletext> </ref-title> <refd-itemidlist> <itemid idtype="SGR">85006883953</itemid> </refd-itemidlist> <ref-authors> <author seq="1"> <ce:initials>C.C.</ce:initials> <ce:indexed-name>Kulpa C.C.</ce:indexed-name> <ce:surname>Kulpa</ce:surname> </author> <author seq="2"> <ce:initials>F.G.</ce:initials> <ce:indexed-name>Teixeira F.G.</ce:indexed-name> <ce:surname>Teixeira</ce:surname> </author> <author seq="3"> <ce:initials>R.P.</ce:initials> <ce:indexed-name>Silva R.P.</ce:indexed-name> <ce:surname>Silva</ce:surname> </author> </ref-authors> <ref-sourcetitle>Porto Alegre-RS. Design &amp; Tecnologia.</ref-sourcetitle> <ref-volisspag> <voliss issue="1" volume="1"/> <pagerange first="66" last="78"/> </ref-volisspag> </ref-info> <ref-fulltext>Kulpa, C. C., Teixeira F. G., and Silva R. P. "Um modelo de cores na usabilidade das interfaces computacionais para os deficientes de baixa visão." Porto Alegre-RS. Design &amp; Tecnologia. v. 1 , n.1 , p. 66-78.</ref-fulltext> </reference> <reference id="5"> <ref-info> <ref-title> <ref-titletext>Da terminologia do distúrbio às necessidades educacionais especiais</ref-titletext> </ref-title> <refd-itemidlist> <itemid idtype="SGR">85006921930</itemid> </refd-itemidlist> <ref-authors> <author seq="1"> <ce:initials>A.</ce:initials> <ce:indexed-name>Marchesi A.</ce:indexed-name> <ce:surname>Marchesi</ce:surname> </author> <author seq="2"> <ce:initials>L.</ce:initials> <ce:indexed-name>Martin L.</ce:indexed-name> <ce:surname>Martin</ce:surname> </author> </ref-authors> <ref-sourcetitle>Desenvolvimento Psicológico e Educação: Necessidades Educativas Especiais e Aprendizagem Escolar</ref-sourcetitle> <ref-publicationyear first="1995"/> <ref-volisspag> <pagerange first="7" last="23"/> </ref-volisspag> <ref-text>Coll César; Palácios, Jesús e Marchesi, A (Org.). Porto Alegre: Artes Médicas</ref-text> </ref-info> <ref-fulltext>Marchesi, A. and Martin, L. Da terminologia do distúrbio às necessidades educacionais especiais. In: Coll, César; Palácios, Jesús e Marchesi, A (Org.) Desenvolvimento Psicológico e educação: necessidades educativas especiais e aprendizagem escolar. Porto Alegre: Artes Médicas, 1995. p. 7-23.</ref-fulltext> </reference> <reference id="6"> <ref-info> <ref-title> <ref-titletext>MOrFEU-Multi-Organizador Flexível de Espaços virtUais para apoiar a inovação pedagógica em EAD</ref-titletext> </ref-title> <refd-itemidlist> <itemid idtype="SGR">85006906561</itemid> </refd-itemidlist> <ref-authors> <author seq="1"> <ce:initials>C.S.</ce:initials> <ce:indexed-name>Menezes C.S.</ce:indexed-name> <ce:surname>Menezes</ce:surname> </author> <author seq="2"> <ce:initials>R.A.</ce:initials> <ce:indexed-name>Nevado R.A.</ce:indexed-name> <ce:surname>Nevado</ce:surname> </author> <author seq="3"> <ce:initials>A.N.</ce:initials> <ce:indexed-name>Castro A.N.</ce:indexed-name> <ce:surname>Castro</ce:surname> <ce:suffix>Jr.</ce:suffix> </author> <author seq="4"> <ce:initials>L.N.</ce:initials> <ce:indexed-name>Santos L.N.</ce:indexed-name> <ce:surname>Santos</ce:surname> </author> </ref-authors> <ref-sourcetitle>Simpósio Brasileiro de Informática Na Educação</ref-sourcetitle> <ref-publicationyear first="2008"/> <ref-volisspag> <voliss issue="1" volume="1"/> <pagerange first="451" last="460"/> </ref-volisspag> <ref-text>Fortaleza-CE.</ref-text> </ref-info> <ref-fulltext>Menezes, C. S., Nevado, R. A., Castro, A. N. Jr., Santos, L. N. "MOrFEU-Multi-Organizador Flexível de Espaços virtUais para apoiar a inovação pedagógica em EAD" In: Simpósio Brasileiro de Informática na Educação, 2008, Fortaleza-CE. v. 1, n. 1, p. 451-460.</ref-fulltext> </reference> <reference id="7"> <ref-info> <ref-title> <ref-titletext>Ambiente virtual para quantificação da influência dos estímulos coloridos no desempenho de hiperativos</ref-titletext> </ref-title> <refd-itemidlist> <itemid idtype="SGR">85006906550</itemid> </refd-itemidlist> <ref-authors> <author seq="1"> <ce:initials>A.P.</ce:initials> <ce:indexed-name>Silva A.P.</ce:indexed-name> <ce:surname>Silva</ce:surname> </author> <author seq="2"> <ce:initials>A.F.</ce:initials> <ce:indexed-name>Frere A.F.</ce:indexed-name> <ce:surname>Frère</ce:surname> </author> <author seq="3"> <ce:initials>L.F.</ce:initials> <ce:indexed-name>Bissaco L.F.</ce:indexed-name> <ce:surname>Bissaco</ce:surname> </author> </ref-authors> <ref-sourcetitle>Congresso Brasileiro Engenharia Biomédica</ref-sourcetitle> <ref-publicationyear first="2008"/> <ref-text>Salvador-BA</ref-text> </ref-info> <ref-fulltext>Silva, A. P., A. F. Frère, and L. F. Bissaco. "Ambiente virtual para quantificação da influência dos estímulos coloridos no desempenho de hiperativos" In: Congresso Brasileiro Engenharia Biomédica, 2008, Salvador-BA.</ref-fulltext> </reference> <reference id="8"> <ref-info> <ref-title> <ref-titletext>O uso de templates na customização de ambientes colaborativos</ref-titletext> </ref-title> <refd-itemidlist> <itemid idtype="SGR">85006925350</itemid> </refd-itemidlist> <ref-authors> <author seq="1"> <ce:initials>P.D.N.</ce:initials> <ce:indexed-name>Silveira P.D.N.</ce:indexed-name> <ce:surname>Silveira</ce:surname> </author> <author seq="2"> <ce:initials>C.S.</ce:initials> <ce:indexed-name>De Menezes C.S.</ce:indexed-name> <ce:surname>De Menezes</ce:surname> </author> <author seq="3"> <ce:initials>D.</ce:initials> <ce:indexed-name>Cury D.</ce:indexed-name> <ce:surname>Cury</ce:surname> </author> <author seq="4"> <ce:initials>F.P.</ce:initials> <ce:indexed-name>Simao F.P.</ce:indexed-name> <ce:surname>Simão</ce:surname> </author> </ref-authors> <ref-sourcetitle>Congreso Internacional de Informática Educativa</ref-sourcetitle> <ref-publicationyear first="2015"/> <ref-volisspag> <voliss volume="11"/> <pagerange first="538" last="543"/> </ref-volisspag> <ref-text>Santiago.</ref-text> </ref-info> <ref-fulltext>Silveira, P. D. N., de Menezes, C. S., Cury, D., and Simão, F. P. "O uso de templates na customização de ambientes colaborativos" In: Congreso Internacional de Informática Educativa, 2015, Santiago. v. 11, p. 538-543.</ref-fulltext> </reference> <reference id="9"> <ref-info> <refd-itemidlist> <itemid idtype="SGR">85006912492</itemid> </refd-itemidlist> <ref-authors> <author seq="1"> <ce:initials>C.E.</ce:initials> <ce:indexed-name>Valente C.E.</ce:indexed-name> <ce:surname>Valente</ce:surname> </author> </ref-authors> <ref-sourcetitle>Padrões de Interação e Usabilidade</ref-sourcetitle> <ref-publicationyear first="2004"/> <ref-text>Dissertação de mestrado profissional UNICAMP, Campinas, SP.</ref-text> </ref-info> <ref-fulltext>Valente, C. E. "Padrões de interação e usabilidade", Dissertação de mestrado profissional UNICAMP, Campinas, SP. 2004.</ref-fulltext> </reference> </bibliography>
+      </tail>
+    </bibrecord>
+  </item>
+</abstracts-retrieval-response>

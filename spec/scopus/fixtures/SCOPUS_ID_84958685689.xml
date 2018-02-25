@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<abstracts-retrieval-response xmlns="http://www.elsevier.com/xml/svapi/abstract/dtd" xmlns:ait="http://www.elsevier.com/xml/ani/ait" xmlns:ce="http://www.elsevier.com/xml/ani/common" xmlns:cto="http://www.elsevier.com/xml/cto/dtd" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:prism="http://prismstandard.org/namespaces/basic/2.0/" xmlns:xocs="http://www.elsevier.com/xml/xocs/dtd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <coredata>
+    <prism:url>http://api.elsevier.com/content/abstract/scopus_id/84958685689</prism:url>
+    <dc:identifier>SCOPUS_ID:84958685689</dc:identifier>
+    <eid>2-s2.0-84958685689</eid>
+    <dc:title>The being in activity in leontiev's work and the social nature of psychism</dc:title>
+    <prism:aggregationType>Book</prism:aggregationType>
+    <srctype>b</srctype>
+    <citedby-count>0</citedby-count>
+    <prism:publicationName>Vygotsky and Leontiev: The Construction of a Marxist Psychology</prism:publicationName>
+    <dc:publisher> Nova Science Publishers, Inc. </dc:publisher>
+    <source-id>21100447013</source-id>
+    <prism:isbn>9781634829502</prism:isbn>
+    <prism:isbn>9781634829014</prism:isbn>
+    <prism:startingPage>141</prism:startingPage>
+    <prism:endingPage>165</prism:endingPage>
+    <prism:pageRange>141-165</prism:pageRange>
+    <prism:coverDate>2015-07-01</prism:coverDate>
+    <dc:creator>
+      <author auid="57127471200" seq="1">
+        <ce:initials>R.L.D.</ce:initials>
+        <ce:indexed-name>Silva R.L.D.</ce:indexed-name>
+        <ce:degrees>MSc.</ce:degrees>
+        <ce:surname>Silva</ce:surname>
+        <ce:given-name>Rhayane Lourenço da</ce:given-name>
+        <preferred-name> <ce:initials>R.L.d.</ce:initials> <ce:indexed-name>Silva R.</ce:indexed-name> <ce:surname>Silva</ce:surname> <ce:given-name>Rhayane Lourenço da</ce:given-name> </preferred-name>
+        <author-url>http://api.elsevier.com/content/author/author_id/57127471200</author-url>
+        <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60029498" id="60029498"/>
+      </author>
+    </dc:creator>
+    <dc:description>
+      <abstract original="y" xml:lang="eng"> <ce:para>Leontiev's work was developed on the issues of Psychology's methodological crisis thatis presented by dualism in its investigations. The main goal of his work was to overcomethis dualism, which has an ideological function as it naturalizes problems of social origin.Thus, Leontiev proposed to study the being in activity, demonstrating the specificity ofhuman psychic activity in relation to animals. In this analysis, Leontiev shows how thematerial basis of human activity is social, and explains how in the course of the processof life reproduction through work, the human specific form of subjective reflection ofobjective reality becomes consciousness. Leontiev uses Marx to state that the actionoriented to an end is the unity to specific human activity, in a way that becomesinconceivable for the existence of an individual consciousness outside the social relationsof production of life.Thus, Leontiev presumes the inseparability between human activity and consciousness inscientific research, which definitely separates the notion of consciousness as a mereepiphenomenon, claiming it as an essential moment in activity. Therefore, as a way toreview object and method in Psychology, activity is central to Leontiev's work todemonstrate the social nature of psyche. 2015 Nova Science Publishers, Inc.</ce:para> </abstract>
+    </dc:description>
+    <intid>40815791</intid>
+    <link href="http://api.elsevier.com/content/abstract/scopus_id/84958685689" rel="self"/>
+    <link href="http://www.scopus.com/inward/record.url?partnerID=HzOxMe3b&amp;scp=84958685689&amp;origin=inward" rel="scopus"/>
+  </coredata>
+  <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60029498" id="60029498">
+    <affilname>Universidade Estadual de Maringa</affilname>
+    <affiliation-city>Maringa</affiliation-city>
+    <affiliation-country>Brazil</affiliation-country>
+  </affiliation>
+  <authors>
+    <author auid="57127471200" seq="1">
+      <ce:initials>R.L.D.</ce:initials>
+      <ce:indexed-name>Silva R.L.D.</ce:indexed-name>
+      <ce:degrees>MSc.</ce:degrees>
+      <ce:surname>Silva</ce:surname>
+      <ce:given-name>Rhayane Lourenço da</ce:given-name>
+      <preferred-name> <ce:initials>R.L.d.</ce:initials> <ce:indexed-name>Silva R.</ce:indexed-name> <ce:surname>Silva</ce:surname> <ce:given-name>Rhayane Lourenço da</ce:given-name> </preferred-name>
+      <author-url>http://api.elsevier.com/content/author/author_id/57127471200</author-url>
+      <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60029498" id="60029498"/>
+    </author>
+    <author auid="24382196500" seq="2">
+      <ce:initials>S.C.</ce:initials>
+      <ce:indexed-name>Tuleski S.C.</ce:indexed-name>
+      <ce:degrees>Ph.D</ce:degrees>
+      <ce:surname>Tuleski</ce:surname>
+      <ce:given-name>Silvana Calvo</ce:given-name>
+      <preferred-name> <ce:initials>S.C.</ce:initials> <ce:indexed-name>Tuleski S.</ce:indexed-name> <ce:surname>Tuleski</ce:surname> <ce:given-name>Silvana Calvo</ce:given-name> </preferred-name>
+      <author-url>http://api.elsevier.com/content/author/author_id/24382196500</author-url>
+      <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60029498" id="60029498"/>
+    </author>
+  </authors>
+  <language xml:lang="eng"/>
+  <authkeywords>
+    <author-keyword>A. N. Leontiev</author-keyword>
+    <author-keyword>human activity</author-keyword>
+    <author-keyword>Marxist psychology</author-keyword>
+    <author-keyword>social nature of psyche</author-keyword>
+  </authkeywords>
+  <idxterms/>
+  <subject-areas>
+    <subject-area abbrev="PSYC" code="3200">Psychology (all)</subject-area>
+    <subject-area abbrev="MEDI" code="2700">Medicine (all)</subject-area>
+  </subject-areas>
+  <item xmlns="">
+    <ait:process-info>
+      <ait:date-delivered day="29" month="02" timestamp="2016-02-29T03:09:38.000038+00:00" year="2016"/>
+      <ait:date-sort day="01" month="07" year="2015"/>
+      <ait:status stage="S300" state="new" type="core"/>
+    </ait:process-info>
+    <bibrecord>
+      <item-info>
+        <copyright type="Elsevier">Copyright 2016 Elsevier B.V., All rights reserved.</copyright>
+        <itemidlist> <itemid idtype="PUI">608555322</itemid> <itemid idtype="CAR-ID">646099696</itemid> <itemid idtype="SNBOOK">2016099831</itemid> <itemid idtype="SCP">84958685689</itemid> <itemid idtype="SGR">84958685689</itemid> </itemidlist>
+        <history> <date-created day="26" month="02" timestamp="BST 02:38:41" year="2016"/> </history>
+        <dbcollection>SNBOOK</dbcollection>
+        <dbcollection>Scopusbase</dbcollection>
+      </item-info>
+      <head>
+        <citation-info>
+          <citation-type code="ch"/>
+          <citation-language language="English" xml:lang="eng"/>
+          <abstract-language language="English" xml:lang="eng"/>
+          <author-keywords> <author-keyword>A. N. Leontiev</author-keyword> <author-keyword>human activity</author-keyword> <author-keyword>Marxist psychology</author-keyword> <author-keyword>social nature of psyche</author-keyword> </author-keywords>
+        </citation-info>
+        <citation-title>
+          <titletext language="English" original="y" xml:lang="eng">The being in activity in leontiev's work and the social nature of psychism</titletext>
+        </citation-title>
+        <author-group>
+          <author auid="57127471200" seq="1" type="auth"> <ce:initials>R.L.D.</ce:initials> <ce:indexed-name>Silva R.L.D.</ce:indexed-name> <ce:degrees>MSc.</ce:degrees> <ce:surname>Silva</ce:surname> <ce:given-name>Rhayane Lourenço da</ce:given-name> <preferred-name> <ce:initials>R.L.d.</ce:initials> <ce:indexed-name>Silva R.</ce:indexed-name> <ce:surname>Silva</ce:surname> <ce:given-name>Rhayane Lourenço da</ce:given-name> </preferred-name> <ce:e-address type="email">rhayanelou@gmail.com.</ce:e-address> </author>
+          <author auid="24382196500" seq="2" type="auth"> <ce:initials>S.C.</ce:initials> <ce:indexed-name>Tuleski S.C.</ce:indexed-name> <ce:degrees>Ph.D</ce:degrees> <ce:surname>Tuleski</ce:surname> <ce:given-name>Silvana Calvo</ce:given-name> <preferred-name> <ce:initials>S.C.</ce:initials> <ce:indexed-name>Tuleski S.</ce:indexed-name> <ce:surname>Tuleski</ce:surname> <ce:given-name>Silvana Calvo</ce:given-name> </preferred-name> <ce:e-address type="email">silvanatuleski@gmail.com.</ce:e-address> </author>
+          <affiliation afid="60029498" country="bra" dptid="114077202">
+            <organization>Department of Psychology</organization>
+            <organization>State University of Maringá (UEM)</organization>
+            <address-part>Colombo Avenue, 5.790, Campus Universtitário</address-part>
+            <city>Maringá, Paraná</city>
+            <postal-code>CEP 87020-900</postal-code>
+            <country>Brazil</country>
+          </affiliation>
+        </author-group>
+        <correspondence>
+          <person> <ce:initials>R.L.D.</ce:initials> <ce:indexed-name>Silva R.L.D.</ce:indexed-name> <ce:surname>Silva</ce:surname> <ce:given-name>Rhayane Lourenço da</ce:given-name> </person>
+          <affiliation country="bra">
+            <organization>Department of Psychology</organization>
+            <organization>State University of Maringá (UEM)</organization>
+            <address-part>Colombo Avenue, 5.790, Campus Universtitário</address-part>
+            <city>Maringá, Paraná</city>
+            <postal-code>CEP 87020-900</postal-code>
+            <country>Brazil</country>
+          </affiliation>
+        </correspondence>
+        <abstracts>
+          <abstract original="y" xml:lang="eng"> <ce:para>Leontiev's work was developed on the issues of Psychology's methodological crisis thatis presented by dualism in its investigations. The main goal of his work was to overcomethis dualism, which has an ideological function as it naturalizes problems of social origin.Thus, Leontiev proposed to study the being in activity, demonstrating the specificity ofhuman psychic activity in relation to animals. In this analysis, Leontiev shows how thematerial basis of human activity is social, and explains how in the course of the processof life reproduction through work, the human specific form of subjective reflection ofobjective reality becomes consciousness. Leontiev uses Marx to state that the actionoriented to an end is the unity to specific human activity, in a way that becomesinconceivable for the existence of an individual consciousness outside the social relationsof production of life.Thus, Leontiev presumes the inseparability between human activity and consciousness inscientific research, which definitely separates the notion of consciousness as a mereepiphenomenon, claiming it as an essential moment in activity. Therefore, as a way toreview object and method in Psychology, activity is central to Leontiev's work todemonstrate the social nature of psyche. 2015 Nova Science Publishers, Inc.</ce:para> </abstract>
+        </abstracts>
+        <source country="usa" srcid="21100447013" type="b">
+          <sourcetitle>Vygotsky and Leontiev: The Construction of a Marxist Psychology</sourcetitle>
+          <sourcetitle-abbrev>Vygotsky and Leont.: The Constr. of a Marx. Psychol.</sourcetitle-abbrev>
+          <translated-sourcetitle xml:lang="eng"/>
+          <isbn length="13" type="electronic">9781634829502</isbn>
+          <isbn length="13" type="print">9781634829014</isbn>
+          <volisspag> <pagerange first="141" last="165"/> </volisspag>
+          <publicationyear first="2015"/>
+          <publicationdate> <year>2015</year> <month>07</month> <day>01</day> <date-text>July 01, 2015</date-text> </publicationdate>
+          <website> <ce:e-address type="email">https://www.novapublishers.com/catalog/product_info.php?products_id=54965&amp;osCsid=1a9e1a15679dd8f43bdbbb4dc855b877</ce:e-address> </website>
+          <publisher> <publishername>Nova Science Publishers, Inc.</publishername> </publisher>
+        </source>
+        <enhancement>
+          <classificationgroup>
+            <classifications type="ASJC"> <classification>3200</classification> <classification>2700</classification> </classifications>
+            <classifications type="SUBJABBR">
+              <classification>PSYC</classification>
+              <classification>MEDI</classification>
+            </classifications>
+          </classificationgroup>
+        </enhancement>
+      </head>
+      <tail>
+        <bibliography refcount="15"> <reference id="1"> <ref-info> <ref-title> <ref-titletext>Psicologia para fazer a crítica? Apologética, individualismo e marxismo em alguns projetos psi</ref-titletext> </ref-title> <refd-itemidlist> <itemid idtype="SGR">84958703092</itemid> </refd-itemidlist> <ref-authors> <author seq="1"> <ce:initials>F.</ce:initials> <ce:indexed-name>Lacerda Junior F.</ce:indexed-name> <ce:surname>Lacerda Júnior</ce:surname> </author> </ref-authors> <ref-publicationyear first="2010"/> <ref-text>[Psychology to criticism? Apologetics, individualism and Marxism in some psi projects]. (Doctoral dissertation). Pontifícia Universidade Católica de São Paulo, São Paulo, SP.</ref-text> </ref-info> <ref-fulltext>Lacerda Júnior, F. (2010). Psicologia para fazer a crítica? Apologética, individualismo e marxismo em alguns projetos psi. [Psychology to criticism? Apologetics, individualism and Marxism in some psi projects]. (Doctoral dissertation). Pontifícia Universidade Católica de São Paulo, São Paulo, SP.</ref-fulltext> </reference> <reference id="2"> <ref-info> <ref-title> <ref-titletext>The genesis of Activity [A gênese da atividade]</ref-titletext> </ref-title> <refd-itemidlist> <itemid idtype="SGR">84958703093</itemid> </refd-itemidlist> <ref-authors> <author seq="1"> <ce:initials>A.N.</ce:initials> <ce:indexed-name>Leontiev A.N.</ce:indexed-name> <ce:surname>Leontiev</ce:surname> </author> </ref-authors> <ref-sourcetitle>Journal of Russian and East European Psychology</ref-sourcetitle> <ref-publicationyear first="1940" last="2005"/> <ref-volisspag> <voliss issue="4" volume="43"/> </ref-volisspag> <ref-text>(L.M. da Silva, Trans.)</ref-text> </ref-info> <ref-fulltext>Leontiev, A. N. (1940/2005). The genesis of Activity [A gênese da atividade]. Journal of Russian and East European Psychology, 43(4). (L.M. da Silva, Trans.).</ref-fulltext> </reference> <reference id="3"> <ref-info> <ref-title> <ref-titletext>Ensaio sobre o desenvolvimento do psiquismo</ref-titletext> </ref-title> <refd-itemidlist> <itemid idtype="SGR">84958703094</itemid> </refd-itemidlist> <ref-authors> <author seq="1"> <ce:initials>A.N.</ce:initials> <ce:indexed-name>Leontiev A.N.</ce:indexed-name> <ce:surname>Leontiev</ce:surname> </author> </ref-authors> <ref-publicationyear first="1947" last="1978"/> <ref-text>[An Outline of the Evolution of the Psyche].In O desenvolvimento do psiquismo [The development of psychism]. Lisboa: Livros Horizonte</ref-text> </ref-info> <ref-fulltext>Leontiev, A. N. (1947/1978). Ensaio sobre o desenvolvimento do psiquismo. [An Outline of the Evolution of the Psyche].In O desenvolvimento do psiquismo [The development of psychism]. Lisboa: Livros Horizonte.</ref-fulltext> </reference> <reference id="4"> <ref-info> <ref-title> <ref-titletext>A démarche histórica no estudo do psiquismo humano</ref-titletext> </ref-title> <refd-itemidlist> <itemid idtype="SGR">84958703095</itemid> </refd-itemidlist> <ref-authors> <author seq="1"> <ce:initials>A.N.</ce:initials> <ce:indexed-name>Leontiev A.N.</ce:indexed-name> <ce:surname>Leontiev</ce:surname> </author> </ref-authors> <ref-publicationyear first="1959" last="1978"/> <ref-text>[The historic demarche in the study of the human psyche]. In O desenvolvimento do psiquismo. [The development of psyche]. Lisboa: Livros Horizonte</ref-text> </ref-info> <ref-fulltext>Leontiev, A. N. (1959a/1978). A démarche histórica no estudo do psiquismo humano.[The historic demarche in the study of the human psyche]. In O desenvolvimento do psiquismo. [The development of psyche]. Lisboa: Livros Horizonte.</ref-fulltext> </reference> <reference id="5"> <ref-info> <ref-title> <ref-titletext>O homem e a cultura.[Man and culture]</ref-titletext> </ref-title> <refd-itemidlist> <itemid idtype="SGR">84958703096</itemid> </refd-itemidlist> <ref-authors> <author seq="1"> <ce:initials>A.N.</ce:initials> <ce:indexed-name>Leontiev A.N.</ce:indexed-name> <ce:surname>Leontiev</ce:surname> </author> </ref-authors> <ref-publicationyear first="1961" last="1978"/> <ref-text>In O desenvolvimento do psiquismo [The development of psyche]. Lisboa: Livros Horizonte</ref-text> </ref-info> <ref-fulltext>Leontiev, A. N. (1961/1978). O homem e a cultura.[Man and culture] In O desenvolvimento do psiquismo [The development of psyche]. Lisboa: Livros Horizonte.</ref-fulltext> </reference> <reference id="6"> <ref-info> <ref-title> <ref-titletext>Actividad, consciencia y personalidad</ref-titletext> </ref-title> <refd-itemidlist> <itemid idtype="SGR">0042805187</itemid> </refd-itemidlist> <ref-authors> <author seq="1"> <ce:initials>A.N.</ce:initials> <ce:indexed-name>Leontiev A.N.</ce:indexed-name> <ce:surname>Leontiev</ce:surname> </author> </ref-authors> <ref-publicationyear first="1975" last="1984"/> <ref-text>[Activity, consciousness and personality] .Distrito Federal Cidade do México: Editorial Cartago Mexico</ref-text> </ref-info> <ref-fulltext>Leontiev, A. N. (1975/1984). Actividad, consciencia y personalidad. [Activity, consciousness and personality] .Distrito Federal Cidade do México: Editorial Cartago Mexico.</ref-fulltext> </reference> <reference id="7"> <ref-info> <ref-title> <ref-titletext>Atividade e Consciência</ref-titletext> </ref-title> <refd-itemidlist> <itemid idtype="SGR">84958703097</itemid> </refd-itemidlist> <ref-authors> <author seq="1"> <ce:initials>A.N.</ce:initials> <ce:indexed-name>Leontiev A.N.</ce:indexed-name> <ce:surname>Leontiev</ce:surname> </author> </ref-authors> <ref-publicationyear first="1977" last="1980"/> <ref-volisspag> <voliss volume="2"/> </ref-volisspag> <ref-text>[Activity and Consciousness] In Magalhães, V. Práxis: a categoria materialista de prática social. [Praxis: a materialist category of social practice]. Lisboa: Livros Horizonte</ref-text> </ref-info> <ref-fulltext>Leontiev, A. N. (1977/1980). Atividade e Consciência. [Activity and Consciousness] In Magalhães, V. Práxis: a categoria materialista de prática social. (Vol.2). [Praxis: a materialist category of social practice]. Lisboa: Livros Horizonte.</ref-fulltext> </reference> <reference id="8"> <ref-info> <ref-title> <ref-titletext>O desenvolvimento do psiquismo</ref-titletext> </ref-title> <refd-itemidlist> <itemid idtype="SGR">0003494478</itemid> </refd-itemidlist> <ref-authors> <author seq="1"> <ce:initials>A.N.</ce:initials> <ce:indexed-name>Leontiev A.N.</ce:indexed-name> <ce:surname>Leontiev</ce:surname> </author> </ref-authors> <ref-publicationyear first="1978"/> <ref-text>[The development of psychism]. Lisboa: Livros Horizonte</ref-text> </ref-info> <ref-fulltext>Leontiev, A. N. (1978). O desenvolvimento do psiquismo. [The development of psychism]. Lisboa: Livros Horizonte.</ref-fulltext> </reference> <reference id="9"> <ref-info> <ref-title> <ref-titletext>Linguagem e consciência</ref-titletext> </ref-title> <refd-itemidlist> <itemid idtype="SGR">84958703098</itemid> </refd-itemidlist> <ref-authors> <author seq="1"> <ce:initials>A.N.</ce:initials> <ce:indexed-name>Leontiev A.N.</ce:indexed-name> <ce:surname>Leontiev</ce:surname> </author> </ref-authors> <ref-sourcetitle>Journal of Russian and East European Psychology</ref-sourcetitle> <ref-publicationyear first="2005"/> <ref-volisspag> <voliss issue="5" volume="43"/> </ref-volisspag> <ref-text>[Language and consciousness] (L. M. da Silva, Trans.)</ref-text> </ref-info> <ref-fulltext>Leontiev, A. N. (2005a). Linguagem e consciência. [Language and consciousness]. Journal of Russian and East European Psychology, 43(5). ( L. M. da Silva, Trans.)</ref-fulltext> </reference> <reference id="10"> <ref-info> <ref-title> <ref-titletext>The structure of consciousness: sensory fabric, meaning, personal sense [A estrutura da consciência: tecido sensorial, significado, significado pessoal]</ref-titletext> </ref-title> <refd-itemidlist> <itemid idtype="SGR">84958697922</itemid> </refd-itemidlist> <ref-authors> <author seq="1"> <ce:initials>A.N.</ce:initials> <ce:indexed-name>Leontiev A.N.</ce:indexed-name> <ce:surname>Leontiev</ce:surname> </author> </ref-authors> <ref-sourcetitle>Journal of Russian and East European Psychology</ref-sourcetitle> <ref-publicationyear first="2005"/> <ref-volisspag> <voliss issue="5" volume="43"/> </ref-volisspag> <ref-text>(M.J.S.e Silva, Trans.)</ref-text> </ref-info> <ref-fulltext>Leontiev, A. N. (2005b). The structure of consciousness: sensory fabric, meaning, personal sense [A estrutura da consciência: tecido sensorial, significado, significado pessoal]. Journal of Russian and East European Psychology, 43(5). (M.J.S.e Silva, Trans.).</ref-fulltext> </reference> <reference id="11"> <ref-info> <ref-title> <ref-titletext>As bases ontológicas do pensamento e da atividade do homem. [The ontological foundations of thought and the activity of man]</ref-titletext> </ref-title> <refd-itemidlist> <itemid idtype="SGR">84958703099</itemid> </refd-itemidlist> <ref-authors> <author seq="1"> <ce:initials>G.</ce:initials> <ce:indexed-name>Lukacs G.</ce:indexed-name> <ce:surname>Lukács</ce:surname> </author> </ref-authors> <ref-publicationyear first="1969"/> <ref-website> <ce:e-address type="email">http://sergiolessa.com/ObrasLukacs/BasesOntologicas.pdf</ce:e-address> </ref-website> <ref-text>(C.N. Coutinho, Trans.). Retrieved from</ref-text> </ref-info> <ref-fulltext>Lukács, G. (1969). As bases ontológicas do pensamento e da atividade do homem. [The ontological foundations of thought and the activity of man]. (C.N. Coutinho, Trans.). Retrieved from http://sergiolessa.com/ ObrasLukacs/BasesOntologicas.pdf</ref-fulltext> </reference> <reference id="12"> <ref-info> <ref-title> <ref-titletext>Para uma ontologia do ser social I.</ref-titletext> </ref-title> <refd-itemidlist> <itemid idtype="SGR">84910593781</itemid> </refd-itemidlist> <ref-authors> <author seq="1"> <ce:initials>G.</ce:initials> <ce:indexed-name>Lukacs G.</ce:indexed-name> <ce:surname>Lukács</ce:surname> </author> </ref-authors> <ref-publicationyear first="2012"/> <ref-text>[For an ontology of the social 1]. São Paulo, SP: Boitempo</ref-text> </ref-info> <ref-fulltext>Lukács, G. (2012). Para uma ontologia do ser social I. [For an ontology of the social 1]. São Paulo, SP: Boitempo.</ref-fulltext> </reference> <reference id="13"> <ref-info> <ref-title> <ref-titletext>Teses sobre Feuerbach.[Theses on Feuerbach]</ref-titletext> </ref-title> <refd-itemidlist> <itemid idtype="SGR">84958703100</itemid> </refd-itemidlist> <ref-authors> <author seq="1"> <ce:initials>K.</ce:initials> <ce:indexed-name>Marx K.</ce:indexed-name> <ce:surname>Marx</ce:surname> </author> </ref-authors> <ref-publicationyear first="1974"/> <ref-text>In Marx, K. and Engels, F. Textos Filosóficos. [ Philosophical texts] .Lisboa: Presença</ref-text> </ref-info> <ref-fulltext>Marx, K. (1974). Teses sobre Feuerbach.[Theses on Feuerbach]. In Marx, K. and Engels, F. Textos Filosóficos. [ Philosophical texts] .Lisboa: Presença.</ref-fulltext> </reference> <reference id="14"> <ref-info> <ref-title> <ref-titletext>O capital.</ref-titletext> </ref-title> <refd-itemidlist> <itemid idtype="SGR">84958703101</itemid> </refd-itemidlist> <ref-authors> <author seq="1"> <ce:initials>K.</ce:initials> <ce:indexed-name>Marx K.</ce:indexed-name> <ce:surname>Marx</ce:surname> </author> </ref-authors> <ref-publicationyear first="1983"/> <ref-volisspag> <voliss volume="1"/> </ref-volisspag> <ref-text>[Capital] . São Paulo, SP: Abril Cultural</ref-text> </ref-info> <ref-fulltext>Marx, K. (1983). O capital.(Vol.1) [Capital] . São Paulo, SP: Abril Cultural.</ref-fulltext> </reference> <reference id="15"> <ref-info> <ref-title> <ref-titletext>O significado histórico da crise da psicologia</ref-titletext> </ref-title> <refd-itemidlist> <itemid idtype="SGR">84958703102</itemid> </refd-itemidlist> <ref-authors> <author seq="1"> <ce:initials>L.S.</ce:initials> <ce:indexed-name>Vigotski L.S.</ce:indexed-name> <ce:surname>Vigotski</ce:surname> </author> </ref-authors> <ref-publicationyear first="1927" last="2004"/> <ref-text>[The historical significance of the crisis in psychology]. In Teoria e método em psicologia. [Theory and method in psychology]. São Paulo, SP: Martins Fontes</ref-text> </ref-info> <ref-fulltext>Vigotski, L. S. (1927/2004). O significado histórico da crise da psicologia. [The historical significance of the crisis in psychology]. In Teoria e método em psicologia. [Theory and method in psychology]. São Paulo, SP: Martins Fontes.</ref-fulltext> </reference> </bibliography>
+      </tail>
+    </bibrecord>
+  </item>
+</abstracts-retrieval-response>

@@ -1,0 +1,1767 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<abstracts-retrieval-response xmlns="http://www.elsevier.com/xml/svapi/abstract/dtd" xmlns:ait="http://www.elsevier.com/xml/ani/ait" xmlns:ce="http://www.elsevier.com/xml/ani/common" xmlns:cto="http://www.elsevier.com/xml/cto/dtd" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:prism="http://prismstandard.org/namespaces/basic/2.0/" xmlns:xocs="http://www.elsevier.com/xml/xocs/dtd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <coredata>
+    <prism:url>http://api.elsevier.com/content/abstract/scopus_id/35448972089</prism:url>
+    <dc:identifier>SCOPUS_ID:35448972089</dc:identifier>
+    <eid>2-s2.0-35448972089</eid>
+    <pii>S0022016707633744</pii>
+    <prism:doi>10.1037/0022-0167.54.4.385</prism:doi>
+    <dc:title>Acculturative Stress, Perfectionism, Years in the United States, and Depression Among Chinese International Students</dc:title>
+    <prism:aggregationType>Journal</prism:aggregationType>
+    <srctype>j</srctype>
+    <citedby-count>75</citedby-count>
+    <prism:publicationName>Journal of Counseling Psychology</prism:publicationName>
+    <source-id>15452</source-id>
+    <prism:issn>00220167</prism:issn>
+    <prism:volume>54</prism:volume>
+    <prism:issueIdentifier>4</prism:issueIdentifier>
+    <prism:startingPage>385</prism:startingPage>
+    <prism:endingPage>394</prism:endingPage>
+    <prism:pageRange>385-394</prism:pageRange>
+    <prism:coverDate>2007-10-01</prism:coverDate>
+    <dc:creator>
+      <author auid="7202184607" seq="1">
+        <ce:initials>M.</ce:initials>
+        <ce:indexed-name>Wei M.</ce:indexed-name>
+        <ce:surname>Wei</ce:surname>
+        <ce:given-name>Meifen</ce:given-name>
+        <preferred-name>
+          <ce:initials>M.</ce:initials>
+          <ce:indexed-name>Wei M.</ce:indexed-name>
+          <ce:surname>Wei</ce:surname>
+          <ce:given-name>Meifen</ce:given-name>
+        </preferred-name>
+        <author-url>http://api.elsevier.com/content/author/author_id/7202184607</author-url>
+        <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60004354" id="60004354"/>
+      </author>
+    </dc:creator>
+    <dc:description>
+      <abstract original="y" xml:lang="eng">
+        <ce:para>The present study examined whether maladaptive perfectionism (i.e., discrepancy between expectations and performance) and length of time in the United States moderated the association between acculturative stress and depression. Data were collected through online surveys from 189 Chinese international students from China and Taiwan attending a midwestern university. Results from a hierarchical regression showed that there were significant main effects of acculturative stress and maladaptive perfectionism on depression, no significant two-way interactions, and a significant three-way interaction, indicating that acculturative stress, maladaptive perfectionism, and length of time in the United States interacted to predict depression. Low maladaptive perfectionism buffered the effect of acculturative stress on depression only for those who had been in the United States for a relatively longer period of time. Implications for counseling and future research directions are discussed. © 2007 American Psychological Association.</ce:para>
+      </abstract>
+    </dc:description>
+    <intid>35448972089</intid>
+    <link href="http://api.elsevier.com/content/abstract/scopus_id/35448972089" rel="self"/>
+    <link href="https://www.scopus.com/inward/record.uri?partnerID=HzOxMe3b&amp;scp=35448972089&amp;origin=inward" rel="scopus"/>
+    <link href="https://www.scopus.com/inward/citedby.uri?partnerID=HzOxMe3b&amp;scp=35448972089&amp;origin=inward" rel="scopus-citedby"/>
+  </coredata>
+  <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60004354" id="60004354">
+    <affilname>Iowa State University</affilname>
+    <affiliation-city>Ames</affiliation-city>
+    <affiliation-country>United States</affiliation-country>
+  </affiliation>
+  <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60015023" id="60015023">
+    <affilname>University of Texas M. D. Anderson Cancer Center</affilname>
+    <affiliation-city>Houston</affiliation-city>
+    <affiliation-country>United States</affiliation-country>
+  </affiliation>
+  <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60006173" id="60006173">
+    <affilname>University of Missouri-Columbia</affilname>
+    <affiliation-city>Columbia</affiliation-city>
+    <affiliation-country>United States</affiliation-country>
+  </affiliation>
+  <authors>
+    <author auid="7202184607" seq="1">
+      <ce:initials>M.</ce:initials>
+      <ce:indexed-name>Wei M.</ce:indexed-name>
+      <ce:surname>Wei</ce:surname>
+      <ce:given-name>Meifen</ce:given-name>
+      <preferred-name>
+        <ce:initials>M.</ce:initials>
+        <ce:indexed-name>Wei M.</ce:indexed-name>
+        <ce:surname>Wei</ce:surname>
+        <ce:given-name>Meifen</ce:given-name>
+      </preferred-name>
+      <author-url>http://api.elsevier.com/content/author/author_id/7202184607</author-url>
+      <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60004354" id="60004354"/>
+    </author>
+    <author auid="7004615746" seq="2">
+      <ce:initials>P.P.</ce:initials>
+      <ce:indexed-name>Heppner P.P.</ce:indexed-name>
+      <ce:surname>Heppner</ce:surname>
+      <ce:given-name>P. Paul</ce:given-name>
+      <preferred-name>
+        <ce:initials>P.P.</ce:initials>
+        <ce:indexed-name>Heppner P.</ce:indexed-name>
+        <ce:surname>Heppner</ce:surname>
+        <ce:given-name>P. Paul</ce:given-name>
+      </preferred-name>
+      <author-url>http://api.elsevier.com/content/author/author_id/7004615746</author-url>
+      <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60006173" id="60006173"/>
+    </author>
+    <author auid="9234691000" seq="3">
+      <ce:initials>M.J.</ce:initials>
+      <ce:indexed-name>Mallen M.J.</ce:indexed-name>
+      <ce:surname>Mallen</ce:surname>
+      <ce:given-name>Michael J.</ce:given-name>
+      <preferred-name>
+        <ce:initials>M.J.</ce:initials>
+        <ce:indexed-name>Mallen M.</ce:indexed-name>
+        <ce:surname>Mallen</ce:surname>
+        <ce:given-name>Michael J.</ce:given-name>
+      </preferred-name>
+      <author-url>http://api.elsevier.com/content/author/author_id/9234691000</author-url>
+      <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60015023" id="60015023"/>
+    </author>
+    <author auid="16637668400" seq="4">
+      <ce:initials>T.-Y.</ce:initials>
+      <ce:indexed-name>Ku T.-Y.</ce:indexed-name>
+      <ce:surname>Ku</ce:surname>
+      <ce:given-name>Tsun-Yao</ce:given-name>
+      <preferred-name>
+        <ce:initials>T.Y.</ce:initials>
+        <ce:indexed-name>Ku T.</ce:indexed-name>
+        <ce:surname>Ku</ce:surname>
+        <ce:given-name>Tsun Yao</ce:given-name>
+      </preferred-name>
+      <author-url>http://api.elsevier.com/content/author/author_id/16637668400</author-url>
+      <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60004354" id="60004354"/>
+    </author>
+    <author auid="22938101100" seq="5">
+      <ce:initials>K.Y.-H.</ce:initials>
+      <ce:indexed-name>Liao K.Y.-H.</ce:indexed-name>
+      <ce:surname>Liao</ce:surname>
+      <ce:given-name>Kelly Yu-Hsin</ce:given-name>
+      <preferred-name>
+        <ce:initials>K.Y.H.</ce:initials>
+        <ce:indexed-name>Liao K.</ce:indexed-name>
+        <ce:surname>Liao</ce:surname>
+        <ce:given-name>Kelly Yu Hsin</ce:given-name>
+      </preferred-name>
+      <author-url>http://api.elsevier.com/content/author/author_id/22938101100</author-url>
+      <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60004354" id="60004354"/>
+    </author>
+    <author auid="22939810300" seq="6">
+      <ce:initials>T.-F.</ce:initials>
+      <ce:indexed-name>Wu T.-F.</ce:indexed-name>
+      <ce:surname>Wu</ce:surname>
+      <ce:given-name>Tsui-Feng</ce:given-name>
+      <preferred-name>
+        <ce:initials>T.F.</ce:initials>
+        <ce:indexed-name>Wu T.</ce:indexed-name>
+        <ce:surname>Wu</ce:surname>
+        <ce:given-name>Tsui Feng</ce:given-name>
+      </preferred-name>
+      <author-url>http://api.elsevier.com/content/author/author_id/22939810300</author-url>
+      <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60004354" id="60004354"/>
+    </author>
+  </authors>
+  <language xml:lang="eng"/>
+  <authkeywords>
+    <author-keyword>acculturative stress</author-keyword>
+    <author-keyword>Chinese international students</author-keyword>
+    <author-keyword>depression</author-keyword>
+    <author-keyword>maladaptive perfectionism</author-keyword>
+    <author-keyword>three-way interaction</author-keyword>
+  </authkeywords>
+  <idxterms/>
+  <subject-areas>
+    <subject-area abbrev="PSYC" code="3207">Social Psychology</subject-area>
+    <subject-area abbrev="PSYC" code="3203">Clinical Psychology</subject-area>
+    <subject-area abbrev="MEDI" code="2738">Psychiatry and Mental Health</subject-area>
+  </subject-areas>
+  <item xmlns="">
+    <ait:process-info>
+      <ait:date-delivered day="04" month="12" timestamp="2016-12-04T06:32:55.000055+00:00" year="2016"/>
+      <ait:date-sort day="01" month="10" year="2007"/>
+      <ait:status stage="S300" state="update" type="core"/>
+    </ait:process-info>
+    <bibrecord>
+      <item-info>
+        <copyright type="Elsevier">Copyright 2011 Elsevier B.V., All rights reserved.</copyright>
+        <itemidlist>
+          <ce:pii>S0022016707633744</ce:pii>
+          <ce:doi>10.1037/0022-0167.54.4.385</ce:doi>
+          <itemid idtype="PUI">47625413</itemid>
+          <itemid idtype="EMBASE">2007517498</itemid>
+          <itemid idtype="NURSNG">2007200832</itemid>
+          <itemid idtype="SCP">35448972089</itemid>
+          <itemid idtype="SGR">35448972089</itemid>
+        </itemidlist>
+        <history>
+          <date-created day="29" month="10" year="2007"/>
+        </history>
+        <dbcollection>EMBASE</dbcollection>
+        <dbcollection>NURSNG</dbcollection>
+        <dbcollection>Scopusbase</dbcollection>
+      </item-info>
+      <head>
+        <citation-info>
+          <citation-type code="ar"/>
+          <citation-language language="English" xml:lang="eng"/>
+          <abstract-language language="English" xml:lang="eng"/>
+          <author-keywords>
+            <author-keyword>acculturative stress</author-keyword>
+            <author-keyword>Chinese international students</author-keyword>
+            <author-keyword>depression</author-keyword>
+            <author-keyword>maladaptive perfectionism</author-keyword>
+            <author-keyword>three-way interaction</author-keyword>
+          </author-keywords>
+        </citation-info>
+        <citation-title>
+          <titletext language="English" original="y" xml:lang="eng">Acculturative Stress, Perfectionism, Years in the United States, and Depression Among Chinese International Students</titletext>
+        </citation-title>
+        <author-group>
+          <author auid="7202184607" seq="1">
+            <ce:initials>M.</ce:initials>
+            <ce:indexed-name>Wei M.</ce:indexed-name>
+            <ce:surname>Wei</ce:surname>
+            <ce:given-name>Meifen</ce:given-name>
+            <preferred-name>
+              <ce:initials>M.</ce:initials>
+              <ce:indexed-name>Wei M.</ce:indexed-name>
+              <ce:surname>Wei</ce:surname>
+              <ce:given-name>Meifen</ce:given-name>
+            </preferred-name>
+            <ce:e-address type="email">wei@iastate.edu</ce:e-address>
+          </author>
+          <author auid="22938101100" seq="5">
+            <ce:initials>K.Y.-H.</ce:initials>
+            <ce:indexed-name>Liao K.Y.-H.</ce:indexed-name>
+            <ce:surname>Liao</ce:surname>
+            <ce:given-name>Kelly Yu-Hsin</ce:given-name>
+            <preferred-name>
+              <ce:initials>K.Y.H.</ce:initials>
+              <ce:indexed-name>Liao K.</ce:indexed-name>
+              <ce:surname>Liao</ce:surname>
+              <ce:given-name>Kelly Yu Hsin</ce:given-name>
+            </preferred-name>
+          </author>
+          <author auid="22939810300" seq="6">
+            <ce:initials>T.-F.</ce:initials>
+            <ce:indexed-name>Wu T.-F.</ce:indexed-name>
+            <ce:surname>Wu</ce:surname>
+            <ce:given-name>Tsui-Feng</ce:given-name>
+            <preferred-name>
+              <ce:initials>T.F.</ce:initials>
+              <ce:indexed-name>Wu T.</ce:indexed-name>
+              <ce:surname>Wu</ce:surname>
+              <ce:given-name>Tsui Feng</ce:given-name>
+            </preferred-name>
+          </author>
+          <affiliation afid="60004354" country="usa" dptid="112065235">
+            <organization>Department of Psychology</organization>
+            <organization>Iowa State University</organization>
+            <country>United States</country>
+          </affiliation>
+        </author-group>
+        <author-group>
+          <author auid="7004615746" seq="2">
+            <ce:initials>P.P.</ce:initials>
+            <ce:indexed-name>Heppner P.P.</ce:indexed-name>
+            <ce:surname>Heppner</ce:surname>
+            <ce:given-name>P. Paul</ce:given-name>
+            <preferred-name>
+              <ce:initials>P.P.</ce:initials>
+              <ce:indexed-name>Heppner P.</ce:indexed-name>
+              <ce:surname>Heppner</ce:surname>
+              <ce:given-name>P. Paul</ce:given-name>
+            </preferred-name>
+          </author>
+          <affiliation afid="60006173" country="col" dptid="103349895">
+            <organization>Department of Educational</organization>
+            <organization>School, and Counseling Psychology</organization>
+            <organization>University of Missouri</organization>
+            <country>Colombia</country>
+          </affiliation>
+        </author-group>
+        <author-group>
+          <author auid="9234691000" seq="3">
+            <ce:initials>M.J.</ce:initials>
+            <ce:indexed-name>Mallen M.J.</ce:indexed-name>
+            <ce:surname>Mallen</ce:surname>
+            <ce:given-name>Michael J.</ce:given-name>
+            <preferred-name>
+              <ce:initials>M.J.</ce:initials>
+              <ce:indexed-name>Mallen M.</ce:indexed-name>
+              <ce:surname>Mallen</ce:surname>
+              <ce:given-name>Michael J.</ce:given-name>
+            </preferred-name>
+          </author>
+          <affiliation afid="60015023" country="usa" dptid="111026215">
+            <organization>Department of Behavioral Science</organization>
+            <organization>University of Texas M. D. Anderson Cancer Center</organization>
+            <country>United States</country>
+          </affiliation>
+        </author-group>
+        <author-group>
+          <author auid="16637668400" seq="4">
+            <ce:initials>T.-Y.</ce:initials>
+            <ce:indexed-name>Ku T.-Y.</ce:indexed-name>
+            <ce:surname>Ku</ce:surname>
+            <ce:given-name>Tsun-Yao</ce:given-name>
+            <preferred-name>
+              <ce:initials>T.Y.</ce:initials>
+              <ce:indexed-name>Ku T.</ce:indexed-name>
+              <ce:surname>Ku</ce:surname>
+              <ce:given-name>Tsun Yao</ce:given-name>
+            </preferred-name>
+          </author>
+          <affiliation afid="60004354" country="usa" dptid="103264576">
+            <organization>Psychology in Education Research Lab</organization>
+            <organization>Department of Curriculum and Instruction</organization>
+            <organization>Iowa State University</organization>
+            <country>United States</country>
+          </affiliation>
+        </author-group>
+        <correspondence>
+          <person>
+            <ce:initials>M.</ce:initials>
+            <ce:indexed-name>Wei M.</ce:indexed-name>
+            <ce:surname>Wei</ce:surname>
+          </person>
+          <affiliation country="usa">
+            <organization>Department of Psychology</organization>
+            <organization>Iowa State University</organization>
+            <country>United States</country>
+          </affiliation>
+          <ce:e-address type="email">wei@iastate.edu</ce:e-address>
+        </correspondence>
+        <abstracts>
+          <abstract original="y" xml:lang="eng">
+            <ce:para>The present study examined whether maladaptive perfectionism (i.e., discrepancy between expectations and performance) and length of time in the United States moderated the association between acculturative stress and depression. Data were collected through online surveys from 189 Chinese international students from China and Taiwan attending a midwestern university. Results from a hierarchical regression showed that there were significant main effects of acculturative stress and maladaptive perfectionism on depression, no significant two-way interactions, and a significant three-way interaction, indicating that acculturative stress, maladaptive perfectionism, and length of time in the United States interacted to predict depression. Low maladaptive perfectionism buffered the effect of acculturative stress on depression only for those who had been in the United States for a relatively longer period of time. Implications for counseling and future research directions are discussed. © 2007 American Psychological Association.</ce:para>
+          </abstract>
+        </abstracts>
+        <source country="usa" srcid="15452" type="j">
+          <sourcetitle>Journal of Counseling Psychology</sourcetitle>
+          <sourcetitle-abbrev>J. Couns. Psychol.</sourcetitle-abbrev>
+          <issn type="print">00220167</issn>
+          <codencode>JLCPA</codencode>
+          <volisspag>
+            <voliss issue="4" volume="54"/>
+            <pagerange first="385" last="394"/>
+          </volisspag>
+          <publicationyear first="2007"/>
+          <publicationdate>
+            <year>2007</year>
+            <month>10</month>
+            <date-text xfab-added="true">October 2007</date-text>
+          </publicationdate>
+        </source>
+        <enhancement>
+          <classificationgroup>
+            <classifications type="EMCLASS">
+              <classification> <classification-code>17</classification-code> <classification-description>Public Health, Social Medicine and Epidemiology</classification-description> </classification>
+              <classification> <classification-code>32</classification-code> <classification-description>Psychiatry</classification-description> </classification>
+            </classifications>
+            <classifications type="ASJC">
+              <classification>3207</classification>
+              <classification>3203</classification>
+              <classification>2738</classification>
+            </classifications>
+            <classifications type="SUBJABBR">
+              <classification>PSYC</classification>
+              <classification>MEDI</classification>
+            </classifications>
+          </classificationgroup>
+        </enhancement>
+      </head>
+      <tail>
+        <bibliography refcount="47">
+          <reference id="1">
+            <ref-info>
+              <refd-itemidlist>
+                <itemid idtype="SGR">0003622514</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>L.</ce:initials>
+                  <ce:indexed-name>Aiken L.</ce:indexed-name>
+                  <ce:surname>Aiken</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>S.G.</ce:initials>
+                  <ce:indexed-name>West S.G.</ce:indexed-name>
+                  <ce:surname>West</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Multiple regression: Testing and interpreting interactions</ref-sourcetitle>
+              <ref-publicationyear first="1991"/>
+              <ref-text>Sage, Newbury Park, CA</ref-text>
+            </ref-info>
+            <ref-fulltext>Aiken L., and West S.G. Multiple regression: Testing and interpreting interactions (1991), Sage, Newbury Park, CA</ref-fulltext>
+          </reference>
+          <reference id="2">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>The moderator-mediator variable distinction in social psychological research: Conceptual, strategic, and statistical considerations</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">0023020183</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>M.R.</ce:initials>
+                  <ce:indexed-name>Baron M.R.</ce:indexed-name>
+                  <ce:surname>Baron</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>D.A.</ce:initials>
+                  <ce:indexed-name>Kenny D.A.</ce:indexed-name>
+                  <ce:surname>Kenny</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Journal of Personality and Social Psychology</ref-sourcetitle>
+              <ref-publicationyear first="1986"/>
+              <ref-volisspag>
+                <voliss volume="51"/>
+                <pagerange first="1173" last="1182"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Baron M.R., and Kenny D.A. The moderator-mediator variable distinction in social psychological research: Conceptual, strategic, and statistical considerations. Journal of Personality and Social Psychology 51 (1986) 1173-1182</ref-fulltext>
+          </reference>
+          <reference id="3">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Acculturation: Living successfully in two cultures</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">28044435344</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>J.W.</ce:initials>
+                  <ce:indexed-name>Berry J.W.</ce:indexed-name>
+                  <ce:surname>Berry</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>International Journal of Intercultural Relations</ref-sourcetitle>
+              <ref-publicationyear first="2005"/>
+              <ref-volisspag>
+                <voliss volume="29"/>
+                <pagerange first="697" last="712"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Berry J.W. Acculturation: Living successfully in two cultures. International Journal of Intercultural Relations 29 (2005) 697-712</ref-fulltext>
+          </reference>
+          <reference id="4">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Back-translation for cross-cultural research</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">0000436601</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>R.W.</ce:initials>
+                  <ce:indexed-name>Brislin R.W.</ce:indexed-name>
+                  <ce:surname>Brislin</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Journal of Cross-Cultural Psychology</ref-sourcetitle>
+              <ref-publicationyear first="1970"/>
+              <ref-volisspag>
+                <voliss volume="1"/>
+                <pagerange first="185" last="216"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Brislin R.W. Back-translation for cross-cultural research. Journal of Cross-Cultural Psychology 1 (1970) 185-216</ref-fulltext>
+          </reference>
+          <reference id="5">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Translation and content analysis of oral and written material</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">0000702633</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>R.W.</ce:initials>
+                  <ce:indexed-name>Brislin R.W.</ce:indexed-name>
+                  <ce:surname>Brislin</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Handbook of cross-cultural psychology</ref-sourcetitle>
+              <ref-publicationyear first="1980"/>
+              <ref-volisspag>
+                <voliss volume="2"/>
+                <pagerange first="389" last="444"/>
+              </ref-volisspag>
+              <ref-text>Triandis H.C., and Berry J.W. (Eds), Allyn &amp; Bacon, Boston</ref-text>
+            </ref-info>
+            <ref-fulltext>Brislin R.W. Translation and content analysis of oral and written material. In: Triandis H.C., and Berry J.W. (Eds). Handbook of cross-cultural psychology 2 (1980), Allyn &amp; Bacon, Boston 389-444</ref-fulltext>
+          </reference>
+          <reference id="6">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Attachment patterns of east Asian international students and sources of perceived social support as moderators of the impact of U.S. racism and cultural distress</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">33750194955</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>H.-J.</ce:initials>
+                  <ce:indexed-name>Chen H.-J.</ce:indexed-name>
+                  <ce:surname>Chen</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>B.</ce:initials>
+                  <ce:indexed-name>Mallinckrodt B.</ce:indexed-name>
+                  <ce:surname>Mallinckrodt</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>M.</ce:initials>
+                  <ce:indexed-name>Mobley M.</ce:indexed-name>
+                  <ce:surname>Mobley</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Asian Journal of Counseling</ref-sourcetitle>
+              <ref-publicationyear first="2002"/>
+              <ref-volisspag>
+                <voliss volume="19"/>
+                <pagerange first="27" last="48"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Chen H.-J., Mallinckrodt B., and Mobley M. Attachment patterns of east Asian international students and sources of perceived social support as moderators of the impact of U.S. racism and cultural distress. Asian Journal of Counseling 19 (2002) 27-48</ref-fulltext>
+          </reference>
+          <reference id="7">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Sojourner adjustment</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">0000373741</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>A.T.</ce:initials>
+                  <ce:indexed-name>Church A.T.</ce:indexed-name>
+                  <ce:surname>Church</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Psychological Bulletin</ref-sourcetitle>
+              <ref-publicationyear first="1982"/>
+              <ref-volisspag>
+                <voliss volume="91"/>
+                <pagerange first="540" last="572"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Church A.T. Sojourner adjustment. Psychological Bulletin 91 (1982) 540-572</ref-fulltext>
+          </reference>
+          <reference id="8">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>A power primer</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">11944272254</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>J.</ce:initials>
+                  <ce:indexed-name>Cohen J.</ce:indexed-name>
+                  <ce:surname>Cohen</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Psychological Bulletin</ref-sourcetitle>
+              <ref-publicationyear first="1992"/>
+              <ref-volisspag>
+                <voliss volume="112"/>
+                <pagerange first="155" last="159"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Cohen J. A power primer. Psychological Bulletin 112 (1992) 155-159</ref-fulltext>
+          </reference>
+          <reference id="9">
+            <ref-info>
+              <refd-itemidlist>
+                <itemid idtype="SGR">0003519438</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>J.</ce:initials>
+                  <ce:indexed-name>Cohen J.</ce:indexed-name>
+                  <ce:surname>Cohen</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>P.</ce:initials>
+                  <ce:indexed-name>Cohen P.</ce:indexed-name>
+                  <ce:surname>Cohen</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>S.G.</ce:initials>
+                  <ce:indexed-name>West S.G.</ce:indexed-name>
+                  <ce:surname>West</ce:surname>
+                </author>
+                <author seq="4">
+                  <ce:initials>L.S.</ce:initials>
+                  <ce:indexed-name>Aiken L.S.</ce:indexed-name>
+                  <ce:surname>Aiken</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Applied multiple regression/correlation analysis for the behavioral science. 3rd ed.</ref-sourcetitle>
+              <ref-publicationyear first="2003"/>
+              <ref-text>Erlbaum, Mahwah, NJ</ref-text>
+            </ref-info>
+            <ref-fulltext>Cohen J., Cohen P., West S.G., and Aiken L.S. Applied multiple regression/correlation analysis for the behavioral science. 3rd ed. (2003), Erlbaum, Mahwah, NJ</ref-fulltext>
+          </reference>
+          <reference id="10">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Self-concealment, social self-efficacy, acculturative stress, and depression in African, Asian, and Latin American international college students</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">3342886219</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>M.G.</ce:initials>
+                  <ce:indexed-name>Constantine M.G.</ce:indexed-name>
+                  <ce:surname>Constantine</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>S.</ce:initials>
+                  <ce:indexed-name>Okazaki S.</ce:indexed-name>
+                  <ce:surname>Okazaki</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>S.O.</ce:initials>
+                  <ce:indexed-name>Utsey S.O.</ce:indexed-name>
+                  <ce:surname>Utsey</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>American Journal of Orthopsychiatry</ref-sourcetitle>
+              <ref-publicationyear first="2004"/>
+              <ref-volisspag>
+                <voliss volume="74"/>
+                <pagerange first="230" last="241"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Constantine M.G., Okazaki S., and Utsey S.O. Self-concealment, social self-efficacy, acculturative stress, and depression in African, Asian, and Latin American international college students. American Journal of Orthopsychiatry 74 (2004) 230-241</ref-fulltext>
+          </reference>
+          <reference id="11">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Self-construals, coping, and stress in cross-cultural adaptation</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">21444453344</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>S.</ce:initials>
+                  <ce:indexed-name>Cross S.</ce:indexed-name>
+                  <ce:surname>Cross</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Journal of Cross-Cultural Psychology</ref-sourcetitle>
+              <ref-publicationyear first="1995"/>
+              <ref-volisspag>
+                <voliss volume="26"/>
+                <pagerange first="673" last="697"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Cross S. Self-construals, coping, and stress in cross-cultural adaptation. Journal of Cross-Cultural Psychology 26 (1995) 673-697</ref-fulltext>
+          </reference>
+          <reference id="12">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Testing moderator and mediator effects in counseling psychology research</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">0842346778</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>P.A.</ce:initials>
+                  <ce:indexed-name>Frazer P.A.</ce:indexed-name>
+                  <ce:surname>Frazer</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>A.P.</ce:initials>
+                  <ce:indexed-name>Tix A.P.</ce:indexed-name>
+                  <ce:surname>Tix</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>K.E.</ce:initials>
+                  <ce:indexed-name>Barron K.E.</ce:indexed-name>
+                  <ce:surname>Barron</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Journal of Counseling Psychology</ref-sourcetitle>
+              <ref-publicationyear first="2004"/>
+              <ref-volisspag>
+                <voliss volume="51"/>
+                <pagerange first="115" last="134"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Frazer P.A., Tix A.P., and Barron K.E. Testing moderator and mediator effects in counseling psychology research. Journal of Counseling Psychology 51 (2004) 115-134</ref-fulltext>
+          </reference>
+          <reference id="13">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>The benefits and challenges of becoming cross-culturally competent counseling psychologists: Presidential address</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">30444447079</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>P.P.</ce:initials>
+                  <ce:indexed-name>Heppner P.P.</ce:indexed-name>
+                  <ce:surname>Heppner</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>The Counseling Psychologist</ref-sourcetitle>
+              <ref-publicationyear first="2006"/>
+              <ref-volisspag>
+                <voliss volume="34"/>
+                <pagerange first="147" last="172"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Heppner P.P. The benefits and challenges of becoming cross-culturally competent counseling psychologists: Presidential address. The Counseling Psychologist 34 (2006) 147-172</ref-fulltext>
+          </reference>
+          <reference id="14">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Development and validation of a collectivistic coping styles inventory</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">31544466577</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>P.P.</ce:initials>
+                  <ce:indexed-name>Heppner P.P.</ce:indexed-name>
+                  <ce:surname>Heppner</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>M.J.</ce:initials>
+                  <ce:indexed-name>Heppner M.J.</ce:indexed-name>
+                  <ce:surname>Heppner</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>D.-G.</ce:initials>
+                  <ce:indexed-name>Lee D.-G.</ce:indexed-name>
+                  <ce:surname>Lee</ce:surname>
+                </author>
+                <author seq="4">
+                  <ce:initials>Y.-W.</ce:initials>
+                  <ce:indexed-name>Wang Y.-W.</ce:indexed-name>
+                  <ce:surname>Wang</ce:surname>
+                </author>
+                <author seq="5">
+                  <ce:initials>H.-J.</ce:initials>
+                  <ce:indexed-name>Park H.-J.</ce:indexed-name>
+                  <ce:surname>Park</ce:surname>
+                </author>
+                <author seq="6">
+                  <ce:initials>L.-F.</ce:initials>
+                  <ce:indexed-name>Wang L.-F.</ce:indexed-name>
+                  <ce:surname>Wang</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Journal of Counseling Psychology</ref-sourcetitle>
+              <ref-publicationyear first="2006"/>
+              <ref-volisspag>
+                <voliss volume="53"/>
+                <pagerange first="107" last="125"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Heppner P.P., Heppner M.J., Lee D.-G., Wang Y.-W., Park H.-J., and Wang L.-F. Development and validation of a collectivistic coping styles inventory. Journal of Counseling Psychology 53 (2006) 107-125</ref-fulltext>
+          </reference>
+          <reference id="15">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Problem-solving appraisal and human adjustment: A review of 20 years of research utilizing the Problem Solving Inventory</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">2442528815</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>P.P.</ce:initials>
+                  <ce:indexed-name>Heppner P.P.</ce:indexed-name>
+                  <ce:surname>Heppner</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>T.E.</ce:initials>
+                  <ce:indexed-name>Witty T.E.</ce:indexed-name>
+                  <ce:surname>Witty</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>W.A.</ce:initials>
+                  <ce:indexed-name>Dixon W.A.</ce:indexed-name>
+                  <ce:surname>Dixon</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>The Counseling Psychologist</ref-sourcetitle>
+              <ref-publicationyear first="2004"/>
+              <ref-volisspag>
+                <voliss volume="32"/>
+                <pagerange first="344" last="428"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Heppner P.P., Witty T.E., and Dixon W.A. Problem-solving appraisal and human adjustment: A review of 20 years of research utilizing the Problem Solving Inventory. The Counseling Psychologist 32 (2004) 344-428</ref-fulltext>
+          </reference>
+          <reference id="16">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Perfectionism and depression: Longitudinal assessment of a specific vulnerability hypothesis</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">0029963612</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>P.L.</ce:initials>
+                  <ce:indexed-name>Hewitt P.L.</ce:indexed-name>
+                  <ce:surname>Hewitt</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>G.L.</ce:initials>
+                  <ce:indexed-name>Flett G.L.</ce:indexed-name>
+                  <ce:surname>Flett</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>E.</ce:initials>
+                  <ce:indexed-name>Ediger E.</ce:indexed-name>
+                  <ce:surname>Ediger</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Journal of Abnormal Psychology</ref-sourcetitle>
+              <ref-publicationyear first="1996"/>
+              <ref-volisspag>
+                <voliss volume="105"/>
+                <pagerange first="276" last="280"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Hewitt P.L., Flett G.L., and Ediger E. Perfectionism and depression: Longitudinal assessment of a specific vulnerability hypothesis. Journal of Abnormal Psychology 105 (1996) 276-280</ref-fulltext>
+          </reference>
+          <reference id="17">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Open doors: 2002/2003</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">84858347982</itemid>
+              </refd-itemidlist>
+              <ref-sourcetitle>Report on international student enrollment</ref-sourcetitle>
+              <ref-publicationyear first="2006"/>
+              <ref-website>
+                <ce:e-address type="url">http://opendoors.iienetwork.org</ce:e-address>
+              </ref-website>
+              <ref-text>Institute of International Education Retrieved November 13, 2006, from http://opendoors.iienetwork.org</ref-text>
+            </ref-info>
+            <ref-fulltext>Institute of International Education. Open doors: 2002/2003. Report on international student enrollment (2006). http://opendoors.iienetwork.org Retrieved November 13, 2006, from http://opendoors.iienetwork.org</ref-fulltext>
+          </reference>
+          <reference id="18">
+            <ref-info>
+              <refd-itemidlist>
+                <itemid idtype="SGR">35448954103</itemid>
+              </refd-itemidlist>
+            </ref-info>
+            <ref-fulltext>Kaul, A. (2001). Predictors of positive adaptation among international students in the United States. Unpublished doctoral dissertation, University of Memphis.</ref-fulltext>
+          </reference>
+          <reference id="19">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Acculturation measurement: Theory, current instruments, and future directions</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">0001329331</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>B.S.K.</ce:initials>
+                  <ce:indexed-name>Kim B.S.K.</ce:indexed-name>
+                  <ce:surname>Kim</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>J.M.</ce:initials>
+                  <ce:indexed-name>Abreu J.M.</ce:indexed-name>
+                  <ce:surname>Abreu</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Handbook of multicultural counseling. 2nd ed.</ref-sourcetitle>
+              <ref-publicationyear first="2001"/>
+              <ref-volisspag>
+                <pagerange first="394" last="424"/>
+              </ref-volisspag>
+              <ref-text>Ponterotto J.C., Casas J.M., Suzuki L.A., and Alexander C.M. (Eds), Sage, Thousand Oaks, CA</ref-text>
+            </ref-info>
+            <ref-fulltext>Kim B.S.K., and Abreu J.M. Acculturation measurement: Theory, current instruments, and future directions. In: Ponterotto J.C., Casas J.M., Suzuki L.A., and Alexander C.M. (Eds). Handbook of multicultural counseling. 2nd ed. (2001), Sage, Thousand Oaks, CA 394-424</ref-fulltext>
+          </reference>
+          <reference id="20">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>The Asian American Values Scale: Development, factor analysis, validation, and reliability</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">0032827176</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>B.S.K.</ce:initials>
+                  <ce:indexed-name>Kim B.S.K.</ce:indexed-name>
+                  <ce:surname>Kim</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>D.R.</ce:initials>
+                  <ce:indexed-name>Atkinson D.R.</ce:indexed-name>
+                  <ce:surname>Atkinson</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>P.H.</ce:initials>
+                  <ce:indexed-name>Yang P.H.</ce:indexed-name>
+                  <ce:surname>Yang</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Journal of Counseling Psychology</ref-sourcetitle>
+              <ref-publicationyear first="1999"/>
+              <ref-volisspag>
+                <voliss volume="46"/>
+                <pagerange first="342" last="352"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Kim B.S.K., Atkinson D.R., and Yang P.H. The Asian American Values Scale: Development, factor analysis, validation, and reliability. Journal of Counseling Psychology 46 (1999) 342-352</ref-fulltext>
+          </reference>
+          <reference id="21">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>The Asian American Values Scale-Multidimensional: Development, reliability, and validity</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">24044533524</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>B.S.K.</ce:initials>
+                  <ce:indexed-name>Kim B.S.K.</ce:indexed-name>
+                  <ce:surname>Kim</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>L.C.</ce:initials>
+                  <ce:indexed-name>Li L.C.</ce:indexed-name>
+                  <ce:surname>Li</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>G.F.</ce:initials>
+                  <ce:indexed-name>Ng G.F.</ce:indexed-name>
+                  <ce:surname>Ng</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Cultural Diversity and Ethnic Minority Psychology</ref-sourcetitle>
+              <ref-publicationyear first="2005"/>
+              <ref-volisspag>
+                <voliss volume="11"/>
+                <pagerange first="187" last="201"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Kim B.S.K., Li L.C., and Ng G.F. The Asian American Values Scale-Multidimensional: Development, reliability, and validity. Cultural Diversity and Ethnic Minority Psychology 11 (2005) 187-201</ref-fulltext>
+          </reference>
+          <reference id="22">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Worldview of Chinese international students: An extension and new findings</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">0040450246</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>K.-L.K.</ce:initials>
+                  <ce:indexed-name>Kwan K.-L.K.</ce:indexed-name>
+                  <ce:surname>Kwan</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>G.R.</ce:initials>
+                  <ce:indexed-name>Sodowsky G.R.</ce:indexed-name>
+                  <ce:surname>Sodowsky</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>G.M.</ce:initials>
+                  <ce:indexed-name>Ihle G.M.</ce:indexed-name>
+                  <ce:surname>Ihle</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Journal of College Student Development</ref-sourcetitle>
+              <ref-publicationyear first="1994"/>
+              <ref-volisspag>
+                <voliss volume="35"/>
+                <pagerange first="190" last="197"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Kwan K.-L.K., Sodowsky G.R., and Ihle G.M. Worldview of Chinese international students: An extension and new findings. Journal of College Student Development 35 (1994) 190-197</ref-fulltext>
+          </reference>
+          <reference id="23">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Social support buffering of acculturative stress: A study of mental health symptoms among Korean international students</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">9144234368</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>J.-S.</ce:initials>
+                  <ce:indexed-name>Lee J.-S.</ce:indexed-name>
+                  <ce:surname>Lee</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>G.F.</ce:initials>
+                  <ce:indexed-name>Koeske G.F.</ce:indexed-name>
+                  <ce:surname>Koeske</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>E.</ce:initials>
+                  <ce:indexed-name>Sales E.</ce:indexed-name>
+                  <ce:surname>Sales</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>International Journal of Intercultural Relations</ref-sourcetitle>
+              <ref-publicationyear first="2004"/>
+              <ref-volisspag>
+                <voliss volume="28"/>
+                <pagerange first="399" last="414"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Lee J.-S., Koeske G.F., and Sales E. Social support buffering of acculturative stress: A study of mental health symptoms among Korean international students. International Journal of Intercultural Relations 28 (2004) 399-414</ref-fulltext>
+          </reference>
+          <reference id="24">
+            <ref-info>
+              <refd-itemidlist>
+                <itemid idtype="SGR">35448957366</itemid>
+              </refd-itemidlist>
+            </ref-info>
+            <ref-fulltext>Lee, S., Lin, Y.-J., Fuhrman, H. L., Heppner, M. J., &amp; Heppner, P. P., (2006, August). Culture-focused career interventions for international students. In P. P. Heppner (Chair), Innovative approaches to meet culture-specific needs of international students. Symposium presented at the annual meeting of the American Psychological Association, New Orleans, LA.</ref-fulltext>
+          </reference>
+          <reference id="25">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Counseling international students</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">0002309526</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>F.T.L.</ce:initials>
+                  <ce:indexed-name>Leong F.T.L.</ce:indexed-name>
+                  <ce:surname>Leong</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>E.L.</ce:initials>
+                  <ce:indexed-name>Chou E.L.</ce:indexed-name>
+                  <ce:surname>Chou</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Counseling across cultures. 4th ed.</ref-sourcetitle>
+              <ref-publicationyear first="1996"/>
+              <ref-volisspag>
+                <pagerange first="210" last="242"/>
+              </ref-volisspag>
+              <ref-text>Pedersen P.B., Draguns J.G., Lonner W.J., and Trimble J.E. (Eds), Sage, Thousand Oaks, CA</ref-text>
+            </ref-info>
+            <ref-fulltext>Leong F.T.L., and Chou E.L. Counseling international students. In: Pedersen P.B., Draguns J.G., Lonner W.J., and Trimble J.E. (Eds). Counseling across cultures. 4th ed. (1996), Sage, Thousand Oaks, CA 210-242</ref-fulltext>
+          </reference>
+          <reference id="26">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Asian international students' adjustment: Issues and program suggestions</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">82055179038</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>J.-C.G.</ce:initials>
+                  <ce:indexed-name>Lin J.-C.G.</ce:indexed-name>
+                  <ce:surname>Lin</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>J.K.</ce:initials>
+                  <ce:indexed-name>Yi J.K.</ce:indexed-name>
+                  <ce:surname>Yi</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>College Student Journal</ref-sourcetitle>
+              <ref-publicationyear first="1997"/>
+              <ref-volisspag>
+                <voliss volume="31"/>
+                <pagerange first="473" last="479"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Lin J.-C.G., and Yi J.K. Asian international students' adjustment: Issues and program suggestions. College Student Journal 31 (1997) 473-479</ref-fulltext>
+          </reference>
+          <reference id="27">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>International graduate students, stress, and social support</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">0000981659</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>B.</ce:initials>
+                  <ce:indexed-name>Mallinckrodt B.</ce:indexed-name>
+                  <ce:surname>Mallinckrodt</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>F.T.L.</ce:initials>
+                  <ce:indexed-name>Leong F.T.L.</ce:indexed-name>
+                  <ce:surname>Leong</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Journal of College Student Development</ref-sourcetitle>
+              <ref-publicationyear first="1992"/>
+              <ref-volisspag>
+                <voliss volume="33"/>
+                <pagerange first="71" last="78"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Mallinckrodt B., and Leong F.T.L. International graduate students, stress, and social support. Journal of College Student Development 33 (1992) 71-78</ref-fulltext>
+          </reference>
+          <reference id="28">
+            <ref-info>
+              <refd-itemidlist>
+                <itemid idtype="SGR">0003480735</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>E.</ce:initials>
+                  <ce:indexed-name>McGrath E.</ce:indexed-name>
+                  <ce:surname>McGrath</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>G.P.</ce:initials>
+                  <ce:indexed-name>Keita G.P.</ce:indexed-name>
+                  <ce:surname>Keita</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>B.P.</ce:initials>
+                  <ce:indexed-name>Strickland B.P.</ce:indexed-name>
+                  <ce:surname>Strickland</ce:surname>
+                </author>
+                <author seq="4">
+                  <ce:initials>N.F.</ce:initials>
+                  <ce:indexed-name>Russo N.F.</ce:indexed-name>
+                  <ce:surname>Russo</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Women and depression: Risk factors and treatment issues. Final report of the American Psychological Association's National Task Force on Women and Depression</ref-sourcetitle>
+              <ref-publicationyear first="1990"/>
+              <ref-text>American Psychological Association, Washington, DC</ref-text>
+            </ref-info>
+            <ref-fulltext>McGrath E., Keita G.P., Strickland B.P., and Russo N.F. Women and depression: Risk factors and treatment issues. Final report of the American Psychological Association's National Task Force on Women and Depression (1990), American Psychological Association, Washington, DC</ref-fulltext>
+          </reference>
+          <reference id="29">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Case-finding instruments for depression in primary care settings</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">0029007574</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>C.D.</ce:initials>
+                  <ce:indexed-name>Mulrow C.D.</ce:indexed-name>
+                  <ce:surname>Mulrow</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>J.W.</ce:initials>
+                  <ce:indexed-name>Williams J.W.</ce:indexed-name>
+                  <ce:surname>Williams</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>M.B.</ce:initials>
+                  <ce:indexed-name>Gerety M.B.</ce:indexed-name>
+                  <ce:surname>Gerety</ce:surname>
+                </author>
+                <author seq="4">
+                  <ce:initials>G.</ce:initials>
+                  <ce:indexed-name>Ramirez G.</ce:indexed-name>
+                  <ce:surname>Ramirez</ce:surname>
+                </author>
+                <author seq="5">
+                  <ce:initials>O.M.</ce:initials>
+                  <ce:indexed-name>Montiel O.M.</ce:indexed-name>
+                  <ce:surname>Montiel</ce:surname>
+                </author>
+                <author seq="6">
+                  <ce:initials>K.</ce:initials>
+                  <ce:indexed-name>Kerber K.</ce:indexed-name>
+                  <ce:surname>Kerber</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Annals of Internal Medicine</ref-sourcetitle>
+              <ref-publicationyear first="1995"/>
+              <ref-volisspag>
+                <voliss volume="122"/>
+                <pagerange first="913" last="921"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Mulrow C.D., Williams J.W., Gerety M.B., Ramirez G., Montiel O.M., and Kerber K. Case-finding instruments for depression in primary care settings. Annals of Internal Medicine 122 (1995) 913-921</ref-fulltext>
+          </reference>
+          <reference id="30">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Utilization rate and presenting concerns of international students at a university counseling center: Implications for outreach programming</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">35449003336</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>J.E.</ce:initials>
+                  <ce:indexed-name>Nilsson J.E.</ce:indexed-name>
+                  <ce:surname>Nilsson</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>L.A.</ce:initials>
+                  <ce:indexed-name>Berkel L.A.</ce:indexed-name>
+                  <ce:surname>Berkel</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>L.Y.</ce:initials>
+                  <ce:indexed-name>Flores L.Y.</ce:indexed-name>
+                  <ce:surname>Flores</ce:surname>
+                </author>
+                <author seq="4">
+                  <ce:initials>M.S.</ce:initials>
+                  <ce:indexed-name>Lucas M.S.</ce:indexed-name>
+                  <ce:surname>Lucas</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Journal of College Student Psychotherapy</ref-sourcetitle>
+              <ref-publicationyear first="2004"/>
+              <ref-volisspag>
+                <voliss volume="19"/>
+                <pagerange first="49" last="59"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Nilsson J.E., Berkel L.A., Flores L.Y., and Lucas M.S. Utilization rate and presenting concerns of international students at a university counseling center: Implications for outreach programming. Journal of College Student Psychotherapy 19 (2004) 49-59</ref-fulltext>
+          </reference>
+          <reference id="31">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Counseling international students</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">84970369955</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>P.B.</ce:initials>
+                  <ce:indexed-name>Pedersen P.B.</ce:indexed-name>
+                  <ce:surname>Pedersen</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>The Counseling Psychologist</ref-sourcetitle>
+              <ref-publicationyear first="1991"/>
+              <ref-volisspag>
+                <voliss volume="19"/>
+                <pagerange first="10" last="58"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Pedersen P.B. Counseling international students. The Counseling Psychologist 19 (1991) 10-58</ref-fulltext>
+          </reference>
+          <reference id="32">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>The Center for Epidemiologic Studies Depression Scale (CES-D) for research in the general population</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">84965520932</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>L.S.</ce:initials>
+                  <ce:indexed-name>Radloff L.S.</ce:indexed-name>
+                  <ce:surname>Radloff</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Applied Psychological Measurements</ref-sourcetitle>
+              <ref-publicationyear first="1977"/>
+              <ref-volisspag>
+                <voliss volume="1"/>
+                <pagerange first="385" last="401"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Radloff L.S. The Center for Epidemiologic Studies Depression Scale (CES-D) for research in the general population. Applied Psychological Measurements 1 (1977) 385-401</ref-fulltext>
+          </reference>
+          <reference id="33">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Perfectionism, stress, and social (dis)connection: A short-term study of hopelessness, depression, and academic adjustment among honors students</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">33750163650</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>K.G.</ce:initials>
+                  <ce:indexed-name>Rice K.G.</ce:indexed-name>
+                  <ce:surname>Rice</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>B.A.</ce:initials>
+                  <ce:indexed-name>Leever B.A.</ce:indexed-name>
+                  <ce:surname>Leever</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>J.</ce:initials>
+                  <ce:indexed-name>Christopher J.</ce:indexed-name>
+                  <ce:surname>Christopher</ce:surname>
+                </author>
+                <author seq="4">
+                  <ce:initials>J.D.</ce:initials>
+                  <ce:indexed-name>Porter J.D.</ce:indexed-name>
+                  <ce:surname>Porter</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Journal of Counseling Psychology</ref-sourcetitle>
+              <ref-publicationyear first="2006"/>
+              <ref-volisspag>
+                <voliss volume="53"/>
+                <pagerange first="524" last="534"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Rice K.G., Leever B.A., Christopher J., and Porter J.D. Perfectionism, stress, and social (dis)connection: A short-term study of hopelessness, depression, and academic adjustment among honors students. Journal of Counseling Psychology 53 (2006) 524-534</ref-fulltext>
+          </reference>
+          <reference id="34">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>An examination of the psychological needs of the international students: Implications for counseling and psychotherapy</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">34249769880</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>D.S.</ce:initials>
+                  <ce:indexed-name>Sandhu D.S.</ce:indexed-name>
+                  <ce:surname>Sandhu</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>International Journal for the Advancement of Counseling</ref-sourcetitle>
+              <ref-publicationyear first="1995"/>
+              <ref-volisspag>
+                <voliss volume="17"/>
+                <pagerange first="229" last="239"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Sandhu D.S. An examination of the psychological needs of the international students: Implications for counseling and psychotherapy. International Journal for the Advancement of Counseling 17 (1995) 229-239</ref-fulltext>
+          </reference>
+          <reference id="35">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Development of an acculturative stress scale for international students: Preliminary findings</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">0028491245</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>D.S.</ce:initials>
+                  <ce:indexed-name>Sandhu D.S.</ce:indexed-name>
+                  <ce:surname>Sandhu</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>B.R.</ce:initials>
+                  <ce:indexed-name>Asrabadi B.R.</ce:indexed-name>
+                  <ce:surname>Asrabadi</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Psychological Reports</ref-sourcetitle>
+              <ref-publicationyear first="1994"/>
+              <ref-volisspag>
+                <voliss volume="75"/>
+                <pagerange first="435" last="448"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Sandhu D.S., and Asrabadi B.R. Development of an acculturative stress scale for international students: Preliminary findings. Psychological Reports 75 (1994) 435-448</ref-fulltext>
+          </reference>
+          <reference id="36">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>An acculturative stress scale for international students: A practical approach to stress measurement</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">0038277981</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>D.S.</ce:initials>
+                  <ce:indexed-name>Sandhu D.S.</ce:indexed-name>
+                  <ce:surname>Sandhu</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>B.R.</ce:initials>
+                  <ce:indexed-name>Asrabadi B.R.</ce:indexed-name>
+                  <ce:surname>Asrabadi</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Evaluating stress: A book of resources</ref-sourcetitle>
+              <ref-publicationyear first="1998"/>
+              <ref-volisspag>
+                <voliss volume="2"/>
+              </ref-volisspag>
+              <ref-text>Zalaquett C.P., and Wood R.J. (Eds), Scarecrow Press, London</ref-text>
+            </ref-info>
+            <ref-fulltext>Sandhu D.S., and Asrabadi B.R. An acculturative stress scale for international students: A practical approach to stress measurement. In: Zalaquett C.P., and Wood R.J. (Eds). Evaluating stress: A book of resources 2 (1998), Scarecrow Press, London</ref-fulltext>
+          </reference>
+          <reference id="37">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Innovations in survey research: An application of Web-based surveys</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">0036115951</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>S.J.</ce:initials>
+                  <ce:indexed-name>Sills S.J.</ce:indexed-name>
+                  <ce:surname>Sills</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>C.</ce:initials>
+                  <ce:indexed-name>Song C.</ce:indexed-name>
+                  <ce:surname>Song</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Social Science Computer Review</ref-sourcetitle>
+              <ref-publicationyear first="2002"/>
+              <ref-volisspag>
+                <voliss volume="20"/>
+                <pagerange first="22" last="30"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Sills S.J., and Song C. Innovations in survey research: An application of Web-based surveys. Social Science Computer Review 20 (2002) 22-30</ref-fulltext>
+          </reference>
+          <reference id="38">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>The Almost Perfect Scale-Revised</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">0035604492</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>R.B.</ce:initials>
+                  <ce:indexed-name>Slaney R.B.</ce:indexed-name>
+                  <ce:surname>Slaney</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>K.C.</ce:initials>
+                  <ce:indexed-name>Rice K.C.</ce:indexed-name>
+                  <ce:surname>Rice</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>M.</ce:initials>
+                  <ce:indexed-name>Mobley M.</ce:indexed-name>
+                  <ce:surname>Mobley</ce:surname>
+                </author>
+                <author seq="4">
+                  <ce:initials>J.</ce:initials>
+                  <ce:indexed-name>Trippi J.</ce:indexed-name>
+                  <ce:surname>Trippi</ce:surname>
+                </author>
+                <author seq="5">
+                  <ce:initials>J.S.</ce:initials>
+                  <ce:indexed-name>Ashby J.S.</ce:indexed-name>
+                  <ce:surname>Ashby</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Measurement and Evaluation in Counseling and Development</ref-sourcetitle>
+              <ref-publicationyear first="2001"/>
+              <ref-volisspag>
+                <voliss volume="34"/>
+                <pagerange first="130" last="145"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Slaney R.B., Rice K.C., Mobley M., Trippi J., and Ashby J.S. The Almost Perfect Scale-Revised. Measurement and Evaluation in Counseling and Development 34 (2001) 130-145</ref-fulltext>
+          </reference>
+          <reference id="39">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Acculturative stress of Hispanics: Loss and challenge</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">21844493099</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>J.F.</ce:initials>
+                  <ce:indexed-name>Smart J.F.</ce:indexed-name>
+                  <ce:surname>Smart</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>D.W.</ce:initials>
+                  <ce:indexed-name>Smart D.W.</ce:indexed-name>
+                  <ce:surname>Smart</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Journal of Counseling &amp; Development</ref-sourcetitle>
+              <ref-publicationyear first="1995"/>
+              <ref-volisspag>
+                <voliss volume="73"/>
+                <pagerange first="390" last="396"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Smart J.F., and Smart D.W. Acculturative stress of Hispanics: Loss and challenge. Journal of Counseling &amp; Development 73 (1995) 390-396</ref-fulltext>
+          </reference>
+          <reference id="40">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Crossing the distance: Adjustment of Taiwanese graduate students in the United States</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">0242551393</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>M.A.</ce:initials>
+                  <ce:indexed-name>Swagler M.A.</ce:indexed-name>
+                  <ce:surname>Swagler</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>M.V.</ce:initials>
+                  <ce:indexed-name>Ellis M.V.</ce:indexed-name>
+                  <ce:surname>Ellis</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Journal of Counseling Psychology</ref-sourcetitle>
+              <ref-publicationyear first="2003"/>
+              <ref-volisspag>
+                <voliss volume="50"/>
+                <pagerange first="420" last="437"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Swagler M.A., and Ellis M.V. Crossing the distance: Adjustment of Taiwanese graduate students in the United States. Journal of Counseling Psychology 50 (2003) 420-437</ref-fulltext>
+          </reference>
+          <reference id="41">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Perfectionism in Chinese university students from Taiwan: A study of psychological well-being and achievement motivation</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">33947118102</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>K.T.</ce:initials>
+                  <ce:indexed-name>Wang K.T.</ce:indexed-name>
+                  <ce:surname>Wang</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>R.B.</ce:initials>
+                  <ce:indexed-name>Slaney R.B.</ce:indexed-name>
+                  <ce:surname>Slaney</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>K.G.</ce:initials>
+                  <ce:indexed-name>Rice K.G.</ce:indexed-name>
+                  <ce:surname>Rice</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Personality and Individual Differences</ref-sourcetitle>
+              <ref-publicationyear first="2007"/>
+              <ref-volisspag>
+                <voliss volume="42"/>
+                <pagerange first="1279" last="1290"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Wang K.T., Slaney R.B., and Rice K.G. Perfectionism in Chinese university students from Taiwan: A study of psychological well-being and achievement motivation. Personality and Individual Differences 42 (2007) 1279-1290</ref-fulltext>
+          </reference>
+          <reference id="42">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Maladaptive perfectionism as a mediator and moderator between adult attachment and depressive mood</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">1842578259</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>M.</ce:initials>
+                  <ce:indexed-name>Wei M.</ce:indexed-name>
+                  <ce:surname>Wei</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>B.</ce:initials>
+                  <ce:indexed-name>Mallinckrodt B.</ce:indexed-name>
+                  <ce:surname>Mallinckrodt</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>D.W.</ce:initials>
+                  <ce:indexed-name>Russell D.W.</ce:indexed-name>
+                  <ce:surname>Russell</ce:surname>
+                </author>
+                <author seq="4">
+                  <ce:initials>T.W.</ce:initials>
+                  <ce:indexed-name>Abraham T.W.</ce:indexed-name>
+                  <ce:surname>Abraham</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Journal of Counseling Psychology</ref-sourcetitle>
+              <ref-publicationyear first="2004"/>
+              <ref-volisspag>
+                <voliss volume="51"/>
+                <pagerange first="201" last="212"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Wei M., Mallinckrodt B., Russell D.W., and Abraham T.W. Maladaptive perfectionism as a mediator and moderator between adult attachment and depressive mood. Journal of Counseling Psychology 51 (2004) 201-212</ref-fulltext>
+          </reference>
+          <reference id="43">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Academic achievement and social adaptation among international students: A comparison groups study of the peer pairing program</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">0001958046</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>M.U.</ce:initials>
+                  <ce:indexed-name>Westwood M.U.</ce:indexed-name>
+                  <ce:surname>Westwood</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>M.</ce:initials>
+                  <ce:indexed-name>Barker M.</ce:indexed-name>
+                  <ce:surname>Barker</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>International Journal of Intercultural Relations</ref-sourcetitle>
+              <ref-publicationyear first="1990"/>
+              <ref-volisspag>
+                <voliss volume="14"/>
+                <pagerange first="251" last="261"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Westwood M.U., and Barker M. Academic achievement and social adaptation among international students: A comparison groups study of the peer pairing program. International Journal of Intercultural Relations 14 (1990) 251-261</ref-fulltext>
+          </reference>
+          <reference id="44">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Measures of life stress and social support specific to an Asian student population</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">0029018807</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>B.</ce:initials>
+                  <ce:indexed-name>Yang B.</ce:indexed-name>
+                  <ce:surname>Yang</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>G.A.</ce:initials>
+                  <ce:indexed-name>Clum G.A.</ce:indexed-name>
+                  <ce:surname>Clum</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Journal of Psychopathology and Behavioral Assessment</ref-sourcetitle>
+              <ref-publicationyear first="1995"/>
+              <ref-volisspag>
+                <voliss volume="17"/>
+                <pagerange first="1995"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Yang B., and Clum G.A. Measures of life stress and social support specific to an Asian student population. Journal of Psychopathology and Behavioral Assessment 17 (1995) 1995</ref-fulltext>
+          </reference>
+          <reference id="45">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>International students' reported English fluency, social support satisfaction, and social connectedness as predictors of acculturative stress</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">0038802561</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>C.J.</ce:initials>
+                  <ce:indexed-name>Yeh C.J.</ce:indexed-name>
+                  <ce:surname>Yeh</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>M.</ce:initials>
+                  <ce:indexed-name>Inose M.</ce:indexed-name>
+                  <ce:surname>Inose</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Counseling Psychology Quarterly</ref-sourcetitle>
+              <ref-publicationyear first="2003"/>
+              <ref-volisspag>
+                <voliss volume="16"/>
+                <pagerange first="15" last="28"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Yeh C.J., and Inose M. International students' reported English fluency, social support satisfaction, and social connectedness as predictors of acculturative stress. Counseling Psychology Quarterly 16 (2003) 15-28</ref-fulltext>
+          </reference>
+          <reference id="46">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Utilization of counseling services by international students</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">35448932916</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>J.K.</ce:initials>
+                  <ce:indexed-name>Yi J.K.</ce:indexed-name>
+                  <ce:surname>Yi</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>G.J.-C.</ce:initials>
+                  <ce:indexed-name>Lin G.J.-C.</ce:indexed-name>
+                  <ce:surname>Lin</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>K.</ce:initials>
+                  <ce:indexed-name>Yuko K.</ce:indexed-name>
+                  <ce:surname>Yuko</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Journal of Instructional Psychology</ref-sourcetitle>
+              <ref-publicationyear first="2003"/>
+              <ref-volisspag>
+                <voliss volume="30"/>
+                <pagerange first="333" last="342"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Yi J.K., Lin G.J.-C., and Yuko K. Utilization of counseling services by international students. Journal of Instructional Psychology 30 (2003) 333-342</ref-fulltext>
+          </reference>
+          <reference id="47">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>The contribution of personality, acculturative stressors, and social affiliation to adjustment: A longitudinal study of Taiwanese students in the United States</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">33748069446</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>Y.-W.</ce:initials>
+                  <ce:indexed-name>Ying Y.-W.</ce:indexed-name>
+                  <ce:surname>Ying</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>M.</ce:initials>
+                  <ce:indexed-name>Han M.</ce:indexed-name>
+                  <ce:surname>Han</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>International Journal of Intercultural Relations</ref-sourcetitle>
+              <ref-publicationyear first="2006"/>
+              <ref-volisspag>
+                <voliss volume="30"/>
+                <pagerange first="623" last="635"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Ying Y.-W., and Han M. The contribution of personality, acculturative stressors, and social affiliation to adjustment: A longitudinal study of Taiwanese students in the United States. International Journal of Intercultural Relations 30 (2006) 623-635</ref-fulltext>
+          </reference>
+        </bibliography>
+      </tail>
+    </bibrecord>
+  </item>
+</abstracts-retrieval-response>

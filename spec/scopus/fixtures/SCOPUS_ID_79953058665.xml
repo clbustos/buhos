@@ -1,0 +1,560 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<abstracts-retrieval-response xmlns="http://www.elsevier.com/xml/svapi/abstract/dtd" xmlns:ait="http://www.elsevier.com/xml/ani/ait" xmlns:ce="http://www.elsevier.com/xml/ani/common" xmlns:cto="http://www.elsevier.com/xml/cto/dtd" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:prism="http://prismstandard.org/namespaces/basic/2.0/" xmlns:xocs="http://www.elsevier.com/xml/xocs/dtd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <coredata>
+    <prism:url>http://api.elsevier.com/content/abstract/scopus_id/79953058665</prism:url>
+    <dc:identifier>SCOPUS_ID:79953058665</dc:identifier>
+    <eid>2-s2.0-79953058665</eid>
+    <prism:doi>10.1016/j.sbspro.2011.01.008</prism:doi>
+    <dc:title>The cohesion of intercorporate networks in France</dc:title>
+    <prism:aggregationType>Conference Proceeding</prism:aggregationType>
+    <srctype>p</srctype>
+    <citedby-count>5</citedby-count>
+    <prism:publicationName>Procedia - Social and Behavioral Sciences</prism:publicationName>
+    <source-id>17700156418</source-id>
+    <prism:issn>18770428</prism:issn>
+    <prism:volume>10</prism:volume>
+    <prism:startingPage>52</prism:startingPage>
+    <prism:endingPage>61</prism:endingPage>
+    <prism:pageRange>52-61</prism:pageRange>
+    <prism:coverDate>2011-03-30</prism:coverDate>
+    <dc:creator>
+      <author auid="16308896300" seq="1">
+        <ce:initials>C.</ce:initials>
+        <ce:indexed-name>Comet C.</ce:indexed-name>
+        <ce:surname>Comet</ce:surname>
+        <ce:given-name>Catherine</ce:given-name>
+        <preferred-name>
+          <ce:initials>C.</ce:initials>
+          <ce:indexed-name>Comet C.</ce:indexed-name>
+          <ce:surname>Comet</ce:surname>
+          <ce:given-name>Catherine</ce:given-name>
+        </preferred-name>
+        <author-url>http://api.elsevier.com/content/author/author_id/16308896300</author-url>
+        <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60009448" id="60009448"/>
+      </author>
+    </dc:creator>
+    <dc:description>
+      <abstract original="y" xml:lang="eng">
+        <ce:para>In France, main companies nurture a high number of interlocking directorates. We run descriptive analyses on the 125 largest capitalizations at the Paris Stock Exchange, in order to highlight the economic and social factors driving this phenomenon. On the one hand, the governance network reflects a preference among directors of the same profile, suggesting a mechanism of bounded solidarity. On the other hand, it is included in the capital network, whose major shareholders are mostly foreign investors. We argue that the cohesion of corporate networks based on interlocks might decrease during next years. © 2011 Published by Elsevier Ltd.</ce:para>
+      </abstract>
+    </dc:description>
+    <intid>79953058665</intid>
+    <link href="http://api.elsevier.com/content/abstract/scopus_id/79953058665" rel="self"/>
+    <link href="https://www.scopus.com/inward/record.uri?partnerID=HzOxMe3b&amp;scp=79953058665&amp;origin=inward" rel="scopus"/>
+    <link href="https://www.scopus.com/inward/citedby.uri?partnerID=HzOxMe3b&amp;scp=79953058665&amp;origin=inward" rel="scopus-citedby"/>
+  </coredata>
+  <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60009448" id="60009448">
+    <affilname>Universite des Sciences et Technologies de Lille</affilname>
+    <affiliation-city>Villeneuve d'Ascq Cedex</affiliation-city>
+    <affiliation-country>France</affiliation-country>
+  </affiliation>
+  <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/" id="">
+    <affilname>Universidad Complutense de Madrid</affilname>
+    <affiliation-city>Madrid</affiliation-city>
+    <affiliation-country>Spain</affiliation-country>
+  </affiliation>
+  <authors>
+    <author auid="16308896300" seq="1">
+      <ce:initials>C.</ce:initials>
+      <ce:indexed-name>Comet C.</ce:indexed-name>
+      <ce:surname>Comet</ce:surname>
+      <ce:given-name>Catherine</ce:given-name>
+      <preferred-name>
+        <ce:initials>C.</ce:initials>
+        <ce:indexed-name>Comet C.</ce:indexed-name>
+        <ce:surname>Comet</ce:surname>
+        <ce:given-name>Catherine</ce:given-name>
+      </preferred-name>
+      <author-url>http://api.elsevier.com/content/author/author_id/16308896300</author-url>
+      <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60009448" id="60009448"/>
+    </author>
+    <author auid="22938645900" seq="2">
+      <ce:initials>N.</ce:initials>
+      <ce:indexed-name>Pizarro N.</ce:indexed-name>
+      <ce:surname>Pizarro</ce:surname>
+      <ce:given-name>Narciso</ce:given-name>
+      <preferred-name>
+        <ce:initials>N.</ce:initials>
+        <ce:indexed-name>Pizarro N.</ce:indexed-name>
+        <ce:surname>Pizarro</ce:surname>
+        <ce:given-name>Narciso</ce:given-name>
+      </preferred-name>
+      <author-url>http://api.elsevier.com/content/author/author_id/22938645900</author-url>
+      <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60027282" id="60027282"/>
+    </author>
+  </authors>
+  <language xml:lang="eng"/>
+  <authkeywords>
+    <author-keyword>Business elite</author-keyword>
+    <author-keyword>Capital network</author-keyword>
+    <author-keyword>Corporate networks</author-keyword>
+    <author-keyword>Cross-shareholdings</author-keyword>
+    <author-keyword>Equity linkages</author-keyword>
+    <author-keyword>Governance</author-keyword>
+    <author-keyword>Interlocking directorates</author-keyword>
+    <author-keyword>Social network analysis</author-keyword>
+  </authkeywords>
+  <idxterms/>
+  <subject-areas>
+    <subject-area abbrev="SOCI" code="3300">Social Sciences (all)</subject-area>
+    <subject-area abbrev="PSYC" code="3200">Psychology (all)</subject-area>
+  </subject-areas>
+  <item xmlns="">
+    <ait:process-info>
+      <ait:date-delivered day="15" month="03" timestamp="2016-03-15T13:48:21.000021+00:00" year="2016"/>
+      <ait:date-sort day="30" month="03" year="2011"/>
+      <ait:status stage="S300" state="update" type="core"/>
+    </ait:process-info>
+    <bibrecord>
+      <item-info>
+        <copyright type="Elsevier">Copyright 2011 Elsevier B.V., All rights reserved.</copyright>
+        <itemidlist>
+          <ce:doi>10.1016/j.sbspro.2011.01.008</ce:doi>
+          <itemid idtype="PUI">361498443</itemid>
+          <itemid idtype="SNSOC">2011017665</itemid>
+          <itemid idtype="SCP">79953058665</itemid>
+          <itemid idtype="SGR">79953058665</itemid>
+        </itemidlist>
+        <history>
+          <date-created day="30" month="03" year="2011"/>
+        </history>
+        <dbcollection>SNSOC</dbcollection>
+        <dbcollection>Scopusbase</dbcollection>
+      </item-info>
+      <head>
+        <citation-info>
+          <citation-type code="cp"/>
+          <citation-language language="English" xml:lang="eng"/>
+          <abstract-language language="English" xml:lang="eng"/>
+          <author-keywords>
+            <author-keyword>Business elite</author-keyword>
+            <author-keyword>Capital network</author-keyword>
+            <author-keyword>Corporate networks</author-keyword>
+            <author-keyword>Cross-shareholdings</author-keyword>
+            <author-keyword>Equity linkages</author-keyword>
+            <author-keyword>Governance</author-keyword>
+            <author-keyword>Interlocking directorates</author-keyword>
+            <author-keyword>Social network analysis</author-keyword>
+          </author-keywords>
+        </citation-info>
+        <citation-title>
+          <titletext language="English" original="y" xml:lang="eng">The cohesion of intercorporate networks in France</titletext>
+        </citation-title>
+        <author-group>
+          <author auid="16308896300" seq="1">
+            <ce:initials>C.</ce:initials>
+            <ce:indexed-name>Comet C.</ce:indexed-name>
+            <ce:surname>Comet</ce:surname>
+            <ce:given-name>Catherine</ce:given-name>
+            <preferred-name>
+              <ce:initials>C.</ce:initials>
+              <ce:indexed-name>Comet C.</ce:indexed-name>
+              <ce:surname>Comet</ce:surname>
+              <ce:given-name>Catherine</ce:given-name>
+            </preferred-name>
+          </author>
+          <affiliation afid="60009448" country="fra">
+            <organization>Clersé</organization>
+            <organization>University of Lille 1</organization>
+            <city-group>59655 Villeneuve d'Ascq cedex</city-group>
+            <country>France</country>
+          </affiliation>
+        </author-group>
+        <author-group>
+          <author auid="22938645900" seq="2">
+            <ce:initials>N.</ce:initials>
+            <ce:indexed-name>Pizarro N.</ce:indexed-name>
+            <ce:surname>Pizarro</ce:surname>
+            <ce:given-name>Narciso</ce:given-name>
+            <preferred-name>
+              <ce:initials>N.</ce:initials>
+              <ce:indexed-name>Pizarro N.</ce:indexed-name>
+              <ce:surname>Pizarro</ce:surname>
+              <ce:given-name>Narciso</ce:given-name>
+            </preferred-name>
+          </author>
+          <affiliation afid="60027282" country="esp">
+            <organization>Universidad Complutense de Madrid</organization>
+            <city-group>28223 Madrid</city-group>
+            <country>Spain</country>
+          </affiliation>
+        </author-group>
+        <correspondence>
+          <person>
+            <ce:initials>C.</ce:initials>
+            <ce:indexed-name>Comet C.</ce:indexed-name>
+            <ce:surname>Comet</ce:surname>
+          </person>
+          <affiliation country="fra">
+            <organization>Clersé</organization>
+            <organization>University of Lille 1</organization>
+            <city-group>59655 Villeneuve d'Ascq cedex</city-group>
+            <country>France</country>
+          </affiliation>
+        </correspondence>
+        <abstracts>
+          <abstract original="y" xml:lang="eng">
+            <ce:para>In France, main companies nurture a high number of interlocking directorates. We run descriptive analyses on the 125 largest capitalizations at the Paris Stock Exchange, in order to highlight the economic and social factors driving this phenomenon. On the one hand, the governance network reflects a preference among directors of the same profile, suggesting a mechanism of bounded solidarity. On the other hand, it is included in the capital network, whose major shareholders are mostly foreign investors. We argue that the cohesion of corporate networks based on interlocks might decrease during next years. © 2011 Published by Elsevier Ltd.</ce:para>
+          </abstract>
+        </abstracts>
+        <source country="gbr" srcid="17700156418" type="p">
+          <sourcetitle>Procedia - Social and Behavioral Sciences</sourcetitle>
+          <sourcetitle-abbrev>Procedia Soc. Behav. Sci.</sourcetitle-abbrev>
+          <issuetitle>4th and 5th UK Social Networks Conferences</issuetitle>
+          <issn type="print">18770428</issn>
+          <volisspag>
+            <voliss volume="10"/>
+            <pagerange first="52" last="61"/>
+          </volisspag>
+          <publicationyear first="2011"/>
+          <publicationdate>
+            <year>2011</year>
+            <date-text xfab-added="true">2011</date-text>
+          </publicationdate>
+          <additional-srcinfo>
+            <conferenceinfo>
+              <confevent>
+                <confname>4th and 5th UK Social Networks Conferences</confname>
+                <conflocation country="gbr">
+                  <city-group>Greenwich</city-group>
+                </conflocation>
+                <confdate>
+                  <startdate day="03" month="07" year="2009"/>
+                  <enddate day="05" month="07" year="2009"/>
+                </confdate>
+              </confevent>
+              <confpublication>
+                <procpagerange>var.pagings</procpagerange>
+              </confpublication>
+            </conferenceinfo>
+          </additional-srcinfo>
+        </source>
+        <enhancement>
+          <classificationgroup>
+            <classifications type="ASJC">
+              <classification>3300</classification>
+              <classification>3200</classification>
+            </classifications>
+            <classifications type="SUBJABBR">
+              <classification>SOCI</classification>
+              <classification>PSYC</classification>
+            </classifications>
+          </classificationgroup>
+        </enhancement>
+      </head>
+      <tail>
+        <bibliography refcount="13">
+          <reference id="1">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Les réseaux d'entreprises en France et en Allemagne de 1992 à 2006</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">79953031578</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>D.</ce:initials>
+                  <ce:indexed-name>Agardi D.</ce:indexed-name>
+                  <ce:surname>Agardi</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>A.</ce:initials>
+                  <ce:indexed-name>Alcouffe A.</ce:indexed-name>
+                  <ce:surname>Alcouffe</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Les Notes de l'IRHE</ref-sourcetitle>
+              <ref-publicationyear first="2007"/>
+              <ref-volisspag>
+                <pagerange first="448"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Agardi, D., Alcouffe, A. (2007). Les réseaux d'entreprises en France et en Allemagne de 1992 à 2006. Les notes de l'IRHE, 448.</ref-fulltext>
+          </reference>
+          <reference id="2">
+            <ref-info>
+              <refd-itemidlist>
+                <itemid idtype="SGR">0011981154</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>M.</ce:initials>
+                  <ce:indexed-name>Bauer M.</ce:indexed-name>
+                  <ce:surname>Bauer</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>B.</ce:initials>
+                  <ce:indexed-name>Bertin-Mourot B.</ce:indexed-name>
+                  <ce:surname>Bertin-Mourot</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Les 200: Comment Devient-on Un Grand Patron?</ref-sourcetitle>
+              <ref-publicationyear first="1987"/>
+              <ref-text>Paris: Seuil</ref-text>
+            </ref-info>
+            <ref-fulltext>Bauer, M., Bertin-Mourot, B. (1987). Les 200: Comment devient-on un grand patron? Paris: Seuil.</ref-fulltext>
+          </reference>
+          <reference id="3">
+            <ref-info>
+              <refd-itemidlist>
+                <itemid idtype="SGR">0003461304</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>P.</ce:initials>
+                  <ce:indexed-name>Bourdieu P.</ce:indexed-name>
+                  <ce:surname>Bourdieu</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>La Noblesse d'Etat: Grandes Écoles et Esprit de Corps</ref-sourcetitle>
+              <ref-publicationyear first="1989"/>
+              <ref-text>Paris: Les Editions de Minuit</ref-text>
+            </ref-info>
+            <ref-fulltext>Bourdieu, P. (1989). La noblesse d'Etat: Grandes écoles et esprit de corps. Paris: Les Editions de Minuit.</ref-fulltext>
+          </reference>
+          <reference id="4">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>The duality of persons and groups</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">84959830077</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>R.</ce:initials>
+                  <ce:indexed-name>Breiger R.</ce:indexed-name>
+                  <ce:surname>Breiger</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Social Forces</ref-sourcetitle>
+              <ref-publicationyear first="1974"/>
+              <ref-volisspag>
+                <voliss issue="2" volume="53"/>
+                <pagerange first="181" last="190"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Breiger, R. (1974), The duality of persons and groups. Social Forces, 53(2), 181-190.</ref-fulltext>
+          </reference>
+          <reference id="5">
+            <ref-info>
+              <refd-itemidlist>
+                <itemid idtype="SGR">0346407047</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>W.</ce:initials>
+                  <ce:indexed-name>De Nooy W.</ce:indexed-name>
+                  <ce:surname>De Nooy</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>A.</ce:initials>
+                  <ce:indexed-name>Mrvar A.</ce:indexed-name>
+                  <ce:surname>Mrvar</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>V.</ce:initials>
+                  <ce:indexed-name>Batagelj V.</ce:indexed-name>
+                  <ce:surname>Batagelj</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Exploratory Social Network Analysis with Pajek</ref-sourcetitle>
+              <ref-publicationyear first="2005"/>
+              <ref-text>New York: Cambridge University Press</ref-text>
+            </ref-info>
+            <ref-fulltext>de Nooy, W., Mrvar, A. &amp; Batagelj, V. (2005). Exploratory social network analysis with Pajek. New York: Cambridge University Press.</ref-fulltext>
+          </reference>
+          <reference id="6">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Les grands patrons et l'Etat en France 1981-2007</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">66749124939</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>F.-X.</ce:initials>
+                  <ce:indexed-name>Dudouet F.-X.</ce:indexed-name>
+                  <ce:surname>Dudouet</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>E.</ce:initials>
+                  <ce:indexed-name>Gremont E.</ce:indexed-name>
+                  <ce:surname>Grémont</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Sociétés Contemporaines</ref-sourcetitle>
+              <ref-publicationyear first="2007"/>
+              <ref-volisspag>
+                <voliss issue="4" volume="68"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Dudouet, F.-X., Grémont, E. (2007). Les grands patrons et l'Etat en France 1981-2007. Sociétés Contemporaines, 68(4).</ref-fulltext>
+          </reference>
+          <reference id="7">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Friendship among the French financial elite</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">84929144419</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>C.</ce:initials>
+                  <ce:indexed-name>Kadushin C.</ce:indexed-name>
+                  <ce:surname>Kadushin</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>American Sociological Review</ref-sourcetitle>
+              <ref-publicationyear first="1995"/>
+              <ref-volisspag>
+                <voliss issue="2" volume="60"/>
+                <pagerange first="202" last="221"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Kadushin, C. (1995). Friendship among the French financial elite. American Sociological Review, 60(2), 202-221.</ref-fulltext>
+          </reference>
+          <reference id="8">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>What do interlocks do? An Analysis, Critique, and Assessment of Research on Interlocking Directorates</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">0001427167</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>M.S.</ce:initials>
+                  <ce:indexed-name>Mizruchi M.S.</ce:indexed-name>
+                  <ce:surname>Mizruchi</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Annual Review of Sociology</ref-sourcetitle>
+              <ref-publicationyear first="1996"/>
+              <ref-volisspag>
+                <voliss volume="22"/>
+                <pagerange first="271" last="298"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Mizruchi, M. S. (1996). What do interlocks do? An analysis, critique, and assessment of research on interlocking directorates. Annual Review of Sociology, 22, 271-298. (Pubitemid 126416256)</ref-fulltext>
+          </reference>
+          <reference id="9">
+            <ref-info>
+              <refd-itemidlist>
+                <itemid idtype="SGR">0040800865</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>F.</ce:initials>
+                  <ce:indexed-name>Morin F.</ce:indexed-name>
+                  <ce:surname>Morin</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>C.</ce:initials>
+                  <ce:indexed-name>Dupuy C.</ce:indexed-name>
+                  <ce:surname>Dupuy</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Le Coeur Financier Européen</ref-sourcetitle>
+              <ref-publicationyear first="1993"/>
+              <ref-text>Paris : Economica</ref-text>
+            </ref-info>
+            <ref-fulltext>Morin, F., Dupuy, C. (1993). Le coeur financier européen. Paris : Economica.</ref-fulltext>
+          </reference>
+          <reference id="10">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>A transformation in the French model of shareholding and management</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">0034024514</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>F.</ce:initials>
+                  <ce:indexed-name>Morin F.</ce:indexed-name>
+                  <ce:surname>Morin</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Economy and Society</ref-sourcetitle>
+              <ref-publicationyear first="2000"/>
+              <ref-volisspag>
+                <voliss issue="1" volume="29"/>
+                <pagerange first="36" last="53"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Morin, F. (2000). A transformation in the French model of shareholding and management. Economy and Society. 29(1), 36-53. (Pubitemid 30172465)</ref-fulltext>
+          </reference>
+          <reference id="11">
+            <ref-info>
+              <refd-itemidlist>
+                <itemid idtype="SGR">0003948494</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>S.</ce:initials>
+                  <ce:indexed-name>Wasserman S.</ce:indexed-name>
+                  <ce:surname>Wasserman</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>K.</ce:initials>
+                  <ce:indexed-name>Faust K.</ce:indexed-name>
+                  <ce:surname>Faust</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Social Network Analysis: Methods and Applications</ref-sourcetitle>
+              <ref-publicationyear first="1994"/>
+              <ref-text>Cambridge : Cambridge University Press</ref-text>
+            </ref-info>
+            <ref-fulltext>Wasserman, S., Faust, K. (1994). Social network analysis: Methods and applications. Cambridge : Cambridge University Press.</ref-fulltext>
+          </reference>
+          <reference id="12">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>L'évolution du capitalisme modern: La France dans une perspective comparative</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">0040318846</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>P.</ce:initials>
+                  <ce:indexed-name>Windolf P.</ce:indexed-name>
+                  <ce:surname>Windolf</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Revue Française de Sociologie</ref-sourcetitle>
+              <ref-publicationyear first="1999"/>
+              <ref-volisspag>
+                <voliss issue="3" volume="40"/>
+                <pagerange first="501" last="529"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Windolf, P. (1999). L'évolution du capitalisme modern: La France dans une perspective comparative. Revue Française de Sociologie. 40(3), 501-529.</ref-fulltext>
+          </reference>
+          <reference id="13">
+            <ref-info>
+              <refd-itemidlist>
+                <itemid idtype="SGR">0038533404</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>P.</ce:initials>
+                  <ce:indexed-name>Windolf P.</ce:indexed-name>
+                  <ce:surname>Windolf</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Corporate Networks in Europe and the United States</ref-sourcetitle>
+              <ref-publicationyear first="2002"/>
+              <ref-text>New York: Oxford University Press</ref-text>
+            </ref-info>
+            <ref-fulltext>Windolf, P. (2002). Corporate networks in Europe and the United States. New York: Oxford University Press.</ref-fulltext>
+          </reference>
+        </bibliography>
+      </tail>
+    </bibrecord>
+  </item>
+</abstracts-retrieval-response>

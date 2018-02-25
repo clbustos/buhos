@@ -1,0 +1,1070 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<abstracts-retrieval-response xmlns="http://www.elsevier.com/xml/svapi/abstract/dtd" xmlns:ait="http://www.elsevier.com/xml/ani/ait" xmlns:ce="http://www.elsevier.com/xml/ani/common" xmlns:cto="http://www.elsevier.com/xml/cto/dtd" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:prism="http://prismstandard.org/namespaces/basic/2.0/" xmlns:xocs="http://www.elsevier.com/xml/xocs/dtd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <coredata>
+    <prism:url>http://api.elsevier.com/content/abstract/scopus_id/84911908650</prism:url>
+    <dc:identifier>SCOPUS_ID:84911908650</dc:identifier>
+    <eid>2-s2.0-84911908650</eid>
+    <pii>S0191886914006515</pii>
+    <prism:doi>10.1016/j.paid.2014.11.019</prism:doi>
+    <dc:title>Facial asymmetry is negatively related to assertive personality but unrelated to dominant personality in men</dc:title>
+    <prism:aggregationType>Journal</prism:aggregationType>
+    <srctype>j</srctype>
+    <citedby-count>0</citedby-count>
+    <prism:publicationName>Personality and Individual Differences</prism:publicationName>
+    <dc:publisher>Elsevier Ltd</dc:publisher>
+    <source-id>12807</source-id>
+    <prism:issn>01918869</prism:issn>
+    <prism:volume>75</prism:volume>
+    <prism:startingPage>94</prism:startingPage>
+    <prism:endingPage>96</prism:endingPage>
+    <prism:pageRange>94-96</prism:pageRange>
+    <prism:coverDate>2015-03-01</prism:coverDate>
+    <dc:creator>
+      <author auid="56407255800" seq="1">
+        <ce:initials>J.I.</ce:initials>
+        <ce:indexed-name>Borraz-Leon J.I.</ce:indexed-name>
+        <ce:surname>Borráz-León</ce:surname>
+        <ce:given-name>Javier Iván</ce:given-name>
+        <preferred-name>
+          <ce:initials>J.I.</ce:initials>
+          <ce:indexed-name>Borráz-León J.</ce:indexed-name>
+          <ce:surname>Borráz-León</ce:surname>
+          <ce:given-name>Javier Iván</ce:given-name>
+        </preferred-name>
+        <author-url>http://api.elsevier.com/content/author/author_id/56407255800</author-url>
+        <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60001818" id="60001818"/>
+      </author>
+    </dc:creator>
+    <dc:description>
+      <abstract original="y" xml:lang="eng">
+        <publishercopyright>© 2014 Elsevier Ltd.</publishercopyright>
+        <ce:para>Fluctuating asymmetry (FA) is a putative indicator of development instability in humans and other species, and some literature supports a women's preference for low degree of FA in opposite sex (e.g., symmetrical face). Also some personality traits associated to social status (e.g., dominance and assertiveness) are attractive to women due to direct and indirect benefits associated to high status. The aim of this work was to study the relationship between facial FA and dominant and assertive personalities. We found a negative correlation between facial FA and assertive personality but not between facial FA and dominant personality. Moreover, we found a positive correlation between assertive and dominant personality. Our results suggest that a low facial FA and assertive personality can be related to be advertising desirable traits and high status in men in order to be more attractive to women. This study supports the evidence shown by previous works which shows that a low facial FA is related with socially desirable and attractive aspects of personality.</ce:para>
+      </abstract>
+    </dc:description>
+    <intid>2033052523</intid>
+    <link href="http://api.elsevier.com/content/abstract/scopus_id/84911908650" rel="self"/>
+    <link href="http://www.scopus.com/inward/record.url?partnerID=HzOxMe3b&amp;scp=84911908650&amp;origin=inward" rel="scopus"/>
+  </coredata>
+  <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60001818" id="60001818">
+    <affilname>Instituto Nacional de Psiquiatria Ramon de la Fuente</affilname>
+    <affiliation-city>Mexico City</affiliation-city>
+    <affiliation-country>Mexico</affiliation-country>
+  </affiliation>
+  <authors>
+    <author auid="56407255800" seq="1">
+      <ce:initials>J.I.</ce:initials>
+      <ce:indexed-name>Borraz-Leon J.I.</ce:indexed-name>
+      <ce:surname>Borráz-León</ce:surname>
+      <ce:given-name>Javier Iván</ce:given-name>
+      <preferred-name>
+        <ce:initials>J.I.</ce:initials>
+        <ce:indexed-name>Borráz-León J.</ce:indexed-name>
+        <ce:surname>Borráz-León</ce:surname>
+        <ce:given-name>Javier Iván</ce:given-name>
+      </preferred-name>
+      <author-url>http://api.elsevier.com/content/author/author_id/56407255800</author-url>
+      <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60001818" id="60001818"/>
+    </author>
+    <author auid="6507352624" seq="2">
+      <ce:initials>A.L.</ce:initials>
+      <ce:indexed-name>Cerda-Molina A.L.</ce:indexed-name>
+      <ce:surname>Cerda-Molina</ce:surname>
+      <ce:given-name>Ana Lilia</ce:given-name>
+      <preferred-name>
+        <ce:initials>A.L.</ce:initials>
+        <ce:indexed-name>Cerda-Molina A.</ce:indexed-name>
+        <ce:surname>Cerda-Molina</ce:surname>
+        <ce:given-name>Ana Lilia</ce:given-name>
+      </preferred-name>
+      <author-url>http://api.elsevier.com/content/author/author_id/6507352624</author-url>
+      <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60001818" id="60001818"/>
+    </author>
+  </authors>
+  <language xml:lang="eng"/>
+  <authkeywords>
+    <author-keyword>Assertiveness</author-keyword>
+    <author-keyword>Dominance</author-keyword>
+    <author-keyword>Fluctuating facial asymmetry</author-keyword>
+  </authkeywords>
+  <idxterms/>
+  <subject-areas>
+    <subject-area abbrev="PSYC" code="3200">Psychology (all)</subject-area>
+  </subject-areas>
+  <item xmlns="">
+    <ait:process-info>
+      <ait:date-delivered day="17" month="07" timestamp="2015-07-17T02:46:17.000017+01:00" year="2015"/>
+      <ait:date-sort day="01" month="03" year="2015"/>
+      <ait:status stage="S300" state="update" type="core"/>
+    </ait:process-info>
+    <bibrecord>
+      <item-info>
+        <copyright type="Elsevier">Copyright 2015 Elsevier B.V., All rights reserved.</copyright>
+        <itemidlist>
+          <ce:pii>S0191886914006515</ce:pii>
+          <ce:doi>10.1016/j.paid.2014.11.019</ce:doi>
+          <itemid idtype="PUI">600582384</itemid>
+          <itemid idtype="CAR-ID">630187969</itemid>
+          <itemid idtype="NURSNG">2014563267</itemid>
+          <itemid idtype="SNPSYB">2014103780</itemid>
+          <itemid idtype="SCP">84911908650</itemid>
+          <itemid idtype="SGR">84911908650</itemid>
+        </itemidlist>
+        <history>
+          <date-created day="01" month="12" year="2014"/>
+        </history>
+        <dbcollection>NURSNG</dbcollection>
+        <dbcollection>SNPSYB</dbcollection>
+        <dbcollection>Scopusbase</dbcollection>
+      </item-info>
+      <head>
+        <citation-info>
+          <citation-type code="ar"/>
+          <citation-language language="English" xml:lang="eng"/>
+          <abstract-language language="English" xml:lang="eng"/>
+          <author-keywords>
+            <author-keyword>Assertiveness</author-keyword>
+            <author-keyword>Dominance</author-keyword>
+            <author-keyword>Fluctuating facial asymmetry</author-keyword>
+          </author-keywords>
+        </citation-info>
+        <citation-title>
+          <titletext language="English" original="y" xml:lang="eng">Facial asymmetry is negatively related to assertive personality but unrelated to dominant personality in men</titletext>
+        </citation-title>
+        <author-group>
+          <author auid="56407255800" seq="1" type="auth">
+            <ce:initials>J.I.</ce:initials>
+            <ce:indexed-name>Borraz-Leon J.I.</ce:indexed-name>
+            <ce:surname>Borráz-León</ce:surname>
+            <ce:given-name>Javier Iván</ce:given-name>
+            <preferred-name>
+              <ce:initials>J.I.</ce:initials>
+              <ce:indexed-name>Borráz-León J.</ce:indexed-name>
+              <ce:surname>Borráz-León</ce:surname>
+              <ce:given-name>Javier Iván</ce:given-name>
+            </preferred-name>
+            <ce:e-address type="email">javier_borraz@hotmail.com</ce:e-address>
+          </author>
+          <author auid="6507352624" seq="2" type="auth">
+            <ce:initials>A.L.</ce:initials>
+            <ce:indexed-name>Cerda-Molina A.L.</ce:indexed-name>
+            <ce:surname>Cerda-Molina</ce:surname>
+            <ce:given-name>Ana Lilia</ce:given-name>
+            <preferred-name>
+              <ce:initials>A.L.</ce:initials>
+              <ce:indexed-name>Cerda-Molina A.</ce:indexed-name>
+              <ce:surname>Cerda-Molina</ce:surname>
+              <ce:given-name>Ana Lilia</ce:given-name>
+            </preferred-name>
+          </author>
+          <affiliation afid="60001818" country="mex" dptid="103143189">
+            <organization>Departamento de Etología, Instituto Nacional de Psiquiatría Ramón de la Fuente Muñiz</organization>
+            <city>México D.F.</city>
+            <country>Mexico</country>
+          </affiliation>
+        </author-group>
+        <correspondence>
+          <person>
+            <ce:initials>J.I.</ce:initials>
+            <ce:indexed-name>Borraz-Leon J.I.</ce:indexed-name>
+            <ce:surname>Borráz-León</ce:surname>
+            <ce:given-name>Javier Iván</ce:given-name>
+          </person>
+          <affiliation country="mex">
+            <organization>Instituto Nacional de Psiquiatría Ramón de la Fuente Muñiz</organization>
+            <address-part>Calzada Mexico-Xochimilco 101, Col. San Lorenzo Huipulco</address-part>
+            <city>Tlalpan, México D.F.</city>
+            <postal-code>14370</postal-code>
+            <country>Mexico</country>
+          </affiliation>
+        </correspondence>
+        <abstracts>
+          <abstract original="y" xml:lang="eng">
+            <publishercopyright>© 2014 Elsevier Ltd.</publishercopyright>
+            <ce:para>Fluctuating asymmetry (FA) is a putative indicator of development instability in humans and other species, and some literature supports a women's preference for low degree of FA in opposite sex (e.g., symmetrical face). Also some personality traits associated to social status (e.g., dominance and assertiveness) are attractive to women due to direct and indirect benefits associated to high status. The aim of this work was to study the relationship between facial FA and dominant and assertive personalities. We found a negative correlation between facial FA and assertive personality but not between facial FA and dominant personality. Moreover, we found a positive correlation between assertive and dominant personality. Our results suggest that a low facial FA and assertive personality can be related to be advertising desirable traits and high status in men in order to be more attractive to women. This study supports the evidence shown by previous works which shows that a low facial FA is related with socially desirable and attractive aspects of personality.</ce:para>
+          </abstract>
+        </abstracts>
+        <source country="gbr" srcid="12807" type="j">
+          <sourcetitle>Personality and Individual Differences</sourcetitle>
+          <sourcetitle-abbrev>Pers. Individ. Differ.</sourcetitle-abbrev>
+          <translated-sourcetitle xml:lang="eng">Personality and Individual Differences</translated-sourcetitle>
+          <issn type="print">01918869</issn>
+          <codencode>PEIDD</codencode>
+          <volisspag>
+            <voliss volume="75"/>
+            <pagerange first="94" last="96"/>
+          </volisspag>
+          <publicationyear first="2015"/>
+          <publicationdate>
+            <year>2015</year>
+            <month>03</month>
+            <day>01</day>
+            <date-text>March 01, 2015</date-text>
+          </publicationdate>
+          <website>
+            <ce:e-address type="email">http://www.elsevier.com/locate/paid</ce:e-address>
+          </website>
+          <publisher>
+            <publishername>Elsevier Ltd</publishername>
+          </publisher>
+        </source>
+        <enhancement>
+          <classificationgroup>
+            <classifications type="ASJC">
+              <classification>3200</classification>
+            </classifications>
+            <classifications type="SUBJABBR">
+              <classification>PSYC</classification>
+            </classifications>
+          </classificationgroup>
+        </enhancement>
+      </head>
+      <tail>
+        <bibliography refcount="25">
+          <reference id="1">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Smarter people area (a bit) more symmetrical: A meta-analysis of the relationship between intelligence and fluctuating asymmetry</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">77954033219</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>G.C.</ce:initials>
+                  <ce:indexed-name>Banks G.C.</ce:indexed-name>
+                  <ce:surname>Banks</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>J.H.</ce:initials>
+                  <ce:indexed-name>Batchelor J.H.</ce:indexed-name>
+                  <ce:surname>Batchelor</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>M.A.</ce:initials>
+                  <ce:indexed-name>McDaniel M.A.</ce:indexed-name>
+                  <ce:surname>McDaniel</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Intelligence</ref-sourcetitle>
+              <ref-publicationyear first="2010"/>
+              <ref-volisspag>
+                <voliss issue="4" volume="38"/>
+                <pagerange first="393" last="401"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Banks G.C., Batchelor J.H., McDaniel M.A. Smarter people area (a bit) more symmetrical: A meta-analysis of the relationship between intelligence and fluctuating asymmetry. Intelligence 2010, 38(4):393-401.10.1016/j.intell.2010.04.003.</ref-fulltext>
+          </reference>
+          <reference id="2">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Symmetry, averageness, and features size in the facial attractiveness in women</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">16544380252</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>J.-Y.</ce:initials>
+                  <ce:indexed-name>Baudouin J.-Y.</ce:indexed-name>
+                  <ce:surname>Baudouin</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>G.</ce:initials>
+                  <ce:indexed-name>Tinbergen G.</ce:indexed-name>
+                  <ce:surname>Tinbergen</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Acta Psychologica</ref-sourcetitle>
+              <ref-publicationyear first="2004"/>
+              <ref-volisspag>
+                <voliss issue="3" volume="117"/>
+                <pagerange first="313" last="332"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Baudouin J.-Y., Tinbergen G. Symmetry, averageness, and features size in the facial attractiveness in women. Acta Psychologica 2004, 117(3):313-332.10.1016/j.actpsy.2004.07.002.</ref-fulltext>
+          </reference>
+          <reference id="3">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Steroid hormones and facial traits in the recognition of a potential rival in men</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">84908897497</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>J.I.</ce:initials>
+                  <ce:indexed-name>Borraz-Leon J.I.</ce:indexed-name>
+                  <ce:surname>Borráz-León</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>A.L.</ce:initials>
+                  <ce:indexed-name>Cerda-Molina A.L.</ce:indexed-name>
+                  <ce:surname>Cerda-Molina</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>L.</ce:initials>
+                  <ce:indexed-name>Hernandez-Lopez L.</ce:indexed-name>
+                  <ce:surname>Hernández-López</ce:surname>
+                </author>
+                <author seq="4">
+                  <ce:initials>R.</ce:initials>
+                  <ce:indexed-name>Chavira-Ramirez R.</ce:indexed-name>
+                  <ce:surname>Chavira-Ramírez</ce:surname>
+                </author>
+                <author seq="5">
+                  <ce:initials>C.</ce:initials>
+                  <ce:indexed-name>de la O-Rodriguez C.</ce:indexed-name>
+                  <ce:surname>de la O-Rodríguez</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Ethology</ref-sourcetitle>
+              <ref-publicationyear first="2014"/>
+              <ref-volisspag>
+                <voliss volume="120"/>
+                <pagerange first="1013" last="1023"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Borráz-León J.I., Cerda-Molina A.L., Hernández-López L., Chavira-Ramírez R., de la O-Rodríguez C. Steroid hormones and facial traits in the recognition of a potential rival in men. Ethology 2014, 120:1013-1023.10.1111/eth.12274.</ref-fulltext>
+          </reference>
+          <reference id="4">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Do women prefer dominant men? The case of the missing control condition</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">0345771922</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>J.M.</ce:initials>
+                  <ce:indexed-name>Burger J.M.</ce:indexed-name>
+                  <ce:surname>Burger</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>M.</ce:initials>
+                  <ce:indexed-name>Cosby M.</ce:indexed-name>
+                  <ce:surname>Cosby</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Journal of Research in Personality</ref-sourcetitle>
+              <ref-publicationyear first="1999"/>
+              <ref-volisspag>
+                <voliss volume="33"/>
+                <pagerange first="358" last="368"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Burger J.M., Cosby M. Do women prefer dominant men? The case of the missing control condition. Journal of Research in Personality 1999, 33:358-368.10.1006/jrpe.1999.2252.</ref-fulltext>
+          </reference>
+          <reference id="5">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Sex differences in human mate preferences: Evolutionary hypothesis tested in37 cultures</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">84936526508</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>D.M.</ce:initials>
+                  <ce:indexed-name>Buss D.M.</ce:indexed-name>
+                  <ce:surname>Buss</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Behavioral and Brain Sciences</ref-sourcetitle>
+              <ref-publicationyear first="1989"/>
+              <ref-volisspag>
+                <voliss volume="12"/>
+                <pagerange first="1" last="49"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Buss D.M. Sex differences in human mate preferences: Evolutionary hypothesis tested in37 cultures. Behavioral and Brain Sciences 1989, 12:1-49.10.1017/s0140525x00023992.</ref-fulltext>
+          </reference>
+          <reference id="6">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>High status men (but not women) capture the eye of the beholder</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">77955738522</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>C.N.</ce:initials>
+                  <ce:indexed-name>DeWall C.N.</ce:indexed-name>
+                  <ce:surname>DeWall</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>J.K.</ce:initials>
+                  <ce:indexed-name>Maner J.K.</ce:indexed-name>
+                  <ce:surname>Maner</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Evolutionary Psychology</ref-sourcetitle>
+              <ref-publicationyear first="2008"/>
+              <ref-volisspag>
+                <voliss issue="2" volume="6"/>
+                <pagerange first="328" last="341"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>DeWall C.N., Maner J.K. High status men (but not women) capture the eye of the beholder. Evolutionary Psychology 2008, 6(2):328-341.</ref-fulltext>
+          </reference>
+          <reference id="7">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Facial symmetry and the "big-five" personality factors</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">21844433182</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>B.</ce:initials>
+                  <ce:indexed-name>Fink B.</ce:indexed-name>
+                  <ce:surname>Fink</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>N.</ce:initials>
+                  <ce:indexed-name>Neave N.</ce:indexed-name>
+                  <ce:surname>Neave</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>J.T.</ce:initials>
+                  <ce:indexed-name>Manning J.T.</ce:indexed-name>
+                  <ce:surname>Manning</ce:surname>
+                </author>
+                <author seq="4">
+                  <ce:initials>K.</ce:initials>
+                  <ce:indexed-name>Grammer K.</ce:indexed-name>
+                  <ce:surname>Grammer</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Personality and Individual Differences</ref-sourcetitle>
+              <ref-publicationyear first="2005"/>
+              <ref-volisspag>
+                <voliss issue="3" volume="39"/>
+                <pagerange first="523" last="529"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Fink B., Neave N., Manning J.T., Grammer K. Facial symmetry and the "big-five" personality factors. Personality and Individual Differences 2005, 39(3):523-529.10.1016/j.paid.2005.02.002.</ref-fulltext>
+          </reference>
+          <reference id="8">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Facial symmetry and judgements of attractiveness, health and personality</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">33745753393</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>B.</ce:initials>
+                  <ce:indexed-name>Fink B.</ce:indexed-name>
+                  <ce:surname>Fink</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>N.</ce:initials>
+                  <ce:indexed-name>Neave N.</ce:indexed-name>
+                  <ce:surname>Neave</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>J.T.</ce:initials>
+                  <ce:indexed-name>Manning J.T.</ce:indexed-name>
+                  <ce:surname>Manning</ce:surname>
+                </author>
+                <author seq="4">
+                  <ce:initials>K.</ce:initials>
+                  <ce:indexed-name>Grammer K.</ce:indexed-name>
+                  <ce:surname>Grammer</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Personality and Individual Differences</ref-sourcetitle>
+              <ref-publicationyear first="2006"/>
+              <ref-volisspag>
+                <voliss volume="41"/>
+                <pagerange first="491" last="499"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Fink B., Neave N., Manning J.T., Grammer K. Facial symmetry and judgements of attractiveness, health and personality. Personality and Individual Differences 2006, 41:491-499.10.1016/j.paid.2006.01.017.</ref-fulltext>
+          </reference>
+          <reference id="9">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Fluctuating asymmetry and psychometric intelligence</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">0030795816</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>F.B.</ce:initials>
+                  <ce:indexed-name>Furlow F.B.</ce:indexed-name>
+                  <ce:surname>Furlow</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>T.A.</ce:initials>
+                  <ce:indexed-name>Prewitt T.A.</ce:indexed-name>
+                  <ce:surname>Prewitt</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>S.W.</ce:initials>
+                  <ce:indexed-name>Gangestad S.W.</ce:indexed-name>
+                  <ce:surname>Gangestad</ce:surname>
+                </author>
+                <author seq="4">
+                  <ce:initials>R.</ce:initials>
+                  <ce:indexed-name>Thornhill R.</ce:indexed-name>
+                  <ce:surname>Thornhill</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Proceedings of the Royal Society B</ref-sourcetitle>
+              <ref-publicationyear first="1997"/>
+              <ref-volisspag>
+                <voliss volume="264"/>
+                <pagerange first="823" last="829"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Furlow F.B., Prewitt T.A., Gangestad S.W., Thornhill R. Fluctuating asymmetry and psychometric intelligence. Proceedings of the Royal Society B 1997, 264:823-829.10.1098/rspb.1997.0115.</ref-fulltext>
+          </reference>
+          <reference id="10">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>The evolutionary psychology of extrapair sex: The role of fluctuating asymmetry</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">0031092291</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>S.W.</ce:initials>
+                  <ce:indexed-name>Gangestad S.W.</ce:indexed-name>
+                  <ce:surname>Gangestad</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>R.</ce:initials>
+                  <ce:indexed-name>Thornhill R.</ce:indexed-name>
+                  <ce:surname>Thornhill</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Evolution and Human Behavior</ref-sourcetitle>
+              <ref-publicationyear first="1997"/>
+              <ref-volisspag>
+                <voliss volume="18"/>
+                <pagerange first="69" last="88"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Gangestad S.W., Thornhill R. The evolutionary psychology of extrapair sex: The role of fluctuating asymmetry. Evolution and Human Behavior 1997, 18:69-88.10.1016/s1090-5138(97)00003-2.</ref-fulltext>
+          </reference>
+          <reference id="11">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>A broad-bandwidth, public domain, personality inventory measuring the lower-level facets of several five-factor models</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">0002490643</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>L.R.</ce:initials>
+                  <ce:indexed-name>Goldberg L.R.</ce:indexed-name>
+                  <ce:surname>Goldberg</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Personality Psychology in Europe</ref-sourcetitle>
+              <ref-publicationyear first="1999"/>
+              <ref-volisspag>
+                <pagerange first="7" last="28"/>
+              </ref-volisspag>
+              <ref-text>Tilburg University Press, Tillburg, The Netherlands, I. Mervielde, I. Deary, F. De Fruyt, F. Ostendorf (Eds.)</ref-text>
+            </ref-info>
+            <ref-fulltext>Goldberg L.R. A broad-bandwidth, public domain, personality inventory measuring the lower-level facets of several five-factor models. Personality Psychology in Europe 1999, 7-28. Tilburg University Press, Tillburg, The Netherlands. I. Mervielde, I. Deary, F. De Fruyt, F. Ostendorf (Eds.).</ref-fulltext>
+          </reference>
+          <reference id="12">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Human (Homo sapiens) facial attractiveness and sexual selection: The role of symmetry and averageness</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">0028502153</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>K.</ce:initials>
+                  <ce:indexed-name>Grammer K.</ce:indexed-name>
+                  <ce:surname>Grammer</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>R.</ce:initials>
+                  <ce:indexed-name>Thornhill R.</ce:indexed-name>
+                  <ce:surname>Thornhill</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Journal of Comparative Psychology</ref-sourcetitle>
+              <ref-publicationyear first="1994"/>
+              <ref-volisspag>
+                <voliss volume="108"/>
+                <pagerange first="233" last="242"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Grammer K., Thornhill R. Human (Homo sapiens) facial attractiveness and sexual selection: The role of symmetry and averageness. Journal of Comparative Psychology 1994, 108:233-242.10.1037/0735-7036.108.3.233.</ref-fulltext>
+          </reference>
+          <reference id="13">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Fluctuating asymmetry and personality</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">77957890181</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>D.</ce:initials>
+                  <ce:indexed-name>Hope D.</ce:indexed-name>
+                  <ce:surname>Hope</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>T.</ce:initials>
+                  <ce:indexed-name>Bates T.</ce:indexed-name>
+                  <ce:surname>Bates</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>L.</ce:initials>
+                  <ce:indexed-name>Penke L.</ce:indexed-name>
+                  <ce:surname>Penke</ce:surname>
+                </author>
+                <author seq="4">
+                  <ce:initials>A.J.</ce:initials>
+                  <ce:indexed-name>Gow A.J.</ce:indexed-name>
+                  <ce:surname>Gow</ce:surname>
+                </author>
+                <author seq="5">
+                  <ce:initials>J.M.</ce:initials>
+                  <ce:indexed-name>Starr J.M.</ce:indexed-name>
+                  <ce:surname>Starr</ce:surname>
+                </author>
+                <author seq="6">
+                  <ce:initials>I.J.</ce:initials>
+                  <ce:indexed-name>Deary I.J.</ce:indexed-name>
+                  <ce:surname>Deary</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Personality and Individual Differences</ref-sourcetitle>
+              <ref-publicationyear first="2011"/>
+              <ref-volisspag>
+                <voliss volume="50"/>
+                <pagerange first="49" last="52"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Hope D., Bates T., Penke L., Gow A.J., Starr J.M., Deary I.J. Fluctuating asymmetry and personality. Personality and Individual Differences 2011, 50:49-52.10.1016/j.paid.2010.08.020.</ref-fulltext>
+          </reference>
+          <reference id="14">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Facial attractiveness signals different aspects of "quality in women and men</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">0002189624</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>D.K.</ce:initials>
+                  <ce:indexed-name>Hume D.K.</ce:indexed-name>
+                  <ce:surname>Hume</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>R.</ce:initials>
+                  <ce:indexed-name>Montgomeri R.</ce:indexed-name>
+                  <ce:surname>Montgomeri</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Evolution and Human Behavior</ref-sourcetitle>
+              <ref-publicationyear first="2001"/>
+              <ref-volisspag>
+                <voliss volume="22"/>
+                <pagerange first="93" last="112"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Hume D.K., Montgomeri R. Facial attractiveness signals different aspects of "quality in women and men. Evolution and Human Behavior 2001, 22:93-112.10.1016/s1090-5138(00)00065-9.</ref-fulltext>
+          </reference>
+          <reference id="15">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Facial symmetry and judgments of apparent health. Support for a "good genes" explanation of the attractiveness-symmetry relationship</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">0042202917</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>B.C.</ce:initials>
+                  <ce:indexed-name>Jones B.C.</ce:indexed-name>
+                  <ce:surname>Jones</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>A.C.</ce:initials>
+                  <ce:indexed-name>Little A.C.</ce:indexed-name>
+                  <ce:surname>Little</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>I.S.</ce:initials>
+                  <ce:indexed-name>Penton-Voak I.S.</ce:indexed-name>
+                  <ce:surname>Penton-Voak</ce:surname>
+                </author>
+                <author seq="4">
+                  <ce:initials>B.P.</ce:initials>
+                  <ce:indexed-name>Tiddeman B.P.</ce:indexed-name>
+                  <ce:surname>Tiddeman</ce:surname>
+                </author>
+                <author seq="5">
+                  <ce:initials>D.M.</ce:initials>
+                  <ce:indexed-name>Burt D.M.</ce:indexed-name>
+                  <ce:surname>Burt</ce:surname>
+                </author>
+                <author seq="6">
+                  <ce:initials>D.I.</ce:initials>
+                  <ce:indexed-name>Perrett D.I.</ce:indexed-name>
+                  <ce:surname>Perrett</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Evolution and Human Behavior</ref-sourcetitle>
+              <ref-publicationyear first="2001"/>
+              <ref-volisspag>
+                <voliss volume="22"/>
+                <pagerange first="417" last="429"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Jones B.C., Little A.C., Penton-Voak I.S., Tiddeman B.P., Burt D.M., Perrett D.I. Facial symmetry and judgments of apparent health. Support for a "good genes" explanation of the attractiveness-symmetry relationship. Evolution and Human Behavior 2001, 22:417-429.10.1016/s1090-5138(01)00083-6.</ref-fulltext>
+          </reference>
+          <reference id="16">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Sexually selective cognition: beauty captures the mind of the beholder</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">0348252307</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>J.K.</ce:initials>
+                  <ce:indexed-name>Maner J.K.</ce:indexed-name>
+                  <ce:surname>Maner</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>D.T.</ce:initials>
+                  <ce:indexed-name>Kenrick D.T.</ce:indexed-name>
+                  <ce:surname>Kenrick</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>D.V.</ce:initials>
+                  <ce:indexed-name>Becker D.V.</ce:indexed-name>
+                  <ce:surname>Becker</ce:surname>
+                </author>
+                <author seq="4">
+                  <ce:initials>A.W.</ce:initials>
+                  <ce:indexed-name>Delton A.W.</ce:indexed-name>
+                  <ce:surname>Delton</ce:surname>
+                </author>
+                <author seq="5">
+                  <ce:initials>B.</ce:initials>
+                  <ce:indexed-name>Hofer B.</ce:indexed-name>
+                  <ce:surname>Hofer</ce:surname>
+                </author>
+                <author seq="6">
+                  <ce:initials>C.</ce:initials>
+                  <ce:indexed-name>Wilbur C.</ce:indexed-name>
+                  <ce:surname>Wilbur</ce:surname>
+                </author>
+                <et-al/>
+              </ref-authors>
+              <ref-sourcetitle>Journal of Personality and Social Psychology</ref-sourcetitle>
+              <ref-publicationyear first="2003"/>
+              <ref-volisspag>
+                <voliss volume="85"/>
+                <pagerange first="1107" last="1120"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Maner J.K., Kenrick D.T., Becker D.V., Delton A.W., Hofer B., Wilbur C., et al. Sexually selective cognition: beauty captures the mind of the beholder. Journal of Personality and Social Psychology 2003, 85:1107-1120.10.1037/0022-3514.85.6.1107.</ref-fulltext>
+          </reference>
+          <reference id="17">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Selective attention to signs of success: Social dominance and early stage interpersonal perception</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">40549093618</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>J.K.</ce:initials>
+                  <ce:indexed-name>Maner J.K.</ce:indexed-name>
+                  <ce:surname>Maner</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>C.N.</ce:initials>
+                  <ce:indexed-name>DeWall C.N.</ce:indexed-name>
+                  <ce:surname>DeWall</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>M.T.</ce:initials>
+                  <ce:indexed-name>Gailliot M.T.</ce:indexed-name>
+                  <ce:surname>Gailliot</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Personality and Social Psychology Bulletin</ref-sourcetitle>
+              <ref-publicationyear first="2008"/>
+              <ref-volisspag>
+                <voliss issue="4" volume="34"/>
+                <pagerange first="488" last="501"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Maner J.K., DeWall C.N., Gailliot M.T. Selective attention to signs of success: Social dominance and early stage interpersonal perception. Personality and Social Psychology Bulletin 2008, 34(4):488-501.10.1177/0146167207311910.</ref-fulltext>
+          </reference>
+          <reference id="18">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Developmental stability and fitness: A review</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">0030620317</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>A.P.</ce:initials>
+                  <ce:indexed-name>Moller A.P.</ce:indexed-name>
+                  <ce:surname>Møller</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>American Naturalist</ref-sourcetitle>
+              <ref-publicationyear first="1997"/>
+              <ref-volisspag>
+                <voliss volume="149"/>
+                <pagerange first="916" last="942"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Møller A.P. Developmental stability and fitness: A review. American Naturalist 1997, 149:916-942.10.1086/286030.</ref-fulltext>
+          </reference>
+          <reference id="19">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Facial fluctuating asymmetry is not associated with childhood ill-health in a large British cohort study</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">84911865967</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>N.</ce:initials>
+                  <ce:indexed-name>Pound N.</ce:indexed-name>
+                  <ce:surname>Pound</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>D.W.</ce:initials>
+                  <ce:indexed-name>Lawson D.W.</ce:indexed-name>
+                  <ce:surname>Lawson</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>A.M.</ce:initials>
+                  <ce:indexed-name>Toma A.M.</ce:indexed-name>
+                  <ce:surname>Toma</ce:surname>
+                </author>
+                <author seq="4">
+                  <ce:initials>S.</ce:initials>
+                  <ce:indexed-name>Richmond S.</ce:indexed-name>
+                  <ce:surname>Richmond</ce:surname>
+                </author>
+                <author seq="5">
+                  <ce:initials>A.I.</ce:initials>
+                  <ce:indexed-name>Zhurov A.I.</ce:indexed-name>
+                  <ce:surname>Zhurov</ce:surname>
+                </author>
+                <author seq="6">
+                  <ce:initials>I.S.</ce:initials>
+                  <ce:indexed-name>Penton-Voak I.S.</ce:indexed-name>
+                  <ce:surname>Penton-Voak</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Proceedings of the Royal Society B</ref-sourcetitle>
+              <ref-publicationyear first="2014"/>
+              <ref-text>20141639</ref-text>
+            </ref-info>
+            <ref-fulltext>Pound N., Lawson D.W., Toma A.M., Richmond S., Zhurov A.I., Penton-Voak I.S. Facial fluctuating asymmetry is not associated with childhood ill-health in a large British cohort study. Proceedings of the Royal Society B 2014, 20141639.10.1098/rspb.2014.1639.</ref-fulltext>
+          </reference>
+          <reference id="20">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Facial symmetry is positively associated with self-reported extraversion</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">34547181282</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>N.</ce:initials>
+                  <ce:indexed-name>Pound N.</ce:indexed-name>
+                  <ce:surname>Pound</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>I.S.</ce:initials>
+                  <ce:indexed-name>Penton-Voak I.S.</ce:indexed-name>
+                  <ce:surname>Penton-Voak</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>W.M.</ce:initials>
+                  <ce:indexed-name>Brown W.M.</ce:indexed-name>
+                  <ce:surname>Brown</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Personality and Individual Differences</ref-sourcetitle>
+              <ref-publicationyear first="2007"/>
+              <ref-volisspag>
+                <voliss volume="43"/>
+                <pagerange first="1572" last="1582"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Pound N., Penton-Voak I.S., Brown W.M. Facial symmetry is positively associated with self-reported extraversion. Personality and Individual Differences 2007, 43:1572-1582.10.1016/j.paid.2007.04.014.</ref-fulltext>
+          </reference>
+          <reference id="21">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Facial attractiveness, symmetry and cues to good genes</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">0033595517</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>J.E.</ce:initials>
+                  <ce:indexed-name>Scheib J.E.</ce:indexed-name>
+                  <ce:surname>Scheib</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>S.W.</ce:initials>
+                  <ce:indexed-name>Gangestad S.W.</ce:indexed-name>
+                  <ce:surname>Gangestad</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>R.</ce:initials>
+                  <ce:indexed-name>Thornhill R.</ce:indexed-name>
+                  <ce:surname>Thornhill</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Proceedings of the Royal Society B</ref-sourcetitle>
+              <ref-publicationyear first="1999"/>
+              <ref-volisspag>
+                <voliss volume="266"/>
+                <pagerange first="1913" last="1917"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Scheib J.E., Gangestad S.W., Thornhill R. Facial attractiveness, symmetry and cues to good genes. Proceedings of the Royal Society B 1999, 266:1913-1917.10.1098/rspb.1999.0866.</ref-fulltext>
+          </reference>
+          <reference id="22">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Testosterone increases perceived dominance but not attractiveness in human males</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">41049102317</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>J.P.</ce:initials>
+                  <ce:indexed-name>Swaddle J.P.</ce:indexed-name>
+                  <ce:surname>Swaddle</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>G.W.</ce:initials>
+                  <ce:indexed-name>Reirerson G.W.</ce:indexed-name>
+                  <ce:surname>Reirerson</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Proceedings of the Royal Society B</ref-sourcetitle>
+              <ref-publicationyear first="2002"/>
+              <ref-volisspag>
+                <voliss volume="269"/>
+                <pagerange first="2285" last="2289"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Swaddle J.P., Reirerson G.W. Testosterone increases perceived dominance but not attractiveness in human males. Proceedings of the Royal Society B 2002, 269:2285-2289.10.1098/rspb.2002.2165.</ref-fulltext>
+          </reference>
+          <reference id="23">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Human fluctuating asymmetry in relation to health and quality: A meta-analysis</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">80053572030</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>S.</ce:initials>
+                  <ce:indexed-name>Van Dongen S.</ce:indexed-name>
+                  <ce:surname>Van Dongen</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>S.W.</ce:initials>
+                  <ce:indexed-name>Gangestad S.W.</ce:indexed-name>
+                  <ce:surname>Gangestad</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Evolution and Human Behavior</ref-sourcetitle>
+              <ref-publicationyear first="2011"/>
+              <ref-volisspag>
+                <voliss issue="6" volume="32"/>
+                <pagerange first="380" last="398"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Van Dongen S., Gangestad S.W. Human fluctuating asymmetry in relation to health and quality: A meta-analysis. Evolution and Human Behavior 2011, 32(6):380-398.10.1016/j.evolhumbehav.2011.03.002.</ref-fulltext>
+          </reference>
+          <reference id="24">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>A study of fluctuating asymmetry</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">0001752931</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>L.</ce:initials>
+                  <ce:indexed-name>van Valen L.</ce:indexed-name>
+                  <ce:surname>van Valen</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Evolution</ref-sourcetitle>
+              <ref-publicationyear first="1962"/>
+              <ref-volisspag>
+                <voliss volume="16"/>
+                <pagerange first="125" last="142"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>van Valen L. A study of fluctuating asymmetry. Evolution 1962, 16:125-142.10.2307/2406192.</ref-fulltext>
+          </reference>
+          <reference id="25">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>The relationships between symmetry and attractiveness and mating relevant decisions and behavior: A review</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">84860427605</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>J.T.</ce:initials>
+                  <ce:indexed-name>Wade J.T.</ce:indexed-name>
+                  <ce:surname>Wade</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Symmetry</ref-sourcetitle>
+              <ref-publicationyear first="2010"/>
+              <ref-volisspag>
+                <voliss volume="2"/>
+                <pagerange first="1081" last="1098"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Wade J.T. The relationships between symmetry and attractiveness and mating relevant decisions and behavior: A review. Symmetry 2010, 2:1081-1098. 10.3390/sym2021081.</ref-fulltext>
+          </reference>
+        </bibliography>
+      </tail>
+    </bibrecord>
+  </item>
+</abstracts-retrieval-response>

@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<abstracts-retrieval-response xmlns="http://www.elsevier.com/xml/svapi/abstract/dtd" xmlns:ait="http://www.elsevier.com/xml/ani/ait" xmlns:ce="http://www.elsevier.com/xml/ani/common" xmlns:cto="http://www.elsevier.com/xml/cto/dtd" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:prism="http://prismstandard.org/namespaces/basic/2.0/" xmlns:xocs="http://www.elsevier.com/xml/xocs/dtd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <coredata>
+    <prism:url>http://api.elsevier.com/content/abstract/scopus_id/84985898201</prism:url>
+    <dc:identifier>SCOPUS_ID:84985898201</dc:identifier>
+    <eid>2-s2.0-84985898201</eid>
+    <prism:doi>10.1145/2930674.2936004</prism:doi>
+    <dc:title>Children's books: Paper vs digital, what do they prefer?</dc:title>
+    <prism:aggregationType>Conference Proceeding</prism:aggregationType>
+    <srctype>p</srctype>
+    <citedby-count>0</citedby-count>
+    <prism:publicationName>Proceedings of IDC 2016 - The 15th International Conference on Interaction Design and Children</prism:publicationName>
+    <dc:publisher> Association for Computing Machinery, Inc acmhelp@acm.org </dc:publisher>
+    <source-id>21100777461</source-id>
+    <prism:isbn>9781450343138</prism:isbn>
+    <prism:startingPage>625</prism:startingPage>
+    <prism:endingPage>630</prism:endingPage>
+    <prism:pageRange>625-630</prism:pageRange>
+    <prism:coverDate>2016-06-21</prism:coverDate>
+    <dc:creator>
+      <author auid="57191034328" seq="1">
+        <ce:initials>V.</ce:initials>
+        <ce:indexed-name>Cesario V.</ce:indexed-name>
+        <ce:surname>Cesário</ce:surname>
+        <ce:given-name>Vanessa</ce:given-name>
+        <preferred-name> <ce:initials>V.</ce:initials> <ce:indexed-name>Cesário V.</ce:indexed-name> <ce:surname>Cesário</ce:surname> <ce:given-name>Vanessa</ce:given-name> </preferred-name>
+        <author-url>http://api.elsevier.com/content/author/author_id/57191034328</author-url>
+        <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/117304232" id="117304232"/>
+      </author>
+    </dc:creator>
+    <dc:description>
+      <abstract original="y" xml:lang="eng"> <ce:para>In this paper we present a study through which we intended to understand children's preference towards book formats, in particular digital or paper ones. To accomplish this, we created an original story (Ritinha) illustrated by two children. The traditional book format was composed by static images and text. The digital format had animated images, hyperlinks to navigate to different parts of the story and static text complemented by an audio narrative. We conducted a field study with 105 children in order to observe in which format children would prefer to read a book: if in paper or in digital format. The method used to accomplish this task was direct observation.</ce:para> </abstract>
+    </dc:description>
+    <intid>84985898201</intid>
+    <link href="http://api.elsevier.com/content/abstract/scopus_id/84985898201" rel="self"/>
+    <link href="https://www.scopus.com/inward/record.uri?partnerID=HzOxMe3b&amp;scp=84985898201&amp;origin=inward" rel="scopus"/>
+    <link href="https://www.scopus.com/inward/citedby.uri?partnerID=HzOxMe3b&amp;scp=84985898201&amp;origin=inward" rel="scopus-citedby"/>
+  </coredata>
+  <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/117304232" id="117304232">
+    <affilname>Madeira Interactive Technologies Madeira Interactive Technologies Institute</affilname>
+    <affiliation-city/>
+    <affiliation-country>Portugal</affiliation-country>
+  </affiliation>
+  <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60016979" id="60016979">
+    <affilname>Universidade da Madeira</affilname>
+    <affiliation-city>Funchal</affiliation-city>
+    <affiliation-country>Portugal</affiliation-country>
+  </affiliation>
+  <authors>
+    <author auid="57191034328" seq="1">
+      <ce:initials>V.</ce:initials>
+      <ce:indexed-name>Cesario V.</ce:indexed-name>
+      <ce:surname>Cesário</ce:surname>
+      <ce:given-name>Vanessa</ce:given-name>
+      <preferred-name> <ce:initials>V.</ce:initials> <ce:indexed-name>Cesário V.</ce:indexed-name> <ce:surname>Cesário</ce:surname> <ce:given-name>Vanessa</ce:given-name> </preferred-name>
+      <author-url>http://api.elsevier.com/content/author/author_id/57191034328</author-url>
+      <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/117304232" id="117304232"/>
+    </author>
+    <author auid="22433754200" seq="2">
+      <ce:initials>V.</ce:initials>
+      <ce:indexed-name>Nisi V.</ce:indexed-name>
+      <ce:surname>Nisi</ce:surname>
+      <ce:given-name>Valentina</ce:given-name>
+      <preferred-name> <ce:initials>V.</ce:initials> <ce:indexed-name>Nisi V.</ce:indexed-name> <ce:surname>Nisi</ce:surname> <ce:given-name>Valentina</ce:given-name> </preferred-name>
+      <author-url>http://api.elsevier.com/content/author/author_id/22433754200</author-url>
+      <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/117304232" id="117304232"/>
+    </author>
+    <author auid="43961008600" seq="3">
+      <ce:initials>P.</ce:initials>
+      <ce:indexed-name>Freitas P.</ce:indexed-name>
+      <ce:surname>Freitas</ce:surname>
+      <ce:given-name>Paulo</ce:given-name>
+      <preferred-name> <ce:initials>P.</ce:initials> <ce:indexed-name>Freitas P.</ce:indexed-name> <ce:surname>Freitas</ce:surname> <ce:given-name>Paulo</ce:given-name> </preferred-name>
+      <author-url>http://api.elsevier.com/content/author/author_id/43961008600</author-url>
+    </author>
+    <author auid="57191042188" seq="4">
+      <ce:initials>D.</ce:initials>
+      <ce:indexed-name>Pimentel D.</ce:indexed-name>
+      <ce:surname>Pimentel</ce:surname>
+      <ce:given-name>Diana</ce:given-name>
+      <preferred-name> <ce:initials>D.</ce:initials> <ce:indexed-name>Pimentel D.</ce:indexed-name> <ce:surname>Pimentel</ce:surname> <ce:given-name>Diana</ce:given-name> </preferred-name>
+      <author-url>http://api.elsevier.com/content/author/author_id/57191042188</author-url>
+      <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60016979" id="60016979"/>
+    </author>
+  </authors>
+  <language xml:lang="eng"/>
+  <authkeywords>
+    <author-keyword>Children</author-keyword>
+    <author-keyword>Digital books</author-keyword>
+    <author-keyword>Drawing</author-keyword>
+    <author-keyword>Hypertext</author-keyword>
+    <author-keyword>Interaction design</author-keyword>
+    <author-keyword>Paper books</author-keyword>
+  </authkeywords>
+  <idxterms candidate="n" weight="b">
+    <mainterm>Children</mainterm>
+    <mainterm>Digital books</mainterm>
+    <mainterm>Hypertext</mainterm>
+    <mainterm>Interaction design</mainterm>
+    <mainterm>Paper book</mainterm>
+  </idxterms>
+  <subject-areas>
+    <subject-area abbrev="COMP" code="1712">Software</subject-area>
+    <subject-area abbrev="SOCI" code="3304">Education</subject-area>
+    <subject-area abbrev="PSYC" code="3204">Developmental and Educational Psychology</subject-area>
+    <subject-area abbrev="COMP" code="1709">Human-Computer Interaction</subject-area>
+  </subject-areas>
+  <item xmlns="">
+    <ait:process-info>
+      <ait:date-delivered day="13" month="09" timestamp="2016-09-13T12:00:03.000003+01:00" year="2016"/>
+      <ait:date-sort day="21" month="06" year="2016"/>
+      <ait:status stage="S300" state="new" type="core"/>
+    </ait:process-info>
+    <bibrecord>
+      <item-info>
+        <copyright type="Elsevier">Copyright 2016 Elsevier B.V., All rights reserved.</copyright>
+        <itemidlist> <ce:doi>10.1145/2930674.2936004</ce:doi> <itemid idtype="PUI">612051592</itemid> <itemid idtype="CAR-ID">654972827</itemid> <itemid idtype="CPX">20163702793549</itemid> <itemid idtype="SCP">84985898201</itemid> <itemid idtype="SGR">84985898201</itemid> </itemidlist>
+        <history> <date-created day="12" month="09" timestamp="BST 05:11:30" year="2016"/> </history>
+        <dbcollection>CPX</dbcollection>
+        <dbcollection>Scopusbase</dbcollection>
+      </item-info>
+      <head>
+        <citation-info>
+          <citation-type code="cp"/>
+          <citation-language language="English" xml:lang="eng"/>
+          <abstract-language language="English" xml:lang="eng"/>
+          <author-keywords> <author-keyword>Children</author-keyword> <author-keyword>Digital books</author-keyword> <author-keyword>Drawing</author-keyword> <author-keyword>Hypertext</author-keyword> <author-keyword>Interaction design</author-keyword> <author-keyword>Paper books</author-keyword> </author-keywords>
+        </citation-info>
+        <citation-title>
+          <titletext language="English" original="y" xml:lang="eng">Children's books: Paper vs digital, what do they prefer?</titletext>
+        </citation-title>
+        <author-group>
+          <author auid="57191034328" seq="1" type="auth"> <ce:initials>V.</ce:initials> <ce:indexed-name>Cesario V.</ce:indexed-name> <ce:surname>Cesário</ce:surname> <ce:given-name>Vanessa</ce:given-name> <preferred-name> <ce:initials>V.</ce:initials> <ce:indexed-name>Cesário V.</ce:indexed-name> <ce:surname>Cesário</ce:surname> <ce:given-name>Vanessa</ce:given-name> </preferred-name> <ce:e-address type="email">vanessa.cesario@m-iti.org</ce:e-address> </author>
+          <author auid="22433754200" seq="2" type="auth"> <ce:initials>V.</ce:initials> <ce:indexed-name>Nisi V.</ce:indexed-name> <ce:surname>Nisi</ce:surname> <ce:given-name>Valentina</ce:given-name> <preferred-name> <ce:initials>V.</ce:initials> <ce:indexed-name>Nisi V.</ce:indexed-name> <ce:surname>Nisi</ce:surname> <ce:given-name>Valentina</ce:given-name> </preferred-name> <ce:e-address type="email">valentina.nisi@m-iti.org</ce:e-address> </author>
+          <affiliation afid="117304232" country="prt">
+            <organization>Madeira Interactive Technologies Madeira Interactive Technologies Institute</organization>
+            <city>Madeira-Island</city>
+            <country>Portugal</country>
+          </affiliation>
+        </author-group>
+        <author-group>
+          <author auid="43961008600" seq="3" type="auth"> <ce:initials>P.</ce:initials> <ce:indexed-name>Freitas P.</ce:indexed-name> <ce:surname>Freitas</ce:surname> <ce:given-name>Paulo</ce:given-name> <preferred-name> <ce:initials>P.</ce:initials> <ce:indexed-name>Freitas P.</ce:indexed-name> <ce:surname>Freitas</ce:surname> <ce:given-name>Paulo</ce:given-name> </preferred-name> <ce:e-address type="email">paulo.freitas@wowsystems.pt</ce:e-address> </author>
+          <affiliation country="prt">
+            <organization>WowSystems</organization>
+            <city>Madeira-Island</city>
+            <country>Portugal</country>
+          </affiliation>
+        </author-group>
+        <author-group>
+          <author auid="57191042188" seq="4" type="auth"> <ce:initials>D.</ce:initials> <ce:indexed-name>Pimentel D.</ce:indexed-name> <ce:surname>Pimentel</ce:surname> <ce:given-name>Diana</ce:given-name> <preferred-name> <ce:initials>D.</ce:initials> <ce:indexed-name>Pimentel D.</ce:indexed-name> <ce:surname>Pimentel</ce:surname> <ce:given-name>Diana</ce:given-name> </preferred-name> <ce:e-address type="email">dp@uma.pt</ce:e-address> </author>
+          <affiliation afid="60016979" country="prt">
+            <organization>Madeira University</organization>
+            <city>Madeira-Island</city>
+            <country>Portugal</country>
+          </affiliation>
+        </author-group>
+        <abstracts>
+          <abstract original="y" xml:lang="eng"> <ce:para>In this paper we present a study through which we intended to understand children's preference towards book formats, in particular digital or paper ones. To accomplish this, we created an original story (Ritinha) illustrated by two children. The traditional book format was composed by static images and text. The digital format had animated images, hyperlinks to navigate to different parts of the story and static text complemented by an audio narrative. We conducted a field study with 105 children in order to observe in which format children would prefer to read a book: if in paper or in digital format. The method used to accomplish this task was direct observation.</ce:para> </abstract>
+        </abstracts>
+        <source country="usa" srcid="21100777461" type="p">
+          <sourcetitle>Proceedings of IDC 2016 - The 15th International Conference on Interaction Design and Children</sourcetitle>
+          <sourcetitle-abbrev>Proc. IDC - Int. Conf. Interact. Des. Child.</sourcetitle-abbrev>
+          <translated-sourcetitle xml:lang="eng">Proceedings of IDC 2016 - The 15th International Conference on Interaction Design and Children</translated-sourcetitle>
+          <issuetitle>Proceedings of IDC 2016 - The 15th International Conference on Interaction Design and Children</issuetitle>
+          <isbn length="13" type="electronic">9781450343138</isbn>
+          <volisspag> <pagerange first="625" last="630"/> </volisspag>
+          <publicationyear first="2016"/>
+          <publicationdate> <year>2016</year> <month>06</month> <day>21</day> <date-text xfab-added="true">21 June 2016</date-text></publicationdate>
+          <publisher> <publishername>Association for Computing Machinery, Inc</publishername> <ce:e-address type="email">acmhelp@acm.org</ce:e-address> </publisher>
+          <additional-srcinfo> <conferenceinfo> <confevent> <confname>15th International Conference on Interaction Design and Children, IDC 2016</confname> <confnumber>15</confnumber> <confseriestitle>International Conference on Interaction Design and Children</confseriestitle> <conflocation country="gbr"> <city>Manchester</city> </conflocation> <confdate> <startdate day="21" month="06" year="2016"/> <enddate day="24" month="06" year="2016"/> </confdate> <confURL>www.idc2016.org</confURL> <confcode>123251</confcode> <confsponsors complete="n"> <confsponsor>ACM Special Interest Group on Computer-Human Interaction (SIGCHI)</confsponsor> </confsponsors> </confevent> </conferenceinfo> </additional-srcinfo>
+        </source>
+        <enhancement>
+          <classificationgroup>
+            <classifications type="ASJC"> <classification>1712</classification> <classification>3304</classification> <classification>3204</classification> <classification>1709</classification> </classifications>
+            <classifications type="CPXCLASS"> <classification> <classification-code>902.1</classification-code> <classification-description>Engineering Graphics</classification-description> </classification> </classifications>
+            <classifications type="FLXCLASS"> <classification> <classification-code>902</classification-code> <classification-description>FLUIDEX; Related Topics</classification-description> </classification> </classifications>
+            <classifications type="SUBJABBR">
+              <classification>COMP</classification>
+              <classification>SOCI</classification>
+              <classification>PSYC</classification>
+            </classifications>
+          </classificationgroup>
+        </enhancement>
+      </head>
+      <tail>
+        <bibliography refcount="3"> <reference id="1"> <ref-info> <refd-itemidlist> <itemid idtype="SGR">84985942101</itemid> </refd-itemidlist> <ref-authors> <author seq="1"> <ce:initials>E.</ce:initials> <ce:indexed-name>Aarseth E.</ce:indexed-name> <ce:surname>Aarseth</ce:surname> </author> </ref-authors> <ref-sourcetitle>Cibertexto - Perspectivas Sobre a Literartura Ergódica</ref-sourcetitle> <ref-publicationyear first="2005"/> <ref-text>Pedra de Roseta, Lisboa</ref-text> </ref-info> <ref-fulltext>Aarseth, Espen. 2005. Cibertexto - Perspectivas sobre a Literartura Ergódica. Pedra de Roseta, Lisboa.</ref-fulltext> </reference> <reference id="2"> <ref-info> <refd-itemidlist> <itemid idtype="SGR">84930829373</itemid> </refd-itemidlist> <ref-authors> <author seq="1"> <ce:initials>J.A.</ce:initials> <ce:indexed-name>Furtado J.A.</ce:indexed-name> <ce:surname>Furtado</ce:surname> </author> </ref-authors> <ref-sourcetitle>O Papele o Pixel - Do Impresso Ao Digital: Continuidades e Transformações. Escritório do Livro</ref-sourcetitle> <ref-publicationyear first="2006"/> <ref-text>Florianópolis</ref-text> </ref-info> <ref-fulltext>Furtado, José Afonso. 2006. O Papele o Pixel - do Impresso ao Digital: Continuidades e Transformações. Escritório do Livro, Florianópolis.</ref-fulltext> </reference> <reference id="3"> <ref-info> <refd-itemidlist> <itemid idtype="SGR">84985918082</itemid> </refd-itemidlist> <ref-authors> <author seq="1"> <ce:initials>E.</ce:initials> <ce:indexed-name>Packard E.</ce:indexed-name> <ce:surname>Packard</ce:surname> </author> </ref-authors> <ref-sourcetitle>The Cave of Time - Choose Your Own Adventures Series</ref-sourcetitle> <ref-publicationyear first="1982"/> <ref-text>Random House Children's Books, USA</ref-text> </ref-info> <ref-fulltext>Packard, Edward. 1982. The Cave of Time - Choose Your Own Adventures Series. Random House Children's Books, USA.</ref-fulltext> </reference> </bibliography>
+      </tail>
+    </bibrecord>
+  </item>
+</abstracts-retrieval-response>

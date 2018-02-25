@@ -1,5 +1,5 @@
 require_relative 'spec_helper.rb'
-require_relative '../lib/sinatra_xeditable_select'
+require_relative '../lib/sinatra/xeditable_select'
 describe 'Sinatra::Xeditable_Select::Select class ' do
   before do
 

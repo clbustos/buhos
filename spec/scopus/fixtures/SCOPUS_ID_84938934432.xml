@@ -1,0 +1,3498 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<abstracts-retrieval-response xmlns="http://www.elsevier.com/xml/svapi/abstract/dtd" xmlns:ait="http://www.elsevier.com/xml/ani/ait" xmlns:ce="http://www.elsevier.com/xml/ani/common" xmlns:cto="http://www.elsevier.com/xml/cto/dtd" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:prism="http://prismstandard.org/namespaces/basic/2.0/" xmlns:xocs="http://www.elsevier.com/xml/xocs/dtd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <coredata>
+    <prism:url>http://api.elsevier.com/content/abstract/scopus_id/84938934432</prism:url>
+    <dc:identifier>SCOPUS_ID:84938934432</dc:identifier>
+    <eid>2-s2.0-84938934432</eid>
+    <prism:doi>10.1027/1016-9040/a000222</prism:doi>
+    <dc:title>Psychophysiological assessment of stress under ecological settings: A systematic review</dc:title>
+    <prism:aggregationType>Journal</prism:aggregationType>
+    <srctype>j</srctype>
+    <citedby-count>0</citedby-count>
+    <prism:publicationName>European Psychologist</prism:publicationName>
+    <dc:publisher>
+Hogrefe Publishing
+customerservice@hogrefe-publishing.com
+</dc:publisher>
+    <source-id>14120</source-id>
+    <prism:issn>1878531X</prism:issn>
+    <prism:volume>20</prism:volume>
+    <prism:issueIdentifier>3</prism:issueIdentifier>
+    <prism:startingPage>204</prism:startingPage>
+    <prism:endingPage>226</prism:endingPage>
+    <prism:pageRange>204-226</prism:pageRange>
+    <prism:coverDate>2015-01-01</prism:coverDate>
+    <dc:creator>
+      <author auid="56770728400" seq="1">
+        <ce:initials>S.</ce:initials>
+        <ce:indexed-name>Rodrigues S.</ce:indexed-name>
+        <ce:degrees>Ph.D.</ce:degrees>
+        <ce:surname>Rodrigues</ce:surname>
+        <ce:given-name>Susana</ce:given-name>
+        <preferred-name>
+<ce:initials>S.</ce:initials>
+<ce:indexed-name>Rodrigues S.</ce:indexed-name>
+<ce:surname>Rodrigues</ce:surname>
+<ce:given-name>Susana</ce:given-name>
+</preferred-name>
+        <author-url>http://api.elsevier.com/content/author/author_id/56770728400</author-url>
+        <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60007249" id="60007249"/>
+      </author>
+    </dc:creator>
+    <dc:description>
+      <abstract original="y" xml:lang="eng">
+<publishercopyright>© 2015 Hogrefe Publishing.</publishercopyright>
+<ce:para>Stress can negatively impact one's health and well-being, however, despite the recent evolution in stress assessment research methodologies, there is still little agreement about stress conceptualization and assessment. In an attempt to summarize and reflect on this evolution, this paper aims to systematically review research evidence of ecological approaches on psychophysiological stress assessment. Thus, a literature search of electronic databases was conducted spanning 22 years (1990-2012) and 55 studies were reviewed. Studies were considered for inclusion if they contemplated both psychological and physiological measures of stress under ecological settings. This review focuses on five themes: methodology terminology, research population, study design, measurement, and technology. Findings support the need to use a common methodology terminology in order to increase scientific rigor. Additionally, there seems to be an increasing tendency for the use of these methods by multidisciplinary teams among both clinical and nonclinical populations aiming to understand the relationship between stress and disease. Most of the studies reviewed contemplated a time-based protocol and different conceptualizations of stress were found, resulting in the use of different subjective measures. Findings reinforce the importance of combining subjective and objective measures while also controlling for possible time- or situation-dependent confounders'. Advances in technology were evident and different assessment techniques were found. The benefits and challenges of ecological protocols to assess stress are discussed and recommendations for future research are provided, aiming to overcome previous limitations and advance scientific knowledge in the area.</ce:para>
+</abstract>
+    </dc:description>
+    <intid>537533823</intid>
+    <link href="http://api.elsevier.com/content/abstract/scopus_id/84938934432" rel="self"/>
+    <link href="http://www.scopus.com/inward/record.url?partnerID=HzOxMe3b&amp;scp=84938934432&amp;origin=inward" rel="scopus"/>
+  </coredata>
+  <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60032773" id="60032773">
+    <affilname>Leeds Beckett University</affilname>
+    <affiliation-city>Leeds</affiliation-city>
+    <affiliation-country>United Kingdom</affiliation-country>
+  </affiliation>
+  <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60007249" id="60007249">
+    <affilname>Universidade do Porto</affilname>
+    <affiliation-city>Porto</affiliation-city>
+    <affiliation-country>Portugal</affiliation-country>
+  </affiliation>
+  <authors>
+    <author auid="56770728400" seq="1">
+      <ce:initials>S.</ce:initials>
+      <ce:indexed-name>Rodrigues S.</ce:indexed-name>
+      <ce:degrees>Ph.D.</ce:degrees>
+      <ce:surname>Rodrigues</ce:surname>
+      <ce:given-name>Susana</ce:given-name>
+      <preferred-name>
+<ce:initials>S.</ce:initials>
+<ce:indexed-name>Rodrigues S.</ce:indexed-name>
+<ce:surname>Rodrigues</ce:surname>
+<ce:given-name>Susana</ce:given-name>
+</preferred-name>
+      <author-url>http://api.elsevier.com/content/author/author_id/56770728400</author-url>
+      <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60007249" id="60007249"/>
+    </author>
+    <author auid="16238701300" seq="2">
+      <ce:initials>M.</ce:initials>
+      <ce:indexed-name>Kaiseler M.</ce:indexed-name>
+      <ce:surname>Kaiseler</ce:surname>
+      <ce:given-name>Mariana</ce:given-name>
+      <preferred-name>
+<ce:initials>M.</ce:initials>
+<ce:indexed-name>Kaiseler M.</ce:indexed-name>
+<ce:surname>Kaiseler</ce:surname>
+<ce:given-name>Mariana</ce:given-name>
+</preferred-name>
+      <author-url>http://api.elsevier.com/content/author/author_id/16238701300</author-url>
+      <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60032773" id="60032773"/>
+      <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60032773" id="60032773"/>
+    </author>
+    <author auid="32868048200" seq="3">
+      <ce:initials>C.</ce:initials>
+      <ce:indexed-name>Queiros C.</ce:indexed-name>
+      <ce:degrees>Prof.</ce:degrees>
+      <ce:surname>Queirós</ce:surname>
+      <ce:given-name>Cristina</ce:given-name>
+      <preferred-name>
+<ce:initials>C.</ce:initials>
+<ce:indexed-name>Queirós C.</ce:indexed-name>
+<ce:surname>Queirós</ce:surname>
+<ce:given-name>Cristina</ce:given-name>
+</preferred-name>
+      <author-url>http://api.elsevier.com/content/author/author_id/32868048200</author-url>
+      <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60007249" id="60007249"/>
+    </author>
+  </authors>
+  <language xml:lang="eng"/>
+  <authkeywords>
+    <author-keyword>Ecological approaches</author-keyword>
+    <author-keyword>Psychological and physiological measures</author-keyword>
+    <author-keyword>Stress assessment</author-keyword>
+    <author-keyword>Systematic review</author-keyword>
+  </authkeywords>
+  <idxterms/>
+  <subject-areas>
+    <subject-area abbrev="PSYC" code="3200">Psychology (all)</subject-area>
+    <subject-area abbrev="ARTS" code="1201">Arts and Humanities (miscellaneous)</subject-area>
+  </subject-areas>
+  <item xmlns="">
+    <ait:process-info>
+      <ait:date-delivered day="19" month="08" timestamp="2015-08-19T03:48:16.000016+01:00" year="2015"/>
+      <ait:date-sort day="01" month="01" year="2015"/>
+      <ait:status stage="S300" state="new" type="core"/>
+    </ait:process-info>
+    <bibrecord>
+      <item-info>
+        <copyright type="Elsevier">Copyright 2015 Elsevier B.V., All rights reserved.</copyright>
+        <itemidlist>
+<ce:doi>10.1027/1016-9040/a000222</ce:doi>
+<itemid idtype="PUI">605594494</itemid>
+<itemid idtype="CAR-ID">638799716</itemid>
+<itemid idtype="SNPSYB">2015123889</itemid>
+<itemid idtype="SCP">84938934432</itemid>
+<itemid idtype="SGR">84938934432</itemid>
+</itemidlist>
+        <history>
+<date-created day="15" month="08" year="2015"/>
+</history>
+        <dbcollection>SNPSYB</dbcollection>
+        <dbcollection>Scopusbase</dbcollection>
+      </item-info>
+      <head>
+        <citation-info>
+          <citation-type code="re"/>
+          <citation-language language="English" xml:lang="eng"/>
+          <abstract-language language="English" xml:lang="eng"/>
+          <author-keywords>
+<author-keyword>Ecological approaches</author-keyword>
+<author-keyword>Psychological and physiological measures</author-keyword>
+<author-keyword>Stress assessment</author-keyword>
+<author-keyword>Systematic review</author-keyword>
+</author-keywords>
+        </citation-info>
+        <citation-title>
+          <titletext language="English" original="y" xml:lang="eng">Psychophysiological assessment of stress under ecological settings: A systematic review</titletext>
+        </citation-title>
+        <author-group>
+          <author auid="56770728400" seq="1" type="auth">
+<ce:initials>S.</ce:initials>
+<ce:indexed-name>Rodrigues S.</ce:indexed-name>
+<ce:degrees>Ph.D.</ce:degrees>
+<ce:surname>Rodrigues</ce:surname>
+<ce:given-name>Susana</ce:given-name>
+<preferred-name>
+<ce:initials>S.</ce:initials>
+<ce:indexed-name>Rodrigues S.</ce:indexed-name>
+<ce:surname>Rodrigues</ce:surname>
+<ce:given-name>Susana</ce:given-name>
+</preferred-name>
+</author>
+          <author auid="32868048200" seq="3" type="auth">
+<ce:initials>C.</ce:initials>
+<ce:indexed-name>Queiros C.</ce:indexed-name>
+<ce:degrees>Prof.</ce:degrees>
+<ce:surname>Queirós</ce:surname>
+<ce:given-name>Cristina</ce:given-name>
+<preferred-name>
+<ce:initials>C.</ce:initials>
+<ce:indexed-name>Queirós C.</ce:indexed-name>
+<ce:surname>Queirós</ce:surname>
+<ce:given-name>Cristina</ce:given-name>
+</preferred-name>
+</author>
+          <affiliation afid="60007249" country="prt" dptid="103401925">
+            <organization>Psychosocial Rehabilitation Laboratory, Faculty of Psychology and Educational Sciences, Porto University</organization>
+            <country>Portugal</country>
+          </affiliation>
+        </author-group>
+        <author-group>
+          <author auid="16238701300" seq="2" type="auth">
+<ce:initials>M.</ce:initials>
+<ce:indexed-name>Kaiseler M.</ce:indexed-name>
+<ce:surname>Kaiseler</ce:surname>
+<ce:given-name>Mariana</ce:given-name>
+<preferred-name>
+<ce:initials>M.</ce:initials>
+<ce:indexed-name>Kaiseler M.</ce:indexed-name>
+<ce:surname>Kaiseler</ce:surname>
+<ce:given-name>Mariana</ce:given-name>
+</preferred-name>
+<ce:e-address type="email">m.h.kaiseler@leedsbeckett.ac.uk</ce:e-address>
+</author>
+          <affiliation afid="60032773" country="gbr" dptid="113431956">
+            <organization>Institute for Sport, Physical Activity and Leisure, Leeds Beckett University</organization>
+            <country>United Kingdom</country>
+          </affiliation>
+        </author-group>
+        <author-group>
+          <author auid="16238701300" seq="2" type="auth">
+<ce:initials>M.</ce:initials>
+<ce:indexed-name>Kaiseler M.</ce:indexed-name>
+<ce:surname>Kaiseler</ce:surname>
+<ce:given-name>Mariana</ce:given-name>
+<preferred-name>
+<ce:initials>M.</ce:initials>
+<ce:indexed-name>Kaiseler M.</ce:indexed-name>
+<ce:surname>Kaiseler</ce:surname>
+<ce:given-name>Mariana</ce:given-name>
+</preferred-name>
+<ce:e-address type="email">m.h.kaiseler@leedsbeckett.ac.uk</ce:e-address>
+</author>
+          <affiliation afid="60032773" country="gbr" dptid="105819841">
+            <organization>Carnegie Faculty, Leeds Beckett University</organization>
+            <address-part>Fairfax Hall 207, Headingley Campus</address-part>
+            <city>Leeds</city>
+            <postal-code>LS6 3QT</postal-code>
+            <country>United Kingdom</country>
+          </affiliation>
+        </author-group>
+        <abstracts>
+          <abstract original="y" xml:lang="eng">
+<publishercopyright>© 2015 Hogrefe Publishing.</publishercopyright>
+<ce:para>Stress can negatively impact one's health and well-being, however, despite the recent evolution in stress assessment research methodologies, there is still little agreement about stress conceptualization and assessment. In an attempt to summarize and reflect on this evolution, this paper aims to systematically review research evidence of ecological approaches on psychophysiological stress assessment. Thus, a literature search of electronic databases was conducted spanning 22 years (1990-2012) and 55 studies were reviewed. Studies were considered for inclusion if they contemplated both psychological and physiological measures of stress under ecological settings. This review focuses on five themes: methodology terminology, research population, study design, measurement, and technology. Findings support the need to use a common methodology terminology in order to increase scientific rigor. Additionally, there seems to be an increasing tendency for the use of these methods by multidisciplinary teams among both clinical and nonclinical populations aiming to understand the relationship between stress and disease. Most of the studies reviewed contemplated a time-based protocol and different conceptualizations of stress were found, resulting in the use of different subjective measures. Findings reinforce the importance of combining subjective and objective measures while also controlling for possible time- or situation-dependent confounders'. Advances in technology were evident and different assessment techniques were found. The benefits and challenges of ecological protocols to assess stress are discussed and recommendations for future research are provided, aiming to overcome previous limitations and advance scientific knowledge in the area.</ce:para>
+</abstract>
+        </abstracts>
+        <source country="usa" srcid="14120" type="j">
+          <sourcetitle>European Psychologist</sourcetitle>
+          <sourcetitle-abbrev>Eur. Psychol.</sourcetitle-abbrev>
+          <translated-sourcetitle xml:lang="eng">European Psychologist</translated-sourcetitle>
+          <issn type="electronic">1878531X</issn>
+          <issn type="print">10169040</issn>
+          <volisspag>
+<voliss issue="3" volume="20"/>
+<pagerange first="204" last="226"/>
+</volisspag>
+          <publicationyear first="2015"/>
+          <publicationdate>
+<year>2015</year>
+<month>07</month>
+<day>01</day>
+<date-text xfab-added="true">1 July 2015</date-text></publicationdate>
+          <website>
+<ce:e-address type="email">http://econtent.hogrefe.com/doi/pdf/10.1027/1016-9040/a000222</ce:e-address>
+</website>
+          <publisher>
+<publishername>Hogrefe Publishing</publishername>
+<ce:e-address type="email">customerservice@hogrefe-publishing.com</ce:e-address>
+</publisher>
+        </source>
+        <enhancement>
+          <classificationgroup>
+            <classifications type="ASJC">
+<classification>3200</classification>
+<classification>1201</classification>
+</classifications>
+            <classifications type="SUBJABBR">
+              <classification>PSYC</classification>
+              <classification>ARTS</classification>
+            </classifications>
+          </classificationgroup>
+        </enhancement>
+      </head>
+      <tail>
+        <bibliography refcount="89">
+<reference id="1">
+<ref-info>
+<ref-title>
+<ref-titletext>The daily inventory of stressful events: An interview-based approach for measuring daily stressors</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">0036512641</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>D.M.</ce:initials>
+<ce:indexed-name>Almeida D.M.</ce:indexed-name>
+<ce:surname>Almeida</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>E.</ce:initials>
+<ce:indexed-name>Wethington E.</ce:indexed-name>
+<ce:surname>Wethington</ce:surname>
+</author>
+<author seq="3">
+<ce:initials>R.C.</ce:initials>
+<ce:indexed-name>Kessler R.C.</ce:indexed-name>
+<ce:surname>Kessler</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Assessment</ref-sourcetitle>
+<ref-publicationyear first="2002"/>
+<ref-volisspag>
+<voliss volume="9"/>
+<pagerange first="41" last="55"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Almeida, D. M., Wethington, E., &amp; Kessler, R. C. (2002). The daily inventory of stressful events: An interview-based approach for measuring daily stressors. Assessment, 9, 41-55. doi: 10.1177/1073191102091006</ref-fulltext>
+</reference>
+<reference id="2">
+<ref-info>
+<ref-title>
+<ref-titletext>Maritalrole quality and stress-related psychobiological indicators</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">23944447077</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>R.C.</ce:initials>
+<ce:indexed-name>Barnett R.C.</ce:indexed-name>
+<ce:surname>Barnett</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>A.</ce:initials>
+<ce:indexed-name>Steptoe A.</ce:indexed-name>
+<ce:surname>Steptoe</ce:surname>
+</author>
+<author seq="3">
+<ce:initials>K.C.</ce:initials>
+<ce:indexed-name>Gareis K.C.</ce:indexed-name>
+<ce:surname>Gareis</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Annuals of Behavioral Medicine</ref-sourcetitle>
+<ref-publicationyear first="2005"/>
+<ref-volisspag>
+<voliss volume="30"/>
+<pagerange first="36" last="43"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Barnett, R. C., Steptoe, A., &amp; Gareis, K. C. (2005). Maritalrole quality and stress-related psychobiological indicators. Annuals of Behavioral Medicine, 30, 36-43.</ref-fulltext>
+</reference>
+<reference id="3">
+<ref-info>
+<ref-title>
+<ref-titletext>Ambulatory cardiovascular activity in Vietnam combat veterans with and without posttraumatic stress disorder</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">0033803168</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>J.C.</ce:initials>
+<ce:indexed-name>Beckham J.C.</ce:indexed-name>
+<ce:surname>Beckham</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>M.E.</ce:initials>
+<ce:indexed-name>Feldman M.E.</ce:indexed-name>
+<ce:surname>Feldman</ce:surname>
+</author>
+<author seq="3">
+<ce:initials>J.C.</ce:initials>
+<ce:indexed-name>Barefoot J.C.</ce:indexed-name>
+<ce:surname>Barefoot</ce:surname>
+</author>
+<author seq="4">
+<ce:initials>J.A.</ce:initials>
+<ce:indexed-name>Fairbank J.A.</ce:indexed-name>
+<ce:surname>Fairbank</ce:surname>
+</author>
+<author seq="5">
+<ce:initials>M.J.</ce:initials>
+<ce:indexed-name>Helms M.J.</ce:indexed-name>
+<ce:surname>Helms</ce:surname>
+</author>
+<author seq="6">
+<ce:initials>T.L.</ce:initials>
+<ce:indexed-name>Haney T.L.</ce:indexed-name>
+<ce:surname>Haney</ce:surname>
+</author>
+<author seq="7">
+<ce:initials>J.R.T.</ce:initials>
+<ce:indexed-name>Davidson J.R.T.</ce:indexed-name>
+<ce:surname>Davidson</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Journal of Consulting and Clinical Psychology</ref-sourcetitle>
+<ref-publicationyear first="2000"/>
+<ref-volisspag>
+<voliss volume="68"/>
+<pagerange first="269" last="276"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Beckham, J. C., Feldman, M. E., Barefoot, J. C., Fairbank, J. A., Helms, M. J., Haney, T. L.,⋯ Davidson, J. R. T. (2000). Ambulatory cardiovascular activity in Vietnam combat veterans with and without posttraumatic stress disorder. Journal of Consulting and Clinical Psychology, 68, 269-276. doi: 10.1037/0022-006X.68.2.269</ref-fulltext>
+</reference>
+<reference id="4">
+<ref-info>
+<ref-title>
+<ref-titletext>Immediate antecedents of cigarette smoking in smokers with and without posttraumatic stress disorder: A preliminary study</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">24944495197</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>J.C.</ce:initials>
+<ce:indexed-name>Beckham J.C.</ce:indexed-name>
+<ce:surname>Beckham</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>M.E.</ce:initials>
+<ce:indexed-name>Feldam M.E.</ce:indexed-name>
+<ce:surname>Feldam</ce:surname>
+</author>
+<author seq="3">
+<ce:initials>S.R.</ce:initials>
+<ce:indexed-name>Vrana S.R.</ce:indexed-name>
+<ce:surname>Vrana</ce:surname>
+</author>
+<author seq="4">
+<ce:initials>S.L.</ce:initials>
+<ce:indexed-name>Mozley S.L.</ce:indexed-name>
+<ce:surname>Mozley</ce:surname>
+</author>
+<author seq="5">
+<ce:initials>A.</ce:initials>
+<ce:indexed-name>Erkanli A.</ce:indexed-name>
+<ce:surname>Erkanli</ce:surname>
+</author>
+<author seq="6">
+<ce:initials>C.P.</ce:initials>
+<ce:indexed-name>Clancy C.P.</ce:indexed-name>
+<ce:surname>Clancy</ce:surname>
+</author>
+<author seq="7">
+<ce:initials>J.E.</ce:initials>
+<ce:indexed-name>Rose J.E.</ce:indexed-name>
+<ce:surname>Rose</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Experimental and Clinical Psychopharmacology</ref-sourcetitle>
+<ref-publicationyear first="2005"/>
+<ref-volisspag>
+<voliss volume="13"/>
+<pagerange first="219" last="228"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Beckham, J. C., Feldam, M. E., Vrana, S. R., Mozley, S. L., Erkanli, A., Clancy, C. P., &amp; Rose, J. E. (2005). Immediate antecedents of cigarette smoking in smokers with and without posttraumatic stress disorder: A preliminary study. Experimental and Clinical Psychopharmacology, 13, 219-228. doi: 10.1037/1064-1297.13.3.219</ref-fulltext>
+</reference>
+<reference id="5">
+<ref-info>
+<ref-title>
+<ref-titletext>Negative eating and body attitudes are associated with increased daytime ambulatory blood pressure in healthy young women</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">79551632226</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>J.L.</ce:initials>
+<ce:indexed-name>Bedford J.L.</ce:indexed-name>
+<ce:surname>Bedford</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>W.</ce:initials>
+<ce:indexed-name>Linden W.</ce:indexed-name>
+<ce:surname>Linden</ce:surname>
+</author>
+<author seq="3">
+<ce:initials>S.I.</ce:initials>
+<ce:indexed-name>Barr S.I.</ce:indexed-name>
+<ce:surname>Barr</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>International Journal of Psychophysiology</ref-sourcetitle>
+<ref-publicationyear first="2011"/>
+<ref-volisspag>
+<voliss volume="79"/>
+<pagerange first="147" last="154"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Bedford, J. L., Linden, W., &amp; Barr, S. I. (2011). Negative eating and body attitudes are associated with increased daytime ambulatory blood pressure in healthy young women. International Journal of Psychophysiology, 79, 147-154. doi: 10.1016/j.ijpsycho.2010.09.013</ref-fulltext>
+</reference>
+<reference id="6">
+<ref-info>
+<ref-title>
+<ref-titletext>Hostility, social support, and ambulatory cardiovascular activity</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">0030907981</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>E.G.</ce:initials>
+<ce:indexed-name>Benotsch E.G.</ce:indexed-name>
+<ce:surname>Benotsch</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>A.J.</ce:initials>
+<ce:indexed-name>Christensen A.J.</ce:indexed-name>
+<ce:surname>Christensen</ce:surname>
+</author>
+<author seq="3">
+<ce:initials>L.</ce:initials>
+<ce:indexed-name>McKelvey L.</ce:indexed-name>
+<ce:surname>McKelvey</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Journal of Behavioral Medicine</ref-sourcetitle>
+<ref-publicationyear first="1997"/>
+<ref-volisspag>
+<voliss volume="20"/>
+<pagerange first="163" last="176"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Benotsch, E. G., Christensen, A. J., &amp; McKelvey, L. (1997). Hostility, social support, and ambulatory cardiovascular activity. Journal of Behavioral Medicine, 20, 163-176.</ref-fulltext>
+</reference>
+<reference id="7">
+<ref-info>
+<ref-title>
+<ref-titletext>Job demands, decisional control, and cardiovascular responses</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">0038262835</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>G.D.</ce:initials>
+<ce:indexed-name>Bishop G.D.</ce:indexed-name>
+<ce:surname>Bishop</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>H.C.</ce:initials>
+<ce:indexed-name>Enkelmann H.C.</ce:indexed-name>
+<ce:surname>Enkelmann</ce:surname>
+</author>
+<author seq="3">
+<ce:initials>E.M.W.</ce:initials>
+<ce:indexed-name>Tong E.M.W.</ce:indexed-name>
+<ce:surname>Tong</ce:surname>
+</author>
+<author seq="4">
+<ce:initials>Y.P.</ce:initials>
+<ce:indexed-name>Why Y.P.</ce:indexed-name>
+<ce:surname>Why</ce:surname>
+</author>
+<author seq="5">
+<ce:initials>S.M.</ce:initials>
+<ce:indexed-name>Diong S.M.</ce:indexed-name>
+<ce:surname>Diong</ce:surname>
+</author>
+<author seq="6">
+<ce:initials>J.</ce:initials>
+<ce:indexed-name>Ang J.</ce:indexed-name>
+<ce:surname>Ang</ce:surname>
+</author>
+<author seq="7">
+<ce:initials>M.</ce:initials>
+<ce:indexed-name>Khader M.</ce:indexed-name>
+<ce:surname>Khader</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Journal of Occupational Health Psychology</ref-sourcetitle>
+<ref-publicationyear first="2003"/>
+<ref-volisspag>
+<voliss volume="8"/>
+<pagerange first="146" last="156"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Bishop, G. D., Enkelmann, H. C., Tong, E. M. W., Why, Y. P., Diong, S. M., Ang, J., &amp; Khader, M. (2003). Job demands, decisional control, and cardiovascular responses. Journal of Occupational Health Psychology, 8, 146-156. doi: 10.1037/10768998.8.2.146</ref-fulltext>
+</reference>
+<reference id="8">
+<ref-info>
+<ref-title>
+<ref-titletext>Asking the experts: Developing and validating parental diaries to assess children's minor injuries</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">38349188905</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>J.</ce:initials>
+<ce:indexed-name>Boody J.</ce:indexed-name>
+<ce:surname>Boody</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>M.</ce:initials>
+<ce:indexed-name>Smith M.</ce:indexed-name>
+<ce:surname>Smith</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>International Journal of Social Research Methodology</ref-sourcetitle>
+<ref-publicationyear first="2008"/>
+<ref-volisspag>
+<voliss volume="11"/>
+<pagerange first="63" last="77"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Boody, J., &amp; Smith, M. (2008). Asking the experts: Developing and validating parental diaries to assess children's minor injuries. International Journal of Social Research Methodology, 11, 63-77. doi: 10.1080/13645570701621894</ref-fulltext>
+</reference>
+<reference id="9">
+<ref-info>
+<ref-title>
+<ref-titletext>Diary methods: Capturing life as it is lived</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">0141715205</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>N.</ce:initials>
+<ce:indexed-name>Bolger N.</ce:indexed-name>
+<ce:surname>Bolger</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>A.</ce:initials>
+<ce:indexed-name>Davis A.</ce:indexed-name>
+<ce:surname>Davis</ce:surname>
+</author>
+<author seq="3">
+<ce:initials>E.</ce:initials>
+<ce:indexed-name>Rafaeli E.</ce:indexed-name>
+<ce:surname>Rafaeli</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Annual Review of Psychology</ref-sourcetitle>
+<ref-publicationyear first="2003"/>
+<ref-volisspag>
+<voliss volume="54"/>
+<pagerange first="579" last="616"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Bolger, N., Davis, A., &amp; Rafaeli, E. (2003). Diary methods: Capturing life as it is lived. Annual Review of Psychology, 54, 579-616. doi: 10.1146/54.101601.145030</ref-fulltext>
+</reference>
+<reference id="10">
+<ref-info>
+<ref-title>
+<ref-titletext>Trait hostility and ambulatory blood pressure among traffic enforcement agents: The effects of stressful social interactions</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">65249136450</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>E.</ce:initials>
+<ce:indexed-name>Brondolo E.</ce:indexed-name>
+<ce:surname>Brondolo</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>K.I.</ce:initials>
+<ce:indexed-name>Grantham K.I.</ce:indexed-name>
+<ce:surname>Grantham</ce:surname>
+</author>
+<author seq="3">
+<ce:initials>W.</ce:initials>
+<ce:indexed-name>Karlin W.</ce:indexed-name>
+<ce:surname>Karlin</ce:surname>
+</author>
+<author seq="4">
+<ce:initials>J.</ce:initials>
+<ce:indexed-name>Taravella J.</ce:indexed-name>
+<ce:surname>Taravella</ce:surname>
+</author>
+<author seq="5">
+<ce:initials>A.</ce:initials>
+<ce:indexed-name>Mencia-Ripley A.</ce:indexed-name>
+<ce:surname>Mencía-Ripley</ce:surname>
+</author>
+<author seq="6">
+<ce:initials>J.E.</ce:initials>
+<ce:indexed-name>Schwartz J.E.</ce:indexed-name>
+<ce:surname>Schwartz</ce:surname>
+</author>
+<author seq="7">
+<ce:initials>R.J.</ce:initials>
+<ce:indexed-name>Contrada R.J.</ce:indexed-name>
+<ce:surname>Contrada</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Journal of Occupational Health Psychology</ref-sourcetitle>
+<ref-publicationyear first="2009"/>
+<ref-volisspag>
+<voliss volume="14"/>
+<pagerange first="110" last="121"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Brondolo, E., Grantham, K. I., Karlin, W., Taravella, J., Mencía-Ripley, A., Schwartz, J. E.,⋯ Contrada, R. J. (2009). Trait hostility and ambulatory blood pressure among traffic enforcement agents: The effects of stressful social interactions. Journal of Occupational Health Psychology, 14, 110-121. doi: 10.1037/a0014768110</ref-fulltext>
+</reference>
+<reference id="11">
+<ref-info>
+<ref-title>
+<ref-titletext>Twenty-four-hour ambulatory assessment of heart rate and blood pressure in chronic PTSD and non-PTSD veterans</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">3442881622</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>T.C.</ce:initials>
+<ce:indexed-name>Buckley T.C.</ce:indexed-name>
+<ce:surname>Buckley</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>D.</ce:initials>
+<ce:indexed-name>Holohan D.</ce:indexed-name>
+<ce:surname>Holohan</ce:surname>
+</author>
+<author seq="3">
+<ce:initials>J.L.</ce:initials>
+<ce:indexed-name>Greif J.L.</ce:indexed-name>
+<ce:surname>Greif</ce:surname>
+</author>
+<author seq="4">
+<ce:initials>M.</ce:initials>
+<ce:indexed-name>Bedard M.</ce:indexed-name>
+<ce:surname>Bedard</ce:surname>
+</author>
+<author seq="5">
+<ce:initials>M.</ce:initials>
+<ce:indexed-name>Suvak M.</ce:indexed-name>
+<ce:surname>Suvak</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Journal of Traumatic Stress</ref-sourcetitle>
+<ref-publicationyear first="2004"/>
+<ref-volisspag>
+<voliss volume="17"/>
+<pagerange first="163" last="171"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Buckley, T. C., Holohan, D., Greif, J. L., Bedard, M., &amp; Suvak, M. (2004). Twenty-four-hour ambulatory assessment of heart rate and blood pressure in chronic PTSD and non-PTSD veterans. Journal of Traumatic Stress, 17, 163-171.</ref-fulltext>
+</reference>
+<reference id="12">
+<ref-info>
+<ref-title>
+<ref-titletext>Asthma self-efficacy, high frequency heart rate variability, and airflow obstruction during negative affect in daily life</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">33748099882</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>T.S.</ce:initials>
+<ce:indexed-name>Campbell T.S.</ce:indexed-name>
+<ce:surname>Campbell</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>K.L.</ce:initials>
+<ce:indexed-name>Lavoie K.L.</ce:indexed-name>
+<ce:surname>Lavoie</ce:surname>
+</author>
+<author seq="3">
+<ce:initials>S.L.</ce:initials>
+<ce:indexed-name>Bacon S.L.</ce:indexed-name>
+<ce:surname>Bacon</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>International Journal of Psychophysiology</ref-sourcetitle>
+<ref-publicationyear first="2006"/>
+<ref-volisspag>
+<voliss volume="62"/>
+<pagerange first="109" last="114"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Campbell, T. S., Lavoie, K. L., &amp; Bacon, S. L. (2006). Asthma self-efficacy, high frequency heart rate variability, and airflow obstruction during negative affect in daily life. International Journal of Psychophysiology, 62, 109-114. doi: 10.1016/j.ijpsycho.2006.02.005</ref-fulltext>
+</reference>
+<reference id="13">
+<ref-info>
+<ref-title>
+<ref-titletext>Ambulatory blood pressure and marital distress in employed women</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">0034490059</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>R.A.</ce:initials>
+<ce:indexed-name>Carels R.A.</ce:indexed-name>
+<ce:surname>Carels</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>A.</ce:initials>
+<ce:indexed-name>Sherwood A.</ce:indexed-name>
+<ce:surname>Sherwood</ce:surname>
+</author>
+<author seq="3">
+<ce:initials>R.</ce:initials>
+<ce:indexed-name>Szczepanski R.</ce:indexed-name>
+<ce:surname>Szczepanski</ce:surname>
+</author>
+<author seq="4">
+<ce:initials>J.A.</ce:initials>
+<ce:indexed-name>Blumenthal J.A.</ce:indexed-name>
+<ce:surname>Blumenthal</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Behavioral Medicine</ref-sourcetitle>
+<ref-publicationyear first="2000"/>
+<ref-volisspag>
+<voliss volume="26"/>
+<pagerange first="80" last="85"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Carels, R. A., Sherwood, A., Szczepanski, R., &amp; Blumenthal, J. A. (2000). Ambulatory blood pressure and marital distress in employed women. Behavioral Medicine, 26, 80-85. doi: 10.1080/08964280009595755</ref-fulltext>
+</reference>
+<reference id="14">
+<ref-info>
+<ref-title>
+<ref-titletext>Reporting, updating, and correcting systematic reviews of the effects of health care</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">0002690731</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>I.</ce:initials>
+<ce:indexed-name>Chalmers I.</ce:indexed-name>
+<ce:surname>Chalmers</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>B.</ce:initials>
+<ce:indexed-name>Haynes B.</ce:indexed-name>
+<ce:surname>Haynes</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Systematic Reviews</ref-sourcetitle>
+<ref-publicationyear first="1995"/>
+<ref-volisspag>
+<pagerange first="86" last="95"/>
+</ref-volisspag>
+<ref-text>I. Chalmers &amp; D. G. Altman (Eds.), London, UK: BMJ</ref-text>
+</ref-info>
+<ref-fulltext>Chalmers, I., &amp; Haynes, B. (1995). Reporting, updating, and correcting systematic reviews of the effects of health care. In I. Chalmers &amp; D. G. Altman (Eds.), Systematic reviews (pp. 86-95). London, UK: BMJ.</ref-fulltext>
+</reference>
+<reference id="15">
+<ref-info>
+<ref-title>
+<ref-titletext>Strategies for measuring stress in studies of psychiatric and physical disorders</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">0003179447</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>S.</ce:initials>
+<ce:indexed-name>Cohen S.</ce:indexed-name>
+<ce:surname>Cohen</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>R.</ce:initials>
+<ce:indexed-name>Kessler R.</ce:indexed-name>
+<ce:surname>Kessler</ce:surname>
+</author>
+<author seq="3">
+<ce:initials>L.</ce:initials>
+<ce:indexed-name>Underwood Gordon L.</ce:indexed-name>
+<ce:surname>Underwood Gordon</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Measuring Stress</ref-sourcetitle>
+<ref-publicationyear first="1995"/>
+<ref-volisspag>
+<pagerange first="3" last="28"/>
+</ref-volisspag>
+<ref-text>S. Cohen, R. Kesseler, &amp; L. Underwood Gordon (Eds.), New York, NY: Oxford University Press</ref-text>
+</ref-info>
+<ref-fulltext>Cohen, S., Kessler, R., &amp; Underwood Gordon, L. (1995). Strategies for measuring stress in studies of psychiatric and physical disorders. In S. Cohen, R. Kesseler, &amp; L. Underwood Gordon (Eds.), Measuring stress (pp. 3-28). New York, NY: Oxford University Press.</ref-fulltext>
+</reference>
+<reference id="16">
+<ref-info>
+<ref-title>
+<ref-titletext>Daily cortisol, stress reactivity and psychotic experiences in individuals at above average genetic risk for psychosis</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">80054946576</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>D.</ce:initials>
+<ce:indexed-name>Collip D.</ce:indexed-name>
+<ce:surname>Collip</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>N.A.</ce:initials>
+<ce:indexed-name>Nicolson N.A.</ce:indexed-name>
+<ce:surname>Nicolson</ce:surname>
+</author>
+<author seq="3">
+<ce:initials>M.</ce:initials>
+<ce:indexed-name>Lardinois M.</ce:indexed-name>
+<ce:surname>Lardinois</ce:surname>
+</author>
+<author seq="4">
+<ce:initials>T.</ce:initials>
+<ce:indexed-name>Lataster T.</ce:indexed-name>
+<ce:surname>Lataster</ce:surname>
+</author>
+<author seq="5">
+<ce:initials>J.</ce:initials>
+<ce:indexed-name>Van Os J.</ce:indexed-name>
+<ce:surname>Van Os</ce:surname>
+</author>
+<author seq="6">
+<ce:initials>I.</ce:initials>
+<ce:indexed-name>Myinugermeys I.</ce:indexed-name>
+<ce:surname>Myinùgermeys</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Psychological Medicine</ref-sourcetitle>
+<ref-publicationyear first="2011"/>
+<ref-volisspag>
+<voliss volume="41"/>
+<pagerange first="2305" last="2315"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Collip, D., Nicolson, N. A., Lardinois, M., Lataster, T., van Os, J., &amp; MyinÙGermeys, I. (2011). Daily cortisol, stress reactivity and psychotic experiences in individuals at above average genetic risk for psychosis. Psychological Medicine, 41, 2305-2315. doi: 10.1017/S0033291711000602</ref-fulltext>
+</reference>
+<reference id="17">
+<ref-info>
+<ref-title>
+<ref-titletext>Error-monitoring ability predicts daily stress regulation</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">47649083574</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>R.J.</ce:initials>
+<ce:indexed-name>Compton R.J.</ce:indexed-name>
+<ce:surname>Compton</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>M.D.</ce:initials>
+<ce:indexed-name>Robinson M.D.</ce:indexed-name>
+<ce:surname>Robinson</ce:surname>
+</author>
+<author seq="3">
+<ce:initials>S.</ce:initials>
+<ce:indexed-name>Ode S.</ce:indexed-name>
+<ce:surname>Ode</ce:surname>
+</author>
+<author seq="4">
+<ce:initials>L.C.</ce:initials>
+<ce:indexed-name>Quandt L.C.</ce:indexed-name>
+<ce:surname>Quandt</ce:surname>
+</author>
+<author seq="5">
+<ce:initials>S.L.</ce:initials>
+<ce:indexed-name>Fineman S.L.</ce:indexed-name>
+<ce:surname>Fineman</ce:surname>
+</author>
+<author seq="6">
+<ce:initials>J.</ce:initials>
+<ce:indexed-name>Carp J.</ce:indexed-name>
+<ce:surname>Carp</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Psychological Science</ref-sourcetitle>
+<ref-publicationyear first="2008"/>
+<ref-volisspag>
+<voliss volume="19"/>
+<pagerange first="702" last="708"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Compton, R. J., Robinson, M. D., Ode, S., Quandt, L. C., Fineman, S. L., &amp; Carp, J. (2008). Error-monitoring ability predicts daily stress regulation. Psychological Science, 19, 702-708.</ref-fulltext>
+</reference>
+<reference id="18">
+<ref-info>
+<ref-title>
+<ref-titletext>Test anxiety and cardiovascular responses to daily academic stressors</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">84856093719</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>K.M.</ce:initials>
+<ce:indexed-name>Conley K.M.</ce:indexed-name>
+<ce:surname>Conley</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>B.J.</ce:initials>
+<ce:indexed-name>Lehman B.J.</ce:indexed-name>
+<ce:surname>Lehman</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Stress and Health</ref-sourcetitle>
+<ref-publicationyear first="2012"/>
+<ref-volisspag>
+<voliss volume="28"/>
+<pagerange first="41" last="50"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Conley, K. M., &amp; Lehman, B. J. (2012). Test anxiety and cardiovascular responses to daily academic stressors. Stress and Health, 28, 41-50. doi: 10.1002/smi.1399</ref-fulltext>
+</reference>
+<reference id="19">
+<ref-info>
+<ref-title>
+<ref-titletext>Gender differences in immediate antecedents of ad lib cigarette smoking in smokers with and without posttraumatic stress disorder: A preliminary report</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">40949107707</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>M.F.</ce:initials>
+<ce:indexed-name>Dennis M.F.</ce:indexed-name>
+<ce:surname>Dennis</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>C.P.</ce:initials>
+<ce:indexed-name>Clancy C.P.</ce:indexed-name>
+<ce:surname>Clancy</ce:surname>
+</author>
+<author seq="3">
+<ce:initials>J.C.</ce:initials>
+<ce:indexed-name>Beckham J.C.</ce:indexed-name>
+<ce:surname>Beckham</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Journal of Psychoactive Drugs</ref-sourcetitle>
+<ref-publicationyear first="2007"/>
+<ref-volisspag>
+<voliss volume="39"/>
+<pagerange first="479" last="485"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Dennis, M. F., Clancy, C. P., &amp; Beckham, J. C. (2007). Gender differences in immediate antecedents of ad lib cigarette smoking in smokers with and without posttraumatic stress disorder: A preliminary report. Journal of Psychoactive Drugs, 39, 479-485.</ref-fulltext>
+</reference>
+<reference id="20">
+<ref-info>
+<ref-title>
+<ref-titletext>Racial/ethnic differences in cortisol diurnal rhythms in a community sample of adolescents</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">34250368463</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>A.S.</ce:initials>
+<ce:indexed-name>DeSantis A.S.</ce:indexed-name>
+<ce:surname>DeSantis</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>E.K.</ce:initials>
+<ce:indexed-name>Adam E.K.</ce:indexed-name>
+<ce:surname>Adam</ce:surname>
+</author>
+<author seq="3">
+<ce:initials>L.D.</ce:initials>
+<ce:indexed-name>Doane L.D.</ce:indexed-name>
+<ce:surname>Doane</ce:surname>
+</author>
+<author seq="4">
+<ce:initials>S.</ce:initials>
+<ce:indexed-name>Mineka S.</ce:indexed-name>
+<ce:surname>Mineka</ce:surname>
+</author>
+<author seq="5">
+<ce:initials>R.E.</ce:initials>
+<ce:indexed-name>Zinbarg R.E.</ce:indexed-name>
+<ce:surname>Zinbarg</ce:surname>
+</author>
+<author seq="6">
+<ce:initials>M.G.</ce:initials>
+<ce:indexed-name>Craske M.G.</ce:indexed-name>
+<ce:surname>Craske</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Journal of Adolescent Health</ref-sourcetitle>
+<ref-publicationyear first="2007"/>
+<ref-volisspag>
+<voliss volume="41"/>
+<pagerange first="3" last="13"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>DeSantis, A. S., Adam, E. K., Doane, L. D., Mineka, S., Zinbarg, R. E., &amp; Craske, M. G. (2007). Racial/ethnic differences in cortisol diurnal rhythms in a community sample of adolescents. Journal of Adolescent Health, 41, 3-13. doi: 10.1016/j.jadohealth.2007.03.006</ref-fulltext>
+</reference>
+<reference id="21">
+<ref-info>
+<ref-title>
+<ref-titletext>Loneliness and cortisol: Momentary, day-to-day, and trait associations</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">77649270700</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>L.D.</ce:initials>
+<ce:indexed-name>Doane L.D.</ce:indexed-name>
+<ce:surname>Doane</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>E.K.</ce:initials>
+<ce:indexed-name>Adam E.K.</ce:indexed-name>
+<ce:surname>Adam</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Psychoneuroendocrinology</ref-sourcetitle>
+<ref-publicationyear first="2010"/>
+<ref-volisspag>
+<voliss volume="35"/>
+<pagerange first="430" last="441"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Doane, L. D., &amp; Adam, E. K. (2010). Loneliness and cortisol: Momentary, day-to-day, and trait associations. Psychoneuroendocrinology, 35, 430-441. doi: 10.1016/j.psyneuen.2009.08.005</ref-fulltext>
+</reference>
+<reference id="22">
+<ref-info>
+<ref-title>
+<ref-titletext>Comparison of affect ratings obtained with ecological momentary assessment and the day reconstruction method</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">77957683066</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>A.</ce:initials>
+<ce:indexed-name>Dockray A.</ce:indexed-name>
+<ce:surname>Dockray</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>N.</ce:initials>
+<ce:indexed-name>Grant N.</ce:indexed-name>
+<ce:surname>Grant</ce:surname>
+</author>
+<author seq="3">
+<ce:initials>A.A.</ce:initials>
+<ce:indexed-name>Stone A.A.</ce:indexed-name>
+<ce:surname>Stone</ce:surname>
+</author>
+<author seq="4">
+<ce:initials>D.</ce:initials>
+<ce:indexed-name>Kahneman D.</ce:indexed-name>
+<ce:surname>Kahneman</ce:surname>
+</author>
+<author seq="5">
+<ce:initials>J.</ce:initials>
+<ce:indexed-name>Wardle J.</ce:indexed-name>
+<ce:surname>Wardle</ce:surname>
+</author>
+<author seq="6">
+<ce:initials>A.</ce:initials>
+<ce:indexed-name>Steptoe A.</ce:indexed-name>
+<ce:surname>Steptoe</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Social Indicators Research</ref-sourcetitle>
+<ref-publicationyear first="2010"/>
+<ref-volisspag>
+<voliss volume="99"/>
+<pagerange first="269" last="283"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Dockray, A., Grant, N., Stone, A. A., Kahneman, D., Wardle, J., &amp; Steptoe, A. (2010). Comparison of affect ratings obtained with ecological momentary assessment and the day reconstruction method. Social Indicators Research, 99, 269-283. doi: 10.1007/s11205-010-9578-7</ref-fulltext>
+</reference>
+<reference id="23">
+<ref-info>
+<ref-title>
+<ref-titletext>Cognitive coping strategies and blood pressure responses to real-life stress in healthy young men</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">0026473825</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>C.A.</ce:initials>
+<ce:indexed-name>Dollan C.A.</ce:indexed-name>
+<ce:surname>Dollan</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>A.</ce:initials>
+<ce:indexed-name>Sherwood A.</ce:indexed-name>
+<ce:surname>Sherwood</ce:surname>
+</author>
+<author seq="3">
+<ce:initials>K.C.</ce:initials>
+<ce:indexed-name>Light K.C.</ce:indexed-name>
+<ce:surname>Light</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Health Psychology</ref-sourcetitle>
+<ref-publicationyear first="1992"/>
+<ref-volisspag>
+<voliss volume="11"/>
+<pagerange first="233" last="240"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Dollan, C. A., Sherwood, A., &amp; Light, K. C. (1992). Cognitive coping strategies and blood pressure responses to real-life stress in healthy young men. Health Psychology, 11, 233-240. doi: 10.1037/0278-6133.11.4.233</ref-fulltext>
+</reference>
+<reference id="24">
+<ref-info>
+<ref-title>
+<ref-titletext>Distress and affective dysregulation in patients with borderline personality disorder: A psychophysiological ambulatory monitoring study</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">42249092835</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>U.W.</ce:initials>
+<ce:indexed-name>Ebner-Priemer U.W.</ce:indexed-name>
+<ce:surname>Ebner-Priemer</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>J.</ce:initials>
+<ce:indexed-name>Kuo J.</ce:indexed-name>
+<ce:surname>Kuo</ce:surname>
+</author>
+<author seq="3">
+<ce:initials>W.</ce:initials>
+<ce:indexed-name>Schlotz W.</ce:indexed-name>
+<ce:surname>Schlotz</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Journal of Nervous and Mental Disease</ref-sourcetitle>
+<ref-publicationyear first="2008"/>
+<ref-volisspag>
+<voliss volume="196"/>
+<pagerange first="314" last="320"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Ebner-Priemer, U. W., Kuo, J., &amp; Schlotz, W. (2008). Distress and affective dysregulation in patients with borderline personality disorder: A psychophysiological ambulatory monitoring study. Journal of Nervous and Mental Disease, 196, 314-320. doi: 10.1097/NMD.0b013e31816a493f</ref-fulltext>
+</reference>
+<reference id="25">
+<ref-info>
+<ref-title>
+<ref-titletext>Ecological momentary assessment of maternal cortisol profiles over a multiple-day period predicts the length of human gestation</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">79960363200</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>S.</ce:initials>
+<ce:indexed-name>Entringer S.</ce:indexed-name>
+<ce:surname>Entringer</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>C.</ce:initials>
+<ce:indexed-name>Buss C.</ce:indexed-name>
+<ce:surname>Buss</ce:surname>
+</author>
+<author seq="3">
+<ce:initials>J.</ce:initials>
+<ce:indexed-name>Andersen J.</ce:indexed-name>
+<ce:surname>Andersen</ce:surname>
+</author>
+<author seq="4">
+<ce:initials>A.</ce:initials>
+<ce:indexed-name>Chicz-Demet A.</ce:indexed-name>
+<ce:surname>Chicz-Demet</ce:surname>
+</author>
+<author seq="5">
+<ce:initials>P.D.</ce:initials>
+<ce:indexed-name>Wadhwa P.D.</ce:indexed-name>
+<ce:surname>Wadhwa</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Psychosomatic Medicine</ref-sourcetitle>
+<ref-publicationyear first="2011"/>
+<ref-volisspag>
+<voliss volume="73"/>
+<pagerange first="469" last="474"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Entringer, S., Buss, C., Andersen, J., Chicz-Demet, A., &amp; Wadhwa, P. D. (2011). Ecological momentary assessment of maternal cortisol profiles over a multiple-day period predicts the length of human gestation. Psychosomatic Medicine, 73, 469-474.</ref-fulltext>
+</reference>
+<reference id="26">
+<ref-info>
+<ref-title>
+<ref-titletext>Agonistic interpersonal striving: Social-cognitive mechanism of cardiovascular risk in youth?</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">1642579616</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>C.K.</ce:initials>
+<ce:indexed-name>Ewart C.K.</ce:indexed-name>
+<ce:surname>Ewart</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>R.S.</ce:initials>
+<ce:indexed-name>Jorgensen R.S.</ce:indexed-name>
+<ce:surname>Jorgensen</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Health Psychology</ref-sourcetitle>
+<ref-publicationyear first="2004"/>
+<ref-volisspag>
+<voliss volume="23"/>
+<pagerange first="75" last="85"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Ewart, C. K., &amp; Jorgensen, R. S. (2004). Agonistic interpersonal striving: social-cognitive mechanism of cardiovascular risk in youth? Health Psychology, 23, 75-85. doi: 10.1037/0278-6133.23.1.75</ref-fulltext>
+</reference>
+<reference id="27">
+<ref-info>
+<refd-itemidlist>
+<itemid idtype="SGR">34249873434</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>J.</ce:initials>
+<ce:indexed-name>Fahrenberg J.</ce:indexed-name>
+<ce:surname>Fahrenberg</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Assessment in Daily Life. A Review of Computer-assisted Methodologies and Applications in Psychology and Psychophysiology, Years 2000-2005</ref-sourcetitle>
+<ref-publicationyear first="2006"/>
+<ref-website>
+<ce:e-address type="email">http://www.ambulatory-assessment.org/</ce:e-address>
+</ref-website>
+<ref-text>Retrieved from</ref-text>
+</ref-info>
+<ref-fulltext>Fahrenberg, J. (2006). Assessment in daily life. A review of computer-assisted methodologies and applications in psychology and psychophysiology, years 2000-2005. Retrieved from http://www.ambulatory-assessment.org/</ref-fulltext>
+</reference>
+<reference id="28">
+<ref-info>
+<ref-title>
+<ref-titletext>Ambulatory assessment - Monitor behavior in daily life settings. A behavioral-scientific challenge for psychology</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">35948972803</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>J.</ce:initials>
+<ce:indexed-name>Fahrenberg J.</ce:indexed-name>
+<ce:surname>Fahrenberg</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>M.</ce:initials>
+<ce:indexed-name>Myrtek M.</ce:indexed-name>
+<ce:surname>Myrtek</ce:surname>
+</author>
+<author seq="3">
+<ce:initials>K.</ce:initials>
+<ce:indexed-name>Pawlik K.</ce:indexed-name>
+<ce:surname>Pawlik</ce:surname>
+</author>
+<author seq="4">
+<ce:initials>M.</ce:initials>
+<ce:indexed-name>Perrez M.</ce:indexed-name>
+<ce:surname>Perrez</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>European Journal of Psychological Assessment</ref-sourcetitle>
+<ref-publicationyear first="2007"/>
+<ref-volisspag>
+<voliss volume="23"/>
+<pagerange first="206" last="213"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Fahrenberg, J., Myrtek, M., Pawlik, K., &amp; Perrez, M. (2007). Ambulatory assessment - monitor behavior in daily life settings. A behavioral-scientific challenge for psychology. European Journal of Psychological Assessment, 23, 206-213. doi: 10.1027/1015-5759.23.4.206</ref-fulltext>
+</reference>
+<reference id="29">
+<ref-info>
+<ref-title>
+<ref-titletext>Psychological distress and salivary cortisol covary within persons during pregnancy</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">83555165110</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>G.F.</ce:initials>
+<ce:indexed-name>Giesbrecht G.F.</ce:indexed-name>
+<ce:surname>Giesbrecht</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>T.</ce:initials>
+<ce:indexed-name>Campbell T.</ce:indexed-name>
+<ce:surname>Campbell</ce:surname>
+</author>
+<author seq="3">
+<ce:initials>N.</ce:initials>
+<ce:indexed-name>Letourneau N.</ce:indexed-name>
+<ce:surname>Letourneau</ce:surname>
+</author>
+<author seq="4">
+<ce:initials>L.</ce:initials>
+<ce:indexed-name>Kooistra L.</ce:indexed-name>
+<ce:surname>Kooistra</ce:surname>
+</author>
+<author seq="5">
+<ce:initials>B.</ce:initials>
+<ce:indexed-name>Kaplan B.</ce:indexed-name>
+<ce:surname>Kaplan</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Psychoneuroendocrinology</ref-sourcetitle>
+<ref-publicationyear first="2012"/>
+<ref-volisspag>
+<voliss volume="37"/>
+<pagerange first="270" last="279"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Giesbrecht, G. F., Campbell, T., Letourneau, N., Kooistra, L., &amp; Kaplan, B. (2012). Psychological distress and salivary cortisol covary within persons during pregnancy. Psychoneuroendocrinology, 37, 270-279. doi: 10.1016/j.psyneuen.2011.06.011</ref-fulltext>
+</reference>
+<reference id="30">
+<ref-info>
+<ref-title>
+<ref-titletext>Evolution of concepts of stress</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">34249060580</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>D.</ce:initials>
+<ce:indexed-name>Goldstein D.</ce:indexed-name>
+<ce:surname>Goldstein</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>I.J.</ce:initials>
+<ce:indexed-name>Kopin I.J.</ce:indexed-name>
+<ce:surname>Kopin</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Stress</ref-sourcetitle>
+<ref-publicationyear first="2007"/>
+<ref-volisspag>
+<voliss volume="10"/>
+<pagerange first="109" last="120"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Goldstein, D., &amp; Kopin, I. J. (2007). Evolution of concepts of stress. Stress, 10, 109-120. doi: 10.1080/10253890701288935</ref-fulltext>
+</reference>
+<reference id="31">
+<ref-info>
+<ref-title>
+<ref-titletext>Pituitary volume, stress reactivity and genetic risk for psychotic disorder</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">84861444284</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>P.</ce:initials>
+<ce:indexed-name>Habets P.</ce:indexed-name>
+<ce:surname>Habets</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>D.</ce:initials>
+<ce:indexed-name>Collip D.</ce:indexed-name>
+<ce:surname>Collip</ce:surname>
+</author>
+<author seq="3">
+<ce:initials>I.</ce:initials>
+<ce:indexed-name>Myin-Germeys I.</ce:indexed-name>
+<ce:surname>Myin-Germeys</ce:surname>
+</author>
+<author seq="4">
+<ce:initials>E.</ce:initials>
+<ce:indexed-name>Gronenschild E.</ce:indexed-name>
+<ce:surname>Gronenschild</ce:surname>
+</author>
+<author seq="5">
+<ce:initials>S.</ce:initials>
+<ce:indexed-name>Van Bronswijk S.</ce:indexed-name>
+<ce:surname>Van Bronswijk</ce:surname>
+</author>
+<author seq="6">
+<ce:initials>P.</ce:initials>
+<ce:indexed-name>Hofman P.</ce:indexed-name>
+<ce:surname>Hofman</ce:surname>
+</author>
+<author seq="7">
+<ce:initials>M.</ce:initials>
+<ce:indexed-name>Marcelis M.</ce:indexed-name>
+<ce:surname>Marcelis</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Psychological Medicine</ref-sourcetitle>
+<ref-publicationyear first="2012"/>
+<ref-volisspag>
+<voliss volume="42"/>
+<pagerange first="1523" last="1533"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Habets, P., Collip, D., Myin-Germeys, I., Gronenschild, E., van Bronswijk, S., Hofman, P.,⋯ Marcelis, M. (2012). Pituitary volume, stress reactivity and genetic risk for psychotic disorder. Psychological Medicine, 42, 1523-1533. doi: 10.1017/S0033291711002728</ref-fulltext>
+</reference>
+<reference id="32">
+<ref-info>
+<ref-title>
+<ref-titletext>Autonomic regulation, physical activity and perceived stress in subjects with musculoskeletal pain: 24-hour ambulatory monitoring</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">84870253720</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>D.M.</ce:initials>
+<ce:indexed-name>Hallman D.M.</ce:indexed-name>
+<ce:surname>Hallman</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>E.</ce:initials>
+<ce:indexed-name>Lyskov E.</ce:indexed-name>
+<ce:surname>Lyskov</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>International Journal of Psychophysiology</ref-sourcetitle>
+<ref-publicationyear first="2012"/>
+<ref-volisspag>
+<voliss volume="86"/>
+<pagerange first="276" last="282"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Hallman, D. M., &amp; Lyskov, E. (2012). Autonomic regulation, physical activity and perceived stress in subjects with musculoskeletal pain: 24-hour ambulatory monitoring. International Journal of Psychophysiology, 86, 276-282. doi: 10.1016/j.ijpsycho.2012.09.017</ref-fulltext>
+</reference>
+<reference id="33">
+<ref-info>
+<ref-title>
+<ref-titletext>Daily stress, cortisol, and sleep: The moderating role of childhood psychosocial environments</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">77955336152</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>M.D.</ce:initials>
+<ce:indexed-name>Hanson M.D.</ce:indexed-name>
+<ce:surname>Hanson</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>E.</ce:initials>
+<ce:indexed-name>Chen E.</ce:indexed-name>
+<ce:surname>Chen</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Health Psychology</ref-sourcetitle>
+<ref-publicationyear first="2010"/>
+<ref-volisspag>
+<voliss volume="29"/>
+<pagerange first="394" last="402"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Hanson, M. D., &amp; Chen, E. (2010). Daily stress, cortisol, and sleep: The moderating role of childhood psychosocial environments. Health Psychology, 29, 394-402. doi: 10.1037/a0019879</ref-fulltext>
+</reference>
+<reference id="34">
+<ref-info>
+<ref-title>
+<ref-titletext>Married with children: The influence of parental status and gender on ambulatory blood pressure</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">77949916501</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>J.</ce:initials>
+<ce:indexed-name>Holt-Lunstad J.</ce:indexed-name>
+<ce:surname>Holt-Lunstad</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>W.</ce:initials>
+<ce:indexed-name>Birmingham W.</ce:indexed-name>
+<ce:surname>Birmingham</ce:surname>
+</author>
+<author seq="3">
+<ce:initials>A.M.</ce:initials>
+<ce:indexed-name>Howard A.M.</ce:indexed-name>
+<ce:surname>Howard</ce:surname>
+</author>
+<author seq="4">
+<ce:initials>B.S.D.</ce:initials>
+<ce:indexed-name>Thoman B.S.D.</ce:indexed-name>
+<ce:surname>Thoman</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Annals of Behavioral Medicine</ref-sourcetitle>
+<ref-publicationyear first="2009"/>
+<ref-volisspag>
+<voliss volume="38"/>
+<pagerange first="170" last="179"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Holt-Lunstad, J., Birmingham, W., Howard, A. M., &amp; Thoman, B. S. D. (2009). Married with children: The influence of parental status and gender on ambulatory blood pressure. Annals of Behavioral Medicine, 38, 170-179. doi: 10.1007/s12160-009-9152-1</ref-fulltext>
+</reference>
+<reference id="35">
+<ref-info>
+<ref-title>
+<ref-titletext>Is there something unique about marriage? The relative impact of marital status, relationship quality, and network social support on ambulatory blood pressure and mental health</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">42249110513</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>J.</ce:initials>
+<ce:indexed-name>Holt-Lunstad J.</ce:indexed-name>
+<ce:surname>Holt-Lunstad</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>W.</ce:initials>
+<ce:indexed-name>Birmingham W.</ce:indexed-name>
+<ce:surname>Birmingham</ce:surname>
+</author>
+<author seq="3">
+<ce:initials>B.Q.</ce:initials>
+<ce:indexed-name>Jones B.Q.</ce:indexed-name>
+<ce:surname>Jones</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Annals of Behavioral Medicine</ref-sourcetitle>
+<ref-publicationyear first="2008"/>
+<ref-volisspag>
+<voliss volume="35"/>
+<pagerange first="239" last="244"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Holt-Lunstad, J., Birmingham, W., &amp; Jones, B. Q. (2008). Is there something unique about marriage? The relative impact of marital status, relationship quality, and network social support on ambulatory blood pressure and mental health. Annals of Behavioral Medicine, 35, 239-244. doi: 10.1007/s12160-008-9018-y</ref-fulltext>
+</reference>
+<reference id="36">
+<ref-info>
+<ref-title>
+<ref-titletext>Daily goal pursuits predict cortisol secretion and mood states in employed parents with preschool children</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">33751332726</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>C.A.</ce:initials>
+<ce:indexed-name>Hoppmann C.A.</ce:indexed-name>
+<ce:surname>Hoppmann</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>P.L.</ce:initials>
+<ce:indexed-name>Klumb P.L.</ce:indexed-name>
+<ce:surname>Klumb</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Psychosomatic Medicine</ref-sourcetitle>
+<ref-publicationyear first="2006"/>
+<ref-volisspag>
+<voliss volume="68"/>
+<pagerange first="887" last="894"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Hoppmann, C. A., &amp; Klumb, P. L. (2006). Daily goal pursuits predict cortisol secretion and mood states in employed parents with preschool children. Psychosomatic Medicine, 68, 887-894. doi: 10.1097/01.psy.0000238232.46870.f1</ref-fulltext>
+</reference>
+<reference id="37">
+<ref-info>
+<ref-title>
+<ref-titletext>Ambulatory assessment in lifespan psychology: An overview of current status and new trends</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">67649312033</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>C.A.</ce:initials>
+<ce:indexed-name>Hoppmann C.A.</ce:indexed-name>
+<ce:surname>Hoppmann</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>M.</ce:initials>
+<ce:indexed-name>Riediger M.</ce:indexed-name>
+<ce:surname>Riediger</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>European Psychologist</ref-sourcetitle>
+<ref-publicationyear first="2009"/>
+<ref-volisspag>
+<voliss volume="14"/>
+<pagerange first="98" last="108"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Hoppmann, C. A., &amp; Riediger, M. (2009). Ambulatory assessment in lifespan psychology: An overview of current status and new trends. European Psychologist, 14, 98-108. doi: 10.1027/1016-9040.14.2.98</ref-fulltext>
+</reference>
+<reference id="38">
+<ref-info>
+<ref-title>
+<ref-titletext>Noninvasive psychophysiological ambulatory recordings</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">67649363697</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>J.H.</ce:initials>
+<ce:indexed-name>Houtveen J.H.</ce:indexed-name>
+<ce:surname>Houtveen</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>E.J.C.</ce:initials>
+<ce:indexed-name>Geus E.J.C.</ce:indexed-name>
+<ce:surname>Geus</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>European Psychologist</ref-sourcetitle>
+<ref-publicationyear first="2009"/>
+<ref-volisspag>
+<voliss volume="14"/>
+<pagerange first="132" last="141"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Houtveen, J. H., &amp; Geus, E. J. C. (2009). Noninvasive psychophysiological ambulatory recordings. European Psychologist, 14, 132-141. doi: 10.1027/1016-9040.14.2.132</ref-fulltext>
+</reference>
+<reference id="39">
+<ref-info>
+<ref-title>
+<ref-titletext>Medically unexplained symptoms and between-group differences in 24-h ambulatory recording of stress physiology</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">35348827551</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>J.H.</ce:initials>
+<ce:indexed-name>Houtveen J.H.</ce:indexed-name>
+<ce:surname>Houtveen</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>L.J.</ce:initials>
+<ce:indexed-name>Van Doornen L.J.</ce:indexed-name>
+<ce:surname>Van Doornen</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Biological Psychology</ref-sourcetitle>
+<ref-publicationyear first="2007"/>
+<ref-volisspag>
+<voliss volume="76"/>
+<pagerange first="239" last="249"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Houtveen, J. H., &amp; van Doornen, L. J. (2007). Medically unexplained symptoms and between-group differences in 24-h ambulatory recording of stress physiology. Biological Psychology, 76, 239-249. doi: 10.1016/j.biopsycho.2007.08.005</ref-fulltext>
+</reference>
+<reference id="40">
+<ref-info>
+<ref-title>
+<ref-titletext>Ecological momentary assessment: Real-world, real-time measurement of patient experience</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">0001911144</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>M.R.</ce:initials>
+<ce:indexed-name>Hufford M.R.</ce:indexed-name>
+<ce:surname>Hufford</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>S.</ce:initials>
+<ce:indexed-name>Shiffman S.</ce:indexed-name>
+<ce:surname>Shiffman</ce:surname>
+</author>
+<author seq="3">
+<ce:initials>J.</ce:initials>
+<ce:indexed-name>Paty J.</ce:indexed-name>
+<ce:surname>Paty</ce:surname>
+</author>
+<author seq="4">
+<ce:initials>A.A.</ce:initials>
+<ce:indexed-name>Stone A.A.</ce:indexed-name>
+<ce:surname>Stone</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Progress in Ambulatory Assessment: Computer-assisted Psychological and Psychophysiological Methods in Monitoring and Field Studies</ref-sourcetitle>
+<ref-publicationyear first="2001"/>
+<ref-volisspag>
+<pagerange first="69" last="92"/>
+</ref-volisspag>
+<ref-text>J. Fahrenberg &amp; M. Myrtek (Eds.), Seattle, WA: Hogrefe &amp; Huber</ref-text>
+</ref-info>
+<ref-fulltext>Hufford, M. R., Shiffman, S., Paty, J., &amp; Stone, A. A. (2001). Ecological momentary assessment: Real-world, real-time measurement of patient experience. In J. Fahrenberg &amp; M. Myrtek (Eds.), Progress in ambulatory assessment: Computer-assisted psychological and psychophysiological methods in monitoring and field studies (pp. 69-92). Seattle, WA: Hogrefe &amp; Huber.</ref-fulltext>
+</reference>
+<reference id="41">
+<ref-info>
+<ref-title>
+<ref-titletext>Using diary methods in psychological research</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">84879416848</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>M.</ce:initials>
+<ce:indexed-name>Iida M.</ce:indexed-name>
+<ce:surname>Iida</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>P.E.</ce:initials>
+<ce:indexed-name>Shrout P.E.</ce:indexed-name>
+<ce:surname>Shrout</ce:surname>
+</author>
+<author seq="3">
+<ce:initials>J.P.</ce:initials>
+<ce:indexed-name>Laurenceau J.P.</ce:indexed-name>
+<ce:surname>Laurenceau</ce:surname>
+</author>
+<author seq="4">
+<ce:initials>N.</ce:initials>
+<ce:indexed-name>Bolger N.</ce:indexed-name>
+<ce:surname>Bolger</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>APA Handbook of Research Methods in Psychology, Vol. 1: Foundations, Planning, Measures, and Psychometrics</ref-sourcetitle>
+<ref-publicationyear first="2012"/>
+<ref-volisspag>
+<pagerange first="277" last="305"/>
+</ref-volisspag>
+<ref-text>H. Cooper (Ed.), Washington, DC: American Psychological Association</ref-text>
+</ref-info>
+<ref-fulltext>Iida, M., Shrout, P. E., Laurenceau, J. P., &amp; Bolger, N. (2012). Using diary methods in psychological research. In H. Cooper (Ed.), APA handbook of research methods in psychology, Vol. 1: Foundations, planning, measures, and psychometrics (pp. 277-305). Washington, DC: American Psychological Association. doi: 10.1037/13619016</ref-fulltext>
+</reference>
+<reference id="42">
+<ref-info>
+<ref-title>
+<ref-titletext>Stressful psychosocial factors and symptoms of gastroesophageal reflux disease: A population-based study in Norway</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">73649134657</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>C.</ce:initials>
+<ce:indexed-name>Jansson C.</ce:indexed-name>
+<ce:surname>Jansson</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>M.</ce:initials>
+<ce:indexed-name>Wallander M.</ce:indexed-name>
+<ce:surname>Wallander</ce:surname>
+</author>
+<author seq="3">
+<ce:initials>S.</ce:initials>
+<ce:indexed-name>Johansson S.</ce:indexed-name>
+<ce:surname>Johansson</ce:surname>
+</author>
+<author seq="4">
+<ce:initials>R.</ce:initials>
+<ce:indexed-name>Johnsen R.</ce:indexed-name>
+<ce:surname>Johnsen</ce:surname>
+</author>
+<author seq="5">
+<ce:initials>K.</ce:initials>
+<ce:indexed-name>Hveem K.</ce:indexed-name>
+<ce:surname>Hveem</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Scandinavian Journal of Gastroenterology</ref-sourcetitle>
+<ref-publicationyear first="2010"/>
+<ref-volisspag>
+<voliss volume="45"/>
+<pagerange first="21" last="29"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Jansson, C., Wallander, M., Johansson, S., Johnsen, R., &amp; Hveem, K. (2010). Stressful psychosocial factors and symptoms of gastroesophageal reflux disease: A population-based study in Norway. Scandinavian Journal of Gastroenterology, 45, 21-29. doi: 10.3109/00365520903401967</ref-fulltext>
+</reference>
+<reference id="43">
+<ref-info>
+<ref-title>
+<ref-titletext>Ambulatory assessment of stress and coping among Portuguese police officers</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">84938904289</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>M.</ce:initials>
+<ce:indexed-name>Kaiseler M.</ce:indexed-name>
+<ce:surname>Kaiseler</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>S.</ce:initials>
+<ce:indexed-name>Rodrigues S.</ce:indexed-name>
+<ce:surname>Rodrigues</ce:surname>
+</author>
+<author seq="3">
+<ce:initials>V.</ce:initials>
+<ce:indexed-name>Ribeiro V.</ce:indexed-name>
+<ce:surname>Ribeiro</ce:surname>
+</author>
+<author seq="4">
+<ce:initials>A.</ce:initials>
+<ce:indexed-name>Aguiar A.</ce:indexed-name>
+<ce:surname>Aguiar</ce:surname>
+</author>
+<author seq="5">
+<ce:initials>J.P.S.</ce:initials>
+<ce:indexed-name>Cunha J.P.S.</ce:indexed-name>
+<ce:surname>Cunha</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Poster Presented at the 3rd Conference of the Society of Ambulatory Assessment</ref-sourcetitle>
+<ref-publicationyear first="2013"/>
+<ref-text>(June) Amsterdam, The Netherlands</ref-text>
+</ref-info>
+<ref-fulltext>Kaiseler, M., Rodrigues, S., Ribeiro, V., Aguiar, A., &amp; Cunha, J. P. S. (2013, June). Ambulatory assessment of stress and coping among Portuguese police officers. Poster presented at the 3rd Conference of the Society of Ambulatory Assessment, Amsterdam, The Netherlands.</ref-fulltext>
+</reference>
+<reference id="44">
+<ref-info>
+<ref-title>
+<ref-titletext>Association of daily stressors and salivary cortisol in spinal cord injury</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">70249151387</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>C.Z.</ce:initials>
+<ce:indexed-name>Kalpakjian C.Z.</ce:indexed-name>
+<ce:surname>Kalpakjian</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>D.J.</ce:initials>
+<ce:indexed-name>Farrell D.J.</ce:indexed-name>
+<ce:surname>Farrell</ce:surname>
+</author>
+<author seq="3">
+<ce:initials>K.J.</ce:initials>
+<ce:indexed-name>Albright K.J.</ce:indexed-name>
+<ce:surname>Albright</ce:surname>
+</author>
+<author seq="4">
+<ce:initials>A.</ce:initials>
+<ce:indexed-name>Chiodo A.</ce:indexed-name>
+<ce:surname>Chiodo</ce:surname>
+</author>
+<author seq="5">
+<ce:initials>E.A.</ce:initials>
+<ce:indexed-name>Young E.A.</ce:indexed-name>
+<ce:surname>Young</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Rehabilitation Psychology</ref-sourcetitle>
+<ref-publicationyear first="2009"/>
+<ref-volisspag>
+<voliss volume="54"/>
+<pagerange first="288" last="298"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Kalpakjian, C. Z., Farrell, D. J., Albright, K. J., Chiodo, A., &amp; Young, E. A. (2009). Association of daily stressors and salivary cortisol in spinal cord injury. Rehabilitation Psychology, 54, 288-298. doi: 10.1037/a0016614</ref-fulltext>
+</reference>
+<reference id="45">
+<ref-info>
+<ref-title>
+<ref-titletext>Correspondence between laboratory and ambulatory measures of cardiovascular reactivity:A multilevel modeling approach</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">0141426851</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>T.S.</ce:initials>
+<ce:indexed-name>Kamarck T.S.</ce:indexed-name>
+<ce:surname>Kamarck</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>J.E.</ce:initials>
+<ce:indexed-name>Schwartz J.E.</ce:indexed-name>
+<ce:surname>Schwartz</ce:surname>
+</author>
+<author seq="3">
+<ce:initials>D.L.</ce:initials>
+<ce:indexed-name>Janicki D.L.</ce:indexed-name>
+<ce:surname>Janicki</ce:surname>
+</author>
+<author seq="4">
+<ce:initials>S.</ce:initials>
+<ce:indexed-name>Shiffman S.</ce:indexed-name>
+<ce:surname>Shiffman</ce:surname>
+</author>
+<author seq="5">
+<ce:initials>D.A.</ce:initials>
+<ce:indexed-name>Raynor D.A.</ce:indexed-name>
+<ce:surname>Raynor</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Psychophysiology</ref-sourcetitle>
+<ref-publicationyear first="2003"/>
+<ref-volisspag>
+<voliss volume="40"/>
+<pagerange first="675" last="683"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Kamarck, T. S., Schwartz, J. E., Janicki, D. L., Shiffman, S., &amp; Raynor, D. A. (2003). Correspondence between laboratory and ambulatory measures of cardiovascular reactivity:A multilevel modeling approach. Psychophysiology, 40, 675-683.</ref-fulltext>
+</reference>
+<reference id="46">
+<ref-info>
+<ref-title>
+<ref-titletext>Experiences of demand and control during daily life are predictors of carotid atherosclerotic progression among healthy men</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">34248581474</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>T.W.</ce:initials>
+<ce:indexed-name>Kamarck T.W.</ce:indexed-name>
+<ce:surname>Kamarck</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>M.F.</ce:initials>
+<ce:indexed-name>Muldoon M.F.</ce:indexed-name>
+<ce:surname>Muldoon</ce:surname>
+</author>
+<author seq="3">
+<ce:initials>S.S.</ce:initials>
+<ce:indexed-name>Shiffman S.S.</ce:indexed-name>
+<ce:surname>Shiffman</ce:surname>
+</author>
+<author seq="4">
+<ce:initials>K.</ce:initials>
+<ce:indexed-name>Sutton-Tyrrell K.</ce:indexed-name>
+<ce:surname>Sutton-Tyrrell</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Health Psychology</ref-sourcetitle>
+<ref-publicationyear first="2007"/>
+<ref-volisspag>
+<voliss volume="26"/>
+<pagerange first="324" last="332"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Kamarck, T. W., Muldoon, M. F., Shiffman, S. S., &amp; Sutton-Tyrrell, K. (2007). Experiences of demand and control during daily life are predictors of carotid atherosclerotic progression among healthy men. Health Psychology, 26, 324-332. doi: 10.1037/0278-6133.26.3.324</ref-fulltext>
+</reference>
+<reference id="47">
+<ref-info>
+<ref-title>
+<ref-titletext>Experiences of demand and control in daily life as correlates of subclinical carotid atherosclerosis in a healthy older sample</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">1642498253</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>T.W.</ce:initials>
+<ce:indexed-name>Kamarck T.W.</ce:indexed-name>
+<ce:surname>Kamarck</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>M.F.</ce:initials>
+<ce:indexed-name>Muldoon M.F.</ce:indexed-name>
+<ce:surname>Muldoon</ce:surname>
+</author>
+<author seq="3">
+<ce:initials>S.</ce:initials>
+<ce:indexed-name>Shiffman S.</ce:indexed-name>
+<ce:surname>Shiffman</ce:surname>
+</author>
+<author seq="4">
+<ce:initials>K.</ce:initials>
+<ce:indexed-name>Sutton-Tyrrell K.</ce:indexed-name>
+<ce:surname>Sutton-Tyrrell</ce:surname>
+</author>
+<author seq="5">
+<ce:initials>D.L.</ce:initials>
+<ce:indexed-name>Janicki D.L.</ce:indexed-name>
+<ce:surname>Janicki</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Health Psychology</ref-sourcetitle>
+<ref-publicationyear first="2004"/>
+<ref-volisspag>
+<voliss volume="23"/>
+<pagerange first="24" last="32"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Kamarck, T. W., Muldoon, M. F., Shiffman, S., Sutton-Tyrrell, K., &amp; Janicki, D. L. (2004). Experiences of demand and control in daily life as correlates of subclinical carotid atherosclerosis in a healthy older sample. Health Psychology, 23, 24-32. doi: 10.1037/0278-6133.23.1.24</ref-fulltext>
+</reference>
+<reference id="48">
+<ref-info>
+<ref-title>
+<ref-titletext>Daily psychological demands are associated with 6-year progression of carotid artery atherosclerosis: The Pittsburgh Healthy Heart Project</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">84861032130</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>T.W.</ce:initials>
+<ce:indexed-name>Kamarck T.W.</ce:indexed-name>
+<ce:surname>Kamarck</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>S.</ce:initials>
+<ce:indexed-name>Shiffman S.</ce:indexed-name>
+<ce:surname>Shiffman</ce:surname>
+</author>
+<author seq="3">
+<ce:initials>K.</ce:initials>
+<ce:indexed-name>Sutton-Tyrrell K.</ce:indexed-name>
+<ce:surname>Sutton-Tyrrell</ce:surname>
+</author>
+<author seq="4">
+<ce:initials>M.F.</ce:initials>
+<ce:indexed-name>Muldoon M.F.</ce:indexed-name>
+<ce:surname>Muldoon</ce:surname>
+</author>
+<author seq="5">
+<ce:initials>P.</ce:initials>
+<ce:indexed-name>Tepper P.</ce:indexed-name>
+<ce:surname>Tepper</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Psychosomatic Medicine</ref-sourcetitle>
+<ref-publicationyear first="2012"/>
+<ref-volisspag>
+<voliss volume="74"/>
+<pagerange first="432" last="439"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Kamarck, T. W., Shiffman, S., Sutton-Tyrrell, K., Muldoon, M. F., &amp; Tepper, P. (2012). Daily psychological demands are associated with 6-year progression of carotid artery atherosclerosis: The Pittsburgh Healthy Heart Project. Psychosomatic Medicine, 74, 432-439. doi: 10.1097/PSY.0b013e3182572599</ref-fulltext>
+</reference>
+<reference id="49">
+<ref-info>
+<ref-title>
+<ref-titletext>Concurrent measurement of "real-world" stress and arousal in individuals with psychosis: Assessing the feasibility and validity of a novel methodology</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">78650158553</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>D.</ce:initials>
+<ce:indexed-name>Kimhy D.</ce:indexed-name>
+<ce:surname>Kimhy</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>P.</ce:initials>
+<ce:indexed-name>Delespaul P.</ce:indexed-name>
+<ce:surname>Delespaul</ce:surname>
+</author>
+<author seq="3">
+<ce:initials>H.</ce:initials>
+<ce:indexed-name>Ahn H.</ce:indexed-name>
+<ce:surname>Ahn</ce:surname>
+</author>
+<author seq="4">
+<ce:initials>S.</ce:initials>
+<ce:indexed-name>Cai S.</ce:indexed-name>
+<ce:surname>Cai</ce:surname>
+</author>
+<author seq="5">
+<ce:initials>M.</ce:initials>
+<ce:indexed-name>Shikhman M.</ce:indexed-name>
+<ce:surname>Shikhman</ce:surname>
+</author>
+<author seq="6">
+<ce:initials>J.A.</ce:initials>
+<ce:indexed-name>Lieberman J.A.</ce:indexed-name>
+<ce:surname>Lieberman</ce:surname>
+</author>
+<author seq="7">
+<ce:initials>R.P.</ce:initials>
+<ce:indexed-name>Sloan R.P.</ce:indexed-name>
+<ce:surname>Sloan</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Schizophrenia Bulletin</ref-sourcetitle>
+<ref-publicationyear first="2010"/>
+<ref-volisspag>
+<voliss volume="36"/>
+<pagerange first="1131" last="1139"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Kimhy, D., Delespaul, P., Ahn, H., Cai, S., Shikhman, M., Lieberman, J. A.,⋯ Sloan, R. P. (2010). Concurrent measurement of "real-world" stress and arousal in individuals with psychosis: Assessing the feasibility and validity of a novel methodology. Schizophrenia Bulletin, 36, 1131-1139. doi: 10.1093/schbul/sbp028</ref-fulltext>
+</reference>
+<reference id="50">
+<ref-info>
+<ref-title>
+<ref-titletext>Psychosocial and physiological stress among women leaving welfare</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">34848873393</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>S.M.</ce:initials>
+<ce:indexed-name>Kneipp S.M.</ce:indexed-name>
+<ce:surname>Kneipp</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>D.P.</ce:initials>
+<ce:indexed-name>Welch D.P.</ce:indexed-name>
+<ce:surname>Welch</ce:surname>
+</author>
+<author seq="3">
+<ce:initials>C.E.</ce:initials>
+<ce:indexed-name>Wood C.E.</ce:indexed-name>
+<ce:surname>Wood</ce:surname>
+</author>
+<author seq="4">
+<ce:initials>C.B.</ce:initials>
+<ce:indexed-name>Yucha C.B.</ce:indexed-name>
+<ce:surname>Yucha</ce:surname>
+</author>
+<author seq="5">
+<ce:initials>H.</ce:initials>
+<ce:indexed-name>Yarandi H.</ce:indexed-name>
+<ce:surname>Yarandi</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Western Journal of Nursing Research</ref-sourcetitle>
+<ref-publicationyear first="2007"/>
+<ref-volisspag>
+<voliss volume="29"/>
+<pagerange first="864" last="883"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Kneipp, S. M., Welch, D. P., Wood, C. E., Yucha, C. B., &amp; Yarandi, H. (2007). Psychosocial and physiological stress among women leaving welfare. Western Journal of Nursing Research, 29, 864-883. doi: 10.1177/0193945906297378</ref-fulltext>
+</reference>
+<reference id="51">
+<ref-info>
+<ref-title>
+<ref-titletext>Some examples of systematic reviews</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">0002462875</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>P.</ce:initials>
+<ce:indexed-name>Knipschild P.</ce:indexed-name>
+<ce:surname>Knipschild</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Systematic Reviews</ref-sourcetitle>
+<ref-publicationyear first="1995"/>
+<ref-volisspag>
+<pagerange first="9" last="16"/>
+</ref-volisspag>
+<ref-text>I. Chalmers &amp; D. G. Altman (Eds.), London, UK: BMJ</ref-text>
+</ref-info>
+<ref-fulltext>Knipschild, P. (1995). Some examples of systematic reviews. In I. Chalmers &amp; D. G. Altman (Eds.), Systematic reviews (pp. 9-16). London, UK: BMJ.</ref-fulltext>
+</reference>
+<reference id="52">
+<ref-info>
+<ref-title>
+<ref-titletext>Circadian cortisol profiles and psychological self-reports in shift workers with and without recent change in the shift rotation system</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">33751182862</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>B.M.</ce:initials>
+<ce:indexed-name>Kudielka B.M.</ce:indexed-name>
+<ce:surname>Kudielka</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>J.</ce:initials>
+<ce:indexed-name>Buchtal J.</ce:indexed-name>
+<ce:surname>Buchtal</ce:surname>
+</author>
+<author seq="3">
+<ce:initials>A.</ce:initials>
+<ce:indexed-name>Uhde A.</ce:indexed-name>
+<ce:surname>Uhde</ce:surname>
+</author>
+<author seq="4">
+<ce:initials>S.</ce:initials>
+<ce:indexed-name>Wust S.</ce:indexed-name>
+<ce:surname>Wust</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Biological Psychology</ref-sourcetitle>
+<ref-publicationyear first="2007"/>
+<ref-volisspag>
+<voliss volume="74"/>
+<pagerange first="92" last="103"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Kudielka, B. M., Buchtal, J., Uhde, A., &amp; Wust, S. (2007). Circadian cortisol profiles and psychological self-reports in shift workers with and without recent change in the shift rotation system. Biological Psychology, 74, 92-103. doi: 10.1016/j.biopsycho.2006.08.008</ref-fulltext>
+</reference>
+<reference id="53">
+<ref-info>
+<ref-title>
+<ref-titletext>ICAT: Development of an internet-based data collection method for ecological momentary assessment using personal cell phones</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">84878000635</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>E.</ce:initials>
+<ce:indexed-name>Kuntsche E.</ce:indexed-name>
+<ce:surname>Kuntsche</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>F.</ce:initials>
+<ce:indexed-name>Labhart F.</ce:indexed-name>
+<ce:surname>Labhart</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>European Journal of Psychological Assessment</ref-sourcetitle>
+<ref-publicationyear first="2013"/>
+<ref-volisspag>
+<voliss volume="29"/>
+<pagerange first="140" last="148"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Kuntsche, E., &amp; Labhart, F. (2013). ICAT: Development of an internet-based data collection method for ecological momentary assessment using personal cell phones. European Journal of Psychological Assessment, 29, 140-148. doi: 10.1027/1015-5759/a000137</ref-fulltext>
+</reference>
+<reference id="54">
+<ref-info>
+<ref-title>
+<ref-titletext>The experience sampling method</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">0003160405</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>R.</ce:initials>
+<ce:indexed-name>Larson R.</ce:indexed-name>
+<ce:surname>Larson</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>M.</ce:initials>
+<ce:indexed-name>Cskszentmihalyi M.</ce:indexed-name>
+<ce:surname>Cskszentmihalyi</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>New Directions for Methodology of Social and Behavior Science</ref-sourcetitle>
+<ref-publicationyear first="1983"/>
+<ref-volisspag>
+<voliss volume="15"/>
+<pagerange first="41" last="56"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Larson, R., &amp; Cskszentmihalyi, M. (1983). The experience sampling method. New Directions for Methodology of Social and Behavior Science, 15, 41-56.</ref-fulltext>
+</reference>
+<reference id="55">
+<ref-info>
+<ref-title>
+<ref-titletext>Coping and adaptation</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">0002828106</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>R.S.</ce:initials>
+<ce:indexed-name>Lazarus R.S.</ce:indexed-name>
+<ce:surname>Lazarus</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>S.</ce:initials>
+<ce:indexed-name>Folkman S.</ce:indexed-name>
+<ce:surname>Folkman</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Handbook of Behavioral Medicine</ref-sourcetitle>
+<ref-publicationyear first="1984"/>
+<ref-text>W. Gentry (Ed.), New York, NY: Guilford</ref-text>
+</ref-info>
+<ref-fulltext>Lazarus, R. S., &amp; Folkman, S. (1984). Coping and adaptation. In W. Gentry (Ed.), Handbook of behavioral medicine. New York, NY: Guilford.</ref-fulltext>
+</reference>
+<reference id="56">
+<ref-info>
+<ref-title>
+<ref-titletext>Can psychological factors account for a lack of nocturnal blood pressure dipping</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">57749186868</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>W.</ce:initials>
+<ce:indexed-name>Linden W.</ce:indexed-name>
+<ce:surname>Linden</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>K.</ce:initials>
+<ce:indexed-name>Klassen K.</ce:indexed-name>
+<ce:surname>Klassen</ce:surname>
+</author>
+<author seq="3">
+<ce:initials>M.</ce:initials>
+<ce:indexed-name>Phillips M.</ce:indexed-name>
+<ce:surname>Phillips</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Annals of Behavioral Medicine</ref-sourcetitle>
+<ref-publicationyear first="2008"/>
+<ref-volisspag>
+<voliss volume="36"/>
+<pagerange first="253" last="258"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Linden, W., Klassen, K., &amp; Phillips, M. (2008). Can psychological factors account for a lack of nocturnal blood pressure dipping. Annals of Behavioral Medicine, 36, 253-258. doi: 10.1007/s12160-008-9069-0</ref-fulltext>
+</reference>
+<reference id="57">
+<ref-info>
+<ref-title>
+<ref-titletext>Application of systematic review methods to qualitative research: Practical issues</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">7644226424</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>M.</ce:initials>
+<ce:indexed-name>Lloyd Jones M.</ce:indexed-name>
+<ce:surname>Lloyd Jones</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Journal of Advanced Nursing</ref-sourcetitle>
+<ref-publicationyear first="2004"/>
+<ref-volisspag>
+<voliss volume="48"/>
+<pagerange first="271" last="278"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Lloyd Jones, M. (2004). Application of systematic review methods to qualitative research: Practical issues. Journal of Advanced Nursing, 48, 271-278.</ref-fulltext>
+</reference>
+<reference id="58">
+<ref-info>
+<ref-title>
+<ref-titletext>Emotional and cardiovascular sensitization to daily stress following childhood parental loss</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">58449095842</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>L.J.</ce:initials>
+<ce:indexed-name>Luecken L.J.</ce:indexed-name>
+<ce:surname>Luecken</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>A.</ce:initials>
+<ce:indexed-name>Kraft A.</ce:indexed-name>
+<ce:surname>Kraft</ce:surname>
+</author>
+<author seq="3">
+<ce:initials>B.M.</ce:initials>
+<ce:indexed-name>Appelhans B.M.</ce:indexed-name>
+<ce:surname>Appelhans</ce:surname>
+</author>
+<author seq="4">
+<ce:initials>C.</ce:initials>
+<ce:indexed-name>Enders C.</ce:indexed-name>
+<ce:surname>Enders</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Developmental Psychology</ref-sourcetitle>
+<ref-publicationyear first="2009"/>
+<ref-volisspag>
+<voliss volume="45"/>
+<pagerange first="296" last="302"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Luecken, L. J., Kraft, A., Appelhans, B. M., &amp; Enders, C. (2009). Emotional and cardiovascular sensitization to daily stress following childhood parental loss. Developmental Psychology, 45, 296-302. doi: 10.1037/a0013888</ref-fulltext>
+</reference>
+<reference id="59">
+<ref-info>
+<ref-title>
+<ref-titletext>Job strain, effort-reward imbalance and ambulatory blood pressure: Results of a cross-sectional study in call handler operators</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">79955618405</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>G.</ce:initials>
+<ce:indexed-name>Maina G.</ce:indexed-name>
+<ce:surname>Maina</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>M.</ce:initials>
+<ce:indexed-name>Bovenzi M.</ce:indexed-name>
+<ce:surname>Bovenzi</ce:surname>
+</author>
+<author seq="3">
+<ce:initials>A.</ce:initials>
+<ce:indexed-name>Palmas A.</ce:indexed-name>
+<ce:surname>Palmas</ce:surname>
+</author>
+<author seq="4">
+<ce:initials>A.</ce:initials>
+<ce:indexed-name>Prodi A.</ce:indexed-name>
+<ce:surname>Prodi</ce:surname>
+</author>
+<author seq="5">
+<ce:initials>F.L.</ce:initials>
+<ce:indexed-name>Filon F.L.</ce:indexed-name>
+<ce:surname>Filon</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>International Archives of Occupational and Environmental Health</ref-sourcetitle>
+<ref-publicationyear first="2011"/>
+<ref-volisspag>
+<voliss volume="84"/>
+<pagerange first="383" last="391"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Maina, G., Bovenzi, M., Palmas, A., Prodi, A., &amp; Filon, F. L. (2011). Job strain, effort-reward imbalance and ambulatory blood pressure: Results of a cross-sectional study in call handler operators. International Archives of Occupational and Environmental Health, 84, 383-391. doi: 10.1007/s00420-010-0576-5</ref-fulltext>
+</reference>
+<reference id="60">
+<ref-info>
+<ref-title>
+<ref-titletext>The concept of stress and ways of managing it</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">84938918097</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>M.</ce:initials>
+<ce:indexed-name>Maracine M.</ce:indexed-name>
+<ce:surname>Maracine</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>The Young Economist Journal - Revista Tinerilor Economisti</ref-sourcetitle>
+<ref-publicationyear first="2010"/>
+<ref-volisspag>
+<voliss volume="8"/>
+<pagerange first="69" last="74"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Maracine, M. (2010). The concept of stress and ways of managing it. The Young Economist Journal - Revista Tinerilor Economisti, 8, 69-74.</ref-fulltext>
+</reference>
+<reference id="61">
+<ref-info>
+<ref-title>
+<ref-titletext>Modern approaches to conceptualizing and measuring human life stress</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">43449122184</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>S.M.</ce:initials>
+<ce:indexed-name>Monroe S.M.</ce:indexed-name>
+<ce:surname>Monroe</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Annual Review of Clinical Psychology</ref-sourcetitle>
+<ref-publicationyear first="2008"/>
+<ref-volisspag>
+<voliss volume="4"/>
+<pagerange first="33" last="42"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Monroe, S. M. (2008). Modern approaches to conceptualizing and measuring human life stress. Annual Review of Clinical Psychology, 4, 33-42. doi: 10.1146/annurev.clinpsy.4.022007.141207</ref-fulltext>
+</reference>
+<reference id="62">
+<ref-info>
+<ref-title>
+<ref-titletext>Rationale for systematic reviews</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">0001844088</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>C.D.</ce:initials>
+<ce:indexed-name>Mulrow C.D.</ce:indexed-name>
+<ce:surname>Mulrow</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Systematic Reviews</ref-sourcetitle>
+<ref-publicationyear first="1995"/>
+<ref-volisspag>
+<pagerange first="1" last="8"/>
+</ref-volisspag>
+<ref-text>I. Chalmers &amp; D. G. Altman (Eds.), London, UK: BMJ</ref-text>
+</ref-info>
+<ref-fulltext>Mulrow, C. D. (1995). Rationale for systematic reviews. In I. Chalmers &amp; D. G. Altman (Eds.), Systematic reviews (pp. 1-8). London, UK: BMJ.</ref-fulltext>
+</reference>
+<reference id="63">
+<ref-info>
+<ref-title>
+<ref-titletext>Twenty-four-hour ambulatory blood pressure and heart rate monitoring in combat-related posttraumatic stress disorder</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">0031879344</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>M.Y.</ce:initials>
+<ce:indexed-name>Muraoka M.Y.</ce:indexed-name>
+<ce:surname>Muraoka</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>J.G.</ce:initials>
+<ce:indexed-name>Carlson J.G.</ce:indexed-name>
+<ce:surname>Carlson</ce:surname>
+</author>
+<author seq="3">
+<ce:initials>C.M.</ce:initials>
+<ce:indexed-name>Chemtob C.M.</ce:indexed-name>
+<ce:surname>Chemtob</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Journal of Traumatic Stress</ref-sourcetitle>
+<ref-publicationyear first="1998"/>
+<ref-volisspag>
+<voliss volume="11"/>
+<pagerange first="473" last="484"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Muraoka, M. Y., Carlson, J. G., &amp; Chemtob, C. M. (1998). Twenty-four-hour ambulatory blood pressure and heart rate monitoring in combat-related posttraumatic stress disorder. Journal of Traumatic Stress, 11, 473-484.</ref-fulltext>
+</reference>
+<reference id="64">
+<ref-info>
+<ref-title>
+<ref-titletext>Fellowship training, workload, fatigue and physical stress: A prospective observational study</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">1642382418</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>C.S.</ce:initials>
+<ce:indexed-name>Parshuram C.S.</ce:indexed-name>
+<ce:surname>Parshuram</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>S.</ce:initials>
+<ce:indexed-name>Dhanani S.</ce:indexed-name>
+<ce:surname>Dhanani</ce:surname>
+</author>
+<author seq="3">
+<ce:initials>J.A.</ce:initials>
+<ce:indexed-name>Kirsh J.A.</ce:indexed-name>
+<ce:surname>Kirsh</ce:surname>
+</author>
+<author seq="4">
+<ce:initials>P.N.</ce:initials>
+<ce:indexed-name>Cox P.N.</ce:indexed-name>
+<ce:surname>Cox</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Canadian Medical Association Journal</ref-sourcetitle>
+<ref-publicationyear first="2004"/>
+<ref-volisspag>
+<voliss volume="170"/>
+<pagerange first="965" last="970"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Parshuram, C. S., Dhanani, S., Kirsh, J. A., &amp; Cox, P. N. (2004). Fellowship training, workload, fatigue and physical stress: A prospective observational study. Canadian Medical Association Journal, 170, 965-970.</ref-fulltext>
+</reference>
+<reference id="65">
+<ref-info>
+<ref-title>
+<ref-titletext>Cardiac effects of momentary assessed worry episodes and stressful events</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">36349018322</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>S.</ce:initials>
+<ce:indexed-name>Pieper S.</ce:indexed-name>
+<ce:surname>Pieper</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>J.F.</ce:initials>
+<ce:indexed-name>Brosschot J.F.</ce:indexed-name>
+<ce:surname>Brosschot</ce:surname>
+</author>
+<author seq="3">
+<ce:initials>R.</ce:initials>
+<ce:indexed-name>Van Der-Leeden R.</ce:indexed-name>
+<ce:surname>Van Der-Leeden</ce:surname>
+</author>
+<author seq="4">
+<ce:initials>J.F.</ce:initials>
+<ce:indexed-name>Thayer J.F.</ce:indexed-name>
+<ce:surname>Thayer</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Psychosomatic Medicine</ref-sourcetitle>
+<ref-publicationyear first="2007"/>
+<ref-volisspag>
+<voliss volume="69"/>
+<pagerange first="901" last="909"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Pieper, S., Brosschot, J. F., van der Leeden, R., &amp; Thayer, J. F. (2007). Cardiac effects of momentary assessed worry episodes and stressful events. Psychosomatic Medicine, 69, 901-909. doi: 10.1097/PSY.0b013e31815a9230</ref-fulltext>
+</reference>
+<reference id="66">
+<ref-info>
+<ref-title>
+<ref-titletext>Social support and ambulatory blood pressure: An examination of both receiving and giving</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">33748962360</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>R.L.</ce:initials>
+<ce:indexed-name>Piferi R.L.</ce:indexed-name>
+<ce:surname>Piferi</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>K.A.</ce:initials>
+<ce:indexed-name>Lawler K.A.</ce:indexed-name>
+<ce:surname>Lawler</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>International Journal of Psychophysiology</ref-sourcetitle>
+<ref-publicationyear first="2006"/>
+<ref-volisspag>
+<voliss volume="62"/>
+<pagerange first="328" last="336"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Piferi, R. L., &amp; Lawler, K. A. (2006). Social support and ambulatory blood pressure: An examination of both receiving and giving. International Journal of Psychophysiology, 62, 328-336. doi: 10.1016/j.ijpsycho.2006.06.002</ref-fulltext>
+</reference>
+<reference id="67">
+<ref-info>
+<ref-title>
+<ref-titletext>The association between blood pressure and work stress: The importance of measuring isolated systolic hypertension</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">33745713508</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>R.</ce:initials>
+<ce:indexed-name>Rau R.</ce:indexed-name>
+<ce:surname>Rau</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Work &amp; Stress</ref-sourcetitle>
+<ref-publicationyear first="2006"/>
+<ref-volisspag>
+<voliss volume="20"/>
+<pagerange first="84" last="97"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Rau, R. (2006). The association between blood pressure and work stress: The importance of measuring isolated systolic hypertension. Work &amp; Stress, 20, 84-97. doi: 10.1080/02678370600679447</ref-fulltext>
+</reference>
+<reference id="68">
+<ref-info>
+<ref-title>
+<ref-titletext>The effects of perceived discrimination on ambulatory blood pressure and affective responses to interpersonal stress modeled over 24 hours</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">77955340695</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>L.S.</ce:initials>
+<ce:indexed-name>Richman L.S.</ce:indexed-name>
+<ce:surname>Richman</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>J.</ce:initials>
+<ce:indexed-name>Pek J.</ce:indexed-name>
+<ce:surname>Pek</ce:surname>
+</author>
+<author seq="3">
+<ce:initials>E.</ce:initials>
+<ce:indexed-name>Pascoe E.</ce:indexed-name>
+<ce:surname>Pascoe</ce:surname>
+</author>
+<author seq="4">
+<ce:initials>D.J.</ce:initials>
+<ce:indexed-name>Bauer D.J.</ce:indexed-name>
+<ce:surname>Bauer</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Health Psychology</ref-sourcetitle>
+<ref-publicationyear first="2010"/>
+<ref-volisspag>
+<voliss volume="29"/>
+<pagerange first="403" last="411"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Richman, L. S., Pek, J., Pascoe, E., &amp; Bauer, D. J. (2010). The effects of perceived discrimination on ambulatory blood pressure and affective responses to interpersonal stress modeled over 24 hours. Health Psychology, 29, 403-411. doi: 10.1037/a0019045</ref-fulltext>
+</reference>
+<reference id="69">
+<ref-info>
+<ref-title>
+<ref-titletext>Stress, glucocorticoids and their role in degenerative changes in the aging hippocampus</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">0001925083</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>R.M.</ce:initials>
+<ce:indexed-name>Sapolsky R.M.</ce:indexed-name>
+<ce:surname>Sapolsky</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>B.S.</ce:initials>
+<ce:indexed-name>McEwen B.S.</ce:indexed-name>
+<ce:surname>McEwen</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Treatment Development Strategies for Alzheimer's Disease</ref-sourcetitle>
+<ref-publicationyear first="1986"/>
+<ref-volisspag>
+<pagerange first="151" last="171"/>
+</ref-volisspag>
+<ref-text>T. Crook, R. Bartus, S. Ferris, &amp; S. Gershon (Eds.), New Canaan, CT: Mark Powley</ref-text>
+</ref-info>
+<ref-fulltext>Sapolsky, R. M., &amp; McEwen, B. S. (1986). Stress, glucocorticoids and their role in degenerative changes in the aging hippocampus. In T. Crook, R. Bartus, S. Ferris, &amp; S. Gershon (Eds.), Treatment development strategies for Alzheimer's Disease (pp. 151-171). New Canaan, CT: Mark Powley.</ref-fulltext>
+</reference>
+<reference id="70">
+<ref-info>
+<ref-title>
+<ref-titletext>Cardiovascular responses to occupational stress in male medical students: A paradigm for ambulatory monitoring studies</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">0026474169</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>K.P.</ce:initials>
+<ce:indexed-name>Sausen K.P.</ce:indexed-name>
+<ce:surname>Sausen</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>W.R.</ce:initials>
+<ce:indexed-name>Lovallo W.R.</ce:indexed-name>
+<ce:surname>Lovallo</ce:surname>
+</author>
+<author seq="3">
+<ce:initials>G.A.</ce:initials>
+<ce:indexed-name>Pincomb G.A.</ce:indexed-name>
+<ce:surname>Pincomb</ce:surname>
+</author>
+<author seq="4">
+<ce:initials>M.F.</ce:initials>
+<ce:indexed-name>Wilson M.F.</ce:indexed-name>
+<ce:surname>Wilson</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Health Psychology</ref-sourcetitle>
+<ref-publicationyear first="1992"/>
+<ref-volisspag>
+<voliss volume="77"/>
+<pagerange first="55" last="60"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Sausen, K. P., Lovallo, W. R., Pincomb, G. A., &amp; Wilson, M. F. (1992). Cardiovascular responses to occupational stress in male medical students: A paradigm for ambulatory monitoring studies. Health Psychology, 77, 55-60.</ref-fulltext>
+</reference>
+<reference id="71">
+<ref-info>
+<ref-title>
+<ref-titletext>Trait anxiety moderates the impact of performance pressure on salivary cortisol in everyday life</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">33644870594</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>W.</ce:initials>
+<ce:indexed-name>Schlotz W.</ce:indexed-name>
+<ce:surname>Schlotz</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>P.</ce:initials>
+<ce:indexed-name>Schulz P.</ce:indexed-name>
+<ce:surname>Schulz</ce:surname>
+</author>
+<author seq="3">
+<ce:initials>J.</ce:initials>
+<ce:indexed-name>Hellhammer J.</ce:indexed-name>
+<ce:surname>Hellhammer</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Psychoneuroendocrinology</ref-sourcetitle>
+<ref-publicationyear first="2006"/>
+<ref-volisspag>
+<voliss volume="31"/>
+<pagerange first="459" last="472"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Schlotz, W., Schulz, P., &amp; Hellhammer, J. (2006). Trait anxiety moderates the impact of performance pressure on salivary cortisol in everyday life. Psychoneuroendocrinology, 31, 459-472. doi: 10.1016/j.psyneuen.2005.11.003</ref-fulltext>
+</reference>
+<reference id="72">
+<ref-info>
+<ref-title>
+<ref-titletext>Daily interpersonal conflict predicts masked hypertension in an urban sample</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">77956879392</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>A.M.</ce:initials>
+<ce:indexed-name>Schoenthaler A.M.</ce:indexed-name>
+<ce:surname>Schoenthaler</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>J.</ce:initials>
+<ce:indexed-name>Schwartz J.</ce:indexed-name>
+<ce:surname>Schwartz</ce:surname>
+</author>
+<author seq="3">
+<ce:initials>A.</ce:initials>
+<ce:indexed-name>Cassells A.</ce:indexed-name>
+<ce:surname>Cassells</ce:surname>
+</author>
+<author seq="4">
+<ce:initials>J.N.</ce:initials>
+<ce:indexed-name>Tobin J.N.</ce:indexed-name>
+<ce:surname>Tobin</ce:surname>
+</author>
+<author seq="5">
+<ce:initials>E.</ce:initials>
+<ce:indexed-name>Brondolo E.</ce:indexed-name>
+<ce:surname>Brondolo</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>American Journal of Hypertension</ref-sourcetitle>
+<ref-publicationyear first="2010"/>
+<ref-volisspag>
+<voliss volume="23"/>
+<pagerange first="1082" last="1088"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Schoenthaler, A. M., Schwartz, J., Cassells, A., Tobin, J. N., &amp; Brondolo, E. (2010). Daily interpersonal conflict predicts masked hypertension in an urban sample. American Journal of Hypertension, 23, 1082-1088.</ref-fulltext>
+</reference>
+<reference id="73">
+<ref-info>
+<ref-title>
+<ref-titletext>Self-efficacy as a health-protective resource in teachers? A biopsychological approach</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">47749101651</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>A.</ce:initials>
+<ce:indexed-name>Schwerdtfeger A.</ce:indexed-name>
+<ce:surname>Schwerdtfeger</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>L.</ce:initials>
+<ce:indexed-name>Konermann L.</ce:indexed-name>
+<ce:surname>Konermann</ce:surname>
+</author>
+<author seq="3">
+<ce:initials>K.</ce:initials>
+<ce:indexed-name>Schonhofen K.</ce:indexed-name>
+<ce:surname>Schonhofen</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Health Psychology</ref-sourcetitle>
+<ref-publicationyear first="2008"/>
+<ref-volisspag>
+<voliss volume="27"/>
+<pagerange first="358" last="368"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Schwerdtfeger, A., Konermann, L., &amp; Schonhofen, K. (2008). Self-efficacy as a health-protective resource in teachers? A biopsychological approach. Health Psychology, 27, 358-368. doi: 10.1037/0278-6133.27.3.358</ref-fulltext>
+</reference>
+<reference id="74">
+<ref-info>
+<ref-title>
+<ref-titletext>Stress, health and illness: Four challenges for the future</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">84858202996</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>S.C.</ce:initials>
+<ce:indexed-name>Segerstrom S.C.</ce:indexed-name>
+<ce:surname>Segerstrom</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>D.B.</ce:initials>
+<ce:indexed-name>O'Connor D.B.</ce:indexed-name>
+<ce:surname>O'Connor</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Psychology &amp; Health</ref-sourcetitle>
+<ref-publicationyear first="2012"/>
+<ref-volisspag>
+<voliss volume="27"/>
+<pagerange first="128" last="140"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Segerstrom, S. C., &amp; O'Connor, D. B. (2012). Stress, health and illness: Four challenges for the future. Psychology &amp; Health, 27, 128-140. doi: 10.1080/08870446.2012.659516</ref-fulltext>
+</reference>
+<reference id="75">
+<ref-info>
+<ref-title>
+<ref-titletext>Ecological momentary assessment</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">43749087824</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>S.</ce:initials>
+<ce:indexed-name>Shiffman S.</ce:indexed-name>
+<ce:surname>Shiffman</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>A.A.</ce:initials>
+<ce:indexed-name>Stone A.A.</ce:indexed-name>
+<ce:surname>Stone</ce:surname>
+</author>
+<author seq="3">
+<ce:initials>M.R.</ce:initials>
+<ce:indexed-name>Hufford M.R.</ce:indexed-name>
+<ce:surname>Hufford</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Annual Review of Clinical Psychology</ref-sourcetitle>
+<ref-publicationyear first="2008"/>
+<ref-volisspag>
+<voliss volume="4"/>
+<pagerange first="1" last="32"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Shiffman, S., Stone, A. A., &amp; Hufford, M. R. (2008). Ecological momentary assessment. Annual Review of Clinical Psychology, 4, 1-32. doi: 10.1146/annurev.clinpsy.3.022806.091415</ref-fulltext>
+</reference>
+<reference id="76">
+<ref-info>
+<ref-title>
+<ref-titletext>Evaluative threat and ambulatory blood pressure: Cardiovascular effects of social stress in daily experience</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">84874370365</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>T.W.</ce:initials>
+<ce:indexed-name>Smith T.W.</ce:indexed-name>
+<ce:surname>Smith</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>W.</ce:initials>
+<ce:indexed-name>Birmingham W.</ce:indexed-name>
+<ce:surname>Birmingham</ce:surname>
+</author>
+<author seq="3">
+<ce:initials>B.N.</ce:initials>
+<ce:indexed-name>Uchino B.N.</ce:indexed-name>
+<ce:surname>Uchino</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Health Psychology</ref-sourcetitle>
+<ref-publicationyear first="2012"/>
+<ref-volisspag>
+<voliss volume="31"/>
+<pagerange first="763" last="766"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Smith, T. W., Birmingham, W., &amp; Uchino, B. N. (2012). Evaluative threat and ambulatory blood pressure: Cardiovascular effects of social stress in daily experience. Health Psychology, 31, 763-766. doi: 10.1037/a0026947</ref-fulltext>
+</reference>
+<reference id="77">
+<ref-info>
+<ref-title>
+<ref-titletext>Ecological momentary assessment research in behavioral medicine</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">27144531580</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>T.W.</ce:initials>
+<ce:indexed-name>Smith T.W.</ce:indexed-name>
+<ce:surname>Smith</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>A.A.</ce:initials>
+<ce:indexed-name>Stone A.A.</ce:indexed-name>
+<ce:surname>Stone</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Journal of Happiness Studies</ref-sourcetitle>
+<ref-publicationyear first="2003"/>
+<ref-volisspag>
+<voliss volume="4"/>
+<pagerange first="35" last="52"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Smith, T. W., &amp; Stone, A. A. (2003). Ecological momentary assessment research in behavioral medicine. Journal of Happiness Studies, 4, 35-52.</ref-fulltext>
+</reference>
+<reference id="78">
+<ref-info>
+<ref-title>
+<ref-titletext>Task demands and the pressures of everyday life: Associations between cardiovascular reactivity and work blood pressure and heart rate</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">0033768583</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>A.</ce:initials>
+<ce:indexed-name>Steptoe A.</ce:indexed-name>
+<ce:surname>Steptoe</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>M.</ce:initials>
+<ce:indexed-name>Cropley M.</ce:indexed-name>
+<ce:surname>Cropley</ce:surname>
+</author>
+<author seq="3">
+<ce:initials>K.</ce:initials>
+<ce:indexed-name>Joekes K.</ce:indexed-name>
+<ce:surname>Joekes</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Health Psychology</ref-sourcetitle>
+<ref-publicationyear first="2000"/>
+<ref-volisspag>
+<voliss volume="19"/>
+<pagerange first="46" last="54"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Steptoe, A., Cropley, M., &amp; Joekes, K. (2000). Task demands and the pressures of everyday life: Associations between cardiovascular reactivity and work blood pressure and heart rate. Health Psychology, 19, 46-54.</ref-fulltext>
+</reference>
+<reference id="79">
+<ref-info>
+<ref-title>
+<ref-titletext>Positive affect and health-related neuroendocrine, cardiovascular, and inflammatory processes</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">18144425204</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>A.</ce:initials>
+<ce:indexed-name>Steptoe A.</ce:indexed-name>
+<ce:surname>Steptoe</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>J.</ce:initials>
+<ce:indexed-name>Wardle J.</ce:indexed-name>
+<ce:surname>Wardle</ce:surname>
+</author>
+<author seq="3">
+<ce:initials>M.</ce:initials>
+<ce:indexed-name>Marmot M.</ce:indexed-name>
+<ce:surname>Marmot</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Proceedings of the National Academy of Sciences, of the United States of America</ref-sourcetitle>
+<ref-publicationyear first="2005"/>
+<ref-volisspag>
+<voliss volume="102"/>
+<pagerange first="6508" last="6512"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Steptoe, A., Wardle, J., &amp; Marmot, M. (2005). Positive affect and health-related neuroendocrine, cardiovascular, and inflammatory processes. Proceedings of the National Academy of Sciences, of the United States of America, 102, 6508-6512. doi: 10.1073/pnas.0409174102</ref-fulltext>
+</reference>
+<reference id="80">
+<ref-info>
+<ref-title>
+<ref-titletext>Ecological momentary assessment (EMA) in behavioral medicine</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">0028137276</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>A.A.</ce:initials>
+<ce:indexed-name>Stone A.A.</ce:indexed-name>
+<ce:surname>Stone</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>S.</ce:initials>
+<ce:indexed-name>Shiffman S.</ce:indexed-name>
+<ce:surname>Shiffman</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Annals of Behavior Medicine</ref-sourcetitle>
+<ref-publicationyear first="1994"/>
+<ref-volisspag>
+<voliss volume="16"/>
+<pagerange first="199" last="202"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Stone, A. A., &amp; Shiffman, S. (1994). Ecological momentary assessment (EMA) in behavioral medicine. Annals of Behavior Medicine, 16, 199-202.</ref-fulltext>
+</reference>
+<reference id="81">
+<ref-info>
+<ref-title>
+<ref-titletext>Dissociative symptoms are positively related to stress in borderline personality disorder</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">38049148117</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>C.E.</ce:initials>
+<ce:indexed-name>Stiglmayr C.E.</ce:indexed-name>
+<ce:surname>Stiglmayr</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>U.W.</ce:initials>
+<ce:indexed-name>Ebner-Priemer U.W.</ce:indexed-name>
+<ce:surname>Ebner-Priemer</ce:surname>
+</author>
+<author seq="3">
+<ce:initials>J.</ce:initials>
+<ce:indexed-name>Bretz J.</ce:indexed-name>
+<ce:surname>Bretz</ce:surname>
+</author>
+<author seq="4">
+<ce:initials>R.</ce:initials>
+<ce:indexed-name>Behm R.</ce:indexed-name>
+<ce:surname>Behm</ce:surname>
+</author>
+<author seq="5">
+<ce:initials>M.</ce:initials>
+<ce:indexed-name>Mohse M.</ce:indexed-name>
+<ce:surname>Mohse</ce:surname>
+</author>
+<author seq="6">
+<ce:initials>C.-H.</ce:initials>
+<ce:indexed-name>Lammers C.-H.</ce:indexed-name>
+<ce:surname>Lammers</ce:surname>
+</author>
+<author seq="7">
+<ce:initials>M.</ce:initials>
+<ce:indexed-name>Bohus M.</ce:indexed-name>
+<ce:surname>Bohus</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Acta Psychiatrica Scandinavica</ref-sourcetitle>
+<ref-publicationyear first="2008"/>
+<ref-volisspag>
+<voliss volume="117"/>
+<pagerange first="139" last="147"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Stiglmayr, C. E., Ebner-Priemer, U. W., Bretz, J., Behm, R., Mohse, M., Lammers, C.-H.,⋯ Bohus, M. (2008). Dissociative symptoms are positively related to stress in borderline personality disorder. Acta Psychiatrica Scandinavica, 117, 139-147. doi: 10.1111/j.1600-0447.2007.01126.x</ref-fulltext>
+</reference>
+<reference id="82">
+<ref-info>
+<ref-title>
+<ref-titletext>The impact of job strain and marital cohesion on ambulatory blood pressure during 1 year: The double exposure study</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">33846414687</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>S.W.</ce:initials>
+<ce:indexed-name>Tobe S.W.</ce:indexed-name>
+<ce:surname>Tobe</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>A.</ce:initials>
+<ce:indexed-name>Kiss A.</ce:indexed-name>
+<ce:surname>Kiss</ce:surname>
+</author>
+<author seq="3">
+<ce:initials>S.</ce:initials>
+<ce:indexed-name>Sainsbury S.</ce:indexed-name>
+<ce:surname>Sainsbury</ce:surname>
+</author>
+<author seq="4">
+<ce:initials>M.</ce:initials>
+<ce:indexed-name>Jesin M.</ce:indexed-name>
+<ce:surname>Jesin</ce:surname>
+</author>
+<author seq="5">
+<ce:initials>R.</ce:initials>
+<ce:indexed-name>Geerts R.</ce:indexed-name>
+<ce:surname>Geerts</ce:surname>
+</author>
+<author seq="6">
+<ce:initials>B.</ce:initials>
+<ce:indexed-name>Baker B.</ce:indexed-name>
+<ce:surname>Baker</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>American Journal of Hypertension</ref-sourcetitle>
+<ref-publicationyear first="2007"/>
+<ref-volisspag>
+<voliss volume="20"/>
+<pagerange first="148" last="153"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Tobe, S. W., Kiss, A., Sainsbury, S., Jesin, M., Geerts, R., &amp; Baker, B. (2007). The impact of job strain and marital cohesion on ambulatory blood pressure during 1 year: The double exposure study. American Journal of Hypertension, 20, 148-153. doi: 10.1016/j.amjhyper.2006.07.011</ref-fulltext>
+</reference>
+<reference id="83">
+<ref-info>
+<ref-title>
+<ref-titletext>Using experience sampling methods/ecological momentary assessment (ESM/EMA) in clinical assessment and clinical research: Introduction to the special section</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">72549088321</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>T.</ce:initials>
+<ce:indexed-name>Trull T.</ce:indexed-name>
+<ce:surname>Trull</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>U.W.</ce:initials>
+<ce:indexed-name>Ebner-Priemer U.W.</ce:indexed-name>
+<ce:surname>Ebner-Priemer</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Psychological Assessment</ref-sourcetitle>
+<ref-publicationyear first="2009"/>
+<ref-volisspag>
+<voliss volume="21"/>
+<pagerange first="457" last="462"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Trull, T., &amp; Ebner-Priemer, U. W. (2009). Using experience sampling methods/ecological momentary assessment (ESM/EMA) in clinical assessment and clinical research: Introduction to the special section. Psychological Assessment, 21, 457-462. doi: 10.1037/a0017653</ref-fulltext>
+</reference>
+<reference id="84">
+<ref-info>
+<ref-title>
+<ref-titletext>Ambulatory assessment</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">84875903233</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>T.</ce:initials>
+<ce:indexed-name>Trull T.</ce:indexed-name>
+<ce:surname>Trull</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>U.W.</ce:initials>
+<ce:indexed-name>Ebner-Priemer U.W.</ce:indexed-name>
+<ce:surname>Ebner-Priemer</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Annual Review of Clinical Psychology</ref-sourcetitle>
+<ref-publicationyear first="2013"/>
+<ref-volisspag>
+<voliss volume="9"/>
+<pagerange first="1" last="27"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Trull, T., &amp; Ebner-Priemer, U. W. (2013). Ambulatory assessment. Annual Review of Clinical Psychology, 9, 4.1-4.27. doi: 10.1146/annurev-clinpsy-050212-185510.</ref-fulltext>
+</reference>
+<reference id="85">
+<ref-info>
+<ref-title>
+<ref-titletext>Agerelated differences in ambulatory blood pressure during daily stress: Evidence for greater blood pressure reactivity with age</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">33747058470</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>B.N.</ce:initials>
+<ce:indexed-name>Uchino B.N.</ce:indexed-name>
+<ce:surname>Uchino</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>C.A.</ce:initials>
+<ce:indexed-name>Berg C.A.</ce:indexed-name>
+<ce:surname>Berg</ce:surname>
+</author>
+<author seq="3">
+<ce:initials>T.W.</ce:initials>
+<ce:indexed-name>Smith T.W.</ce:indexed-name>
+<ce:surname>Smith</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Psychology and Aging</ref-sourcetitle>
+<ref-publicationyear first="2006"/>
+<ref-volisspag>
+<voliss volume="21"/>
+<pagerange first="231" last="239"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Uchino, B. N., Berg, C. A., &amp; Smith, T. W. (2006). Agerelated differences in ambulatory blood pressure during daily stress: Evidence for greater blood pressure reactivity with age. Psychology and Aging, 21, 231-239. doi: 10.1037/0882-7974.21.2.231</ref-fulltext>
+</reference>
+<reference id="86">
+<ref-info>
+<ref-title>
+<ref-titletext>The feasibility and acceptability of handheld computers in a prospective diary study of adolescent sexual behavior</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">62649084204</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>S.A.</ce:initials>
+<ce:indexed-name>Vannier S.A.</ce:indexed-name>
+<ce:surname>Vannier</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>L.</ce:initials>
+<ce:indexed-name>O'Sullivan L.</ce:indexed-name>
+<ce:surname>O'Sullivan</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Canadian Journal of Human Sexuality</ref-sourcetitle>
+<ref-publicationyear first="2008"/>
+<ref-volisspag>
+<voliss volume="17"/>
+<pagerange first="183" last="192"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Vannier, S. A., &amp; O'Sullivan, L. (2008). The feasibility and acceptability of handheld computers in a prospective diary study of adolescent sexual behavior. Canadian Journal of Human Sexuality, 17, 183-192.</ref-fulltext>
+</reference>
+<reference id="87">
+<ref-info>
+<ref-title>
+<ref-titletext>Emotions beyond the laboratory: Theoretical fundaments, study design, and analytic strategies for advanced ambulatory assessment</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">77953535935</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>F.H.</ce:initials>
+<ce:indexed-name>Wilhelm F.H.</ce:indexed-name>
+<ce:surname>Wilhelm</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>P.</ce:initials>
+<ce:indexed-name>Grossman P.</ce:indexed-name>
+<ce:surname>Grossman</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Biological Psychology</ref-sourcetitle>
+<ref-publicationyear first="2010"/>
+<ref-volisspag>
+<voliss volume="84"/>
+<pagerange first="552" last="569"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Wilhelm, F. H., &amp; Grossman, P. (2010). Emotions beyond the laboratory: Theoretical fundaments, study design, and analytic strategies for advanced ambulatory assessment. Biological Psychology, 84, 552-569. doi: 10.1016/j.biopsycho.2010.01.017</ref-fulltext>
+</reference>
+<reference id="88">
+<ref-info>
+<ref-title>
+<ref-titletext>Application of ecological momentary assessment in stressrelated diseases</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">48249091317</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>K.</ce:initials>
+<ce:indexed-name>Yoshiuchi K.</ce:indexed-name>
+<ce:surname>Yoshiuchi</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>Y.</ce:initials>
+<ce:indexed-name>Yamamoto Y.</ce:indexed-name>
+<ce:surname>Yamamoto</ce:surname>
+</author>
+<author seq="3">
+<ce:initials>A.</ce:initials>
+<ce:indexed-name>Akabayashi A.</ce:indexed-name>
+<ce:surname>Akabayashi</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>BioPsycho Social Medicine</ref-sourcetitle>
+<ref-publicationyear first="2008"/>
+<ref-volisspag>
+<voliss volume="2"/>
+<pagerange first="1" last="6"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Yoshiuchi, K., Yamamoto, Y., &amp; Akabayashi, A. (2008). Application of ecological momentary assessment in stressrelated diseases. BioPsycho Social Medicine, 2, 1-6. doi: 10.1186/1751-0759-2-13</ref-fulltext>
+</reference>
+<reference id="89">
+<ref-info>
+<ref-title>
+<ref-titletext>Cardiovascular reactivity in real life settings: Measurement, mechanisms and meaning</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">79751531984</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>Y.J.</ce:initials>
+<ce:indexed-name>Zanstra Y.J.</ce:indexed-name>
+<ce:surname>Zanstra</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>D.W.</ce:initials>
+<ce:indexed-name>Johnston D.W.</ce:indexed-name>
+<ce:surname>Johnston</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Biological Psychology</ref-sourcetitle>
+<ref-publicationyear first="2011"/>
+<ref-volisspag>
+<voliss volume="86"/>
+<pagerange first="98" last="105"/>
+</ref-volisspag>
+</ref-info>
+<ref-fulltext>Zanstra, Y. J., &amp; Johnston, D. W. (2011). Cardiovascular reactivity in real life settings: Measurement, mechanisms and meaning. Biological Psychology, 86, 98-105. doi: 10.1016/j.biopsycho.2010.05.002</ref-fulltext>
+</reference>
+</bibliography>
+      </tail>
+    </bibrecord>
+  </item>
+</abstracts-retrieval-response>

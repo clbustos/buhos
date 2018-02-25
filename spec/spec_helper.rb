@@ -2,7 +2,7 @@ require 'simplecov'
 SimpleCov.start
 require 'sequel'
 require_relative "../db/create_schema"
-require_relative "../lib/buhos_dbadapter"
+require_relative "../lib/buhos/dbadapter"
 
 ENV['RACK_ENV'] = 'test'
 ENV['DATABASE_URL']='sqlite::memory:'
@@ -44,6 +44,10 @@ app_path=File.expand_path(File.dirname(__FILE__)+"/..")
 
 # Load rack test
 #
+
+
+
+
 
 
 
@@ -162,3 +166,4 @@ RSpec::Matchers.define :be_prohibited do
     "route #{actual} be prohibited"
   end
 end
+

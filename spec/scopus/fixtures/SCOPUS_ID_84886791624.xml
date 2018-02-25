@@ -1,0 +1,2657 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<abstracts-retrieval-response xmlns="http://www.elsevier.com/xml/svapi/abstract/dtd" xmlns:ait="http://www.elsevier.com/xml/ani/ait" xmlns:ce="http://www.elsevier.com/xml/ani/common" xmlns:cto="http://www.elsevier.com/xml/cto/dtd" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:prism="http://prismstandard.org/namespaces/basic/2.0/" xmlns:xocs="http://www.elsevier.com/xml/xocs/dtd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <coredata>
+    <prism:url>http://api.elsevier.com/content/abstract/scopus_id/84886791624</prism:url>
+    <dc:identifier>SCOPUS_ID:84886791624</dc:identifier>
+    <eid>2-s2.0-84886791624</eid>
+    <pii>S1053482213000302</pii>
+    <prism:doi>10.1016/j.hrmr.2013.05.002</prism:doi>
+    <dc:title>What is the meaning of 'talent' in the world of work?</dc:title>
+    <prism:aggregationType>Journal</prism:aggregationType>
+    <srctype>j</srctype>
+    <citedby-count>29</citedby-count>
+    <prism:publicationName>Human Resource Management Review</prism:publicationName>
+    <source-id>24719</source-id>
+    <prism:issn>10534822</prism:issn>
+    <prism:volume>23</prism:volume>
+    <prism:issueIdentifier>4</prism:issueIdentifier>
+    <prism:startingPage>290</prism:startingPage>
+    <prism:endingPage>300</prism:endingPage>
+    <prism:pageRange>290-300</prism:pageRange>
+    <prism:coverDate>2013-12-01</prism:coverDate>
+    <dc:creator>
+      <author auid="55389786200" seq="1">
+        <ce:initials>E.</ce:initials>
+        <ce:indexed-name>Gallardo-Gallardo E.</ce:indexed-name>
+        <ce:surname>Gallardo-Gallardo</ce:surname>
+        <ce:given-name>Eva</ce:given-name>
+        <preferred-name>
+          <ce:initials>E.</ce:initials>
+          <ce:indexed-name>Gallardo-Gallardo E.</ce:indexed-name>
+          <ce:surname>Gallardo-Gallardo</ce:surname>
+          <ce:given-name>Eva</ce:given-name>
+        </preferred-name>
+        <author-url>http://api.elsevier.com/content/author/author_id/55389786200</author-url>
+        <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60001576" id="60001576"/>
+      </author>
+    </dc:creator>
+    <dc:description>
+      <abstract original="y" xml:lang="eng">
+        <ce:para>The ongoing confusion about the meaning of 'talent' within the world of work is hindering the establishment of widely accepted talent management theories and practices. The aim of this paper is to contribute to the literature on talent management by offering an in-depth review of the talent concept within the specific context of the world of work, and proposing a framework for its conceptualization. We group different theoretical approaches to talent into 'object' (i.e., talent as natural ability; talent as mastery; talent as commitment; talent as fit) versus 'subject' approaches (i.e., talent as all people; talent as some people) and identify dynamics existing within and between them, as well as implications for talent management theory and practice. Finally, we discuss different avenues for further research aimed at developing the talent-and consequently, the talent management-construct further. •Offers a framework for the conceptualization of talent within the world of work•Discusses the etymology of 'talent' and its linguistic evolution over time•Distinguishes between 'object' and 'subject' approaches to talent•Also distinguishes between 'exclusive' and 'inclusive' approaches to talent•Discusses implications for theory, research, and practice. © 2013 Elsevier Inc.</ce:para>
+      </abstract>
+    </dc:description>
+    <intid>28830854</intid>
+    <link href="http://api.elsevier.com/content/abstract/scopus_id/84886791624" rel="self"/>
+    <link href="http://www.scopus.com/inward/record.url?partnerID=HzOxMe3b&amp;scp=84886791624&amp;origin=inward" rel="scopus"/>
+  </coredata>
+  <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60002644" id="60002644">
+    <affilname>Universitat de ValEncia</affilname>
+    <affiliation-city>Valencia</affiliation-city>
+    <affiliation-country>Spain</affiliation-country>
+  </affiliation>
+  <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60001576" id="60001576">
+    <affilname>Universitat de Barcelona</affilname>
+    <affiliation-city>Barcelona</affiliation-city>
+    <affiliation-country>Spain</affiliation-country>
+  </affiliation>
+  <authors>
+    <author auid="55389786200" seq="1">
+      <ce:initials>E.</ce:initials>
+      <ce:indexed-name>Gallardo-Gallardo E.</ce:indexed-name>
+      <ce:surname>Gallardo-Gallardo</ce:surname>
+      <ce:given-name>Eva</ce:given-name>
+      <preferred-name>
+        <ce:initials>E.</ce:initials>
+        <ce:indexed-name>Gallardo-Gallardo E.</ce:indexed-name>
+        <ce:surname>Gallardo-Gallardo</ce:surname>
+        <ce:given-name>Eva</ce:given-name>
+      </preferred-name>
+      <author-url>http://api.elsevier.com/content/author/author_id/55389786200</author-url>
+      <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60001576" id="60001576"/>
+    </author>
+    <author auid="22984985100" seq="2">
+      <ce:initials>N.</ce:initials>
+      <ce:indexed-name>Dries N.</ce:indexed-name>
+      <ce:surname>Dries</ce:surname>
+      <ce:given-name>Nicky</ce:given-name>
+      <preferred-name>
+        <ce:initials>N.</ce:initials>
+        <ce:indexed-name>Dries N.</ce:indexed-name>
+        <ce:surname>Dries</ce:surname>
+        <ce:given-name>Nicky</ce:given-name>
+      </preferred-name>
+      <author-url>http://api.elsevier.com/content/author/author_id/22984985100</author-url>
+      <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/113487880" id="113487880"/>
+    </author>
+    <author auid="55151133500" seq="3">
+      <ce:initials>T.F.</ce:initials>
+      <ce:indexed-name>Gonzalez-Cruz T.F.</ce:indexed-name>
+      <ce:surname>González-Cruz</ce:surname>
+      <ce:given-name>Tomás F.</ce:given-name>
+      <preferred-name>
+        <ce:initials>T.F.</ce:initials>
+        <ce:indexed-name>González-Cruz T.</ce:indexed-name>
+        <ce:surname>González-Cruz</ce:surname>
+        <ce:given-name>Tomás F.</ce:given-name>
+      </preferred-name>
+      <author-url>http://api.elsevier.com/content/author/author_id/55151133500</author-url>
+      <affiliation href="http://api.elsevier.com/content/affiliation/affiliation_id/60002644" id="60002644"/>
+    </author>
+  </authors>
+  <language xml:lang="eng"/>
+  <authkeywords>
+    <author-keyword>High performers</author-keyword>
+    <author-keyword>High potentials</author-keyword>
+    <author-keyword>Talent</author-keyword>
+    <author-keyword>Talent management</author-keyword>
+    <author-keyword>Workforce segmentation</author-keyword>
+  </authkeywords>
+  <idxterms/>
+  <subject-areas>
+    <subject-area abbrev="BUSI" code="1407">Organizational Behavior and Human Resource Management</subject-area>
+    <subject-area abbrev="PSYC" code="3202">Applied Psychology</subject-area>
+  </subject-areas>
+  <item xmlns="">
+    <ait:process-info>
+      <ait:date-delivered day="23" month="07" timestamp="2015-07-23T03:48:04.000004+01:00" year="2015"/>
+      <ait:date-sort day="01" month="12" year="2013"/>
+      <ait:status stage="S300" state="update" type="core"/>
+    </ait:process-info>
+    <bibrecord>
+      <item-info>
+        <copyright type="Elsevier">Copyright 2013 Elsevier B.V., All rights reserved.</copyright>
+        <itemidlist>
+          <ce:pii>S1053482213000302</ce:pii>
+          <ce:doi>10.1016/j.hrmr.2013.05.002</ce:doi>
+          <itemid idtype="PUI">52605134</itemid>
+          <itemid idtype="SNSOC">2013081197</itemid>
+          <itemid idtype="SCP">84886791624</itemid>
+          <itemid idtype="SGR">84886791624</itemid>
+        </itemidlist>
+        <history>
+          <date-created day="30" month="05" year="2013"/>
+        </history>
+        <dbcollection>SNSOC</dbcollection>
+        <dbcollection>Scopusbase</dbcollection>
+      </item-info>
+      <head>
+        <citation-info>
+          <citation-type code="ar"/>
+          <citation-language language="English" xml:lang="eng"/>
+          <abstract-language language="English" xml:lang="eng"/>
+          <author-keywords>
+            <author-keyword>High performers</author-keyword>
+            <author-keyword>High potentials</author-keyword>
+            <author-keyword>Talent</author-keyword>
+            <author-keyword>Talent management</author-keyword>
+            <author-keyword>Workforce segmentation</author-keyword>
+          </author-keywords>
+        </citation-info>
+        <citation-title>
+          <titletext language="English" original="y" xml:lang="eng">What is the meaning of 'talent' in the world of work?</titletext>
+        </citation-title>
+        <author-group>
+          <author auid="55389786200" seq="1">
+            <ce:initials>E.</ce:initials>
+            <ce:indexed-name>Gallardo-Gallardo E.</ce:indexed-name>
+            <ce:surname>Gallardo-Gallardo</ce:surname>
+            <ce:given-name>Eva</ce:given-name>
+            <preferred-name>
+              <ce:initials>E.</ce:initials>
+              <ce:indexed-name>Gallardo-Gallardo E.</ce:indexed-name>
+              <ce:surname>Gallardo-Gallardo</ce:surname>
+              <ce:given-name>Eva</ce:given-name>
+            </preferred-name>
+            <ce:e-address type="email">eva.gallardo@ub.edu</ce:e-address>
+          </author>
+          <affiliation afid="60001576" country="esp" dptid="106584564">
+            <organization>Department of Economics and Business Organization</organization>
+            <organization>Faculty of Economics and Business</organization>
+            <organization>University of Barcelona</organization>
+            <country>Spain</country>
+          </affiliation>
+        </author-group>
+        <author-group>
+          <author auid="22984985100" seq="2">
+            <ce:initials>N.</ce:initials>
+            <ce:indexed-name>Dries N.</ce:indexed-name>
+            <ce:surname>Dries</ce:surname>
+            <ce:given-name>Nicky</ce:given-name>
+            <preferred-name>
+              <ce:initials>N.</ce:initials>
+              <ce:indexed-name>Dries N.</ce:indexed-name>
+              <ce:surname>Dries</ce:surname>
+              <ce:given-name>Nicky</ce:given-name>
+            </preferred-name>
+          </author>
+          <affiliation afid="113487880" country="bel" dptid="113488328">
+            <organization>Research Centre for Organization Studies</organization>
+            <organization>Faculty of Business and Economics</organization>
+            <organization>KU Leuven</organization>
+            <country>Belgium</country>
+          </affiliation>
+        </author-group>
+        <author-group>
+          <author auid="55151133500" seq="3">
+            <ce:initials>T.F.</ce:initials>
+            <ce:indexed-name>Gonzalez-Cruz T.F.</ce:indexed-name>
+            <ce:surname>González-Cruz</ce:surname>
+            <ce:given-name>Tomás F.</ce:given-name>
+            <preferred-name>
+              <ce:initials>T.F.</ce:initials>
+              <ce:indexed-name>González-Cruz T.</ce:indexed-name>
+              <ce:surname>González-Cruz</ce:surname>
+              <ce:given-name>Tomás F.</ce:given-name>
+            </preferred-name>
+          </author>
+          <affiliation afid="60002644" country="esp" dptid="113228710">
+            <organization>Business Administration Department</organization>
+            <organization>Faculty of Economics</organization>
+            <organization>University of Valencia</organization>
+            <country>Spain</country>
+          </affiliation>
+        </author-group>
+        <correspondence>
+          <person>
+            <ce:initials>E.</ce:initials>
+            <ce:indexed-name>Gallardo-Gallardo E.</ce:indexed-name>
+            <ce:surname>Gallardo-Gallardo</ce:surname>
+          </person>
+          <affiliation country="esp">
+            <organization>Department of Economics and Business Organization</organization>
+            <organization>Faculty of Economics and Business</organization>
+            <organization>University of Barcelona</organization>
+            <address-part>Av. Diagonal, 690</address-part>
+            <city-group>08034 Barcelona</city-group>
+            <country>Spain</country>
+          </affiliation>
+          <ce:e-address type="email">eva.gallardo@ub.edu</ce:e-address>
+        </correspondence>
+        <abstracts>
+          <abstract original="y" xml:lang="eng">
+            <ce:para>The ongoing confusion about the meaning of 'talent' within the world of work is hindering the establishment of widely accepted talent management theories and practices. The aim of this paper is to contribute to the literature on talent management by offering an in-depth review of the talent concept within the specific context of the world of work, and proposing a framework for its conceptualization. We group different theoretical approaches to talent into 'object' (i.e., talent as natural ability; talent as mastery; talent as commitment; talent as fit) versus 'subject' approaches (i.e., talent as all people; talent as some people) and identify dynamics existing within and between them, as well as implications for talent management theory and practice. Finally, we discuss different avenues for further research aimed at developing the talent-and consequently, the talent management-construct further. •Offers a framework for the conceptualization of talent within the world of work•Discusses the etymology of 'talent' and its linguistic evolution over time•Distinguishes between 'object' and 'subject' approaches to talent•Also distinguishes between 'exclusive' and 'inclusive' approaches to talent•Discusses implications for theory, research, and practice. © 2013 Elsevier Inc.</ce:para>
+          </abstract>
+        </abstracts>
+        <source country="gbr" srcid="24719" type="j">
+          <sourcetitle>Human Resource Management Review</sourcetitle>
+          <sourcetitle-abbrev>Hum. Resour. Manage. Rev.</sourcetitle-abbrev>
+          <issn type="print">10534822</issn>
+          <codencode>HRMRE</codencode>
+          <volisspag>
+            <voliss issue="4" volume="23"/>
+            <pagerange first="290" last="300"/>
+          </volisspag>
+          <publicationyear first="2013"/>
+          <publicationdate>
+            <year>2013</year>
+            <month>12</month>
+            <date-text xfab-added="true">December 2013</date-text>
+          </publicationdate>
+        </source>
+        <enhancement>
+          <classificationgroup>
+            <classifications type="ASJC">
+              <classification>1407</classification>
+              <classification>3202</classification>
+            </classifications>
+            <classifications type="SUBJABBR">
+              <classification>BUSI</classification>
+              <classification>PSYC</classification>
+            </classifications>
+          </classificationgroup>
+        </enhancement>
+      </head>
+      <tail>
+        <bibliography refcount="92">
+          <reference id="1">
+            <ref-info>
+              <refd-itemidlist>
+                <itemid idtype="SGR">33645408321</itemid>
+              </refd-itemidlist>
+              <ref-sourcetitle>Longman Dictionary of Contemporary English</ref-sourcetitle>
+              <ref-publicationyear first="2009"/>
+              <ref-text>Pearson Education Limited, Harlow, E. Adrian-Vallance, K. Cleveland, S. Dignen, S. Handorf, L. Hollingworth, E. Manning (Eds.)</ref-text>
+            </ref-info>
+            <ref-fulltext>Longman Dictionary of Contemporary English 2009, Pearson Education Limited, Harlow. 5th ed. E. Adrian-Vallance, K. Cleveland, S. Dignen, S. Handorf, L. Hollingworth, E. Manning (Eds.).</ref-fulltext>
+          </reference>
+          <reference id="2">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Managing talent for competitive advantage</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">33744549628</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>C.</ce:initials>
+                  <ce:indexed-name>Ashton C.</ce:indexed-name>
+                  <ce:surname>Ashton</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>L.</ce:initials>
+                  <ce:indexed-name>Morton L.</ce:indexed-name>
+                  <ce:surname>Morton</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Strategic HR Review</ref-sourcetitle>
+              <ref-publicationyear first="2005"/>
+              <ref-volisspag>
+                <voliss issue="5" volume="4"/>
+                <pagerange first="28" last="31"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Ashton C., Morton L. Managing talent for competitive advantage. Strategic HR Review 2005, 4(5):28-31.</ref-fulltext>
+          </reference>
+          <reference id="3">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Smart people or smart contexts? Cognition, ability, and talent development in an age of situated approaches to knowing and learning</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">0036350769</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>S.A.</ce:initials>
+                  <ce:indexed-name>Barab S.A.</ce:indexed-name>
+                  <ce:surname>Barab</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>J.A.</ce:initials>
+                  <ce:indexed-name>Plucker J.A.</ce:indexed-name>
+                  <ce:surname>Plucker</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Educational Psychologist</ref-sourcetitle>
+              <ref-publicationyear first="2002"/>
+              <ref-volisspag>
+                <voliss issue="3" volume="37"/>
+                <pagerange first="165" last="182"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Barab S.A., Plucker J.A. Smart people or smart contexts? Cognition, ability, and talent development in an age of situated approaches to knowing and learning. Educational Psychologist 2002, 37(3):165-182.</ref-fulltext>
+          </reference>
+          <reference id="4">
+            <ref-info>
+              <refd-itemidlist>
+                <itemid idtype="SGR">0003995945</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>K.</ce:initials>
+                  <ce:indexed-name>Barber K.</ce:indexed-name>
+                  <ce:surname>Barber</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>The Canadian Oxford Dictionary</ref-sourcetitle>
+              <ref-publicationyear first="2004"/>
+              <ref-text>Oxford University Press, Oxford</ref-text>
+            </ref-info>
+            <ref-fulltext>Barber K. The Canadian Oxford Dictionary 2004, Oxford University Press, Oxford. 2nd ed.</ref-fulltext>
+          </reference>
+          <reference id="5">
+            <ref-info>
+              <refd-itemidlist>
+                <itemid idtype="SGR">75149174472</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>B.E.</ce:initials>
+                  <ce:indexed-name>Becker B.E.</ce:indexed-name>
+                  <ce:surname>Becker</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>M.A.</ce:initials>
+                  <ce:indexed-name>Huselid M.A.</ce:indexed-name>
+                  <ce:surname>Huselid</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>R.W.</ce:initials>
+                  <ce:indexed-name>Beatty R.W.</ce:indexed-name>
+                  <ce:surname>Beatty</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>The differentiated workforce: Transforming talent into strategic impact</ref-sourcetitle>
+              <ref-publicationyear first="2009"/>
+              <ref-text>Harvard Business Press, Boston</ref-text>
+            </ref-info>
+            <ref-fulltext>Becker B.E., Huselid M.A., Beatty R.W. The differentiated workforce: Transforming talent into strategic impact 2009, Harvard Business Press, Boston.</ref-fulltext>
+          </reference>
+          <reference id="6">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>The global war for talent</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">68049137615</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>S.</ce:initials>
+                  <ce:indexed-name>Beechler S.</ce:indexed-name>
+                  <ce:surname>Beechler</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>I.C.</ce:initials>
+                  <ce:indexed-name>Woodward I.C.</ce:indexed-name>
+                  <ce:surname>Woodward</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Journal of International Management</ref-sourcetitle>
+              <ref-publicationyear first="2009"/>
+              <ref-volisspag>
+                <voliss issue="3" volume="15"/>
+                <pagerange first="273" last="285"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Beechler S., Woodward I.C. The global war for talent. Journal of International Management 2009, 15(3):273-285.</ref-fulltext>
+          </reference>
+          <reference id="7">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>The differentiated workforce: Effects of categorization in talent management on workforce level</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">84886785561</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>P.</ce:initials>
+                  <ce:indexed-name>Bethke-Langenegger P.</ce:indexed-name>
+                  <ce:surname>Bethke-Langenegger</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Unpublished working paper, No. 18</ref-sourcetitle>
+              <ref-publicationyear first="2012"/>
+              <ref-text>Department of Business Administration, University of Zurich, Switzerland</ref-text>
+            </ref-info>
+            <ref-fulltext>Bethke-Langenegger P. The differentiated workforce: Effects of categorization in talent management on workforce level. Unpublished working paper, No. 18 2012, Department of Business Administration, University of Zurich, Switzerland.</ref-fulltext>
+          </reference>
+          <reference id="8">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Commonalities and contradictions in research on human resource management and performance</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">33144473778</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>P.</ce:initials>
+                  <ce:indexed-name>Boselie P.</ce:indexed-name>
+                  <ce:surname>Boselie</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>G.</ce:initials>
+                  <ce:indexed-name>Dietz G.</ce:indexed-name>
+                  <ce:surname>Dietz</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>C.</ce:initials>
+                  <ce:indexed-name>Boon C.</ce:indexed-name>
+                  <ce:surname>Boon</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Human Resource Management Journal</ref-sourcetitle>
+              <ref-publicationyear first="2005"/>
+              <ref-volisspag>
+                <voliss issue="3" volume="15"/>
+                <pagerange first="67" last="94"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Boselie P., Dietz G., Boon C. Commonalities and contradictions in research on human resource management and performance. Human Resource Management Journal 2005, 15(3):67-94.</ref-fulltext>
+          </reference>
+          <reference id="9">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Organizing contest for status: The Matthew effect vs. the Mark effect</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">79952940069</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>M.S.</ce:initials>
+                  <ce:indexed-name>Bothner M.S.</ce:indexed-name>
+                  <ce:surname>Bothner</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>J.M.</ce:initials>
+                  <ce:indexed-name>Podolny J.M.</ce:indexed-name>
+                  <ce:surname>Podolny</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>E.B.</ce:initials>
+                  <ce:indexed-name>Smith E.B.</ce:indexed-name>
+                  <ce:surname>Smith</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Management Science</ref-sourcetitle>
+              <ref-publicationyear first="2011"/>
+              <ref-volisspag>
+                <voliss issue="3" volume="57"/>
+                <pagerange first="439" last="457"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Bothner M.S., Podolny J.M., Smith E.B. Organizing contest for status: The Matthew effect vs. the Mark effect. Management Science 2011, 57(3):439-457.</ref-fulltext>
+          </reference>
+          <reference id="10">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>"Talentship": A decision science for HR. Why HR measurement must focus on informing better talent decisions</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">84886800971</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>J.W.</ce:initials>
+                  <ce:indexed-name>Boudreau J.W.</ce:indexed-name>
+                  <ce:surname>Boudreau</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>P.M.</ce:initials>
+                  <ce:indexed-name>Ramstad P.M.</ce:indexed-name>
+                  <ce:surname>Ramstad</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Strategic HR Review</ref-sourcetitle>
+              <ref-publicationyear first="2004"/>
+              <ref-volisspag>
+                <voliss issue="2" volume="3"/>
+                <pagerange first="28" last="31"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Boudreau J.W., Ramstad P.M. "Talentship": A decision science for HR. Why HR measurement must focus on informing better talent decisions. Strategic HR Review 2004, 3(2):28-31.</ref-fulltext>
+          </reference>
+          <reference id="11">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Talentship, talent segmentation, and sustainability: A new HR decision science paradigm for a new strategy definition</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">20744459131</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>J.W.</ce:initials>
+                  <ce:indexed-name>Boudreau J.W.</ce:indexed-name>
+                  <ce:surname>Boudreau</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>P.M.</ce:initials>
+                  <ce:indexed-name>Ramstad P.M.</ce:indexed-name>
+                  <ce:surname>Ramstad</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Human Resource Management</ref-sourcetitle>
+              <ref-publicationyear first="2005"/>
+              <ref-volisspag>
+                <voliss issue="2" volume="44"/>
+                <pagerange first="129" last="136"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Boudreau J.W., Ramstad P.M. Talentship, talent segmentation, and sustainability: A new HR decision science paradigm for a new strategy definition. Human Resource Management 2005, 44(2):129-136.</ref-fulltext>
+          </reference>
+          <reference id="12">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Where's your pivotal talent?</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">20744455257</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>J.W.</ce:initials>
+                  <ce:indexed-name>Boudreau J.W.</ce:indexed-name>
+                  <ce:surname>Boudreau</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>P.M.</ce:initials>
+                  <ce:indexed-name>Ramstad P.M.</ce:indexed-name>
+                  <ce:surname>Ramstad</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Harvard Business Review</ref-sourcetitle>
+              <ref-publicationyear first="2005"/>
+              <ref-volisspag>
+                <voliss issue="4" volume="83"/>
+                <pagerange first="23" last="24"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Boudreau J.W., Ramstad P.M. Where's your pivotal talent?. Harvard Business Review 2005, 83(4):23-24.</ref-fulltext>
+          </reference>
+          <reference id="13">
+            <ref-info>
+              <refd-itemidlist>
+                <itemid idtype="SGR">0003454877</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>R.E.</ce:initials>
+                  <ce:indexed-name>Boyatzis R.E.</ce:indexed-name>
+                  <ce:surname>Boyatzis</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>The competent manager: A model for effective performance</ref-sourcetitle>
+              <ref-publicationyear first="1982"/>
+              <ref-text>Wiley, New York</ref-text>
+            </ref-info>
+            <ref-fulltext>Boyatzis R.E. The competent manager: A model for effective performance 1982, Wiley, New York.</ref-fulltext>
+          </reference>
+          <reference id="14">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Grooming and picking leaders using competency frameworks: Do they work? An alternative approach and new guidelines for practice</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">3142708155</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>J.P.</ce:initials>
+                  <ce:indexed-name>Briscoe J.P.</ce:indexed-name>
+                  <ce:surname>Briscoe</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>D.T.</ce:initials>
+                  <ce:indexed-name>Hall D.T.</ce:indexed-name>
+                  <ce:surname>Hall</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Organizational Dynamics</ref-sourcetitle>
+              <ref-publicationyear first="1999"/>
+              <ref-volisspag>
+                <voliss issue="2" volume="28"/>
+                <pagerange first="37" last="52"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Briscoe J.P., Hall D.T. Grooming and picking leaders using competency frameworks: Do they work? An alternative approach and new guidelines for practice. Organizational Dynamics 1999, 28(2):37-52.</ref-fulltext>
+          </reference>
+          <reference id="15">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>The 21st century human resources function: It's the talent, stupid!</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">33744539684</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>M.</ce:initials>
+                  <ce:indexed-name>Buckingham M.</ce:indexed-name>
+                  <ce:surname>Buckingham</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>R.M.</ce:initials>
+                  <ce:indexed-name>Vosburgh R.M.</ce:indexed-name>
+                  <ce:surname>Vosburgh</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Human Resource Planning</ref-sourcetitle>
+              <ref-publicationyear first="2001"/>
+              <ref-volisspag>
+                <voliss issue="4" volume="24"/>
+                <pagerange first="17" last="23"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Buckingham M., Vosburgh R.M. The 21st century human resources function: It's the talent, stupid!. Human Resource Planning 2001, 24(4):17-23.</ref-fulltext>
+          </reference>
+          <reference id="16">
+            <ref-info>
+              <refd-itemidlist>
+                <itemid idtype="SGR">58149361663</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>P.</ce:initials>
+                  <ce:indexed-name>Cappelli P.</ce:indexed-name>
+                  <ce:surname>Cappelli</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Talent on demand: Managing talent in an age of uncertainty</ref-sourcetitle>
+              <ref-publicationyear first="2008"/>
+              <ref-text>Harvard Business Press, Boston</ref-text>
+            </ref-info>
+            <ref-fulltext>Cappelli P. Talent on demand: Managing talent in an age of uncertainty 2008, Harvard Business Press, Boston.</ref-fulltext>
+          </reference>
+          <reference id="17">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>What's old is new again: Managerial "talent" in an historical context</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">79955612700</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>P.</ce:initials>
+                  <ce:indexed-name>Cappelli P.</ce:indexed-name>
+                  <ce:surname>Cappelli</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Research in Personnel and Human Resources Management</ref-sourcetitle>
+              <ref-publicationyear first="2009"/>
+              <ref-volisspag>
+                <voliss volume="28"/>
+                <pagerange first="179" last="218"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Cappelli P. What's old is new again: Managerial "talent" in an historical context. Research in Personnel and Human Resources Management 2009, 28:179-218.</ref-fulltext>
+          </reference>
+          <reference id="18">
+            <ref-info>
+              <refd-itemidlist>
+                <itemid idtype="SGR">58149332635</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>P.</ce:initials>
+                  <ce:indexed-name>Cheese P.</ce:indexed-name>
+                  <ce:surname>Cheese</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>R.T.</ce:initials>
+                  <ce:indexed-name>Thomas R.T.</ce:indexed-name>
+                  <ce:surname>Thomas</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>E.</ce:initials>
+                  <ce:indexed-name>Craig E.</ce:indexed-name>
+                  <ce:surname>Craig</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>The talent powered organization: Strategies for globalization, talent management and high performance</ref-sourcetitle>
+              <ref-publicationyear first="2008"/>
+              <ref-text>Kogan Page, London</ref-text>
+            </ref-info>
+            <ref-fulltext>Cheese P., Thomas R.T., Craig E. The talent powered organization: Strategies for globalization, talent management and high performance 2008, Kogan Page, London.</ref-fulltext>
+          </reference>
+          <reference id="19">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Is talent management just "old wine in new bottles"?: The case of multinational companies in Beijing</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">72749095397</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>X.</ce:initials>
+                  <ce:indexed-name>Chuai X.</ce:indexed-name>
+                  <ce:surname>Chuai</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>D.</ce:initials>
+                  <ce:indexed-name>Preece D.</ce:indexed-name>
+                  <ce:surname>Preece</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>P.</ce:initials>
+                  <ce:indexed-name>Iles P.</ce:indexed-name>
+                  <ce:surname>Iles</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Management Research News</ref-sourcetitle>
+              <ref-publicationyear first="2008"/>
+              <ref-volisspag>
+                <voliss issue="12" volume="31"/>
+                <pagerange first="901" last="911"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Chuai X., Preece D., Iles P. Is talent management just "old wine in new bottles"?: The case of multinational companies in Beijing. Management Research News 2008, 31(12):901-911.</ref-fulltext>
+          </reference>
+          <reference id="20">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Strategic talent management: A review and research agenda</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">70349838957</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>D.G.</ce:initials>
+                  <ce:indexed-name>Collings D.G.</ce:indexed-name>
+                  <ce:surname>Collings</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>K.</ce:initials>
+                  <ce:indexed-name>Mellahi K.</ce:indexed-name>
+                  <ce:surname>Mellahi</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Human Resource Management Review</ref-sourcetitle>
+              <ref-publicationyear first="2009"/>
+              <ref-volisspag>
+                <voliss issue="4" volume="19"/>
+                <pagerange first="304" last="313"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Collings D.G., Mellahi K. Strategic talent management: A review and research agenda. Human Resource Management Review 2009, 19(4):304-313.</ref-fulltext>
+          </reference>
+          <reference id="21">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Talent management and building high performance organisations</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">84866854184</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>C.</ce:initials>
+                  <ce:indexed-name>Coulson-Thomas C.</ce:indexed-name>
+                  <ce:surname>Coulson-Thomas</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Industrial and Commercial Training</ref-sourcetitle>
+              <ref-publicationyear first="2012"/>
+              <ref-volisspag>
+                <voliss issue="7" volume="44"/>
+                <pagerange first="429" last="438"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Coulson-Thomas C. Talent management and building high performance organisations. Industrial and Commercial Training 2012, 44(7):429-438.</ref-fulltext>
+          </reference>
+          <reference id="22">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Only the right people are strategic assets of the firm</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">72049107868</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>D.W.</ce:initials>
+                  <ce:indexed-name>Crain D.W.</ce:indexed-name>
+                  <ce:surname>Crain</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Strategy &amp; Leadership</ref-sourcetitle>
+              <ref-publicationyear first="2009"/>
+              <ref-volisspag>
+                <voliss issue="6" volume="37"/>
+                <pagerange first="33" last="38"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Crain D.W. Only the right people are strategic assets of the firm. Strategy &amp; Leadership 2009, 37(6):33-38.</ref-fulltext>
+          </reference>
+          <reference id="23">
+            <ref-info>
+              <refd-itemidlist>
+                <itemid idtype="SGR">84886801617</itemid>
+              </refd-itemidlist>
+              <ref-sourcetitle>The Oxford Dictionary of Word Origins</ref-sourcetitle>
+              <ref-publicationyear first="2009"/>
+              <ref-text>Oxford University Press, Oxford, J. Cresswell (Ed.)</ref-text>
+            </ref-info>
+            <ref-fulltext>The Oxford Dictionary of Word Origins 2009, Oxford University Press, Oxford. 2nd ed. J. Cresswell (Ed.).</ref-fulltext>
+          </reference>
+          <reference id="24">
+            <ref-info>
+              <refd-itemidlist>
+                <itemid idtype="SGR">33749440686</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>T.</ce:initials>
+                  <ce:indexed-name>Darwill T.</ce:indexed-name>
+                  <ce:surname>Darwill</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>The Concise Oxford Dictionary of Archaelogy</ref-sourcetitle>
+              <ref-publicationyear first="2008"/>
+              <ref-text>Oxford University Press, Oxford</ref-text>
+            </ref-info>
+            <ref-fulltext>Darwill T. The Concise Oxford Dictionary of Archaelogy 2008, Oxford University Press, Oxford. 2nd ed.</ref-fulltext>
+          </reference>
+          <reference id="25">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Talent management in academies</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">77954235327</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>B.</ce:initials>
+                  <ce:indexed-name>Davies B.</ce:indexed-name>
+                  <ce:surname>Davies</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>B.J.</ce:initials>
+                  <ce:indexed-name>Davies B.J.</ce:indexed-name>
+                  <ce:surname>Davies</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>International Journal of Educational Management</ref-sourcetitle>
+              <ref-publicationyear first="2010"/>
+              <ref-volisspag>
+                <voliss issue="5" volume="24"/>
+                <pagerange first="418" last="426"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Davies B., Davies B.J. Talent management in academies. International Journal of Educational Management 2010, 24(5):418-426.</ref-fulltext>
+          </reference>
+          <reference id="26">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Gestión del talento, pero ¿de qué talento? Diez preguntas para delimitar el concepto de talento en las organizaciones</ref-titletext>
+                <ref-titletext>Talent management, but of what talent? Ten questions to delimitate the talent concept in organizations</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">84886785586</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>J.M.</ce:initials>
+                  <ce:indexed-name>De Haro J.M.</ce:indexed-name>
+                  <ce:surname>De Haro</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Capital Humano</ref-sourcetitle>
+              <ref-publicationyear first="2010"/>
+              <ref-volisspag>
+                <voliss volume="242"/>
+                <pagerange first="72" last="78"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>De Haro J.M. Gestión del talento, pero ¿de qué talento? Diez preguntas para delimitar el concepto de talento en las organizaciones. Capital Humano 2010, 242:72-78.</ref-fulltext>
+          </reference>
+          <reference id="27">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Let's hear it for B players</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">0038262685</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>T.J.</ce:initials>
+                  <ce:indexed-name>DeLong T.J.</ce:indexed-name>
+                  <ce:surname>DeLong</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>V.</ce:initials>
+                  <ce:indexed-name>Vijayaraghavan V.</ce:indexed-name>
+                  <ce:surname>Vijayaraghavan</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Harvard Business Review</ref-sourcetitle>
+              <ref-publicationyear first="2003"/>
+              <ref-volisspag>
+                <voliss issue="6" volume="81"/>
+                <pagerange first="96" last="102"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>DeLong T.J., Vijayaraghavan V. Let's hear it for B players. Harvard Business Review 2003, 81(6):96-102.</ref-fulltext>
+          </reference>
+          <reference id="28">
+            <ref-info>
+              <refd-itemidlist>
+                <itemid idtype="SGR">79959122495</itemid>
+              </refd-itemidlist>
+              <ref-sourcetitle>The New Zealand Oxford Dictionary</ref-sourcetitle>
+              <ref-publicationyear first="2005"/>
+              <ref-text>Oxford University Press, Oxford, T. Deverson, G. Kennedy (Eds.)</ref-text>
+            </ref-info>
+            <ref-fulltext>The New Zealand Oxford Dictionary 2005, Oxford University Press, Oxford. T. Deverson, G. Kennedy (Eds.).</ref-fulltext>
+          </reference>
+          <reference id="29">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>The psychology of talent management: A review and research agenda</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">84886774420</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>N.</ce:initials>
+                  <ce:indexed-name>Dries N.</ce:indexed-name>
+                  <ce:surname>Dries</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Human Resource Management Review</ref-sourcetitle>
+              <ref-publicationyear first="2013"/>
+              <ref-volisspag>
+                <voliss issue="4" volume="23"/>
+                <pagerange first="272" last="285"/>
+              </ref-volisspag>
+              <ref-text>(in this issue)</ref-text>
+            </ref-info>
+            <ref-fulltext>Dries N. The psychology of talent management: A review and research agenda. Human Resource Management Review 2013, 23(4):272-285. (in this issue).</ref-fulltext>
+          </reference>
+          <reference id="30">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Real high-potential careers: An empirical study into the perspectives of organizations and high potentials</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">36949037309</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>N.</ce:initials>
+                  <ce:indexed-name>Dries N.</ce:indexed-name>
+                  <ce:surname>Dries</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>R.</ce:initials>
+                  <ce:indexed-name>Pepermans R.</ce:indexed-name>
+                  <ce:surname>Pepermans</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Personnel Review</ref-sourcetitle>
+              <ref-publicationyear first="2008"/>
+              <ref-volisspag>
+                <voliss issue="1" volume="37"/>
+                <pagerange first="85" last="108"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Dries N., Pepermans R. Real high-potential careers: An empirical study into the perspectives of organizations and high potentials. Personnel Review 2008, 37(1):85-108.</ref-fulltext>
+          </reference>
+          <reference id="31">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Leadership and expectations: Pygmalion effects and other self-fulfilling prophecies in organizations</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">38249010003</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>D.</ce:initials>
+                  <ce:indexed-name>Eden D.</ce:indexed-name>
+                  <ce:surname>Eden</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>The Leadership Quarterly</ref-sourcetitle>
+              <ref-publicationyear first="1992"/>
+              <ref-volisspag>
+                <voliss issue="4" volume="3"/>
+                <pagerange first="271" last="305"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Eden D. Leadership and expectations: Pygmalion effects and other self-fulfilling prophecies in organizations. The Leadership Quarterly 1992, 3(4):271-305.</ref-fulltext>
+          </reference>
+          <reference id="32">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>The influence of experience and deliberate practice on the development of superior expert performance</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">33847123375</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>K.A.</ce:initials>
+                  <ce:indexed-name>Ericsson K.A.</ce:indexed-name>
+                  <ce:surname>Ericsson</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>The Cambridge handbook of expertise and expert performance</ref-sourcetitle>
+              <ref-publicationyear first="2006"/>
+              <ref-volisspag>
+                <pagerange first="685" last="705"/>
+              </ref-volisspag>
+              <ref-text>Cambridge University Press, New York, K.A. Ericsson, N. Charness, R.R. Hoffman, P.J. Feltovich (Eds.)</ref-text>
+            </ref-info>
+            <ref-fulltext>Ericsson K.A. The influence of experience and deliberate practice on the development of superior expert performance. The Cambridge handbook of expertise and expert performance 2006, 685-705. Cambridge University Press, New York. K.A. Ericsson, N. Charness, R.R. Hoffman, P.J. Feltovich (Eds.).</ref-fulltext>
+          </reference>
+          <reference id="33">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>The making of an expert</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">34547253055</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>K.A.</ce:initials>
+                  <ce:indexed-name>Ericsson K.A.</ce:indexed-name>
+                  <ce:surname>Ericsson</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>M.J.</ce:initials>
+                  <ce:indexed-name>Prietula M.J.</ce:indexed-name>
+                  <ce:surname>Prietula</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>E.T.</ce:initials>
+                  <ce:indexed-name>Cokely E.T.</ce:indexed-name>
+                  <ce:surname>Cokely</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Harvard Business Review</ref-sourcetitle>
+              <ref-publicationyear first="2007"/>
+              <ref-volisspag>
+                <voliss issue="7-8" volume="85"/>
+                <pagerange first="115" last="121"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Ericsson K.A., Prietula M.J., Cokely E.T. The making of an expert. Harvard Business Review 2007, 85(7/8):115-121.</ref-fulltext>
+          </reference>
+          <reference id="34">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Understanding the complex choreography of talent development through DMGT-Based analysis</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">0345648744</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>F.</ce:initials>
+                  <ce:indexed-name>Gagne F.</ce:indexed-name>
+                  <ce:surname>Gagné</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>International handbook of giftedness and talent</ref-sourcetitle>
+              <ref-publicationyear first="2000"/>
+              <ref-text>Elsevier, Oxford, K.A. Heller (Ed.)</ref-text>
+            </ref-info>
+            <ref-fulltext>Gagné F. Understanding the complex choreography of talent development through DMGT-Based analysis. International handbook of giftedness and talent 2000, Elsevier, Oxford. 2nd ed. K.A. Heller (Ed.).</ref-fulltext>
+          </reference>
+          <reference id="35">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Talent management: Issues of focus and fit</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">59149102521</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>V.</ce:initials>
+                  <ce:indexed-name>Garrow V.</ce:indexed-name>
+                  <ce:surname>Garrow</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>W.</ce:initials>
+                  <ce:indexed-name>Hirsh W.</ce:indexed-name>
+                  <ce:surname>Hirsh</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Public Personnel Management</ref-sourcetitle>
+              <ref-publicationyear first="2008"/>
+              <ref-volisspag>
+                <voliss issue="4" volume="37"/>
+                <pagerange first="389" last="402"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Garrow V., Hirsh W. Talent management: Issues of focus and fit. Public Personnel Management 2008, 37(4):389-402.</ref-fulltext>
+          </reference>
+          <reference id="36">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>The role of perceived organizational justice in shaping the outcomes of talent management: A research agenda</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">84886794422</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>J.</ce:initials>
+                  <ce:indexed-name>Gelens J.</ce:indexed-name>
+                  <ce:surname>Gelens</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>N.</ce:initials>
+                  <ce:indexed-name>Dries N.</ce:indexed-name>
+                  <ce:surname>Dries</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>J.</ce:initials>
+                  <ce:indexed-name>Hofmans J.</ce:indexed-name>
+                  <ce:surname>Hofmans</ce:surname>
+                </author>
+                <author seq="4">
+                  <ce:initials>R.</ce:initials>
+                  <ce:indexed-name>Pepermans R.</ce:indexed-name>
+                  <ce:surname>Pepermans</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Human Resource Management Review</ref-sourcetitle>
+              <ref-publicationyear first="2013"/>
+              <ref-volisspag>
+                <voliss issue="4" volume="23"/>
+                <pagerange first="341" last="353"/>
+              </ref-volisspag>
+              <ref-text>(in this issue)</ref-text>
+            </ref-info>
+            <ref-fulltext>Gelens J., Dries N., Hofmans J., Pepermans R. The role of perceived organizational justice in shaping the outcomes of talent management: A research agenda. Human Resource Management Review 2013, 23(4):341-353. (in this issue).</ref-fulltext>
+          </reference>
+          <reference id="37">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>La gestión del talento en la empresa industrial española</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">80052376625</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>T.</ce:initials>
+                  <ce:indexed-name>Gonzalez-Cruz T.</ce:indexed-name>
+                  <ce:surname>González-Cruz</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>C.</ce:initials>
+                  <ce:indexed-name>Martinez-Fuentes C.</ce:indexed-name>
+                  <ce:surname>Martínez-Fuentes</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>M.</ce:initials>
+                  <ce:indexed-name>Pardo-del-Val M.</ce:indexed-name>
+                  <ce:surname>Pardo-del-Val</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Economía Industrial</ref-sourcetitle>
+              <ref-publicationyear first="2009"/>
+              <ref-volisspag>
+                <voliss volume="374"/>
+                <pagerange first="21" last="35"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>González-Cruz T., Martínez-Fuentes C., Pardo-del-Val M. La gestión del talento en la empresa industrial española. Economía Industrial 2009, 374:21-35.</ref-fulltext>
+          </reference>
+          <reference id="38">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Are leaders portable?</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">33646744454</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>B.</ce:initials>
+                  <ce:indexed-name>Groysberg B.</ce:indexed-name>
+                  <ce:surname>Groysberg</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>A.N.</ce:initials>
+                  <ce:indexed-name>McLean A.N.</ce:indexed-name>
+                  <ce:surname>McLean</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>N.</ce:initials>
+                  <ce:indexed-name>Nohria N.</ce:indexed-name>
+                  <ce:surname>Nohria</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Harvard Business Review</ref-sourcetitle>
+              <ref-publicationyear first="2006"/>
+              <ref-volisspag>
+                <voliss issue="5" volume="84"/>
+                <pagerange first="92" last="100"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Groysberg B., McLean A.N., Nohria N. Are leaders portable?. Harvard Business Review 2006, 84(5):92-100.</ref-fulltext>
+          </reference>
+          <reference id="39">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>The risky business of hiring stars</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">2442431683</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>B.</ce:initials>
+                  <ce:indexed-name>Groysberg B.</ce:indexed-name>
+                  <ce:surname>Groysberg</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>A.</ce:initials>
+                  <ce:indexed-name>Nanda A.</ce:indexed-name>
+                  <ce:surname>Nanda</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>N.</ce:initials>
+                  <ce:indexed-name>Nohria N.</ce:indexed-name>
+                  <ce:surname>Nohria</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Harvard Business Review</ref-sourcetitle>
+              <ref-publicationyear first="2004"/>
+              <ref-volisspag>
+                <voliss issue="5" volume="82"/>
+                <pagerange first="92" last="100"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Groysberg B., Nanda A., Nohria N. The risky business of hiring stars. Harvard Business Review 2004, 82(5):92-100.</ref-fulltext>
+          </reference>
+          <reference id="40">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>The effect of implicit person theory on performance appraisals</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">26444464765</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>P.A.</ce:initials>
+                  <ce:indexed-name>Heslin P.A.</ce:indexed-name>
+                  <ce:surname>Heslin</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>G.P.</ce:initials>
+                  <ce:indexed-name>Latham G.P.</ce:indexed-name>
+                  <ce:surname>Latham</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>D.</ce:initials>
+                  <ce:indexed-name>Vandewalle D.</ce:indexed-name>
+                  <ce:surname>Vandewalle</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Journal of Applied Psychology</ref-sourcetitle>
+              <ref-publicationyear first="2005"/>
+              <ref-volisspag>
+                <voliss issue="5" volume="90"/>
+                <pagerange first="842" last="856"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Heslin P.A., Latham G.P., Vandewalle D. The effect of implicit person theory on performance appraisals. Journal of Applied Psychology 2005, 90(5):842-856.</ref-fulltext>
+          </reference>
+          <reference id="41">
+            <ref-info>
+              <refd-itemidlist>
+                <itemid idtype="SGR">84886781016</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>J.R.</ce:initials>
+                  <ce:indexed-name>Hinrichs J.R.</ce:indexed-name>
+                  <ce:surname>Hinrichs</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>High-talent personnel: Managing a critical resource</ref-sourcetitle>
+              <ref-publicationyear first="1966"/>
+              <ref-text>American Management Association, Vermont</ref-text>
+            </ref-info>
+            <ref-fulltext>Hinrichs J.R. High-talent personnel: Managing a critical resource 1966, American Management Association, Vermont.</ref-fulltext>
+          </reference>
+          <reference id="42">
+            <ref-info>
+              <refd-itemidlist>
+                <itemid idtype="SGR">0011683554</itemid>
+              </refd-itemidlist>
+              <ref-sourcetitle>The Concise Oxford Dictionary of English Etymology</ref-sourcetitle>
+              <ref-publicationyear first="1996"/>
+              <ref-text>Oxford University Press, Oxford, T.F. Hoad (Ed.)</ref-text>
+            </ref-info>
+            <ref-fulltext>The Concise Oxford Dictionary of English Etymology 1996, Oxford University Press, Oxford. T.F. Hoad (Ed.).</ref-fulltext>
+          </reference>
+          <reference id="43">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Quid pro quo? Examining talent management through the lens of psychological contracts</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">84856791644</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>M.</ce:initials>
+                  <ce:indexed-name>Hoglund M.</ce:indexed-name>
+                  <ce:surname>Höglund</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Personnel Review</ref-sourcetitle>
+              <ref-publicationyear first="2012"/>
+              <ref-volisspag>
+                <voliss issue="2" volume="41"/>
+                <pagerange first="126" last="142"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Höglund M. Quid pro quo? Examining talent management through the lens of psychological contracts. Personnel Review 2012, 41(2):126-142.</ref-fulltext>
+          </reference>
+          <reference id="44">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>What is talent?</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">84886768107</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>P.</ce:initials>
+                  <ce:indexed-name>Honey P.</ce:indexed-name>
+                  <ce:surname>Honey</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Training Journal</ref-sourcetitle>
+              <ref-publicationyear first="2004"/>
+              <ref-volisspag>
+                <voliss volume="11"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Honey P. What is talent?. Training Journal 2004, December, 11.</ref-fulltext>
+          </reference>
+          <reference id="45">
+            <ref-info>
+              <refd-itemidlist>
+                <itemid idtype="SGR">84886801644</itemid>
+              </refd-itemidlist>
+              <ref-sourcetitle>The Concise Oxford Companion to Classical Literature</ref-sourcetitle>
+              <ref-publicationyear first="2011"/>
+              <ref-text>Oxford University Press, Oxford, M.C. Howatson (Ed.)</ref-text>
+            </ref-info>
+            <ref-fulltext>The Concise Oxford Companion to Classical Literature 2011, Oxford University Press, Oxford. 3th ed. M.C. Howatson (Ed.).</ref-fulltext>
+          </reference>
+          <reference id="46">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Sneaking through the minefield of talent management: The notion of rhetorical obfuscation</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">84864709302</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>J.</ce:initials>
+                  <ce:indexed-name>Huang J.</ce:indexed-name>
+                  <ce:surname>Huang</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>C.</ce:initials>
+                  <ce:indexed-name>Tansley C.</ce:indexed-name>
+                  <ce:surname>Tansley</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>International Journal of Human Resource Management</ref-sourcetitle>
+              <ref-publicationyear first="2012"/>
+              <ref-volisspag>
+                <voliss issue="17" volume="23"/>
+                <pagerange first="3673" last="3691"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Huang J., Tansley C. Sneaking through the minefield of talent management: The notion of rhetorical obfuscation. International Journal of Human Resource Management 2012, 23(17):3673-3691.</ref-fulltext>
+          </reference>
+          <reference id="47">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Talent balancing: Staffing your company for long-term success</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">84871847972</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>P.</ce:initials>
+                  <ce:indexed-name>Iles P.</ce:indexed-name>
+                  <ce:surname>Iles</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Human Resource Development International</ref-sourcetitle>
+              <ref-publicationyear first="2008"/>
+              <ref-volisspag>
+                <voliss issue="2" volume="11"/>
+                <pagerange first="215" last="218"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Iles P. Talent balancing: Staffing your company for long-term success. Human Resource Development International 2008, 11(2):215-218.</ref-fulltext>
+          </reference>
+          <reference id="48">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Talent management and HRM in multinational companies in Beijing: Definitions, differences and drivers</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">77049083119</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>P.</ce:initials>
+                  <ce:indexed-name>Iles P.</ce:indexed-name>
+                  <ce:surname>Iles</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>X.</ce:initials>
+                  <ce:indexed-name>Chuai X.</ce:indexed-name>
+                  <ce:surname>Chuai</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>D.</ce:initials>
+                  <ce:indexed-name>Preece D.</ce:indexed-name>
+                  <ce:surname>Preece</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Journal of World Business</ref-sourcetitle>
+              <ref-publicationyear first="2010"/>
+              <ref-volisspag>
+                <voliss issue="2" volume="45"/>
+                <pagerange first="179" last="189"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Iles P., Chuai X., Preece D. Talent management and HRM in multinational companies in Beijing: Definitions, differences and drivers. Journal of World Business 2010, 45(2):179-189.</ref-fulltext>
+          </reference>
+          <reference id="49">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Talent management as a management fashion in HRD: Towards a research agenda</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">79953269458</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>P.</ce:initials>
+                  <ce:indexed-name>Iles P.</ce:indexed-name>
+                  <ce:surname>Iles</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>D.</ce:initials>
+                  <ce:indexed-name>Preece D.</ce:indexed-name>
+                  <ce:surname>Preece</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>X.</ce:initials>
+                  <ce:indexed-name>Chuai X.</ce:indexed-name>
+                  <ce:surname>Chuai</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Human Resource Development International</ref-sourcetitle>
+              <ref-publicationyear first="2010"/>
+              <ref-volisspag>
+                <voliss issue="2" volume="13"/>
+                <pagerange first="125" last="145"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Iles P., Preece D., Chuai X. Talent management as a management fashion in HRD: Towards a research agenda. Human Resource Development International 2010, 13(2):125-145.</ref-fulltext>
+          </reference>
+          <reference id="50">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>La gestión del talento: Enfoque conceptual y empírico</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">84886783680</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>P.</ce:initials>
+                  <ce:indexed-name>Jerico P.</ce:indexed-name>
+                  <ce:surname>Jericó</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Boletín de Estudios Económicos</ref-sourcetitle>
+              <ref-publicationyear first="2001"/>
+              <ref-volisspag>
+                <voliss issue="174" volume="56"/>
+                <pagerange first="423" last="441"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Jericó P. La gestión del talento: Enfoque conceptual y empírico. Boletín de Estudios Económicos 2001, December, LVI(174):423-441.</ref-fulltext>
+          </reference>
+          <reference id="51">
+            <ref-info>
+              <refd-itemidlist>
+                <itemid idtype="SGR">0347472573</itemid>
+              </refd-itemidlist>
+              <ref-sourcetitle>The Oxford Dictionary of Phrase and Fable</ref-sourcetitle>
+              <ref-publicationyear first="2005"/>
+              <ref-text>Oxford University Press, Oxford, E. Knowles (Ed.)</ref-text>
+            </ref-info>
+            <ref-fulltext>The Oxford Dictionary of Phrase and Fable 2005, Oxford University Press, Oxford. 2nd ed. E. Knowles (Ed.).</ref-fulltext>
+          </reference>
+          <reference id="52">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Rising stars and falling commitment: Self-perceived status and responses to performance feedback</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">84886769094</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>I.</ce:initials>
+                  <ce:indexed-name>Kotlyar I.</ce:indexed-name>
+                  <ce:surname>Kotlyar</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>L.</ce:initials>
+                  <ce:indexed-name>Karakowsky L.</ce:indexed-name>
+                  <ce:surname>Karakowsky</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Paper presented at the Academy of Management Annual Meeting, Boston</ref-sourcetitle>
+              <ref-publicationyear first="2012"/>
+            </ref-info>
+            <ref-fulltext>Kotlyar I., Karakowsky L. Rising stars and falling commitment: Self-perceived status and responses to performance feedback. Paper presented at the Academy of Management Annual Meeting, Boston 2012, August.</ref-fulltext>
+          </reference>
+          <reference id="53">
+            <ref-info>
+              <refd-itemidlist>
+                <itemid idtype="SGR">58149332634</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>E.E.</ce:initials>
+                  <ce:indexed-name>Lawler E.E.</ce:indexed-name>
+                  <ce:surname>Lawler</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Talent: Making people your competitive advantage</ref-sourcetitle>
+              <ref-publicationyear first="2008"/>
+              <ref-text>Jossey-Bass, San Francisco</ref-text>
+            </ref-info>
+            <ref-fulltext>Lawler E.E. Talent: Making people your competitive advantage 2008, Jossey-Bass, San Francisco.</ref-fulltext>
+          </reference>
+          <reference id="54">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Research topic: Talent management</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">84886796404</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>A.</ce:initials>
+                  <ce:indexed-name>Leigh A.</ce:indexed-name>
+                  <ce:surname>Leigh</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>People Management</ref-sourcetitle>
+              <ref-publicationyear first="2009"/>
+              <ref-volisspag>
+                <voliss volume="33"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Leigh A. Research topic: Talent management. People Management 2009, July, 33.</ref-fulltext>
+          </reference>
+          <reference id="55">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Talent management: A critical review</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">33744539797</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>R.E.</ce:initials>
+                  <ce:indexed-name>Lewis R.E.</ce:indexed-name>
+                  <ce:surname>Lewis</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>R.J.</ce:initials>
+                  <ce:indexed-name>Heckman R.J.</ce:indexed-name>
+                  <ce:surname>Heckman</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Human Resource Management Review</ref-sourcetitle>
+              <ref-publicationyear first="2006"/>
+              <ref-volisspag>
+                <voliss issue="2" volume="16"/>
+                <pagerange first="139" last="154"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Lewis R.E., Heckman R.J. Talent management: A critical review. Human Resource Management Review 2006, 16(2):139-154.</ref-fulltext>
+          </reference>
+          <reference id="56">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>The new key word 'talent management' in retaining the top employees</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">84886793627</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>W.Z.</ce:initials>
+                  <ce:indexed-name>Lin W.Z.</ce:indexed-name>
+                  <ce:surname>Lin</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Human Capital Magazine.</ref-sourcetitle>
+            </ref-info>
+            <ref-fulltext>Lin, W. Z. (2006, May). The new key word 'talent management' in retaining the top employees. Human Capital Magazine.</ref-fulltext>
+          </reference>
+          <reference id="57">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>How to keep your top talent</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">77954248064</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>J.</ce:initials>
+                  <ce:indexed-name>Martin J.</ce:indexed-name>
+                  <ce:surname>Martin</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>C.</ce:initials>
+                  <ce:indexed-name>Schmidt C.</ce:indexed-name>
+                  <ce:surname>Schmidt</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Harvard Business Review</ref-sourcetitle>
+              <ref-publicationyear first="2010"/>
+              <ref-volisspag>
+                <voliss issue="5" volume="88"/>
+                <pagerange first="54" last="61"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Martin J., Schmidt C. How to keep your top talent. Harvard Business Review 2010, 88(5):54-61.</ref-fulltext>
+          </reference>
+          <reference id="58">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Ancient Pygmalion joins contemporary management: A meta-analysis of the result</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">0034164085</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>D.B.</ce:initials>
+                  <ce:indexed-name>McNatt D.B.</ce:indexed-name>
+                  <ce:surname>McNatt</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Journal of Applied Psychology</ref-sourcetitle>
+              <ref-publicationyear first="2000"/>
+              <ref-volisspag>
+                <voliss issue="2" volume="85"/>
+                <pagerange first="314" last="322"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>McNatt D.B. Ancient Pygmalion joins contemporary management: A meta-analysis of the result. Journal of Applied Psychology 2000, 85(2):314-322.</ref-fulltext>
+          </reference>
+          <reference id="59">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Talent - Innate or acquired? Theoretical considerations and their implications for talent management</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">84886780851</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>M.C.</ce:initials>
+                  <ce:indexed-name>Meyers M.C.</ce:indexed-name>
+                  <ce:surname>Meyers</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>M.</ce:initials>
+                  <ce:indexed-name>van Woerkom M.</ce:indexed-name>
+                  <ce:surname>van Woerkom</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>N.</ce:initials>
+                  <ce:indexed-name>Dries N.</ce:indexed-name>
+                  <ce:surname>Dries</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Human Resource Management Review</ref-sourcetitle>
+              <ref-publicationyear first="2013"/>
+              <ref-volisspag>
+                <voliss issue="4" volume="23"/>
+                <pagerange first="305" last="321"/>
+              </ref-volisspag>
+              <ref-text>(in this issue)</ref-text>
+            </ref-info>
+            <ref-fulltext>Meyers M.C., van Woerkom M., Dries N. Talent - Innate or acquired? Theoretical considerations and their implications for talent management. Human Resource Management Review 2013, 23(4):305-321. (in this issue).</ref-fulltext>
+          </reference>
+          <reference id="60">
+            <ref-info>
+              <refd-itemidlist>
+                <itemid idtype="SGR">0141448186</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>E.</ce:initials>
+                  <ce:indexed-name>Michaels E.</ce:indexed-name>
+                  <ce:surname>Michaels</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>H.</ce:initials>
+                  <ce:indexed-name>Handfield-Jones H.</ce:indexed-name>
+                  <ce:surname>Handfield-Jones</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>B.</ce:initials>
+                  <ce:indexed-name>Axelrod B.</ce:indexed-name>
+                  <ce:surname>Axelrod</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>The war for talent</ref-sourcetitle>
+              <ref-publicationyear first="2001"/>
+              <ref-text>Harvard Business School Press, Boston</ref-text>
+            </ref-info>
+            <ref-fulltext>Michaels E., Handfield-Jones H., Axelrod B. The war for talent 2001, Harvard Business School Press, Boston.</ref-fulltext>
+          </reference>
+          <reference id="61">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>The Darwinian workplace</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">84860571129</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>S.</ce:initials>
+                  <ce:indexed-name>Netessine S.</ce:indexed-name>
+                  <ce:surname>Netessine</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>V.</ce:initials>
+                  <ce:indexed-name>Yakubovich V.</ce:indexed-name>
+                  <ce:surname>Yakubovich</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Harvard Business Review</ref-sourcetitle>
+              <ref-publicationyear first="2012"/>
+              <ref-volisspag>
+                <voliss issue="5" volume="90"/>
+                <pagerange first="25" last="28"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Netessine S., Yakubovich V. The Darwinian workplace. Harvard Business Review 2012, 90(5):25-28.</ref-fulltext>
+          </reference>
+          <reference id="62">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>The influence of entrepreneurial and website type on business performance by rural tourism establishments in Spain</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">78650773362</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>J.</ce:initials>
+                  <ce:indexed-name>Nieto J.</ce:indexed-name>
+                  <ce:surname>Nieto</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>R.M.</ce:initials>
+                  <ce:indexed-name>Hernandez-Maestro R.M.</ce:indexed-name>
+                  <ce:surname>Hernández-Maestro</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>A.</ce:initials>
+                  <ce:indexed-name>Munoz-Gallego A.</ce:indexed-name>
+                  <ce:surname>Muñoz-Gallego</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>International Journal of Tourism Research</ref-sourcetitle>
+              <ref-publicationyear first="2011"/>
+              <ref-volisspag>
+                <voliss volume="13"/>
+                <pagerange first="17" last="31"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Nieto J., Hernández-Maestro R.M., Muñoz-Gallego A. The influence of entrepreneurial and website type on business performance by rural tourism establishments in Spain. International Journal of Tourism Research 2011, 13:17-31.</ref-fulltext>
+          </reference>
+          <reference id="63">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Cisco systems: Acquiring and retaining talent in hypercompetitive markets</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">0141441303</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>C.A.</ce:initials>
+                  <ce:indexed-name>O'Reilly C.A.</ce:indexed-name>
+                  <ce:surname>O'Reilly</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>J.</ce:initials>
+                  <ce:indexed-name>Pfeffer J.</ce:indexed-name>
+                  <ce:surname>Pfeffer</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Human Resource Planning</ref-sourcetitle>
+              <ref-publicationyear first="2000"/>
+              <ref-volisspag>
+                <voliss issue="3" volume="23"/>
+                <pagerange first="38" last="52"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>O'Reilly C.A., Pfeffer J. Cisco systems: Acquiring and retaining talent in hypercompetitive markets. Human Resource Planning 2000, 23(3):38-52.</ref-fulltext>
+          </reference>
+          <reference id="64">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>High potential identification policies: An empirical study among Belgian companies</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">1642618983</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>R.</ce:initials>
+                  <ce:indexed-name>Pepermans R.</ce:indexed-name>
+                  <ce:surname>Pepermans</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>D.</ce:initials>
+                  <ce:indexed-name>Vloeberghs D.</ce:indexed-name>
+                  <ce:surname>Vloeberghs</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>B.</ce:initials>
+                  <ce:indexed-name>Perkisas B.</ce:indexed-name>
+                  <ce:surname>Perkisas</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>The Journal of Management Development</ref-sourcetitle>
+              <ref-publicationyear first="2003"/>
+              <ref-volisspag>
+                <voliss issue="8" volume="22"/>
+                <pagerange first="660" last="678"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Pepermans R., Vloeberghs D., Perkisas B. High potential identification policies: An empirical study among Belgian companies. The Journal of Management Development 2003, 22(8):660-678.</ref-fulltext>
+          </reference>
+          <reference id="65">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Leaders as talent fanatics</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">80052368106</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>T.</ce:initials>
+                  <ce:indexed-name>Peters T.</ce:indexed-name>
+                  <ce:surname>Peters</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Leadership Excellence</ref-sourcetitle>
+              <ref-publicationyear first="2006"/>
+              <ref-volisspag>
+                <voliss issue="11" volume="23"/>
+                <pagerange first="12" last="13"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Peters T. Leaders as talent fanatics. Leadership Excellence 2006, 23(11):12-13.</ref-fulltext>
+          </reference>
+          <reference id="66">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Fighting the war for talent is hazardous to your organization's health</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">0012804022</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>J.</ce:initials>
+                  <ce:indexed-name>Pfeffer J.</ce:indexed-name>
+                  <ce:surname>Pfeffer</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Organizational Dynamics</ref-sourcetitle>
+              <ref-publicationyear first="2001"/>
+              <ref-volisspag>
+                <voliss issue="4" volume="29"/>
+                <pagerange first="248" last="259"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Pfeffer J. Fighting the war for talent is hazardous to your organization's health. Organizational Dynamics 2001, 29(4):248-259.</ref-fulltext>
+          </reference>
+          <reference id="67">
+            <ref-info>
+              <refd-itemidlist>
+                <itemid idtype="SGR">33745965002</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>J.</ce:initials>
+                  <ce:indexed-name>Pfeffer J.</ce:indexed-name>
+                  <ce:surname>Pfeffer</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>R.I.</ce:initials>
+                  <ce:indexed-name>Sutton R.I.</ce:indexed-name>
+                  <ce:surname>Sutton</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Hard facts, dangerous half-truths, and total nonsense: Profiting from evidence-based management</ref-sourcetitle>
+              <ref-publicationyear first="2006"/>
+              <ref-text>Harvard Business School Press, Boston</ref-text>
+            </ref-info>
+            <ref-fulltext>Pfeffer J., Sutton R.I. Hard facts, dangerous half-truths, and total nonsense: Profiting from evidence-based management 2006, Harvard Business School Press, Boston.</ref-fulltext>
+          </reference>
+          <reference id="68">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Talent management and management fashion in Chinese enterprises: Exploring case studies in Beijing</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">80053267552</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>D.</ce:initials>
+                  <ce:indexed-name>Preece D.</ce:indexed-name>
+                  <ce:surname>Preece</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>P.</ce:initials>
+                  <ce:indexed-name>Iles P.</ce:indexed-name>
+                  <ce:surname>Iles</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>X.</ce:initials>
+                  <ce:indexed-name>Chuai X.</ce:indexed-name>
+                  <ce:surname>Chuai</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>International Journal of Human Resource Management</ref-sourcetitle>
+              <ref-publicationyear first="2011"/>
+              <ref-volisspag>
+                <voliss issue="16" volume="22"/>
+                <pagerange first="3413" last="3428"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Preece D., Iles P., Chuai X. Talent management and management fashion in Chinese enterprises: Exploring case studies in Beijing. International Journal of Human Resource Management 2011, 22(16):3413-3428.</ref-fulltext>
+          </reference>
+          <reference id="69">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Is the resource-based view a useful perspective for strategic management research?</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">0035529252</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>R.L.</ce:initials>
+                  <ce:indexed-name>Priem R.L.</ce:indexed-name>
+                  <ce:surname>Priem</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>J.E.</ce:initials>
+                  <ce:indexed-name>Butler J.E.</ce:indexed-name>
+                  <ce:surname>Butler</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Academy of Management Review</ref-sourcetitle>
+              <ref-publicationyear first="2001"/>
+              <ref-volisspag>
+                <voliss issue="1" volume="26"/>
+                <pagerange first="22" last="40"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Priem R.L., Butler J.E. Is the resource-based view a useful perspective for strategic management research?. Academy of Management Review 2001, 26(1):22-40.</ref-fulltext>
+          </reference>
+          <reference id="70">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>The five key principles for talent development</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">79958040419</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>E.</ce:initials>
+                  <ce:indexed-name>Pruis E.</ce:indexed-name>
+                  <ce:surname>Pruis</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Industrial and Commercial Training</ref-sourcetitle>
+              <ref-publicationyear first="2011"/>
+              <ref-volisspag>
+                <voliss issue="4" volume="43"/>
+                <pagerange first="206" last="216"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Pruis E. The five key principles for talent development. Industrial and Commercial Training 2011, 43(4):206-216.</ref-fulltext>
+          </reference>
+          <reference id="71">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Are you a high-potential?</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">77954298743</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>D.A.</ce:initials>
+                  <ce:indexed-name>Ready D.A.</ce:indexed-name>
+                  <ce:surname>Ready</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>J.A.</ce:initials>
+                  <ce:indexed-name>Conger J.A.</ce:indexed-name>
+                  <ce:surname>Conger</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>L.A.</ce:initials>
+                  <ce:indexed-name>Hill L.A.</ce:indexed-name>
+                  <ce:surname>Hill</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Harvard Business Review</ref-sourcetitle>
+              <ref-publicationyear first="2010"/>
+              <ref-volisspag>
+                <voliss issue="6" volume="88"/>
+                <pagerange first="78" last="84"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Ready D.A., Conger J.A., Hill L.A. Are you a high-potential?. Harvard Business Review 2010, 88(6):78-84.</ref-fulltext>
+          </reference>
+          <reference id="72">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Identifying the right course for talent management</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">59249099548</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>P.</ce:initials>
+                  <ce:indexed-name>Reilly P.</ce:indexed-name>
+                  <ce:surname>Reilly</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Public Personnel Management</ref-sourcetitle>
+              <ref-publicationyear first="2008"/>
+              <ref-volisspag>
+                <voliss issue="4" volume="37"/>
+                <pagerange first="381" last="388"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Reilly P. Identifying the right course for talent management. Public Personnel Management 2008, 37(4):381-388.</ref-fulltext>
+          </reference>
+          <reference id="73">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>The pearls and perils of identifying potential</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">77954635084</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>R.</ce:initials>
+                  <ce:indexed-name>Silzer R.</ce:indexed-name>
+                  <ce:surname>Silzer</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>A.H.</ce:initials>
+                  <ce:indexed-name>Church A.H.</ce:indexed-name>
+                  <ce:surname>Church</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Industrial and Organizational Psychology</ref-sourcetitle>
+              <ref-publicationyear first="2009"/>
+              <ref-volisspag>
+                <voliss volume="2"/>
+                <pagerange first="377" last="412"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Silzer R., Church A.H. The pearls and perils of identifying potential. Industrial and Organizational Psychology 2009, 2:377-412.</ref-fulltext>
+          </reference>
+          <reference id="74">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Identifying and assessing high-potential talent. Current organizational practices</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">84861522996</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>R.F.</ce:initials>
+                  <ce:indexed-name>Silzer R.F.</ce:indexed-name>
+                  <ce:surname>Silzer</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>A.H.</ce:initials>
+                  <ce:indexed-name>Church A.H.</ce:indexed-name>
+                  <ce:surname>Church</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Strategy-driven talent management: A leadership imperative</ref-sourcetitle>
+              <ref-publicationyear first="2010"/>
+              <ref-volisspag>
+                <pagerange first="213" last="279"/>
+              </ref-volisspag>
+              <ref-text>JosseyBass, San Francisco, R.F. Silzer, B.E. Dowell (Eds.)</ref-text>
+            </ref-info>
+            <ref-fulltext>Silzer R.F., Church A.H. Identifying and assessing high-potential talent. Current organizational practices. Strategy-driven talent management: A leadership imperative 2010, 213-279. JosseyBass, San Francisco. R.F. Silzer, B.E. Dowell (Eds.).</ref-fulltext>
+          </reference>
+          <reference id="75">
+            <ref-info>
+              <refd-itemidlist>
+                <itemid idtype="SGR">79956158110</itemid>
+              </refd-itemidlist>
+              <ref-sourcetitle>Strategy-driven talent management: A leadership imperative</ref-sourcetitle>
+              <ref-publicationyear first="2010"/>
+              <ref-text>John Wiley &amp; Sons, San Francisco, R. Silzer, B.E. Dowell (Eds.)</ref-text>
+            </ref-info>
+            <ref-fulltext>Strategy-driven talent management: A leadership imperative 2010, John Wiley &amp; Sons, San Francisco. R. Silzer, B.E. Dowell (Eds.).</ref-fulltext>
+          </reference>
+          <reference id="76">
+            <ref-info>
+              <refd-itemidlist>
+                <itemid idtype="SGR">2342436990</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>B.D.</ce:initials>
+                  <ce:indexed-name>Smart B.D.</ce:indexed-name>
+                  <ce:surname>Smart</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Topgrading: How leading companies win by hiring, coaching, and keeping the best people</ref-sourcetitle>
+              <ref-publicationyear first="2005"/>
+              <ref-text>Portfolio (Penguin Group), New York</ref-text>
+            </ref-info>
+            <ref-fulltext>Smart B.D. Topgrading: How leading companies win by hiring, coaching, and keeping the best people 2005, Portfolio (Penguin Group), New York. Rev. ed.</ref-fulltext>
+          </reference>
+          <reference id="77">
+            <ref-info>
+              <refd-itemidlist>
+                <itemid idtype="SGR">0003393912</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>L.M.</ce:initials>
+                  <ce:indexed-name>Spencer L.M.</ce:indexed-name>
+                  <ce:surname>Spencer</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>S.M.</ce:initials>
+                  <ce:indexed-name>Spencer S.M.</ce:indexed-name>
+                  <ce:surname>Spencer</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Competence at work</ref-sourcetitle>
+              <ref-publicationyear first="1993"/>
+              <ref-text>John Wiley &amp; Sons, Inc., New York</ref-text>
+            </ref-info>
+            <ref-fulltext>Spencer L.M., Spencer S.M. Competence at work 1993, John Wiley &amp; Sons, Inc., New York.</ref-fulltext>
+          </reference>
+          <reference id="78">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Global talent management: How leading multinationals build and sustain their talent pipeline</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">84886801242</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>G.K.</ce:initials>
+                  <ce:indexed-name>Stahl G.K.</ce:indexed-name>
+                  <ce:surname>Stahl</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>I.</ce:initials>
+                  <ce:indexed-name>Bjorkman I.</ce:indexed-name>
+                  <ce:surname>Björkman</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>E.</ce:initials>
+                  <ce:indexed-name>Farndale E.</ce:indexed-name>
+                  <ce:surname>Farndale</ce:surname>
+                </author>
+                <author seq="4">
+                  <ce:initials>S.S.</ce:initials>
+                  <ce:indexed-name>Morris S.S.</ce:indexed-name>
+                  <ce:surname>Morris</ce:surname>
+                </author>
+                <author seq="5">
+                  <ce:initials>J.</ce:initials>
+                  <ce:indexed-name>Paauwe J.</ce:indexed-name>
+                  <ce:surname>Paauwe</ce:surname>
+                </author>
+                <author seq="6">
+                  <ce:initials>P.</ce:initials>
+                  <ce:indexed-name>Stiles P.</ce:indexed-name>
+                  <ce:surname>Stiles</ce:surname>
+                </author>
+                <et-al/>
+              </ref-authors>
+              <ref-sourcetitle>INSEAD Faculty and Research Working Papers, 2007/24/OB</ref-sourcetitle>
+              <ref-publicationyear first="2007"/>
+            </ref-info>
+            <ref-fulltext>Stahl G.K., Björkman I., Farndale E., Morris S.S., Paauwe J., Stiles P., et al. Global talent management: How leading multinationals build and sustain their talent pipeline. INSEAD Faculty and Research Working Papers, 2007/24/OB 2007.</ref-fulltext>
+          </reference>
+          <reference id="79">
+            <ref-info>
+              <refd-itemidlist>
+                <itemid idtype="SGR">79961098851</itemid>
+              </refd-itemidlist>
+              <ref-sourcetitle>Oxford Dictionary of English</ref-sourcetitle>
+              <ref-publicationyear first="2010"/>
+              <ref-text>Oxford University Press, Oxford, A. Stevenson (Ed.)</ref-text>
+            </ref-info>
+            <ref-fulltext>Oxford Dictionary of English 2010, Oxford University Press, Oxford. 3th ed. A. Stevenson (Ed.).</ref-fulltext>
+          </reference>
+          <reference id="80">
+            <ref-info>
+              <refd-itemidlist>
+                <itemid idtype="SGR">0003504878</itemid>
+              </refd-itemidlist>
+              <ref-sourcetitle>New Oxford American Dictionary</ref-sourcetitle>
+              <ref-publicationyear first="2010"/>
+              <ref-text>Oxford University Press, Oxford, A. Stevenson, C.A. Lindberg (Eds.)</ref-text>
+            </ref-info>
+            <ref-fulltext>New Oxford American Dictionary 2010, Oxford University Press, Oxford. 3th ed. A. Stevenson, C.A. Lindberg (Eds.).</ref-fulltext>
+          </reference>
+          <reference id="81">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>What do we mean by the term "talent" in talent management?</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">79960071922</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>C.</ce:initials>
+                  <ce:indexed-name>Tansley C.</ce:indexed-name>
+                  <ce:surname>Tansley</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Industrial and Commercial Training</ref-sourcetitle>
+              <ref-publicationyear first="2011"/>
+              <ref-volisspag>
+                <voliss issue="5" volume="43"/>
+                <pagerange first="266" last="274"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Tansley C. What do we mean by the term "talent" in talent management?. Industrial and Commercial Training 2011, 43(5):266-274.</ref-fulltext>
+          </reference>
+          <reference id="82">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Talent management: Understanding the dimensions</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">84886769034</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>C.</ce:initials>
+                  <ce:indexed-name>Tansley C.</ce:indexed-name>
+                  <ce:surname>Tansley</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>L.</ce:initials>
+                  <ce:indexed-name>Harris L.</ce:indexed-name>
+                  <ce:surname>Harris</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>J.</ce:initials>
+                  <ce:indexed-name>Stewart J.</ce:indexed-name>
+                  <ce:surname>Stewart</ce:surname>
+                </author>
+                <author seq="4">
+                  <ce:initials>P.</ce:initials>
+                  <ce:indexed-name>Turner P.</ce:indexed-name>
+                  <ce:surname>Turner</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Change Agenda</ref-sourcetitle>
+              <ref-publicationyear first="2006"/>
+              <ref-text>Chartered Institute of Personnel and Development (CIPD), London</ref-text>
+            </ref-info>
+            <ref-fulltext>Tansley C., Harris L., Stewart J., Turner P. Talent management: Understanding the dimensions. Change Agenda 2006, Chartered Institute of Personnel and Development (CIPD), London.</ref-fulltext>
+          </reference>
+          <reference id="83">
+            <ref-info>
+              <refd-itemidlist>
+                <itemid idtype="SGR">59149089982</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>C.</ce:initials>
+                  <ce:indexed-name>Tansley C.</ce:indexed-name>
+                  <ce:surname>Tansley</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>P.</ce:initials>
+                  <ce:indexed-name>Turner P.</ce:indexed-name>
+                  <ce:surname>Turner</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>F.</ce:initials>
+                  <ce:indexed-name>Carley F.</ce:indexed-name>
+                  <ce:surname>Carley</ce:surname>
+                </author>
+                <author seq="4">
+                  <ce:initials>L.</ce:initials>
+                  <ce:indexed-name>Harris L.</ce:indexed-name>
+                  <ce:surname>Harris</ce:surname>
+                </author>
+                <author seq="5">
+                  <ce:initials>A.</ce:initials>
+                  <ce:indexed-name>Sempik A.</ce:indexed-name>
+                  <ce:surname>Sempik</ce:surname>
+                </author>
+                <author seq="6">
+                  <ce:initials>J.</ce:initials>
+                  <ce:indexed-name>Stewart J.</ce:indexed-name>
+                  <ce:surname>Stewart</ce:surname>
+                </author>
+                <et-al/>
+              </ref-authors>
+              <ref-sourcetitle>Talent: Strategy, management, measurement</ref-sourcetitle>
+              <ref-publicationyear first="2007"/>
+              <ref-text>Chartered Institute of Personnel and Development (CIPD), London</ref-text>
+            </ref-info>
+            <ref-fulltext>Tansley C., Turner P., Carley F., Harris L., Sempik A., Stewart J., et al. Talent: Strategy, management, measurement 2007, Chartered Institute of Personnel and Development (CIPD), London.</ref-fulltext>
+          </reference>
+          <reference id="84">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Talent management and the relevance of context: Towards a pluralistic approach</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">84886794973</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>M.</ce:initials>
+                  <ce:indexed-name>Thunnissen M.</ce:indexed-name>
+                  <ce:surname>Thunnissen</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>P.</ce:initials>
+                  <ce:indexed-name>Boselie P.</ce:indexed-name>
+                  <ce:surname>Boselie</ce:surname>
+                </author>
+                <author seq="3">
+                  <ce:initials>B.</ce:initials>
+                  <ce:indexed-name>Fruytier B.</ce:indexed-name>
+                  <ce:surname>Fruytier</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Human Resource Management Review</ref-sourcetitle>
+              <ref-publicationyear first="2013"/>
+              <ref-volisspag>
+                <voliss issue="4" volume="23"/>
+                <pagerange first="326" last="336"/>
+              </ref-volisspag>
+              <ref-text>(in this issue)</ref-text>
+            </ref-info>
+            <ref-fulltext>Thunnissen M., Boselie P., Fruytier B. Talent management and the relevance of context: Towards a pluralistic approach. Human Resource Management Review 2013, 23(4):326-336. (in this issue).</ref-fulltext>
+          </reference>
+          <reference id="85">
+            <ref-info>
+              <refd-itemidlist>
+                <itemid idtype="SGR">25344465952</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>B.</ce:initials>
+                  <ce:indexed-name>Tulgan B.</ce:indexed-name>
+                  <ce:surname>Tulgan</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Winning the talent wars</ref-sourcetitle>
+              <ref-publicationyear first="2002"/>
+              <ref-text>Norton, New York</ref-text>
+            </ref-info>
+            <ref-fulltext>Tulgan B. Winning the talent wars 2002, Norton, New York.</ref-fulltext>
+          </reference>
+          <reference id="86">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>The talent trifecta</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">84867480599</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>D.</ce:initials>
+                  <ce:indexed-name>Ulrich D.</ce:indexed-name>
+                  <ce:surname>Ulrich</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Workforce Management</ref-sourcetitle>
+              <ref-publicationyear first="2007"/>
+              <ref-volisspag>
+                <voliss issue="15" volume="86"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Ulrich D. The talent trifecta. Workforce Management 2007, October, 86(15).</ref-fulltext>
+          </reference>
+          <reference id="87">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Integrated talent management</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">84886784709</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>D.</ce:initials>
+                  <ce:indexed-name>Ulrich D.</ce:indexed-name>
+                  <ce:surname>Ulrich</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>The executive guide to integrated talent management</ref-sourcetitle>
+              <ref-publicationyear first="2011"/>
+              <ref-volisspag>
+                <pagerange first="189" last="211"/>
+              </ref-volisspag>
+              <ref-text>ASTD Press, Alexandria, Virginia, K. Oakes, P. Galagan (Eds.)</ref-text>
+            </ref-info>
+            <ref-fulltext>Ulrich D. Integrated talent management. The executive guide to integrated talent management 2011, 189-211. ASTD Press, Alexandria, Virginia. K. Oakes, P. Galagan (Eds.).</ref-fulltext>
+          </reference>
+          <reference id="88">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>What is talent?</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">84886782090</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>D.</ce:initials>
+                  <ce:indexed-name>Ulrich D.</ce:indexed-name>
+                  <ce:surname>Ulrich</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>N.</ce:initials>
+                  <ce:indexed-name>Smallwood N.</ce:indexed-name>
+                  <ce:surname>Smallwood</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Leader to Leader</ref-sourcetitle>
+              <ref-publicationyear first="2012"/>
+              <ref-volisspag>
+                <voliss volume="63"/>
+                <pagerange first="55" last="61"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Ulrich D., Smallwood N. What is talent?. Leader to Leader 2012, Winter, 63:55-61.</ref-fulltext>
+          </reference>
+          <reference id="89">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Talent pools: The best and the rest</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">4344585770</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>J.W.</ce:initials>
+                  <ce:indexed-name>Walker J.W.</ce:indexed-name>
+                  <ce:surname>Walker</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>J.M.</ce:initials>
+                  <ce:indexed-name>LaRocco J.M.</ce:indexed-name>
+                  <ce:surname>LaRocco</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Human Resource Planning</ref-sourcetitle>
+              <ref-publicationyear first="2002"/>
+              <ref-volisspag>
+                <voliss volume="25"/>
+                <pagerange first="12" last="14"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Walker J.W., LaRocco J.M. Talent pools: The best and the rest. Human Resource Planning 2002, 25:12-14.</ref-fulltext>
+          </reference>
+          <reference id="90">
+            <ref-info>
+              <refd-itemidlist>
+                <itemid idtype="SGR">84886777156</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>A.</ce:initials>
+                  <ce:indexed-name>Weiss A.</ce:indexed-name>
+                  <ce:surname>Weiss</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>N.</ce:initials>
+                  <ce:indexed-name>Mackay N.</ce:indexed-name>
+                  <ce:surname>Mackay</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>The talent advantage: How to attract and retain the best and the brightest</ref-sourcetitle>
+              <ref-publicationyear first="2009"/>
+              <ref-text>John Wiley &amp; Sons, Inc., New Jersey</ref-text>
+            </ref-info>
+            <ref-fulltext>Weiss A., Mackay N. The talent advantage: How to attract and retain the best and the brightest 2009, John Wiley &amp; Sons, Inc., New Jersey.</ref-fulltext>
+          </reference>
+          <reference id="91">
+            <ref-info>
+              <refd-itemidlist>
+                <itemid idtype="SGR">0013122247</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>M.</ce:initials>
+                  <ce:indexed-name>Williams M.</ce:indexed-name>
+                  <ce:surname>Williams</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>The war for talent: Getting the best from the best</ref-sourcetitle>
+              <ref-publicationyear first="2000"/>
+              <ref-text>Chartered Institute of Personnel and Development (CIPD), London</ref-text>
+            </ref-info>
+            <ref-fulltext>Williams M. The war for talent: Getting the best from the best 2000, Chartered Institute of Personnel and Development (CIPD), London.</ref-fulltext>
+          </reference>
+          <reference id="92">
+            <ref-info>
+              <ref-title>
+                <ref-titletext>Everyone is equal, but some are more equal than others</ref-titletext>
+              </ref-title>
+              <refd-itemidlist>
+                <itemid idtype="SGR">84876339628</itemid>
+              </refd-itemidlist>
+              <ref-authors>
+                <author seq="1">
+                  <ce:initials>P.R.</ce:initials>
+                  <ce:indexed-name>Yost P.R.</ce:indexed-name>
+                  <ce:surname>Yost</ce:surname>
+                </author>
+                <author seq="2">
+                  <ce:initials>G.</ce:initials>
+                  <ce:indexed-name>Chang G.</ce:indexed-name>
+                  <ce:surname>Chang</ce:surname>
+                </author>
+              </ref-authors>
+              <ref-sourcetitle>Industrial and Organizational Psychology</ref-sourcetitle>
+              <ref-publicationyear first="2009"/>
+              <ref-volisspag>
+                <voliss issue="4" volume="2"/>
+                <pagerange first="442" last="445"/>
+              </ref-volisspag>
+            </ref-info>
+            <ref-fulltext>Yost P.R., Chang G. Everyone is equal, but some are more equal than others. Industrial and Organizational Psychology 2009, 2(4):442-445.</ref-fulltext>
+          </reference>
+        </bibliography>
+      </tail>
+    </bibrecord>
+  </item>
+</abstracts-retrieval-response>

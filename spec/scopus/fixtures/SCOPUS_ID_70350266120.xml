@@ -1,0 +1,810 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<abstracts-retrieval-response xmlns="http://www.elsevier.com/xml/svapi/abstract/dtd" xmlns:ait="http://www.elsevier.com/xml/ani/ait" xmlns:ce="http://www.elsevier.com/xml/ani/common" xmlns:cto="http://www.elsevier.com/xml/cto/dtd" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:prism="http://prismstandard.org/namespaces/basic/2.0/" xmlns:xocs="http://www.elsevier.com/xml/xocs/dtd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <coredata>
+    <prism:url>http://api.elsevier.com/content/abstract/scopus_id/70350266120</prism:url>
+    <dc:identifier>SCOPUS_ID:70350266120</dc:identifier>
+    <eid>2-s2.0-70350266120</eid>
+    <dc:title>Invention and direction in a therapeutic workshop at a daytime outpatient clinic</dc:title>
+    <prism:aggregationType>Journal</prism:aggregationType>
+    <srctype>j</srctype>
+    <citedby-count>1</citedby-count>
+    <prism:publicationName>Revista Latinoamericana de Psicopatologia Fundamental</prism:publicationName>
+    <source-id>19200157024</source-id>
+    <prism:issn>14154714</prism:issn>
+    <prism:volume>12</prism:volume>
+    <prism:issueIdentifier>3</prism:issueIdentifier>
+    <prism:startingPage>524</prism:startingPage>
+    <prism:endingPage>538</prism:endingPage>
+    <prism:pageRange>524-538</prism:pageRange>
+    <prism:coverDate>2009-09-01</prism:coverDate>
+    <dc:creator>
+      <author auid="35101796900" seq="1">
+        <ce:initials>T.J.F.</ce:initials>
+        <ce:indexed-name>da Silva T.J.F.</ce:indexed-name>
+        <ce:surname>da Silva</ce:surname>
+        <ce:given-name>Thiago José de Franco</ce:given-name>
+        <preferred-name>
+<ce:initials>T.J.d.F.</ce:initials>
+<ce:indexed-name>da Silva T.</ce:indexed-name>
+<ce:surname>da Silva</ce:surname>
+<ce:given-name>Thiago José de Franco</ce:given-name>
+</preferred-name>
+        <author-url>http://api.elsevier.com/content/author/author_id/35101796900</author-url>
+      </author>
+    </dc:creator>
+    <dc:description>
+      <abstract original="y" xml:lang="eng">
+<ce:para>Based on observations of a therapeutic workshop at a daycare center for psychotics, we discuss in this article the value of creative activities where patients deal with new objects and their possible bonding role for subjects through artistic recognition. The activities carried out in such workshops are discussed, as well as the role of their coordinators. The individual production of psychotic patients is an attempt to release them from their position as object of the Other, characteristic of psychosis. Might such workshops consist of spaces where patients become able to handle excess jouissance in a creative way, based on supporting materials that favor their work on the level of the articulation of the signifier? This type of work is different not only from artistic creation, but also from invention in psychosis. The authors base their discussion on Lacanian psychoanalysis and consider invention with scrap materials based on the letter as material support aimed at the stabilization of the participating subjects. © 2009 Associação Universitária de Pesquisa em Psicopatologia Fundamental.</ce:para>
+</abstract>
+    </dc:description>
+    <intid>70350266120</intid>
+    <link href="http://api.elsevier.com/content/abstract/scopus_id/70350266120" rel="self"/>
+    <link href="https://www.scopus.com/inward/record.uri?partnerID=HzOxMe3b&amp;scp=70350266120&amp;origin=inward" rel="scopus"/>
+    <link href="https://www.scopus.com/inward/citedby.uri?partnerID=HzOxMe3b&amp;scp=70350266120&amp;origin=inward" rel="scopus-citedby"/>
+  </coredata>
+  <authors>
+    <author auid="35101796900" seq="1">
+      <ce:initials>T.J.F.</ce:initials>
+      <ce:indexed-name>da Silva T.J.F.</ce:indexed-name>
+      <ce:surname>da Silva</ce:surname>
+      <ce:given-name>Thiago José de Franco</ce:given-name>
+      <preferred-name>
+<ce:initials>T.J.d.F.</ce:initials>
+<ce:indexed-name>da Silva T.</ce:indexed-name>
+<ce:surname>da Silva</ce:surname>
+<ce:given-name>Thiago José de Franco</ce:given-name>
+</preferred-name>
+      <author-url>http://api.elsevier.com/content/author/author_id/35101796900</author-url>
+    </author>
+    <author auid="35101403400" seq="2">
+      <ce:initials>M.L.O.A.</ce:initials>
+      <ce:indexed-name>Alencar M.L.O.A.</ce:indexed-name>
+      <ce:surname>Alencar</ce:surname>
+      <ce:given-name>Maria Lídia Oliveira de Arraes</ce:given-name>
+      <preferred-name>
+<ce:initials>M.L.O.d.A.</ce:initials>
+<ce:indexed-name>Alencar M.</ce:indexed-name>
+<ce:surname>Alencar</ce:surname>
+<ce:given-name>Maria Lídia Oliveira de Arraes</ce:given-name>
+</preferred-name>
+      <author-url>http://api.elsevier.com/content/author/author_id/35101403400</author-url>
+    </author>
+  </authors>
+  <language xml:lang="por"/>
+  <authkeywords>
+    <author-keyword>Jouissance</author-keyword>
+    <author-keyword>Letter</author-keyword>
+    <author-keyword>Psychosis</author-keyword>
+    <author-keyword>Therapeutic workshops</author-keyword>
+  </authkeywords>
+  <idxterms/>
+  <subject-areas>
+    <subject-area abbrev="PSYC" code="3203">Clinical Psychology</subject-area>
+    <subject-area abbrev="MEDI" code="2738">Psychiatry and Mental Health</subject-area>
+  </subject-areas>
+  <item xmlns="">
+    <ait:process-info>
+      <ait:date-delivered day="11" month="04" timestamp="2013-04-11T11:14:40.000040+01:00" year="2013"/>
+      <ait:date-sort day="01" month="09" year="2009"/>
+      <ait:status stage="S300" state="update" type="core"/>
+    </ait:process-info>
+    <bibrecord>
+      <item-info>
+        <copyright type="Elsevier">Copyright 2009 Elsevier B.V., All rights reserved.</copyright>
+        <itemidlist>
+<itemid idtype="PUI">355488428</itemid>
+<itemid idtype="SNPSYB">2009022170</itemid>
+<itemid idtype="SCP">70350266120</itemid>
+<itemid idtype="SGR">70350266120</itemid>
+</itemidlist>
+        <history>
+<date-created day="29" month="10" year="2009"/>
+</history>
+        <dbcollection>SNPSYB</dbcollection>
+        <dbcollection>Scopusbase</dbcollection>
+      </item-info>
+      <head>
+        <citation-info>
+          <citation-type code="ar"/>
+          <citation-language language="Portuguese" xml:lang="por"/>
+          <abstract-language language="English" xml:lang="eng"/>
+          <abstract-language language="Portuguese" xml:lang="por"/>
+          <abstract-language language="French" xml:lang="fre"/>
+          <author-keywords>
+<author-keyword>Jouissance</author-keyword>
+<author-keyword>Letter</author-keyword>
+<author-keyword>Psychosis</author-keyword>
+<author-keyword>Therapeutic workshops</author-keyword>
+</author-keywords>
+        </citation-info>
+        <citation-title>
+          <titletext language="English" original="n" xml:lang="eng">Invention and direction in a therapeutic workshop at a daytime outpatient clinic</titletext>
+          <titletext language="Portuguese" original="y" xml:lang="por">Invenção e endereçamento na oficina terapêutica em um centro de atenção diária</titletext>
+        </citation-title>
+        <author-group>
+          <author auid="35101796900" seq="1">
+<ce:initials>T.J.F.</ce:initials>
+<ce:indexed-name>da Silva T.J.F.</ce:indexed-name>
+<ce:surname>da Silva</ce:surname>
+<ce:given-name>Thiago José de Franco</ce:given-name>
+<preferred-name>
+<ce:initials>T.J.d.F.</ce:initials>
+<ce:indexed-name>da Silva T.</ce:indexed-name>
+<ce:surname>da Silva</ce:surname>
+<ce:given-name>Thiago José de Franco</ce:given-name>
+</preferred-name>
+<ce:e-address type="email">sthiagofranco@yahoo.com.br</ce:e-address>
+</author>
+          <affiliation country="bra">
+            <address-part>Rua Ribeiro de Almeida, 2/ap.4 - Laranjeiras</address-part>
+            <city-group>22240-060 Rio de Janeiro, RJ</city-group>
+            <country>Brazil</country>
+          </affiliation>
+        </author-group>
+        <author-group>
+          <author auid="35101403400" seq="2">
+<ce:initials>M.L.O.A.</ce:initials>
+<ce:indexed-name>Alencar M.L.O.A.</ce:indexed-name>
+<ce:surname>Alencar</ce:surname>
+<ce:given-name>Maria Lídia Oliveira de Arraes</ce:given-name>
+<preferred-name>
+<ce:initials>M.L.O.d.A.</ce:initials>
+<ce:indexed-name>Alencar M.</ce:indexed-name>
+<ce:surname>Alencar</ce:surname>
+<ce:given-name>Maria Lídia Oliveira de Arraes</ce:given-name>
+</preferred-name>
+<ce:e-address type="email">lidiaarraes@br.inter.net</ce:e-address>
+</author>
+          <affiliation country="bra">
+            <address-part>Rua Fonte da Saudade, 256/401</address-part>
+            <city-group>Lagoa 22471-210 Rio de Janeiro, RJ</city-group>
+            <country>Brazil</country>
+          </affiliation>
+        </author-group>
+        <correspondence>
+          <person>
+<ce:initials>T. J. F.</ce:initials>
+<ce:indexed-name>da Silva T. J. F.</ce:indexed-name>
+<ce:surname>da Silva</ce:surname>
+</person>
+          <affiliation country="bra">
+            <address-part>Rua Ribeiro de Almeida, 2/ap.4 - Laranjeiras</address-part>
+            <city-group>22240-060 Rio de Janeiro, RJ</city-group>
+            <country>Brazil</country>
+          </affiliation>
+          <ce:e-address type="email">sthiagofranco@yahoo.com.br</ce:e-address>
+        </correspondence>
+        <abstracts>
+          <abstract original="y" xml:lang="eng">
+<ce:para>Based on observations of a therapeutic workshop at a daycare center for psychotics, we discuss in this article the value of creative activities where patients deal with new objects and their possible bonding role for subjects through artistic recognition. The activities carried out in such workshops are discussed, as well as the role of their coordinators. The individual production of psychotic patients is an attempt to release them from their position as object of the Other, characteristic of psychosis. Might such workshops consist of spaces where patients become able to handle excess jouissance in a creative way, based on supporting materials that favor their work on the level of the articulation of the signifier? This type of work is different not only from artistic creation, but also from invention in psychosis. The authors base their discussion on Lacanian psychoanalysis and consider invention with scrap materials based on the letter as material support aimed at the stabilization of the participating subjects. © 2009 Associação Universitária de Pesquisa em Psicopatologia Fundamental.</ce:para>
+</abstract>
+        </abstracts>
+        <source country="bra" srcid="19200157024" type="j">
+          <sourcetitle>Revista Latinoamericana de Psicopatologia Fundamental</sourcetitle>
+          <sourcetitle-abbrev>Revista Latinoamericana Psicopatologia Fundam.</sourcetitle-abbrev>
+          <issn type="print">14154714</issn>
+          <issn type="electronic">19840381</issn>
+          <volisspag>
+<voliss issue="3" volume="12"/>
+<pagerange first="524" last="538"/>
+</volisspag>
+          <publicationyear first="2009"/>
+          <publicationdate>
+<year>2009</year>
+<month>09</month>
+<date-text xfab-added="true">September 2009</date-text></publicationdate>
+          <website>
+<ce:e-address type="url">http://www.scielo.br/pdf/rlpf/v12n3/v12n3a08.pdf</ce:e-address>
+</website>
+        </source>
+        <enhancement>
+          <classificationgroup>
+<classifications type="ASJC">
+<classification>3203</classification>
+<classification>2738</classification>
+</classifications><classifications type="SUBJABBR"><classification>PSYC</classification><classification>MEDI</classification></classifications>
+</classificationgroup>
+        </enhancement>
+      </head>
+      <tail>
+        <bibliography refcount="27">
+<reference id="1">
+<ref-info>
+<ref-title>
+<ref-titletext>O trabalho criativo e seus efeitos na clínica da psicose</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">70350284998</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>E.</ce:initials>
+<ce:indexed-name>Alvarenga; E.</ce:indexed-name>
+<ce:surname>Alvarenga;</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Curinga</ref-sourcetitle>
+<ref-publicationyear first="1999"/>
+<ref-volisspag>
+<voliss issue="13"/>
+<pagerange first="118" last="121"/>
+</ref-volisspag>
+<ref-text>Belo Horizonte, set</ref-text>
+</ref-info>
+<ref-fulltext>ALVARENGA; E. O trabalho criativo e seus efeitos na clínica da psicose. Curinga, Belo Horizonte, n. 13, p. 118-121, set. 1999.</ref-fulltext>
+</reference>
+<reference id="2">
+<ref-info>
+<ref-title>
+<ref-titletext>Estabilizações</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">70350268765</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>E.</ce:initials>
+<ce:indexed-name>Alvarenga; E.</ce:indexed-name>
+<ce:surname>Alvarenga;</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Curinga</ref-sourcetitle>
+<ref-publicationyear first="2000"/>
+<ref-volisspag>
+<voliss issue="14"/>
+</ref-volisspag>
+<ref-text>Belo Horizonte, abr</ref-text>
+</ref-info>
+<ref-fulltext>ALVARENGA; E. Estabilizações. Curinga, Belo Horizonte, n. 14, abr. 2000.</ref-fulltext>
+</reference>
+<reference id="3">
+<ref-info>
+<refd-itemidlist>
+<itemid idtype="SGR">70350258361</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>M.L.A.</ce:initials>
+<ce:indexed-name>Alencar M.L.A.</ce:indexed-name>
+<ce:surname>Alencar</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>O objeto enigmático na obra de arte: o sujeito entre saber e gozo</ref-sourcetitle>
+<ref-publicationyear first="2004"/>
+<ref-volisspag>
+<pagerange first="139"/>
+</ref-volisspag>
+<ref-text>Tese (doutorado em Teoria psicanalítica), Universidade Federal do Rio de Janeiro - UFRJ</ref-text>
+</ref-info>
+<ref-fulltext>ALENCAR, M. L. A. O objeto enigmático na obra de arte: o sujeito entre saber e gozo. 2004, 139p. Tese (doutorado em Teoria psicanalítica), Universidade Federal do Rio de Janeiro - UFRJ.</ref-fulltext>
+</reference>
+<reference id="4">
+<ref-info>
+<refd-itemidlist>
+<itemid idtype="SGR">70350262176</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>M.L.A.</ce:initials>
+<ce:indexed-name>Alencar M.L.A.</ce:indexed-name>
+<ce:surname>Alencar</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>A escrita de Joyce e a suplência na psicose</ref-sourcetitle>
+<ref-text>In: III CONGRESSO INTERNACIONAL DE PSICOPATOLOGIA FUNDAMENTAL, 3, 2008, Niterói. Mesa-redonda: A psicose de Freud a Lacan</ref-text>
+</ref-info>
+<ref-fulltext>ALENCAR, M. L. A. A escrita de Joyce e a suplência na psicose. In: III CONGRESSO INTERNACIONAL DE PSICOPATOLOGIA FUNDAMENTAL, 3, 2008, Niterói. Mesa-redonda: A psicose de Freud a Lacan.</ref-fulltext>
+</reference>
+<reference id="5">
+<ref-info>
+<ref-title>
+<ref-titletext>O que a clínica psicanalítica das psicoses nos ensina</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">70350284997</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>L.</ce:initials>
+<ce:indexed-name>Balbi L.</ce:indexed-name>
+<ce:surname>Balbi</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Clínica psicanalítica das psicoses</ref-sourcetitle>
+<ref-publicationyear first="2005"/>
+<ref-volisspag>
+<pagerange first="13" last="19"/>
+</ref-volisspag>
+<ref-text>In: SÁ, R. et al. (Org.), Niterói: Eduff</ref-text>
+</ref-info>
+<ref-fulltext>BALBI, L. O que a clínica psicanalítica das psicoses nos ensina. In: SÁ, R. et al. (Org.). Clínica psicanalítica das psicoses. Niterói: Eduff; 2005. p. 13-19.</ref-fulltext>
+</reference>
+<reference id="6">
+<ref-info>
+<ref-title>
+<ref-titletext>Sobre o conceito de alíngua: Elementos para a psicanálise aplicada ao autismo e às psicoses</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">70350258362</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>A.</ce:initials>
+<ce:indexed-name>Bastos A.</ce:indexed-name>
+<ce:surname>Bastos</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>A.B.</ce:initials>
+<ce:indexed-name>Freire A.B.</ce:indexed-name>
+<ce:surname>Freire</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Psicanalisar hoje</ref-sourcetitle>
+<ref-publicationyear first="2006"/>
+<ref-volisspag>
+<pagerange first="107" last="122"/>
+</ref-volisspag>
+<ref-text>In: BASTOS, A. (Org.), Rio de Janeiro: Contra Capa</ref-text>
+</ref-info>
+<ref-fulltext>BASTOS, A.; FREIRE, A. B. Sobre o conceito de alíngua: elementos para a psicanálise aplicada ao autismo e às psicoses. In: BASTOS, A. (Org.). Psicanalisar hoje. Rio de Janeiro: Contra Capa, 2006. p. 107-122.</ref-fulltext>
+</reference>
+<reference id="7">
+<ref-info>
+<ref-title>
+<ref-titletext>O escriturário das suplências</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">70350256385</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>C.M.R.</ce:initials>
+<ce:indexed-name>Ferreira C.M.R.</ce:indexed-name>
+<ce:surname>Ferreira</ce:surname>
+</author>
+<author seq="2">
+<ce:initials>M.R.A.B.</ce:initials>
+<ce:indexed-name>Tropia M.R.A.B.</ce:indexed-name>
+<ce:surname>Trópia</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Curinga</ref-sourcetitle>
+<ref-publicationyear first="2000"/>
+<ref-volisspag>
+<voliss issue="14"/>
+<pagerange first="144" last="149"/>
+</ref-volisspag>
+<ref-text>Belo Horizonte, abr</ref-text>
+</ref-info>
+<ref-fulltext>FERREIRA, C. M. R.; TRÓPIA, M. R. A. B. O escriturário das suplências. Curinga, Belo Horizonte, n. 14, p. 144-149, abr. 2000.</ref-fulltext>
+</reference>
+<reference id="8">
+<ref-info>
+<refd-itemidlist>
+<itemid idtype="SGR">70350262175</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>S.</ce:initials>
+<ce:indexed-name>Freud S.</ce:indexed-name>
+<ce:surname>Freud</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Personagens psicopáticos no palco</ref-sourcetitle>
+<ref-publicationyear first="1996"/>
+<ref-volisspag>
+<voliss volume="7"/>
+</ref-volisspag>
+<ref-text>(1905 ou 1906), In: Edição Standard Brasileira das Obras Psicológicas Completas de Sigmund Freud. Rio de Janeiro: Imago</ref-text>
+</ref-info>
+<ref-fulltext>FREUD, S. (1905 ou 1906). Personagens psicopáticos no palco. In: Edição Standard Brasileira das Obras Psicológicas Completas de Sigmund Freud. Rio de Janeiro: Imago, 1996. v. VII.</ref-fulltext>
+</reference>
+<reference id="9">
+<ref-info>
+<refd-itemidlist>
+<itemid idtype="SGR">70350276899</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>S.</ce:initials>
+<ce:indexed-name>Freud S.</ce:indexed-name>
+<ce:surname>Freud</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Leonardo da Vinci e uma lembrança de sua infância</ref-sourcetitle>
+<ref-publicationyear first="1910"/>
+<ref-volisspag>
+<voliss volume="11"/>
+</ref-volisspag>
+<ref-text>In: Edição Standard Brasileira das Obras Psicológicas Completas de Sigmund Freud. Rio de Janeiro: Imago</ref-text>
+</ref-info>
+<ref-fulltext>FREUD, S. (1910). Leonardo da Vinci e uma lembrança de sua infância. In: Edição Standard Brasileira das Obras Psicológicas Completas de Sigmund Freud. Rio de Janeiro: Imago, 1996. v. XI.</ref-fulltext>
+</reference>
+<reference id="10">
+<ref-info>
+<refd-itemidlist>
+<itemid idtype="SGR">70350295003</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>S.</ce:initials>
+<ce:indexed-name>Freud S.</ce:indexed-name>
+<ce:surname>Freud</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Notas psicanalíticas sobre um relato autobiográfico de um caso de paranóia (dementia paranoides)</ref-sourcetitle>
+<ref-publicationyear first="1911"/>
+<ref-volisspag>
+<voliss volume="12"/>
+</ref-volisspag>
+<ref-text>In: Edição Standard Brasileira das Obras Psicológicas Completas de Sigmund Freud. Rio de Janeiro: Imago</ref-text>
+</ref-info>
+<ref-fulltext>FREUD, S. (1911). Notas psicanalíticas sobre um relato autobiográfico de um caso de paranóia (dementia paranoides). In: Edição Standard Brasileira das Obras Psicológicas Completas de Sigmund Freud. Rio de Janeiro: Imago, 1996. v. XII.</ref-fulltext>
+</reference>
+<reference id="11">
+<ref-info>
+<refd-itemidlist>
+<itemid idtype="SGR">70350268764</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>S.</ce:initials>
+<ce:indexed-name>Freud S.</ce:indexed-name>
+<ce:surname>Freud</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Os instintos e suas vicissitudes</ref-sourcetitle>
+<ref-publicationyear first="1915"/>
+<ref-volisspag>
+<voliss volume="14"/>
+</ref-volisspag>
+<ref-text>In: Edição Standard Brasileira das Obras Psicológicas Completas de Sigmund Freud. Rio de Janeiro: Imago</ref-text>
+</ref-info>
+<ref-fulltext>FREUD, S. (1915). Os instintos e suas vicissitudes. In: Edição Standard Brasileira das Obras Psicológicas Completas de Sigmund Freud. Rio de Janeiro: Imago, 1996. v. XIV.</ref-fulltext>
+</reference>
+<reference id="12">
+<ref-info>
+<ref-title>
+<ref-titletext>Oficina: Uma questão de lugar?</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">70350270713</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>M.G.</ce:initials>
+<ce:indexed-name>Greco M.G.</ce:indexed-name>
+<ce:surname>Greco</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Oficinas terapêuticas em saúde mental: sujeito, produção e cidadania</ref-sourcetitle>
+<ref-publicationyear first="2008"/>
+<ref-volisspag>
+<pagerange first="83" last="94"/>
+</ref-volisspag>
+<ref-text>In: COSTA, M. C.; FIGUEIREDO, A. C. (Org.), Rio de Janeiro: Contracapa</ref-text>
+</ref-info>
+<ref-fulltext>GRECO, M. G. Oficina: uma questão de lugar? In: COSTA, M. C.; FIGUEIREDO, A. C. (Org.). Oficinas terapêuticas em saúde mental: sujeito, produção e cidadania. Rio de Janeiro: Contracapa, 2008. p. 83-94</ref-fulltext>
+</reference>
+<reference id="13">
+<ref-info>
+<ref-title>
+<ref-titletext>Oficinas em saúde mental: Percurso de uma história, fundamentos de uma prática</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">70350284995</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>A.</ce:initials>
+<ce:indexed-name>Guerra A.</ce:indexed-name>
+<ce:surname>Guerra</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Oficinas terapêuticas em saúde mental: sujeito, produção e cidadania</ref-sourcetitle>
+<ref-publicationyear first="2008"/>
+<ref-volisspag>
+<pagerange first="23" last="58"/>
+</ref-volisspag>
+<ref-text>In: COSTA, M. C.; FIGUEIREDO, A. C. (Org.), Rio de Janeiro: Contracapa</ref-text>
+</ref-info>
+<ref-fulltext>GUERRA, A. Oficinas em saúde mental: percurso de uma história, fundamentos de uma prática. In: COSTA, M. C.; FIGUEIREDO, A. C. (Org.). Oficinas terapêuticas em saúde mental: sujeito, produção e cidadania. Rio de Janeiro: Contracapa, 2008. p. 23-58.</ref-fulltext>
+</reference>
+<reference id="14">
+<ref-info>
+<ref-title>
+<ref-titletext>A função da obra na estabilização psicótica: Análise do caso do Profeta Gentileza</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">70350296227</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>A.</ce:initials>
+<ce:indexed-name>Guerra A.</ce:indexed-name>
+<ce:surname>Guerra</ce:surname>
+</author>
+<et-al/>
+</ref-authors>
+<ref-sourcetitle>Interações</ref-sourcetitle>
+<ref-volisspag>
+<pagerange first="29" last="56"/>
+</ref-volisspag>
+<ref-website>
+<ce:e-address type="url">http:www.pepsic.bvs-psi.org.br/scielo.php?script=sci_arttext&amp;pid=S1413-29072006000100003&amp;Ing=pt&amp;nrm=iso</ce:e-address>
+</ref-website>
+<ref-text>[on line], jun. 2006; 21 [citado 11 maio 2008], Disponível em, Acesso em: 11/5/2008</ref-text>
+</ref-info>
+<ref-fulltext>GUERRA, A. et al. A função da obra na estabilização psicótica: análise do caso do Profeta Gentileza. Interações [on line], jun. 2006; 21 [citado 11 maio 2008] p. 29-56. Disponível em: &lt;http:www.pepsic.bvs-psi.org.br/scielo.php?script=sci_arttext&amp;pid=S1413-29072006000100003&amp;Ing=pt&amp;nrm=iso&gt;. Acesso em: 11/5/2008.</ref-fulltext>
+</reference>
+<reference id="15">
+<ref-info>
+<refd-itemidlist>
+<itemid idtype="SGR">8044233931</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>J.</ce:initials>
+<ce:indexed-name>Lacan J.</ce:indexed-name>
+<ce:surname>Lacan</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>O seminário. Livro 3. As psicoses</ref-sourcetitle>
+<ref-publicationyear first="1955" last="1956"/>
+<ref-text>Rio de Janeiro: Jorge Zahar</ref-text>
+</ref-info>
+<ref-fulltext>LACAN, J. (1955-1956). O seminário. Livro 3. As psicoses. Rio de Janeiro: Jorge Zahar, 1985.</ref-fulltext>
+</reference>
+<reference id="16">
+<ref-info>
+<refd-itemidlist>
+<itemid idtype="SGR">4243934219</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>J.</ce:initials>
+<ce:indexed-name>Lacan J.</ce:indexed-name>
+<ce:surname>Lacan</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>O seminário. Livro 7. A ética na psicanálise</ref-sourcetitle>
+<ref-publicationyear first="1959" last="1960"/>
+<ref-text>Rio de Janeiro: Jorge Zahar</ref-text>
+</ref-info>
+<ref-fulltext>LACAN, J. (1959-1960). O seminário. Livro 7. A ética na psicanálise. Rio de Janeiro: Jorge Zahar, 1997.</ref-fulltext>
+</reference>
+<reference id="17">
+<ref-info>
+<refd-itemidlist>
+<itemid idtype="SGR">39749143733</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>J.</ce:initials>
+<ce:indexed-name>Lacan J.</ce:indexed-name>
+<ce:surname>Lacan</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>O seminário. Livro 22</ref-sourcetitle>
+<ref-publicationyear first="1974" last="1975"/>
+<ref-text>R.S.I. (inédito)</ref-text>
+</ref-info>
+<ref-fulltext>LACAN, J. (1974-1975). O seminário. Livro 22. R.S.I. (inédito).</ref-fulltext>
+</reference>
+<reference id="18">
+<ref-info>
+<refd-itemidlist>
+<itemid idtype="SGR">57349182001</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>J.</ce:initials>
+<ce:indexed-name>Lacan J.</ce:indexed-name>
+<ce:surname>Lacan</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>O seminário. Livro 23. O Sinthoma</ref-sourcetitle>
+<ref-publicationyear first="1975" last="1976"/>
+<ref-text>Rio de Janeiro: Jorge Zahar</ref-text>
+</ref-info>
+<ref-fulltext>LACAN, J. (1975-1976). O seminário. Livro 23. O Sinthoma. Rio de Janeiro: Jorge Zahar, 2007.</ref-fulltext>
+</reference>
+<reference id="19">
+<ref-info>
+<refd-itemidlist>
+<itemid idtype="SGR">70350296226</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>J.</ce:initials>
+<ce:indexed-name>Lacan J.</ce:indexed-name>
+<ce:surname>Lacan</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>O seminário sobre "A carta roubada"</ref-sourcetitle>
+<ref-publicationyear first="1998"/>
+<ref-volisspag>
+<pagerange first="13" last="66"/>
+</ref-volisspag>
+<ref-text>In: Escritos. Rio de Janeiro: Jorge Zahar</ref-text>
+</ref-info>
+<ref-fulltext>LACAN, J. O seminário sobre "A carta roubada". In: Escritos. Rio de Janeiro: Jorge Zahar, 1998. p. 13-66.</ref-fulltext>
+</reference>
+<reference id="20">
+<ref-info>
+<refd-itemidlist>
+<itemid idtype="SGR">70350284994</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>J.</ce:initials>
+<ce:indexed-name>Lacan J.</ce:indexed-name>
+<ce:surname>Lacan</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>A instância da letra no inconsciente ou a razão desde Freud</ref-sourcetitle>
+<ref-publicationyear first="1998"/>
+<ref-text>In. Escritos. Rio de Janeiro: Jorge Zahar</ref-text>
+</ref-info>
+<ref-fulltext>LACAN, J. A instância da letra no inconsciente ou a razão desde Freud. In. Escritos. Rio de Janeiro: Jorge Zahar, 1998.</ref-fulltext>
+</reference>
+<reference id="21">
+<ref-info>
+<ref-title>
+<ref-titletext>Lituraterra</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">70350276898</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>J.</ce:initials>
+<ce:indexed-name>Lacan J.</ce:indexed-name>
+<ce:surname>Lacan</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Outros escritos</ref-sourcetitle>
+<ref-publicationyear first="2003"/>
+<ref-text>Rio de Janeiro: Jorge Zahar</ref-text>
+</ref-info>
+<ref-fulltext>LACAN, J. Lituraterra. In. Outros escritos. Rio de Janeiro: Jorge Zahar, 2003.</ref-fulltext>
+</reference>
+<reference id="22">
+<ref-info>
+<ref-title>
+<ref-titletext>Para que serve a escrita?</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">70350276896</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>R.</ce:initials>
+<ce:indexed-name>Mandil R.</ce:indexed-name>
+<ce:surname>Mandil</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Para que serve a escrita?</ref-sourcetitle>
+<ref-publicationyear first="1997"/>
+<ref-volisspag>
+<pagerange first="103" last="117"/>
+</ref-volisspag>
+<ref-text>In: A, LMEIDA, M. I. de (Org.), São Paulo: Educ</ref-text>
+</ref-info>
+<ref-fulltext>MANDIL, R. Para que serve a escrita? In: ALMEIDA, M. I. de (Org.). Para que serve a escrita? São Paulo: Educ, 1997. p. 103-117.</ref-fulltext>
+</reference>
+<reference id="23">
+<ref-info>
+<refd-itemidlist>
+<itemid idtype="SGR">57549100316</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>R.</ce:initials>
+<ce:indexed-name>Mandil R.</ce:indexed-name>
+<ce:surname>Mandil</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Os efeitos da letra: Lacan leitor de Joyce</ref-sourcetitle>
+<ref-publicationyear first="2003"/>
+<ref-text>Rio de Janeiro/Belo Horizonte: Contra Capa/Faculdade de Letras UFMG</ref-text>
+</ref-info>
+<ref-fulltext>MANDIL, R. Os efeitos da letra: Lacan leitor de Joyce. Rio de Janeiro/Belo Horizonte: Contra Capa/Faculdade de Letras UFMG, 2003.</ref-fulltext>
+</reference>
+<reference id="24">
+<ref-info>
+<ref-title>
+<ref-titletext>A invenção psicótica</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">70350288171</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>J.-A.</ce:initials>
+<ce:indexed-name>Miller J.-A.</ce:indexed-name>
+<ce:surname>Miller</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Opção Lacaniana: Revista internacional de psicanálise</ref-sourcetitle>
+<ref-publicationyear first="2003"/>
+<ref-volisspag>
+<voliss issue="36"/>
+<pagerange first="6" last="16"/>
+</ref-volisspag>
+<ref-text>Rio de Janeiro</ref-text>
+</ref-info>
+<ref-fulltext>MILLER, J-A. A invenção psicótica. Opção Lacaniana: Revista internacional de psicanálise, Rio de Janeiro, n. 36, p. 6-16, maio 2003.</ref-fulltext>
+</reference>
+<reference id="25">
+<ref-info>
+<refd-itemidlist>
+<itemid idtype="SGR">33645618273</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>A.</ce:initials>
+<ce:indexed-name>Quinet A.</ce:indexed-name>
+<ce:surname>Quinet</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Teoria e clínica da psicose</ref-sourcetitle>
+<ref-publicationyear first="2006"/>
+<ref-text>Rio de Janeiro: Forense Universitária</ref-text>
+</ref-info>
+<ref-fulltext>QUINET, A. Teoria e clínica da psicose. Rio de Janeiro: Forense Universitária, 2006.</ref-fulltext>
+</reference>
+<reference id="26">
+<ref-info>
+<ref-title>
+<ref-titletext>Sobre o Japão de Lacan</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">70350262174</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>M.A.</ce:initials>
+<ce:indexed-name>Vieira M.A.</ce:indexed-name>
+<ce:surname>Vieira</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Latusa</ref-sourcetitle>
+<ref-publicationyear first="2003"/>
+<ref-volisspag>
+<voliss issue="8"/>
+<pagerange first="113" last="125"/>
+</ref-volisspag>
+<ref-text>Rio de Janeiro, out</ref-text>
+</ref-info>
+<ref-fulltext>VIEIRA, M. A. Sobre o Japão de Lacan. Latusa, Rio de Janeiro, n. 8, p. 113-125, out. 2003.</ref-fulltext>
+</reference>
+<reference id="27">
+<ref-info>
+<ref-title>
+<ref-titletext>Máquinas de tecer</ref-titletext>
+</ref-title>
+<refd-itemidlist>
+<itemid idtype="SGR">70350260284</itemid>
+</refd-itemidlist>
+<ref-authors>
+<author seq="1">
+<ce:initials>L.</ce:initials>
+<ce:indexed-name>Wanderley L.</ce:indexed-name>
+<ce:surname>Wanderley</ce:surname>
+</author>
+</ref-authors>
+<ref-sourcetitle>Oficinas terapêuticas em saúde mental: sujeito, produção e cidadania</ref-sourcetitle>
+<ref-publicationyear first="2008"/>
+<ref-volisspag>
+<pagerange first="149" last="153"/>
+</ref-volisspag>
+<ref-text>In: COSTA, M. C.; FIGUEIREDO, A. C. (Org.), Rio de Janeiro: Contracapa</ref-text>
+</ref-info>
+<ref-fulltext>WANDERLEY, L. Máquinas de tecer. In: COSTA, M. C.; FIGUEIREDO, A. C. (Org.). Oficinas terapêuticas em saúde mental: sujeito, produção e cidadania. Rio de Janeiro: Contracapa, 2008. p. 149-153.</ref-fulltext>
+</reference>
+</bibliography>
+      </tail>
+    </bibrecord>
+  </item>
+</abstracts-retrieval-response>
