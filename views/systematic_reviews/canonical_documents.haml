@@ -75,7 +75,7 @@
   - #$log.info(@cds)
   - @cds.each do |cd|
     .list-group-item
-      =CGI::escapeHTML cd.ref_apa_6_breve
+      =CGI::escapeHTML cd.ref_apa_6_brief
       - #%p=sprintf("<strong>Referencias:</strong> citado por %d / referencia a %d", @ars.cd_count_entrada(cd[:id]).to_i, @ars.cd_count_salida(cd[:id]).to_i)
       %p=t(:References_count_to_canonical, in:cd[:n_total_referencias_recibidas].to_i, out:cd[:n_total_referencias_hechas].to_i, in_sta: cd[:n_referencias_rtr].to_i)
 

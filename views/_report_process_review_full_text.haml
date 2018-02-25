@@ -10,7 +10,7 @@
   %tbody
     - cds.each do |cd|
       %tr
-        %td=cd.ref_apa_6_breve
+        %td=cd.ref_apa_6_brief
         - @sr.grupo_usuarios.each do |user|
           %td=t(adu[user[:id]][:adu].decision_cd_id(cd[:id]))
         %td=t(resoluciones[cd[:id]])

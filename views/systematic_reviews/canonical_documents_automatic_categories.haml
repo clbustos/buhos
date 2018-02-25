@@ -22,7 +22,7 @@
     - cd_ids.each do |cd_id|
       .list-group-item
         - cd=@cd_hash[cd_id]
-        =CGI::escapeHTML cd.ref_apa_6_breve
+        =CGI::escapeHTML cd.ref_apa_6_brief
         ="[#{@categorizador.cd_categoria(cd_id)}]"
         %div
           =partial(:canonical_document_button,:locals=>{:id=>cd.id})

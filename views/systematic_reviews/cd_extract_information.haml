@@ -21,7 +21,7 @@
 .container
   .row
     .col-md-10
-      =@cd.ref_apa_6_breve_html
+      =@cd.ref_apa_6_brief_html
     .col-md-2
       =partial(:canonical_document_button, :locals=>{id:@cd[:id]})
   .row
@@ -47,7 +47,7 @@
               .list-group
                 - @outgoing_citations.each do |cd_out|
                   .list-group-item
-                    =cd_out.ref_apa_6_breve
+                    =cd_out.ref_apa_6_brief
                     %a.btn.btn-default.btn-sm{:href=>"/review/#{@sr[:id]}/extract_information/cd/#{cd_out[:id]}"}=t(:View)
                     %br
                     =partial("tags/tags_cd_rs_ref", :locals=>{cd_start: @cd, cd_end:cd_out ,revision:@sr, usuario_id:@user[:id], ajax:ajax})
@@ -60,7 +60,7 @@
               .list-group
                 - @incoming_citations.each do |cd_incoming|
                   .list-group-item
-                    =cd_incoming.ref_apa_6_breve
+                    =cd_incoming.ref_apa_6_brief
                     %a.btn.btn-default.btn-sm{:href=>"/review/#{@sr[:id]}/extract_information/cd/#{cd_incoming[:id]}"}=t(:View)
 
 

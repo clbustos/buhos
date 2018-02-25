@@ -19,7 +19,7 @@
   %tbody
     - @cds_ordenados.each do |key,val|
       %tr
-        %td=@cds_o[key].ref_apa_6_breve_html
+        %td=@cds_o[key].ref_apa_6_brief_html
         - @searchs_id.each do |b_id|
           %td="#{val[:busquedas][b_id] ? 'Sí':'No'}"
         %td=val[:busquedas].length

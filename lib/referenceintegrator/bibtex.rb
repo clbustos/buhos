@@ -5,7 +5,7 @@ require 'bibtex'
 
 
 module ReferenceIntegrator
-# Clase que unifica la lectura de BibTeX de Scopus, Wos y Ebscohost. Si hay otro, lo veremos
+# A kind of Adapter, that unifies Scopus, WoS, Ebscohost and generic BibTeX formats.
   module BibTex
     class Record
 
@@ -156,7 +156,7 @@ module ReferenceIntegrator
           uid="doi:#{@doi}"
         else
           self.extend ReferenceMethods
-          uid=ref_apa_6_breve[0..255]
+          uid=ref_apa_6_brief[0..255]
         end
         @uid=uid
       end

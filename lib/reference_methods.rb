@@ -2,7 +2,7 @@ require_relative 'doi_helpers'
 module ReferenceMethods
   include DOIHelpers
 
-  def cita_apa_6
+  def cite_apa_6
     text_authors=author.split(" and ").map {|v| v.split(",")[0]}
     n_authors=text_authors.length
 
@@ -32,12 +32,12 @@ module ReferenceMethods
     end
     author_ref
   end
-  def ref_apa_6_breve
+  def ref_apa_6_brief
     doi_t = doi.to_s!="" ? "doi: #{doi}" : ""
     "#{authors_apa_6} (#{year}). #{title}. #{journal}, #{volume}, #{pages}.#{doi_t}"
 
   end
-  def ref_apa_6_breve_html
+  def ref_apa_6_brief_html
     doi_t = doi ? "doi: #{a_doi(doi)}" : ""
     CGI.escapeHTML("#{authors_apa_6} (#{year}). #{title}. #{journal}, #{volume}, #{pages}.")+doi_t
 

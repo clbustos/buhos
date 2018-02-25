@@ -25,7 +25,7 @@
                 .div
                   -use_data[:uses].each do |use|
                     =use
-                  =@report.cd_h[cd_id].cita_apa_6
+                  =@report.cd_h[cd_id].cite_apa_6
                   %a.btn.btn-default.btn-xs{:href=>"/review/#{@sr[:id]}/extract_information/cd/#{cd_id}"}=t("fulltext_report.check_full_text_form")
 
 
@@ -44,4 +44,4 @@
           - analysis_cd.each do |an|
             .list-group-item
               =lf_to_br(an[campo[:nombre].to_sym])
-              =@report.cd_h[an[:canonico_documento_id]].cita_apa_6
+              =@report.cd_h[an[:canonico_documento_id]].cite_apa_6
