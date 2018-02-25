@@ -30,7 +30,7 @@ installed_file= $test_mode ? "config/installed_test" : "config/installed"
 
 
 
-if ENV['TEST_INSTALLER'] or !File.exist?(installed_file)
+if (!$test_mode and !File.exist?(installed_file)) or ENV['TEST_INSTALLER']
   load('installer.rb')
   Buhos::Installer.run!
   exit 1
