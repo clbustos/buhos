@@ -67,21 +67,20 @@ module RSpecMixin
 
   def configure_complete_sqlite
 
-    base=File.expand_path(File.dirname(__FILE__)+"/..")
-    FileUtils.rm("#{base}/spec/tmp/db.sqlite") if File.exist? "#{base}/spec/tmp/db.sqlite"
-    FileUtils.cp "#{base}/db/db_complete.sqlite", "#{base}/spec/tmp/db.sqlite"
-    db=Sequel.connect("sqlite://#{base}/spec/tmp/db.sqlite", :encoding => 'utf8',:reconnect=>false, :keep_reference=>false)
+    temp=Tempfile.new
+    base=File.expand_path("..",File.dirname(__FILE__))
+    FileUtils.cp "#{base}/db/db_complete.sqlite", temp.path
+    db=Sequel.connect("sqlite://#{temp.path}", :encoding => 'utf8',:reconnect=>false, :keep_reference=>false)
 
     $db_adapter.use_db(db)
     $db_adapter.update_model_association
 
-    Revision_Sistematica.dataset=($db_adapter[:revisiones_sistematicas])
 
 
 
     #puts "Adaptador: #{$db_adapter.object_id} - #{Usuario.db.object_id}"
     #puts "Db: #{$db_adapter.current.object_id} - #{$db.object_id} - #{db.object_id}"
-
+    temp
   end
 
   def close_sqlite

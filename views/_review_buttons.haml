@@ -50,6 +50,6 @@
             =t("stage.screening_references")
       - if etapas_avanzadas.include? :screening_references and (permiso("review_full_text_ver") or revision_analizada_por(r.id, session['user_id']))
         %li
-          %a{:role=>:button, :href=>url("/review/#{r.id}/full_text_review"), :class=>"btn btn-default "}
+          %a{:role=>:button, :href=>url("/review/#{r.id}/review_full_text"), :class=>"btn btn-default "}
             %span{:class=>"glyphicon glyphicon-ok-sign"}
             =t("stage.review_full_text")

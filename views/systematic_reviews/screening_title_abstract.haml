@@ -38,7 +38,7 @@
         %td{:colspan=>Decision::N_EST.keys.length}
           %input{:type=>"submit", :class=>"btn btn-default", :value=>t(:Filter)}
 - if @pager.busqueda
-  %p=t_desc_value(:Count_documents_search, @cds_total)
+  %p=t_desc_value(:Count_documents_search, @cds_pre.count)
 
 .btn-group
   -@criterios_orden.each do |crit_orden,crit_nombre|
@@ -64,4 +64,4 @@
         =partial(:decision, :locals=>{ revision: @revision, cd: cd, decisiones: @decisiones, ars: @ars, usuario_id: @usuario_id, etapa: "screening_title_abstract"})
   =partial(:pager,:locals=>{url: @url, pagina: @pager.pagina, max_page: @pager.max_page, :extra=>{busqueda:@pager.busqueda, orden:@pager.orden}})
 - else
-  %p.info=t(:No_document_for_this_criteria)
+  .alert.alert-warning=t(:No_document_for_this_criteria)

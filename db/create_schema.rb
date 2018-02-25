@@ -291,6 +291,7 @@ module Buhos
           'grupos_crear',
           'ingreso',
           'mensajes_ver',
+          'messages_see_all',
           'primera_revision_ver',
           'referencias_editar',
           'revisiones_administrar',
@@ -314,7 +315,7 @@ module Buhos
               db[:permisos_roles].replace(:permiso_id=>permit,:rol_id=>'administrator')
             end
 
-        analyst_permits=["busquedas_revision_ver","documentos_canonicos_ver","revision_analizar_propia","revision_editar_propia", "ver_revisiones","ver_reportes"]
+        analyst_permits=["ingreso","busquedas_revision_ver","documentos_canonicos_ver","revision_analizar_propia","revision_editar_propia", "ver_revisiones","ver_reportes"]
         analyst_permits.each do |permit|
 
           db[:permisos_roles].replace(:permiso_id=>permit,:rol_id=>'analyst')

@@ -25,6 +25,7 @@ get '/review/:id/screening_title_abstract' do |id|
   @ads=AnalisisDecisionUsuario.new(id,@usuario_id, 'screening_title_abstract')
 
   @cds_pre=@ads.canonicos_documentos
+  @cds_total=@cds_pre.count
 
   @decisiones=@ads.decisiones
   if @pager.busqueda.to_s!=""
@@ -36,9 +37,8 @@ get '/review/:id/screening_title_abstract' do |id|
 
 
 
-  @cds_total=@cds_pre.count
 
-  @pager.max_page=(@cds_total/@pager.cpp.to_f).ceil
+  @pager.max_page=(@cds_pre.count/@pager.cpp.to_f).ceil
 
   @cds=@pager.ajustar_query(@cds_pre)
 
@@ -79,6 +79,8 @@ get '/review/:id/screening_references' do |id|
 
 
   @decisiones=@ads.decisiones
+  @cds_total=@cds_pre.count
+
   if @pager.busqueda.to_s!=""
     cd_ids=@ads.decision_por_cd.find_all {|v|
       @pager.busqueda==v[1]
@@ -88,9 +90,8 @@ get '/review/:id/screening_references' do |id|
 
 
 
-  @cds_total=@cds_pre.count
 
-  @pager.max_page=(@cds_total/@pager.cpp.to_f).ceil
+  @pager.max_page=(@cds_pre.count/@pager.cpp.to_f).ceil
 
   @cds=@pager.ajustar_query(@cds_pre)
 
@@ -130,6 +131,8 @@ get '/review/:id/review_full_text' do |id|
   @asignaciones=@ads.asignaciones.to_hash(:canonico_documento_id)
 
   @decisiones=@ads.decisiones
+  @cds_total=@cds_pre.count
+
   if @pager.busqueda.to_s!=""
     cd_ids=@ads.decision_por_cd.find_all {|v|
       @pager.busqueda==v[1]
@@ -139,9 +142,8 @@ get '/review/:id/review_full_text' do |id|
 
 
 
-  @cds_total=@cds_pre.count
 
-  @pager.max_page=(@cds_total/@pager.cpp.to_f).ceil
+  @pager.max_page=(@cds_pre.count/@pager.cpp.to_f).ceil
 
   @cds=@pager.ajustar_query(@cds_pre)
 

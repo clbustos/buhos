@@ -1,10 +1,13 @@
 require_relative 'spec_helper'
 
+# Smoke test: preliminary test, that covers the main resources of the system.
+# Just test that every page is accesible and throws an error.
+
 describe 'Review with all stages completed' do
   before(:all) do
     RSpec.configure { |c| c.include RSpecMixin }
 
-    configure_complete_sqlite
+    @temp=configure_complete_sqlite
 
 
   end
@@ -44,7 +47,7 @@ describe 'Review with all stages completed' do
     it { expect("/review/1/administration/screening_title_abstract/cd_assignations").to be_accesible_for_admin}
     it { expect("/review/1/administration/screening_title_abstract/cd_without_assignations").to be_accesible_for_admin}
     it { expect("/review/1/stage/screening_title_abstract/complete_empty_abstract_manual").to be_accesible_for_admin}
-    #it { expect("/review/1/administration/screeing_title_abstract/complete_empty_abstract_manual").to be_accesible_for_admin}
+
 
   end
 

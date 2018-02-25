@@ -1,4 +1,3 @@
-
 get '/user/:user_id' do |user_id|
   if user_id=='new'
     return 403 unless permiso('usuarios_crear')
@@ -40,10 +39,15 @@ put '/user/edit/:field' do |field|
 end
 
 
+get '/my_messages' do
+  redirect "/user/#{session['user_id']}/messages"
+end
+
+
 get '/user/:user_id/messages' do |user_id|
   @user=Usuario[user_id]
 
-  return 403 unless user_id.to_s==session['user_id'].to_s
+  return 403 unless user_id.to_s==session['user_id'].to_s or permiso("messages_see_all")
 
   raise Buhos::NoUserIdError, user_id if !@user
 

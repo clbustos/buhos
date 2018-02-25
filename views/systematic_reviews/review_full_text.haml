@@ -40,9 +40,7 @@
         %td{:colspan=>Decision::N_EST.keys.length}
           %input{:type=>"submit", :class=>"btn btn-default", :value=>"Filtrar"}
 - if @pager.busqueda
-  %p
-    %strong Número documentos búsqueda:
-    =@cds_total
+  %p=t_desc_value(:Count_documents_search, @cds_pre.count)
 
 .btn-group
   -@criterios_orden.each do |crit_orden,crit_nombre|
@@ -56,34 +54,38 @@
         %button{:class=>"btn btn-primary btn-sm"}
           %span{:class=>"glyphicon glyphicon-chevron-#{arrow_dir}"}
           =crit_nombre
-- if @ads.total_decisiones[Decision::NO_DECISION].to_i==0
+- if @ads.total_decisiones[Decision::NO_DECISION].to_i==0 and @cds_total>0
   %p
     %strong Ha concluido la segunda fase de revision de referencias.
 
+%br
+- if @cds.empty?
+  .alert.alert-warning=t(:No_document_for_this_criteria)
+- else
+  = partial(:pager,:locals=>{url: @url, pagina: @pager.pagina, max_page: @pager.max_page, :extra=>{busqueda:@pager.busqueda, orden:@pager.orden}})
 
-= partial(:pager,:locals=>{url: @url, pagina: @pager.pagina, max_page: @pager.max_page, :extra=>{busqueda:@pager.busqueda, orden:@pager.orden}})
-%table.table.table-rounded.table-bordered
-  %thead
-    %th=t(:Document)
-    %th=t(:Decision)
-    %th=t(:Assignation_status)
-    %th=t(:Assignation_instructions)
-  %tbody
-    - @cds.each do |cd|
-      - decision_o=@decisiones[cd[:id]]
-      - decision = decision_o ? decision_o[:decision] : nil
-      - asignacion_o=@asignaciones[cd[:id]]
-      - clase_panel=decision_class_bootstrap(decision,nil)
-      %tr{:class=>clase_panel}
-        %td
-          =CGI::escapeHTML cd.ref_apa_6
-          %a.btn.btn-primary.btn-sm{:href=>"/review/#{@revision[:id]}/extract_information/cd/#{cd[:id]}"}=t(:Extract_information)
-        %td=t(Decision.get_name_decision(decision))
-        - if asignacion_o
-          %td=asignacion_o[:estado]
-          %td=asignacion_o[:instrucción] ? asignacion_o[:instrucción] : t(:No_assignation_instructions)
-        - else
-          %td{:colspan=>2}
-            %em=t(:Not_assigned)
+  %table.table.table-rounded.table-bordered
+    %thead
+      %th=t(:Document)
+      %th=t(:Decision)
+      %th=t(:Assignation_status)
+      %th=t(:Assignation_instructions)
+    %tbody
+      - @cds.each do |cd|
+        - decision_o=@decisiones[cd[:id]]
+        - decision = decision_o ? decision_o[:decision] : nil
+        - asignacion_o=@asignaciones[cd[:id]]
+        - clase_panel=decision_class_bootstrap(decision,nil)
+        %tr{:class=>clase_panel}
+          %td
+            =CGI::escapeHTML cd.ref_apa_6
+            %a.btn.btn-primary.btn-sm{:href=>"/review/#{@revision[:id]}/extract_information/cd/#{cd[:id]}"}=t(:Extract_information)
+          %td=t(Decision.get_name_decision(decision))
+          - if asignacion_o
+            %td=asignacion_o[:estado]
+            %td=asignacion_o[:instrucción] ? asignacion_o[:instrucción] : t(:No_assignation_instructions)
+          - else
+            %td{:colspan=>2}
+              %em=t(:Not_assigned)
 
-= partial(:pager,:locals=>{url: @url, pagina: @pager.pagina, max_page: @pager.max_page, :extra=>{busqueda:@pager.busqueda, orden:@pager.orden}})
+  = partial(:pager,:locals=>{url: @url, pagina: @pager.pagina, max_page: @pager.max_page, :extra=>{busqueda:@pager.busqueda, orden:@pager.orden}})
