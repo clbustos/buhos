@@ -3,7 +3,7 @@ language:
 rvm:
   - '2.4.1'
 script:
-  bundle exec rspec spec/spec_*.rb
+  bundle exec rake spec 
 before_install:
   - sudo apt-get update -qq
   - sudo apt-get install -y cloc gdal-bin gdebi-core libcurl4-openssl-dev libgdal-dev libproj-dev libxml2-dev build-essential libmysqlclient-dev libsqlite3-dev
