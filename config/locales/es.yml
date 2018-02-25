@@ -92,6 +92,7 @@ es:
   Count_total_files: "Nº de archivos total"
   current: "En proceso"
   Current_stage: "Etapa actual"
+  Dashboard: "Mi Tablero"
   Dashboard_user: "Tablero usuario %{user_name}"
   Date: "Fecha"
   Date_start: "Fecha de inicio"
@@ -122,6 +123,7 @@ es:
     no_valid_cd_for_this_systematic_review: "El DC %{cd_id} no es válido para esta revisión sistemática. Revise la resolución para este DC en etapas anteriores."
     problem_record_stop_sync: "Problema en obtención de información para registro %{record_id}: %{e_message}. Se interrumpe sincronización"
     no_code: "No hay %{object_name} con el código %{code} disponible"
+    group_without_administrator: "Grupo sin administrador"
   error403_message: "No tiene los permisos necesarios para ver esta página"
   Error_403: "Error 403 - Acceso no permitido"
   Error_404: "Error 404 - Recurso no existe"
@@ -391,13 +393,14 @@ es:
   review_full_text:
     objective: "Objetivo de la etapa: Extraer información de los textos completos, lo que implica asignar etiquetas(codificar) tanto a los documentos como a sus relaciones, llenar los formularios relativos a los objetivos y definir que textos se incluiran  finalmente"
   Review_references: "Revisar referencias"
-  review_references:
-    objective: "Objetivo de la etapa: Seleccionar las referencias más cercanas a los textos elegidos en la primera etapa"
   Review_status: "Estado de la revisión"
   Review_title_and_abstract: "Revisión título y resumen"
-  review_title_and_abstract:
+  screening_title_and_abstract:
     objective: "Objetivo de la etapa: Seleccionar los textos obtenidos de la búsqueda en la literatura que serán sujetos a una revisión de texto completo más adelante"
-    stage_complete_message: "Ha concluido la primera fase de revision de documentos de la busqueda. Cuando todos los usuarios del grupo hayan contestado, comenzara la segunda fase de revision de referencias"
+    stage_complete_message: "Ha concluido la fase de tamizaje de documentos por título y resumen. Cuando todos los usuarios del grupo hayan contestado, comenzara la fase de revision de referencias"
+  screening_references:
+    objective: "Objetivo de la etapa: Seleccionar las referencias más cercanas a los textos elegidos en la primera etapa"
+    stage_complete_message: "Ha concluido la fase de tamizaje de documentos más citados entre aquellos de la fase de tamizaje por título y resumen. Cuando todos los usuarios del grupo hayan contestado, comenzara la fase de revisión de texto completo"
   Rol: "Rol"
   Role: "Rol"
   role_without_name: "Cada rol debe tener un nombre"
@@ -543,6 +546,7 @@ es:
   systematic_review_page:
     cd_assignations: "Asignación de Documentos Canónicos a usuarios"
     cd_for_tag: "Documentos canónicos para tag '%{tag_text}'"
+    cd_for_tag_stage: "Documentos canónicos para tag '%{tag_text}', etapa %{stage}"
     complete_empty_abstract: "Completar resúmenes faltantes"
     report: "Reporte"
     review_full_text_administration: "Administración de revisión de texto completo"

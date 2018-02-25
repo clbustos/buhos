@@ -199,7 +199,7 @@ get '/review/:id/tags' do |id|
   @tag_estadisticas=@revision.tags_estadisticas
 
 
-  haml %s{systematic_reviews/tags}
+  haml "systematic_reviews/tags".to_sym
 end
 
 

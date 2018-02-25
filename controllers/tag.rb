@@ -54,6 +54,7 @@ get '/tag/:tag_id/rs/:rs_id/stage/:stage/cds' do |tag_id, rs_id, stage|
   return 404 if @tag.nil? or @revision.nil?
   @stage=stage
   @cds_tag=Tag_En_Cd.cds_rs_tag(@revision,@tag,false,stage)
+  @cds=Canonico_Documento.where(:id=>@cds_tag.map(:id))
   haml '/tags/rs_cds'.to_sym
 end
 
@@ -68,6 +69,7 @@ get '/tag/:tag_id/rs/:rs_id/cds' do |tag_id, rs_id|
   return 404 if @tag.nil? or @revision.nil?
 
   @cds_tag=Tag_En_Cd.cds_rs_tag(@revision,@tag)
+  @cds=Canonico_Documento.where(:id=>@cds_tag.map(:id))
   haml '/tags/rs_cds'.to_sym
 end
 
@@ -236,7 +238,7 @@ post '/tag/delete_rs'do
   return 404 if rs.nil? or tag.nil?
   $db.transaction(:rollback=>:reraise) {
     Tag_En_Cd.where(:tag_id=>tag.id, :revision_sistematica_id=>rs.id).delete
-    if Tag_En_Cd.where(:tag_id=>tag.id).empty?
+    if Tag_En_Cd.where(:tag_id=>tag.id).empty? and Tag_En_Referencia_Entre_Cn.where(:tag_id=>tag.id).empty?
       Tag[tag.id].delete
     end
   }

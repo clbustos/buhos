@@ -50,7 +50,7 @@ class Revision_Sistematica < Sequel::Model
       cd_query=" canonico_documento_id IN (#{cd_ids.join(",")}) "
     end
 
-    $db["SELECT t.*, CASE WHEN tecl.tag_id IS NOT NULL THEN 1 ELSE 0 END  as tag_en_clases FROM (SELECT `tags`.*, COUNT(DISTINCT(canonico_documento_id)) as n_documentos, 0+SUM(CASE WHEN decision='yes' THEN 1 ELSE 0 END)/COUNT(*) as p_yes FROM `tags` INNER JOIN `tags_en_cds` tec ON (tec.`tag_id` = `tags`.`id`)
+    $db["SELECT t.*, CASE WHEN tecl.tag_id IS NOT NULL THEN 1 ELSE 0 END  as tag_en_clases FROM (SELECT `tags`.*, COUNT(DISTINCT(canonico_documento_id)) as n_documentos, 1.0*SUM(CASE WHEN decision='yes' THEN 1 ELSE 0 END)/COUNT(*) as p_yes FROM `tags` INNER JOIN `tags_en_cds` tec ON (tec.`tag_id` = `tags`.`id`)
 WHERE tec.revision_sistematica_id=?
 AND  #{cd_query} GROUP BY tags.id ORDER BY n_documentos DESC ,p_yes DESC,tags.texto ASC) as t LEFT JOIN tags_en_clases tecl ON t.id=tecl.tag_id GROUP BY t.id
  ", self.id]

@@ -1,5 +1,5 @@
-module AnalisisTag
-  class Tag_En_Cd_Rs
+module TagBuilder
+  class TagInCd
     attr_reader :id, :texto, :positivos, :negativos
     attr_accessor :predeterminado
     def initialize(votos)

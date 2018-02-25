@@ -17,7 +17,7 @@
         %td=g.id
         %td=g.name
         %td=g.description
-        %td=g.administrador.nombre
+        %td=g.administrator_name
         %td=g.usuarios.map {|u| "[#{u.id}]#{u.nombre}"}.join(",")
         %td
           - if permiso("grupos_editar")

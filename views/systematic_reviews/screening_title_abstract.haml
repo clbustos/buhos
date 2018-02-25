@@ -5,7 +5,7 @@
   %li{:class=>:active}=t(:Review_title_and_abstract)
 
 .well
-  =t("review_title_and_abstract.objective")
+  =t("screening_title_and_abstract.objective")
 
 :javascript
   $(document).ready(function() {
@@ -54,7 +54,7 @@
           =crit_nombre
 - if @ads.total_decisiones[Decision::NO_DECISION].to_i==0
   %p
-    %strong=t("review_title_and_abstract.stage_complete_message")
+    %strong=t("screening_title_and_abstract.stage_complete_message")
 
 -if @cds.count>0
   =partial(:pager,:locals=>{url: @url, pagina: @pager.pagina, max_page: @pager.max_page, :extra=>{busqueda:@pager.busqueda, orden:@pager.orden}})

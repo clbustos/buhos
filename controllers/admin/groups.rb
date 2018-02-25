@@ -54,7 +54,7 @@ post '/group/update' do
   usuarios.each {|u|
     Grupo_Usuario.insert(:usuario_id=>u, :grupo_id=>id)
   }
-  redirect url('/groups')
+  redirect url('/admin/groups')
 end
 
 get '/group/:grupo_id/delete' do |grupo_id|

@@ -5,7 +5,7 @@
   %li{:class=>:active}=t(:Review_references)
 
 .well
-  =t("review_references.objective")
+  =t("screening_references.objective")
 
 :javascript
   $(document).ready(function() {
@@ -54,7 +54,7 @@
           =crit_nombre
 - if @ads.total_decisiones[Decision::NO_DECISION].to_i==0
   %p
-    %strong=t("review_references.stage_complete_message")
+    %strong=t("screening_references.stage_complete_message")
 
 
 =partial(:pager,:locals=>{url: @url, pagina: @pager.pagina, max_page: @pager.max_page, :extra=>{busqueda:@pager.busqueda, orden:@pager.orden}})

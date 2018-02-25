@@ -41,16 +41,9 @@
           %ul{:class=>'nav navbar-nav'}
             -if permiso('ingreso')
               %li{:class=>''}
+                %a{:class=>'nav-link', :href=>'/'}=t(:Dashboard)
+              %li{:class=>''}
                 %a{:class=>'nav-link', :href=>'/reviews'}=t(:Systematic_reviews)
-            -if false and permiso('canonico')
-              %li{:class=>''}
-                %a{:class=>'nav-link', :href=>'/canonicos'}=t(:Canonicals)
-            -if false and permiso('grupos')
-              %li{:class=>''}
-                %a{:class=>'nav-link', :href=>'/groups'}=t(:Users_and_groups)
-            -if false and permiso('estadisticas')
-              %li{:class=>''}
-                %a{:class=>'nav-link', :href=>'/estadisticas'}=t(:Use_Statistics)
             -if permiso('administracion')
               %li{:class=>'dropdown'}
                 %a{:href=>'#', :class=>'dropdown-toggle', 'data-toggle'=>'dropdown', :role=>'button', 'aria-haspopup'=>'true', 'aria-expanded'=>'false', :id=>'navbarDropdownMenuLink'}

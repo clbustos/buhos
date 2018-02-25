@@ -1,0 +1,4 @@
+-if !cd[:abstract].nil? and cd[:abstract]!=""
+  %button{:class=>"btn btn-primary btn-sm", :type=>"button",  "data-toggle"=>'collapse', "data-target"=>"#cd-abstract-#{cd[:id]}", "aria-expanded"=>"false", "aria-controls"=>"cd-abstract-#{cd[:id]}"}=t(:Abstract)
+  %div{:class=>"collapse", :id=>"cd-abstract-#{cd[:id]}"}
+    .well=cd[:abstract]

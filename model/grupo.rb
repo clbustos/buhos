@@ -13,5 +13,9 @@ class Grupo < Sequel::Model
     Grupo_Usuario.where(:grupo_id=>self[:id]).delete
     super
   end
+  def administrator_name
+    administrador
+    administrador.nil? ? I18n::t("error.group_without_administrator") : administrador.nombre
+  end
 end
 

@@ -81,11 +81,7 @@
 
 
       %div
-        =partial(:canonical_document_button,:locals=>{:id=>cd.id})
-        -if !cd[:abstract].nil? and cd[:abstract]!=""
-          %button{:class=>"btn btn-primary btn-sm", :type=>"button",  "data-toggle"=>'collapse', "data-target"=>"#cd#{cd[:id]}", "aria-expanded"=>"false", "aria-controls"=>"cd#{cd[:id]}"}Abstract
-          %div{:class=>"collapse", :id=>"cd#{cd[:id]}"}
-            .well=cd[:abstract]
+        =partial(:canonical_document_button_abstract_collapsible, :locals=>{cd:cd})
 
 
 = partial(:pager,:locals=>{url: @url, pagina: @pager.pagina, max_page: @pager.max_page,:extra=>{busqueda:@pager.busqueda, sin_abstract:@sin_abstract, solo_registros:@solo_registros}} )

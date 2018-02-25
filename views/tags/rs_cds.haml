@@ -1,20 +1,15 @@
 .heading
-  =t_systematic_review_title(@revision[:nombre], I18n::t("systematic_review_page.cd_for_tag", tag_text:@tag.texto), false)
-
-%h3 Asignaciones a usuarios
-.list-group
-  -@revision.grupo_usuarios.each do |usuario|
-    .list-group-item
-      =usuario.nombre
-      %a{:href=>"/tag/#{@tag.id}/review/#{@revision.id}/assign_user/#{usuario.id}",:class=>"btn btn-default"}
-        %span.glyphicon.glyphicon-hand-up Asignar
-      %a{:href=>"/tag/#{@tag.id}/review/#{@revision.id}/desasignar_usuario/#{usuario.id}",:class=>"btn btn-default"}
-        %span.glyphicon.glyphicon-hand-down Desasignar
-
-- @cds_tag.each do |cd|
-  - c_doc=Canonico_Documento[cd[:id]]
-  %div{:class=>"panel panel-default"}
-    =partial(:canonical_document_description, :locals=>{revision: @revision, cd: c_doc,ars:@ars})
-    =partial(:canonical_document_assignations, :locals=>{revision: @revision, cd: c_doc, stage:@etapa})
-    %div{:class=>"panel-footer"}
-      =partial("tags/tags_cd_rs", :locals=>{cd: c_doc, revision:@revision,usuario_id:@usuario[:id]})
+  - if @stage
+    =t_systematic_review_title(@revision[:nombre], I18n::t("systematic_review_page.cd_for_tag_stage", tag_text:@tag.texto, stage: t(Revision_Sistematica.get_nombre_etapa(@stage)) ), false)
+  - else
+    =t_systematic_review_title(@revision[:nombre], I18n::t("systematic_review_page.cd_for_tag", tag_text:@tag.texto), false)
+%table.table.table-bordered.table-condensed
+  %tbody
+    - @cds.each do |cd|
+      %tr
+        %td
+          =cd.ref_apa_6_brief_html
+          =partial(:canonical_document_button, :locals=>{id:cd[:id]})
+          =partial(:canonical_document_button_abstract_collapsible, :locals=>{cd:cd})
+          %div
+            =partial("tags/tags_cd_rs", :locals=>{cd: cd, revision:@revision,usuario_id:@usuario[:id]})

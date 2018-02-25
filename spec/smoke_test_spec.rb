@@ -11,6 +11,12 @@ describe 'Review with all stages completed' do
 
 
   it { expect("/").to be_accesible_for_admin}
+  context "when admin resources are accessed" do
+    it { expect("/admin/users").to be_accesible_for_admin}
+    it { expect("/admin/groups").to be_accesible_for_admin}
+    it { expect("/admin/roles").to be_accesible_for_admin}
+  end
+
   context "when review resources are accessed" do
     it { expect("/reviews").to be_accesible_for_admin}
     it { expect("/review/new").to be_accesible_for_admin}
@@ -100,5 +106,9 @@ describe 'Review with all stages completed' do
     it { expect("/user/1/messages").to be_accesible_for_admin}
     it { expect("/user/1/compose_message").to be_accesible_for_admin}
     it { expect("/user/1/change_password").to be_accesible_for_admin}
+  end
+  context "when tag resources are accesed" do
+    it {expect("/tag/2/rs/1/cds").to be_accesible_for_admin}
+    it {expect("/tag/2/rs/1/stage/screening_title_abstract/cds")}
   end
 end

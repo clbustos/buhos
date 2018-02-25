@@ -23,7 +23,7 @@
 
 %div{:id=>"tags-cd-#{cd.id}-rs-#{revision.id}"}
   %ul.tags
-    -AnalisisTag.tag_en_cd_rs(revision,cd)  .each do |tag|
+    -TagBuilder.tag_in_cd(revision,cd)  .each do |tag|
       -res_usuario=tag.resultado_usuario(usuario_id)
       -if tag.mostrar
         - class_predeterminado = tag.predeterminado ? "tag-predeterminado" : ""

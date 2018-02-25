@@ -27,7 +27,7 @@ module ReportBuilder
       # We need to recover the tag for exclusions
       #
       reason_to_exclude=@ars.cd_rejected_id("review_full_text").map {|v|
-        AnalisisTag.tag_en_cd_rs(@sr, Canonico_Documento[v]).find_all {
+        TagBuilder.tag_in_cd(@sr, Canonico_Documento[v]).find_all {
             |vv|  vv.texto=~/^ex:/  and vv.mostrar
         }.map {|vv| vv.texto.gsub(/^ex:/,'')}.join("; ")
       }

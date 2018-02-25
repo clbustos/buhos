@@ -1,6 +1,6 @@
-module AnalisisTag
+module TagBuilder
 # Analiza un tag para la relación entre dos documentos canonicos en una determina revision sistematica
-  class Tag_Ref_Cd_Rs
+  class TagBwCd
     attr_reader :id, :texto, :positivos, :negativos
     attr_accessor :predeterminado
     def initialize(votos)
