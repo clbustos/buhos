@@ -16,6 +16,9 @@ ENV['DATABASE_URL']='sqlite::memory:'
 
 $base=File.expand_path("..",File.dirname(__FILE__))
 
+
+FileUtils::mkdir_p "#{$base}/log/"
+
 logger_sql = Logger.new("#{$base}/log/app_sql_test.log")
 
 db=Sequel.connect('sqlite::memory:', :encoding => 'utf8',:reconnect=>false,:keep_reference=>false)
