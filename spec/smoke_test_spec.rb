@@ -112,6 +112,6 @@ describe 'Review with all stages completed' do
   end
   context "when tag resources are accesed" do
     it {expect("/tag/2/rs/1/cds").to be_accesible_for_admin}
-    it {expect("/tag/2/rs/1/stage/screening_title_abstract/cds")}
+    it {expect("/tag/2/rs/1/stage/screening_title_abstract/cds").to be_accesible_for_admin}
   end
 end

@@ -1,7 +1,7 @@
 class Result
   attr_reader :events
   def initialize()
-    @status=:ok
+    #@status=:ok
     @events=[]
   end
   def info(message)

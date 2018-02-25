@@ -1,6 +1,7 @@
 module Buhos
 
   class DBAdapter
+    attr_accessor :logger
     def initialize
       @current=nil
     end
@@ -9,11 +10,14 @@ module Buhos
     end
     def use_db(db)
       @current=db
+      db.loggers << @logger
     end
     # This is ugly. I know.
     # I just do it to allow testing
     def update_model_association
       ::Archivo.dataset=self[:archivos]
+      ::Archivo_Cd.dataset=self[:archivos_cds]
+      ::Archivo_Rs.dataset=self[:archivos_rs]
       ::Asignacion_Cd.dataset=self[:asignaciones_cds]
       ::Busqueda.dataset=self[:busquedas]
       ::Canonico_Documento.dataset=self[:canonicos_documentos]
@@ -25,9 +29,10 @@ module Buhos
       ::Mensaje_Rs.dataset=self[:mensajes_rs]
       ::Mensaje_Rs_Visto.dataset=self[:mensajes_rs_vistos]
       ::Referencia.dataset=self[:referencias]
+      ::Resolucion.dataset=self[:resoluciones]
       ::Registro.dataset=self[:registros]
       ::Tag.dataset=self[:tags]
-
+      ::T_Clase.dataset=self[:t_clases]
       ::Revision_Sistematica.dataset=self[:revisiones_sistematicas]
       ::Usuario.dataset=self[:usuarios]
       ::Permiso.dataset=self[:permisos]

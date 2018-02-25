@@ -6,7 +6,7 @@ require 'i18n'
 require 'fileutils'
 require 'rack/test'
 require 'tempfile'
-
+require 'logger'
 require_relative "../db/create_schema"
 require_relative "../lib/buhos/dbadapter"
 
@@ -14,11 +14,15 @@ ENV['RACK_ENV'] = 'test'
 ENV['DATABASE_URL']='sqlite::memory:'
 
 
+$base=File.expand_path("..",File.dirname(__FILE__))
+
+logger_sql = Logger.new("#{$base}/log/app_sql_test.log")
 
 db=Sequel.connect('sqlite::memory:', :encoding => 'utf8',:reconnect=>false,:keep_reference=>false)
 Buhos::SchemaCreation.create_db_from_scratch(db)
 
 $db_adapter=Buhos::DBAdapter.new
+$db_adapter.logger=logger_sql
 $db_adapter.use_db(db)
 
 Sequel::Model.db=$db_adapter
@@ -68,8 +72,7 @@ module RSpecMixin
   def configure_complete_sqlite
 
     temp=Tempfile.new
-    base=File.expand_path("..",File.dirname(__FILE__))
-    FileUtils.cp "#{base}/db/db_complete.sqlite", temp.path
+    FileUtils.cp "#{$base}/db/db_complete.sqlite", temp.path
     db=Sequel.connect("sqlite://#{temp.path}", :encoding => 'utf8',:reconnect=>false, :keep_reference=>false)
 
     $db_adapter.use_db(db)
