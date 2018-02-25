@@ -6,10 +6,16 @@ module Buhos
   class NoUserIdError < StandardError
 
   end
+  class NoCdIdError < StandardError
 
+  end
   class NoSearchIdError < StandardError
 
   end
+  class NoTagIdError < StandardError
+
+  end
+
 end
 
 
@@ -31,7 +37,14 @@ module Sinatra
         status 404
         ::I18n::t("error.no_code", object_name: ::I18n::t(:Search), code:env['sinatra.error'].message)
       end
-
+      app.error Buhos::NoCdIdError do
+        status 404
+        ::I18n::t("error.no_code", object_name: ::I18n::t(:Canonical_document), code:env['sinatra.error'].message)
+      end
+      app.error Buhos::NoTagIdError do
+        status 404
+        ::I18n::t("error.no_code", object_name: ::I18n::t(:Tag), code:env['sinatra.error'].message)
+      end
     end
   end
   register CustomErrors

@@ -42,10 +42,16 @@ end
 
 
 put '/review/:sr_id/extract_information/cd/:cd_id/user/:user_id/update_field' do |sr_id,cd_id,user_id|
+
   @sr=Revision_Sistematica[sr_id]
+  raise Buhos::NoReviewIdError, sr_id if !@sr
+
   @cd=Canonico_Documento[cd_id]
+  raise Buhos::NoCdIdError, cd_id if !@cd
+
   @user=Usuario[user_id]
-  return 404 if !@sr or !@cd or !@user
+  raise Buhos::NoUserIdError, user_id if !@user
+
   field = params['pk']
   value = params['value']
   fila=@sr.analisis_cd_user_row(@cd,@user)

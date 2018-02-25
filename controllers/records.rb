@@ -1,7 +1,7 @@
 get '/record/:id' do |id|
   @reg=Registro[id]
   @referencias=@reg.referencias
-  haml "registro".to_sym
+  haml "record".to_sym
 end
 
 
@@ -9,7 +9,7 @@ get '/record/:id/search_crossref' do |id|
   @reg=Registro[id]
   @respuesta=@reg.crossref_query
   # #$log.info(@respuesta)
-  haml "systematic_reviews/registro_buscar_crossref".to_sym
+  haml "systematic_reviews/record_search_crossref".to_sym
 end
 
 

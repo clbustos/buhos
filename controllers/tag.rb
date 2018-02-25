@@ -46,6 +46,7 @@ end
 
 get '/tag/:tag_id/rs/:rs_id/stage/:stage/cds' do |tag_id, rs_id, stage|
   @tag=Tag[tag_id]
+  raise Buhos::NoTagIdError, tag_id if !@tag
   @revision=Revision_Sistematica[rs_id]
 
   @ars=AnalisisRevisionSistematica.new(@revision)
@@ -61,6 +62,8 @@ end
 
 get '/tag/:tag_id/rs/:rs_id/cds' do |tag_id, rs_id|
   @tag=Tag[tag_id]
+  raise Buhos::NoTagIdError, tag_id if !@tag
+
   @revision=Revision_Sistematica[rs_id]
 
   @ars=AnalisisRevisionSistematica.new(@revision)

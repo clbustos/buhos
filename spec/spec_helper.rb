@@ -61,7 +61,7 @@ app_path=File.expand_path(File.dirname(__FILE__)+"/..")
 module RSpecMixin
   include Rack::Test::Methods
   def app() Sinatra::Application end
-  def configure_test_sqlite
+  def configure_empty_sqlite
 
     db=Buhos::SchemaCreation.create_db_from_scratch(Sequel.connect('sqlite::memory:', :encoding => 'utf8',:reconnect=>false,:keep_reference=>false))
 
@@ -114,6 +114,86 @@ end
 
 #RSpec.configure { |c| c.include RSpecMixin }
 
+RSpec::Matchers.define :responds_with_no_review_id_error do |code|
+  match do |actual|
+    get actual
+    expect(last_response.status).to eq(404)
+    expect(last_response.body).to include(code.to_s)
+    expect(last_response.body).to include(I18n::t(:Systematic_review))
+  end
+  description do
+    "route #{actual} responds with 404 status, and a message with code object and code #{code}"
+  end
+
+  failure_message do |actual|
+    "expected route '#{actual}' to responds with 404 status, but responds in another way"
+  end
+end
+
+
+RSpec::Matchers.define :responds_with_no_user_id_error do |code|
+  match do |actual|
+    get actual
+    expect(last_response.status).to eq(404)
+    expect(last_response.body).to include(code.to_s)
+    expect(last_response.body).to include(I18n::t(:User))
+  end
+  failure_message do |actual|
+    "expected route '#{actual}' to responds with 404 status, but responds in another way"
+  end
+  description do
+    "route #{actual} responds with 404 status, and a message with code object and code #{code}"
+  end
+
+end
+
+RSpec::Matchers.define :responds_with_no_search_id_error do |code|
+  match do |actual|
+    get actual
+    expect(last_response.status).to eq(404)
+    expect(last_response.body).to include(code.to_s)
+    expect(last_response.body).to include(I18n::t(:Search))
+  end
+  failure_message do |actual|
+    "expected route '#{actual}' to responds with 404 status, but responds in another way"
+  end
+  description do
+    "route #{actual} responds with 404 status, and a message with code object and code #{code}"
+  end
+
+end
+
+RSpec::Matchers.define :responds_with_no_cd_id_error do |code|
+  match do |actual|
+    get actual
+    expect(last_response.status).to eq(404)
+    expect(last_response.body).to include(code.to_s)
+    expect(last_response.body).to include(I18n::t(:Canonical_document))
+  end
+  failure_message do |actual|
+    "expected route '#{actual}' to responds with 404 status, but responds in another way"
+  end
+  description do
+    "route #{actual} responds with 404 status, and a message with code object and code #{code}"
+  end
+
+end
+
+RSpec::Matchers.define :responds_with_no_tag_id_error do |code|
+  match do |actual|
+    get actual
+    expect(last_response.status).to eq(404)
+    expect(last_response.body).to include(code.to_s)
+    expect(last_response.body).to include(I18n::t(:Tag))
+  end
+  failure_message do |actual|
+    "expected route '#{actual}' to responds with 404 status, but responds in another way"
+  end
+  description do
+    "route #{actual} responds with 404 status, and a message with code object and code #{code}"
+  end
+
+end
 
 RSpec::Matchers.define :be_accesible_for_admin do
   match do |actual|

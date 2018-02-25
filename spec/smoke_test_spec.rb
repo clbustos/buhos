@@ -99,6 +99,13 @@ describe 'Review with all stages completed' do
 
   end
 
+
+  context "when records are accessed" do
+    it { expect("/record/1").to be_accesible_for_admin}
+  end
+  context "when references are acceded" do
+    it {expect("/reference/19e8abd776da3d40aec0158e8ef105959bd9b57bdb5f64ce07ec3d33a0324334").to be_accesible_for_admin}
+  end
   context "when canonical documents resources are accessed" do
     it { expect("/canonical_document/1").to be_accesible_for_admin}
     it { expect("/canonical_document/1/search_similar").to be_accesible_for_admin}
@@ -113,5 +120,9 @@ describe 'Review with all stages completed' do
   context "when tag resources are accesed" do
     it {expect("/tag/2/rs/1/cds").to be_accesible_for_admin}
     it {expect("/tag/2/rs/1/stage/screening_title_abstract/cds").to be_accesible_for_admin}
+  end
+
+  context "when dev resources are accessed" do
+    it {expect("/admin/all_routes").to be_accesible_for_admin}
   end
 end

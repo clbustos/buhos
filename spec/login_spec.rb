@@ -4,7 +4,7 @@ require_relative 'spec_helper'
 describe 'Buhos login' do
   before(:all) do
     RSpec.configure { |c| c.include RSpecMixin }
-    configure_test_sqlite
+    configure_empty_sqlite
   end
 
   it "/login should show a valid page" do

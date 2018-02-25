@@ -4,6 +4,7 @@ require 'cgi'
 
 get '/canonical_document/:id' do |id|
   @cd=Canonico_Documento[id]
+  raise Buhos::NoCdIdError, id if !@cd
   @registros=@cd.registros
   @referencias=@cd.referencias
   if Crossref_Doi[doi_sin_http(@cd.doi)]
@@ -46,6 +47,8 @@ end
 
 get '/canonical_document/:id/search_similar' do |id|
   @cd=Canonico_Documento[id]
+  raise Buhos::NoCdIdError, id if !@cd
+
   @ajax=!params['ajax'].nil?
   @distancia=params['distancia'].to_i
   @distancia=30 if @distancia==0
@@ -155,7 +158,7 @@ end
 
 get '/canonical_document/:id/view_doi' do |id|
   @cd=Canonico_Documento[id]
-  return 404 if @cd.nil?
+  raise Buhos::NoCdIdError, id if !@cd
   @cr_doi=@cd.crossref_integrator
   @doi_json=Crossref_Doi[doi_sin_http(@cd.doi)][:json]
   haml "canonical_documents/view_doi".to_sym

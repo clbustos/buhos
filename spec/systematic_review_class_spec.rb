@@ -4,7 +4,7 @@ require_relative 'spec_helper'
 describe 'SystematicReview class' do
   before(:all) do
     RSpec.configure { |c| c.include RSpecMixin }
-    configure_test_sqlite
+    configure_empty_sqlite
   end
 
   it "should be created by a form" do

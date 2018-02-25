@@ -6,7 +6,7 @@ require 'sinatra'
 describe 'Buhos administration' do
   before(:all) do
     RSpec.configure { |c| c.include RSpecMixin }
-    configure_test_sqlite
+    configure_empty_sqlite
 
   end
 
