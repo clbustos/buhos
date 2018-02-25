@@ -83,9 +83,6 @@ PROXY_PASSWORD=proxy_pass
 SCOPUS_KEY=scopus_key\n")
 
     end
-
-
-
   end
 
 end

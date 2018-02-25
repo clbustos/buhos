@@ -82,21 +82,21 @@ post '/tags/cd/:cd_id/rs/:rs_id/:accion' do |cd_id,rs_id,accion|
   return 405 if cd.nil? or rs.nil?
 
   usuario_id=session['user_id']
-  if accion=='agregar_tag'
+  if accion=='add_tag'
     tag_nombre=params['value'].chomp
     return 405 if tag_nombre==""
     tag=Tag.get_tag(tag_nombre)
     $db.transaction(:rollback=>:reraise) do
       Tag_En_Cd.aprobar_tag(cd,rs,tag,usuario_id)
     end
-  elsif accion=='aprobar_tag'
+  elsif accion=='approve_tag'
     tag_id=params['tag_id']
     tag=Tag[tag_id]
     return 404 if tag.nil?
     $db.transaction(:rollback=>:reraise) do
       Tag_En_Cd.aprobar_tag(cd,rs,tag,usuario_id)
     end
-  elsif accion=='rechazar_tag'
+  elsif accion=='reject_tag'
     tag_id=params['tag_id']
     tag=Tag[tag_id]
     return 404 if tag.nil?
@@ -104,7 +104,7 @@ post '/tags/cd/:cd_id/rs/:rs_id/:accion' do |cd_id,rs_id,accion|
       Tag_En_Cd.rechazar_tag(cd,rs,tag,usuario_id)
     end
   else
-    [405,"No se cual es la accion"]
+    return [405,"I don't know the action to perform"]
   end
 
   partial("tags/tags_cd_rs", :locals=>{cd:cd, revision:rs, :nuevo=>true, usuario_id: usuario_id})
@@ -120,21 +120,21 @@ post '/tags/cd_start/:cd_start_id/cd_end/:cd_end_id/rs/:rs_id/:accion' do |cd_st
 
   usuario_id = session['user_id']
 
-  if accion=='agregar_tag'
+  if accion=='add_tag'
     tag_nombre=params['value'].chomp
     return 405 if tag_nombre==""
     tag=Tag.get_tag(tag_nombre)
     $db.transaction(:rollback=>:reraise) do
       Tag_En_Referencia_Entre_Cn.aprobar_tag(cd_start,cd_end,rs,tag,usuario_id)
     end
-  elsif accion=='aprobar_tag'
+  elsif accion=='approve_tag'
     tag_id=params['tag_id']
     tag=Tag[tag_id]
     return 404 if tag.nil?
     $db.transaction(:rollback=>:reraise) do
       Tag_En_Referencia_Entre_Cn.aprobar_tag(cd_start,cd_end,rs,tag,usuario_id)
     end
-  elsif accion=='rechazar_tag'
+  elsif accion=='reject_tag'
     tag_id=params['tag_id']
     tag=Tag[tag_id]
     return 404 if tag.nil?
@@ -142,7 +142,7 @@ post '/tags/cd_start/:cd_start_id/cd_end/:cd_end_id/rs/:rs_id/:accion' do |cd_st
       Tag_En_Referencia_Entre_Cn.rechazar_tag(cd_start,cd_end,rs,tag,usuario_id)
     end
   else
-    [405,"No se cual es la accion"]
+    return [405,"I don't know the action to perform"]
   end
 
   partial("tags/tags_cd_rs_ref", :locals=>{cd_start: cd_start, cd_end:cd_end, revision:rs, :nuevo=>true, usuario_id: usuario_id})

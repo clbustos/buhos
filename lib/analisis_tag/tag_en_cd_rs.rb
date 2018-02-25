@@ -39,7 +39,7 @@ module AnalisisTag
 
     def boton_positivo_html(ru)
       if ru.nil? or ru[:decision]=='no'
-        url_t="/tags/cd/#{@cd_id}/rs/#{@rs_id}/aprove_tag"
+        url_t="/tags/cd/#{@cd_id}/rs/#{@rs_id}/approve_tag"
         button_change_html(url_t, "plus",positivos)
       else
         button_same_html("success","plus",positivos)

@@ -13,7 +13,7 @@ crear_tag=function(url,val,cd_pk,rs_pk) {
         alert("El tag no tiene texto")
     } else {
         $.post(url, {value: val}, function (data) {
-            var div_id="#tags-cd-"+cd_pk+"-rs-"+rs_pk
+            var div_id="#tags-cd-"+cd_pk+"-rs-"+rs_pk;
             $(div_id).replaceWith(data);
             actualizar_tags_cd_rs(div_id);
             actualizar_typeahead(div_id);
@@ -31,6 +31,7 @@ actualizar_tags_cd_rs=function(div_id) {
     var selector_nuevo = div_id ? div_id+" .boton_nuevo_tag_cd_rs" : ".boton_nuevo_tag_cd_rs";
     var keypres_nuevo= div_id ? div_id+" .nuevo_tag_cd_rs" : ".nuevo_tag_cd_rs";
     $(selector_accion).unbind("click");
+
     $(selector_accion).click(function(){
         var url=$(this).attr("data-url");
         var cd_pk=$(this).attr("cd-pk");
