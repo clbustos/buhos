@@ -128,12 +128,12 @@ module Buhos
       end
       final_env=connection_string+("\n")+extra_env.join("\n")
       begin
+
         File.open(env_file,"w") {|file|
           file.puts final_env
         }
         # Only the user that runs the server have access to .env
         File.chmod(0700,env_file)
-
 
         #begin
         Dotenv.load(env_file)
@@ -144,6 +144,7 @@ module Buhos
       end
       redirect '/installer/populate_database'
     end
+
     get '/installer/populate_database' do
 
       Dotenv.load(env_file)

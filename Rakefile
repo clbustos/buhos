@@ -28,6 +28,7 @@ task :after_spec do |t|
 end
 
 
+
 RSpec::Core::RakeTask.new(:spec) do |t|
 
   t.pattern = Dir.glob('spec/**/*_spec.rb')
@@ -37,6 +38,8 @@ RSpec::Core::RakeTask.new(:spec) do |t|
 end
 
 task :default => :spec
+
+
 
 
 desc "Build .deb package"

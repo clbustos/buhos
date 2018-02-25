@@ -41,6 +41,8 @@ end
 get "/review/:id" do |id|
   @revision=Revision_Sistematica[id]
   ##$log.info(@nombres_trs)
+  raise Buhos::NoReviewIdError, id if !@revision
+#  return 404 if !@revision
 
   @taxonomy_categories=@revision.taxonomy_categories_hash
 
@@ -50,6 +52,7 @@ end
 
 get "/review/:id/edit" do |id|
   @revision=Revision_Sistematica[id]
+  raise Buhos::NoReviewIdError, id if !@revision
   @taxonomy_categories_id=@revision.taxonomy_categories_id
   title(t(:Systematic_review_edit, sr_name:@revision.nombre))
   haml %s{systematic_reviews/edit}
@@ -94,6 +97,7 @@ end
 
 get '/review/:id/analysis' do |id|
   @revision=Revision_Sistematica[id]
+  raise Buhos::NoReviewIdError, id if !@revision
   redirect to ("/review/#{@revision[:id]}/#{@revision[:etapa]}")
 end
 
@@ -102,13 +106,16 @@ end
 
 get '/review/:id/canonical_documents' do |id|
 
+  @revision=Revision_Sistematica[id]
+  raise Buhos::NoReviewIdError, id if !@revision
+
   @pager=get_pager
 
   @pager.orden||="n_total_referencias_recibidas__desc"
 
   @sin_abstract=params['sin_abstract']=='true'
   @solo_registros=params['solo_registros']=='true'
-  @revision=Revision_Sistematica[id]
+
   @ars=AnalisisRevisionSistematica.new(@revision)
   @cd_total_ds=@revision.canonicos_documentos
 
@@ -155,6 +162,7 @@ end
 
 get '/review/:id/repeated_canonical_documents' do |id|
   @revision=Revision_Sistematica[id]
+  raise Buhos::NoReviewIdError, id if !@revision
   @cd_rep_doi=@revision.doi_repetidos
   @cd_hash=@revision.canonicos_documentos.as_hash
 
@@ -166,7 +174,7 @@ end
 
 get '/review/:id/canonical_documents_graphml' do |id|
   @revision=Revision_Sistematica[id]
-
+  raise Buhos::NoReviewIdError, id if !@revision
   headers["Content-Disposition"] = "attachment;filename=graphml_revision_#{id}.graphml"
 
   content_type 'application/graphml+xml'
@@ -179,7 +187,7 @@ end
 
 get '/review/:id/tags' do |id|
   @revision=Revision_Sistematica[id]
-
+  raise Buhos::NoReviewIdError, id if !@revision
   @etapas_lista={:NIL=>"--Todas--"}.merge(Revision_Sistematica::ETAPAS_NOMBRE)
 
   @select_etapa=get_xeditable_select(@etapas_lista, "/tags/classes/edit_field/etapa","select_etapa")
@@ -197,6 +205,7 @@ end
 
 get '/review/:id/messages' do |id|
   @revision=Revision_Sistematica[id]
+  raise Buhos::NoReviewIdError, id if !@revision
   @mensajes_rs=@revision.mensajes_rs_dataset.where(:respuesta_a=>nil).order(Sequel.desc(:tiempo))
   #@mensajes_rs_vistos=Mensaje_Rs_Visto.where(:visto=>true,:m_rs_id=>@mensajes_rs.select_map(:id), :usuario_id=>session['user_id']).select_map(:m_rs_id)
   #$log.info(@mensajes_rs_vistos)
@@ -206,6 +215,7 @@ end
 
 post '/review/:id/message/new' do |id|
   @revision=Revision_Sistematica[id]
+  raise Buhos::NoReviewIdError, id if !@revision
   @usuario_id=params['user_id']
   return 404 if @revision.nil? or @usuario_id.nil?
   @asunto=params['asunto']
@@ -219,6 +229,7 @@ end
 
 get '/review/:id/files' do |id|
   @revision=Revision_Sistematica[id]
+  raise Buhos::NoReviewIdError, id if !@revision
   @archivos_rs=Archivo.join(:archivos_rs, :archivo_id => :id).left_join(:archivos_cds, :archivo_id => :archivo_id).where(:revision_sistematica_id => id).order_by(:archivo_nombre)
   @modal_archivos=get_modalarchivos
 
@@ -232,7 +243,7 @@ end
 post '/review/files/add' do
   #$log.info(params)
   @revision=Revision_Sistematica[params['revision_sistematica_id']]
-  return 404 if @revision.nil?
+  raise Buhos::NoReviewIdError, id if !@revision
   archivos=params['archivos']
   cd=nil
   cd_id=params['canonico_documento_id']
@@ -256,7 +267,7 @@ end
 
 get '/review/:id/advance_stage' do |id|
   @revision=Revision_Sistematica[id]
-  return 404 if @revision.nil?
+  raise Buhos::NoReviewIdError, id if !@revision
 
   @ars=AnalisisRevisionSistematica.new(@revision)
   if (@ars.stage_complete?(@revision.etapa))

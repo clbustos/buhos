@@ -11,24 +11,25 @@ describe 'Buhos administration' do
   end
 
 
-  it "shouldn't be accesible for analyst user" do
-    post '/login' , :user=>'analyst', :password=>'analyst'
-    not_permitted '/admin/groups'
-    not_permitted '/group/new'
-    not_permitted '/role/new'
-    not_permitted '/admin/users'
-    not_permitted '/user/new'
+  context "when analyst try to access admin pages" do
+    let(:login) {post '/login' , :user=>'analyst', :password=>'analyst'}
+
+    it{login;expect('/admin/groups').to be_prohibited}
+    it{login;expect('/group/new').to be_prohibited}
+    it{login;expect('/role/new').to be_prohibited}
+    it{login;expect('/admin/users').to be_prohibited}
+    it{login;expect('/user/new').to be_prohibited}
   end
 
-  it "should be accesible for admin user" do
-    post '/login' , :user=>'admin', :password=>'admin'
-    permitted '/admin/groups'
-    permitted '/admin/roles'
-    permitted '/group/new'
-    permitted '/admin/users'
-    permitted '/user/new'
+  context "when admin try to access admin pages" do
+    let(:login) {post '/login' , :user=>'admin', :password=>'admin'}
+    it  {expect('/admin/groups').to be_accesible_for_admin}
+    it  {expect('/admin/roles').to be_accesible_for_admin}
+    it {expect('/group/new').to be_accesible_for_admin}
+    it {expect('/admin/users').to be_accesible_for_admin}
+    it {expect('/user/new').to be_accesible_for_admin}
 
-    permitted_redirect '/role/new'
+    it {login;permitted_redirect '/role/new'}
   end
 
 

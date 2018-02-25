@@ -5,6 +5,8 @@ get '/user/:user_id' do |user_id|
     user_id=Usuario.create_new_user(session['language'])
   end
   @usuario=Usuario[user_id]
+  raise Buhos::NoUserIdError, user_id if !@user
+
   # Debo reemplazar por las elecciones de acuerdo a equipo
 
   @rss=@usuario.revisiones_sistematicas.where(:activa=>true)
@@ -39,6 +41,9 @@ get '/user/:user_id/messages' do |user_id|
   @user=Usuario[user_id]
 
   return 403 unless user_id.to_s==session['user_id'].to_s
+
+  raise Buhos::NoUserIdError, user_id if !@user
+
   @messages_personal=Mensaje.where(:usuario_hacia=>user_id, :respuesta_a=>nil).order(Sequel.desc(:tiempo))
   @n_not_readed=@messages_personal.where(:visto=>false).count
   @srs=@user.revisiones_sistematicas
@@ -48,6 +53,8 @@ end
 
 get '/user/:user_id/compose_message' do |user_id|
   @user=Usuario[user_id]
+  raise Buhos::NoUserIdError, user_id if !@user
+
   @ms_id="NEW"
   @ms_text=""
   return 403 unless user_id.to_s==session['user_id'].to_s
@@ -56,6 +63,8 @@ end
 
 post '/user/:user_id/compose_message/send' do |user_id|
   @user=Usuario[user_id]
+  raise Buhos::NoUserIdError, user_id if !@user
+
   return 403 unless user_id.to_s==session['user_id'].to_s
   asunto=params['asunto'].chomp
   texto=params['texto'].chomp
@@ -78,6 +87,8 @@ end
 
 get '/user/:user_id/change_password' do |user_id|
   @user=Usuario[user_id]
+  raise Buhos::NoUserIdError, user_id if !@user
+
   return 403 unless session['user_id']==@user.id or permiso("editar_usuarios")
 
   haml "users/change_password".to_sym
@@ -85,6 +96,8 @@ end
 
 post '/user/:user_id/change_password' do |user_id|
   @user=Usuario[user_id]
+  raise Buhos::NoUserIdError, user_id if !@user
+
   return 403 unless session['user_id']==@user.id or permiso("editar_usuarios")
 
   password_1=params['password']

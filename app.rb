@@ -49,10 +49,12 @@ enable :logging, :dump_errors, :raise_errors, :sessions
 
 configure :development do |c|
   c.enable :logging, :dump_errors, :raise_errors, :sessions, :show_errors, :show_exceptions
+  set :show_exceptions, :after_handler
 end
 
 configure :production do |c|
   c.enable :logging, :dump_errors, :raise_errors, :sessions, :show_errors, :show_exceptions
+  set :show_exceptions, :after_handler
 end
 
 # this is required if you want to assume the default path

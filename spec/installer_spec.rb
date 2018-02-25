@@ -1,18 +1,22 @@
-require 'rspec'
 require_relative 'spec_helper'
 
 
 require_relative("../installer")
 
-describe 'When Buhos installer is activated' do
+describe "Buhos installer" do
   before(:all) do
     RSpec.configure { |c| c.include RSpecMixinInstaller  , :installer => :true}
   end
 
-  it '/ should redirect to language selection', :installer=>true do
-    get '/'
-    expect(last_response).to be_redirect
-    expect(last_response.body).to be_empty
+
+  context 'when access /', :installer=>true do
+    let(:response) {get '/'}
+    it 'redirects', :installer=>true  do
+      expect(response).to be_redirect
+    end
+    it 'with no body',  :installer=>true   do
+      expect(response.body).to be_empty
+    end
   end
   it '/installer/select_language should be accesible', :installer=>true do
     get '/installer/select_language'
@@ -38,6 +42,50 @@ describe 'When Buhos installer is activated' do
 
   end
 
-  it '/installer'
+  context 'when basic_data_form is send', :installer=>true do
+
+
+
+    form_post={
+        db_adapter:     'mysql2',
+        db_hostname:    'example.5000m',
+        db_port:        '5000',
+        db_username:    'other_user',
+        db_password:    'other_password',
+        db_database:    'other_database',
+        db_filename:    '',
+        proxy_hostname: 'proxy.example.com',
+        proxy_port:     '3000',
+        proxy_user:     'proxy_user',
+        proxy_password: 'proxy_pass',
+        scopus_key:     'scopus_key'
+    }
+
+    let(:dot_env) {Tempfile.new}
+    let(:response) {
+
+      ENV['DOT_ENV']=dot_env.path
+      post('/installer/basic_data_form',form_post)
+    }
+
+    it 'should return correct status and redirect' do
+      expect(response.status).to eq(302)
+      expect(response.header["Location"]).to eq("http://example.org/installer/populate_database")
+    end
+    it "should create correct env file" do
+      response
+      env_content=dot_env.read
+      expect(env_content).to eq("DATABASE_URL=mysql2://other_user:other_password@example.5000m:5000/other_database
+PROXY_HOSTNAME=proxy.example.com
+PROXY_PORT=3000
+PROXY_USER=proxy_user
+PROXY_PASSWORD=proxy_pass
+SCOPUS_KEY=scopus_key\n")
+
+    end
+
+
+
+  end
 
 end

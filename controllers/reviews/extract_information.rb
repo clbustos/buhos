@@ -1,5 +1,9 @@
 get '/review/:sr_id/extract_information/cd/:cd_id' do |sr_id,cd_id|
   @sr=Revision_Sistematica[sr_id]
+
+  raise Buhos::NoReviewIdError, sr_id if !@sr
+
+
   @cd=Canonico_Documento[cd_id]
   @user=Usuario[session['user_id']]
   return 404 if @sr.nil? or @cd.nil?

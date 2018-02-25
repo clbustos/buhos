@@ -1,17 +1,21 @@
 get '/search/:id' do |id|
   @search=Busqueda[id]
+  raise Buhos::NoSearchIdError, id if @search.nil?
   @revision=@search.revision_sistematica
   haml %s{searchs/search_view}
 end
 
 get '/search/:id/edit' do |id|
   @search=Busqueda[id]
+  raise Buhos::NoSearchIdError, id if @search.nil?
   @revision=@search.revision_sistematica
   haml %s{searchs/search_edit}
 end
 
 get '/search/:id/records' do |id|
   @search=Busqueda[id]
+  raise Buhos::NoSearchIdError, id if @search.nil?
+
   @revision=@search.revision_sistematica
   @registros=@search.registros_dataset.order(:author)
 
@@ -21,6 +25,8 @@ end
 
 get '/search/:id/references' do |id|
   @search=Busqueda[id]
+  raise Buhos::NoSearchIdError, id if @search.nil?
+
   @revision=@search.revision_sistematica
   @referencias=@search.referencias
   @referencias_con_canonico=@search.referencias.where(Sequel.lit("canonico_documento_id IS NOT NULL"))
@@ -42,6 +48,8 @@ end
 # Completa la información desde Crossref para cada registro
 get '/search/:id/records/complete_doi' do |id|
   @search=Busqueda[id]
+  raise Buhos::NoSearchIdError, id if @search.nil?
+
   @registros=@search.registros_dataset
   rcp=RecordCrossrefProcessor.new(@registros,$db)
   add_result(rcp.result)
@@ -53,6 +61,8 @@ end
 get '/search/:id/references/search_doi' do |id|
   exitos=0
   @search=Busqueda[id]
+  raise Buhos::NoSearchIdError, id if @search.nil?
+
   @referencias=@search.referencias.where(:doi=>nil)
   $db.transaction do
     @referencias.each do |referencia|
@@ -66,6 +76,8 @@ end
 
 get '/search/:id/references/generate_canonical_doi/:n' do |id, n|
   busqueda=Busqueda[id]
+  raise Buhos::NoSearchIdError, id if @search.nil?
+
   col_dois=busqueda.referencias_sin_canonico_con_doi_n(n)
   result=Result.new
   col_dois.each do |col_doi|

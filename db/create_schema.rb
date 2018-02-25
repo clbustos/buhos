@@ -2,15 +2,17 @@ module Buhos
   module SchemaCreation
     def self.create_db_from_scratch(db_url, language='en',logger=nil)
       require 'sequel'
-      db=Sequel.connect(db_url, :encoding => 'utf8',:reconnect=>true)
-
-
+      if db_url.is_a? Sequel::Database
+        db=db_url
+      else
+        db=Sequel.connect(db_url, :encoding => 'utf8',:reconnect=>true)
+      end
       db.logger=logger if logger
-
       Buhos::SchemaCreation.create_schema(db)
       Sequel.extension :migration
       Sequel::Migrator.run(db, "db/migrations")
       Buhos::SchemaCreation.create_bootstrap_data(db,language)
+      db
     end
 
     def self.create_schema(db)

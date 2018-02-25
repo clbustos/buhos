@@ -1,12 +1,14 @@
 get '/review/:rs_id/fields' do |rs_id|
   @revision=Revision_Sistematica[rs_id]
+  raise Buhos::NoReviewIdError, rs_id if !@revision
+
   @campos=@revision.campos
   haml %s{systematic_reviews/fields}
 end
 
 post '/review/:rs_id/new_field' do |rs_id|
   @revision=Revision_Sistematica[rs_id]
-  return 404 unless @revision
+  raise Buhos::NoReviewIdError, rs_id if !@revision
 
   nombre=params['nombre'].chomp
 
@@ -35,7 +37,7 @@ end
 
 get '/review/:rs_id/update_field_table' do |rs_id|
   @revision=Revision_Sistematica[rs_id]
-  return 404 if !@revision
+  raise Buhos::NoReviewIdError, rs_id if !@revision
   @campos=@revision.campos
   Rs_Campo.actualizar_tabla(@revision)
   agregar_mensaje(t("fields.sr_table_update_success"))

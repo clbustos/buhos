@@ -121,6 +121,7 @@ es:
     error_on_add_crossref_for_cd: "No se pudo agregar información de Crossref para DC %{cd_title}"
     no_valid_cd_for_this_systematic_review: "El DC %{cd_id} no es válido para esta revisión sistemática. Revise la resolución para este DC en etapas anteriores."
     problem_record_stop_sync: "Problema en obtención de información para registro %{record_id}: %{e_message}. Se interrumpe sincronización"
+    no_code: "No hay %{object_name} con el código %{code} disponible"
   error403_message: "No tiene los permisos necesarios para ver esta página"
   Error_403: "Error 403 - Acceso no permitido"
   Error_404: "Error 404 - Recurso no existe"
@@ -527,6 +528,7 @@ es:
   Successful_authentification: "Autentificación exitosa"
   systematic_review:
     view: "Revisión sistemática: vista"
+  Systematic_review: "Revisión sistemática"
   Systematic_review_administration_stage: "Revisión sistemática <strong>%{sr_name}</strong>: etapa %{stage_name}"
   Systematic_review_automatic_categories: "Categorias automáticas para la revisión sistemática"
   Systematic_review_canonical_documents: "Documentos canónicos de revisión sistemática"

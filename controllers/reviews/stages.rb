@@ -1,5 +1,8 @@
 get '/review/:id/screening_title_abstract' do |id|
 
+  @revision=Revision_Sistematica[id]
+  raise Buhos::NoReviewIdError, id if !@revision
+
   @usuario=Usuario[session['user_id']]
   @usuario_id=@usuario[:id]
 
@@ -12,7 +15,7 @@ get '/review/:id/screening_title_abstract' do |id|
 
   # $log.info(params)
 
-  @revision=Revision_Sistematica[id]
+
   @ars=AnalisisRevisionSistematica.new(@revision)
   @cd_total_ds=@revision.canonicos_documentos
 
@@ -47,6 +50,10 @@ end
 
 get '/review/:id/screening_references' do |id|
 
+
+  @revision=Revision_Sistematica[id]
+  raise Buhos::NoReviewIdError, id if !@revision
+
   @usuario=Usuario[session['user_id']]
   @usuario_id=@usuario[:id]
 
@@ -59,7 +66,7 @@ get '/review/:id/screening_references' do |id|
 
   # $log.info(params)
 
-  @revision=Revision_Sistematica[id]
+
   @ars=AnalisisRevisionSistematica.new(@revision)
   @cd_total_ds=@revision.canonicos_documentos
 
@@ -94,6 +101,10 @@ end
 
 get '/review/:id/full_text_review' do |id|
 
+  @revision=Revision_Sistematica[id]
+  raise Buhos::NoReviewIdError, id if !@revision
+
+
   @usuario=Usuario[session['user_id']]
   @usuario_id=@usuario[:id]
 
@@ -106,7 +117,6 @@ get '/review/:id/full_text_review' do |id|
 
   # $log.info(params)
 
-  @revision=Revision_Sistematica[id]
   @ars=AnalisisRevisionSistematica.new(@revision)
   @cd_total_ds=@revision.canonicos_documentos
 
@@ -144,6 +154,7 @@ end
 
 get '/review/:id/administration_stages' do |id|
   @revision=Revision_Sistematica[id]
+  raise Buhos::NoReviewIdError, id if !@revision
   @ars=AnalisisRevisionSistematica.new(@revision)
   haml %s{systematic_reviews/administration_stages}
 
@@ -151,6 +162,10 @@ end
 
 get '/review/:id/administration/:etapa' do |id,etapa|
   @revision=Revision_Sistematica[id]
+
+  raise Buhos::NoReviewIdError, id if !@revision
+
+
   @etapa=etapa
   @ars=AnalisisRevisionSistematica.new(@revision)
   @cd_without_assignation=@ars.cd_without_assignations(etapa)
@@ -191,6 +206,8 @@ end
 
 get '/review/:id/stage/:etapa/pattern/:patron/resolution/:resolucion' do |id,etapa,patron_s,resolucion|
   @revision=Revision_Sistematica[id]
+  raise Buhos::NoReviewIdError, id if !@revision
+
   @ars=AnalisisRevisionSistematica.new(@revision)
   patron=@ars.patron_desde_s(patron_s)
   cds=@ars.cd_desde_patron(etapa,patron)
@@ -240,6 +257,8 @@ end
 
 get '/review/:rev_id/stage/:stage/generar_referencias_crossref' do |rev_id,stage|
   @revision=Revision_Sistematica[rev_id]
+  raise Buhos::NoReviewIdError, id if !@revision
+
   result=Result.new
   dois_agregados=0
   cd_i=Resolucion.where(:revision_sistematica_id=>rev_id, :resolucion=>"yes", :etapa=>stage.to_s).map {|v|v [:canonico_documento_id]}
@@ -282,6 +301,8 @@ end
 
 get '/review/:rev_id/administration/:stage/cd_assignations' do |rev_id, stage|
   @revision=Revision_Sistematica[rev_id]
+  raise Buhos::NoReviewIdError, rev_id if !@revision
+
   @cds_id=@revision.cd_id_por_etapa(stage)
   @ars=AnalisisRevisionSistematica.new(@revision)
   @stage=stage
@@ -293,7 +314,7 @@ end
 
 get '/review/:rev_id/administration/:stage/cd_without_assignations' do |rev_id, stage|
   @revision=Revision_Sistematica[rev_id]
-
+  raise Buhos::NoReviewIdError, rev_id if !@revision
   @ars=AnalisisRevisionSistematica.new(@revision)
 
   @stage=stage
@@ -307,6 +328,7 @@ end
 
 get '/review/:rev_id/stage/:stage/add_assign_user/:user_id/:type' do |rev_id, stage, user_id,type|
   @revision=Revision_Sistematica[rev_id]
+  raise Buhos::NoReviewIdError, rev_id if !@revision
   if type=='all'
     @cds_id=@revision.cd_id_por_etapa(stage)
   elsif type=='without_assignation'
@@ -323,7 +345,7 @@ end
 get '/review/:rev_id/stage/:stage/rem_assign_user/:user_id/:type' do |rev_id, stage, user_id, type|
   # Type doesn't have meaning here
   @revision=Revision_Sistematica[rev_id]
-
+  raise Buhos::NoReviewIdError, rev_id if !@revision
   add_result(Asignacion_Cd.update_assignation(rev_id, [], user_id,stage))
   redirect back
 end
@@ -331,6 +353,7 @@ end
 
 get '/review/:rev_id/stage/:stage/complete_empty_abstract_manual' do |rev_id, stage|
   @revision=Revision_Sistematica[rev_id]
+  raise Buhos::NoReviewIdError, rev_id if !@revision
   @ars=AnalisisRevisionSistematica.new(@revision)
   @stage=stage
   @cd_sin_abstract=@ars.cd_without_abstract(stage)
@@ -340,6 +363,7 @@ end
 
 get '/review/:rev_id/stage/:stage/complete_empty_abstract_scopus' do |rev_id, stage|
   @revision=Revision_Sistematica[rev_id]
+  raise Buhos::NoReviewIdError, rev_id if !@revision
   @ars=AnalisisRevisionSistematica.new(@revision)
   result=Result.new
   @cd_sin_abstract=@ars.cd_without_abstract(stage)
@@ -354,7 +378,7 @@ end
 
 get '/review/:rev_id/stage/:stage/generate_graphml' do |rev_id, stage|
   @revision=Revision_Sistematica[rev_id]
-
+  raise Buhos::NoReviewIdError, rev_id if !@revision
   headers["Content-Disposition"] = "attachment;filename=graphml_revision_#{rev_id}_stage_#{stage}.graphml"
 
   content_type 'application/graphml+xml'
@@ -364,7 +388,7 @@ end
 
 get '/review/:rev_id/stage/:stage/generate_bibtex' do |rev_id, stage|
   @revision=Revision_Sistematica[rev_id]
-
+  raise Buhos::NoReviewIdError, rev_id if !@revision
   canonicos_id=@revision.cd_id_por_etapa(stage)
   @canonicos_resueltos=Canonico_Documento.where(:id=>canonicos_id).order(:author,:year)
 
@@ -378,7 +402,7 @@ end
 
 get '/review/:rev_id/stage/:stage/generate_doi_list' do |rev_id, stage|
   @revision=Revision_Sistematica[rev_id]
-
+  raise Buhos::NoReviewIdError, rev_id if !@revision
   canonicos_id=@revision.cd_id_por_etapa(stage)
   @canonicos_resueltos=Canonico_Documento.where(:id=>canonicos_id).order(:author,:year).exclude(:doi=>nil)
   dois=@canonicos_resueltos.map {|v| v.doi}.join("\n")
