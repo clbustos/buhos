@@ -7,3 +7,6 @@ script:
 before_install:
   - sudo apt-get update -qq
   - sudo apt-get install -y cloc gdal-bin gdebi-core libcurl4-openssl-dev libgdal-dev libproj-dev libxml2-dev build-essential libmysqlclient-dev libsqlite3-dev
+env:
+  RACK_ENV=test
+  DATABASE_URL=sqlite::memory

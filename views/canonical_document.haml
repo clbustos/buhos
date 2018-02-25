@@ -1,5 +1,10 @@
 %h2=@title
 
+%ul.breadcrumb
+  %li.active
+    =@cd.title
+
+
 :javascript
   $(document).ready(function() {
     buscar_similares_canonico();

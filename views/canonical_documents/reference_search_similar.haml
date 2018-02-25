@@ -1,5 +1,13 @@
 - if !@ajax
-  %h3=t(:Search_for_similar_references)
+  .heading=t_canonical_document_title(@cd.title, :Search_for_similar_references)
+  %ul.breadcrumb
+    %li
+      %a{:href=>url("/canonical_document/#{@cd.id}")}=@cd.title
+    %li.active
+      =t(:Search_for_similar_references)
+
+
+
   %p
     %strong="#{t(:Original)}:"
     =@cd.ref_apa_6
