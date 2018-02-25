@@ -2,8 +2,10 @@ require 'rubygems'
 require 'bundler/setup'
 
 
-require "nokogiri"
-# Clase para cargar Scopus
+require 'nokogiri'
+# Module Scopus
+#
+# Provides access to Scopus dev services
 module Scopus
   # Factory method
     def self.process_xml(xml)

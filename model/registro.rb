@@ -1,7 +1,7 @@
 require_relative 'canonico_documento'
 
 class Registro < Sequel::Model
-  include MetodosReferencia
+  include ReferenceMethods
   include DOIHelpers
   many_to_one :canonico_documento, :class=>Canonico_Documento
   # Obtener una Query Crossref. Se utiliza el APA 6

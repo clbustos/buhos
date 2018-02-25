@@ -1,5 +1,5 @@
 require_relative 'doi_helpers'
-module MetodosReferencia
+module ReferenceMethods
   include DOIHelpers
 
   def cita_apa_6

@@ -3,7 +3,7 @@ class Canonico_Documento < Sequel::Model
   one_to_many :referencias
   one_to_many :registros
 
-  include MetodosReferencia
+  include ReferenceMethods
   # Cada documento genérico realiza referencias. ¿A quién las hace?
 
   def referencias_realizadas

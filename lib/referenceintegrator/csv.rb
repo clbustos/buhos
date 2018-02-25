@@ -7,7 +7,7 @@ module ReferenceIntegrator
     # Process references inside JSON
 
     class Record_Refworks
-      include MetodosReferencia
+      include ReferenceMethods
       include ReferenceIntegrator::CommonRecordAttributes
 
       attr_reader :row

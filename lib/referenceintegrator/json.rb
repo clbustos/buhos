@@ -33,7 +33,7 @@ module ReferenceIntegrator
       end
     end
     class Record
-      include MetodosReferencia
+      include ReferenceMethods
       include ReferenceIntegrator::CommonRecordAttributes
 
       attr_reader :jv

@@ -1,6 +1,12 @@
 require 'simplecov'
 SimpleCov.start
 require 'sequel'
+require 'rspec'
+require 'i18n'
+require 'fileutils'
+require 'rack/test'
+require 'tempfile'
+
 require_relative "../db/create_schema"
 require_relative "../lib/buhos/dbadapter"
 
@@ -25,14 +31,7 @@ Buhos.connect_to_db($db_adapter)
 
 #exit
 
-require_relative '../app'
 
-require 'rspec'
-require 'i18n'
-require 'fileutils'
-require 'sinatra'
-require 'rack/test'
-require 'tempfile'
 
 
 
@@ -80,8 +79,8 @@ module RSpecMixin
 
 
 
-    puts "Adaptador: #{$db_adapter.object_id} - #{Usuario.db.object_id}"
-    puts "Db: #{$db_adapter.current.object_id} - #{$db.object_id} - #{db.object_id}"
+    #puts "Adaptador: #{$db_adapter.object_id} - #{Usuario.db.object_id}"
+    #puts "Db: #{$db_adapter.current.object_id} - #{$db.object_id} - #{db.object_id}"
 
   end
 

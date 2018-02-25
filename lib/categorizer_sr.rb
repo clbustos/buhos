@@ -1,4 +1,4 @@
-class Categorizador_RS
+class CategorizerSr
   attr_reader :categorias_cd_id
   STOPWORDS=%w{the an a with we dont to in that these those from each @ i it other how is are why}
 

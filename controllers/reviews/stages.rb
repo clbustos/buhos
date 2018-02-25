@@ -176,7 +176,7 @@ get '/review/:id/administration/:etapa' do |id,etapa|
   ## Aquí calcularé cuantos si y no hay por categoría
   res_etapa=@ars.resolucion_por_cd(etapa)
   begin
-    @categorizador=Categorizador_RS.new(@revision) unless etapa==:search
+    @categorizador=CategorizerSr.new(@revision) unless etapa==:search
     @aprobacion_categorias=@categorizador.categorias_cd_id.inject({}) {|ac,v|
       cd_validos=res_etapa.keys & (v[1])
       n=cd_validos.length

@@ -126,7 +126,7 @@ get '/canonical_documents/review/:rev_id/automatic_categories' do |rev_id|
   #require 'categorize'
   #modelo=Categorize::Models::Cluster.new
   #modelo.num_clusters = 20
-  @categorizador=Categorizador_RS.new(@revision,nil)
+  @categorizador=CategorizerSr.new(@revision, nil)
   haml %s{systematic_reviews/canonical_documents_automatic_categories}
 end
 
