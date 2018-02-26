@@ -1,4 +1,5 @@
 post '/tags/classes/new' do
+  return 403 unless permiso('tags_edit_class')
   @revision=Revision_Sistematica[params['revision_id']]
   etapa=  params['etapa']
   etapa=nil if etapa=="NIL"
@@ -16,6 +17,7 @@ end
 
 
 put '/tags/classes/edit_field/:campo' do |campo|
+  return 403 unless permiso('tags_edit_class')
   pk = params['pk']
   value = params['value']
   value = nil if value=="NIL"
@@ -28,14 +30,14 @@ end
 put "/tag/edit" do
   pk = params['pk']
   value = params['value'].chomp
-  return [404,"Debe ingresar algun texto"] if value==""
+  return [405,"Debe ingresar algun texto"] if value==""
   Tag[pk].update(:texto=>value)
   return 200
 end
 
-post '/tags/clase/:t_clase_id/add_tag' do |t_clase_id|
+post '/tags/class/:t_clase_id/add_tag' do |t_clase_id|
   t_clase=T_Clase[t_clase_id]
-  return 404 if t_clase.nil?
+  raise  NoTagClassIdError, t_clase_id if !t_clase
   tag_nombre=params['value'].chomp
   return 405 if tag_nombre==""
   tag=Tag.get_tag(tag_nombre)

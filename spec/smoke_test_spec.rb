@@ -112,6 +112,12 @@ describe 'Review with all stages completed' do
     it { expect("/canonical_document/1/view_doi").to be_accesible_for_admin}
   end
   context "when user resources are accessed" do
+    it "/my_messages redirects to /user/1" do
+      login_admin
+      get '/my_messages'
+      expect(last_response.status).to eq(302)
+      expect(last_response.header["Location"]).to eq("http://example.org/user/1/messages")
+    end
     it { expect("/user/1").to be_accesible_for_admin}
     it { expect("/user/1/messages").to be_accesible_for_admin}
     it { expect("/user/1/compose_message").to be_accesible_for_admin}

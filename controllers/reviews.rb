@@ -257,7 +257,7 @@ post '/review/files/add' do
     archivos.each do |archivo|
       resultados.add_result(Archivo.agregar_en_rs(archivo,@revision,dir_archivos,cd))
     end
-    agregar_resultado resultados
+    add_result resultados
   else
     agregar_mensaje(I18n::t(:Files_not_uploaded), :error)
   end

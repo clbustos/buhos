@@ -15,7 +15,9 @@ module Buhos
   class NoTagIdError < StandardError
 
   end
+  class NoTagClassIdError < StandardError
 
+  end
 end
 
 
@@ -45,6 +47,11 @@ module Sinatra
         status 404
         ::I18n::t("error.no_code", object_name: ::I18n::t(:Tag), code:env['sinatra.error'].message)
       end
+      app.error Buhos::NoTagClassIdError do
+        status 404
+        ::I18n::t("error.no_code", object_name: ::I18n::t(:Tag_class), code:env['sinatra.error'].message)
+      end
+
     end
   end
   register CustomErrors

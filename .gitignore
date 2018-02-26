@@ -4,6 +4,7 @@
 log
 usr/archivos
 *.sqlite
+spec/usr
 config/installed
 config/installed_test
 vendor/vagrant_alpine/.vagrant

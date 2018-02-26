@@ -60,10 +60,10 @@
         .row
           .col-md-3
             %p
-              =t("#{t(:Stage)}:")
+              ="#{t(:Stage)}:"
               =@select_etapa.html(t_clase.id, t_clase.etapa)
             %p
-              =t("#{t(:Type)}:")
+              ="#{t(:Type)}:"
               =@select_tipo.html(t_clase.id, t_clase.tipo)
           .col-md-9.col-lg-8
             %div{:id=>"tags-clase-#{t_clase.id}"}

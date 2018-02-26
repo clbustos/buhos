@@ -305,6 +305,7 @@ module Buhos
           'rs_campos_ver',
           'scopus_acceder',
           'tags_ver',
+          'tags_edit_class',
           'roles_crear',
           'usuarios_crear',
           'ver_revisiones',
