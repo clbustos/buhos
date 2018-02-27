@@ -3,8 +3,6 @@ gem 'rake'
 gem "sinatra",  '>=2.0.1'
 gem "sequel"
 gem "mysql2"
-gem "puma", :platforms => :mingw
-gem "thin", :platforms => :ruby
 gem "haml"
 gem "rspec"
 gem "rack-test"
@@ -27,6 +25,11 @@ gem "i18n"
 gem "sqlite3"
 gem "certified", :platforms => :mingw
 
+group :production do
+  gem "puma", :platforms => :mingw
+  gem "thin", :platforms => :ruby
+
+end
 group :development do
   gem 'pkgr'
 end
