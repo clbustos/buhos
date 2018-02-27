@@ -4,8 +4,6 @@ describe 'Stage administration' do
   before(:all) do
     RSpec.configure { |c| c.include RSpecMixin }
     @temp=configure_complete_sqlite
-  end
-  before(:each) do
     post '/login' , :user=>'admin', :password=>'admin'
   end
   def accept_yes
@@ -78,6 +76,29 @@ describe 'Stage administration' do
       post '/canonical_document/user_assignation/asignar', {rs_id:1, cd_id:64, user_id:1, stage:'screening_title_abstract'}
       expect(assignations_admin['screening_title_abstract'][:n]).to eq(1)
     end
+  end
+  context "when bibtex is retrieved" do
+    before(:context) do
+      get '/review/1/stage/report/generate_bibtex'
+    end
+    it "should response be ok" do expect(last_response).to be_ok end
+    it "should content type be text/x-bibtex" do expect(last_response.header['Content-Type']).to include('text/x-bibtex') end
+    it "should content-disposition is attachment and include .bib" do expect(last_response.header['Content-Disposition']).to match(/attachment.+\.bib/) end
+  end
+  context "when doi list is retrieved" do
+    before(:context) do
+      get '/review/1/stage/report/generate_doi_list'
+    end
+    it "should response be ok" do expect(last_response).to be_ok end
+    it "should content type be text/plain" do expect(last_response.header['Content-Type']).to include('text/plain') end
+  end
+
+  context "when graphml is retrieved" do
+    before(:context) do
+      get '/review/1/stage/report/generate_graphml'
+    end
+    it "should response be ok" do expect(last_response).to be_ok end
+    it "should content type be text/plain" do expect(last_response.header['Content-Type']).to include('application/graphml+xml') end
   end
 
   after(:all) do

@@ -39,6 +39,8 @@ module Buhos
       ::Tag.dataset=self[:tags]
       ::T_Clase.dataset=self[:t_clases]
       ::Tag_En_Clase.dataset=self[:tags_en_clases]
+      ::Tag_En_Cd.dataset=self[:tags_en_cds]
+      ::Tag_En_Referencia_Entre_Cn.dataset=self[:tags_en_referencias_entre_cn]
       ::Revision_Sistematica.dataset=self[:revisiones_sistematicas]
       ::Rs_Campo.dataset=self[:rs_campos]
       ::Usuario.dataset=self[:usuarios]
