@@ -23,5 +23,6 @@ after_script:
 env:
   RACK_ENV=test
   DATABASE_URL=sqlite::memory
+  TEST_TRAVIS=1
   global:
   CC_TEST_REPORTER_ID=552680decad3c1231ec8666a73475ea8d18ef85d9b8aa539593af8dda1e9236a

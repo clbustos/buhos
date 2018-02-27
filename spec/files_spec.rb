@@ -84,9 +84,9 @@ describe 'Files' do
     before(:context) do
       get '/file/1/page/17/image'
     end
-    it {skip "not gs available" unless gs_available; expect(last_response).to be_ok }
-    it {skip "not gs available" unless gs_available; expect(last_response.header['Content-Type']).to include("image/png") }
-    it {skip "not gs available" unless gs_available; expect(last_response.header['Content-Length'].to_i).to be >0}
+    it {skip "not gs available" unless gs_available; skip "because travis" if ENV['TEST_TRAVIS']; expect(last_response).to be_ok }
+    it {skip "not gs available" unless gs_available; skip "because travis" if ENV['TEST_TRAVIS']; expect(last_response.header['Content-Type']).to include("image/png") }
+    it {skip "not gs available" unless gs_available; skip "because travis" if ENV['TEST_TRAVIS']; expect(last_response.header['Content-Length'].to_i).to be >0}
   end
 
   context "when change attribute of a file" do
