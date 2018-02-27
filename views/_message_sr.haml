@@ -19,7 +19,6 @@
 
       $(".responder-mensaje").click(function() {
         var id=$(this).attr("id_mostrar");
-
         $("#"+id).removeClass("hidden")
       });
       $(".marcar-visto").click(function() {
@@ -56,9 +55,10 @@
         %button.btn.btn-default.responder-mensaje{:role=>:button,:id_mostrar=>"mensaje-rs-#{mensaje_rs.id}-respuesta"}
           %span.glyphicon.glyphicon-arrow-left
             =t("messages.Reply")
-        %button.btn.btn-default.toggle-mensaje{:role=>:button,:id_toggle=>"mensaje-#{mensaje_rs.id}-hijos", :id_glyph=>"mensaje-#{mensaje_rs.id}-glyph-toggle"}
-          %span.glyphicon.glyphicon-eye-close{:id=>"mensaje-#{mensaje_rs.id}-glyph-toggle"}
-            =t("messages.Collapse")
+        - if !mensajes_hijos.empty?
+          %button.btn.btn-default.toggle-mensaje{:role=>:button,:id_toggle=>"mensaje-#{mensaje_rs.id}-hijos", :id_glyph=>"mensaje-#{mensaje_rs.id}-glyph-toggle"}
+            %span.glyphicon.glyphicon-eye-close{:id=>"mensaje-#{mensaje_rs.id}-glyph-toggle"}
+              =t("messages.Collapse")
   .row.hidden{:id=>"mensaje-rs-#{mensaje_rs.id}-respuesta"}
     .col-md-10
       %form.respuesta-a-m_rs{:method=>"post",:action=>url("/message_sr/#{mensaje_rs.id}/reply")}

@@ -56,9 +56,10 @@
         %button.btn.btn-default.responder-message-per{:role=>:button,:id_mostrar=>"mensaje-per-#{message_per.id}-respuesta"}
           %span.glyphicon.glyphicon-arrow-left
             =t("messages.Reply")
-        %button.btn.btn-default.toggle-message-per{:role=>:button,:id_toggle=>"mensaje-#{message_per.id}-hijos", :id_glyph=>"mensaje-#{message_per.id}-glyph-toggle"}
-          %span.glyphicon.glyphicon-eye-close{:id=>"mensaje-#{message_per.id}-glyph-toggle"}
-            =t("messages.Collapse")
+        -if !mensajes_hijos.empty?
+          %button.btn.btn-default.toggle-message-per{:role=>:button,:id_toggle=>"mensaje-#{message_per.id}-hijos", :id_glyph=>"mensaje-#{message_per.id}-glyph-toggle"}
+            %span.glyphicon.glyphicon-eye-close{:id=>"mensaje-#{message_per.id}-glyph-toggle"}
+              =t("messages.Collapse")
   .row.hidden{:id=>"mensaje-per-#{message_per.id}-respuesta"}
     .col-md-10
       %form.respuesta-a-m_rs{:method=>"post",:action=>url("/message_per/#{message_per.id}/reply")}
