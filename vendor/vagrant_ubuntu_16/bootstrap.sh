@@ -19,7 +19,9 @@ apt-get install -y \
   libgdal-dev \
   libproj-dev \
   libxml2-dev \
-libxml2-dev \
+  ghostscript \
+  imagemagick \
+  xpdf
 
 apt-get install -y build-essential \
     libmysqlclient-dev \

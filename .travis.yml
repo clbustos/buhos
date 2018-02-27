@@ -11,11 +11,11 @@ before_script:
   - ./cc-test-reporter before-build
 before_install:
   - sudo apt-get update -qq
-  - sudo apt-get install -y cloc gdal-bin gdebi-core libcurl4-openssl-dev libgdal-dev libproj-dev libxml2-dev build-essential libmysqlclient-dev libsqlite3-dev ghostscript 
+  - sudo apt-get install -y cloc gdal-bin gdebi-core libcurl4-openssl-dev libgdal-dev libproj-dev libxml2-dev build-essential libmysqlclient-dev libsqlite3-dev ghostscript imagemagick xpdf
 after_script:
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
 env:
   RACK_ENV=test
   DATABASE_URL=sqlite::memory
   global:
-  CC_TEST_REPORTER_ID=787a2f89b15c637323c7340d65ec17e898ac44480706b4b4122ea040c2a88f1d
+  CC_TEST_REPORTER_ID=552680decad3c1231ec8666a73475ea8d18ef85d9b8aa539593af8dda1e9236a

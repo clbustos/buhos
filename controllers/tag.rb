@@ -252,7 +252,7 @@ end
 
 
 # Not supported code
-# 
+#
 # get '/tag/:tag_id/review/:rs_id/assign_user/:usuario_id' do |tag_id,rs_id,user_id|
 #   tag=Tag[tag_id]
 #   revision=Revision_Sistematica[rs_id]

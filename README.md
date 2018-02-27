@@ -75,7 +75,9 @@ On Ubuntu, this script install all required dependencies
       libgdal-dev \
       libproj-dev \
       libxml2-dev \
-      libxml2-dev \
+      ghostscript \
+      imagemagick \
+      xpdf \
       build-essential \
       libmysqlclient-dev \
       libsqlite3-dev
