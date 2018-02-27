@@ -78,12 +78,15 @@ describe 'Files' do
   end
   # Works, but is very slow
   context "when user retrieves a page from a pdf as image, response" do
+
+    let(:gs_available) {check_executable_on_path('gs')}
+
     before(:context) do
       get '/file/1/page/17/image'
     end
-    it {expect(last_response).to be_ok }
-    it {expect(last_response.header['Content-Type']).to include("image/png") }
-    it {expect(last_response.header['Content-Length'].to_i).to be >0}
+    it {skip "not gs available" unless gs_available; expect(last_response).to be_ok }
+    it {skip "not gs available" unless gs_available; expect(last_response.header['Content-Type']).to include("image/png") }
+    it {skip "not gs available" unless gs_available; expect(last_response.header['Content-Length'].to_i).to be >0}
   end
 
   context "when change attribute of a file" do

@@ -118,6 +118,11 @@ module RSpecMixin
     expect(last_response.status).to_not eq(403)
 
   end
+
+  def check_executable_on_path(exe)
+    require 'mkmf'
+    find_executable exe
+  end
 end
 
 

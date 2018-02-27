@@ -29,9 +29,14 @@ apt-get install -y build-essential \
 
 adduser vagrant staff
 
+git clone
+
 if [ ! -L /home/vagrant/buhos ]
 then
-	cp -r /vagrant_data /home/vagrant/buhos
-	chown -R vagrant /home/vagrant/buhos
-	rm -f /home/vagrant/buhos/log/*.log
+    git clone /vagrant_data /home/vagrant/buhos
 fi
+
+chown -R vagrant /home/vagrant/buhos
+rm -f /home/vagrant/buhos/log/*.log
+cd /home/vagrant/buhos
+git pull origin master
