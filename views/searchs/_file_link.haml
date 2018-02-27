@@ -1,0 +1,9 @@
+- if search[:archivo_nombre]
+  %p=t("search.there_is_a_file")
+  %p
+    %a{:href=>"/search/#{search[:id]}/file/download"}
+      =t_desc_value("search.filename", search[:archivo_nombre])
+      %span.glyphicon.glyphicon-download
+- else
+  %p
+    %em=t("search.no_file")

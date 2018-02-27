@@ -18,6 +18,11 @@ module Buhos
   class NoTagClassIdError < StandardError
 
   end
+
+  class NoScopusMethodError < StandardError
+
+  end
+
 end
 
 

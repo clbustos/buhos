@@ -1,3 +1,4 @@
+- date_for_picker=@search[:fecha] ? @search[:fecha] : Date.today
 .header=t_search_title(@revision[:nombre], @search.nombre,:Edit_search)
 
 
@@ -14,7 +15,7 @@
 
     $( "#form-fecha" ).datepicker( "option", "dateFormat", "yy-mm-dd" );
 
-    $( "#form-fecha" ).datepicker("setDate",new Date(#{@search[:fecha].year},#{@search[:fecha].month-1},#{@search[:fecha].day},0,0,0,0))
+    $( "#form-fecha" ).datepicker("setDate",new Date(#{date_for_picker.year},#{date_for_picker.month-1},#{date_for_picker.day},0,0,0,0))
     });
 
 %ul.breadcrumb
@@ -52,6 +53,7 @@
     %input{:class=>"form-control",:type=>"text", :name=>"descripcion",:value=>@search[:descripcion]}
   .form-group
     %label=t(:File)
+    =partial("searchs/file_link".to_sym, :locals=>{search:@search})
     %p.instructions=t("search.Search_file_instructions")
     %input{:type=>'file', :name=>'archivo'}
   %input.btn.btn-primary{:type=>:submit,:value=>t('Send')}

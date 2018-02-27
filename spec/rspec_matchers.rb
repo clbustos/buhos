@@ -79,7 +79,7 @@ RSpec::Matchers.define :responds_with_no_tag_id_error do |code|
 
 end
 
-RSpec::Matchers.define :be_accesible_for_admin do
+RSpec::Matchers.define :be_available_for_admin do
   match do |actual|
     post '/login' , :user=>'admin', :password=>'admin'
     get actual
@@ -94,19 +94,19 @@ RSpec::Matchers.define :be_accesible_for_admin do
     expect(last_response).to_not be_ok
   end
   description do
-    "route #{actual} be accesible for admin"
+    "route #{actual} be available for admin"
   end
 
 
   failure_message do |actual|
     last_response.body=~/<section id='content'>(.+?)<\/section>/m
     show_body=$1.nil? ? last_response.body : $1
-    "expected #{actual} be accessible, but status was #{last_response.status} and content was '#{show_body}'"
+    "expected #{actual} be available, but status was #{last_response.status} and content was '#{show_body}'"
   end
 end
 
 
-RSpec::Matchers.define :be_accesible do
+RSpec::Matchers.define :be_available do
   match do |actual|
     get actual
     #puts last_response.body

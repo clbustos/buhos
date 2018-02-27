@@ -5,7 +5,7 @@ class Scopus_Abstract < Sequel::Model
     elsif tipo.to_s=='doi'
       Scopus_Abstract.where(:doi => id).first
     else
-      raise "Tipo #{tipo} no reconocido"
+      raise Buhos::NoScopusMethodError, ::I18n.t("error.no_scopus_method", type:tipo)
     end
   end
 
@@ -40,15 +40,16 @@ class Scopus_Abstract < Sequel::Model
       xml=sr.xml_abstract_by_id(id, tipo)
       if xml
         agregar_desde_xml(xml)
-
       else
-
         result.error(I18n::t("scopus_abstract.cant_obtain_scopus_error", cd_title:cd[:title], sr_error: sr.error))
         return result
       end
     else
       xml=Scopus.process_xml(sa[:xml])
     end
+
+
+
     if xml.abstract.to_s==""
       result.error(I18n::t("scopus_abstract.no_scopus_abstract",cd_title:cd[:title]))
     elsif cd.abstract.to_s==""

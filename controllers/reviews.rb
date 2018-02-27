@@ -95,12 +95,6 @@ post '/review/update' do
 end
 
 
-get '/review/:id/analysis' do |id|
-  @revision=Revision_Sistematica[id]
-  raise Buhos::NoReviewIdError, id if !@revision
-  redirect to ("/review/#{@revision[:id]}/#{@revision[:etapa]}")
-end
-
 
 #### DOCUMENTOS CANONICOS #####
 

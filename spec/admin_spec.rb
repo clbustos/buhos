@@ -23,11 +23,11 @@ describe 'Buhos administration' do
 
   context "when admin try to access admin pages" do
     let(:login) {post '/login' , :user=>'admin', :password=>'admin'}
-    it  {expect('/admin/groups').to be_accesible_for_admin}
-    it  {expect('/admin/roles').to be_accesible_for_admin}
-    it {expect('/group/new').to be_accesible_for_admin}
-    it {expect('/admin/users').to be_accesible_for_admin}
-    it {expect('/user/new').to be_accesible_for_admin}
+    it  {expect('/admin/groups').to be_available_for_admin}
+    it  {expect('/admin/roles').to be_available_for_admin}
+    it {expect('/group/new').to be_available_for_admin}
+    it {expect('/admin/users').to be_available_for_admin}
+    it {expect('/user/new').to be_available_for_admin}
 
     it {login;permitted_redirect '/role/new'}
   end

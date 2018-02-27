@@ -21,11 +21,19 @@ module Buhos
       $db=Sequel.connect(db, :encoding => 'utf8',:reconnect=>true, :keep_reference=>keep_reference)
     end
 
+
+
     begin
       $db.run("SET NAMES UTF8")
     rescue Sequel::DatabaseError
       # Not available
     end
+    begin
+      $db.run("PRAGMA encoding='UTF-8'")
+    rescue Sequel::DatabaseError
+      # Not available
+    end
+
     $log_sql = Logger.new(File.dirname(__FILE__)+'/../log/app_sql.log')
     $db.loggers << $log_sql
     $db

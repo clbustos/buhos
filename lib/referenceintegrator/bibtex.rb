@@ -19,7 +19,7 @@ module ReferenceIntegrator
 
 
       def self.create(bibtex_value)
-		return nil if bibtex_value.is_a? BibTeX::Error
+		    return nil if bibtex_value.is_a? BibTeX::Error
         type=self.determine_type(bibtex_value)
         klass="Record_#{type.capitalize}".to_sym
         ReferenceIntegrator::BibTex.const_get(klass).send(:new, bibtex_value)
@@ -46,6 +46,7 @@ module ReferenceIntegrator
         @references_scopus=[]
         parse_common
         parse_specific
+        check_title
       end
 
       def parse_common
@@ -67,6 +68,13 @@ module ReferenceIntegrator
       def strip_lines(value)
         value.to_s.gsub(/\n\s*/, ' ')
       end
+      # I don't understand why, but Scopus and Mendelay adds extra {} at titles. Better remove it
+      def check_title
+        if title=~/^{(.+)}+/
+          @title=$1
+        end
+      end
+
     end
 
     class Record_Scopus < Record

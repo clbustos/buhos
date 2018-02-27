@@ -14,23 +14,6 @@ get '/review/:id/searchs' do |id|
   haml "systematic_reviews/searchs".to_sym
 end
 
-get '/review/:rs_id/searchs/user/:user_id' do |rs_id,user_id|
-  error(403) unless permiso('busquedas_revision_ver')
-  @revision=Revision_Sistematica[rs_id]
-
-  raise Buhos::NoReviewIdError, rs_id if !@revision
-
-  @user=Usuario[user_id]
-  @header=t_systematic_review_title(@revision[:nombre], t(:searchs_user, :user_name=>Usuario[user_id][:nombre]), false)
-  @url_back="/review/#{rs_id}/searchs/user/#{user_id}"
-  @searchs=@revision.busquedas_dataset.where(:user_id=>user_id)
-  haml "systematic_reviews/searchs".to_sym
-end
-
-
-
-
-
 get '/review/:id/search/new' do |id|
   error(403) unless permiso('busquedas_revision_crear')
   require 'date'
@@ -44,6 +27,20 @@ get '/review/:id/search/new' do |id|
   @usuario=Usuario[session['user_id']]
   haml "searchs/search_edit".to_sym
 end
+
+get '/review/:rs_id/searchs/user/:user_id' do |rs_id,user_id|
+  error(403) unless permiso('busquedas_revision_ver')
+  @revision=Revision_Sistematica[rs_id]
+
+  raise Buhos::NoReviewIdError, rs_id if !@revision
+
+  @user=Usuario[user_id]
+  @header=t_systematic_review_title(@revision[:nombre], t(:searchs_user, :user_name=>Usuario[user_id][:nombre]), false)
+  @url_back="/review/#{rs_id}/searchs/user/#{user_id}"
+  @searchs=@revision.busquedas_dataset.where(:user_id=>user_id)
+  haml "systematic_reviews/searchs".to_sym
+end
+
 
 
 

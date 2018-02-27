@@ -45,7 +45,7 @@
         %th=t(:Records)
       %tbody
         - @searchs.each do |g|
-          %tr{:class=>bool_class(g.valid, "success","danger","warning")}
+          %tr{:class=>bool_class(g.valid, "success","danger","warning"), :id=>"row-search-#{g.id}"}
             %td
               %input{:type=>'checkbox', :name=>"search[]", :value=>g[:id], :class=>'checkbox_interactive'}
             %td=g.id

@@ -112,6 +112,7 @@ class SearchProcessor
     bb=Base_Bibliografica.id_a_nombre_h
     ##$log.info(bb)
     $db.transaction(:rollback=>:reraise) do
+
       @search.registros.each do |registro|
         fields = [:title,:author,:year,:journal, :volume, :pages, :doi, :journal_abbr,:abstract]
 
@@ -132,6 +133,7 @@ class SearchProcessor
         else
           can_doc=Canonico_Documento[registro[:canonico_documento_id]]
           # Verificamos si tenemos una nueva información que antes no estaba
+          raise Buhos::NoCdIdError, registro[:canonico_documento_id] if !can_doc
           fields_new_info=fields.find_all {|v|  (can_doc[v].nil? or can_doc[v].to_s=="") and !(registro[v].nil? or registro[v].to_s=="")   }
           ##$log.info(fields.map {|v| registro[v]})
           unless fields_new_info.nil?

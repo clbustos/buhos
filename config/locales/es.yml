@@ -120,6 +120,7 @@ es:
   End_year: "Año de término"
   Enter_commentary: "Ingresar comentario"
   error:
+    no_scopus_method: "No se reconoce el tipo %{type} para acceder a Scopus"
     error_on_add_crossref_for_cd: "No se pudo agregar información de Crossref para DC %{cd_title}"
     no_valid_cd_for_this_systematic_review: "El DC %{cd_id} no es válido para esta revisión sistemática. Revise la resolución para este DC en etapas anteriores."
     problem_record_stop_sync: "Problema en obtención de información para registro %{record_id}: %{e_message}. Se interrumpe sincronización"
@@ -419,6 +420,9 @@ es:
     updated_abstract: "Se actualizó el resumen del documento %{cd_title} usando Scopus"
   Search: "Búsqueda"
   search:
+    there_is_a_file: "La búsqueda ya tiene un archivo asignado"
+    filename: "Nombre del archivo"
+    no_file: "No hay archivo asignado a la búsqueda %{search_name}"
     Search_criteria_instructions: "En el caso de las búsquedas realizadas en bases bibliográficas, escriba los criterios de búsqueda utilizados"
     Search_file_instructions: "Para Scopus, Wos y Ebsohost y genérico, utilice archivos BibTeX. Para Scielo, utilice archivo csv"
     Source: "Fuente de los registros"

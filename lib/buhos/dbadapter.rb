@@ -19,7 +19,10 @@ module Buhos
       ::Archivo_Cd.dataset=self[:archivos_cds]
       ::Archivo_Rs.dataset=self[:archivos_rs]
       ::Asignacion_Cd.dataset=self[:asignaciones_cds]
+      ::Base_Bibliografica.dataset=self[:bases_bibliograficas]
       ::Busqueda.dataset=self[:busquedas]
+
+
       ::Canonico_Documento.dataset=self[:canonicos_documentos]
       ::Crossref_Doi.dataset=self[:crossref_dois]
       ::Crossref_Query.dataset=self[:crossref_queries]
@@ -41,9 +44,14 @@ module Buhos
       ::Usuario.dataset=self[:usuarios]
       ::Permiso.dataset=self[:permisos]
       ::Rol.dataset=self[:roles]
+      ::Scopus_Abstract.dataset=self[:scopus_abstracts]
       ::Grupo.dataset=self[:grupos]
       ::Grupo_Usuario.dataset=self[:grupos_usuarios]
       ::PermisosRol.dataset=self[:permisos_roles]
+
+
+      ::Busqueda.many_to_many :registros, :class=>Registro
+
     end
     def method_missing(m, *args, &block)
       #puts "#{m}: #{args}"

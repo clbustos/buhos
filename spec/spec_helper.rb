@@ -1,5 +1,7 @@
 require 'simplecov'
-SimpleCov.start
+SimpleCov.start do
+  add_filter '/spec/'
+end
 require 'sequel'
 require 'rspec'
 require 'i18n'
@@ -62,6 +64,17 @@ app_path=File.expand_path(File.dirname(__FILE__)+"/..")
 module RSpecMixin
   include Rack::Test::Methods
   def app() Sinatra::Application end
+
+  def sr_by_name_id(name)
+    rs=Revision_Sistematica[:nombre=>name]
+    rs ? rs[:id] : nil
+  end
+
+  def bb_by_name_id(name)
+    bb=Base_Bibliografica[nombre:name]
+    bb ? bb[:id] :nil
+  end
+
   def configure_empty_sqlite
 
     db=Buhos::SchemaCreation.create_db_from_scratch(Sequel.connect('sqlite::memory:', :encoding => 'utf8',:reconnect=>false,:keep_reference=>false))

@@ -12,6 +12,19 @@ get '/search/:id/edit' do |id|
   haml %s{searchs/search_edit}
 end
 
+get '/search/:id/file/download' do |id|
+  @search=Busqueda[id]
+  raise Buhos::NoSearchIdError, id if @search.nil?
+  if @search[:archivo_nombre].nil?
+    return 404 if archivo.nil?
+  else
+    headers["Content-Disposition"] = "attachment; filename=#{@search[:archivo_nombre]}"
+    content_type @search[:archivo_tipo]
+    @search[:archivo_cuerpo]
+  end
+
+end
+
 get '/search/:id/records' do |id|
   @search=Busqueda[id]
   raise Buhos::NoSearchIdError, id if @search.nil?

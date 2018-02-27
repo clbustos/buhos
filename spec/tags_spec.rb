@@ -3,7 +3,7 @@ require 'spec_helper'
 describe 'Tags' do
   before(:all) do
     RSpec.configure { |c| c.include RSpecMixin }
-    @temp=configure_empty_sqlite
+    configure_empty_sqlite
     Revision_Sistematica.insert(:nombre=>'Test Review', :grupo_id=>1, :administrador_revision=>1)
 
     login_admin

@@ -250,21 +250,24 @@ post '/tag/delete_rs'do
   return 200
 end
 
-get '/tag/:tag_id/review/:rs_id/assign_user/:usuario_id' do |tag_id,rs_id,user_id|
-  tag=Tag[tag_id]
-  revision=Revision_Sistematica[rs_id]
-  usuario=Usuario[user_id]
-  tec_cd_id=Tag_En_Cd.cds_rs_tag( revision,tag,true,revision.etapa).select_map(:id)
-  a_cd=Asignacion_Cd.where(:revision_sistematica_id=>rs_id,:usuario_id=>user_id, :canonico_documento_id=>tec_cd_id).select_map(:canonico_documento_id)
-  por_agregar=tec_cd_id-a_cd
-    if por_agregar.length>0
-      $db.transaction(:rollback=>:reraise) do
-        por_agregar.each do |cd_id|
-        Asignacion_Cd.insert(:revision_sistematica_id=>rs_id,:usuario_id=>user_id, :canonico_documento_id=>cd_id, :estado=>'assigned')
-        end
-      end
-      agregar_mensaje("Agregados cd #{por_agregar.join(',')}  a usuario #{user_id} en revision sistematica #{revision.nombre}")
-    end
 
-  redirect back
-end
+# Not supported code
+# 
+# get '/tag/:tag_id/review/:rs_id/assign_user/:usuario_id' do |tag_id,rs_id,user_id|
+#   tag=Tag[tag_id]
+#   revision=Revision_Sistematica[rs_id]
+#   usuario=Usuario[user_id]
+#   tec_cd_id=Tag_En_Cd.cds_rs_tag( revision,tag,true,revision.etapa).select_map(:id)
+#   a_cd=Asignacion_Cd.where(:revision_sistematica_id=>rs_id,:usuario_id=>user_id, :canonico_documento_id=>tec_cd_id).select_map(:canonico_documento_id)
+#   por_agregar=tec_cd_id-a_cd
+#     if por_agregar.length>0
+#       $db.transaction(:rollback=>:reraise) do
+#         por_agregar.each do |cd_id|
+#         Asignacion_Cd.insert(:revision_sistematica_id=>rs_id,:usuario_id=>user_id, :canonico_documento_id=>cd_id, :estado=>'assigned')
+#         end
+#       end
+#       agregar_mensaje("Agregados cd #{por_agregar.join(',')}  a usuario #{user_id} en revision sistematica #{revision.nombre}")
+#     end
+#
+#   redirect back
+# end
