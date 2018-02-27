@@ -1,4 +1,5 @@
-- # Params: usuario, mensaje
+- # Params: usuario, mensaje,
+- message_type||='received'
 - mensaje_visto=message_per[:visto]
 - mensajes_hijos=Mensaje.where(:respuesta_a=>message_per.id).order(Sequel.desc(:tiempo))
 - clase_marcar =!mensaje_visto  ? "" : "hidden"
@@ -47,19 +48,21 @@
   .row
     .col-md-12
       .btn-group-xs.botones-texto
-        %button{:class=>"btn btn-warning marcar-visto-per #{clase_marcar}",:id=>"message_per-#{message_per.id}-no_visto_por-#{usuario[:id]}"}
-          %span.glyphicon.glyphicon-inbox
-          =t("messages.Mark_as_read")
+        - if message_type=='received'
+          %button{:class=>"btn btn-warning marcar-visto-per #{clase_marcar}",:id=>"message_per-#{message_per.id}-no_visto_por-#{usuario[:id]}"}
+            %span.glyphicon.glyphicon-inbox
+            =t("messages.Mark_as_read")
         %button{:class=>"btn btn-success #{clase_visto}", :id=>"message_per-#{message_per.id}-visto_por-#{usuario[:id]}"}
           %span.glyphicon.glyphicon-check
           =t("messages.Read")
-        %button.btn.btn-default.responder-message-per{:role=>:button,:id_mostrar=>"mensaje-per-#{message_per.id}-respuesta"}
-          %span.glyphicon.glyphicon-arrow-left
-            =t("messages.Reply")
+        - if message_type=='received'
+          %button.btn.btn-default.responder-message-per{:role=>:button,:id_mostrar=>"mensaje-per-#{message_per.id}-respuesta"}
+            %span.glyphicon.glyphicon-arrow-left
+              =t("messages.Reply")
         -if !mensajes_hijos.empty?
-          %button.btn.btn-default.toggle-message-per{:role=>:button,:id_toggle=>"mensaje-#{message_per.id}-hijos", :id_glyph=>"mensaje-#{message_per.id}-glyph-toggle"}
-            %span.glyphicon.glyphicon-eye-close{:id=>"mensaje-#{message_per.id}-glyph-toggle"}
-              =t("messages.Collapse")
+          %button.btn.btn-default.toggle-message-per{:role=>:button, :id_toggle=>"mensaje-#{message_type}-#{message_per.id}-hijos", :id_glyph=>"mensaje-#{message_per.id}-glyph-toggle"}
+            %span.glyphicon.glyphicon-eye-open{:id=>"mensaje-#{message_per.id}-glyph-toggle"}
+              =t("messages.Expand")
   .row.hidden{:id=>"mensaje-per-#{message_per.id}-respuesta"}
     .col-md-10
       %form.respuesta-a-m_rs{:method=>"post",:action=>url("/message_per/#{message_per.id}/reply")}
@@ -75,8 +78,8 @@
           %textarea{:class=>"form-control",:name=>'texto'}
         %input{:type=>:submit, :value=>t("messages.Send_message_to_user"), :class=>"btn btn-default"}
   - if !mensajes_hijos.empty?
-    .row{:id=>"mensaje-#{message_per.id}-hijos"}
+    .row{:id=>"mensaje-#{message_type}-#{message_per.id}-hijos", :class=>'hidden'}
       .col-md-12
         .list-group
           - mensajes_hijos.each do |child_mes|
-            =partial(:message_personal, :locals=>{:message_per=>child_mes,:usuario=>usuario})
+            =partial(:message_personal, :locals=>{:message_per=>child_mes,:usuario=>usuario, :message_type=>message_type})

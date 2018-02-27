@@ -51,7 +51,11 @@ get '/user/:user_id/messages' do |user_id|
 
   raise Buhos::NoUserIdError, user_id if !@user
 
-  @messages_personal=Mensaje.where(:usuario_hacia=>user_id, :respuesta_a=>nil).order(Sequel.desc(:tiempo))
+  @messages_personal=Mensaje.where(:usuario_hacia=>user_id).order(Sequel.desc(:tiempo))
+
+  @messages_personal_sent=Mensaje.where(:usuario_desde=>user_id).order(Sequel.desc(:tiempo))
+
+
   @n_not_readed=@messages_personal.where(:visto=>false).count
   @srs=@user.revisiones_sistematicas
 

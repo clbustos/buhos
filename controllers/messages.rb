@@ -36,12 +36,17 @@ end
 
 post '/message_per/:m_id/reply' do |m_id|
   m_per=Mensaje[m_id]
+
   @usuario_id=params['user_id']
-  return 404 if m_per.nil? or  @usuario_id.nil?
+  @user=Usuario[@usuario_id]
+
+  raise Buhos::NoUserIdError, @usuario_id if !@user
+  raise Buhos::NoMessageIdError, m_id     if !m_per
+
   @asunto=params['asunto'].chomp
   @texto=params['texto'].chomp
   $db.transaction(:rollback=>:reraise) do
-    id=Mensaje.insert(:usuario_desde=>@usuario_id, :usuario_hacia=>m_per.usuario_desde , :respuesta_a=>m_per.id, :tiempo=>DateTime.now(), :asunto=>@asunto, :texto=>@texto)
+    id=Mensaje.insert(:usuario_desde=>@usuario_id, :usuario_hacia=>m_per.usuario_desde , :respuesta_a=>m_per.id, :tiempo=>DateTime.now(), :asunto=>@asunto, :texto=>@texto, :visto=>false)
     agregar_mensaje(t("messages.add_reply_to", subject: m_per.asunto))
   end
   redirect back

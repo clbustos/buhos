@@ -1,4 +1,5 @@
 - # Params: usuario, mensaje_rs
+- message_type||='received'
 - mensaje_rs_visto=Mensaje_Rs_Visto[:visto=>true,:m_rs_id=>mensaje_rs.id, :usuario_id=>usuario.id]
 - mensajes_hijos=Mensaje_Rs.where(:respuesta_a=>mensaje_rs.id).order(Sequel.desc(:tiempo))
 - clase_marcar =!mensaje_rs_visto  ? "" : "hidden"
@@ -56,9 +57,9 @@
           %span.glyphicon.glyphicon-arrow-left
             =t("messages.Reply")
         - if !mensajes_hijos.empty?
-          %button.btn.btn-default.toggle-mensaje{:role=>:button,:id_toggle=>"mensaje-#{mensaje_rs.id}-hijos", :id_glyph=>"mensaje-#{mensaje_rs.id}-glyph-toggle"}
-            %span.glyphicon.glyphicon-eye-close{:id=>"mensaje-#{mensaje_rs.id}-glyph-toggle"}
-              =t("messages.Collapse")
+          %button.btn.btn-default.toggle-mensaje{:role=>:button,:id_toggle=>"mensaje_rs-#{message_type}-#{mensaje_rs.id}-hijos", :id_glyph=>"mensaje-#{mensaje_rs.id}-glyph-toggle"}
+            %span.glyphicon.glyphicon-eye-open{:id=>"mensaje-#{mensaje_rs.id}-glyph-toggle"}
+              =t("messages.Expand")
   .row.hidden{:id=>"mensaje-rs-#{mensaje_rs.id}-respuesta"}
     .col-md-10
       %form.respuesta-a-m_rs{:method=>"post",:action=>url("/message_sr/#{mensaje_rs.id}/reply")}
@@ -74,8 +75,8 @@
           %textarea{:class=>"form-control",:name=>'texto'}
         %input{:type=>:submit, :value=>t(:Send_message_to_group), :class=>"btn btn-default"}
   - if !mensajes_hijos.empty?
-    .row{:id=>"mensaje-#{mensaje_rs.id}-hijos"}
+    .row{:id=>"mensaje_rs-#{message_type}-#{mensaje_rs.id}-hijos", :class=>'hidden'}
       .col-md-12
         .list-group
           - mensajes_hijos.each do |mensaje_rs_hijo|
-            =partial(:message_sr, :locals=>{:mensaje_rs=>mensaje_rs_hijo,:usuario=>usuario})
+            =partial(:message_sr, :locals=>{:mensaje_rs=>mensaje_rs_hijo,:usuario=>usuario, :message_type=>message_type})
