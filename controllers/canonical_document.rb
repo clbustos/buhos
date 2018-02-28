@@ -7,7 +7,7 @@ get '/canonical_document/:id' do |id|
   raise Buhos::NoCdIdError, id if !@cd
   @registros=@cd.registros
   @referencias=@cd.referencias
-  if Crossref_Doi[doi_sin_http(@cd.doi)]
+  if Crossref_Doi[doi_without_http(@cd.doi)]
     @cr_doi=@cd.crossref_integrator
   end
 
@@ -160,6 +160,6 @@ get '/canonical_document/:id/view_doi' do |id|
   @cd=Canonico_Documento[id]
   raise Buhos::NoCdIdError, id if !@cd
   @cr_doi=@cd.crossref_integrator
-  @doi_json=Crossref_Doi[doi_sin_http(@cd.doi)][:json]
+  @doi_json=Crossref_Doi[doi_without_http(@cd.doi)][:json]
   haml "canonical_documents/view_doi".to_sym
 end

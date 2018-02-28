@@ -14,11 +14,11 @@ get '/files/rs/:revision_sistematica_id/assign_to_canonical_documents' do |rs_id
         if(info[:doi])
           doi=info[:doi]
         elsif(info[:Subject])
-          doi=encontrar_doi(info[:Subject])
+          doi=find_doi(info[:Subject])
         end
         if doi.nil?
           primera_pagina=reader.pages[0].text
-          doi=encontrar_doi(primera_pagina)
+          doi=find_doi(primera_pagina)
         end
 
         if(doi)

@@ -6,7 +6,7 @@ class Crossref_Doi < Sequel::Model
   def self.procesar_doi(doi)
     require 'serrano'
     raise 'DOI is nil' if doi.nil?
-    co=Crossref_Doi[doi_sin_http(doi)]
+    co=Crossref_Doi[doi_without_http(doi)]
     if !co or co[:json].nil?
       begin
         resultado=Serrano.works(ids: CGI.escape(doi))
@@ -19,8 +19,8 @@ class Crossref_Doi < Sequel::Model
       if co
         co.update(:json=>resultado.to_json)
       else
-        Crossref_Doi.insert(:doi=>doi_sin_http(doi),:json=>resultado.to_json)
-        co=Crossref_Doi[doi_sin_http(doi)]
+        Crossref_Doi.insert(:doi=>doi_without_http(doi),:json=>resultado.to_json)
+        co=Crossref_Doi[doi_without_http(doi)]
       end
     end
     co[:json]

@@ -16,7 +16,7 @@ class Referencia < Sequel::Model
   def self.get_by_text_and_doi(text,doi,create=false)
     dig=Digest::SHA256.hexdigest text
     if doi
-      doi=doi_sin_http(doi)
+      doi=doi_without_http(doi)
       ref=Referencia.where(:id=>dig,:doi=>doi).first
     else
       ref=Referencia[dig]
@@ -69,12 +69,12 @@ class Referencia < Sequel::Model
       if self[:doi]==doi_n
         status.info("Ya agregado DOI para referencia #{self[:id]}")
       else
-        self.update(:doi=>doi_sin_http(doi_n))
+        self.update(:doi=>doi_without_http(doi_n))
         status.success("Se agrega DOI #{doi_n} para referencia #{self[:id]}")
       end
 
       if self[:canonico_documento_id].nil?
-        can_doc=Canonico_Documento[:doi=>doi_sin_http(doi_n)]
+        can_doc=Canonico_Documento[:doi=>doi_without_http(doi_n)]
         if can_doc
           self.update(:canonico_documento_id=>can_doc[:id])
           status.info("Agregado a documento canónico #{can_doc[:id]} ya existente")

@@ -64,7 +64,7 @@ class Registro < Sequel::Model
         texto=reference.to_s
         ref=Referencia.get_by_text_and_doi(texto,doi,true)
         if doi
-          cd=Canonico_Documento.where(:doi=>doi_sin_http(doi)).first
+          cd=Canonico_Documento.where(:doi=>doi_without_http(doi)).first
           ref.update(:canonico_documento_id=>cd[:id]) if cd and ref.canonico_documento_id.nil?
         end
         ref_ids.push(ref[:id])
@@ -93,20 +93,20 @@ class Registro < Sequel::Model
     if self[:doi]==doi
       status.info(I18n::t("record.already_added_doi", doi:doi, record_id: self.id))
     else
-      self.update(:doi=>doi_sin_http(doi))
+      self.update(:doi=>doi_without_http(doi))
       status.success("Se agrega DOI #{doi} para registro #{self[:id]}")
     end
 
     # Verificamos si el canónico calza con el original
     can_doc_original=Canonico_Documento[self[:canonico_documento_id]]
-    can_doc_doi=Canonico_Documento.where(:doi=>doi_sin_http(doi)).first
-    if can_doc_original[:doi]==doi_sin_http(doi)
+    can_doc_doi=Canonico_Documento.where(:doi=>doi_without_http(doi)).first
+    if can_doc_original[:doi]==doi_without_http(doi)
       status.info(I18n::t("record.already_added_doi_on_cd", doi:doi, cd_title:can_doc_original[:title]))
     elsif !can_doc_doi # No hay ningún doc previo con este problema
-      can_doc_original.update(:doi=>doi_sin_http(doi))
+      can_doc_original.update(:doi=>doi_without_http(doi))
       status.success(I18n::t("record.assigned_doi_to_cd",doi:doi, cd_title:can_doc_original[:title]))
     else  # Ok, tenemos un problema. No lo podemos resolver ahora, sólo podemos avisar en el canónico
-      can_doc_original.update(:doi=>doi_sin_http(doi),:duplicated=>can_doc_doi[:id])
+      can_doc_original.update(:doi=>doi_without_http(doi),:duplicated=>can_doc_doi[:id])
       status.warning("Se agregó a canónico #{can_doc_original[:doi]} el DOI, pero existe un duplicado (#{can_doc_doi[:id]}). Revisar")
     end
     status
