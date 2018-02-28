@@ -7,42 +7,38 @@ module AnalysisSrStageMixin
     Analysis_SR_Stage.new(@rs, stage)
   end
   # Se entrega un hash de cada cd con su resolucion
-  def resolucion_por_cd(etapa)
-    @resolucion_por_cd_h ||= {}
-    @resolucion_por_cd_h[etapa] ||= get_asrs(etapa).resolutions_by_cd
+  def resolution_by_cd(etapa)
+    @resolution_by_cd_h ||= {}
+    @resolution_by_cd_h[etapa] ||= get_asrs(etapa).resolutions_by_cd
   end
-
-  def resolution_pattern(stage)
-    rbd = resolucion_por_cd(stage)
-    rbd.inject({}) {|ac, v|
+  # Count how many DC belongs to each pattern
+  def count_by_pattern(list)
+    list.inject({}) {|ac, v|
       ac[v[1]] ||= 0
       ac[v[1]] += 1
       ac
     }
   end
+  def resolution_pattern(stage)
+    count_by_pattern(resolution_by_cd(stage))
+  end
   # Se analiza cada cd y se cuenta cuantas decisiones para cada tipo
-  def decisiones_por_cd(etapa)
-    @decisiones_por_cd_h ||= {}
-    @decisiones_por_cd_h[etapa] ||= get_asrs(etapa).decisions_by_cd
+  def decisions_by_cd(etapa)
+    @decisions_by_cd_h ||= {}
+    @decisions_by_cd_h[etapa] ||= get_asrs(etapa).decisions_by_cd
   end
 
 # Define cuantos CD están en cada patrón
-  def decisiones_patron(etapa)
-    dpe = decisiones_por_cd(etapa)
-    dpe.inject({}) {|ac, v|
-
-      ac[v[1]] ||= 0
-      ac[v[1]] += 1
-      ac
-    }
+  def decisions_pattern(etapa)
+    count_by_pattern(decisions_by_cd(etapa))
   end
 
 # provides a hash, with keys containing the users decisions and values
 # with the pattern for resolutions
   def resoluciones_desde_patron_decision(etapa)
     cds = @rs.cd_id_por_etapa(etapa)
-    rpc = resolucion_por_cd(etapa)
-    dpc = decisiones_por_cd(etapa)
+    rpc = resolution_by_cd(etapa)
+    dpc = decisions_by_cd(etapa)
     cds.inject({}) {|ac, cd_id|
       patron = dpc[cd_id]
       ac[patron] ||= {"yes" => 0, "no" => 0, Resolucion::NO_RESOLUCION => 0}
@@ -52,7 +48,7 @@ module AnalysisSrStageMixin
   end
 
   def cd_desde_patron(etapa, patron)
-    decisiones_por_cd(etapa).find_all {|v|
+    decisions_by_cd(etapa).find_all {|v|
       v[1] == patron
     }.map {|v| v[0]}
 
@@ -66,9 +62,6 @@ module AnalysisSrStageMixin
       ac
     }
   end
-
-
-
 
 
   def cd_rejected_id(stage)

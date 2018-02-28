@@ -176,7 +176,7 @@ get '/review/:id/administration/:etapa' do |id,etapa|
   @cds=Canonico_Documento.where(:id=>@cds_id)
   @archivos_por_cd=$db["SELECT a.*,cds.canonico_documento_id FROM archivos a INNER JOIN archivos_cds cds ON a.id=cds.archivo_id INNER JOIN archivos_rs ars ON a.id=ars.archivo_id WHERE revision_sistematica_id=? AND (cds.no_considerar = ? OR cds.no_considerar IS NULL)", @revision.id , 0].to_hash_groups(:canonico_documento_id)
   ## Aquí calcularé cuantos si y no hay por categoría
-  res_etapa=@ars.resolucion_por_cd(etapa)
+  res_etapa=@ars.resolution_by_cd(etapa)
   begin
     @categorizador=CategorizerSr.new(@revision) unless etapa==:search
     @aprobacion_categorias=@categorizador.categorias_cd_id.inject({}) {|ac,v|

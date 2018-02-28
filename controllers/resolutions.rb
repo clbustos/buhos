@@ -18,7 +18,7 @@ post '/resolution/review/:id/canonical_document/:cd_id/stage/:etapa/resolution' 
   revision=Revision_Sistematica[rev_id]
   ars=AnalysisSystematicReview.new(revision)
 
-  rpc=ars.resolucion_por_cd (etapa)
+  rpc=ars.resolution_by_cd (etapa)
 
   partial(:buttons_resolution, :locals=>{:rpc=>rpc, :cd_id=>cd_id.to_i, :etapa=>etapa, :usuario_id=>user_id, :revision=>revision})
 end
