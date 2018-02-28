@@ -4,7 +4,7 @@ class GraphML_Builder
     @stage=stage
   end
   def generate_graphml
-    ars=AnalisisRevisionSistematica.new(@sr)
+    ars=AnalysisSystematicReview.new(@sr)
     if @stage
       cd_hash=Canonico_Documento.where(:id=>@sr.cd_id_por_etapa(@stage)).order(:year).as_hash
     else

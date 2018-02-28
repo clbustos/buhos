@@ -16,7 +16,7 @@ post '/resolution/review/:id/canonical_document/:cd_id/stage/:etapa/resolution' 
   end
 
   revision=Revision_Sistematica[rev_id]
-  ars=AnalisisRevisionSistematica.new(revision)
+  ars=AnalysisSystematicReview.new(revision)
 
   rpc=ars.resolucion_por_cd (etapa)
 

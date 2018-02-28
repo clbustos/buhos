@@ -17,7 +17,7 @@ class UserDashboardInfo
     Busqueda.where(:user_id=>user[:id], :valid=>nil, :revision_sistematica_id=>sr_id)
   end
   def adu_for_sr(sr,stage)
-    AnalisisDecisionUsuario.new(sr[:id], @user[:id],stage)
+    AnalysisUserDecision.new(sr[:id], @user[:id], stage)
   end
   def is_administrator_sr?(sr)
     user[:id]==sr[:administrador_revision]

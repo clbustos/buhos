@@ -1,6 +1,6 @@
 - n_cd_assigned = adu.canonicos_documentos.count
 - if es_administrador
-  - ars=AnalisisRevisionSistematica.new(sr)
+  - ars=AnalysisSystematicReview.new(sr)
   %p
     %a{:href=>"/review/#{sr[:id]}/administration/#{etapa}"}
       %snap.glyphicon.glyphicon-tower

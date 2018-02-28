@@ -51,7 +51,7 @@ get '/tag/:tag_id/rs/:rs_id/stage/:stage/cds' do |tag_id, rs_id, stage|
   raise Buhos::NoTagIdError, tag_id if !@tag
   @revision=Revision_Sistematica[rs_id]
 
-  @ars=AnalisisRevisionSistematica.new(@revision)
+  @ars=AnalysisSystematicReview.new(@revision)
 
   @usuario=Usuario[session['user_id']]
   return 404 if @tag.nil? or @revision.nil?
@@ -68,7 +68,7 @@ get '/tag/:tag_id/rs/:rs_id/cds' do |tag_id, rs_id|
 
   @revision=Revision_Sistematica[rs_id]
 
-  @ars=AnalisisRevisionSistematica.new(@revision)
+  @ars=AnalysisSystematicReview.new(@revision)
 
   @usuario=Usuario[session['user_id']]
   return 404 if @tag.nil? or @revision.nil?

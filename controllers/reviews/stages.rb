@@ -16,13 +16,13 @@ get '/review/:id/screening_title_abstract' do |id|
   # $log.info(params)
 
 
-  @ars=AnalisisRevisionSistematica.new(@revision)
+  @ars=AnalysisSystematicReview.new(@revision)
   @cd_total_ds=@revision.canonicos_documentos
 
 
   @url="/review/#{id}/screening_title_abstract"
 
-  @ads=AnalisisDecisionUsuario.new(id,@usuario_id, 'screening_title_abstract')
+  @ads=AnalysisUserDecision.new(id, @usuario_id, 'screening_title_abstract')
 
   @cds_pre=@ads.canonicos_documentos
   @cds_total=@cds_pre.count
@@ -67,13 +67,13 @@ get '/review/:id/screening_references' do |id|
   # $log.info(params)
 
 
-  @ars=AnalisisRevisionSistematica.new(@revision)
+  @ars=AnalysisSystematicReview.new(@revision)
   @cd_total_ds=@revision.canonicos_documentos
 
 
   @url="/review/#{id}/screening_references"
 
-  @ads=AnalisisDecisionUsuario.new(id,@usuario_id, 'screening_references')
+  @ads=AnalysisUserDecision.new(id, @usuario_id, 'screening_references')
 
   @cds_pre=@ads.canonicos_documentos.join_table(:inner, @revision.cuenta_referencias_rtr_tn.to_sym, cd_destino: :id)
 
@@ -118,13 +118,13 @@ get '/review/:id/review_full_text' do |id|
 
   # $log.info(params)
 
-  @ars=AnalisisRevisionSistematica.new(@revision)
+  @ars=AnalysisSystematicReview.new(@revision)
   @cd_total_ds=@revision.canonicos_documentos
 
 
   @url="/review/#{id}/review_full_text"
 
-  @ads=AnalisisDecisionUsuario.new(id,@usuario_id, 'review_full_text')
+  @ads=AnalysisUserDecision.new(id, @usuario_id, 'review_full_text')
 
   @cds_pre=@ads.canonicos_documentos.join_table(:left, @revision.cuenta_referencias_rtr_tn.to_sym, cd_destino: :id)
 
@@ -157,7 +157,7 @@ end
 get '/review/:id/administration_stages' do |id|
   @revision=Revision_Sistematica[id]
   raise Buhos::NoReviewIdError, id if !@revision
-  @ars=AnalisisRevisionSistematica.new(@revision)
+  @ars=AnalysisSystematicReview.new(@revision)
   haml %s{systematic_reviews/administration_stages}
 
 end
@@ -169,7 +169,7 @@ get '/review/:id/administration/:etapa' do |id,etapa|
 
 
   @etapa=etapa
-  @ars=AnalisisRevisionSistematica.new(@revision)
+  @ars=AnalysisSystematicReview.new(@revision)
   @cd_without_assignation=@ars.cd_without_assignations(etapa)
 
   @cds_id=@revision.cd_id_por_etapa(etapa)
@@ -210,7 +210,7 @@ get '/review/:id/stage/:etapa/pattern/:patron/resolution/:resolucion' do |id,eta
   @revision=Revision_Sistematica[id]
   raise Buhos::NoReviewIdError, id if !@revision
 
-  @ars=AnalisisRevisionSistematica.new(@revision)
+  @ars=AnalysisSystematicReview.new(@revision)
   patron=@ars.patron_desde_s(patron_s)
   cds=@ars.cd_desde_patron(etapa,patron)
   $db.transaction(:rollback=>:reraise) do
@@ -280,7 +280,7 @@ get '/review/:rev_id/administration/:stage/cd_assignations' do |rev_id, stage|
   raise Buhos::NoReviewIdError, rev_id if !@revision
 
   @cds_id=@revision.cd_id_por_etapa(stage)
-  @ars=AnalisisRevisionSistematica.new(@revision)
+  @ars=AnalysisSystematicReview.new(@revision)
   @stage=stage
   @cds=Canonico_Documento.where(:id=>@cds_id).order(:author)
   @type="all"
@@ -291,7 +291,7 @@ end
 get '/review/:rev_id/administration/:stage/cd_without_assignations' do |rev_id, stage|
   @revision=Revision_Sistematica[rev_id]
   raise Buhos::NoReviewIdError, rev_id if !@revision
-  @ars=AnalisisRevisionSistematica.new(@revision)
+  @ars=AnalysisSystematicReview.new(@revision)
 
   @stage=stage
   @cds=@ars.cd_without_assignations(stage).order(:author)
@@ -308,7 +308,7 @@ get '/review/:rev_id/stage/:stage/add_assign_user/:user_id/:type' do |rev_id, st
   if type=='all'
     @cds_id=@revision.cd_id_por_etapa(stage)
   elsif type=='without_assignation'
-    ars=AnalisisRevisionSistematica.new(@revision)
+    ars=AnalysisSystematicReview.new(@revision)
     @cds_id_previous=ars.cd_id_assigned_by_user(stage,user_id)
     @cds_id_add=ars.cd_without_assignations(stage).map(:id)
     @cds_id=(@cds_id_previous+@cds_id_add).uniq
@@ -330,7 +330,7 @@ end
 get '/review/:rev_id/stage/:stage/complete_empty_abstract_manual' do |rev_id, stage|
   @revision=Revision_Sistematica[rev_id]
   raise Buhos::NoReviewIdError, rev_id if !@revision
-  @ars=AnalisisRevisionSistematica.new(@revision)
+  @ars=AnalysisSystematicReview.new(@revision)
   @stage=stage
   @cd_sin_abstract=@ars.cd_without_abstract(stage)
   haml("systematic_reviews/complete_abstract_manual".to_sym)
@@ -340,7 +340,7 @@ end
 get '/review/:rev_id/stage/:stage/complete_empty_abstract_scopus' do |rev_id, stage|
   @revision=Revision_Sistematica[rev_id]
   raise Buhos::NoReviewIdError, rev_id if !@revision
-  @ars=AnalisisRevisionSistematica.new(@revision)
+  @ars=AnalysisSystematicReview.new(@revision)
   result=Result.new
   @cd_sin_abstract=@ars.cd_without_abstract(stage)
   agregar_mensaje(I18n::t(:Processing_n_canonical_documents, count:@cd_sin_abstract.count))

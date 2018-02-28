@@ -110,7 +110,7 @@ get '/review/:id/canonical_documents' do |id|
   @sin_abstract=params['sin_abstract']=='true'
   @solo_registros=params['solo_registros']=='true'
 
-  @ars=AnalisisRevisionSistematica.new(@revision)
+  @ars=AnalysisSystematicReview.new(@revision)
   @cd_total_ds=@revision.canonicos_documentos
 
   # Repetidos doi
@@ -147,7 +147,7 @@ get '/review/:id/canonical_documents' do |id|
 
   @cds=@pager.ajustar_query(@cds_pre)
 
-  @ars=AnalisisRevisionSistematica.new(@revision)
+  @ars=AnalysisSystematicReview.new(@revision)
 
 
   haml %s{systematic_reviews/canonical_documents}
@@ -263,7 +263,7 @@ get '/review/:id/advance_stage' do |id|
   @revision=Revision_Sistematica[id]
   raise Buhos::NoReviewIdError, id if !@revision
 
-  @ars=AnalisisRevisionSistematica.new(@revision)
+  @ars=AnalysisSystematicReview.new(@revision)
   if (@ars.stage_complete?(@revision.etapa))
     etapa_i=Revision_Sistematica::ETAPAS.index(@revision[:etapa].to_sym)
     #$log.info(etapa_i)

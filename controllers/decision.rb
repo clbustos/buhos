@@ -1,7 +1,7 @@
 get '/decision/review/:revision_id/user/:usuario_id/canonical_document/:cd_id/stage/:etapa' do |revision_id, usuario_id, cd_id, etapa|
   revision=Revision_Sistematica[revision_id]
   cd=Canonico_Documento[cd_id]
-  ars=AnalisisRevisionSistematica.new(revision)
+  ars=AnalysisSystematicReview.new(revision)
   usuario=Usuario[usuario_id]
   decisiones=Decision.where(:usuario_id => usuario_id, :revision_sistematica_id => revision_id,
                             :etapa => etapa).as_hash(:canonico_documento_id)
@@ -49,7 +49,7 @@ post '/decision/review/:revision_id/user/:usuario_id/canonical_document/:cd_id/s
   revision=Revision_Sistematica[revision_id]
 
   cd=Canonico_Documento[cd_id]
-  ars=AnalisisRevisionSistematica.new(revision)
+  ars=AnalysisSystematicReview.new(revision)
   decisiones=Decision.where(:usuario_id => usuario_id, :revision_sistematica_id => revision_id,
                             :etapa => etapa).as_hash(:canonico_documento_id)
 

@@ -14,7 +14,7 @@ get '/review/:sr_id/extract_information/cd/:cd_id' do |sr_id,cd_id|
     agregar_mensaje(t(:Canonical_documento_not_assigned_to_this_systematic_review), :error)
     redirect back
   end
-  adu=AnalisisDecisionUsuario.new(sr_id, @user[:id], 'review_full_text')
+  adu=AnalysisUserDecision.new(sr_id, @user[:id], 'review_full_text')
   if !adu.asignado_a_cd_id(cd_id)
     agregar_mensaje(t(:Canonical_documento_not_assigned_to_this_user), :error)
     redirect back
@@ -27,9 +27,9 @@ get '/review/:sr_id/extract_information/cd/:cd_id' do |sr_id,cd_id|
   @current_file = @files[@current_file_id]
 
 
-  @ars=AnalisisRevisionSistematica.new(@sr)
+  @ars=AnalysisSystematicReview.new(@sr)
 
-  @ads=AnalisisDecisionUsuario.new( sr_id, @user[:id], @stage)
+  @ads=AnalysisUserDecision.new(sr_id, @user[:id], @stage)
 
   @decisiones=@ads.decisiones
 

@@ -4,7 +4,7 @@ module ReportBuilder
     def initialize(sr,app)
       @sr=sr
       @app=app
-      @ars=AnalisisRevisionSistematica.new(sr)
+      @ars=AnalysisSystematicReview.new(sr)
       @cd_h=Canonico_Documento.where(:id=>@sr.cd_id_por_etapa(:report)).to_hash
       @analisis_rs=@sr.analisis_cd
       @fields=@sr.campos.to_hash(:nombre)
