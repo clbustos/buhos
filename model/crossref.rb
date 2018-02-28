@@ -5,6 +5,7 @@ class Crossref_Doi < Sequel::Model
   # y entrega el JSON  correspondiente
   def self.procesar_doi(doi)
     require 'serrano'
+    raise 'DOI is nil' if doi.nil?
     co=Crossref_Doi[doi_sin_http(doi)]
     if !co or co[:json].nil?
       begin

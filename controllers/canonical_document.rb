@@ -25,7 +25,7 @@ get '/canonical_document/:id/search_crossref_references' do |id|
     result.info(I18n::t(:no_references_to_search_on_crossref))
   else
     referencias.each do |ref|
-      result.add_result(ref.agregar_doi(ref[:doi]))
+      result.add_result(ref.add_doi(ref[:doi]))
     end
   end
 

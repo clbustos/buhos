@@ -10,19 +10,19 @@ class Registro < Sequel::Model
   end
   # Asigna un doi automaticamente desde crossref
   # y verifica que el DOI del canónico calce
-  def doi_automatico_crossref
+  def add_doi_automatic
     result=Result.new
     if self.doi.nil? or self.doi==""
       query=crossref_query
       if query[0]["score"]>100
-        result.add_result(agregar_doi(query[0]["doi"]))
+        result.add_result(add_doi(query[0]["doi"]))
         result.success(I18n.t(:Assigned_DOI_to_record, record_id: self[:id], author: self[:author], title: self[:title], doi:query[0]["doi"] ))
       else
         result.warning(I18n.t(:DOI_not_assigned_to_record, record_id: self[:id], author: self[:author], title: self[:title] ))
       end
 
     elsif canonico_documento.doi.nil?
-        result.add_result(agregar_doi(self[:doi]))
+        result.add_result(add_doi(self[:doi]))
     elsif canonico_documento.doi!=self[:doi]
         result.warning("DOI para canonico #{canonico_documento[:doi]}  y referencia #{self[:id]} -> #{self[:doi]} difieren")
     end
@@ -51,7 +51,7 @@ class Registro < Sequel::Model
 
   end
 
-  def referencias_automatico_crossref
+  def references_automatic_crossref
     result=Result.new
     ri_json=Crossref_Doi.reference_integrator_json(self[:doi])
     if(ri_json and ri_json.references)
@@ -73,7 +73,7 @@ class Registro < Sequel::Model
 
   # @param doi
   # @return Result
-  def agregar_doi(doi)
+  def add_doi(doi)
     status=Result.new
     crossref_doi=Crossref_Doi.procesar_doi(doi)
 

@@ -95,7 +95,7 @@ get '/search/:id/references/generate_canonical_doi/:n' do |id, n|
   result=Result.new
   col_dois.each do |col_doi|
     Referencia.where(:doi => col_doi[:doi]).each do |ref|
-      result.add_result(ref.agregar_doi(col_doi[:doi]))
+      result.add_result(ref.add_doi(col_doi[:doi]))
     end
   end
   add_result(result)

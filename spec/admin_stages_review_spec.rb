@@ -51,6 +51,18 @@ describe 'Stage administration' do
     it "should have 30 for admin on rft" do expect(assignations_admin['review_full_text'][:n]).to eq(30) end
 
   end
+  context 'when add a commentary on a assignation' do
+    before(:context) do
+      put '/assignation/user/1/review/1/cd/64/stage/screening_title_abstract/edit_instruction', value:'new instruction'
+    end
+    it "should response be ok" do
+      expect(last_response).to be_ok
+    end
+    let(:asignacion) {Asignacion_Cd[:revision_sistematica_id=>1, :usuario_id=>1, :canonico_documento_id=>64, :etapa=>"screening_title_abstract"]}
+    it "should create commentary on assignation object" do
+      expect(asignacion[:instruccion]).to eq('new instruction')
+    end
+  end
 
   context "when assign all document for admin on sta" do
     before(:context) do

@@ -37,7 +37,7 @@ class Referencia < Sequel::Model
 
     canonico_sql= sin_canonico ? " AND canonico_documento_id IS NULL ": ""
 
-    distancias=Referencia.where("id!='#{self[:id]}' #{canonico_sql}").map {|v|
+    distancias=Referencia.where(Sequel.lit("id!='#{self[:id]}' #{canonico_sql}")).map {|v|
       {
           :id=>v[:id],
           :canonico_documento_id=>v[:canonico_documento_id],
@@ -53,7 +53,7 @@ class Referencia < Sequel::Model
   end
 
 
-  def agregar_doi(doi_n)
+  def add_doi(doi_n)
     #$log.info("Agregar #{doi_n} a #{self[:id]}")
     status=Result.new
 

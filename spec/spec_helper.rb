@@ -1,6 +1,7 @@
 require 'simplecov'
 SimpleCov.start do
   add_filter '/spec/'
+  add_filter 'lib/scopus/connection.rb' # Is necessary an API scopus to test it
 end
 require 'sequel'
 require 'rspec'

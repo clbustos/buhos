@@ -4,7 +4,7 @@ post '/resolution/review/:id/canonical_document/:cd_id/stage/:etapa/resolution' 
   resolucion=params['resolucion']
   user_id=params['user_id']
 
-
+  return 500 unless ['yes','no'].include? resolucion
   $db.transaction(:rollback=>:reraise) do
 
     res=Resolucion.where(:revision_sistematica_id=>rev_id, :canonico_documento_id=>cd_id, :etapa=>etapa)
@@ -17,9 +17,6 @@ post '/resolution/review/:id/canonical_document/:cd_id/stage/:etapa/resolution' 
 
   revision=Revision_Sistematica[rev_id]
   ars=AnalisisRevisionSistematica.new(revision)
-
-  res=Resolucion.where(:revision_sistematica_id=>rev_id, :canonico_documento_id=>cd_id, :etapa=>etapa)
-
 
   rpc=ars.resolucion_por_cd (etapa)
 

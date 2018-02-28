@@ -150,6 +150,7 @@ es:
   File: "Archivo"
   File_batch_management: "Manejo de archivos en lote"
   file_handler:
+    no_canonical_document: "Sin documento canónico"
     delete_file: "Borrar archivo"
     hide_canonical_document: "Ocultar de DC"
     unassign_canonical_document: "Quitar asignación DC"

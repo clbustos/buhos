@@ -138,7 +138,7 @@ post '/file/assign_to_canonical' do
 
   if params['cd_id']==""
     acd.delete
-    return "--Sin canonico--"
+    return I18n::t("file_handler.no_canonical_document")
   else
     cd=Canonico_Documento[params['cd_id']]
     return 404 if !cd

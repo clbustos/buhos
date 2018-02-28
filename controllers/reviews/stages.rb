@@ -255,9 +255,9 @@ get '/review/:rev_id/stage/:stage/generar_referencias_crossref' do |rev_id,stage
           if ref.doi.nil?
             dois_agregados+=1 if rp.process_doi
           end
-          rp.check_doi
+
           if !ref.doi.nil?
-            result.add_result(ref.agregar_doi(ref[:doi]))
+            result.add_result(ref.add_doi(ref[:doi]))
           end
         end
       rescue Exception=>e

@@ -13,6 +13,7 @@ describe 'Files' do
     RSpec.configure { |c| c.include RSpecMixin }
     @temp=configure_empty_sqlite
     Revision_Sistematica.insert(:nombre=>'Test Review', :grupo_id=>1, :administrador_revision=>1)
+    Canonico_Documento.insert(id:1, :title=>'Canonical Document 1', year:2018)
     login_admin
   end
   def filepath
@@ -100,6 +101,55 @@ describe 'Files' do
 
   end
 
+  context "when assign a file to a canonical document" do
+    before(:context) do
+      post '/file/assign_to_canonical',  archivo_id:1, cd_id:1
+    end
+    it "response should be ok " do expect(last_response).to be_ok end
+    it "response should include a link to document" do expect(last_response.body).to include("/canonical_document/1") end
+    it "relation should be included on database" do expect(Archivo_Cd[:archivo_id=>1, :canonico_documento_id=>1]).to be_truthy end
+
+
+
+  end
+
+
+  context "when unassign a file to a canonical document" do
+    before(:each) do
+      post '/file/assign_to_canonical',  archivo_id:1, cd_id:1
+    end
+
+    it "by /file/assign_to_canonical should return a text " do
+      post '/file/assign_to_canonical',  archivo_id:1, cd_id:''
+      expect(last_response).to be_ok
+      expect(last_response.body).to include I18n::t("file_handler.no_canonical_document")
+      expect(Archivo_Cd[:archivo_id=>1, :canonico_documento_id=>1]).to be_nil
+    end
+    it 'by /file/unassign_cd should delete object' do
+      post '/file/unassign_cd', :archivo_id=>1, :cd_id=>1
+      expect(last_response).to be_ok
+      expect(Archivo_Cd[:archivo_id=>1, :canonico_documento_id=>1]).to be_nil
+
+    end
+
+
+
+  end
+
+  context "when hide a file from canonical document" do
+    before(:each) do
+      post '/file/assign_to_canonical',  archivo_id:1, cd_id:1
+    end
+    it "first should be visible" do
+      expect(Archivo_Cd[:archivo_id=>1, :canonico_documento_id=>1][:no_considerar]).to be false
+    end
+    it "after unassign should be not visible" do
+      post '/file/hide_cd', {  archivo_id:1, cd_id:1}
+      expect(Archivo_Cd[:archivo_id=>1, :canonico_documento_id=>1][:no_considerar]).to be true
+    end
+  end
+
+
   context "when file is deleted" do
     before(:context) do
       post '/file/delete', {archivo_id:1}
@@ -108,8 +158,6 @@ describe 'Files' do
     it "archivo object doesn't exists" do
       expect(Archivo[1]).to be_nil
     end
-
-
   end
 
 end

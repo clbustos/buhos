@@ -18,7 +18,7 @@ get '/record/:id/assign_doi/:doi' do |id,doi|
   $db.transaction(:rollback=>:reraise) do
     @reg=Registro[id]
     doi=doi.gsub("***","/")
-    result=@reg.agregar_doi(doi)
+    result=@reg.add_doi(doi)
     add_result(result)
   end
   redirect back

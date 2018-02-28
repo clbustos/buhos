@@ -34,7 +34,7 @@ get '/references/search_crossref_by_doi/:doi' do |doi|
   doi=doi.gsub("***", "/")
   result=Result.new
   Referencia.where(:doi => doi).each do |ref|
-    result.add_result(ref.agregar_doi(doi))
+    result.add_result(ref.add_doi(doi))
   end
 
   add_result(result)
@@ -47,7 +47,7 @@ get '/reference/:id/search_crossref' do |id|
 
   if @ref.doi
     result=Result.new
-    result.add_result(@ref.agregar_doi(@ref.doi))
+    result.add_result(@ref.add_doi(@ref.doi))
     if result.success?
     add_result(result)
     redirect back
@@ -71,7 +71,7 @@ get '/reference/:id/assign_doi/:doi' do |id,doi|
   url=params['volver_url']
   @ref=Referencia[id]
   doi=doi.gsub("***","/")
-  result=@ref.agregar_doi(doi)
+  result=@ref.add_doi(doi)
   add_result(result)
   if url
     redirect to(url)
