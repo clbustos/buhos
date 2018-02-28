@@ -161,6 +161,15 @@ post '/file/hide_cd' do
   return 200
 end
 
+
+post '/file/show_cd' do
+  archivo=Archivo[params['archivo_id']]
+  cd=Canonico_Documento[params['cd_id']]
+  return 404 if archivo.nil? or cd.nil?
+
+  Archivo_Cd.where(:archivo_id=>archivo.id, :canonico_documento_id=>cd.id).update(:no_considerar=>false)
+  return 200
+end
 post '/file/unassign_cd' do
   archivo=Archivo[params['archivo_id']]
   cd=Canonico_Documento[params['cd_id']]

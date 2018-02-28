@@ -155,6 +155,7 @@ es:
     hide_canonical_document: "Ocultar de DC"
     unassign_canonical_document: "Quitar asignación DC"
     unassign_systematic_review: "Quitar de RS"
+    show_canonical_document: "Mostrar en DC"
   Files: "Archivos"
   Filter: "Filtro"
   footer_conicyt: "Software financiado por Beca Doctorado Nacional Conicyt Nº21151499"

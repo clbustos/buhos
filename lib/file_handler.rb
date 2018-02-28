@@ -1,4 +1,4 @@
-module ManejadorArchivos
+module FileHandler
   # Maneja el javascript para ver archivos de forma modal
 
     class ModalArchivos
@@ -32,41 +32,7 @@ HEREDOC
 
 
 
-      def html_modal_antiguo
-        <<HEREDOC
-<div aria-labelledby='myModalLabel' class='modal fade' id='modalArchivos' role='dialog' tabindex='-1'>
-  <div class='modal-dialog modal-lg' role='document'>
-    <div class='modal-content'>
-      <div class='modal-header'>
-        <button aria-label='Cerrar' class='close' data-dismiss='modal' type='button'>
-          <span aria-hidden='true'>×</span>
-        </button>
-        <h4 class='modal-title' id='myModalLabel'>#{I18n.t(:File)}</h4>
-      </div>
-      <div class='modal-body'></div>
-      <div class='modal-footer'>
-        <div class='row'>
-          <div class='col-md-6' id='modal_cuenta_paginas'>
-            Página x de x
-          </div>
-          <div class='col-md-6'>
-            <div class='btn-group btn-group-sm'>
-              <button class='btn btn-default' id='boton_pagina_menos' type='button'>
-                <span class='glyphicon glyphicon-arrow-left'></span>
-              </button>
-              <button class='btn btn-default' id='boton_pagina_mas' type='button'>
-                <span class='glyphicon glyphicon-arrow-right'></span>
-              </button>
-              <button class='btn btn-default' data-dismiss='modal' type='button'>#{I18n.t(:Close)}</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-HEREDOC
-      end
+
       def cargador_archivo(rs_id,cd_id)
         "<form method='post' action='/review/files/add' enctype='multipart/form-data'>
   <input type='hidden' name='revision_sistematica_id' value='#{rs_id}' />
@@ -138,7 +104,7 @@ module Sinatra
   module SinatraManejadorArchivos
     module Helpers
       def get_modalarchivos
-        ManejadorArchivos::ModalArchivos.new
+        FileHandler::ModalArchivos.new
       end
     end
     def self.registered(app)

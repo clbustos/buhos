@@ -13,6 +13,16 @@ var ModalArchivo ={
 
 
 
+    },
+
+    action_on_cd:function(e, url, glyphicon_class, name) {
+        var arc_id=e.data("aid");
+        var cd_id=e.data("cdid");
+        $.post(url, {archivo_id:arc_id, cd_id:cd_id} ,function () {
+            $("#botones_archivo_"+arc_id).html("<span class='glyphicon glyphicon-"+glyphicon_class+"'>"+name+"</span>")
+        }).fail(function() {
+            alert("can't perform action");
+        })
     }
 };
 
@@ -28,17 +38,16 @@ $(document).ready(function() {
     });
 
     $(".archivo_ocultar_cd").click(function() {
-        var arc_id=$(this).data("aid");
-        var cd_id=$(this).data("cdid");
-        $.post("/file/hide_cd", {archivo_id:arc_id, cd_id:cd_id} ,function () {
-            $("#botones_archivo_"+arc_id).html("<span class='glyphicon glyphicon-eye-close'>Ocultado</span>")
-        }).fail(function() {
-            alert("No pude ocultar el canonico");
-        })
-
-
+        ModalArchivo.action_on_cd($(this), '/file/hide_cd', 'eye-close', 'Hidden');
+    });
+    $(".archivo_mostrar_cd").click(function() {
+        ModalArchivo.action_on_cd($(this), '/file/show_cd', 'eye-open', 'Show');
     });
 
+    $(".archivo_desasignar_cd").click(function() {
+        ModalArchivo.action_on_cd($(this), '/file/unassign_cd', 'remove', 'Not assigned to CD');
+
+    });
 
     $(".archivo_eliminar").click(function () {
         var arc_id = $(this).data("aid");
@@ -52,17 +61,7 @@ $(document).ready(function() {
 
     });
 
-    $(".archivo_desasignar_cd").click(function() {
-        var arc_id=$(this).data("aid");
-        var cd_id=$(this).data("cdid");
-        $.post("/file/unassign_cd", {archivo_id:arc_id, cd_id:cd_id} ,function () {
-            $("#botones_archivo_"+arc_id).html("<span class='glyphicon glyphicon-remove'>Desasignado a CD</span>")
-        }).fail(function() {
-            alert("No pude ocultar el canonico");
-        })
 
-
-    });
 
     $(".archivo_desasignar_rs").click(function() {
         var arc_id=$(this).data("aid");
@@ -81,7 +80,7 @@ $(document).ready(function() {
         var arc_id=$(this).attr("archivo-pk");
         var cd_id=$("#select_canonico_"+arc_id).val();
 
-        $.post("/file/assign_to_canonical", {archivo_id:arc_id, cd_id:cd_id} ,function (data) {
+        $.post("/file/assign_to_canonical", {archivo_id:arc_id,  cd_id:cd_id} ,function (data) {
             $("#nombre_canonico-"+arc_id).html(data)
         }).fail(function() {
             alert("No pude actualizar el canonico");

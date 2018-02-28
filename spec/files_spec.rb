@@ -149,6 +149,21 @@ describe 'Files' do
     end
   end
 
+  context "when hide a file from canonical document" do
+    before(:each) do
+      post '/file/assign_to_canonical',  archivo_id:1, cd_id:1
+      post '/file/hide_cd', {  archivo_id:1, cd_id:1}
+    end
+    it "first should be not visible" do
+      expect(Archivo_Cd[:archivo_id=>1, :canonico_documento_id=>1][:no_considerar]).to be true
+    end
+    it "after show it should be not visible" do
+      post '/file/show_cd', {  archivo_id:1, cd_id:1}
+      expect(Archivo_Cd[:archivo_id=>1, :canonico_documento_id=>1][:no_considerar]).to be false
+    end
+  end
+
+
 
   context "when file is deleted" do
     before(:context) do
