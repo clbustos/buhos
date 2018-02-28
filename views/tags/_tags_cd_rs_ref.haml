@@ -4,8 +4,8 @@
   %link{:href=>url('/css/typeahead.css') , :media => 'screen', :rel=>'stylesheet', :type=>'text/css'}
   %script{:type=>'text/javascript', :src=>url('/js/typeahead.bundle.min.js')}
   - @_typeahead=true
-- if @_tags_cd_rs_ref_js.nil? and !nuevo and !ajax
-  %script{:type=>'text/javascript', :src=>url('/js/tags_cd_rs_ref.js')}
+- if @_tags_cd_rs_js.nil? and !nuevo and !ajax
+  %script{:type=>'text/javascript', :src=>url('/js/tags_cd_rs.js')}
   :javascript
     $(document).ready(function() {
 
@@ -19,7 +19,7 @@
       }
       });
     });
-  -@_tags_cd_rs_ref_js=true
+  -@_tags_cd_rs_js=true
 
 %div{:id=>"tags-cd_start-#{cd_start.id}-cd_end-#{cd_end.id}-rs-#{revision.id}"}
   %ul.tags

@@ -1,50 +1,101 @@
-var tagsQuery=new Bloodhound({
-    datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
-    queryTokenizer: Bloodhound.tokenizers.whitespace,
-    prefetch: '/tags/basic_10.json',
-    remote: {
-        url: '/tags/query_json/%QUERY',
-        wildcard: '%QUERY'
-    }
-});
+
 
 
 
 var TagManager={};
 
 (function(context)  {
-    context.update=function(div_id) {
-        update_tags_cd_rs(div_id);
-        update_typeahead(div_id);
-        update_show_pred(div_id);
+    context.create_bloodhound=function(prefetch_url, remote_url) {
+        var tags_query=new Bloodhound({
+            datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+            queryTokenizer: Bloodhound.tokenizers.whitespace,
+            prefetch: prefetch_url,
+            remote: {
+                url: remote_url,
+                wildcard: '%QUERY'
+            }
+        });
+        return(tags_query);
     };
-    var send_post_create_tag=function(url,val,cd_pk,rs_pk) {
-        if(val.trim()=="") {
-            alert("TAG: No text")
-        } else {
-            $.post(url, {value: val}, function (data) {
-                var div_id="#tags-cd-"+cd_pk+"-rs-"+rs_pk;
-                $(div_id).replaceWith(data);
-                context.update();
-            }).fail(function () {
-                alert("TAG: Can't create (server error)")
-            })
-        }
+
+    var update_tag_cd=function(div_id) {
+        update_tags_cd_rs(div_id);
+        update_typeahead_cd(div_id);
+        update_show_pred_cd(div_id);
+    };
+    var update_tag_ref=function(div_id) {
+        update_tags_cd_rs_ref();
+        update_typeahead_ref();
+        update_show_pred_ref();
+    };
+    context.update=function(div_id) {
+        update_tag_cd(div_id);
+        update_tag_ref(div_id);
     };
 
     var get_selector=function(div_id, div_class) {
         result=div_id ? div_id+ " "+ div_class: div_class;
         return(result);
     };
-    var create_tag=function(e, FUNC) {
+
+    // POST TAG DATA
+    var send_post_create_tag_cd=function(url,val,cd_pk,rs_pk) {
+        if(val.trim()=="") {
+            alert("TAG: No text")
+        } else {
+            $.post(url, {value: val}, function (data) {
+                var div_id="#tags-cd-"+cd_pk+"-rs-"+rs_pk;
+                $(div_id).replaceWith(data);
+                update_tag_cd(div_id);
+            }).fail(function () {
+                alert("TAG: Can't create (server error)")
+            })
+        }
+    };
+
+    var send_post_create_tag_ref=function(url,val,cd_start_pk,cd_end_pk, rs_pk) {
+        if(val.trim()=="") {
+            alert("El tag no tiene texto")
+        } else {
+            $.post(url, {value: val}, function (data) {
+                var div_id="#tags-cd_start-"+cd_start_pk+"-cd_end-"+cd_end_pk+"-rs-"+rs_pk;
+                $(div_id).replaceWith(data);
+                update_tag_ref(div_id)
+            }).fail(function () {
+                alert("No se pudo crear el tag")
+            })
+        }
+    };
+
+    var unbind_actions=function(sa,sn,kn) {
+        $(sa).unbind("click");
+        $(sn).unbind("click");
+        $(kn).unbind("keypress");
+    };
+
+    var create_tag_cd=function(e, FUNC) {
         var url=e.attr("data-url");
         var cd_pk=e.attr("cd-pk");
         var rs_pk=e.attr("rs-pk");
         val=FUNC(cd_pk, rs_pk);
 
-        send_post_create_tag(url,val, cd_pk,rs_pk);
+        send_post_create_tag_cd(url,val, cd_pk,rs_pk);
         return(false);
     };
+
+
+    var create_tag_ref=function(e, FUNC) {
+        var url=e.attr("data-url");
+        var cd_start_pk=e.attr("cd_start-pk");
+        var cd_end_pk=e.attr("cd_end-pk");
+        var rs_pk=e.attr("rs-pk");
+
+        val=FUNC(cd_start_pk, cd_end_pk, rs_pk);
+
+        send_post_create_tag_ref(url,val,cd_start_pk,cd_end_pk, rs_pk);
+        return(false);
+    };
+
 
     var update_tags_cd_rs=function(div_id) {
 
@@ -54,9 +105,8 @@ var TagManager={};
         var selector_nuevo = get_selector(div_id, ".boton_nuevo_tag_cd_rs");
         var keypres_nuevo= get_selector( div_id, ".nuevo_tag_cd_rs");
 
-        $(selector_accion).unbind("click");
-        $(selector_nuevo).unbind("click");
-        $(keypres_nuevo).unbind("keypress");
+        unbind_actions(selector_accion,selector_nuevo,keypres_nuevo);
+
 
         $(selector_accion).click(function(){
             var url=$(this).attr("data-url");
@@ -66,7 +116,7 @@ var TagManager={};
             $.post(url, {tag_id:tag_id}, function (data) {
                 var div_id="#tags-cd-"+cd_pk+"-rs-"+rs_pk;
                 $(div_id).replaceWith(data);
-                context.update(div_id);
+                update_tag_cd(div_id);
             }).fail(function () {
                 alert("TAG: Can't run the action")
             })
@@ -74,19 +124,61 @@ var TagManager={};
         });
 
         $(selector_nuevo).click(function() {
-            return(create_tag ($(this), function(cd_pk, rs_pk) {return $("#tag-cd-"+cd_pk+"-rs-"+rs_pk+"-nuevotag").val().trim();}));
+            return(create_tag_cd($(this), function(cd_pk, rs_pk) {return $("#tag-cd-"+cd_pk+"-rs-"+rs_pk+"-nuevotag").val().trim()}));
         });
 
         $(keypres_nuevo).on('keypress', function(e) {
             if(13==e.which && $(this).val().trim()!="") {
-                var ee=$(this);
-                return(create_tag($(this), function(cd_pk,rs_pk) {  return ee.val().trim(); }));
+                var val=$(this).val().trim();
+                return(create_tag_cd($(this), function(cd_pk,rs_pk) {  return val }));
             }
         });
     };
-    var update_show_pred=function(div_id) {
+
+    var update_tags_cd_rs_ref=function(div_id) {
+
         div_id = typeof div_id !== 'undefined' ? div_id : false;
-        var selector_action=div_id ? div_id+" .mostrar_pred" : '.mostrar_pred';
+
+        var selector_accion= get_selector(div_id, " .boton_accion_tag_cd_rs_ref");
+        var selector_nuevo = get_selector(div_id, ".boton_nuevo_tag_cd_rs_ref");
+        var keypres_nuevo= get_selector( div_id, ".nuevo_tag_cd_rs_ref");
+
+        unbind_actions(selector_accion,selector_nuevo,keypres_nuevo);
+
+        $(selector_accion).click(function(){
+            var url=$(this).attr("data-url");
+            var cd_start_pk=$(this).attr("cd_start-pk");
+            var cd_end_pk=$(this).attr("cd_end-pk");
+
+            var rs_pk=$(this).attr("rs-pk");
+            var tag_id=$(this).attr("tag-pk");
+            $.post(url, {tag_id:tag_id}, function (data) {
+                var div_id="#tags-cd_start-"+cd_start_pk+"-cd_end-"+cd_end_pk+"-rs-"+rs_pk;
+                $(div_id).replaceWith(data);
+                update_tag_ref(div_id);
+            }).fail(function () {
+                alert("TAG:Can't perform on relation tag")
+            })
+
+        });
+        $(selector_nuevo).click(function() {
+            return(create_tag_ref($(this), function(cd_start_pk, cd_end_pk, rs_pk) {console.log("#tag-cd_start-"+cd_start_pk+"-cd_end-"+cd_end_pk+"-rs-"+rs_pk+"-nuevotag"); return $("#tag-cd_start-"+cd_start_pk+"-cd_end-"+cd_end_pk+"-rs-"+rs_pk+"-nuevotag").val().trim()}));
+        });
+
+        $(keypres_nuevo).on('keypress', function(e) {
+            if(13==e.which && $(this).val().trim()!="") {
+                var val=$(this).val().trim();
+                return(create_tag_ref($(this), function() {  return val }));
+            }
+        });
+    };
+
+
+
+
+    var update_show_pred_cd=function(div_id) {
+        div_id = typeof div_id !== 'undefined' ? div_id : false;
+        var selector_action=get_selector(div_id , " .mostrar_pred" );
         //console.log(selector_action);
         $(selector_action).unbind("click");
         $(selector_action).click(function() {
@@ -98,9 +190,26 @@ var TagManager={};
         });
     };
 
-    var update_typeahead=function(div_id) {
+    var update_show_pred_ref=function(div_id) {
         div_id = typeof div_id !== 'undefined' ? div_id : false;
-        var selector=div_id ? div_id+" .nuevo_tag_cd_rs" : '.nuevo_tag_cd_rs';
+        var selector_action=get_selector(div_id, ".mostrar_pred_ref");
+        //console.log(selector_action);
+        $(selector_action).unbind("click");
+        $(selector_action).click(function() {
+            var id=$(this).attr("id");
+            var partes=id.split("__");
+            var base=partes[0];
+
+            $("#"+base+" .tag-predeterminado").removeClass("hidden");
+            $("#"+base+"__mostrar_pred").hide();
+        });
+    };
+
+
+
+    var update_typeahead_cd=function(div_id) {
+        div_id = typeof div_id !== 'undefined' ? div_id : false;
+        var selector=get_selector(div_id, ".nuevo_tag_cd_rs");
         //console.log(selector);
         $(selector).unbind("typeahead");
         $(selector).typeahead({
@@ -114,8 +223,29 @@ var TagManager={};
                 source: tagsQuery
             });
     };
+
+    var update_typeahead_ref=function(div_id) {
+        div_id = typeof div_id !== 'undefined' ? div_id : false;
+        var selector=get_selector(div_id, ".nuevo_tag_cd_rs_ref");
+        //console.log(selector);
+        $(selector).unbind("typeahead");
+        $(selector).typeahead({
+
+                hint: true,
+                highlight: true,
+                minLength: 3
+            },
+            {
+                name: 'tags',
+                display:'value',
+                source: tagsRefQuery
+            });
+    };
+
 })(TagManager);
 
+var tagsQuery=TagManager.create_bloodhound('/tags/basic_10.json','/tags/query_json/%QUERY');
+var tagsRefQuery=TagManager.create_bloodhound('/tags/basic_ref_10.json','/tags/refs/query_json/%QUERY');
 
 
 
