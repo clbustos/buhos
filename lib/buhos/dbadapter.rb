@@ -54,6 +54,11 @@ module Buhos
 
       ::Busqueda.many_to_many :registros, :class=>Registro
 
+
+      ::Registro.many_to_one :canonico_documento, :class=>Canonico_Documento
+
+      ::Referencia.many_to_many :registros
+
     end
     def method_missing(m, *args, &block)
       #puts "#{m}: #{args}"

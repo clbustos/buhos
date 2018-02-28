@@ -25,7 +25,7 @@ describe 'GraphML_Builder' do
       expect {Nokogiri::XML(graph.generate_graphml) }.to_not raise_error
     end
     it "should have one node per document" do
-      expect(xml.xpath("//xmlns:node").length).to eq(365)
+      expect(xml.xpath("//xmlns:node").length).to eq(378)
     end
   end
 

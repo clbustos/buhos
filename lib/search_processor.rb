@@ -179,7 +179,7 @@ class SearchProcessor
     cited_references = reference.cited_references
     unless cited_references.nil?
       cit_refs_ids = get_cit_refs_ids(cited_references)
-      reg_o.actualizar_referencias(cit_refs_ids)
+      reg_o.update_references(cit_refs_ids)
     end
     reg_o
   end

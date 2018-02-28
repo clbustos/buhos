@@ -25,12 +25,14 @@ class Registro < Sequel::Model
         result.add_result(add_doi(self[:doi]))
     elsif canonico_documento.doi!=self[:doi]
         result.warning("DOI para canonico #{canonico_documento[:doi]}  y referencia #{self[:id]} -> #{self[:doi]} difieren")
+    else
+      result.info(I18n::t(:nothing_to_do))
     end
     result
   end
 
   # @param referencias_id ID de referencias que deberían estar acá
-  def actualizar_referencias(referencias_id, modo=:aditivo)
+  def update_references(referencias_id, modo=:aditivo)
     result=Result.new
     cit_ref_yap=$db["SELECT referencia_id FROM referencias_registros WHERE registro_id=?", self[:id]].map {|v| v[:referencia_id]}
 
@@ -54,7 +56,8 @@ class Registro < Sequel::Model
   def references_automatic_crossref
     result=Result.new
     ri_json=Crossref_Doi.reference_integrator_json(self[:doi])
-    if(ri_json and ri_json.references)
+    if ri_json and ri_json.references
+
       ref_ids=[]
       ri_json.references.each do |reference|
         doi=reference.doi
@@ -66,8 +69,12 @@ class Registro < Sequel::Model
         end
         ref_ids.push(ref[:id])
       end
-      result.add_result(actualizar_referencias(ref_ids,:aditivo))
+      result.add_result(update_references(ref_ids,:aditivo))
+      result.success(I18n::t("record.references_for_crossref_processed", n:ri_json.references.count))
+    else
+      result.add_result(I18n::t("record.no_references_on_crossref"))
     end
+
     result
   end
 
@@ -78,13 +85,13 @@ class Registro < Sequel::Model
     crossref_doi=Crossref_Doi.procesar_doi(doi)
 
     unless crossref_doi
-      status.error("No puedo procesar DOI #{doi}")
+      status.error(I18n::t("record.cant_process_doi", doi:doi))
       return status
     end
 
     ##$log.info(co)
     if self[:doi]==doi
-      status.info("Ya agregado DOI para registro #{self[:id]}")
+      status.info(I18n::t("record.already_added_doi", doi:doi, record_id: self.id))
     else
       self.update(:doi=>doi_sin_http(doi))
       status.success("Se agrega DOI #{doi} para registro #{self[:id]}")
@@ -94,10 +101,10 @@ class Registro < Sequel::Model
     can_doc_original=Canonico_Documento[self[:canonico_documento_id]]
     can_doc_doi=Canonico_Documento.where(:doi=>doi_sin_http(doi)).first
     if can_doc_original[:doi]==doi_sin_http(doi)
-      status.info("Doi ya incoporado en canónico")
+      status.info(I18n::t("record.already_added_doi_on_cd", doi:doi, cd_title:can_doc_original[:title]))
     elsif !can_doc_doi # No hay ningún doc previo con este problema
       can_doc_original.update(:doi=>doi_sin_http(doi))
-      status.success("Se agrega a canónico #{can_doc_original[:id]} el DOI #{doi}")
+      status.success(I18n::t("record.assigned_doi_to_cd",doi:doi, cd_title:can_doc_original[:title]))
     else  # Ok, tenemos un problema. No lo podemos resolver ahora, sólo podemos avisar en el canónico
       can_doc_original.update(:doi=>doi_sin_http(doi),:duplicated=>can_doc_doi[:id])
       status.warning("Se agregó a canónico #{can_doc_original[:doi]} el DOI, pero existe un duplicado (#{can_doc_doi[:id]}). Revisar")
