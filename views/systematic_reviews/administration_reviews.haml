@@ -39,7 +39,7 @@
         - Decision::N_EST.each do |dec,nombre|
           %td=edu[:adu].total_decisiones[dec].to_i
 
-%h3=t(:Decisions_stastistics)
+%h3=t(:Decisions_statistics)
 
 - decisiones_orden=@ars.decisiones_patron(@etapa).sort_by {|a|  @ars.patron_orden(a[0]) }
 - resoluciones_patron=@ars.resoluciones_desde_patron_decision(@etapa)

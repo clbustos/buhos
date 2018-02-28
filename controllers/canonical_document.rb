@@ -12,7 +12,7 @@ get '/canonical_document/:id' do |id|
   end
 
   @referencias_realizadas=@cd.referencias_realizadas
-  title(t(:Canonical_document_title, cd_name:@cd.ref_apa_6))
+  title(t(:canonical_document_title, cd_title:@cd.ref_apa_6))
   haml :canonical_document
 end
 

@@ -38,10 +38,7 @@
     %label{:for=>"nombre"}=t(:Name)
     %input{:class=>"form-control",:type=>"text", :name=>"nombre",:value=>@revision[:nombre]}
   %div{:class=>"form-group"}
-    %label=t(:Description)
-    %textarea{:class=>"form-control",:name=>"descripcion"}=@revision[:descripcion]
-  %div{:class=>"form-group"}
-    %label=t(:Date)
+    %label=t(:Date_creation)
     %input{:class=>"form-control",:type=>"text", :name=>"fecha_inicio",:value=>@revision[:fecha_inicio],:id=>"form-fecha-inicio"}
   %div{:class=>"form-group"}
     %label=t(:Objectives)
@@ -60,6 +57,9 @@
     %label
       %input{:type=>"checkbox", :name=>"activa", :value=>1, :checked=>@revision[:activa] }
       =t(:Active)
+  %div{:class=>"form-group"}
+    %label=t(:Description)
+    %textarea{:class=>"form-control",:name=>"descripcion"}=@revision[:descripcion]
   %div{:class=>'form-group'}
     %label=t(:Minimum_RTA_documents_for_reference_review)
     %select{:class=>"form-check-input", :name=>:n_min_rr_rtr}
