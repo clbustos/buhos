@@ -175,41 +175,33 @@ var TagManager={};
 
 
 
-
-    var update_show_pred_cd=function(div_id) {
+   var update_show_pred_generic=function(div_id, selector_class, split_string) {
         div_id = typeof div_id !== 'undefined' ? div_id : false;
-        var selector_action=get_selector(div_id , " .mostrar_pred" );
+        var selector_action=get_selector(div_id , selector_class );
         //console.log(selector_action);
         $(selector_action).unbind("click");
         $(selector_action).click(function() {
             var id=$(this).attr("id");
-            var partes=id.split("_");
+            var partes=id.split(split_string);
             var base=partes[0];
+            //console.log("#"+base+ split_string+"_mostrar_pred");
             $("#"+base+" .tag-predeterminado").removeClass("hidden");
-            $("#"+base+"_mostrar_pred").hide();
+            $("#"+base+ split_string+"mostrar_pred").hide();
         });
+    };
+
+
+    var update_show_pred_cd=function(div_id) {
+        update_show_pred_generic(div_id, ".mostrar_pred","_");
     };
 
     var update_show_pred_ref=function(div_id) {
-        div_id = typeof div_id !== 'undefined' ? div_id : false;
-        var selector_action=get_selector(div_id, ".mostrar_pred_ref");
-        //console.log(selector_action);
-        $(selector_action).unbind("click");
-        $(selector_action).click(function() {
-            var id=$(this).attr("id");
-            var partes=id.split("__");
-            var base=partes[0];
-
-            $("#"+base+" .tag-predeterminado").removeClass("hidden");
-            $("#"+base+"__mostrar_pred").hide();
-        });
+        update_show_pred_generic(div_id, ".mostrar_pred_ref","__");
     };
 
-
-
-    var update_typeahead_cd=function(div_id) {
+    var update_typeahead_generic=function(div_id, selector_class, source) {
         div_id = typeof div_id !== 'undefined' ? div_id : false;
-        var selector=get_selector(div_id, ".nuevo_tag_cd_rs");
+        var selector=get_selector(div_id, selector_class);
         //console.log(selector);
         $(selector).unbind("typeahead");
         $(selector).typeahead({
@@ -220,26 +212,16 @@ var TagManager={};
             {
                 name: 'tags',
                 display:'value',
-                source: tagsQuery
+                source: source
             });
+    };
+
+    var update_typeahead_cd=function(div_id) {
+        update_typeahead_generic(div_id, ".nuevo_tag_cd_rs",tagsQuery);
     };
 
     var update_typeahead_ref=function(div_id) {
-        div_id = typeof div_id !== 'undefined' ? div_id : false;
-        var selector=get_selector(div_id, ".nuevo_tag_cd_rs_ref");
-        //console.log(selector);
-        $(selector).unbind("typeahead");
-        $(selector).typeahead({
-
-                hint: true,
-                highlight: true,
-                minLength: 3
-            },
-            {
-                name: 'tags',
-                display:'value',
-                source: tagsRefQuery
-            });
+        update_typeahead_generic(div_id, ".nuevo_tag_cd_rs_ref",tagsRefQuery);
     };
 
 })(TagManager);
