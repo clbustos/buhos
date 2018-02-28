@@ -47,7 +47,7 @@ $(document).ready(function() {
     $('#modalArchivos').on('shown.bs.modal', function (event) {
         var button = $(event.relatedTarget); // Button that triggered the modal
         var recipient = button.data('pk'); // Extract info from data-* attributes
-        ModalArchivo.iniciar(1,button.data("paginas"),recipient);
+        ModalArchivo.start_modal(1,button.data("paginas"),recipient);
         // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
         // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
 
@@ -55,11 +55,11 @@ $(document).ready(function() {
 
     $("#boton_pagina_mas").click(function(){
         ModalArchivo.pagina=ModalArchivo.pagina+1;
-        ModalArchivo.actualizar_datos_modal();
+        ModalArchivo.update_data_modal();
     });
     $("#boton_pagina_menos").click(function(){
         ModalArchivo.pagina=ModalArchivo.pagina-1;
-        ModalArchivo.actualizar_datos_modal();
+        ModalArchivo.update_data_modal();
     });
 
     $(".archivo_ocultar_cd").click(function() {

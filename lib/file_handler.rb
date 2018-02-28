@@ -6,7 +6,7 @@ module FileHandler
 
       end
       def javascript_header
-        "<script src='/js/modal_archivos_viewerjs.js'></script>"
+        "<script src='/js/file_handler.js'></script>"
       end
 
       def html_modal
