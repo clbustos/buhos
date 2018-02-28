@@ -97,18 +97,8 @@ var TagManager={};
     };
 
 
-    var update_tags_cd_rs=function(div_id) {
-
-        div_id = typeof div_id !== 'undefined' ? div_id : false;
-
-        var selector_accion= get_selector(div_id, " .boton_accion_tag_cd_rs");
-        var selector_nuevo = get_selector(div_id, ".boton_nuevo_tag_cd_rs");
-        var keypres_nuevo= get_selector( div_id, ".nuevo_tag_cd_rs");
-
-        unbind_actions(selector_accion,selector_nuevo,keypres_nuevo);
-
-
-        $(selector_accion).click(function(){
+    var action_click_cd=function(sel_action) {
+        $(sel_action).click(function(){
             var url=$(this).attr("data-url");
             var cd_pk=$(this).attr("cd-pk");
             var rs_pk=$(this).attr("rs-pk");
@@ -122,6 +112,19 @@ var TagManager={};
             })
 
         });
+    };
+    var update_tags_cd_rs=function(div_id) {
+
+        div_id = typeof div_id !== 'undefined' ? div_id : false;
+
+        var selector_action= get_selector(div_id, " .boton_accion_tag_cd_rs");
+        var selector_nuevo = get_selector(div_id, ".boton_nuevo_tag_cd_rs");
+        var keypres_nuevo= get_selector( div_id, ".nuevo_tag_cd_rs");
+
+        unbind_actions(selector_action,selector_nuevo,keypres_nuevo);
+
+        action_click_cd(selector_action);
+
 
         $(selector_nuevo).click(function() {
             return(create_tag_cd($(this), function(cd_pk, rs_pk) {return $("#tag-cd-"+cd_pk+"-rs-"+rs_pk+"-nuevotag").val().trim()}));
@@ -135,17 +138,8 @@ var TagManager={};
         });
     };
 
-    var update_tags_cd_rs_ref=function(div_id) {
-
-        div_id = typeof div_id !== 'undefined' ? div_id : false;
-
-        var selector_accion= get_selector(div_id, " .boton_accion_tag_cd_rs_ref");
-        var selector_nuevo = get_selector(div_id, ".boton_nuevo_tag_cd_rs_ref");
-        var keypres_nuevo= get_selector( div_id, ".nuevo_tag_cd_rs_ref");
-
-        unbind_actions(selector_accion,selector_nuevo,keypres_nuevo);
-
-        $(selector_accion).click(function(){
+    var action_click_ref=function(sel_act) {
+        $(sel_act).click(function(){
             var url=$(this).attr("data-url");
             var cd_start_pk=$(this).attr("cd_start-pk");
             var cd_end_pk=$(this).attr("cd_end-pk");
@@ -161,6 +155,19 @@ var TagManager={};
             })
 
         });
+    }
+    var update_tags_cd_rs_ref=function(div_id) {
+
+        div_id = typeof div_id !== 'undefined' ? div_id : false;
+
+        var sel_act= get_selector(div_id, " .boton_accion_tag_cd_rs_ref");
+        var selector_nuevo = get_selector(div_id, ".boton_nuevo_tag_cd_rs_ref");
+        var keypres_nuevo= get_selector( div_id, ".nuevo_tag_cd_rs_ref");
+
+        unbind_actions(sel_act,selector_nuevo,keypres_nuevo);
+
+        action_click_ref(sel_act);
+
         $(selector_nuevo).click(function() {
             return(create_tag_ref($(this), function(cd_start_pk, cd_end_pk, rs_pk) {console.log("#tag-cd_start-"+cd_start_pk+"-cd_end-"+cd_end_pk+"-rs-"+rs_pk+"-nuevotag"); return $("#tag-cd_start-"+cd_start_pk+"-cd_end-"+cd_end_pk+"-rs-"+rs_pk+"-nuevotag").val().trim()}));
         });
