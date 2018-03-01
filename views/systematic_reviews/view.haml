@@ -12,10 +12,7 @@
     %span{:class=>"titulo"}=t(:Name)
     %span{ :name=>"nombre"}=@revision[:nombre]
   %div{:class=>"list-group-item"}
-    %span{:class=>"titulo"}=t(:Description)
-    =@revision[:descripcion]
-  %div{:class=>"list-group-item"}
-    %span{:class=>"titulo"}=t(:Date_start)
+    %span{:class=>"titulo"}=t(:Date_creation)
     %span{ :name=>"fecha_inicio"}=@revision[:fecha_inicio]
   %div{:class=>"list-group-item"}
     %span{:class=>"titulo"}=t(:Objectives)
@@ -29,6 +26,9 @@
   %div{:class=>"list-group-item"}
     %span{:class=>"titulo"}=t(:Keywords)
     %span{ :name=>"palabras_claves"}=@revision[:palabras_claves]
+  %div{:class=>"list-group-item"}
+    %span{:class=>"titulo"}=t(:Description)
+    =@revision[:descripcion]
   %div{:class=>"list-group-item"}
     %span{:class=>"titulo"}=t(:Group)
     %span=@revision.group_name
