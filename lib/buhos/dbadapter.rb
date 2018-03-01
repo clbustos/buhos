@@ -60,6 +60,7 @@ module Buhos
 
       ::Referencia.many_to_many :registros
       ::Revision_Sistematica.many_to_one :grupo
+      ::Revision_Sistematica.one_to_many :mensajes_rs, :class=>Mensaje_Rs
       ::Grupo.many_to_many :usuarios
     end
     def method_missing(m, *args, &block)

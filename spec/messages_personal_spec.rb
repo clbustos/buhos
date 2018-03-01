@@ -1,7 +1,7 @@
 require_relative 'spec_helper'
 
 
-describe 'Messages:' do
+describe 'Personal messages:' do
 
 
   before(:all) do

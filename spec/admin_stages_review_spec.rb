@@ -126,13 +126,21 @@ describe 'Stage administration' do
     it "should content type be text/plain" do expect(last_response.header['Content-Type']).to include('text/plain') end
   end
 
-  context "when graphml is retrieved" do
+  context "when graphml is retrieved for report stage" do
     before(:context) do
       get '/review/1/stage/report/generate_graphml'
     end
     it "should response be ok" do expect(last_response).to be_ok end
     it "should content type be text/plain" do expect(last_response.header['Content-Type']).to include('application/graphml+xml') end
   end
+  context "when graphml is retrieved for all canonical documents" do
+    before(:context) do
+      get '/review/1/canonical_documents_graphml'
+    end
+    it "should response be ok" do expect(last_response).to be_ok end
+    it "should content type be text/plain" do expect(last_response.header['Content-Type']).to include('application/graphml+xml') end
+  end
+
 
   after(:all) do
     @temp=nil
