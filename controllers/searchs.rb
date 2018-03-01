@@ -93,7 +93,7 @@ get '/search/:id/references/search_doi' do |id|
       exitos+=1 if rp.process_doi
     end
   end
-  agregar_mensaje(I18n::t(:Search_add_doi_references, :count=>exitos))
+  add_message(I18n::t(:Search_add_doi_references, :count=>exitos))
   redirect back
 end
 
@@ -130,7 +130,7 @@ post '/search/update' do
   #  aa=Revision_Sistematica.new
 
   if params['base_bibliografica_id'].nil?
-    agregar_mensaje(I18n::t(:No_empty_bibliographic_database_on_search),:error)
+    add_message(I18n::t(:No_empty_bibliographic_database_on_search), :error)
   else
 
 
@@ -164,9 +164,9 @@ post '/searchs/update_batch' do
   halt_unless_auth('search_edit')
   #$log.info(params)
   if params["action"].nil?
-    agregar_mensaje(I18n::t(:No_valid_action), :error)
+    add_message(I18n::t(:No_valid_action), :error)
   elsif params['search'].nil?
-    agregar_mensaje(I18n::t(:No_search_selected), :error)
+    add_message(I18n::t(:No_search_selected), :error)
   else
     searchs=Busqueda.where(:id=>params['search'])
     if params['action']=='valid'
@@ -183,7 +183,7 @@ post '/searchs/update_batch' do
       end
       add_result(results)
     else
-      agregar_mensaje(I18n::t(:Action_not_defined), :error)
+      add_message(I18n::t(:Action_not_defined), :error)
     end
   end
   redirect params['url_back']
@@ -193,13 +193,13 @@ end
 get '/search/:id/validate' do |id|
   halt_unless_auth('search_edit')
   Busqueda[id].update(:valid=>true)
-  agregar_mensaje(I18n::t(:Search_marked_as_valid))
+  add_message(I18n::t(:Search_marked_as_valid))
   redirect back
 end
 
 get '/search/:id/invalidate' do |id|
   halt_unless_auth('search_edit')
   Busqueda[id].update(:valid=>false)
-  agregar_mensaje(I18n::t(:Search_marked_as_invalid))
+  add_message(I18n::t(:Search_marked_as_invalid))
   redirect back
 end

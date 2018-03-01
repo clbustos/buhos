@@ -48,7 +48,7 @@ post '/group/update' do
   name=params['name']
 
   if name.chomp==""
-    agregar_mensaje(t(:group_without_name), :error)
+    add_message(t(:group_without_name), :error)
     redirect back
   end
   description=params['description']
@@ -74,6 +74,6 @@ get '/group/:grupo_id/delete' do |grupo_id|
   error(404) unless @grupo
   group_name=@grupo[:name]
   Grupo[grupo_id].delete
-  agregar_mensaje(t(:Group_deleted,group_name:group_name))
+  add_message(t(:Group_deleted, group_name:group_name))
   redirect back
 end

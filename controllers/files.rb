@@ -29,17 +29,17 @@ get '/files/rs/:revision_sistematica_id/assign_to_canonical_documents' do |rs_id
             $db.transaction do
               Archivo_Cd.insert(:archivo_id=>pdf[:id], :canonico_documento_id=>cd.first[:id])
             end
-            agregar_mensaje("Agregado archivo #{pdf[:archivo_nombre]} a canónico #{cd[:title]}")
+            add_message("Agregado archivo #{pdf[:archivo_nombre]} a canónico #{cd[:title]}")
           else
-            agregar_mensaje("No puedo encontrar doi: #{doi} en los canonicos",:warning)
+            add_message("No puedo encontrar doi: #{doi} en los canonicos", :warning)
           end
         else
-          agregar_mensaje("No puedo encontrar doi en el documento #{pdf[:archivo_nombre]}",:warning)
+          add_message("No puedo encontrar doi en el documento #{pdf[:archivo_nombre]}", :warning)
         end
 
       rescue Exception=>e
         $log.error("Error en archivo:#{pdf[:archivo_nombre]}")
-        agregar_mensaje("Error en el archivo #{pdf[:archivo_nombre]}",:error)
+        add_message("Error en el archivo #{pdf[:archivo_nombre]}", :error)
         #raise
       end
     end

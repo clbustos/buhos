@@ -77,7 +77,7 @@ get '/review/:id/stage/:etapa/pattern/:patron/resolution/:resolution' do |id,eta
       end
     end
   end
-  agregar_mensaje(I18n::t("resolution_for_n_documents", resolution:resolution, n:cds.length))
+  add_message(I18n::t("resolution_for_n_documents", resolution:resolution, n:cds.length))
   redirect back
 end
 
@@ -203,7 +203,7 @@ get '/review/:rev_id/stage/:stage/complete_empty_abstract_scopus' do |rev_id, st
   @ars=AnalysisSystematicReview.new(@revision)
   result=Result.new
   @cd_sin_abstract=@ars.cd_without_abstract(stage)
-  agregar_mensaje(I18n::t(:Processing_n_canonical_documents, count:@cd_sin_abstract.count))
+  add_message(I18n::t(:Processing_n_canonical_documents, count:@cd_sin_abstract.count))
   @cd_sin_abstract.each do |cd|
     result.add_result(Scopus_Abstract.obtener_abstract_cd(cd[:id]))
   end

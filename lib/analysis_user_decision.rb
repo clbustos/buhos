@@ -15,7 +15,7 @@ class AnalysisUserDecision
     @etapa=etapa.to_s
     @asignaciones=nil?
     procesar_cd_ids
-    procesar_indicadores_basicos
+    process_basic_indicators
     #procesar_numero_citas
   end
   def revision_sistematica
@@ -44,7 +44,7 @@ class AnalysisUserDecision
       @cd_ids=@asignaciones.select_map(:canonico_documento_id)
     end
   end
-  def procesar_indicadores_basicos
+  def process_basic_indicators
     @decisiones=Decision.where(:usuario_id => @usuario_id, :revision_sistematica_id => @rs_id,
                                :etapa => @etapa, :canonico_documento_id=>@cd_ids).as_hash(:canonico_documento_id)
 

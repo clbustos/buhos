@@ -15,7 +15,7 @@ class CategorizerSr
       @model.min_support = 0.01
       @model=model
     end
-    categorizador_calculo
+    categorizer_process
   end
 
   def get_stemmer_text(texto)
@@ -23,7 +23,7 @@ class CategorizerSr
     res.is_a?(Array) ? res.join(" ") : res
   end
 
-  def categorizador_calculo
+  def categorizer_process
 
     @cd_hash=@rs.cd_hash
     titulos=@cd_hash.map {|key,v|  get_stemmer_text("#{v[:title]}")}
@@ -41,7 +41,7 @@ class CategorizerSr
     end
   end
 
-  private :categorizador_calculo
+  private :categorizer_process
   def cd_categoria(cd_id)
     @cd_id_categorias[cd_id]
   end

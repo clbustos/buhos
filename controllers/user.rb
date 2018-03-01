@@ -96,10 +96,10 @@ post '/user/:user_id/compose_message/send' do |user_id|
   @user_to=Usuario[destination]
   if @user_to
     Mensaje.insert(:usuario_desde=>user_id, :usuario_hacia=>destination, :respuesta_a=>nil, :tiempo=>DateTime.now(), :asunto=>asunto, :texto=>texto, :visto=>false)
-    agregar_mensaje(t("messages.new_message_for_user", user_name:@user_to[:nombre]))
+    add_message(t("messages.new_message_for_user", user_name:@user_to[:nombre]))
 
   else
-    agregar_mensaje(t(:User_not_exists, user_id:destination), :error)
+    add_message(t(:User_not_exists, user_id:destination), :error)
   end
   redirect "/user/#{user_id}/messages"
 
@@ -129,11 +129,11 @@ post '/user/:user_id/change_password' do |user_id|
   password_1=params['password']
   password_2=params['repeat_password']
   if password_1!=password_2
-    agregar_mensaje(I18n::t("password.not_equal_password"), :error)
+    add_message(I18n::t("password.not_equal_password"), :error)
     redirect back
   else
     @user.change_password(password_1)
-    agregar_mensaje(I18n::t("password.password_updated"))
+    add_message(I18n::t("password.password_updated"))
     redirect "/user/#{@user[:id]}".to_sym
   end
 end

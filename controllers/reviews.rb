@@ -114,7 +114,7 @@ get '/review/:id/canonical_documents' do |id|
 
   @pager=get_pager
 
-  @pager.orden||="n_total_referencias_recibidas__desc"
+  @pager.order||="n_total_referencias_recibidas__desc"
 
   @sin_abstract=params['sin_abstract']=='true'
   @solo_registros=params['solo_registros']=='true'
@@ -131,8 +131,8 @@ get '/review/:id/canonical_documents' do |id|
 
 
 
-  if @pager.busqueda
-    @cds_pre=@cds_pre.where(Sequel.ilike(:title, "%#{@pager.busqueda}%"))
+  if @pager.query
+    @cds_pre=@cds_pre.where(Sequel.ilike(:title, "%#{@pager.query}%"))
   end
   if @sin_abstract
     @cds_pre=@cds_pre.where(:abstract=>nil)
@@ -154,7 +154,7 @@ get '/review/:id/canonical_documents' do |id|
   @criterios_orden={:n_referencias_rtr=>"Referencias RTR", :n_total_referencias_recibidas=>"Citado por", :n_total_referencias_hechas=>"Cita a",  :title=>"Título", :year=> "Año", :author=>"Autor"}
 
 
-  @cds=@pager.ajustar_query(@cds_pre)
+  @cds=@pager.adjust_query(@cds_pre)
 
   @ars=AnalysisSystematicReview.new(@revision)
 
@@ -231,7 +231,7 @@ post '/review/:id/message/new' do |id|
   @texto=params['texto']
   $db.transaction(:rollback=>:reraise) do
     id=Mensaje_Rs.insert(:revision_sistematica_id=>id, :usuario_desde=>@usuario_id, :respuesta_a=>nil, :tiempo=>DateTime.now(), :asunto=>@asunto, :texto=>@texto)
-    agregar_mensaje(t("messages.new_message_for_sr", sr_name:@revision[:nombre]))
+    add_message(t("messages.new_message_for_sr", sr_name:@revision[:nombre]))
   end
   redirect back
 end
@@ -271,7 +271,7 @@ post '/review/files/add' do
     end
     add_result resultados
   else
-    agregar_mensaje(I18n::t(:Files_not_uploaded), :error)
+    add_message(I18n::t(:Files_not_uploaded), :error)
   end
   redirect back
 end
@@ -289,10 +289,10 @@ get '/review/:id/advance_stage' do |id|
     #$log.info(etapa_i)
     return 405 if etapa_i.nil?
     @revision.update(:etapa=>Revision_Sistematica::ETAPAS[etapa_i+1])
-    agregar_mensaje(I18n::t(:stage_complete))
+    add_message(I18n::t(:stage_complete))
     redirect("/review/#{@revision[:id]}/administration/#{@revision[:etapa]}")
   else
-    agregar_mensaje(I18n::t(:stage_not_yet_complete), :error)
+    add_message(I18n::t(:stage_not_yet_complete), :error)
     redirect back
   end
 end

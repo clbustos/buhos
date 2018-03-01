@@ -525,8 +525,8 @@ es:
     analysis: "Análisis"
     report: "Reporte"
     review_full_text: "Revisión texto completo"
-    screening_references: "Revisión referencias"
-    screening_title_abstract: "Revisión título y resumen"
+    screening_references: "Tamizaje referencias"
+    screening_title_abstract: "Tamizaje título y resumen"
     search: "Búsqueda"
     synthesis: "Síntesis"
   stage_complete: "Etapa completa"
@@ -555,6 +555,8 @@ es:
   Systematic_review_active_inactive: "RS Activa / Inactiva"
   Systematic_review_all_user: "RS usuario / todos"
   systematic_review_page:
+    screening_title_and_abstract: "Tamizaje de título y resumen"
+    screening_references: "Tamizaje de referencias"
     cd_assignations: "Asignación de Documentos Canónicos a usuarios"
     cd_for_tag: "Documentos canónicos para tag '%{tag_text}'"
     cd_for_tag_stage: "Documentos canónicos para tag '%{tag_text}', etapa %{stage}"
@@ -563,7 +565,7 @@ es:
     review_full_text_administration: "Administración de revisión de texto completo"
     screening_references_administration: "Administración de referencias"
     review_full_text_administration: "Administración de la etapa de texto Completo"
-    screening_title_abstract_administration: "Administración de revisión de título y resumen"
+    screening_title_abstract_administration: "Administración de tamizaje de título y resumen"
     search_administration: "Administración de búsquedas"
     search_administration_instructions: "Revise cada revisión sistemática, para estar seguro que cuenta con información sobre la fuente, fecha y criterios de búsqueda. Marque como 'no válida' todas las búsquedas problemáticas. Sólo las búsquedas validadas serán usadas en etapas posteriores."
     stages: Etapas

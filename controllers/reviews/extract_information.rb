@@ -12,12 +12,12 @@ get '/review/:sr_id/extract_information/cd/:cd_id' do |sr_id,cd_id|
   cds_id=@sr.cd_id_por_etapa(@stage)
 
   if !cds_id.include?(cd_id.to_i)
-    agregar_mensaje(t(:Canonical_documento_not_assigned_to_this_systematic_review), :error)
+    add_message(t(:Canonical_documento_not_assigned_to_this_systematic_review), :error)
     redirect back
   end
   adu=AnalysisUserDecision.new(sr_id, @user[:id], 'review_full_text')
   if !adu.allocated_to_cd_id(cd_id)
-    agregar_mensaje(t(:Canonical_documento_not_assigned_to_this_user), :error)
+    add_message(t(:Canonical_documento_not_assigned_to_this_user), :error)
     redirect back
   end
   @files_id=Archivo_Cd.where(:canonico_documento_id=>cd_id, :no_considerar=>false).map(:archivo_id)

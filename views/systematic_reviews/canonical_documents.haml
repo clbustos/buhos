@@ -18,10 +18,10 @@
 
 %form{:action=>url("/review/#{@revision[:id]}/canonical_documents"), :method=>:get,:class=>"form-inline"}
   %div{:class=>"input-group mb-2 mr-sm-2"}
-    %input{:type=>:hidden,:name=>:pagina, :value=>@pager.pagina}
-    %input{:type=>:hidden,:name=>:orden, :value=>@pager.orden}
+    %input{:type=>:hidden,:name=>:pagina, :value=>@pager.page}
+    %input{:type=>:hidden,:name=>:orden, :value=>@pager.order}
     %label{:class=>"", :for=>:busqueda}=t(:Search)
-    %input{:type=>:text, :value=>@pager.busqueda, :name=>:busqueda, :class=>"form-control"}
+    %input{:type=>:text, :value=>@pager.query, :name=>:busqueda, :class=>"form-control"}
     .form-group-inline
       %label{:for=>:sin_abstract}=t(:Check_only_documents_without_abstract)
       %input{:type=>:checkbox, :name=>:sin_abstract, :class=>"form-control-checkbox", :value=>'true',:checked=>@sin_abstract}
@@ -60,7 +60,7 @@
   -@criterios_orden.each do |crit_orden,crit_nombre|
     -["asc","desc"].each do |dir|
       -arrow_dir =  dir=="asc" ? "up" : "down"
-      -if @pager.orden!="#{crit_orden}__#{dir}"
+      -if @pager.order!="#{crit_orden}__#{dir}"
         %a{:href=>url("/review/#{@revision[:id]}/canonical_documents?busqueda=#{@search}&orden=#{crit_orden}__#{dir}"), :class=>"btn btn-default btn-sm"}
           %span{:class=>"glyphicon glyphicon-chevron-#{arrow_dir}"}
           =crit_nombre
@@ -70,7 +70,7 @@
           =crit_nombre
 
 
-= partial(:pager,:locals=>{url: @url, pagina: @pager.pagina, max_page: @pager.max_page,:extra=>{busqueda:@pager.busqueda, sin_abstract:@sin_abstract, solo_registros:@solo_registros}} )
+= partial(:pager,:locals=>{url: @url, page: @pager.page, max_page: @pager.max_page,:extra=>{busqueda:@pager.query, sin_abstract:@sin_abstract, solo_registros:@solo_registros}} )
 .list-group
   - #$log.info(@cds)
   - @cds.each do |cd|
@@ -84,4 +84,4 @@
         =partial(:canonical_document_button_abstract_collapsible, :locals=>{cd:cd})
 
 
-= partial(:pager,:locals=>{url: @url, pagina: @pager.pagina, max_page: @pager.max_page,:extra=>{busqueda:@pager.busqueda, sin_abstract:@sin_abstract, solo_registros:@solo_registros}} )
+= partial(:pager,:locals=>{url: @url, page: @pager.page, max_page: @pager.max_page,:extra=>{busqueda:@pager.query, sin_abstract:@sin_abstract, solo_registros:@solo_registros}} )

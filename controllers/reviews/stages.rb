@@ -8,7 +8,7 @@ get '/review/:id/screening_title_abstract' do |id|
 
 
   @pager=get_pager
-  @pager.orden||="year__asc"
+  @pager.order||="year__asc"
 
 
   @criterios_orden={:title=>I18n.t(:Title), :year=> I18n.t(:Year), :author=>I18n.t(:Author)}
@@ -16,6 +16,7 @@ get '/review/:id/screening_title_abstract' do |id|
   # $log.info(params)
 
 
+  @stage='screening_title_and_abstract'
   @ars=AnalysisSystematicReview.new(@revision)
   @cd_total_ds=@revision.canonicos_documentos
 
@@ -28,9 +29,9 @@ get '/review/:id/screening_title_abstract' do |id|
   @cds_total=@cds_pre.count
 
   @decisiones=@ads.decisiones
-  if @pager.busqueda.to_s!=""
+  if @pager.query.to_s!=""
     cd_ids=@ads.decision_por_cd.find_all {|v|
-      @pager.busqueda==v[1]
+      @pager.query==v[1]
     }.map {|v| v[0]}
     @cds_pre=@cds_pre.where(:id => cd_ids)
   end
@@ -40,10 +41,10 @@ get '/review/:id/screening_title_abstract' do |id|
 
   @pager.max_page=(@cds_pre.count/@pager.cpp.to_f).ceil
 
-  @cds=@pager.ajustar_query(@cds_pre)
+  @cds=@pager.adjust_query(@cds_pre)
 
 
-  haml %s{systematic_reviews/screening_title_abstract}
+  haml "systematic_reviews/screening_general".to_sym
 
 end
 
@@ -59,12 +60,13 @@ get '/review/:id/screening_references' do |id|
 
 
   @pager=get_pager()
-  @pager.orden||="n_referencias_rtr__desc"
+  @pager.order||="n_referencias_rtr__desc"
 
 
   @criterios_orden={:n_referencias_rtr=>I18n.t(:RTA_references), :title=>I18n.t(:Title), :year=> I18n.t(:Year), :author=>I18n.t(:Author)}
 
   # $log.info(params)
+  @stage='screening_references'
 
 
   @ars=AnalysisSystematicReview.new(@revision)
@@ -81,9 +83,9 @@ get '/review/:id/screening_references' do |id|
   @decisiones=@ads.decisiones
   @cds_total=@cds_pre.count
 
-  if @pager.busqueda.to_s!=""
+  if @pager.query.to_s!=""
     cd_ids=@ads.decision_por_cd.find_all {|v|
-      @pager.busqueda==v[1]
+      @pager.query==v[1]
     }.map {|v| v[0]}
     @cds_pre=@cds_pre.where(:id => cd_ids)
   end
@@ -93,10 +95,11 @@ get '/review/:id/screening_references' do |id|
 
   @pager.max_page=(@cds_pre.count/@pager.cpp.to_f).ceil
 
-  @cds=@pager.ajustar_query(@cds_pre)
+  @cds=@pager.adjust_query(@cds_pre)
 
 
-  haml %s{systematic_reviews/screening_references}
+  haml "systematic_reviews/screening_general".to_sym
+
 end
 
 
@@ -111,7 +114,7 @@ get '/review/:id/review_full_text' do |id|
 
 
   @pager=get_pager()
-  @pager.orden||="year__asc"
+  @pager.order||="year__asc"
 
 
   @criterios_orden={:n_referencias_rtr=>I18n.t(:RTA_references), :title=>I18n.t(:Title), :year=> I18n.t(:Year), :author=>I18n.t(:Author)}
@@ -133,9 +136,9 @@ get '/review/:id/review_full_text' do |id|
   @decisiones=@ads.decisiones
   @cds_total=@cds_pre.count
 
-  if @pager.busqueda.to_s!=""
+  if @pager.query.to_s!=""
     cd_ids=@ads.decision_por_cd.find_all {|v|
-      @pager.busqueda==v[1]
+      @pager.query==v[1]
     }.map {|v| v[0]}
     @cds_pre=@cds_pre.where(:id => cd_ids)
   end
@@ -145,7 +148,7 @@ get '/review/:id/review_full_text' do |id|
 
   @pager.max_page=(@cds_pre.count/@pager.cpp.to_f).ceil
 
-  @cds=@pager.ajustar_query(@cds_pre)
+  @cds=@pager.adjust_query(@cds_pre)
 
 
   haml %s{systematic_reviews/review_full_text}

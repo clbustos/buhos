@@ -41,7 +41,7 @@ post '/record/:id/manual_references' do |id|
           Referencia_Registro.insert(:registro_id => id, :referencia_id => ref[:id])
         end
       end
-      agregar_mensaje("Agregadas #{partes.count} referencias")
+      add_message("Agregadas #{partes.count} referencias")
     end
   end
   redirect back

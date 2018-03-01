@@ -56,7 +56,7 @@ get '/role/:role_id/delete' do |role_id|
 
   error(403) if role_id=="administrator" or role_id=="analyst"
   Rol[role_id].delete
-  agregar_mensaje(t(:Role_deleted_name, role:role_id))
+  add_message(t(:Role_deleted_name, role:role_id))
   redirect back
 end
 
@@ -67,7 +67,7 @@ post '/role/update' do
   new_id=params['role_id_new']
 
   if new_id.chomp==""
-    agregar_mensaje(t(:role_without_name), :error)
+    add_message(t(:role_without_name), :error)
     redirect back
   end
 
@@ -90,7 +90,7 @@ post '/role/update' do
       }
     end
   else
-    agregar_mensaje(t(:Exists_another_role_with_that_name), :error)
+    add_message(t(:Exists_another_role_with_that_name), :error)
   end
   redirect '/admin/roles'
 end

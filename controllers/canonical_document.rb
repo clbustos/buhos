@@ -41,9 +41,9 @@ get '/canonical_document/:id/get_crossref_data' do |id|
 
   @cd=Canonico_Documento[id]
   if(@cd.crossref_integrator)
-    agregar_mensaje("Crossref agregado para #{id}")
+    add_message("Crossref agregado para #{id}")
   else
-    agregar_mensaje("Error al agregar Crossref para #{id}",:error)
+    add_message("Error al agregar Crossref para #{id}", :error)
   end
   redirect back
 end
@@ -72,7 +72,7 @@ post '/canonical_document/:id/merge_similar_references' do |id|
   if !params['referencia'].nil?
     referencias_a_unir=params['referencia'].keys
     Referencia.where(:id=>referencias_a_unir).update(:canonico_documento_id=>@cd[:id])
-    agregar_mensaje("Se unieron #{referencias_a_unir.length} referencias al canonico comun #{@cd[:id]}")
+    add_message("Se unieron #{referencias_a_unir.length} referencias al canonico comun #{@cd[:id]}")
   end
   redirect back
 end
@@ -110,7 +110,7 @@ get '/canonical_documents/review/:revision_id/complete_abstract_scopus' do |rev_
   @rev=Revision_Sistematica[rev_id]
 
   @cd_sin_abstract=@rev.canonicos_documentos.where(Sequel.lit("abstract IS NULL OR abstract=''")).select_map(:id)
-  agregar_mensaje("Se procesan #{@cd_sin_abstract.count} documentos canonicos")
+  add_message("Se procesan #{@cd_sin_abstract.count} documentos canonicos")
   @cd_sin_abstract.each do |cd|
     add_result(Scopus_Abstract.obtener_abstract_cd(cd))
   end
@@ -128,7 +128,7 @@ end
 get '/canonical_document/:ref_id/clean_references' do |cd_id|
   halt_unless_auth('canonical_document_admin')
   Referencia.where(:canonico_documento_id => cd_id).update(:canonico_documento_id => nil, :doi => nil)
-  agregar_mensaje("Las referencias para canonico #{cd_id} estan limpias")
+  add_message("Las referencias para canonico #{cd_id} estan limpias")
   redirect back
 end
 

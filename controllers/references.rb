@@ -36,7 +36,7 @@ post '/reference/:id/merge_similar_references' do |id|
   if !params['referencia'].nil?
     referencias_a_unir=params['referencia'].keys
     Referencia.where(:id=>referencias_a_unir).update(:canonico_documento_id=>@ref[:canonico_documento_id])
-    agregar_mensaje("Se unieron las referencias de #{referencias_a_unir.length} referencias a un canonico comun")
+    add_message("Se unieron las referencias de #{referencias_a_unir.length} referencias a un canonico comun")
   end
   redirect back
 end
