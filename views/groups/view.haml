@@ -1,0 +1,10 @@
+%h2=title(t(:Group))
+
+%p=t_desc_value(:Name,@grupo[:name])
+%p=t_desc_value(:Description,@grupo[:description])
+%p=t_desc_value(:Group_administrator, @grupo.administrator_name)
+
+%h3 Usuario
+%ul
+  - Usuario.where(:id=>@usuarios_id).order(:nombre).each do |usuario|
+    %li=usuario[:nombre]

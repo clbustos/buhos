@@ -1,6 +1,6 @@
 get '/user/:user_id' do |user_id|
   if user_id=='new'
-    return 403 unless permiso('usuarios_crear')
+    halt_unless_auth('user_admin')
     new_user_id=Usuario.create_new_user(session['language'])
     @usuario=Usuario[new_user_id]
   else
@@ -11,25 +11,33 @@ get '/user/:user_id' do |user_id|
 
   # Debo reemplazar por las elecciones de acuerdo a equipo
 
+  @have_permit = auth_to("user_admin") or is_session_user(@usuario.id)
+
   @rss=@usuario.revisiones_sistematicas.where(:activa=>true)
 
   @select_role=get_xeditable_select(Rol.inject({}) {|ac,v| ac[v[:id]]=v[:id];ac},'/user/edit/rol_id','select_role')
-  @select_role.active=false if(!permiso("editar_usuarios") or user_id.to_i==session['user_id'])
+  @select_role.active=false if(!auth_to("user_admin") or user_id.to_i==session['user_id'])
 
   @select_active_user=get_xeditable_select_bool('/user/edit/activa','select_active')
-  @select_active_user.active=false if(!permiso("editar_usuarios") or user_id.to_i==session['user_id'])
+  @select_active_user.active=false if(!auth_to("user_admin") or user_id.to_i==session['user_id'])
 
   @select_language=get_xeditable_select(available_locales_hash, '/user/edit/language','select_language')
-  @select_language.active=false if(!permiso("editar_usuarios") and user_id.to_i!=session['user_id'])
+  @select_language.active=false if(!auth_to("user_admin") and user_id.to_i!=session['user_id'])
 
   haml :user
 end
 
+get '/user/:user_id/edit' do |user_id|
+  halt 403 unless (auth_to('user_admin') or is_session_user(user_id))
+  redirect "/user/#{user_id}"
+end
+
 
 put '/user/edit/:field' do |field|
+  halt_unless_auth('user_admin')
   put_editable(request) {|id,value|
     user=Usuario[id]
-    return 404 if !user
+    raise Buhos::NoUserIdError, id if !user
     if field=='login'
       return 405 if Usuario.where(:login=>value).exclude(:id=>id).count>0
       return 405 if value.chomp==""
@@ -47,7 +55,8 @@ end
 get '/user/:user_id/messages' do |user_id|
   @user=Usuario[user_id]
 
-  return 403 unless user_id.to_s==session['user_id'].to_s or permiso("messages_see_all")
+
+  halt 403 unless (is_session_user(user_id) or auth_to("message_view"))
 
   raise Buhos::NoUserIdError, user_id if !@user
 
@@ -66,17 +75,21 @@ get '/user/:user_id/compose_message' do |user_id|
   @user=Usuario[user_id]
   raise Buhos::NoUserIdError, user_id if !@user
 
+  return 403 unless (auth_to('message_edit') and is_session_user(user_id))
+
   @ms_id="NEW"
   @ms_text=""
-  return 403 unless user_id.to_s==session['user_id'].to_s
+
   haml "users/compose_message".to_sym
 end
 
 post '/user/:user_id/compose_message/send' do |user_id|
+
+  return 403 unless (auth_to('message_edit') and is_session_user(user_id))
+
   @user=Usuario[user_id]
   raise Buhos::NoUserIdError, user_id if !@user
 
-  return 403 unless user_id.to_s==session['user_id'].to_s
   asunto=params['asunto'].chomp
   texto=params['texto'].chomp
   destination=params['to']
@@ -97,10 +110,11 @@ end
 
 
 get '/user/:user_id/change_password' do |user_id|
+
   @user=Usuario[user_id]
   raise Buhos::NoUserIdError, user_id if !@user
 
-  return 403 unless session['user_id']==@user.id or permiso("editar_usuarios")
+  return 403 unless (is_session_user(user_id) or auth_to("user_admin"))
 
   haml "users/change_password".to_sym
 end
@@ -109,7 +123,8 @@ post '/user/:user_id/change_password' do |user_id|
   @user=Usuario[user_id]
   raise Buhos::NoUserIdError, user_id if !@user
 
-  return 403 unless session['user_id']==@user.id or permiso("editar_usuarios")
+
+  return 403 unless (is_session_user(user_id) or auth_to("user_admin"))
 
   password_1=params['password']
   password_2=params['repeat_password']

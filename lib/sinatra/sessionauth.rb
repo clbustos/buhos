@@ -18,14 +18,14 @@ module Sinatra
       end
 
       # Verifica que la persona tenga un permiso específico
-      def permiso(per)
+      def auth_to(per)
         #log.info(session['permisos'])
         if session['user'].nil?
           false
         else
           if session['rol_id']=='administrator'
             Permiso.insert(:id=>per, :descripcion=>::I18n::t("sinatra_auth.permission_created_by_administrator")) if Permiso[per].nil?
-            Rol['administrator'].add_permiso(Permiso[per]) unless PermisosRol[permiso_id:per, rol_id:'administrator']
+            Rol['administrator'].add_auth_to(Permiso[per]) unless PermisosRol[permiso_id:per, rol_id:'administrator']
             true
           elsif session['permisos'].include? per
             true
@@ -35,11 +35,21 @@ module Sinatra
         end
       end
 
-      def revision_pertenece_a(revision_id,usuario_id)
-        permiso("revision_editar_propia") and Revision_Sistematica[:id=>revision_id, :administrador_revision=>usuario_id]
+      def halt_unless_auth(*args)
+        halt 403 if args.any? {|per| !auth_to(per)}
       end
+
+      def is_session_user(user_id)
+        user_id.to_i==session['user_id']
+      end
+
+
+      def revision_pertenece_a(revision_id,usuario_id)
+        auth_to("review_admin") and Revision_Sistematica[:id=>revision_id, :administrador_revision=>usuario_id]
+      end
+
       def revision_analizada_por(revision_id,usuario_id)
-        permiso("revision_analizar_propia") and !$db["SELECT * FROM grupos_usuarios gu INNER JOIN revisiones_sistematicas rs ON gu.grupo_id=rs.grupo_id WHERE rs.id=? AND gu.usuario_id=?", revision_id, usuario_id].empty?
+        auth_to("review_analyze") and !$db["SELECT * FROM grupos_usuarios gu INNER JOIN revisiones_sistematicas rs ON gu.grupo_id=rs.grupo_id WHERE rs.id=? AND gu.usuario_id=?", revision_id, usuario_id].empty?
       end
 
       def authorize(login, password)

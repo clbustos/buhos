@@ -1,4 +1,6 @@
 get '/search/:id' do |id|
+  halt_unless_auth('search_view')
+
   @search=Busqueda[id]
   raise Buhos::NoSearchIdError, id if @search.nil?
   @revision=@search.revision_sistematica
@@ -6,6 +8,8 @@ get '/search/:id' do |id|
 end
 
 get '/search/:id/edit' do |id|
+  halt_unless_auth('search_edit')
+
   @search=Busqueda[id]
   raise Buhos::NoSearchIdError, id if @search.nil?
   @revision=@search.revision_sistematica
@@ -13,6 +17,8 @@ get '/search/:id/edit' do |id|
 end
 
 get '/search/:id/file/download' do |id|
+  halt_unless_auth('search_view')
+
   @search=Busqueda[id]
   raise Buhos::NoSearchIdError, id if @search.nil?
   if @search[:archivo_nombre].nil?
@@ -26,6 +32,7 @@ get '/search/:id/file/download' do |id|
 end
 
 get '/search/:id/records' do |id|
+  halt_unless_auth('search_view')
   @search=Busqueda[id]
   raise Buhos::NoSearchIdError, id if @search.nil?
 
@@ -37,6 +44,7 @@ end
 
 
 get '/search/:id/references' do |id|
+  halt_unless_auth('search_view')
   @search=Busqueda[id]
   raise Buhos::NoSearchIdError, id if @search.nil?
 
@@ -60,6 +68,7 @@ end
 
 # Completa la información desde Crossref para cada registro
 get '/search/:id/records/complete_doi' do |id|
+  halt_unless_auth('search_edit')
   @search=Busqueda[id]
   raise Buhos::NoSearchIdError, id if @search.nil?
 
@@ -72,6 +81,7 @@ end
 
 # Busca en el texto algun indicador de DOI
 get '/search/:id/references/search_doi' do |id|
+  halt_unless_auth('search_edit')
   exitos=0
   @search=Busqueda[id]
   raise Buhos::NoSearchIdError, id if @search.nil?
@@ -88,6 +98,7 @@ get '/search/:id/references/search_doi' do |id|
 end
 
 get '/search/:id/references/generate_canonical_doi/:n' do |id, n|
+  halt_unless_auth('search_edit')
   busqueda=Busqueda[id]
   raise Buhos::NoSearchIdError, id if @search.nil?
 
@@ -104,6 +115,7 @@ end
 
 
 post '/search/update' do
+  halt_unless_auth('search_edit')
   id=params['busqueda_id']
   otros_params=params
   otros_params.delete("busqueda_id")
@@ -117,9 +129,7 @@ post '/search/update' do
   }
   #  aa=Revision_Sistematica.new
 
-  if !permiso('busquedas_revision_crear')
-    agregar_mensaje(I18n::t(:Not_allowed_with_user_permissions),:error)
-  elsif params['base_bibliografica_id'].nil?
+  if params['base_bibliografica_id'].nil?
     agregar_mensaje(I18n::t(:No_empty_bibliographic_database_on_search),:error)
   else
 
@@ -151,6 +161,7 @@ end
 
 
 post '/searchs/update_batch' do
+  halt_unless_auth('search_edit')
   #$log.info(params)
   if params["action"].nil?
     agregar_mensaje(I18n::t(:No_valid_action), :error)
@@ -180,12 +191,14 @@ end
 
 
 get '/search/:id/validate' do |id|
+  halt_unless_auth('search_edit')
   Busqueda[id].update(:valid=>true)
   agregar_mensaje(I18n::t(:Search_marked_as_valid))
   redirect back
 end
 
 get '/search/:id/invalidate' do |id|
+  halt_unless_auth('search_edit')
   Busqueda[id].update(:valid=>false)
   agregar_mensaje(I18n::t(:Search_marked_as_invalid))
   redirect back

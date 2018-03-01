@@ -15,7 +15,7 @@
     %tr
       %th=field.capitalize
       %td
-        - if permiso("documentos_canonicos_editar")
+        - if auth_to("review_admin")
           =a_editable(@cd[:id], "canonico_documento", "/canonical_document/edit_field/#{field}", @cd[field],"")
         -else
           =@cd[field]
@@ -23,13 +23,13 @@
 
 %h3=t(:Abstract)
 %p
-  - if permiso("documentos_canonicos_editar")
+  - if auth_to("review_admin")
     =a_textarea_editable(@cd[:id], "canonico_documento", "/canonical_document/edit_field/abstract", @cd[:abstract],"")
   - else
     =@cd[:abstract]
 
 .btn-group
-  -if permiso("scopus_acceder")
+  -if auth_to("scopus_query")
     - if !@cd.abstract
       %a{:href=>url("/canonical_document/#{@cd[:id]}/search_abstract_scopus"), :role=>:button, :class=>"btn btn-default"}=t(:Complete_abstract_using_Scopus)
 
@@ -42,7 +42,7 @@
   - if @cr_doi
     =@cr_doi.ref_apa_6_brief_html
   - elsif @cd.doi
-    - if permiso("crossref_acceder")
+    - if auth_to("crossref_query")
       %a{:href=>url("/canonical_document/#{@cd[:id]}/get_crossref_data")}
         %button{:class=>"btn btn-primary"}
           =t(:Obtain_information_from_Crossref)
@@ -53,7 +53,7 @@
       %em=t(:No_DOI_to_obtain_information_from_Crossref)
 
 %p
--if permiso("crossref_acceder") and @cr_doi
+-if auth_to("crossref_query") and @cr_doi
   .btn-group.btn-group-sm
     %a{:href=>url("/canonical_document/#{@cd[:id]}/search_crossref_references"), :role=>:button, :class=>"btn btn-default btn-sm"}=t(:Add_info_references_using_crossref)
     %a{:href=>url("/canonical_document/#{@cd[:id]}/view_doi"), :role=>:button, :class=>"btn btn-default btn-sm"}=t(:View_DOI_record)

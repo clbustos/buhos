@@ -1,5 +1,5 @@
 %h2=title(t(:Groups))
-- if permiso("grupos_crear")
+- if auth_to("group_admin")
   %a.btn.btn-default{:href=>url("/group/new")}
     %span.glyphicon.glyphicon-plus-sign
     =t(:New_group)
@@ -20,7 +20,7 @@
         %td=g.administrator_name
         %td=g.usuarios.map {|u| "[#{u.id}]#{u.nombre}"}.join(",")
         %td
-          - if permiso("grupos_editar")
+          - if auth_to("group_admin")
             .btn-group.btn-group-sm
               %a.btn.btn-default{:href=>url("/group/#{g.id}/edit")}
                 %span.glyphicon.glyphicon-pencil

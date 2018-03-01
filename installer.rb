@@ -22,7 +22,7 @@ module Buhos
     register Sinatra::I18n
     register Sinatra::Messages
     helpers do
-      def permiso(p)
+      def auth_to(p)
         true
       end
 
@@ -168,17 +168,13 @@ module Buhos
 
       begin
         @pdb_stage="installer.schema_creation"
-
         Buhos::SchemaCreation.create_schema(db)
-
         @pdb_stage="installer.schema_migrations"
         Sequel.extension :migration
-
         Sequel::Migrator.run(db, "db/migrations")
-        if db[:sr_taxonomies].count==0
-          @pdb_stage="installer.basic_data"
-          Buhos::SchemaCreation.create_bootstrap_data(db,session['language'])
-        end
+        @pdb_stage="installer.basic_data"
+        Buhos::SchemaCreation.create_bootstrap_data(db,session['language'])
+
       rescue StandardError=>e
         @error=e
       end

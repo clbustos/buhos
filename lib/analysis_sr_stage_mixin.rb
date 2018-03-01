@@ -24,6 +24,7 @@ module AnalysisSrStageMixin
   end
   # Se analiza cada cd y se cuenta cuantas decisiones para cada tipo
   def decisions_by_cd(etapa)
+
     @decisions_by_cd_h ||= {}
     @decisions_by_cd_h[etapa] ||= get_asrs(etapa).decisions_by_cd
   end
@@ -48,6 +49,7 @@ module AnalysisSrStageMixin
   end
 
   def cd_desde_patron(etapa, patron)
+
     decisions_by_cd(etapa).find_all {|v|
       v[1] == patron
     }.map {|v| v[0]}

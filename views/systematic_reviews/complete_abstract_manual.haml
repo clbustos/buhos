@@ -24,7 +24,7 @@
         %p
         %strong=t(:Abstract)
         %div
-          - if permiso("documentos_canonicos_editar")
+          - if auth_to("review_admin")
             =a_textarea_editable(cd[:id], "canonico_documento", "/canonical_document/edit_field/abstract", cd[:abstract],"")
           - else
             =@cd[:abstract]

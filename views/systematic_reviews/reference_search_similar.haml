@@ -9,7 +9,7 @@
 
 -if @ref_similares.length==0
   %p
-    %em=t(:No_references_like_this_without_canonical)
+    %em=t(:No_similar_references_without_canonical)
 -else
   %form{:action=>url("/reference/#{@ref.id}/merge_similar_references"),:method=>:post}
     .list-group

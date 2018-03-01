@@ -1,7 +1,7 @@
 
 
 get '/reviews' do
-  error(403) unless permiso('ver_revisiones')
+  halt_unless_auth('review_view')
   @usuario=Usuario[session['user_id']]
   @show_inactives=params['show_inactives']
   @show_inactives||='only_actives'
@@ -22,6 +22,8 @@ end
 
 
 get '/review/new' do
+  halt_unless_auth('review_edit')
+
   require 'date'
   title(t(:Systematic_review_new))
   first_group=Usuario[session['user_id']].grupos.first
@@ -39,6 +41,8 @@ end
 
 
 get "/review/:id" do |id|
+  halt_unless_auth('review_view')
+
   @revision=Revision_Sistematica[id]
   ##$log.info(@nombres_trs)
   raise Buhos::NoReviewIdError, id if !@revision
@@ -51,6 +55,8 @@ get "/review/:id" do |id|
 end
 
 get "/review/:id/edit" do |id|
+  halt_unless_auth('review_edit')
+
   @revision=Revision_Sistematica[id]
   raise Buhos::NoReviewIdError, id if !@revision
   @taxonomy_categories_id=@revision.taxonomy_categories_id
@@ -61,6 +67,8 @@ end
 
 
 post '/review/update' do
+  halt_unless_auth('review_edit')
+
   id=params['revision_id']
   otros_params=params
   otros_params.delete("revision_id")
@@ -99,6 +107,7 @@ end
 #### DOCUMENTOS CANONICOS #####
 
 get '/review/:id/canonical_documents' do |id|
+  halt_unless_auth('review_view')
 
   @revision=Revision_Sistematica[id]
   raise Buhos::NoReviewIdError, id if !@revision
@@ -155,6 +164,8 @@ end
 
 
 get '/review/:id/repeated_canonical_documents' do |id|
+  halt_unless_auth('review_view')
+
   @revision=Revision_Sistematica[id]
   raise Buhos::NoReviewIdError, id if !@revision
   @cd_rep_doi=@revision.doi_repetidos
@@ -167,6 +178,7 @@ end
 
 
 get '/review/:id/canonical_documents_graphml' do |id|
+  halt_unless_auth('review_view')
   @revision=Revision_Sistematica[id]
   raise Buhos::NoReviewIdError, id if !@revision
   headers["Content-Disposition"] = "attachment;filename=graphml_revision_#{id}.graphml"
@@ -180,6 +192,7 @@ end
 
 
 get '/review/:id/tags' do |id|
+  halt_unless_auth('review_view')
   @revision=Revision_Sistematica[id]
   raise Buhos::NoReviewIdError, id if !@revision
   @etapas_lista={:NIL=>"--Todas--"}.merge(Revision_Sistematica::ETAPAS_NOMBRE)
@@ -198,6 +211,7 @@ end
 
 
 get '/review/:id/messages' do |id|
+  halt_unless_auth('review_view')
   @revision=Revision_Sistematica[id]
   raise Buhos::NoReviewIdError, id if !@revision
   @mensajes_rs=@revision.mensajes_rs_dataset.where(:respuesta_a=>nil).order(Sequel.desc(:tiempo))
@@ -208,6 +222,7 @@ get '/review/:id/messages' do |id|
 end
 
 post '/review/:id/message/new' do |id|
+  halt_unless_auth('message_edit')
   @revision=Revision_Sistematica[id]
   raise Buhos::NoReviewIdError, id if !@revision
   @usuario_id=params['user_id']
@@ -222,6 +237,7 @@ post '/review/:id/message/new' do |id|
 end
 
 get '/review/:id/files' do |id|
+  halt_unless_auth('review_view', 'file_view')
   @revision=Revision_Sistematica[id]
   raise Buhos::NoReviewIdError, id if !@revision
   @archivos_rs=Archivo.join(:archivos_rs, :archivo_id => :id).left_join(:archivos_cds, :archivo_id => :archivo_id).where(:revision_sistematica_id => id).order_by(:archivo_nombre)
@@ -235,6 +251,8 @@ get '/review/:id/files' do |id|
 end
 
 post '/review/files/add' do
+  halt_unless_auth('review_edit', 'files_edit')
+
   #$log.info(params)
   @revision=Revision_Sistematica[params['revision_sistematica_id']]
   raise Buhos::NoReviewIdError, id if !@revision
@@ -260,6 +278,8 @@ end
 
 
 get '/review/:id/advance_stage' do |id|
+  halt_unless_auth('review_admin')
+
   @revision=Revision_Sistematica[id]
   raise Buhos::NoReviewIdError, id if !@revision
 

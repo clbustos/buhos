@@ -290,6 +290,7 @@ es:
   Not_allowed_with_user_permissions: "Acción no permitida con los permisos del usuario"
   Not_assigned: "No asignado"
   Not_defined: "No definido"
+  No_permits: "No hay permisos"
   nothing_to_do: "Nada que hacer"
   NR: "Sin resolución"
   ND: "Sin decisión"
@@ -313,44 +314,33 @@ es:
   pending: "Pendiente"
   percent_positive: "% positivos"
   Permissions: "Permisos"
-  permit:
-    acceder_crossref: "Acceder Crossref 1"
-    administracion: "Administración"
-    archivos_ver: "Archivos:ver"
-    busquedas_revision_crear: "Búsqueda de revisión: crear"
-    busqueda_revision_crear: "Búsqueda de revisión: crear"
-    busquedas_revision_ver: "Búsqueda de revisión: ver"
-    busqueda_revision_ver: "Búsqueda de revisión: ver"
-    busquedas_ver: "Búsquedas:ver"
-    crear_busqueda_revision: "Crear búsqueda para revisión sistemática"
-    crossref_acceder: "Acceder Crossref 2"
-    documentos_canonicos_editar: "Documentos Canónicos: Editar"
-    documentos_canonicos_ver: "Documentos Canónicos: Ver"
-    editar_documentos_canonicos: "Documentos Canónicos: Editar"
-    editar_grupos: "Grupos: Editar 1"
-    editar_roles: "Roles: Editar"
-    editar_usuarios: "Usuarios: Editar"
-    grupos_crear: "Grupos: Crear"
-    grupos_editar: "Grupos: Editar 2"
-    ingreso: "Ingreso"
-    mensajes_ver: "Mensajes: ver"
-    referencias_editar: "Referencias: Editar"
-    revision_analizar_propia: "Analizar propia revisión sistemática"
-    revision_editar: "Revisiones sistemáticas: Editar"
-    revision_editar_propia: "Editar propia revisión sistemática"
-    revision_referencias_ver: "Revision Referencias:Ver"
-    revision_texto_completo_ver: "Revision Texto Completo:Ver"
-    revision_titulo_resumen_ver: "Revisión Título y Resumen: Ver"
-    revisiones_administrar: "Revisiones: Administrar"
-    revisiones_editar: "Revisiones sistemáticas: Editar"
-    revisiones_crear_propias: "Revisiones: Crear propias"
-    revisiones_crear_propia: "Revisiones: Crear propias"
-    rs_campos_ver: "Campos de Revisión Sistemática: Ver"
-    scopus_acceder: "Acceder a Scopus"
-    tags_ver: "Etiquetas: Ver"
-    ver_revisiones: "Revisiones: Ver"
-    ver_reportes: "Reportes: Ver"
-    ver_usuarios: "Usuarios: Ver"
+  auth:
+    canonical_document_admin: "Documento Canónico: Admin"
+    canonical_document_view: "Documento Canónico: Ver"
+    crossref_query: 'Crossref: Consultar'
+    file_admin: 'Archivos: Admin'
+    file_view: 'Archivos: Ver'
+    group_admin: 'Grupos: Admin'
+    group_view: 'Grupos: Ver'
+    message_edit: 'Mensajes: Editar'
+    message_view: 'Mensajes: Ver'
+    record_edit: 'Registro: Editar'
+    record_view: 'Registro: Ver'
+    reference_edit: 'Referencia: Editar'
+    reference_view: 'Referencia: Ver'
+    reflection: 'Reflexión'
+    review_admin: 'Revisión sistemática: administrar'
+    review_analyze: 'Revisión sistemática: analizar'
+    review_edit: 'Revisión sistemática: editar'
+    review_view: 'Revisión sistemática: ver'
+    roles_admin: 'Roles: Admin'
+    roles_view: 'Roles: Ver'
+    scopus_query: 'Scopus: Consultar'
+    search_edit: 'Búsqueda: Editar'
+    search_view: 'Búsqueda: Ver'
+    tag_edit: 'Etiquetas: Editar'
+    user_admin: 'Usuario: Admin'
+  Permits: "Permisos"
   PRISMA_flow_diagram: "Diagrama de flujo PRISMA"
   prisma_report:
     "Eligibility": "Elegibilidad"
@@ -397,12 +387,14 @@ es:
   References_assigned_to_canonical_document: "Referencias asignadas a un documento canónico"
   References_not_assigned_to_canonical_document: "Referencias no asignadas a un documento canónico"
   References_on_search: "Referencias en registros de búsquedas"
+  Reference_search_similars: "Búsqueda de referencias similares"
   Reject: "Rechazar"
   Remove_assign_all: "Quitar asignación todos"
   Report_final: "Reporte Final"
   Report_partial: "Reporte Parcial"
   Resolution: "Resolución"
-  Resolutions: "Resoluciones"
+  Resolutions:
+  resolution_for_n_documents: "Resolución %{resolution} para %{n} documentos"
   result_assignation_cd_to_user: "Se agregaron %{added} documentos y se quitaron %{removed} documentos al usuario %{user_name}"
   Retrieve_information_from_Crossref: "Obtener información desde Crossref"
   Review_full_text: "Revisar texto completo"

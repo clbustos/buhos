@@ -1,7 +1,7 @@
 require_relative 'spec_helper'
 
 
-describe 'Messages' do
+describe 'Messages:' do
 
 
   before(:all) do
@@ -39,10 +39,24 @@ describe 'Messages' do
     it {expect(Mensaje[asunto:@asunto].visto).to be true}
 
   end
+
+
+  context "when reply personal from other account" do
+    before(:context) do
+      post '/user/1/compose_message/send', {to:2, asunto:'test subject 3', texto:'test text 3'}
+      mens=Mensaje[asunto:'test subject 3']
+      post "/message_per/#{mens[:id]}/reply" , user_id:2, asunto:"test reply", texto:'test text reply'
+    end
+    it "should raise an 403 error" do
+      expect(last_response.status).to eq(403)
+    end
+  end
+
   context "when reply personal messages" do
     before(:context) do
       post '/user/1/compose_message/send', {to:2, asunto:'test subject 3', texto:'test text 3'}
       mens=Mensaje[asunto:'test subject 3']
+      post '/login', user:"analyst", password:'analyst'
       post "/message_per/#{mens[:id]}/reply" , user_id:2, asunto:"test reply", texto:'test text reply'
     end
 
@@ -50,12 +64,11 @@ describe 'Messages' do
       expect(last_response).to be_redirect
     end
     it "should be show on sender user messages inbox" do
+      login_admin
       get '/user/1/messages'
-      $log.info(Mensaje.all)
       expect(last_response.body).to include("test reply")
     end
   end
-
 
 
 end

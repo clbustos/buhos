@@ -12,7 +12,7 @@
       =registro[:pages]
       - if registro[:doi]
         =".#{a_doi(registro[:doi])}"
-      - elsif permiso("crossref_acceder")
+      - elsif auth_to("crossref_query")
         %a{:href=>url("/record/#{registro[:id]}/search_crossref")}
           %button{:class=>"btn btn-default btn-sm"}
             %span{:class=>"glyphicon glyphicon-search"}

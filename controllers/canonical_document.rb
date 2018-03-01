@@ -3,6 +3,7 @@ require 'cgi'
 
 
 get '/canonical_document/:id' do |id|
+  halt_unless_auth('canonical_document_view')
   @cd=Canonico_Documento[id]
   raise Buhos::NoCdIdError, id if !@cd
   @registros=@cd.registros
@@ -18,6 +19,8 @@ end
 
 
 get '/canonical_document/:id/search_crossref_references' do |id|
+  halt_unless_auth('canonical_document_admin')
+
   @cd=Canonico_Documento[id]
   result=Result.new
   referencias=@cd.referencias_realizadas.exclude(:doi=>nil).where(:canonico_documento_id=>nil)
@@ -34,7 +37,7 @@ get '/canonical_document/:id/search_crossref_references' do |id|
 end
 
 get '/canonical_document/:id/get_crossref_data' do |id|
-
+  halt_unless_auth('canonical_document_admin')
 
   @cd=Canonico_Documento[id]
   if(@cd.crossref_integrator)
@@ -46,6 +49,7 @@ get '/canonical_document/:id/get_crossref_data' do |id|
 end
 
 get '/canonical_document/:id/search_similar' do |id|
+  halt_unless_auth('canonical_document_admin')
   @cd=Canonico_Documento[id]
   raise Buhos::NoCdIdError, id if !@cd
 
@@ -63,6 +67,7 @@ get '/canonical_document/:id/search_similar' do |id|
 end
 
 post '/canonical_document/:id/merge_similar_references' do |id|
+  halt_unless_auth('canonical_document_admin')
   @cd=Canonico_Documento[id]
   if !params['referencia'].nil?
     referencias_a_unir=params['referencia'].keys
@@ -76,6 +81,7 @@ end
 # Metodo rapido
 
 put '/canonical_document/edit_field/:field' do |field|
+  halt_unless_auth('canonical_document_admin')
   pk = params['pk']
   value = params['value']
   @cd=Canonico_Documento[pk]
@@ -84,6 +90,7 @@ put '/canonical_document/edit_field/:field' do |field|
 end
 
 post '/canonical_document/merge' do
+  halt_unless_auth('canonical_document_admin')
   doi=params['doi']
   pk_ids=params['pk_ids']
 
@@ -98,6 +105,7 @@ end
 
 
 get '/canonical_documents/review/:revision_id/complete_abstract_scopus' do |rev_id|
+  halt_unless_auth('canonical_document_admin')
 
   @rev=Revision_Sistematica[rev_id]
 
@@ -111,12 +119,14 @@ end
 
 
 get '/canonical_document/:id/search_abstract_scopus' do |id|
+  halt_unless_auth('canonical_document_admin')
   add_result(Scopus_Abstract.obtener_abstract_cd(id))
   redirect back
 end
 
 
 get '/canonical_document/:ref_id/clean_references' do |cd_id|
+  halt_unless_auth('canonical_document_admin')
   Referencia.where(:canonico_documento_id => cd_id).update(:canonico_documento_id => nil, :doi => nil)
   agregar_mensaje("Las referencias para canonico #{cd_id} estan limpias")
   redirect back
@@ -124,6 +134,7 @@ end
 
 
 get '/canonical_documents/review/:rev_id/automatic_categories' do |rev_id|
+  halt_unless_auth('canonical_document_view')
   @revision=Revision_Sistematica[rev_id]
   @cd_hash=@revision.cd_hash
   #require 'categorize'
@@ -134,6 +145,7 @@ get '/canonical_documents/review/:rev_id/automatic_categories' do |rev_id|
 end
 
 post '/canonical_document/user_assignation/:accion' do |accion|
+  halt_unless_auth('review_admin')
   revision=Revision_Sistematica[params['rs_id']]
   cd=Canonico_Documento[params['cd_id']]
   user=Usuario[params['user_id']]
@@ -157,6 +169,7 @@ post '/canonical_document/user_assignation/:accion' do |accion|
 end
 
 get '/canonical_document/:id/view_doi' do |id|
+  halt_unless_auth('canonical_document_view')
   @cd=Canonico_Documento[id]
   raise Buhos::NoCdIdError, id if !@cd
   @cr_doi=@cd.crossref_integrator

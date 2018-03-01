@@ -1,5 +1,6 @@
 module Buhos
-
+  # Delegation pattern for Sequel::Database
+  # Used on spec to change the database between tests
   class DBAdapter
     attr_accessor :logger
     def initialize
@@ -58,7 +59,8 @@ module Buhos
       ::Registro.many_to_one :canonico_documento, :class=>Canonico_Documento
 
       ::Referencia.many_to_many :registros
-
+      ::Revision_Sistematica.many_to_one :grupo
+      ::Grupo.many_to_many :usuarios
     end
     def method_missing(m, *args, &block)
       #puts "#{m}: #{args}"
@@ -66,7 +68,7 @@ module Buhos
       #puts "There's no method called #{m} here -- please try again."
     end
     def self.method_missing(m, *args, &block)
-      raise "No se como manejar esto"
+      raise "Can't handle this"
     end
   end
 end

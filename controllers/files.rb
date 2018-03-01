@@ -1,6 +1,8 @@
 get '/files/rs/:revision_sistematica_id/assign_to_canonical_documents' do |rs_id|
+  halt_unless_auth('file_admin')
   rs=Revision_Sistematica[rs_id]
-  return 404 if rs.nil?
+
+  raise Buhos::NoReviewIdError, rs_id if !rs
 
 
   require 'pdf-reader'
@@ -47,10 +49,13 @@ end
 
 
 get '/ViewerJS/' do
+  halt_unless_auth('file_view')
   send_file("#{dir_base}/public/ViewerJS/index.html")
 end
 
 get '/ViewerJS/..file/:id/download' do |id|
+  halt_unless_auth('file_view')
+
   archivo=Archivo[id]
   return 404 if archivo.nil?
 
@@ -62,6 +67,8 @@ get '/ViewerJS/..file/:id/download' do |id|
 end
 
 get '/file/:id/download' do |id|
+  halt_unless_auth('file_view')
+
   archivo=Archivo[id]
   return 404 if archivo.nil?
 
@@ -75,6 +82,8 @@ end
 
 
 get '/file/:id/page/:pagina/:formato' do |id,pagina,formato|
+  halt_unless_auth('file_view')
+
   archivo=Archivo[id]
   pagina=pagina.to_i
   return 404 if archivo.nil?
@@ -119,6 +128,8 @@ end
 
 
 get '/file/:id/view' do |id|
+  halt_unless_auth('file_view')
+
   archivo=Archivo[id]
   return 404 if archivo.nil?
 
@@ -132,9 +143,12 @@ end
 
 
 post '/file/assign_to_canonical' do
+  halt_unless_auth('canonical_document_admin')
+
   archivo=Archivo[params['archivo_id']]
-  acd=Archivo_Cd.where(:archivo_id=>archivo.id)
   return 404 if archivo.nil?
+  acd=Archivo_Cd.where(:archivo_id=>archivo.id)
+
 
   if params['cd_id']==""
     acd.delete
@@ -153,6 +167,7 @@ post '/file/assign_to_canonical' do
 end
 
 post '/file/hide_cd' do
+  halt_unless_auth('canonical_document_admin')
   archivo=Archivo[params['archivo_id']]
   cd=Canonico_Documento[params['cd_id']]
   return 404 if archivo.nil? or cd.nil?
@@ -163,17 +178,23 @@ end
 
 
 post '/file/show_cd' do
+  halt_unless_auth('canonical_document_admin')
   archivo=Archivo[params['archivo_id']]
   cd=Canonico_Documento[params['cd_id']]
-  return 404 if archivo.nil? or cd.nil?
+
+  raise NoFileIdError , params['archivo_id'] unless archivo
+  raise NoCdIdError   , params['cd_id'] unless cd
 
   Archivo_Cd.where(:archivo_id=>archivo.id, :canonico_documento_id=>cd.id).update(:no_considerar=>false)
   return 200
 end
 post '/file/unassign_cd' do
+  halt_unless_auth('canonical_document_admin')
   archivo=Archivo[params['archivo_id']]
   cd=Canonico_Documento[params['cd_id']]
-  return 404 if archivo.nil? or cd.nil?
+
+  raise NoFileIdError , params['archivo_id'] unless archivo
+  raise NoCdIdError   , params['cd_id'] unless cd
 
   Archivo_Cd.where(:archivo_id=>archivo.id, :canonico_documento_id=>cd.id).delete
   return 200
@@ -181,7 +202,7 @@ end
 
 
 post '/file/unassign_sr' do
-  archivo=Archivo[params['archivo_id']]
+  halt_unless_auth('review_admin')
   rs=Revision_Sistematica[params['rs_id']]
   return 404 if archivo.nil? or rs.nil?
   Archivo_Rs.where(:archivo_id=>archivo.id, :revision_sistematica_id=>rs.id).delete
@@ -189,6 +210,8 @@ post '/file/unassign_sr' do
 end
 
 post '/file/delete' do
+  halt_unless_auth('file_admin')
+
   archivo=Archivo[params['archivo_id']]
 
   return 404 if archivo.nil?
@@ -201,6 +224,8 @@ end
 # Method put
 
 put '/file/edit_field/:campo' do |field|
+  halt_unless_auth('file_admin')
+
   return 505 unless %w{archivo_nombre archivo_tipo}.include? field
   pk = params['pk']
   value = params['value']

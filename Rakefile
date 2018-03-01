@@ -12,6 +12,8 @@ task :doc do |t|
   sh %{yardoc -e lib_doc/yard_extra.rb *.rb controllers/**/*.rb lib/**/*.rb model/**/*.rb}
 end
 
+
+
 desc "Test with output external coverage"
 task :spec_cov=>[:before_spec, :spec, :after_spec]
 
@@ -39,7 +41,21 @@ end
 
 task :default => :spec
 
+namespace :reflection do
+  desc "Show authorizations"
+  task :auth do |t|
+    require_relative 'lib/buhos/reflection'
+    app=Object.new
+    def app.dir_base
+      File.expand_path(File.dirname(__FILE__))
+    end
+    auth=Buhos::Reflection.get_authorizations(app)
+    puts "Authorizations"
+    puts "=============="
+    puts auth.permits.join("\n")
 
+  end
+end
 
 
 desc "Build .deb package"

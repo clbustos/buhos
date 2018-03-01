@@ -23,7 +23,7 @@ RSpec::Matchers.define :responds_with_no_user_id_error do |code|
     expect(last_response.body).to include(I18n::t(:User))
   end
   failure_message do |actual|
-    "expected route '#{actual}' to responds with 404 status, but responds in another way"
+    "expected route '#{actual}' to responds with 404 status, but responds in another way:#{last_response.body}"
   end
   description do
     "route #{actual} responds with 404 status, and a message with code object and code #{code}"

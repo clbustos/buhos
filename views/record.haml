@@ -5,7 +5,7 @@
 
 %h3=t(:References)
 
-- if permiso("referencias_editar")
+- if auth_to("reference_edit")
   %form{:method=>:post, :action=>url("/record/#{@reg[:id]}/manual_references"), :class=>"form-group"}
     %label{:for=>:referencia_manual}=t(:Manual_references_enter)
     %textarea{:name=>:referencia_manual, :rows=>5, :cols=>30, :class=>"form-control"}

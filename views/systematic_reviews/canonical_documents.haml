@@ -30,17 +30,17 @@
       %input{:type=>:checkbox, :name=>:solo_registros, :class=>"form-control-checkbox", :checked=>@solo_registros, :value=>'true'}
   %input{:type=>:submit, :class=>'btn btn-default '}
 %div{:class=>"btn-group btn-group-sm", :role=>"group"}
-  - if permiso("documentos_canonicos_editar")  or revision_pertenece_a(@revision.id, session['user_id'])
+  - if auth_to("review_admin")  or revision_pertenece_a(@revision.id, session['user_id'])
     %a{:href=>url("/review/#{@revision.id}/repeated_canonical_documents"), :role=>'button', :class=>"btn btn-default"}=t(:Check_duplications)
-  - if permiso("documentos_canonicos_editar")  or revision_pertenece_a(@revision.id, session['user_id'])
+  - if auth_to("review_admin")  or revision_pertenece_a(@revision.id, session['user_id'])
     %a{:href=>url("/references/complete_canonical"), :role=>'button', :class=>"btn btn-default", :tooltip=>"Se revisan todas las referencias con DOI y se le une al canónico correspondiente"}
       %span{:class=>""}
       =t(:References_assign_canonical_documents)
-  - if permiso("documentos_canonicos_editar")  or revision_pertenece_a(@revision.id, session['user_id'])
+  - if auth_to("review_admin")  or revision_pertenece_a(@revision.id, session['user_id'])
     %a{:href=>url("/canonical_documents/review/#{@revision.id}/complete_scopus_abstract")   , :role=>'button', :class=>"btn btn-default"}
       %span{:class=>""}
       =t(:Complete_abstract_using_Scopus)
-  - if permiso("documentos_canonicos_editar")  or revision_pertenece_a(@revision.id, session['user_id'])
+  - if auth_to("review_admin")  or revision_pertenece_a(@revision.id, session['user_id'])
     %a{:href=>url("/canonical_documents/review/#{@revision.id}/automatic_categories")   , :role=>'button', :class=>"btn btn-default"}
       %span{:class=>""}
       =t(:Automatic_categories)

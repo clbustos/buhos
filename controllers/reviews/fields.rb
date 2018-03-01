@@ -1,4 +1,5 @@
 get '/review/:rs_id/fields' do |rs_id|
+  halt_unless_auth('review_view')
   @revision=Revision_Sistematica[rs_id]
   raise Buhos::NoReviewIdError, rs_id if !@revision
 
@@ -7,6 +8,7 @@ get '/review/:rs_id/fields' do |rs_id|
 end
 
 post '/review/:rs_id/new_field' do |rs_id|
+  halt_unless_auth('review_admin')
   @revision=Revision_Sistematica[rs_id]
   raise Buhos::NoReviewIdError, rs_id if !@revision
 
@@ -24,7 +26,7 @@ post '/review/:rs_id/new_field' do |rs_id|
 end
 
 put '/review/edit_field/:campo_id/:campo' do |campo_id,campo|
-
+  halt_unless_auth('review_admin')
   return [500, t('sr_edit_field.invalid', field:campo)] unless %w{orden nombre descripcion tipo opciones}.include? campo
   pk = params['pk']
   value = params['value']
@@ -36,6 +38,7 @@ end
 
 
 get '/review/:rs_id/update_field_table' do |rs_id|
+  halt_unless_auth('review_admin')
   @revision=Revision_Sistematica[rs_id]
   raise Buhos::NoReviewIdError, rs_id if !@revision
   @campos=@revision.campos
@@ -46,6 +49,7 @@ end
 
 
 get '/review/:rs_id/field/:fid/delete' do  |rs_id, fid|
+  halt_unless_auth('review_admin')
   sr_field=Rs_Campo[fid]
   name=sr_field[:nombre]
   return 404 if !sr_field

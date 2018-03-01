@@ -21,17 +21,17 @@ describe 'Buhos::DBAdapter' do
   it 'allows to change model without interference between tests' do
   $db_adapter.use_db(db1)
   $db_adapter.update_model_association
-    expect(Usuario.all.count).to eq(2)
-    Usuario.insert(:login=>"New user",:password=>2, :rol_id=>'administrator')
     expect(Usuario.all.count).to eq(3)
+    Usuario.insert(:login=>"New user",:password=>2, :rol_id=>'administrator')
+    expect(Usuario.all.count).to eq(4)
     expect(Usuario.where(:login=>'New user').count).to eq(1)
 
     $db_adapter.use_db(db2)
     $db_adapter.update_model_association
     expect(Usuario.where(:login=>'New user').count).to eq(0)
-    expect(Usuario.all.count).to eq(2)
-    Usuario.insert(:login=>"New user",:password=>2, :rol_id=>'administrator')
     expect(Usuario.all.count).to eq(3)
+    Usuario.insert(:login=>"New user",:password=>2, :rol_id=>'administrator')
+    expect(Usuario.all.count).to eq(4)
   $db_adapter.use_db(db1)
   $db_adapter.update_model_association
   expect(Usuario.where(:login=>'New user').count).to eq(1)

@@ -1,6 +1,6 @@
 %h2=title(t(:Users))
 
-- if permiso("usuarios_crear")
+- if auth_to("user_admin")
   %a.btn.btn-default{:href=>url("/user/new")}
     %span{:class=>"glyphicon glyphicon-plus"}
     =t(:User_new)

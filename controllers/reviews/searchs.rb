@@ -1,5 +1,5 @@
 get '/review/:id/searchs' do |id|
-  error(403) unless permiso('busquedas_revision_ver')
+  halt_unless_auth('review_view')
   @revision=Revision_Sistematica[id]
 
   raise Buhos::NoReviewIdError, id if !@revision
@@ -15,7 +15,8 @@ get '/review/:id/searchs' do |id|
 end
 
 get '/review/:id/search/new' do |id|
-  error(403) unless permiso('busquedas_revision_crear')
+  halt_unless_auth('search_edit')
+
   require 'date'
 
   @revision=Revision_Sistematica[id]
@@ -29,7 +30,7 @@ get '/review/:id/search/new' do |id|
 end
 
 get '/review/:rs_id/searchs/user/:user_id' do |rs_id,user_id|
-  error(403) unless permiso('busquedas_revision_ver')
+  halt_unless_auth('review_view')
   @revision=Revision_Sistematica[rs_id]
 
   raise Buhos::NoReviewIdError, rs_id if !@revision
@@ -47,6 +48,7 @@ end
 
 
 get '/review/:rs_id/searchs/compare_records' do |rs_id|
+  halt_unless_auth('search_view')
   @revision=Revision_Sistematica[rs_id]
   raise Buhos::NoReviewIdError, rs_id if !@revision
   @cds={}

@@ -1,7 +1,7 @@
 - title(t(:Dashboard_user, :user_name=>@user.nombre))
 %div.main-actions
   .btn-group.btn-group-sm{:role=>:group}
-    - if permiso("revisiones_crear_propia")
+    - if auth_to("review_admin")
       %a.btn.btn-default{:href=>url("/review/new")}
         %span{:class=>"glyphicon glyphicon-plus"}
         =t(:Systematic_review_new)

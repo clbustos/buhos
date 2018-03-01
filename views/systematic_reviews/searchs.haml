@@ -71,7 +71,7 @@
   .alert.alert-warning=t(:No_search_on_systematic_review_for_this_user)
 
 .btn-group.btn-group-sm
-  - if permiso("crear_busqueda_revision") and @user.revisiones_sistematicas_id.include? @revision[:id]
+  - if auth_to("review_analyze") and @user.revisiones_sistematicas_id.include? @revision[:id]
     %a.btn.btn-default{:role=>:button,:href=>url("/review/#{@revision.id}/search/new")}
       %span{:class=>"glyphicon glyphicon-plus"}
       =t(:Search_new)

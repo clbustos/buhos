@@ -4,6 +4,7 @@ module Buhos
     def log
       $log
     end
+
     # Base dir por whole app
     def dir_base
       File.expand_path(File.dirname(__FILE__)+"/../..")

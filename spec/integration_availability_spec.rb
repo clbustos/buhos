@@ -3,7 +3,7 @@ require_relative 'spec_helper'
 # Integration test, that checks the availability of main resources of the system.
 # Just test that every page is available
 
-describe 'Availability of resources on a complete review' do
+describe 'Resources availability:' do
   before(:all) do
     RSpec.configure { |c| c.include RSpecMixin }
 
@@ -18,7 +18,40 @@ describe 'Availability of resources on a complete review' do
     it { expect("/admin/users").to be_available_for_admin}
     it { expect("/admin/groups").to be_available_for_admin}
     it { expect("/admin/roles").to be_available_for_admin}
+
+    # Private methods
+
+    it { expect("/admin/routes").to be_available_for_admin}
+    it { expect("/admin/authorizations").to be_available_for_admin}
   end
+
+  context "when role resources are accessed" do
+    it { expect("/role/guest").to be_available_for_admin}
+    it { expect("/role/guest/edit").to be_available_for_admin}
+
+    it { expect("/role/administrator/edit").to_not be_available_for_admin}
+
+  end
+
+  context "when group resources are accessed" do
+    it { expect("/group/1").to be_available_for_admin}
+    it { expect("/group/1/edit").to be_available_for_admin}
+
+  end
+
+  context "when user resources are accessed" do
+    it { expect("/user/1").to be_available_for_admin}
+    it " route /user/1/edit should be redirect to /user/1 " do
+      login_admin
+      get("/user/1/edit")
+
+      expect(last_response).to be_redirect
+      expect(last_response.header['Location']).to include('/user/1')
+
+    end
+
+  end
+
 
   context "when review resources are accessed" do
     it { expect("/reviews").to be_available_for_admin}
@@ -105,6 +138,8 @@ describe 'Availability of resources on a complete review' do
   end
   context "when references are acceded" do
     it {expect("/reference/19e8abd776da3d40aec0158e8ef105959bd9b57bdb5f64ce07ec3d33a0324334").to be_available_for_admin}
+    it {expect("/reference/19e8abd776da3d40aec0158e8ef105959bd9b57bdb5f64ce07ec3d33a0324334/search_similar").to be_available_for_admin}
+
   end
   context "when canonical documents resources are accessed" do
     it { expect("/canonical_document/1").to be_available_for_admin}
@@ -128,9 +163,6 @@ describe 'Availability of resources on a complete review' do
     it {expect("/tag/2/rs/1/stage/screening_title_abstract/cds").to be_available_for_admin}
   end
 
-  context "when dev resources are accessed" do
-    it {expect("/admin/all_routes").to be_available_for_admin}
-  end
 
   after(:all) do
     @temp=nil

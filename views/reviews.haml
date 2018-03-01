@@ -22,7 +22,7 @@
 
 
 .btn-group
-  - if permiso("revisiones_crear_propia")
+  - if auth_to("review_admin")
     %a{:href=>url("/review/new")}
       %button{:class=>"btn btn-default"}
         %span{:class=>"glyphicon glyphicon-plus"}

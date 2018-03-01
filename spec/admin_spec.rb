@@ -7,18 +7,20 @@ describe 'Buhos administration' do
   before(:all) do
     RSpec.configure { |c| c.include RSpecMixin }
     configure_empty_sqlite
-
   end
 
 
   context "when analyst try to access admin pages" do
-    let(:login) {post '/login' , :user=>'analyst', :password=>'analyst'}
+    before(:each) do
+      post '/login' , :user=>'analyst', :password=>'analyst'
+    end
 
-    it{login;expect('/admin/groups').to be_prohibited}
-    it{login;expect('/group/new').to be_prohibited}
-    it{login;expect('/role/new').to be_prohibited}
-    it{login;expect('/admin/users').to be_prohibited}
-    it{login;expect('/user/new').to be_prohibited}
+    it{expect('/admin/groups').to be_prohibited}
+    it{expect('/group/new').to be_prohibited}
+    it{expect('/role/new').to be_prohibited}
+    it{expect('/admin/users').to be_prohibited}
+    it{expect('/user/new').to be_prohibited}
+    it{expect('/role/new').to be_prohibited}
   end
 
   context "when admin try to access admin pages" do
@@ -28,8 +30,8 @@ describe 'Buhos administration' do
     it {expect('/group/new').to be_available_for_admin}
     it {expect('/admin/users').to be_available_for_admin}
     it {expect('/user/new').to be_available_for_admin}
+    it {expect('/role/new').to be_available_for_admin}
 
-    it {login;permitted_redirect '/role/new'}
   end
   context "when group edit view is acceded" do
     before(:context) do
@@ -95,6 +97,7 @@ describe 'Buhos administration' do
 
 
   after(:all) do
+    @temp=nil
     close_sqlite
   end
 

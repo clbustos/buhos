@@ -1,6 +1,6 @@
 
 post '/resolution/review/:id/canonical_document/:cd_id/stage/:etapa/resolution' do |rev_id, cd_id, etapa|
-
+  halt_unless_auth('review_admin')
   resolucion=params['resolucion']
   user_id=params['user_id']
 

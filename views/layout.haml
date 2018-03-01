@@ -39,15 +39,16 @@
             -if settings.test?
               %span{:class=>"alerta"}="(#{t(:Test_alert)})"
           %ul{:class=>'nav navbar-nav'}
-            -if permiso('ingreso')
+            -if auth_to('review_analyze')
               %li{:class=>''}
                 %a{:class=>'nav-link', :href=>'/'}=t(:My_Dashboard)
+            -if auth_to('message_view')
               %li{:class=>''}
                 %a{:class=>'nav-link', :href=>"/my_messages"}=t(:My_messages)
-            - if permiso('revisiones_administrar')
+            - if auth_to('review_admin')
               %li{:class=>''}
                 %a{:class=>'nav-link', :href=>'/reviews'}=t(:Systematic_reviews)
-            -if permiso('administracion')
+            -if auth_to('user_admin') or auth_to('group_admin') or auth_to('role_admin')
               %li{:class=>'dropdown'}
                 %a{:href=>'#', :class=>'dropdown-toggle', 'data-toggle'=>'dropdown', :role=>'button', 'aria-haspopup'=>'true', 'aria-expanded'=>'false', :id=>'navbarDropdownMenuLink'}
                   =t(:Administration)

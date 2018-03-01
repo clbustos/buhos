@@ -1,5 +1,5 @@
 post '/tags/classes/new' do
-  return 403 unless permiso('tags_edit_class')
+  halt_unless_auth('tag_edit')
   @revision=Revision_Sistematica[params['revision_id']]
   etapa=  params['etapa']
   etapa=nil if etapa=="NIL"
@@ -17,7 +17,8 @@ end
 
 
 put '/tags/classes/edit_field/:campo' do |campo|
-  return 403 unless permiso('tags_edit_class')
+  halt_unless_auth('tag_edit')
+
   pk = params['pk']
   value = params['value']
   value = nil if value=="NIL"
@@ -28,6 +29,8 @@ end
 
 
 put "/tag/edit" do
+  halt_unless_auth('tag_edit')
+
   pk = params['pk']
   value = params['value'].chomp
   return [405,"Debe ingresar algun texto"] if value==""
@@ -36,6 +39,8 @@ put "/tag/edit" do
 end
 
 post '/tags/class/:t_clase_id/add_tag' do |t_clase_id|
+  halt_unless_auth('tag_edit')
+
   t_clase=T_Clase[t_clase_id]
   raise  NoTagClassIdError, t_clase_id if !t_clase
   tag_nombre=params['value'].chomp
@@ -47,6 +52,8 @@ end
 
 
 get '/tag/:tag_id/rs/:rs_id/stage/:stage/cds' do |tag_id, rs_id, stage|
+  halt_unless_auth('review_view')
+
   @tag=Tag[tag_id]
   raise Buhos::NoTagIdError, tag_id if !@tag
   @revision=Revision_Sistematica[rs_id]
@@ -63,6 +70,7 @@ end
 
 
 get '/tag/:tag_id/rs/:rs_id/cds' do |tag_id, rs_id|
+  halt_unless_auth('review_view')
   @tag=Tag[tag_id]
   raise Buhos::NoTagIdError, tag_id if !@tag
 
@@ -84,6 +92,7 @@ end
 
 
 post '/tags/cd/:cd_id/rs/:rs_id/:accion' do |cd_id,rs_id,accion|
+  halt_unless_auth('review_analyze')
   cd=Canonico_Documento[cd_id]
   rs=Revision_Sistematica[rs_id]
   return 405 if cd.nil? or rs.nil?
@@ -120,6 +129,7 @@ end
 
 
 post '/tags/cd_start/:cd_start_id/cd_end/:cd_end_id/rs/:rs_id/:accion' do |cd_start_id,cd_end_id,rs_id,accion|
+  halt_unless_auth('review_analyze')
   cd_start=Canonico_Documento[cd_start_id]
   cd_end=Canonico_Documento[cd_end_id]
   rs=Revision_Sistematica[rs_id]
@@ -158,6 +168,7 @@ end
 
 
 get '/tags/basic_10.json' do
+  halt_unless_auth('review_view')
   require 'json'
   content_type :json
   Tag.order(:texto).limit(10).map {|v|
@@ -170,6 +181,7 @@ end
 
 
 get '/tags/basic_ref_10.json' do
+  halt_unless_auth('review_view')
   require 'json'
   content_type :json
   Tag.order(:texto).limit(10).map {|v|
@@ -181,6 +193,7 @@ get '/tags/basic_ref_10.json' do
 end
 
 get '/tags/query_json/:query' do |query|
+  halt_unless_auth('review_view')
   require 'json'
   content_type :json
 
@@ -195,6 +208,7 @@ end
 
 
 get '/tags/refs/query_json/:query' do |query|
+  halt_unless_auth('review_view')
   require 'json'
   content_type :json
 
@@ -210,6 +224,7 @@ end
 
 
 get '/tags/systematic_review/:rs_id/query_json/:query' do |rs_id,query|
+  halt_unless_auth('review_view')
   require 'json'
   content_type :json
   
@@ -223,6 +238,7 @@ get '/tags/systematic_review/:rs_id/query_json/:query' do |rs_id,query|
 end
 
 get '/tags/systematic_review/:rs_id/ref/query_json/:query' do |rs_id,query|
+  halt_unless_auth('review_view')
   require 'json'
   content_type :json
 
@@ -237,7 +253,8 @@ end
 
 
 
-post '/tag/delete_rs'do
+post '/tag/delete_rs' do
+  halt_unless_auth('tag_edit')
   rs=Revision_Sistematica[params['rs_id']]
   tag=Tag[params['tag_id']]
   return 404 if rs.nil? or tag.nil?

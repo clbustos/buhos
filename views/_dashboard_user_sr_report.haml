@@ -1,6 +1,6 @@
 - n_cuenta=sr.cd_id_por_etapa(etapa).count
 %p=t_desc_value("user_dashboard.count_total_canonical_documents_stage", n_cuenta)
-- if permiso("ver_reportes")
+- if auth_to("review_view")
   .btn-group.btn-group-sm
     %a.btn.btn-default{:href=>"/review/#{sr[:id]}/report/PRISMA/html"}=t(:PRISMA_flow_diagram)
     %a.btn.btn-default{:href=>"/review/#{sr[:id]}/report/fulltext/html"}=t(:Full_text_report)

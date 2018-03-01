@@ -1,5 +1,5 @@
 get '/admin/users/?' do
-  return 403 unless permiso("ver_usuarios")
+  halt_unless_auth('user_admin')
   @usr_bus=params[:usuarios_busqueda]
   if(@usr_bus.nil? or @usr_bus=="")
     @usuarios=[]
@@ -13,7 +13,7 @@ end
 
 
 post '/admin/users/update' do
-  permiso("editar_usuarios")
+  halt_unless_auth('user_admin')
   params['usuario'].each {|id,per|
     if(id=='N')
       if(per["nombre"]!="")

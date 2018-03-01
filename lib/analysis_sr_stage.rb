@@ -70,6 +70,7 @@ class Analysis_SR_Stage
   end
   def decisions_by_cd
     cds=@sr.cd_id_por_etapa(@stage)
+
     decisions=Decision.where(:canonico_documento_id=>cds, :usuario_id=>@sr.grupo_usuarios.map {|u| u[:id]}, :etapa=>@stage.to_s).group_and_count(:canonico_documento_id, :decision).all
     n_jueces=@sr.grupo_usuarios.count
     cds.inject({}) {|ac,v|

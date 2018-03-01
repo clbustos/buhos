@@ -270,57 +270,66 @@ module Buhos
       end
 
     end
+    def self.get_id_user_by_login(db,login)
+      user=db[:usuarios][:login=>login]
+      user ? user[:id] :nil
+    end
     def self.create_bootstrap_data(db,language='en')
       db.transaction do
         db[:roles].replace(:id=>'administrator',:descripcion=>'App administrator')
         db[:roles].replace(:id=>'analyst',:descripcion=>'App analyst')
-        id_admin=db[:usuarios].replace(:login=>'admin',:nombre=>'Administrator', :password=>Digest::SHA1.hexdigest('admin'), :rol_id=>'administrator', :activa=>1, :language=>language)
-        id_analyst=db[:usuarios].replace(:login=>'analyst',:nombre=>'Analyst', :password=>Digest::SHA1.hexdigest('analyst'), :rol_id=>'analyst', :activa=>1, :language=>language)
-        permits=['acceder_crossref',
-          'administracion',
-          'archivos_ver',
-          'busquedas_revision_ver',
-          'busquedas_revision_crear',
-          'crossref_acceder',
-          'documentos_canonicos_editar',
-          'documentos_canonicos_ver',
-          'editar_documentos_canonicos',
-          'editar_roles',
-          'editar_usuarios',
-          'grupos_editar',
-          'grupos_crear',
-          'ingreso',
-          'mensajes_ver',
-          'messages_see_all',
-          'primera_revision_ver',
-          'referencias_editar',
-          'revisiones_administrar',
-          'revisiones_editar',
-          'revision_analizar_propia',
-          'revision_editar',
-          'revision_editar_propia',
-          'screening_references_ver',
-          'review_full_text_ver',
-          'screening_title_abstract_ver',
-          'rs_campos_ver',
-          'scopus_acceder',
-          'tags_ver',
-          'tags_edit_class',
-          'roles_crear',
-          'usuarios_crear',
-          'ver_revisiones',
-          'ver_usuarios',
-          'ver_reportes']
+        db[:roles].replace(:id=>'guest',:descripcion=>'Guest')
+
+        id_admin=get_id_user_by_login(db,'admin')
+        id_admin||=db[:usuarios].replace(:login=>'admin',:nombre=>'Administrator', :password=>Digest::SHA1.hexdigest('admin'), :rol_id=>'administrator', :activa=>1, :language=>language)
+
+        id_analyst=get_id_user_by_login(db,'analyst')
+        id_analyst||=db[:usuarios].replace(:login=>'analyst',:nombre=>'Analyst', :password=>Digest::SHA1.hexdigest('analyst'), :rol_id=>'analyst', :activa=>1, :language=>language)
+
+        id_guest=get_id_user_by_login(db,'guest')
+        id_guest||=db[:usuarios].replace(:login=>'guest',:nombre=>'Guest', :password=>Digest::SHA1.hexdigest('guest'), :rol_id=>'guest', :activa=>1, :language=>language)
+        permits=[
+'canonical_document_admin',
+'canonical_document_view',
+'crossref_query',
+'file_admin',
+'file_view',
+'group_admin',
+'group_view',
+'message_edit',
+'message_view',
+'record_edit',
+'record_view',
+'reference_edit',
+'reference_view',
+'reflection',
+'review_admin',
+'review_analyze',
+'review_edit',
+'review_view',
+'role_admin',
+'role_view',
+'scopus_query',
+'search_edit',
+'search_view',
+'tag_edit',
+'user_admin'
+        ]
             permits.each do |permit|
               db[:permisos].replace(:id=>permit)
               db[:permisos_roles].replace(:permiso_id=>permit,:rol_id=>'administrator')
             end
 
-        analyst_permits=["ingreso","busquedas_revision_ver","documentos_canonicos_ver","revision_analizar_propia","revision_editar_propia", "ver_revisiones","ver_reportes"]
+        analyst_permits=['review_view','review_analyze','message_view', 'message_edit', 'search_view', 'search_edit', 'record_view', 'record_edit', 'reference_view', 'reference_edit', 'file_view', 'canonical_document_view', 'group_view']
         analyst_permits.each do |permit|
-
           db[:permisos_roles].replace(:permiso_id=>permit,:rol_id=>'analyst')
         end
+
+        guest_permits=['review_view','message_view', 'message_edit', 'search_view', 'record_view', 'reference_view', 'file_view', 'canonical_document_view', 'group_view']
+        guest_permits.each do |permit|
+          db[:permisos_roles].replace(:permiso_id=>permit,:rol_id=>'guest')
+        end
+
 
         # Bibliographic databases
 
@@ -351,6 +360,7 @@ module Buhos
         grupo_id=db[:grupos].replace(:administrador_grupo=>id_admin, :description=>"First group, just for demostration", :name=>"demo group")
         db[:grupos_usuarios].replace(:grupo_id=>grupo_id, :usuario_id=>id_admin)
         db[:grupos_usuarios].replace(:grupo_id=>grupo_id, :usuario_id=>id_analyst)
+        db[:grupos_usuarios].replace(:grupo_id=>grupo_id, :usuario_id=>id_guest)
       end
     end
   end

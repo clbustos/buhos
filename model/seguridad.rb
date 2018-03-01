@@ -1,3 +1,7 @@
+class PermisosRol < Sequel::Model
+
+end
+
 class Rol < Sequel::Model(:roles)
 
   many_to_many :permisos, :join_table=>:permisos_roles, :left_key=>:rol_id, :right_key=>:permiso_id
@@ -14,11 +18,14 @@ class Rol < Sequel::Model(:roles)
     PermisosRol.where(:rol_id=>self[:id]).delete
     super
   end
+
+  def add_auth_to(auth)
+    pr=PermisosRol[rol_id:self[:id], permiso_id:auth[:id]]
+    PermisosRol.insert(rol_id:self[:id], permiso_id:auth[:id]) unless pr
+  end
+
 end
 
-class PermisosRol < Sequel::Model
-
-end
 
 class Permiso < Sequel::Model
   many_to_many :roles, :join_table=>:permisos_roles, :left_key=>:permiso_id, :right_key=>:rol_id

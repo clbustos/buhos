@@ -1,4 +1,5 @@
 get '/record/:id' do |id|
+  halt_unless_auth('record_view')
   @reg=Registro[id]
   @referencias=@reg.referencias
   haml "record".to_sym
@@ -6,6 +7,8 @@ end
 
 
 get '/record/:id/search_crossref' do |id|
+  halt_unless_auth('record_edit')
+
   @reg=Registro[id]
   @respuesta=@reg.crossref_query
   # #$log.info(@respuesta)
@@ -14,7 +17,7 @@ end
 
 
 get '/record/:id/assign_doi/:doi' do |id,doi|
-
+  halt_unless_auth('record_edit')
   $db.transaction(:rollback=>:reraise) do
     @reg=Registro[id]
     doi=doi.gsub("***","/")
@@ -26,6 +29,7 @@ end
 
 
 post '/record/:id/manual_references' do |id|
+  halt_unless_auth('record_edit')
   ref_man=params['referencia_manual']
   $db.transaction(:rollback => :reraise) do
     if ref_man

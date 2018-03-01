@@ -1,4 +1,5 @@
 get '/decision/review/:revision_id/user/:usuario_id/canonical_document/:cd_id/stage/:etapa' do |revision_id, usuario_id, cd_id, etapa|
+  halt_unless_auth('review_view')
   revision=Revision_Sistematica[revision_id]
   cd=Canonico_Documento[cd_id]
   ars=AnalysisSystematicReview.new(revision)
@@ -13,6 +14,7 @@ end
 
 
 put '/decision/review/:revision_id/user/:usuario_id/canonical_document/:cd_id/stage/:etapa/commentary' do |revision_id, usuario_id, cd_id, etapa|
+  halt_unless_auth('review_analyze')
   pk = params['pk']
   value = params['value']
   $db.transaction(:rollback => :reraise) do
@@ -30,7 +32,7 @@ end
 
 
 post '/decision/review/:revision_id/user/:usuario_id/canonical_document/:cd_id/stage/:etapa/decision' do |revision_id, usuario_id, cd_id, etapa|
-
+  halt_unless_auth('review_analyze')
   #cd_id=params['pk_id']
   decision=params['decision']
   #usuario_id=params['user_id']

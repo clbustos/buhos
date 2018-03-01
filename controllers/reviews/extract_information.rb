@@ -1,4 +1,5 @@
 get '/review/:sr_id/extract_information/cd/:cd_id' do |sr_id,cd_id|
+  halt_unless_auth('review_view')
   @sr=Revision_Sistematica[sr_id]
 
   raise Buhos::NoReviewIdError, sr_id if !@sr
@@ -42,6 +43,7 @@ end
 
 
 put '/review/:sr_id/extract_information/cd/:cd_id/user/:user_id/update_field' do |sr_id,cd_id,user_id|
+  halt_unless_auth('review_analyze')
 
   @sr=Revision_Sistematica[sr_id]
   raise Buhos::NoReviewIdError, sr_id if !@sr

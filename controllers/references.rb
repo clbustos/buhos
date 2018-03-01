@@ -1,7 +1,18 @@
 require 'net/http'
 require 'cgi'
 
+
+get '/reference/:id' do |id|
+  halt_unless_auth('reference_view')
+  @ref=Referencia[id]
+  @registros=@ref.registros
+  haml :reference
+end
+
+
 get '/reference/:id/search_similar' do |id|
+  halt_unless_auth('reference_edit')
+
   @ref=Referencia[id]
   @ajax=!params['ajax'].nil?
   @distancia=params['distancia'].to_i
@@ -17,6 +28,7 @@ get '/reference/:id/search_similar' do |id|
 end
 
 post '/reference/:id/merge_similar_references' do |id|
+  halt_unless_auth('reference_edit')
   @ref=Referencia[id]
   if (@ref[:canonico_documento_id].nil?)
     raise "No tengo método para unificar sin canonico"
@@ -31,6 +43,7 @@ end
 
 
 get '/references/search_crossref_by_doi/:doi' do |doi|
+  halt_unless_auth('reference_edit')
   doi=doi.gsub("***", "/")
   result=Result.new
   Referencia.where(:doi => doi).each do |ref|
@@ -42,7 +55,7 @@ get '/references/search_crossref_by_doi/:doi' do |doi|
 end
 
 get '/reference/:id/search_crossref' do |id|
-
+  halt_unless_auth('reference_edit')
   @ref=Referencia[id]
 
   if @ref.doi
@@ -61,13 +74,10 @@ get '/reference/:id/search_crossref' do |id|
 
 end
 
-get '/reference/:id' do |id|
-  @ref=Referencia[id]
-  @registros=@ref.registros
-  haml :reference
-end
+
 
 get '/reference/:id/assign_doi/:doi' do |id,doi|
+  halt_unless_auth('reference_edit')
   url=params['volver_url']
   @ref=Referencia[id]
   doi=doi.gsub("***","/")

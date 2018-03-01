@@ -25,15 +25,32 @@ describe 'Reference' do
     end
 
   end
-  context "#buscar_similares is used" do
-    let(:result) {Referencia.exclude(:doi=>nil).first.buscar_similares}
+  context "#buscar_similares is used, without considering references with canonical documents" do
+    let(:result) {Referencia.exclude(:doi=>nil).first.buscar_similares(100)} # We use 100 to speed the process
     it "should return an array" do
       expect(result).to be_a(Array)
     end
     it "every element should have fields :id, :canonico_documento_id, :texto, :distancia" do
       expect(result.all? {|v|  v.keys.sort==[:canonico_documento_id, :distancia, :id, :texto] }).to be true
     end
+    it "no element should have canonico_documento_id assigned" do
+      expect(result.all? {|v|  v[:canonico_documento_id].nil? }).to be true
+    end
   end
+
+  context "#buscar_similares is used, considering references with canonical documents" do
+    let(:result) {Referencia.exclude(:doi=>nil).first.buscar_similares(100, false)}
+    it "should return an array" do
+      expect(result).to be_a(Array)
+    end
+    it "every element should have fields :id, :canonico_documento_id, :texto, :distancia" do
+      expect(result.all? {|v|  v.keys.sort==[:canonico_documento_id, :distancia, :id, :texto] }).to be true
+    end
+    it "at least one element should have canonico_documento_id assigned" do
+      expect(result.any? {|v|  !v[:canonico_documento_id].nil? }).to be true
+    end
+  end
+
 
   context "#add_doi when no DOI exists" do
     before(:context) do
@@ -56,8 +73,5 @@ describe 'Reference' do
       expect(ref[:canonico_documento_id]).to eq(cd[:id])
     end
   end
-
-
-
 
 end

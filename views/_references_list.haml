@@ -15,7 +15,7 @@
         %a{:href=>url("/canonical_document/#{ref[:id]}"), :role=>:button, :class=>"btn btn-success btn-sm"}
           %span{:class=>"glyphicon glyphicon-king"}
           =t(:Canonical)
-        - if permiso("referencias_editar")
+        - if auth_to("reference_edit")
           %a{:href=>url("/canonical_document/#{ref[:id]}/clean_references"), :role=>:button, :class=>"btn btn-default btn-sm"}
             %span{:class=>"glyphicon glyphicon-erase"}
             =t(:Clear_references)
@@ -34,7 +34,7 @@
       - if ref[:doi]
         =a_doi(ref[:doi])
       .btn-group
-        - if permiso("referencias_editar") and permiso("acceder_crossref")
+        - if auth_to('reference_edit') and auth_to('crossref_query')
           %a{:href=>url("/reference/#{ref[:id]}/search_crossref"), :role=>:button, :class=>"btn btn-default btn-sm"}
             %span{:class=>"glyphicon glyphicon-search"}
             =t(:Search_on_Crossref)

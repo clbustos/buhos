@@ -1,10 +1,12 @@
 get '/admin/groups' do
-  error(403) unless permiso('grupos_editar')
+  halt_unless_auth('group_admin')
   @grupos=Grupo.all
   haml :groups
 end
 
+
 get "/group/:id/edit" do |id|
+  halt_unless_auth('group_admin')
   @grupo=Grupo[id]
   @usuarios_id=@grupo.usuarios.map {|v| v.id}
   haml %s{groups/edit}
@@ -12,14 +14,23 @@ end
 
 
 get '/group/new' do
-  error(403) unless permiso('grupos_crear')
-
+  halt_unless_auth('group_admin')
   @grupo={:id=>"NA",:description=>"",:administrador_grupo=>nil}
   @usuarios_id=[]
   haml %s{groups/edit}
 end
+get "/group/:id" do |id|
+  halt_unless_auth('group_view')
+  @grupo=Grupo[id]
+  @usuarios_id=@grupo.usuarios.map {|v| v.id}
+  haml %s{groups/view}
+end
+
+
 
 get '/group/:id/datos.json' do |id|
+  halt_unless_auth('group_view')
+
   require 'json'
   @grupo=Grupo[id]
   content_type :json
@@ -31,7 +42,7 @@ get '/group/:id/datos.json' do |id|
   }.to_json
 end
 post '/group/update' do
-  error(403) unless permiso('grupos_editar')
+  halt_unless_auth('group_admin')
 
   id=params['grupo_id']
   name=params['name']
@@ -58,7 +69,7 @@ post '/group/update' do
 end
 
 get '/group/:grupo_id/delete' do |grupo_id|
-  error(403) unless permiso('grupos_editar')
+  halt_unless_auth('group_admin')
   @grupo=Grupo[grupo_id]
   error(404) unless @grupo
   group_name=@grupo[:name]

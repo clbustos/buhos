@@ -4,13 +4,14 @@ describe 'Stage administration' do
   before(:all) do
     RSpec.configure { |c| c.include RSpecMixin }
     @temp=configure_complete_sqlite
-    post '/login' , :user=>'admin', :password=>'admin'
+    login_admin
   end
   def accept_yes
     get '/review/1/stage/screening_title_abstract/pattern/yes_0__no_2__undecided_0__ND_0/resolution/yes'
   end
   def remove_assignations
     get '/review/1/stage/screening_title_abstract/rem_assign_user/1/all'
+    get '/review/1/stage/screening_title_abstract/rem_assign_user/2/all'
   end
   def res_sta
     $db["SELECT resolucion,COUNT(*) as n FROM resoluciones WHERE revision_sistematica_id=1 and etapa='screening_title_abstract' GROUP BY resolucion"].to_hash(:resolucion)
@@ -38,9 +39,15 @@ describe 'Stage administration' do
   end
 
   context "when accept to 'yes' on 2 'no' decisions on sta" do
+    before(:all) do
+      accept_yes
+    end
+    it "should response be ok" do
 
-    it "should have 78 yes resolutions" do accept_yes; expect(res_sta['yes'][:n]).to eq(78) end
-    it "should have 7 no resolutions"   do accept_yes; expect(res_sta['no'][:n]).to eq(7) end
+      expect(last_response).to be_redirect
+    end
+    it "should have 78 yes resolutions" do expect(res_sta['yes'][:n]).to eq(78) end
+    it "should have 7 no resolutions"   do expect(res_sta['no'][:n]).to eq(7) end
   end
 
 
@@ -89,6 +96,19 @@ describe 'Stage administration' do
       expect(assignations_admin['screening_title_abstract'][:n]).to eq(1)
     end
   end
+
+  context "when assign all document without previous assignation on sta" do
+
+    before(:context) do
+      remove_assignations
+      post '/canonical_document/user_assignation/asignar', {rs_id:1, cd_id:64, user_id:2, stage:'screening_title_abstract'}
+      get '/review/1/stage/screening_title_abstract/add_assign_user/1/without_assignation'
+    end
+    it "should have 84 assignations on sta" do
+      expect(assignations_admin['screening_title_abstract'][:n]).to eq(84)
+    end
+  end
+
   context "when bibtex is retrieved" do
     before(:context) do
       get '/review/1/stage/report/generate_bibtex'
@@ -97,6 +117,7 @@ describe 'Stage administration' do
     it "should content type be text/x-bibtex" do expect(last_response.header['Content-Type']).to include('text/x-bibtex') end
     it "should content-disposition is attachment and include .bib" do expect(last_response.header['Content-Disposition']).to match(/attachment.+\.bib/) end
   end
+
   context "when doi list is retrieved" do
     before(:context) do
       get '/review/1/stage/report/generate_doi_list'

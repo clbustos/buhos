@@ -1,7 +1,9 @@
 require 'simplecov'
-SimpleCov.start do
-  add_filter '/spec/'
-  add_filter 'lib/scopus/connection.rb' # Is necessary an API scopus to test it
+unless ENV['NO_COV']
+  SimpleCov.start do
+    add_filter '/spec/'
+    add_filter 'lib/scopus/connection.rb' # Is necessary an API scopus to test it
+  end
 end
 require 'sequel'
 require 'rspec'
@@ -108,8 +110,9 @@ module RSpecMixin
 
   def close_sqlite
     $log.info("Closing #{$db}")
-    #@tempfile.unlink
-
+    #$db.disconnect
+    #$db_adapter.use_db(nil)
+    #$db=nil
 
   end
 

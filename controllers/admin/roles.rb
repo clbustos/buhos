@@ -1,33 +1,49 @@
 get '/admin/roles' do
+  halt_unless_auth('role_admin')
   @roles=Rol
   @permisos=Permiso.order(:id)
   haml "admin/roles".to_sym
 end
 
-post '/admin/roles/update' do
-  error(403) unless permiso('editar_roles')
-  roles=params['permisos']
-  roles.each {|rol_i, permisos|
-    PermisosRol.where(:rol_id=>rol_i).delete
-      permisos.each {|permiso_i|
-        PermisosRol.insert(:rol_id=>rol_i,:permiso_id=>permiso_i)
-      }
-  }
-  redirect back
-end
-
-
-
 
 get '/role/new' do
-  error(403) unless permiso('roles_crear')
+  halt_unless_auth('role_admin')
+
+
   role_id="Role #{Digest::SHA1.hexdigest(DateTime.now.to_s)}"
-  Rol.insert(:id=>role_id, :descripcion=>"Por completar")
-  redirect "role/#{role_id}/edit"
+  Rol.unrestrict_primary_key
+
+  @role=Rol.create({:id=>role_id, :descripcion=>I18n::t('Description')})
+  @permisos=Permiso.order(:id)
+
+  haml "admin/role_edit".to_sym
 end
+
+
+get '/role/:id' do |role_id|
+
+  halt_unless_auth('role_view')
+
+  @role=Rol[role_id]
+  raise Buhos::NoRoleIdError, role_id if @role.nil?
+  @permisos=Permiso.order(:id)
+  haml "admin/role_view".to_sym
+end
+
+
+
+
+
+
+
 
 
 get '/role/:role_id/edit' do |role_id|
+  halt_unless_auth('role_admin')
+
+  halt 403, t(:"sinatra_auth.nobody_can_edit_these_roles") if ["administrator","analyst"].include? role_id
+
+
   @role=Rol[role_id]
   @permisos=Permiso.order(:id)
 
@@ -36,7 +52,8 @@ get '/role/:role_id/edit' do |role_id|
 end
 
 get '/role/:role_id/delete' do |role_id|
-  error(403) unless permiso('editar_roles')
+  halt_unless_auth('role_admin')
+
   error(403) if role_id=="administrator" or role_id=="analyst"
   Rol[role_id].delete
   agregar_mensaje(t(:Role_deleted_name, role:role_id))
@@ -44,6 +61,8 @@ get '/role/:role_id/delete' do |role_id|
 end
 
 post '/role/update' do
+  halt_unless_auth('role_admin')
+
   old_id=params['role_id_old']
   new_id=params['role_id_new']
 
@@ -55,8 +74,7 @@ post '/role/update' do
   @role=Rol[old_id]
   return 404 if !@role
   exists_another=Rol[new_id]
-  if !exists_another
-
+  if old_id==new_id or !exists_another
   $db.transaction(:rollback=>:reraise) do
     PermisosRol.where(:rol_id=>old_id).delete
 
