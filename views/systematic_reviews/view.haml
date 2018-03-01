@@ -31,10 +31,10 @@
     %span{ :name=>"palabras_claves"}=@revision[:palabras_claves]
   %div{:class=>"list-group-item"}
     %span{:class=>"titulo"}=t(:Group)
-    %span=@revision.grupo_nombre
+    %span=@revision.group_name
   %div{:class=>"list-group-item"}
     %span{:class=>"titulo"}=t(:Stage)
-    %span=t(Revision_Sistematica.get_nombre_etapa(@revision[:etapa]))
+    %span=t(get_stage_name(@revision[:etapa]))
   -if !@revision.grupo.nil?
     %div{:class=>"list-group-item"}
       %span{:class=>"titulo"}=t(:Administrator)

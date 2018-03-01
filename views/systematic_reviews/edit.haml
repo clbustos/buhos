@@ -67,7 +67,7 @@
         %option{:value=>i, :selected=>i==@revision.n_min_rr_rtr}=i
   %div{:class=>"form-group"}
     %label{:for=>"etapa"}=t(:Stage)
-    -Revision_Sistematica::ETAPAS_NOMBRE.each do |etapa_id,etapa_nombre|
+    -get_stages_names.each do |etapa_id,etapa_nombre|
       %input{:class=>"form-check-input",:type=>"radio", :name=>"etapa", :value=>etapa_id, :checked=>etapa_id.to_s==@revision[:etapa]}=t(etapa_nombre)
 
   %div{:class=>"form-group"}

@@ -26,7 +26,7 @@ class Rs_Campo <Sequel::Model
         ac[v[0]]=v[1];ac
       }
       #$log.info(campos_existentes)
-      rs.campos.each do |campo|
+      rs.fields.each do |campo|
         nombre=campo[:nombre]
         if campos_existentes[nombre.to_sym]
 

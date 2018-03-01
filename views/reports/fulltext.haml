@@ -31,7 +31,7 @@
 
 %h4=t("fulltext_report.custom_form")
 - @report.fields.each_pair do |campo_id, campo|
-  - @sr.grupo_usuarios.each do |gu|
+  - @sr.group_users.each do |gu|
     - analysis_cd=@report.analisis_rs.where(:usuario_id=>gu[:id], :canonico_documento_id=>@report.cd_h.keys).order(:canonico_documento_id)
     - if analysis_cd.empty?
       %p

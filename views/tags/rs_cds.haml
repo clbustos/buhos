@@ -1,6 +1,6 @@
 .heading
   - if @stage
-    =t_systematic_review_title(@revision[:nombre], I18n::t("systematic_review_page.cd_for_tag_stage", tag_text:@tag.texto, stage: t(Revision_Sistematica.get_nombre_etapa(@stage)) ), false)
+    =t_systematic_review_title(@revision[:nombre], I18n::t("systematic_review_page.cd_for_tag_stage", tag_text:@tag.texto, stage: t(get_stage_name(@stage)) ), false)
   - else
     =t_systematic_review_title(@revision[:nombre], I18n::t("systematic_review_page.cd_for_tag", tag_text:@tag.texto), false)
 %table.table.table-bordered.table-condensed

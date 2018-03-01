@@ -131,7 +131,7 @@ helpers Sinatra::Mobile
 helpers DOIHelpers
 helpers HTMLHelpers
 helpers Buhos::Helpers
-
+helpers Buhos::StagesMixin
 
 
 

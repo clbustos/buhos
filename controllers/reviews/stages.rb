@@ -173,7 +173,7 @@ get '/review/:rev_id/stage/:stage/generate_bibtex' do |rev_id, stage|
   halt_unless_auth('review_view')
   @revision=Revision_Sistematica[rev_id]
   raise Buhos::NoReviewIdError, rev_id if !@revision
-  canonicos_id=@revision.cd_id_por_etapa(stage)
+  canonicos_id=@revision.cd_id_by_stage(stage)
   @canonicos_resueltos=Canonico_Documento.where(:id=>canonicos_id).order(:author,:year)
 
   bib=ReferenceIntegrator::BibTex::Writer.generate(@canonicos_resueltos)
@@ -188,7 +188,7 @@ get '/review/:rev_id/stage/:stage/generate_doi_list' do |rev_id, stage|
   halt_unless_auth('review_view')
   @revision=Revision_Sistematica[rev_id]
   raise Buhos::NoReviewIdError, rev_id if !@revision
-  canonicos_id=@revision.cd_id_por_etapa(stage)
+  canonicos_id=@revision.cd_id_by_stage(stage)
   @canonicos_resueltos=Canonico_Documento.where(:id=>canonicos_id).order(:author,:year).exclude(:doi=>nil)
   dois=@canonicos_resueltos.map {|v| v.doi}.join("\n")
 

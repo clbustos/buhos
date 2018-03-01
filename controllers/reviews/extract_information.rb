@@ -9,7 +9,7 @@ get '/review/:sr_id/extract_information/cd/:cd_id' do |sr_id,cd_id|
   @user=Usuario[session['user_id']]
   return 404 if @sr.nil? or @cd.nil?
   @stage='review_full_text'
-  cds_id=@sr.cd_id_por_etapa(@stage)
+  cds_id=@sr.cd_id_by_stage(@stage)
 
   if !cds_id.include?(cd_id.to_i)
     add_message(t(:Canonical_documento_not_assigned_to_this_systematic_review), :error)

@@ -1,7 +1,7 @@
 .header=t_systematic_review_title(@sr[:nombre], :Process_report)
 %p.instructions=t("process_report.instructions")
 
-- @sr.etapas_avanzadas.each do |stage|
+- @sr.current_stages.each do |stage|
   - next if stage==:report
-  %h4=t(Revision_Sistematica.get_nombre_etapa(stage))
+  %h4=t(get_stage_name(stage))
   =partial("report_process_#{stage}", :locals=>{sr:@sr, ars:@ars, stage:stage, report:@report})

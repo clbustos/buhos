@@ -195,7 +195,7 @@ get '/review/:id/tags' do |id|
   halt_unless_auth('review_view')
   @revision=Revision_Sistematica[id]
   raise Buhos::NoReviewIdError, id if !@revision
-  @etapas_lista={:NIL=>"--Todas--"}.merge(Revision_Sistematica::ETAPAS_NOMBRE)
+  @etapas_lista={:NIL=>"--Todas--"}.merge(get_stages_names)
 
   @select_etapa=get_xeditable_select(@etapas_lista, "/tags/classes/edit_field/etapa","select_etapa")
   @select_etapa.nil_value=:NIL
@@ -244,7 +244,7 @@ get '/review/:id/files' do |id|
   @modal_archivos=get_modal_files
 
   @canonicos_documentos_h=@revision.canonicos_documentos.order(:title).as_hash
-  @cd_validos_id=@revision.cd_id_por_etapa(@revision.etapa)
+  @cd_validos_id=@revision.cd_id_by_stage(@revision.etapa)
   @cd_validos=@canonicos_documentos_h.find_all {|v| @cd_validos_id.include? v[0]}.map{|v| v[1]}
   @usuario=Usuario[session['user_id']]
   haml %s{systematic_reviews/files}
@@ -285,10 +285,10 @@ get '/review/:id/advance_stage' do |id|
 
   @ars=AnalysisSystematicReview.new(@revision)
   if (@ars.stage_complete?(@revision.etapa))
-    etapa_i=Revision_Sistematica::ETAPAS.index(@revision[:etapa].to_sym)
+    etapa_i=get_stages_ids.index(@revision[:etapa].to_sym)
     #$log.info(etapa_i)
     return 405 if etapa_i.nil?
-    @revision.update(:etapa=>Revision_Sistematica::ETAPAS[etapa_i+1])
+    @revision.update(:etapa=>get_stages_ids[etapa_i+1])
     add_message(I18n::t(:stage_complete))
     redirect("/review/#{@revision[:id]}/administration/#{@revision[:etapa]}")
   else

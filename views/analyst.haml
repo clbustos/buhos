@@ -4,6 +4,6 @@
 - @rss.each do |rs|
   %h3=rs[:nombre]
   %ul.list-group
-    - rs.etapas_avanzadas.each do |etapa|
+    - rs.current_stages.each do |etapa|
       %li.list-group-item
-        %a{:href=>"/review/#{rs[:id]}/#{etapa}"}=t(Revision_Sistematica::ETAPAS_NOMBRE[etapa])
+        %a{:href=>"/review/#{rs[:id]}/#{etapa}"}=t(get_stages_names[etapa])

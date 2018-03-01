@@ -1,5 +1,8 @@
 module Buhos
   module Helpers
+
+
+
     # Provides log access
     def log
       $log
@@ -29,6 +32,11 @@ module Buhos
       end
 
     end
+
+
+
+
+
     # Entrega el valor para un id de configuración
     def config_get(id)
       Configuracion.get(id)

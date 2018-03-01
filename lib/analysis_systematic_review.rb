@@ -6,7 +6,7 @@ require_relative 'analysis_sr_stage_mixin'
 
 class AnalysisSystematicReview
   include AnalysisSrStageMixin
-
+  include Buhos::StagesMixin
   attr_reader :rs
   # Id for canonical documents associated to records
   attr_reader :cd_reg_id
@@ -96,7 +96,7 @@ end
 private :process_cite_number
 
 def procesar_resoluciones
-  @cd_resoluciones=Revision_Sistematica::ETAPAS.inject({}) do |ac,etapa|
+  @cd_resoluciones=get_stages_ids.inject({}) do |ac,etapa|
     ac[etapa]=Resolucion.where(:revision_sistematica_id=>@rs.id, :etapa=>etapa.to_s).as_hash(:canonico_documento_id)
     ac
   end

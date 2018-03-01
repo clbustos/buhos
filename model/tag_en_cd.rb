@@ -4,7 +4,7 @@ class Tag_En_Cd < Sequel::Model
   def self.cds_rs_tag(revision,tag,solo_pos=false,etapa=nil)
     sql_lista_cd=""
     if etapa
-      sql_lista_cd=" AND cd.id IN (#{revision.cd_id_por_etapa(etapa).join(',')})"
+      sql_lista_cd=" AND cd.id IN (#{revision.cd_id_by_stage(etapa).join(',')})"
     end
     sql_having=solo_pos ? " HAVING n_pos>0 ":""
     #$db["SELECT cd.*,SUM(IF(decision='yes',1,0)) n_pos, SUM(IF(decision='no',1,0))  n_neg FROM tags_en_cds tcd INNER JOIN canonicos_documentos cd ON tcd.canonico_documento_id=cd.id WHERE tcd.tag_id=? AND tcd.revision_sistematica_id=? #{sql_lista_cd} GROUP BY canonico_documento_id #{sql_having}", tag.id,revision.id]

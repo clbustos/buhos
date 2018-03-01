@@ -1,5 +1,5 @@
 .heading
-  =t_systematic_review_title(@revision[:nombre], t("systematic_review_page.complete_empty_abstract")+". "+t(:Stage_title, :stage_name=>t(Revision_Sistematica.get_nombre_etapa(@stage))),false)
+  =t_systematic_review_title(@revision[:nombre], t("systematic_review_page.complete_empty_abstract")+". "+t(:Stage_title, :stage_name=>t(get_stage_name(@stage))),false)
 
 %ul.breadcrumb
   %li
@@ -9,7 +9,7 @@
   %li
     %a{:href=>url("/review/#{@revision[:id]}/administration_stages")}=t(:Administration)
   %li
-    %a{:href=>url("/reviews/#{@revision[:id]}/administration/#{@stage}")}=t(Revision_Sistematica.get_nombre_etapa(@stage))
+    %a{:href=>url("/reviews/#{@revision[:id]}/administration/#{@stage}")}=t(get_stage_name(@stage))
   %li{:class=>:active}
     =t("systematic_review_page.complete_empty_abstract")
 

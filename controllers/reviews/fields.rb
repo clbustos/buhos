@@ -3,7 +3,7 @@ get '/review/:rs_id/fields' do |rs_id|
   @revision=Revision_Sistematica[rs_id]
   raise Buhos::NoReviewIdError, rs_id if !@revision
 
-  @campos=@revision.campos
+  @campos=@revision.fields
   haml %s{systematic_reviews/fields}
 end
 
@@ -14,7 +14,7 @@ post '/review/:rs_id/new_field' do |rs_id|
 
   nombre=params['nombre'].chomp
 
-  @campo_previo=@revision.campos.where(:nombre=>nombre)
+  @campo_previo=@revision.fields.where(:nombre=>nombre)
   if @campo_previo.empty?
     Rs_Campo.insert(:revision_sistematica_id=>rs_id, :orden=>params['orden'],:nombre=>nombre, :descripcion=>params['descripcion'], :tipo=>params['tipo'].chomp,:opciones=>params['opciones'])
     add_message(t('sr_new_sr_edit_field.doesnt_existfield.success', name:params['nombre']))
@@ -41,7 +41,7 @@ get '/review/:rs_id/update_field_table' do |rs_id|
   halt_unless_auth('review_admin')
   @revision=Revision_Sistematica[rs_id]
   raise Buhos::NoReviewIdError, rs_id if !@revision
-  @campos=@revision.campos
+  @campos=@revision.fields
   Rs_Campo.actualizar_tabla(@revision)
   add_message(t("fields.sr_table_update_success"))
   redirect back

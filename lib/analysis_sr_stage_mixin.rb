@@ -37,7 +37,7 @@ module AnalysisSrStageMixin
 # provides a hash, with keys containing the users decisions and values
 # with the pattern for resolutions
   def resolutions_f_pattern_decision(etapa)
-    cds = @rs.cd_id_por_etapa(etapa)
+    cds = @rs.cd_id_by_stage(etapa)
     rpc = resolution_by_cd(etapa)
     dpc = decisions_by_cd(etapa)
     cds.inject({}) {|ac, cd_id|
@@ -59,7 +59,7 @@ module AnalysisSrStageMixin
 
 # Señala cuales son los jueces (personas de deben evaluar) y cuantos juicios tienen
   def user_decisions(etapa)
-    @rs.grupo_usuarios.inject({}) {|ac, usuario|
+    @rs.group_users.inject({}) {|ac, usuario|
       ac[usuario.id] = {usuario: usuario, adu: AnalysisUserDecision.new(@rs.id, usuario.id, etapa)}
       ac
     }

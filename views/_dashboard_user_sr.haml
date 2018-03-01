@@ -2,15 +2,15 @@
 - es_administrador=udi.is_administrator_sr?(sr)
 - if udi.unread_sr_messages(sr[:id]).count>0
   %p=t_desc_value("user_dashboard.unread_sr_messages", a_tag("/user/#{user[:id]}/messages#sr_#{sr[:id]}",  t("user_dashboard.check_n_unread_messages", count:@udi.unread_sr_messages(sr[:id]).count)))
-- et_av=sr.etapas_avanzadas
+- et_av=sr.current_stages
 %div
   %ul.nav.nav-tabs{:role=>:tablist}
-    - Revision_Sistematica::ETAPAS.each do |etapa|
+    - get_stages_ids.each do |etapa|
       - if etapa==:report
         - clase_sr = sr.etapa.to_sym==etapa ? "active" : "default"
         %li{:role=>'presentation', :class=> clase_sr  }
           %a{:href=>"#sr-#{sr.id}-#{etapa}", "data-toggle"=>"tab"}
-            =t(Revision_Sistematica.get_nombre_etapa(etapa))
+            =t(get_stage_name(etapa))
             %br
             -clase_bt_sr = sr.etapa.to_sym==etapa ? "primary" : "default"
             %button{:style=>"margin-top:1em;", :class=>"btn btn-default btn-sm btn-#{clase_bt_sr}"}= sr.etapa.to_sym==etapa ? t(:Report_final) : t(:Report_partial)
@@ -20,12 +20,12 @@
         - a_url = et_av.include?(etapa) ? "#sr-#{sr.id}-#{etapa}" : "#"
         %li{:role=>'presentation', :class=> clase_sr  }
           %a{:href=>a_url, "data-toggle"=>"tab"}
-            =t(Revision_Sistematica.get_nombre_etapa(etapa))
+            =t(get_stage_name(etapa))
             %br
             -clase_bt_sr = sr.etapa.to_sym==etapa ? "primary" : ( et_av.include?(etapa) ? "success" : "pending" )
             %button{:style=>"margin-top:1em;", :class=>"btn btn-default btn-sm btn-#{clase_bt_sr}"}= sr.etapa.to_sym==etapa ? t(:current) : ( et_av.include?(etapa) ? t(:complete) : t(:pending) )
   %div{:class=>"tab-content"}
-    - Revision_Sistematica::ETAPAS.each do |etapa_visualizar|
+    - get_stages_ids.each do |etapa_visualizar|
       - adu=udi.adu_for_sr(sr,etapa_visualizar)
       %div{:id=>"sr-#{sr.id}-#{etapa_visualizar}", :class=>"tab-pane #{etapa_visualizar==sr[:etapa].to_sym ? 'active' : ''}"}
         %p

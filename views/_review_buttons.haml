@@ -1,4 +1,4 @@
-- etapas_avanzadas=r.etapas_avanzadas
+- etapas_avanzadas=r.current_stages
 %div{:class=>"btn-group btn-group-sm", :role=>'group'}
   - if auth_to("review_edit") or revision_pertenece_a(r.id, session['user_id'])
     %a{:role=>:button, :href=>url("/review/#{r.id}/edit"), :class=>"btn btn-default"}

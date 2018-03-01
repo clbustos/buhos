@@ -1,5 +1,5 @@
 - # parametros: revision, cd
-- usuarios_grupos=revision.grupo_usuarios
+- usuarios_grupos=revision.group_users
 - user_asignaciones=Asignacion_Cd.where(:revision_sistematica_id=>revision[:id], :canonico_documento_id=>cd[:id], :etapa=>stage ).to_hash(:usuario_id)
 - if @usuario_asignaciones_js.nil?
   - @usuario_asignaciones_js=true

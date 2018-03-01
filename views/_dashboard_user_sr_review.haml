@@ -4,13 +4,13 @@
   %p
     %a{:href=>"/review/#{sr[:id]}/administration/#{etapa}"}
       %snap.glyphicon.glyphicon-tower
-      =t_desc_value("user_dashboard.count_total_canonical_documents_stage", sr.cd_id_por_etapa(etapa).count)
+      =t_desc_value("user_dashboard.count_total_canonical_documents_stage", sr.cd_id_by_stage(etapa).count)
   - if ars.resolution_pattern(etapa)[Resolucion::NO_RESOLUCION].to_i>0
     %p
       %snap.glyphicon.glyphicon-tower
       =t_desc_value("user_dashboard.count_canonical_document_without_resolution", a_tag("/review/#{ sr[:id] }/administration/#{etapa}#decision_statistics",  t("user_dashboard.check_n_canonical_documents_without_resolution", count:ars.resolution_pattern(etapa)[Resolucion::NO_RESOLUCION])))
 - else
-  %p=t_desc_value("user_dashboard.count_total_canonical_documents_stage", sr.cd_id_por_etapa(etapa).count)
+  %p=t_desc_value("user_dashboard.count_total_canonical_documents_stage", sr.cd_id_by_stage(etapa).count)
 %p=t_desc_value("user_dashboard.count_canonical_document_assigned", a_tag("/review/#{sr[:id]}/#{etapa}", t("user_dashboard.check_n_assigned_canonical_documents", count: n_cd_assigned) ) )
 - if adu.total_decisiones[Decision::NO_DECISION].to_i>0
   %p=t_desc_value("user_dashboard.count_canonical_document_without_decision", a_tag("/review/#{ sr[:id] }/#{ etapa }?busqueda=#{ Decision::NO_DECISION }", t("user_dashboard.check_n_undecided_canonical_documents", count: adu.total_decisiones[Decision::NO_DECISION])))

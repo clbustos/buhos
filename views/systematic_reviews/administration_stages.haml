@@ -10,7 +10,7 @@
   %li{:class=>"active"}=t(:Administration)
 
 %ul
-  - @revision.etapas_avanzadas.each do |etapa|
+  - @revision.current_stages.each do |etapa|
     %li
       %a{:href=>"/review/#{@revision[:id]}/administration/#{etapa}"}
-        =t(Revision_Sistematica::ETAPAS_NOMBRE[etapa])
+        =t(get_stages_names[etapa])

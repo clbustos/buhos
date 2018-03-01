@@ -5,9 +5,9 @@ module ReportBuilder
       @sr=sr
       @app=app
       @ars=AnalysisSystematicReview.new(sr)
-      @cd_h=Canonico_Documento.where(:id=>@sr.cd_id_por_etapa(:report)).to_hash
+      @cd_h=Canonico_Documento.where(:id=>@sr.cd_id_by_stage(:report)).to_hash
       @analisis_rs=@sr.analisis_cd
-      @fields=@sr.campos.to_hash(:nombre)
+      @fields=@sr.fields.to_hash(:nombre)
     end
 
     def output(format)

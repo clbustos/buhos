@@ -20,7 +20,7 @@ get '/review/:id/administration/:etapa' do |id,etapa|
   @ars=AnalysisSystematicReview.new(@revision)
   @cd_without_assignation=@ars.cd_without_allocations(etapa)
 
-  @cds_id=@revision.cd_id_por_etapa(etapa)
+  @cds_id=@revision.cd_id_by_stage(etapa)
   @cds=Canonico_Documento.where(:id=>@cds_id)
   @archivos_por_cd=$db["SELECT a.*,cds.canonico_documento_id FROM archivos a INNER JOIN archivos_cds cds ON a.id=cds.archivo_id INNER JOIN archivos_rs ars ON a.id=ars.archivo_id WHERE revision_sistematica_id=? AND (cds.no_considerar = ? OR cds.no_considerar IS NULL)", @revision.id , 0].to_hash_groups(:canonico_documento_id)
   ## Aquí calcularé cuantos si y no hay por categoría
@@ -41,7 +41,7 @@ get '/review/:id/administration/:etapa' do |id,etapa|
     @categorizador=nil
   end
   #  $log.info(p_aprobaciones_categoria)
-  @nombre_etapa=Revision_Sistematica.get_nombre_etapa(@etapa)
+  @nombre_etapa=get_stage_name(@etapa)
 
   @usuario_id=session['user_id']
   @modal_archivos=get_modal_files
@@ -134,7 +134,7 @@ get '/review/:rev_id/administration/:stage/cd_assignations' do |rev_id, stage|
   @revision=Revision_Sistematica[rev_id]
   raise Buhos::NoReviewIdError, rev_id if !@revision
 
-  @cds_id=@revision.cd_id_por_etapa(stage)
+  @cds_id=@revision.cd_id_by_stage(stage)
   @ars=AnalysisSystematicReview.new(@revision)
   @stage=stage
   @cds=Canonico_Documento.where(:id=>@cds_id).order(:author)
@@ -163,7 +163,7 @@ get '/review/:rev_id/stage/:stage/add_assign_user/:user_id/:type' do |rev_id, st
   @revision=Revision_Sistematica[rev_id]
   raise Buhos::NoReviewIdError, rev_id if !@revision
   if type=='all'
-    @cds_id=@revision.cd_id_por_etapa(stage)
+    @cds_id=@revision.cd_id_by_stage(stage)
   elsif type=='without_assignation'
     ars=AnalysisSystematicReview.new(@revision)
     @cds_id_previous=ars.cd_id_assigned_by_user(stage,user_id)

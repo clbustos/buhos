@@ -1,5 +1,5 @@
 .heading
-  =t_systematic_review_title(@revision[:nombre], t("systematic_review_page.cd_assignations")+". "+t(:Stage_title, :stage_name=>t(Revision_Sistematica.get_nombre_etapa(@stage))),false)
+  =t_systematic_review_title(@revision[:nombre], t("systematic_review_page.cd_assignations")+". "+t(:Stage_title, :stage_name=>t(get_stage_name(@stage))),false)
 
 %ul.breadcrumb
   %li
@@ -9,7 +9,7 @@
   %li
     %a{:href=>url("/review/#{@revision[:id]}/stages_adminitration")}=t(:Administration)
   %li
-    %a{:href=>url("/review/#{@revision[:id]}/adminitration/#{@stage}")}=t(Revision_Sistematica.get_nombre_etapa(@stage))
+    %a{:href=>url("/review/#{@revision[:id]}/adminitration/#{@stage}")}=t(get_stage_name(@stage))
   %li{:class=>:active}
     =t("systematic_review_page.cd_assignations")
 %table.table
@@ -18,7 +18,7 @@
     %th=t(:Count_canonical_documents_assigned)
     %th=t(:Actions)
   %tbody
-  -@revision.grupo_usuarios.each do |usuario|
+  -@revision.group_users.each do |usuario|
     - cd_id_assigned=@ars.cd_id_assigned_by_user(@stage,usuario[:id])
     %tr
       %td=usuario.nombre
