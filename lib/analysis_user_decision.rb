@@ -24,10 +24,10 @@ class AnalysisUserDecision
   def canonicos_documentos
     Canonico_Documento.where(:id=>@cd_ids)
   end
-  def tiene_asignaciones?
+  def have_allocations?
     !@asignaciones.empty?
   end
-  def asignado_a_cd_id(cd_id)
+  def allocated_to_cd_id(cd_id)
     @cd_ids.include? cd_id.to_i
   end
   def decision_cd_id(cd_id)

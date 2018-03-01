@@ -241,7 +241,7 @@ get '/review/:id/files' do |id|
   @revision=Revision_Sistematica[id]
   raise Buhos::NoReviewIdError, id if !@revision
   @archivos_rs=Archivo.join(:archivos_rs, :archivo_id => :id).left_join(:archivos_cds, :archivo_id => :archivo_id).where(:revision_sistematica_id => id).order_by(:archivo_nombre)
-  @modal_archivos=get_modalarchivos
+  @modal_archivos=get_modal_files
 
   @canonicos_documentos_h=@revision.canonicos_documentos.order(:title).as_hash
   @cd_validos_id=@revision.cd_id_por_etapa(@revision.etapa)

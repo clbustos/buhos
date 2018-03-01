@@ -36,7 +36,7 @@ class Analysis_SR_Stage
     (Asignacion_Cd.where(:revision_sistematica_id=>@sr.id, :etapa=>@stage.to_s, :usuario_id=>user_id).map(:canonico_documento_id)) & cds
   end
   # Check what Canonical documents aren't assigned yet
-  def cd_without_assignations
+  def cd_without_allocations
     cds=@sr.cd_id_por_etapa(@stage)
     assignations=Asignacion_Cd.where(:revision_sistematica_id=>@sr.id, :etapa=>@stage.to_s).group(:canonico_documento_id).map(:canonico_documento_id)
     Canonico_Documento.where(:id=>cds-assignations)

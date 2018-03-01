@@ -43,7 +43,7 @@ HEREDOC
 <data key='output_n'>#{ars.cd_count_salida(v[0]).to_i}</data>
 <data key='d5'>#{ars.cd_en_registro?(v[0]) ? "true" : "false"}</data>
 <data key='d6'>#{ars.cd_en_referencia?(v[0]) ? "true" : "false"}</data>
-<data key='d7'>#{ars.cd_en_resolucion_etapa?(v[0],"screening_title_abstract") ? "true" : "false"}</data>
+<data key='d7'>#{ars.cd_in_resolution_stage?(v[0], "screening_title_abstract") ? "true" : "false"}</data>
 </node>"
       }.join("\n")
       edges=ars.rec.find_all{|x| cd_hash[x[:cd_origen]] and cd_hash[x[:cd_destino]] }.map {|v|

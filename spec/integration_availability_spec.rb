@@ -78,7 +78,7 @@ describe 'Resources availability:' do
 
 
     it { expect("/review/1/administration/screening_title_abstract/cd_assignations").to be_available_for_admin}
-    it { expect("/review/1/administration/screening_title_abstract/cd_without_assignations").to be_available_for_admin}
+    it { expect("/review/1/administration/screening_title_abstract/cd_without_allocations").to be_available_for_admin}
     it { expect("/review/1/stage/screening_title_abstract/complete_empty_abstract_manual").to be_available_for_admin}
 
 

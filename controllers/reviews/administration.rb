@@ -18,7 +18,7 @@ get '/review/:id/administration/:etapa' do |id,etapa|
 
   @etapa=etapa
   @ars=AnalysisSystematicReview.new(@revision)
-  @cd_without_assignation=@ars.cd_without_assignations(etapa)
+  @cd_without_assignation=@ars.cd_without_allocations(etapa)
 
   @cds_id=@revision.cd_id_por_etapa(etapa)
   @cds=Canonico_Documento.where(:id=>@cds_id)
@@ -44,7 +44,7 @@ get '/review/:id/administration/:etapa' do |id,etapa|
   @nombre_etapa=Revision_Sistematica.get_nombre_etapa(@etapa)
 
   @usuario_id=session['user_id']
-  @modal_archivos=get_modalarchivos
+  @modal_archivos=get_modal_files
 
   if %w{screening_title_abstract screening_references review_full_text}.include? etapa
     haml "systematic_reviews/administration_reviews".to_sym
@@ -60,8 +60,8 @@ get '/review/:id/stage/:etapa/pattern/:patron/resolution/:resolution' do |id,eta
   raise Buhos::NoReviewIdError, id if !@revision
 
   @ars=AnalysisSystematicReview.new(@revision)
-  patron=@ars.patron_desde_s(patron_s)
-  cds=@ars.cd_desde_patron(etapa,patron)
+  patron=@ars.pattern_from_s(patron_s)
+  cds=@ars.cd_from_pattern(etapa, patron)
 
   $log.info(cds)
 
@@ -143,14 +143,14 @@ get '/review/:rev_id/administration/:stage/cd_assignations' do |rev_id, stage|
 end
 
 
-get '/review/:rev_id/administration/:stage/cd_without_assignations' do |rev_id, stage|
+get '/review/:rev_id/administration/:stage/cd_without_allocations' do |rev_id, stage|
   halt_unless_auth('review_admin')
   @revision=Revision_Sistematica[rev_id]
   raise Buhos::NoReviewIdError, rev_id if !@revision
   @ars=AnalysisSystematicReview.new(@revision)
 
   @stage=stage
-  @cds=@ars.cd_without_assignations(stage).order(:author)
+  @cds=@ars.cd_without_allocations(stage).order(:author)
   @type="without_assignation"
   haml("systematic_reviews/cd_assignations_to_user".to_sym)
 end
@@ -167,7 +167,7 @@ get '/review/:rev_id/stage/:stage/add_assign_user/:user_id/:type' do |rev_id, st
   elsif type=='without_assignation'
     ars=AnalysisSystematicReview.new(@revision)
     @cds_id_previous=ars.cd_id_assigned_by_user(stage,user_id)
-    @cds_id_add=ars.cd_without_assignations(stage).map(:id)
+    @cds_id_add=ars.cd_without_allocations(stage).map(:id)
     @cds_id=(@cds_id_previous+@cds_id_add).uniq
   end
   add_result(Asignacion_Cd.update_assignation(rev_id, @cds_id, user_id,stage, 'massive_assigment'))

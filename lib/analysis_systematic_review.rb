@@ -24,8 +24,8 @@ class AnalysisSystematicReview
   # @param rs object Systematic_Review
   def initialize(rs)
     @rs=rs
-    procesar_indicadores_basicos
-    procesar_numero_citas
+    process_basic_indicators
+    process_cite_number
     procesar_resoluciones
   end
   def cd_hash
@@ -65,16 +65,16 @@ class AnalysisSystematicReview
   end
 
 
-def procesar_indicadores_basicos
+def process_basic_indicators
   @cd_reg_id=@rs.cd_registro_id
   @cd_ref_id=@rs.cd_referencia_id
   @cd_todos_id=@rs.cd_todos_id
   @rec=@rs.referencias_entre_canonicos
 end
 
-private :procesar_indicadores_basicos
+private :process_basic_indicators
 
-def procesar_numero_citas
+def process_cite_number
   @ref_cuenta_entrada=@rec.to_hash_groups(:cd_destino).inject({}) {|ac, v|
     ac[v[0]]=v[1].length; ac
   }
@@ -93,7 +93,7 @@ def procesar_numero_citas
 
 end
 
-private :procesar_numero_citas
+private :process_cite_number
 
 def procesar_resoluciones
   @cd_resoluciones=Revision_Sistematica::ETAPAS.inject({}) do |ac,etapa|
@@ -104,32 +104,35 @@ end
 
 private :procesar_resoluciones
 
-def cd_en_resolucion_etapa?(id, etapa)
+def cd_in_resolution_stage?(id, etapa)
   @cd_resoluciones[etapa.to_sym][id].nil? ? false : @cd_resoluciones[etapa.to_sym][id][:resolucion] == 'yes'
 end
 
-def mas_citados(n=20)
+def more_cited(n=20)
   @ref_cuenta_entrada.sort_by {|a| a[1]}.reverse[0...n]
 end
-def con_mas_referencias(n=20)
+def with_more_references(n=20)
   @ref_cuenta_salida.sort_by {|a| a[1]}.reverse[0...n]
 end
 
-def patron_orden(a)
+def pattern_order(a)
   - (1000*a["yes"].to_i + 100*a["no"].to_i + 10*a["undecided"].to_i + 1*a["ND"].to_i)
 end
-def patron_nombre(a)
+
+
+def pattern_name(a)
   Decision::N_EST.map {|key,nombre|
     "#{::I18n::t(nombre)}:#{a[key]}"
   }.join(";")
 end
-def patron_id(a)
+
+def pattern_id(a)
   Decision::N_EST.keys.map {|key|
     "#{key}_#{a[key]}"
   }.join("__")
 end
 
-def patron_desde_s(texto)
+def pattern_from_s(texto)
   texto.split("__").inject({}){|ac,v|
     key,value=v.split("_")
     ac[key]=value.to_i

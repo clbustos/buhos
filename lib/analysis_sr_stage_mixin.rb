@@ -36,7 +36,7 @@ module AnalysisSrStageMixin
 
 # provides a hash, with keys containing the users decisions and values
 # with the pattern for resolutions
-  def resoluciones_desde_patron_decision(etapa)
+  def resolutions_f_pattern_decision(etapa)
     cds = @rs.cd_id_por_etapa(etapa)
     rpc = resolution_by_cd(etapa)
     dpc = decisions_by_cd(etapa)
@@ -48,7 +48,7 @@ module AnalysisSrStageMixin
     }
   end
 
-  def cd_desde_patron(etapa, patron)
+  def cd_from_pattern(etapa, patron)
 
     decisions_by_cd(etapa).find_all {|v|
       v[1] == patron
@@ -58,7 +58,7 @@ module AnalysisSrStageMixin
   end
 
 # Señala cuales son los jueces (personas de deben evaluar) y cuantos juicios tienen
-  def decisiones_usuarios(etapa)
+  def user_decisions(etapa)
     @rs.grupo_usuarios.inject({}) {|ac, usuario|
       ac[usuario.id] = {usuario: usuario, adu: AnalysisUserDecision.new(@rs.id, usuario.id, etapa)}
       ac
@@ -90,8 +90,8 @@ module AnalysisSrStageMixin
     get_asrs(stage).cd_id_assigned_by_user(user_id)
   end
 
-  def cd_without_assignations(stage)
-    get_asrs(stage).cd_without_assignations
+  def cd_without_allocations(stage)
+    get_asrs(stage).cd_without_allocations
   end
 
   def cd_without_abstract(stage)

@@ -16,7 +16,7 @@ get '/review/:sr_id/extract_information/cd/:cd_id' do |sr_id,cd_id|
     redirect back
   end
   adu=AnalysisUserDecision.new(sr_id, @user[:id], 'review_full_text')
-  if !adu.asignado_a_cd_id(cd_id)
+  if !adu.allocated_to_cd_id(cd_id)
     agregar_mensaje(t(:Canonical_documento_not_assigned_to_this_user), :error)
     redirect back
   end

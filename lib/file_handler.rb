@@ -1,7 +1,7 @@
 module FileHandler
   # Maneja el javascript para ver archivos de forma modal
 
-    class ModalArchivos
+    class ModalFiles
       def initialize
 
       end
@@ -103,8 +103,8 @@ end
 module Sinatra
   module SinatraManejadorArchivos
     module Helpers
-      def get_modalarchivos
-        FileHandler::ModalArchivos.new
+      def get_modal_files
+        FileHandler::ModalFiles.new
       end
     end
     def self.registered(app)

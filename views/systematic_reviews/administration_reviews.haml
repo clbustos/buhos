@@ -20,7 +20,7 @@
     %span.glyphicon.glyphicon-list
     =t(:Check_CD_assignations)
   - if !@cd_without_assignation.empty?
-    %a.btn.btn-sm.btn-warning{:href=>"/review/#{@revision[:id]}/administration/#{@etapa}/cd_without_assignations"}
+    %a.btn.btn-sm.btn-warning{:href=>"/review/#{@revision[:id]}/administration/#{@etapa}/cd_without_allocations"}
       %span.glyphicon.glyphicon-list
       =t(:Check_CD_without_assignations)
       %span.badge=@cd_without_assignation.count
@@ -32,7 +32,7 @@
     - Decision::N_EST.each do |dec,nombre|
       %th=t(Decision.get_name_decision(dec))
   %tbody
-    - @ars.decisiones_usuarios(@etapa).each do |usuario_id, edu|
+    - @ars.user_decisions(@etapa).each do |usuario_id, edu|
       %tr
         %th=edu[:usuario].nombre
         %td=edu[:adu].asignaciones.count
@@ -41,8 +41,8 @@
 
 %h3=t(:Decisions_statistics)
 
-- decisiones_orden=@ars.decisions_pattern(@etapa).sort_by {|a|  @ars.patron_orden(a[0]) }
-- resoluciones_patron=@ars.resoluciones_desde_patron_decision(@etapa)
+- decisiones_orden=@ars.decisions_pattern(@etapa).sort_by {|a|  @ars.pattern_order(a[0]) }
+- resoluciones_patron=@ars.resolutions_f_pattern_decision(@etapa)
 %table.reporte
   %thead
     %tr
@@ -66,13 +66,13 @@
         %td{:class=>"decision decision-no"}=resoluciones_patron[patron]["no"]
         %td{:class=>"decision decision-undecided"}=resoluciones_patron[patron][Resolucion::NO_RESOLUCION]
         %td
-          %a{:href=>"#patron_#{@ars.patron_id(patron)}",:class=>"btn btn-default btn-sm", :role=>"button"}
+          %a{:href=>"#patron_#{@ars.pattern_id(patron)}",:class=>"btn btn-default btn-sm", :role=>"button"}
             %span{:class=>"glyphicon glyphicon-triangle-bottom"}
             =t(:View)
-          %a{:href=>url("/review/#{@revision[:id]}/stage/#{@etapa}/pattern/#{@ars.patron_id(patron)}/resolution/yes"),:class=>"btn btn-success btn-sm", :role=>"button"}
+          %a{:href=>url("/review/#{@revision[:id]}/stage/#{@etapa}/pattern/#{@ars.pattern_id(patron)}/resolution/yes"),:class=>"btn btn-success btn-sm", :role=>"button"}
             %span{:class=>"glyphicon glyphicon glyphicon-ok-circle"}
             =t(:Accept)
-          %a{:href=>url("/review/#{@revision[:id]}/stage/#{@etapa}/pattern/#{@ars.patron_id(patron)}/resolution/no"),:class=>"btn btn-danger btn-sm", :role=>"button"}
+          %a{:href=>url("/review/#{@revision[:id]}/stage/#{@etapa}/pattern/#{@ars.pattern_id(patron)}/resolution/no"),:class=>"btn btn-danger btn-sm", :role=>"button"}
             %span{:class=>"glyphicon glyphicon glyphicon-ban-circle"}
             =t(:Reject)
 
@@ -123,11 +123,11 @@
 
 %h3=t(:Decisions_by_document)
 
-- dep_ord=@ars.decisions_by_cd(@etapa).sort_by {|cd_id,a| @ars.patron_orden a }
+- dep_ord=@ars.decisions_by_cd(@etapa).sort_by {|cd_id,a| @ars.pattern_order a }
 - rpc=@ars.resolution_by_cd(@etapa)
 - dep_ord.chunk_while {|antes, despues|  antes[1]==despues[1]}.each do |bloque|
-  %a{:name=>"patron_#{@ars.patron_id(bloque.first[1])}"}
-    %h4=@ars.patron_nombre bloque.first[1]
+  %a{:name=>"patron_#{@ars.pattern_id(bloque.first[1])}"}
+    %h4=@ars.pattern_name bloque.first[1]
   %table.reporte
     %thead
       %th=t(:Document)

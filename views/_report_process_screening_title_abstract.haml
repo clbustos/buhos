@@ -1,5 +1,5 @@
 - cds=Canonico_Documento.where(:id=>@sr.cd_id_por_etapa(stage)).order(:year,:author)
-- adu=report.ars.decisiones_usuarios(stage)
+- adu=report.ars.user_decisions(stage)
 - resoluciones=report.ars.resolution_by_cd(stage)
 %table.table.table-ordered
   %thead
