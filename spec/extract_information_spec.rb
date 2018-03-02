@@ -21,7 +21,7 @@ describe 'Buhos extraction of data' do
       post '/login', :user=>'admin', :password=>'admin'
       put '/review/1/extract_information/cd/40/user/1/update_field', :pk=>'stages', :value=>'NEW VALUE'
     end
-    let(:row_on_ds) {$db["SELECT * FROM analisis_rs_1 WHERE usuario_id=? AND canonico_documento_id=?", 1, 40].first}
+    let(:row_on_ds) {$db["SELECT * FROM analysis_sr_1 WHERE user_id=? AND canonical_document_id=?", 1, 40].first}
     let(:response_request) {  get '/review/1/extract_information/cd/40'; last_response}
 
     it {puts last_response.body; expect(last_response).to be_ok}

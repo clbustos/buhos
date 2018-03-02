@@ -1,24 +1,43 @@
 .heading
-  %h2=title(t(:Systematic_review_tags, sr_name:@revision[:nombre]))
+  %h2=title(t(:Systematic_review_tags, sr_name:@review[:name]))
 
 
 :javascript
   crear_tag=function(url,val,clase_pk) {
     if(String(val).trim()==="") {
-      alert("El tag no tiene texto")
+      alert("El tag no tiene text")
     } else {
       $.post(url, {value: val}, function (data) {
         $("#tags-clase-"+clase_pk).html(data);
         actualizar_tags_clase();
+        actualizar_name_editable();
       }).fail(function () {
             alert("#{t(:tag_cant_be_created)}")
         })
       }
   };
 
+
   actualizar_tags_clase=function() {
-      #{@select_etapa.javascript}
-      #{@select_tipo.javascript}
+      #{@select_stage.javascript}
+      #{@select_type.javascript}
+
+
+      $('.remove_tag_from_class').click(function(){
+        var class_pk=$(this).attr("data-class-pk");
+        var tag_pk=$(this).attr("data-tag-pk");
+        var url=$(this).attr("data-url");
+        $.post(url, {value: tag_pk}, function (data) {
+        $("#tags-clase-"+class_pk).html(data);
+          actualizar_tags_clase();
+          actualizar_name_editable();
+        }).fail(function () {
+            alert("#{t(:tag_cant_be_removed)}")
+        });
+
+
+      });
+
 
       $(".boton_nuevo_tag").click(function() {
         var url=$(this).attr("data-url");
@@ -40,53 +59,53 @@
 
   $(document).ready(function() {
     actualizar_tags_clase();
-    actualizar_nombre_editable();
+    actualizar_name_editable();
   });
 
 
 %ul.breadcrumb
   %li
-    %a{:href=>url("/review/#{@revision.id}")}=@revision.nombre
+    %a{:href=>url("/review/#{@review.id}")}=@review.name
   %li{:class=>:active}=t(:Tags)
 
 
 %h3=t(:Tag_classes)
--@revision.t_clases.each do |t_clase|
+-@review.t_classes.each do |t_class|
   .panel.panel-default
     .panel-heading
-      =a_editable(t_clase.id, "t_clase", "/tags/classes/edit_field/nombre", t_clase[:nombre],"")
+      =a_editable(t_class.id, "t_class", "/tags/classes/edit_field/name", t_class[:name],"")
     .panel-body
       .container
         .row
           .col-md-3
             %p
-              =t("#{t(:Stage)}:")
-              =@select_etapa.html(t_clase.id, t_clase.etapa)
+              ="#{t(:Stage)}:"
+              =@select_stage.html(t_class.id, t_class.stage)
             %p
-              =t("#{t(:Type)}:")
-              =@select_tipo.html(t_clase.id, t_clase.tipo)
+              ="#{t(:Type)}:"
+              =@select_type.html(t_class.id, t_class.type)
           .col-md-9.col-lg-8
-            %div{:id=>"tags-clase-#{t_clase.id}"}
-              =partial("tags/tags_class", :locals=>{t_clase: t_clase})
+            %div{:id=>"tags-clase-#{t_class.id}"}
+              =partial("tags/tags_class", :locals=>{t_class: t_class})
 
 .panel.panel-default
   .panel-heading
     =t(:New_class)
   .panel-body
     %form{:method=>"post",:action=>url("/tags/classes/new")}
-      %input{:type=>:hidden, :name=>:revision_id, :value=>@revision.id}
+      %input{:type=>:hidden, :name=>:review_id, :value=>@review.id}
       .form-group
-        %label{:for=>"nombre"}=t(:Name)
-        %input{:class=>"form-control",:type=>"text", :name=>"nombre"}
+        %label{:for=>"name"}=t(:Name)
+        %input{:class=>"form-control",:type=>"text", :name=>"name"}
       .form-group
-        %label{:for=>"etapa"}=t(:Stage)
-        %select{:name=>"etapa", :class=>"form-control"}
-          - @etapas_lista.each do |etapa_id, etapa_nombre|
-            %option{:value=>etapa_id}=etapa_nombre
+        %label{:for=>"stage"}=t(:Stage)
+        %select{:name=>"stage", :class=>"form-control"}
+          - @stages_list.each do |stage_id, stage_name|
+            %option{:value=>stage_id}=stage_name
       .form-group
-        %label{:for=>"tipo"}=t(:Type)
-        %select{:name=>"tipo", :class=>"form-control"}
-          - @tipos_lista.each do |tipo_id, tipo_nombre|
-            %option{:value=>tipo_id}=tipo_nombre
+        %label{:for=>"type"}=t(:Type)
+        %select{:name=>"type", :class=>"form-control"}
+          - @types_list.each do |type_id, type_name|
+            %option{:value=>type_id}=type_name
       %input{:type=>:submit, :value=>"Agregar clase nueva", :class=>"btn btn-default"}
-=partial(:statistics_tags, :locals=>{revision:@revision})
+=partial(:statistics_tags, :locals=>{review:@review})

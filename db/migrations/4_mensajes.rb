@@ -1,35 +1,35 @@
-# Agrega asignaciones de documentos canónicos a usuarios.
-# Debería hacerse después de la selección por abstract y referencias...
+# Agrega asignaciones de documentos canónicos a users.
+# Debería hacerse después de la selección por abstract y references...
 
 Sequel.migration do
   change do
-    create_table(:mensajes) do
-      # Mïnimo número de referencias rtr para revisión de referencias
+    create_table(:messages) do
+      # Mïnimo número de references rtr para revisión de references
       primary_key :id
-      foreign_key :usuario_desde, :usuarios, :null=>false, :key=>[:id]
-      foreign_key :usuario_hacia, :usuarios, :null=>false, :key=>[:id]
-      foreign_key :respuesta_a,   :mensajes, :null=>true, :key=>[:id]
-      DateTime :tiempo
-      String :asunto
-      String :texto, :text=>true
-      Bool :visto
-      index [:usuario_desde]
-      index [:usuario_hacia]
+      foreign_key :user_from, :users, :null=>false, :key=>[:id]
+      foreign_key :user_to, :users, :null=>false, :key=>[:id]
+      foreign_key :reply_to,   :messages, :null=>true, :key=>[:id]
+      DateTime :time
+      String :subject
+      String :text, :text=>true
+      Bool :read
+      index [:user_from]
+      index [:user_to]
     end
-    create_table(:mensajes_rs) do
+    create_table(:message_srs) do
       primary_key :id
-      foreign_key :revision_sistematica_id, :revisiones_sistematicas, :null=>false, :key=>[:id]
-      foreign_key :usuario_desde, :usuarios, :null=>false, :key=>[:id]
-      foreign_key :respuesta_a,   :mensajes_rs, :null=>true, :key=>[:id]
-      DateTime :tiempo
-      String :asunto
-      String :texto, :text=>true
+      foreign_key :systematic_review_id, :systematic_reviews, :null=>false, :key=>[:id]
+      foreign_key :user_from, :users, :null=>false, :key=>[:id]
+      foreign_key :reply_to,  :message_srs, :null=>true, :key=>[:id]
+      DateTime :time
+      String :subject
+      String :text, :text=>true
     end
-    create_table(:mensajes_rs_vistos) do
-      foreign_key :m_rs_id,   :mensajes_rs, :null=>false, :key=>[:id]
-      foreign_key :usuario_id, :usuarios, :null=>false, :key=>[:id]
-      Bool :visto
-      primary_key [:m_rs_id, :usuario_id]
+    create_table(:message_sr_seens) do
+      foreign_key :m_rs_id,   :message_srs, :null=>false, :key=>[:id]
+      foreign_key :user_id, :users, :null=>false, :key=>[:id]
+      Bool :read
+      primary_key [:m_rs_id, :user_id]
     end
   end
 end

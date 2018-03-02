@@ -1,11 +1,12 @@
-class Crossref_Doi < Sequel::Model
+class CrossrefDoi < Sequel::Model
   include DOIHelpers
   extend DOIHelpers
-  # Dado un doi, descarga la referencia desde Crossref si no la tiene
+  # Dado un doi, descarga la reference desde Crossref si no la tiene
   # y entrega el JSON  correspondiente
   def self.procesar_doi(doi)
     require 'serrano'
-    co=Crossref_Doi[doi_sin_http(doi)]
+    raise 'DOI is nil' if doi.nil?
+    co=CrossrefDoi[doi_without_http(doi)]
     if !co or co[:json].nil?
       begin
         resultado=Serrano.works(ids: CGI.escape(doi))
@@ -18,8 +19,8 @@ class Crossref_Doi < Sequel::Model
       if co
         co.update(:json=>resultado.to_json)
       else
-        Crossref_Doi.insert(:doi=>doi_sin_http(doi),:json=>resultado.to_json)
-        co=Crossref_Doi[doi_sin_http(doi)]
+        CrossrefDoi.insert(:doi=>doi_without_http(doi),:json=>resultado.to_json)
+        co=CrossrefDoi[doi_without_http(doi)]
       end
     end
     co[:json]
@@ -42,13 +43,13 @@ end
 class BadCrossrefResponseError < StandardError
 
 end
-class Crossref_Query < Sequel::Model
+class CrossrefQuery < Sequel::Model
 
-  # Se toma un texto y se transforma en un sha256
-  def self.generar_query_desde_texto(t)
+  # Se toma un text y se transforma en un sha256
+  def self.generar_query_desde_text(t)
     require 'digest'
     digest=Digest::SHA256.hexdigest t
-    cq=Crossref_Query[digest]
+    cq=CrossrefQuery[digest]
 
     if !cq
       url="https://search.crossref.org/dois?q=#{CGI.escape(t)}"
@@ -56,10 +57,10 @@ class Crossref_Query < Sequel::Model
       res = Net::HTTP.get_response(uri)
       $log.info(res)
       if res.code!="200"
-        raise BadCrossrefResponseError, "El texto #{t} no entrego una respuesta adecuada. Fue #{res.code}, #{res.body}"
+        raise BadCrossrefResponseError, "El text #{t} no entrego una respuesta adecuada. Fue #{res.code}, #{res.body}"
       end
       json_raw = res.body
-      Crossref_Query.insert(:id=>digest.force_encoding(Encoding::UTF_8),:query=>t.force_encoding(Encoding::UTF_8),:json=>json_raw.force_encoding(Encoding::UTF_8))
+      CrossrefQuery.insert(:id=>digest.force_encoding(Encoding::UTF_8),:query=>t.force_encoding(Encoding::UTF_8),:json=>json_raw.force_encoding(Encoding::UTF_8))
     else
       json_raw=cq[:json]
     end

@@ -1,24 +1,25 @@
-class Mensaje < Sequel::Model
-  def usuario_nombre
-    Usuario[self[:usuario_desde]].nombre
+class Message < Sequel::Model
+  def user_name
+    User[self[:user_from]].name
   end
-  def respuestas
-    Mensaje.where(:respuesta_a=>self[:id])
+  def replies
+    Message.where(:reply_to=>self[:id])
   end
 end
 
 
-class Mensaje_Rs < Sequel::Model
-  def usuario_nombre
-    Usuario[self[:usuario_desde]].nombre
+class MessageSr < Sequel::Model
+  def user_name
+
+    User[self[:user_from]]&.name
   end
-  # Mensajes que son respuesta a este mensaje
-  def respuestas
-    Mensaje_Rs.where(:respuesta_a=>self[:id])
+  # Messages que son respuesta a este mensaje
+  def replies
+    MessageSr.where(:reply_to=>self[:id])
   end
 
 end
 
-class Mensaje_Rs_Visto < Sequel::Model
+class MessageSrSeen < Sequel::Model
 
 end

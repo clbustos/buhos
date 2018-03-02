@@ -1,24 +1,24 @@
 module Sinatra
   module Messages
     module Helpers
-      def agregar_mensaje(mensaje,tipo=:info)
-        session['mensajes']||=[]
-        session['mensajes'].push([mensaje,tipo])
+      def add_message(mensaje, type=:info)
+        session['messages']||=[]
+        session['messages'].push([mensaje,type])
       end
       def add_result(result)
         result.events.each do |event|
-          agregar_mensaje(event[:message],event[:type])
+          add_message(event[:message], event[:type])
         end
       end
 
-      def imprimir_mensajes
-        if session['mensajes']
-          #$log.info(session['mensajes'])
-          out=session['mensajes'].map {|men,tipo|
+      def print_messages
+        if session['messages']
+          #$log.info(session['messages'])
+          out=session['messages'].map {|men,type|
 
-            "<div class='alert alert-#{tipo.to_s} #{tipo.to_s=='error' ? 'alert-danger' : ''}' role='alert'>#{men}</div>\n"
+            "<div class='alert alert-#{type.to_s} #{type.to_s=='error' ? 'alert-danger' : ''}' role='alert'>#{men}</div>\n"
           }
-          session.delete("mensajes")
+          session.delete("messages")
           out.join()
         else
           ""

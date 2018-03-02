@@ -1,19 +1,19 @@
-- cds=Canonico_Documento.where(:id=>@sr.cd_id_por_etapa(stage)).order(:year,:author)
-- adu=report.ars.decisiones_usuarios(stage)
-- resoluciones=report.ars.resolucion_por_cd(stage)
+- cds=CanonicalDocument.where(:id=>@sr.cd_id_by_stage(stage)).order(:year,:author)
+- adu=report.ars.user_decisions(stage)
+- resolutions=report.ars.resolution_by_cd(stage)
 %table.table.table-ordered
   %thead
     %th=t(:Canonical_document)
-    - @sr.grupo_usuarios.each do |user|
-      %th=user[:nombre]
+    - @sr.group_users.each do |user|
+      %th=user[:name]
     %th=t(:Resolution)
   %tbody
     - cds.each do |cd|
       %tr
         %td=cd.ref_apa_6_brief
-        - @sr.grupo_usuarios.each do |user|
+        - @sr.group_users.each do |user|
           %td=t(adu[user[:id]][:adu].decision_cd_id(cd[:id]))
-        %td=t(resoluciones[cd[:id]])
+        %td=t(resolutions[cd[:id]])
 
 
 

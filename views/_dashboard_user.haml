@@ -1,23 +1,23 @@
-%h2=t(:Dashboard_user, user_name:user[:nombre])
+%h2=t(:Dashboard_user, user_name:user[:name])
 - @udi=UserDashboardInfo.new(user)
 - if @udi.unread_personal_messages.count>0
   %p=t_desc_value("user_dashboard.unread_personal_messages", a_tag("/user/#{user[:id]}/messages#personal", t("user_dashboard.check_n_unread_messages", count:@udi.unread_personal_messages.count)))
-- user.revisiones_sistematicas.where(:activa=>true).each do |sr|
-  - es_administrador=@udi.is_administrator_sr?(sr)
-  %div{:class=>"panel #{es_administrador ? "panel-primary" : "panel-default"}"}
+- user.systematic_reviews.where(:active=>true).each do |sr|
+  - is_administrator=@udi.is_administrator_sr?(sr)
+  %div{:class=>"panel #{is_administrator ? "panel-primary" : "panel-default"}"}
     .panel-heading
       .panel-title
-        =sr.nombre
-        - if es_administrador
+        =sr.name
+        - if is_administrator
           %span.badge=t(:Administrator)
     .panel-body
       .container
         .row
-          .col-md-8=t_desc_value(:Objectives, lf_to_br(sr.objetivos))
+          .col-md-8=t_desc_value(:Objectives, lf_to_br(sr.objectives))
           .col-md-2
             %a.btn.btn-default.btn-sm{:href=>"/review/#{sr.id}"}=t(:View_technical_record)
       .dashboard-user=partial(:dashboard_user_sr,:locals=>{user:user, sr:sr})
 
-- if user.revisiones_sistematicas.where(:activa=>true).count==0
+- if user.systematic_reviews.where(:active=>true).count==0
   %p
     %em=t(:No_systematic_review_for_this_user)

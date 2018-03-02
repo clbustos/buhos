@@ -1,0 +1,59 @@
+- date_for_picker=@search[:fecha] ? @search[:fecha] : Date.today
+.header=t_search_title(@review[:name], @search.name,:Edit_search)
+
+
+%script{:type=>'text/javascript', :src=>url('/jquery-ui/jquery-ui.min.js')}
+%link{:href=>url('/jquery-ui/jquery-ui.css') , :media => 'screen', :rel=>'stylesheet', :type=>'text/css'}
+%link{:href=>url('/jquery-ui/jquery-ui.theme.css') , :media => 'screen', :rel=>'stylesheet', :type=>'text/css'}
+
+
+:javascript
+  $(document).ready(function () {
+    $( "#form-fecha" ).datepicker(
+      $.datepicker.regional[ "#{session['language']}" ]
+    )
+
+    $( "#form-fecha" ).datepicker( "option", "dateFormat", "yy-mm-dd" );
+
+    $( "#form-fecha" ).datepicker("setDate",new Date(#{date_for_picker.year},#{date_for_picker.month-1},#{date_for_picker.day},0,0,0,0))
+    });
+
+%ul.breadcrumb
+  %li
+    %a{:href=>url("/review/#{@review.id}")}=@review.name
+  %li
+    %a{:href=>url("/review/#{@review.id}/searches")}=t(:searches)
+  %li
+    %a{:href=>url("/search/#{@search.id}")}=@search.name
+  %li.active
+    =t(:Edit)
+
+%form{:method=>:post, :action=>url("/search/update"), :enctype=>'multipart/form-data'}
+  %input{:type=>"hidden", :name=>"systematic_review_id",:value=>@review[:id]}
+  %input{:type=>"hidden", :name=>"search_id",:value=>@search[:id]}
+  .form-group
+    %label{:for=>"source"}=t("search.Source")
+    %select.form-control{:id=>"source",:name=>"source"}
+      -Search::SOURCES.each do |source|
+        %option{:value=>source, :selected=>source.to_s==@search[:source]}=t(Search.get_source_name(source))
+  .form-group
+    %label{:for=>"bibliographic_database_id"}=t(:Bibliographic_database)
+    %select.form-control{:id=>:bibliographic_database_id, :name=>:bibliographic_database_id}
+      -BibliographicDatabase.all.each do |bb|
+        %option{:value=>bb.id, :selected=>@search[:bibliographic_database_id]==bb.id}= bb.name
+  .form-group
+    %label=t(:Date)
+    %input{:class=>"form-control",:type=>"text", :name=>"date_creation",:value=>@search[:date_creation], :id=>"form-fecha"}
+  .form-group
+    %label=t(:Search_criteria)
+    %p.instructions=t("search.Search_criteria_instructions")
+    %textarea{:class=>"form-control",:name=>"search_criteria"}=@search[:search_criteria]
+  .form-group
+    %label=t(:Description)
+    %input{:class=>"form-control",:type=>"text", :name=>"description",:value=>@search[:description]}
+  .form-group
+    %label=t(:File)
+    =partial("searches/file_link".to_sym, :locals=>{search:@search})
+    %p.instructions=t("search.Search_file_instructions")
+    %input{:type=>'file', :name=>'file'}
+  %input.btn.btn-primary{:type=>:submit,:value=>t('Send')}

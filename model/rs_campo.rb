@@ -1,43 +1,56 @@
-class Rs_Campo <Sequel::Model
-  def self.tipos_a_sequel(campo)
-    if campo[:tipo]=='text'
-      [campo[:nombre].to_sym, String, null:true]
-    elsif campo[:tipo]=='textarea'
-      [campo[:nombre].to_sym, String, text:true, null:true]
-    elsif campo[:tipo]=='select'
-      [campo[:nombre].to_sym, String, null:true]
+class SrField < Sequel::Model
+  AVAILABLE_TYPES=[:text,:textarea,:select,:multiple]
+
+  def self.types_a_sequel(campo)
+    if campo[:type] == 'text'
+      [campo[:name].to_sym, String, null: true]
+    elsif campo[:type] == 'textarea'
+      [campo[:name].to_sym, String, text: true, null: true]
+    elsif campo[:type] == 'select'
+      [campo[:name].to_sym, String, null: true]
     end
   end
+
   def self.actualizar_tabla(rs)
-    table=rs.analisis_cd_tn
-    $db.transaction(:rollback=>:reraise) do
+    table = rs.analysis_cd_tn
+    $db.transaction(:rollback => :reraise) do
       #$log.info(table)
       #$log.info()
       if !$db.tables.include? table.to_sym
         $db.create_table? table.to_sym do
           primary_key :id
-          foreign_key :usuario_id, :usuarios, :null=>false, :key=>[:id]
-          foreign_key :canonico_documento_id, :canonicos_documentos, :null=>false, :key=>[:id]
-          index [:canonico_documento_id]
-          index [:usuario_id]
+          foreign_key :user_id, :users, :null => false, :key => [:id]
+          foreign_key :canonical_document_id, :canonical_documents, :null => false, :key => [:id]
+          index [:canonical_document_id]
+          index [:user_id]
         end
       end
-      campos_existentes=$db.schema(table.to_sym).inject({}) {|ac,v|
-        ac[v[0]]=v[1];ac
+      campos_existentes = $db.schema(table.to_sym).inject({}) {|ac, v|
+        ac[v[0]] = v[1]; ac
       }
       #$log.info(campos_existentes)
-      rs.campos.each do |campo|
-        nombre=campo[:nombre]
-        if campos_existentes[nombre.to_sym]
+      rs.fields.each do |campo|
+        name = campo[:name]
+        if campos_existentes[name.to_sym]
 
         else
           $db.alter_table(table.to_sym) do
-            # Mïnimo número de referencias rtr para revisión de referencias
-            add_column(*Rs_Campo.tipos_a_sequel(campo))
+            # Mïnimo número de references rtr para revisión de references
+            add_column(*SrField.types_a_sequel(campo))
           end
         end
       end
     end
   end
-  true
+
+
+
+  def options_as_hash
+    @options_as_hash ||= self[:options].split(";").inject({}) {|ac, v|
+      parts = v.split("=")
+      ac[parts[0]] = parts[1]
+      ac
+    }
+  end
+
 end

@@ -1,4 +1,4 @@
-- cd=Canonico_Documento[id]
+- cd=CanonicalDocument[id]
 
 %div{:class=>"panel panel-default"}
   .panel-heading
@@ -9,5 +9,5 @@
       - [:author, :year,:title,:journal, :volume,:pages,:doi].each do |field|
         %tr
           %th=field.capitalize
-          %td=a_editable(cd[:id], "canonico_documento", "/canonical_document/edit_field/#{field}", cd[field],"")
+          %td=a_editable(cd[:id], "canonical_document", "/canonical_document/edit_field/#{field}", cd[field],"")
     =partial(:canonical_document_button, :locals=>{:id=>id})

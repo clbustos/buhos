@@ -1,11 +1,11 @@
 class Scopus_Abstract < Sequel::Model
-  def self.get(tipo, id)
-    if tipo.to_s=='eid'
+  def self.get(type, id)
+    if type.to_s=='eid'
       Scopus_Abstract[id]
-    elsif tipo.to_s=='doi'
+    elsif type.to_s=='doi'
       Scopus_Abstract.where(:doi => id).first
     else
-      raise "Tipo #{tipo} no reconocido"
+      raise Buhos::NoScopusMethodError, ::I18n.t("error.no_scopus_method", type:type)
     end
   end
 
@@ -19,13 +19,13 @@ class Scopus_Abstract < Sequel::Model
 
   def self.obtener_abstract_cd(cd_id)
     result=Result.new
-    cd=Canonico_Documento[cd_id]
+    cd=CanonicalDocument[cd_id]
     #$log.info("Procesando scopus para CD:#{cd.id}")
     if cd.scopus_id
-      tipo='eid'
+      type='eid'
       id=cd.scopus_id.gsub("eid=", "")
     elsif cd.doi
-      tipo='doi'
+      type='doi'
       id=cd.doi
     else
       result.error(I18n::t("scopus_abstract.cant_obtain_identificator_suitable_for_scopus", cd_title:cd[:title]))
@@ -33,22 +33,23 @@ class Scopus_Abstract < Sequel::Model
     end
 
 
-    sa=Scopus_Abstract.get(tipo, id)
+    sa=Scopus_Abstract.get(type, id)
 
     if !sa
       sr=ScopusRemote.new
-      xml=sr.xml_abstract_by_id(id, tipo)
+      xml=sr.xml_abstract_by_id(id, type)
       if xml
         agregar_desde_xml(xml)
-
       else
-
         result.error(I18n::t("scopus_abstract.cant_obtain_scopus_error", cd_title:cd[:title], sr_error: sr.error))
         return result
       end
     else
       xml=Scopus.process_xml(sa[:xml])
     end
+
+
+
     if xml.abstract.to_s==""
       result.error(I18n::t("scopus_abstract.no_scopus_abstract",cd_title:cd[:title]))
     elsif cd.abstract.to_s==""

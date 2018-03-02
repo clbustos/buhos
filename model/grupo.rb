@@ -1,21 +1,21 @@
 require_relative 'usuario'
-class Grupo < Sequel::Model
+class Group < Sequel::Model
   class GroupHaveSystematicReviewsError < StandardError
 
   end
-  many_to_many :usuarios
-  many_to_one :administrador, :class => Usuario, :key => :administrador_grupo
-  def revisiones_sistematicas
-    Revision_Sistematica.where(:grupo_id=>self[:id])
+  many_to_many :users
+  many_to_one :administrator, :class => User, :key => :group_administrator
+  def systematic_reviews
+    SystematicReview.where(:group_id=>self[:id])
   end
   def delete
-    raise GroupHaveSystematicReviewsError unless revisiones_sistematicas.empty?
-    Grupo_Usuario.where(:grupo_id=>self[:id]).delete
+    raise GroupHaveSystematicReviewsError unless systematic_reviews.empty?
+    GroupsUser.where(:group_id=>self[:id]).delete
     super
   end
   def administrator_name
-    administrador
-    administrador.nil? ? I18n::t("error.group_without_administrator") : administrador.nombre
+
+    administrator.nil? ? I18n::t("error.group_without_administrator") : administrator.name
   end
 end
 

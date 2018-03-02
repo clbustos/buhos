@@ -1,35 +1,15 @@
+require_relative 'tag_mixin.rb'
 module TagBuilder
 # Analiza un tag para la relación entre dos documentos canonicos en una determina revision sistematica
   class TagBwCd
-    attr_reader :id, :texto, :positivos, :negativos
+    include TagMixin
+    attr_reader :id, :text, :positivos, :negativos
     attr_accessor :predeterminado
     def initialize(votos)
-      @votos=votos
-      @positivos=votos.count {|v| v[:decision]=='yes'}
-      @negativos=votos.count {|v| v[:decision]=='no'}
-      @id=votos[0][:id]
-      @texto=votos[0][:texto]
-      @cd_start_id=votos[0][:cd_origen]
-      @cd_end_id=votos[0][:cd_destino]
-      @rs_id=votos[0][:revision_sistematica_id]
-      @tag_id=votos[0][:tag_id]
-    end
-    def mostrar
-      @predeterminado or @positivos>0
-    end
-    def sin_votos?
-      positivos+negativos==0
-    end
-    def resultado_usuario(usuario_id)
-      @votos.find {|v| v[:usuario_id]==usuario_id}
-    end
-    def botones_html(usuario_id)
-      ru=resultado_usuario(usuario_id)
-      "
-<div class='btn-group btn-group-xs'>
-  #{boton_positivo_html(ru)}
-  #{boton_negativo_html(ru)}
-</div>"
+      initialize_common(votos)
+      @cd_start_id=votos[0][:cd_start]
+      @cd_end_id=votos[0][:cd_end]
+
     end
     def boton_positivo_html(ru)
       if ru.nil? or ru[:decision]=='no'

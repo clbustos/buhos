@@ -4,7 +4,7 @@ module ReportBuilder
     def initialize(sr,app)
       @sr=sr
       @app=app
-      @ars=AnalisisRevisionSistematica.new(sr)
+      @ars=AnalysisSystematicReview.new(sr)
     end
 
     def output(format)

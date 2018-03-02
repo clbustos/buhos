@@ -1,8 +1,8 @@
-.header=t_systematic_review_title(@revision[:nombre], :fields_management)
+.header=t_systematic_review_title(@review[:name], :fields_management)
 
 %ul.breadcrumb
   %li
-    %a{:href=>url("/review/#{@revision.id}")}=@revision.nombre
+    %a{:href=>url("/review/#{@review.id}")}=@review.name
   %li{:class=>:active}=t(:Fields)
 
 
@@ -13,44 +13,43 @@
   %ul.list-group
     -@campos.each do |campo|
       %li.list-group-item
-        =a_editable(campo[:id], 'campo-orden', "/review/edit_field/#{campo[:id]}/orden", campo[:orden])
+        =a_editable(campo[:id], 'campo-order', "/review/edit_field/#{campo[:id]}/order", campo[:order])
         %span=".-"
-        =a_editable(campo[:id], 'campo-nombre', "/review/edit_field/#{campo[:id]}/nombre", campo[:nombre])
+        =a_editable(campo[:id], 'campo-name', "/review/edit_field/#{campo[:id]}/name", campo[:name])
         %span=":"
-        =a_textarea_editable(campo[:id], 'campo-descripcion', "/review/edit_field/#{campo[:id]}/descripcion", campo[:descripcion])
+        =a_textarea_editable(campo[:id], 'campo-description', "/review/edit_field/#{campo[:id]}/description", campo[:description])
         %span=". #{t(:Type)}: "
-        =a_editable(campo[:id], 'campo-tipo', "/review/edit_field/#{campo[:id]}/tipo", campo[:tipo])
+        =a_editable(campo[:id], 'campo-type', "/review/edit_field/#{campo[:id]}/type", campo[:type])
         %span=". #{t(:Options)}: "
-        =a_textarea_editable(campo[:id], 'campo-opciones', "/review/edit_field/#{campo[:id]}/opciones", campo[:opciones])
+        =a_textarea_editable(campo[:id], 'campo-options', "/review/edit_field/#{campo[:id]}/options", campo[:options])
         .btn-group.btn-group-sm
-          %a.btn.btn-danger{:href=>"/review/#{@revision[:id]}/field/#{campo[:id]}/delete"}
+          %a.btn.btn-danger{:href=>"/review/#{@review[:id]}/field/#{campo[:id]}/delete"}
             %span.glyphicon.glyphicon-remove
             =t(:Delete)
 
-%a.btn.btn-primary{:href=>"/review/#{@revision[:id]}/update_field_table"}=t("fields.update_fields_table")
+%a.btn.btn-primary{:href=>"/review/#{@review[:id]}/update_field_table"}=t("fields.update_fields_table")
 
 %h3=t(:Field_new)
-%form{:method=>"post", :action=>"/review/#{@revision[:id]}/new_field",:class=>"form-group"}
+%form{:method=>"post", :action=>"/review/#{@review[:id]}/new_field",:class=>"form-group"}
   .form-group
-    %label{:for=>'orden'}=t(:Order)
-    %input.form-control{:type=>'number', :min=>"1",:max=>100, :name=>'orden'}
+    %label{:for=>'order'}=t(:Order)
+    %input.form-control{:type=>'number', :min=>"1",:max=>100, :name=>'order'}
+  .form-group
+    %label{:for=>'description'}=t(:Description)
+    %input.form-control{:type=>'text', :name=>'description'}
   .form-group
     %label{:for=>'Nombre'}=t("fields.code")
     %p=t("fields.code_instructions")
-    %input.form-control{:type=>'text', :name=>'nombre'}
+    %input.form-control{:type=>'text', :name=>'name'}
   .form-group
-    %label{:for=>'descripcion'}=t(:Description)
-    %input.form-control{:type=>'text', :name=>'descripcion'}
+    %label{:for=>'type'}=t(:Type)
+    %select.form-control{:name=>'type'}
+      - SrField::AVAILABLE_TYPES.each do |type|
+        %option{:value=>'type'}=t("fields.#{type}")
   .form-group
-    %label{:for=>'tipo'}=t(:Type)
-    %select.form-control{:name=>'tipo'}
-      %option{:value=>'text'}=t(:Short_text)
-      %option{:value=>'textarea'}=t(:Long_text)
-      %option{:value=>'select'}=t(:Multiple_option)
-  .form-group
-    %label{:for=>'opciones'}=t(:Options)
+    %label{:for=>'options'}=t(:Options)
     %br
     %p<= t('fields.format_instruction')
-    %pre opcion1=texto2;opcion2=texto2...
-    %input.form-control{:type=>'text', :name=>'opciones', :size=>20}
-  %input.btn.btn-default{:type=>:submit, :value=>"Crear nuevo campo"}
+    %pre opcion1=text2;opcion2=text2...
+    %input.form-control{:type=>'text', :name=>'options', :size=>20}
+  %input.btn.btn-default{:type=>:submit, :value=>t(:create_new_field)}

@@ -37,8 +37,8 @@ module HTMLHelpers
       x ? yes : no
     end
   end
-  def decision_class_bootstrap(tipo, prefix)
-    suffix=case tipo
+  def decision_class_bootstrap(type, prefix)
+    suffix=case type
              when nil
                "default"
              when "yes"
@@ -67,7 +67,7 @@ module HTMLHelpers
   # @example a_editable(user.id, 'user-name', 'user/edit/name', user.name, t(:user_name))
   def a_editable(id, prefix, data_url, v,placeholder='--')
     url_s=url(data_url)
-    "<a class='nombre_editable' data-pk='#{id}' data-url='#{url_s}' href='#' id='#{prefix}-#{id}' data-placeholder='#{placeholder}'>#{v}</a>"
+    "<a class='name_editable' data-pk='#{id}' data-url='#{url_s}' href='#' id='#{prefix}-#{id}' data-placeholder='#{placeholder}'>#{v}</a>"
   end
 
   # Check if we have permission to do an edit

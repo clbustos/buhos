@@ -21,11 +21,19 @@ module Buhos
       $db=Sequel.connect(db, :encoding => 'utf8',:reconnect=>true, :keep_reference=>keep_reference)
     end
 
+
+
     begin
       $db.run("SET NAMES UTF8")
     rescue Sequel::DatabaseError
       # Not available
     end
+    begin
+      $db.run("PRAGMA encoding='UTF-8'")
+    rescue Sequel::DatabaseError
+      # Not available
+    end
+
     $log_sql = Logger.new(File.dirname(__FILE__)+'/../log/app_sql.log')
     $db.loggers << $log_sql
     $db
@@ -56,26 +64,26 @@ end
 
 
 Sequel.inflections do |inflect|
-  inflect.irregular 'rol','roles'
-  inflect.irregular 'configuracion','configuraciones'  
-  inflect.irregular 'permisos_rol','permisos_roles'
-  inflect.irregular 'grupo_usuario','grupos_usuarios'
-  inflect.irregular 'revision_sistematica','revisiones_sistematicas'  
-  inflect.irregular 'trs_organizacion','trs_organizaciones'
-  inflect.irregular 'base_bibliografica','bases_bibliograficas'
-  inflect.irregular 'canonico_documento','canonicos_documentos'
-  inflect.irregular 'referencia_registro', 'referencias_registros'
-  inflect.irregular 'decision', 'decisiones'
-  inflect.irregular 'resolucion', 'resoluciones'
-  inflect.irregular 't_clase', 't_clases'
-  inflect.irregular 'tag_en_cd', 'tags_en_cds'
-  inflect.irregular 'tag_en_clase', 'tags_en_clases'
-  inflect.irregular 'tag_en_referencia_entre_cn', 'tags_en_referencias_entre_cn'
-  inflect.irregular 'mensaje_rs', 'mensajes_rs'
-  inflect.irregular 'mensaje_rs_visto', 'mensajes_rs_vistos'
-  inflect.irregular 'archivo_cd', 'archivos_cds'
-  inflect.irregular 'archivo_rs', 'archivos_rs'
-  inflect.irregular 'asignacion_cd','asignaciones_cds'
-  inflect.irregular 'tag_en_referencia_entre_cn', 'tags_en_referencias_entre_cn'
+  # inflect.irregular 'rol','roles'
+  # inflect.irregular 'configuracion','configuraciones'
+  # inflect.irregular 'authorizations_rol','authorizations_roles'
+  # inflect.irregular 'grupo_usuario','groups_users'
+  # inflect.irregular 'revision_sistematica','.systematic_reviews'
+  # inflect.irregular 'trs_organizacion','trs_organizaciones'
+  # inflect.irregular 'bibliographical_database','bibliographic_databases'
+  # inflect.irregular 'canonical_document','canonical_documents'
+  # inflect.irregular 'reference_registro', 'records_references'
+  # inflect.irregular 'decision', 'decisions'
+  # inflect.irregular 'resolution', 'resolutions'
+  # inflect.irregular 't_clase', 't_clases'
+  # inflect.irregular 'tag_en_cd', 'tag_in_cds'
+  # inflect.irregular 'tag_en_clase', 'tag_in_classes'
+  # inflect.irregular 'tag_en_reference_bw_cn', 'tags_en_references_bw_cn'
+  # inflect.irregular 'mensaje_rs', 'mensajes_rs'
+  # inflect.irregular 'mensaje_rs_visto', 'mensajes_rs_vistos'
+  # inflect.irregular 'archivo_cd', 'file_cds'
+  # inflect.irregular 'archivo_rs', 'file_rs'
+  # inflect.irregular 'asignacion_cd','allocation_cds'
+  # inflect.irregular 'tag_en_reference_bw_cn', 'tags_en_references_bw_cn'
 end
 

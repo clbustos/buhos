@@ -1,0 +1,29 @@
+.header=t_search_title(@review[:name], @search.name,:Search_view)
+
+%ul.breadcrumb
+  %li
+    %a{:href=>url("/review/#{@review.id}")}=@review.name
+  %li
+    %a{:href=>url("/review/#{@review.id}/searches")}=t(:searches)
+  %li
+    %a{:href=>url("/search/#{@search.id}")}=@search.name
+  %li.active
+    =t(:View)
+
+%table.reporte
+  %tr
+    %th=t(:Bibliographic_database)
+    %td=BibliographicDatabase[@search[:bibliographic_database_id]][:name]
+  %tr
+    %th=t(:Date_creation)
+    %td=@search[:date_creation]
+  %tr
+    %th=t(:Search_criteria)
+    %td=@search[:search_criteria]
+  %tr
+    %th=t(:Description)
+    %td=@search[:description]
+  %tr
+    %th=t(:File)
+    %td
+      =partial("searches/file_link".to_sym, :locals=>{search:@search})

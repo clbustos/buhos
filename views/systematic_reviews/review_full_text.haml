@@ -1,7 +1,7 @@
-.header=t_systematic_review_title(@revision[:nombre], :Systematic_review_stage_full_text)
+.header=t_systematic_review_title(@review[:name], :Systematic_review_stage_full_text)
 %ul.breadcrumb
   %li
-    %a{:href=>url("/review/#{@revision.id}")}=@revision.nombre
+    %a{:href=>url("/review/#{@review.id}")}=@review.name
   %li{:class=>:active}=t(:Review_full_text)
 
 .well
@@ -15,14 +15,14 @@
   );
 
 
-=partial(:systematic_review_info, :locals=>{systematic_review: @revision})
+=partial(:systematic_review_info, :locals=>{systematic_review: @review})
 
 %h3=t(:Review_status)
 %p=t_desc_value(:Count_total_documents_to_review, sprintf("%d", @cds_total))
 
 %form{:action=>url(@url), :method=>:get,:class=>"form-check", :enctype=>"multipart/form-data"}
-  %input{:type=>:hidden,:name=>:pagina, :value=>@pager.pagina}
-  %input{:type=>:hidden,:name=>:orden, :value=>@pager.orden}
+  %input{:type=>:hidden,:name=>:page, :value=>@pager.page}
+  %input{:type=>:hidden,:name=>:order, :value=>@pager.order}
   %table.reporte
     %thead
       - Decision::N_EST.values.each do |k|
@@ -30,39 +30,39 @@
     %tbody
       %tr
         - Decision::N_EST.keys.each do |k|
-          %td=@ads.total_decisiones[k].to_i
+          %td=@ads.total_decisions[k].to_i
       %tr
         - Decision::N_EST.keys.each do |k|
-          - checked= @pager.busqueda.nil?  ? false :  ( @pager.busqueda.include?(k) )
+          - checked= @pager.query.nil?  ? false :  ( @pager.query.include?(k) )
           %td
-            %input{:type=>:radio,  :class=>"form-check-input",:name=>"busqueda", :value=>k, :checked=> checked }
+            %input{:type=>:radio,  :class=>"form-check-input",:name=>"query", :value=>k, :checked=> checked }
       %tr
         %td{:colspan=>Decision::N_EST.keys.length}
           %input{:type=>"submit", :class=>"btn btn-default", :value=>"Filtrar"}
-- if @pager.busqueda
+- if @pager.query
   %p#count_search=t_desc_value(:Count_documents_search, @cds_pre.count)
 
 .btn-group
-  -@criterios_orden.each do |crit_orden,crit_nombre|
+  -@order_criteria.each do |crit_order,crit_name|
     -["asc","desc"].each do |dir|
       -arrow_dir =  dir=="asc" ? "up" : "down"
-      -if @pager.orden!="#{crit_orden}__#{dir}"
-        %a{:href=>url("#{@url}?busqueda=#{@pager.busqueda}&orden=#{crit_orden}__#{dir}"), :class=>"btn btn-default btn-sm"}
+      -if @pager.order!="#{crit_order}__#{dir}"
+        %a{:href=>url("#{@url}?query=#{@pager.query}&order=#{crit_order}__#{dir}"), :class=>"btn btn-default btn-sm"}
           %span{:class=>"glyphicon glyphicon-chevron-#{arrow_dir}"}
-          =crit_nombre
+          =crit_name
       -else
         %button{:class=>"btn btn-primary btn-sm"}
           %span{:class=>"glyphicon glyphicon-chevron-#{arrow_dir}"}
-          =crit_nombre
-- if @ads.total_decisiones[Decision::NO_DECISION].to_i==0 and @cds_total>0
+          =crit_name
+- if @ads.total_decisions[Decision::NO_DECISION].to_i==0 and @cds_total>0
   %p
-    %strong Ha concluido la segunda fase de revision de referencias.
+    %strong Ha concluido la segunda fase de revision de references.
 
 %br
 - if @cds.empty?
   .alert.alert-warning=t(:No_document_for_this_criteria)
 - else
-  = partial(:pager,:locals=>{url: @url, pagina: @pager.pagina, max_page: @pager.max_page, :extra=>{busqueda:@pager.busqueda, orden:@pager.orden}})
+  = partial(:pager,:locals=>{url: @url, page: @pager.page, max_page: @pager.max_page, :extra=>{query:@pager.query, order:@pager.order}})
 
   %table.table.table-rounded.table-bordered
     %thead
@@ -72,20 +72,20 @@
       %th=t(:Assignation_instructions)
     %tbody
       - @cds.each do |cd|
-        - decision_o=@decisiones[cd[:id]]
+        - decision_o=@decisions[cd[:id]]
         - decision = decision_o ? decision_o[:decision] : nil
         - asignacion_o=@asignaciones[cd[:id]]
         - clase_panel=decision_class_bootstrap(decision,nil)
         %tr{:class=>clase_panel}
           %td
             =CGI::escapeHTML cd.ref_apa_6
-            %a.btn.btn-primary.btn-sm{:href=>"/review/#{@revision[:id]}/extract_information/cd/#{cd[:id]}"}=t(:Extract_information)
+            %a.btn.btn-primary.btn-sm{:href=>"/review/#{@review[:id]}/extract_information/cd/#{cd[:id]}"}=t(:Extract_information)
           %td=t(Decision.get_name_decision(decision))
           - if asignacion_o
-            %td=asignacion_o[:estado]
+            %td=asignacion_o[:status]
             %td=asignacion_o[:instrucción] ? asignacion_o[:instrucción] : t(:No_assignation_instructions)
           - else
             %td{:colspan=>2}
               %em=t(:Not_assigned)
 
-  = partial(:pager,:locals=>{url: @url, pagina: @pager.pagina, max_page: @pager.max_page, :extra=>{busqueda:@pager.busqueda, orden:@pager.orden}})
+  = partial(:pager,:locals=>{url: @url, page: @pager.page, max_page: @pager.max_page, :extra=>{query:@pager.query, order:@pager.order}})

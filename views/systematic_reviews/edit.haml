@@ -5,13 +5,13 @@
 
 :javascript
   $(document).ready(function () {
-    $( "#form-fecha-inicio" ).datepicker(
+    $( "#form-date-creation" ).datepicker(
       $.datepicker.regional[ "#{session['language']}" ]
     )
 
-    $( "#form-fecha-inicio" ).datepicker( "option", "dateFormat", "yy-mm-dd" );
+    $( "#form-date-creation" ).datepicker( "option", "dateFormat", "yy-mm-dd" );
 
-    $( "#form-fecha-inicio" ).datepicker("setDate",new Date(#{@revision[:fecha_inicio].year},#{@revision[:fecha_inicio].month-1},#{@revision[:fecha_inicio].day},0,0,0,0))
+    $( "#form-date-creation" ).datepicker("setDate",new Date(#{@review[:date_creation].year},#{@review[:date_creation].month-1},#{@review[:date_creation].day},0,0,0,0))
 
     $(".seleccion_grupo").change(function() {
 
@@ -25,7 +25,7 @@
          selected_attr = (user_id== data.group_administrator) ? "selected='selected'": "" ;
            option_html=option_html+("<option "+selected_attr+" value='"+ user_id+"'>"+user_name+"</option>");
          }
-          $("#"+select_id).html("<select class='form-control' name='administrador_revision' id='"+select_id+"'>"+option_html+"</select>");
+          $("#"+select_id).html("<select class='form-control' name='sr_administrator' id='"+select_id+"'>"+option_html+"</select>");
         }).fail(function() {
         alert("#{t(:Json_cant_obtain_information)}")
         });
@@ -33,53 +33,53 @@
   });
 %h2=@title
 %form{:method=>:post, :action=>url("/review/update")}
-  %input{:type=>"hidden", :name=>"revision_id",:value=>@revision[:id]}
+  %input{:type=>"hidden", :name=>"review_id",:value=>@review[:id]}
   %div{:class=>"form-group"}
-    %label{:for=>"nombre"}=t(:Name)
-    %input{:class=>"form-control",:type=>"text", :name=>"nombre",:value=>@revision[:nombre]}
+    %label{:for=>"name"}=t(:Name)
+    %input{:class=>"form-control",:type=>"text", :name=>"name",:value=>@review[:name]}
   %div{:class=>"form-group"}
-    %label=t(:Description)
-    %textarea{:class=>"form-control",:name=>"descripcion"}=@revision[:descripcion]
-  %div{:class=>"form-group"}
-    %label=t(:Date)
-    %input{:class=>"form-control",:type=>"text", :name=>"fecha_inicio",:value=>@revision[:fecha_inicio],:id=>"form-fecha-inicio"}
+    %label=t(:Date_creation)
+    %input{:class=>"form-control",:type=>"text", :name=>"date_creation",:value=>@review[:date_creation],:id=>"form-date-creation"}
   %div{:class=>"form-group"}
     %label=t(:Objectives)
-    %textarea{:class=>"form-control",:name=>"objetivos"}=@revision[:objetivos]
+    %textarea{:class=>"form-control",:name=>"objectives"}=@review[:objectives]
   %div{:class=>"form-group"}
     %label=t(:Year_start)
-    %input{:class=>"form-control",:type=>"text", :name=>"agno_inicio",:value=>@revision[:agno_inicio]}
+    %input{:class=>"form-control",:type=>"text", :name=>"year_start",:value=>@review[:year_start]}
   %div{:class=>"form-group"}
     %label=t(:Year_end)
-    %input{:class=>"form-control",:type=>"text", :name=>"agno_termino",:value=>@revision[:agno_termino]}
+    %input{:class=>"form-control",:type=>"text", :name=>"year_end",:value=>@review[:year_end]}
   %div{:class=>"form-group"}
     %label=t(:Keywords)
     %p.instructions=t(:separe_keywords_with_semicolon)
-    %input{:class=>"form-control",:type=>"text", :name=>"palabras_claves",:value=>@revision[:palabras_claves]}
+    %input{:class=>"form-control",:type=>"text", :name=>"keywords",:value=>@review[:keywords]}
   .checkbox
     %label
-      %input{:type=>"checkbox", :name=>"activa", :value=>1, :checked=>@revision[:activa] }
+      %input{:type=>"checkbox", :name=>"active", :value=>1, :checked=>@review[:active] }
       =t(:Active)
+  %div{:class=>"form-group"}
+    %label=t(:Description)
+    %textarea{:class=>"form-control",:name=>"description"}=@review[:description]
   %div{:class=>'form-group'}
     %label=t(:Minimum_RTA_documents_for_reference_review)
     %select{:class=>"form-check-input", :name=>:n_min_rr_rtr}
       - 2.upto(20) do |i|
-        %option{:value=>i, :selected=>i==@revision.n_min_rr_rtr}=i
+        %option{:value=>i, :selected=>i==@review.n_min_rr_rtr}=i
   %div{:class=>"form-group"}
-    %label{:for=>"etapa"}=t(:Stage)
-    -Revision_Sistematica::ETAPAS_NOMBRE.each do |etapa_id,etapa_nombre|
-      %input{:class=>"form-check-input",:type=>"radio", :name=>"etapa", :value=>etapa_id, :checked=>etapa_id.to_s==@revision[:etapa]}=t(etapa_nombre)
+    %label{:for=>"stage"}=t(:Stage)
+    -get_stages_names.each do |stage_id,stage_name|
+      %input{:class=>"form-check-input",:type=>"radio", :name=>"stage", :value=>stage_id, :checked=>stage_id.to_s==@review[:stage]}=t(stage_name)
 
   %div{:class=>"form-group"}
-    %label{:for=>"grupo_id"}=t(:Group)
-    %select{:class=>'form-control seleccion_grupo', :name=>:grupo_id, :id=>:grupo_id_select}
-      - Grupo.all.each do |g|
-        %option{:value=>g.id, :selected=>g.id==@revision[:grupo_id]}=g.name
+    %label{:for=>"group_id"}=t(:Group)
+    %select{:class=>'form-control seleccion_grupo', :name=>:group_id, :id=>:group_id_select}
+      - Group.all.each do |g|
+        %option{:value=>g.id, :selected=>g.id==@review[:group_id]}=g.name
   %div{:class=>"form-group"}
     %label=t(:Administrator)
-    %select{:class=>'form-control', :id=>:group_administrator_select, :name=>:administrador_revision}
-      - @revision.grupo.usuarios.each do |u|
-        %option{:selected=> u.id==@revision[:administrador_revision], :value=>u.id}=u.nombre
+    %select{:class=>'form-control', :id=>:group_administrator_select, :name=>:sr_administrator}
+      - @review.group.users.each do |u|
+        %option{:selected=> u.id==@review[:sr_administrator], :value=>u.id}=u.name
 
   %h3=t(:Taxonomy)
   %table.reporte

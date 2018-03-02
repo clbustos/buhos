@@ -1,11 +1,11 @@
 .heading
-  %h2=t(:Systematic_review_automatic_categories, sr_name:@revision.nombre)
+  %h2=t(:Systematic_review_automatic_categories, sr_name:@review.name)
 
 %ul.breadcrumb
   %li
-    %a{:href=>url("/review/#{@revision.id}")}=@revision.nombre
+    %a{:href=>url("/review/#{@review.id}")}=@review.name
   %li
-    %a{:href=>url("/review/#{@revision.id}/canonical_documents")}=t(:Canonical_documents)
+    %a{:href=>url("/review/#{@review.id}/canonical_documents")}=t(:Canonical_documents)
   %li{:class=>"active"}=t(:Automatic_categories)
 
 

@@ -9,19 +9,19 @@ class Analysis_SR_Stage
   end
 
   def incoming_citations(cd_id)
-    cd_etapa=@sr.cd_id_por_etapa(@stage)
-    rec=@sr.referencias_entre_canonicos.where(:cd_destino=>cd_id).map(:cd_origen)
-    rec & cd_etapa
+    cd_stage=@sr.cd_id_by_stage(@stage)
+    rec=@sr.references_bw_canonical.where(:cd_end=>cd_id).map(:cd_start)
+    rec & cd_stage
   end
   def outcoming_citations(cd_id)
-    cd_etapa=@sr.cd_id_por_etapa(@stage)
-    rec=@sr.referencias_entre_canonicos.where(:cd_origen=>cd_id).map(:cd_destino)
-    rec & cd_etapa
+    cd_stage=@sr.cd_id_by_stage(@stage)
+    rec=@sr.references_bw_canonical.where(:cd_start=>cd_id).map(:cd_end)
+    rec & cd_stage
   end
   def stage_complete?
     #$log.info(stage)
     if @stage==:search
-      bds=@sr.busquedas_dataset
+      bds=@sr.searches_dataset
       bds.where(:valid=>nil).count==0 and bds.exclude(:valid=>nil).count>0
 
     elsif [:screening_title_abstract,:screening_references,:review_full_text].include? @stage
@@ -32,21 +32,21 @@ class Analysis_SR_Stage
     end
   end
   def cd_id_assigned_by_user(user_id)
-    cds=@sr.cd_id_por_etapa(@stage)
-    (Asignacion_Cd.where(:revision_sistematica_id=>@sr.id, :etapa=>@stage.to_s, :usuario_id=>user_id).map(:canonico_documento_id)) & cds
+    cds=@sr.cd_id_by_stage(@stage)
+    (AllocationCd.where(:systematic_review_id=>@sr.id, :stage=>@stage.to_s, :user_id=>user_id).map(:canonical_document_id)) & cds
   end
   # Check what Canonical documents aren't assigned yet
-  def cd_without_assignations
-    cds=@sr.cd_id_por_etapa(@stage)
-    assignations=Asignacion_Cd.where(:revision_sistematica_id=>@sr.id, :etapa=>@stage.to_s).group(:canonico_documento_id).map(:canonico_documento_id)
-    Canonico_Documento.where(:id=>cds-assignations)
+  def cd_without_allocations
+    cds=@sr.cd_id_by_stage(@stage)
+    assignations=AllocationCd.where(:systematic_review_id=>@sr.id, :stage=>@stage.to_s).group(:canonical_document_id).map(:canonical_document_id)
+    CanonicalDocument.where(:id=>cds-assignations)
   end
 
   def resolutions_by_cd
-    cds=@sr.cd_id_por_etapa(@stage)
-    resoluciones=Resolucion.where(:revision_sistematica_id=>@sr.id, :canonico_documento_id=>cds, :etapa=>@stage.to_s).as_hash(:canonico_documento_id)
+    cds=@sr.cd_id_by_stage(@stage)
+    resolutions=Resolution.where(:systematic_review_id=>@sr.id, :canonical_document_id=>cds, :stage=>@stage.to_s).as_hash(:canonical_document_id)
     cds.inject({}) {|ac,v|
-      val=resoluciones[v].nil? ? Resolucion::NO_RESOLUCION : resoluciones[v][:resolucion]
+      val=resolutions[v].nil? ? Resolution::NO_RESOLUTION : resolutions[v][:resolution]
       ac[v]=val
       ac
     }
@@ -58,8 +58,8 @@ class Analysis_SR_Stage
   end
 
   def cd_screened_id
-    cds=@sr.cd_id_por_etapa(@stage)
-    Decision.where(:canonico_documento_id=>cds, :usuario_id=>@sr.grupo_usuarios.map {|u| u[:id]}, :etapa=>@stage.to_s).group(:canonico_documento_id).map(:canonico_documento_id)
+    cds=@sr.cd_id_by_stage(@stage)
+    Decision.where(:canonical_document_id=>cds, :user_id=>@sr.group_users.map {|u| u[:id]}, :stage=>@stage.to_s).group(:canonical_document_id).map(:canonical_document_id)
   end
 
   def cd_rejected_id
@@ -69,12 +69,13 @@ class Analysis_SR_Stage
     resolutions_by_cd.find_all {|v| v[1]=='yes'}.map {|v| v[0]}
   end
   def decisions_by_cd
-    cds=@sr.cd_id_por_etapa(@stage)
-    decisions=Decision.where(:canonico_documento_id=>cds, :usuario_id=>@sr.grupo_usuarios.map {|u| u[:id]}, :etapa=>@stage.to_s).group_and_count(:canonico_documento_id, :decision).all
-    n_jueces=@sr.grupo_usuarios.count
+    cds=@sr.cd_id_by_stage(@stage)
+
+    decisions=Decision.where(:canonical_document_id=>cds, :user_id=>@sr.group_users.map {|u| u[:id]}, :stage=>@stage.to_s).group_and_count(:canonical_document_id, :decision).all
+    n_jueces=@sr.group_users.count
     cds.inject({}) {|ac,v|
       ac[v]=empty_decisions_hash
-      ac[v]=ac[v].merge decisions.find_all   {|dec|      dec[:canonico_documento_id]==v }
+      ac[v]=ac[v].merge decisions.find_all   {|dec|      dec[:canonical_document_id]==v }
                             .inject({}) {|ac1,v1|   ac1[v1[:decision]]=v1[:count]; ac1 }
       suma=ac[v].inject(0) {|ac1,v1| ac1+v1[1]}
       ac[v][Decision::NO_DECISION]=n_jueces-suma
@@ -83,7 +84,7 @@ class Analysis_SR_Stage
   end
 
   def cd_without_abstract
-    Canonico_Documento.where(id:@sr.cd_id_por_etapa(@stage)).where(Sequel.lit("abstract IS NULL OR abstract=''"))
+    CanonicalDocument.where(id:@sr.cd_id_by_stage(@stage)).where(Sequel.lit("abstract IS NULL OR abstract=''"))
   end
 
 

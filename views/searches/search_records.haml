@@ -1,0 +1,15 @@
+.header=t_search_title(@review[:name], @search.name,:Records_on_search)
+%ul.breadcrumb
+  %li
+    %a{:href=>url("/review/#{@review.id}")}=@review.name
+  %li
+    %a{:href=>url("/review/#{@review.id}/searches")}=t(:searches)
+  %li
+    %a{:href=>url("/search/#{@search.id}")}=@search.name
+  %li.active
+    =t(:Records)
+
+- if @records.count>0
+  %a{:href=>"/search/#{@search.id}/records/complete_doi"}
+    %button{:class=>"btn btn-default btn-sm"}=t(:Download_Crossref_information_for_all_documents)
+=partial(:records_list, :locals=>{:records=>@records})

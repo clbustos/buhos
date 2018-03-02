@@ -1,12 +1,12 @@
-- # Parámetros: url, pagina, max_page y extra como hash
+- # Parámetros: url, page, max_page y extra as hash
 - extra||=nil
 - query_l= extra.nil? ? "" :  "&"+URI.encode_www_form(extra)
 %nav{"aria-label"=>"Page navigation"}
   %ul.pagination
-    %li{:class=>pagina==1 ? 'disabled': ''}
-      %a{:href=>url("#{url}?pagina=#{pagina-1}#{query_l}")}!='&laquo;'
+    %li{:class=>page==1 ? 'disabled': ''}
+      %a{:href=>url("#{url}?page=#{page-1}#{query_l}")}!='&laquo;'
     - 1.upto(max_page).each do |i|
-      %li{:class=> i==pagina ? 'active': '' }
-        %a{:href=>url("#{url}?pagina=#{i}#{query_l}")}=i
-    %li{:class=>"#{pagina>=max_page ? 'disabled': ''}"}
-      %a{:href=>url("#{url}?pagina=#{pagina+1}#{query_l}")}!='&raquo;'
+      %li{:class=> i==page ? 'active': '' }
+        %a{:href=>url("#{url}?page=#{i}#{query_l}")}=i
+    %li{:class=>"#{page>=max_page ? 'disabled': ''}"}
+      %a{:href=>url("#{url}?page=#{page+1}#{query_l}")}!='&raquo;'

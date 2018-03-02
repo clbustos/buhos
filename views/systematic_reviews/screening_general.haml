@@ -1,0 +1,67 @@
+.header=t_systematic_review_title(@review[:name], "stage.#{@stage}")
+%ul.breadcrumb
+  %li
+    %a{:href=>url("/review/#{@review.id}")}=@review.name
+  %li{:class=>:active}=t( "stage.#{@stage}")
+
+.well
+  =t("#{@stage}.objective")
+
+:javascript
+  $(document).ready(function() {
+    actualizar_decision('#{@stage}');
+    }
+  );
+
+=partial(:systematic_review_info, :locals=>{systematic_review: @review})
+
+%h3=t(:Review_status)
+%p=t_desc_value(:Count_total_documents_to_review, sprintf("%d", @cds_total))
+
+%form{:action=>url(@url), :method=>:get,:class=>"form-check", :enctype=>"multipart/form-data"}
+  %input{:type=>:hidden,:name=>:page, :value=>@pager.page}
+  %input{:type=>:hidden,:name=>:order, :value=>@pager.order}
+  %table.reporte
+    %thead
+      - Decision::N_EST.values.each do |k|
+        %th=t(k)
+    %tbody
+      %tr
+        - Decision::N_EST.keys.each do |k|
+          %td=@ads.total_decisions[k].to_i
+      %tr
+        - Decision::N_EST.keys.each do |k|
+          - checked= @pager.query.nil?  ? false :  ( @pager.query.include?(k) )
+          %td
+            %input{:type=>:radio,  :class=>"form-check-input",:name=>"query", :value=>k, :checked=> checked }
+      %tr
+        %td{:colspan=>Decision::N_EST.keys.length}
+          %input{:type=>"submit", :class=>"btn btn-default", :value=>t(:Filter)}
+- if @pager.query
+  %p#count_search=t_desc_value(:Count_documents_search, @cds_pre.count)
+
+.btn-group
+  -@order_criteria.each do |crit_order,crit_name|
+    -["asc","desc"].each do |dir|
+      -arrow_dir =  dir=="asc" ? "up" : "down"
+      -if @pager.order!="#{crit_order}__#{dir}"
+        %a{:href=>url("#{@url}?query=#{@pager.query}&order=#{crit_order}__#{dir}"), :class=>"btn btn-default btn-sm"}
+          %span{:class=>"glyphicon glyphicon-chevron-#{arrow_dir}"}
+          =crit_name
+      -else
+        %button{:class=>"btn btn-primary btn-sm"}
+          %span{:class=>"glyphicon glyphicon-chevron-#{arrow_dir}"}
+          =crit_name
+- if @ads.total_decisions[Decision::NO_DECISION].to_i==0 and @cds_total>0
+  %p
+    %strong=t("#{@stage}.stage_complete_message")
+
+-if @cds.count>0
+  =partial(:pager,:locals=>{url: @url, page: @pager.page, max_page: @pager.max_page, :extra=>{query:@pager.query, order:@pager.order}})
+  .list-group
+    - @cds.each do |cd|
+      %div{:id=>"decision-cd-#{cd[:id]}"}
+        =partial(:decision, :locals=>{ review: @review, cd: cd, decisions: @decisions, ars: @ars, user_id: @user_id, stage: @stage})
+  =partial(:pager,:locals=>{url: @url, page: @pager.page, max_page: @pager.max_page, :extra=>{query:@pager.query, order:@pager.order}})
+- else
+  .alert.alert-warning=t(:No_document_for_this_criteria)

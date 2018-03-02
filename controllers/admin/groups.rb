@@ -1,68 +1,79 @@
 get '/admin/groups' do
-  error(403) unless permiso('grupos_editar')
-  @grupos=Grupo.all
+  halt_unless_auth('group_admin')
+  @groups=Group.all
   haml :groups
 end
 
+
 get "/group/:id/edit" do |id|
-  @grupo=Grupo[id]
-  @usuarios_id=@grupo.usuarios.map {|v| v.id}
+  halt_unless_auth('group_admin')
+  @group=Group[id]
+  @users_id=@group.users.map {|v| v.id}
   haml %s{groups/edit}
 end
 
 
 get '/group/new' do
-  error(403) unless permiso('grupos_crear')
-
-  @grupo={:id=>"NA",:description=>"",:administrador_grupo=>nil}
-  @usuarios_id=[]
+  halt_unless_auth('group_admin')
+  @group={:id=>"NA",:description=>"",:group_administrator=>nil}
+  @users_id=[]
   haml %s{groups/edit}
 end
+get "/group/:id" do |id|
+  halt_unless_auth('group_view')
+  @group=Group[id]
+  @users_id=@group.users.map {|v| v.id}
+  haml %s{groups/view}
+end
+
+
 
 get '/group/:id/datos.json' do |id|
+  halt_unless_auth('group_view')
+
   require 'json'
-  @grupo=Grupo[id]
+  @group=Group[id]
   content_type :json
   {:id=>id,
-  :name=>@grupo.name,
-  :group_administrator=>@grupo.administrador_grupo,
-   :description=>@grupo.description,
-   :users=>@grupo.usuarios_dataset.order(:nombre).map {|u| {id:u[:id], name:u[:nombre]}}
+  :name=>@group.name,
+  :group_administrator=>@group.group_administrator,
+   :description=>@group.description,
+   :users=>@group.users_dataset.order(:name).map {|u| {id:u[:id], name:u[:name]}}
   }.to_json
 end
 post '/group/update' do
-  error(403) unless permiso('grupos_editar')
+  halt_unless_auth('group_admin')
 
-  id=params['grupo_id']
+  id=params['group_id']
   name=params['name']
 
   if name.chomp==""
-    agregar_mensaje(t(:group_without_name), :error)
+    add_message(t(:group_without_name), :error)
     redirect back
   end
   description=params['description']
 
-  administrador=params['administrador_grupo']
-  usuarios=params['usuarios'] ? params['usuarios'].keys : []
+  administrador=params['group_administrator']
+  users=params['users'] ? params['users'].keys : []
   if id=="NA"
-    grupo=Grupo.create(:name=>name,:description=>description, :administrador_grupo=>administrador)
-    id=grupo.id
+    group=Group.create(:name=>name,:description=>description, :group_administrator=>administrador)
+    id=group.id
   else
-    Grupo[id].update(:name=>name,:description=>description, :administrador_grupo=>administrador)
+    Group[id].update(:name=>name,:description=>description, :group_administrator=>administrador)
   end
-  Grupo_Usuario.where(:grupo_id=>id).delete()
-  usuarios.each {|u|
-    Grupo_Usuario.insert(:usuario_id=>u, :grupo_id=>id)
+  GroupsUser.where(:group_id=>id).delete()
+  users.each {|u|
+    GroupsUser.insert(:user_id=>u, :group_id=>id)
   }
   redirect url('/admin/groups')
 end
 
-get '/group/:grupo_id/delete' do |grupo_id|
-  error(403) unless permiso('grupos_editar')
-  @grupo=Grupo[grupo_id]
-  error(404) unless @grupo
-  group_name=@grupo[:name]
-  Grupo[grupo_id].delete
-  agregar_mensaje(t(:Group_deleted,group_name:group_name))
+get '/group/:group_id/delete' do |group_id|
+  halt_unless_auth('group_admin')
+  @group=Group[group_id]
+  error(404) unless @group
+  group_name=@group[:name]
+  Group[group_id].delete
+  add_message(t(:Group_deleted, group_name:group_name))
   redirect back
 end

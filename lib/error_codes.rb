@@ -15,7 +15,26 @@ module Buhos
   class NoTagIdError < StandardError
 
   end
+  class NoTagClassIdError < StandardError
 
+  end
+
+  class NoScopusMethodError < StandardError
+
+  end
+  class NoGroupIdError < StandardError
+  end
+
+  class NoRoleIdError < StandardError
+
+  end
+
+  class NoRecordIdError < StandardError
+
+  end
+  class NoFileIdError < StandardError
+
+  end
 end
 
 
@@ -33,6 +52,17 @@ module Sinatra
         status 404
         ::I18n::t("error.no_code", object_name: ::I18n::t(:User), code:env['sinatra.error'].message)
       end
+
+      app.error Buhos::NoGroupIdError do
+        status 404
+        ::I18n::t("error.no_code", object_name: ::I18n::t(:Group), code:env['sinatra.error'].message)
+      end
+
+      app.error Buhos::NoRoleIdError do
+        status 404
+        ::I18n::t("error.no_code", object_name: ::I18n::t(:Role), code:env['sinatra.error'].message)
+      end
+
       app.error Buhos::NoSearchIdError do
         status 404
         ::I18n::t("error.no_code", object_name: ::I18n::t(:Search), code:env['sinatra.error'].message)
@@ -44,6 +74,18 @@ module Sinatra
       app.error Buhos::NoTagIdError do
         status 404
         ::I18n::t("error.no_code", object_name: ::I18n::t(:Tag), code:env['sinatra.error'].message)
+      end
+      app.error Buhos::NoTagClassIdError do
+        status 404
+        ::I18n::t("error.no_code", object_name: ::I18n::t(:Tag_class), code:env['sinatra.error'].message)
+      end
+      app.error Buhos::NoRecordIdError do
+        status 404
+        ::I18n::t("error.no_code", object_name: ::I18n::t(:Record), code:env['sinatra.error'].message)
+      end
+      app.error Buhos::NoFileIdError do
+        status 404
+        ::I18n::t("error.no_code", object_name: ::I18n::t(:File), code:env['sinatra.error'].message)
       end
     end
   end

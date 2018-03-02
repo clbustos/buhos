@@ -1,7 +1,7 @@
-- # parametros: rpc, cd_id, etapa, usuario_id, revision
-%div{:class=>"btn-group", :id=>"botones_resolucion_#{etapa}_#{cd_id}"}
-  - crits={'yes'=>{bs:'success', nombre:t(:Yes)}, 'no'=>{bs:'danger', nombre:t('No')}}
+- # parametros: rpc, cd_id, stage, user_id, review
+%div{:class=>"btn-group", :id=>"botones_resolution_#{stage}_#{cd_id}"}
+  - crits={'yes'=>{bs:'success', name:t(:Yes)}, 'no'=>{bs:'danger', name:t('No')}}
   - crits.each_pair do |res_id, crit|
     -cbc=class_bootstrap_contextual( rpc[cd_id]==res_id, 'btn',crit[:bs] )
-    -dc_dec= (rpc[cd_id]==res_id) ? '' : 'dc_resolucion'
-    %button{:class=>"btn btn-sm #{cbc} #{dc_dec}", "data-etapa"=>etapa_id, "data-pk"=>cd_id, "data-resolucion"=>res_id, "data-etapa"=>etapa , "data-user"=>usuario_id, :id=>"resolucion-#{cd_id}-#{res_id}", 'data-url'=>"/resolution/review/#{revision[:id]}/canonical_document/#{cd_id}/stage/#{etapa}/resolution"}=crit[:nombre]
+    -dc_dec= (rpc[cd_id]==res_id) ? '' : 'dc_resolution'
+    %button{:class=>"btn btn-sm #{cbc} #{dc_dec}", "data-stage"=>stage_id, "data-pk"=>cd_id, "data-resolution"=>res_id, "data-stage"=>stage , "data-user"=>user_id, :id=>"resolution-#{cd_id}-#{res_id}", 'data-url'=>"/resolution/review/#{review[:id]}/canonical_document/#{cd_id}/stage/#{stage}/resolution"}=crit[:name]

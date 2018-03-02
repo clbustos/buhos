@@ -14,10 +14,10 @@ class RecordCrossrefProcessor
     @records.each do |record|
       @db.transaction() do
         begin
-          @result.add_result(record.doi_automatico_crossref)
+          @result.add_result(record.add_doi_automatic)
           if record.doi
 
-            result.add_result(record.referencias_automatico_crossref)
+            result.add_result(record.references_automatic_crossref)
           end
         rescue BadCrossrefResponseError=>e
 

@@ -1,3 +1,13 @@
+# Retrieve messages for complex process
+# #events store each state as hash, with keys :message and :type
+#
+# Example
+#     result=Result.new
+#     result.info("Something happened")
+#     result.success? # returns true
+#     result.error("Something bad happened")
+#     result.success? # returns false
+#     result.message # return 'info: Something happened\nerror:Something bad happened'
 class Result
   attr_reader :events
   def initialize()

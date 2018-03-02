@@ -1,33 +1,15 @@
+require_relative 'tag_mixin.rb'
 module TagBuilder
+
   class TagInCd
-    attr_reader :id, :texto, :positivos, :negativos
+    include TagMixin
+    attr_reader :id, :text, :positivos, :negativos
     attr_accessor :predeterminado
     def initialize(votos)
-      @votos=votos
-      @positivos=votos.count {|v| v[:decision]=='yes'}
-      @negativos=votos.count {|v| v[:decision]=='no'}
-      @id=votos[0][:id]
-      @texto=votos[0][:texto]
-      @cd_id=votos[0][:canonico_documento_id]
-      @rs_id=votos[0][:revision_sistematica_id]
-      @tag_id=votos[0][:tag_id]
-    end
-    def mostrar
-      @predeterminado or @positivos>0
-    end
-    def sin_votos?
-      positivos+negativos==0
-    end
-    def resultado_usuario(usuario_id)
-      @votos.find {|v| v[:usuario_id]==usuario_id}
-    end
-    def botones_html(usuario_id)
-      ru=resultado_usuario(usuario_id)
-      "
-<div class='btn-group btn-group-xs'>
-  #{boton_positivo_html(ru)}
-  #{boton_negativo_html(ru)}
-</div>"
+      initialize_common(votos)
+
+      @cd_id=votos[0][:canonical_document_id]
+
     end
 
     def button_change_html(url_t, glyphicon_class,number)

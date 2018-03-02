@@ -1,8 +1,8 @@
-- bb=Base_Bibliografica.id_a_nombre_h
-%p=t_desc_value(:Count_records, registros.count)
+- bb=BibliographicDatabase.id_a_name_h
+%p=t_desc_value(:Count_records, records.count)
 .list-group
   - i=1
-  - registros.each do |registro|
+  - records.each do |registro|
     .list-group-item
       ="#{i}) "
       =registro[:author]
@@ -12,14 +12,14 @@
       =registro[:pages]
       - if registro[:doi]
         =".#{a_doi(registro[:doi])}"
-      - elsif permiso("crossref_acceder")
+      - elsif auth_to("crossref_query")
         %a{:href=>url("/record/#{registro[:id]}/search_crossref")}
           %button{:class=>"btn btn-default btn-sm"}
             %span{:class=>"glyphicon glyphicon-search"}
             Crossref
-      ="[#{bb[registro[:base_bibliografica_id]]}]"
-      - if registro[:canonico_documento_id]
-        =partial(:canonical_document_button, :locals=>{:id=>registro[:canonico_documento_id]})
+      ="[#{bb[registro[:bibliographic_database_id]]}]"
+      - if registro[:canonical_document_id]
+        =partial(:canonical_document_button, :locals=>{:id=>registro[:canonical_document_id]})
       -if registro[:abstract]!=""
         %button{:class=>"btn btn-primary btn-sm", :type=>"button",  "data-toggle"=>'collapse', "data-target"=>"#registro#{registro[:id]}", "aria-expanded"=>"false", "aria-controls"=>"registro#{registro[:id]}"}=t(:Abstract)
         %div{:class=>"collapse", :id=>"registro#{registro[:id]}"}

@@ -11,14 +11,14 @@ module DOIHelpers
     "<a target='_blank' href='#{url_doi_}'>#{url_doi_}</a>"
   end
 
-  def doi_sin_http(doi)
+  def doi_without_http(doi)
     return nil if doi.nil?
     doi.gsub(/http.+doi.org\// ,"")
   end
 
 
-  def encontrar_doi(texto)
-    if texto=~/\b(10[.][0-9]{4,}(?:[.][0-9]+)*\/(?:(?!["&\'<>])\S)+)\b/
+  def find_doi(text)
+    if text=~/\b(10[.][0-9]{4,}(?:[.][0-9]+)*\/(?:(?!["&\'<>])\S)+)\b/
       return $1
     else
       return nil

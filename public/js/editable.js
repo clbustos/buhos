@@ -26,7 +26,7 @@ function buscar_similares_canonico() {
     });
 }
 
-function actualizar_decision(etapa,div_id) {
+function actualizar_decision(stage,div_id) {
     div_id = typeof div_id !== 'undefined' ? div_id : false;
     var selector_action=div_id ? div_id+" .dc_decision" : '.dc_decision';
 
@@ -37,13 +37,13 @@ function actualizar_decision(etapa,div_id) {
         var user_id = $(this).attr("data-user");
         var only_buttons= $(this).attr("data-onlybuttons");
         var url = $(this).attr("data-url");
-        //var comentario=$("#comentario-"+pk_id).val()
+        //var commentary=$("#commentary-"+pk_id).val()
         var boton = $(this);
         boton.prop("disabled", true);
         var div_replace="#decision-cd-" + pk_id;
         $.post(url, {pk_id: pk_id, decision: decision, user_id: user_id, only_buttons:only_buttons}, function (data) {
             $(div_replace).html(data);
-            actualizar_decision(etapa,div_replace);
+            actualizar_decision(stage,div_replace);
             actualizar_textarea_editable(div_replace);
 
             // Tengo que considerar los tags...
@@ -59,35 +59,34 @@ function actualizar_decision(etapa,div_id) {
 }
 
 
-function actualizar_resolucion(etapa) {
+function actualizar_resolution(stage) {
 
-    $(".dc_resolucion").click(function () {
+    $(".dc_resolution").click(function () {
         var pk_id = $(this).attr("data-pk");
-        var resolucion = $(this).attr("data-resolucion");
+        var resolution = $(this).attr("data-resolution");
         var user_id = $(this).attr("data-user");
         var url = $(this).attr("data-url");
-        var etapa = $(this).attr("data-etapa");
+        var stage = $(this).attr("data-stage");
 
-        //var comentario=$("#comentario-"+pk_id).val()
+        //var commentary=$("#commentary-"+pk_id).val()
         var boton = $(this);
         boton.prop("disabled", true)
-        $.post(url, {pk_id: pk_id, resolucion: resolucion, user_id: user_id}, function (data) {
-            $("#botones_resolucion_"+etapa+"_"+ pk_id).html(data)
+        $.post(url, {pk_id: pk_id, resolution: resolution, user_id: user_id}, function (data) {
+            $("#botones_resolution_"+stage+"_"+ pk_id).html(data)
             //update_textarea_editable();
             //setTimeout(function() {
             //},2000);
 
         }).fail(function () {
-            alert("No se pudo cargar la resolucion")
+            alert("No se pudo cargar la resolution")
         })
     })
 
 }
 
-function actualizar_nombre_editable() {
-    $('.nombre_editable').editable({
+function actualizar_name_editable() {
+    $('.name_editable').editable({
         type: 'text',
-        emptytext: '--Vacio--',
         title: 'Ingrese',
         ajaxOptions: {
             type: 'put'
@@ -102,7 +101,6 @@ function actualizar_textarea_editable(div_id) {
     $(selector_action).unbind("editable");
     $(selector_action).editable({
         type: 'textarea',
-        emptytext: '--Vacio--',
         title: 'Ingrese',
         rows: 10,
         mode: "inline",
@@ -117,9 +115,9 @@ function actualizar_textarea_editable(div_id) {
 
 $(document).ready(function () {
     actualizar_textarea_editable();
-    actualizar_nombre_editable();
+    actualizar_name_editable();
 
-    $('.tipo_editable').editable({
+    $('.type_editable').editable({
         type: 'text',
         title: 'Add new type',
         ajaxOptions: {

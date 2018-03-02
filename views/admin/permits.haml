@@ -1,0 +1,23 @@
+%h2=title(t(:Authorizations))
+
+%table.tablesorter
+  %thead
+    %th Files
+    %th Route
+    %th Authorizations
+  %tbody
+    - @files.each_pair do |file, routes|
+      - routes.each_pair do |route, permits|
+        %tr
+          %td=file
+          %td=route
+          %td
+            - if permits.length>0
+              =permits.join(", ")
+            - else
+              =t(:No_authorizations)
+
+%h2=t(:Authorizations)
+%ul
+  - @permits.each do |permit|
+    %li=permit

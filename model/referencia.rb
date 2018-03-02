@@ -1,48 +1,48 @@
 require 'digest'
-# Qué es una referencia?
-# Es una cita de un texto a otro. Su representación se basa en el texto,
-# aunque el DOI u otra forma de identificación deberían tener preferencia
+# Qué es una reference?
+# Es una cita de un text a otro. Su representación se basa en el text,
+# aunque el DOI u otra forma de identificación deberían tener preference
 
-class Referencia < Sequel::Model
+class Reference < Sequel::Model(:bib_references)
 
   include DOIHelpers
   extend DOIHelpers
 
-  many_to_many :registros
+  many_to_many :records
   def self.get_by_text(text)
     dig=Digest::SHA256.hexdigest text
-    Referencia[dig]
+    Reference[dig]
   end
   def self.get_by_text_and_doi(text,doi,create=false)
     dig=Digest::SHA256.hexdigest text
     if doi
-      doi=doi_sin_http(doi)
-      ref=Referencia.where(:id=>dig,:doi=>doi).first
+      doi=doi_without_http(doi)
+      ref=Reference.where(:id=>dig,:doi=>doi).first
     else
-      ref=Referencia[dig]
+      ref=Reference[dig]
     end
     if create and !ref
-      Referencia.insert(:id=>dig,:texto=>text,:doi=>doi)
-      ref=Referencia[dig]
+      Reference.insert(:id=>dig,:text=>text,:doi=>doi)
+      ref=Reference[dig]
     end
     ref
   end
 
   def crossref_query
-    Crossref_Query.generar_query_desde_texto( self[:texto] )
+    CrossrefQuery.generar_query_desde_text( self[:text] )
   end
 
-  def buscar_similares(d=nil,sin_canonico=true)
+  def search_similars(d=nil, sin_canonico=true)
     require 'levenshtein-ffi'
 
-    canonico_sql= sin_canonico ? " AND canonico_documento_id IS NULL ": ""
+    canonico_sql= sin_canonico ? " AND canonical_document_id IS NULL ": ""
 
-    distancias=Referencia.where("id!='#{self[:id]}' #{canonico_sql}").map {|v|
+    distancias=Reference.where(Sequel.lit("id!='#{self[:id]}' #{canonico_sql}")).map {|v|
       {
           :id=>v[:id],
-          :canonico_documento_id=>v[:canonico_documento_id],
-          :texto=>v[:texto],
-          :distancia=>Levenshtein.distance(v[:texto],self[:texto])
+          :canonical_document_id=>v[:canonical_document_id],
+          :text=>v[:text],
+          :distancia=>Levenshtein.distance(v[:text],self[:text])
       }
 
     }
@@ -53,11 +53,11 @@ class Referencia < Sequel::Model
   end
 
 
-  def agregar_doi(doi_n)
+  def add_doi(doi_n)
     #$log.info("Agregar #{doi_n} a #{self[:id]}")
     status=Result.new
 
-    crossref_doi=Crossref_Doi.procesar_doi(doi_n)
+    crossref_doi=CrossrefDoi.procesar_doi(doi_n)
 
     unless crossref_doi
       status.error("No puedo procesar DOI #{doi_n}")
@@ -67,19 +67,19 @@ class Referencia < Sequel::Model
     $db.transaction do
       ##$log.info(co)
       if self[:doi]==doi_n
-        status.info("Ya agregado DOI para referencia #{self[:id]}")
+        status.info("Ya agregado DOI para reference #{self[:id]}")
       else
-        self.update(:doi=>doi_sin_http(doi_n))
-        status.success("Se agrega DOI #{doi_n} para referencia #{self[:id]}")
+        self.update(:doi=>doi_without_http(doi_n))
+        status.success("Se agrega DOI #{doi_n} para reference #{self[:id]}")
       end
 
-      if self[:canonico_documento_id].nil?
-        can_doc=Canonico_Documento[:doi=>doi_sin_http(doi_n)]
+      if self[:canonical_document_id].nil?
+        can_doc=CanonicalDocument[:doi=>doi_without_http(doi_n)]
         if can_doc
-          self.update(:canonico_documento_id=>can_doc[:id])
+          self.update(:canonical_document_id=>can_doc[:id])
           status.info("Agregado a documento canónico #{can_doc[:id]} ya existente")
         else # No existe el canónico, lo debo crear
-          integrator=Crossref_Doi.reference_integrator_json(doi)
+          integrator=CrossrefDoi.reference_integrator_json(doi)
           ##$log.info(integrator)
           fields = [:title,:author,:year,:journal, :volume, :pages, :doi, :journal_abbr,:abstract]
           fields_update=fields.inject({}) {|ac,v|
@@ -90,14 +90,14 @@ class Referencia < Sequel::Model
           if fields_update[:year].nil?
             status.error("El DOI #{doi} no tiene año. Extraño, pero tengo que cancelar misión")
           else
-            can_doc_id=Canonico_Documento.insert(fields_update)
-            self.update(:canonico_documento_id=>can_doc_id)
+            can_doc_id=CanonicalDocument.insert(fields_update)
+            self.update(:canonical_document_id=>can_doc_id)
             status.success("Agregado un nuevo documento canónico #{can_doc_id}: #{integrator.ref_apa_6}")
           end
         end
         $db.after_rollback {
           status=Result.new
-          status.error("Rollback en agregar doi para referencia #{self[:id]}")
+          status.error("Rollback en agregar doi para reference #{self[:id]}")
         }
       end
     end

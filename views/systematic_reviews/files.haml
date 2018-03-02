@@ -1,33 +1,33 @@
-.header=t_systematic_review_title(@revision[:nombre], :File_batch_management)
-=@modal_archivos.javascript_header
+.header=t_systematic_review_title(@review[:name], :File_batch_management)
+=@modal_files.javascript_header
 / Modal
-=@modal_archivos.html_modal
+=@modal_files.html_modal
 
 
 %ul.breadcrumb
   %li
-    %a{:href=>url("/review/#{@revision.id}")}=@revision.nombre
+    %a{:href=>url("/review/#{@review.id}")}=@review.name
   %li{:class=>:active}=t(:Files)
 
 
 %h3=t(:Upload_files)
 
 %form{:method=>:post, :action=>url("/review/files/add"), :enctype=>'multipart/form-data'}
-  %input{:type=>"hidden", :name=>"revision_sistematica_id",:value=>@revision[:id]}
+  %input{:type=>"hidden", :name=>"systematic_review_id",:value=>@review[:id]}
   .form-group
     %label=t(:File)
-    %input{:type=>'file', :name=>'archivos[]', :multiple=>"multiple"}
+    %input{:type=>'file', :name=>'files[]', :multiple=>"multiple"}
   %input{:type=>:submit, :class=>"btn btn-primary",:value=>"Enviar"}
 
 
 %h3=t(:Files)
 %p
   %strong="#{t(:Count_total_files)}:"
-  =@archivos_rs.count
+  =@file_rs.count
 
 
 %div{:class=>"btn-group btn-group-sm", :role=>'group'}
-  %a{:role=>:button, :href=>url("/files/rs/#{@revision.id}/assign_to_canonical_documents"), :class=>"btn btn-default"}
+  %a{:role=>:button, :href=>url("/files/rs/#{@review.id}/assign_to_canonical_documents"), :class=>"btn btn-default"}
     %span{:class=>"glyphicon glyphicon-king"}
     =t(:Assign_automaticly_to_canonical_documents)
 
@@ -38,15 +38,15 @@
     %th=t(:Canonical_document)
     %th=t(:Actions)
   %tbody
-    -@archivos_rs.each do |archivo|
+    -@file_rs.each do |archivo|
       %tr
         %td{:style=>'max-width:300px;overflow:hidden;text-overflow:ellipsis;'}
-          =a_editable(archivo[:id], 'archivo_nombre', "/file/edit_field/archivo_nombre", archivo[:archivo_nombre])
+          =a_editable(archivo[:id], 'filename', "/file/edit_field/filename", archivo[:filename])
         %td
-          =a_editable(archivo[:id], 'archivo_tipo', "/file/edit_field/archivo_tipo", archivo[:archivo_tipo])
-        %td{:id=>"nombre_canonico-#{archivo[:id]}"}
-          -if archivo[:canonico_documento_id]
-            %a{:href=>"/canonical_document/#{archivo[:canonico_documento_id]}"}=@canonicos_documentos_h[archivo[:canonico_documento_id]] ? @canonicos_documentos_h[archivo[:canonico_documento_id]].title : "<em>#{t(:No_title)}</em>"
+          =a_editable(archivo[:id], 'filetype', "/file/edit_field/filetype", archivo[:filetype])
+        %td{:id=>"name_canonico-#{archivo[:id]}"}
+          -if archivo[:canonical_document_id]
+            %a{:href=>"/canonical_document/#{archivo[:canonical_document_id]}"}=@canonical_documents_h[archivo[:canonical_document_id]] ? @canonical_documents_h[archivo[:canonical_document_id]].title : "<em>#{t(:No_title)}</em>"
           -else
             %select{:id=>"select_canonico_#{archivo[:id]}",:name=>"select_canonico_#{archivo[:id]}[]"}
               %option{:value=>""}="--#{t(:Without_canonical_document)}--"
@@ -54,4 +54,4 @@
                 %option{:value=>cd[:id]}=CGI.escapeHTML(cd[:title][0..50])
             %button.btn.btn-default.btn-sm.asignar_canonico{"archivo-pk"=>archivo[:id]}
               =t(:Change)
-        %td=@modal_archivos.botones(archivo,archivo[:canonico_documento_id],@revision.id,true)
+        %td=@modal_files.botones(archivo,archivo[:canonical_document_id],@review.id,true)

@@ -4,11 +4,11 @@ class GraphML_Builder
     @stage=stage
   end
   def generate_graphml
-    ars=AnalisisRevisionSistematica.new(@sr)
+    ars=AnalysisSystematicReview.new(@sr)
     if @stage
-      cd_hash=Canonico_Documento.where(:id=>@sr.cd_id_por_etapa(@stage)).order(:year).as_hash
+      cd_hash=CanonicalDocument.where(:id=>@sr.cd_id_by_stage(@stage)).order(:year).as_hash
     else
-      cd_hash=@sr.canonicos_documentos.order(:year).as_hash
+      cd_hash=@sr.canonical_documents.order(:year).as_hash
     end
 
     head=<<HEREDOC
@@ -42,12 +42,12 @@ HEREDOC
 <data key='d3'>#{ars.cd_count_entrada(v[0]).to_i}</data>
 <data key='output_n'>#{ars.cd_count_salida(v[0]).to_i}</data>
 <data key='d5'>#{ars.cd_en_registro?(v[0]) ? "true" : "false"}</data>
-<data key='d6'>#{ars.cd_en_referencia?(v[0]) ? "true" : "false"}</data>
-<data key='d7'>#{ars.cd_en_resolucion_etapa?(v[0],"screening_title_abstract") ? "true" : "false"}</data>
+<data key='d6'>#{ars.cd_en_reference?(v[0]) ? "true" : "false"}</data>
+<data key='d7'>#{ars.cd_in_resolution_stage?(v[0], "screening_title_abstract") ? "true" : "false"}</data>
 </node>"
       }.join("\n")
-      edges=ars.rec.find_all{|x| cd_hash[x[:cd_origen]] and cd_hash[x[:cd_destino]] }.map {|v|
-        "<edge source='n#{v[:cd_origen]}' target='n#{v[:cd_destino]}' directed='true' />"
+      edges=ars.rec.find_all{|x| cd_hash[x[:cd_start]] and cd_hash[x[:cd_end]] }.map {|v|
+        "<edge source='n#{v[:cd_start]}' target='n#{v[:cd_end]}' directed='true' />"
       }.join("\n")
       footer="\n</graph>\n</graphml>"
       [head, nodos, edges, footer].join("\n")

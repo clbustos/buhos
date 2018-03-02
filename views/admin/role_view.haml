@@ -1,0 +1,9 @@
+.heading
+  %h2=title(t(:Role_name, role_name:@role[:id]))
+
+%p=t_desc_value(:Role_id, @role[:id])
+%p=t_desc_value(:Description, @role[:description])
+%h3=t(:Authorizations)
+%ol
+- @authorizations.order(:id).each do |authorization|
+  %li=t("auth.#{authorization[:id]}")

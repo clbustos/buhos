@@ -4,32 +4,32 @@ module ReportBuilder
     def initialize(sr,app)
       @sr=sr
       @app=app
-      @ars=AnalisisRevisionSistematica.new(sr)
+      @ars=AnalysisSystematicReview.new(sr)
 
     end
     def process_information
-      @sources_identification=sr.busquedas_dataset.inject({}) {|ac,v|
+      @sources_identification=sr.searches_dataset.inject({}) {|ac,v|
         source=v[:source]
         ac[source]||=0
-        ac[source]+=v.registros_n
+        ac[source]+=v.records_n
         ac
       }
       @n_rec_database=@sources_identification["database_search"].to_i # records identified on databases
-      @n_rec_back_snow=sr.cd_id_por_etapa("screening_references").length # records obtained by snowballing
+      @n_rec_back_snow=sr.cd_id_by_stage("screening_references").length # records obtained by snowballing
       @n_rec_other=@sources_identification.inject(0) {|ac,v| ac+v[1]} - @n_rec_database+ @n_rec_back_snow
-      @n_rec_non_duplicated=sr.cd_id_por_etapa("screening_references").length + sr.cd_id_por_etapa("screening_title_abstract").length
+      @n_rec_non_duplicated=sr.cd_id_by_stage("screening_references").length + sr.cd_id_by_stage("screening_title_abstract").length
       @n_rec_screened=@ars.cd_screened_id("screening_references").count+@ars.cd_screened_id("screening_title_abstract").count
       @n_rec_rej_screen=@ars.cd_rejected_id("screening_references").count+@ars.cd_rejected_id("screening_title_abstract").count
-      @n_rec_full_assed=sr.cd_id_por_etapa("review_full_text").count
+      @n_rec_full_assed=sr.cd_id_by_stage("review_full_text").count
       @n_rec_full_rej=@ars.cd_rejected_id("review_full_text").count
       @n_rec_full_ace=@ars.cd_accepted_id("review_full_text").count
 
       # We need to recover the tag for exclusions
       #
       reason_to_exclude=@ars.cd_rejected_id("review_full_text").map {|v|
-        TagBuilder.tag_in_cd(@sr, Canonico_Documento[v]).find_all {
-            |vv|  vv.texto=~/^ex:/  and vv.mostrar
-        }.map {|vv| vv.texto.gsub(/^ex:/,'')}.join("; ")
+        TagBuilder.tag_in_cd(@sr, CanonicalDocument[v]).find_all {
+            |vv|  vv.text=~/^ex:/  and vv.mostrar
+        }.map {|vv| vv.text.gsub(/^ex:/,'')}.join("; ")
       }
       @reason_to_exclude_count=reason_to_exclude.inject({}) {|ac,v|
         ac[v]||=0

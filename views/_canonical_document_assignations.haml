@@ -1,21 +1,21 @@
-- # parametros: revision, cd
-- usuarios_grupos=revision.grupo_usuarios
-- user_asignaciones=Asignacion_Cd.where(:revision_sistematica_id=>revision[:id], :canonico_documento_id=>cd[:id], :etapa=>stage ).to_hash(:usuario_id)
-- if @usuario_asignaciones_js.nil?
-  - @usuario_asignaciones_js=true
-  %script{:type=>'text/javascript', :src=>url('/js/asignacion_usuarios.js')}
+- # parametros: review, cd
+- users_grupos=review.group_users
+- user_allocations=AllocationCd.where(:systematic_review_id=>review[:id], :canonical_document_id=>cd[:id], :stage=>stage ).to_hash(:user_id)
+- if @user_allocations_js.nil?
+  - @user_allocations_js=true
+  %script{:type=>'text/javascript', :src=>url('/js/asignacion_users.js')}
 
 %ul.asignaciones
-  -usuarios_grupos.each do |user|
-    - clase_asignar = !user_asignaciones[user[:id]].nil? ? "hidden" : ""
-    - clase_desasignar = !user_asignaciones[user[:id]].nil? ? "" : "hidden"
+  -users_grupos.each do |user|
+    - clase_asignar = !user_allocations[user[:id]].nil? ? "hidden" : ""
+    - clase_desasignar = !user_allocations[user[:id]].nil? ? "" : "hidden"
     %li.asignacion-user
       / Asignación
-      =user[:nombre]
-      %span{:class=>clase_asignar, :id=>"usuario-asignar-#{revision[:id]}-#{cd[:id]}-#{user[:id]}-#{stage}"}
-        %button{:class=>"btn btn-success btn-xs usuario_asignar", "data-rsid"=>revision[:id], "data-cdid"=>cd[:id], "data-uid"=>user[:id], "data-stage"=>stage}
+      =user[:name]
+      %span{:class=>clase_asignar, :id=>"usuario-asignar-#{review[:id]}-#{cd[:id]}-#{user[:id]}-#{stage}"}
+        %button{:class=>"btn btn-success btn-xs usuario_asignar", "data-rsid"=>review[:id], "data-cdid"=>cd[:id], "data-uid"=>user[:id], "data-stage"=>stage}
           %span.glyphicon.glyphicon-hand-up
-      %span{:class=>clase_desasignar, :id=>"usuario-desasignar-#{revision[:id]}-#{cd[:id]}-#{user[:id]}-#{stage}"}
-        =a_editable(user[:id], "asignacion-instruccion-#{user[:id]}-#{revision[:id]}-#{cd[:id]}-#{stage}", "/assignation/user/#{user[:id]}/review/#{revision[:id]}/cd/#{cd[:id]}/stage/#{stage}/edit_instruction", user_asignaciones[user[:id]] ? user_asignaciones[user[:id]][:instruccion] : nil, t(:set_instructions))
-        %button{:class=>"btn btn-warning btn-xs usuario_desasignar", "data-rsid"=>revision[:id], "data-cdid"=>cd[:id], "data-uid"=>user[:id], "data-stage"=>stage}
+      %span{:class=>clase_desasignar, :id=>"usuario-desasignar-#{review[:id]}-#{cd[:id]}-#{user[:id]}-#{stage}"}
+        =a_editable(user[:id], "asignacion-instruction-#{user[:id]}-#{review[:id]}-#{cd[:id]}-#{stage}", "/authorization/user/#{user[:id]}/review/#{review[:id]}/cd/#{cd[:id]}/stage/#{stage}/edit_instruction", user_allocations[user[:id]] ? user_allocations[user[:id]][:instruction] : nil, t(:set_instructions))
+        %button{:class=>"btn btn-warning btn-xs usuario_desasignar", "data-rsid"=>review[:id], "data-cdid"=>cd[:id], "data-uid"=>user[:id], "data-stage"=>stage}
           %span.glyphicon.glyphicon-hand-down

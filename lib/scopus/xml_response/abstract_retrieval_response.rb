@@ -230,7 +230,7 @@ module Scopus
             #
           end
 
-          #p "#{nombre} #{apellido}"
+          #p "#{name} #{apellido}"
           @authors[auid]={
               :auid => auid,
               :seq => seq,

@@ -1,11 +1,11 @@
-- rmc_canonico=Canonico_Documento.where(:id=> referencias.exclude(canonico_documento_id: nil).map(:canonico_documento_id))
-- rmc_no_canonico=referencias.where(canonico_documento_id: nil)
+- rmc_canonico=CanonicalDocument.where(:id=> references.exclude(canonical_document_id: nil).map(:canonical_document_id))
+- rmc_no_canonico=references.where(canonical_document_id: nil)
 %h4=t(:References_assigned_to_canonical_document)
 
 .list-group
 - rmc_canonico.each do |ref|
   %div.list-group-item
-    %span{:class=>"badge"}=ref[:n_registros]
+    %span{:class=>"badge"}=ref[:n_records]
     .list-group-item-text
       ="#{ref[:author]} (#{ref[:year]}). #{ref[:title]}. <em>#{ref[:journal]},#{ref[:volume]}</em>, #{ref[:pages]} "
       .btn-group
@@ -15,7 +15,7 @@
         %a{:href=>url("/canonical_document/#{ref[:id]}"), :role=>:button, :class=>"btn btn-success btn-sm"}
           %span{:class=>"glyphicon glyphicon-king"}
           =t(:Canonical)
-        - if permiso("referencias_editar")
+        - if auth_to("reference_edit")
           %a{:href=>url("/canonical_document/#{ref[:id]}/clean_references"), :role=>:button, :class=>"btn btn-default btn-sm"}
             %span{:class=>"glyphicon glyphicon-erase"}
             =t(:Clear_references)
@@ -30,11 +30,11 @@
   %div.list-group-item
     %span{:class=>"badge"}=ref[:n]
     .list-group-item-text
-      =ref[:texto]
+      =ref[:text]
       - if ref[:doi]
         =a_doi(ref[:doi])
       .btn-group
-        - if permiso("referencias_editar") and permiso("acceder_crossref")
+        - if auth_to('reference_edit') and auth_to('crossref_query')
           %a{:href=>url("/reference/#{ref[:id]}/search_crossref"), :role=>:button, :class=>"btn btn-default btn-sm"}
             %span{:class=>"glyphicon glyphicon-search"}
             =t(:Search_on_Crossref)

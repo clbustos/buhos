@@ -12,6 +12,8 @@ asignacion_general=function(e,accion,f_divs) {
         alert("No se pudo "+accion+" el documento al usuario")
     })
 };
+
+
 $(document).ready(function() {
 
     $(".usuario_asignar").click(function() {

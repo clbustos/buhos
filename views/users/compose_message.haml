@@ -2,27 +2,27 @@
   %h2=title(t("messages.Compose"))
 %ul.breadcrumb
   %li
-    %a{:href=>"/user/#{@user[:id]}"}=@user[:nombre]
+    %a{:href=>"/user/#{@user[:id]}"}=@user[:name]
   %li
     %a{:href=>"/user/#{@user[:id]}/messages"}=t(:Messages)
   %li.active
     =t("messages.Compose")
 %form.new_message{:method=>"post",:action=>url("/user/#{@user[:id]}/compose_message/send")}
   .form-group
-    %label{:for=>"nombre"}=t(:Author)
-    %p=@user[:nombre]
+    %label{:for=>"name"}=t(:Author)
+    %p=@user[:name]
     %input{:type=>"hidden",:name=>:user_id, :value=>@user[:id]}
   .form-group
-    %label{:to=>"nombre"}=t("messages.Send_to")
+    %label{:to=>"name"}=t("messages.Send_to")
     %select.form-control{:name=>:to, :id=>:form_to}
       %option{:value=>"NULL"}=t("messages.Select_user")
       - @user.accesible_users.each do |user_to|
-        %option{:value=>user_to[:id]}=user_to[:nombre]
+        %option{:value=>user_to[:id]}=user_to[:name]
 
   .form-group
-    %label{:for=>"asunto"}=t(:Subject)
-    %input{:class=>"form-control",:type=>"text", :name=>"asunto", :value=>@ms_text}
+    %label{:for=>"subject"}=t(:Subject)
+    %input{:class=>"form-control",:type=>"text", :name=>"subject", :value=>@ms_text}
   .form-group
-    %label{:for=>"texto"}=t(:Text)
-    %textarea{:class=>"form-control",:name=>'texto'}
+    %label{:for=>"text"}=t(:Text)
+    %textarea{:class=>"form-control",:name=>'text'}
   %input{:type=>:submit, :value=>t("messages.Send_message_to_user"), :class=>"btn btn-default"}

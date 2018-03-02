@@ -1,6 +1,8 @@
 # Buhos
 
 [![Build Status](https://travis-ci.org/clbustos/buhos.svg?branch=master)](https://travis-ci.org/clbustos/buhos)
+[![Maintainability](https://api.codeclimate.com/v1/badges/ffa582598127f86ed405/maintainability)](https://codeclimate.com/github/clbustos/buhos/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/ffa582598127f86ed405/test_coverage)](https://codeclimate.com/github/clbustos/buhos/test_coverage)
 
 Web based platform to manage the complete process of a systematic literatute reviews. Developed usign Sinatra, a Ruby DSL.
 
@@ -75,7 +77,9 @@ On Ubuntu, this script install all required dependencies
       libgdal-dev \
       libproj-dev \
       libxml2-dev \
-      libxml2-dev \
+      ghostscript \
+      imagemagick \
+      xpdf \
       build-essential \
       libmysqlclient-dev \
       libsqlite3-dev
@@ -173,9 +177,14 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 ## Authors
 
-* **Claudio  Bustos** - *Main developer* - [clbustos](https://github.com/clbustos)
-* **Daniel Lermanda** - *Web page designer and UX advisor*
+### Main developer
 
+* **Claudio  Bustos** - *Main developer* - [clbustos](https://github.com/clbustos)
+
+### Contributors
+* **Daniel Lermanda** - Web page designer and UX advisor
+* **María Gabriela Morales** - First conceptualization and documentation
+* **Liz Medina** -  English translation of user interface
 
 
 ## License

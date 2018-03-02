@@ -2,7 +2,7 @@
   %li
     %a{:href=>url("/reviews")}=t(:Systematic_reviews)
   %li
-    %a{:href=>url("/review/#{@revision[:id]}")}=@revision[:nombre]
+    %a{:href=>url("/review/#{@review[:id]}")}=@review[:name]
   %li
-    %a{:href=>url("/review/#{@revision[:id]}/administration_stages")}=t(:Administration)
-  %li{:class=>"active"}=nombre
+    %a{:href=>url("/review/#{@review[:id]}/administration_stages")}=t(:Administration)
+  %li{:class=>"active"}=name

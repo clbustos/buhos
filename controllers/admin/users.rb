@@ -1,30 +1,29 @@
 get '/admin/users/?' do
-  return 403 unless permiso("ver_usuarios")
-  @usr_bus=params[:usuarios_busqueda]
+  halt_unless_auth('user_admin')
+  @usr_bus=params[:users_search]
   if(@usr_bus.nil? or @usr_bus=="")
-    @usuarios=[]
+    @users=[]
   else
-    @usuarios=Usuario.filter(Sequel.like(:nombre, "%#{@usr_bus}%")).order(:nombre)
+    @users=User.filter(Sequel.like(:name, "%#{@usr_bus}%")).order(:name)
   end
   #log.info(@personas.all)  
-  @roles=Rol.order()
+  @roles=Role.order()
   haml :users
 end
 
-
 post '/admin/users/update' do
-  permiso("editar_usuarios")
+  halt_unless_auth('user_admin')
   params['usuario'].each {|id,per|
     if(id=='N')
-      if(per["nombre"]!="")
+      if(per["name"]!="")
         data=per
         data["password"]=Digest::SHA1.hexdigest(per["password"])
-        data["activa"]=data["activa"]?1:0
+        data["active"]=data["active"]?1:0
         log.info(data)
-        Usuario.insert(data)
+        User.insert(data)
       end
     elsif !per['borrar'].nil?
-      Usuario[id].delete()
+      User[id].delete()
     else
       data=per
       if per["password"]==""
@@ -32,8 +31,8 @@ post '/admin/users/update' do
       else
         data["password"]=Digest::SHA1.hexdigest(per["password"])
       end
-      data["activa"]=data["activa"]?1:0
-      Usuario[id].update(data)
+      data["active"]=data["active"]?1:0
+      User[id].update(data)
     end
   }
   redirect back

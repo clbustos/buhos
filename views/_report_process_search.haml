@@ -11,15 +11,15 @@
     %th=t(:Search_valid)
     %th=t(:Count_records)
   %tbody
-    - @sr.busquedas.each do |g|
+    - @sr.searches.each do |g|
       %tr
         %td=g.id
-        %td=Usuario[g[:user_id]][:nombre]
+        %td=User[g[:user_id]][:name]
         %td=t(g.source_name)
-        %td=g.base_bibliografica_nombre
-        %td=g.fecha
-        %td=g.criterio_busqueda
-        %td=g.descripcion
-        %td=g.archivo_nombre.nil? ? t(:No_file) : "#{g.archivo_nombre} [#{g.archivo_tipo}]"
+        %td=g.bibliographical_database_name
+        %td=g.date_creation
+        %td=g.search_criteria
+        %td=g.description
+        %td=g.filename.nil? ? t(:No_file) : "#{g.filename} [#{g.filetype}]"
         %td= t_yes_no_nil(g.valid)
-        %td=g.registros_n
+        %td=g.records_n

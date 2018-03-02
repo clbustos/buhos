@@ -1,4 +1,12 @@
 module Sinatra
+  # Provide Javascript and html for a X-Editable select box
+  #
+  # Example
+  #     xselect=get_xeditable_select({a:'a',b:'b', c:'c', d:'d'}, "/path/to/action/", '.my_custom_selects')
+  # On javascript section, you include
+  #     xselect.javascript
+  # On html side, you include
+  #     xselect.html(resource_id, :a)
   module Xeditable_Select
     class Select
       # Hash of key, values to put on select
@@ -16,23 +24,27 @@ module Sinatra
       attr_accessor :method
       # By default, true. Could be set to false conditional on permission
       attr_accessor :active
-      def initialize(values, url,html_class)
+
+      def initialize(values, url, html_class)
         process_values(values)
-        @url_data=url
-        @html_class=html_class
-        @title=::I18n.t(:Select_an_option)
-        @method="put"
-        @active=true
+        @url_data = url
+        @html_class = html_class
+        @title = ::I18n.t(:Select_an_option)
+        @nil_value=::I18n.t(:empty)
+        @method = "put"
+        @active = true
       end
+
       def process_values(x)
-        @values={}
-        x.each_pair {|key,val|
-          @values[key.to_s]=val
+        @values = {}
+        x.each_pair {|key, val|
+          @values[key.to_s] = val
         }
       end
+
       def javascript
-        source=values.map {|v|
-          "{value:'#{v[0]}', text:'#{v[1].gsub("'","")}'}"
+        source = values.map {|v|
+          "{value:'#{v[0]}', text:'#{v[1].gsub("'", "")}'}"
         }.join(",\n")
 
         "
@@ -51,8 +63,7 @@ source: [#{source}]
 "
       end
 
-      def html(id,value)
-
+      def html(id, value)
         value_value = value.nil? ? nil_value.to_s : value.to_s
         value_text = value.nil? ? values[nil_value.to_s] : values[value.to_s]
         return value_text if !active
@@ -60,14 +71,15 @@ source: [#{source}]
       end
     end
     module Helpers
-      def  get_xeditable_select(values,url,html_class)
-        Select.new(values,url,html_class)
+      def get_xeditable_select(values, url, html_class)
+        Select.new(values, url, html_class)
       end
-      def get_xeditable_select_bool(url,html_class)
-        values={0 =>::I18n.t("No"),
-                1 => ::I18n.t("Yes")
+
+      def get_xeditable_select_bool(url, html_class)
+        values = {0 => ::I18n.t("No"),
+                  1 => ::I18n.t("Yes")
         }
-        Select.new(values,url,html_class)
+        Select.new(values, url, html_class)
       end
     end
 

@@ -3,9 +3,9 @@ module Sinatra
     module Helpers
       def rol_usuario
         if(!session['user'].nil?)
-          "invitado"
+          "guest"
         else
-          session['rol_id']
+          session['role_id']
         end
       end
       def presentar_usuario
@@ -17,17 +17,17 @@ module Sinatra
         end
       end
 
-      # Verifica que la persona tenga un permiso específico
-      def permiso(per)
-        #log.info(session['permisos'])
+      # Verifica que la persona tenga un authorization específico
+      def auth_to(auth)
+        #log.info(session['authorizations'])
         if session['user'].nil?
           false
         else
-          if session['rol_id']=='administrator'
-            Permiso.insert(:id=>per, :descripcion=>::I18n::t("sinatra_auth.permission_created_by_administrator")) if Permiso[per].nil?
-            Rol['administrator'].add_permiso(Permiso[per]) unless PermisosRol[permiso_id:per, rol_id:'administrator']
+          if session['role_id']=='administrator'
+            Authorization.insert(:id=>auth, :description=>::I18n::t("sinatra_auth.permission_created_by_administrator")) if Authorization[auth].nil?
+            Role['administrator'].add_auth_to(Authorization[auth]) unless AuthorizationsRole[authorization_id:auth, role_id:'administrator']
             true
-          elsif session['permisos'].include? per
+          elsif session['authorizations'].include? auth
             true
           else
             false
@@ -35,23 +35,33 @@ module Sinatra
         end
       end
 
-      def revision_pertenece_a(revision_id,usuario_id)
-        permiso("revision_editar_propia") and Revision_Sistematica[:id=>revision_id, :administrador_revision=>usuario_id]
+      def halt_unless_auth(*args)
+        halt 403 if args.any? {|per| !auth_to(per)}
       end
-      def revision_analizada_por(revision_id,usuario_id)
-        permiso("revision_analizar_propia") and !$db["SELECT * FROM grupos_usuarios gu INNER JOIN revisiones_sistematicas rs ON gu.grupo_id=rs.grupo_id WHERE rs.id=? AND gu.usuario_id=?", revision_id, usuario_id].empty?
+
+      def is_session_user(user_id)
+        user_id.to_i==session['user_id']
+      end
+
+
+      def review_belongs_to(review_id,user_id)
+        auth_to("review_admin") and SystematicReview[:id=>review_id, :sr_administrator=>user_id]
+      end
+
+      def revision_analizada_por(review_id,user_id)
+        auth_to("review_analyze") and !$db["SELECT * FROM groups_users gu INNER JOIN systematic_reviews rs ON gu.group_id=rs.group_id WHERE rs.id=? AND gu.user_id=?", review_id, user_id].empty?
       end
 
       def authorize(login, password)
-        u=Usuario.filter(:login=>login,:password=>Digest::SHA1.hexdigest(password))
+        u=User.filter(:login=>login,:password=>Digest::SHA1.hexdigest(password))
         ##$log.info(u.first)
         if u.first
           user=u.first
           session['user']=user[:login]
           session['user_id']=user[:id]
-          session['nombre']=user[:nombre]
-          session['rol_id']=user[:rol_id]
-          session['permisos']=user.permisos.map {|v| v.id}
+          session['name']=user[:name]
+          session['role_id']=user[:rol_id]
+          session['authorizations']=user.authorizations.map {|v| v.id}
           session['language']=user.language
           true
         else
@@ -79,11 +89,11 @@ module Sinatra
 
       app.post '/login' do
         if(authorize(params['user'], params['password']))
-          agregar_mensaje ::I18n.t(:Successful_authentification)
+          add_message ::I18n.t(:Successful_authentification)
           #log.info( ::I18n::t("sinatra_auth.sucessful_auth_for_user", user:params['user']))
           redirect(url("/"))
         else
-          agregar_mensaje ::I18n::t("sinatra_auth.error_on_auth"),:error
+          add_message ::I18n::t("sinatra_auth.error_on_auth"), :error
           redirect(url("/login"))
         end
       end

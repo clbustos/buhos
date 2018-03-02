@@ -1,5 +1,10 @@
 require 'simplecov'
-SimpleCov.start
+unless ENV['NO_COV']
+  SimpleCov.start do
+    add_filter '/spec/'
+    add_filter 'lib/scopus/connection.rb' # Is necessary an API scopus to test it
+  end
+end
 require 'sequel'
 require 'rspec'
 require 'i18n'
@@ -9,6 +14,7 @@ require 'tempfile'
 require 'logger'
 require_relative "../db/create_schema"
 require_relative "../lib/buhos/dbadapter"
+require_relative 'rspec_matchers'
 
 ENV['RACK_ENV'] = 'test'
 ENV['DATABASE_URL']='sqlite::memory:'
@@ -19,7 +25,7 @@ $base=File.expand_path("..",File.dirname(__FILE__))
 
 FileUtils::mkdir_p "#{$base}/log/"
 
-logger_sql = Logger.new("#{$base}/log/app_sql_test.log")
+logger_sql = Logger.new("#{$base}/log/spec_sql_test.log")
 
 db=Sequel.connect('sqlite::memory:', :encoding => 'utf8',:reconnect=>false,:keep_reference=>false)
 Buhos::SchemaCreation.create_db_from_scratch(db)
@@ -61,6 +67,17 @@ app_path=File.expand_path(File.dirname(__FILE__)+"/..")
 module RSpecMixin
   include Rack::Test::Methods
   def app() Sinatra::Application end
+
+  def sr_by_name_id(name)
+    rs=SystematicReview[:name=>name]
+    rs ? rs[:id] : nil
+  end
+
+  def bb_by_name_id(name)
+    bb=BibliographicDatabase[name:name]
+    bb ? bb[:id] :nil
+  end
+
   def configure_empty_sqlite
 
     db=Buhos::SchemaCreation.create_db_from_scratch(Sequel.connect('sqlite::memory:', :encoding => 'utf8',:reconnect=>false,:keep_reference=>false))
@@ -71,13 +88,13 @@ module RSpecMixin
 
     $log.info("DB is:#{$db}")
   end
-
+  def login_admin
+    post '/login', :user=>"admin", :password=>"admin"
+  end
   def configure_complete_sqlite
 
     temp=Tempfile.new
     FileUtils.cp "#{$base}/db/db_complete.sqlite", temp.path
-	puts temp.path
-	
     db=Sequel.connect("sqlite:#{temp.path}", :encoding => 'utf8',:reconnect=>false, :keep_reference=>false)
 
     $db_adapter.use_db(db)
@@ -86,15 +103,16 @@ module RSpecMixin
 
 
 
-    #puts "Adaptador: #{$db_adapter.object_id} - #{Usuario.db.object_id}"
+    #puts "Adaptador: #{$db_adapter.object_id} - #{User.db.object_id}"
     #puts "Db: #{$db_adapter.current.object_id} - #{$db.object_id} - #{db.object_id}"
     temp
   end
 
   def close_sqlite
     $log.info("Closing #{$db}")
-    #@tempfile.unlink
-
+    #$db.disconnect
+    #$db_adapter.use_db(nil)
+    #$db=nil
 
   end
 
@@ -103,6 +121,11 @@ module RSpecMixin
     expect(last_response).to_not be_ok
     expect(last_response.status).to_not eq(403)
 
+  end
+
+  def check_executable_on_path(exe)
+    require 'mkmf'
+    find_executable exe
   end
 end
 
@@ -115,141 +138,4 @@ end
 
 
 #RSpec.configure { |c| c.include RSpecMixin }
-
-RSpec::Matchers.define :responds_with_no_review_id_error do |code|
-  match do |actual|
-    get actual
-    expect(last_response.status).to eq(404)
-    expect(last_response.body).to include(code.to_s)
-    expect(last_response.body).to include(I18n::t(:Systematic_review))
-  end
-  description do
-    "route #{actual} responds with 404 status, and a message with code object and code #{code}"
-  end
-
-  failure_message do |actual|
-    "expected route '#{actual}' to responds with 404 status, but responds in another way"
-  end
-end
-
-
-RSpec::Matchers.define :responds_with_no_user_id_error do |code|
-  match do |actual|
-    get actual
-    expect(last_response.status).to eq(404)
-    expect(last_response.body).to include(code.to_s)
-    expect(last_response.body).to include(I18n::t(:User))
-  end
-  failure_message do |actual|
-    "expected route '#{actual}' to responds with 404 status, but responds in another way"
-  end
-  description do
-    "route #{actual} responds with 404 status, and a message with code object and code #{code}"
-  end
-
-end
-
-RSpec::Matchers.define :responds_with_no_search_id_error do |code|
-  match do |actual|
-    get actual
-    expect(last_response.status).to eq(404)
-    expect(last_response.body).to include(code.to_s)
-    expect(last_response.body).to include(I18n::t(:Search))
-  end
-  failure_message do |actual|
-    "expected route '#{actual}' to responds with 404 status, but responds in another way"
-  end
-  description do
-    "route #{actual} responds with 404 status, and a message with code object and code #{code}"
-  end
-
-end
-
-RSpec::Matchers.define :responds_with_no_cd_id_error do |code|
-  match do |actual|
-    get actual
-    expect(last_response.status).to eq(404)
-    expect(last_response.body).to include(code.to_s)
-    expect(last_response.body).to include(I18n::t(:Canonical_document))
-  end
-  failure_message do |actual|
-    "expected route '#{actual}' to responds with 404 status, but responds in another way"
-  end
-  description do
-    "route #{actual} responds with 404 status, and a message with code object and code #{code}"
-  end
-
-end
-
-RSpec::Matchers.define :responds_with_no_tag_id_error do |code|
-  match do |actual|
-    get actual
-    expect(last_response.status).to eq(404)
-    expect(last_response.body).to include(code.to_s)
-    expect(last_response.body).to include(I18n::t(:Tag))
-  end
-  failure_message do |actual|
-    "expected route '#{actual}' to responds with 404 status, but responds in another way"
-  end
-  description do
-    "route #{actual} responds with 404 status, and a message with code object and code #{code}"
-  end
-
-end
-
-RSpec::Matchers.define :be_accesible_for_admin do
-  match do |actual|
-    post '/login' , :user=>'admin', :password=>'admin'
-    get actual
-    #puts last_response.body
-    expect(last_response).to be_ok
-    expect(last_response.body).to_not be_empty
-  end
-
-  match_when_negated do |actual|
-    post '/login' , :user=>'admin', :password=>'admin'
-    get actual
-    expect(last_response).to_not be_ok
-  end
-  description do
-    "route #{actual} be accesible for admin"
-  end
-
-
-  failure_message do |actual|
-    last_response.body=~/<section id='content'>(.+?)<\/section>/m
-    show_body=$1.nil? ? last_response.body : $1
-    "expected #{actual} be accessible, but status was #{last_response.status} and content was '#{show_body}'"
-  end
-end
-
-
-RSpec::Matchers.define :be_accesible do
-  match do |actual|
-    get actual
-    #puts last_response.body
-    expect(last_response).to be_ok
-    expect(last_response.body).to_not be_empty
-  end
-
-  match_when_negated do |actual|
-    get actual
-    expect(last_response).to_not be_ok
-  end
-  description do
-    "route #{actual} be accesible"
-  end
-end
-
-RSpec::Matchers.define :be_prohibited do
-  match do |actual|
-    get actual
-    expect(last_response).to_not be_ok
-    expect(last_response.status).to eq(403)
-  end
-
-  description do
-    "route #{actual} be prohibited"
-  end
-end
 

@@ -2,24 +2,24 @@
 
 Sequel.migration do
   change do
-    create_table(:asignaciones_cds) do
-      foreign_key :revision_sistematica_id, :revisiones_sistematicas, :null=>false, :key=>[:id]
-      foreign_key :canonico_documento_id, :canonicos_documentos, :null=>false, :key=>[:id]
-      foreign_key :usuario_id, :usuarios, :null=>false, :key=>[:id]
-      String      :etapa, :size=>32, :null=>false
-      String      :instruccion
-      String      :estado
-      primary_key [:revision_sistematica_id, :canonico_documento_id,:usuario_id, :etapa]
+    create_table(:allocation_cds) do
+      foreign_key :systematic_review_id, :systematic_reviews, :null=>false, :key=>[:id]
+      foreign_key :canonical_document_id, :canonical_documents, :null=>false, :key=>[:id]
+      foreign_key :user_id, :users, :null=>false, :key=>[:id]
+      String      :stage, :size=>32, :null=>false
+      String      :instructions
+      String      :status
+      primary_key [:systematic_review_id, :canonical_document_id,:user_id, :stage]
     end
-    create_table(:rs_campos) do
+    create_table(:sr_fields) do
       primary_key :id
-      foreign_key :revision_sistematica_id, :revisiones_sistematicas, :null=>false, :key=>[:id]
-      Integer :orden
-      String :nombre
-      String :descripcion
-      String :tipo
-      String :opciones, :text=>true
-      unique [:revision_sistematica_id, :nombre]
+      foreign_key :systematic_review_id, :systematic_reviews, :null=>false, :key=>[:id]
+      Integer :order
+      String :name
+      String :description
+      String :type
+      String :options, :text=>true
+      unique [:systematic_review_id, :name]
     end
   end
 end

@@ -17,35 +17,35 @@
   %input.btn.btn-default.btn-sm{:type=>:submit, :value=>t(:Show_systematic_review)}
 
 
-- if @revisiones.count>0
-  %p=t_desc_value(:Count_systematic_review, @revisiones.count)
+- if @reviewes.count>0
+  %p=t_desc_value(:Count_systematic_review, @reviewes.count)
 
 
 .btn-group
-  - if permiso("revisiones_crear_propia")
+  - if auth_to("review_admin")
     %a{:href=>url("/review/new")}
       %button{:class=>"btn btn-default"}
         %span{:class=>"glyphicon glyphicon-plus"}
         =t(:Systematic_review_new)
 
 
--@revisiones.each do |r|
+-@reviewes.each do |r|
   %div{:class=>"panel panel-default"}
     %div{:class=>"panel-heading"}
       ="(#{r.id})"
-      %a{:href=>"/review/#{r.id}"}=r.nombre
+      %a{:href=>"/review/#{r.id}"}=r.name
     %div{:class=>"panel-body"}
       %ul{:class=>"list-group"}
         %li{:class=>'list-group-item'}
-          =t_desc_value(:Description,r.descripcion)
+          =t_desc_value(:Description,r.description)
         -r.taxonomy_categories_hash.each do |group, categories|
           %li{:class=>'list-group-item'}
             ="#{t_taxonomy_group(group)}:"
             =categories.map {|v| t_taxonomy_category(v[:cat_name])}.join(",")
         %li{:class=>'list-group-item'}
-          =t_desc_value(:Active, r.activa ? t(:Yes) : t(:No))
+          =t_desc_value(:Active, r.active ? t(:Yes) : t(:No))
         %li{:class=>'list-group-item'}
-          =t_desc_value(:Stage, t(r.etapa_nombre))
+          =t_desc_value(:Stage, t(r.stage_name))
         %li{:class=>'list-group-item'}
           =t_desc_value(:Minimum_RTA_documents_for_reference_review, r.n_min_rr_rtr)
 

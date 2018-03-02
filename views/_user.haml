@@ -1,6 +1,6 @@
 %span.usuario>
   =t(:Welcome_comma)
-  %a{:href=>url("/user/#{session['user_id']}")}=session['nombre']
+  %a{:href=>url("/user/#{session['user_id']}")}=session['name']
   |
   %a{:href=>url("/logout")}=t(:Logout)
   |

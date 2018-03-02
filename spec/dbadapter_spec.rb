@@ -12,29 +12,29 @@ describe 'Buhos::DBAdapter' do
 
     $db_adapter.use_db(db1)
     $db_adapter.update_model_association
-    expect(Usuario.db).to equal(db1)
+    expect(User.db).to equal(db1)
     $db_adapter.use_db(db2)
     $db_adapter.update_model_association
-    expect(Usuario.db).to equal(db2)
+    expect(User.db).to equal(db2)
   end
 
   it 'allows to change model without interference between tests' do
   $db_adapter.use_db(db1)
   $db_adapter.update_model_association
-    expect(Usuario.all.count).to eq(2)
-    Usuario.insert(:login=>"New user",:password=>2, :rol_id=>'administrator')
-    expect(Usuario.all.count).to eq(3)
-    expect(Usuario.where(:login=>'New user').count).to eq(1)
+    expect(User.all.count).to eq(3)
+    User.insert(:login=>"New user",:password=>2, :role_id=>'administrator')
+    expect(User.all.count).to eq(4)
+    expect(User.where(:login=>'New user').count).to eq(1)
 
     $db_adapter.use_db(db2)
     $db_adapter.update_model_association
-    expect(Usuario.where(:login=>'New user').count).to eq(0)
-    expect(Usuario.all.count).to eq(2)
-    Usuario.insert(:login=>"New user",:password=>2, :rol_id=>'administrator')
-    expect(Usuario.all.count).to eq(3)
+    expect(User.where(:login=>'New user').count).to eq(0)
+    expect(User.all.count).to eq(3)
+    User.insert(:login=>"New user",:password=>2, :role_id=>'administrator')
+    expect(User.all.count).to eq(4)
   $db_adapter.use_db(db1)
   $db_adapter.update_model_association
-  expect(Usuario.where(:login=>'New user').count).to eq(1)
+  expect(User.where(:login=>'New user').count).to eq(1)
 
 
   end

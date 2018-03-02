@@ -1,12 +1,23 @@
 require 'net/http'
 require 'cgi'
 
+
+get '/reference/:id' do |id|
+  halt_unless_auth('reference_view')
+  @ref=Reference[id]
+  @records=@ref.records
+  haml :reference
+end
+
+
 get '/reference/:id/search_similar' do |id|
-  @ref=Referencia[id]
+  halt_unless_auth('reference_edit')
+
+  @ref=Reference[id]
   @ajax=!params['ajax'].nil?
   @distancia=params['distancia'].to_i
   @distancia=30 if @distancia==0
-  @ref_similares=@ref.buscar_similares(@distancia)
+  @ref_similares=@ref.search_similars(@distancia)
   ##$log.info(@ref_similares)
   if @ajax
     haml "systematic_reviews/reference_search_similar".to_sym, :layout=>nil
@@ -17,24 +28,26 @@ get '/reference/:id/search_similar' do |id|
 end
 
 post '/reference/:id/merge_similar_references' do |id|
-  @ref=Referencia[id]
-  if (@ref[:canonico_documento_id].nil?)
+  halt_unless_auth('reference_edit')
+  @ref=Reference[id]
+  if (@ref[:canonical_document_id].nil?)
     raise "No tengo método para unificar sin canonico"
   end
-  if !params['referencia'].nil?
-    referencias_a_unir=params['referencia'].keys
-    Referencia.where(:id=>referencias_a_unir).update(:canonico_documento_id=>@ref[:canonico_documento_id])
-    agregar_mensaje("Se unieron las referencias de #{referencias_a_unir.length} referencias a un canonico comun")
+  if !params['reference'].nil?
+    references_a_unir=params['reference'].keys
+    Reference.where(:id=>references_a_unir).update(:canonical_document_id=>@ref[:canonical_document_id])
+    add_message("Se unieron las references de #{references_a_unir.length} references a un canonico comun")
   end
   redirect back
 end
 
 
 get '/references/search_crossref_by_doi/:doi' do |doi|
+  halt_unless_auth('reference_edit')
   doi=doi.gsub("***", "/")
   result=Result.new
-  Referencia.where(:doi => doi).each do |ref|
-    result.add_result(ref.agregar_doi(doi))
+  Reference.where(:doi => doi).each do |ref|
+    result.add_result(ref.add_doi(doi))
   end
 
   add_result(result)
@@ -42,12 +55,12 @@ get '/references/search_crossref_by_doi/:doi' do |doi|
 end
 
 get '/reference/:id/search_crossref' do |id|
-
-  @ref=Referencia[id]
+  halt_unless_auth('reference_edit')
+  @ref=Reference[id]
 
   if @ref.doi
     result=Result.new
-    result.add_result(@ref.agregar_doi(@ref.doi))
+    result.add_result(@ref.add_doi(@ref.doi))
     if result.success?
     add_result(result)
     redirect back
@@ -61,17 +74,14 @@ get '/reference/:id/search_crossref' do |id|
 
 end
 
-get '/reference/:id' do |id|
-  @ref=Referencia[id]
-  @registros=@ref.registros
-  haml :reference
-end
+
 
 get '/reference/:id/assign_doi/:doi' do |id,doi|
+  halt_unless_auth('reference_edit')
   url=params['volver_url']
-  @ref=Referencia[id]
+  @ref=Reference[id]
   doi=doi.gsub("***","/")
-  result=@ref.agregar_doi(doi)
+  result=@ref.add_doi(doi)
   add_result(result)
   if url
     redirect to(url)

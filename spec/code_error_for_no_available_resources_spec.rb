@@ -18,7 +18,7 @@ describe 'Error codes for no available resources' do
     it { expect("/review/1/canonical_documents").to responds_with_no_review_id_error(1)}
     it { expect("/review/1/repeated_canonical_documents").to responds_with_no_review_id_error(1)}
 
-    it { expect("/review/1/searchs").to responds_with_no_review_id_error(1)}
+    it { expect("/review/1/searches").to responds_with_no_review_id_error(1)}
     it { expect("/review/1/tags").to responds_with_no_review_id_error(1)}
     it { expect("/review/1/messages").to responds_with_no_review_id_error(1)}
     it { expect("/review/1/fields").to responds_with_no_review_id_error(1)}
@@ -35,7 +35,7 @@ describe 'Error codes for no available resources' do
 
 
     it { expect("/review/1/administration/screening_title_abstract/cd_assignations").to responds_with_no_review_id_error(1)}
-    it { expect("/review/1/administration/screening_title_abstract/cd_without_assignations").to responds_with_no_review_id_error(1)}
+    it { expect("/review/1/administration/screening_title_abstract/cd_without_allocations").to responds_with_no_review_id_error(1)}
     it { expect("/review/1/stage/screening_title_abstract/complete_empty_abstract_manual").to responds_with_no_review_id_error(1)}
 
   end
@@ -55,10 +55,10 @@ describe 'Error codes for no available resources' do
 
 
 
-  context "when review searchs resources are accessed" do
-    it { expect("/review/1/searchs/user/1").to responds_with_no_review_id_error(1)}
+  context "when review searches resources are accessed" do
+    it { expect("/review/1/searches/user/1").to responds_with_no_review_id_error(1)}
     it { expect("/review/1/search/new").to responds_with_no_review_id_error(1)}
-    it { expect("/review/1/searchs/compare_records").to responds_with_no_review_id_error(1)}
+    it { expect("/review/1/searches/compare_records").to responds_with_no_review_id_error(1)}
   end
 
 
