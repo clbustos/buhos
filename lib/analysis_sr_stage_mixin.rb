@@ -22,7 +22,7 @@ module AnalysisSrStageMixin
   def resolution_pattern(stage)
     count_by_pattern(resolution_by_cd(stage))
   end
-  # Se analiza cada cd y se cuenta cuantas decisions para cada tipo
+  # Se analiza cada cd y se cuenta cuantas decisions para cada type
   def decisions_by_cd(stage)
 
     @decisions_by_cd_h ||= {}

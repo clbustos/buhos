@@ -1,11 +1,11 @@
-- # Parametros: revision_id, cd (canonical_document) | decisions | ars | user_id | stage)
+- # Parametros: review, cd (canonical_document) | decisions | ars | user_id | stage)
 - decision_o=decisions[cd[:id]]
 - decision = decision_o ? decision_o[:decision] : nil
 - clase_panel=decision_class_bootstrap(decision,"panel")
 - abs_pres=AbstractPresentation.new
 - #@nbayes_rs||=NBayes_RS.new(revision)
 - ajax||=false
-- abs_pres.keywords =revision.keywords_as_array
+- abs_pres.keywords =review.keywords_as_array
 
 - only_buttons||=false
 - class_buttons  = only_buttons ? "panel-body" : "panel-footer"
@@ -38,4 +38,4 @@
 
 
   %div{:class=>class_buttons}
-    =partial(:decision_buttons, :locals=>{decisions:decisions, cd:cd, user_id:user_id, stage:stage, revision:review, ajax:ajax, only_buttons:only_buttons})
+    =partial(:decision_buttons, :locals=>{decisions:decisions, cd:cd, user_id:user_id, stage:stage, review:review, ajax:ajax, only_buttons:only_buttons})

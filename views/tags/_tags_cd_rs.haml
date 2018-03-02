@@ -14,29 +14,29 @@
       queryTokenizer: Bloodhound.tokenizers.whitespace,
       prefetch: '/tags/basic_10.json',
       remote: {
-          url: "/tags/systematic_review/#{revision.id}/query_json/%QUERY",
+          url: "/tags/systematic_review/#{review.id}/query_json/%QUERY",
           wildcard: '%QUERY'
       }
       });
     });
   -@_tags_cd_rs_js=true
 
-%div{:id=>"tags-cd-#{cd.id}-rs-#{revision.id}"}
+%div{:id=>"tags-cd-#{cd.id}-rs-#{review.id}"}
   %ul.tags
-    -TagBuilder.tag_in_cd(revision,cd)  .each do |tag|
+    -TagBuilder.tag_in_cd(review,cd)  .each do |tag|
       -res_usuario=tag.resultado_usuario(user_id)
       -if tag.mostrar
         - class_predeterminado = tag.predeterminado ? "tag-predeterminado" : ""
         - class_escondido = tag.sin_votos? ? "hidden" : ""
-        %li{:class=>"tag #{class_predeterminado} #{class_escondido}",:id=>"tag-cd-#{cd.id}-rs-#{revision.id}-#{tag.id}"}
+        %li{:class=>"tag #{class_predeterminado} #{class_escondido}",:id=>"tag-cd-#{cd.id}-rs-#{review.id}-#{tag.id}"}
           %span.glyphicon.glyphicon-tag
           %span.text=tag.text
           =tag.botones_html(user_id)
 
-    %li.tag.nuevo_tag{:id=>"tag-#{cd.id}-rs-#{revision.id}-nuevo"}
+    %li.tag.nuevo_tag{:id=>"tag-#{cd.id}-rs-#{review.id}-nuevo"}
       %span.glyphicon.glyphicon-tag
-      %input.nuevo_tag_cd_rs{:type=>"text", :class=>"text", :size=>15,:id=>"tag-cd-#{cd.id}-rs-#{revision.id}-nuevotag", "cd-pk"=>cd.id, "rs-pk"=>revision.id, "data-url"=>url("/tags/cd/#{cd.id}/rs/#{revision.id}/add_tag"), :placeholder=>t(:New_tag)}
-      %button.btn.btn-default.btn-xs.boton_nuevo_tag_cd_rs{"cd-pk"=>cd.id, "rs-pk"=>revision.id, "data-url"=>url("/tags/cd/#{cd.id}/rs/#{revision.id}/add_tag"), :id=>"boton-tag-cd-#{cd.id}-rs-#{revision.id}-nuevotag"}
+      %input.nuevo_tag_cd_rs{:type=>"text", :class=>"text", :size=>15,:id=>"tag-cd-#{cd.id}-rs-#{review.id}-nuevotag", "cd-pk"=>cd.id, "rs-pk"=>review.id, "data-url"=>url("/tags/cd/#{cd.id}/rs/#{review.id}/add_tag"), :placeholder=>t(:New_tag)}
+      %button.btn.btn-default.btn-xs.boton_nuevo_tag_cd_rs{"cd-pk"=>cd.id, "rs-pk"=>review.id, "data-url"=>url("/tags/cd/#{cd.id}/rs/#{review.id}/add_tag"), :id=>"boton-tag-cd-#{cd.id}-rs-#{review.id}-nuevotag"}
         %span.glyphicon.glyphicon-plus
-    %botton.btn.btn-default.mostrar_pred{:id=>"tags-cd-#{cd.id}-rs-#{revision.id}_mostrar_pred"}
+    %botton.btn.btn-default.mostrar_pred{:id=>"tags-cd-#{cd.id}-rs-#{review.id}_mostrar_pred"}
       %span.glyphicon.glyphicon-eye-open

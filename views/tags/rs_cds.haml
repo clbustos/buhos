@@ -12,4 +12,4 @@
           =partial(:canonical_document_button, :locals=>{id:cd[:id]})
           =partial(:canonical_document_button_abstract_collapsible, :locals=>{cd:cd})
           %div
-            =partial("tags/tags_cd_rs", :locals=>{cd: cd, revision:@review,user_id:@usuario[:id]})
+            =partial("tags/tags_cd_rs", :locals=>{cd: cd, review:@review,user_id:@usuario[:id]})

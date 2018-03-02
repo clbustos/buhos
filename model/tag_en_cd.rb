@@ -16,7 +16,7 @@ class TagInCd < Sequel::Model
     Tag.inner_join(:tag_in_cds, :tag_id=>:id).where(:systematic_review_id=>revision.id, :canonical_document_id=>cd.id)
   end
 
-  def self.aprobar_tag(cd,rs,tag,user_id)
+  def self.approve_tag(cd,rs,tag,user_id)
     raise("Objetos erróneos") if cd.nil? or rs.nil? or tag.nil?
     tec_previo=TagInCd.where(:tag_id=>tag.id, :canonical_document_id=>cd.id, :systematic_review_id=>rs.id, :user_id=>user_id)
     if tec_previo.empty?
@@ -26,7 +26,7 @@ class TagInCd < Sequel::Model
 
     end
   end
-  def self.rechazar_tag(cd,rs,tag,user_id)
+  def self.reject_tag(cd,rs,tag,user_id)
     raise(I18n::t(:Strange_objects)) if cd.nil? or rs.nil? or tag.nil?
     tec_previo=TagInCd.where(:tag_id=>tag.id, :canonical_document_id=>cd.id, :systematic_review_id=>rs.id, :user_id=>user_id)
     if tec_previo.empty?

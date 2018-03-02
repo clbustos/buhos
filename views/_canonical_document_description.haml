@@ -1,8 +1,8 @@
-- # params cd, ars, revision_id o revision
+- # params cd, ars, review_id o review
 - ars||=nil
 - abs_pres=AbstractPresentation.new
-- revision||=SystematicReview[revision_id]
-- abs_pres.keywords =revision.keywords_as_array
+- review||=SystematicReview[review_id]
+- abs_pres.keywords =review.keywords_as_array
 
 %div{:class=>"panel-heading"}
   =CGI::escapeHTML cd.title

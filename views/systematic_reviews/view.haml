@@ -13,7 +13,7 @@
     %span{ :name=>"name"}=@review[:name]
   %div{:class=>"list-group-item"}
     %span{:class=>"titulo"}=t(:Date_creation)
-    %span{ :name=>"fecha_inicio"}=@review[:fecha_inicio]
+    %span{ :name=>"fecha_inicio"}=@review[:date_creation]
   %div{:class=>"list-group-item"}
     %span{:class=>"titulo"}=t(:Objectives)
     =@review[:objectives] ? @review[:objectives].split("\n").join("<br/>") : '--'

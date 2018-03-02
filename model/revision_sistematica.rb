@@ -100,8 +100,8 @@ AND  #{cd_query} GROUP BY tags.id ORDER BY n_documents DESC ,p_yes DESC,tags.tex
   # para la revision. Une los por
   # registro y reference
 
-  def canonical_documents(tipo=:todos)
-    cd_ids=case tipo
+  def canonical_documents(type=:todos)
+    cd_ids=case type
              when :registro
                cd_record_id
              when :reference
@@ -111,7 +111,7 @@ AND  #{cd_query} GROUP BY tags.id ORDER BY n_documents DESC ,p_yes DESC,tags.tex
              else
                raise (I18n::t(:Not_defined_for_this_stage))
            end
-    if tipo==:todos
+    if type==:todos
       CanonicalDocument.join(cd_id_table, canonical_document_id: :id   )
     else
       CanonicalDocument.where(:id => cd_ids)
@@ -152,19 +152,19 @@ AND  #{cd_query} GROUP BY tags.id ORDER BY n_documents DESC ,p_yes DESC,tags.tex
   def fields
     SrField.where(:systematic_review_id=>self[:id]).order(:order)
   end
-  def analisis_cd_tn
+  def analysis_cd_tn
     "analysis_sr_#{self[:id]}"
   end
   # Entrega la tabla de text completo
   def analysis_cd
-    table_name=analisis_cd_tn
+    table_name=analysis_cd_tn
     if !$db.table_exists?(table_name)
       SrField.actualizar_tabla(self)
     end
     $db[table_name.to_sym]
   end
 
-  def analisis_cd_user_row(cd,user)
+  def analysis_cd_user_row(cd,user)
     out=analysis_cd[:canonical_document_id=>cd[:id], :user_id=>user[:id]]
     if !out
       out_id=analysis_cd.insert(:canonical_document_id=>cd[:id], :user_id=>user[:id])

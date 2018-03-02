@@ -18,7 +18,7 @@ class AnalysisUserDecision
     process_basic_indicators
     #procesar_numero_citas
   end
-  def revision_sistematica
+  def systematic_review
     @rs||=SystematicReview[@rs_id]
   end
   def canonical_documents
@@ -36,8 +36,10 @@ class AnalysisUserDecision
   # Define @cd_ids. Si no se han asignado, los toma todos
   # Si existen asignaciones, sólo se consideran estas
   def procesar_cd_ids
-    cd_stage=revision_sistematica.cd_id_by_stage(@stage)
+    cd_stage=systematic_review.cd_id_by_stage(@stage)
+
     @asignaciones=AllocationCd.where(:systematic_review_id=>@rs_id, :user_id=>@user_id, :canonical_document_id=>cd_stage, :stage=>@stage)
+
     if @asignaciones.empty?
       @cd_ids=[]
     else
@@ -47,6 +49,7 @@ class AnalysisUserDecision
   def process_basic_indicators
     @decisions=Decision.where(:user_id => @user_id, :systematic_review_id => @rs_id,
                                :stage => @stage, :canonical_document_id=>@cd_ids).as_hash(:canonical_document_id)
+
 
     @decision_por_cd=@cd_ids.inject({}) {|ac, cd_id|
       dec_id=@decisions[cd_id]

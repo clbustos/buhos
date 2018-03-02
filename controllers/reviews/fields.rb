@@ -16,7 +16,7 @@ post '/review/:rs_id/new_field' do |rs_id|
 
   @campo_previo=@review.fields.where(:name=>name)
   if @campo_previo.empty?
-    SrField.insert(:systematic_review_id=>rs_id, :order=>params['order'],:name=>name, :description=>params['description'], :type=>params['tipo'].chomp,:opciones=>params['opciones'])
+    SrField.insert(:systematic_review_id=>rs_id, :order=>params['order'],:name=>name, :description=>params['description'], :type=>params['type'].chomp,:options=>params['options'])
     add_message(t('sr_new_sr_edit_field.doesnt_existfield.success', name:params['name']))
 
   else
@@ -27,10 +27,10 @@ end
 
 put '/review/edit_field/:campo_id/:campo' do |campo_id,campo|
   halt_unless_auth('review_admin')
-  return [500, t('sr_edit_field.invalid', field:campo)] unless %w{order name description tipo opciones}.include? campo
+  return [500, t('sr_edit_field.invalid', field:campo)] unless %w{order name description type options}.include? campo
   pk = params['pk']
   value = params['value']
-  campo_o=Rs_Campo[pk]
+  campo_o=SrField[pk]
   return [t('sr_edit_field.doesnt_exist_db', field_id:campo_id)] unless campo
   campo_o.update({campo.to_sym=>value})
   return 200
@@ -50,7 +50,7 @@ end
 
 get '/review/:rs_id/field/:fid/delete' do  |rs_id, fid|
   halt_unless_auth('review_admin')
-  sr_field=Rs_Campo[fid]
+  sr_field=SrField[fid]
   name=sr_field[:name]
   return 404 if !sr_field
   sr_field.delete

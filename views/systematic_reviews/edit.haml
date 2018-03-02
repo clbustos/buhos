@@ -33,7 +33,7 @@
   });
 %h2=@title
 %form{:method=>:post, :action=>url("/review/update")}
-  %input{:type=>"hidden", :name=>"revision_id",:value=>@review[:id]}
+  %input{:type=>"hidden", :name=>"review_id",:value=>@review[:id]}
   %div{:class=>"form-group"}
     %label{:for=>"name"}=t(:Name)
     %input{:class=>"form-control",:type=>"text", :name=>"name",:value=>@review[:name]}

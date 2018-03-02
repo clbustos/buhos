@@ -1,10 +1,10 @@
 require 'spec_helper'
 
-describe 'Rs_Campo' do
+describe 'SrField' do
   before(:all) do
     RSpec.configure { |c| c.include RSpecMixin }
     @temp=configure_complete_sqlite
-    $db.run "DROP TABLE IF EXISTS analisis_rs_1 "
+    $db.run "DROP TABLE IF EXISTS analysis_rs_1 "
     login_admin
   end
 
@@ -12,7 +12,7 @@ describe 'Rs_Campo' do
     before(:context) do
       SrField.actualizar_tabla(SystematicReview[1])
     end
-    let(:analysis_table)  {SystematicReview[1].analisis_cd_tn}
+    let(:analysis_table)  {SystematicReview[1].analysis_cd_tn}
     let(:schema) {$db.schema(analysis_table)}
     it "should create an analysis table" do
       expect($db.tables.include? analysis_table.to_sym).to be true

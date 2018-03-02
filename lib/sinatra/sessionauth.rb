@@ -44,12 +44,12 @@ module Sinatra
       end
 
 
-      def review_belongs_to(revision_id,user_id)
-        auth_to("review_admin") and SystematicReview[:id=>revision_id, :sr_administrator=>user_id]
+      def review_belongs_to(review_id,user_id)
+        auth_to("review_admin") and SystematicReview[:id=>review_id, :sr_administrator=>user_id]
       end
 
-      def revision_analizada_por(revision_id,user_id)
-        auth_to("review_analyze") and !$db["SELECT * FROM groups_users gu INNER JOIN systematic_reviews rs ON gu.group_id=rs.group_id WHERE rs.id=? AND gu.user_id=?", revision_id, user_id].empty?
+      def revision_analizada_por(review_id,user_id)
+        auth_to("review_analyze") and !$db["SELECT * FROM groups_users gu INNER JOIN systematic_reviews rs ON gu.group_id=rs.group_id WHERE rs.id=? AND gu.user_id=?", review_id, user_id].empty?
       end
 
       def authorize(login, password)

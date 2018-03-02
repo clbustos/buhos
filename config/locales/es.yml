@@ -117,6 +117,7 @@ es:
   Duplicated_DOI: "DOI duplicados"
   Edit: "Editar"
   Edit_search: "Edición de Búsqueda"
+  Empty: "Vacío"
   End_year: "Año de término"
   Enter_commentary: "Ingresar comentario"
   error:
@@ -168,6 +169,7 @@ es:
     inline_codes: "Códigos en vivo"
     instructions: "Se presentan los distintos análisis realizados por los evaluadores a los textos completos."
     no_analysis_for_this_user: "No hay análisis por este usuario"
+    no_analysis_for_user: "No hay análisis para usuario %{user_name}"
   Generate_Crossref_references: "Generar referencias usando Crossref"
   Group: "Grupo"
   Group_edit: "Edición de grupo"
@@ -262,6 +264,8 @@ es:
   More_info: "Más información"
   More_outgoing_citations: "Documentos canónicos que realizan más citas a canónicos"
   Multiple_option: "Multiples alternativas"
+  Multiple_choice_one: "Alternativas múltiples (solo 1 )"
+  Multiple_choice_several: "Alternativas múltiples (1 o más)"
   n: "n"
   Name: "Nombre"
   New_class: "Nueva clase"
@@ -298,8 +302,8 @@ es:
   Objectives: "Objetivos"
   Obtain_information_from_Crossref: "Obtener información desde Crossref"
   On_class: "En clase"
-  Only_active: "Sólo activo"
-  only_actives_systematic_reviews: "sólo activas"
+  Only_active: "Solo activo"
+  only_actives_systematic_reviews: "solo activas"
   Options: "Opciones"
   Order: "Orden"
   Original: "Original"
@@ -367,6 +371,7 @@ es:
     instructions: "Se presenta el desarrollo para las distintas etapas del proceso de revisión sistemática"
   Processing_n_canonical_documents: "Procesando %{count} documentos canónicos"
   record:
+    doi_already_added_to: "DOI ya agregado a registro %{record_title}"
     references_for_crossref_processed: "Se procesaron %{n} referencias desde Crossref"
     no_references_on_crossref: "No hay references en Crossref para este registro"
     cant_process_doi: "No puedo procesar DOI %{doi}"
@@ -393,7 +398,7 @@ es:
   Report_final: "Reporte Final"
   Report_partial: "Reporte Parcial"
   Resolution: "Resolución"
-  Resolutions:
+  Resolutions: "Resolutiones"
   resolution_for_n_documents: "Resolución %{resolution} para %{n} documentos"
   result_assignation_cd_to_user: "Se agregaron %{added} documentos y se quitaron %{removed} documentos al usuario %{user_name}"
   Retrieve_information_from_Crossref: "Obtener información desde Crossref"
@@ -403,7 +408,7 @@ es:
   Review_references: "Revisar referencias"
   Review_status: "Estado de la revisión"
   Review_title_and_abstract: "Revisión título y resumen"
-  screening_title_and_abstract:
+  screening_title_abstract:
     objective: "Objetivo de la etapa: Seleccionar los textos obtenidos de la búsqueda en la literatura que serán sujetos a una revisión de texto completo más adelante"
     stage_complete_message: "Ha concluido la fase de tamizaje de documentos por título y resumen. Cuando todos los usuarios del grupo hayan contestado, comenzara la fase de revision de referencias"
   screening_references:
@@ -418,7 +423,7 @@ es:
     administrator: "Administrador"
     analyst:      "Analyst"
   Roles: "Roles"
-  RTA_references: "Referencias RTR"
+  RTA_references: "Referencias TTR"
   scopus_abstract:
     cant_obtain_identificator_suitable_for_scopus: "No se pudo encontrar identificador válido para usar Scopus, documento %{cd_title}"
     cant_obtain_scopus_error: "No se pudo utilizar documento Scopus, documento %{cd_title}, error: %{sr_error}"
@@ -447,6 +452,7 @@ es:
   Search_on_crossref: "Buscar en Crossref"
   Search_process: "Procesar búsquedas"
   search_processor:
+    no_file_available: "No hay archivo disponible para process"
     error_on_reference: "Error en referencia Nº %{i}"
     no_integrator_for_filetype: "No hay integrador para este tipo de archivo"
     no_unique_id_for_integrator: "No existe un id que permita identificar a los archivos"
@@ -555,7 +561,7 @@ es:
   Systematic_review_active_inactive: "RS Activa / Inactiva"
   Systematic_review_all_user: "RS usuario / todos"
   systematic_review_page:
-    screening_title_and_abstract: "Tamizaje de título y resumen"
+    screening_title_abstract: "Tamizaje de título y resumen"
     screening_references: "Tamizaje de referencias"
     cd_assignations: "Asignación de Documentos Canónicos a usuarios"
     cd_for_tag: "Documentos canónicos para tag '%{tag_text}'"
@@ -660,3 +666,4 @@ es:
   "yes": "sí"
   You_re_the_administrator_of_this_systematic_review: "Usted es el administrador de esta revisión sistemática"
   References_count_to_canonical: "<strong>Referencias canónicas:</strong> citado por %{in} / referencia a %{out} / %{in_sta} citado por  RTR "
+  create_new_field: "Create new personalized field"

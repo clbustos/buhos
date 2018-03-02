@@ -65,7 +65,7 @@ describe 'Search' do
       File.read(filepath)=~/^(.+In this way, considerable parts of the review's.+)$/
       content_file= $1
 
-      search_o[:archivo_cuerpo]=~/^(.+In this way, considerable parts of the review's.+)$/
+      search_o[:file_body]=~/^(.+In this way, considerable parts of the review's.+)$/
       content_object= $1
 
       $log.info(content_file)

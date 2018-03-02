@@ -69,9 +69,9 @@ end
 post '/review/update' do
   halt_unless_auth('review_edit')
 
-  id=params['revision_id']
+  id=params['review_id']
   otros_params=params
-  otros_params.delete("revision_id")
+  otros_params.delete("review_id")
   otros_params.delete("captures")
   strc=params.delete("srtc")
   #No nulos
@@ -195,13 +195,13 @@ get '/review/:id/tags' do |id|
   halt_unless_auth('review_view')
   @review=SystematicReview[id]
   raise Buhos::NoReviewIdError, id if !@review
-  @stages_lista={:NIL=>"--Todas--"}.merge(get_stages_names)
+  @stages_list={:NIL=>"--Todas--"}.merge(get_stages_names_t)
 
-  @select_stage=get_xeditable_select(@stages_lista, "/tags/classes/edit_field/stage","select_stage")
+  @select_stage=get_xeditable_select(@stages_list, "/tags/classes/edit_field/stage","select_stage")
   @select_stage.nil_value=:NIL
-  @tipos_lista={general:"General", documento:"Documento", relacion:"Relación"}
+  @types_list={general:"General", document:"Documento", relation:"Relación"}
 
-  @select_tipo=get_xeditable_select(@tipos_lista, "/tags/classes/edit_field/tipo","select_tipo")
+  @select_type=get_xeditable_select(@types_list, "/tags/classes/edit_field/type","select_type")
 
   @tag_estadisticas=@review.tags_estadisticas
 
@@ -214,7 +214,7 @@ get '/review/:id/messages' do |id|
   halt_unless_auth('review_view')
   @review=SystematicReview[id]
   raise Buhos::NoReviewIdError, id if !@review
-  @mensajes_rs=@review.messages_srs_dataset.where(:reply_to=>nil).order(Sequel.desc(:time))
+  @mensajes_rs=@review.message_srs_dataset.order(Sequel.desc(:time))
   #@mensajes_rs_vistos=MessageSrSeen.where(:read=>true,:m_rs_id=>@mensajes_rs.select_map(:id), :user_id=>session['user_id']).select_map(:m_rs_id)
   #$log.info(@mensajes_rs_vistos)
   @usuario=User[session['user_id']]

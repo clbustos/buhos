@@ -37,8 +37,8 @@ module HTMLHelpers
       x ? yes : no
     end
   end
-  def decision_class_bootstrap(tipo, prefix)
-    suffix=case tipo
+  def decision_class_bootstrap(type, prefix)
+    suffix=case type
              when nil
                "default"
              when "yes"
