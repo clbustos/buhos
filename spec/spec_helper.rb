@@ -76,7 +76,9 @@ module RSpecMixin
 
     temp=Tempfile.new
     FileUtils.cp "#{$base}/db/db_complete.sqlite", temp.path
-    db=Sequel.connect("sqlite://#{temp.path}", :encoding => 'utf8',:reconnect=>false, :keep_reference=>false)
+	puts temp.path
+	
+    db=Sequel.connect("sqlite:#{temp.path}", :encoding => 'utf8',:reconnect=>false, :keep_reference=>false)
 
     $db_adapter.use_db(db)
     $db_adapter.update_model_association
