@@ -59,15 +59,12 @@ app_path=File.expand_path(File.dirname(__FILE__)+"/..")
 
 
 
-
-
-
-
-
 module RSpecMixin
   include Rack::Test::Methods
   def app() Sinatra::Application end
-
+	def is_windows?
+		(/cygwin|mswin|mingw|bccwin|wince|emx/ =~ RUBY_PLATFORM) != nil
+	end
   def sr_by_name_id(name)
     rs=SystematicReview[:name=>name]
     rs ? rs[:id] : nil
@@ -81,10 +78,8 @@ module RSpecMixin
   def configure_empty_sqlite
 
     db=Buhos::SchemaCreation.create_db_from_scratch(Sequel.connect('sqlite::memory:', :encoding => 'utf8',:reconnect=>false,:keep_reference=>false))
-
     $db_adapter.use_db(db)
     $db_adapter.update_model_association
-
 
     $log.info("DB is:#{$db}")
   end
@@ -92,14 +87,21 @@ module RSpecMixin
     post '/login', :user=>"admin", :password=>"admin"
   end
   def configure_complete_sqlite
-
-    temp=Tempfile.new
-    FileUtils.cp "#{$base}/db/db_complete.sqlite", temp.path
-    db=Sequel.connect("sqlite:#{temp.path}", :encoding => 'utf8',:reconnect=>false, :keep_reference=>false)
-
+	if(is_windows?)
+		temppath="#{$base}/spec/usr/db_temp.sqlite"
+		FileUtils.cp "#{$base}/db/db_complete.sqlite", temppath
+		
+		db=Sequel.connect("sqlite:/#{temppath}", :encoding => 'utf8',:reconnect=>false, :keep_reference=>false)
+		temp=db
+	else
+		temp=Tempfile.new
+		FileUtils.cp "#{$base}/db/db_complete.sqlite", temp.path
+		# check next line. If we can 
+		db=Sequel.connect("sqlite:#{temp.path}", :encoding => 'utf8',:reconnect=>false, :keep_reference=>false)
+    end
+	
     $db_adapter.use_db(db)
     $db_adapter.update_model_association
-
 
 
 
