@@ -99,6 +99,7 @@ module Buhos
     post '/installer/select_language' do
       session['language']=params['language']
       ::I18n.locale=session['language']
+
       install_log("Language:#{session['language']}")
       redirect '/installer/basic_data_form'
     end
