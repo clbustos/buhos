@@ -1,20 +1,20 @@
-- #Parameters: stage, revision
-- ars=AnalysisSystematicReview.new(revision)
+- #Parameters: stage, review
+- ars=AnalysisSystematicReview.new(review)
 - if ars.stage_complete? stage
   %p.info=t("stage_#{stage}_complete_instruction")
 
 .btn-group.btn-group-sm
   - if [:screening_title_abstract, :screening_references, :review_full_text].include? stage.to_sym
-    %a{:href=>url("/review/#{revision[:id]}/stage/#{stage}/generate_graphml"), :role=>"button", :class=>"btn btn-default "}=t(:Export_graphml_for_this_stage)
-    %a{:href=>url("/review/#{revision[:id]}/stage/#{stage}/generate_doi_list"), :role=>"button", :class=>"btn btn-default "}=t(:Export_doi_list_for_this_stage)
-    %a{:href=>url("/review/#{revision[:id]}/stage/#{stage}/generate_bibtex"), :role=>"button", :class=>"btn btn-default "}=t(:Export_bibtex_for_this_stage)
+    %a{:href=>url("/review/#{review[:id]}/stage/#{stage}/generate_graphml"), :role=>"button", :class=>"btn btn-default "}=t(:Export_graphml_for_this_stage)
+    %a{:href=>url("/review/#{review[:id]}/stage/#{stage}/generate_doi_list"), :role=>"button", :class=>"btn btn-default "}=t(:Export_doi_list_for_this_stage)
+    %a{:href=>url("/review/#{review[:id]}/stage/#{stage}/generate_bibtex"), :role=>"button", :class=>"btn btn-default "}=t(:Export_bibtex_for_this_stage)
 
   - if [:screening_title_abstract, :screening_references].include? stage.to_sym and ars.cd_without_abstract(stage).count>0
-    %a{:href=>url("/review/#{revision[:id]}/stage/#{stage}/complete_empty_abstract_manual"), :role=>"button", :class=>"btn btn-default "}=t(:Complete_abstract_manually)
+    %a{:href=>url("/review/#{review[:id]}/stage/#{stage}/complete_empty_abstract_manual"), :role=>"button", :class=>"btn btn-default "}=t(:Complete_abstract_manually)
     - if scopus_available?
-      %a{:href=>url("/review/#{revision[:id]}/stage/#{stage}/complete_empty_abstract_scopus"), :role=>"button", :class=>"btn btn-default "}=t(:Complete_abstract_using_Scopus)
+      %a{:href=>url("/review/#{review[:id]}/stage/#{stage}/complete_empty_abstract_scopus"), :role=>"button", :class=>"btn btn-default "}=t(:Complete_abstract_using_Scopus)
   - if ars.stage_complete? stage
     - if [:screening_title_abstract, :screening_references, :review_full_text].include? stage.to_sym
-      %a{:href=>url("/review/#{revision[:id]}/stage/#{stage}/generar_references_crossref"), :role=>"button", :class=>"btn btn-default btn-sm"}=t(:Generate_Crossref_references)
-    - if stage==revision[:stage].to_s
-      %a.btn.btn-primary{:href=>"/review/#{revision[:id]}/advance_stage"}=t(:Advance_next_stage)
+      %a{:href=>url("/review/#{review[:id]}/stage/#{stage}/generar_references_crossref"), :role=>"button", :class=>"btn btn-default btn-sm"}=t(:Generate_Crossref_references)
+    - if stage==review[:stage].to_s
+      %a.btn.btn-primary{:href=>"/review/#{review[:id]}/advance_stage"}=t(:Advance_next_stage)

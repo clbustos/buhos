@@ -1,29 +1,29 @@
 post '/tags/classes/new' do
   halt_unless_auth('tag_edit')
-  @review=SystematicReview[params['revision_id']]
+  @review=SystematicReview[params['review_id']]
   stage=  params['stage']
   stage=nil if stage=="NIL"
-  tipo =  params['tipo']
+  type =  params['type']
   return 404 if @review.nil?
 
   $db.transaction(:rollback=>:reraise) do
     T_Class.insert(:name=>params["name"],
                    :systematic_review_id=>@review.id,
                    :stage=>stage,
-                   :type=>tipo)
+                   :type=>type)
   end
   redirect back
 end
 
 
-put '/tags/classes/edit_field/:campo' do |campo|
+put '/tags/classes/edit_field/:field' do |field|
   halt_unless_auth('tag_edit')
 
   pk = params['pk']
   value = params['value']
   value = nil if value=="NIL"
-  return 405 unless %w{name stage tipo}.include? campo
-  T_Class[pk].update(campo.to_sym=>value)
+  return 405 unless %w{name stage type}.include? field
+  T_Class[pk].update(field.to_sym=>value)
   return 200
 end
 
@@ -41,15 +41,28 @@ end
 post '/tags/class/:t_clase_id/add_tag' do |t_clase_id|
   halt_unless_auth('tag_edit')
 
-  t_clase=T_Class[t_clase_id]
-  raise  NoTagClassIdError, t_clase_id if !t_clase
+  t_class=T_Class[t_clase_id]
+  raise  NoTagClassIdError, t_clase_id if !t_class
   tag_name=params['value'].chomp
   return 405 if tag_name==""
   tag=Tag.get_tag(tag_name)
-  t_clase.asignar_tag(tag)
-  partial("tags/tags_class", :locals=>{t_clase: t_clase})
+  t_class.allocate_tag(tag)
+  partial("tags/tags_class", :locals=>{t_class: t_class})
 end
 
+
+post '/tags/class/:t_clase_id/remove_tag' do |t_clase_id|
+  halt_unless_auth('tag_edit')
+  t_class=T_Class[t_clase_id]
+  raise  NoTagClassIdError, t_clase_id if !t_class
+
+  tag=Tag[params['value']]
+  raise  NoTagIdError, value  if !tag
+
+  t_class.deallocate_tag(tag)
+
+  partial("tags/tags_class", :locals=>{t_class: t_class})
+end
 
 get '/tag/:tag_id/rs/:rs_id/stage/:stage/cds' do |tag_id, rs_id, stage|
   halt_unless_auth('review_view')
@@ -103,27 +116,27 @@ post '/tags/cd/:cd_id/rs/:rs_id/:accion' do |cd_id,rs_id,accion|
     return 405 if tag_name==""
     tag=Tag.get_tag(tag_name)
     $db.transaction(:rollback=>:reraise) do
-      TagInCd.aprobar_tag(cd,rs,tag,user_id)
+      TagInCd.approve_tag(cd,rs,tag,user_id)
     end
   elsif accion=='approve_tag'
     tag_id=params['tag_id']
     tag=Tag[tag_id]
     return 404 if tag.nil?
     $db.transaction(:rollback=>:reraise) do
-      TagInCd.aprobar_tag(cd,rs,tag,user_id)
+      TagInCd.approve_tag(cd,rs,tag,user_id)
     end
   elsif accion=='reject_tag'
     tag_id=params['tag_id']
     tag=Tag[tag_id]
     return 404 if tag.nil?
     $db.transaction(:rollback=>:reraise) do
-      TagInCd.rechazar_tag(cd,rs,tag,user_id)
+      TagInCd.reject_tag(cd,rs,tag,user_id)
     end
   else
     return [405,"I don't know the action to perform"]
   end
 
-  partial("tags/tags_cd_rs", :locals=>{cd:cd, revision:rs, :nuevo=>true, user_id: user_id})
+  partial("tags/tags_cd_rs", :locals=>{cd:cd, review:rs, :nuevo=>true, user_id: user_id})
 end
 
 
@@ -142,27 +155,27 @@ post '/tags/cd_start/:cd_start_id/cd_end/:cd_end_id/rs/:rs_id/:accion' do |cd_st
     return 405 if tag_name==""
     tag=Tag.get_tag(tag_name)
     $db.transaction(:rollback=>:reraise) do
-      TagBwCd.aprobar_tag(cd_start,cd_end,rs,tag,user_id)
+      TagBwCd.approve_tag(cd_start,cd_end,rs,tag,user_id)
     end
   elsif accion=='approve_tag'
     tag_id=params['tag_id']
     tag=Tag[tag_id]
     return 404 if tag.nil?
     $db.transaction(:rollback=>:reraise) do
-      TagBwCd.aprobar_tag(cd_start,cd_end,rs,tag,user_id)
+      TagBwCd.approve_tag(cd_start,cd_end,rs,tag,user_id)
     end
   elsif accion=='reject_tag'
     tag_id=params['tag_id']
     tag=Tag[tag_id]
     return 404 if tag.nil?
     $db.transaction(:rollback=>:reraise) do
-      TagBwCd.rechazar_tag(cd_start,cd_end,rs,tag,user_id)
+      TagBwCd.reject_tag(cd_start,cd_end,rs,tag,user_id)
     end
   else
     return [405,"I don't know the action to perform"]
   end
 
-  partial("tags/tags_cd_rs_ref", :locals=>{cd_start: cd_start, cd_end:cd_end, revision:rs, :nuevo=>true, user_id: user_id})
+  partial("tags/tags_cd_rs_ref", :locals=>{cd_start: cd_start, cd_end:cd_end, review:rs, :nuevo=>true, user_id: user_id})
 end
 
 

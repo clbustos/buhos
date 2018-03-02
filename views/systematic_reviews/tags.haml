@@ -10,15 +10,34 @@
       $.post(url, {value: val}, function (data) {
         $("#tags-clase-"+clase_pk).html(data);
         actualizar_tags_clase();
+        actualizar_name_editable();
       }).fail(function () {
             alert("#{t(:tag_cant_be_created)}")
         })
       }
   };
 
+
   actualizar_tags_clase=function() {
       #{@select_stage.javascript}
-      #{@select_tipo.javascript}
+      #{@select_type.javascript}
+
+
+      $('.remove_tag_from_class').click(function(){
+        var class_pk=$(this).attr("data-class-pk");
+        var tag_pk=$(this).attr("data-tag-pk");
+        var url=$(this).attr("data-url");
+        $.post(url, {value: tag_pk}, function (data) {
+        $("#tags-clase-"+class_pk).html(data);
+          actualizar_tags_clase();
+          actualizar_name_editable();
+        }).fail(function () {
+            alert("#{t(:tag_cant_be_removed)}")
+        });
+
+
+      });
+
 
       $(".boton_nuevo_tag").click(function() {
         var url=$(this).attr("data-url");
@@ -51,23 +70,23 @@
 
 
 %h3=t(:Tag_classes)
--@review.t_clases.each do |t_clase|
+-@review.t_classes.each do |t_class|
   .panel.panel-default
     .panel-heading
-      =a_editable(t_clase.id, "t_clase", "/tags/classes/edit_field/name", t_clase[:name],"")
+      =a_editable(t_class.id, "t_class", "/tags/classes/edit_field/name", t_class[:name],"")
     .panel-body
       .container
         .row
           .col-md-3
             %p
               ="#{t(:Stage)}:"
-              =@select_stage.html(t_clase.id, t_clase.stage)
+              =@select_stage.html(t_class.id, t_class.stage)
             %p
               ="#{t(:Type)}:"
-              =@select_tipo.html(t_clase.id, t_clase.tipo)
+              =@select_type.html(t_class.id, t_class.type)
           .col-md-9.col-lg-8
-            %div{:id=>"tags-clase-#{t_clase.id}"}
-              =partial("tags/tags_class", :locals=>{t_clase: t_clase})
+            %div{:id=>"tags-clase-#{t_class.id}"}
+              =partial("tags/tags_class", :locals=>{t_class: t_class})
 
 .panel.panel-default
   .panel-heading
@@ -81,12 +100,12 @@
       .form-group
         %label{:for=>"stage"}=t(:Stage)
         %select{:name=>"stage", :class=>"form-control"}
-          - @stages_lista.each do |stage_id, stage_name|
+          - @stages_list.each do |stage_id, stage_name|
             %option{:value=>stage_id}=stage_name
       .form-group
-        %label{:for=>"tipo"}=t(:Type)
-        %select{:name=>"tipo", :class=>"form-control"}
-          - @tipos_lista.each do |tipo_id, tipo_name|
-            %option{:value=>tipo_id}=tipo_name
+        %label{:for=>"type"}=t(:Type)
+        %select{:name=>"type", :class=>"form-control"}
+          - @types_list.each do |type_id, type_name|
+            %option{:value=>type_id}=type_name
       %input{:type=>:submit, :value=>"Agregar clase nueva", :class=>"btn btn-default"}
-=partial(:statistics_tags, :locals=>{revision:@review})
+=partial(:statistics_tags, :locals=>{review:@review})

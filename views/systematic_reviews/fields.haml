@@ -19,9 +19,9 @@
         %span=":"
         =a_textarea_editable(campo[:id], 'campo-description', "/review/edit_field/#{campo[:id]}/description", campo[:description])
         %span=". #{t(:Type)}: "
-        =a_editable(campo[:id], 'campo-tipo', "/review/edit_field/#{campo[:id]}/tipo", campo[:type])
+        =a_editable(campo[:id], 'campo-type', "/review/edit_field/#{campo[:id]}/type", campo[:type])
         %span=". #{t(:Options)}: "
-        =a_textarea_editable(campo[:id], 'campo-opciones', "/review/edit_field/#{campo[:id]}/opciones", campo[:opciones])
+        =a_textarea_editable(campo[:id], 'campo-options', "/review/edit_field/#{campo[:id]}/options", campo[:options])
         .btn-group.btn-group-sm
           %a.btn.btn-danger{:href=>"/review/#{@review[:id]}/field/#{campo[:id]}/delete"}
             %span.glyphicon.glyphicon-remove
@@ -35,22 +35,23 @@
     %label{:for=>'order'}=t(:Order)
     %input.form-control{:type=>'number', :min=>"1",:max=>100, :name=>'order'}
   .form-group
+    %label{:for=>'description'}=t(:Description)
+    %input.form-control{:type=>'text', :name=>'description'}
+  .form-group
     %label{:for=>'Nombre'}=t("fields.code")
     %p=t("fields.code_instructions")
     %input.form-control{:type=>'text', :name=>'name'}
   .form-group
-    %label{:for=>'description'}=t(:Description)
-    %input.form-control{:type=>'text', :name=>'description'}
-  .form-group
-    %label{:for=>'tipo'}=t(:Type)
-    %select.form-control{:name=>'tipo'}
+    %label{:for=>'type'}=t(:Type)
+    %select.form-control{:name=>'type'}
       %option{:value=>'text'}=t(:Short_text)
       %option{:value=>'textarea'}=t(:Long_text)
-      %option{:value=>'select'}=t(:Multiple_option)
+      %option{:value=>'select'}=t(:Multiple_choice_one)
+      %option{:value=>'multiple'}=t(:Multiple_choice_several)
   .form-group
-    %label{:for=>'opciones'}=t(:Options)
+    %label{:for=>'options'}=t(:Options)
     %br
     %p<= t('fields.format_instruction')
     %pre opcion1=text2;opcion2=text2...
-    %input.form-control{:type=>'text', :name=>'opciones', :size=>20}
-  %input.btn.btn-default{:type=>:submit, :value=>"Crear nuevo campo"}
+    %input.form-control{:type=>'text', :name=>'options', :size=>20}
+  %input.btn.btn-default{:type=>:submit, :value=>t(:create_new_field)}

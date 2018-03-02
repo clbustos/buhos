@@ -16,14 +16,17 @@ get '/review/:id/screening_title_abstract' do |id|
   # $log.info(params)
 
 
-  @stage='screening_title_and_abstract'
+  @stage='screening_title_abstract'
   @ars=AnalysisSystematicReview.new(@review)
   @cd_total_ds=@review.canonical_documents
 
 
-  @url="/review/#{id}/screening_title_abstract"
+  @url="/review/#{id}/#{@stage}"
 
-  @ads=AnalysisUserDecision.new(id, @user_id, 'screening_title_abstract')
+  @ads=AnalysisUserDecision.new(id, @user_id,@stage)
+
+  $log.info(@ads)
+ # $log.info("HOAL")
 
   @cds_pre=@ads.canonical_documents
   @cds_total=@cds_pre.count
@@ -162,7 +165,7 @@ get '/review/:rev_id/stage/:stage/generate_graphml' do |rev_id, stage|
   halt_unless_auth('review_view')
   @review=SystematicReview[rev_id]
   raise Buhos::NoReviewIdError, rev_id if !@review
-  headers["Content-Disposition"] = "attachment;filename=graphml_revision_#{rev_id}_stage_#{stage}.graphml"
+  headers["Content-Disposition"] = "attachment;filename=graphml_review_#{rev_id}_stage_#{stage}.graphml"
 
   content_type 'application/graphml+xml'
   graphml=GraphML_Builder.new(@review, stage)

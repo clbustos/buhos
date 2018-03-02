@@ -1,15 +1,15 @@
 module Sinatra
-  # Provide Javascript and html for a X-Editable select box
+  # Provide Javascript and html for a X-Editable checkbox list
   #
   # Example
-  #     xselect=get_xeditable_select({a:'a',b:'b', c:'c', d:'d'}, "/path/to/action/", '.my_custom_selects')
+  #     xselect=get_xeditable_checkbox({a:'a',b:'b', c:'c', d:'d'}, "/path/to/action/", '.my_custom_checkbox')
   # On javascript section, you include
   #     xselect.javascript
   # On html side, you include
-  #     xselect.html(resource_id, :a)
-  module Xeditable_Select
-    class Select
-      # Hash of key, values to put on select
+  #     xselect.html(resource_id, [:a, :b])
+  module Xeditable_Checkbox
+    class Checkbox
+      # Hash of key, values to put on checkbox list
       attr_reader :values
       # Url to send information to
       attr_reader :url_data
@@ -17,9 +17,6 @@ module Sinatra
       attr_reader :html_class
       # Title of dialog
       attr_accessor :title
-      # Value that represent the nil option. If the value incorpored on html method
-      # is nil, it will be replaced with this
-      attr_accessor :nil_value
       # Method to send the request. By default, is put
       attr_accessor :method
       # By default, true. Could be set to false conditional on permission
@@ -30,7 +27,6 @@ module Sinatra
         @url_data = url
         @html_class = html_class
         @title = ::I18n.t(:Select_an_option)
-        @nil_value=::I18n.t(:empty)
         @method = "put"
         @active = true
       end
@@ -50,7 +46,7 @@ module Sinatra
         "
 $(document).ready(function () {
 $('.#{html_class}').editable({
-type:'select',
+type:'checklist',
 title:'#{title}',
 mode:'inline',
 ajaxOptions: {
@@ -64,28 +60,21 @@ source: [#{source}]
       end
 
       def html(id, value)
-        value_value = value.nil? ? nil_value.to_s : value.to_s
-        value_text = value.nil? ? values[nil_value.to_s] : values[value.to_s]
+        value_value = value.nil? ? "": value.join(",")
+        value_text = (value.nil? or value.length==0) ? ::I18n::t(:empty) : value.map{|v|  @values[v.to_s]}.join(", ")
         return value_text if !active
         "<a href='#' class='#{html_class}' id='select-#{html_class}-#{id}' data-value='#{value_value}' data-pk='#{id}'>#{value_text}</a>"
       end
     end
     module Helpers
-      def get_xeditable_select(values, url, html_class)
-        Select.new(values, url, html_class)
-      end
-
-      def get_xeditable_select_bool(url, html_class)
-        values = {0 => ::I18n.t("No"),
-                  1 => ::I18n.t("Yes")
-        }
-        Select.new(values, url, html_class)
+      def get_xeditable_checkbox(values, url, html_class)
+        Checkbox.new(values, url, html_class)
       end
     end
 
     def self.registered(app)
-      app.helpers Xeditable_Select::Helpers
+      app.helpers Xeditable_Checkbox::Helpers
     end
   end
-  register Xeditable_Select
+  register Xeditable_Checkbox
 end

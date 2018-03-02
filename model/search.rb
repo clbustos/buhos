@@ -68,17 +68,17 @@ class Search < Sequel::Model
 
   def references_with_canonical_n(limit=nil)
     sql_limit= limit.nil? ? "" : "LIMIT #{limit.to_i}"
-    $db["SELECT d.id, d.title, d.journal,d.volume, d.pages, d.author, d.year,COUNT(DISTINCT(br.record_id)) as n_records, COUNT(DISTINCT(r.id)) as n_references FROM canonical_documents d INNER JOIN references r ON d.id=r.canonical_document_id  INNER JOIN records_references rr ON r.id=rr.reference_id INNER JOIN records_searches br ON rr.record_id=br.record_id WHERE br.search_id=? GROUP BY d.id ORDER BY n_records DESC #{sql_limit}", self[:id] ]
+    $db["SELECT d.id, d.title, d.journal,d.volume, d.pages, d.author, d.year,COUNT(DISTINCT(br.record_id)) as n_records, COUNT(DISTINCT(r.id)) as n_references FROM canonical_documents d INNER JOIN bib_references r ON d.id=r.canonical_document_id  INNER JOIN records_references rr ON r.id=rr.reference_id INNER JOIN records_searches br ON rr.record_id=br.record_id WHERE br.search_id=? GROUP BY d.id ORDER BY n_records DESC #{sql_limit}", self[:id] ]
   end
 
-  def references_sin_canonico_n(limit=nil)
+  def references_wo_canonical_n(limit=nil)
     sql_limit= limit.nil? ? "" : "LIMIT #{limit.to_i}"
-    $db["SELECT r.id, r.text, COUNT(DISTINCT(br.record_id)) as n FROM references r INNER JOIN records_references rr ON r.id=rr.reference_id INNER JOIN records_searches br ON rr.record_id=br.record_id WHERE br.search_id=? AND canonical_document_id IS NULL GROUP BY r.id ORDER BY n DESC #{sql_limit}", self[:id] ]
+    $db["SELECT r.id, r.text, COUNT(DISTINCT(br.record_id)) as n FROM bib_references r INNER JOIN records_references rr ON r.id=rr.reference_id INNER JOIN records_searches br ON rr.record_id=br.record_id WHERE br.search_id=? AND canonical_document_id IS NULL GROUP BY r.id ORDER BY n DESC #{sql_limit}", self[:id] ]
   end
 
-  def references_sin_canonico_con_doi_n(limit=nil)
+  def references_wo_canonical_w_doi_n(limit=nil)
     sql_limit= limit.nil? ? "" : "LIMIT #{limit.to_i}"
-    $db["SELECT r.doi, MIN(r.text) as text , COUNT(DISTINCT(br.record_id)) as n FROM references r INNER JOIN records_references rr ON r.id=rr.reference_id INNER JOIN records_searches br ON rr.record_id=br.record_id WHERE br.search_id=? AND canonical_document_id IS NULL AND doi IS NOT NULL GROUP BY r.doi ORDER BY n DESC #{sql_limit}", self[:id]]
+    $db["SELECT r.doi, MIN(r.text) as text , COUNT(DISTINCT(br.record_id)) as n FROM bib_references r INNER JOIN records_references rr ON r.id=rr.reference_id INNER JOIN records_searches br ON rr.record_id=br.record_id WHERE br.search_id=? AND canonical_document_id IS NULL AND doi IS NOT NULL GROUP BY r.doi ORDER BY n DESC #{sql_limit}", self[:id]]
   end
 
 

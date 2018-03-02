@@ -20,5 +20,5 @@ post '/resolution/review/:id/canonical_document/:cd_id/stage/:stage/resolution' 
 
   rpc=ars.resolution_by_cd (stage)
 
-  partial(:buttons_resolution, :locals=>{:rpc=>rpc, :cd_id=>cd_id.to_i, :stage=>stage, :user_id=>user_id, :review=>revision})
+  partial(:buttons_resolution, :locals=>{:rpc=>rpc, :cd_id=>cd_id.to_i, :stage=>stage, :user_id=>user_id, :review=>review})
 end

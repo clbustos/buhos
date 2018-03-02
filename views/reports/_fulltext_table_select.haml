@@ -1,0 +1,16 @@
+%table.table.table-bordered
+  %thead
+    %th=t(:Options)
+    %th=t(:Count_canonical_documents)
+    %th=t(:Canonical_documents)
+  %tbody
+    - info_keys=info.keys.sort_by {|a|  info[a][:text].to_s }
+    - info_keys.each do |key|
+      -val=info[key]
+      %tr{:id=>"option-#{key}"}
+        %td=val[:text]
+        %td=val[:canonical_documents_id].length
+        %td
+          %ol
+            -val[:canonical_documents_id].each do |cd_id|
+              %li=cd_h[cd_id].ref_apa_6_brief_html

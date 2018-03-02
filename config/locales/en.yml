@@ -68,7 +68,7 @@ en:
   Clear_references: "Clear references"
   Close: "Close"
   Commentary: "Comment"
-  Compare_records_between_searchs: "Compare records between searches"
+  Compare_records_between_searches: "Compare records between searches"
   Compare_records_by_search: "Compare records by search"
   complete: "Complete"
   Complete_abstract_manually: "Complete abstract manually"
@@ -86,7 +86,7 @@ en:
   Count_references_with_canonical: "Number of references with canonical"
   Count_references_with_doi_without_canonical: "Number of DOI references without canonical"
   Count_search_documents: "Documents adjusted to search"
-  Count_searchs_on_systematic_review: "Number of searches on systematic review"
+  Count_searches_on_systematic_review: "Number of searches on systematic review"
   Count_systematic_review: "Number of systematic reviews"
   Count_total_documents_to_review: "Number of documents for review"
   Count_total_files: "Total number of files"
@@ -117,6 +117,7 @@ en:
   Duplicated_DOI: "Duplicated DOI"
   Edit: "Edit"
   Edit_search: "Edit search"
+  empty: "empty"
   End_year: "End year"
   Enter_commentary: "Enter comment"
   error:
@@ -145,7 +146,7 @@ en:
     format_instruction: "If multiple choice is used, each option should be represented according to the following schema"
     sr_table_update_success: "Successful update of personalized field record table"
     update_fields_table: "Update personalized field record table"
-  Fields_analysis: "Analytic fields"
+  Fields_analysis: "Personalized fields"
   fields_management: "Personalized field management"
   File: "File"
   File_batch_management: "Batch file management"
@@ -168,6 +169,7 @@ en:
     inline_codes: "Live codes"
     instructions: "Se presentan los distintos análisis realizados por los evaluadores a los textos completos."
     no_analysis_for_this_user: "No analysis for this user"
+    no_analysis_for_user: "No analysis for user %{user_name}"
   Generate_Crossref_references: "Generate references using Crossref"
   Group: "Group"
   Group_edit: "Group edit"
@@ -184,7 +186,7 @@ en:
   Information_about_this_cd_on_crossref: "Information on this canonical document is on Crossref"
   installer:
     basic_data_form: "Basic information"
-    basic_data_form_instruction: "Enter the information needed for the database, proxy and access to Scopus. Remember that if you use <em>sqlite</em>, the database will be a unitary file. If you have a  Scopus development password you may enter it; if your university or employer requires you to use a proxy configuration it will be used"
+    basic_data_form_instruction: "Enter the information needed for the database, proxy and access to Scopus. Remember that if you use <em>sqlite</em>, the database will be a unique file. If you have a  Scopus development password you may enter it; if your university or employer requires you to use a proxy configuration it will be used"
     cant_read_env_file: "Cannot read .env file. Please check documentation"
     db_adapter: "Database adapter"
     db_database: "Database name."
@@ -262,6 +264,8 @@ en:
   More_info: "More information"
   More_outgoing_citations: "Canonical documents making more citations of canonicals"
   Multiple_option: "Multiple alternatives"
+  Multiple_choice_one: "Multiple choice (1 only)"
+  Multiple_choice_several: "Multiple choice (1 or more)"
   n: "n"
   Name: "Name"
   New_class: "New class"
@@ -269,7 +273,7 @@ en:
   New_message: "New message"
   New_search: "New search"
   "No": "No"
-  "no": "No"
+  "no": "no"
   New_tag: "New tag"
   No_abstract: "No abstract"
   No_assignation_instructions: "No instructions"
@@ -290,6 +294,7 @@ en:
   Not_allowed_with_user_permissions: "Action not allowed by user authorizations"
   Not_assigned: "Not allocated"
   Not_defined: "Not defined"
+  No permits: "No authorizations"
   nothing_to_do: "Nothing more to do"
   NR: "No resolution"
   ND: "No decision"
@@ -298,7 +303,7 @@ en:
   Obtain_information_from_Crossref: "Obtain information from Crossref"
   On_class: "In class"
   Only_active: "Only active"
-  only_actives_systematic_reviews: "Only activate systematic reviews"
+  only_actives_systematic_reviews: "Only active systematic reviews"
   Options: "Options"
   Order: "Order"
   Original: "Original"
@@ -313,62 +318,51 @@ en:
   pending: "Pending"
   percent_positive: "% positive"
   Permissions: "Authorizations"
-  permit:
-    acceder_crossref: "Access Crossref 1"
-    administracion: "Administration"
-    archivos_ver: "Files: See"
-    busquedas_revision_crear: "Revision search: Create"
-    busqueda_revision_crear: "Revision search: Create"
-    busquedas_revision_ver: "Revision search: See"
-    busqueda_revision_ver: "Revision search: See"
-    busquedas_ver: "Searches: See"
-    crear_busqueda_revision: "Create search for systematic review"
-    crossref_acceder: "Access Crossref 2"
-    documentos_canonicos_editar: "Canonical documents: Edit"
-    documentos_canonicos_ver: "Canonical documents: See"
-    editar_documentos_canonicos: "Canonical documents: Edit"
-    editar_grupos: "Groups: Edit 1"
-    editar_roles: "Roles: Edit"
-    editar_usuarios: "Users: Edit"
-    grupos_crear: "Groups: Create"
-    grupos_editar: "Groups: Edit 2"
-    ingreso: "Entry"
-    mensajes_ver: "Messages: See"
-    referencias_editar: "References: Edit"
-    revision_analizar_propia: "Analyze own systematic review"
-    revision_editar: "Systematic review: Edit"
-    revision_editar_propia: "Edit own systematic review"
-    revision_referencias_ver: "Review References: See"
-    revision_texto_completo_ver: "Review Complete Text: See"
-    revision_titulo_resumen_ver: "Review Title and Abstract: See"
-    revisiones_administrar: "Reviews: Administer"
-    revisiones_editar: "Systematic Reviews: Edit"
-    revisiones_crear_propias: "Reviews: Create own"
-    revisiones_crear_propia: "Reviews: Create own"
-    rs_campos_ver: "Systematic Review Fields: See"
-    scopus_acceder: "Access Scopus"
-    tags_ver: "Tags: See"
-    ver_revisiones: "Reviews: See"
-    ver_reportes: "Reports: See"
-    ver_usuarios: "Users: See"
+  auth:
+    canonical_document_admin: "Canonical Document: Admin"
+    canonical_document_view: "Canonical Document: See"
+    crossref_query: 'Crossref: Query'
+    file_admin: 'Files: Admin'
+    file_view: 'Files: See'
+    group_admin: 'Groups: Admin'
+    group_view: 'Groups: See'
+    message_edit: 'Messages: Edit'
+    message_view: 'Messages: See'
+    record_edit: 'Records: Edit'
+    record_view: 'Records: See'
+    reference_edit: 'References: Editar'
+    reference_view: 'References: See'
+    reflection: 'Reflection (software)'
+    review_admin: 'Systematic review: Admin'
+    review_analyze: 'Systematic review: Analyze'
+    review_edit: 'Systematic review: Edit'
+    review_view: 'Systematic review: See'
+    roles_admin: 'Roles: Admin'
+    roles_view: 'Roles: See'
+    scopus_query: 'Scopus: Query'
+    search_edit: 'Searches: Edit'
+    search_view: 'Searches: See'
+    tag_edit: 'Tags: Edit'
+    user_admin: 'Users: Admin'
+
   PRISMA_flow_diagram: "PRIMA flow diagram"
   prisma_report:
     "Eligibility": "Eligibility"
     "excluded": "Excluded"
     "Studies included in": "Studies included in"
-    "qualitative synthesis": "Qualitative synthesis"
+    "qualitative synthesis": "qualitative synthesis"
     "Identification": "Identification"
-    "Included": "Inclusion"
+    "Included": "Included"
     "Records identified through": "Records identified through"
-    "database searching": "Electronic database search"
-    "Additional records identified": "Records identified"
-    "through other sources": "Through other sources"
-    "Records after": "Records following"
-    "duplicates removed": "Duplicate deletion"
+    "database searching": "database searching"
+    "Additional records identified": "Additional records identified"
+    "through other sources": "through other sources"
+    "Records after": "Records after"
+    "duplicates removed": "Duplicates removed"
     "Records screened": "Records screened"
     "Records excluded": "Records excluded"
     "Full-text articles": "Full-text articles"
-    "assessed for eligibility": "Assessed for eligibility"
+    "assessed for eligibility": "assessed for eligibility"
     instructions: "The following PRISMA flowchart in SVG format can be modified using a vector drawing program such as <a href='https://inkscape.org/es/'>Inkscape</a>."
     "_comment:" : "In English, translations are equal to keys"
     "Screening": "Screening"
@@ -377,6 +371,7 @@ en:
     instructions: "Development presented for various stages of systematic review process"
   Processing_n_canonical_documents: "Processing %{count} canonical documents"
   record:
+    doi_already_added_to: "DOI already added to %{record_title}"
     references_for_crossref_processed: "%{n} references processed from Crossref"
     no_references_on_crossref: "No references found in Crossref for this record"
     cant_process_doi: "Cannot process DOI %{doi}"
@@ -404,6 +399,7 @@ en:
   Report_partial: "Partial Report"
   Resolution: "Resolution"
   Resolutions: "Resolutions"
+  resolution_for_n_documents: "Resolved '%{resolution}' status for %{n} documents"
   result_assignation_cd_to_user: "%{added} documents were added and  %{removed} documents were removed from the user %{user_name}"
   Retrieve_information_from_Crossref: "Obtain information from Crossref"
   Review_full_text: "Review full text"
@@ -412,7 +408,7 @@ en:
   Review_references: "Review references"
   Review_status: "Review status"
   Review_title_and_abstract: "Title and abstract review"
-  screening_title_and_abstract:
+  screening_title_abstract:
     objective: "Stage objective: Select the texts obtained from the literature search that will later be subject to a full-text review"
     stage_complete_message: "The document screening phase by title and abstract has been concluded. The reference review phase will begin when all the group users have responded."
   screening_references:
@@ -427,7 +423,7 @@ en:
     administrator: "Administrator"
     analyst:      "Analyst"
   Roles: "Roles"
-  RTA_references: "RTR References"
+  RTA_references: "SRA References"
   scopus_abstract:
     cant_obtain_identificator_suitable_for_scopus: "Unable to find valid identifier to use Scopus, %{cd_title}document"
     cant_obtain_scopus_error: "Unable to use Scopus document, %{cd_title}document, error: %{sr_error}"
@@ -437,7 +433,7 @@ en:
   search:
     there_is_a_file: "Search already has an allocated file"
     filename: "File name"
-    no_file: "No file allocated to %{search_name}search"
+    no_file: "No file allocated to %{search_name} search"
     Search_criteria_instructions: "For searches in bibliographic bases, write the search criteria used"
     Search_file_instructions: "For Scopus, Wos and Ebsohost and generic, use BibTeX files. For Scielo, use csv file"
     Source: "Records source"
@@ -456,6 +452,7 @@ en:
   Search_on_crossref: "Search in Crossref"
   Search_process: "Process searches"
   search_processor:
+    no_file_available: "No file available to process"
     error_on_reference: "Error in Reference No. %{i}"
     no_integrator_for_filetype: "No integrator found for this file type"
     no_unique_id_for_integrator: "No File identifier ID found"
@@ -466,9 +463,9 @@ en:
   search_title: "Search %{search_name}"
   Search_valid: "Valid"
   Search_view: "See search"
-  Searchs: "Searches"
-  Searchs_for_systematic_review: "Searches for Systematic Review %{sr_name}"
-  searchs_user: "User %{user_name}searches"
+  searches: "Searches"
+  searches_for_systematic_review: "Searches for Systematic Review %{sr_name}"
+  searches_user: "User %{user_name}searches"
   Select_systematic_review_to_analyze: "Select systematic review to be analyzed"
   Send: "Send"
   Send_message_to_group: "Send message to group"
@@ -534,8 +531,8 @@ en:
     analysis: "Analysis"
     report: "Report"
     review_full_text: "Full-text review"
-    screening_references: "Reference review"
-    screening_title_abstract: "Title and abstract review"
+    screening_references: "Reference screening"
+    screening_title_abstract: "Title and abstract screening"
     search: "Search"
     synthesis: "Synthesis"
   stage_complete: "Complete stage"
@@ -564,6 +561,8 @@ en:
   Systematic_review_active_inactive: "Active / Inactive SR"
   Systematic_review_all_user: "SR user / all"
   systematic_review_page:
+    screening_title_abstract: "Title and abstract screening"
+    screening_references: "References screening"
     cd_assignations: "Allocation of Canonical Documents to users"
     cd_for_tag: "Canonical Documents for tag '%{tag_text}'"
     cd_for_tag_stage: "Canonical Documents for tag '%{tag_text}', etapa %{stage}"
@@ -577,7 +576,7 @@ en:
     search_administration_instructions: "Revise each systematic review to ensure there is information on source, date and search criteria. Mark all problematic searches 'invalid'. Only validated searches will be used in subsequent stages."
     stages: Etapas
   Systematic_review_repeated_documents: "Repeated documents for systematic review %{sr_name}"
-  systematic_review_searchs: "Systematic review searches"
+  systematic_review_searches: "Systematic review searches"
   Systematic_review_stage_full_text: "Full-text review"
   Systematic_review_stage_review_references: "Reference review"
   Systematic_review_stage_review_title_abstract: "Title and abstract review"
@@ -630,7 +629,7 @@ en:
       zero:   "All searches are validated"
     check_n_undecided_canonical_documents:
       one:    "Check %{count} undecided canonical document"
-      other:  "Check %{count}undecided canonical documents"
+      other:  "Check %{count} undecided canonical documents"
       zero:   "No undecided canonical documents"
     check_n_unread_messages:
       one:  "Check %{count} unread message"
@@ -641,7 +640,7 @@ en:
     count_canonical_document_without_resolution: "Number of unresolved canonical documents"
     count_search_not_ready: "Number of validated searches"
     count_total_canonical_documents_stage: "Number of canonical documents for this stage"
-    count_total_searchs: "Total number of review searches"
+    count_total_searches: "Total number of review searches"
     search_new: "New search"
     unread_personal_messages: "Unread personal messages"
     unread_sr_messages: "Unread systematic review messages"
@@ -667,3 +666,4 @@ en:
   "yes": "yes"
   You_re_the_administrator_of_this_systematic_review: "You’re the administrator of this systematic review"
   References_count_to_canonical: "<strong>Canonical references:</strong> cited by %{in} / reference to %{out} / %{in_sta} cited by  RTR"
+  create_new_field: "Create new personalized field"

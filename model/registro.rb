@@ -26,7 +26,7 @@ class Record < Sequel::Model
     elsif canonical_document.doi!=self[:doi]
         result.warning("DOI para canonico #{canonical_document[:doi]}  y reference #{self[:id]} -> #{self[:doi]} difieren")
     else
-      result.info(I18n::t(:nothing_to_do))
+      result.info(I18n::t("record.doi_already_added_to", record_title: self[:title]))
     end
     result
   end
@@ -72,7 +72,7 @@ class Record < Sequel::Model
       result.add_result(update_references(ref_ids,:aditivo))
       result.success(I18n::t("record.references_for_crossref_processed", n:ri_json.references.count))
     else
-      result.add_result(I18n::t("record.no_references_on_crossref"))
+      result.info(I18n::t("record.no_references_on_crossref"))
     end
 
     result

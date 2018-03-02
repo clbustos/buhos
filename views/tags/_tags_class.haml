@@ -1,10 +1,12 @@
 %ul.tags
-  -t_clase.tags.each do |tag|
+  -t_class.tags.each do |tag|
     %li.tag{:id=>"tag-#{tag.id}"}
       %span.glyphicon.glyphicon-tag
       =a_editable(tag.id,"tag_text","/tag/edit",tag.text,"")
+      %button.btn.btn-sm.btn-danger.remove_tag_from_class{"data-class-pk"=>t_class.id, "data-tag-pk"=>tag.id, "data-url"=>url("/tags/class/#{t_class.id}/remove_tag")}
+        %span.glyphicon.glyphicon-minus
   %li.tag{:id=>"tag-nuevo"}
     %span.glyphicon.glyphicon-tag
-    %input.nuevo_tag{:type=>"text", :size=>10, :id=>"clase-#{t_clase.id}-nuevotag", "data-pk"=>t_clase.id, "data-url"=>url("/tags/class/#{t_clase.id}/add_tag")}
-    %button.btn.btn-default.btn-sm.boton_nuevo_tag{"data-pk"=>t_clase.id, "data-url"=>url("/tags/class/#{t_clase.id}/add_tag")}
+    %input.nuevo_tag{:type=>"text", :size=>10, :id=>"clase-#{t_class.id}-nuevotag", "data-pk"=>t_class.id, "data-url"=>url("/tags/class/#{t_class.id}/add_tag")}
+    %button.btn.btn-default.btn-sm.boton_nuevo_tag{"data-pk"=>t_class.id, "data-url"=>url("/tags/class/#{t_class.id}/add_tag")}
       %span.glyphicon.glyphicon-plus

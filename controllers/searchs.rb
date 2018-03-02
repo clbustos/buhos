@@ -56,9 +56,9 @@ get '/search/:id/references' do |id|
 
   @rmc_canonico     = @search.references_with_canonical_n(@n_references)
 
-  @rmc_sin_canonico = @search.references_sin_canonico_n(@n_references)
+  @rmc_sin_canonico = @search.references_wo_canonical_n(@n_references)
 
-  @rmc_sin_canonico_con_doi = @search.references_sin_canonico_con_doi_n(@n_references)
+  @rmc_sin_canonico_con_doi = @search.references_wo_canonical_w_doi_n(@n_references)
 
   ##$log.info(@rmc_canonico)
 
@@ -102,7 +102,7 @@ get '/search/:id/references/generate_canonical_doi/:n' do |id, n|
   search=Search[id]
   raise Buhos::NoSearchIdError, id if @search.nil?
 
-  col_dois=search.references_sin_canonico_con_doi_n(n)
+  col_dois=search.references_wo_canonical_w_doi_n(n)
   result=Result.new
   col_dois.each do |col_doi|
     Reference.where(:doi => col_doi[:doi]).each do |ref|

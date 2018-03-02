@@ -54,7 +54,8 @@
             %td=g.date_creation
             %td=g.search_criteria
             %td=g.description
-            %td=g.filename.nil? ? t(:No_file) : "#{g.filename} [#{g.filetype}]"
+            %td
+              =partial("searches/file_link", :locals=>{search:g, not_message_allocated:true})
             %td= t_yes_no_nil(g.valid)
             %td
               %a.btn.btn-default{:href=>url("/search/#{g.id}/edit")}

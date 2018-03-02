@@ -1,0 +1,11 @@
+%table.table.table-bordered
+  %thead
+    %th=t(:Canonical_documents)
+    - options_h.each_value do |val|
+      %th=val
+  %tbody
+    -info.each_pair do |cd_id,checked|
+      %tr{:id=>"multiple-#{cd_id}"}
+        %td=cd_h[cd_id].ref_apa_6_brief_html
+        - options_h.each_key do |key,val|
+          %td=(checked[key]) ? "X" : ""

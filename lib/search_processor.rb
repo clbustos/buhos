@@ -107,14 +107,14 @@ class SearchProcessor
 
 
   def get_integrator
-    if @search[:archivo_cuerpo].nil?
-      log_error(:No_file_available)
+    if @search[:file_body].nil?
+      log_error("search_processor.no_file_available")
       false
     elsif @search[:filetype] == "text/x-bibtex" or @search[:filename] =~ /\.bib$/
-      ReferenceIntegrator::BibTex::Reader.parse(@search[:archivo_cuerpo])
+      ReferenceIntegrator::BibTex::Reader.parse(@search[:file_body])
     elsif @search[:filetype] == "text/csv" # Por trabajar
       #$log.info(bibliographical_database_name)
-      ReferenceIntegrator::CSV::Reader.parse(@search[:archivo_cuerpo], @search.bibliographical_database_name)
+      ReferenceIntegrator::CSV::Reader.parse(@search[:file_body], @search.bibliographical_database_name)
     else
       log_error("search_processor.no_integrator_for_filetype")
       false

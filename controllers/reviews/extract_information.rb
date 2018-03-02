@@ -56,7 +56,15 @@ put '/review/:sr_id/extract_information/cd/:cd_id/user/:user_id/update_field' do
 
   field = params['pk']
   value = params['value']
-  fila=@sr.analisis_cd_user_row(@cd,@user)
-  @sr.analysis_cd.where(:id=>fila[:id]).update(field.to_sym=>value.chomp)
+  fila=@sr.analysis_cd_user_row(@cd,@user)
+  if value.nil?
+    value_store=nil
+  elsif value.is_a? Array
+    value_store=value.join(",")
+  else
+    value_store=value.chomp
+  end
+
+  @sr.analysis_cd.where(:id=>fila[:id]).update(field.to_sym=>value_store)
   return true
 end

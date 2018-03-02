@@ -5,7 +5,7 @@ module Buhos
             :screening_title_abstract,
             :screening_references,
             :review_full_text,
-            #:analisis,
+            #:analysis,
             :report
     ]
 
@@ -13,7 +13,7 @@ module Buhos
                  :screening_title_abstract=> "stage.screening_title_abstract",
                  :screening_references => "stage.screening_references",
                  :review_full_text=> "stage.review_full_text",
-                 #:analisis => "stage.analysis",
+                 #:analysis => "stage.analysis",
                  :report=> "stage.report"}
 
     def self.get_stage_name(stage)
@@ -28,9 +28,11 @@ module Buhos
     def get_stages_ids
       Buhos::Stages::IDS
     end
-
     def get_stages_names
       Buhos::Stages::NAMES
+    end
+    def get_stages_names_t
+      Buhos::Stages::NAMES.inject({}) {|ac,v|  ac[v[0]]=I18n.t(v[1]);ac  }
     end
   end
 end

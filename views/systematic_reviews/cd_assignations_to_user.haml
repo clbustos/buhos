@@ -7,9 +7,9 @@
   %li
     %a{:href=>url("/review/#{@review[:id]}")}=@review[:name]
   %li
-    %a{:href=>url("/review/#{@review[:id]}/stages_adminitration")}=t(:Administration)
+    %a{:href=>url("/review/#{@review[:id]}/stages_administration")}=t(:Administration)
   %li
-    %a{:href=>url("/review/#{@review[:id]}/adminitration/#{@stage}")}=t(get_stage_name(@stage))
+    %a{:href=>url("/review/#{@review[:id]}/administration/#{@stage}")}=t(get_stage_name(@stage))
   %li{:class=>:active}
     =t("systematic_review_page.cd_assignations")
 %table.table
@@ -36,5 +36,5 @@
 
 - @cds.each do |cd|
   %div{:class=>"panel panel-default"}
-    =partial(:canonical_document_description, :locals=>{revision: @review, cd: cd, ars:@ars})
-    =partial(:canonical_document_assignations, :locals=>{revision: @review, cd: cd, stage:@stage})
+    =partial(:canonical_document_description, :locals=>{review: @review, cd: cd, ars:@ars})
+    =partial(:canonical_document_assignations, :locals=>{review: @review, cd: cd, stage:@stage})

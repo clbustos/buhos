@@ -1,8 +1,8 @@
-.header=t_systematic_review_title(@review[:name], "systematic_review_page.#{@stage}")
+.header=t_systematic_review_title(@review[:name], "stage.#{@stage}")
 %ul.breadcrumb
   %li
     %a{:href=>url("/review/#{@review.id}")}=@review.name
-  %li{:class=>:active}=t( "systematic_review_page.#{@stage}")
+  %li{:class=>:active}=t( "stage.#{@stage}")
 
 .well
   =t("#{@stage}.objective")
@@ -61,7 +61,7 @@
   .list-group
     - @cds.each do |cd|
       %div{:id=>"decision-cd-#{cd[:id]}"}
-        =partial(:decision, :locals=>{ revision: @review, cd: cd, decisions: @decisions, ars: @ars, user_id: @user_id, stage: @stage})
+        =partial(:decision, :locals=>{ review: @review, cd: cd, decisions: @decisions, ars: @ars, user_id: @user_id, stage: @stage})
   =partial(:pager,:locals=>{url: @url, page: @pager.page, max_page: @pager.max_page, :extra=>{query:@pager.query, order:@pager.order}})
 - else
   .alert.alert-warning=t(:No_document_for_this_criteria)

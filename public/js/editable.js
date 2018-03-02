@@ -87,7 +87,6 @@ function actualizar_resolution(stage) {
 function actualizar_name_editable() {
     $('.name_editable').editable({
         type: 'text',
-        emptytext: '--Vacio--',
         title: 'Ingrese',
         ajaxOptions: {
             type: 'put'
@@ -102,7 +101,6 @@ function actualizar_textarea_editable(div_id) {
     $(selector_action).unbind("editable");
     $(selector_action).editable({
         type: 'textarea',
-        emptytext: '--Vacio--',
         title: 'Ingrese',
         rows: 10,
         mode: "inline",
@@ -119,7 +117,7 @@ $(document).ready(function () {
     actualizar_textarea_editable();
     actualizar_name_editable();
 
-    $('.tipo_editable').editable({
+    $('.type_editable').editable({
         type: 'text',
         title: 'Add new type',
         ajaxOptions: {
