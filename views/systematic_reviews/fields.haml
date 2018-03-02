@@ -44,10 +44,8 @@
   .form-group
     %label{:for=>'type'}=t(:Type)
     %select.form-control{:name=>'type'}
-      %option{:value=>'text'}=t(:Short_text)
-      %option{:value=>'textarea'}=t(:Long_text)
-      %option{:value=>'select'}=t(:Multiple_choice_one)
-      %option{:value=>'multiple'}=t(:Multiple_choice_several)
+      - SrField::AVAILABLE_TYPES.each do |type|
+        %option{:value=>'type'}=t("fields.#{type}")
   .form-group
     %label{:for=>'options'}=t(:Options)
     %br

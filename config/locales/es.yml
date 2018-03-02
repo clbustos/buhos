@@ -140,6 +140,10 @@ es:
   Field_new: "Nuevo campo"
   Fields: "Campos"
   fields:
+    text: "Texto corto"
+    textarea: "Texto largo"
+    select: "Selección de alternativa (seleccionar sólo 1)"
+    multiple: "Opción múltiple(1 o más)"
     code: "Código"
     code_instructions: "Ingrese sólo minúsculas, _ o números"
     field_deleted: "Campo personalizado %{name} eliminado"

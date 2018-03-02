@@ -1,4 +1,6 @@
 class SrField < Sequel::Model
+  AVAILABLE_TYPES=[:text,:textarea,:select,:multiple]
+
   def self.types_a_sequel(campo)
     if campo[:type] == 'text'
       [campo[:name].to_sym, String, null: true]
