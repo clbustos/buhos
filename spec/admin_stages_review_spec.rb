@@ -14,19 +14,19 @@ describe 'Stage administration' do
     get '/review/1/stage/screening_title_abstract/rem_assign_user/2/all'
   end
   def res_sta
-    $db["SELECT resolucion,COUNT(*) as n FROM resoluciones WHERE revision_sistematica_id=1 and etapa='screening_title_abstract' GROUP BY resolucion"].to_hash(:resolucion)
+    $db["SELECT resolution,COUNT(*) as n FROM resolutions WHERE systematic_review_id=1 and stage='screening_title_abstract' GROUP BY resolution"].to_hash(:resolution)
   end
   def res_sr
-    $db["SELECT resolucion,COUNT(*) as n FROM resoluciones WHERE revision_sistematica_id=1 and etapa='screening_references' GROUP BY resolucion"].to_hash(:resolucion)
+    $db["SELECT resolution,COUNT(*) as n FROM resolutions WHERE systematic_review_id=1 and stage='screening_references' GROUP BY resolution"].to_hash(:resolution)
   end
   def res_rft
-    $db["SELECT resolucion,COUNT(*) as n FROM resoluciones WHERE revision_sistematica_id=1 and etapa='review_full_text' GROUP BY resolucion"].to_hash(:resolucion)
+    $db["SELECT resolution,COUNT(*) as n FROM resolutions WHERE systematic_review_id=1 and stage='review_full_text' GROUP BY resolution"].to_hash(:resolution)
   end
 
 
 
   def assignations_admin
-    $db["SELECT etapa, COUNT(*) as n FROM asignaciones_cds WHERE revision_sistematica_id=1 and usuario_id=1 GROUP BY etapa"].to_hash(:etapa)
+    $db["SELECT stage, COUNT(*) as n FROM allocation_cds WHERE systematic_review_id=1 and user_id=1 GROUP BY stage"].to_hash(:stage)
   end
 
   context "when check number of resolution on each stage" do
@@ -60,14 +60,14 @@ describe 'Stage administration' do
   end
   context 'when add a commentary on a assignation' do
     before(:context) do
-      put '/assignation/user/1/review/1/cd/64/stage/screening_title_abstract/edit_instruction', value:'new instruction'
+      put '/authorization/user/1/review/1/cd/64/stage/screening_title_abstract/edit_instruction', value:'new instruction'
     end
     it "should response be ok" do
       expect(last_response).to be_ok
     end
-    let(:asignacion) {Asignacion_Cd[:revision_sistematica_id=>1, :usuario_id=>1, :canonico_documento_id=>64, :etapa=>"screening_title_abstract"]}
+    let(:asignacion) {AllocationCd[:systematic_review_id=>1, :user_id=>1, :canonical_document_id=>64, :stage=>"screening_title_abstract"]}
     it "should create commentary on assignation object" do
-      expect(asignacion[:instruccion]).to eq('new instruction')
+      expect(asignacion[:instruction]).to eq('new instruction')
     end
   end
 

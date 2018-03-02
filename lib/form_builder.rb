@@ -8,7 +8,7 @@ class FormBuilder
     @user=user
   end
   def each_field
-    Rs_Campo.where(:revision_sistematica_id=>@sr[:id]).order(:orden).each do |field|
+    SrField.where(:systematic_review_id=>@sr[:id]).order(:order).each do |field|
       yield Field.new(field, @sr,@cd, @user)
     end
   end
@@ -21,13 +21,13 @@ class FormBuilder
       @cd=cd
       @user=user
       @row=@sr.analisis_cd_user_row(@cd,@user)
-      @value=@row[@rs_campo.nombre.to_sym]
+      @value=@row[@rs_campo.name.to_sym]
     end
     def description
-      @rs_campo.descripcion
+      @rs_campo.description
     end
     def html
-      case @rs_campo.tipo
+      case @rs_campo.type
         when 'textarea'
           textarea_html
         when 'text'
@@ -37,10 +37,10 @@ class FormBuilder
       end
     end
     def textarea_html
-      a_textarea_editable(@rs_campo.nombre, "form-cd-extraction", "/review/#{@sr[:id]}/extract_information/cd/#{@cd[:id]}/user/#{@user[:id]}/update_field", @value)
+      a_textarea_editable(@rs_campo.name, "form-cd-extraction", "/review/#{@sr[:id]}/extract_information/cd/#{@cd[:id]}/user/#{@user[:id]}/update_field", @value)
     end
     def text_html
-      a_editable(@rs_campo.nombre, "form-cd-extraction", "/review/#{@sr[:id]}/extract_information/cd/#{@cd[:id]}/user/#{@user[:id]}/update_field", @value)
+      a_editable(@rs_campo.name, "form-cd-extraction", "/review/#{@sr[:id]}/extract_information/cd/#{@cd[:id]}/user/#{@user[:id]}/update_field", @value)
     end
   end
 end

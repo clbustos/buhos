@@ -9,8 +9,8 @@
     %label{:for=>"description"}=t(:Description)
     %input.form-control{:type=>"text", :name=>"description",:value=>@role[:description]}
   .form-group
-    %label{:for=>"permits"}=t(:Permissions)
-    %select.form-control{:multiple=>true, :size=>@permisos.count, :name=>"permits[]"}
-      - @permisos.each do |permiso|
-        %option{:value=>permiso[:id], :selected=>@role.incluye_permiso?(permiso[:id])}=t("auth.#{permiso[:id]}")
+    %label{:for=>"authorizations"}=t(:Authorizations)
+    %select.form-control{:multiple=>true, :size=>@authorizations.count, :name=>"authorizations[]"}
+      - @authorizations.each do |authorization|
+        %option{:value=>authorization[:id], :selected=>@role.include_authorization?(authorization[:id])}=t("auth.#{authorization[:id]}")
   %input.btn.btn-default{:type=>:submit, :value=>t(:Update)}

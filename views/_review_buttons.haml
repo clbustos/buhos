@@ -1,30 +1,30 @@
-- etapas_avanzadas=r.current_stages
+- stages_avanzadas=r.current_stages
 %div{:class=>"btn-group btn-group-sm", :role=>'group'}
-  - if auth_to("review_edit") or revision_pertenece_a(r.id, session['user_id'])
+  - if auth_to("review_edit") or review_belongs_to(r.id, session['user_id'])
     %a{:role=>:button, :href=>url("/review/#{r.id}/edit"), :class=>"btn btn-default"}
       %span{:class=>"glyphicon glyphicon-pencil"}
       =t(:Edit)
-  - if auth_to("canonical_document_view") or revision_pertenece_a(r.id, session['user_id'])
+  - if auth_to("canonical_document_view") or review_belongs_to(r.id, session['user_id'])
     %a{:role=>:button, :href=>url("/review/#{r.id}/canonical_documents"), :class=>"btn btn-default"}
       %span{:class=>"glyphicon glyphicon-king"}
       =t(:Canonical_documents)
-  - if auth_to("search_view") or revision_pertenece_a(r.id, session['user_id'])
-    %a{:role=>:button, :href=>url("/review/#{r.id}/searchs"), :class=>"btn btn-default"}
+  - if auth_to("search_view") or review_belongs_to(r.id, session['user_id'])
+    %a{:role=>:button, :href=>url("/review/#{r.id}/searches"), :class=>"btn btn-default"}
       %span{:class=>"glyphicon glyphicon-book"}
-      =t(:Searchs)
-  - if auth_to("review_view") or revision_pertenece_a(r.id, session['user_id'])
+      =t(:searches)
+  - if auth_to("review_view") or review_belongs_to(r.id, session['user_id'])
     %a{:role=>:button, :href=>url("/review/#{r.id}/tags"), :class=>"btn btn-default"}
       %span{:class=>"glyphicon glyphicon-tag"}
       =t(:Tags)
-  - if auth_to("message_view") or revision_pertenece_a(r.id, session['user_id'])
+  - if auth_to("message_view") or review_belongs_to(r.id, session['user_id'])
     %a{:role=>:button, :href=>url("/review/#{r.id}/messages"), :class=>"btn btn-default"}
       %span.glyphicon.glyphicon-envelope
       =t(:Messages)
-  - if auth_to("review_view") or revision_pertenece_a(r.id, session['user_id'])
+  - if auth_to("review_view") or review_belongs_to(r.id, session['user_id'])
     %a{:role=>:button, :href=>url("/review/#{r.id}/fields"), :class=>"btn btn-default"}
       %span.glyphicon.glyphicon-list
       =t(:Fields_analysis)
-  - if auth_to("file_view") or revision_pertenece_a(r.id, session['user_id'])
+  - if auth_to("file_view") or review_belongs_to(r.id, session['user_id'])
     %a{:role=>:button, :href=>url("/review/#{r.id}/files"), :class=>"btn btn-default"}
       %span.glyphicon.glyphicon-file
       =t(:Files)
@@ -33,22 +33,22 @@
       =t(:Stages)
       %span{:class=>"caret"}
     %ul{:class=>"dropdown-menu", "aria-labelledby"=>"btn_revisiones_#{r.id}"}
-      - if auth_to("review_admin") or revision_pertenece_a(r.id, session['user_id'])
+      - if auth_to("review_admin") or review_belongs_to(r.id, session['user_id'])
         %li
           %a{:role=>:button, :href=>url("/review/#{r.id}/administration_stages"), :class=>"btn btn-default"}
             %span{:class=>"glyphicon glyphicon-cert-sign"}
             =t(:Stages_administration)
-      - if etapas_avanzadas.include? :screening_title_abstract and (auth_to("review_analyze") or revision_analizada_por(r.id, session['user_id']))
+      - if stages_avanzadas.include? :screening_title_abstract and (auth_to("review_analyze") or revision_analizada_por(r.id, session['user_id']))
         %li
           %a{:role=>:button, :href=>url("/review/#{r.id}/screening_title_abstract"), :class=>"btn btn-default "}
             %span{:class=>"glyphicon glyphicon-ok-sign"}
             =t("stage.screening_title_abstract")
-      - if etapas_avanzadas.include? :screening_references and (auth_to("review_analyze") or revision_analizada_por(r.id, session['user_id']))
+      - if stages_avanzadas.include? :screening_references and (auth_to("review_analyze") or revision_analizada_por(r.id, session['user_id']))
         %li
           %a{:role=>:button, :href=>url("/review/#{r.id}/screening_references"), :class=>"btn btn-default "}
             %span{:class=>"glyphicon glyphicon-ok-sign"}
             =t("stage.screening_references")
-      - if etapas_avanzadas.include? :screening_references and (auth_to("review_analyze") or revision_analizada_por(r.id, session['user_id']))
+      - if stages_avanzadas.include? :screening_references and (auth_to("review_analyze") or revision_analizada_por(r.id, session['user_id']))
         %li
           %a{:role=>:button, :href=>url("/review/#{r.id}/review_full_text"), :class=>"btn btn-default "}
             %span{:class=>"glyphicon glyphicon-ok-sign"}

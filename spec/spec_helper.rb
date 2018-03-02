@@ -69,12 +69,12 @@ module RSpecMixin
   def app() Sinatra::Application end
 
   def sr_by_name_id(name)
-    rs=Revision_Sistematica[:nombre=>name]
+    rs=SystematicReview[:name=>name]
     rs ? rs[:id] : nil
   end
 
   def bb_by_name_id(name)
-    bb=Base_Bibliografica[nombre:name]
+    bb=BibliographicDatabase[name:name]
     bb ? bb[:id] :nil
   end
 
@@ -103,7 +103,7 @@ module RSpecMixin
 
 
 
-    #puts "Adaptador: #{$db_adapter.object_id} - #{Usuario.db.object_id}"
+    #puts "Adaptador: #{$db_adapter.object_id} - #{User.db.object_id}"
     #puts "Db: #{$db_adapter.current.object_id} - #{$db.object_id} - #{db.object_id}"
     temp
   end

@@ -27,7 +27,7 @@ module Buhos
                 @files[filename][current_route]=[]
               elsif line=~/def auth|add_auth|def halt_unless/
                 # Do nothing
-              elsif line=~/permiso\(/ or line=~/halt_unless_auth/
+              elsif line=~/authorization\(/ or line=~/halt_unless_auth/
                 @files[filename][current_route].push(line) unless @files[filename][current_route].nil?
                 scanner=line.scan(/(auth|halt_unless_auth)\((?:'|")(.+)(?:'|")\)/)
                 if scanner.length>0
@@ -44,7 +44,7 @@ module Buhos
             filename=v.gsub(@app.dir_base,"")
             @files[filename]={:nil=>[]}
             fp.each_line do |line|
-              if line=~/permiso\(/
+              if line=~/authorization\(/
                 @files[filename][:nil].push(line) unless @files[filename][:nil].nil?
                 scanner=line.scan(/(auth|halt_unless_auth)\((?:"|')(.+)(?:"|')\)/)
                 if scanner.length>0

@@ -3,12 +3,12 @@ module TagBuilder
 
   class TagInCd
     include TagMixin
-    attr_reader :id, :texto, :positivos, :negativos
+    attr_reader :id, :text, :positivos, :negativos
     attr_accessor :predeterminado
     def initialize(votos)
       initialize_common(votos)
 
-      @cd_id=votos[0][:canonico_documento_id]
+      @cd_id=votos[0][:canonical_document_id]
 
     end
 

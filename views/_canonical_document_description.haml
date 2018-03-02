@@ -1,7 +1,7 @@
 - # params cd, ars, revision_id o revision
 - ars||=nil
 - abs_pres=AbstractPresentation.new
-- revision||=Revision_Sistematica[revision_id]
+- revision||=SystematicReview[revision_id]
 - abs_pres.keywords =revision.keywords_as_array
 
 %div{:class=>"panel-heading"}
@@ -11,10 +11,10 @@
     %strong="#{t(:APA_Reference)}:"
     =CGI::escapeHTML cd.ref_apa_6
     -unless ars.nil?
-      - texto_referencias=sprintf("<strong>#{t(:Citations)}</strong>: #{t(:this_document_cites)}&nbsp;<strong>%d</strong> / #{t(:this_document_cited_by)}&nbsp;<strong>%d</strong> ", ars.cd_count_salida(cd[:id]).to_i, ars.cd_count_entrada(cd[:id]).to_i)
+      - text_references=sprintf("<strong>#{t(:Citations)}</strong>: #{t(:this_document_cites)}&nbsp;<strong>%d</strong> / #{t(:this_document_cited_by)}&nbsp;<strong>%d</strong> ", ars.cd_count_salida(cd[:id]).to_i, ars.cd_count_entrada(cd[:id]).to_i)
       - if ars.cd_count_entrada_rtr(cd[:id])
-        -texto_referencias+=sprintf("/ #{t(:this_document_cited_by_rta_document)}&nbsp;<strong>%d</strong>", ars.cd_count_entrada_rtr(cd[:id]).to_i)
-      %p=texto_referencias
+        -text_references+=sprintf("/ #{t(:this_document_cited_by_rta_document)}&nbsp;<strong>%d</strong>", ars.cd_count_entrada_rtr(cd[:id]).to_i)
+      %p=text_references
   %p{:class=>""}
     %strong=t(:Abstract)
     - if !cd.abstract

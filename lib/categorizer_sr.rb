@@ -18,8 +18,8 @@ class CategorizerSr
     categorizer_process
   end
 
-  def get_stemmer_text(texto)
-    res=Lingua.stemmer(texto.split(/[\s-]+/).map {|vv| vv.downcase.gsub(/[[:punct:]]/, "")}.find_all {|v| !STOPWORDS.include? v})
+  def get_stemmer_text(text)
+    res=Lingua.stemmer(text.split(/[\s-]+/).map {|vv| vv.downcase.gsub(/[[:punct:]]/, "")}.find_all {|v| !STOPWORDS.include? v})
     res.is_a?(Array) ? res.join(" ") : res
   end
 
@@ -27,10 +27,10 @@ class CategorizerSr
 
     @cd_hash=@rs.cd_hash
     titulos=@cd_hash.map {|key,v|  get_stemmer_text("#{v[:title]}")}
-    @categorias=Categorize::Model.make_model("busqueda",titulos , @model)
+    @categorias=Categorize::Model.make_model("search",titulos , @model)
     #$log.info(@categorias)
     @categorias_cd_id=@categorias.inject({}) {|ac,v|
-      ac[v[0]]=v[1].map{|orden_i|  @cd_hash.keys[orden_i] }
+      ac[v[0]]=v[1].map{|order_i|  @cd_hash.keys[order_i] }
       ac
     }
     @cd_id_categorias={}

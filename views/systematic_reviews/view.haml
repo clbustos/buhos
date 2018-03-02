@@ -1,44 +1,44 @@
-.heading=t_systematic_review_title(@revision[:nombre],:View)
+.heading=t_systematic_review_title(@review[:name],:View)
 %ul.breadcrumb
   %li
     %a{:href=>url("/reviews")}=t(:Systematic_reviews)
-  %li.active=@revision[:nombre]
+  %li.active=@review[:name]
 
 %div.list-group
   %div{:class=>"list-group-item"}
     %span{:class=>"titulo"}=t(:Id)
-    %span{ :name=>"nombre"}=@revision[:id]
+    %span{ :name=>"name"}=@review[:id]
   %div{:class=>"list-group-item"}
     %span{:class=>"titulo"}=t(:Name)
-    %span{ :name=>"nombre"}=@revision[:nombre]
+    %span{ :name=>"name"}=@review[:name]
   %div{:class=>"list-group-item"}
     %span{:class=>"titulo"}=t(:Date_creation)
-    %span{ :name=>"fecha_inicio"}=@revision[:fecha_inicio]
+    %span{ :name=>"fecha_inicio"}=@review[:fecha_inicio]
   %div{:class=>"list-group-item"}
     %span{:class=>"titulo"}=t(:Objectives)
-    =@revision[:objetivos] ? @revision[:objetivos].split("\n").join("<br/>") : '--'
+    =@review[:objectives] ? @review[:objectives].split("\n").join("<br/>") : '--'
   %div{:class=>"list-group-item"}
     %span{:class=>"titulo"}=t(:Start_year)
-    %span{ :name=>"agno_inicio"}=@revision[:agno_inicio]
+    %span{ :name=>"year_start"}=@review[:year_start]
   %div{:class=>"list-group-item"}
     %span{:class=>"titulo"}=t(:End_year)
-    %span{ :name=>"agno_termino"}=@revision[:agno_termino]
+    %span{ :name=>"year_end"}=@review[:year_end]
   %div{:class=>"list-group-item"}
     %span{:class=>"titulo"}=t(:Keywords)
-    %span{ :name=>"palabras_claves"}=@revision[:palabras_claves]
+    %span{ :name=>"keywords"}=@review[:keywords]
   %div{:class=>"list-group-item"}
     %span{:class=>"titulo"}=t(:Description)
-    =@revision[:descripcion]
+    =@review[:description]
   %div{:class=>"list-group-item"}
     %span{:class=>"titulo"}=t(:Group)
-    %span=@revision.group_name
+    %span=@review.group_name
   %div{:class=>"list-group-item"}
     %span{:class=>"titulo"}=t(:Stage)
-    %span=t(get_stage_name(@revision[:etapa]))
-  -if !@revision.grupo.nil?
+    %span=t(get_stage_name(@review[:stage]))
+  -if !@review.group.nil?
     %div{:class=>"list-group-item"}
       %span{:class=>"titulo"}=t(:Administrator)
-      %span=@revision.administrador_nombre
+      %span=@review.administrador_name
   %div{:class=>"list-group-item"}
     %h4{:class=>"list-group-item-heading"}=t(:Taxonomy)
     %ul
@@ -48,4 +48,4 @@
           =categories.map {|v| t("sr_taxonomy_category.#{v[:cat_name]}")}. join(", ")
   %div{:class=>"list-group-item"}
     %h4{:class=>"list-group-item-heading"}=t(:Actions)
-    %p=partial(:review_buttons, :locals=>{:r=>@revision})
+    %p=partial(:review_buttons, :locals=>{:r=>@review})

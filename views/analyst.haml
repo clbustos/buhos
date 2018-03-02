@@ -2,8 +2,8 @@
   %strong=t(:Select_systematic_review_to_analyze)
 
 - @rss.each do |rs|
-  %h3=rs[:nombre]
+  %h3=rs[:name]
   %ul.list-group
-    - rs.current_stages.each do |etapa|
+    - rs.current_stages.each do |stage|
       %li.list-group-item
-        %a{:href=>"/review/#{rs[:id]}/#{etapa}"}=t(get_stages_names[etapa])
+        %a{:href=>"/review/#{rs[:id]}/#{stage}"}=t(get_stages_names[stage])

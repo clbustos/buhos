@@ -1,4 +1,4 @@
-- n_cuenta=sr.cd_id_by_stage(etapa).count
+- n_cuenta=sr.cd_id_by_stage(stage).count
 %p=t_desc_value("user_dashboard.count_total_canonical_documents_stage", n_cuenta)
 - if auth_to("review_view")
   .btn-group.btn-group-sm
@@ -6,5 +6,5 @@
     %a.btn.btn-default{:href=>"/review/#{sr[:id]}/report/fulltext/html"}=t(:Full_text_report)
     %a.btn.btn-default{:href=>"/review/#{sr[:id]}/report/process/html"}=t(:Process_report)
     -if n_cuenta>0
-      %a.btn.btn-default{:href=>"/review/#{sr[:id]}/stage/#{etapa}/generate_bibtex"}=t(:Export_to_Bibtex)
-      %a.btn.btn-default{:href=>"/review/#{sr[:id]}/stage/#{etapa}/generate_graphml"}=t(:Export_to_Graphml)
+      %a.btn.btn-default{:href=>"/review/#{sr[:id]}/stage/#{stage}/generate_bibtex"}=t(:Export_to_Bibtex)
+      %a.btn.btn-default{:href=>"/review/#{sr[:id]}/stage/#{stage}/generate_graphml"}=t(:Export_to_Graphml)

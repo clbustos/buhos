@@ -1,24 +1,24 @@
 
-post '/resolution/review/:id/canonical_document/:cd_id/stage/:etapa/resolution' do |rev_id, cd_id, etapa|
+post '/resolution/review/:id/canonical_document/:cd_id/stage/:stage/resolution' do |rev_id, cd_id, stage|
   halt_unless_auth('review_admin')
-  resolucion=params['resolucion']
+  resolution=params['resolution']
   user_id=params['user_id']
 
-  return 500 unless ['yes','no'].include? resolucion
+  return 500 unless ['yes','no'].include? resolution
   $db.transaction(:rollback=>:reraise) do
 
-    res=Resolucion.where(:revision_sistematica_id=>rev_id, :canonico_documento_id=>cd_id, :etapa=>etapa)
+    res=Resolution.where(:systematic_review_id=>rev_id, :canonical_document_id=>cd_id, :stage=>stage)
     if res.empty?
-      Resolucion.insert(:revision_sistematica_id=>rev_id, :canonico_documento_id=>cd_id, :etapa=>etapa, :resolucion=>resolucion, :usuario_id=>user_id, :comentario=>"Resuelto en forma especifica en #{DateTime.now.to_s}")
+      Resolution.insert(:systematic_review_id=>rev_id, :canonical_document_id=>cd_id, :stage=>stage, :resolution=>resolution, :user_id=>user_id, :commentary=>"Resuelto en forma especifica en #{DateTime.now.to_s}")
     else
-      res.update(:resolucion=>resolucion, :usuario_id=>user_id, :comentario=>"Actualizado en forma especifica en #{DateTime.now.to_s}")
+      res.update(:resolution=>resolution, :user_id=>user_id, :commentary=>"Actualizado en forma especifica en #{DateTime.now.to_s}")
     end
   end
 
-  revision=Revision_Sistematica[rev_id]
+  revision=SystematicReview[rev_id]
   ars=AnalysisSystematicReview.new(revision)
 
-  rpc=ars.resolution_by_cd (etapa)
+  rpc=ars.resolution_by_cd (stage)
 
-  partial(:buttons_resolution, :locals=>{:rpc=>rpc, :cd_id=>cd_id.to_i, :etapa=>etapa, :usuario_id=>user_id, :revision=>revision})
+  partial(:buttons_resolution, :locals=>{:rpc=>rpc, :cd_id=>cd_id.to_i, :stage=>stage, :user_id=>user_id, :review=>revision})
 end

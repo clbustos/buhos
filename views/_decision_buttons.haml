@@ -1,23 +1,23 @@
 - revision_id = revision[:id]
 - ajax||=ajax
-- decision_o=decisiones[cd[:id]]
+- decision_o=decisions[cd[:id]]
 - decision = decision_o ? decision_o[:decision] : nil
 .container-fluid
   .row
     .col-md-12
       %strong=t(:Decision)
       .btn-group
-        - crits={'yes'=>{bs:'success',nombre:t(:Yes)}, 'no'=>{bs:'danger',nombre:t(:No)}, 'undecided'=>{bs:'warning',nombre:t(:Undecided)}}
+        - crits={'yes'=>{bs:'success',name:t(:Yes)}, 'no'=>{bs:'danger',name:t(:No)}, 'undecided'=>{bs:'warning',name:t(:Undecided)}}
         - crits.each_pair do |dec_id, crit|
           -cbc=class_bootstrap_contextual( decision==dec_id, 'btn',crit[:bs] )
           -dc_dec= (decision==dec_id) ? '' : 'dc_decision'
-          %button{:class=>"btn #{cbc} #{dc_dec}", "data-onlybuttons"=>only_buttons ? "1":"0" , "data-pk"=>cd[:id], "data-decision"=>dec_id, "data-user"=>usuario_id, "data-etapa"=>etapa ,:id=>"decision-#{cd[:id]}-#{dec_id}", 'data-url'=>"/decision/review/#{revision_id}/user/#{usuario_id}/canonical_document/#{cd[:id]}/stage/#{etapa}/decision"}=crit[:nombre]
+          %button{:class=>"btn #{cbc} #{dc_dec}", "data-onlybuttons"=>only_buttons ? "1":"0" , "data-pk"=>cd[:id], "data-decision"=>dec_id, "data-user"=>user_id, "data-stage"=>stage ,:id=>"decision-#{cd[:id]}-#{dec_id}", 'data-url'=>"/decision/review/#{revision_id}/user/#{user_id}/canonical_document/#{cd[:id]}/stage/#{stage}/decision"}=crit[:name]
       %div
         %strong="#{t(:Commentary)}:"
-        =a_textarea_editable(cd[:id], "comentario-cd", url("/decision/review/#{revision_id}/user/#{usuario_id}/canonical_document/#{cd[:id]}/stage/#{etapa}/commentary"), decision_o  ?  decision_o.comentario : nil, t(:Enter_commentary))
+        =a_textarea_editable(cd[:id], "commentary-cd", url("/decision/review/#{revision_id}/user/#{user_id}/canonical_document/#{cd[:id]}/stage/#{stage}/commentary"), decision_o  ?  decision_o.commentary : nil, t(:Enter_commentary))
   .row
     .col-md-12
       %strong=t(:Tags)
   .row
     .col-md-12
-      =partial("tags/tags_cd_rs", :locals=>{cd: cd, revision:revision,usuario_id:usuario_id, ajax:ajax})
+      =partial("tags/tags_cd_rs", :locals=>{cd: cd, revision:review,user_id:user_id, ajax:ajax})

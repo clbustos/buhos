@@ -17,11 +17,11 @@ class ReferenceProcessor
   # If reference text have a doi inside, add that to object
   # assign a canonical document if exists
   def process_doi
-    if @reference.texto =~/\b(10[.][0-9]{4,}(?:[.][0-9]+)*\/(?:(?!["&\'<>])\S)+)\b/
+    if @reference.text =~/\b(10[.][0-9]{4,}(?:[.][0-9]+)*\/(?:(?!["&\'<>])\S)+)\b/
       doi=check_doi($1)
       update_fields={:doi=>doi}
-      cd=Canonico_Documento[:doi => doi]
-      update_fields[:canonico_documento_id]=cd[:id] if cd
+      cd=CanonicalDocument[:doi => doi]
+      update_fields[:canonical_document_id]=cd[:id] if cd
       @reference.update(update_fields)
       @result.success(I18n::t(:Reference_with_new_doi, reference_id:@reference[:id], doi:doi))
       true

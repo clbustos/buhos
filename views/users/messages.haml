@@ -1,9 +1,9 @@
 .header
-  %h2=title(t("messages.Messages_for_user", user:@user[:nombre]))
+  %h2=title(t("messages.Messages_for_user", user:@user[:name]))
 
 %ul.breadcrumb
   %li
-    %a{:href=>"/user/#{@user[:id]}"}=@user[:nombre]
+    %a{:href=>"/user/#{@user[:id]}"}=@user[:name]
   %li.active
     =t(:Messages)
 
@@ -37,8 +37,8 @@
 %h3=t("messages.Systematic_review_messages")
 - @srs.each do |sr|
   %a{:name=>"sr_#{sr[:id]}"}
-  %h4=sr[:nombre]
-  - base_messages=sr.mensajes_rs_dataset.order(Sequel.desc(:tiempo))
+  %h4=sr[:name]
+  - base_messages=sr.message_srs_dataset.order(Sequel.desc(:time))
     - if base_messages.empty?
       %p
         %em=t("messages.No_messages_for_this_SR")

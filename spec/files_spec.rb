@@ -12,8 +12,8 @@ describe 'Files' do
   before(:all) do
     RSpec.configure { |c| c.include RSpecMixin }
     @temp=configure_empty_sqlite
-    Revision_Sistematica.insert(:nombre=>'Test Review', :grupo_id=>1, :administrador_revision=>1)
-    Canonico_Documento.insert(id:1, :title=>'Canonical Document 1', year:2018)
+    SystematicReview.insert(:name=>'Test Review', :group_id=>1, :sr_administrator=>1)
+    CanonicalDocument.insert(id:1, :title=>'Canonical Document 1', year:2018)
     login_admin
   end
   def filepath
@@ -25,15 +25,15 @@ describe 'Files' do
   context 'when upload a file using /review/files/add' do
     before(:context) do
       uploaded_file=Rack::Test::UploadedFile.new(filepath, "application/pdf")
-      post '/review/files/add', revision_sistematica_id:sr_by_name_id('Test Review'), archivos:[uploaded_file]
+      post '/review/files/add', systematic_review_id:sr_by_name_id('Test Review'), files:[uploaded_file]
     end
-    let(:file) {Archivo[1]}
+    let(:file) {IFile[1]}
     let(:app_helpers) {Class.new {extend Buhos::Helpers}}
-    it "should response will be redirect" do expect(last_response).to be_redirect end
+    it "should response will be redirect" do $log.info(last_response.body); expect(last_response).to be_redirect end
     it "should create an file object" do expect(file).to be_truthy end
-    it "should create an file object with correct mime type" do expect(file[:archivo_tipo]).to eq("application/pdf") end
+    it "should create an file object with correct mime type" do expect(file[:filetype]).to eq("application/pdf") end
     it "should create a file on correct directory" do
-      path="#{app_helpers.dir_archivos}/#{file[:archivo_ruta]}"
+      path="#{app_helpers.dir_files}/#{file[:file_path]}"
       expect(File.exist? path).to be true
     end
   end
@@ -92,22 +92,22 @@ describe 'Files' do
 
   context "when change attribute of a file" do
     before(:context) do
-      put '/file/edit_field/archivo_nombre', {pk:1, value:'exact.pdf'}
+      put '/file/edit_field/filename', {pk:1, value:'exact.pdf'}
     end
     it {expect(last_response).to be_ok }
     it "should row on database be changed" do
-      expect(Archivo[1][:archivo_nombre]).to eq('exact.pdf')
+      expect(IFile[1][:filename]).to eq('exact.pdf')
     end
 
   end
 
   context "when assign a file to a canonical document" do
     before(:context) do
-      post '/file/assign_to_canonical',  archivo_id:1, cd_id:1
+      post '/file/assign_to_canonical',  file_id:1, cd_id:1
     end
     it "response should be ok " do expect(last_response).to be_ok end
     it "response should include a link to document" do expect(last_response.body).to include("/canonical_document/1") end
-    it "relation should be included on database" do expect(Archivo_Cd[:archivo_id=>1, :canonico_documento_id=>1]).to be_truthy end
+    it "relation should be included on database" do expect(FileCd[:file_id=>1, :canonical_document_id=>1]).to be_truthy end
 
 
 
@@ -116,19 +116,19 @@ describe 'Files' do
 
   context "when unassign a file to a canonical document" do
     before(:each) do
-      post '/file/assign_to_canonical',  archivo_id:1, cd_id:1
+      post '/file/assign_to_canonical',  file_id:1, cd_id:1
     end
 
     it "by /file/assign_to_canonical should return a text " do
-      post '/file/assign_to_canonical',  archivo_id:1, cd_id:''
+      post '/file/assign_to_canonical',  file_id:1, cd_id:''
       expect(last_response).to be_ok
       expect(last_response.body).to include I18n::t("file_handler.no_canonical_document")
-      expect(Archivo_Cd[:archivo_id=>1, :canonico_documento_id=>1]).to be_nil
+      expect(FileCd[:file_id=>1, :canonical_document_id=>1]).to be_nil
     end
     it 'by /file/unassign_cd should delete object' do
-      post '/file/unassign_cd', :archivo_id=>1, :cd_id=>1
+      post '/file/unassign_cd', :file_id=>1, :cd_id=>1
       expect(last_response).to be_ok
-      expect(Archivo_Cd[:archivo_id=>1, :canonico_documento_id=>1]).to be_nil
+      expect(FileCd[:file_id=>1, :canonical_document_id=>1]).to be_nil
 
     end
 
@@ -138,28 +138,28 @@ describe 'Files' do
 
   context "when hide a file from canonical document" do
     before(:each) do
-      post '/file/assign_to_canonical',  archivo_id:1, cd_id:1
+      post '/file/assign_to_canonical',  file_id:1, cd_id:1
     end
     it "first should be visible" do
-      expect(Archivo_Cd[:archivo_id=>1, :canonico_documento_id=>1][:no_considerar]).to be false
+      expect(FileCd[:file_id=>1, :canonical_document_id=>1][:not_consider]).to be false
     end
     it "after unassign should be not visible" do
-      post '/file/hide_cd', {  archivo_id:1, cd_id:1}
-      expect(Archivo_Cd[:archivo_id=>1, :canonico_documento_id=>1][:no_considerar]).to be true
+      post '/file/hide_cd', {  file_id:1, cd_id:1}
+      expect(FileCd[:file_id=>1, :canonical_document_id=>1][:not_consider]).to be true
     end
   end
 
   context "when hide a file from canonical document" do
     before(:each) do
-      post '/file/assign_to_canonical',  archivo_id:1, cd_id:1
-      post '/file/hide_cd', {  archivo_id:1, cd_id:1}
+      post '/file/assign_to_canonical',  file_id:1, cd_id:1
+      post '/file/hide_cd', {  file_id:1, cd_id:1}
     end
     it "first should be not visible" do
-      expect(Archivo_Cd[:archivo_id=>1, :canonico_documento_id=>1][:no_considerar]).to be true
+      expect(FileCd[:file_id=>1, :canonical_document_id=>1][:not_consider]).to be true
     end
     it "after show it should be not visible" do
-      post '/file/show_cd', {  archivo_id:1, cd_id:1}
-      expect(Archivo_Cd[:archivo_id=>1, :canonico_documento_id=>1][:no_considerar]).to be false
+      post '/file/show_cd', {  file_id:1, cd_id:1}
+      expect(FileCd[:file_id=>1, :canonical_document_id=>1][:not_consider]).to be false
     end
   end
 
@@ -167,11 +167,11 @@ describe 'Files' do
 
   context "when file is deleted" do
     before(:context) do
-      post '/file/delete', {archivo_id:1}
+      post '/file/delete', {file_id:1}
     end
     it {expect(last_response).to be_ok }
     it "archivo object doesn't exists" do
-      expect(Archivo[1]).to be_nil
+      expect(IFile[1]).to be_nil
     end
   end
 

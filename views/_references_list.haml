@@ -1,11 +1,11 @@
-- rmc_canonico=Canonico_Documento.where(:id=> referencias.exclude(canonico_documento_id: nil).map(:canonico_documento_id))
-- rmc_no_canonico=referencias.where(canonico_documento_id: nil)
+- rmc_canonico=CanonicalDocument.where(:id=> references.exclude(canonical_document_id: nil).map(:canonical_document_id))
+- rmc_no_canonico=references.where(canonical_document_id: nil)
 %h4=t(:References_assigned_to_canonical_document)
 
 .list-group
 - rmc_canonico.each do |ref|
   %div.list-group-item
-    %span{:class=>"badge"}=ref[:n_registros]
+    %span{:class=>"badge"}=ref[:n_records]
     .list-group-item-text
       ="#{ref[:author]} (#{ref[:year]}). #{ref[:title]}. <em>#{ref[:journal]},#{ref[:volume]}</em>, #{ref[:pages]} "
       .btn-group
@@ -30,7 +30,7 @@
   %div.list-group-item
     %span{:class=>"badge"}=ref[:n]
     .list-group-item-text
-      =ref[:texto]
+      =ref[:text]
       - if ref[:doi]
         =a_doi(ref[:doi])
       .btn-group

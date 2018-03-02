@@ -2,8 +2,8 @@ module Sinatra
   module Messages
     module Helpers
       def add_message(mensaje, tipo=:info)
-        session['mensajes']||=[]
-        session['mensajes'].push([mensaje,tipo])
+        session['messages']||=[]
+        session['messages'].push([mensaje,tipo])
       end
       def add_result(result)
         result.events.each do |event|
@@ -12,13 +12,13 @@ module Sinatra
       end
 
       def print_messages
-        if session['mensajes']
-          #$log.info(session['mensajes'])
-          out=session['mensajes'].map {|men,tipo|
+        if session['messages']
+          #$log.info(session['messages'])
+          out=session['messages'].map {|men,tipo|
 
             "<div class='alert alert-#{tipo.to_s} #{tipo.to_s=='error' ? 'alert-danger' : ''}' role='alert'>#{men}</div>\n"
           }
-          session.delete("mensajes")
+          session.delete("messages")
           out.join()
         else
           ""

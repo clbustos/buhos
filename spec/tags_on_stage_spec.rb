@@ -16,8 +16,8 @@ describe 'Tags on stage forms' do
       expect(last_response.body).to include "new_tag"
     end
     let(:tag_en_cd) {
-      tag_id=Tag[texto:'new_tag'][:id]
-      Tag_En_Cd[usuario_id:1,tag_id:tag_id, canonico_documento_id:40, revision_sistematica_id:1]
+      tag_id=Tag[text:'new_tag'][:id]
+      TagInCd[user_id:1,tag_id:tag_id, canonical_document_id:40, systematic_review_id:1]
     }
     it "should object tag_en_cd created " do
       expect(tag_en_cd).to be_truthy
@@ -29,7 +29,7 @@ describe 'Tags on stage forms' do
   end
   context "when view of canonical documents for a review and a stage is retrieved" do
     before(:context) do
-      tag_id=Tag[texto:'new_tag'][:id]
+      tag_id=Tag[text:'new_tag'][:id]
       get "/tag/#{tag_id}/rs/1/stage/screening_title_abstract/cds"
     end
     it do
@@ -40,7 +40,7 @@ describe 'Tags on stage forms' do
 
   context "when view of canonical documents for a review is retrieved" do
     before(:context) do
-      tag_id=Tag[texto:'new_tag'][:id]
+      tag_id=Tag[text:'new_tag'][:id]
       get "/tag/#{tag_id}/rs/1/cds"
     end
     it do
@@ -58,9 +58,9 @@ describe 'Tags on stage forms' do
       expect(last_response.body).to include "new_relation_tag"
     end
     let(:tag_en_cd) {
-      tag_id=Tag[texto:'new_relation_tag'][:id]
+      tag_id=Tag[text:'new_relation_tag'][:id]
 
-      Tag_En_Referencia_Entre_Cn[usuario_id:1,tag_id:tag_id, cd_origen:2, cd_destino:88, revision_sistematica_id:1]
+      TagBwCd[user_id:1,tag_id:tag_id, cd_start:2, cd_end:88, systematic_review_id:1]
     }
     it "should object tag_en_cd created " do
       expect(tag_en_cd).to be_truthy
@@ -89,9 +89,9 @@ describe 'Tags on stage forms' do
     end
 
     let(:tag_en_cd) {
-      tag_id=Tag[texto:'new_tag_2'][:id]
+      tag_id=Tag[text:'new_tag_2'][:id]
 
-      Tag_En_Cd.where(tag_id:tag_id, canonico_documento_id:40, revision_sistematica_id:1)
+      TagInCd.where(tag_id:tag_id, canonical_document_id:40, systematic_review_id:1)
     }
     it "should object tag_en_cd created " do
       expect(tag_en_cd).to be_truthy
@@ -118,9 +118,9 @@ describe 'Tags on stage forms' do
     end
 
     let(:tag_en_cd) {
-      tag_id=Tag[texto:'new_tag_3'][:id]
+      tag_id=Tag[text:'new_tag_3'][:id]
 
-      Tag_En_Cd.where(tag_id:tag_id, canonico_documento_id:40, revision_sistematica_id:1)
+      TagInCd.where(tag_id:tag_id, canonical_document_id:40, systematic_review_id:1)
     }
     it "should object tag_en_cd created " do
       expect(tag_en_cd).to be_truthy

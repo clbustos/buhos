@@ -1,12 +1,12 @@
-.header=t_search_title(@revision[:nombre], @search.nombre,:References_on_search)
+.header=t_search_title(@review[:name], @search.name,:References_on_search)
 
 %ul.breadcrumb
   %li
-    %a{:href=>url("/review/#{@revision.id}")}=@revision.nombre
+    %a{:href=>url("/review/#{@review.id}")}=@review.name
   %li
-    %a{:href=>url("/review/#{@revision.id}/searchs")}=t(:Searchs)
+    %a{:href=>url("/review/#{@review.id}/searches")}=t(:searches)
   %li
-    %a{:href=>url("/search/#{@search.id}")}=@search.nombre
+    %a{:href=>url("/search/#{@search.id}")}=@search.name
   %li.active
     =t(:References_on_search)
 
@@ -16,18 +16,18 @@
   });
 
 
-%p=t_desc_value(:Count_references_total, @referencias.count)
-%p=t_desc_value(:Count_references_with_canonical, @referencias_con_canonico.count)
-%p=t_desc_value(:Count_references_with_doi_without_canonical, @referencias_solo_doi.count)
+%p=t_desc_value(:Count_references_total, @references.count)
+%p=t_desc_value(:Count_references_with_canonical, @references_con_canonico.count)
+%p=t_desc_value(:Count_references_with_doi_without_canonical, @references_solo_doi.count)
 
 
 .btn-group
   %a{:href=>"/search/#{@search.id}/references/search_doi", :class=>"btn btn-default btn-sm", :role=>:button}=t(:Add_DOI_to_references)
-  %a{:style=>"display:none", :href=>"/search/#{@search.id}/references/generate_canonical_doi/#{@n_referencias}", :class=>"btn btn-default btn-sm", :role=>:button}=t(:Assign_canonical_to_references)
+  %a{:style=>"display:none", :href=>"/search/#{@search.id}/references/generate_canonical_doi/#{@n_references}", :class=>"btn btn-default btn-sm", :role=>:button}=t(:Assign_canonical_to_references)
 %form{:method=>"get",:action=>url("/search/#{@search.id}/references"), :class=>"form-inline"}
   .form-group
-    %label{:for=>"n_referencias"}=t(:Number_of_references_to_view)
-    %input{:type=>"input",:class=>"form-control",:id=>"n_referencias", :name=>"n_referencias",:value=>@n_referencias}
+    %label{:for=>"n_references"}=t(:Number_of_references_to_view)
+    %input{:type=>"input",:class=>"form-control",:id=>"n_references", :name=>"n_references",:value=>@n_references}
     %input{:type=>:submit, :class=>"btn btn-primary",:value=>"Enviar"}
 
 %h4=t(:More_cited_references_with_canonical)
@@ -35,7 +35,7 @@
 .list-group
 - @rmc_canonico.each do |ref|
   %div.list-group-item
-    %span{:class=>"badge"}=ref[:n_registros]
+    %span{:class=>"badge"}=ref[:n_records]
     .list-group-item-text
       ="#{ref[:author]} (#{ref[:year]}). #{ref[:title]}. <em>#{ref[:journal]},#{ref[:volume]}</em>, #{ref[:pages]} "
       %button{:style=>"display:none",:class=>"btn btn-default btn-sm buscar_similares_canonico",:id=>"buscar_similar-#{ref[:id]}"}
@@ -56,7 +56,7 @@
     -#$log.info(ref)
     %span{:class=>"badge"}=ref[:n]
     .list-group-item-text
-      =ref[:texto]
+      =ref[:text]
       %a{:href=>url("/references/search_crossref_by_doi/#{CGI.escape(ref[:doi].gsub("/","***"))}")}
         %button{:class=>"btn btn-default btn-sm"}
           %span{:class=>"glyphicon glyphicon-search"}
@@ -72,7 +72,7 @@
   %div.list-group-item
     %span{:class=>"badge"}=ref[:n]
     .list-group-item-text
-      =ref[:texto]
+      =ref[:text]
       %button{:style=>"display:none", :class=>"btn btn-default btn-sm buscar_similares_no_canonico",:id=>"buscar_similar-#{ref[:id]}"}
         %span{:class=>"glyphicon glyphicon-search"}
         =t(:Search_references_like_this)

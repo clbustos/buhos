@@ -16,7 +16,7 @@
       %th=field.capitalize
       %td
         - if auth_to("review_admin")
-          =a_editable(@cd[:id], "canonico_documento", "/canonical_document/edit_field/#{field}", @cd[field],"")
+          =a_editable(@cd[:id], "canonical_document", "/canonical_document/edit_field/#{field}", @cd[field],"")
         -else
           =@cd[field]
 
@@ -24,7 +24,7 @@
 %h3=t(:Abstract)
 %p
   - if auth_to("review_admin")
-    =a_textarea_editable(@cd[:id], "canonico_documento", "/canonical_document/edit_field/abstract", @cd[:abstract],"")
+    =a_textarea_editable(@cd[:id], "canonical_document", "/canonical_document/edit_field/abstract", @cd[:abstract],"")
   - else
     =@cd[:abstract]
 
@@ -60,20 +60,20 @@
 
 %h3=t("canonical_document.records_on_which_appears")
 
-=partial(:records_list, :locals=>{:registros=>@registros})
+=partial(:records_list, :locals=>{:records=>@records})
 
 %h3=t("canonical_document.references_on_which_appears")
 
-- if @referencias.count==0
+- if @references.count==0
   %div{:class=>"alert alert-warning"}=t(:Doesnt_appears_on_any_reference)
 - else
 
   .list-group
-  - @referencias.each do |ref|
+  - @references.each do |ref|
     %div.list-group-item
       %span{:class=>"badge"}=ref[:n]
       .list-group-item-text
-        =ref[:texto]
+        =ref[:text]
         - if ref[:doi]
           =a_doi(ref[:doi])
         - else
@@ -85,5 +85,5 @@
           %a{:href=>url("/reference/#{ref[:id]}")}=ref[:id]
 %h3=t("canonical_document.references")
 
-=partial(:references_list, :locals=>{:referencias=>@referencias_realizadas})
+=partial(:references_list, :locals=>{:references=>@references_realizadas})
 

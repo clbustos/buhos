@@ -1,11 +1,11 @@
 .heading
-  =t_systematic_review_title(@revision[:nombre], "systematic_review_page.search_administration")
+  =t_systematic_review_title(@review[:name], "systematic_review_page.search_administration")
 
-=partial(:breadcrumb_review_admin,:locals=>{:nombre=>t(:Search)})
+=partial(:breadcrumb_review_admin,:locals=>{:name=>t(:Search)})
 
 %p.instructions=t("systematic_review_page.search_administration_instructions")
 
-=t_desc_value(:Count_searchs_on_systematic_review, @revision.busquedas.count)
+=t_desc_value(:Count_searches_on_systematic_review, @review.searches.count)
 
 %table.table.table-bordered
   %thead
@@ -16,24 +16,24 @@
     %th=t(:Count_references_with_canonical)
     %th=t(:Search_valid)
   %tbody
-    - @revision.busquedas.each do |busqueda|
-      %tr{:class=>bool_class(busqueda.valid, "success","danger","warning")}
+    - @review.searches.each do |search|
+      %tr{:class=>bool_class(search.valid, "success","danger","warning")}
         %td
-          %a{:href=>"/search/#{busqueda[:id]}"}=busqueda.nombre
-        %td=busqueda.user_name
+          %a{:href=>"/search/#{search[:id]}"}=search.name
+        %td=search.user_name
         %td
-          %a{:href=>"/search/#{busqueda[:id]}/records"}=busqueda.registros_n
+          %a{:href=>"/search/#{search[:id]}/records"}=search.records_n
         %td
-          %a{:href=>"/search/#{busqueda[:id]}/references"}=busqueda.referencias_n
-        %td=busqueda.referencias_con_canonico_n.count
+          %a{:href=>"/search/#{search[:id]}/references"}=search.references_n
+        %td=search.references_with_canonical_n.count
         %td
-          - class_validate= (!busqueda.valid.nil? and busqueda.valid)  ? "btn-success" : "btn-default"
-          - class_invalidate= (busqueda.valid.nil? or busqueda.valid)  ? "btn-default" : "btn-danger"
-          %a{:class=>"btn btn-sm #{class_validate}", :href=>"/search/#{busqueda[:id]}/validate"}=t(:Search_valid)
-          %a{:class=>"btn btn-sm #{class_invalidate}", :href=>"/search/#{busqueda[:id]}/invalidate"}=t(:Search_invalid)
+          - class_validate= (!search.valid.nil? and search.valid)  ? "btn-success" : "btn-default"
+          - class_invalidate= (search.valid.nil? or search.valid)  ? "btn-default" : "btn-danger"
+          %a{:class=>"btn btn-sm #{class_validate}", :href=>"/search/#{search[:id]}/validate"}=t(:Search_valid)
+          %a{:class=>"btn btn-sm #{class_invalidate}", :href=>"/search/#{search[:id]}/invalidate"}=t(:Search_invalid)
 
 
 
-- if @ars.stage_complete? :search and @revision[:etapa].to_sym==:search
+- if @ars.stage_complete? :search and @review[:stage].to_sym==:search
   %p.info=t(:stage_search_complete_instruction)
-  %a.btn.btn-primary{:href=>"/review/#{@revision[:id]}/advance_stage"}=t(:Advance_next_stage)
+  %a.btn.btn-primary{:href=>"/review/#{@review[:id]}/advance_stage"}=t(:Advance_next_stage)

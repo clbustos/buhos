@@ -17,8 +17,8 @@ module DOIHelpers
   end
 
 
-  def find_doi(texto)
-    if texto=~/\b(10[.][0-9]{4,}(?:[.][0-9]+)*\/(?:(?!["&\'<>])\S)+)\b/
+  def find_doi(text)
+    if text=~/\b(10[.][0-9]{4,}(?:[.][0-9]+)*\/(?:(?!["&\'<>])\S)+)\b/
       return $1
     else
       return nil

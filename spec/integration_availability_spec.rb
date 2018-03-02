@@ -61,7 +61,7 @@ describe 'Resources availability:' do
     it { expect("/review/1/canonical_documents").to be_available_for_admin}
     it { expect("/review/1/repeated_canonical_documents").to be_available_for_admin}
 
-    it { expect("/review/1/searchs").to be_available_for_admin}
+    it { expect("/review/1/searches").to be_available_for_admin}
     it { expect("/review/1/tags").to be_available_for_admin}
     it { expect("/review/1/messages").to be_available_for_admin}
     it { expect("/review/1/fields").to be_available_for_admin}
@@ -88,17 +88,17 @@ describe 'Resources availability:' do
   context "when review stages resources are accessed" do
     it { expect("/review/1/screening_title_abstract").to be_available_for_admin}
     it "pager should work on screeing title and abstract" do
-      expect("/review/1/screening_title_abstract?busqueda=yes&orden=title__asc&pagina=2").to be_available_for_admin
+      expect("/review/1/screening_title_abstract?search=yes&order=title__asc&pagina=2").to be_available_for_admin
     end
 
 
     it { expect("/review/1/screening_references").to be_available_for_admin}
     it "pager should work on screening references" do
-      expect("/review/1/screening_references?busqueda=yes&orden=title__asc&pagina=2").to be_available_for_admin
+      expect("/review/1/screening_references?search=yes&order=title__asc&pagina=2").to be_available_for_admin
     end
     it { expect("/review/1/review_full_text").to be_available_for_admin}
     it "pager should work on full text review" do
-      expect("/review/1/review_full_text?busqueda=yes&orden=title__asc&pagina=2").to be_available_for_admin
+      expect("/review/1/review_full_text?search=yes&order=title__asc&pagina=2").to be_available_for_admin
     end
 
   end
@@ -111,10 +111,10 @@ describe 'Resources availability:' do
 
 
 
-  context "when review searchs resources are accessed" do
-    it { expect("/review/1/searchs/user/1").to be_available_for_admin}
+  context "when review searches resources are accessed" do
+    it { expect("/review/1/searches/user/1").to be_available_for_admin}
     it { expect("/review/1/search/new").to be_available_for_admin}
-    it { expect("/review/1/searchs/compare_records").to be_available_for_admin}
+    it { expect("/review/1/searches/compare_records").to be_available_for_admin}
   end
 
 

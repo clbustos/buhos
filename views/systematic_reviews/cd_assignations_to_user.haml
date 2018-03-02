@@ -1,15 +1,15 @@
 .heading
-  =t_systematic_review_title(@revision[:nombre], t("systematic_review_page.cd_assignations")+". "+t(:Stage_title, :stage_name=>t(get_stage_name(@stage))),false)
+  =t_systematic_review_title(@review[:name], t("systematic_review_page.cd_assignations")+". "+t(:Stage_title, :stage_name=>t(get_stage_name(@stage))),false)
 
 %ul.breadcrumb
   %li
     %a{:href=>url("/reviews")}=t(:Systematic_reviews)
   %li
-    %a{:href=>url("/review/#{@revision[:id]}")}=@revision[:nombre]
+    %a{:href=>url("/review/#{@review[:id]}")}=@review[:name]
   %li
-    %a{:href=>url("/review/#{@revision[:id]}/stages_adminitration")}=t(:Administration)
+    %a{:href=>url("/review/#{@review[:id]}/stages_adminitration")}=t(:Administration)
   %li
-    %a{:href=>url("/review/#{@revision[:id]}/adminitration/#{@stage}")}=t(get_stage_name(@stage))
+    %a{:href=>url("/review/#{@review[:id]}/adminitration/#{@stage}")}=t(get_stage_name(@stage))
   %li{:class=>:active}
     =t("systematic_review_page.cd_assignations")
 %table.table
@@ -18,23 +18,23 @@
     %th=t(:Count_canonical_documents_assigned)
     %th=t(:Actions)
   %tbody
-  -@revision.group_users.each do |usuario|
+  -@review.group_users.each do |usuario|
     - cd_id_assigned=@ars.cd_id_assigned_by_user(@stage,usuario[:id])
     %tr
-      %td=usuario.nombre
+      %td=usuario.name
       %td=cd_id_assigned.count
       %td
         - add_disabled = cd_id_assigned.count==@cds.count ? "disabled":""
         - remove_disabled = cd_id_assigned.count==0 ? "disabled":""
-        %a{:href=>"/review/#{@revision.id}/stage/#{@stage}/add_assign_user/#{usuario.id}/#{@type}",:class=>"btn btn-default #{add_disabled}"}
+        %a{:href=>"/review/#{@review.id}/stage/#{@stage}/add_assign_user/#{usuario.id}/#{@type}",:class=>"btn btn-default #{add_disabled}"}
           %span.glyphicon.glyphicon-hand-up
           =t(:Assign_all)
-        %a{:href=>"/review/#{@revision.id}/stage/#{@stage}/rem_assign_user/#{usuario.id}/#{@type}",:class=>"btn btn-default #{remove_disabled}"}
+        %a{:href=>"/review/#{@review.id}/stage/#{@stage}/rem_assign_user/#{usuario.id}/#{@type}",:class=>"btn btn-default #{remove_disabled}"}
           %span.glyphicon.glyphicon-hand-down
           =t(:Remove_assign_all)
 
 
 - @cds.each do |cd|
   %div{:class=>"panel panel-default"}
-    =partial(:canonical_document_description, :locals=>{revision: @revision, cd: cd, ars:@ars})
-    =partial(:canonical_document_assignations, :locals=>{revision: @revision, cd: cd, stage:@stage})
+    =partial(:canonical_document_description, :locals=>{revision: @review, cd: cd, ars:@ars})
+    =partial(:canonical_document_assignations, :locals=>{revision: @review, cd: cd, stage:@stage})

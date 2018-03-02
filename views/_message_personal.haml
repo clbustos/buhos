@@ -1,9 +1,9 @@
 - # Params: usuario, mensaje,
 - message_type||='received'
-- mensaje_visto=message_per[:visto]
-- mensajes_hijos=Mensaje.where(:respuesta_a=>message_per.id).order(Sequel.desc(:tiempo))
-- clase_marcar =!mensaje_visto  ? "" : "hidden"
-- clase_visto  = mensaje_visto ? "" : "hidden"
+- message_read=message_per[:read]
+- mensajes_hijos=Message.where(:reply_to=>message_per.id).order(Sequel.desc(:time))
+- clase_marcar =!message_read  ? "" : "hidden"
+- clase_read  = message_read ? "" : "hidden"
 - if @message_personal_js.nil?
   :javascript
     $(document).ready(function() {
@@ -29,7 +29,7 @@
         var ms_id=partes[1];
         var user_id=partes[3];
         $.post("/message/"+ms_id+"/seen_by/"+user_id, function (data) {
-          $("#message_per-"+ms_id+"-no_visto_por-"+user_id).addClass("hidden");
+          $("#message_per-"+ms_id+"-no_read_por-"+user_id).addClass("hidden");
           $("#message_per-"+ms_id+"-visto_por-"+user_id).removeClass("hidden");
         }).fail(function () {
               alert("#{t(:Cant_mark_as_read)}")
@@ -43,16 +43,16 @@
 .list-group-item
   .row
     .col-md-12
-      =sprintf("<strong>%s</strong> de %s en %s. Respuestas: <em>%i</em>.", message_per.asunto, message_per.usuario_nombre, message_per.tiempo,message_per.respuestas.count)
-      .mensaje-texto=message_per.texto
+      =sprintf("<strong>%s</strong> de %s en %s. Respuestas: <em>%i</em>.", message_per.subject, message_per.user_name, message_per.time,message_per.replies.count)
+      .mensaje-text=message_per.text
   .row
     .col-md-12
-      .btn-group-xs.botones-texto
+      .btn-group-xs.botones-text
         - if message_type=='received'
-          %button{:class=>"btn btn-warning marcar-visto-per #{clase_marcar}",:id=>"message_per-#{message_per.id}-no_visto_por-#{usuario[:id]}"}
+          %button{:class=>"btn btn-warning marcar-visto-per #{clase_marcar}",:id=>"message_per-#{message_per.id}-no_read_por-#{usuario[:id]}"}
             %span.glyphicon.glyphicon-inbox
             =t("messages.Mark_as_read")
-        %button{:class=>"btn btn-success #{clase_visto}", :id=>"message_per-#{message_per.id}-visto_por-#{usuario[:id]}"}
+        %button{:class=>"btn btn-success #{clase_read}", :id=>"message_per-#{message_per.id}-visto_por-#{usuario[:id]}"}
           %span.glyphicon.glyphicon-check
           =t("messages.Read")
         - if message_type=='received'
@@ -67,15 +67,15 @@
     .col-md-10
       %form.respuesta-a-m_rs{:method=>"post",:action=>url("/message_per/#{message_per.id}/reply")}
         .form-group
-          %label{:for=>"nombre"}=t(:Author)
-          %p=usuario[:nombre]
+          %label{:for=>"name"}=t(:Author)
+          %p=usuario[:name]
           %input{:type=>"hidden",:name=>:user_id, :value=>usuario[:id]}
         .form-group
-          %label{:for=>"asunto"}=t(:Subject)
-          %input{:class=>"form-control",:type=>"text", :name=>"asunto", :value=>"Re:#{message_per.asunto}"}
+          %label{:for=>"subject"}=t(:Subject)
+          %input{:class=>"form-control",:type=>"text", :name=>"subject", :value=>"Re:#{message_per.subject}"}
         .form-group
-          %label{:for=>"texto"}=t(:Text)
-          %textarea{:class=>"form-control",:name=>'texto'}
+          %label{:for=>"text"}=t(:Text)
+          %textarea{:class=>"form-control",:name=>'text'}
         %input{:type=>:submit, :value=>t("messages.Send_message_to_user"), :class=>"btn btn-default"}
   - if !mensajes_hijos.empty?
     .row{:id=>"mensaje-#{message_type}-#{message_per.id}-hijos", :class=>'hidden'}

@@ -16,52 +16,51 @@ module Buhos
     # This is ugly. I know.
     # I just do it to allow testing
     def update_model_association
-      ::Archivo.dataset=self[:archivos]
-      ::Archivo_Cd.dataset=self[:archivos_cds]
-      ::Archivo_Rs.dataset=self[:archivos_rs]
-      ::Asignacion_Cd.dataset=self[:asignaciones_cds]
-      ::Base_Bibliografica.dataset=self[:bases_bibliograficas]
-      ::Busqueda.dataset=self[:busquedas]
+      ::IFile.dataset=self[:files]
+      ::FileCd.dataset=self[:file_cds]
+      ::FileSr.dataset=self[:file_srs]
+      ::AllocationCd.dataset=self[:allocation_cds]
+      ::BibliographicDatabase.dataset=self[:bibliographic_databases]
+      ::Search.dataset=self[:searches]
 
 
-      ::Canonico_Documento.dataset=self[:canonicos_documentos]
-      ::Crossref_Doi.dataset=self[:crossref_dois]
-      ::Crossref_Query.dataset=self[:crossref_queries]
-      ::Decision.dataset=self[:decisiones]
-      ::Grupo.dataset=self[:grupos]
-      ::Mensaje.dataset=self[:mensajes]
-      ::Mensaje_Rs.dataset=self[:mensajes_rs]
-      ::Mensaje_Rs_Visto.dataset=self[:mensajes_rs_vistos]
-      ::Referencia.dataset=self[:referencias]
-      ::Referencia_Registro.dataset=self[:referencias_registros]
-      ::Resolucion.dataset=self[:resoluciones]
-      ::Registro.dataset=self[:registros]
-      ::Referencia_Registro.dataset=self[:referencias_registros]
+      ::CanonicalDocument.dataset=self[:canonical_documents]
+      ::CrossrefDoi.dataset=self[:crossref_dois]
+      ::CrossrefQuery.dataset=self[:crossref_queries]
+      ::Decision.dataset=self[:decisions]
+      ::Group.dataset=self[:groups]
+      ::Message.dataset=self[:messages]
+      ::MessageSr.dataset=self[:message_srs]
+      ::MessageSrSeen.dataset=self[:message_sr_seens]
+      ::Reference.dataset=self[:bib_references]
+      ::RecordsReferences.dataset=self[:records_references]
+      ::Resolution.dataset=self[:resolutions]
+      ::Record.dataset=self[:records]
       ::Tag.dataset=self[:tags]
-      ::T_Clase.dataset=self[:t_clases]
-      ::Tag_En_Clase.dataset=self[:tags_en_clases]
-      ::Tag_En_Cd.dataset=self[:tags_en_cds]
-      ::Tag_En_Referencia_Entre_Cn.dataset=self[:tags_en_referencias_entre_cn]
-      ::Revision_Sistematica.dataset=self[:revisiones_sistematicas]
-      ::Rs_Campo.dataset=self[:rs_campos]
-      ::Usuario.dataset=self[:usuarios]
-      ::Permiso.dataset=self[:permisos]
-      ::Rol.dataset=self[:roles]
+      ::T_Class.dataset=self[:t_classes]
+      ::TagInClass.dataset=self[:tag_in_classes]
+      ::TagInCd.dataset=self[:tag_in_cds]
+      ::TagBwCd.dataset=self[:tag_bw_cds]
+      ::SystematicReview.dataset=self[:systematic_reviews]
+      ::SrField.dataset=self[:sr_fields]
+      ::User.dataset=self[:users]
+      ::Authorization.dataset=self[:authorizations]
+      ::Role.dataset=self[:roles]
       ::Scopus_Abstract.dataset=self[:scopus_abstracts]
-      ::Grupo.dataset=self[:grupos]
-      ::Grupo_Usuario.dataset=self[:grupos_usuarios]
-      ::PermisosRol.dataset=self[:permisos_roles]
+      ::Group.dataset=self[:groups]
+      ::GroupsUser.dataset=self[:groups_users]
+      ::AuthorizationsRole.dataset=self[:authorizations_roles]
 
 
-      ::Busqueda.many_to_many :registros, :class=>Registro
+      ::Search.many_to_many :records, :class=>Record
 
 
-      ::Registro.many_to_one :canonico_documento, :class=>Canonico_Documento
+      ::Record.many_to_one :canonical_document, :class=>CanonicalDocument
 
-      ::Referencia.many_to_many :registros
-      ::Revision_Sistematica.many_to_one :grupo
-      ::Revision_Sistematica.one_to_many :mensajes_rs, :class=>Mensaje_Rs
-      ::Grupo.many_to_many :usuarios
+      ::Reference.many_to_many :records
+      ::SystematicReview.many_to_one :group
+      ::SystematicReview.one_to_many :messages_srs, :class=>MessageSr
+      ::Group.many_to_many :users
     end
     def method_missing(m, *args, &block)
       #puts "#{m}: #{args}"

@@ -4,7 +4,7 @@ describe 'Prisma Report' do
   before(:all) do
     RSpec.configure { |c| c.include RSpecMixin }
     @temp=configure_empty_sqlite
-    Revision_Sistematica.insert(:nombre=>'Test Review', :grupo_id=>1, :administrador_revision=>1)
+    SystematicReview.insert(:name=>'Test Review', :group_id=>1, :sr_administrator=>1)
     login_admin
   end
   context "when svg PRISMA flow diagram is downloaded" do

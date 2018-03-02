@@ -1,37 +1,37 @@
 - udi=UserDashboardInfo.new(user)
-- es_administrador=udi.is_administrator_sr?(sr)
+- is_administrator=udi.is_administrator_sr?(sr)
 - if udi.unread_sr_messages(sr[:id]).count>0
   %p=t_desc_value("user_dashboard.unread_sr_messages", a_tag("/user/#{user[:id]}/messages#sr_#{sr[:id]}",  t("user_dashboard.check_n_unread_messages", count:@udi.unread_sr_messages(sr[:id]).count)))
 - et_av=sr.current_stages
 %div
   %ul.nav.nav-tabs{:role=>:tablist}
-    - get_stages_ids.each do |etapa|
-      - if etapa==:report
-        - clase_sr = sr.etapa.to_sym==etapa ? "active" : "default"
+    - get_stages_ids.each do |stage|
+      - if stage==:report
+        - clase_sr = sr.stage.to_sym==stage ? "active" : "default"
         %li{:role=>'presentation', :class=> clase_sr  }
-          %a{:href=>"#sr-#{sr.id}-#{etapa}", "data-toggle"=>"tab"}
-            =t(get_stage_name(etapa))
+          %a{:href=>"#sr-#{sr.id}-#{stage}", "data-toggle"=>"tab"}
+            =t(get_stage_name(stage))
             %br
-            -clase_bt_sr = sr.etapa.to_sym==etapa ? "primary" : "default"
-            %button{:style=>"margin-top:1em;", :class=>"btn btn-default btn-sm btn-#{clase_bt_sr}"}= sr.etapa.to_sym==etapa ? t(:Report_final) : t(:Report_partial)
+            -clase_bt_sr = sr.stage.to_sym==stage ? "primary" : "default"
+            %button{:style=>"margin-top:1em;", :class=>"btn btn-default btn-sm btn-#{clase_bt_sr}"}= sr.stage.to_sym==stage ? t(:Report_final) : t(:Report_partial)
       - else
-        - clase_sr = sr.etapa.to_sym==etapa ? "active" : ( et_av.include?(etapa) ? "default" : "disabled" )
+        - clase_sr = sr.stage.to_sym==stage ? "active" : ( et_av.include?(stage) ? "default" : "disabled" )
 
-        - a_url = et_av.include?(etapa) ? "#sr-#{sr.id}-#{etapa}" : "#"
+        - a_url = et_av.include?(stage) ? "#sr-#{sr.id}-#{stage}" : "#"
         %li{:role=>'presentation', :class=> clase_sr  }
           %a{:href=>a_url, "data-toggle"=>"tab"}
-            =t(get_stage_name(etapa))
+            =t(get_stage_name(stage))
             %br
-            -clase_bt_sr = sr.etapa.to_sym==etapa ? "primary" : ( et_av.include?(etapa) ? "success" : "pending" )
-            %button{:style=>"margin-top:1em;", :class=>"btn btn-default btn-sm btn-#{clase_bt_sr}"}= sr.etapa.to_sym==etapa ? t(:current) : ( et_av.include?(etapa) ? t(:complete) : t(:pending) )
+            -clase_bt_sr = sr.stage.to_sym==stage ? "primary" : ( et_av.include?(stage) ? "success" : "pending" )
+            %button{:style=>"margin-top:1em;", :class=>"btn btn-default btn-sm btn-#{clase_bt_sr}"}= sr.stage.to_sym==stage ? t(:current) : ( et_av.include?(stage) ? t(:complete) : t(:pending) )
   %div{:class=>"tab-content"}
-    - get_stages_ids.each do |etapa_visualizar|
-      - adu=udi.adu_for_sr(sr,etapa_visualizar)
-      %div{:id=>"sr-#{sr.id}-#{etapa_visualizar}", :class=>"tab-pane #{etapa_visualizar==sr[:etapa].to_sym ? 'active' : ''}"}
+    - get_stages_ids.each do |stage_visualized|
+      - adu=udi.adu_for_sr(sr,stage_visualized)
+      %div{:id=>"sr-#{sr.id}-#{stage_visualized}", :class=>"tab-pane #{stage_visualized==sr[:stage].to_sym ? 'active' : ''}"}
         %p
-        - if etapa_visualizar==:search
-          =partial(:dashboard_user_sr_search, :locals=>{es_administrador:es_administrador, sr:sr, etapa:etapa_visualizar, user:user})
-        - elsif etapa_visualizar==:report
-          =partial(:dashboard_user_sr_report, :locals=>{es_administrador:es_administrador, sr:sr, etapa:etapa_visualizar, user:user})
+        - if stage_visualized==:search
+          =partial(:dashboard_user_sr_search, :locals=>{is_administrator:is_administrator, sr:sr, stage:stage_visualized, user:user})
+        - elsif stage_visualized==:report
+          =partial(:dashboard_user_sr_report, :locals=>{is_administrator:is_administrator, sr:sr, stage:stage_visualized, user:user})
         - else
-          =partial(:dashboard_user_sr_review, :locals=>{es_administrador:es_administrador, sr:sr, etapa:etapa_visualizar, user:user,adu:adu})
+          =partial(:dashboard_user_sr_review, :locals=>{is_administrator:is_administrator, sr:sr, stage:stage_visualized, user:user,adu:adu})

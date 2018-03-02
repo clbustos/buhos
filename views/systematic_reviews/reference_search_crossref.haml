@@ -1,7 +1,7 @@
 %h2=t(:Reference_Crossref_search)
 
 %p
-  =@ref.texto
+  =@ref.text
   %a{:href=>url("/reference/#{@ref.id}")}="(#{@ref[:id]})"
 
 =partial(:response_crossref,:locals=>{:respuesta=>@respuesta,:base_url=>"/reference/#{@ref.id}/assign_doi/", :volver_url=>"/reference/#{@ref.id}"})

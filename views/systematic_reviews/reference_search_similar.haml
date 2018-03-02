@@ -4,7 +4,7 @@
 
   %p
     %strong=t(:Original)
-    =@ref.texto
+    =@ref.text
     %a{:href=>url("/reference/#{@ref.id}")}="(#{@ref[:id]})"
 
 -if @ref_similares.length==0
@@ -15,12 +15,12 @@
     .list-group
     - @ref_similares.each do |resp|
       %div.list-group-item
-        %input{:type=>"checkbox", :checked=>true, :name=>"referencia[#{resp[:id]}]"}
-        %h4.list-group-item-heading=resp[:texto]
+        %input{:type=>"checkbox", :checked=>true, :name=>"reference[#{resp[:id]}]"}
+        %h4.list-group-item-heading=resp[:text]
         %span{:class=>'badge'}=resp[:distancia]
         .list-group-item-text
-          - if resp[:canonico_documento_id]
-            %a{:href=>url("/canonico/#{resp[:canonico_documento_id]}")}
+          - if resp[:canonical_document_id]
+            %a{:href=>url("/canonico/#{resp[:canonical_document_id]}")}
               %button{:class=>"btn btn-success btn-sm"}
                 %span{:class=>"glyphicon glyphicon-king"}
                 =t(:Canonical)

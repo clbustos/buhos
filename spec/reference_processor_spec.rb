@@ -7,13 +7,13 @@ describe 'ReferenceProcessor' do
   end
   context "when reference processor is used" do
     it "should add doi and canonical document to references without them, if possible" do
-      references=$db["SELECT * FROM referencias WHERE doi IS NOT NULL AND canonico_documento_id IS NOT NULL"].map(:id)[0...30]
-      Referencia.where(:id=>references).update(:canonico_documento_id=>nil, :doi=>nil)
+      references=$db["SELECT * FROM bib_references WHERE doi IS NOT NULL AND canonical_document_id IS NOT NULL"].map(:id)[0...30]
+      Reference.where(:id=>references).update(:canonical_document_id=>nil, :doi=>nil)
       references.each do |ref_id|
-        rp=ReferenceProcessor.new(Referencia[ref_id])
+        rp=ReferenceProcessor.new(Reference[ref_id])
         expect(rp.process_doi).to be true
       end
-      expect(Referencia.where(:id=>references).exclude(:doi=>nil, :canonico_documento_id=>nil).count).to eq(30)
+      expect(Reference.where(:id=>references).exclude(:doi=>nil, :canonical_document_id=>nil).count).to eq(30)
     end
   end
 end

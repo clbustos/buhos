@@ -7,7 +7,7 @@ describe 'Search' do
   before(:all) do
     RSpec.configure { |c| c.include RSpecMixin }
     configure_empty_sqlite
-    Revision_Sistematica.insert(:nombre=>'Test Review', :grupo_id=>1, :administrador_revision=>1)
+    SystematicReview.insert(:name=>'Test Review', :group_id=>1, :sr_administrator=>1)
     login_admin
   end
 
@@ -15,7 +15,7 @@ describe 'Search' do
     filename="manual.bib"
     File.expand_path("#{File.dirname(__FILE__)}/../docs/guide_resources/#{filename}")
   end
-  let(:search) {Busqueda[1]}
+  let(:search) {Search[1]}
   let(:filesize) {File.size(filepath)}
   let(:sr_id) {sr_by_name_id('Test Review')}
   let(:bb_id) {bb_by_name_id('generic')}
@@ -23,40 +23,40 @@ describe 'Search' do
   # Just some preliminary checks. Don't load the rest of suite if this fails
 
   context 'when check initial state' do
-    it "should be 0 searchs" do
-        expect(Busqueda.count).to eq(0)
+    it "should be 0 searches" do
+        expect(Search.count).to eq(0)
     end
     it "should be 0 records" do
-      expect(Registro.count).to eq(0)
+      expect(Record.count).to eq(0)
     end
     it "should be 0 references" do
-      expect(Referencia.count).to eq(0)
+      expect(Reference.count).to eq(0)
     end
 
   end
   context 'when create a search by form' do
     before(:context) do
       uploaded_file=Rack::Test::UploadedFile.new(filepath, "text/x-bibtex",true)
-      post '/search/update', {busqueda_id:'', archivo:uploaded_file, revision_sistematica_id: sr_by_name_id('Test Review') , base_bibliografica_id:bb_by_name_id('generic'), source:'informal_search', fecha:'2018-01-01'}
+      post '/search/update', {search_id:'', file:uploaded_file, systematic_review_id: sr_by_name_id('Test Review') , bibliographic_database_id:bb_by_name_id('generic'), source:'informal_search', date_creation:'2018-01-01'}
     end
 
     it "response should be redirect" do
       expect(last_response).to be_redirect
     end
-    it "should response redirects to review's searchs" do
-      expect(last_response.header['Location']).to eq("http://example.org/review/#{sr_id}/searchs")
+    it "should response redirects to review's searches" do
+      expect(last_response.header['Location']).to eq("http://example.org/review/#{sr_id}/searches")
     end
     it "should search be created on dataset" do
       expect(search).to be_truthy
     end
     it "should search contains correct file name" do
-      expect(search[:archivo_nombre]).to eq('manual.bib')
+      expect(search[:filename]).to eq('manual.bib')
     end
     it "should search bibliographic database will be generic" do
-      expect(search[:base_bibliografica_id]).to eq(bb_id)
+      expect(search[:bibliographic_database_id]).to eq(bb_id)
     end
     it "should search date will be 2018-01-01" do
-      expect(search[:fecha]).to eq(Date.new(2018,01,01))
+      expect(search[:date_creation]).to eq(Date.new(2018,01,01))
     end
 
     # Remember that sqlite sends to ruby a ASCII-8BIT
@@ -74,11 +74,11 @@ describe 'Search' do
       $log.info(content_object.encoding)
       $log.info(content_file==content_object)
 =end
-      expect(search[:archivo_cuerpo].force_encoding('UTF-8')).to eq(File.read(filepath))
+      expect(search[:file_body].force_encoding('UTF-8')).to eq(File.read(filepath))
     end
   end
-  context "when review searchs is accesed" do
-    let(:response) {get "/review/#{sr_by_name_id('Test Review')}/searchs"}
+  context "when review searches is accesed" do
+    let(:response) {get "/review/#{sr_by_name_id('Test Review')}/searches"}
     it { expect(response).to be_ok}
     it "should include a row for new search" do
       expect(response.body).to include("id='row-search-1'")
@@ -121,8 +121,8 @@ describe 'Search' do
 
   context 'when process the search using batch form' do
     before(:context) do
-      searchs_id=[1]
-      post '/searchs/update_batch', {search:1,searchs:searchs_id, action:'process', url_back:'URL_BACK'}
+      searches_id=[1]
+      post '/searches/update_batch', {search:1,searches:searches_id, action:'process', url_back:'URL_BACK'}
     end
     it "response should be redirect" do
       #$log.info(last_response)
@@ -146,10 +146,10 @@ describe 'Search' do
         ].sort
       end
       before(:context) do
-        searchs_id=[1]
-        post '/searchs/update_batch', {search:1,searchs:searchs_id, action:'process', url_back:'URL_BACK'}
+        searches_id=[1]
+        post '/searches/update_batch', {search:1,searches:searches_id, action:'process', url_back:'URL_BACK'}
       end
-      let(:records) {Busqueda[1].registros_dataset }
+      let(:records) {Search[1].records_dataset }
       it "should be 6" do
         expect(records.count).to eq(6)
       end
@@ -158,7 +158,7 @@ describe 'Search' do
         expect(actual_titles).to eq(expected_titles)
       end
       it "should have correct bibliographic db assigned" do
-        expect(records.map(:base_bibliografica_id).uniq).to eq([bb_id])
+        expect(records.map(:bibliographic_database_id).uniq).to eq([bb_id])
       end
       context "and records view is accesed" do
         before(:context) do

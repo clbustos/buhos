@@ -25,7 +25,7 @@ describe 'Canonical Record' do
     end
     it {expect(last_response).to be_redirect}
     it "should be no references assigned to the canonical document" do
-      expect(Referencia.where(canonico_documento_id:64).count).to eq(0)
+      expect(Reference.where(canonical_document_id:64).count).to eq(0)
     end
   end
 

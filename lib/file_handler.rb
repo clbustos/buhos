@@ -1,5 +1,5 @@
 module FileHandler
-  # Maneja el javascript para ver archivos de forma modal
+  # Maneja el javascript para ver files de forma modal
 
     class ModalFiles
       def initialize
@@ -35,10 +35,10 @@ HEREDOC
 
       def cargador_archivo(rs_id,cd_id)
         "<form method='post' action='/review/files/add' enctype='multipart/form-data'>
-  <input type='hidden' name='revision_sistematica_id' value='#{rs_id}' />
-  <input type='hidden' name='canonico_documento_id' value='#{cd_id}' />
+  <input type='hidden' name='systematic_review_id' value='#{rs_id}' />
+  <input type='hidden' name='canonical_document_id' value='#{cd_id}' />
   <div class='form-group'>
-    <input type='file' name='archivos[]'/>
+    <input type='file' name='files[]'/>
     <input type='submit' class='btn btn-primary btn-sm' value='#{I18n.t(:Send)}'/>
 </div>
 </form>"
@@ -61,13 +61,13 @@ HEREDOC
         "
         end
         if cd_id
-          acd=Archivo_Cd[:archivo_id=>archivo[:id], :canonico_documento_id=>cd_id]
+          acd=FileCd[:file_id=>archivo[:id], :canonical_document_id=>cd_id]
           if acd
             boton_canonico="
           <button class='btn btn-warning archivo_desasignar_cd' data-aid='#{archivo[:id]}' data-cdid='#{cd_id}' role='button'>
           <span class='glyphicon glyphicon-remove'>#{I18n.t("file_handler.unassign_canonical_document")}</span>
         </button>"
-            if acd[:no_considerar]
+            if acd[:not_consider]
         boton_canonico+= "
         <button class='btn btn-default archivo_mostrar_cd' data-aid='#{archivo[:id]}' data-cdid='#{cd_id}' role='button'>
         <span class='glyphicon glyphicon-eye-open'>#{I18n.t("file_handler.show_canonical_document")}</span>
@@ -86,7 +86,7 @@ HEREDOC
   <a class='btn btn-default' href='/file/#{archivo[:id]}/download' role='button'>
     <span class='glyphicon glyphicon-download'>#{I18n.t(:Download)}</span>
   </a>
-<button class='btn btn-default btn-sm' data-target='#modalArchivos' data-toggle='modal' type='button' data-name='#{archivo[:archivo_nombre]}' data-pk='#{archivo[:id]}' data-paginas='#{archivo[:paginas]}'>
+<button class='btn btn-default btn-sm' data-target='#modalArchivos' data-toggle='modal' type='button' data-name='#{archivo[:filename]}' data-pk='#{archivo[:id]}' data-pages='#{archivo[:pages]}'>
   <span class='glyphicon glyphicon-eye-open'>#{I18n.t(:View)}</span></button>
 
 #{boton_canonico}

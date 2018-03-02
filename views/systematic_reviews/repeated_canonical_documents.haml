@@ -1,5 +1,5 @@
 .heading
-  %h2=t(:Systematic_review_repeated_documents, sr_name:@revision.nombre)
+  %h2=t(:Systematic_review_repeated_documents, sr_name:@review.name)
 :javascript
   $(document).ready(function() {
     $(".unir_cd_por_doi").click(function() {
@@ -22,11 +22,11 @@
   });
 %ul.breadcrumb
   %li
-    %a{:href=>url("/review/#{@revision.id}")}=@revision.nombre
+    %a{:href=>url("/review/#{@review.id}")}=@review.name
   %li
-    %a{:href=>url("/review/#{@revision.id}/canonical_documents")}=t(:Canonical_documents)
+    %a{:href=>url("/review/#{@review.id}/canonical_documents")}=t(:Canonical_documents)
   %li
-    %a{:href=>url("/review/#{@revision.id}/repeated_canonical_documents")}=t(:Duplicated_documents)
+    %a{:href=>url("/review/#{@review.id}/repeated_canonical_documents")}=t(:Duplicated_documents)
 
 %p=t_desc_value(:count_canonical_documents, @cd_total.to_i)
 %p=t_desc_value(:count_duplicated_DOI,@cd_rep_doi.length)

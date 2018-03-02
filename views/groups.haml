@@ -12,20 +12,20 @@
     %th=t(:Users)
     %th=t(:Actions)
   %tbody
-    - @grupos.each do |g|
+    - @groups.each do |g|
       %tr
         %td=g.id
         %td=g.name
         %td=g.description
         %td=g.administrator_name
-        %td=g.usuarios.map {|u| "[#{u.id}]#{u.nombre}"}.join(",")
+        %td=g.users.map {|u| "[#{u.id}]#{u.name}"}.join(",")
         %td
           - if auth_to("group_admin")
             .btn-group.btn-group-sm
               %a.btn.btn-default{:href=>url("/group/#{g.id}/edit")}
                 %span.glyphicon.glyphicon-pencil
                 =t(:Edit)
-              -if g.revisiones_sistematicas.empty?
+              -if g.systematic_reviews.empty?
                 %a.btn.btn-default{:href=>url("/group/#{g.id}/delete")}
                   %span.glyphicon.glyphicon-remove
                   =t(:Delete)

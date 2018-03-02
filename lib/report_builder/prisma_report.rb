@@ -8,10 +8,10 @@ module ReportBuilder
 
     end
     def process_information
-      @sources_identification=sr.busquedas_dataset.inject({}) {|ac,v|
+      @sources_identification=sr.searches_dataset.inject({}) {|ac,v|
         source=v[:source]
         ac[source]||=0
-        ac[source]+=v.registros_n
+        ac[source]+=v.records_n
         ac
       }
       @n_rec_database=@sources_identification["database_search"].to_i # records identified on databases
@@ -27,9 +27,9 @@ module ReportBuilder
       # We need to recover the tag for exclusions
       #
       reason_to_exclude=@ars.cd_rejected_id("review_full_text").map {|v|
-        TagBuilder.tag_in_cd(@sr, Canonico_Documento[v]).find_all {
-            |vv|  vv.texto=~/^ex:/  and vv.mostrar
-        }.map {|vv| vv.texto.gsub(/^ex:/,'')}.join("; ")
+        TagBuilder.tag_in_cd(@sr, CanonicalDocument[v]).find_all {
+            |vv|  vv.text=~/^ex:/  and vv.mostrar
+        }.map {|vv| vv.text.gsub(/^ex:/,'')}.join("; ")
       }
       @reason_to_exclude_count=reason_to_exclude.inject({}) {|ac,v|
         ac[v]||=0

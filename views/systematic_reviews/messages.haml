@@ -1,8 +1,8 @@
-%h2=t(:Systematic_review_messages, sr_name:@revision.nombre)
+%h2=t(:Systematic_review_messages, sr_name:@review.name)
 
 %ul.breadcrumb
   %li
-    %a{:href=>url("/review/#{@revision.id}")}=@revision.nombre
+    %a{:href=>url("/review/#{@review.id}")}=@review.name
   %li{:class=>:active}=t(:Messages)
 
 
@@ -10,17 +10,17 @@
   .panel-heading
     =t(:New_message)
   .panel-body
-    %form{:method=>"post",:action=>url("/review/#{@revision.id}/message/new")}
+    %form{:method=>"post",:action=>url("/review/#{@review.id}/message/new")}
       .form-group
-        %label{:for=>"nombre"}=t(:Author)
-        %p=@usuario[:nombre]
+        %label{:for=>"name"}=t(:Author)
+        %p=@usuario[:name]
         %input{:type=>"hidden",:name=>:user_id, :value=>@usuario[:id]}
       .form-group
-        %label{:for=>"asunto"}=t(:Subject)
-        %input{:class=>"form-control",:type=>"text", :name=>"asunto"}
+        %label{:for=>"subject"}=t(:Subject)
+        %input{:class=>"form-control",:type=>"text", :name=>"subject"}
       .form-group
-        %label{:for=>"texto"}=t(:Text)
-        %textarea{:class=>"form-control",:name=>'texto'}
+        %label{:for=>"text"}=t(:Text)
+        %textarea{:class=>"form-control",:name=>'text'}
       %input{:type=>:submit, :value=>t(:Send_message_to_group), :class=>"btn btn-default"}
 
 %h3=t(:Messages)

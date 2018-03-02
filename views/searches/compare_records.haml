@@ -1,0 +1,25 @@
+.heading=t_systematic_review_title(@review[:name],:Compare_records_by_search)
+
+
+%ul.breadcrumb
+  %li
+    %a{:href=>url("/review/#{@review.id}")}=@review.name
+  %li
+    %a{:href=>url("/review/#{@review.id}/searches")}=t(:searches)
+  %li.active
+    =t(:Compare_records_by_search)
+
+%table.tablesorter
+  %thead
+    %th{:style=>'width:50%'}=t(:Document)
+    - @searches_id.each do |search_id|
+      -search=Search[search_id]
+      %th=search.name
+    %th n
+  %tbody
+    - @cds_ordered.each do |key,val|
+      %tr
+        %td=@cds_o[key].ref_apa_6_brief_html
+        - @searches_id.each do |b_id|
+          %td="#{val[:searches][b_id] ? 'Sí':'No'}"
+        %td=val[:searches].length

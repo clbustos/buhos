@@ -1,5 +1,5 @@
 .heading
-  =t_systematic_review_title(@sr[:nombre], t(:Cd_extract_information, cd_title:@cd[:title]),false)
+  =t_systematic_review_title(@sr[:name], t(:Cd_extract_information, cd_title:@cd[:title]),false)
 - ajax||=false
 
 :javascript
@@ -12,7 +12,7 @@
   %li
     %a{:href=>url("/reviews")}=t(:Systematic_reviews)
   %li
-    %a{:href=>url("/review/#{@sr[:id]}")}=@sr[:nombre]
+    %a{:href=>url("/review/#{@sr[:id]}")}=@sr[:name]
   %li
     %a{:href=>url("/review/#{@sr[:id]}/full_text_review")}=t(:Review_full_text)
   %li{:class=>:active}
@@ -33,7 +33,7 @@
         .row
           .col-sm-5
             %div{:id=>"decision-cd-#{@cd[:id]}"}
-              =partial(:decision, :locals=>{revision:@sr, cd:@cd, ars:@ars, usuario_id:@user[:id], etapa: @stage , decisiones:@decisiones, only_buttons:true})
+              =partial(:decision, :locals=>{revision:@sr, cd:@cd, ars:@ars, user_id:@user[:id], stage: @stage , decisions:@decisions, only_buttons:true})
         - @form_creator.each_field do |field|
           .row
             .col-sm-5
@@ -50,7 +50,7 @@
                     =cd_out.ref_apa_6_brief
                     %a.btn.btn-default.btn-sm{:href=>"/review/#{@sr[:id]}/extract_information/cd/#{cd_out[:id]}"}=t(:View)
                     %br
-                    =partial("tags/tags_cd_rs_ref", :locals=>{cd_start: @cd, cd_end:cd_out ,revision:@sr, usuario_id:@user[:id], ajax:ajax})
+                    =partial("tags/tags_cd_rs_ref", :locals=>{cd_start: @cd, cd_end:cd_out ,revision:@sr, user_id:@user[:id], ajax:ajax})
         - if @incoming_citations.count>0
           .row
             .col-sm-5

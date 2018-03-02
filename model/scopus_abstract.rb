@@ -5,7 +5,7 @@ class Scopus_Abstract < Sequel::Model
     elsif tipo.to_s=='doi'
       Scopus_Abstract.where(:doi => id).first
     else
-      raise Buhos::NoScopusMethodError, ::I18n.t("error.no_scopus_method", type:tipo)
+      raise Buhos::NoScopusMethodError, ::I18n.t("error.no_scopus_method", type:type)
     end
   end
 
@@ -19,7 +19,7 @@ class Scopus_Abstract < Sequel::Model
 
   def self.obtener_abstract_cd(cd_id)
     result=Result.new
-    cd=Canonico_Documento[cd_id]
+    cd=CanonicalDocument[cd_id]
     #$log.info("Procesando scopus para CD:#{cd.id}")
     if cd.scopus_id
       tipo='eid'

@@ -1,12 +1,12 @@
 require_relative 'canonico_documento'
 
-class Registro < Sequel::Model
+class Record < Sequel::Model
   include ReferenceMethods
   include DOIHelpers
-  many_to_one :canonico_documento, :class=>Canonico_Documento
+  many_to_one :canonical_document, :class=>CanonicalDocument
   # Obtener una Query Crossref. Se utiliza el APA 6
   def crossref_query
-    Crossref_Query.generar_query_desde_texto( ref_apa_6 )
+    CrossrefQuery.generar_query_desde_text( ref_apa_6 )
   end
   # Asigna un doi automaticamente desde crossref
   # y verifica que el DOI del canónico calce
@@ -21,31 +21,31 @@ class Registro < Sequel::Model
         result.warning(I18n.t(:DOI_not_assigned_to_record, record_id: self[:id], author: self[:author], title: self[:title] ))
       end
 
-    elsif canonico_documento.doi.nil?
+    elsif canonical_document.doi.nil?
         result.add_result(add_doi(self[:doi]))
-    elsif canonico_documento.doi!=self[:doi]
-        result.warning("DOI para canonico #{canonico_documento[:doi]}  y referencia #{self[:id]} -> #{self[:doi]} difieren")
+    elsif canonical_document.doi!=self[:doi]
+        result.warning("DOI para canonico #{canonical_document[:doi]}  y reference #{self[:id]} -> #{self[:doi]} difieren")
     else
       result.info(I18n::t(:nothing_to_do))
     end
     result
   end
 
-  # @param referencias_id ID de referencias que deberían estar acá
-  def update_references(referencias_id, modo=:aditivo)
+  # @param references_id ID de references que deberían estar acá
+  def update_references(references_id, modo=:aditivo)
     result=Result.new
-    cit_ref_yap=$db["SELECT referencia_id FROM referencias_registros WHERE registro_id=?", self[:id]].map {|v| v[:referencia_id]}
+    cit_ref_yap=$db["SELECT reference_id FROM records_references WHERE record_id=?", self[:id]].map {|v| v[:reference_id]}
 
-    cit_rep_por_ingresar = (referencias_id- cit_ref_yap).uniq
-    cit_rep_por_borrar = (cit_ref_yap - referencias_id).uniq
+    cit_rep_por_ingresar = (references_id- cit_ref_yap).uniq
+    cit_rep_por_borrar = (cit_ref_yap - references_id).uniq
     $db.transaction do
       if cit_rep_por_ingresar.length>0
-        $db[:referencias_registros].multi_insert(cit_rep_por_ingresar.map {|v| {:referencia_id => v, :registro_id => self[:id]}})
+        $db[:records_references].multi_insert(cit_rep_por_ingresar.map {|v| {:reference_id => v, :record_id => self[:id]}})
         result.info( ::I18n.t(:Added_references_to_record, :record_id=>self[:id], :count_references=>cit_rep_por_ingresar.length))
       end
 
       if cit_rep_por_borrar.length>0 and modo==:sincronia
-        $db[:referencias_registros].where(:registro_id => self[:id], :referencia_id => cit_rep_por_borrar).delete
+        $db[:records_references].where(:record_id => self[:id], :reference_id => cit_rep_por_borrar).delete
         result.info( ::I18n.t(:Deleted_references_to_record, :record_id=>self[:id], :count_references=>cit_rep_por_borrar.length))
       end
     end
@@ -55,17 +55,17 @@ class Registro < Sequel::Model
 
   def references_automatic_crossref
     result=Result.new
-    ri_json=Crossref_Doi.reference_integrator_json(self[:doi])
+    ri_json=CrossrefDoi.reference_integrator_json(self[:doi])
     if ri_json and ri_json.references
 
       ref_ids=[]
       ri_json.references.each do |reference|
         doi=reference.doi
-        texto=reference.to_s
-        ref=Referencia.get_by_text_and_doi(texto,doi,true)
+        text=reference.to_s
+        ref=Reference.get_by_text_and_doi(text,doi,true)
         if doi
-          cd=Canonico_Documento.where(:doi=>doi_without_http(doi)).first
-          ref.update(:canonico_documento_id=>cd[:id]) if cd and ref.canonico_documento_id.nil?
+          cd=CanonicalDocument.where(:doi=>doi_without_http(doi)).first
+          ref.update(:canonical_document_id=>cd[:id]) if cd and ref.canonical_document_id.nil?
         end
         ref_ids.push(ref[:id])
       end
@@ -82,7 +82,7 @@ class Registro < Sequel::Model
   # @return Result
   def add_doi(doi)
     status=Result.new
-    crossref_doi=Crossref_Doi.procesar_doi(doi)
+    crossref_doi=CrossrefDoi.procesar_doi(doi)
 
     unless crossref_doi
       status.error(I18n::t("record.cant_process_doi", doi:doi))
@@ -98,8 +98,8 @@ class Registro < Sequel::Model
     end
 
     # Verificamos si el canónico calza con el original
-    can_doc_original=Canonico_Documento[self[:canonico_documento_id]]
-    can_doc_doi=Canonico_Documento.where(:doi=>doi_without_http(doi)).first
+    can_doc_original=CanonicalDocument[self[:canonical_document_id]]
+    can_doc_doi=CanonicalDocument.where(:doi=>doi_without_http(doi)).first
     if can_doc_original[:doi]==doi_without_http(doi)
       status.info(I18n::t("record.already_added_doi_on_cd", doi:doi, cd_title:can_doc_original[:title]))
     elsif !can_doc_doi # No hay ningún doc previo con este problema
@@ -112,12 +112,12 @@ class Registro < Sequel::Model
     status
   end
 
-  def referencias_id
-    $db["SELECT referencia_id FROM referencias_registros rr WHERE registro_id=?", self[:id]].select_map(:referencia_id)
+  def references_id
+    $db["SELECT reference_id FROM records_references rr WHERE record_id=?", self[:id]].select_map(:reference_id)
 
   end
 
-  def referencias
-    Referencia.where(:id => referencias_id)
+  def references
+    Reference.where(:id => references_id)
   end
 end

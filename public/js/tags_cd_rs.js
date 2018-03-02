@@ -55,7 +55,7 @@ var TagManager={};
 
     var send_post_create_tag_ref=function(url,val,cd_start_pk,cd_end_pk, rs_pk) {
         if(val.trim()=="") {
-            alert("El tag no tiene texto")
+            alert("El tag no tiene text")
         } else {
             $.post(url, {value: val}, function (data) {
                 var div_id="#tags-cd_start-"+cd_start_pk+"-cd_end-"+cd_end_pk+"-rs-"+rs_pk;

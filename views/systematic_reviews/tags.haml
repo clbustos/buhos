@@ -1,11 +1,11 @@
 .heading
-  %h2=title(t(:Systematic_review_tags, sr_name:@revision[:nombre]))
+  %h2=title(t(:Systematic_review_tags, sr_name:@review[:name]))
 
 
 :javascript
   crear_tag=function(url,val,clase_pk) {
     if(String(val).trim()==="") {
-      alert("El tag no tiene texto")
+      alert("El tag no tiene text")
     } else {
       $.post(url, {value: val}, function (data) {
         $("#tags-clase-"+clase_pk).html(data);
@@ -17,7 +17,7 @@
   };
 
   actualizar_tags_clase=function() {
-      #{@select_etapa.javascript}
+      #{@select_stage.javascript}
       #{@select_tipo.javascript}
 
       $(".boton_nuevo_tag").click(function() {
@@ -40,28 +40,28 @@
 
   $(document).ready(function() {
     actualizar_tags_clase();
-    actualizar_nombre_editable();
+    actualizar_name_editable();
   });
 
 
 %ul.breadcrumb
   %li
-    %a{:href=>url("/review/#{@revision.id}")}=@revision.nombre
+    %a{:href=>url("/review/#{@review.id}")}=@review.name
   %li{:class=>:active}=t(:Tags)
 
 
 %h3=t(:Tag_classes)
--@revision.t_clases.each do |t_clase|
+-@review.t_clases.each do |t_clase|
   .panel.panel-default
     .panel-heading
-      =a_editable(t_clase.id, "t_clase", "/tags/classes/edit_field/nombre", t_clase[:nombre],"")
+      =a_editable(t_clase.id, "t_clase", "/tags/classes/edit_field/name", t_clase[:name],"")
     .panel-body
       .container
         .row
           .col-md-3
             %p
               ="#{t(:Stage)}:"
-              =@select_etapa.html(t_clase.id, t_clase.etapa)
+              =@select_stage.html(t_clase.id, t_clase.stage)
             %p
               ="#{t(:Type)}:"
               =@select_tipo.html(t_clase.id, t_clase.tipo)
@@ -74,19 +74,19 @@
     =t(:New_class)
   .panel-body
     %form{:method=>"post",:action=>url("/tags/classes/new")}
-      %input{:type=>:hidden, :name=>:revision_id, :value=>@revision.id}
+      %input{:type=>:hidden, :name=>:review_id, :value=>@review.id}
       .form-group
-        %label{:for=>"nombre"}=t(:Name)
-        %input{:class=>"form-control",:type=>"text", :name=>"nombre"}
+        %label{:for=>"name"}=t(:Name)
+        %input{:class=>"form-control",:type=>"text", :name=>"name"}
       .form-group
-        %label{:for=>"etapa"}=t(:Stage)
-        %select{:name=>"etapa", :class=>"form-control"}
-          - @etapas_lista.each do |etapa_id, etapa_nombre|
-            %option{:value=>etapa_id}=etapa_nombre
+        %label{:for=>"stage"}=t(:Stage)
+        %select{:name=>"stage", :class=>"form-control"}
+          - @stages_lista.each do |stage_id, stage_name|
+            %option{:value=>stage_id}=stage_name
       .form-group
         %label{:for=>"tipo"}=t(:Type)
         %select{:name=>"tipo", :class=>"form-control"}
-          - @tipos_lista.each do |tipo_id, tipo_nombre|
-            %option{:value=>tipo_id}=tipo_nombre
+          - @tipos_lista.each do |tipo_id, tipo_name|
+            %option{:value=>tipo_id}=tipo_name
       %input{:type=>:submit, :value=>"Agregar clase nueva", :class=>"btn btn-default"}
-=partial(:statistics_tags, :locals=>{revision:@revision})
+=partial(:statistics_tags, :locals=>{revision:@review})

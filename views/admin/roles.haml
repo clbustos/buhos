@@ -12,17 +12,17 @@
     %th=t(:Description)
     %th=t(:Actions)
   %tbody
-    - @roles.each do |rol|
+    - @roles.each do |role|
       %tr
-        %td=rol[:id]
-        %td=rol[:descripcion]
-        %td=rol.permisos.map {|v|  t("auth.#{v[:id]}")}.join(", ")
+        %td=role[:id]
+        %td=role[:description]
+        %td=role.authorizations.map {|v|  t("auth.#{v[:id]}")}.join(", ")
         %td
-          - if (rol[:id]!='administrator' and rol[:id]!='analyst') and auth_to('role_admin')
-            %a.btn.btn-default.btn-sm{:href=>url("/role/#{rol[:id]}/edit")}
+          - if (role[:id]!='administrator' and role[:id]!='analyst') and auth_to('role_admin')
+            %a.btn.btn-default.btn-sm{:href=>url("/role/#{role[:id]}/edit")}
               %span{:class=>"glyphicon glyphicon-pencil"}
               =t(:Role_edit)
-          - if rol.usuarios_dataset.empty? and auth_to('role_admin')
-            %a.btn.btn-default.btn-sm{:href=>url("/role/#{rol[:id]}/delete")}
+          - if role.users_dataset.empty? and auth_to('role_admin')
+            %a.btn.btn-default.btn-sm{:href=>url("/role/#{role[:id]}/delete")}
               %span{:class=>"glyphicon glyphicon-remove"}
               =t(:Role_delete)

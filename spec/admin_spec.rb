@@ -65,9 +65,9 @@ describe 'Buhos administration' do
   context "when new group is created" do
     before(:context) do
       post '/login' , :user=>'admin', :password=>'admin'
-      post '/group/update', grupo_id:"NA", :name=>'New group', :description=>'description', administrador_grupo:1, usuarios:{1=>true,2=>true}
+      post '/group/update', group_id:"NA", :name=>'New group', :description=>'description', group_administrator:1, users:{1=>true,2=>true}
     end
-    let(:group){Grupo[name:'New group']}
+    let(:group){Group[name:'New group']}
     it "response should be redirect" do
       expect(last_response).to be_redirect
     end
@@ -83,7 +83,7 @@ describe 'Buhos administration' do
   context "when group is deleted" do
     before(:context) do
       post '/login' , :user=>'admin', :password=>'admin'
-      @group_id=Grupo.insert(:name=>'New group 2', :description=>'description', administrador_grupo:1)
+      @group_id=Group.insert(:name=>'New group 2', :description=>'description', group_administrator:1)
       get "/group/#{@group_id}/delete"
     end
     it "should response be redirect" do
@@ -91,7 +91,7 @@ describe 'Buhos administration' do
       expect(last_response).to be_redirect
     end
     it "shoud delete object" do
-      expect(Grupo[@group_id]).to be_falsey
+      expect(Group[@group_id]).to be_falsey
     end
   end
 

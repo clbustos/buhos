@@ -1,7 +1,7 @@
 - # Params: usuario, mensaje_rs
 - message_type||='received'
-- mensaje_rs_visto=Mensaje_Rs_Visto[:visto=>true,:m_rs_id=>mensaje_rs.id, :usuario_id=>usuario.id]
-- mensajes_hijos=Mensaje_Rs.where(:respuesta_a=>mensaje_rs.id).order(Sequel.desc(:tiempo))
+- mensaje_rs_visto=MessageSrSeen[:read=>true,:m_rs_id=>mensaje_rs.id, :user_id=>usuario.id]
+- mensajes_hijos=MessageSr.where(:reply_to=>mensaje_rs.id).order(Sequel.desc(:time))
 - clase_marcar =!mensaje_rs_visto  ? "" : "hidden"
 - clase_visto  = mensaje_rs_visto ? "" : "hidden"
 - if @mensaje_rs_js.nil?
@@ -42,11 +42,11 @@
 .list-group-item
   .row
     .col-md-12
-      =sprintf("<strong>%s</strong> de %s en %s. Respuestas: <em>%i</em>.", mensaje_rs.asunto, mensaje_rs.usuario_nombre, mensaje_rs.tiempo,mensaje_rs.respuestas.count)
-      .mensaje-texto=mensaje_rs.texto
+      =sprintf("<strong>%s</strong> de %s en %s. Respuestas: <em>%i</em>.", mensaje_rs.subject, mensaje_rs.user_name, mensaje_rs.time,mensaje_rs.replies.count)
+      .mensaje-text=mensaje_rs.text
   .row
     .col-md-12
-      .btn-group-xs.botones-texto
+      .btn-group-xs.botones-text
         %button{:class=>"btn btn-warning marcar-visto #{clase_marcar}",:id=>"mensaje_rs-#{mensaje_rs.id}-no_visto_por-#{usuario[:id]}"}
           %span.glyphicon.glyphicon-inbox
           =t("messages.Mark_as_read")
@@ -64,15 +64,15 @@
     .col-md-10
       %form.respuesta-a-m_rs{:method=>"post",:action=>url("/message_sr/#{mensaje_rs.id}/reply")}
         .form-group
-          %label{:for=>"nombre"}=t(:Author)
-          %p=usuario[:nombre]
+          %label{:for=>"name"}=t(:Author)
+          %p=usuario[:name]
           %input{:type=>"hidden",:name=>:user_id, :value=>usuario[:id]}
         .form-group
-          %label{:for=>"asunto"}=t(:Subject)
-          %input{:class=>"form-control",:type=>"text", :name=>"asunto", :value=>"Re:#{mensaje_rs.asunto}"}
+          %label{:for=>"subject"}=t(:Subject)
+          %input{:class=>"form-control",:type=>"text", :name=>"subject", :value=>"Re:#{mensaje_rs.subject}"}
         .form-group
-          %label{:for=>"texto"}=t(:Text)
-          %textarea{:class=>"form-control",:name=>'texto'}
+          %label{:for=>"text"}=t(:Text)
+          %textarea{:class=>"form-control",:name=>'text'}
         %input{:type=>:submit, :value=>t(:Send_message_to_group), :class=>"btn btn-default"}
   - if !mensajes_hijos.empty?
     .row{:id=>"mensaje_rs-#{message_type}-#{mensaje_rs.id}-hijos", :class=>'hidden'}

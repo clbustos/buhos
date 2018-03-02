@@ -218,9 +218,9 @@ module ReferenceIntegrator
     end
 
     class Writer
-      def self.generate(canonicos_documentos)
+      def self.generate(canonical_documents)
         bib = BibTeX::Bibliography.new
-        canonicos_documentos.each do |cd|
+        canonical_documents.each do |cd|
           campos=[:title, :abstract, :journal, :year, :volume, :pages,
                :doi, :url, :author]
 

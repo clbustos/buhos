@@ -24,18 +24,18 @@
 %div{:id=>"tags-cd_start-#{cd_start.id}-cd_end-#{cd_end.id}-rs-#{revision.id}"}
   %ul.tags
     -TagBuilder.tag_bw_cd(revision,cd_start,cd_end).each do |tag|
-      -res_usuario=tag.resultado_usuario(usuario_id)
+      -res_usuario=tag.resultado_usuario(user_id)
       -if tag.mostrar
         - class_predeterminado = tag.predeterminado ? "tag-predeterminado" : ""
         - class_escondido = tag.sin_votos? ? "hidden" : ""
         %li{:class=>"tag #{class_predeterminado} #{class_escondido}",:id=>"tag-cd_start-#{cd_start.id}-cd_start-#{cd_end.id}-rs-#{revision.id}-#{tag.id}"}
           %span.glyphicon.glyphicon-tag
-          %span.texto=tag.texto
-          =tag.botones_html(usuario_id)
+          %span.text=tag.text
+          =tag.botones_html(user_id)
 
     %li.tag.nuevo_tag{:id=>"tag-cd_start-#{cd_start.id}-cd_end-#{cd_end.id}-rs-#{revision.id}-nuevo"}
       %span.glyphicon.glyphicon-tag
-      %input.nuevo_tag_cd_rs_ref{:type=>"text", :class=>"texto", :size=>15,:id=>"tag-cd_start-#{cd_start.id}-cd_end-#{cd_end.id}-rs-#{revision.id}-nuevotag", "cd_start-pk"=>cd_start.id, "cd_end-pk"=>cd_end.id,  "rs-pk"=>revision.id, "data-url"=>url("/tags/cd_start/#{cd_start.id}/cd_end/#{cd_end.id}/rs/#{revision.id}/add_tag"), :placeholder=>"Nuevo tag"}
+      %input.nuevo_tag_cd_rs_ref{:type=>"text", :class=>"text", :size=>15,:id=>"tag-cd_start-#{cd_start.id}-cd_end-#{cd_end.id}-rs-#{revision.id}-nuevotag", "cd_start-pk"=>cd_start.id, "cd_end-pk"=>cd_end.id,  "rs-pk"=>revision.id, "data-url"=>url("/tags/cd_start/#{cd_start.id}/cd_end/#{cd_end.id}/rs/#{revision.id}/add_tag"), :placeholder=>"Nuevo tag"}
       %button.btn.btn-default.btn-xs.boton_nuevo_tag_cd_rs_ref{"cd_start-pk"=>cd_start.id, "cd_end-pk"=>cd_end.id, "rs-pk"=>revision.id, "data-url"=>url("/tags/cd_start/#{cd_start.id}/cd_end/#{cd_end.id}/rs/#{revision.id}/add_tag"), :id=>"boton-tag-cd_start-#{cd_start.id}-cd_end-#{cd_end.id}-rs-#{revision.id}-nuevotag"}
         %span.glyphicon.glyphicon-plus
     %botton.btn.btn-default.mostrar_pred_ref{:id=>"tags-cd_start-#{cd_start.id}-cd_end-#{cd_end.id}-rs-#{revision.id}__mostrar_pred"}

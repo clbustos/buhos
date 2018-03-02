@@ -11,13 +11,13 @@ module TagMixin
     @positivos=votos.count {|v| v[:decision]=='yes'}
     @negativos=votos.count {|v| v[:decision]=='no'}
     @id=votos[0][:id]
-    @texto=votos[0][:texto]
-    @rs_id=votos[0][:revision_sistematica_id]
+    @text=votos[0][:text]
+    @rs_id=votos[0][:systematic_review_id]
     @tag_id=votos[0][:tag_id]
   end
 
-  def botones_html(usuario_id)
-    ru = resultado_usuario(usuario_id)
+  def botones_html(user_id)
+    ru = resultado_usuario(user_id)
     "
 <div class='btn-group btn-group-xs'>
   #{boton_positivo_html(ru)}
@@ -25,8 +25,8 @@ module TagMixin
 </div>"
   end
 
-  def resultado_usuario(usuario_id)
-    @votos.find {|v| v[:usuario_id] == usuario_id}
+  def resultado_usuario(user_id)
+    @votos.find {|v| v[:user_id] == user_id}
   end
 
   def sin_votos?

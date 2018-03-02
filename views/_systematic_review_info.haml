@@ -1,13 +1,13 @@
 %div.list-group
   %div{:class=>"list-group-item"}
     %span{:class=>"titulo"}=t(:Objectives)
-    %p=systematic_review[:objetivos].split("\n").join("<br/>")
+    %p=systematic_review[:objectives].split("\n").join("<br/>")
   %div{:class=>"list-group-item"}
     %span{:class=>"titulo"}=t(:Year_start_end)
-    %span{ :name=>"agno_inicio"}=sprintf("%d -  %d", systematic_review[:agno_inicio], systematic_review[:agno_termino])
+    %span{ :name=>"year_start"}=sprintf("%d -  %d", systematic_review[:year_start], systematic_review[:year_end])
   %div{:class=>"list-group-item"}
     %span{:class=>"titulo"}=t(:Description)
-    =systematic_review[:descripcion].split("\n").join("<br/>")
+    =systematic_review[:description].split("\n").join("<br/>")
   %div{:class=>"list-group-item"}
     %span{:class=>"titulo"}=t(:Keywords)
-    %span{ :name=>"palabras_claves"}=systematic_review[:palabras_claves]
+    %span{ :name=>"keywords"}=systematic_review[:keywords]

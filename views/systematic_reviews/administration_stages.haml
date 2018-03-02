@@ -1,16 +1,16 @@
 .heading
-  =t_systematic_review_title(@revision[:nombre], "systematic_review_page.stages")
+  =t_systematic_review_title(@review[:name], "systematic_review_page.stages")
 
 
 %ul.breadcrumb
   %li
     %a{:href=>url("/reviews")}=t(:Systematic_reviews)
   %li
-    %a{:href=>url("/review/#{@revision[:id]}")}=@revision[:nombre]
+    %a{:href=>url("/review/#{@review[:id]}")}=@review[:name]
   %li{:class=>"active"}=t(:Administration)
 
 %ul
-  - @revision.current_stages.each do |etapa|
+  - @review.current_stages.each do |stage|
     %li
-      %a{:href=>"/review/#{@revision[:id]}/administration/#{etapa}"}
-        =t(get_stages_names[etapa])
+      %a{:href=>"/review/#{@review[:id]}/administration/#{stage}"}
+        =t(get_stages_names[stage])

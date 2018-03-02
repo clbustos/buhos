@@ -3,12 +3,12 @@ module TagBuilder
 # Analiza un tag para la relación entre dos documentos canonicos en una determina revision sistematica
   class TagBwCd
     include TagMixin
-    attr_reader :id, :texto, :positivos, :negativos
+    attr_reader :id, :text, :positivos, :negativos
     attr_accessor :predeterminado
     def initialize(votos)
       initialize_common(votos)
-      @cd_start_id=votos[0][:cd_origen]
-      @cd_end_id=votos[0][:cd_destino]
+      @cd_start_id=votos[0][:cd_start]
+      @cd_end_id=votos[0][:cd_end]
 
     end
     def boton_positivo_html(ru)

@@ -1,6 +1,6 @@
-- # Params: tag_estadisticas, revision, etapa
-- etapa||=nil
-- tags_estadisticas=revision.tags_estadisticas(etapa)
+- # Params: tag_estadisticas, revision, stage
+- stage||=nil
+- tags_estadisticas=revision.tags_estadisticas(stage)
 
 - if @estadisticas_tags_js.nil?
   - @estadisticas_tags_js=true
@@ -17,11 +17,11 @@
   %tbody
     - tags_estadisticas.each do |tag|
       %tr{:id=>"tag-fila-#{tag[:id]}"}
-        %td=tag[:texto]
+        %td=tag[:text]
         %td=tag[:con_clase]==1 ? "Sí" : "No"
         %td
-          - url_link= etapa.nil? ? "/tag/#{tag[:id]}/rs/#{revision.id}/cds" : "/tag/#{tag[:id]}/rs/#{revision.id}/stage/#{etapa}/cds"
-          %a{:href=>url(url_link)}=tag[:n_documentos]
+          - url_link= stage.nil? ? "/tag/#{tag[:id]}/rs/#{revision.id}/cds" : "/tag/#{tag[:id]}/rs/#{revision.id}/stage/#{stage}/cds"
+          %a{:href=>url(url_link)}=tag[:n_documents]
         %td=(tag[:p_yes]*100).to_i
         %td
           .btn-group.btn-group-sm

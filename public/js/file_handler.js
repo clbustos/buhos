@@ -17,7 +17,7 @@ var FileHandler ={
     action_on_cd:function(e, url, glyphicon_class, name) {
         var arc_id=e.data("aid");
         var cd_id=e.data("cdid");
-        $.post(url, {archivo_id: arc_id, cd_id: cd_id} ,function () {
+        $.post(url, {file_id: arc_id, cd_id: cd_id} ,function () {
             $("#botones_archivo_"+arc_id).html("<span class='glyphicon glyphicon-"+glyphicon_class+"'>"+name+"</span>")
         }).fail(function() {
             alert("can't perform action");
@@ -51,7 +51,7 @@ $(document).ready(function() {
     $(".archivo_eliminar").click(function () {
         var arc_id = $(this).data("aid");
 
-        $.post("/file/delete", {archivo_id: arc_id}, function () {
+        $.post("/file/delete", {file_id: arc_id}, function () {
             $("#botones_archivo_" + arc_id).html("<span class='glyphicon glyphicon-remove'>Eliminado</span>")
         }).fail(function () {
             alert("No pude eliminar el archivo");
@@ -63,7 +63,7 @@ $(document).ready(function() {
     $(".archivo_desasignar_rs").click(function() {
         var arc_id=$(this).data("aid");
         var rs_id=$(this).data("rsid");
-        $.post("/file/unassign_sr", {archivo_id:arc_id, rs_id:rs_id} ,function () {
+        $.post("/file/unassign_sr", {file_id:arc_id, rs_id:rs_id} ,function () {
             $("#botones_archivo_"+arc_id).html("<span class='glyphicon glyphicon-remove'>Desasignado a RS</span>")
         }).fail(function() {
             alert("No pude remover de RS");
@@ -76,8 +76,8 @@ $(document).ready(function() {
         var arc_id=$(this).attr("archivo-pk");
         var cd_id=$("#select_canonico_"+arc_id).val();
 
-        $.post("/file/assign_to_canonical", {archivo_id:arc_id,  cd_id:cd_id} ,function (data) {
-            $("#nombre_canonico-"+arc_id).html(data)
+        $.post("/file/assign_to_canonical", {file_id:arc_id,  cd_id:cd_id} ,function (data) {
+            $("#name_canonico-"+arc_id).html(data)
         }).fail(function() {
             alert("No pude actualizar el canonico");
         })

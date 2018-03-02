@@ -7,9 +7,9 @@ describe 'SearchProcessor' do
 
   end
   context "when smoke test is applied" do
-    let(:searchs) {Busqueda.where(:revision_sistematica_id=>1)}
+    let(:searches) {Search.where(:systematic_review_id=>1)}
     it "works on each search" do
-      searchs.each do |search|
+      searches.each do |search|
         sp=SearchProcessor.new(search)
         expect(sp.result.success?).to be true
       end

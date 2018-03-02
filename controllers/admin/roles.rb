@@ -1,7 +1,7 @@
 get '/admin/roles' do
   halt_unless_auth('role_admin')
-  @roles=Rol
-  @permisos=Permiso.order(:id)
+  @roles=Role
+  @authorizations=Authorization.order(:id)
   haml "admin/roles".to_sym
 end
 
@@ -11,10 +11,10 @@ get '/role/new' do
 
 
   role_id="Role #{Digest::SHA1.hexdigest(DateTime.now.to_s)}"
-  Rol.unrestrict_primary_key
+  Role.unrestrict_primary_key
 
-  @role=Rol.create({:id=>role_id, :descripcion=>I18n::t('Description')})
-  @permisos=Permiso.order(:id)
+  @role=Role.create({:id=>role_id, :description=>I18n::t('Description')})
+  @authorizations=Authorization.order(:id)
 
   haml "admin/role_edit".to_sym
 end
@@ -24,9 +24,9 @@ get '/role/:id' do |role_id|
 
   halt_unless_auth('role_view')
 
-  @role=Rol[role_id]
+  @role=Role[role_id]
   raise Buhos::NoRoleIdError, role_id if @role.nil?
-  @permisos=Permiso.order(:id)
+  @authorizations=Authorization.order(:id)
   haml "admin/role_view".to_sym
 end
 
@@ -44,8 +44,8 @@ get '/role/:role_id/edit' do |role_id|
   halt 403, t(:"sinatra_auth.nobody_can_edit_these_roles") if ["administrator","analyst"].include? role_id
 
 
-  @role=Rol[role_id]
-  @permisos=Permiso.order(:id)
+  @role=Role[role_id]
+  @authorizations=Authorization.order(:id)
 
   return 404 if @role.nil?
   haml "admin/role_edit".to_sym
@@ -55,7 +55,7 @@ get '/role/:role_id/delete' do |role_id|
   halt_unless_auth('role_admin')
 
   error(403) if role_id=="administrator" or role_id=="analyst"
-  Rol[role_id].delete
+  Role[role_id].delete
   add_message(t(:Role_deleted_name, role:role_id))
   redirect back
 end
@@ -71,22 +71,22 @@ post '/role/update' do
     redirect back
   end
 
-  @role=Rol[old_id]
+  @role=Role[old_id]
   return 404 if !@role
-  exists_another=Rol[new_id]
+  exists_another=Role[new_id]
   if old_id==new_id or !exists_another
   $db.transaction(:rollback=>:reraise) do
-    PermisosRol.where(:rol_id=>old_id).delete
+    AuthorizationsRole.where(:rol_id=>old_id).delete
 
 
       if (old_id!=new_id)
-        Rol.unrestrict_primary_key
-        Rol.where(:id=>old_id).update(:id=>new_id, :descripcion=>params['description'].chomp)
+        Role.unrestrict_primary_key
+        Role.where(:id=>old_id).update(:id=>new_id, :description=>params['description'].chomp)
       else
-        @role.update(:descripcion=>params['description'].chomp)
+        @role.update(:description=>params['description'].chomp)
       end
-      params['permits'].each {|permiso_i|
-        PermisosRol.insert(:rol_id=>new_id,:permiso_id=>permiso_i)
+      params['permits'].each {|authorization_i|
+        AuthorizationsRole.insert(:rol_id=>new_id,:authorization_id=>authorization_i)
       }
     end
   else

@@ -1,6 +1,6 @@
 .heading
-  =t_systematic_review_title(@revision[:nombre], "systematic_review_page.report")
+  =t_systematic_review_title(@review[:name], "systematic_review_page.report")
 
-=partial(:breadcrumb_review_admin,:locals=>{:nombre=>t(:Report_final)})
+=partial(:breadcrumb_review_admin,:locals=>{:name=>t(:Report_final)})
 
-=partial(:dashboard_user_sr_report, :locals=>{:sr=>@revision, :etapa=>@etapa})
+=partial(:dashboard_user_sr_report, :locals=>{:sr=>@review, :stage=>@stage})

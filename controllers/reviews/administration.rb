@@ -2,38 +2,39 @@
 
 get '/review/:id/administration_stages' do |id|
   halt_unless_auth('review_admin')
-  @revision=Revision_Sistematica[id]
-  raise Buhos::NoReviewIdError, id if !@revision
-  @ars=AnalysisSystematicReview.new(@revision)
+  @review=SystematicReview[id]
+  raise Buhos::NoReviewIdError, id if !@review
+  @ars=AnalysisSystematicReview.new(@review)
   haml %s{systematic_reviews/administration_stages}
 
 end
 
-get '/review/:id/administration/:etapa' do |id,etapa|
+
+get '/review/:id/administration/:stage' do |id,stage|
   halt_unless_auth('review_admin')
-  @revision=Revision_Sistematica[id]
+  @review=SystematicReview[id]
 
-  raise Buhos::NoReviewIdError, id if !@revision
+  raise Buhos::NoReviewIdError, id if !@review
 
 
-  @etapa=etapa
-  @ars=AnalysisSystematicReview.new(@revision)
-  @cd_without_assignation=@ars.cd_without_allocations(etapa)
+  @stage=stage
+  @ars=AnalysisSystematicReview.new(@review)
+  @cd_without_assignation=@ars.cd_without_allocations(stage)
 
-  @cds_id=@revision.cd_id_by_stage(etapa)
-  @cds=Canonico_Documento.where(:id=>@cds_id)
-  @archivos_por_cd=$db["SELECT a.*,cds.canonico_documento_id FROM archivos a INNER JOIN archivos_cds cds ON a.id=cds.archivo_id INNER JOIN archivos_rs ars ON a.id=ars.archivo_id WHERE revision_sistematica_id=? AND (cds.no_considerar = ? OR cds.no_considerar IS NULL)", @revision.id , 0].to_hash_groups(:canonico_documento_id)
+  @cds_id=@review.cd_id_by_stage(stage)
+  @cds=CanonicalDocument.where(:id=>@cds_id)
+  @files_by_cd=@ars.files_by_cd
   ## Aquí calcularé cuantos si y no hay por categoría
-  res_etapa=@ars.resolution_by_cd(etapa)
+  res_stage=@ars.resolution_by_cd(stage)
   begin
-    @categorizador=CategorizerSr.new(@revision) unless etapa==:search
+    @categorizador=CategorizerSr.new(@review) unless stage==:search
     @aprobacion_categorias=@categorizador.categorias_cd_id.inject({}) {|ac,v|
-      cd_validos=res_etapa.keys & (v[1])
+      cd_validos=res_stage.keys & (v[1])
       n=cd_validos.length
       if n==0
         ac[v[0]] = {n:0, p:nil}
       else
-        ac[v[0]] = {n:n, p: cd_validos.find_all {|vv|  res_etapa[vv]=='yes' }.length /   n.to_f}
+        ac[v[0]] = {n:n, p: cd_validos.find_all {|vv|  res_stage[vv]=='yes' }.length /   n.to_f}
       end
       ac
     }
@@ -41,38 +42,38 @@ get '/review/:id/administration/:etapa' do |id,etapa|
     @categorizador=nil
   end
   #  $log.info(p_aprobaciones_categoria)
-  @nombre_etapa=get_stage_name(@etapa)
+  @name_stage=get_stage_name(@stage)
 
-  @usuario_id=session['user_id']
-  @modal_archivos=get_modal_files
+  @user_id=session['user_id']
+  @modal_files=get_modal_files
 
-  if %w{screening_title_abstract screening_references review_full_text}.include? etapa
+  if %w{screening_title_abstract screening_references review_full_text}.include? stage
     haml "systematic_reviews/administration_reviews".to_sym
   else
-    haml "systematic_reviews/administration_#{etapa}".to_sym
+    haml "systematic_reviews/administration_#{stage}".to_sym
   end
 end
 
 
-get '/review/:id/stage/:etapa/pattern/:patron/resolution/:resolution' do |id,etapa,patron_s,resolution|
+get '/review/:id/stage/:stage/pattern/:patron/resolution/:resolution' do |id,stage,patron_s,resolution|
   halt_unless_auth('review_admin')
-  @revision=Revision_Sistematica[id]
-  raise Buhos::NoReviewIdError, id if !@revision
+  @review=SystematicReview[id]
+  raise Buhos::NoReviewIdError, id if !@review
 
-  @ars=AnalysisSystematicReview.new(@revision)
+  @ars=AnalysisSystematicReview.new(@review)
   patron=@ars.pattern_from_s(patron_s)
-  cds=@ars.cd_from_pattern(etapa, patron)
+  cds=@ars.cd_from_pattern(stage, patron)
 
   $log.info(cds)
 
   $db.transaction(:rollback=>:reraise) do
     cds.each do |cd_id|
-      res=Resolucion.where(:revision_sistematica_id=>id, :canonico_documento_id=>cd_id, :etapa=>etapa)
+      res=Resolution.where(:systematic_review_id=>id, :canonical_document_id=>cd_id, :stage=>stage)
 
       if res.empty?
-        Resolucion.insert(:revision_sistematica_id=>id, :canonico_documento_id=>cd_id, :etapa=>etapa, :resolucion=>resolution, :usuario_id=>session['user_id'], :comentario=>"Resuelto en forma masiva en #{DateTime.now.to_s}")
+        Resolution.insert(:systematic_review_id=>id, :canonical_document_id=>cd_id, :stage=>stage, :resolution=>resolution, :user_id=>session['user_id'], :commentary=>"Resuelto en forma masiva en #{DateTime.now.to_s}")
       else
-        res.update(:resolucion=>resolution, :usuario_id=>session['user_id'], :comentario=>"Actualizado en forma masiva en #{DateTime.now.to_s}")
+        res.update(:resolution=>resolution, :user_id=>session['user_id'], :commentary=>"Actualizado en forma masiva en #{DateTime.now.to_s}")
 
       end
     end
@@ -84,25 +85,25 @@ end
 
 
 
-get '/review/:rev_id/stage/:stage/generar_referencias_crossref' do |rev_id,stage|
+get '/review/:rev_id/stage/:stage/generar_references_crossref' do |rev_id,stage|
   halt_unless_auth('review_admin')
-  @revision=Revision_Sistematica[rev_id]
-  raise Buhos::NoReviewIdError, id if !@revision
+  @review=SystematicReview[rev_id]
+  raise Buhos::NoReviewIdError, id if !@review
 
   result=Result.new
   dois_agregados=0
-  cd_i=Resolucion.where(:revision_sistematica_id=>rev_id, :resolucion=>"yes", :etapa=>stage.to_s).map {|v|v [:canonico_documento_id]}
+  cd_i=Resolution.where(:systematic_review_id=>rev_id, :resolution=>"yes", :stage=>stage.to_s).map {|v|v [:canonical_document_id]}
   cd_i.each do |cd_id|
-    @cd=Canonico_Documento[cd_id]
+    @cd=CanonicalDocument[cd_id]
 
     # first, we process all records pertinent with this canonical document.
-    records=Registro.where(:canonico_documento_id=>cd_id)
+    records=Record.where(:canonical_document_id=>cd_id)
     rcp=RecordCrossrefProcessor.new(records,$db)
     result.add_result(rcp.result)
     if @cd.crossref_integrator
       begin
-        # Agregar dois a referencias
-        @cd.referencias_realizadas.where(:canonico_documento_id=>nil).each do |ref|
+        # Agregar dois a references
+        @cd.references_performed.where(:canonical_document_id=>nil).each do |ref|
           # primero agregamos doi si podemos
           # Si tiene doi, tratamos de
           rp=ReferenceProcessor.new(ref)
@@ -131,13 +132,13 @@ end
 
 get '/review/:rev_id/administration/:stage/cd_assignations' do |rev_id, stage|
   halt_unless_auth('review_admin')
-  @revision=Revision_Sistematica[rev_id]
-  raise Buhos::NoReviewIdError, rev_id if !@revision
+  @review=SystematicReview[rev_id]
+  raise Buhos::NoReviewIdError, rev_id if !@review
 
-  @cds_id=@revision.cd_id_by_stage(stage)
-  @ars=AnalysisSystematicReview.new(@revision)
+  @cds_id=@review.cd_id_by_stage(stage)
+  @ars=AnalysisSystematicReview.new(@review)
   @stage=stage
-  @cds=Canonico_Documento.where(:id=>@cds_id).order(:author)
+  @cds=CanonicalDocument.where(:id=>@cds_id).order(:author)
   @type="all"
   haml("systematic_reviews/cd_assignations_to_user".to_sym)
 end
@@ -145,9 +146,9 @@ end
 
 get '/review/:rev_id/administration/:stage/cd_without_allocations' do |rev_id, stage|
   halt_unless_auth('review_admin')
-  @revision=Revision_Sistematica[rev_id]
-  raise Buhos::NoReviewIdError, rev_id if !@revision
-  @ars=AnalysisSystematicReview.new(@revision)
+  @review=SystematicReview[rev_id]
+  raise Buhos::NoReviewIdError, rev_id if !@review
+  @ars=AnalysisSystematicReview.new(@review)
 
   @stage=stage
   @cds=@ars.cd_without_allocations(stage).order(:author)
@@ -160,17 +161,17 @@ end
 
 get '/review/:rev_id/stage/:stage/add_assign_user/:user_id/:type' do |rev_id, stage, user_id,type|
   halt_unless_auth('review_admin')
-  @revision=Revision_Sistematica[rev_id]
-  raise Buhos::NoReviewIdError, rev_id if !@revision
+  @review=SystematicReview[rev_id]
+  raise Buhos::NoReviewIdError, rev_id if !@review
   if type=='all'
-    @cds_id=@revision.cd_id_by_stage(stage)
+    @cds_id=@review.cd_id_by_stage(stage)
   elsif type=='without_assignation'
-    ars=AnalysisSystematicReview.new(@revision)
+    ars=AnalysisSystematicReview.new(@review)
     @cds_id_previous=ars.cd_id_assigned_by_user(stage,user_id)
     @cds_id_add=ars.cd_without_allocations(stage).map(:id)
     @cds_id=(@cds_id_previous+@cds_id_add).uniq
   end
-  add_result(Asignacion_Cd.update_assignation(rev_id, @cds_id, user_id,stage, 'massive_assigment'))
+  add_result(AllocationCd.update_assignation(rev_id, @cds_id, user_id,stage, 'massive_assigment'))
   redirect back
 end
 
@@ -178,33 +179,33 @@ end
 get '/review/:rev_id/stage/:stage/rem_assign_user/:user_id/:type' do |rev_id, stage, user_id, type|
   halt_unless_auth('review_admin')
   # Type doesn't have meaning here
-  @revision=Revision_Sistematica[rev_id]
-  raise Buhos::NoReviewIdError, rev_id if !@revision
-  add_result(Asignacion_Cd.update_assignation(rev_id, [], user_id,stage))
+  @review=SystematicReview[rev_id]
+  raise Buhos::NoReviewIdError, rev_id if !@review
+  add_result(AllocationCd.update_assignation(rev_id, [], user_id,stage))
   redirect back
 end
 
 
 get '/review/:rev_id/stage/:stage/complete_empty_abstract_manual' do |rev_id, stage|
   halt_unless_auth('review_admin')
-  @revision=Revision_Sistematica[rev_id]
-  raise Buhos::NoReviewIdError, rev_id if !@revision
-  @ars=AnalysisSystematicReview.new(@revision)
+  @review=SystematicReview[rev_id]
+  raise Buhos::NoReviewIdError, rev_id if !@review
+  @ars=AnalysisSystematicReview.new(@review)
   @stage=stage
-  @cd_sin_abstract=@ars.cd_without_abstract(stage)
+  @cd_wo_abstract=@ars.cd_without_abstract(stage)
   haml("systematic_reviews/complete_abstract_manual".to_sym)
 end
 
 
 get '/review/:rev_id/stage/:stage/complete_empty_abstract_scopus' do |rev_id, stage|
   halt_unless_auth('review_admin')
-  @revision=Revision_Sistematica[rev_id]
-  raise Buhos::NoReviewIdError, rev_id if !@revision
-  @ars=AnalysisSystematicReview.new(@revision)
+  @review=SystematicReview[rev_id]
+  raise Buhos::NoReviewIdError, rev_id if !@review
+  @ars=AnalysisSystematicReview.new(@review)
   result=Result.new
-  @cd_sin_abstract=@ars.cd_without_abstract(stage)
-  add_message(I18n::t(:Processing_n_canonical_documents, count:@cd_sin_abstract.count))
-  @cd_sin_abstract.each do |cd|
+  @cd_wo_abstract=@ars.cd_without_abstract(stage)
+  add_message(I18n::t(:Processing_n_canonical_documents, count:@cd_wo_abstract.count))
+  @cd_wo_abstract.each do |cd|
     result.add_result(Scopus_Abstract.obtener_abstract_cd(cd[:id]))
   end
   add_result(result)

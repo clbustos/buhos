@@ -1,17 +1,17 @@
-get '/review/:id/searchs' do |id|
+get '/review/:id/searches' do |id|
   halt_unless_auth('review_view')
-  @revision=Revision_Sistematica[id]
+  @review=SystematicReview[id]
 
-  raise Buhos::NoReviewIdError, id if !@revision
+  raise Buhos::NoReviewIdError, id if !@review
 
-  @searchs=@revision.busquedas
-  @header=t_systematic_review_title(@revision[:nombre], :systematic_review_searchs)
-  @user=Usuario[session['user_id']]
+  @searches=@review.searches
+  @header=t_systematic_review_title(@review[:name], :systematic_review_searches)
+  @user=User[session['user_id']]
 
   $log.info(@user)
 
-  @url_back="/review/#{id}/searchs"
-  haml "systematic_reviews/searchs".to_sym
+  @url_back="/review/#{id}/searches"
+  haml "systematic_reviews/searches".to_sym
 end
 
 get '/review/:id/search/new' do |id|
@@ -19,27 +19,27 @@ get '/review/:id/search/new' do |id|
 
   require 'date'
 
-  @revision=Revision_Sistematica[id]
-  raise Buhos::NoReviewIdError, id if !@revision
+  @review=SystematicReview[id]
+  raise Buhos::NoReviewIdError, id if !@review
 
-  @header=t_systematic_review_title(@revision[:nombre], :New_search)
-  @bb_general_id=Base_Bibliografica[:nombre=>'generic'][:id]
-  @search=Busqueda.new(:user_id=>session['user_id'], :source=>"database_search",:valid=>false, :fecha=>Date.today, :base_bibliografica_id=>@bb_general_id)
-  @usuario=Usuario[session['user_id']]
-  haml "searchs/search_edit".to_sym
+  @header=t_systematic_review_title(@review[:name], :New_search)
+  @bb_general_id=BibliographicDatabase[:name=>'generic'][:id]
+  @search=Search.new(:user_id=>session['user_id'], :source=>"database_search",:valid=>false, :date_creation=>Date.today, :bibliographic_database_id=>@bb_general_id)
+  @usuario=User[session['user_id']]
+  haml "searches/search_edit".to_sym
 end
 
-get '/review/:rs_id/searchs/user/:user_id' do |rs_id,user_id|
+get '/review/:rs_id/searches/user/:user_id' do |rs_id,user_id|
   halt_unless_auth('review_view')
-  @revision=Revision_Sistematica[rs_id]
+  @review=SystematicReview[rs_id]
 
-  raise Buhos::NoReviewIdError, rs_id if !@revision
+  raise Buhos::NoReviewIdError, rs_id if !@review
 
-  @user=Usuario[user_id]
-  @header=t_systematic_review_title(@revision[:nombre], t(:searchs_user, :user_name=>Usuario[user_id][:nombre]), false)
-  @url_back="/review/#{rs_id}/searchs/user/#{user_id}"
-  @searchs=@revision.busquedas_dataset.where(:user_id=>user_id)
-  haml "systematic_reviews/searchs".to_sym
+  @user=User[user_id]
+  @header=t_systematic_review_title(@review[:name], t(:searches_user, :user_name=>User[user_id][:name]), false)
+  @url_back="/review/#{rs_id}/searches/user/#{user_id}"
+  @searches=@review.searches_dataset.where(:user_id=>user_id)
+  haml "systematic_reviews/searches".to_sym
 end
 
 
@@ -47,36 +47,36 @@ end
 
 
 
-get '/review/:rs_id/searchs/compare_records' do |rs_id|
+get '/review/:rs_id/searches/compare_records' do |rs_id|
   halt_unless_auth('search_view')
-  @revision=Revision_Sistematica[rs_id]
-  raise Buhos::NoReviewIdError, rs_id if !@revision
+  @review=SystematicReview[rs_id]
+  raise Buhos::NoReviewIdError, rs_id if !@review
   @cds={}
   @errores=[]
-  @searchs_id=@revision.busquedas_dataset.map(:id)
-  n_busquedas=@searchs_id.length
-  @revision.busquedas.each do |busqueda|
-    busqueda.registros.each do |registro|
-      rcd_id=registro[:canonico_documento_id]
+  @searches_id=@review.searches_dataset.map(:id)
+  n_searches=@searches_id.length
+  @review.searches.each do |search|
+    search.records.each do |registro|
+      rcd_id=registro[:canonical_document_id]
 
       if rcd_id
-        @cds[rcd_id]||={:busquedas=>{}}
-        @cds[rcd_id][:busquedas][busqueda[:id]]=true
+        @cds[rcd_id]||={:searches=>{}}
+        @cds[rcd_id][:searches][search[:id]]=true
       else
         errores.push(registro[:id])
       end
     end
   end
-  @cds_o=Canonico_Documento.where(:id=>@cds.keys).to_hash(:id)
-  @cds_ordenados=@cds.sort_by {|key,a|
-    #$log.info(@searchs_id)
+  @cds_o=CanonicalDocument.where(:id=>@cds.keys).to_hash(:id)
+  @cds_ordered=@cds.sort_by {|key,a|
+    #$log.info(@searches_id)
     #$log.info(a)
-    base_n=1+a[:busquedas].length*(2**(n_busquedas+1))
+    base_n=1+a[:searches].length*(2**(n_searches+1))
     #$log.info("Base:#{base_n}")
-    sec_n=(0...n_busquedas).inject(0) {|total,aa|  total+=(a[:busquedas][@searchs_id[aa]].nil? ) ? 0 : 2**aa;total}
+    sec_n=(0...n_searches).inject(0) {|total,aa|  total+=(a[:searches][@searches_id[aa]].nil? ) ? 0 : 2**aa;total}
     #$log.info("Sec:#{sec_n}")
     base_n+sec_n
   }
 
-  haml "searchs/compare_records".to_sym
+  haml "searches/compare_records".to_sym
 end

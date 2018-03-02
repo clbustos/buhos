@@ -34,7 +34,7 @@ class SearchProcessor
     #$log.info(integrator)
     correct = true
     $db.transaction do
-      bb = Base_Bibliografica.nombre_a_id_h
+      bb = BibliographicDatabase.name_a_id_h
       ref_ids = []
       ref_i = 0
       integrator.each do |reference|
@@ -58,7 +58,7 @@ class SearchProcessor
         reg_o=process_reference(bb_id, reference)
         ref_ids.push(reg_o[:id])
       end
-      @search.actualizar_registros(ref_ids)
+      @search.update_records(ref_ids)
     end
     log_success("search_processor.Search_process_file_successfully") if correct
     true
@@ -66,28 +66,28 @@ class SearchProcessor
 
   def process_canonical_documents
 
-    bb = Base_Bibliografica.id_a_nombre_h
+    bb = BibliographicDatabase.id_a_name_h
     ##$log.info(bb)
     $db.transaction(:rollback => :reraise) do
 
-      @search.registros.each do |registro|
+      @search.records.each do |registro|
         fields = [:title, :author, :year, :journal, :volume, :pages, :doi, :journal_abbr, :abstract]
 
         fields_update = crear_hash_update(fields, registro)
         ##$log.info(fields)
-        registro_base_id = "#{bb[registro.base_bibliografica_id]}_id".to_sym
+        registro_base_id = "#{bb[registro.bibliographic_database_id]}_id".to_sym
 
-        if registro[:canonico_documento_id].nil?
+        if registro[:canonical_document_id].nil?
           # Verifiquemos si existe doi
           if registro[:doi].to_s =~ /10\./
-            can_doc = Canonico_Documento[:doi => registro[:doi]]
+            can_doc = CanonicalDocument[:doi => registro[:doi]]
           end
 
           if can_doc.nil?
-            can_doc_id = Canonico_Documento.insert(fields_update.merge({registro_base_id => registro[:uid]}))
-            can_doc = Canonico_Documento[:id => can_doc_id]
+            can_doc_id = CanonicalDocument.insert(fields_update.merge({registro_base_id => registro[:uid]}))
+            can_doc = CanonicalDocument[:id => can_doc_id]
           end
-          registro.update(:canonico_documento_id => can_doc[:id])
+          registro.update(:canonical_document_id => can_doc[:id])
         else
 
 
@@ -110,11 +110,11 @@ class SearchProcessor
     if @search[:archivo_cuerpo].nil?
       log_error(:No_file_available)
       false
-    elsif @search[:archivo_tipo] == "text/x-bibtex" or @search[:archivo_nombre] =~ /\.bib$/
+    elsif @search[:filetype] == "text/x-bibtex" or @search[:filename] =~ /\.bib$/
       ReferenceIntegrator::BibTex::Reader.parse(@search[:archivo_cuerpo])
-    elsif @search[:archivo_tipo] == "text/csv" # Por trabajar
-      #$log.info(base_bibliografica_nombre)
-      ReferenceIntegrator::CSV::Reader.parse(@search[:archivo_cuerpo], @search.base_bibliografica_nombre)
+    elsif @search[:filetype] == "text/csv" # Por trabajar
+      #$log.info(bibliographical_database_name)
+      ReferenceIntegrator::CSV::Reader.parse(@search[:archivo_cuerpo], @search.bibliographical_database_name)
     else
       log_error("search_processor.no_integrator_for_filetype")
       false
@@ -126,9 +126,9 @@ class SearchProcessor
     cited_references.each do |cr|
       dig = Digest::SHA256.hexdigest cr
       cit_refs_ids.push(dig)
-      ref_o = Referencia[dig]
+      ref_o = Reference[dig]
       unless ref_o
-        Referencia.insert(:id => dig, :texto => cr)
+        Reference.insert(:id => dig, :text => cr)
       end
     end
     cit_refs_ids.uniq!
@@ -136,9 +136,9 @@ class SearchProcessor
   end
 
   def update_cd_fields(fields, registro, registro_base_id)
-    can_doc = Canonico_Documento[registro[:canonico_documento_id]]
+    can_doc = CanonicalDocument[registro[:canonical_document_id]]
     # Verificamos si tenemos una nueva información que antes no estaba
-    raise Buhos::NoCdIdError, registro[:canonico_documento_id] if !can_doc
+    raise Buhos::NoCdIdError, registro[:canonical_document_id] if !can_doc
     fields_new_info = fields.find_all {|v| (can_doc[v].nil? or can_doc[v].to_s == "") and !(registro[v].nil? or registro[v].to_s == "")}
     ##$log.info(fields.map {|v| registro[v]})
     unless fields_new_info.nil?
@@ -154,11 +154,11 @@ class SearchProcessor
   private :update_cd_fields
 
   def process_reference(bb_id, reference)
-    reg_o = Registro[:uid => reference.uid, :base_bibliografica_id => bb_id]
+    reg_o = Record[:uid => reference.uid, :bibliographic_database_id => bb_id]
 
     if reg_o.nil?
-      reg_o_id = Registro.insert(:uid => reference.uid, :base_bibliografica_id => bb_id)
-      reg_o = Registro[reg_o_id]
+      reg_o_id = Record.insert(:uid => reference.uid, :bibliographic_database_id => bb_id)
+      reg_o = Record[reg_o_id]
     end
 
 
@@ -175,7 +175,7 @@ class SearchProcessor
 
     reg_o.update(fields_update)
 
-    # Procesar referencias
+    # Procesar references
     cited_references = reference.cited_references
     unless cited_references.nil?
       cit_refs_ids = get_cit_refs_ids(cited_references)

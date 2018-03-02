@@ -7,7 +7,7 @@ describe 'Record crossref Processor' do
   end
   context "when record crossref processor is used on Record 1" do
     it "should process 38 records" do
-      rcp=RecordCrossrefProcessor.new([Registro[1]],$db)
+      rcp=RecordCrossrefProcessor.new([Record[1]],$db)
       expect(rcp.result).to be_a(::Result)
       expect(rcp.result.events[1][:message]).to include("38")
     end

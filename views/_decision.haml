@@ -1,5 +1,5 @@
-- # Parametros: revision_id, cd (canonico_documento) | decisiones | ars | usuario_id | etapa)
-- decision_o=decisiones[cd[:id]]
+- # Parametros: revision_id, cd (canonical_document) | decisions | ars | user_id | stage)
+- decision_o=decisions[cd[:id]]
 - decision = decision_o ? decision_o[:decision] : nil
 - clase_panel=decision_class_bootstrap(decision,"panel")
 - abs_pres=AbstractPresentation.new
@@ -18,10 +18,10 @@
         %strong="#{t(:APA_references)}:"
         =CGI::escapeHTML cd.ref_apa_6
 
-        - texto_referencias=sprintf("<strong>#{t(:Citations)}:</strong> #{t(:cites)} <strong>%d</strong> / #{t(:cited_by)} <strong>%d</strong> ", ars.cd_count_salida(cd[:id]).to_i, ars.cd_count_entrada(cd[:id]).to_i)
+        - text_references=sprintf("<strong>#{t(:Citations)}:</strong> #{t(:cites)} <strong>%d</strong> / #{t(:cited_by)} <strong>%d</strong> ", ars.cd_count_salida(cd[:id]).to_i, ars.cd_count_entrada(cd[:id]).to_i)
         - if ars.cd_count_entrada_rtr(cd[:id])
-          -texto_referencias+=sprintf("/ #{t(:cited_by_RTR_documents)} <strong>%d</strong>", ars.cd_count_entrada_rtr(cd[:id]).to_i)
-        %p=texto_referencias
+          -text_references+=sprintf("/ #{t(:cited_by_RTR_documents)} <strong>%d</strong>", ars.cd_count_entrada_rtr(cd[:id]).to_i)
+        %p=text_references
       %p{:class=>""}
         %strong=t(:Abstract)
         - if !cd.abstract
@@ -34,8 +34,8 @@
       -if auth_to("review_admin")
         =partial(:canonical_document_button, :locals=>{id: cd[:id]})
       -if false and @nbayes_rs.cd_resultado(cd[:id])["no"]>0.5
-        %div{:class=>"alert alert-warning"} Según el clasificar bayes, este texto no se asemeja mucho a los seleccionados previamente
+        %div{:class=>"alert alert-warning"} Según el clasificar bayes, este text no se asemeja mucho a los seleccionados previamente
 
 
   %div{:class=>class_buttons}
-    =partial(:decision_buttons, :locals=>{decisiones:decisiones, cd:cd, usuario_id:usuario_id, etapa:etapa, revision:revision, ajax:ajax, only_buttons:only_buttons})
+    =partial(:decision_buttons, :locals=>{decisions:decisions, cd:cd, user_id:user_id, stage:stage, revision:review, ajax:ajax, only_buttons:only_buttons})

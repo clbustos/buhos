@@ -7,10 +7,10 @@ describe 'Reference resources' do
     login_admin
   end
   def reference_doi
-    Referencia.exclude(:doi=>nil).first
+    Reference.exclude(:doi=>nil).first
   end
   def reference_wo_doi
-    Referencia["76e9503adf7e7b7b7b3248d3f6d467cabd179b8ce15d199bbb9018e046a23d45"]
+    Reference["76e9503adf7e7b7b7b3248d3f6d467cabd179b8ce15d199bbb9018e046a23d45"]
   end
 
   context 'when reference with DOI is retrieved' do

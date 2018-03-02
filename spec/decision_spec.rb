@@ -28,7 +28,7 @@ describe 'Decision on documents' do
       post '/decision/review/1/user/1/canonical_document/41/stage/screening_title_abstract/decision', decision:'undecided'
     end
     it {expect(last_response).to be_ok}
-    it {expect(Decision[revision_sistematica_id:1, usuario_id:1, canonico_documento_id:41, etapa:"screening_title_abstract"][:decision]).to eq('undecided')}
+    it {expect(Decision[systematic_review_id:1, user_id:1, canonical_document_id:41, stage:"screening_title_abstract"][:decision]).to eq('undecided')}
     it {expect(last_response.body).to include '/decision/review/1/user/1/canonical_document/41/stage/screening_title_abstract/decision'}
   end
 
@@ -37,7 +37,7 @@ describe 'Decision on documents' do
       put '/decision/review/1/user/1/canonical_document/41/stage/screening_title_abstract/commentary', pk:41, value:'COMMENTARY'
     end
     it {expect(last_response).to be_ok}
-    it {expect(Decision[revision_sistematica_id:1, usuario_id:1, canonico_documento_id:41, etapa:"screening_title_abstract"][:comentario]).to eq('COMMENTARY')}
+    it {expect(Decision[systematic_review_id:1, user_id:1, canonical_document_id:41, stage:"screening_title_abstract"][:commentary]).to eq('COMMENTARY')}
 
   end
 

@@ -10,9 +10,9 @@ describe 'Rs_Campo' do
 
   context "when update analysis table" do
     before(:context) do
-      Rs_Campo.actualizar_tabla(Revision_Sistematica[1])
+      SrField.actualizar_tabla(SystematicReview[1])
     end
-    let(:analysis_table)  {Revision_Sistematica[1].analisis_cd_tn}
+    let(:analysis_table)  {SystematicReview[1].analisis_cd_tn}
     let(:schema) {$db.schema(analysis_table)}
     it "should create an analysis table" do
       expect($db.tables.include? analysis_table.to_sym).to be true
@@ -22,7 +22,7 @@ describe 'Rs_Campo' do
     end
 
     it "should have correct name fields" do
-      fields=[:id, :usuario_id, :canonico_documento_id, :tools, :features, :stages]
+      fields=[:id, :user_id, :canonical_document_id, :tools, :features, :stages]
       expect(schema.map {|v| v[0]}).to eq(fields)
     end
 

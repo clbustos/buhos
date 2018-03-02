@@ -1,17 +1,17 @@
 # encoding: UTF-8
 
 
-class Configuracion < Sequel::Model
+class Buhos::Configuration < Sequel::Model
   def self.set(id,valor)
-    conf=Configuracion[id]
+    conf=Buhos::Configuration[id]
     if conf.nil?
-      Configuracion.insert(:id=>id,:valor=>valor)
+      Buhos::Configuration.insert(:id=>id,:valor=>valor)
     else
-      Configuracion[id].update(:valor=>valor)
+      Buhos::Configuration[id].update(:valor=>valor)
     end
   end
   def self.get(id)
-    conf=Configuracion[id]
+    conf=Buhos::Configuration[id]
     if conf.nil?
       nil
     else
@@ -21,8 +21,6 @@ class Configuracion < Sequel::Model
 end
 
 
-class Configuracion < Sequel::Model
-end
 
 class Sr_Taxonomy < Sequel::Model
 
@@ -36,22 +34,26 @@ class Systematic_Review_SRTC < Sequel::Model
 
 end
 
-class Grupo_Usuario < Sequel::Model
-  many_to_one :usuario
-  many_to_one :grupo
+
+class GroupsUser < Sequel::Model
+  many_to_one :user
+  many_to_one :group
 end
 
 
-class Referencia_Registro < Sequel::Model
+class RecordsReferences < Sequel::Model
 
 end
 
-class Base_Bibliografica < Sequel::Model
-  def self.nombre_a_id_h
-    $db['SELECT * FROM bases_bibliograficas'].as_hash(:nombre, :id)
+
+
+
+class BibliographicDatabase < Sequel::Model
+  def self.name_a_id_h
+    $db['SELECT * FROM bibliographic_databases'].as_hash(:name, :id)
   end
-  def self.id_a_nombre_h
-    $db['SELECT * FROM bases_bibliograficas'].as_hash(:id, :nombre)
+  def self.id_a_name_h
+    $db['SELECT * FROM bibliographic_databases'].as_hash(:id, :name)
   end
 end
 

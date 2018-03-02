@@ -1,13 +1,13 @@
 require_relative 'revision_sistematica_views_mixin.rb'
 require_relative 'tag'
 require_relative 'mensajes'
-class Revision_Sistematica < Sequel::Model
-  include RevisionSistematicaViewsMixin
-  one_to_many :busquedas
-  one_to_many :mensajes_rs, :class=>Mensaje_Rs
+class SystematicReview < Sequel::Model
+  include SystematicReviewViewsMixin
+  one_to_many :searches
+  one_to_many :message_srs, :class=>MessageSr
 
-  one_to_many :t_clases, :class=>T_Clase
-  many_to_one :grupo
+  one_to_many :t_classes, :class=>T_Class
+  many_to_one :group
 
 
 
@@ -16,15 +16,15 @@ class Revision_Sistematica < Sequel::Model
 
 
   def keywords_as_array
-    palabras_claves.nil? ? nil : palabras_claves.split(";").map {|v| v.strip}
+    keywords.nil? ? nil : keywords.split(";").map {|v| v.strip}
   end
 
   def current_stages
     stages=Buhos::Stages::IDS
-    stages[0..stages.find_index(self.etapa.to_sym)]
+    stages[0..stages.find_index(self.stage.to_sym)]
   end
   def group_name
-    grupo.nil? ? "--#{::I18n::t(:group_not_assigned)}--" : grupo.name
+    group.nil? ? "--#{::I18n::t(:group_not_assigned)}--" : group.name
   end
 
   def taxonomy_categories_id
@@ -32,19 +32,19 @@ class Revision_Sistematica < Sequel::Model
   end
 
   def t_clases_documentos
-    @t_clases_documentos||=t_clases_dataset.where(:tipo=>"documento")
+    @t_clases_documentos||=t_classes_dataset.where(:type=>"document")
   end
 
-  def tags_estadisticas(etapa=nil)
+  def tags_estadisticas(stage=nil)
     cd_query=1
-    if etapa
-      cd_ids=cd_id_by_stage(etapa)
-      cd_query=" canonico_documento_id IN (#{cd_ids.join(",")}) "
+    if stage
+      cd_ids=cd_id_by_stage(stage)
+      cd_query=" canonical_document_id IN (#{cd_ids.join(",")}) "
     end
 
-    $db["SELECT t.*, CASE WHEN tecl.tag_id IS NOT NULL THEN 1 ELSE 0 END  as tag_en_clases FROM (SELECT `tags`.*, COUNT(DISTINCT(canonico_documento_id)) as n_documentos, 1.0*SUM(CASE WHEN decision='yes' THEN 1 ELSE 0 END)/COUNT(*) as p_yes FROM `tags` INNER JOIN `tags_en_cds` tec ON (tec.`tag_id` = `tags`.`id`)
-WHERE tec.revision_sistematica_id=?
-AND  #{cd_query} GROUP BY tags.id ORDER BY n_documentos DESC ,p_yes DESC,tags.texto ASC) as t LEFT JOIN tags_en_clases tecl ON t.id=tecl.tag_id GROUP BY t.id
+    $db["SELECT t.*, CASE WHEN tecl.tag_id IS NOT NULL THEN 1 ELSE 0 END  as tag_en_clases FROM (SELECT `tags`.*, COUNT(DISTINCT(canonical_document_id)) as n_documents, 1.0*SUM(CASE WHEN decision='yes' THEN 1 ELSE 0 END)/COUNT(*) as p_yes FROM `tags` INNER JOIN `tag_in_cds` tec ON (tec.`tag_id` = `tags`.`id`)
+WHERE tec.systematic_review_id=?
+AND  #{cd_query} GROUP BY tags.id ORDER BY n_documents DESC ,p_yes DESC,tags.text ASC) as t LEFT JOIN tag_in_classes tecl ON t.id=tecl.tag_id GROUP BY t.id
  ", self.id]
 
 
@@ -52,15 +52,15 @@ AND  #{cd_query} GROUP BY tags.id ORDER BY n_documentos DESC ,p_yes DESC,tags.te
 
 
   def group_users
-    grupo.nil? ? nil : grupo.usuarios
+    group.nil? ? nil : group.users
   end
-  def etapa_nombre
-    Buhos::Stages.get_stage_name(self.etapa.to_sym)
+  def stage_name
+    Buhos::Stages.get_stage_name(self.stage.to_sym)
   end
-  def administrador_nombre
-    self[:administrador_revision].nil? ? "-- #{I18n::t(:administrator_not_assigned)} --" : Usuario[self[:administrador_revision]].nombre
+  def administrador_name
+    self[:sr_administrator].nil? ? "-- #{I18n::t(:administrator_not_assigned)} --" : User[self[:sr_administrator]].name
   end
-  def get_nombres_trs
+  def get_names_trs
     (0...TRS.length).inject({}) {|ac,v|
 
       res=$db["trs_#{TRS_p[v]}".to_sym].where(:id=>self["trs_#{TRS[v]}_id".to_sym]).get(:name)
@@ -69,20 +69,20 @@ AND  #{cd_query} GROUP BY tags.id ORDER BY n_documentos DESC ,p_yes DESC,tags.te
     }
   end
   def self.get_revisiones_por_usuario(us_id)
-    ids=$db["SELECT r.id FROM revisiones_sistematicas r INNER JOIN grupos_usuarios gu on r.grupo_id=gu.grupo_id WHERE gu.usuario_id='#{us_id}'"].map{|v|v[:id]}
-    Revision_Sistematica.where(:id=>ids)
+    ids=$db["SELECT r.id FROM systematic_reviews r INNER JOIN groups_users gu on r.group_id=gu.group_id WHERE gu.user_id='#{us_id}'"].map{|v|v[:id]}
+    SystematicReview.where(:id=>ids)
   end
 
   def doi_repetidos
-    canonicos_documentos.exclude(doi: nil).group_and_count(:doi).having {count.function.* > 1}.all.map {|v| v[:doi]}
+    canonical_documents.exclude(doi: nil).group_and_count(:doi).having {count.function.* > 1}.all.map {|v| v[:doi]}
   end
 
-  def cd_registro_id
-    Registro.join(:busquedas_registros, :registro_id => :id).join(:busquedas, :id => :busqueda_id).join(Revision_Sistematica.where(:id => self[:id]), :id => :revision_sistematica_id).select_all(:canonicos_documentos).where(:valid=>true).group(:canonico_documento_id).select_map(:canonico_documento_id)
+  def cd_record_id
+    Record.join(:records_searches, :record_id => :id).join(:searches, :id => :search_id).join(SystematicReview.where(:id => self[:id]), :id => :systematic_review_id).select_all(:canonical_documents).where(:valid=>true).group(:canonical_document_id).select_map(:canonical_document_id)
   end
 
-  def cd_referencia_id
-    $db["SELECT canonico_documento_id FROM busquedas b INNER JOIN busquedas_registros br ON b.id=br.busqueda_id INNER JOIN referencias_registros rr ON br.registro_id=rr.registro_id INNER JOIN referencias r ON rr.referencia_id=r.id  WHERE b.revision_sistematica_id=? and r.canonico_documento_id IS NOT NULL AND b.valid=1 GROUP BY r.canonico_documento_id", self[:id]].select_map(:canonico_documento_id)
+  def cd_reference_id
+    $db["SELECT canonical_document_id FROM searches b INNER JOIN records_searches br ON b.id=br.search_id INNER JOIN records_references rr ON br.record_id=rr.record_id INNER JOIN bib_references r ON rr.reference_id=r.id  WHERE b.systematic_review_id=? and r.canonical_document_id IS NOT NULL AND b.valid=1 GROUP BY r.canonical_document_id", self[:id]].select_map(:canonical_document_id)
   end
 
 
@@ -90,85 +90,85 @@ AND  #{cd_query} GROUP BY tags.id ORDER BY n_documentos DESC ,p_yes DESC,tags.te
 
 
   def cd_todos_id
-    (cd_registro_id + cd_referencia_id).uniq
+    (cd_record_id + cd_reference_id).uniq
   end
   def cd_hash
-    @cd_hash||=Canonico_Documento.where(:id=>cd_todos_id).as_hash
+    @cd_hash||=CanonicalDocument.where(:id=>cd_todos_id).as_hash
   end
 
   # Presenta los documentos canonicos
   # para la revision. Une los por
-  # registro y referencia
+  # registro y reference
 
-  def canonicos_documentos(tipo=:todos)
+  def canonical_documents(tipo=:todos)
     cd_ids=case tipo
              when :registro
-               cd_registro_id
-             when :referencia
-               cd_referencia_id
+               cd_record_id
+             when :reference
+               cd_reference_id
              when :todos
                 cd_todos_id
              else
                raise (I18n::t(:Not_defined_for_this_stage))
            end
     if tipo==:todos
-      Canonico_Documento.join(cd_id_table, canonico_documento_id: :id   )
+      CanonicalDocument.join(cd_id_table, canonical_document_id: :id   )
     else
-      Canonico_Documento.where(:id => cd_ids)
+      CanonicalDocument.where(:id => cd_ids)
 
     end
   end
-  # Nombre de la tabla para referencias entre canonicos
+  # Nombre de la tabla para references entre canonicos
 
 
 
-  def cd_id_resoluciones(etapa)
-    Resolucion.where(:revision_sistematica_id=>self[:id], :etapa=>etapa.to_s,:canonico_documento_id=>cd_todos_id,:resolucion=>'yes').map(:canonico_documento_id)
+  def cd_id_resolutions(stage)
+    Resolution.where(:systematic_review_id=>self[:id], :stage=>stage.to_s,:canonical_document_id=>cd_todos_id,:resolution=>'yes').map(:canonical_document_id)
   end
 
 
 
-  # Entrega la lista de canónicos documentos apropiados para cada etapa
-  def cd_id_by_stage(etapa)
-    case etapa.to_s
+  # Entrega la lista de canónicos documentos apropiados para cada stage
+  def cd_id_by_stage(stage)
+    case stage.to_s
       when 'search'
-        cd_registro_id # TODO: Check this
+        cd_record_id # TODO: Check this
       when 'screening_title_abstract'
-        cd_registro_id
+        cd_record_id
       when 'screening_references'
-        cuenta_referencias_rtr.where( Sequel.lit("n_referencias_rtr >= #{self[:n_min_rr_rtr]}") ).map(:cd_destino)
-        # Solo dejamos aquellos que tengan más de una referencias
+        count_references_rtr.where( Sequel.lit("n_references_rtr >= #{self[:n_min_rr_rtr]}") ).map(:cd_end)
+        # Solo dejamos aquellos que tengan más de una references
       when 'review_full_text'
-        rtr=resoluciones_titulo_resumen.where(:resolucion=>'yes').select_map(:canonico_documento_id)
-        rr=resoluciones_referencias.where(:resolucion=>'yes').select_map(:canonico_documento_id)
+        rtr=resolutions_titulo_resumen.where(:resolution=>'yes').select_map(:canonical_document_id)
+        rr=resolutions_references.where(:resolution=>'yes').select_map(:canonical_document_id)
         (rtr+rr).uniq
       when 'report'
-        resoluciones_texto_completo.where(:resolucion=>'yes').select_map(:canonico_documento_id)
+        resolutions_full_text.where(:resolution=>'yes').select_map(:canonical_document_id)
       else
 
         raise 'no definido'
     end
   end
   def fields
-    Rs_Campo.where(:revision_sistematica_id=>self[:id]).order(:orden)
+    SrField.where(:systematic_review_id=>self[:id]).order(:order)
   end
   def analisis_cd_tn
-    "analisis_rs_#{self[:id]}"
+    "analysis_sr_#{self[:id]}"
   end
-  # Entrega la tabla de texto completo
-  def analisis_cd
+  # Entrega la tabla de text completo
+  def analysis_cd
     table_name=analisis_cd_tn
     if !$db.table_exists?(table_name)
-      Rs_Campo.actualizar_tabla(self)
+      SrField.actualizar_tabla(self)
     end
     $db[table_name.to_sym]
   end
 
   def analisis_cd_user_row(cd,user)
-    out=analisis_cd[:canonico_documento_id=>cd[:id], :usuario_id=>user[:id]]
+    out=analysis_cd[:canonical_document_id=>cd[:id], :user_id=>user[:id]]
     if !out
-      out_id=analisis_cd.insert(:canonico_documento_id=>cd[:id], :usuario_id=>user[:id])
-      out=analisis_cd[:id=>out_id]
+      out_id=analysis_cd.insert(:canonical_document_id=>cd[:id], :user_id=>user[:id])
+      out=analysis_cd[:id=>out_id]
     end
     out
   end

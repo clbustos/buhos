@@ -1,14 +1,14 @@
 %h2=title(t(:Record_title, rid: @reg[:id]))
 
-=partial(:records_list,:locals=>{:registros=>[@reg]})
+=partial(:records_list,:locals=>{:records=>[@reg]})
 
 
 %h3=t(:References)
 
 - if auth_to("reference_edit")
   %form{:method=>:post, :action=>url("/record/#{@reg[:id]}/manual_references"), :class=>"form-group"}
-    %label{:for=>:referencia_manual}=t(:Manual_references_enter)
-    %textarea{:name=>:referencia_manual, :rows=>5, :cols=>30, :class=>"form-control"}
+    %label{:for=>:reference_manual}=t(:Manual_references_enter)
+    %textarea{:name=>:reference_manual, :rows=>5, :cols=>30, :class=>"form-control"}
     %input{:type=>:submit, :value=>"Enviar", :class=>"form-control"}
 
-=partial(:references_list, :locals=>{:referencias=>@referencias})
+=partial(:references_list, :locals=>{:references=>@references})

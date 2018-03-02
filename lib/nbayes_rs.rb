@@ -9,16 +9,16 @@ class NBayes_RS
     @nbayes_rtr=nbayes_rtr_calculo
   end
 
-  def get_stemmer(texto)
-    res=Lingua.stemmer(texto.split(/[\s-]+/).map {|vv| vv.downcase.gsub(/[[:punct:]]/, "")}.find_all {|v| !STOPWORDS.include? v})
+  def get_stemmer(text)
+    res=Lingua.stemmer(text.split(/[\s-]+/).map {|vv| vv.downcase.gsub(/[[:punct:]]/, "")}.find_all {|v| !STOPWORDS.include? v})
     res.is_a?(Array) ? res : [res]
   end
 
   def nbayes_rtr_calculo
     nbayes = NBayes::Base.new
-    nombres = (Canonico_Documento.select(:title, :abstract, :journal, :resolucion).join_table(:inner, :resoluciones, canonico_documento_id: :id).where(:revision_sistematica_id => @rs.id)).map {|v| {:nombre => get_stemmer("#{v[:title]} #{v[:abstract]}")+[v[:journal]], :resolucion => v[:resolucion]}}
-    nombres.each do |n|
-      nbayes.train(n[:nombre], n[:resolucion])
+    names = (CanonicalDocument.select(:title, :abstract, :journal, :resolution).join_table(:inner, :resolutions, canonical_document_id: :id).where(:systematic_review_id => @rs.id)).map {|v| {:name => get_stemmer("#{v[:title]} #{v[:abstract]}")+[v[:journal]], :resolution => v[:resolution]}}
+    names.each do |n|
+      nbayes.train(n[:name], n[:resolution])
     end
     #$log.info(nbayes)
     nbayes

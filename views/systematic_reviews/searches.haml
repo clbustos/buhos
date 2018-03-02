@@ -1,9 +1,9 @@
 .heading=@header
 %ul.breadcrumb
   %li
-    %a{:href=>url("/review/#{@revision.id}")}=@revision.nombre
+    %a{:href=>url("/review/#{@review.id}")}=@review.name
   %li.active
-    =t(:Searchs)
+    =t(:searches)
 :javascript
   $(document).ready(function() {
     $(".btn-action").click(function() {
@@ -12,8 +12,8 @@
     })
   });
 %p
-- if @searchs.count>0
-  %form{:method=>:post, :action=>"/searchs/update_batch"}
+- if @searches.count>0
+  %form{:method=>:post, :action=>"/searches/update_batch"}
     %input{:type=>:hidden, :name=>:action, :id=>'form-action'}
     %input{:type=>:hidden, :name=>:url_back, :value=>@url_back}
     .btn-toolbar
@@ -44,24 +44,24 @@
         %th=t(:Search_valid)
         %th=t(:Records)
       %tbody
-        - @searchs.each do |g|
+        - @searches.each do |g|
           %tr{:class=>bool_class(g.valid, "success","danger","warning"), :id=>"row-search-#{g.id}"}
             %td
               %input{:type=>'checkbox', :name=>"search[]", :value=>g[:id], :class=>'checkbox_interactive'}
             %td=g.id
             %td=t(g.source_name)
-            %td=g.base_bibliografica_nombre
-            %td=g.fecha
-            %td=g.criterio_busqueda
-            %td=g.descripcion
-            %td=g.archivo_nombre.nil? ? t(:No_file) : "#{g.archivo_nombre} [#{g.archivo_tipo}]"
+            %td=g.bibliographical_database_name
+            %td=g.date_creation
+            %td=g.search_criteria
+            %td=g.description
+            %td=g.filename.nil? ? t(:No_file) : "#{g.filename} [#{g.filetype}]"
             %td= t_yes_no_nil(g.valid)
             %td
               %a.btn.btn-default{:href=>url("/search/#{g.id}/edit")}
                 %span{:class=>"glyphicon glyphicon-pencil"}
                 =t(:Edit)
               %a.btn.btn-default{:href=>url("/search/#{g.id}/records")}
-                %span{:class=>"badge"}=g.registros_n
+                %span{:class=>"badge"}=g.records_n
                 %span{:class=>"glyphicon glyphicon-list"}
                 =t(:Records)
               %a.btn.btn-default{:href=>url("/search/#{g.id}/references")}
@@ -71,10 +71,10 @@
   .alert.alert-warning=t(:No_search_on_systematic_review_for_this_user)
 
 .btn-group.btn-group-sm
-  - if auth_to("review_analyze") and @user.revisiones_sistematicas_id.include? @revision[:id]
-    %a.btn.btn-default{:role=>:button,:href=>url("/review/#{@revision.id}/search/new")}
+  - if auth_to("review_analyze") and @user.systematic_reviews_id.include? @review[:id]
+    %a.btn.btn-default{:role=>:button,:href=>url("/review/#{@review.id}/search/new")}
       %span{:class=>"glyphicon glyphicon-plus"}
       =t(:Search_new)
-  %a.btn.btn-default{:role=>:button, :href=>url("/review/#{@revision.id}/searchs/compare_records")}
+  %a.btn.btn-default{:role=>:button, :href=>url("/review/#{@review.id}/searches/compare_records")}
     %span.glyphicon.glyphicon-dashboard
     =t(:Compare_records_by_search)

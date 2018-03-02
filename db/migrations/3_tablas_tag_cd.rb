@@ -10,39 +10,39 @@ Sequel.migration do
     # cd_tags -> son los tags asignados a un cd. Anoto el usuario que lo puso.
     create_table(:tags) do
       primary_key :id
-      String :texto
+      String :text
     end
-    create_table(:t_clases) do
+    create_table(:t_classes) do
       primary_key :id
-      String :nombre
-      foreign_key :revision_sistematica_id, :revisiones_sistematicas, :null=>false, :key=>[:id]
-      String :etapa, :size=>50, :null=>true
-      String :tipo,  :null=>true
+      String :name
+      foreign_key :systematic_review_id, :systematic_reviews, :null=>false, :key=>[:id]
+      String :stage, :size=>50, :null=>true
+      String :type,  :null=>true
     end
 
-    create_table(:tags_en_clases) do
-      foreign_key :tc_id, :t_clases, :null=>false, :key=>[:id]
+    create_table(:tag_in_classes) do
+      foreign_key :tc_id, :t_classes, :null=>false, :key=>[:id]
       foreign_key :tag_id, :tags, :null=>false, :key=>[:id]
       primary_key [:tc_id, :tag_id]
     end
-    create_table(:tags_en_cds) do
+    create_table(:tag_in_cds) do
       foreign_key :tag_id, :tags, :null=>false, :key=>[:id]
-      foreign_key :canonico_documento_id, :canonicos_documentos, :null=>false, :key=>[:id]
-      foreign_key :usuario_id, :usuarios, :null=>false, :key=>[:id]
-      foreign_key :revision_sistematica_id, :revisiones_sistematicas, :null=>false, :key=>[:id]
+      foreign_key :canonical_document_id, :canonical_documents, :null=>false, :key=>[:id]
+      foreign_key :user_id, :users, :null=>false, :key=>[:id]
+      foreign_key :systematic_review_id, :systematic_reviews, :null=>false, :key=>[:id]
       String :decision
-      String :comentario, :text=>true
-      primary_key [:tag_id, :canonico_documento_id, :usuario_id,:revision_sistematica_id]
+      String :commentary, :text=>true
+      primary_key [:tag_id, :canonical_document_id, :user_id,:systematic_review_id]
     end
-    create_table(:tags_en_referencias_entre_cn) do
+    create_table(:tag_bw_cds) do
       foreign_key :tag_id, :tags, :null=>false, :key=>[:id]
-      foreign_key :cd_origen, :canonicos_documentos, :null=>false, :key=>[:id]
-      foreign_key :cd_destino, :canonicos_documentos, :null=>false, :key=>[:id]
-      foreign_key :usuario_id, :usuarios, :null=>false, :key=>[:id]
-      foreign_key :revision_sistematica_id, :revisiones_sistematicas, :null=>false, :key=>[:id]
+      foreign_key :cd_start, :canonical_documents, :null=>false, :key=>[:id]
+      foreign_key :cd_end,   :canonical_documents, :null=>false, :key=>[:id]
+      foreign_key :user_id, :users, :null=>false, :key=>[:id]
+      foreign_key :systematic_review_id, :systematic_reviews, :null=>false, :key=>[:id]
       String :decision
-      String :comentario, :text=>true
-      primary_key [:tag_id, :cd_origen, :cd_destino, :usuario_id,:revision_sistematica_id]
+      String :commentary, :text=>true
+      primary_key [:tag_id, :cd_start , :cd_end, :user_id, :systematic_review_id]
     end
   end
 end

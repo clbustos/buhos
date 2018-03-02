@@ -1,8 +1,8 @@
 .heading
   - if @stage
-    =t_systematic_review_title(@revision[:nombre], I18n::t("systematic_review_page.cd_for_tag_stage", tag_text:@tag.texto, stage: t(get_stage_name(@stage)) ), false)
+    =t_systematic_review_title(@review[:name], I18n::t("systematic_review_page.cd_for_tag_stage", tag_text:@tag.text, stage: t(get_stage_name(@stage)) ), false)
   - else
-    =t_systematic_review_title(@revision[:nombre], I18n::t("systematic_review_page.cd_for_tag", tag_text:@tag.texto), false)
+    =t_systematic_review_title(@review[:name], I18n::t("systematic_review_page.cd_for_tag", tag_text:@tag.text), false)
 %table.table.table-bordered.table-condensed
   %tbody
     - @cds.each do |cd|
@@ -12,4 +12,4 @@
           =partial(:canonical_document_button, :locals=>{id:cd[:id]})
           =partial(:canonical_document_button_abstract_collapsible, :locals=>{cd:cd})
           %div
-            =partial("tags/tags_cd_rs", :locals=>{cd: cd, revision:@revision,usuario_id:@usuario[:id]})
+            =partial("tags/tags_cd_rs", :locals=>{cd: cd, revision:@review,user_id:@usuario[:id]})

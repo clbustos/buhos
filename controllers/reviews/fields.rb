@@ -1,33 +1,33 @@
 get '/review/:rs_id/fields' do |rs_id|
   halt_unless_auth('review_view')
-  @revision=Revision_Sistematica[rs_id]
-  raise Buhos::NoReviewIdError, rs_id if !@revision
+  @review=SystematicReview[rs_id]
+  raise Buhos::NoReviewIdError, rs_id if !@review
 
-  @campos=@revision.fields
+  @campos=@review.fields
   haml %s{systematic_reviews/fields}
 end
 
 post '/review/:rs_id/new_field' do |rs_id|
   halt_unless_auth('review_admin')
-  @revision=Revision_Sistematica[rs_id]
-  raise Buhos::NoReviewIdError, rs_id if !@revision
+  @review=SystematicReview[rs_id]
+  raise Buhos::NoReviewIdError, rs_id if !@review
 
-  nombre=params['nombre'].chomp
+  name=params['name'].chomp
 
-  @campo_previo=@revision.fields.where(:nombre=>nombre)
+  @campo_previo=@review.fields.where(:name=>name)
   if @campo_previo.empty?
-    Rs_Campo.insert(:revision_sistematica_id=>rs_id, :orden=>params['orden'],:nombre=>nombre, :descripcion=>params['descripcion'], :tipo=>params['tipo'].chomp,:opciones=>params['opciones'])
-    add_message(t('sr_new_sr_edit_field.doesnt_existfield.success', name:params['nombre']))
+    SrField.insert(:systematic_review_id=>rs_id, :order=>params['order'],:name=>name, :description=>params['description'], :type=>params['tipo'].chomp,:opciones=>params['opciones'])
+    add_message(t('sr_new_sr_edit_field.doesnt_existfield.success', name:params['name']))
 
   else
-    add_message(t('sr_new_field.duplicated', name:params['nombre']), :error)
+    add_message(t('sr_new_field.duplicated', name:params['name']), :error)
   end
   redirect back
 end
 
 put '/review/edit_field/:campo_id/:campo' do |campo_id,campo|
   halt_unless_auth('review_admin')
-  return [500, t('sr_edit_field.invalid', field:campo)] unless %w{orden nombre descripcion tipo opciones}.include? campo
+  return [500, t('sr_edit_field.invalid', field:campo)] unless %w{order name description tipo opciones}.include? campo
   pk = params['pk']
   value = params['value']
   campo_o=Rs_Campo[pk]
@@ -39,10 +39,10 @@ end
 
 get '/review/:rs_id/update_field_table' do |rs_id|
   halt_unless_auth('review_admin')
-  @revision=Revision_Sistematica[rs_id]
-  raise Buhos::NoReviewIdError, rs_id if !@revision
-  @campos=@revision.fields
-  Rs_Campo.actualizar_tabla(@revision)
+  @review=SystematicReview[rs_id]
+  raise Buhos::NoReviewIdError, rs_id if !@review
+  @campos=@review.fields
+  SrField.actualizar_tabla(@review)
   add_message(t("fields.sr_table_update_success"))
   redirect back
 end
@@ -51,7 +51,7 @@ end
 get '/review/:rs_id/field/:fid/delete' do  |rs_id, fid|
   halt_unless_auth('review_admin')
   sr_field=Rs_Campo[fid]
-  name=sr_field[:nombre]
+  name=sr_field[:name]
   return 404 if !sr_field
   sr_field.delete
   add_message(t("fields.field_deleted", name:name))

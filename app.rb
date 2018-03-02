@@ -155,7 +155,7 @@ get '/' do
     log.info("/ sin id: basico")
     redirect url('/login')
   else
-    @user=Usuario[session['user_id']]
+    @user=User[session['user_id']]
     haml :main
   end
 end
