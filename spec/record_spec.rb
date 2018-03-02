@@ -29,7 +29,7 @@ describe 'Record' do
       expect(result).to be_a(::Result)
     }
     it "nothing to do" do
-      expect(result.events[0][:message]).to eq(I18n::t(:nothing_to_do))
+      expect(result.events[0][:message]).to eq(I18n::t("record.doi_already_added_to", record_title: Record[1][:title]))
     end
   end
 
@@ -76,7 +76,7 @@ describe 'Record' do
       expect(@result.events[0][:message]).to include("38")
     end
     it "record should have now 38 references" do
-      expect(RecordsReference.where(record_id:1).count).to eq(38)
+      expect(RecordsReferences.where(record_id:1).count).to eq(38)
     end
   end
 

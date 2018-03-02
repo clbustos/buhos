@@ -15,8 +15,8 @@ post '/resolution/review/:id/canonical_document/:cd_id/stage/:stage/resolution' 
     end
   end
 
-  revision=SystematicReview[rev_id]
-  ars=AnalysisSystematicReview.new(revision)
+  review=SystematicReview[rev_id]
+  ars=AnalysisSystematicReview.new(review)
 
   rpc=ars.resolution_by_cd (stage)
 

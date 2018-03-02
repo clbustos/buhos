@@ -59,7 +59,10 @@ module Buhos
 
       ::Reference.many_to_many :records
       ::SystematicReview.many_to_one :group
-      ::SystematicReview.one_to_many :messages_srs, :class=>MessageSr
+      ::SystematicReview.one_to_many :message_srs, :class=>MessageSr
+
+
+
       ::Group.many_to_many :users
     end
     def method_missing(m, *args, &block)

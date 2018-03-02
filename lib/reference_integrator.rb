@@ -30,6 +30,6 @@ module ReferenceIntegrator
   end
 end
 
-require_relative 'referenceintegrator/bibtex'
-require_relative 'referenceintegrator/json'
-require_relative 'referenceintegrator/csv'
+require_relative 'reference_integrator/bibtex'
+require_relative 'reference_integrator/json'
+require_relative 'reference_integrator/csv'
