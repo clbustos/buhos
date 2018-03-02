@@ -1,5 +1,5 @@
 require_relative 'analysis_sr_stage_mixin'
-
+require_relative 'buhos/stages'
 # A Facade pattern class
 # Shows general statistics for systematic reviews and
 # for each article
