@@ -17,7 +17,7 @@
         %td=User[g[:user_id]][:name]
         %td=t(g.source_name)
         %td=g.bibliographical_database_name
-        %td=g.fecha
+        %td=g.date_creation
         %td=g.search_criteria
         %td=g.description
         %td=g.filename.nil? ? t(:No_file) : "#{g.filename} [#{g.filetype}]"
