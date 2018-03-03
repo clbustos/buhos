@@ -1,7 +1,7 @@
 require_relative 'spec_helper'
 
 
-describe 'Search' do
+describe 'Search:' do
 
 
   before(:all) do
@@ -43,7 +43,7 @@ describe 'Search' do
     it "response should be redirect" do
       expect(last_response).to be_redirect
     end
-    it "should response redirects to review's searches" do
+    it "should response redirects to review searches" do
       expect(last_response.header['Location']).to eq("http://example.org/review/#{sr_id}/searches")
     end
     it "should search be created on dataset" do
@@ -61,23 +61,11 @@ describe 'Search' do
 
     # Remember that sqlite sends to ruby a ASCII-8BIT
     it "should search contains correct file content" do
-=begin
-      File.read(filepath)=~/^(.+In this way, considerable parts of the review's.+)$/
-      content_file= $1
 
-      search_o[:file_body]=~/^(.+In this way, considerable parts of the review's.+)$/
-      content_object= $1
-
-      $log.info(content_file)
-      $log.info(content_object)
-      $log.info(content_file.encoding)
-      $log.info(content_object.encoding)
-      $log.info(content_file==content_object)
-=end
-      expect(search[:file_body].force_encoding('UTF-8')).to eq(File.read(filepath))
+      expect(search[:file_body].force_encoding('UTF-8')).to eq(File.binread(filepath).force_encoding('UTF-8'))
     end
   end
-  context "when review searches is accesed" do
+  context "when review searches is accessed" do
     let(:response) {get "/review/#{sr_by_name_id('Test Review')}/searches"}
     it { expect(response).to be_ok}
     it "should include a row for new search" do
