@@ -9,6 +9,9 @@ require 'net/http'
 require 'cgi'
 
 
+# @!group Canonical documents
+
+# View a Canonical document
 get '/canonical_document/:id' do |id|
   halt_unless_auth('canonical_document_view')
   @cd=CanonicalDocument[id]
@@ -24,7 +27,7 @@ get '/canonical_document/:id' do |id|
   haml :canonical_document
 end
 
-
+# Query crossref for all references of a canonical document
 get '/canonical_document/:id/search_crossref_references' do |id|
   halt_unless_auth('canonical_document_admin')
 
@@ -42,6 +45,8 @@ get '/canonical_document/:id/search_crossref_references' do |id|
   add_result(result)
   redirect back
 end
+
+# Query Crossref for canonical document
 
 get '/canonical_document/:id/get_crossref_data' do |id|
   halt_unless_auth('canonical_document_admin')

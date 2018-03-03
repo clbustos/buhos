@@ -8,6 +8,7 @@
 require 'net/http'
 require 'cgi'
 
+# @!group References
 
 get '/reference/:id' do |id|
   halt_unless_auth('reference_view')
@@ -97,3 +98,5 @@ get '/reference/:id/assign_doi/:doi' do |id,doi|
   end
 
 end
+
+# @!endgroup

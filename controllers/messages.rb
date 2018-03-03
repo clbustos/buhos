@@ -4,7 +4,11 @@
 # All rights reserved.
 # Licensed BSD 3-Clause License
 # See LICENSE file for more information
+#
 
+# @!group Systematic review message
+
+# Mark a message as seen by a user
 post '/message_sr/:ms_id/seen_by/:user_id' do |ms_id, user_id|
   halt_unless_auth('message_edit')
 
@@ -29,7 +33,7 @@ post '/message/:m_id/seen_by/:user_id' do |m_id, user_id|
 end
 
 
-
+# Show form to reply a message
 post '/message_sr/:ms_id/reply' do |ms_id|
   halt_unless_auth('message_edit')
   ms=MessageSr[ms_id]
@@ -48,7 +52,7 @@ post '/message_sr/:ms_id/reply' do |ms_id|
 
 end
 
-
+# Send a reply to a message
 post '/message_per/:m_id/reply' do |m_id|
   halt_unless_auth('message_edit')
   m_per=Message[m_id]
@@ -72,3 +76,4 @@ post '/message_per/:m_id/reply' do |m_id|
 
 end
 
+# @!endgroup

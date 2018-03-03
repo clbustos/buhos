@@ -27,7 +27,11 @@
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 require_relative 'sinatra/i18n'
+
+
+
 module Buhos
+  # @!group Error Codes
   class NoReviewIdError < StandardError
 
   end
@@ -63,6 +67,7 @@ module Buhos
   class NoFileIdError < StandardError
 
   end
+  # @!endgroup
 end
 
 

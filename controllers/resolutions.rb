@@ -5,7 +5,9 @@
 # Licensed BSD 3-Clause License
 # See LICENSE file for more information
 
+# @!group stages administration
 
+# Set resolution of a specific canonical document on a stage
 post '/resolution/review/:id/canonical_document/:cd_id/stage/:stage/resolution' do |rev_id, cd_id, stage|
   halt_unless_auth('review_admin')
   resolution=params['resolution']
@@ -29,3 +31,5 @@ post '/resolution/review/:id/canonical_document/:cd_id/stage/:stage/resolution' 
 
   partial(:buttons_resolution, :locals=>{:rpc=>rpc, :cd_id=>cd_id.to_i, :stage=>stage, :user_id=>user_id, :review=>review})
 end
+
+# @!endgroup

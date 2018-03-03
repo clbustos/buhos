@@ -26,7 +26,10 @@
 # OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+
+# Methods to parse and show DOI
 module DOIHelpers
+  # Add http to doi
   def url_doi(doi)
     if doi=~/http/
       doi
@@ -34,17 +37,20 @@ module DOIHelpers
       "http://doi.org/#{doi}"
     end
   end
+  # Returns an <a> tag to link a DOI
   def a_doi(doi)
     url_doi_=url_doi(doi)
     "<a target='_blank' href='#{url_doi_}'>#{url_doi_}</a>"
   end
-
+  # Return the doi without the http part
   def doi_without_http(doi)
     return nil if doi.nil?
     doi.gsub(/http.+doi.org\// ,"")
   end
 
-
+  # find DOI on a text
+  # @param text [String] to find DOI
+  # @return doi or nil
   def find_doi(text)
     if text=~/\b(10[.][0-9]{4,}(?:[.][0-9]+)*\/(?:(?!["&\'<>])\S)+)\b/
       return $1

@@ -34,7 +34,7 @@ class Record < Sequel::Model
   many_to_one :canonical_document, :class=>CanonicalDocument
   # Obtener una Query Crossref. Se utiliza el APA 6
   def crossref_query
-    CrossrefQuery.generar_query_desde_text( ref_apa_6 )
+    CrossrefQuery.generate_query_from_text( ref_apa_6 )
   end
   # Asigna un doi automaticamente desde crossref
   # y verifica que el DOI del canónico calce

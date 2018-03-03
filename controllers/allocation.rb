@@ -5,7 +5,11 @@
 # Licensed BSD 3-Clause License
 # See LICENSE file for more information
 
-put '/authorization/user/:user_id/review/:rs_id/cd/:cd_id/stage/:stage_id/edit_instruction' do |user_id, rs_id, cd_id,stage|
+
+# @!group Allocation of canonical documents to users
+
+# Provide instruction for a user on a given allocation
+put '/allocation/user/:user_id/review/:rs_id/cd/:cd_id/stage/:stage_id/edit_instruction' do |user_id, rs_id, cd_id,stage|
   halt_unless_auth('review_admin')
 
   pk = params['pk']
@@ -13,3 +17,6 @@ put '/authorization/user/:user_id/review/:rs_id/cd/:cd_id/stage/:stage_id/edit_i
   AllocationCd.where(:systematic_review_id=>rs_id, :canonical_document_id=>cd_id, :user_id=>user_id, :stage=>stage).update(:instruction=>value.chomp)
   return true
 end
+
+
+# @!endgroup

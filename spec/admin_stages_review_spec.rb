@@ -60,7 +60,7 @@ describe 'Stage administration' do
   end
   context 'when add a commentary on a assignation' do
     before(:context) do
-      put '/authorization/user/1/review/1/cd/64/stage/screening_title_abstract/edit_instruction', value:'new instruction'
+      put '/allocation/user/1/review/1/cd/64/stage/screening_title_abstract/edit_instruction', value:'new instruction'
     end
     it "should response be ok" do
       expect(last_response).to be_ok

@@ -5,6 +5,10 @@
 # Licensed BSD 3-Clause License
 # See LICENSE file for more information
 
+# @!group Files
+#
+
+# Allocate automatically files to canonical documents
 get '/files/rs/:systematic_review_id/assign_to_canonical_documents' do |rs_id|
   halt_unless_auth('file_admin')
   rs=SystematicReview[rs_id]
@@ -54,12 +58,14 @@ get '/files/rs/:systematic_review_id/assign_to_canonical_documents' do |rs_id|
 end
 
 
-
+# Get ViewerJS
 get '/ViewerJS/' do
   halt_unless_auth('file_view')
   send_file("#{dir_base}/public/ViewerJS/index.html")
 end
 
+# Get a file. We need this strange form to do it
+# because ViewerJS ask for it
 get '/ViewerJS/..file/:id/download' do |id|
   halt_unless_auth('file_view')
 
@@ -74,6 +80,7 @@ get '/ViewerJS/..file/:id/download' do |id|
 
 end
 
+# Download a file
 get '/file/:id/download' do |id|
   halt_unless_auth('file_view')
 
@@ -88,7 +95,8 @@ end
 
 
 
-
+# Get a specific page on a document.
+# Only works on Linux
 get '/file/:id/page/:pagina/:format' do |id,pagina,format|
   halt_unless_auth('file_view')
 
@@ -138,7 +146,8 @@ get '/file/:id/page/:pagina/:format' do |id,pagina,format|
 #  send_file(file.absolute_path(dir_files))
 end
 
-
+# Retrieves a file, on mode 'inline'
+# @see '/file/:id/download'
 get '/file/:id/view' do |id|
   halt_unless_auth('file_view')
 
@@ -153,7 +162,7 @@ end
 
 
 
-
+# Allocate a specific file to a canonical document
 post '/file/assign_to_canonical' do
   halt_unless_auth('canonical_document_admin')
 
@@ -178,6 +187,7 @@ post '/file/assign_to_canonical' do
 
 end
 
+# Hide a file allocated to a canonical document
 post '/file/hide_cd' do
   halt_unless_auth('canonical_document_admin')
   file=IFile[params['file_id']]
@@ -189,6 +199,8 @@ post '/file/hide_cd' do
 end
 
 
+# Show a file allocated to a canonical document
+#
 post '/file/show_cd' do
   halt_unless_auth('canonical_document_admin')
   file=IFile[params['file_id']]
@@ -200,6 +212,9 @@ post '/file/show_cd' do
   FileCd.where(:file_id=>file.id, :canonical_document_id=>cd.id).update(:not_consider=>false)
   return 200
 end
+
+
+# Remove the allocation of a file to a canonical document
 post '/file/unassign_cd' do
   halt_unless_auth('canonical_document_admin')
   file=IFile[params['file_id']]
@@ -212,7 +227,7 @@ post '/file/unassign_cd' do
   return 200
 end
 
-
+# Remove the allocation of a file to a systematic review
 post '/file/unassign_sr' do
   halt_unless_auth('review_admin')
   rs=SystematicReview[params['rs_id']]
@@ -221,6 +236,7 @@ post '/file/unassign_sr' do
   return 200
 end
 
+# Delete a file.
 post '/file/delete' do
   halt_unless_auth('file_admin')
 
@@ -233,8 +249,7 @@ post '/file/delete' do
   return 200
 end
 
-# Method put
-
+# Edit an attribute of a file
 put '/file/edit_field/:campo' do |field|
   halt_unless_auth('file_admin')
 
@@ -245,3 +260,5 @@ put '/file/edit_field/:campo' do |field|
   @arc.update(field.to_sym => value.chomp)
   return true
 end
+
+# @!endgroup

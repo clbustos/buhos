@@ -5,6 +5,7 @@ bak/*
 log
 usr/archivos
 *.sqlite
+docs/api/*
 spec/usr
 config/installed
 config/installed_test

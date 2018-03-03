@@ -5,6 +5,10 @@
 # Licensed BSD 3-Clause License
 # See LICENSE file for more information
 
+
+# @!group Records
+
+# View a record
 get '/record/:id' do |id|
   halt_unless_auth('record_view')
   @reg=Record[id]
@@ -12,7 +16,7 @@ get '/record/:id' do |id|
   haml "record".to_sym
 end
 
-
+# Query crossref for a given record
 get '/record/:id/search_crossref' do |id|
   halt_unless_auth('record_edit')
 
@@ -22,7 +26,7 @@ get '/record/:id/search_crossref' do |id|
   haml "systematic_reviews/record_search_crossref".to_sym
 end
 
-
+# Assign a DOI to a record
 get '/record/:id/assign_doi/:doi' do |id,doi|
   halt_unless_auth('record_edit')
   $db.transaction(:rollback=>:reraise) do
@@ -34,7 +38,7 @@ get '/record/:id/assign_doi/:doi' do |id,doi|
   redirect back
 end
 
-
+# Add manual references to a record
 post '/record/:id/manual_references' do |id|
   halt_unless_auth('record_edit')
   ref_man=params['reference_manual']
@@ -48,8 +52,11 @@ post '/record/:id/manual_references' do |id|
           RecordsReference.insert(:record_id => id, :reference_id => ref[:id])
         end
       end
-      add_message("Agregadas #{partes.count} references")
+      add_message(::I18n.t(:Added_references_to_record, :record_id=>id, :count_references=>partes.length))
     end
   end
   redirect back
 end
+
+
+# @!endgroup

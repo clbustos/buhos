@@ -27,9 +27,18 @@
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 require 'digest'
-# Qué es una reference?
-# Es una cita de un text a otro. Su representación se basa en el text,
-# aunque el DOI u otra forma de identificación deberían tener preference
+
+
+# Reference made on one article to another.
+#
+# Is the hardest object on the system. All bibliographical system stores
+# references on different ways. So, we store the store the test as-is
+# and use the sha256 digest as an identifier.
+#
+# If the text contains a DOI, is very easy to assign the reference to a
+# canonical document, but often the reference doesn't have enough information
+# to create it. So, we retrieve information from Crossref to create the
+# canonical document.
 
 class Reference < Sequel::Model(:bib_references)
 
@@ -37,10 +46,20 @@ class Reference < Sequel::Model(:bib_references)
   extend DOIHelpers
 
   many_to_many :records
+  # Retrieve a Reference with a specific text
+  # If doesn't exist before, create it
+  # @param text reference text, as-is
+  # @return a Reference
   def self.get_by_text(text)
     dig=Digest::SHA256.hexdigest text
     Reference[dig]
   end
+  # Retrieve a reference using text and doi
+  # If doesn't exists before, and param create is true
+  # create it
+  # @param text
+  # @param doi
+  # @return Reference or nil
   def self.get_by_text_and_doi(text,doi,create=false)
     dig=Digest::SHA256.hexdigest text
     if doi
@@ -57,7 +76,7 @@ class Reference < Sequel::Model(:bib_references)
   end
 
   def crossref_query
-    CrossrefQuery.generar_query_desde_text( self[:text] )
+    CrossrefQuery.generate_query_from_text( self[:text] )
   end
 
   def search_similars(d=nil, sin_canonico=true)
@@ -85,6 +104,8 @@ class Reference < Sequel::Model(:bib_references)
   end
 
 
+  # Retrieve information from Crossref, using doi, and create a canonical document
+  #
   def add_doi(doi_n)
     #$log.info("Agregar #{doi_n} a #{self[:id]}")
     status=Result.new

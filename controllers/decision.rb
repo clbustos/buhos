@@ -4,6 +4,11 @@
 # All rights reserved.
 # Licensed BSD 3-Clause License
 # See LICENSE file for more information
+#
+
+# @!group Screening and analysis of documents
+
+# Retrieve the interface to make decision on a document
 
 get '/decision/review/:review_id/user/:user_id/canonical_document/:cd_id/stage/:stage' do |review_id, user_id, cd_id, stage|
   halt_unless_auth('review_view')
@@ -19,6 +24,7 @@ get '/decision/review/:review_id/user/:user_id/canonical_document/:cd_id/stage/:
   return partial(:decision, :locals => {review: review, cd: cd, decisions: decisions, ars: ars, user_id: user_id, stage: stage})
 end
 
+# Put a commentary for a specific document on analysis
 
 put '/decision/review/:review_id/user/:user_id/canonical_document/:cd_id/stage/:stage/commentary' do |review_id, user_id, cd_id, stage|
   halt_unless_auth('review_analyze')
@@ -37,6 +43,7 @@ put '/decision/review/:review_id/user/:user_id/canonical_document/:cd_id/stage/:
   return 200
 end
 
+# Make a decision on a given document
 
 post '/decision/review/:review_id/user/:user_id/canonical_document/:cd_id/stage/:stage/decision' do |review_id, user_id, cd_id, stage|
   halt_unless_auth('review_analyze')
@@ -67,3 +74,5 @@ post '/decision/review/:review_id/user/:user_id/canonical_document/:cd_id/stage/
 
 
 end
+
+# @!endgroup

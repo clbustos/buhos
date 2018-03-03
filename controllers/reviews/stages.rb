@@ -4,7 +4,12 @@
 # All rights reserved.
 # Licensed BSD 3-Clause License
 # See LICENSE file for more information
+#
 
+# @!group Screening and analysis of documents
+
+
+# Inteface for stage screening titles and abstract
 get '/review/:id/screening_title_abstract' do |id|
   halt_unless_auth('review_analyze')
   @review=SystematicReview[id]
@@ -58,6 +63,7 @@ get '/review/:id/screening_title_abstract' do |id|
 
 end
 
+# Inteface for stage screening references
 
 get '/review/:id/screening_references' do |id|
   halt_unless_auth('review_analyze')
@@ -112,6 +118,7 @@ get '/review/:id/screening_references' do |id|
 
 end
 
+# Inteface for stage review full text
 
 get '/review/:id/review_full_text' do |id|
   halt_unless_auth('review_analyze')
@@ -165,6 +172,6 @@ get '/review/:id/review_full_text' do |id|
 end
 
 
-
+# @!endgroup
 
 

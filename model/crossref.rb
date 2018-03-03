@@ -26,14 +26,20 @@
 # OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+
+# Class that query Crossref for a DOI
+# and stores the result
 class CrossrefDoi < Sequel::Model
   include DOIHelpers
   extend DOIHelpers
-  # Dado un doi, descarga la reference desde Crossref si no la tiene
-  # y entrega el JSON  correspondiente
+  # Given a DOI, query Crossref, store the result
+  # and return a raw JSON
+  # @param doi [String] a DOI
+  # @return [String] raw JSON from Crossref or false if Crossref doesn't have information
+  # @raise [ArgumentError] if DOI is nil
   def self.procesar_doi(doi)
     require 'serrano'
-    raise 'DOI is nil' if doi.nil?
+    raise ArgumentError, 'DOI is nil' if doi.nil?
     co=CrossrefDoi[doi_without_http(doi)]
     if !co or co[:json].nil?
       begin
@@ -54,8 +60,10 @@ class CrossrefDoi < Sequel::Model
     co[:json]
   end
 
-  # Entrega el Reference_Integrator::JSON
-  # correspondiente a un DOI.
+  # Returns Reference_Integrator::JSON::Reader
+  # for a DOI.
+  # @param doi
+  # @return ReferenceIntegrator::JSON::Reader
   def self.reference_integrator_json(doi)
     co=self.procesar_doi(doi)
     if(co)
@@ -67,14 +75,22 @@ class CrossrefDoi < Sequel::Model
 end
 
 
-
+# Error when Crossref doesn't provide a valid response
+# for a text query
+# @see CrossrefQuery.generate_query_from_text
 class BadCrossrefResponseError < StandardError
 
 end
-class CrossrefQuery < Sequel::Model
 
-  # Se toma un text y se transforma en un sha256
-  def self.generar_query_desde_text(t)
+# Class that query Crossref for a given text
+# and stores the result
+
+class CrossrefQuery < Sequel::Model
+  # Takes a text and returns a processed JSON
+  # @param t [String] a text that represents a document
+  # @return a processed json
+  # @raise [BadCrossrefResponseError] if Crossref raises an error
+  def self.generate_query_from_text(t)
     require 'digest'
     digest=Digest::SHA256.hexdigest t
     cq=CrossrefQuery[digest]
@@ -83,7 +99,7 @@ class CrossrefQuery < Sequel::Model
       url="https://search.crossref.org/dois?q=#{CGI.escape(t)}"
       uri = URI(url)
       res = Net::HTTP.get_response(uri)
-      $log.info(res)
+      #$log.info(res)
       if res.code!="200"
         raise BadCrossrefResponseError, "El text #{t} no entrego una respuesta adecuada. Fue #{res.code}, #{res.body}"
       end

@@ -141,9 +141,11 @@ get '/review/:rev_id/stage/:stage/generar_references_crossref' do |rev_id,stage|
   redirect back
 end
 
+# @!endgroup
+
+# @!group Allocation of canonical documents to users
 
 # List of allocations of canonical documents to users
-
 get '/review/:rev_id/administration/:stage/cd_assignations' do |rev_id, stage|
   halt_unless_auth('review_admin')
   @review=SystematicReview[rev_id]
@@ -204,6 +206,11 @@ get '/review/:rev_id/stage/:stage/rem_assign_user/:user_id/:type' do |rev_id, st
   add_result(AllocationCd.update_assignation(rev_id, [], user_id,stage))
   redirect back
 end
+
+
+# @!endgroup
+
+# @!group Administration of documents without abstract
 
 # List of documents without abstract
 
