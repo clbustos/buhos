@@ -9,6 +9,7 @@ gem "rack-test"
 gem 'bibtex-ruby'
 gem "unicode"
 gem 'levenshtein-ffi', :require => 'levenshtein', :platforms => :ruby
+gem 'levenshtein'
 gem 'serrano'
 gem 'dotenv'
 #gem 'scopus'

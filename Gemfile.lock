@@ -55,6 +55,7 @@ GEM
     io-like (0.3.0)
     json (1.8.6)
     latex-decode (0.3.1)
+    levenshtein (0.2.2)
     levenshtein-ffi (1.1.0)
       ffi (~> 1.9)
     mini_portile2 (2.3.0)
@@ -168,6 +169,7 @@ DEPENDENCIES
   grim
   haml
   i18n
+  levenshtein
   levenshtein-ffi
   moneta
   mysql2

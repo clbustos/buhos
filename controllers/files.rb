@@ -7,7 +7,7 @@ get '/files/rs/:systematic_review_id/assign_to_canonical_documents' do |rs_id|
 
   require 'pdf-reader'
   # Solo buscar en los files que no tienen canonico asignado
-  pdf_por_revisar=file_Rs.files_sin_cd(rs_id).where(:filetype=>'application/pdf')
+  pdf_por_revisar=FileSr.files_sin_cd(rs_id).where(:filetype=>'application/pdf')
   pdf_por_revisar.each do |pdf|
     begin
       reader=PDF::Reader.new(pdf.absolute_path(dir_files))
@@ -62,6 +62,7 @@ get '/ViewerJS/..file/:id/download' do |id|
   #headers["Content-Disposition"] = "attachment;filename=#{file[:filename]}"
 
   content_type file[:filetype]
+#  $log.info(File.size(file.absolute_path(dir_files)))
   send_file(file.absolute_path(dir_files))
 
 end
@@ -90,33 +91,37 @@ get '/file/:id/page/:pagina/:format' do |id,pagina,format|
   filepath=file.absolute_path(dir_files)
 
   if file[:filetype]=="application/pdf"
-
-    if format=='text'
-      require 'pdf-reader'
-      reader=PDF::Reader.new(filepath)
-      file.update(:pages=>reader.pages.length) if file[:pages].nil?
-      return "No existe pagina" if reader.pages.length<pagina
-      reader.pages[pagina-1].text
-    elsif format=='image'
-      require 'grim'
-      pdf   = Grim.reap(filepath)
-      return "No existe pagina" if pdf.count<pagina or pagina<1
-      file.update(:pages=>pdf.count) if file[:pages].nil?
-      filepath_image="#{dir_files}/pdf_imagenes/#{file[:sha256][0]}/#{file[:sha256]}_#{pagina}.png"
-      #$log.info(File.dirname(filepath_image))
-      FileUtils.mkdir_p File.dirname(filepath_image) unless File.exist? File.dirname(filepath_image)
-      unless File.exist? filepath_image
-        pdf[pagina-1].save(filepath_image,{
-            :density=>300,
-            :alpha=>"Set"
-        })
+    begin 
+      if format=='text'
+        require 'pdf-reader'
+        reader=PDF::Reader.new(filepath)
+        file.update(:pages=>reader.pages.length) if file[:pages].nil?
+        return "No existe pagina" if reader.pages.length<pagina
+        reader.pages[pagina-1].text
+      elsif format=='image'
+        require 'grim'
+        pdf   = Grim.reap(filepath)
+        return "No existe pagina" if pdf.count<pagina or pagina<1
+        file.update(:pages=>pdf.count) if file[:pages].nil?
+        filepath_image="#{dir_files}/pdf_imagenes/#{file[:sha256][0]}/#{file[:sha256]}_#{pagina}.png"
+        #$log.info(File.dirname(filepath_image))
+        FileUtils.mkdir_p File.dirname(filepath_image) unless File.exist? File.dirname(filepath_image)
+        unless File.exist? filepath_image
+          pdf[pagina-1].save(filepath_image,{
+              :density=>300,
+              :alpha=>"Set"
+          })
+        end
+        headers["Content-Disposition"] = "inline;filename=#{File.basename(filepath_image)}"
+        content_type "image/png"
+        send_file(filepath_image)
+      else
+        raise I18n::t(:cant_process)
       end
-      headers["Content-Disposition"] = "inline;filename=#{File.basename(filepath_image)}"
-      content_type "image/png"
-      send_file(filepath_image)
-    else
-      raise "No existe el format"
+    rescue StandardError
+      halt 500, I18n::t("Error on processing file")
     end
+    
   else
     return 500
   end

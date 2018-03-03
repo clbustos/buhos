@@ -8,7 +8,7 @@ shared_examples "pdf file" do
 
 end
 
-describe 'Files' do
+describe 'Files:' do
   before(:all) do
     RSpec.configure { |c| c.include RSpecMixin }
     @temp=configure_empty_sqlite
@@ -16,15 +16,22 @@ describe 'Files' do
     CanonicalDocument.insert(id:1, :title=>'Canonical Document 1', year:2018)
     login_admin
   end
+  
+  def check_gs
+    !gs_available or ENV['TEST_TRAVIS'] or is_windows?
+  end
+  
   def filepath
-    filename="2010_Kiritchenko et al._ExaCT automatic extraction of clinical trial characteristics from journal publications.pdf"
-    File.expand_path("#{File.dirname(__FILE__)}/../docs/guide_resources/#{filename}")
+    filename="2010_Kiritchenko_et_al_ExaCT_automatic_extraction_of_clinical_trial_characteristics_from_journal_publications.pdf"
+    path=File.expand_path("#{File.dirname(__FILE__)}/../docs/guide_resources/#{filename}")
+    #$log.info(path)
+    path
   end
 
 
   context 'when upload a file using /review/files/add' do
     before(:context) do
-      uploaded_file=Rack::Test::UploadedFile.new(filepath, "application/pdf")
+      uploaded_file=Rack::Test::UploadedFile.new(filepath, "application/pdf", true)
       post '/review/files/add', systematic_review_id:sr_by_name_id('Test Review'), files:[uploaded_file]
     end
     let(:file) {IFile[1]}
@@ -35,6 +42,10 @@ describe 'Files' do
     it "should create a file on correct directory" do
       path="#{app_helpers.dir_files}/#{file[:file_path]}"
       expect(File.exist? path).to be true
+    end
+    it "should create a file of correct size" do
+      path="#{app_helpers.dir_files}/#{file[:file_path]}"
+      expect(File.size(path)).to eq(File.size(filepath))
     end
   end
 
@@ -49,7 +60,6 @@ describe 'Files' do
     before(:context) do
       get '/ViewerJS/..file/1/download'
     end
-
     include_examples "pdf file"
 
   end
@@ -85,9 +95,9 @@ describe 'Files' do
     before(:context) do
       get '/file/1/page/17/image'
     end
-    it {skip "not gs available" unless gs_available; skip "because travis" if ENV['TEST_TRAVIS']; expect(last_response).to be_ok }
-    it {skip "not gs available" unless gs_available; skip "because travis" if ENV['TEST_TRAVIS']; expect(last_response.header['Content-Type']).to include("image/png") }
-    it {skip "not gs available" unless gs_available; skip "because travis" if ENV['TEST_TRAVIS']; expect(last_response.header['Content-Length'].to_i).to be >0}
+    it {skip if check_gs;expect(last_response).to be_ok }
+    it {skip if check_gs; expect(last_response.header['Content-Type']).to include("image/png") }
+    it {skip if check_gs;expect(last_response.header['Content-Length'].to_i).to be >0}
   end
 
   context "when change attribute of a file" do

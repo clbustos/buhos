@@ -33,7 +33,11 @@ class Reference < Sequel::Model(:bib_references)
   end
 
   def search_similars(d=nil, sin_canonico=true)
-    require 'levenshtein-ffi'
+    begin
+      require 'levenshtein-ffi'
+    rescue LoadError
+      require 'levenshtein'
+    end
 
     canonico_sql= sin_canonico ? " AND canonical_document_id IS NULL ": ""
 

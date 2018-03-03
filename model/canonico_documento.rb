@@ -47,7 +47,11 @@ class CanonicalDocument < Sequel::Model
     end
   end
   def buscar_references_similares(d=nil,sin_canonico=true)
-    require 'levenshtein-ffi'
+     begin
+      require 'levenshtein-ffi'
+    rescue LoadError
+      require 'levenshtein'
+    end
     d_max=[ref_apa_6.length,self[:title].length].max
 
     d=d_max if d.nil? or d>d_max
