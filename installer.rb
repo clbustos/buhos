@@ -194,7 +194,7 @@ module Buhos
       log_db_install=Logger.new("log/installer_sql.log")
       db=Sequel.connect(ENV['DATABASE_URL'], :encoding => 'utf8',:reconnect=>true)
       db.logger=log_db_install
-      load("db/create_schema.rb")
+      load("lib/buhos/create_schema.rb")
       @pdb_stage="installer.population_begin"
 
       begin

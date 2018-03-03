@@ -1,3 +1,10 @@
+# Buhos
+# https://github.com/clbustos/buhos
+# Copyright (c) 2016-2018, Claudio Bustos Navarrete
+# All rights reserved.
+# Licensed BSD 3-Clause License
+# See LICENSE file for more information
+
 
 post '/resolution/review/:id/canonical_document/:cd_id/stage/:stage/resolution' do |rev_id, cd_id, stage|
   halt_unless_auth('review_admin')

@@ -102,7 +102,7 @@ describe 'Stage administration' do
     before(:context) do
       remove_assignations
       post '/canonical_document/user_assignation/asignar', {rs_id:1, cd_id:64, user_id:2, stage:'screening_title_abstract'}
-      get '/review/1/stage/screening_title_abstract/add_assign_user/1/without_assignation'
+      get '/review/1/stage/screening_title_abstract/add_assign_user/1/without_allocation'
     end
     it "should have 84 assignations on sta" do
       expect(assignations_admin['screening_title_abstract'][:n]).to eq(84)

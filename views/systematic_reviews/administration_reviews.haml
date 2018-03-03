@@ -19,11 +19,11 @@
   %a.btn.btn-sm.btn-default{:href=>"/review/#{@review[:id]}/administration/#{@stage}/cd_assignations"}
     %span.glyphicon.glyphicon-list
     =t(:Check_CD_assignations)
-  - if !@cd_without_assignation.empty?
+  - if !@cd_without_allocation.empty?
     %a.btn.btn-sm.btn-warning{:href=>"/review/#{@review[:id]}/administration/#{@stage}/cd_without_allocations"}
       %span.glyphicon.glyphicon-list
       =t(:Check_CD_without_assignations)
-      %span.badge=@cd_without_assignation.count
+      %span.badge=@cd_without_allocation.count
 
 %table.reporte
   %thead

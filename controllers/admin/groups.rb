@@ -1,9 +1,20 @@
+# Buhos
+# https://github.com/clbustos/buhos
+# Copyright (c) 2016-2018, Claudio Bustos Navarrete
+# All rights reserved.
+# Licensed BSD 3-Clause License
+# See LICENSE file for more information
+
+#@!group groups routes
+
+# Display list of groups
 get '/admin/groups' do
   halt_unless_auth('group_admin')
   @groups=Group.all
   haml :groups
 end
 
+# Display form to edit a group
 
 get "/group/:id/edit" do |id|
   halt_unless_auth('group_admin')
@@ -12,6 +23,7 @@ get "/group/:id/edit" do |id|
   haml %s{groups/edit}
 end
 
+# Display form to create a new group
 
 get '/group/new' do
   halt_unless_auth('group_admin')
@@ -19,6 +31,8 @@ get '/group/new' do
   @users_id=[]
   haml %s{groups/edit}
 end
+
+# Display information for a group
 get "/group/:id" do |id|
   halt_unless_auth('group_view')
   @group=Group[id]
@@ -27,6 +41,7 @@ get "/group/:id" do |id|
 end
 
 
+# Returns a json with information for a group
 
 get '/group/:id/datos.json' do |id|
   halt_unless_auth('group_view')
@@ -41,6 +56,9 @@ get '/group/:id/datos.json' do |id|
    :users=>@group.users_dataset.order(:name).map {|u| {id:u[:id], name:u[:name]}}
   }.to_json
 end
+
+# Updates information for a group
+# @see #group/:id/edit
 post '/group/update' do
   halt_unless_auth('group_admin')
 
@@ -68,6 +86,9 @@ post '/group/update' do
   redirect url('/admin/groups')
 end
 
+# Deletes a group
+# @todo modify to use POST or DELETE method
+
 get '/group/:group_id/delete' do |group_id|
   halt_unless_auth('group_admin')
   @group=Group[group_id]
@@ -77,3 +98,5 @@ get '/group/:group_id/delete' do |group_id|
   add_message(t(:Group_deleted, group_name:group_name))
   redirect back
 end
+
+#@!endgroup

@@ -1,3 +1,14 @@
+# Buhos
+# https://github.com/clbustos/buhos
+# Copyright (c) 2016-2018, Claudio Bustos Navarrete
+# All rights reserved.
+# Licensed BSD 3-Clause License
+# See LICENSE file for more information
+
+# @!group Searches
+
+
+# List of searches
 get '/review/:id/searches' do |id|
   halt_unless_auth('review_view')
   @review=SystematicReview[id]
@@ -14,6 +25,8 @@ get '/review/:id/searches' do |id|
   haml "systematic_reviews/searches".to_sym
 end
 
+
+# Form to create a new search
 get '/review/:id/search/new' do |id|
   halt_unless_auth('search_edit')
 
@@ -29,6 +42,8 @@ get '/review/:id/search/new' do |id|
   haml "searches/search_edit".to_sym
 end
 
+
+# List of searches for a user
 get '/review/:rs_id/searches/user/:user_id' do |rs_id,user_id|
   halt_unless_auth('review_view')
   @review=SystematicReview[rs_id]
@@ -43,10 +58,7 @@ get '/review/:rs_id/searches/user/:user_id' do |rs_id,user_id|
 end
 
 
-
-
-
-
+# Compare records betweeen searches
 get '/review/:rs_id/searches/compare_records' do |rs_id|
   halt_unless_auth('search_view')
   @review=SystematicReview[rs_id]
@@ -80,3 +92,5 @@ get '/review/:rs_id/searches/compare_records' do |rs_id|
 
   haml "searches/compare_records".to_sym
 end
+
+# @!endgroup

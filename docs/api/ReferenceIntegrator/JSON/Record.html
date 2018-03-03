@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Class: ReferenceIntegrator::JSON::Record
+  
+    &mdash; Documentation by YARD 0.9.12
+  
+</title>
+
+  <link rel="stylesheet" href="../../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "ReferenceIntegrator::JSON::Record";
+  relpath = '../../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../../class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../../_index.html">Index (R)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../../ReferenceIntegrator.html" title="ReferenceIntegrator (module)">ReferenceIntegrator</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../JSON.html" title="ReferenceIntegrator::JSON (module)">JSON</a></span></span>
+     &raquo; 
+    <span class="title">Record</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../../class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Class: ReferenceIntegrator::JSON::Record
+  
+  
+  
+</h1>
+<div class="box_info">
+  
+  <dl>
+    <dt>Inherits:</dt>
+    <dd>
+      <span class="inheritName">Object</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">ReferenceIntegrator::JSON::Record</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+    </dd>
+  </dl>
+  
+
+  
+  
+  
+  
+  <dl>
+      <dt>Includes:</dt>
+      <dd><span class='object_link'><a href="../CommonRecordAttributes.html" title="ReferenceIntegrator::CommonRecordAttributes (module)">CommonRecordAttributes</a></span>, <span class='object_link'><a href="../../ReferenceMethods.html" title="ReferenceMethods (module)">ReferenceMethods</a></span></dd>
+  </dl>
+  
+  
+
+  
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>lib/reference_integrator/json.rb</dd>
+  </dl>
+  
+</div>
+
+
+
+
+
+  <h2>Instance Attribute Summary <small><a href="#" class="summary_toggle">collapse</a></small></h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#jv-instance_method" title="#jv (instance method)">#<strong>jv</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute jv.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#references_crossref-instance_method" title="#references_crossref (instance method)">#<strong>references_crossref</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute references_crossref.</p>
+</div></span>
+  
+</li>
+
+    
+  </ul>
+
+
+
+  
+  
+  <h3 class="inherited">Attributes included from <span class='object_link'><a href="../CommonRecordAttributes.html" title="ReferenceIntegrator::CommonRecordAttributes (module)">CommonRecordAttributes</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="../CommonRecordAttributes.html#abstract-instance_method" title="ReferenceIntegrator::CommonRecordAttributes#abstract (method)">#abstract</a></span>, <span class='object_link'><a href="../CommonRecordAttributes.html#affiliation-instance_method" title="ReferenceIntegrator::CommonRecordAttributes#affiliation (method)">#affiliation</a></span>, <span class='object_link'><a href="../CommonRecordAttributes.html#authors-instance_method" title="ReferenceIntegrator::CommonRecordAttributes#authors (method)">#authors</a></span>, <span class='object_link'><a href="../CommonRecordAttributes.html#cited-instance_method" title="ReferenceIntegrator::CommonRecordAttributes#cited (method)">#cited</a></span>, <span class='object_link'><a href="../CommonRecordAttributes.html#doi-instance_method" title="ReferenceIntegrator::CommonRecordAttributes#doi (method)">#doi</a></span>, <span class='object_link'><a href="../CommonRecordAttributes.html#id_scopus-instance_method" title="ReferenceIntegrator::CommonRecordAttributes#id_scopus (method)">#id_scopus</a></span>, <span class='object_link'><a href="../CommonRecordAttributes.html#id_wos-instance_method" title="ReferenceIntegrator::CommonRecordAttributes#id_wos (method)">#id_wos</a></span>, <span class='object_link'><a href="../CommonRecordAttributes.html#journal-instance_method" title="ReferenceIntegrator::CommonRecordAttributes#journal (method)">#journal</a></span>, <span class='object_link'><a href="../CommonRecordAttributes.html#journal_abbr-instance_method" title="ReferenceIntegrator::CommonRecordAttributes#journal_abbr (method)">#journal_abbr</a></span>, <span class='object_link'><a href="../CommonRecordAttributes.html#keywords-instance_method" title="ReferenceIntegrator::CommonRecordAttributes#keywords (method)">#keywords</a></span>, <span class='object_link'><a href="../CommonRecordAttributes.html#keywords_plus-instance_method" title="ReferenceIntegrator::CommonRecordAttributes#keywords_plus (method)">#keywords_plus</a></span>, <span class='object_link'><a href="../CommonRecordAttributes.html#language-instance_method" title="ReferenceIntegrator::CommonRecordAttributes#language (method)">#language</a></span>, <span class='object_link'><a href="../CommonRecordAttributes.html#pages-instance_method" title="ReferenceIntegrator::CommonRecordAttributes#pages (method)">#pages</a></span>, <span class='object_link'><a href="../CommonRecordAttributes.html#references_scopus-instance_method" title="ReferenceIntegrator::CommonRecordAttributes#references_scopus (method)">#references_scopus</a></span>, <span class='object_link'><a href="../CommonRecordAttributes.html#references_wos-instance_method" title="ReferenceIntegrator::CommonRecordAttributes#references_wos (method)">#references_wos</a></span>, <span class='object_link'><a href="../CommonRecordAttributes.html#title-instance_method" title="ReferenceIntegrator::CommonRecordAttributes#title (method)">#title</a></span>, <span class='object_link'><a href="../CommonRecordAttributes.html#type-instance_method" title="ReferenceIntegrator::CommonRecordAttributes#type (method)">#type</a></span>, <span class='object_link'><a href="../CommonRecordAttributes.html#uid-instance_method" title="ReferenceIntegrator::CommonRecordAttributes#uid (method)">#uid</a></span>, <span class='object_link'><a href="../CommonRecordAttributes.html#url-instance_method" title="ReferenceIntegrator::CommonRecordAttributes#url (method)">#url</a></span>, <span class='object_link'><a href="../CommonRecordAttributes.html#volume-instance_method" title="ReferenceIntegrator::CommonRecordAttributes#volume (method)">#volume</a></span>, <span class='object_link'><a href="../CommonRecordAttributes.html#year-instance_method" title="ReferenceIntegrator::CommonRecordAttributes#year (method)">#year</a></span></p>
+
+
+  
+    <h2>
+      Class Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#create-class_method" title="create (class method)">.<strong>create</strong>(json)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+    <h2>
+      Instance Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#author-instance_method" title="#author (instance method)">#<strong>author</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">#<strong>initialize</strong>(json_value)  &#x21d2; Record </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>A new instance of Record.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#parse_common-instance_method" title="#parse_common (instance method)">#<strong>parse_common</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#references-instance_method" title="#references (instance method)">#<strong>references</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#strip_lines-instance_method" title="#strip_lines (instance method)">#<strong>strip_lines</strong>(value)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="../../ReferenceMethods.html" title="ReferenceMethods (module)">ReferenceMethods</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="../../ReferenceMethods.html#authors_apa_6-instance_method" title="ReferenceMethods#authors_apa_6 (method)">#authors_apa_6</a></span>, <span class='object_link'><a href="../../ReferenceMethods.html#cite_apa_6-instance_method" title="ReferenceMethods#cite_apa_6 (method)">#cite_apa_6</a></span>, <span class='object_link'><a href="../../ReferenceMethods.html#ref_apa_6-instance_method" title="ReferenceMethods#ref_apa_6 (method)">#ref_apa_6</a></span>, <span class='object_link'><a href="../../ReferenceMethods.html#ref_apa_6_brief-instance_method" title="ReferenceMethods#ref_apa_6_brief (method)">#ref_apa_6_brief</a></span>, <span class='object_link'><a href="../../ReferenceMethods.html#ref_apa_6_brief_html-instance_method" title="ReferenceMethods#ref_apa_6_brief_html (method)">#ref_apa_6_brief_html</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="../../DOIHelpers.html" title="DOIHelpers (module)">DOIHelpers</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="../../DOIHelpers.html#a_doi-instance_method" title="DOIHelpers#a_doi (method)">#a_doi</a></span>, <span class='object_link'><a href="../../DOIHelpers.html#doi_without_http-instance_method" title="DOIHelpers#doi_without_http (method)">#doi_without_http</a></span>, <span class='object_link'><a href="../../DOIHelpers.html#find_doi-instance_method" title="DOIHelpers#find_doi (method)">#find_doi</a></span>, <span class='object_link'><a href="../../DOIHelpers.html#url_doi-instance_method" title="DOIHelpers#url_doi (method)">#url_doi</a></span></p>
+<div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <h3 class="signature first" id="initialize-instance_method">
+  
+    #<strong>initialize</strong>(json_value)  &#x21d2; <tt><span class='object_link'><a href="" title="ReferenceIntegrator::JSON::Record (class)">Record</a></span></tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns a new instance of Record</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+81
+82
+83
+84
+85
+86
+87</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/reference_integrator/json.rb', line 81</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_json_value'>json_value</span><span class='rparen'>)</span>
+  <span class='ivar'>@jv</span><span class='op'>=</span><span class='id identifier rubyid_json_value'>json_value</span>
+  <span class='ivar'>@authors</span><span class='op'>=</span><span class='lbracket'>[</span><span class='rbracket'>]</span>
+  <span class='id identifier rubyid_parse_common'>parse_common</span>
+
+
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id=""></span>
+      <div class="method_details first">
+  <h3 class="signature first" id="jv-instance_method">
+  
+    #<strong>jv</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute jv</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+67
+68
+69</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/reference_integrator/json.rb', line 67</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_jv'>jv</span>
+  <span class='ivar'>@jv</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="references_crossref=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="references_crossref-instance_method">
+  
+    #<strong>references_crossref</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute references_crossref</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+68
+69
+70</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/reference_integrator/json.rb', line 68</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_references_crossref'>references_crossref</span>
+  <span class='ivar'>@references_crossref</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="create-class_method">
+  
+    .<strong>create</strong>(json)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+73
+74
+75
+76
+77
+78
+79</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/reference_integrator/json.rb', line 73</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_create'>create</span><span class='lparen'>(</span><span class='id identifier rubyid_json'>json</span><span class='rparen'>)</span>
+  <span class='comment'>#type=self.determine_type(bibtex_value)
+</span>  <span class='comment'>#klass=&quot;Reference_#{type.capitalize}&quot;.to_sym
+</span>  <span class='comment'>#ReferenceIntegrator::JSON.const_get(klass).send(:new, bibtex_value)
+</span>
+  <span class='const'><span class='object_link'><a href="../../ReferenceIntegrator.html" title="ReferenceIntegrator (module)">ReferenceIntegrator</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../JSON.html" title="ReferenceIntegrator::JSON (module)">JSON</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="ReferenceIntegrator::JSON::Record (class)">Record</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="#initialize-instance_method" title="ReferenceIntegrator::JSON::Record#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_json'>json</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="author-instance_method">
+  
+    #<strong>author</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+125
+126
+127
+128
+129</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/reference_integrator/json.rb', line 125</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_author'>author</span>
+  <span class='comment'>#$log.info(@authors)
+</span>  <span class='ivar'>@authors</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span> <span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'> and </span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="parse_common-instance_method">
+  
+    #<strong>parse_common</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/reference_integrator/json.rb', line 88</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_parse_common'>parse_common</span>
+  <span class='kw'>begin</span>
+    <span class='id identifier rubyid_vh'>vh</span><span class='op'>=</span><span class='ivar'>@jv</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>message</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span>
+
+    <span class='ivar'>@uid</span><span class='op'>=</span><span class='id identifier rubyid_vh'>vh</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>URL</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span>
+    <span class='ivar'>@title</span><span class='op'>=</span><span class='id identifier rubyid_vh'>vh</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>title</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>;</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+    <span class='comment'>#$log.info(&quot;Parseando&quot;)
+</span>    <span class='comment'>#$log.info(vh[&quot;author&quot;])
+</span>    <span class='ivar'>@authors</span><span class='op'>=</span><span class='id identifier rubyid_vh'>vh</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>author</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_v'>v</span><span class='op'>|</span>
+      <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_v'>v</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>family</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_content'>, </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_v'>v</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>given</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='rbrace'>}</span> <span class='kw'>unless</span> <span class='id identifier rubyid_vh'>vh</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>author</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+
+<span class='comment'>#          #$log.info(@authors)
+</span>
+    <span class='ivar'>@journal</span><span class='op'>=</span><span class='id identifier rubyid_vh'>vh</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>container-title</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>;</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+    <span class='ivar'>@year</span><span class='op'>=</span><span class='id identifier rubyid_vh'>vh</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>issued</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>date-parts</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span>
+    <span class='ivar'>@volume</span><span class='op'>=</span><span class='id identifier rubyid_vh'>vh</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>volume</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span>
+    <span class='ivar'>@pages</span><span class='op'>=</span><span class='id identifier rubyid_vh'>vh</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>page</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span>
+    <span class='ivar'>@type</span><span class='op'>=</span><span class='id identifier rubyid_vh'>vh</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>type</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span>
+    <span class='ivar'>@doi</span><span class='op'>=</span><span class='id identifier rubyid_vh'>vh</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>DOI</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span>
+    <span class='ivar'>@url</span><span class='op'>=</span><span class='id identifier rubyid_vh'>vh</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>URL</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span>
+    <span class='ivar'>@references_crossref</span><span class='op'>=</span><span class='ivar'>@jv</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>message</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>reference</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span>
+
+  <span class='kw'>rescue</span> <span class='const'>Exception</span><span class='op'>=&gt;</span><span class='id identifier rubyid_e'>e</span>
+    <span class='comment'>#$log.info(&quot;Error:#{vh}&quot;)
+</span>    <span class='id identifier rubyid_raise'>raise</span> <span class='id identifier rubyid_e'>e</span>
+  <span class='kw'>end</span>
+
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="references-instance_method">
+  
+    #<strong>references</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+118
+119
+120
+121
+122</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/reference_integrator/json.rb', line 118</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_references'>references</span>
+  <span class='ivar'>@references_crossref</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_v'>v</span><span class='op'>|</span>
+    <span class='const'><span class='object_link'><a href="Reference.html" title="ReferenceIntegrator::JSON::Reference (class)">Reference</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Reference.html#initialize-instance_method" title="ReferenceIntegrator::JSON::Reference#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_v'>v</span><span class='rparen'>)</span>
+  <span class='rbrace'>}</span> <span class='kw'>unless</span> <span class='ivar'>@references_crossref</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="strip_lines-instance_method">
+  
+    #<strong>strip_lines</strong>(value)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+135
+136
+137</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/reference_integrator/json.rb', line 135</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_strip_lines'>strip_lines</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='period'>.</span><span class='id identifier rubyid_gsub'>gsub</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\n\s*</span><span class='regexp_end'>/</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'> </span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+      <div id="footer">
+  Generated on Sat Mar  3 02:48:40 2018 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.12 (ruby-2.4.1).
+</div>
+
+    </div>
+  </body>
+</html>

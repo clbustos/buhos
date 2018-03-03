@@ -1,0 +1,1766 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Class: AnalysisSystematicReview
+  
+    &mdash; Documentation by YARD 0.9.12
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "AnalysisSystematicReview";
+  relpath = '';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="_index.html">Index (A)</a> &raquo;
+    
+    
+    <span class="title">AnalysisSystematicReview</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Class: AnalysisSystematicReview
+  
+  
+  
+</h1>
+<div class="box_info">
+  
+  <dl>
+    <dt>Inherits:</dt>
+    <dd>
+      <span class="inheritName">Object</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">AnalysisSystematicReview</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+    </dd>
+  </dl>
+  
+
+  
+  
+  
+  
+  <dl>
+      <dt>Includes:</dt>
+      <dd><span class='object_link'><a href="AnalysisSrStageMixin.html" title="AnalysisSrStageMixin (module)">AnalysisSrStageMixin</a></span>, <span class='object_link'><a href="Buhos/StagesMixin.html" title="Buhos::StagesMixin (module)">Buhos::StagesMixin</a></span></dd>
+  </dl>
+  
+  
+
+  
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>lib/analysis_systematic_review.rb</dd>
+  </dl>
+  
+</div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>A Facade pattern class Shows general statistics for systematic reviews and
+for each article</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+
+
+
+  <h2>Instance Attribute Summary <small><a href="#" class="summary_toggle">collapse</a></small></h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#cd_ref_id-instance_method" title="#cd_ref_id (instance method)">#<strong>cd_ref_id</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Id for canonical documents associated to references.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#cd_reg_id-instance_method" title="#cd_reg_id (instance method)">#<strong>cd_reg_id</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Id for canonical documents associated to records.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#cd_todos_id-instance_method" title="#cd_todos_id (instance method)">#<strong>cd_todos_id</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Id for all canonical documents.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#rec-instance_method" title="#rec (instance method)">#<strong>rec</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>References between canonical documents.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#ref_count_entrada-instance_method" title="#ref_count_entrada (instance method)">#<strong>ref_count_entrada</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Hash for canonical documents, with incoming citations.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#ref_count_salida-instance_method" title="#ref_count_salida (instance method)">#<strong>ref_count_salida</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Hash for canonical documents, with out citations.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#rs-instance_method" title="#rs (instance method)">#<strong>rs</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute rs.</p>
+</div></span>
+  
+</li>
+
+    
+  </ul>
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#cd_count_entrada-instance_method" title="#cd_count_entrada (instance method)">#<strong>cd_count_entrada</strong>(id)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#cd_count_entrada_rtr-instance_method" title="#cd_count_entrada_rtr (instance method)">#<strong>cd_count_entrada_rtr</strong>(id)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#cd_count_ref-instance_method" title="#cd_count_ref (instance method)">#<strong>cd_count_ref</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#cd_count_reg-instance_method" title="#cd_count_reg (instance method)">#<strong>cd_count_reg</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#cd_count_salida-instance_method" title="#cd_count_salida (instance method)">#<strong>cd_count_salida</strong>(id)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#cd_count_total-instance_method" title="#cd_count_total (instance method)">#<strong>cd_count_total</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#cd_en_reference%3F-instance_method" title="#cd_en_reference? (instance method)">#<strong>cd_en_reference?</strong>(id)  &#x21d2; Boolean </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Señala si un cd es parte de una reference# Es decir, en algún momento fue
+citado por alguien.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#cd_en_registro%3F-instance_method" title="#cd_en_registro? (instance method)">#<strong>cd_en_registro?</strong>(id)  &#x21d2; Boolean </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Señala si un cd es parte de un registro, es decir, si aparece en alguna de
+las searches.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#cd_hash-instance_method" title="#cd_hash (instance method)">#<strong>cd_hash</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#cd_in_resolution_stage%3F-instance_method" title="#cd_in_resolution_stage? (instance method)">#<strong>cd_in_resolution_stage?</strong>(id, stage)  &#x21d2; Boolean </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#files_by_cd-instance_method" title="#files_by_cd (instance method)">#<strong>files_by_cd</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">#<strong>initialize</strong>(rs)  &#x21d2; AnalysisSystematicReview </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>A new instance of AnalysisSystematicReview.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#more_cited-instance_method" title="#more_cited (instance method)">#<strong>more_cited</strong>(n = 20)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#pattern_from_s-instance_method" title="#pattern_from_s (instance method)">#<strong>pattern_from_s</strong>(text)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#pattern_id-instance_method" title="#pattern_id (instance method)">#<strong>pattern_id</strong>(a)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#pattern_name-instance_method" title="#pattern_name (instance method)">#<strong>pattern_name</strong>(a)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#pattern_order-instance_method" title="#pattern_order (instance method)">#<strong>pattern_order</strong>(a)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#with_more_references-instance_method" title="#with_more_references (instance method)">#<strong>with_more_references</strong>(n = 20)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="Buhos/StagesMixin.html" title="Buhos::StagesMixin (module)">Buhos::StagesMixin</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Buhos/StagesMixin.html#get_stage_name-instance_method" title="Buhos::StagesMixin#get_stage_name (method)">#get_stage_name</a></span>, <span class='object_link'><a href="Buhos/StagesMixin.html#get_stages_ids-instance_method" title="Buhos::StagesMixin#get_stages_ids (method)">#get_stages_ids</a></span>, <span class='object_link'><a href="Buhos/StagesMixin.html#get_stages_names-instance_method" title="Buhos::StagesMixin#get_stages_names (method)">#get_stages_names</a></span>, <span class='object_link'><a href="Buhos/StagesMixin.html#get_stages_names_t-instance_method" title="Buhos::StagesMixin#get_stages_names_t (method)">#get_stages_names_t</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="AnalysisSrStageMixin.html" title="AnalysisSrStageMixin (module)">AnalysisSrStageMixin</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="AnalysisSrStageMixin.html#cd_accepted_id-instance_method" title="AnalysisSrStageMixin#cd_accepted_id (method)">#cd_accepted_id</a></span>, <span class='object_link'><a href="AnalysisSrStageMixin.html#cd_from_pattern-instance_method" title="AnalysisSrStageMixin#cd_from_pattern (method)">#cd_from_pattern</a></span>, <span class='object_link'><a href="AnalysisSrStageMixin.html#cd_id_assigned_by_user-instance_method" title="AnalysisSrStageMixin#cd_id_assigned_by_user (method)">#cd_id_assigned_by_user</a></span>, <span class='object_link'><a href="AnalysisSrStageMixin.html#cd_rejected_id-instance_method" title="AnalysisSrStageMixin#cd_rejected_id (method)">#cd_rejected_id</a></span>, <span class='object_link'><a href="AnalysisSrStageMixin.html#cd_screened_id-instance_method" title="AnalysisSrStageMixin#cd_screened_id (method)">#cd_screened_id</a></span>, <span class='object_link'><a href="AnalysisSrStageMixin.html#cd_without_abstract-instance_method" title="AnalysisSrStageMixin#cd_without_abstract (method)">#cd_without_abstract</a></span>, <span class='object_link'><a href="AnalysisSrStageMixin.html#cd_without_allocations-instance_method" title="AnalysisSrStageMixin#cd_without_allocations (method)">#cd_without_allocations</a></span>, <span class='object_link'><a href="AnalysisSrStageMixin.html#count_by_pattern-instance_method" title="AnalysisSrStageMixin#count_by_pattern (method)">#count_by_pattern</a></span>, <span class='object_link'><a href="AnalysisSrStageMixin.html#decisions_by_cd-instance_method" title="AnalysisSrStageMixin#decisions_by_cd (method)">#decisions_by_cd</a></span>, <span class='object_link'><a href="AnalysisSrStageMixin.html#decisions_pattern-instance_method" title="AnalysisSrStageMixin#decisions_pattern (method)">#decisions_pattern</a></span>, <span class='object_link'><a href="AnalysisSrStageMixin.html#get_asrs-instance_method" title="AnalysisSrStageMixin#get_asrs (method)">#get_asrs</a></span>, <span class='object_link'><a href="AnalysisSrStageMixin.html#incoming_citations-instance_method" title="AnalysisSrStageMixin#incoming_citations (method)">#incoming_citations</a></span>, <span class='object_link'><a href="AnalysisSrStageMixin.html#outgoing_citations-instance_method" title="AnalysisSrStageMixin#outgoing_citations (method)">#outgoing_citations</a></span>, <span class='object_link'><a href="AnalysisSrStageMixin.html#resolution_by_cd-instance_method" title="AnalysisSrStageMixin#resolution_by_cd (method)">#resolution_by_cd</a></span>, <span class='object_link'><a href="AnalysisSrStageMixin.html#resolution_pattern-instance_method" title="AnalysisSrStageMixin#resolution_pattern (method)">#resolution_pattern</a></span>, <span class='object_link'><a href="AnalysisSrStageMixin.html#resolutions_f_pattern_decision-instance_method" title="AnalysisSrStageMixin#resolutions_f_pattern_decision (method)">#resolutions_f_pattern_decision</a></span>, <span class='object_link'><a href="AnalysisSrStageMixin.html#stage_complete%3F-instance_method" title="AnalysisSrStageMixin#stage_complete? (method)">#stage_complete?</a></span>, <span class='object_link'><a href="AnalysisSrStageMixin.html#user_decisions-instance_method" title="AnalysisSrStageMixin#user_decisions (method)">#user_decisions</a></span></p>
+<div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <h3 class="signature first" id="initialize-instance_method">
+  
+    #<strong>initialize</strong>(rs)  &#x21d2; <tt><span class='object_link'><a href="" title="AnalysisSystematicReview (class)">AnalysisSystematicReview</a></span></tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns a new instance of AnalysisSystematicReview</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>rs</span>
+      
+      
+        <span class='type'></span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>object Systematic_Review</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+54
+55
+56
+57
+58
+59</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/analysis_systematic_review.rb', line 54</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_rs'>rs</span><span class='rparen'>)</span>
+  <span class='ivar'>@rs</span><span class='op'>=</span><span class='id identifier rubyid_rs'>rs</span>
+  <span class='id identifier rubyid_process_basic_indicators'>process_basic_indicators</span>
+  <span class='id identifier rubyid_process_cite_number'>process_cite_number</span>
+  <span class='id identifier rubyid_procesar_resolutions'>procesar_resolutions</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id=""></span>
+      <div class="method_details first">
+  <h3 class="signature first" id="cd_ref_id-instance_method">
+  
+    #<strong>cd_ref_id</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Id for canonical documents associated to references</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+43
+44
+45</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/analysis_systematic_review.rb', line 43</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_cd_ref_id'>cd_ref_id</span>
+  <span class='ivar'>@cd_ref_id</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="cd_reg_id-instance_method">
+  
+    #<strong>cd_reg_id</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Id for canonical documents associated to records</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+41
+42
+43</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/analysis_systematic_review.rb', line 41</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_cd_reg_id'>cd_reg_id</span>
+  <span class='ivar'>@cd_reg_id</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="cd_todos_id-instance_method">
+  
+    #<strong>cd_todos_id</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Id for all canonical documents</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+45
+46
+47</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/analysis_systematic_review.rb', line 45</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_cd_todos_id'>cd_todos_id</span>
+  <span class='ivar'>@cd_todos_id</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="rec-instance_method">
+  
+    #<strong>rec</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>References between canonical documents</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+47
+48
+49</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/analysis_systematic_review.rb', line 47</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_rec'>rec</span>
+  <span class='ivar'>@rec</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="ref_count_entrada-instance_method">
+  
+    #<strong>ref_count_entrada</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Hash for canonical documents, with incoming citations</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+49
+50
+51</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/analysis_systematic_review.rb', line 49</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_ref_count_entrada'>ref_count_entrada</span>
+  <span class='ivar'>@ref_count_entrada</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="ref_count_salida-instance_method">
+  
+    #<strong>ref_count_salida</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Hash for canonical documents, with out citations</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+51
+52
+53</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/analysis_systematic_review.rb', line 51</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_ref_count_salida'>ref_count_salida</span>
+  <span class='ivar'>@ref_count_salida</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="rs-instance_method">
+  
+    #<strong>rs</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute rs</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+39
+40
+41</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/analysis_systematic_review.rb', line 39</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_rs'>rs</span>
+  <span class='ivar'>@rs</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="cd_count_entrada-instance_method">
+  
+    #<strong>cd_count_entrada</strong>(id)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+63
+64
+65</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/analysis_systematic_review.rb', line 63</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_cd_count_entrada'>cd_count_entrada</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span>
+  <span class='ivar'>@ref_count_entrada</span><span class='lbracket'>[</span><span class='id identifier rubyid_id'>id</span><span class='rbracket'>]</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="cd_count_entrada_rtr-instance_method">
+  
+    #<strong>cd_count_entrada_rtr</strong>(id)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+67
+68
+69</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/analysis_systematic_review.rb', line 67</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_cd_count_entrada_rtr'>cd_count_entrada_rtr</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span>
+  <span class='ivar'>@cd_reference_rtr</span><span class='lbracket'>[</span><span class='id identifier rubyid_id'>id</span><span class='rbracket'>]</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="cd_count_ref-instance_method">
+  
+    #<strong>cd_count_ref</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+75
+76
+77</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/analysis_systematic_review.rb', line 75</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_cd_count_ref'>cd_count_ref</span>
+  <span class='ivar'>@cd_ref_id</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="cd_count_reg-instance_method">
+  
+    #<strong>cd_count_reg</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+79
+80
+81</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/analysis_systematic_review.rb', line 79</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_cd_count_reg'>cd_count_reg</span>
+  <span class='ivar'>@cd_reg_id</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="cd_count_salida-instance_method">
+  
+    #<strong>cd_count_salida</strong>(id)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+71
+72
+73</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/analysis_systematic_review.rb', line 71</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_cd_count_salida'>cd_count_salida</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span>
+  <span class='ivar'>@ref_count_salida</span><span class='lbracket'>[</span><span class='id identifier rubyid_id'>id</span><span class='rbracket'>]</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="cd_count_total-instance_method">
+  
+    #<strong>cd_count_total</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+92
+93
+94</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/analysis_systematic_review.rb', line 92</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_cd_count_total'>cd_count_total</span>
+  <span class='ivar'>@cd_todos_id</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="cd_en_reference?-instance_method">
+  
+    #<strong>cd_en_reference?</strong>(id)  &#x21d2; <tt>Boolean</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Señala si un cd es parte de una reference# Es decir, en algún momento fue
+citado por alguien.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+89
+90
+91</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/analysis_systematic_review.rb', line 89</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_cd_en_reference?'>cd_en_reference?</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span>
+  <span class='ivar'>@cd_ref_id</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span> <span class='id identifier rubyid_id'>id</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="cd_en_registro?-instance_method">
+  
+    #<strong>cd_en_registro?</strong>(id)  &#x21d2; <tt>Boolean</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Señala si un cd es parte de un registro, es decir, si aparece en alguna de
+las searches</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+85
+86
+87</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/analysis_systematic_review.rb', line 85</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_cd_en_registro?'>cd_en_registro?</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span>
+  <span class='ivar'>@cd_reg_id</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span> <span class='id identifier rubyid_id'>id</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="cd_hash-instance_method">
+  
+    #<strong>cd_hash</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+60
+61
+62</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/analysis_systematic_review.rb', line 60</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_cd_hash'>cd_hash</span>
+  <span class='ivar'>@rs</span><span class='period'>.</span><span class='id identifier rubyid_cd_hash'>cd_hash</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="cd_in_resolution_stage?-instance_method">
+  
+    #<strong>cd_in_resolution_stage?</strong>(id, stage)  &#x21d2; <tt>Boolean</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+136
+137
+138</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/analysis_systematic_review.rb', line 136</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_cd_in_resolution_stage?'>cd_in_resolution_stage?</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='comma'>,</span> <span class='id identifier rubyid_stage'>stage</span><span class='rparen'>)</span>
+  <span class='ivar'>@cd_resolutions</span><span class='lbracket'>[</span><span class='id identifier rubyid_stage'>stage</span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='id identifier rubyid_id'>id</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>?</span> <span class='kw'>false</span> <span class='op'>:</span> <span class='ivar'>@cd_resolutions</span><span class='lbracket'>[</span><span class='id identifier rubyid_stage'>stage</span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='id identifier rubyid_id'>id</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='symbol'>:resolution</span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>yes</span><span class='tstring_end'>&#39;</span></span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="files_by_cd-instance_method">
+  
+    #<strong>files_by_cd</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+152
+153
+154</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/analysis_systematic_review.rb', line 152</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_files_by_cd'>files_by_cd</span>
+  <span class='gvar'>$db</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>SELECT a.*,cds.canonical_document_id FROM files a INNER JOIN file_cds cds ON a.id=cds.file_id INNER JOIN file_srs ars ON a.id=ars.file_id WHERE systematic_review_id=? AND (cds.not_consider = ? OR cds.not_consider IS NULL)</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='ivar'>@rs</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='comma'>,</span> <span class='int'>0</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_to_hash_groups'>to_hash_groups</span><span class='lparen'>(</span><span class='symbol'>:canonical_document_id</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="more_cited-instance_method">
+  
+    #<strong>more_cited</strong>(n = 20)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+140
+141
+142</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/analysis_systematic_review.rb', line 140</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_more_cited'>more_cited</span><span class='lparen'>(</span><span class='id identifier rubyid_n'>n</span><span class='op'>=</span><span class='int'>20</span><span class='rparen'>)</span>
+  <span class='ivar'>@ref_count_entrada</span><span class='period'>.</span><span class='id identifier rubyid_sort_by'>sort_by</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_a'>a</span><span class='op'>|</span> <span class='id identifier rubyid_a'>a</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span><span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_reverse'>reverse</span><span class='lbracket'>[</span><span class='int'>0</span><span class='op'>...</span><span class='id identifier rubyid_n'>n</span><span class='rbracket'>]</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="pattern_from_s-instance_method">
+  
+    #<strong>pattern_from_s</strong>(text)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+169
+170
+171
+172
+173
+174
+175</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/analysis_systematic_review.rb', line 169</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_pattern_from_s'>pattern_from_s</span><span class='lparen'>(</span><span class='id identifier rubyid_text'>text</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_text'>text</span><span class='period'>.</span><span class='id identifier rubyid_split'>split</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>__</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_inject'>inject</span><span class='lparen'>(</span><span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span><span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_ac'>ac</span><span class='comma'>,</span><span class='id identifier rubyid_v'>v</span><span class='op'>|</span>
+    <span class='id identifier rubyid_key'>key</span><span class='comma'>,</span><span class='id identifier rubyid_value'>value</span><span class='op'>=</span><span class='id identifier rubyid_v'>v</span><span class='period'>.</span><span class='id identifier rubyid_split'>split</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>_</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_ac'>ac</span><span class='lbracket'>[</span><span class='id identifier rubyid_key'>key</span><span class='rbracket'>]</span><span class='op'>=</span><span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span>
+    <span class='id identifier rubyid_ac'>ac</span>
+  <span class='rbrace'>}</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="pattern_id-instance_method">
+  
+    #<strong>pattern_id</strong>(a)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+163
+164
+165
+166
+167</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/analysis_systematic_review.rb', line 163</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_pattern_id'>pattern_id</span><span class='lparen'>(</span><span class='id identifier rubyid_a'>a</span><span class='rparen'>)</span>
+  <span class='const'><span class='object_link'><a href="Decision.html" title="Decision (class)">Decision</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Decision.html#N_EST-constant" title="Decision::N_EST (constant)">N_EST</a></span></span><span class='period'>.</span><span class='id identifier rubyid_keys'>keys</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_key'>key</span><span class='op'>|</span>
+    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_key'>key</span><span class='embexpr_end'>}</span><span class='tstring_content'>_</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_a'>a</span><span class='lbracket'>[</span><span class='id identifier rubyid_key'>key</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+  <span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>__</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="pattern_name-instance_method">
+  
+    #<strong>pattern_name</strong>(a)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+157
+158
+159
+160
+161</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/analysis_systematic_review.rb', line 157</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_pattern_name'>pattern_name</span><span class='lparen'>(</span><span class='id identifier rubyid_a'>a</span><span class='rparen'>)</span>
+  <span class='const'><span class='object_link'><a href="Decision.html" title="Decision (class)">Decision</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Decision.html#N_EST-constant" title="Decision::N_EST (constant)">N_EST</a></span></span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_key'>key</span><span class='comma'>,</span><span class='id identifier rubyid_name'>name</span><span class='op'>|</span>
+    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='op'>::</span><span class='const'>I18n</span><span class='op'>::</span><span class='id identifier rubyid_t'>t</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>:</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_a'>a</span><span class='lbracket'>[</span><span class='id identifier rubyid_key'>key</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+  <span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>;</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="pattern_order-instance_method">
+  
+    #<strong>pattern_order</strong>(a)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+147
+148
+149</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/analysis_systematic_review.rb', line 147</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_pattern_order'>pattern_order</span><span class='lparen'>(</span><span class='id identifier rubyid_a'>a</span><span class='rparen'>)</span>
+  <span class='op'>-</span> <span class='lparen'>(</span><span class='int'>1000</span><span class='op'>*</span><span class='id identifier rubyid_a'>a</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>yes</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span> <span class='op'>+</span> <span class='int'>100</span><span class='op'>*</span><span class='id identifier rubyid_a'>a</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>no</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span> <span class='op'>+</span> <span class='int'>10</span><span class='op'>*</span><span class='id identifier rubyid_a'>a</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>undecided</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span> <span class='op'>+</span> <span class='int'>1</span><span class='op'>*</span><span class='id identifier rubyid_a'>a</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>ND</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="with_more_references-instance_method">
+  
+    #<strong>with_more_references</strong>(n = 20)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+143
+144
+145</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/analysis_systematic_review.rb', line 143</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_with_more_references'>with_more_references</span><span class='lparen'>(</span><span class='id identifier rubyid_n'>n</span><span class='op'>=</span><span class='int'>20</span><span class='rparen'>)</span>
+  <span class='ivar'>@ref_count_salida</span><span class='period'>.</span><span class='id identifier rubyid_sort_by'>sort_by</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_a'>a</span><span class='op'>|</span> <span class='id identifier rubyid_a'>a</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span><span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_reverse'>reverse</span><span class='lbracket'>[</span><span class='int'>0</span><span class='op'>...</span><span class='id identifier rubyid_n'>n</span><span class='rbracket'>]</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+      <div id="footer">
+  Generated on Sat Mar  3 02:48:40 2018 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.12 (ruby-2.4.1).
+</div>
+
+    </div>
+  </body>
+</html>

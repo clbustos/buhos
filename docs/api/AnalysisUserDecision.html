@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Class: AnalysisUserDecision
+  
+    &mdash; Documentation by YARD 0.9.12
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "AnalysisUserDecision";
+  relpath = '';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="_index.html">Index (A)</a> &raquo;
+    
+    
+    <span class="title">AnalysisUserDecision</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Class: AnalysisUserDecision
+  
+  
+  
+</h1>
+<div class="box_info">
+  
+  <dl>
+    <dt>Inherits:</dt>
+    <dd>
+      <span class="inheritName">Object</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">AnalysisUserDecision</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+    </dd>
+  </dl>
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>lib/analysis_user_decision.rb</dd>
+  </dl>
+  
+</div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>Information about decisions taken by an user, on a systematic review of a
+scecific stage</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+
+
+
+  <h2>Instance Attribute Summary <small><a href="#" class="summary_toggle">collapse</a></small></h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#asignaciones-instance_method" title="#asignaciones (instance method)">#<strong>asignaciones</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Raw dataset of AllocationCd.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#decision_por_cd-instance_method" title="#decision_por_cd (instance method)">#<strong>decision_por_cd</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Decision for each assignment.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#decisions-instance_method" title="#decisions (instance method)">#<strong>decisions</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Raw dataset of Decision.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#total_decisions-instance_method" title="#total_decisions (instance method)">#<strong>total_decisions</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Number of document for each type of decision.</p>
+</div></span>
+  
+</li>
+
+    
+  </ul>
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#allocated_to_cd_id-instance_method" title="#allocated_to_cd_id (instance method)">#<strong>allocated_to_cd_id</strong>(cd_id)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#canonical_documents-instance_method" title="#canonical_documents (instance method)">#<strong>canonical_documents</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#decision_cd_id-instance_method" title="#decision_cd_id (instance method)">#<strong>decision_cd_id</strong>(cd_id)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#have_allocations%3F-instance_method" title="#have_allocations? (instance method)">#<strong>have_allocations?</strong>  &#x21d2; Boolean </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">#<strong>initialize</strong>(rs_id, user_id, stage)  &#x21d2; AnalysisUserDecision </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>A new instance of AnalysisUserDecision.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#procesar_cd_ids-instance_method" title="#procesar_cd_ids (instance method)">#<strong>procesar_cd_ids</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Define @cd_ids.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#process_basic_indicators-instance_method" title="#process_basic_indicators (instance method)">#<strong>process_basic_indicators</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#systematic_review-instance_method" title="#systematic_review (instance method)">#<strong>systematic_review</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>procesar_numero_citas.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+<div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <h3 class="signature first" id="initialize-instance_method">
+  
+    #<strong>initialize</strong>(rs_id, user_id, stage)  &#x21d2; <tt><span class='object_link'><a href="" title="AnalysisUserDecision (class)">AnalysisUserDecision</a></span></tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns a new instance of AnalysisUserDecision</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+40
+41
+42
+43
+44
+45
+46
+47
+48</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/analysis_user_decision.rb', line 40</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_rs_id'>rs_id</span><span class='comma'>,</span><span class='id identifier rubyid_user_id'>user_id</span><span class='comma'>,</span><span class='id identifier rubyid_stage'>stage</span><span class='rparen'>)</span>
+  <span class='ivar'>@rs_id</span><span class='op'>=</span><span class='id identifier rubyid_rs_id'>rs_id</span>
+  <span class='ivar'>@user_id</span><span class='op'>=</span><span class='id identifier rubyid_user_id'>user_id</span>
+  <span class='ivar'>@stage</span><span class='op'>=</span><span class='id identifier rubyid_stage'>stage</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>
+  <span class='ivar'>@asignaciones</span><span class='op'>=</span><span class='id identifier rubyid_nil?'>nil?</span>
+  <span class='id identifier rubyid_procesar_cd_ids'>procesar_cd_ids</span>
+  <span class='id identifier rubyid_process_basic_indicators'>process_basic_indicators</span>
+  <span class='comment'>#procesar_numero_citas
+</span><span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id=""></span>
+      <div class="method_details first">
+  <h3 class="signature first" id="asignaciones-instance_method">
+  
+    #<strong>asignaciones</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Raw dataset of AllocationCd</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+39
+40
+41</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/analysis_user_decision.rb', line 39</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_asignaciones'>asignaciones</span>
+  <span class='ivar'>@asignaciones</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="decision_por_cd-instance_method">
+  
+    #<strong>decision_por_cd</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Decision for each assignment</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+35
+36
+37</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/analysis_user_decision.rb', line 35</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_decision_por_cd'>decision_por_cd</span>
+  <span class='ivar'>@decision_por_cd</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="decisions-instance_method">
+  
+    #<strong>decisions</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Raw dataset of Decision</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+33
+34
+35</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/analysis_user_decision.rb', line 33</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_decisions'>decisions</span>
+  <span class='ivar'>@decisions</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="total_decisions-instance_method">
+  
+    #<strong>total_decisions</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Number of document for each type of decision</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+37
+38
+39</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/analysis_user_decision.rb', line 37</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_total_decisions'>total_decisions</span>
+  <span class='ivar'>@total_decisions</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="allocated_to_cd_id-instance_method">
+  
+    #<strong>allocated_to_cd_id</strong>(cd_id)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+58
+59
+60</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/analysis_user_decision.rb', line 58</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_allocated_to_cd_id'>allocated_to_cd_id</span><span class='lparen'>(</span><span class='id identifier rubyid_cd_id'>cd_id</span><span class='rparen'>)</span>
+  <span class='ivar'>@cd_ids</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span> <span class='id identifier rubyid_cd_id'>cd_id</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="canonical_documents-instance_method">
+  
+    #<strong>canonical_documents</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+52
+53
+54</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/analysis_user_decision.rb', line 52</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_canonical_documents'>canonical_documents</span>
+  <span class='const'><span class='object_link'><a href="CanonicalDocument.html" title="CanonicalDocument (class)">CanonicalDocument</a></span></span><span class='period'>.</span><span class='id identifier rubyid_where'>where</span><span class='lparen'>(</span><span class='symbol'>:id</span><span class='op'>=&gt;</span><span class='ivar'>@cd_ids</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="decision_cd_id-instance_method">
+  
+    #<strong>decision_cd_id</strong>(cd_id)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+61
+62
+63</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/analysis_user_decision.rb', line 61</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_decision_cd_id'>decision_cd_id</span><span class='lparen'>(</span><span class='id identifier rubyid_cd_id'>cd_id</span><span class='rparen'>)</span>
+  <span class='ivar'>@decision_por_cd</span><span class='lbracket'>[</span><span class='id identifier rubyid_cd_id'>cd_id</span><span class='rbracket'>]</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="have_allocations?-instance_method">
+  
+    #<strong>have_allocations?</strong>  &#x21d2; <tt>Boolean</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+55
+56
+57</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/analysis_user_decision.rb', line 55</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_have_allocations?'>have_allocations?</span>
+  <span class='op'>!</span><span class='ivar'>@asignaciones</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="procesar_cd_ids-instance_method">
+  
+    #<strong>procesar_cd_ids</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Define @cd_ids. Si no se han asignado, los toma todos Si existen
+asignaciones, sólo se consideran estas</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/analysis_user_decision.rb', line 66</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_procesar_cd_ids'>procesar_cd_ids</span>
+  <span class='id identifier rubyid_cd_stage'>cd_stage</span><span class='op'>=</span><span class='id identifier rubyid_systematic_review'>systematic_review</span><span class='period'>.</span><span class='id identifier rubyid_cd_id_by_stage'>cd_id_by_stage</span><span class='lparen'>(</span><span class='ivar'>@stage</span><span class='rparen'>)</span>
+
+  <span class='ivar'>@asignaciones</span><span class='op'>=</span><span class='const'><span class='object_link'><a href="AllocationCd.html" title="AllocationCd (class)">AllocationCd</a></span></span><span class='period'>.</span><span class='id identifier rubyid_where'>where</span><span class='lparen'>(</span><span class='symbol'>:systematic_review_id</span><span class='op'>=&gt;</span><span class='ivar'>@rs_id</span><span class='comma'>,</span> <span class='symbol'>:user_id</span><span class='op'>=&gt;</span><span class='ivar'>@user_id</span><span class='comma'>,</span> <span class='symbol'>:canonical_document_id</span><span class='op'>=&gt;</span><span class='id identifier rubyid_cd_stage'>cd_stage</span><span class='comma'>,</span> <span class='symbol'>:stage</span><span class='op'>=&gt;</span><span class='ivar'>@stage</span><span class='rparen'>)</span>
+
+  <span class='kw'>if</span> <span class='ivar'>@asignaciones</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
+    <span class='ivar'>@cd_ids</span><span class='op'>=</span><span class='lbracket'>[</span><span class='rbracket'>]</span>
+  <span class='kw'>else</span>
+    <span class='ivar'>@cd_ids</span><span class='op'>=</span><span class='ivar'>@asignaciones</span><span class='period'>.</span><span class='id identifier rubyid_select_map'>select_map</span><span class='lparen'>(</span><span class='symbol'>:canonical_document_id</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="process_basic_indicators-instance_method">
+  
+    #<strong>process_basic_indicators</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/analysis_user_decision.rb', line 77</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_process_basic_indicators'>process_basic_indicators</span>
+  <span class='ivar'>@decisions</span><span class='op'>=</span><span class='const'><span class='object_link'><a href="Decision.html" title="Decision (class)">Decision</a></span></span><span class='period'>.</span><span class='id identifier rubyid_where'>where</span><span class='lparen'>(</span><span class='symbol'>:user_id</span> <span class='op'>=&gt;</span> <span class='ivar'>@user_id</span><span class='comma'>,</span> <span class='symbol'>:systematic_review_id</span> <span class='op'>=&gt;</span> <span class='ivar'>@rs_id</span><span class='comma'>,</span>
+                             <span class='symbol'>:stage</span> <span class='op'>=&gt;</span> <span class='ivar'>@stage</span><span class='comma'>,</span> <span class='symbol'>:canonical_document_id</span><span class='op'>=&gt;</span><span class='ivar'>@cd_ids</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_as_hash'>as_hash</span><span class='lparen'>(</span><span class='symbol'>:canonical_document_id</span><span class='rparen'>)</span>
+
+
+  <span class='ivar'>@decision_por_cd</span><span class='op'>=</span><span class='ivar'>@cd_ids</span><span class='period'>.</span><span class='id identifier rubyid_inject'>inject</span><span class='lparen'>(</span><span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_ac'>ac</span><span class='comma'>,</span> <span class='id identifier rubyid_cd_id'>cd_id</span><span class='op'>|</span>
+    <span class='id identifier rubyid_dec_id'>dec_id</span><span class='op'>=</span><span class='ivar'>@decisions</span><span class='lbracket'>[</span><span class='id identifier rubyid_cd_id'>cd_id</span><span class='rbracket'>]</span>
+
+    <span class='id identifier rubyid_dec_dec'>dec_dec</span><span class='op'>=</span><span class='id identifier rubyid_dec_id'>dec_id</span>  <span class='op'>?</span> <span class='id identifier rubyid_dec_id'>dec_id</span><span class='lbracket'>[</span><span class='symbol'>:decision</span><span class='rbracket'>]</span> <span class='op'>:</span> <span class='const'><span class='object_link'><a href="Decision.html" title="Decision (class)">Decision</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Decision.html#NO_DECISION-constant" title="Decision::NO_DECISION (constant)">NO_DECISION</a></span></span>
+    <span class='id identifier rubyid_dec_dec'>dec_dec</span><span class='op'>=</span><span class='const'>Decision</span><span class='op'>::</span><span class='const'>NO_DECISION</span> <span class='kw'>if</span> <span class='id identifier rubyid_dec_dec'>dec_dec</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+    <span class='id identifier rubyid_ac'>ac</span><span class='lbracket'>[</span><span class='id identifier rubyid_cd_id'>cd_id</span><span class='rbracket'>]</span><span class='op'>=</span><span class='id identifier rubyid_dec_dec'>dec_dec</span>
+    <span class='id identifier rubyid_ac'>ac</span>
+  <span class='rbrace'>}</span>
+  <span class='ivar'>@total_decisions</span><span class='op'>=</span><span class='ivar'>@cd_ids</span><span class='period'>.</span><span class='id identifier rubyid_inject'>inject</span><span class='lparen'>(</span><span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_ac'>ac</span><span class='comma'>,</span><span class='id identifier rubyid_cd_id'>cd_id</span><span class='op'>|</span>
+    <span class='id identifier rubyid_dec'>dec</span><span class='op'>=</span><span class='ivar'>@decision_por_cd</span><span class='lbracket'>[</span><span class='id identifier rubyid_cd_id'>cd_id</span><span class='rbracket'>]</span>
+    <span class='id identifier rubyid_dec_i'>dec_i</span><span class='op'>=</span> <span class='id identifier rubyid_dec'>dec</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>?</span> <span class='const'><span class='object_link'><a href="Decision.html" title="Decision (class)">Decision</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Decision.html#NO_DECISION-constant" title="Decision::NO_DECISION (constant)">NO_DECISION</a></span></span> <span class='op'>:</span> <span class='id identifier rubyid_dec'>dec</span>
+    <span class='id identifier rubyid_ac'>ac</span><span class='lbracket'>[</span> <span class='id identifier rubyid_dec_i'>dec_i</span><span class='rbracket'>]</span><span class='op'>||=</span><span class='int'>0</span>
+    <span class='id identifier rubyid_ac'>ac</span><span class='lbracket'>[</span> <span class='id identifier rubyid_dec_i'>dec_i</span><span class='rbracket'>]</span><span class='op'>+=</span><span class='int'>1</span>
+    <span class='id identifier rubyid_ac'>ac</span>
+  <span class='rbrace'>}</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="systematic_review-instance_method">
+  
+    #<strong>systematic_review</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>procesar_numero_citas</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+49
+50
+51</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/analysis_user_decision.rb', line 49</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_systematic_review'>systematic_review</span>
+  <span class='ivar'>@rs</span><span class='op'>||=</span><span class='const'><span class='object_link'><a href="SystematicReview.html" title="SystematicReview (class)">SystematicReview</a></span></span><span class='lbracket'>[</span><span class='ivar'>@rs_id</span><span class='rbracket'>]</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+      <div id="footer">
+  Generated on Sat Mar  3 02:48:39 2018 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.12 (ruby-2.4.1).
+</div>
+
+    </div>
+  </body>
+</html>

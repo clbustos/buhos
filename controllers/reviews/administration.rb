@@ -1,5 +1,16 @@
-##### ADMINISTRATION #####
+# Buhos
+# https://github.com/clbustos/buhos
+# Copyright (c) 2016-2018, Claudio Bustos Navarrete
+# All rights reserved.
+# Licensed BSD 3-Clause License
+# See LICENSE file for more information
 
+
+
+# @!group stages administration
+
+
+# List of administration interfaces by stage
 get '/review/:id/administration_stages' do |id|
   halt_unless_auth('review_admin')
   @review=SystematicReview[id]
@@ -9,7 +20,7 @@ get '/review/:id/administration_stages' do |id|
 
 end
 
-
+# Interface to administrate a stage
 get '/review/:id/administration/:stage' do |id,stage|
   halt_unless_auth('review_admin')
   @review=SystematicReview[id]
@@ -19,7 +30,7 @@ get '/review/:id/administration/:stage' do |id,stage|
 
   @stage=stage
   @ars=AnalysisSystematicReview.new(@review)
-  @cd_without_assignation=@ars.cd_without_allocations(stage)
+  @cd_without_allocation=@ars.cd_without_allocations(stage)
 
   @cds_id=@review.cd_id_by_stage(stage)
   @cds=CanonicalDocument.where(:id=>@cds_id)
@@ -54,6 +65,7 @@ get '/review/:id/administration/:stage' do |id,stage|
   end
 end
 
+# Set a resolution for a given pattern
 
 get '/review/:id/stage/:stage/pattern/:patron/resolution/:resolution' do |id,stage,patron_s,resolution|
   halt_unless_auth('review_admin')
@@ -83,7 +95,8 @@ get '/review/:id/stage/:stage/pattern/:patron/resolution/:resolution' do |id,sta
 end
 
 
-
+# Retrieve information from Crossref for all canonical documents
+# approved for a given stage
 
 get '/review/:rev_id/stage/:stage/generar_references_crossref' do |rev_id,stage|
   halt_unless_auth('review_admin')
@@ -129,6 +142,7 @@ get '/review/:rev_id/stage/:stage/generar_references_crossref' do |rev_id,stage|
 end
 
 
+# List of allocations of canonical documents to users
 
 get '/review/:rev_id/administration/:stage/cd_assignations' do |rev_id, stage|
   halt_unless_auth('review_admin')
@@ -143,6 +157,9 @@ get '/review/:rev_id/administration/:stage/cd_assignations' do |rev_id, stage|
   haml("systematic_reviews/cd_assignations_to_user".to_sym)
 end
 
+# List of all canonical documents without allocation
+# to users
+
 
 get '/review/:rev_id/administration/:stage/cd_without_allocations' do |rev_id, stage|
   halt_unless_auth('review_admin')
@@ -152,12 +169,14 @@ get '/review/:rev_id/administration/:stage/cd_without_allocations' do |rev_id, s
 
   @stage=stage
   @cds=@ars.cd_without_allocations(stage).order(:author)
-  @type="without_assignation"
+  @type="without_allocation"
   haml("systematic_reviews/cd_assignations_to_user".to_sym)
 end
 
 
-
+# Allocate canonical documents to a user
+# if type='all', all documents are allocated
+# if type='without_allocation', only documents without allocation are allocated
 
 get '/review/:rev_id/stage/:stage/add_assign_user/:user_id/:type' do |rev_id, stage, user_id,type|
   halt_unless_auth('review_admin')
@@ -165,7 +184,7 @@ get '/review/:rev_id/stage/:stage/add_assign_user/:user_id/:type' do |rev_id, st
   raise Buhos::NoReviewIdError, rev_id if !@review
   if type=='all'
     @cds_id=@review.cd_id_by_stage(stage)
-  elsif type=='without_assignation'
+  elsif type=='without_allocation'
     ars=AnalysisSystematicReview.new(@review)
     @cds_id_previous=ars.cd_id_assigned_by_user(stage,user_id)
     @cds_id_add=ars.cd_without_allocations(stage).map(:id)
@@ -175,6 +194,7 @@ get '/review/:rev_id/stage/:stage/add_assign_user/:user_id/:type' do |rev_id, st
   redirect back
 end
 
+# Remove all documents allocations from a user
 
 get '/review/:rev_id/stage/:stage/rem_assign_user/:user_id/:type' do |rev_id, stage, user_id, type|
   halt_unless_auth('review_admin')
@@ -185,6 +205,7 @@ get '/review/:rev_id/stage/:stage/rem_assign_user/:user_id/:type' do |rev_id, st
   redirect back
 end
 
+# List of documents without abstract
 
 get '/review/:rev_id/stage/:stage/complete_empty_abstract_manual' do |rev_id, stage|
   halt_unless_auth('review_admin')
@@ -196,6 +217,8 @@ get '/review/:rev_id/stage/:stage/complete_empty_abstract_manual' do |rev_id, st
   haml("systematic_reviews/complete_abstract_manual".to_sym)
 end
 
+# Automatic retrieval of abstract from Scopus for
+# documents without abstract
 
 get '/review/:rev_id/stage/:stage/complete_empty_abstract_scopus' do |rev_id, stage|
   halt_unless_auth('review_admin')
@@ -211,3 +234,6 @@ get '/review/:rev_id/stage/:stage/complete_empty_abstract_scopus' do |rev_id, st
   add_result(result)
   redirect back
 end
+
+
+# @!endgroup

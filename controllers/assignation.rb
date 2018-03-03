@@ -1,3 +1,10 @@
+# Buhos
+# https://github.com/clbustos/buhos
+# Copyright (c) 2016-2018, Claudio Bustos Navarrete
+# All rights reserved.
+# Licensed BSD 3-Clause License
+# See LICENSE file for more information
+
 put '/authorization/user/:user_id/review/:rs_id/cd/:cd_id/stage/:stage_id/edit_instruction' do |user_id, rs_id, cd_id,stage|
   halt_unless_auth('review_admin')
 

@@ -1,3 +1,15 @@
+# Buhos
+# https://github.com/clbustos/buhos
+# Copyright (c) 2016-2018, Claudio Bustos Navarrete
+# All rights reserved.
+# Licensed BSD 3-Clause License
+# See LICENSE file for more information
+
+
+# @!group Personalized fields
+
+
+# List of personalized fields
 get '/review/:rs_id/fields' do |rs_id|
   halt_unless_auth('review_view')
   @review=SystematicReview[rs_id]
@@ -6,6 +18,8 @@ get '/review/:rs_id/fields' do |rs_id|
   @campos=@review.fields
   haml %s{systematic_reviews/fields}
 end
+
+# Add a new field
 
 post '/review/:rs_id/new_field' do |rs_id|
   halt_unless_auth('review_admin')
@@ -25,18 +39,19 @@ post '/review/:rs_id/new_field' do |rs_id|
   redirect back
 end
 
-put '/review/edit_field/:campo_id/:campo' do |campo_id,campo|
+# Edit specific attribute of a field
+put '/review/edit_field/:attr_id/:attr' do |attr_id,attr|
   halt_unless_auth('review_admin')
-  return [500, t('sr_edit_field.invalid', field:campo)] unless %w{order name description type options}.include? campo
+  return [500, t('sr_edit_field.invalid', field:attr)] unless %w{order name description type options}.include? attr
   pk = params['pk']
   value = params['value']
   campo_o=SrField[pk]
-  return [t('sr_edit_field.doesnt_exist_db', field_id:campo_id)] unless campo
-  campo_o.update({campo.to_sym=>value})
+  return [t('sr_edit_field.doesnt_exist_db', field_id:attr_id)] unless attr
+  campo_o.update({attr.to_sym=>value})
   return 200
 end
 
-
+# Update analysis table, using information provide on fields
 get '/review/:rs_id/update_field_table' do |rs_id|
   halt_unless_auth('review_admin')
   @review=SystematicReview[rs_id]
@@ -47,7 +62,7 @@ get '/review/:rs_id/update_field_table' do |rs_id|
   redirect back
 end
 
-
+# Delete a field
 get '/review/:rs_id/field/:fid/delete' do  |rs_id, fid|
   halt_unless_auth('review_admin')
   sr_field=SrField[fid]
@@ -57,3 +72,5 @@ get '/review/:rs_id/field/:fid/delete' do  |rs_id, fid|
   add_message(t("fields.field_deleted", name:name))
   redirect back
 end
+
+# @!endgroup

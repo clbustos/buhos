@@ -1,30 +1,9 @@
+# Buhos
+# https://github.com/clbustos/buhos
 # Copyright (c) 2016-2018, Claudio Bustos Navarrete
 # All rights reserved.
-#
-# Redistribution and use in source and binary forms, with or without
-# modification, are permitted provided that the following conditions are met:
-#
-# * Redistributions of source code must retain the above copyright notice, this
-#   list of conditions and the following disclaimer.
-#
-# * Redistributions in binary form must reproduce the above copyright notice,
-#   this list of conditions and the following disclaimer in the documentation
-#   and/or other materials provided with the distribution.
-#
-# * Neither the name of the copyright holder nor the names of its
-#   contributors may be used to endorse or promote products derived from
-#   this software without specific prior written permission.
-#
-# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-# AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-# IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-# DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
-# FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
-# DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-# SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
-# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
-# OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-# OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+# Licensed BSD 3-Clause License
+# See LICENSE file for more information
 
 
 require 'dotenv'
@@ -34,12 +13,20 @@ require 'fileutils'
 require 'rake'
 require 'rspec/core'
 require 'rspec/core/rake_task'
+require 'yard'
+require 'yard-sinatra'
+
+
 
 Dotenv.load("./.env")
 
-task :doc do |t|
-  sh %{yardoc -e lib_doc/yard_extra.rb *.rb controllers/**/*.rb lib/**/*.rb model/**/*.rb}
+YARD::Rake::YardocTask.new do |t|
+  t.files   = ['lib/**/*.rb', 'model/**/*.rb', 'controllers/**/*.rb']   # optional
+  t.options = ['--plugin yard-sinatra', '-odocs/api'] # optional
+  t.stats_options = ['--list-undoc']         # optional
 end
+
+
 
 
 
@@ -123,7 +110,7 @@ namespace :db do
   task :blank_sqlite => "db/blank.sqlite"
 
   file "db/blank.sqlite" => ["db/create_schema.rb"] do
-    require_relative 'db/create_schema'
+    require_relative 'db//buhos/create_schema'
     log = Logger.new(STDOUT)
     FileUtils.rm("db/blank.sqlite") if File.exist? "db/blank.sqlite"
     Buhos::SchemaCreation.create_db_from_scratch("sqlite://db/blank.sqlite", "en",log)

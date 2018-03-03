@@ -154,6 +154,9 @@ GEM
     win32-process (0.8.3)
       ffi (>= 1.0.0)
     wmi-lite (1.0.0)
+    yard (0.9.12)
+    yard-sinatra (1.0.0)
+      yard (~> 0.7)
 
 PLATFORMS
   ruby
@@ -189,6 +192,8 @@ DEPENDENCIES
   sqlite3
   thin
   unicode
+  yard
+  yard-sinatra
 
 BUNDLED WITH
    1.16.1

@@ -1,3 +1,13 @@
+# Buhos
+# https://github.com/clbustos/buhos
+# Copyright (c) 2016-2018, Claudio Bustos Navarrete
+# All rights reserved.
+# Licensed BSD 3-Clause License
+# See LICENSE file for more information
+
+# @!group roles
+
+# List of roles
 get '/admin/roles' do
   halt_unless_auth('role_admin')
   @roles=Role
@@ -5,6 +15,8 @@ get '/admin/roles' do
   haml "admin/roles".to_sym
 end
 
+
+# Form to create a new role
 
 get '/role/new' do
   halt_unless_auth('role_admin')
@@ -19,6 +31,7 @@ get '/role/new' do
   haml "admin/role_edit".to_sym
 end
 
+# Information about a role
 
 get '/role/:id' do |role_id|
 
@@ -30,13 +43,7 @@ get '/role/:id' do |role_id|
   haml "admin/role_view".to_sym
 end
 
-
-
-
-
-
-
-
+# Form to update a role
 
 get '/role/:role_id/edit' do |role_id|
   halt_unless_auth('role_admin')
@@ -50,6 +57,9 @@ get '/role/:role_id/edit' do |role_id|
   return 404 if @role.nil?
   haml "admin/role_edit".to_sym
 end
+
+# Deletes a role
+# @todo modify to use POST or DELETE method
 
 get '/role/:role_id/delete' do |role_id|
   halt_unless_auth('role_admin')
@@ -94,3 +104,5 @@ post '/role/update' do
   end
   redirect '/admin/roles'
 end
+
+# @!endgroup

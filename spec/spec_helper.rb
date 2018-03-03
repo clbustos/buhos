@@ -12,7 +12,7 @@ require 'fileutils'
 require 'rack/test'
 require 'tempfile'
 require 'logger'
-require_relative "../db/create_schema"
+require_relative "../lib/buhos/create_schema"
 require_relative "../lib/buhos/dbadapter"
 require_relative 'rspec_matchers'
 
