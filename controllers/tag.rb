@@ -5,6 +5,9 @@
 # Licensed BSD 3-Clause License
 # See LICENSE file for more information
 
+# @!group Tags
+
+# Create a new class tag
 post '/tags/classes/new' do
   halt_unless_auth('tag_edit')
   @review=SystematicReview[params['review_id']]
@@ -34,7 +37,7 @@ put '/tags/classes/edit_field/:field' do |field|
   return 200
 end
 
-
+# Edit a tag
 put "/tag/edit" do
   halt_unless_auth('tag_edit')
 
@@ -45,6 +48,7 @@ put "/tag/edit" do
   return 200
 end
 
+# Add a tag to a class tag
 post '/tags/class/:t_clase_id/add_tag' do |t_clase_id|
   halt_unless_auth('tag_edit')
 
@@ -57,7 +61,7 @@ post '/tags/class/:t_clase_id/add_tag' do |t_clase_id|
   partial("tags/tags_class", :locals=>{t_class: t_class})
 end
 
-
+# Remove tag from a class tag
 post '/tags/class/:t_clase_id/remove_tag' do |t_clase_id|
   halt_unless_auth('tag_edit')
   t_class=T_Class[t_clase_id]
@@ -71,6 +75,7 @@ post '/tags/class/:t_clase_id/remove_tag' do |t_clase_id|
   partial("tags/tags_class", :locals=>{t_class: t_class})
 end
 
+# Retrieve canonical document what uses a tag on a specific stage
 get '/tag/:tag_id/rs/:rs_id/stage/:stage/cds' do |tag_id, rs_id, stage|
   halt_unless_auth('review_view')
 
@@ -88,7 +93,7 @@ get '/tag/:tag_id/rs/:rs_id/stage/:stage/cds' do |tag_id, rs_id, stage|
   haml '/tags/rs_cds'.to_sym
 end
 
-
+# Retrieve canonical document what uses a tag
 get '/tag/:tag_id/rs/:rs_id/cds' do |tag_id, rs_id|
   halt_unless_auth('review_view')
   @tag=Tag[tag_id]
@@ -110,6 +115,10 @@ end
 
 
 
+# Actions for tags and canonical documents
+# * add_tag
+# * approve_tag
+# * reject_tag
 
 post '/tags/cd/:cd_id/rs/:rs_id/:accion' do |cd_id,rs_id,accion|
   halt_unless_auth('review_analyze')
@@ -147,7 +156,11 @@ post '/tags/cd/:cd_id/rs/:rs_id/:accion' do |cd_id,rs_id,accion|
 end
 
 
-
+# Actions for tags and relations between canonical documents
+# * add_tag
+# * approve_tag
+# * reject_tag
+#
 post '/tags/cd_start/:cd_start_id/cd_end/:cd_end_id/rs/:rs_id/:accion' do |cd_start_id,cd_end_id,rs_id,accion|
   halt_unless_auth('review_analyze')
   cd_start=CanonicalDocument[cd_start_id]
@@ -186,7 +199,7 @@ post '/tags/cd_start/:cd_start_id/cd_end/:cd_end_id/rs/:rs_id/:accion' do |cd_st
 end
 
 
-
+# Retrieve a basic json for autopredict
 get '/tags/basic_10.json' do
   halt_unless_auth('review_view')
   require 'json'
@@ -199,6 +212,7 @@ get '/tags/basic_10.json' do
   }.to_json
 end
 
+# Retrieve a basic json for autopredict
 
 get '/tags/basic_ref_10.json' do
   halt_unless_auth('review_view')
@@ -211,6 +225,8 @@ get '/tags/basic_ref_10.json' do
     }
   }.to_json
 end
+
+# Query for tags (canonical documents)
 
 get '/tags/query_json/:query' do |query|
   halt_unless_auth('review_view')
@@ -226,6 +242,7 @@ get '/tags/query_json/:query' do |query|
   }.to_json
 end
 
+# Query for tags (relation between canonical documents)
 
 get '/tags/refs/query_json/:query' do |query|
   halt_unless_auth('review_view')
@@ -242,6 +259,7 @@ get '/tags/refs/query_json/:query' do |query|
 end
 
 
+# Query for tags (canonical documents on a specific systematic review)
 
 get '/tags/systematic_review/:rs_id/query_json/:query' do |rs_id,query|
   halt_unless_auth('review_view')
@@ -257,6 +275,10 @@ get '/tags/systematic_review/:rs_id/query_json/:query' do |rs_id,query|
   }.to_json
 end
 
+
+
+# Query for tags (relation between canonical documents on a specific systematic review)
+
 get '/tags/systematic_review/:rs_id/ref/query_json/:query' do |rs_id,query|
   halt_unless_auth('review_view')
   require 'json'
@@ -271,7 +293,7 @@ get '/tags/systematic_review/:rs_id/ref/query_json/:query' do |rs_id,query|
   }.to_json
 end
 
-
+# Remove tag allocated to a canonical document
 
 post '/tag/delete_rs' do
   halt_unless_auth('tag_edit')
@@ -308,3 +330,5 @@ end
 #
 #   redirect back
 # end
+#
+# @!endgroup

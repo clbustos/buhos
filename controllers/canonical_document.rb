@@ -47,7 +47,6 @@ get '/canonical_document/:id/search_crossref_references' do |id|
 end
 
 # Query Crossref for canonical document
-
 get '/canonical_document/:id/get_crossref_data' do |id|
   halt_unless_auth('canonical_document_admin')
 
@@ -60,6 +59,7 @@ get '/canonical_document/:id/get_crossref_data' do |id|
   redirect back
 end
 
+# Search references similar to a specific canonical documents, using lexical distance
 get '/canonical_document/:id/search_similar' do |id|
   halt_unless_auth('canonical_document_admin')
   @cd=CanonicalDocument[id]
@@ -78,6 +78,7 @@ get '/canonical_document/:id/search_similar' do |id|
   end
 end
 
+# Merge similar references to a specific canonical document
 post '/canonical_document/:id/merge_similar_references' do |id|
   halt_unless_auth('canonical_document_admin')
   @cd=CanonicalDocument[id]
@@ -90,8 +91,7 @@ post '/canonical_document/:id/merge_similar_references' do |id|
 end
 
 
-# Metodo rapido
-
+# Edit a field on a canonical document
 put '/canonical_document/edit_field/:field' do |field|
   halt_unless_auth('canonical_document_admin')
   pk = params['pk']
@@ -101,6 +101,7 @@ put '/canonical_document/edit_field/:field' do |field|
   return true
 end
 
+# Merge two or more canonical documents
 post '/canonical_document/merge' do
   halt_unless_auth('canonical_document_admin')
   doi=params['doi']
@@ -115,7 +116,7 @@ post '/canonical_document/merge' do
   return resultado ? 200 : 500
 end
 
-
+# Complete all canonical document abstracts on a systematic review, using Scopus
 get '/canonical_documents/review/:review_id/complete_abstract_scopus' do |rev_id|
   halt_unless_auth('canonical_document_admin')
 
@@ -129,14 +130,14 @@ get '/canonical_documents/review/:review_id/complete_abstract_scopus' do |rev_id
   redirect back
 end
 
-
+# Query Scopus for abstract
 get '/canonical_document/:id/search_abstract_scopus' do |id|
   halt_unless_auth('canonical_document_admin')
   add_result(Scopus_Abstract.obtener_abstract_cd(id))
   redirect back
 end
 
-
+#  Reset all references asssigned to a canonical document
 get '/canonical_document/:ref_id/clean_references' do |cd_id|
   halt_unless_auth('canonical_document_admin')
   Reference.where(:canonical_document_id => cd_id).update(:canonical_document_id => nil, :doi => nil)
@@ -144,7 +145,8 @@ get '/canonical_document/:ref_id/clean_references' do |cd_id|
   redirect back
 end
 
-
+# See automatic categories for canonical documents.
+# Is very experimental. Works so-so
 get '/canonical_documents/review/:rev_id/automatic_categories' do |rev_id|
   halt_unless_auth('canonical_document_view')
   @review=SystematicReview[rev_id]
@@ -156,7 +158,8 @@ get '/canonical_documents/review/:rev_id/automatic_categories' do |rev_id|
   haml %s{systematic_reviews/canonical_documents_automatic_categories}
 end
 
-post '/canonical_document/user_assignation/:accion' do |accion|
+# Allocate a canonical document to user, for screening or analyze
+post '/canonical_document/user_allocation/:action' do |action|
   halt_unless_auth('review_admin')
   revision=SystematicReview[params['rs_id']]
   cd=CanonicalDocument[params['cd_id']]
@@ -164,12 +167,12 @@ post '/canonical_document/user_assignation/:accion' do |accion|
   stage=params['stage']
   return 404 if !revision or !cd or !user or !stage
   a_cd=AllocationCd[:systematic_review_id=>revision[:id],:canonical_document_id=>cd[:id],:user_id=>user[:id], :stage=>stage]
-  if accion=='asignar'
+  if action=='asignar'
     if !a_cd
       AllocationCd.insert(:systematic_review_id=>revision[:id],:canonical_document_id=>cd[:id],:user_id=>user[:id],:stage=>stage,:status=>"assigned")
       return 200
     end
-  elsif accion=='desasignar'
+  elsif action=='desasignar'
     if a_cd
       a_cd.delete
       return 200
@@ -179,12 +182,14 @@ post '/canonical_document/user_assignation/:accion' do |accion|
   end
 
 end
-
-get '/canonical_document/:id/view_doi' do |id|
+# View raw crossref information using the doi of the canonical document
+get '/canonical_document/:id/view_crossref_info' do |id|
   halt_unless_auth('canonical_document_view')
   @cd=CanonicalDocument[id]
   raise Buhos::NoCdIdError, id if !@cd
   @cr_doi=@cd.crossref_integrator
   @doi_json=CrossrefDoi[doi_without_http(@cd.doi)][:json]
-  haml "canonical_documents/view_doi".to_sym
+  haml "canonical_documents/view_crossref_info".to_sym
 end
+
+# @!endgroup

@@ -22,7 +22,7 @@ Dotenv.load("./.env")
 
 YARD::Rake::YardocTask.new do |t|
   t.files   = ['lib/**/*.rb', 'model/**/*.rb', 'controllers/**/*.rb']   # optional
-  t.options = ['--plugin yard-sinatra', '-odocs/api'] # optional
+  t.options = ['--plugin yard-sinatra', '-odocs/api', '--embed-mixin'] # optional
   t.stats_options = ['--list-undoc']         # optional
 end
 

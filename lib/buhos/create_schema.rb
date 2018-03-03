@@ -27,9 +27,22 @@
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 
-
+#
 module Buhos
+  # Module to create a blank, but usable schema for Buhos
+  # Used a on installer and to create clean schemas for testing
+  #
+  # **Example:**
+  #
+  #   db=Sequel.connect('sqlite::memory:', :encoding => 'utf8',:reconnect=>false,:keep_reference=>false)
+  #   Buhos::SchemaCreation.create_db_from_scratch(db)
+  #
+  # db should have a correct and usable version of Buhos.
   module SchemaCreation
+    # Create a usable db to work on Buhos
+    # @param db_url a [String] with a connection that Sequel.connect understand, or a Sequel::Database
+    # @param language used to assign default language for users
+    # @param logger A Logger object could be attached to database.
     def self.create_db_from_scratch(db_url, language='en',logger=nil)
       require 'sequel'
       if db_url.is_a? Sequel::Database
@@ -45,6 +58,9 @@ module Buhos
       db
     end
 
+    # Create basis schema to run Buhos.
+    # Updates to database are stored on /db/migrations, so don't forget later to run migrations.
+    # @see {self.create_db_from_scratch}
     def self.create_schema(db)
 
       db.transaction do

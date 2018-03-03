@@ -26,13 +26,13 @@
 # OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 # encoding: utf-8
+
 require 'bibtex'
-#require 'citeproc'
 
-
-
-module ReferenceIntegrator
-# A kind of Adapter, that unifies Scopus, WoS, Ebscohost and generic BibTeX formats.
+#
+module BibliographicalImporter
+# Unifies Scopus, WoS, Ebscohost and generic BibTeX formats.
+#
   module BibTex
     class Record
 
@@ -49,7 +49,7 @@ module ReferenceIntegrator
 		    return nil if bibtex_value.is_a? BibTeX::Error
         type=self.determine_type(bibtex_value)
         klass="Record_#{type.capitalize}".to_sym
-        ReferenceIntegrator::BibTex.const_get(klass).send(:new, bibtex_value)
+        BibliographicalImporter::BibTex.const_get(klass).send(:new, bibtex_value)
       end
 
       def self.determine_type(bibtex_value)
@@ -204,9 +204,10 @@ module ReferenceIntegrator
     end
 
     class Reader
+      include AbstractReader
+      include Enumerable
       attr_reader :bb
       attr_reader :records
-      include Enumerable
       def each(&block)
         @records.each(&block)
       end
@@ -232,7 +233,12 @@ module ReferenceIntegrator
           end
         }.join("\n")
       end
-      def self.parse(string)
+      # Parse a BibTex file
+      # @param string [String] BibTex text
+      # @param bib_db [String] NOT USED
+      # @return BibTex::Reader
+      def self.parse(string, bib_db=nil)
+        @bib_db=bib_db
         # Scopus generates bibtex with quotes on names. That brokes Bibtex package
         #string_fixed=fix_string(string)
         b=BibTeX.parse(string, :strip => false)

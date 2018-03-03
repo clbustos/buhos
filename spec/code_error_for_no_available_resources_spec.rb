@@ -79,7 +79,7 @@ describe 'Error codes for no available resources' do
   context "when canonical documents resources are accessed" do
     it { expect("/canonical_document/1").to responds_with_no_cd_id_error(1)}
     it { expect("/canonical_document/1/search_similar").to responds_with_no_cd_id_error(1)}
-    it { expect("/canonical_document/1/view_doi").to responds_with_no_cd_id_error(1)}
+    it { expect("/canonical_document/1/view_crossref_info").to responds_with_no_cd_id_error(1)}
   end
   context "when user resources are accessed" do
     it { expect("/user/1000").to responds_with_no_user_id_error(1)}

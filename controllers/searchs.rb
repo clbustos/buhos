@@ -5,6 +5,10 @@
 # Licensed BSD 3-Clause License
 # See LICENSE file for more information
 
+
+# @!group Searches
+
+# View search
 get '/search/:id' do |id|
   halt_unless_auth('search_view')
 
@@ -14,6 +18,7 @@ get '/search/:id' do |id|
   haml %s{searches/search_view}
 end
 
+# Form to edit a search
 get '/search/:id/edit' do |id|
   halt_unless_auth('search_edit')
 
@@ -23,6 +28,8 @@ get '/search/:id/edit' do |id|
   haml %s{searches/search_edit}
 end
 
+
+# Download the file allocated to a search
 get '/search/:id/file/download' do |id|
   halt_unless_auth('search_view')
 
@@ -38,6 +45,7 @@ get '/search/:id/file/download' do |id|
 
 end
 
+# List of records for a search
 get '/search/:id/records' do |id|
   halt_unless_auth('search_view')
   @search=Search[id]
@@ -50,6 +58,7 @@ get '/search/:id/records' do |id|
 end
 
 
+# List of references for a search
 get '/search/:id/references' do |id|
   halt_unless_auth('search_view')
   @search=Search[id]
@@ -73,7 +82,7 @@ get '/search/:id/references' do |id|
 end
 
 
-# Completa la información desde Crossref para cada registro
+# Complete the information for each Record, using Crossref
 get '/search/:id/records/complete_doi' do |id|
   halt_unless_auth('search_edit')
   @search=Search[id]
@@ -86,7 +95,7 @@ get '/search/:id/records/complete_doi' do |id|
 end
 
 
-# Busca en el text algun indicador de DOI
+# Search on each reference a posible DOI string
 get '/search/:id/references/search_doi' do |id|
   halt_unless_auth('search_edit')
   exitos=0
@@ -104,6 +113,7 @@ get '/search/:id/references/search_doi' do |id|
   redirect back
 end
 
+# Join canonicals to references
 get '/search/:id/references/generate_canonical_doi/:n' do |id, n|
   halt_unless_auth('search_edit')
   search=Search[id]
@@ -120,7 +130,7 @@ get '/search/:id/references/generate_canonical_doi/:n' do |id, n|
   redirect back
 end
 
-
+# Update or create a search
 post '/search/update' do
   halt_unless_auth('search_edit')
   id=params['search_id']
@@ -166,7 +176,7 @@ post '/search/update' do
 end
 
 
-
+# Update actions for searchs: valid, invalid, delete
 post '/searches/update_batch' do
   halt_unless_auth('search_edit')
   #$log.info(params)
@@ -196,7 +206,7 @@ post '/searches/update_batch' do
   redirect params['url_back']
 end
 
-
+# Validate a specific search
 get '/search/:id/validate' do |id|
   halt_unless_auth('search_edit')
   Search[id].update(:valid=>true)
@@ -204,9 +214,13 @@ get '/search/:id/validate' do |id|
   redirect back
 end
 
+# Invalidate a specific search
 get '/search/:id/invalidate' do |id|
   halt_unless_auth('search_edit')
   Search[id].update(:valid=>false)
   add_message(I18n::t(:Search_marked_as_invalid))
   redirect back
 end
+
+
+# @!endgroup

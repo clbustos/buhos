@@ -26,10 +26,8 @@
 # OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-require 'bibtex'
-#require 'citeproc'
-
-module ReferenceIntegrator
+#
+module BibliographicalImporter
   # Based on Crossref JSON
   module JSON
     # Process references inside JSON
@@ -62,7 +60,7 @@ module ReferenceIntegrator
     end
     class Record
       include ReferenceMethods
-      include ReferenceIntegrator::CommonRecordAttributes
+      include BibliographicalImporter::CommonRecordAttributes
 
       attr_reader :jv
       attr_accessor :references_crossref
@@ -73,9 +71,9 @@ module ReferenceIntegrator
       def self.create(json)
         #type=self.determine_type(bibtex_value)
         #klass="Reference_#{type.capitalize}".to_sym
-        #ReferenceIntegrator::JSON.const_get(klass).send(:new, bibtex_value)
+        #BibliographicalImporter::JSON.const_get(klass).send(:new, bibtex_value)
 
-        ReferenceIntegrator::JSON::Record.new(json)
+        BibliographicalImporter::JSON::Record.new(json)
       end
 
       def initialize(json_value)
@@ -138,6 +136,7 @@ module ReferenceIntegrator
     end
 
     class Reader
+      include AbstractReader
       attr_reader :jb
       attr_reader :records
       include Enumerable
@@ -163,7 +162,7 @@ module ReferenceIntegrator
       end
 
       def parse_records
-        @records=@jb.map {|r| ReferenceIntegrator::JSON::Record.create(r)}
+        @records=@jb.map {|r| BibliographicalImporter::JSON::Record.create(r)}
       end
     end
   end

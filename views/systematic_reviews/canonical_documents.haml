@@ -40,7 +40,7 @@
     %a{:href=>url("/canonical_documents/review/#{@review.id}/automatic_categories")   , :role=>'button', :class=>"btn btn-default"}
       %span{:class=>""}
       =t(:Automatic_categories)
-  %a{:href=>url("/review/#{@review.id}/canonical_documents_graphml"),  :role=>'button', :class=>"btn btn-default"}
+  %a{:href=>url("/review/#{@review.id}/generate_graphml"),  :role=>'button', :class=>"btn btn-default"}
     %span{:class=>"glyphicon glyphicon-save"}
     =t(:Export_to_Graphml)
   %a{:href=>url("/review/#{@review.id}/resolved_bibtex"),  :role=>'button', :class=>"btn btn-default"}

@@ -9,6 +9,22 @@
 
 # @!group Export
 
+# Generate a GraphML file of all documents on a systematic review.
+# Warning: Could be very big!
+# @see http://graphml.graphdrawing.org/ GraphML website
+# @see '/review/:rev_id/stage/:stage/generate_graphml'
+get '/review/:id/generate_graphml' do |id|
+  halt_unless_auth('review_view')
+  @review=SystematicReview[id]
+  raise Buhos::NoReviewIdError, id if !@review
+  headers["Content-Disposition"] = "attachment;filename=graphml_revision_#{id}.graphml"
+
+  content_type 'application/graphml+xml'
+  graphml=GraphML_Builder.new(@review, nil)
+  graphml.generate_graphml
+end
+
+
 # Generate a GraphML file of documents on a specific stage.
 # @see http://graphml.graphdrawing.org/ GraphML website
 #
@@ -33,7 +49,7 @@ get '/review/:rev_id/stage/:stage/generate_bibtex' do |rev_id, stage|
   canonicos_id=@review.cd_id_by_stage(stage)
   @canonicos_resueltos=CanonicalDocument.where(:id=>canonicos_id).order(:author,:year)
 
-  bib=ReferenceIntegrator::BibTex::Writer.generate(@canonicos_resueltos)
+  bib=BibliographicalImporter::BibTex::Writer.generate(@canonicos_resueltos)
   headers["Content-Disposition"] = "attachment;filename=systematic_review_#{rev_id}_#{stage}.bib"
   content_type 'text/x-bibtex'
   bib.to_s

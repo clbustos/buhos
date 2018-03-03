@@ -27,7 +27,23 @@
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 # encoding: utf-8
-# Search on systematic review should be processed, to obtain all necessary information
+#
+
+# Searches on systematic review should be processed, to obtain all necessary information
+# This class retrieves records and references, using the file attached to a search.
+#
+# Main methods are {.process_file} and {.process_canonical_documents}. Only if file
+# can be processed, continues with the processing of canonical documents.
+#
+# In pseudocode, the structure is
+#   process_file()
+#     .get_integrator()
+#       for each reference in integrator
+#         .process_reference()
+#       add integrator references as records on search
+#   process_canonical_documents
+#    for each record on search
+#      create a canonical document
 #
 class SearchProcessor
   attr_reader :search
@@ -54,7 +70,7 @@ class SearchProcessor
     begin
       integrator = get_integrator
       return false if !integrator
-    rescue ReferenceIntegrator::BibTex::RecordBibtexError
+    rescue BibliographicalImporter::BibTex::RecordBibtexError
       log_error("search_processor.error_processing_file")
       return false
     end
@@ -133,16 +149,22 @@ class SearchProcessor
     }
   end
 
+  # Factory method to retrieve a integrator.
+  #
+  # For BibTex, ReferenceIntegrator::BibTex::Reader takes control and decides how to process using BibTeX fields
+  # For CSV, we need to send the bibliograpic database.
+  # @see ReferenceIntegrator::BibTex
+  # @see ReferenceIntegrator::CSV
 
   def get_integrator
     if @search[:file_body].nil?
       log_error("search_processor.no_file_available")
       false
     elsif @search[:filetype] == "text/x-bibtex" or @search[:filename] =~ /\.bib$/
-      ReferenceIntegrator::BibTex::Reader.parse(@search[:file_body])
+      BibliographicalImporter::BibTex::Reader.parse(@search[:file_body])
     elsif @search[:filetype] == "text/csv" # Por trabajar
       #$log.info(bibliographical_database_name)
-      ReferenceIntegrator::CSV::Reader.parse(@search[:file_body], @search.bibliographical_database_name)
+      BibliographicalImporter::CSV::Reader.parse(@search[:file_body], @search.bibliographical_database_name)
     else
       log_error("search_processor.no_integrator_for_filetype")
       false

@@ -56,7 +56,7 @@
 -if auth_to("crossref_query") and @cr_doi
   .btn-group.btn-group-sm
     %a{:href=>url("/canonical_document/#{@cd[:id]}/search_crossref_references"), :role=>:button, :class=>"btn btn-default btn-sm"}=t(:Add_info_references_using_crossref)
-    %a{:href=>url("/canonical_document/#{@cd[:id]}/view_doi"), :role=>:button, :class=>"btn btn-default btn-sm"}=t(:View_DOI_record)
+    %a{:href=>url("/canonical_document/#{@cd[:id]}/view_crossref_info"), :role=>:button, :class=>"btn btn-default btn-sm"}=t(:View_DOI_record)
 
 %h3=t("canonical_document.records_on_which_appears")
 

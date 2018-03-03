@@ -25,17 +25,19 @@
 # CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
 # OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-require 'bibtex'
-#require 'citeproc'
+#
 
-module ReferenceIntegrator
-  # Based on Crossref JSON
+#
+module BibliographicalImporter
+  # Process CSV.
+  # @todo Only support for RefWorks. We need a flexible parser
   module CSV
-    # Process references inside JSON
+
+
 
     class Record_Refworks
       include ReferenceMethods
-      include ReferenceIntegrator::CommonRecordAttributes
+      include BibliographicalImporter::CommonRecordAttributes
 
       attr_reader :row
 
@@ -43,8 +45,8 @@ module ReferenceIntegrator
       def self.create(row)
         #type=self.determine_type(bibtex_value)
         #klass="Reference_#{type.capitalize}".to_sym
-        #ReferenceIntegrator::JSON.const_get(klass).send(:new, bibtex_value)
-        ReferenceIntegrator::CSV::Record_Refworks.new(row)
+        #BibliographicalImporter::JSON.const_get(klass).send(:new, bibtex_value)
+        BibliographicalImporter::CSV::Record_Refworks.new(row)
       end
 
       def initialize(row_value)
@@ -96,6 +98,7 @@ module ReferenceIntegrator
     end
 
     class Reader
+      include AbstractReader
       attr_reader :csv
       attr_reader :records
       attr_reader :base
@@ -128,7 +131,7 @@ module ReferenceIntegrator
       def parse_records
         #$log.info(base)
         if base=="refworks"
-          @records=@csv.map {|r| ReferenceIntegrator::CSV::Record_Refworks.create(r)}
+          @records=@csv.map {|r| BibliographicalImporter::CSV::Record_Refworks.create(r)}
         else
           raise "TODO"
         end

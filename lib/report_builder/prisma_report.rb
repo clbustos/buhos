@@ -25,9 +25,11 @@
 # CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
 # OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+#
 module ReportBuilder
   class PrismaReport
-    attr_reader :sr, :app
+    include ReportAbstract
     def initialize(sr,app)
       @sr=sr
       @app=app
@@ -67,9 +69,7 @@ module ReportBuilder
       @svg_reasons=@reason_to_exclude_count.map {|v|  "<tspan x='620' dy='1.2em' >#{v[0]} (n = #{v[1]} )</tspan>"}.join("\n")
 
     end
-    def output(format)
-      send("output_#{format}".to_sym)
-    end
+
 
     def output_svg
       app.headers 'Content-Type' => "image/svg+xml"

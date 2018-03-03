@@ -346,8 +346,7 @@ en:
     search_view: 'Searches: See'
     tag_edit: 'Tags: Edit'
     user_admin: 'Users: Admin'
-
-  PRISMA_flow_diagram: "PRIMA flow diagram"
+  PRISMA_flow_diagram: "PRISMA flow diagram"
   prisma_report:
     "Eligibility": "Eligibility"
     "excluded": "Excluded"

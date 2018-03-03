@@ -26,10 +26,38 @@
 # OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+# Common interface to create reports.
+#
+# On route '/review/:sr_id/report/:type/:format'
+# ReportBuilder is called with
+#     @report=ReportBuilder.get_report(@sr,@type, self)
+# @sr is a {Systematic Review}, type represent the type of report
+# and self is the app sinatra object.
+# Class to obtain report is obtained capitalizing type and adding 'Report'
+# So, 'fulltext' instantiate a ReportBuilder::FullTextReport, with params
+# sr and app.
+#
+# If format is html, @report object will be sent to '/views/report/<type>.haml' haml template.
+#
+# If not, {.output} will be called
+#
 module ReportBuilder
   def self.get_report(sr,type,app)
     klass="#{type.capitalize}Report".to_sym
     ReportBuilder.const_get(klass).send(:new, sr,app)
+  end
+
+  # Abstract interface for reports.
+  # Note that we change to name to not instantiate this
+  # if an 'Abstract' report be created on the future
+  module ReportAbstract
+    # A {SystematicReview} object
+    attr_reader :sr
+    # A Sinatra::Base object.
+    attr_reader :app
+    def output(format)
+      send("output_#{format}".to_sym)
+    end
   end
 end
 

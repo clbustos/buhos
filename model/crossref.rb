@@ -63,11 +63,11 @@ class CrossrefDoi < Sequel::Model
   # Returns Reference_Integrator::JSON::Reader
   # for a DOI.
   # @param doi
-  # @return ReferenceIntegrator::JSON::Reader
+  # @return BibliographicalImporter::JSON::Reader
   def self.reference_integrator_json(doi)
     co=self.procesar_doi(doi)
     if(co)
-      ReferenceIntegrator::JSON::Reader.parse(co)[0]
+      BibliographicalImporter::JSON::Reader.parse(co)[0]
     else
       false
     end

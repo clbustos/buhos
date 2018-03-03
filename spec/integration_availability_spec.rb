@@ -144,7 +144,7 @@ describe 'Resources availability:' do
   context "when canonical documents resources are accessed" do
     it { expect("/canonical_document/1").to be_available_for_admin}
     it { expect("/canonical_document/1/search_similar").to be_available_for_admin}
-    it { expect("/canonical_document/1/view_doi").to be_available_for_admin}
+    it { expect("/canonical_document/1/view_crossref_info").to be_available_for_admin}
   end
   context "when user resources are accessed" do
     it "/my_messages redirects to /user/1" do

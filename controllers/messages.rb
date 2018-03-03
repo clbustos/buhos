@@ -8,6 +8,35 @@
 
 # @!group Systematic review message
 
+# Messages for a systematic review
+get '/review/:id/messages' do |id|
+  halt_unless_auth('review_view')
+  @review=SystematicReview[id]
+  raise Buhos::NoReviewIdError, id if !@review
+  @mensajes_rs=@review.message_srs_dataset.order(Sequel.desc(:time))
+  #@mensajes_rs_vistos=MessageSrSeen.where(:read=>true,:m_rs_id=>@mensajes_rs.select_map(:id), :user_id=>session['user_id']).select_map(:m_rs_id)
+  #$log.info(@mensajes_rs_vistos)
+  @usuario=User[session['user_id']]
+  haml %s{systematic_reviews/messages}
+end
+
+# Post a message
+post '/review/:id/message/new' do |id|
+  halt_unless_auth('message_edit')
+  @review=SystematicReview[id]
+  raise Buhos::NoReviewIdError, id if !@review
+  @user_id=params['user_id']
+  return 404 if @review.nil? or @user_id.nil?
+  @subject=params['subject']
+  @text=params['text']
+  $db.transaction(:rollback=>:reraise) do
+    id=MessageSr.insert(:systematic_review_id=>id, :user_from=>@user_id, :reply_to=>nil, :time=>DateTime.now(), :subject=>@subject, :text=>@text)
+    add_message(t("messages.new_message_for_sr", sr_name:@review[:name]))
+  end
+  redirect back
+end
+
+
 # Mark a message as seen by a user
 post '/message_sr/:ms_id/seen_by/:user_id' do |ms_id, user_id|
   halt_unless_auth('message_edit')
@@ -51,6 +80,10 @@ post '/message_sr/:ms_id/reply' do |ms_id|
   redirect back
 
 end
+
+# @!endgroup
+
+# @!group Personal messages
 
 # Send a reply to a message
 post '/message_per/:m_id/reply' do |m_id|

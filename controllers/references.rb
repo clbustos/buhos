@@ -10,6 +10,7 @@ require 'cgi'
 
 # @!group References
 
+# View a reference
 get '/reference/:id' do |id|
   halt_unless_auth('reference_view')
   @ref=Reference[id]
@@ -17,7 +18,7 @@ get '/reference/:id' do |id|
   haml :reference
 end
 
-
+# Search references similar to a specific one
 get '/reference/:id/search_similar' do |id|
   halt_unless_auth('reference_edit')
 
@@ -35,6 +36,8 @@ get '/reference/:id/search_similar' do |id|
   end
 end
 
+
+# Merge similar references
 post '/reference/:id/merge_similar_references' do |id|
   halt_unless_auth('reference_edit')
   @ref=Reference[id]
@@ -49,7 +52,8 @@ post '/reference/:id/merge_similar_references' do |id|
   redirect back
 end
 
-
+# Query crossref using reference DOI
+# @todo check differences with {/reference/:id/search_crossref}
 get '/references/search_crossref_by_doi/:doi' do |doi|
   halt_unless_auth('reference_edit')
   doi=doi.gsub("***", "/")
@@ -62,6 +66,8 @@ get '/references/search_crossref_by_doi/:doi' do |doi|
   redirect back
 end
 
+# Query crossref for a specific references
+# @todo check differences with {'/references/search_crossref_by_doi/:doi}
 get '/reference/:id/search_crossref' do |id|
   halt_unless_auth('reference_edit')
   @ref=Reference[id]

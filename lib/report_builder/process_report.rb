@@ -25,9 +25,12 @@
 # CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
 # OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+#
 module ReportBuilder
   class ProcessReport
-    attr_reader :sr, :app, :cd_h, :ars
+    include ReportAbstract
+    attr_reader  :cd_h, :ars
     def initialize(sr,app)
       @sr=sr
       @app=app

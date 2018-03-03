@@ -5,8 +5,9 @@
 # Licensed BSD 3-Clause License
 # See LICENSE file for more information
 
+# @!group Systematic reviews
 
-
+# Get a list of systematic Reviews
 get '/reviews' do
   halt_unless_auth('review_view')
   @usuario=User[session['user_id']]
@@ -27,7 +28,7 @@ get '/reviews' do
   haml :reviews
 end
 
-
+# Form to create a new systematic review
 get '/review/new' do
   halt_unless_auth('review_edit')
 
@@ -46,7 +47,7 @@ get '/review/new' do
   haml %s{systematic_reviews/edit}
 end
 
-
+# View a specific review
 get "/review/:id" do |id|
   halt_unless_auth('review_view')
 
@@ -61,6 +62,7 @@ get "/review/:id" do |id|
   haml %s{systematic_reviews/view}
 end
 
+# Form to edit a specific review
 get "/review/:id/edit" do |id|
   halt_unless_auth('review_edit')
 
@@ -72,7 +74,9 @@ get "/review/:id/edit" do |id|
 end
 
 
-
+# Create (id=0) or edit(id>0)a Systematic review
+# @see /review/:id/edit
+# @see /review/new
 post '/review/update' do
   halt_unless_auth('review_edit')
 
@@ -87,7 +91,7 @@ post '/review/update' do
     ac[v[0].to_sym]=v[1];ac
   }
   #  aa=SystematicReview.new
-  $log.info(otros_params)
+  #$log.info(otros_params)
 
   $db.transaction(:rollback=>:reraise) do
     if(id=="")
@@ -111,8 +115,7 @@ end
 
 
 
-#### DOCUMENTOS CANONICOS #####
-
+# List of canonical documents of a review
 get '/review/:id/canonical_documents' do |id|
   halt_unless_auth('review_view')
 
@@ -170,6 +173,8 @@ get '/review/:id/canonical_documents' do |id|
 end
 
 
+# Get a list of repeated canonical documents, using DOI
+# @todo Check another ways to deduplicate
 get '/review/:id/repeated_canonical_documents' do |id|
   halt_unless_auth('review_view')
 
@@ -183,21 +188,7 @@ get '/review/:id/repeated_canonical_documents' do |id|
   haml %s{systematic_reviews/repeated_canonical_documents}
 end
 
-
-get '/review/:id/canonical_documents_graphml' do |id|
-  halt_unless_auth('review_view')
-  @review=SystematicReview[id]
-  raise Buhos::NoReviewIdError, id if !@review
-  headers["Content-Disposition"] = "attachment;filename=graphml_revision_#{id}.graphml"
-
-  content_type 'application/graphml+xml'
-  graphml=GraphML_Builder.new(@review, nil)
-  graphml.generate_graphml
-end
-
-
-
-
+# Get tags and classes of tags for a systematic review
 get '/review/:id/tags' do |id|
   halt_unless_auth('review_view')
   @review=SystematicReview[id]
@@ -217,32 +208,7 @@ get '/review/:id/tags' do |id|
 end
 
 
-get '/review/:id/messages' do |id|
-  halt_unless_auth('review_view')
-  @review=SystematicReview[id]
-  raise Buhos::NoReviewIdError, id if !@review
-  @mensajes_rs=@review.message_srs_dataset.order(Sequel.desc(:time))
-  #@mensajes_rs_vistos=MessageSrSeen.where(:read=>true,:m_rs_id=>@mensajes_rs.select_map(:id), :user_id=>session['user_id']).select_map(:m_rs_id)
-  #$log.info(@mensajes_rs_vistos)
-  @usuario=User[session['user_id']]
-  haml %s{systematic_reviews/messages}
-end
-
-post '/review/:id/message/new' do |id|
-  halt_unless_auth('message_edit')
-  @review=SystematicReview[id]
-  raise Buhos::NoReviewIdError, id if !@review
-  @user_id=params['user_id']
-  return 404 if @review.nil? or @user_id.nil?
-  @subject=params['subject']
-  @text=params['text']
-  $db.transaction(:rollback=>:reraise) do
-    id=MessageSr.insert(:systematic_review_id=>id, :user_from=>@user_id, :reply_to=>nil, :time=>DateTime.now(), :subject=>@subject, :text=>@text)
-    add_message(t("messages.new_message_for_sr", sr_name:@review[:name]))
-  end
-  redirect back
-end
-
+# List of review files
 get '/review/:id/files' do |id|
   halt_unless_auth('review_view', 'file_view')
   @review=SystematicReview[id]
@@ -257,6 +223,8 @@ get '/review/:id/files' do |id|
   haml %s{systematic_reviews/files}
 end
 
+
+# Add one or more files to a review
 post '/review/files/add' do
   halt_unless_auth('review_edit', 'file_admin')
 
@@ -283,7 +251,7 @@ post '/review/files/add' do
   redirect back
 end
 
-
+# Go to next stage, if complete
 get '/review/:id/advance_stage' do |id|
   halt_unless_auth('review_admin')
 
@@ -303,3 +271,6 @@ get '/review/:id/advance_stage' do |id|
     redirect back
   end
 end
+
+
+# @!endgroup
