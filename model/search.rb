@@ -28,7 +28,7 @@
 
 require_relative "revision_sistematica.rb"
 require_relative "registro.rb"
-
+require_relative "bibliographic_database"
 require 'digest'
 
 class Search < Sequel::Model
