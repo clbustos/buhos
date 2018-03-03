@@ -28,8 +28,6 @@ $test_mode=ENV['RACK_ENV'].to_s == "test"
 
 installed_file= $test_mode ? "config/installed_test" : "config/installed"
 
-
-
 if (!$test_mode and !File.exist?(installed_file)) or ENV['TEST_INSTALLER']
   load('installer.rb')
   Buhos::Installer.run!

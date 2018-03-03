@@ -32,11 +32,7 @@
 %div{:class=>"btn-group btn-group-sm", :role=>"group"}
   - if auth_to("review_admin")  or review_belongs_to(@review.id, session['user_id'])
     %a{:href=>url("/review/#{@review.id}/repeated_canonical_documents"), :role=>'button', :class=>"btn btn-default"}=t(:Check_duplications)
-  - if auth_to("review_admin")  or review_belongs_to(@review.id, session['user_id'])
-    %a{:href=>url("/references/complete_canonical"), :role=>'button', :class=>"btn btn-default", :tooltip=>"Se revisan todas las references con DOI y se le une al canónico correspondiente"}
-      %span{:class=>""}
-      =t(:References_assign_canonical_documents)
-  - if auth_to("review_admin")  or review_belongs_to(@review.id, session['user_id'])
+  - if scopus_available?  and auth_to("scopus_query")  and ( auth_to('review_admin') or review_belongs_to(@review.id, session['user_id']))
     %a{:href=>url("/canonical_documents/review/#{@review.id}/complete_scopus_abstract")   , :role=>'button', :class=>"btn btn-default"}
       %span{:class=>""}
       =t(:Complete_abstract_using_Scopus)

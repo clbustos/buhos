@@ -151,7 +151,7 @@ get '/review/:id/canonical_documents' do |id|
 #  $log.info(@pager)
 
 
-  @order_criteria={:n_references_rtr=>"Referencias RTR", :n_total_references_in=>"Citado por", :n_total_references_made=>"Cita a",  :title=>"Título", :year=> "Año", :author=>"Autor"}
+  @order_criteria={:n_references_rtr=>I18n::t(:RTA_references), :n_total_references_in=>t(:Citations), :n_total_references_made=>t(:Outgoing_citations),  :title=>t(:Title), :year=> t(:Year), :author=>t(:Author)}
 
 
   @cds=@pager.adjust_query(@cds_pre)
