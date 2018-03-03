@@ -26,6 +26,8 @@ Web based platform to manage the complete process of a systematic literatute rev
 
 There is a user [manual available](https://github.com/clbustos/buhos/tree/master/docs/manual). Contains a guide to understand the systematic review process.
 
+The API is documented usign [Yard](https://yardoc.org/) and is available on [https://www.buhos.org/api](https://www.buhos.org/api).
+
 ## Getting Started
 
 ### On Windows
