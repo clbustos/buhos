@@ -25,8 +25,10 @@
 # CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
 # OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
 #
 module Buhos
+  # Misc helpers for Buhos
   module Helpers
 
 
@@ -46,12 +48,16 @@ module Buhos
       FileUtils.mkdir_p(dir) unless File.exist? dir
       dir
     end
+    # Set title header for app
     def title(title)
       @title=title
     end
+    # Is SCOPUS API key available?
     def scopus_available?
       !ENV['SCOPUS_KEY'].nil?
     end
+
+    # Get title header within 80 chars
     def get_title_head
       if @title.length>80
         @title[0..80]+"..."
@@ -65,14 +71,15 @@ module Buhos
 
 
 
-    # Entrega el valor para un id de configuración
+    # Get an APP config
     def config_get(id)
       Configuration.get(id)
     end
-    # Define el valor para un id de configuración
+    # Set an APP config
     def config_set(id,valor)
       Configuration.set(id,valor)
     end
+
     def time_sql(time)
       time.strftime("%Y-%m-%d %H:%M:%S")
     end

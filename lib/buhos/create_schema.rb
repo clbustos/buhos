@@ -319,94 +319,117 @@ module Buhos
       user=db[:users][:login=>login]
       user ? user[:id] :nil
     end
+
     def self.create_bootstrap_data(db,language='en')
       db.transaction do
-        db[:roles].replace(:id=>'administrator',:description=>'App administrator')
-        db[:roles].replace(:id=>'analyst',:description=>'App analyst')
-        db[:roles].replace(:id=>'guest',:description=>'Guest')
-
-        id_admin=get_id_user_by_login(db,'admin')
-        id_admin||=db[:users].replace(:login=>'admin',:name=>'Administrator', :password=>Digest::SHA1.hexdigest('admin'), :role_id=>'administrator', :active=>1, :language=>language)
-
-        id_analyst=get_id_user_by_login(db,'analyst')
-        id_analyst||=db[:users].replace(:login=>'analyst',:name=>'Analyst', :password=>Digest::SHA1.hexdigest('analyst'), :role_id=>'analyst', :active=>1, :language=>language)
-
-        id_guest=get_id_user_by_login(db,'guest')
-        id_guest||=db[:users].replace(:login=>'guest',:name=>'Guest', :password=>Digest::SHA1.hexdigest('guest'), :role_id=>'guest', :active=>1, :language=>language)
-        authorizations=[
-'canonical_document_admin',
-'canonical_document_view',
-'crossref_query',
-'file_admin',
-'file_view',
-'group_admin',
-'group_view',
-'message_edit',
-'message_view',
-'record_edit',
-'record_view',
-'reference_edit',
-'reference_view',
-'reflection',
-'review_admin',
-'review_analyze',
-'review_edit',
-'review_view',
-'role_admin',
-'role_view',
-'scopus_query',
-'search_edit',
-'search_view',
-'tag_edit',
-'user_admin'
-        ]
-            authorizations.each do |auth|
-              db[:authorizations].replace(:id=>auth)
-              db[:authorizations_roles].replace(:authorization_id=>auth,:role_id=>'administrator')
-            end
-
-        analyst_permits=['review_view','review_analyze','message_view', 'message_edit', 'search_view', 'search_edit', 'record_view', 'record_edit', 'reference_view', 'reference_edit', 'file_view', 'canonical_document_view', 'group_view']
-        analyst_permits.each do |auth|
-          db[:authorizations_roles].replace(:authorization_id=>auth,:role_id=>'analyst')
-        end
-
-        guest_permits=['review_view','message_view', 'message_edit', 'search_view', 'record_view', 'reference_view', 'file_view', 'canonical_document_view', 'group_view']
-        guest_permits.each do |auth|
-          db[:authorizations_roles].replace(:authorization_id=>auth,:role_id=>'guest')
-        end
-
-
-        # Bibliographic databases
-
-        ["scopus", "wos","scielo","ebscohost", "refworks","generic"].each do |bib_db|
-          db[:bibliographic_databases].replace(:name=>bib_db)
-        end
-        # Taxonomies
-        #
-        #
-
-        taxonomies={
-            "focus"=>["practice_or_application", "theory", "research_methods", "research_results"],
-            "objectives"=>["critical", "main_themes","integration"],
-            "perspective"=>["neutral","adoption_of_posture"],
-            "coverage"=>["exhaustive", "exhaustive_with_selection", "representative", "essential"],
-            "organization"=>["methodology","conceptual","historical"],
-            "receiver"=>["academics_specialist","academics_general","practicians_politics", "general_public"]
-
-        }
-
-        taxonomies.each_pair do |category, values|
-            f_id=db[:sr_taxonomies].replace(:name=>category)
-            values.each do |name|
-              db[:sr_taxonomy_categories].replace(:srt_id=>f_id, :name=>name)
-            end
-        end
-
-        group_id=db[:groups].replace(:group_administrator=>id_admin, :description=>"First group, just for demostration", :name=>"demo group")
-        db[:groups_users].replace(:group_id=>group_id, :user_id=>id_admin)
-        db[:groups_users].replace(:group_id=>group_id, :user_id=>id_analyst)
-        db[:groups_users].replace(:group_id=>group_id, :user_id=>id_guest)
+        create_roles(db)
+        id_admin, id_analyst, id_guest = create_users(db, language)
+        create_authorizations(db)
+        allocate_authorizations_to_roles(db)
+        allocate_users_to_groups(db, id_admin, id_analyst, id_guest)
+        insert_bib_db_data(db)
+        insert_taxonomies_data(db)
       end
     end
+
+    def self.create_users(db, language)
+      id_admin = get_id_user_by_login(db, 'admin')
+      id_admin ||= db[:users].replace(:login => 'admin', :name => 'Administrator', :password => Digest::SHA1.hexdigest('admin'), :role_id => 'administrator', :active => 1, :language => language)
+
+      id_analyst = get_id_user_by_login(db, 'analyst')
+      id_analyst ||= db[:users].replace(:login => 'analyst', :name => 'Analyst', :password => Digest::SHA1.hexdigest('analyst'), :role_id => 'analyst', :active => 1, :language => language)
+
+      id_guest = get_id_user_by_login(db, 'guest')
+      id_guest ||= db[:users].replace(:login => 'guest', :name => 'Guest', :password => Digest::SHA1.hexdigest('guest'), :role_id => 'guest', :active => 1, :language => language)
+      return id_admin, id_analyst, id_guest
+    end
+
+    def self.create_roles(db)
+      db[:roles].replace(:id => 'administrator', :description => 'App administrator')
+      db[:roles].replace(:id => 'analyst', :description => 'App analyst')
+      db[:roles].replace(:id => 'guest', :description => 'Guest')
+    end
+
+    # Insert data for taxonomies
+    def self.insert_taxonomies_data(db)
+      taxonomies = {
+          "focus" => ["practice_or_application", "theory", "research_methods", "research_results"],
+          "objectives" => ["critical", "main_themes", "integration"],
+          "perspective" => ["neutral", "adoption_of_posture"],
+          "coverage" => ["exhaustive", "exhaustive_with_selection", "representative", "essential"],
+          "organization" => ["methodology", "conceptual", "historical"],
+          "receiver" => ["academics_specialist", "academics_general", "practicians_politics", "general_public"]
+
+      }
+
+      taxonomies.each_pair do |category, values|
+        f_id = db[:sr_taxonomies].replace(:name => category)
+        values.each do |name|
+          db[:sr_taxonomy_categories].replace(:srt_id => f_id, :name => name)
+        end
+      end
+    end
+    # Insert data for bibliographic databases
+    def self.insert_bib_db_data(db)
+      ["scopus", "wos", "scielo", "ebscohost", "refworks", "generic"].each do |bib_db|
+        db[:bibliographic_databases].replace(:name => bib_db)
+      end
+    end
+
+    def self.allocate_authorizations_to_roles(db)
+      analyst_permits = ['review_view', 'review_analyze', 'message_view', 'message_edit', 'search_view', 'search_edit', 'record_view', 'record_edit', 'reference_view', 'reference_edit', 'file_view', 'canonical_document_view', 'group_view']
+      analyst_permits.each do |auth|
+        db[:authorizations_roles].replace(:authorization_id => auth, :role_id => 'analyst')
+      end
+
+      guest_permits = ['review_view', 'message_view', 'message_edit', 'search_view', 'record_view', 'reference_view', 'file_view', 'canonical_document_view', 'group_view']
+      guest_permits.each do |auth|
+        db[:authorizations_roles].replace(:authorization_id => auth, :role_id => 'guest')
+      end
+    end
+
+    def self.create_authorizations(db)
+      authorizations = [
+          'canonical_document_admin',
+          'canonical_document_view',
+          'crossref_query',
+          'file_admin',
+          'file_view',
+          'group_admin',
+          'group_view',
+          'message_edit',
+          'message_view',
+          'record_edit',
+          'record_view',
+          'reference_edit',
+          'reference_view',
+          'reflection',
+          'review_admin',
+          'review_analyze',
+          'review_edit',
+          'review_view',
+          'role_admin',
+          'role_view',
+          'scopus_query',
+          'search_edit',
+          'search_view',
+          'tag_edit',
+          'user_admin'
+      ]
+      authorizations.each do |auth|
+        db[:authorizations].replace(:id => auth)
+        db[:authorizations_roles].replace(:authorization_id => auth, :role_id => 'administrator')
+      end
+    end
+
+    private
+    def self.allocate_users_to_groups(db, id_admin, id_analyst, id_guest)
+      group_id = db[:groups].replace(:group_administrator => id_admin, :description => "First group, just for demostration", :name => "demo group")
+      db[:groups_users].replace(:group_id => group_id, :user_id => id_admin)
+      db[:groups_users].replace(:group_id => group_id, :user_id => id_analyst)
+      db[:groups_users].replace(:group_id => group_id, :user_id => id_guest)
+    end
+
+
   end
 end
