@@ -125,7 +125,7 @@ And run the application using
 
 ## Post-install configuration
 
-The app uses a web-based installer. Once you start the server with you should point your browser to localhost:4567 and the installation process should began.
+The app uses a web-based configuration. Once you start the server with you should point your browser to localhost:4567 and the installation process should began.
 
 If you want to use a Mysql database, you should create it before installing the sofware. As mysql root user, you could use something like
 
