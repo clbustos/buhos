@@ -24,7 +24,7 @@ describe 'Search:' do
 
   context 'when check initial state' do
     it "should be 0 searches" do
-        expect(Search.count).to eq(0)
+      expect(Search.count).to eq(0)
     end
     it "should be 0 records" do
       expect(Record.count).to eq(0)
@@ -73,7 +73,7 @@ describe 'Search:' do
     end
 
   end
-  context "when search view is acceded" do
+  context "when search view is accesed" do
     let(:response) {get '/search/1'}
     it { expect(response).to be_ok}
     it "should include the bibliographic database name " do
@@ -120,71 +120,80 @@ describe 'Search:' do
       expect(last_response.header['Location']).to eq("http://example.org/URL_BACK")
     end
   end
-  if(true)
-    context "records when search is already processed" do
+  context "records when search is already processed" do
 
-      let(:expected_titles) do
-        [
-            "SLuRp : A Tool to Help Large Complex Systematic Literature Reviews Deliver Valid and Rigorous Results",
-            "SWIFT-Review: A text-mining workbench for systematic review",
-            "ExaCT: automatic extraction of clinical trial characteristics from journal publications",
-            "RevManHAL: Towards automatic text generation in systematic reviews",
-            "GAPscreener: An automatic tool for screening human genetic association literature in PubMed using the support vector machine technique",
-            "Effectiveness and efficiency of search methods in systematic reviews of complex evidence: Audit of primary sources"
-        ].sort
-      end
+    let(:expected_titles) do
+      [
+          "SLuRp : A Tool to Help Large Complex Systematic Literature Reviews Deliver Valid and Rigorous Results",
+          "SWIFT-Review: A text-mining workbench for systematic review",
+          "ExaCT: automatic extraction of clinical trial characteristics from journal publications",
+          "RevManHAL: Towards automatic text generation in systematic reviews",
+          "GAPscreener: An automatic tool for screening human genetic association literature in PubMed using the support vector machine technique",
+          "Effectiveness and efficiency of search methods in systematic reviews of complex evidence: Audit of primary sources"
+      ].sort
+    end
+    before(:context) do
+      searches_id=[1]
+      post '/searches/update_batch', {search:1,searches:searches_id, action:'process', url_back:'URL_BACK'}
+    end
+    let(:records) {Search[1].records_dataset }
+    it "should be 6" do
+      expect(records.count).to eq(6)
+    end
+    it "should have correct titles " do
+      actual_titles=records.map(:title).sort
+      expect(actual_titles).to eq(expected_titles)
+    end
+    it "should have correct bibliographic db assigned" do
+      expect(records.map(:bibliographic_database_id).uniq).to eq([bb_id])
+    end
+    context "and records view is accesed" do
       before(:context) do
-        searches_id=[1]
-        post '/searches/update_batch', {search:1,searches:searches_id, action:'process', url_back:'URL_BACK'}
+        get '/search/1/records'
       end
-      let(:records) {Search[1].records_dataset }
-      it "should be 6" do
-        expect(records.count).to eq(6)
-      end
-      it "should have correct titles " do
-        actual_titles=records.map(:title).sort
-        expect(actual_titles).to eq(expected_titles)
-      end
-      it "should have correct bibliographic db assigned" do
-        expect(records.map(:bibliographic_database_id).uniq).to eq([bb_id])
-      end
-      context "and records view is accesed" do
-        before(:context) do
-          get '/search/1/records'
-        end
-        it {expect(last_response).to be_ok}
-        it "should contain all titles" do
-          expected_titles.each do |title|
-            expect(last_response.body).to include title
-          end
+      it {expect(last_response).to be_ok}
+      it "should contain all titles" do
+        expected_titles.each do |title|
+          expect(last_response.body).to include title
         end
       end
-
-    end
-    context 'when validate the search with direct link' do
-      before(:context) do
-        get '/search/1/validate'
-      end
-      it "response should be redirect" do
-        expect(last_response).to be_redirect
-      end
-      it "search should be validadet" do
-        expect(search[:valid]).to be true
-      end
     end
 
-    context 'when invalidate the search with direct link' do
-      before(:context) do
-        get '/search/1/invalidate'
-      end
-      it "response should be redirect" do
-        expect(last_response).to be_redirect
-      end
-      it "search should be invalidated" do
-        expect(search[:valid]).to be false
-      end
+  end
+  context 'when validate the search with direct link' do
+    before(:context) do
+      get '/search/1/validate'
     end
+    it "response should be redirect" do
+      expect(last_response).to be_redirect
+    end
+    it "search should be validadet" do
+      expect(search[:valid]).to be true
     end
   end
+
+  context 'when invalidate the search with direct link' do
+    before(:context) do
+      get '/search/1/invalidate'
+    end
+    it "response should be redirect" do
+      expect(last_response).to be_redirect
+    end
+    it "search should be invalidated" do
+      expect(search[:valid]).to be false
+    end
+  end
+  context "when try to add DOI for each reference" do
+    before(:context) do
+      get '/search/1/references/search_doi'
+    end
+    it "response should be redirect" do
+      expect(last_response).to be_redirect
+    end
+    it "session message should be" do
+      expect(last_request.env['rack.session']["messages"].find {|v| v[0]==I18n::t(:Search_add_doi_references, count:0)}).to be_truthy
+    end
+  end
+end
 
 

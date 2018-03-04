@@ -96,6 +96,7 @@ end
 
 
 # Search on each reference a posible DOI string
+# @todo: Should be integrated on a better way
 get '/search/:id/references/search_doi' do |id|
   halt_unless_auth('search_edit')
   exitos=0

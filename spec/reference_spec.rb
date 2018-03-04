@@ -74,4 +74,18 @@ describe 'Reference' do
     end
   end
 
+  context "#crossref_query when need to query crossref using text" do
+    before(:context) do
+      res=$db['SELECT b.* FROM bib_references b INNER JOIN crossref_queries c where b.id=c.id LIMIT 1'].first
+      @ref=Reference[res[:id]]
+    end
+    let(:cq) {@ref.crossref_query}
+    it "should return an Array" do
+      expect(cq).to be_a(Array)
+    end
+    it "should include doi http://dx.doi.org/10.1111/j.1708-8208.2003.tb00188.x" do
+      expect(cq[0]["doi"]).to eq("http://dx.doi.org/10.1111/j.1708-8208.2003.tb00188.x")
+    end
+  end
+
 end

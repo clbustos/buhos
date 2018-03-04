@@ -61,7 +61,19 @@ describe 'Reference resources' do
       expect(last_response.body).to_not include(I18n::t(:No_similar_references_without_canonical))
     end
   end
-
+  context "when assign DOI to a reference without it" do
+    before(:context) do
+      @doi=reference_doi.doi
+      reference_doi.update(:doi=>nil)
+      get "/reference/#{reference_doi[:id]}/assign_doi/#{@doi.gsub('/','***')}"
+    end
+    it "response should be redirect" do
+      expect(last_response).to be_redirect
+    end
+    it "reference should have correct doi" do
+      expect(reference_doi.doi).to eq(@doi)
+    end
+  end
 
 
 end
