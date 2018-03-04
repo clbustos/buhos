@@ -26,9 +26,9 @@
 # OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-require_relative 'revision_sistematica_views_mixin.rb'
+require_relative 'systematic_review_views_mixin.rb'
 require_relative 'tag'
-require_relative 'mensajes'
+require_relative 'messages'
 class SystematicReview < Sequel::Model
   include SystematicReviewViewsMixin
   one_to_many :searches

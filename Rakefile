@@ -21,30 +21,10 @@ require 'yard-sinatra'
 Dotenv.load("./.env")
 
 YARD::Rake::YardocTask.new do |t|
-  t.files   = ['lib/**/*.rb', 'model/**/*.rb', 'controllers/**/*.rb']   # optional
+  t.files   = ['lib/**/*.rb', 'model/**/*.rb', 'controllers/**/*.rb', '-', 'docs/rspec.html', 'LICENSE']   # optional
   t.options = ['--plugin yard-sinatra', '-odocs/api', '--embed-mixin'] # optional
   t.stats_options = ['--list-undoc']         # optional
 end
-
-
-
-
-
-desc "Test with output external coverage"
-task :spec_cov=>[:before_spec, :spec, :after_spec]
-
-
-task :before_spec do |t|
-  sh %{cc-test-reporter before-build}
-
-end
-
-
-task :after_spec do |t|
-  sh %{CC_TEST_REPORTER_ID=#{ENV['CC_TEST_REPORTER_ID']} cc-test-reporter after-build --exit-code 0}
-
-end
-
 
 
 RSpec::Core::RakeTask.new(:spec) do |t|
@@ -54,6 +34,15 @@ RSpec::Core::RakeTask.new(:spec) do |t|
 # t.rspec_opts << ' more options'
   #t.rcov = true
 end
+
+RSpec::Core::RakeTask.new(:spec_html) do |t|
+  t.pattern = Dir.glob('spec/**/*_spec.rb')
+  t.rspec_opts = '--format html '
+ t.rspec_opts << '--out docs/rspec.html '
+#t.rcov = true
+end
+
+
 
 task :default => :spec
 

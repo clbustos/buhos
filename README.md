@@ -4,7 +4,7 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/ffa582598127f86ed405/maintainability)](https://codeclimate.com/github/clbustos/buhos/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/ffa582598127f86ed405/test_coverage)](https://codeclimate.com/github/clbustos/buhos/test_coverage)
 
-Web based platform to manage the complete process of a systematic literatute reviews. Developed usign Sinatra, a Ruby DSL.
+Web based platform to manage the complete process of a systematic literature reviews. Developed usign Sinatra, a Ruby DSL.
 
 
 ## Features

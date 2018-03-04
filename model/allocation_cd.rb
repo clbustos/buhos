@@ -26,9 +26,9 @@
 # OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-require_relative 'revision_sistematica'
+require_relative 'systematic_review'
 require_relative 'seguridad'
-require_relative 'canonico_documento'
+require_relative 'canonical_document'
 
 
 class AllocationCd < Sequel::Model

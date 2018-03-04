@@ -26,8 +26,8 @@
 # OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-require_relative "revision_sistematica.rb"
-require_relative "registro.rb"
+require_relative "systematic_review.rb"
+require_relative "record.rb"
 require_relative "bibliographic_database"
 require 'digest'
 
