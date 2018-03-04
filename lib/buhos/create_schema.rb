@@ -319,7 +319,7 @@ module Buhos
       user=db[:users][:login=>login]
       user ? user[:id] :nil
     end
-
+    # @!group Insert bootstrap data
     def self.create_bootstrap_data(db,language='en')
       db.transaction do
         create_roles(db)
@@ -422,7 +422,7 @@ module Buhos
       end
     end
 
-    private
+
     def self.allocate_users_to_groups(db, id_admin, id_analyst, id_guest)
       group_id = db[:groups].replace(:group_administrator => id_admin, :description => "First group, just for demostration", :name => "demo group")
       db[:groups_users].replace(:group_id => group_id, :user_id => id_admin)
@@ -430,6 +430,6 @@ module Buhos
       db[:groups_users].replace(:group_id => group_id, :user_id => id_guest)
     end
 
-
+    # @!endgroup
   end
 end
