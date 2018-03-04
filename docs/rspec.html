@@ -1,0 +1,2127 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <title>RSpec results</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Expires" content="-1" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <style type="text/css">
+  body {
+    margin: 0;
+    padding: 0;
+    background: #fff;
+    font-size: 80%;
+  }
+  </style>
+  <script type="text/javascript">
+    // <![CDATA[
+
+function addClass(element_id, classname) {
+  document.getElementById(element_id).className += (" " + classname);
+}
+
+function removeClass(element_id, classname) {
+  var elem = document.getElementById(element_id);
+  var classlist = elem.className.replace(classname,'');
+  elem.className = classlist;
+}
+
+function moveProgressBar(percentDone) {
+  document.getElementById("rspec-header").style.width = percentDone +"%";
+}
+
+function makeRed(element_id) {
+  removeClass(element_id, 'passed');
+  removeClass(element_id, 'not_implemented');
+  addClass(element_id,'failed');
+}
+
+function makeYellow(element_id) {
+  var elem = document.getElementById(element_id);
+  if (elem.className.indexOf("failed") == -1) {  // class doesn't includes failed
+    if (elem.className.indexOf("not_implemented") == -1) { // class doesn't include not_implemented
+      removeClass(element_id, 'passed');
+      addClass(element_id,'not_implemented');
+    }
+  }
+}
+
+function apply_filters() {
+  var passed_filter = document.getElementById('passed_checkbox').checked;
+  var failed_filter = document.getElementById('failed_checkbox').checked;
+  var pending_filter = document.getElementById('pending_checkbox').checked;
+
+  assign_display_style("example passed", passed_filter);
+  assign_display_style("example failed", failed_filter);
+  assign_display_style("example not_implemented", pending_filter);
+
+  assign_display_style_for_group("example_group passed", passed_filter);
+  assign_display_style_for_group("example_group not_implemented", pending_filter, pending_filter || passed_filter);
+  assign_display_style_for_group("example_group failed", failed_filter, failed_filter || pending_filter || passed_filter);
+}
+
+function get_display_style(display_flag) {
+  var style_mode = 'none';
+  if (display_flag == true) {
+    style_mode = 'block';
+  }
+  return style_mode;
+}
+
+function assign_display_style(classname, display_flag) {
+  var style_mode = get_display_style(display_flag);
+  var elems = document.getElementsByClassName(classname)
+  for (var i=0; i<elems.length;i++) {
+    elems[i].style.display = style_mode;
+  }
+}
+
+function assign_display_style_for_group(classname, display_flag, subgroup_flag) {
+  var display_style_mode = get_display_style(display_flag);
+  var subgroup_style_mode = get_display_style(subgroup_flag);
+  var elems = document.getElementsByClassName(classname)
+  for (var i=0; i<elems.length;i++) {
+    var style_mode = display_style_mode;
+    if ((display_flag != subgroup_flag) && (elems[i].getElementsByTagName('dt')[0].innerHTML.indexOf(", ") != -1)) {
+      elems[i].style.display = subgroup_style_mode;
+    } else {
+      elems[i].style.display = display_style_mode;
+    }
+  }
+}
+
+    // ]]>
+  </script>
+  <style type="text/css">
+#rspec-header {
+  background: #65C400; color: #fff; height: 4em;
+}
+
+.rspec-report h1 {
+  margin: 0px 10px 0px 10px;
+  padding: 10px;
+  font-family: "Lucida Grande", Helvetica, sans-serif;
+  font-size: 1.8em;
+  position: absolute;
+}
+
+#label {
+  float:left;
+}
+
+#display-filters {
+  float:left;
+  padding: 28px 0 0 40%;
+  font-family: "Lucida Grande", Helvetica, sans-serif;
+}
+
+#summary {
+  float:right;
+  padding: 5px 10px;
+  font-family: "Lucida Grande", Helvetica, sans-serif;
+  text-align: right;
+}
+
+#summary p {
+  margin: 0 0 0 2px;
+}
+
+#summary #totals {
+  font-size: 1.2em;
+}
+
+.example_group {
+  margin: 0 10px 5px;
+  background: #fff;
+}
+
+dl {
+  margin: 0; padding: 0 0 5px;
+  font: normal 11px "Lucida Grande", Helvetica, sans-serif;
+}
+
+dt {
+  padding: 3px;
+  background: #65C400;
+  color: #fff;
+  font-weight: bold;
+}
+
+dd {
+  margin: 5px 0 5px 5px;
+  padding: 3px 3px 3px 18px;
+}
+
+dd .duration {
+  padding-left: 5px;
+  text-align: right;
+  right: 0px;
+  float:right;
+}
+
+dd.example.passed {
+  border-left: 5px solid #65C400;
+  border-bottom: 1px solid #65C400;
+  background: #DBFFB4; color: #3D7700;
+}
+
+dd.example.not_implemented {
+  border-left: 5px solid #FAF834;
+  border-bottom: 1px solid #FAF834;
+  background: #FCFB98; color: #131313;
+}
+
+dd.example.pending_fixed {
+  border-left: 5px solid #0000C2;
+  border-bottom: 1px solid #0000C2;
+  color: #0000C2; background: #D3FBFF;
+}
+
+dd.example.failed {
+  border-left: 5px solid #C20000;
+  border-bottom: 1px solid #C20000;
+  color: #C20000; background: #FFFBD3;
+}
+
+
+dt.not_implemented {
+  color: #000000; background: #FAF834;
+}
+
+dt.pending_fixed {
+  color: #FFFFFF; background: #C40D0D;
+}
+
+dt.failed {
+  color: #FFFFFF; background: #C40D0D;
+}
+
+
+#rspec-header.not_implemented {
+  color: #000000; background: #FAF834;
+}
+
+#rspec-header.pending_fixed {
+  color: #FFFFFF; background: #C40D0D;
+}
+
+#rspec-header.failed {
+  color: #FFFFFF; background: #C40D0D;
+}
+
+
+.backtrace {
+  color: #000;
+  font-size: 12px;
+}
+
+a {
+  color: #BE5C00;
+}
+
+/* Ruby code, style similar to vibrant ink */
+.ruby {
+  font-size: 12px;
+  font-family: monospace;
+  color: white;
+  background-color: black;
+  padding: 0.1em 0 0.2em 0;
+}
+
+.ruby .keyword { color: #FF6600; }
+.ruby .constant { color: #339999; }
+.ruby .attribute { color: white; }
+.ruby .global { color: white; }
+.ruby .module { color: white; }
+.ruby .class { color: white; }
+.ruby .string { color: #66FF00; }
+.ruby .ident { color: white; }
+.ruby .method { color: #FFCC00; }
+.ruby .number { color: white; }
+.ruby .char { color: white; }
+.ruby .comment { color: #9933CC; }
+.ruby .symbol { color: white; }
+.ruby .regex { color: #44B4CC; }
+.ruby .punct { color: white; }
+.ruby .escape { color: white; }
+.ruby .interp { color: white; }
+.ruby .expr { color: white; }
+
+.ruby .offending { background-color: gray; }
+.ruby .linenum {
+  width: 75px;
+  padding: 0.1em 1em 0.2em 0;
+  color: #000000;
+  background-color: #FFFBD3;
+}
+
+  </style>
+</head>
+<body>
+<div class="rspec-report">
+
+<div id="rspec-header">
+  <div id="label">
+    <h1>RSpec Code Examples</h1>
+  </div>
+
+  <div id="display-filters">
+    <input id="passed_checkbox"  name="passed_checkbox"  type="checkbox" checked="checked" onchange="apply_filters()" value="1" /> <label for="passed_checkbox">Passed</label>
+    <input id="failed_checkbox"  name="failed_checkbox"  type="checkbox" checked="checked" onchange="apply_filters()" value="2" /> <label for="failed_checkbox">Failed</label>
+    <input id="pending_checkbox" name="pending_checkbox" type="checkbox" checked="checked" onchange="apply_filters()" value="3" /> <label for="pending_checkbox">Pending</label>
+  </div>
+
+  <div id="summary">
+    <p id="totals">&#160;</p>
+    <p id="duration">&#160;</p>
+  </div>
+</div>
+
+
+<div class="results">
+<div id="div_group_1" class="example_group passed">
+  <dl style="margin-left: 0px;">
+  <dt id="example_group_1" class="passed">AbstractPresentation class</dt>
+    <script type="text/javascript">moveProgressBar('0.2');</script>
+    <dd class="example passed"><span class="passed_spec_name">could be initialized without parameters</span><span class='duration'>0.00064s</span></dd>
+    <script type="text/javascript">moveProgressBar('0.4');</script>
+    <dd class="example passed"><span class="passed_spec_name">.html_with_keywords should add br on newlines</span><span class='duration'>0.00018s</span></dd>
+    <script type="text/javascript">moveProgressBar('0.6');</script>
+    <dd class="example passed"><span class="passed_spec_name">.html_with_keywords should add &lt;strong&gt; on keywords, by default</span><span class='duration'>0.00013s</span></dd>
+    <script type="text/javascript">moveProgressBar('0.8');</script>
+    <dd class="example passed"><span class="passed_spec_name">.html_with_keywords should replace strong with another tag</span><span class='duration'>0.00013s</span></dd>
+    <script type="text/javascript">moveProgressBar('1.0');</script>
+    <dd class="example passed"><span class="passed_spec_name">.html_with_keywords should add class to tag</span><span class='duration'>0.00017s</span></dd>
+  </dl>
+</div>
+<div id="div_group_2" class="example_group passed">
+  <dl style="margin-left: 0px;">
+  <dt id="example_group_2" class="passed">Buhos administration</dt>
+  </dl>
+</div>
+<div id="div_group_3" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_3" class="passed">when analyst try to access admin pages</dt>
+    <script type="text/javascript">moveProgressBar('1.2');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /admin/groups be prohibited</span><span class='duration'>0.08343s</span></dd>
+    <script type="text/javascript">moveProgressBar('1.5');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /group/new be prohibited</span><span class='duration'>0.00369s</span></dd>
+    <script type="text/javascript">moveProgressBar('1.7');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /role/new be prohibited</span><span class='duration'>0.00376s</span></dd>
+    <script type="text/javascript">moveProgressBar('1.9');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /admin/users be prohibited</span><span class='duration'>0.00354s</span></dd>
+    <script type="text/javascript">moveProgressBar('2.1');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /user/new be prohibited</span><span class='duration'>0.00403s</span></dd>
+    <script type="text/javascript">moveProgressBar('2.3');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /role/new be prohibited</span><span class='duration'>0.00352s</span></dd>
+  </dl>
+</div>
+<div id="div_group_4" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_4" class="passed">when admin try to access admin pages</dt>
+    <script type="text/javascript">moveProgressBar('2.5');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /admin/groups be available for admin</span><span class='duration'>0.00980s</span></dd>
+    <script type="text/javascript">moveProgressBar('2.7');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /admin/roles be available for admin</span><span class='duration'>0.01139s</span></dd>
+    <script type="text/javascript">moveProgressBar('3.0');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /group/new be available for admin</span><span class='duration'>0.01320s</span></dd>
+    <script type="text/javascript">moveProgressBar('3.2');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /admin/users be available for admin</span><span class='duration'>0.01602s</span></dd>
+    <script type="text/javascript">moveProgressBar('3.4');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /user/new be available for admin</span><span class='duration'>0.01255s</span></dd>
+    <script type="text/javascript">moveProgressBar('3.6');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /role/new be available for admin</span><span class='duration'>0.01425s</span></dd>
+  </dl>
+</div>
+<div id="div_group_5" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_5" class="passed">when group edit view is acceded</dt>
+    <script type="text/javascript">moveProgressBar('3.8');</script>
+    <dd class="example passed"><span class="passed_spec_name">response should be ok</span><span class='duration'>0.00384s</span></dd>
+  </dl>
+</div>
+<div id="div_group_6" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_6" class="passed">when json group information is acceded,response</dt>
+    <script type="text/javascript">moveProgressBar('4.0');</script>
+    <dd class="example passed"><span class="passed_spec_name">should be ok</span><span class='duration'>0.00296s</span></dd>
+    <script type="text/javascript">moveProgressBar('4.2');</script>
+    <dd class="example passed"><span class="passed_spec_name">should be parsed as JSON</span><span class='duration'>0.00284s</span></dd>
+    <script type="text/javascript">moveProgressBar('4.5');</script>
+    <dd class="example passed"><span class="passed_spec_name">should JSON have 5 keys</span><span class='duration'>0.00184s</span></dd>
+  </dl>
+</div>
+<div id="div_group_7" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_7" class="passed">when new group is created</dt>
+    <script type="text/javascript">moveProgressBar('4.7');</script>
+    <dd class="example passed"><span class="passed_spec_name">response should be redirect</span><span class='duration'>0.00014s</span></dd>
+    <script type="text/javascript">moveProgressBar('4.9');</script>
+    <dd class="example passed"><span class="passed_spec_name">should create a new group object</span><span class='duration'>0.00039s</span></dd>
+    <script type="text/javascript">moveProgressBar('5.1');</script>
+    <dd class="example passed"><span class="passed_spec_name">should have correct name</span><span class='duration'>0.00034s</span></dd>
+  </dl>
+</div>
+<div id="div_group_8" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_8" class="passed">when group is deleted</dt>
+    <script type="text/javascript">moveProgressBar('5.3');</script>
+    <dd class="example passed"><span class="passed_spec_name">should response be redirect</span><span class='duration'>0.00017s</span></dd>
+    <script type="text/javascript">moveProgressBar('5.5');</script>
+    <dd class="example passed"><span class="passed_spec_name">shoud delete object</span><span class='duration'>0.00025s</span></dd>
+  </dl>
+</div>
+<div id="div_group_9" class="example_group passed">
+  <dl style="margin-left: 0px;">
+  <dt id="example_group_9" class="passed">Stage administration</dt>
+  </dl>
+</div>
+<div id="div_group_10" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_10" class="passed">when check number of resolution on each stage</dt>
+    <script type="text/javascript">moveProgressBar('5.7');</script>
+    <dd class="example passed"><span class="passed_spec_name">should have 22 yes resolutions on sta</span><span class='duration'>0.00042s</span></dd>
+    <script type="text/javascript">moveProgressBar('6.0');</script>
+    <dd class="example passed"><span class="passed_spec_name">should have 63 no resolutions on sta</span><span class='duration'>0.00033s</span></dd>
+    <script type="text/javascript">moveProgressBar('6.2');</script>
+    <dd class="example passed"><span class="passed_spec_name">should have 9 yes resolutions on sr</span><span class='duration'>0.00031s</span></dd>
+    <script type="text/javascript">moveProgressBar('6.4');</script>
+    <dd class="example passed"><span class="passed_spec_name">should have 18 no resolutions on sr</span><span class='duration'>0.00030s</span></dd>
+    <script type="text/javascript">moveProgressBar('6.6');</script>
+    <dd class="example passed"><span class="passed_spec_name">should have 27 yes resolutions on rft</span><span class='duration'>0.00029s</span></dd>
+    <script type="text/javascript">moveProgressBar('6.8');</script>
+    <dd class="example passed"><span class="passed_spec_name">should have 3 no resolutions on rft</span><span class='duration'>0.00029s</span></dd>
+  </dl>
+</div>
+<div id="div_group_11" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_11" class="passed">when accept to &#39;yes&#39; on 2 &#39;no&#39; decisions on sta</dt>
+    <script type="text/javascript">moveProgressBar('7.0');</script>
+    <dd class="example passed"><span class="passed_spec_name">should response be ok</span><span class='duration'>0.00014s</span></dd>
+    <script type="text/javascript">moveProgressBar('7.2');</script>
+    <dd class="example passed"><span class="passed_spec_name">should have 78 yes resolutions</span><span class='duration'>0.00040s</span></dd>
+    <script type="text/javascript">moveProgressBar('7.5');</script>
+    <dd class="example passed"><span class="passed_spec_name">should have 7 no resolutions</span><span class='duration'>0.00034s</span></dd>
+  </dl>
+</div>
+<div id="div_group_12" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_12" class="passed">when check assignations on each stage</dt>
+    <script type="text/javascript">moveProgressBar('7.7');</script>
+    <dd class="example passed"><span class="passed_spec_name">should have 85 for admin on sta</span><span class='duration'>0.00038s</span></dd>
+    <script type="text/javascript">moveProgressBar('7.9');</script>
+    <dd class="example passed"><span class="passed_spec_name">should have 26 for admin on sr</span><span class='duration'>0.00032s</span></dd>
+    <script type="text/javascript">moveProgressBar('8.1');</script>
+    <dd class="example passed"><span class="passed_spec_name">should have 30 for admin on rft</span><span class='duration'>0.00031s</span></dd>
+  </dl>
+</div>
+<div id="div_group_13" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_13" class="passed">when add a commentary on a assignation</dt>
+    <script type="text/javascript">moveProgressBar('8.3');</script>
+    <dd class="example passed"><span class="passed_spec_name">should response be ok</span><span class='duration'>0.00015s</span></dd>
+    <script type="text/javascript">moveProgressBar('8.5');</script>
+    <dd class="example passed"><span class="passed_spec_name">should create commentary on assignation object</span><span class='duration'>0.00071s</span></dd>
+  </dl>
+</div>
+<div id="div_group_14" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_14" class="passed">when assign all document for admin on sta</dt>
+    <script type="text/javascript">moveProgressBar('8.7');</script>
+    <dd class="example passed"><span class="passed_spec_name">should have 85 assignations on sta</span><span class='duration'>0.00046s</span></dd>
+    <script type="text/javascript">moveProgressBar('9.0');</script>
+    <dd class="example passed"><span class="passed_spec_name">should have 84 assignations on sta if we remove one later</span><span class='duration'>0.00970s</span></dd>
+  </dl>
+</div>
+<div id="div_group_15" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_15" class="passed">when remove all assignations for admin on sta</dt>
+    <script type="text/javascript">moveProgressBar('9.2');</script>
+    <dd class="example passed"><span class="passed_spec_name">should have 0 assignations on sta</span><span class='duration'>0.03412s</span></dd>
+    <script type="text/javascript">moveProgressBar('9.4');</script>
+    <dd class="example passed"><span class="passed_spec_name">should have 1 assignations on sta if we add one later</span><span class='duration'>0.01899s</span></dd>
+  </dl>
+</div>
+<div id="div_group_16" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_16" class="passed">when assign all document without previous assignation on sta</dt>
+    <script type="text/javascript">moveProgressBar('9.6');</script>
+    <dd class="example passed"><span class="passed_spec_name">should have 84 assignations on sta</span><span class='duration'>0.00095s</span></dd>
+  </dl>
+</div>
+<div id="div_group_17" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_17" class="passed">when bibtex is retrieved</dt>
+    <script type="text/javascript">moveProgressBar('9.8');</script>
+    <dd class="example passed"><span class="passed_spec_name">should response be ok</span><span class='duration'>0.00016s</span></dd>
+    <script type="text/javascript">moveProgressBar('10.0');</script>
+    <dd class="example passed"><span class="passed_spec_name">should content type be text/x-bibtex</span><span class='duration'>0.00085s</span></dd>
+    <script type="text/javascript">moveProgressBar('10.3');</script>
+    <dd class="example passed"><span class="passed_spec_name">should content-disposition is attachment and include .bib</span><span class='duration'>0.00066s</span></dd>
+  </dl>
+</div>
+<div id="div_group_18" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_18" class="passed">when doi list is retrieved</dt>
+    <script type="text/javascript">moveProgressBar('10.5');</script>
+    <dd class="example passed"><span class="passed_spec_name">should response be ok</span><span class='duration'>0.00014s</span></dd>
+    <script type="text/javascript">moveProgressBar('10.7');</script>
+    <dd class="example passed"><span class="passed_spec_name">should content type be text/plain</span><span class='duration'>0.00014s</span></dd>
+  </dl>
+</div>
+<div id="div_group_19" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_19" class="passed">when graphml is retrieved for report stage</dt>
+    <script type="text/javascript">moveProgressBar('10.9');</script>
+    <dd class="example passed"><span class="passed_spec_name">should response be ok</span><span class='duration'>0.00013s</span></dd>
+    <script type="text/javascript">moveProgressBar('11.1');</script>
+    <dd class="example passed"><span class="passed_spec_name">should content type be text/plain</span><span class='duration'>0.00009s</span></dd>
+  </dl>
+</div>
+<div id="div_group_20" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_20" class="passed">when graphml is retrieved for all canonical documents</dt>
+    <script type="text/javascript">moveProgressBar('11.3');</script>
+    <dd class="example passed"><span class="passed_spec_name">should response be ok</span><span class='duration'>0.00014s</span></dd>
+    <script type="text/javascript">moveProgressBar('11.5');</script>
+    <dd class="example passed"><span class="passed_spec_name">should content type be text/plain</span><span class='duration'>0.00010s</span></dd>
+  </dl>
+</div>
+<div id="div_group_21" class="example_group passed">
+  <dl style="margin-left: 0px;">
+  <dt id="example_group_21" class="passed">Canonical Record</dt>
+  </dl>
+</div>
+<div id="div_group_22" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_22" class="passed">when search for crossref references</dt>
+    <script type="text/javascript">moveProgressBar('11.8');</script>
+    <dd class="example passed"><span class="passed_spec_name">should be redirect</span><span class='duration'>0.00039s</span></dd>
+  </dl>
+</div>
+<div id="div_group_23" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_23" class="passed">when search for crossref data</dt>
+    <script type="text/javascript">moveProgressBar('12.0');</script>
+    <dd class="example passed"><span class="passed_spec_name">should be redirect</span><span class='duration'>0.00021s</span></dd>
+  </dl>
+</div>
+<div id="div_group_24" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_24" class="passed">when cleaning references for canonical document</dt>
+    <script type="text/javascript">moveProgressBar('12.2');</script>
+    <dd class="example passed"><span class="passed_spec_name">should be redirect</span><span class='duration'>0.00018s</span></dd>
+    <script type="text/javascript">moveProgressBar('12.4');</script>
+    <dd class="example passed"><span class="passed_spec_name">should be no references assigned to the canonical document</span><span class='duration'>0.00059s</span></dd>
+  </dl>
+</div>
+<div id="div_group_25" class="example_group passed">
+  <dl style="margin-left: 0px;">
+  <dt id="example_group_25" class="passed">Error codes for no available resources</dt>
+  </dl>
+</div>
+<div id="div_group_26" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_26" class="passed">when review resources are accessed for no available review</dt>
+    <script type="text/javascript">moveProgressBar('12.6');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /review/1 responds with 404 status, and a message with code object and code 1</span><span class='duration'>0.00498s</span></dd>
+    <script type="text/javascript">moveProgressBar('12.8');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /review/1/edit responds with 404 status, and a message with code object and code 1</span><span class='duration'>0.00481s</span></dd>
+    <script type="text/javascript">moveProgressBar('13.0');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /review/1/canonical_documents responds with 404 status, and a message with code object and code 1</span><span class='duration'>0.00775s</span></dd>
+    <script type="text/javascript">moveProgressBar('13.3');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /review/1/repeated_canonical_documents responds with 404 status, and a message with code object and code 1</span><span class='duration'>0.00688s</span></dd>
+    <script type="text/javascript">moveProgressBar('13.5');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /review/1/searches responds with 404 status, and a message with code object and code 1</span><span class='duration'>0.00738s</span></dd>
+    <script type="text/javascript">moveProgressBar('13.7');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /review/1/tags responds with 404 status, and a message with code object and code 1</span><span class='duration'>0.00488s</span></dd>
+    <script type="text/javascript">moveProgressBar('13.9');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /review/1/messages responds with 404 status, and a message with code object and code 1</span><span class='duration'>0.00530s</span></dd>
+    <script type="text/javascript">moveProgressBar('14.1');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /review/1/fields responds with 404 status, and a message with code object and code 1</span><span class='duration'>0.00516s</span></dd>
+    <script type="text/javascript">moveProgressBar('14.3');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /review/1/files responds with 404 status, and a message with code object and code 1</span><span class='duration'>0.00565s</span></dd>
+  </dl>
+</div>
+<div id="div_group_27" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_27" class="passed">when review administration resources are accessed</dt>
+    <script type="text/javascript">moveProgressBar('14.5');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /review/1/administration_stages responds with 404 status, and a message with code object and code 1</span><span class='duration'>0.00664s</span></dd>
+    <script type="text/javascript">moveProgressBar('14.8');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /review/1/administration/search responds with 404 status, and a message with code object and code 1</span><span class='duration'>0.00591s</span></dd>
+    <script type="text/javascript">moveProgressBar('15.0');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /review/1/administration/screening_title_abstract responds with 404 status, and a message with code object and code 1</span><span class='duration'>0.00389s</span></dd>
+    <script type="text/javascript">moveProgressBar('15.2');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /review/1/administration/screening_references responds with 404 status, and a message with code object and code 1</span><span class='duration'>0.00378s</span></dd>
+    <script type="text/javascript">moveProgressBar('15.4');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /review/1/administration/review_full_text responds with 404 status, and a message with code object and code 1</span><span class='duration'>0.00384s</span></dd>
+    <script type="text/javascript">moveProgressBar('15.6');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /review/1/administration/report responds with 404 status, and a message with code object and code 1</span><span class='duration'>0.00554s</span></dd>
+    <script type="text/javascript">moveProgressBar('15.8');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /review/1/administration/screening_title_abstract/cd_assignations responds with 404 status, and a message with code object and code 1</span><span class='duration'>0.00629s</span></dd>
+    <script type="text/javascript">moveProgressBar('16.0');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /review/1/administration/screening_title_abstract/cd_without_allocations responds with 404 status, and a message with code object and code 1</span><span class='duration'>0.00664s</span></dd>
+    <script type="text/javascript">moveProgressBar('16.3');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /review/1/stage/screening_title_abstract/complete_empty_abstract_manual responds with 404 status, and a message with code object and code 1</span><span class='duration'>0.00672s</span></dd>
+  </dl>
+</div>
+<div id="div_group_28" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_28" class="passed">when review stages resources are accessed</dt>
+    <script type="text/javascript">moveProgressBar('16.5');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /review/1/screening_title_abstract responds with 404 status, and a message with code object and code 1</span><span class='duration'>0.00573s</span></dd>
+    <script type="text/javascript">moveProgressBar('16.7');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /review/1/screening_references responds with 404 status, and a message with code object and code 1</span><span class='duration'>0.00585s</span></dd>
+    <script type="text/javascript">moveProgressBar('16.9');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /review/1/review_full_text responds with 404 status, and a message with code object and code 1</span><span class='duration'>0.00542s</span></dd>
+  </dl>
+</div>
+<div id="div_group_29" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_29" class="passed">when user enter extract information form</dt>
+    <script type="text/javascript">moveProgressBar('17.1');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /review/1/extract_information/cd/137 responds with 404 status, and a message with code object and code 1</span><span class='duration'>0.00626s</span></dd>
+  </dl>
+</div>
+<div id="div_group_30" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_30" class="passed">when review searches resources are accessed</dt>
+    <script type="text/javascript">moveProgressBar('17.3');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /review/1/searches/user/1 responds with 404 status, and a message with code object and code 1</span><span class='duration'>0.00705s</span></dd>
+    <script type="text/javascript">moveProgressBar('17.5');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /review/1/search/new responds with 404 status, and a message with code object and code 1</span><span class='duration'>0.00491s</span></dd>
+    <script type="text/javascript">moveProgressBar('17.8');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /review/1/searches/compare_records responds with 404 status, and a message with code object and code 1</span><span class='duration'>0.00566s</span></dd>
+  </dl>
+</div>
+<div id="div_group_31" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_31" class="passed">when search resources are accessed</dt>
+    <script type="text/javascript">moveProgressBar('18.0');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /search/1 responds with 404 status, and a message with code object and code 1</span><span class='duration'>0.00470s</span></dd>
+    <script type="text/javascript">moveProgressBar('18.2');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /search/1/edit responds with 404 status, and a message with code object and code 1</span><span class='duration'>0.00484s</span></dd>
+    <script type="text/javascript">moveProgressBar('18.4');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /search/1/records responds with 404 status, and a message with code object and code 1</span><span class='duration'>0.00520s</span></dd>
+    <script type="text/javascript">moveProgressBar('18.6');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /search/1/references responds with 404 status, and a message with code object and code 1</span><span class='duration'>0.00537s</span></dd>
+  </dl>
+</div>
+<div id="div_group_32" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_32" class="passed">when reports are accessed</dt>
+    <script type="text/javascript">moveProgressBar('18.8');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /review/1/report/PRISMA/html responds with 404 status, and a message with code object and code 1</span><span class='duration'>0.00508s</span></dd>
+    <script type="text/javascript">moveProgressBar('19.0');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /review/1/report/fulltext/html responds with 404 status, and a message with code object and code 1</span><span class='duration'>0.00399s</span></dd>
+    <script type="text/javascript">moveProgressBar('19.3');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /review/1/report/process/html responds with 404 status, and a message with code object and code 1</span><span class='duration'>0.00387s</span></dd>
+  </dl>
+</div>
+<div id="div_group_33" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_33" class="passed">when canonical documents resources are accessed</dt>
+    <script type="text/javascript">moveProgressBar('19.5');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /canonical_document/1 responds with 404 status, and a message with code object and code 1</span><span class='duration'>0.00538s</span></dd>
+    <script type="text/javascript">moveProgressBar('19.7');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /canonical_document/1/search_similar responds with 404 status, and a message with code object and code 1</span><span class='duration'>0.00741s</span></dd>
+    <script type="text/javascript">moveProgressBar('19.9');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /canonical_document/1/view_crossref_info responds with 404 status, and a message with code object and code 1</span><span class='duration'>0.00640s</span></dd>
+  </dl>
+</div>
+<div id="div_group_34" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_34" class="passed">when user resources are accessed</dt>
+    <script type="text/javascript">moveProgressBar('20.1');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /user/1000 responds with 404 status, and a message with code object and code 1</span><span class='duration'>0.00373s</span></dd>
+    <script type="text/javascript">moveProgressBar('20.3');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /user/1000/messages responds with 404 status, and a message with code object and code 1</span><span class='duration'>0.00495s</span></dd>
+    <script type="text/javascript">moveProgressBar('20.6');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /user/1000/compose_message responds with 404 status, and a message with code object and code 1</span><span class='duration'>0.00532s</span></dd>
+    <script type="text/javascript">moveProgressBar('20.8');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /user/1000/change_password responds with 404 status, and a message with code object and code 1</span><span class='duration'>0.00533s</span></dd>
+  </dl>
+</div>
+<div id="div_group_35" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_35" class="passed">when tag resources are accesed</dt>
+    <script type="text/javascript">moveProgressBar('21.0');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /tag/2/rs/1/cds responds with 404 status, and a message with code object and code 2</span><span class='duration'>0.00495s</span></dd>
+    <script type="text/javascript">moveProgressBar('21.2');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /tag/2/rs/1/stage/screening_title_abstract/cds responds with 404 status, and a message with code object and code 2</span><span class='duration'>0.00570s</span></dd>
+  </dl>
+</div>
+<div id="div_group_36" class="example_group passed">
+  <dl style="margin-left: 0px;">
+  <dt id="example_group_36" class="passed">Buhos::SchemaCreation</dt>
+  </dl>
+</div>
+<div id="div_group_37" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_37" class="passed">#create_db_from_scratch</dt>
+    <script type="text/javascript">moveProgressBar('21.4');</script>
+    <dd class="example passed"><span class="passed_spec_name">create three users</span><span class='duration'>0.04314s</span></dd>
+    <script type="text/javascript">moveProgressBar('21.6');</script>
+    <dd class="example passed"><span class="passed_spec_name">create 6 taxonomies</span><span class='duration'>0.04015s</span></dd>
+    <script type="text/javascript">moveProgressBar('21.8');</script>
+    <dd class="example passed"><span class="passed_spec_name">create 20 categories</span><span class='duration'>0.04297s</span></dd>
+  </dl>
+</div>
+<div id="div_group_38" class="example_group passed">
+  <dl style="margin-left: 0px;">
+  <dt id="example_group_38" class="passed">Buhos::DBAdapter</dt>
+    <script type="text/javascript">moveProgressBar('22.1');</script>
+    <dd class="example passed"><span class="passed_spec_name">.use_db change the db on Sequel::Model associations</span><span class='duration'>0.13222s</span></dd>
+    <script type="text/javascript">moveProgressBar('22.3');</script>
+    <dd class="example passed"><span class="passed_spec_name">allows to change model without interference between tests</span><span class='duration'>0.15549s</span></dd>
+  </dl>
+</div>
+<div id="div_group_39" class="example_group passed">
+  <dl style="margin-left: 0px;">
+  <dt id="example_group_39" class="passed">Decision on documents</dt>
+  </dl>
+</div>
+<div id="div_group_40" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_40" class="passed">when decision retrieved on screening title and abstract stage</dt>
+    <script type="text/javascript">moveProgressBar('22.5');</script>
+    <dd class="example passed"><span class="passed_spec_name">should be ok</span><span class='duration'>0.00020s</span></dd>
+    <script type="text/javascript">moveProgressBar('22.7');</script>
+    <dd class="example passed"><span class="passed_spec_name">should include &quot;/decision/review/1/user/1/canonical_document/41/stage/screening_title_abstract/decision&quot;</span><span class='duration'>0.00017s</span></dd>
+  </dl>
+</div>
+<div id="div_group_41" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_41" class="passed">when decision retrieved on screening title and abstract stage with wrong argument</dt>
+    <script type="text/javascript">moveProgressBar('22.9');</script>
+    <dd class="example passed"><span class="passed_spec_name">should not be ok</span><span class='duration'>0.00019s</span></dd>
+  </dl>
+</div>
+<div id="div_group_42" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_42" class="passed">when decision button is pressed on screening title and abstract stage</dt>
+    <script type="text/javascript">moveProgressBar('23.1');</script>
+    <dd class="example passed"><span class="passed_spec_name">should be ok</span><span class='duration'>0.00016s</span></dd>
+    <script type="text/javascript">moveProgressBar('23.3');</script>
+    <dd class="example passed"><span class="passed_spec_name">should eq &quot;undecided&quot;</span><span class='duration'>0.00063s</span></dd>
+    <script type="text/javascript">moveProgressBar('23.6');</script>
+    <dd class="example passed"><span class="passed_spec_name">should include &quot;/decision/review/1/user/1/canonical_document/41/stage/screening_title_abstract/decision&quot;</span><span class='duration'>0.00034s</span></dd>
+  </dl>
+</div>
+<div id="div_group_43" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_43" class="passed">when commentary is added to decision</dt>
+    <script type="text/javascript">moveProgressBar('23.8');</script>
+    <dd class="example passed"><span class="passed_spec_name">should be ok</span><span class='duration'>0.00018s</span></dd>
+    <script type="text/javascript">moveProgressBar('24.0');</script>
+    <dd class="example passed"><span class="passed_spec_name">should eq &quot;COMMENTARY&quot;</span><span class='duration'>0.00068s</span></dd>
+  </dl>
+</div>
+<div id="div_group_44" class="example_group passed">
+  <dl style="margin-left: 0px;">
+  <dt id="example_group_44" class="passed">Buhos extraction of data</dt>
+  </dl>
+</div>
+<div id="div_group_45" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_45" class="passed">when admin request form for a included document (40)</dt>
+    <script type="text/javascript">moveProgressBar('24.2');</script>
+    <dd class="example passed"><span class="passed_spec_name">should be ok</span><span class='duration'>0.14099s</span></dd>
+    <script type="text/javascript">moveProgressBar('24.4');</script>
+    <dd class="example passed"><span class="passed_spec_name">should include &quot;Better software required&quot;</span><span class='duration'>0.09944s</span></dd>
+    <script type="text/javascript">moveProgressBar('24.6');</script>
+    <dd class="example passed"><span class="passed_spec_name">should include &quot;[RevMan]&quot;</span><span class='duration'>0.10073s</span></dd>
+  </dl>
+</div>
+<div id="div_group_46" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_46" class="passed">when enter information on form</dt>
+    <script type="text/javascript">moveProgressBar('24.8');</script>
+    <dd class="example passed"><span class="passed_spec_name">should be ok</span><span class='duration'>0.01337s</span></dd>
+    <script type="text/javascript">moveProgressBar('25.1');</script>
+    <dd class="example passed"><span class="passed_spec_name">should eq &quot;NEW VALUE&quot;</span><span class='duration'>0.01054s</span></dd>
+    <script type="text/javascript">moveProgressBar('25.3');</script>
+    <dd class="example passed"><span class="passed_spec_name">should include &quot;NEW VALUE&quot;</span><span class='duration'>0.11316s</span></dd>
+  </dl>
+</div>
+<div id="div_group_47" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_47" class="passed">when admin request form for a not included document (64)</dt>
+    <script type="text/javascript">moveProgressBar('25.5');</script>
+    <dd class="example passed"><span class="passed_spec_name">should be redirect</span><span class='duration'>0.00731s</span></dd>
+  </dl>
+</div>
+<div id="div_group_48" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_48" class="passed">when request form response by not assigned user</dt>
+    <script type="text/javascript">moveProgressBar('25.7');</script>
+    <dd class="example passed"><span class="passed_spec_name">should not be ok</span><span class='duration'>0.00752s</span></dd>
+    <script type="text/javascript">moveProgressBar('25.9');</script>
+    <dd class="example passed"><span class="passed_spec_name">should be redirect</span><span class='duration'>0.00724s</span></dd>
+  </dl>
+</div>
+<div id="div_group_49" class="example_group passed">
+  <dl style="margin-left: 0px;">
+  <dt id="example_group_49" class="passed">Files:</dt>
+  </dl>
+</div>
+<div id="div_group_50" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_50" class="passed">when upload a file using /review/files/add</dt>
+    <script type="text/javascript">moveProgressBar('26.1');</script>
+    <dd class="example passed"><span class="passed_spec_name">should response will be redirect</span><span class='duration'>0.00018s</span></dd>
+    <script type="text/javascript">moveProgressBar('26.3');</script>
+    <dd class="example passed"><span class="passed_spec_name">should create an file object</span><span class='duration'>0.00032s</span></dd>
+    <script type="text/javascript">moveProgressBar('26.6');</script>
+    <dd class="example passed"><span class="passed_spec_name">should create an file object with correct mime type</span><span class='duration'>0.00025s</span></dd>
+    <script type="text/javascript">moveProgressBar('26.8');</script>
+    <dd class="example passed"><span class="passed_spec_name">should create a file on correct directory</span><span class='duration'>0.00030s</span></dd>
+    <script type="text/javascript">moveProgressBar('27.0');</script>
+    <dd class="example passed"><span class="passed_spec_name">should create a file of correct size</span><span class='duration'>0.00031s</span></dd>
+  </dl>
+</div>
+<div id="div_group_51" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_51" class="passed">when access ViewerJs</dt>
+    <script type="text/javascript">moveProgressBar('27.2');</script>
+    <dd class="example passed"><span class="passed_spec_name">should return correct html</span><span class='duration'>0.00095s</span></dd>
+  </dl>
+</div>
+<div id="div_group_52" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_52" class="passed">when access /ViewerJS/..file/:id/download format, response </dt>
+    <script type="text/javascript">moveProgressBar('27.4');</script>
+    <dd class="example passed"><span class="passed_spec_name">should response be ok</span><span class='duration'>0.00015s</span></dd>
+    <script type="text/javascript">moveProgressBar('27.6');</script>
+    <dd class="example passed"><span class="passed_spec_name">should content type be application/pdf</span><span class='duration'>0.00008s</span></dd>
+    <script type="text/javascript">moveProgressBar('27.8');</script>
+    <dd class="example passed"><span class="passed_spec_name">should content length be correct</span><span class='duration'>0.00010s</span></dd>
+  </dl>
+</div>
+<div id="div_group_53" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_53" class="passed">when user downloads a file, response</dt>
+    <script type="text/javascript">moveProgressBar('28.1');</script>
+    <dd class="example passed"><span class="passed_spec_name">should response be ok</span><span class='duration'>0.00015s</span></dd>
+    <script type="text/javascript">moveProgressBar('28.3');</script>
+    <dd class="example passed"><span class="passed_spec_name">should content type be application/pdf</span><span class='duration'>0.00009s</span></dd>
+    <script type="text/javascript">moveProgressBar('28.5');</script>
+    <dd class="example passed"><span class="passed_spec_name">should content length be correct</span><span class='duration'>0.00021s</span></dd>
+  </dl>
+</div>
+<div id="div_group_54" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_54" class="passed">when user downloads a file, response</dt>
+    <script type="text/javascript">moveProgressBar('28.7');</script>
+    <dd class="example passed"><span class="passed_spec_name">should response be ok</span><span class='duration'>0.00014s</span></dd>
+    <script type="text/javascript">moveProgressBar('28.9');</script>
+    <dd class="example passed"><span class="passed_spec_name">should content type be application/pdf</span><span class='duration'>0.00008s</span></dd>
+    <script type="text/javascript">moveProgressBar('29.1');</script>
+    <dd class="example passed"><span class="passed_spec_name">should content length be correct</span><span class='duration'>0.00010s</span></dd>
+    <script type="text/javascript">moveProgressBar('29.3');</script>
+    <dd class="example passed"><span class="passed_spec_name">should include &quot;inline&quot;</span><span class='duration'>0.00015s</span></dd>
+  </dl>
+</div>
+<div id="div_group_55" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_55" class="passed">when user retrieves a page from a pdf as text, response</dt>
+    <script type="text/javascript">moveProgressBar('29.6');</script>
+    <dd class="example passed"><span class="passed_spec_name">should be ok</span><span class='duration'>0.00015s</span></dd>
+    <script type="text/javascript">moveProgressBar('29.8');</script>
+    <dd class="example passed"><span class="passed_spec_name">should include &quot;text/html&quot;</span><span class='duration'>0.00016s</span></dd>
+    <script type="text/javascript">moveProgressBar('30.0');</script>
+    <dd class="example passed"><span class="passed_spec_name">should include &quot;ExaCT&quot;</span><span class='duration'>0.00011s</span></dd>
+  </dl>
+</div>
+<div id="div_group_56" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_56" class="passed">when user retrieves a page from a pdf as image, response</dt>
+    <script type="text/javascript">moveProgressBar('30.2');</script>
+    <dd class="example passed"><span class="passed_spec_name">should be ok</span><span class='duration'>0.00980s</span></dd>
+    <script type="text/javascript">moveProgressBar('30.4');</script>
+    <dd class="example passed"><span class="passed_spec_name">should include &quot;image/png&quot;</span><span class='duration'>0.00051s</span></dd>
+    <script type="text/javascript">moveProgressBar('30.6');</script>
+    <dd class="example passed"><span class="passed_spec_name">should be &gt; 0</span><span class='duration'>0.00045s</span></dd>
+  </dl>
+</div>
+<div id="div_group_57" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_57" class="passed">when change attribute of a file</dt>
+    <script type="text/javascript">moveProgressBar('30.9');</script>
+    <dd class="example passed"><span class="passed_spec_name">should be ok</span><span class='duration'>0.00019s</span></dd>
+    <script type="text/javascript">moveProgressBar('31.1');</script>
+    <dd class="example passed"><span class="passed_spec_name">should row on database be changed</span><span class='duration'>0.00036s</span></dd>
+  </dl>
+</div>
+<div id="div_group_58" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_58" class="passed">when assign a file to a canonical document</dt>
+    <script type="text/javascript">moveProgressBar('31.3');</script>
+    <dd class="example passed"><span class="passed_spec_name">response should be ok </span><span class='duration'>0.00016s</span></dd>
+    <script type="text/javascript">moveProgressBar('31.5');</script>
+    <dd class="example passed"><span class="passed_spec_name">response should include a link to document</span><span class='duration'>0.00011s</span></dd>
+    <script type="text/javascript">moveProgressBar('31.7');</script>
+    <dd class="example passed"><span class="passed_spec_name">relation should be included on database</span><span class='duration'>0.00048s</span></dd>
+  </dl>
+</div>
+<div id="div_group_59" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_59" class="passed">when unassign a file to a canonical document</dt>
+    <script type="text/javascript">moveProgressBar('31.9');</script>
+    <dd class="example passed"><span class="passed_spec_name">by /file/assign_to_canonical should return a text </span><span class='duration'>0.00481s</span></dd>
+    <script type="text/javascript">moveProgressBar('32.1');</script>
+    <dd class="example passed"><span class="passed_spec_name">by /file/unassign_cd should delete object</span><span class='duration'>0.00474s</span></dd>
+  </dl>
+</div>
+<div id="div_group_60" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_60" class="passed">when hide a file from canonical document</dt>
+    <script type="text/javascript">moveProgressBar('32.4');</script>
+    <dd class="example passed"><span class="passed_spec_name">first should be visible</span><span class='duration'>0.00277s</span></dd>
+    <script type="text/javascript">moveProgressBar('32.6');</script>
+    <dd class="example passed"><span class="passed_spec_name">after unassign should be not visible</span><span class='duration'>0.00573s</span></dd>
+  </dl>
+</div>
+<div id="div_group_61" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_61" class="passed">when hide a file from canonical document</dt>
+    <script type="text/javascript">moveProgressBar('32.8');</script>
+    <dd class="example passed"><span class="passed_spec_name">first should be not visible</span><span class='duration'>0.00625s</span></dd>
+    <script type="text/javascript">moveProgressBar('33.0');</script>
+    <dd class="example passed"><span class="passed_spec_name">after show it should be not visible</span><span class='duration'>0.00854s</span></dd>
+  </dl>
+</div>
+<div id="div_group_62" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_62" class="passed">when file is deleted</dt>
+    <script type="text/javascript">moveProgressBar('33.2');</script>
+    <dd class="example passed"><span class="passed_spec_name">should be ok</span><span class='duration'>0.00020s</span></dd>
+    <script type="text/javascript">moveProgressBar('33.4');</script>
+    <dd class="example passed"><span class="passed_spec_name">archivo object doesn&#39;t exists</span><span class='duration'>0.00043s</span></dd>
+  </dl>
+</div>
+<div id="div_group_63" class="example_group passed">
+  <dl style="margin-left: 0px;">
+  <dt id="example_group_63" class="passed">GraphML_Builder</dt>
+  </dl>
+</div>
+<div id="div_group_64" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_64" class="passed">when report stage is processed</dt>
+    <script type="text/javascript">moveProgressBar('33.6');</script>
+    <dd class="example passed"><span class="passed_spec_name">should parse with Nokogiri</span><span class='duration'>0.13560s</span></dd>
+    <script type="text/javascript">moveProgressBar('33.9');</script>
+    <dd class="example passed"><span class="passed_spec_name">should have one node per document</span><span class='duration'>0.07700s</span></dd>
+  </dl>
+</div>
+<div id="div_group_65" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_65" class="passed">when all stages are processed</dt>
+    <script type="text/javascript">moveProgressBar('34.1');</script>
+    <dd class="example passed"><span class="passed_spec_name">should parse with Nokogiri</span><span class='duration'>0.10364s</span></dd>
+    <script type="text/javascript">moveProgressBar('34.3');</script>
+    <dd class="example passed"><span class="passed_spec_name">should have one node per document</span><span class='duration'>0.10573s</span></dd>
+  </dl>
+</div>
+<div id="div_group_66" class="example_group passed">
+  <dl style="margin-left: 0px;">
+  <dt id="example_group_66" class="passed">HTMLHelpers module</dt>
+    <script type="text/javascript">moveProgressBar('34.5');</script>
+    <dd class="example passed"><span class="passed_spec_name">provides a_tag</span><span class='duration'>0.00013s</span></dd>
+    <script type="text/javascript">moveProgressBar('34.7');</script>
+    <dd class="example passed"><span class="passed_spec_name">provides a_tag_badge</span><span class='duration'>0.00010s</span></dd>
+    <script type="text/javascript">moveProgressBar('34.9');</script>
+    <dd class="example passed"><span class="passed_spec_name">provides lf_to_br</span><span class='duration'>0.00011s</span></dd>
+    <script type="text/javascript">moveProgressBar('35.1');</script>
+    <dd class="example passed"><span class="passed_spec_name">provides class_bootstrap_contextual</span><span class='duration'>0.00008s</span></dd>
+    <script type="text/javascript">moveProgressBar('35.4');</script>
+    <dd class="example passed"><span class="passed_spec_name">provides bool_class</span><span class='duration'>0.00012s</span></dd>
+    <script type="text/javascript">moveProgressBar('35.6');</script>
+    <dd class="example passed"><span class="passed_spec_name">provides a_textarea_editable</span><span class='duration'>0.00007s</span></dd>
+    <script type="text/javascript">moveProgressBar('35.8');</script>
+    <dd class="example passed"><span class="passed_spec_name">provides decision_class_bootstrap</span><span class='duration'>0.00011s</span></dd>
+  </dl>
+</div>
+<div id="div_group_67" class="example_group passed">
+  <dl style="margin-left: 0px;">
+  <dt id="example_group_67" class="passed">Buhos installer</dt>
+    <script type="text/javascript">moveProgressBar('36.0');</script>
+    <dd class="example passed"><span class="passed_spec_name">/installer/select_language should be accesible</span><span class='duration'>0.01665s</span></dd>
+    <script type="text/javascript">moveProgressBar('36.2');</script>
+    <dd class="example passed"><span class="passed_spec_name">/installer/select_language should be change according to HTTP_ACCEPT_LANGUAGE</span><span class='duration'>0.00261s</span></dd>
+    <script type="text/javascript">moveProgressBar('36.4');</script>
+    <dd class="example passed"><span class="passed_spec_name">/installer/basic_data_form should be accessible</span><span class='duration'>0.01125s</span></dd>
+  </dl>
+</div>
+<div id="div_group_68" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_68" class="passed">when access /</dt>
+    <script type="text/javascript">moveProgressBar('36.6');</script>
+    <dd class="example passed"><span class="passed_spec_name">redirects</span><span class='duration'>0.00092s</span></dd>
+    <script type="text/javascript">moveProgressBar('36.9');</script>
+    <dd class="example passed"><span class="passed_spec_name">with no body</span><span class='duration'>0.00086s</span></dd>
+  </dl>
+</div>
+<div id="div_group_69" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_69" class="passed">when basic_data_form is send</dt>
+    <script type="text/javascript">moveProgressBar('37.1');</script>
+    <dd class="example passed"><span class="passed_spec_name">should return correct status and redirect</span><span class='duration'>0.00193s</span></dd>
+    <script type="text/javascript">moveProgressBar('37.3');</script>
+    <dd class="example passed"><span class="passed_spec_name">should create correct env file</span><span class='duration'>0.00157s</span></dd>
+  </dl>
+</div>
+<div id="div_group_70" class="example_group passed">
+  <dl style="margin-left: 0px;">
+  <dt id="example_group_70" class="passed">Resources availability:</dt>
+    <script type="text/javascript">moveProgressBar('37.5');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route / be available for admin</span><span class='duration'>0.33100s</span></dd>
+  </dl>
+</div>
+<div id="div_group_71" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_71" class="passed">when admin resources are accessed</dt>
+    <script type="text/javascript">moveProgressBar('37.7');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /admin/users be available for admin</span><span class='duration'>0.00443s</span></dd>
+    <script type="text/javascript">moveProgressBar('37.9');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /admin/groups be available for admin</span><span class='duration'>0.00601s</span></dd>
+    <script type="text/javascript">moveProgressBar('38.1');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /admin/roles be available for admin</span><span class='duration'>0.00699s</span></dd>
+    <script type="text/javascript">moveProgressBar('38.4');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /admin/routes be available for admin</span><span class='duration'>0.01483s</span></dd>
+    <script type="text/javascript">moveProgressBar('38.6');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /admin/authorizations be available for admin</span><span class='duration'>0.03015s</span></dd>
+  </dl>
+</div>
+<div id="div_group_72" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_72" class="passed">when role resources are accessed</dt>
+    <script type="text/javascript">moveProgressBar('38.8');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /role/guest be available for admin</span><span class='duration'>0.00797s</span></dd>
+    <script type="text/javascript">moveProgressBar('39.0');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /role/guest/edit be available for admin</span><span class='duration'>0.00897s</span></dd>
+    <script type="text/javascript">moveProgressBar('39.2');</script>
+    <dd class="example passed"><span class="passed_spec_name">should not route /role/administrator/edit be available for admin</span><span class='duration'>0.00414s</span></dd>
+  </dl>
+</div>
+<div id="div_group_73" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_73" class="passed">when group resources are accessed</dt>
+    <script type="text/javascript">moveProgressBar('39.4');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /group/1 be available for admin</span><span class='duration'>0.00748s</span></dd>
+    <script type="text/javascript">moveProgressBar('39.6');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /group/1/edit be available for admin</span><span class='duration'>0.00547s</span></dd>
+  </dl>
+</div>
+<div id="div_group_74" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_74" class="passed">when user resources are accessed</dt>
+    <script type="text/javascript">moveProgressBar('39.9');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /user/1 be available for admin</span><span class='duration'>0.00710s</span></dd>
+    <script type="text/javascript">moveProgressBar('40.1');</script>
+    <dd class="example passed"><span class="passed_spec_name"> route /user/1/edit should be redirect to /user/1 </span><span class='duration'>0.00404s</span></dd>
+  </dl>
+</div>
+<div id="div_group_75" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_75" class="passed">when review resources are accessed</dt>
+    <script type="text/javascript">moveProgressBar('40.3');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /reviews be available for admin</span><span class='duration'>0.03167s</span></dd>
+    <script type="text/javascript">moveProgressBar('40.5');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /review/new be available for admin</span><span class='duration'>0.02648s</span></dd>
+    <script type="text/javascript">moveProgressBar('40.7');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /review/1 be available for admin</span><span class='duration'>0.01440s</span></dd>
+    <script type="text/javascript">moveProgressBar('40.9');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /review/1/edit be available for admin</span><span class='duration'>0.00841s</span></dd>
+    <script type="text/javascript">moveProgressBar('41.2');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /review/1/canonical_documents be available for admin</span><span class='duration'>0.29214s</span></dd>
+    <script type="text/javascript">moveProgressBar('41.4');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /review/1/repeated_canonical_documents be available for admin</span><span class='duration'>0.05921s</span></dd>
+    <script type="text/javascript">moveProgressBar('41.6');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /review/1/searches be available for admin</span><span class='duration'>0.03132s</span></dd>
+    <script type="text/javascript">moveProgressBar('41.8');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /review/1/tags be available for admin</span><span class='duration'>0.02561s</span></dd>
+    <script type="text/javascript">moveProgressBar('42.0');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /review/1/messages be available for admin</span><span class='duration'>0.01215s</span></dd>
+    <script type="text/javascript">moveProgressBar('42.2');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /review/1/fields be available for admin</span><span class='duration'>0.01753s</span></dd>
+    <script type="text/javascript">moveProgressBar('42.4');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /review/1/files be available for admin</span><span class='duration'>0.05403s</span></dd>
+  </dl>
+</div>
+<div id="div_group_76" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_76" class="passed">when review administration resources are accessed</dt>
+    <script type="text/javascript">moveProgressBar('42.7');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /review/1/administration_stages be available for admin</span><span class='duration'>0.06893s</span></dd>
+    <script type="text/javascript">moveProgressBar('42.9');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /review/1/administration/search be available for admin</span><span class='duration'>0.33956s</span></dd>
+    <script type="text/javascript">moveProgressBar('43.1');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /review/1/administration/screening_title_abstract be available for admin</span><span class='duration'>0.34445s</span></dd>
+    <script type="text/javascript">moveProgressBar('43.3');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /review/1/administration/screening_references be available for admin</span><span class='duration'>0.64169s</span></dd>
+    <script type="text/javascript">moveProgressBar('43.5');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /review/1/administration/review_full_text be available for admin</span><span class='duration'>0.43277s</span></dd>
+    <script type="text/javascript">moveProgressBar('43.7');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /review/1/administration/report be available for admin</span><span class='duration'>0.40213s</span></dd>
+    <script type="text/javascript">moveProgressBar('43.9');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /review/1/administration/screening_title_abstract/cd_assignations be available for admin</span><span class='duration'>0.18213s</span></dd>
+    <script type="text/javascript">moveProgressBar('44.2');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /review/1/administration/screening_title_abstract/cd_without_allocations be available for admin</span><span class='duration'>0.07740s</span></dd>
+    <script type="text/javascript">moveProgressBar('44.4');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /review/1/stage/screening_title_abstract/complete_empty_abstract_manual be available for admin</span><span class='duration'>0.06900s</span></dd>
+  </dl>
+</div>
+<div id="div_group_77" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_77" class="passed">when review stages resources are accessed</dt>
+    <script type="text/javascript">moveProgressBar('44.6');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /review/1/screening_title_abstract be available for admin</span><span class='duration'>0.12713s</span></dd>
+    <script type="text/javascript">moveProgressBar('44.8');</script>
+    <dd class="example passed"><span class="passed_spec_name">pager should work on screeing title and abstract</span><span class='duration'>0.11727s</span></dd>
+    <script type="text/javascript">moveProgressBar('45.0');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /review/1/screening_references be available for admin</span><span class='duration'>0.23154s</span></dd>
+    <script type="text/javascript">moveProgressBar('45.2');</script>
+    <dd class="example passed"><span class="passed_spec_name">pager should work on screening references</span><span class='duration'>0.24216s</span></dd>
+    <script type="text/javascript">moveProgressBar('45.4');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /review/1/review_full_text be available for admin</span><span class='duration'>0.17941s</span></dd>
+    <script type="text/javascript">moveProgressBar('45.7');</script>
+    <dd class="example passed"><span class="passed_spec_name">pager should work on full text review</span><span class='duration'>0.14382s</span></dd>
+  </dl>
+</div>
+<div id="div_group_78" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_78" class="passed">when user enter extract information form</dt>
+    <script type="text/javascript">moveProgressBar('45.9');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /review/1/extract_information/cd/137 be available for admin</span><span class='duration'>0.12572s</span></dd>
+  </dl>
+</div>
+<div id="div_group_79" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_79" class="passed">when review searches resources are accessed</dt>
+    <script type="text/javascript">moveProgressBar('46.1');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /review/1/searches/user/1 be available for admin</span><span class='duration'>0.01376s</span></dd>
+    <script type="text/javascript">moveProgressBar('46.3');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /review/1/search/new be available for admin</span><span class='duration'>0.02516s</span></dd>
+    <script type="text/javascript">moveProgressBar('46.5');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /review/1/searches/compare_records be available for admin</span><span class='duration'>0.02948s</span></dd>
+  </dl>
+</div>
+<div id="div_group_80" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_80" class="passed">when search resources are accessed</dt>
+    <script type="text/javascript">moveProgressBar('46.7');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /search/1 be available for admin</span><span class='duration'>0.00999s</span></dd>
+    <script type="text/javascript">moveProgressBar('46.9');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /search/1/edit be available for admin</span><span class='duration'>0.00604s</span></dd>
+    <script type="text/javascript">moveProgressBar('47.2');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /search/1/records be available for admin</span><span class='duration'>0.02183s</span></dd>
+    <script type="text/javascript">moveProgressBar('47.4');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /search/1/references be available for admin</span><span class='duration'>0.13907s</span></dd>
+  </dl>
+</div>
+<div id="div_group_81" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_81" class="passed">when reports are accessed</dt>
+    <script type="text/javascript">moveProgressBar('47.6');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /review/1/report/PRISMA/html be available for admin</span><span class='duration'>0.08222s</span></dd>
+    <script type="text/javascript">moveProgressBar('47.8');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /review/1/report/fulltext/html be available for admin</span><span class='duration'>0.09071s</span></dd>
+    <script type="text/javascript">moveProgressBar('48.0');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /review/1/report/process/html be available for admin</span><span class='duration'>0.23174s</span></dd>
+  </dl>
+</div>
+<div id="div_group_82" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_82" class="passed">when records are accessed</dt>
+    <script type="text/javascript">moveProgressBar('48.2');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /record/1 be available for admin</span><span class='duration'>0.02638s</span></dd>
+  </dl>
+</div>
+<div id="div_group_83" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_83" class="passed">when references are acceded</dt>
+    <script type="text/javascript">moveProgressBar('48.4');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /reference/19e8abd776da3d40aec0158e8ef105959bd9b57bdb5f64ce07ec3d33a0324334 be available for admin</span><span class='duration'>0.01167s</span></dd>
+    <script type="text/javascript">moveProgressBar('48.7');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /reference/19e8abd776da3d40aec0158e8ef105959bd9b57bdb5f64ce07ec3d33a0324334/search_similar be available for admin</span><span class='duration'>0.31638s</span></dd>
+  </dl>
+</div>
+<div id="div_group_84" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_84" class="passed">when canonical documents resources are accessed</dt>
+    <script type="text/javascript">moveProgressBar('48.9');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /canonical_document/1 be available for admin</span><span class='duration'>0.02668s</span></dd>
+    <script type="text/javascript">moveProgressBar('49.1');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /canonical_document/1/search_similar be available for admin</span><span class='duration'>0.50109s</span></dd>
+    <script type="text/javascript">moveProgressBar('49.3');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /canonical_document/1/view_crossref_info be available for admin</span><span class='duration'>0.00888s</span></dd>
+  </dl>
+</div>
+<div id="div_group_85" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_85" class="passed">when user resources are accessed</dt>
+    <script type="text/javascript">moveProgressBar('49.5');</script>
+    <dd class="example passed"><span class="passed_spec_name">/my_messages redirects to /user/1</span><span class='duration'>0.00319s</span></dd>
+    <script type="text/javascript">moveProgressBar('49.7');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /user/1 be available for admin</span><span class='duration'>0.00720s</span></dd>
+    <script type="text/javascript">moveProgressBar('50.0');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /user/1/messages be available for admin</span><span class='duration'>0.01179s</span></dd>
+    <script type="text/javascript">moveProgressBar('50.2');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /user/1/compose_message be available for admin</span><span class='duration'>0.01268s</span></dd>
+    <script type="text/javascript">moveProgressBar('50.4');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /user/1/change_password be available for admin</span><span class='duration'>0.00890s</span></dd>
+  </dl>
+</div>
+<div id="div_group_86" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_86" class="passed">when tag resources are accesed</dt>
+    <script type="text/javascript">moveProgressBar('50.6');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /tag/2/rs/1/cds be available for admin</span><span class='duration'>0.11579s</span></dd>
+    <script type="text/javascript">moveProgressBar('50.8');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /tag/2/rs/1/stage/screening_title_abstract/cds be available for admin</span><span class='duration'>0.10847s</span></dd>
+  </dl>
+</div>
+<div id="div_group_87" class="example_group passed">
+  <dl style="margin-left: 0px;">
+  <dt id="example_group_87" class="passed">Buhos login</dt>
+    <script type="text/javascript">moveProgressBar('51.0');</script>
+    <dd class="example passed"><span class="passed_spec_name">/login should show a valid page</span><span class='duration'>0.01023s</span></dd>
+    <script type="text/javascript">moveProgressBar('51.2');</script>
+    <dd class="example passed"><span class="passed_spec_name">/login should change according to HTTP_ACCEPT_LANGUAGE</span><span class='duration'>0.00247s</span></dd>
+    <script type="text/javascript">moveProgressBar('51.5');</script>
+    <dd class="example passed"><span class="passed_spec_name">Incorrect login redirect to login page</span><span class='duration'>0.00147s</span></dd>
+    <script type="text/javascript">moveProgressBar('51.7');</script>
+    <dd class="example passed"><span class="passed_spec_name">Correct login redirect to main page</span><span class='duration'>0.00223s</span></dd>
+    <script type="text/javascript">moveProgressBar('51.9');</script>
+    <dd class="example passed"><span class="passed_spec_name">Correct login redirect to main page and show dashboard</span><span class='duration'>0.00605s</span></dd>
+  </dl>
+</div>
+<div id="div_group_88" class="example_group passed">
+  <dl style="margin-left: 0px;">
+  <dt id="example_group_88" class="passed">Personal messages:</dt>
+  </dl>
+</div>
+<div id="div_group_89" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_89" class="passed">when sending personal message by form</dt>
+    <script type="text/javascript">moveProgressBar('52.1');</script>
+    <dd class="example passed"><span class="passed_spec_name">should redirect to user messages</span><span class='duration'>0.00012s</span></dd>
+    <script type="text/javascript">moveProgressBar('52.3');</script>
+    <dd class="example passed"><span class="passed_spec_name">should be show on sender messages inbox</span><span class='duration'>0.01825s</span></dd>
+    <script type="text/javascript">moveProgressBar('52.5');</script>
+    <dd class="example passed"><span class="passed_spec_name">should be show on receiver messages inbox</span><span class='duration'>0.00511s</span></dd>
+  </dl>
+</div>
+<div id="div_group_90" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_90" class="passed">when mark personal message as read</dt>
+    <script type="text/javascript">moveProgressBar('52.7');</script>
+    <dd class="example passed"><span class="passed_spec_name">should be ok</span><span class='duration'>0.00017s</span></dd>
+    <script type="text/javascript">moveProgressBar('53.0');</script>
+    <dd class="example passed"><span class="passed_spec_name">should equal true</span><span class='duration'>0.00054s</span></dd>
+  </dl>
+</div>
+<div id="div_group_91" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_91" class="passed">when reply personal from other account</dt>
+    <script type="text/javascript">moveProgressBar('53.2');</script>
+    <dd class="example passed"><span class="passed_spec_name">should raise an 403 error</span><span class='duration'>0.00017s</span></dd>
+  </dl>
+</div>
+<div id="div_group_92" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_92" class="passed">when reply personal messages</dt>
+    <script type="text/javascript">moveProgressBar('53.4');</script>
+    <dd class="example passed"><span class="passed_spec_name">should redirect back</span><span class='duration'>0.00014s</span></dd>
+    <script type="text/javascript">moveProgressBar('53.6');</script>
+    <dd class="example passed"><span class="passed_spec_name">should be show on sender user messages inbox</span><span class='duration'>0.01601s</span></dd>
+  </dl>
+</div>
+<div id="div_group_93" class="example_group passed">
+  <dl style="margin-left: 0px;">
+  <dt id="example_group_93" class="passed">Systematic review messages:</dt>
+  </dl>
+</div>
+<div id="div_group_94" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_94" class="passed">when retrieve systematic review messages</dt>
+    <script type="text/javascript">moveProgressBar('53.8');</script>
+    <dd class="example passed"><span class="passed_spec_name">should be ok</span><span class='duration'>0.00015s</span></dd>
+  </dl>
+</div>
+<div id="div_group_95" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_95" class="passed">when we post a review message</dt>
+    <script type="text/javascript">moveProgressBar('54.0');</script>
+    <dd class="example passed"><span class="passed_spec_name">should be redirect</span><span class='duration'>0.00016s</span></dd>
+    <script type="text/javascript">moveProgressBar('54.2');</script>
+    <dd class="example passed"><span class="passed_spec_name">should add message on database</span><span class='duration'>0.00045s</span></dd>
+    <script type="text/javascript">moveProgressBar('54.5');</script>
+    <dd class="example passed"><span class="passed_spec_name">should be visible on messages page</span><span class='duration'>0.01689s</span></dd>
+  </dl>
+</div>
+<div id="div_group_96" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_96" class="passed">when we post a reply a message</dt>
+    <script type="text/javascript">moveProgressBar('54.7');</script>
+    <dd class="example passed"><span class="passed_spec_name">should be redirect</span><span class='duration'>0.00016s</span></dd>
+    <script type="text/javascript">moveProgressBar('54.9');</script>
+    <dd class="example passed"><span class="passed_spec_name">should add message on database</span><span class='duration'>0.00051s</span></dd>
+    <script type="text/javascript">moveProgressBar('55.1');</script>
+    <dd class="example passed"><span class="passed_spec_name">should have reference to first message</span><span class='duration'>0.00068s</span></dd>
+    <script type="text/javascript">moveProgressBar('55.3');</script>
+    <dd class="example passed"><span class="passed_spec_name">should be visible on messages page</span><span class='duration'>0.00890s</span></dd>
+  </dl>
+</div>
+<div id="div_group_97" class="example_group passed">
+  <dl style="margin-left: 0px;">
+  <dt id="example_group_97" class="passed">Pager on evaluation of papers</dt>
+  </dl>
+</div>
+<div id="div_group_98" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_98" class="passed">when screening title abstract</dt>
+    <script type="text/javascript">moveProgressBar('55.5');</script>
+    <dd class="example passed"><span class="passed_spec_name">shows that are 85 documents to review </span><span class='duration'>0.13576s</span></dd>
+    <script type="text/javascript">moveProgressBar('55.7');</script>
+    <dd class="example passed"><span class="passed_spec_name">shows 29 documents with decision=yes </span><span class='duration'>0.11446s</span></dd>
+  </dl>
+</div>
+<div id="div_group_99" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_99" class="passed">when screening references</dt>
+    <script type="text/javascript">moveProgressBar('56.0');</script>
+    <dd class="example passed"><span class="passed_spec_name">shows that are 26 documents to review </span><span class='duration'>0.16470s</span></dd>
+    <script type="text/javascript">moveProgressBar('56.2');</script>
+    <dd class="example passed"><span class="passed_spec_name">shows 9 documents with decision=yes </span><span class='duration'>0.15550s</span></dd>
+  </dl>
+</div>
+<div id="div_group_100" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_100" class="passed">when reviewing full text</dt>
+    <script type="text/javascript">moveProgressBar('56.4');</script>
+    <dd class="example passed"><span class="passed_spec_name">shows that are 30 documents to review </span><span class='duration'>0.12182s</span></dd>
+    <script type="text/javascript">moveProgressBar('56.6');</script>
+    <dd class="example passed"><span class="passed_spec_name">shows 27 documents with decision=yes </span><span class='duration'>0.12559s</span></dd>
+  </dl>
+</div>
+<div id="div_group_101" class="example_group passed">
+  <dl style="margin-left: 0px;">
+  <dt id="example_group_101" class="passed">Personalized forms:</dt>
+  </dl>
+</div>
+<div id="div_group_102" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_102" class="passed">when we retrieve the personalized fields of the form the first time</dt>
+    <script type="text/javascript">moveProgressBar('56.8');</script>
+    <dd class="example passed"><span class="passed_spec_name">should be ok</span><span class='duration'>0.00015s</span></dd>
+  </dl>
+</div>
+<div id="div_group_103" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_103" class="passed">when we add a new text field</dt>
+    <script type="text/javascript">moveProgressBar('57.0');</script>
+    <dd class="example passed"><span class="passed_spec_name">should redirect</span><span class='duration'>0.00214s</span></dd>
+    <script type="text/javascript">moveProgressBar('57.2');</script>
+    <dd class="example passed"><span class="passed_spec_name">should add a new field on database</span><span class='duration'>0.00055s</span></dd>
+  </dl>
+</div>
+<div id="div_group_104" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_104" class="passed">when we update the text field</dt>
+    <script type="text/javascript">moveProgressBar('57.5');</script>
+    <dd class="example passed"><span class="passed_spec_name">should return ok</span><span class='duration'>0.00013s</span></dd>
+    <script type="text/javascript">moveProgressBar('57.7');</script>
+    <dd class="example passed"><span class="passed_spec_name">should update the field on the database</span><span class='duration'>0.00049s</span></dd>
+  </dl>
+</div>
+<div id="div_group_105" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_105" class="passed">when we delete a tag</dt>
+    <script type="text/javascript">moveProgressBar('57.9');</script>
+    <dd class="example passed"><span class="passed_spec_name">should redirect</span><span class='duration'>0.00016s</span></dd>
+    <script type="text/javascript">moveProgressBar('58.1');</script>
+    <dd class="example passed"><span class="passed_spec_name">should delete the field on the database</span><span class='duration'>0.00035s</span></dd>
+  </dl>
+</div>
+<div id="div_group_106" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_106" class="passed">when update analysis table</dt>
+    <script type="text/javascript">moveProgressBar('58.3');</script>
+    <dd class="example passed"><span class="passed_spec_name">should create an analysis table</span><span class='duration'>0.00117s</span></dd>
+    <script type="text/javascript">moveProgressBar('58.5');</script>
+    <dd class="example passed"><span class="passed_spec_name">should have 5 columns</span><span class='duration'>0.00076s</span></dd>
+    <script type="text/javascript">moveProgressBar('58.7');</script>
+    <dd class="example passed"><span class="passed_spec_name">should have correct name fields</span><span class='duration'>0.00036s</span></dd>
+  </dl>
+</div>
+<div id="div_group_107" class="example_group passed">
+  <dl style="margin-left: 0px;">
+  <dt id="example_group_107" class="passed">Prisma Report</dt>
+  </dl>
+</div>
+<div id="div_group_108" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_108" class="passed">when svg PRISMA flow diagram is downloaded</dt>
+    <script type="text/javascript">moveProgressBar('59.0');</script>
+    <dd class="example passed"><span class="passed_spec_name">should response be ok</span><span class='duration'>0.00015s</span></dd>
+    <script type="text/javascript">moveProgressBar('59.2');</script>
+    <dd class="example passed"><span class="passed_spec_name">should content type be image/svg+xml</span><span class='duration'>0.00009s</span></dd>
+    <script type="text/javascript">moveProgressBar('59.4');</script>
+    <dd class="example passed"><span class="passed_spec_name">should content dispostion be attachment and include .svg on name</span><span class='duration'>0.00010s</span></dd>
+  </dl>
+</div>
+<div id="div_group_109" class="example_group passed">
+  <dl style="margin-left: 0px;">
+  <dt id="example_group_109" class="passed">Record crossref Processor</dt>
+  </dl>
+</div>
+<div id="div_group_110" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_110" class="passed">when record crossref processor is used on Record 1</dt>
+    <script type="text/javascript">moveProgressBar('59.6');</script>
+    <dd class="example passed"><span class="passed_spec_name">should process 38 records</span><span class='duration'>0.04327s</span></dd>
+  </dl>
+</div>
+<div id="div_group_111" class="example_group passed">
+  <dl style="margin-left: 0px;">
+  <dt id="example_group_111" class="passed">Record</dt>
+  </dl>
+</div>
+<div id="div_group_112" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_112" class="passed">#crossref_query result</dt>
+    <script type="text/javascript">moveProgressBar('59.8');</script>
+    <dd class="example passed"><span class="passed_spec_name">should be a kind of Array</span><span class='duration'>0.00123s</span></dd>
+    <script type="text/javascript">moveProgressBar('60.0');</script>
+    <dd class="example passed"><span class="passed_spec_name">every element should have a doi</span><span class='duration'>0.00109s</span></dd>
+  </dl>
+</div>
+<div id="div_group_113" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_113" class="passed">#references_id</dt>
+    <script type="text/javascript">moveProgressBar('60.3');</script>
+    <dd class="example passed"><span class="passed_spec_name">should retrieve 77 references</span><span class='duration'>0.00095s</span></dd>
+  </dl>
+</div>
+<div id="div_group_114" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_114" class="passed">#add_doi_automatic result on a reference with doi and canonical with doi</dt>
+    <script type="text/javascript">moveProgressBar('60.5');</script>
+    <dd class="example passed"><span class="passed_spec_name">should be a kind of Result</span><span class='duration'>0.00087s</span></dd>
+    <script type="text/javascript">moveProgressBar('60.7');</script>
+    <dd class="example passed"><span class="passed_spec_name">nothing to do</span><span class='duration'>0.00105s</span></dd>
+  </dl>
+</div>
+<div id="div_group_115" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_115" class="passed">#add_doi_automatic result on a reference with doi, but canonical without it</dt>
+    <script type="text/javascript">moveProgressBar('60.9');</script>
+    <dd class="example passed"><span class="passed_spec_name">should be a kind of Result</span><span class='duration'>0.02791s</span></dd>
+    <script type="text/javascript">moveProgressBar('61.1');</script>
+    <dd class="example passed"><span class="passed_spec_name">should add doi to canonical document</span><span class='duration'>0.01404s</span></dd>
+    <script type="text/javascript">moveProgressBar('61.3');</script>
+    <dd class="example passed"><span class="passed_spec_name">should send a message that doi is already added on record</span><span class='duration'>0.01929s</span></dd>
+    <script type="text/javascript">moveProgressBar('61.5');</script>
+    <dd class="example passed"><span class="passed_spec_name">should send a message that doi is assigned to canonical document</span><span class='duration'>0.01673s</span></dd>
+  </dl>
+</div>
+<div id="div_group_116" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_116" class="passed">#references_automatic_crossref</dt>
+    <script type="text/javascript">moveProgressBar('61.8');</script>
+    <dd class="example passed"><span class="passed_spec_name">should be a kind of Result</span><span class='duration'>0.00048s</span></dd>
+    <script type="text/javascript">moveProgressBar('62.0');</script>
+    <dd class="example passed"><span class="passed_spec_name">should process 38 references</span><span class='duration'>0.00028s</span></dd>
+    <script type="text/javascript">moveProgressBar('62.2');</script>
+    <dd class="example passed"><span class="passed_spec_name">record should have now 38 references</span><span class='duration'>0.00163s</span></dd>
+  </dl>
+</div>
+<div id="div_group_117" class="example_group passed">
+  <dl style="margin-left: 0px;">
+  <dt id="example_group_117" class="passed">ReferenceProcessor</dt>
+  </dl>
+</div>
+<div id="div_group_118" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_118" class="passed">when reference processor is used</dt>
+    <script type="text/javascript">moveProgressBar('62.4');</script>
+    <dd class="example passed"><span class="passed_spec_name">should add doi and canonical document to references without them, if possible</span><span class='duration'>0.31517s</span></dd>
+  </dl>
+</div>
+<div id="div_group_119" class="example_group passed">
+  <dl style="margin-left: 0px;">
+  <dt id="example_group_119" class="passed">Reference resources</dt>
+  </dl>
+</div>
+<div id="div_group_120" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_120" class="passed">when reference with DOI is retrieved</dt>
+    <script type="text/javascript">moveProgressBar('62.6');</script>
+    <dd class="example passed"><span class="passed_spec_name">should response be ok</span><span class='duration'>0.00013s</span></dd>
+    <script type="text/javascript">moveProgressBar('62.8');</script>
+    <dd class="example passed"><span class="passed_spec_name">should show its code</span><span class='duration'>0.00050s</span></dd>
+    <script type="text/javascript">moveProgressBar('63.0');</script>
+    <dd class="example passed"><span class="passed_spec_name">should show its DOI</span><span class='duration'>0.00047s</span></dd>
+  </dl>
+</div>
+<div id="div_group_121" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_121" class="passed">when similar references are retrieved from a reference with canonical</dt>
+    <script type="text/javascript">moveProgressBar('63.3');</script>
+    <dd class="example passed"><span class="passed_spec_name">should response be ok</span><span class='duration'>0.00022s</span></dd>
+    <script type="text/javascript">moveProgressBar('63.5');</script>
+    <dd class="example passed"><span class="passed_spec_name">should show its code</span><span class='duration'>0.00049s</span></dd>
+    <script type="text/javascript">moveProgressBar('63.7');</script>
+    <dd class="example passed"><span class="passed_spec_name">should show that are nothing similar without canonical</span><span class='duration'>0.00014s</span></dd>
+  </dl>
+</div>
+<div id="div_group_122" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_122" class="passed">when similar references are retrieved from a reference without canonical</dt>
+    <script type="text/javascript">moveProgressBar('63.9');</script>
+    <dd class="example passed"><span class="passed_spec_name">should response be ok</span><span class='duration'>0.00022s</span></dd>
+    <script type="text/javascript">moveProgressBar('64.1');</script>
+    <dd class="example passed"><span class="passed_spec_name">should show its code</span><span class='duration'>0.00036s</span></dd>
+    <script type="text/javascript">moveProgressBar('64.3');</script>
+    <dd class="example passed"><span class="passed_spec_name">should show that are similar references without canonical</span><span class='duration'>0.00015s</span></dd>
+  </dl>
+</div>
+<div id="div_group_123" class="example_group passed">
+  <dl style="margin-left: 0px;">
+  <dt id="example_group_123" class="passed">Reference</dt>
+  </dl>
+</div>
+<div id="div_group_124" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_124" class="passed">when methods to retrieve references are used</dt>
+    <script type="text/javascript">moveProgressBar('64.5');</script>
+    <dd class="example passed"><span class="passed_spec_name">#get_by_text should retrieve a reference object</span><span class='duration'>0.00075s</span></dd>
+    <script type="text/javascript">moveProgressBar('64.8');</script>
+    <dd class="example passed"><span class="passed_spec_name">#get_by_text_and_doi should retrieve a correct reference object</span><span class='duration'>0.00074s</span></dd>
+    <script type="text/javascript">moveProgressBar('65.0');</script>
+    <dd class="example passed"><span class="passed_spec_name">#get_by_text_and_doi(x,x,false) should retrieve nil if reference doesn&#39;t exists</span><span class='duration'>0.00224s</span></dd>
+    <script type="text/javascript">moveProgressBar('65.2');</script>
+    <dd class="example passed"><span class="passed_spec_name">#get_by_text_and_doi(x,x,true) should retrieve a new reference if doesn&#39;t exists</span><span class='duration'>0.01632s</span></dd>
+  </dl>
+</div>
+<div id="div_group_125" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_125" class="passed">#buscar_similares is used, without considering references with canonical documents</dt>
+    <script type="text/javascript">moveProgressBar('65.4');</script>
+    <dd class="example passed"><span class="passed_spec_name">should return an array</span><span class='duration'>0.22201s</span></dd>
+    <script type="text/javascript">moveProgressBar('65.6');</script>
+    <dd class="example passed"><span class="passed_spec_name">every element should have fields :id, :canonical_document_id, :text, :distancia</span><span class='duration'>0.22889s</span></dd>
+    <script type="text/javascript">moveProgressBar('65.8');</script>
+    <dd class="example passed"><span class="passed_spec_name">no element should have canonical_document_id assigned</span><span class='duration'>0.21598s</span></dd>
+  </dl>
+</div>
+<div id="div_group_126" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_126" class="passed">#buscar_similares is used, considering references with canonical documents</dt>
+    <script type="text/javascript">moveProgressBar('66.0');</script>
+    <dd class="example passed"><span class="passed_spec_name">should return an array</span><span class='duration'>0.29771s</span></dd>
+    <script type="text/javascript">moveProgressBar('66.3');</script>
+    <dd class="example passed"><span class="passed_spec_name">every element should have fields :id, :canonical_document_id, :text, :distancia</span><span class='duration'>0.22433s</span></dd>
+    <script type="text/javascript">moveProgressBar('66.5');</script>
+    <dd class="example passed"><span class="passed_spec_name">at least one element should have canonical_document_id assigned</span><span class='duration'>0.22671s</span></dd>
+  </dl>
+</div>
+<div id="div_group_127" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_127" class="passed">#add_doi when no DOI exists</dt>
+    <script type="text/javascript">moveProgressBar('66.7');</script>
+    <dd class="example passed"><span class="passed_spec_name">should return correct status</span><span class='duration'>0.85565s</span></dd>
+    <script type="text/javascript">moveProgressBar('66.9');</script>
+    <dd class="example passed"><span class="passed_spec_name">should return correct doi</span><span class='duration'>0.00141s</span></dd>
+    <script type="text/javascript">moveProgressBar('67.1');</script>
+    <dd class="example passed"><span class="passed_spec_name">should assign correct canonical document to reference</span><span class='duration'>0.00279s</span></dd>
+  </dl>
+</div>
+<div id="div_group_128" class="example_group passed">
+  <dl style="margin-left: 0px;">
+  <dt id="example_group_128" class="passed">Resolution on document</dt>
+  </dl>
+</div>
+<div id="div_group_129" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_129" class="passed">when resolution yes is adopted for specific document</dt>
+    <script type="text/javascript">moveProgressBar('67.3');</script>
+    <dd class="example passed"><span class="passed_spec_name">should be ok</span><span class='duration'>0.00018s</span></dd>
+    <script type="text/javascript">moveProgressBar('67.5');</script>
+    <dd class="example passed"><span class="passed_spec_name">should response body contain resolution partial </span><span class='duration'>0.00011s</span></dd>
+    <script type="text/javascript">moveProgressBar('67.8');</script>
+    <dd class="example passed"><span class="passed_spec_name">should resolution status be updated</span><span class='duration'>0.00054s</span></dd>
+  </dl>
+</div>
+<div id="div_group_130" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_130" class="passed">when resolution no is adopted for specific document</dt>
+    <script type="text/javascript">moveProgressBar('68.0');</script>
+    <dd class="example passed"><span class="passed_spec_name">should be ok</span><span class='duration'>0.00019s</span></dd>
+    <script type="text/javascript">moveProgressBar('68.2');</script>
+    <dd class="example passed"><span class="passed_spec_name">should response body contain resolution partial </span><span class='duration'>0.00009s</span></dd>
+    <script type="text/javascript">moveProgressBar('68.4');</script>
+    <dd class="example passed"><span class="passed_spec_name">should resolution status be updated</span><span class='duration'>0.00054s</span></dd>
+  </dl>
+</div>
+<div id="div_group_131" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_131" class="passed">when an incorrect resolution is adopted for specific document</dt>
+    <script type="text/javascript">moveProgressBar('68.6');</script>
+    <dd class="example passed"><span class="passed_spec_name">should not be ok</span><span class='duration'>0.00015s</span></dd>
+    <script type="text/javascript">moveProgressBar('68.8');</script>
+    <dd class="example passed"><span class="passed_spec_name">should eq 500</span><span class='duration'>0.00013s</span></dd>
+  </dl>
+</div>
+<div id="div_group_132" class="example_group passed">
+  <dl style="margin-left: 0px;">
+  <dt id="example_group_132" class="passed">parser of an abstractCitationResponse object</dt>
+    <script type="text/javascript">moveProgressBar('69.0');</script>
+    <dd class="example passed"><span class="passed_spec_name">get correct URI for a request</span><span class='duration'>0.05529s</span></dd>
+    <script type="text/javascript">moveProgressBar('69.3');</script>
+    <dd class="example passed"><span class="passed_spec_name">should include correct raw information</span><span class='duration'>0.07199s</span></dd>
+    <script type="text/javascript">moveProgressBar('69.5');</script>
+    <dd class="example passed"><span class="passed_spec_name">should return correct processed information</span><span class='duration'>0.07620s</span></dd>
+  </dl>
+</div>
+<div id="div_group_133" class="example_group passed">
+  <dl style="margin-left: 0px;">
+  <dt id="example_group_133" class="passed">parser of an authorRetrievalResponse object</dt>
+    <script type="text/javascript">moveProgressBar('69.7');</script>
+    <dd class="example passed"><span class="passed_spec_name">get correct URI for a request</span><span class='duration'>0.00188s</span></dd>
+    <script type="text/javascript">makeYellow('rspec-header');</script>
+    <script type="text/javascript">makeYellow('div_group_133');</script>
+    <script type="text/javascript">makeYellow('example_group_133');</script>
+    <script type="text/javascript">moveProgressBar('69.9');</script>
+    <dd class="example not_implemented"><span class="not_implemented_spec_name">should include correct raw information (PENDING: No reason given)</span></dd>
+  </dl>
+</div>
+<div id="div_group_134" class="example_group passed">
+  <dl style="margin-left: 0px;">
+  <dt id="example_group_134" class="passed">ARR parser of record 34250753834</dt>
+    <script type="text/javascript">moveProgressBar('70.1');</script>
+    <dd class="example passed"><span class="passed_spec_name">should include correct article information</span><span class='duration'>0.00550s</span></dd>
+    <script type="text/javascript">moveProgressBar('70.3');</script>
+    <dd class="example passed"><span class="passed_spec_name">should include correct authors</span><span class='duration'>0.00478s</span></dd>
+    <script type="text/javascript">moveProgressBar('70.6');</script>
+    <dd class="example passed"><span class="passed_spec_name">should include correct author keywords</span><span class='duration'>0.00530s</span></dd>
+    <script type="text/javascript">moveProgressBar('70.8');</script>
+    <dd class="example passed"><span class="passed_spec_name">should include correct affiliation </span><span class='duration'>0.00442s</span></dd>
+  </dl>
+</div>
+<div id="div_group_135" class="example_group passed">
+  <dl style="margin-left: 0px;">
+  <dt id="example_group_135" class="passed">ARR parser of record 58649099193</dt>
+    <script type="text/javascript">moveProgressBar('71.0');</script>
+    <dd class="example passed"><span class="passed_spec_name">should include correct article information</span><span class='duration'>0.01166s</span></dd>
+    <script type="text/javascript">moveProgressBar('71.2');</script>
+    <dd class="example passed"><span class="passed_spec_name">should include correct authors</span><span class='duration'>0.00882s</span></dd>
+    <script type="text/javascript">moveProgressBar('71.4');</script>
+    <dd class="example passed"><span class="passed_spec_name">should include correct author keywords</span><span class='duration'>0.01179s</span></dd>
+    <script type="text/javascript">moveProgressBar('71.6');</script>
+    <dd class="example passed"><span class="passed_spec_name">should include correct subject areas</span><span class='duration'>0.00959s</span></dd>
+    <script type="text/javascript">moveProgressBar('71.8');</script>
+    <dd class="example passed"><span class="passed_spec_name">should include correct author groups</span><span class='duration'>0.01081s</span></dd>
+    <script type="text/javascript">moveProgressBar('72.1');</script>
+    <dd class="example passed"><span class="passed_spec_name">should include correct affiliation </span><span class='duration'>0.00857s</span></dd>
+  </dl>
+</div>
+<div id="div_group_136" class="example_group passed">
+  <dl style="margin-left: 0px;">
+  <dt id="example_group_136" class="passed">ARR parser of record 70350266120</dt>
+    <script type="text/javascript">moveProgressBar('72.3');</script>
+    <dd class="example passed"><span class="passed_spec_name">should include correct article information</span><span class='duration'>0.00613s</span></dd>
+    <script type="text/javascript">moveProgressBar('72.5');</script>
+    <dd class="example passed"><span class="passed_spec_name">should include correct authors</span><span class='duration'>0.00710s</span></dd>
+    <script type="text/javascript">moveProgressBar('72.7');</script>
+    <dd class="example passed"><span class="passed_spec_name">should include correct subject areas</span><span class='duration'>0.00552s</span></dd>
+    <script type="text/javascript">moveProgressBar('72.9');</script>
+    <dd class="example passed"><span class="passed_spec_name">should include correct author groups</span><span class='duration'>0.00550s</span></dd>
+    <script type="text/javascript">moveProgressBar('73.1');</script>
+    <dd class="example passed"><span class="passed_spec_name">should include correct affiliation </span><span class='duration'>0.00534s</span></dd>
+  </dl>
+</div>
+<div id="div_group_137" class="example_group passed">
+  <dl style="margin-left: 0px;">
+  <dt id="example_group_137" class="passed">ARR parser of record 70350640863</dt>
+    <script type="text/javascript">moveProgressBar('73.3');</script>
+    <dd class="example passed"><span class="passed_spec_name">should include correct article information</span><span class='duration'>0.00556s</span></dd>
+    <script type="text/javascript">moveProgressBar('73.6');</script>
+    <dd class="example passed"><span class="passed_spec_name">should include correct authors</span><span class='duration'>0.00561s</span></dd>
+    <script type="text/javascript">moveProgressBar('73.8');</script>
+    <dd class="example passed"><span class="passed_spec_name">should include correct author groups</span><span class='duration'>0.00581s</span></dd>
+    <script type="text/javascript">moveProgressBar('74.0');</script>
+    <dd class="example passed"><span class="passed_spec_name">should include correct affiliation </span><span class='duration'>0.00560s</span></dd>
+  </dl>
+</div>
+<div id="div_group_138" class="example_group passed">
+  <dl style="margin-left: 0px;">
+  <dt id="example_group_138" class="passed">ARR parser of record 75249099053</dt>
+    <script type="text/javascript">moveProgressBar('74.2');</script>
+    <dd class="example passed"><span class="passed_spec_name">should include correct article information</span><span class='duration'>0.00514s</span></dd>
+    <script type="text/javascript">moveProgressBar('74.4');</script>
+    <dd class="example passed"><span class="passed_spec_name">should include correct authors</span><span class='duration'>0.00509s</span></dd>
+    <script type="text/javascript">moveProgressBar('74.6');</script>
+    <dd class="example passed"><span class="passed_spec_name">should include correct author keywords</span><span class='duration'>0.00495s</span></dd>
+    <script type="text/javascript">moveProgressBar('74.8');</script>
+    <dd class="example passed"><span class="passed_spec_name">should include correct subject areas</span><span class='duration'>0.00558s</span></dd>
+    <script type="text/javascript">moveProgressBar('75.1');</script>
+    <dd class="example passed"><span class="passed_spec_name">should include correct affiliation </span><span class='duration'>0.00750s</span></dd>
+  </dl>
+</div>
+<div id="div_group_139" class="example_group passed">
+  <dl style="margin-left: 0px;">
+  <dt id="example_group_139" class="passed">ARR parser of record 77953000590</dt>
+    <script type="text/javascript">moveProgressBar('75.3');</script>
+    <dd class="example passed"><span class="passed_spec_name">should include correct article information</span><span class='duration'>0.00955s</span></dd>
+    <script type="text/javascript">moveProgressBar('75.5');</script>
+    <dd class="example passed"><span class="passed_spec_name">should include correct authors</span><span class='duration'>0.01327s</span></dd>
+    <script type="text/javascript">moveProgressBar('75.7');</script>
+    <dd class="example passed"><span class="passed_spec_name">should include correct author groups</span><span class='duration'>0.01366s</span></dd>
+    <script type="text/javascript">moveProgressBar('75.9');</script>
+    <dd class="example passed"><span class="passed_spec_name">should include correct affiliation </span><span class='duration'>0.01059s</span></dd>
+  </dl>
+</div>
+<div id="div_group_140" class="example_group passed">
+  <dl style="margin-left: 0px;">
+  <dt id="example_group_140" class="passed">ARR parser of record 79953058665</dt>
+    <script type="text/javascript">moveProgressBar('76.1');</script>
+    <dd class="example passed"><span class="passed_spec_name">should include correct article information</span><span class='duration'>0.01133s</span></dd>
+    <script type="text/javascript">moveProgressBar('76.3');</script>
+    <dd class="example passed"><span class="passed_spec_name">should include correct authors</span><span class='duration'>0.00947s</span></dd>
+    <script type="text/javascript">moveProgressBar('76.6');</script>
+    <dd class="example passed"><span class="passed_spec_name">should include correct author keywords</span><span class='duration'>0.01188s</span></dd>
+    <script type="text/javascript">moveProgressBar('76.8');</script>
+    <dd class="example passed"><span class="passed_spec_name">should include correct subject areas</span><span class='duration'>0.00871s</span></dd>
+    <script type="text/javascript">moveProgressBar('77.0');</script>
+    <dd class="example passed"><span class="passed_spec_name">should include correct affiliation </span><span class='duration'>0.00867s</span></dd>
+  </dl>
+</div>
+<div id="div_group_141" class="example_group passed">
+  <dl style="margin-left: 0px;">
+  <dt id="example_group_141" class="passed">ARR parser of record 84937792319</dt>
+    <script type="text/javascript">moveProgressBar('77.2');</script>
+    <dd class="example passed"><span class="passed_spec_name">should include correct article information</span><span class='duration'>0.01107s</span></dd>
+  </dl>
+</div>
+<div id="div_group_142" class="example_group passed">
+  <dl style="margin-left: 0px;">
+  <dt id="example_group_142" class="passed">ARR parser of record 84940101359</dt>
+    <script type="text/javascript">moveProgressBar('77.4');</script>
+    <dd class="example passed"><span class="passed_spec_name">should include correct article information</span><span class='duration'>0.14765s</span></dd>
+    <script type="text/javascript">moveProgressBar('77.6');</script>
+    <dd class="example passed"><span class="passed_spec_name">should include correct authors</span><span class='duration'>0.15614s</span></dd>
+    <script type="text/javascript">moveProgressBar('77.8');</script>
+    <dd class="example passed"><span class="passed_spec_name">should include correct author keywords</span><span class='duration'>0.15140s</span></dd>
+    <script type="text/javascript">moveProgressBar('78.1');</script>
+    <dd class="example passed"><span class="passed_spec_name">should include correct subject areas</span><span class='duration'>0.12692s</span></dd>
+    <script type="text/javascript">moveProgressBar('78.3');</script>
+    <dd class="example passed"><span class="passed_spec_name">should include correct affiliation </span><span class='duration'>0.12487s</span></dd>
+  </dl>
+</div>
+<div id="div_group_143" class="example_group passed">
+  <dl style="margin-left: 0px;">
+  <dt id="example_group_143" class="passed">ARR parser of record 84957597416</dt>
+    <script type="text/javascript">moveProgressBar('78.5');</script>
+    <dd class="example passed"><span class="passed_spec_name">should include correct article information</span><span class='duration'>0.00860s</span></dd>
+    <script type="text/javascript">moveProgressBar('78.7');</script>
+    <dd class="example passed"><span class="passed_spec_name">should include correct authors</span><span class='duration'>0.00954s</span></dd>
+    <script type="text/javascript">moveProgressBar('78.9');</script>
+    <dd class="example passed"><span class="passed_spec_name">should include correct author groups</span><span class='duration'>0.00901s</span></dd>
+    <script type="text/javascript">moveProgressBar('79.1');</script>
+    <dd class="example passed"><span class="passed_spec_name">should include correct affiliation </span><span class='duration'>0.00909s</span></dd>
+  </dl>
+</div>
+<div id="div_group_144" class="example_group passed">
+  <dl style="margin-left: 0px;">
+  <dt id="example_group_144" class="passed">ARR parser of record 84958685689</dt>
+    <script type="text/javascript">moveProgressBar('79.3');</script>
+    <dd class="example passed"><span class="passed_spec_name">should include correct article information</span><span class='duration'>0.00691s</span></dd>
+    <script type="text/javascript">moveProgressBar('79.6');</script>
+    <dd class="example passed"><span class="passed_spec_name">should include correct authors</span><span class='duration'>0.00636s</span></dd>
+    <script type="text/javascript">moveProgressBar('79.8');</script>
+    <dd class="example passed"><span class="passed_spec_name">should include correct author keywords</span><span class='duration'>0.00633s</span></dd>
+    <script type="text/javascript">moveProgressBar('80.0');</script>
+    <dd class="example passed"><span class="passed_spec_name">should include correct subject areas</span><span class='duration'>0.00635s</span></dd>
+    <script type="text/javascript">moveProgressBar('80.2');</script>
+    <dd class="example passed"><span class="passed_spec_name">should include correct affiliation </span><span class='duration'>0.00664s</span></dd>
+  </dl>
+</div>
+<div id="div_group_145" class="example_group passed">
+  <dl style="margin-left: 0px;">
+  <dt id="example_group_145" class="passed">ARR parser of record 85014256605</dt>
+    <script type="text/javascript">moveProgressBar('80.4');</script>
+    <dd class="example passed"><span class="passed_spec_name">should include correct article information</span><span class='duration'>0.01013s</span></dd>
+    <script type="text/javascript">moveProgressBar('80.6');</script>
+    <dd class="example passed"><span class="passed_spec_name">should include correct authors</span><span class='duration'>0.00922s</span></dd>
+    <script type="text/javascript">moveProgressBar('80.9');</script>
+    <dd class="example passed"><span class="passed_spec_name">should include correct author keywords</span><span class='duration'>0.00842s</span></dd>
+    <script type="text/javascript">moveProgressBar('81.1');</script>
+    <dd class="example passed"><span class="passed_spec_name">should include correct subject areas</span><span class='duration'>0.01015s</span></dd>
+    <script type="text/javascript">moveProgressBar('81.3');</script>
+    <dd class="example passed"><span class="passed_spec_name">should include correct affiliation </span><span class='duration'>0.01064s</span></dd>
+  </dl>
+</div>
+<div id="div_group_146" class="example_group passed">
+  <dl style="margin-left: 0px;">
+  <dt id="example_group_146" class="passed">Scopus_Abstract</dt>
+  </dl>
+</div>
+<div id="div_group_147" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_147" class="passed">.get method</dt>
+    <script type="text/javascript">moveProgressBar('81.5');</script>
+    <dd class="example passed"><span class="passed_spec_name">should return with eid</span><span class='duration'>0.00514s</span></dd>
+    <script type="text/javascript">moveProgressBar('81.7');</script>
+    <dd class="example passed"><span class="passed_spec_name">should return with doi</span><span class='duration'>0.00496s</span></dd>
+    <script type="text/javascript">moveProgressBar('81.9');</script>
+    <dd class="example passed"><span class="passed_spec_name">should raise Buhos::NoScopusMethodError is id type is unknown</span><span class='duration'>0.00472s</span></dd>
+  </dl>
+</div>
+<div id="div_group_148" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_148" class="passed">.obtener_abstract_cd method</dt>
+    <script type="text/javascript">moveProgressBar('82.1');</script>
+    <dd class="example passed"><span class="passed_spec_name">should return a Result object with error if abstract is not available</span><span class='duration'>0.01932s</span></dd>
+  </dl>
+</div>
+<div id="div_group_149" class="example_group passed">
+  <dl style="margin-left: 0px;">
+  <dt id="example_group_149" class="passed">SearchProcessor</dt>
+  </dl>
+</div>
+<div id="div_group_150" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_150" class="passed">when smoke test is applied</dt>
+    <script type="text/javascript">moveProgressBar('82.4');</script>
+    <dd class="example passed"><span class="passed_spec_name">works on each search</span><span class='duration'>0.94149s</span></dd>
+  </dl>
+</div>
+<div id="div_group_151" class="example_group passed">
+  <dl style="margin-left: 0px;">
+  <dt id="example_group_151" class="passed">Search:</dt>
+  </dl>
+</div>
+<div id="div_group_152" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_152" class="passed">when check initial state</dt>
+    <script type="text/javascript">moveProgressBar('82.6');</script>
+    <dd class="example passed"><span class="passed_spec_name">should be 0 searches</span><span class='duration'>0.00072s</span></dd>
+    <script type="text/javascript">moveProgressBar('82.8');</script>
+    <dd class="example passed"><span class="passed_spec_name">should be 0 records</span><span class='duration'>0.00053s</span></dd>
+    <script type="text/javascript">moveProgressBar('83.0');</script>
+    <dd class="example passed"><span class="passed_spec_name">should be 0 references</span><span class='duration'>0.00054s</span></dd>
+  </dl>
+</div>
+<div id="div_group_153" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_153" class="passed">when create a search by form</dt>
+    <script type="text/javascript">moveProgressBar('83.2');</script>
+    <dd class="example passed"><span class="passed_spec_name">response should be redirect</span><span class='duration'>0.00016s</span></dd>
+    <script type="text/javascript">moveProgressBar('83.4');</script>
+    <dd class="example passed"><span class="passed_spec_name">should response redirects to review searches</span><span class='duration'>0.00067s</span></dd>
+    <script type="text/javascript">moveProgressBar('83.6');</script>
+    <dd class="example passed"><span class="passed_spec_name">should search be created on dataset</span><span class='duration'>0.00050s</span></dd>
+    <script type="text/javascript">moveProgressBar('83.9');</script>
+    <dd class="example passed"><span class="passed_spec_name">should search contains correct file name</span><span class='duration'>0.00042s</span></dd>
+    <script type="text/javascript">moveProgressBar('84.1');</script>
+    <dd class="example passed"><span class="passed_spec_name">should search bibliographic database will be generic</span><span class='duration'>0.00077s</span></dd>
+    <script type="text/javascript">moveProgressBar('84.3');</script>
+    <dd class="example passed"><span class="passed_spec_name">should search date will be 2018-01-01</span><span class='duration'>0.00047s</span></dd>
+    <script type="text/javascript">moveProgressBar('84.5');</script>
+    <dd class="example passed"><span class="passed_spec_name">should search contains correct file content</span><span class='duration'>0.00050s</span></dd>
+  </dl>
+</div>
+<div id="div_group_154" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_154" class="passed">when review searches is accessed</dt>
+    <script type="text/javascript">moveProgressBar('84.7');</script>
+    <dd class="example passed"><span class="passed_spec_name">should be ok</span><span class='duration'>0.00865s</span></dd>
+    <script type="text/javascript">moveProgressBar('84.9');</script>
+    <dd class="example passed"><span class="passed_spec_name">should include a row for new search</span><span class='duration'>0.00838s</span></dd>
+  </dl>
+</div>
+<div id="div_group_155" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_155" class="passed">when search view is acceded</dt>
+    <script type="text/javascript">moveProgressBar('85.1');</script>
+    <dd class="example passed"><span class="passed_spec_name">should be ok</span><span class='duration'>0.00410s</span></dd>
+    <script type="text/javascript">moveProgressBar('85.4');</script>
+    <dd class="example passed"><span class="passed_spec_name">should include the bibliographic database name </span><span class='duration'>0.00310s</span></dd>
+    <script type="text/javascript">moveProgressBar('85.6');</script>
+    <dd class="example passed"><span class="passed_spec_name">should include a link to file</span><span class='duration'>0.00528s</span></dd>
+  </dl>
+</div>
+<div id="div_group_156" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_156" class="passed">when edit form search is acceded</dt>
+    <script type="text/javascript">moveProgressBar('85.8');</script>
+    <dd class="example passed"><span class="passed_spec_name">should be ok</span><span class='duration'>0.00645s</span></dd>
+    <script type="text/javascript">moveProgressBar('86.0');</script>
+    <dd class="example passed"><span class="passed_spec_name">should include the bibliographic database name </span><span class='duration'>0.00642s</span></dd>
+    <script type="text/javascript">moveProgressBar('86.2');</script>
+    <dd class="example passed"><span class="passed_spec_name">should include a link to file</span><span class='duration'>0.00500s</span></dd>
+  </dl>
+</div>
+<div id="div_group_157" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_157" class="passed">when search file is downloaded</dt>
+    <script type="text/javascript">moveProgressBar('86.4');</script>
+    <dd class="example passed"><span class="passed_spec_name">should be ok</span><span class='duration'>0.00392s</span></dd>
+    <script type="text/javascript">moveProgressBar('86.6');</script>
+    <dd class="example passed"><span class="passed_spec_name">should response be ok</span><span class='duration'>0.00013s</span></dd>
+    <script type="text/javascript">moveProgressBar('86.9');</script>
+    <dd class="example passed"><span class="passed_spec_name">should content type be text/x-bibtex</span><span class='duration'>0.00015s</span></dd>
+    <script type="text/javascript">moveProgressBar('87.1');</script>
+    <dd class="example passed"><span class="passed_spec_name">should content length be correct</span><span class='duration'>0.00014s</span></dd>
+    <script type="text/javascript">moveProgressBar('87.3');</script>
+    <dd class="example passed"><span class="passed_spec_name">should filename will be correct</span><span class='duration'>0.00008s</span></dd>
+  </dl>
+</div>
+<div id="div_group_158" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_158" class="passed">when process the search using batch form</dt>
+    <script type="text/javascript">moveProgressBar('87.5');</script>
+    <dd class="example passed"><span class="passed_spec_name">response should be redirect</span><span class='duration'>0.00019s</span></dd>
+    <script type="text/javascript">moveProgressBar('87.7');</script>
+    <dd class="example passed"><span class="passed_spec_name">should response redirects to &#39;url_back&#39; param</span><span class='duration'>0.00013s</span></dd>
+  </dl>
+</div>
+<div id="div_group_159" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_159" class="passed">records when search is already processed</dt>
+    <script type="text/javascript">moveProgressBar('87.9');</script>
+    <dd class="example passed"><span class="passed_spec_name">should be 6</span><span class='duration'>0.00149s</span></dd>
+    <script type="text/javascript">moveProgressBar('88.1');</script>
+    <dd class="example passed"><span class="passed_spec_name">should have correct titles </span><span class='duration'>0.00156s</span></dd>
+    <script type="text/javascript">moveProgressBar('88.4');</script>
+    <dd class="example passed"><span class="passed_spec_name">should have correct bibliographic db assigned</span><span class='duration'>0.00231s</span></dd>
+  </dl>
+</div>
+<div id="div_group_160" class="example_group passed">
+  <dl style="margin-left: 30px;">
+  <dt id="example_group_160" class="passed">and records view is accesed</dt>
+    <script type="text/javascript">moveProgressBar('88.6');</script>
+    <dd class="example passed"><span class="passed_spec_name">should be ok</span><span class='duration'>0.00023s</span></dd>
+    <script type="text/javascript">moveProgressBar('88.8');</script>
+    <dd class="example passed"><span class="passed_spec_name">should contain all titles</span><span class='duration'>0.00036s</span></dd>
+  </dl>
+</div>
+<div id="div_group_161" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_161" class="passed">when validate the search with direct link</dt>
+    <script type="text/javascript">moveProgressBar('89.0');</script>
+    <dd class="example passed"><span class="passed_spec_name">response should be redirect</span><span class='duration'>0.00021s</span></dd>
+    <script type="text/javascript">moveProgressBar('89.2');</script>
+    <dd class="example passed"><span class="passed_spec_name">search should be validadet</span><span class='duration'>0.00057s</span></dd>
+  </dl>
+</div>
+<div id="div_group_162" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_162" class="passed">when invalidate the search with direct link</dt>
+    <script type="text/javascript">moveProgressBar('89.4');</script>
+    <dd class="example passed"><span class="passed_spec_name">response should be redirect</span><span class='duration'>0.00018s</span></dd>
+    <script type="text/javascript">moveProgressBar('89.6');</script>
+    <dd class="example passed"><span class="passed_spec_name">search should be invalidated</span><span class='duration'>0.00053s</span></dd>
+  </dl>
+</div>
+<div id="div_group_163" class="example_group passed">
+  <dl style="margin-left: 0px;">
+  <dt id="example_group_163" class="passed">Sinatra::Xeditable_Checkbox::Checbox class </dt>
+  </dl>
+</div>
+<div id="div_group_164" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_164" class="passed">when javascript is retrieved</dt>
+    <script type="text/javascript">moveProgressBar('89.9');</script>
+    <dd class="example passed"><span class="passed_spec_name">javascript should include correct class</span><span class='duration'>0.00024s</span></dd>
+    <script type="text/javascript">moveProgressBar('90.1');</script>
+    <dd class="example passed"><span class="passed_spec_name">javascript should include correct url</span><span class='duration'>0.00021s</span></dd>
+  </dl>
+</div>
+<div id="div_group_165" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_165" class="passed">when html is retrieved with values</dt>
+    <script type="text/javascript">moveProgressBar('90.3');</script>
+    <dd class="example passed"><span class="passed_spec_name">html should include correct data-value</span><span class='duration'>0.00019s</span></dd>
+    <script type="text/javascript">moveProgressBar('90.5');</script>
+    <dd class="example passed"><span class="passed_spec_name">html should include correct data-pk</span><span class='duration'>0.00016s</span></dd>
+    <script type="text/javascript">moveProgressBar('90.7');</script>
+    <dd class="example passed"><span class="passed_spec_name">html should include correct values</span><span class='duration'>0.00016s</span></dd>
+  </dl>
+</div>
+<div id="div_group_166" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_166" class="passed">when html is retrieved without values</dt>
+    <script type="text/javascript">moveProgressBar('90.9');</script>
+    <dd class="example passed"><span class="passed_spec_name">html should include correct data-value</span><span class='duration'>0.00018s</span></dd>
+    <script type="text/javascript">moveProgressBar('91.2');</script>
+    <dd class="example passed"><span class="passed_spec_name">html should include correct data-pk</span><span class='duration'>0.00016s</span></dd>
+    <script type="text/javascript">moveProgressBar('91.4');</script>
+    <dd class="example passed"><span class="passed_spec_name">html should include correct values</span><span class='duration'>0.00017s</span></dd>
+  </dl>
+</div>
+<div id="div_group_167" class="example_group passed">
+  <dl style="margin-left: 0px;">
+  <dt id="example_group_167" class="passed">Sinatra::Xeditable_Select::Select class </dt>
+    <script type="text/javascript">moveProgressBar('91.6');</script>
+    <dd class="example passed"><span class="passed_spec_name">javascript should include correct class</span><span class='duration'>0.00019s</span></dd>
+    <script type="text/javascript">moveProgressBar('91.8');</script>
+    <dd class="example passed"><span class="passed_spec_name">javascript should include correct url</span><span class='duration'>0.00022s</span></dd>
+    <script type="text/javascript">moveProgressBar('92.0');</script>
+    <dd class="example passed"><span class="passed_spec_name">html should include correct information for non nil value</span><span class='duration'>0.00019s</span></dd>
+    <script type="text/javascript">moveProgressBar('92.2');</script>
+    <dd class="example passed"><span class="passed_spec_name">html should include correct information for nil value</span><span class='duration'>0.00015s</span></dd>
+  </dl>
+</div>
+<div id="div_group_168" class="example_group passed">
+  <dl style="margin-left: 0px;">
+  <dt id="example_group_168" class="passed">SystematicReview class</dt>
+    <script type="text/javascript">moveProgressBar('92.4');</script>
+    <dd class="example passed"><span class="passed_spec_name">should be created by a form</span><span class='duration'>0.00528s</span></dd>
+  </dl>
+</div>
+<div id="div_group_169" class="example_group passed">
+  <dl style="margin-left: 0px;">
+  <dt id="example_group_169" class="passed">Tags on stage forms</dt>
+  </dl>
+</div>
+<div id="div_group_170" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_170" class="passed">when tag added on a document</dt>
+    <script type="text/javascript">moveProgressBar('92.7');</script>
+    <dd class="example passed"><span class="passed_spec_name">should be ok</span><span class='duration'>0.00025s</span></dd>
+    <script type="text/javascript">moveProgressBar('92.9');</script>
+    <dd class="example passed"><span class="passed_spec_name">should response body include new tag</span><span class='duration'>0.00019s</span></dd>
+    <script type="text/javascript">moveProgressBar('93.1');</script>
+    <dd class="example passed"><span class="passed_spec_name">should object tag_en_cd created </span><span class='duration'>0.00124s</span></dd>
+    <script type="text/javascript">moveProgressBar('93.3');</script>
+    <dd class="example passed"><span class="passed_spec_name">should decision attr should be &#39;yes&#39;</span><span class='duration'>0.00150s</span></dd>
+  </dl>
+</div>
+<div id="div_group_171" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_171" class="passed">when view of canonical documents for a review and a stage is retrieved</dt>
+    <script type="text/javascript">moveProgressBar('93.5');</script>
+    <dd class="example passed"><span class="passed_spec_name">should be ok</span><span class='duration'>0.00027s</span></dd>
+  </dl>
+</div>
+<div id="div_group_172" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_172" class="passed">when view of canonical documents for a review is retrieved</dt>
+    <script type="text/javascript">moveProgressBar('93.7');</script>
+    <dd class="example passed"><span class="passed_spec_name">should be ok</span><span class='duration'>0.00020s</span></dd>
+  </dl>
+</div>
+<div id="div_group_173" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_173" class="passed">when tag added for a relation between documents</dt>
+    <script type="text/javascript">moveProgressBar('93.9');</script>
+    <dd class="example passed"><span class="passed_spec_name">should be ok</span><span class='duration'>0.00021s</span></dd>
+    <script type="text/javascript">moveProgressBar('94.2');</script>
+    <dd class="example passed"><span class="passed_spec_name">should response body include new tag</span><span class='duration'>0.00014s</span></dd>
+    <script type="text/javascript">moveProgressBar('94.4');</script>
+    <dd class="example passed"><span class="passed_spec_name">should object tag_en_cd created </span><span class='duration'>0.00107s</span></dd>
+    <script type="text/javascript">moveProgressBar('94.6');</script>
+    <dd class="example passed"><span class="passed_spec_name">should decision attr should be &#39;yes&#39;</span><span class='duration'>0.00095s</span></dd>
+  </dl>
+</div>
+<div id="div_group_174" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_174" class="passed">when previous tag is approved by another user</dt>
+    <script type="text/javascript">moveProgressBar('94.8');</script>
+    <dd class="example passed"><span class="passed_spec_name">should be ok</span><span class='duration'>0.00021s</span></dd>
+    <script type="text/javascript">moveProgressBar('95.0');</script>
+    <dd class="example passed"><span class="passed_spec_name">should response body include new tag</span><span class='duration'>0.00015s</span></dd>
+    <script type="text/javascript">moveProgressBar('95.2');</script>
+    <dd class="example passed"><span class="passed_spec_name">should object tag_en_cd created </span><span class='duration'>0.00072s</span></dd>
+    <script type="text/javascript">moveProgressBar('95.4');</script>
+    <dd class="example passed"><span class="passed_spec_name">should be two &#39;yes&#39; decisions</span><span class='duration'>0.00122s</span></dd>
+  </dl>
+</div>
+<div id="div_group_175" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_175" class="passed">when previous tag is rejected by another user</dt>
+    <script type="text/javascript">moveProgressBar('95.7');</script>
+    <dd class="example passed"><span class="passed_spec_name">should be ok</span><span class='duration'>0.00021s</span></dd>
+    <script type="text/javascript">moveProgressBar('95.9');</script>
+    <dd class="example passed"><span class="passed_spec_name">should response body include new tag</span><span class='duration'>0.00016s</span></dd>
+    <script type="text/javascript">moveProgressBar('96.1');</script>
+    <dd class="example passed"><span class="passed_spec_name">should object tag_en_cd created </span><span class='duration'>0.00064s</span></dd>
+    <script type="text/javascript">moveProgressBar('96.3');</script>
+    <dd class="example passed"><span class="passed_spec_name">should be one &#39;yes&#39; and one &#39;no &#39; decisions</span><span class='duration'>0.00166s</span></dd>
+  </dl>
+</div>
+<div id="div_group_176" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_176" class="passed">when json for typeahead are retrieved</dt>
+    <script type="text/javascript">moveProgressBar('96.5');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /tags/basic_10.json be accesible</span><span class='duration'>0.00244s</span></dd>
+    <script type="text/javascript">moveProgressBar('96.7');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /tags/basic_ref_10.json be accesible</span><span class='duration'>0.00228s</span></dd>
+    <script type="text/javascript">moveProgressBar('96.9');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /tags/query_json/new_ta be accesible</span><span class='duration'>0.00418s</span></dd>
+    <script type="text/javascript">moveProgressBar('97.2');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /tags/refs/query_json/new_relat be accesible</span><span class='duration'>0.00477s</span></dd>
+    <script type="text/javascript">moveProgressBar('97.4');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /tags/systematic_review/1/query_json/new_ta be accesible</span><span class='duration'>0.00633s</span></dd>
+    <script type="text/javascript">moveProgressBar('97.6');</script>
+    <dd class="example passed"><span class="passed_spec_name">should route /tags/systematic_review/1/ref/query_json/new_relat be accesible</span><span class='duration'>0.00630s</span></dd>
+  </dl>
+</div>
+<div id="div_group_177" class="example_group passed">
+  <dl style="margin-left: 0px;">
+  <dt id="example_group_177" class="passed">Tags:</dt>
+  </dl>
+</div>
+<div id="div_group_178" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_178" class="passed">when create a new tag class with a form</dt>
+    <script type="text/javascript">moveProgressBar('97.8');</script>
+    <dd class="example passed"><span class="passed_spec_name">should response will be a redirect </span><span class='duration'>0.00053s</span></dd>
+    <script type="text/javascript">moveProgressBar('98.0');</script>
+    <dd class="example passed"><span class="passed_spec_name">should be inserted into database</span><span class='duration'>0.00047s</span></dd>
+  </dl>
+</div>
+<div id="div_group_179" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_179" class="passed">when edit an attribute of a tag using PUT</dt>
+    <script type="text/javascript">moveProgressBar('98.2');</script>
+    <dd class="example passed"><span class="passed_spec_name">should response will be ok </span><span class='duration'>0.00054s</span></dd>
+    <script type="text/javascript">moveProgressBar('98.4');</script>
+    <dd class="example passed"><span class="passed_spec_name">should have new name</span><span class='duration'>0.00050s</span></dd>
+  </dl>
+</div>
+<div id="div_group_180" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_180" class="passed">when create a new tag for a class tag</dt>
+    <script type="text/javascript">moveProgressBar('98.7');</script>
+    <dd class="example passed"><span class="passed_spec_name">should response will be ok</span><span class='duration'>0.00014s</span></dd>
+    <script type="text/javascript">moveProgressBar('98.9');</script>
+    <dd class="example passed"><span class="passed_spec_name">should Tag object exist</span><span class='duration'>0.00044s</span></dd>
+    <script type="text/javascript">moveProgressBar('99.1');</script>
+    <dd class="example passed"><span class="passed_spec_name">shoult tag name appears on response</span><span class='duration'>0.00015s</span></dd>
+    <script type="text/javascript">moveProgressBar('99.3');</script>
+    <dd class="example passed"><span class="passed_spec_name">should TagInClass object exist</span><span class='duration'>0.00106s</span></dd>
+  </dl>
+</div>
+<div id="div_group_181" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_181" class="passed">when delete a new tag for a class tag</dt>
+    <script type="text/javascript">moveProgressBar('99.5');</script>
+    <dd class="example passed"><span class="passed_spec_name">should response will be ok</span><span class='duration'>0.00018s</span></dd>
+    <script type="text/javascript">moveProgressBar('99.7');</script>
+    <dd class="example passed"><span class="passed_spec_name">should not tag name appears on response</span><span class='duration'>0.00009s</span></dd>
+    <script type="text/javascript">moveProgressBar('100.0');</script>
+    <dd class="example passed"><span class="passed_spec_name">should TagInClass object not exist</span><span class='duration'>0.00112s</span></dd>
+  </dl>
+</div>
+<script type="text/javascript">document.getElementById('duration').innerHTML = "Finished in <strong>23.79887 seconds</strong>";</script>
+<script type="text/javascript">document.getElementById('totals').innerHTML = "466 examples, 0 failures, 1 pending";</script>
+</div>
+</div>
+</body>
+</html>
