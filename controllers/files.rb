@@ -18,7 +18,7 @@ get '/files/rs/:systematic_review_id/assign_to_canonical_documents' do |rs_id|
 
   require 'pdf-reader'
   # Solo buscar en los files que no tienen canonico asignado
-  pdf_por_revisar=FileSr.files_sin_cd(rs_id).where(:filetype=>'application/pdf')
+  pdf_por_revisar=FileSr.files_wo_cd(rs_id).where(:filetype=>'application/pdf')
   pdf_por_revisar.each do |pdf|
     begin
       reader=PDF::Reader.new(pdf.absolute_path(dir_files))

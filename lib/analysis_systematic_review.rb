@@ -29,10 +29,10 @@
 
 require_relative 'analysis_sr_stage_mixin'
 require_relative 'buhos/stages'
+
 # A Facade pattern class
 # Shows general statistics for systematic reviews and
 # for each article
-
 class AnalysisSystematicReview
   include AnalysisSrStageMixin
   include Buhos::StagesMixin
@@ -80,12 +80,13 @@ class AnalysisSystematicReview
     @cd_reg_id.length
   end
 
-  # Señala si un cd es parte de un registro,
-  # es decir, si aparece en alguna de las searches
+  # Check if a CD is part of a Record.
+  # In other words, if CD is allocated to a Record inside one of its searches
   def cd_en_registro?(id)
     @cd_reg_id.include? id
   end
-  # Señala si un cd es parte de una reference# Es decir, en algún momento fue citado por alguien.
+  # Check if a CD is part of a Record.
+  # In other words, if CD is allocated to a Reference inside to one of its searches
   def cd_en_reference?(id)
     @cd_ref_id.include? id
   end

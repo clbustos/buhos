@@ -32,38 +32,63 @@ require_relative 'sinatra/i18n'
 
 module Buhos
   # @!group Error Codes
+
+  # Exception when no systematic review id exists
   class NoReviewIdError < StandardError
 
   end
+
+  # Exception when no user id exists
   class NoUserIdError < StandardError
 
   end
+
+  # Exception when no cd id exists
   class NoCdIdError < StandardError
 
   end
+
+  # Exception when no search id exists
+
   class NoSearchIdError < StandardError
 
   end
+
+  # Exception when no tag id exists
   class NoTagIdError < StandardError
 
   end
+
+  # Exception when no class tag id exists
   class NoTagClassIdError < StandardError
 
   end
 
+  # Exception when no Scopus method is allowed
   class NoScopusMethodError < StandardError
 
   end
+
+  # Exception when no group id exists
+
   class NoGroupIdError < StandardError
   end
+
+  # Exception when no role id exists
 
   class NoRoleIdError < StandardError
 
   end
 
+  # Exception when no record id exists
+
   class NoRecordIdError < StandardError
 
   end
+
+
+  # Exception when no {IFile} id exists
+
   class NoFileIdError < StandardError
 
   end
@@ -72,6 +97,8 @@ end
 
 
 module Sinatra
+  # Extensions to Sinatra, that shows personalized errors for Buhos exceptions
+  #
   module CustomErrors
     def self.registered(app)
 

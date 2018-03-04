@@ -34,6 +34,7 @@ module Buhos
     class Authorizations
       attr_reader :files
       attr_reader :permits
+      # @param
       def initialize(app)
         @app=app
         @files={}

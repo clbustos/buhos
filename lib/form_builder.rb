@@ -29,8 +29,7 @@
 require_relative "html_helpers"
 require_relative "sinatra_helpers"
 
-# Create custom forms for complete text data extraction phase
-#
+# Create custom forms for complete text data extraction stage
 class FormBuilder
   def initialize(sr, cd,user)
     @sr=sr
@@ -52,7 +51,11 @@ class FormBuilder
     #{@javascript.join("\n")}
     </script>"
   end
-
+  # Each one of the fields of a personalized form.
+  #
+  # Suggerence: {.html} selects what method should be used to parse the field.
+  # Maybe a Builder strategy should be clear, with independent object for each type of fields
+  #
   class Field
     include ::HTMLHelpers
     include ::Sinatra::Xeditable_Checkbox::Helpers
