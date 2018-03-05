@@ -4,66 +4,70 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/ffa582598127f86ed405/maintainability)](https://codeclimate.com/github/clbustos/buhos/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/ffa582598127f86ed405/test_coverage)](https://codeclimate.com/github/clbustos/buhos/test_coverage)
 
-Web based platform to manage the complete process of a systematic literature reviews. Developed usign Sinatra, a Ruby DSL.
+Web based platform to manage complete process of systematic literature reviews. Developed using Sinatra, a Ruby-based DSL.
 
 
 ## Features
 
-* Multi-platform: Runs on Linux (tested on Ubuntu 14.04 and 16.06) and Windows (tested on Windows 7 and 10)
-* Support individual and group based systematic reviews. 
-* Messaging system for members and reviews.
-* Internationalization, using *I18n*. Available in english and spanish
-* Flexible work-flow. The main stages of search texts, screening, extract data and reports are clearly defined, but past decisions can be changed and automatically later stages will be affected.
-* Import information from several databases - WoS, Scopus, Scielo - using BibTeX.
-* Integration with Crossref, that allows deduplication of records using DOI, recollection of references
-* File repository, with PDF viewing support via [ViewerJS](http://viewerjs.org/)
-* Multiple ways to analyze data: commentaries and tagging on each stage of review, custom forms for complete text analysis
-* Multiple Reports: PRISMA flowchart, data extraction of complete text and process report. 
-* Exports references on each stage to BibTeX and Graphml, to graph relations between papers
-* Unit and integration tests for main features.
+* Multi-platform:  Runs on Linux (tested on Ubuntu 14.04 and 16.06) and Windows (tested on Windows 7 and 10)
+* Supports individual and group-based systematic reviews.
+* Internal messaging system for personal messages o messages related to systematic reviews.
+* Internationalization, using *I18n*. Available in English and Spanish.
+* Flexible work-flow.  The main stages of text searching, screening relevant articles, data extraction and reporting are clearly defined.  However, changes can be made at any stage already finalized, and will automatically reflect in subsequent stages.
+* Imports information from various bibliographic databases, such as - WoS, Scopus, Ebscohost, Scielo - using BibTeX.
+* Integration with Crossref allows deduplication of articles (using DOI), and searching for information on references
+
+
+
+
+* File repository.  PDF and ODF file viewing support online via [ViewerJS](http://viewerjs.org/)-
+* Multiple ways to analyze data: comments and tagging at each stage of review, and generation of customized forms for information extraction.
+* Various report types:  For data extracted from texts, detailed reports on the decision process at each review stage, as well as a [PRISMA flowchart](http://prisma-statement.org/prismastatement/flowdiagram.aspx) for process overviews, ready for publication. 
+* Different export file types: Can export references as BibTeX and generate Graphml, to graph relations between papers
+* Unit and integration tests for main software features.
 
 ## Documentation
 
-There is a user [manual available](https://github.com/clbustos/buhos/tree/master/docs/manual). Contains a guide to understand the systematic review process.
+There is a user [manual available](https://github.com/clbustos/buhos/tree/master/docs/manual) with a quick guide for understanding the systematic review methodology that supports the software.
 
-The API is documented usign [Yard](https://yardoc.org/) and is available on [https://www.buhos.org/api](https://www.buhos.org/api).
+The API is documented using [Yard](https://yardoc.org/) and is available on [https://www.buhos.org/api](https://www.buhos.org/api). Only available in English.
 
-## Getting Started
+## Get Started
 
 ### On Windows
 
-A installer for the latest version of software, for Windows, can be obtained from [Buhos Windows Toolkit](https://github.com/clbustos/buhos-windows-tk/tree/master/windows_installer)
+The installer for Windows, can be obtained from [Buhos Windows Toolkit](https://github.com/clbustos/buhos-windows-tk/tree/master/windows_installer)
 
 ### On *nix
 
-For Debian, Ubuntu y CentOS, packages and instructions to install are availables on [packager.io](https://packager.io/gh/clbustos/buhos).  As example, this instructions allows to install buhos on Ubuntu, using localhost:4567 as URL
+For Debian, Ubuntu and CentOS, packages and installation instructions are available on [packager.io](https://packager.io/gh/clbustos/buhos).    For example, to install Buhos on Ubuntu follow the instructions below, using localhost:4567 as URL.
 
     wget -qO- https://dl.packager.io/srv/clbustos/buhos/key | sudo apt-key add -
-    sudo wget -O /etc/apt/sources.list.d/buhos.list \
+    sudo wget -O /etc/apt/sources.list.d/buhos.list \ 
       https://dl.packager.io/srv/clbustos/buhos/master/installer/ubuntu/16.04.repo
     sudo apt-get update
     sudo apt-get install buhos
     sudo buhos config:set PORT=4567
     sudo buhos scale web=1
-    sudo buhos restart 
+    sudo buhos restart
 
 ### Using vagrant
 
-On vendor/vagrant_alpine and vendor/vagrant_ubuntu_16 directories you could find working vagrant configurations for Alpine and Ubuntu 16.04, respectively. You could run it using
+On vendor/vagrant_alpine and vendor/vagrant_ubuntu_16 directories, working vagrant configurations for Alpine and Ubuntu 16.04 can be found, respectively.  They can be run using
     
     > vagrant up
     
-By default, the application is configured to run on port 4567. 
+By default, the application is configured to run on port 4567.
     
 ### Using source code (latest)
 
 #### Prerequisites
 
 
-On linux, you need a ruby 2.4 installation with bundler, and development libraries for mysql and sqlite. We recommend using [RVM](https://rvm.io/).
+On Linux, a ruby 2.4 installation with bundler is needed, and development libraries for mysql and sqlite. We recommend using [RVM](https://rvm.io/).
 
 
-On Ubuntu, this script install all required dependencies
+On Ubuntu, the following script installs all required dependencies:
 
 
     # Update system
@@ -111,11 +115,11 @@ On alpine, the basic configuration is
         ruby-bigdecimal \
         ruby-etc    
 
-Once you have all necesary dependencies , copy the source code using
+Once all the dependencies are installed, the source code can be copied using
 
    > git clone git@github.com:clbustos/buhos.git
 
-Install necessary dependencies using bundler
+Install required Ruby dependencies using bundler
 
    > bundle install
    
@@ -125,71 +129,70 @@ And run the application using
 
 ## Post-install configuration
 
-The app uses a web-based configuration. Once you start the server with you should point your browser to localhost:4567 and the installation process should began.
+The app uses a web-based configuration.  Once the server starts, point your browser by default to localhost:4567 to begin the installation process.
 
-If you want to use a Mysql database, you should create it before installing the sofware. As mysql root user, you could use something like
+If you wish to use a MySQL database, you should create it before configuring the sofware.  Using the MySQL root user, the instructions would be:
 
     CREATE DATABASES buhos;
     CREATE USER buhos_user@localhost IDENTIFIED BY 'password';
     GRANT ALL PRIVILEGES ON buhos.* TO buhos_user@localhost;
     FLUSH PRIVILEGES;
 
-First, you define the installation language. Second, you should provide information about database support (sqlite / mysql). If you have a SCOPUS API key, you could provide it along proxy settings.
-Finnaly, the database will be populated and you should restart the application to start using it.
+First, the installation language should be defined.  Second, information on the specific database should be provided (sqlite / mysql). By default, a SQLite database will be installed in db.sqlite. If you have a SCOPUS API key, the relevant information can be submitted along with the proxy settings, if applicable.
+As the final step, the database will be populated. You must restart the application before using it.
 
     
 
 ## Deployment
 
-For individual users, the application could be run without problem using the windows installer or the packages for Ubuntu, Debian or CentOS
+Individual users can run the application smoothly with the Windows installer or the packages for Ubuntu, Debian or CentOS.
 
-For multiple users, you should deploy on a web server and a more powerful database. The development is tested on nginx ussing passenger+ Mysql, but should  work on Apache, too.
+For multiple online users, the use of Buho has been tested deployed on an independent HTTP server, using Passenger as connector with Nginx. MySQL has been used for the database.  In theory, the software should  work smoothly on MariaDB and Apache.
 
-A typical nginx configurations should look like this:
+A typical nginx configuration should look like this:
     
     server {
       listen 80
-      root /home/<user>/<base_dir>; 
-      passenger_enabled on; 
-      passenger_ruby <ruby_location> 
+      root /home/<user>/<base_dir>;
+      passenger_enabled on;
+      passenger_ruby <ruby_location>
     }
-    
-Ruby location could be obtained with
+
+The location of the Ruby executable can be obtained with
 
     > which ruby
 
-If you using [RVM](https://rvm.io/) with passenger, check [this page](https://rvm.io/deployment/passenger)
+If you are using [RVM](https://rvm.io/) with Passenger, check [this page](https://rvm.io/deployment/passenger)
 
 
 ## Built With
-* [Sinatra](http://sinatrarb.com/) - Sinatra is a DSL for quickly creating web applications in Ruby with minimal effort
-* [Sequel](https://github.com/jeremyevans/sequel) - Sequel is a simple, flexible, and powerful SQL database access toolkit for Ruby.
+* [Sinatra](http://sinatrarb.com/) - Sinatra is a DSL for quickly creating web applications on Ruby with minimal effort.
+* [Sequel](https://github.com/jeremyevans/sequel) - Sequel is a simple, flexible, and powerful SQL database access toolkit for Ruby. It offers an abstraction layer and ORM functionalities, among other things.
 * [Bootstrap](https://getbootstrap.com/) -  Bootstrap is an open source toolkit for developing with HTML, CSS, and JS.
-* [jQuery](https://jquery.com/) - jQuery is a fast, small, and feature-rich JavaScript library. 
-* [ViewerJS](http://viewerjs.org/) - ViewerJS allows to use presentations, spreadsheets, PDF's and other documents on your website or blog without any external dependencies.
-* [RubyMine](https://www.jetbrains.com/ruby/) - A good Ruby IDE
+* [jQuery](https://jquery.com/) - jQuery is a fast, small, and feature-rich JavaScript library.
+* [ViewerJS](http://viewerjs.org/) - ViewerJS enables online viewing of PDF and ODT files. 
+* [RubyMine](https://www.jetbrains.com/ruby/) - An excellent Ruby IDE
 
 ## Contributing
 
-If you want to contribute, just send a email to clbustos_at_gmail.com. If you want to send a patch, the preferred method is fork the repository on [github](https://github.com/clbustos/buhos) and make a pull request.
+If you wish to contribute,  email clbustos_at_gmail.com. If you'd like to send a patch, best is to create a fork of the repository on [github](https://github.com/clbustos/buhos) and make a pull request.
 
 ## Versioning
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/clbustos/buhos/tags). 
+We use [SemVer](http://semver.org/) for versioning.  To see the available versions, see the [tags on this repository](https://github.com/clbustos/buhos/tags).
 
-## Authors
+## Authorship
 
-### Main developer
+### Developers
 
 * **Claudio  Bustos** - *Main developer* - [clbustos](https://github.com/clbustos)
 
-### Contributors
+### Contributions
 * **Daniel Lermanda** - Web page designer and UX advisor
-* **María Gabriela Morales** - First conceptualization and documentation
-* **Liz Medina** -  English translation of user interface
+* **María Gabriela Morales** - First conceptualization and revision of the manual
+* **Liz Medina** -  English translation of  home page and manual.
 
 
 ## License
 
-This project is licensed under the BSD 3-Clause License - see the [LICENSE](LICENSE) file for details
-
+This project is licensed under the BSD 3-Clause License - See [LICENSE](LICENSE) file for details.
