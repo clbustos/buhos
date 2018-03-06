@@ -45,7 +45,7 @@
     %label{:for=>'type'}=t(:Type)
     %select.form-control{:name=>'type'}
       - SrField::AVAILABLE_TYPES.each do |type|
-        %option{:value=>'type'}=t("fields.#{type}")
+        %option{:value=>type}=t("fields.#{type}")
   .form-group
     %label{:for=>'options'}=t(:Options)
     %br
