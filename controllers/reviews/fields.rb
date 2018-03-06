@@ -16,6 +16,8 @@ get '/review/:rs_id/fields' do |rs_id|
   raise Buhos::NoReviewIdError, rs_id if !@review
 
   @campos=@review.fields
+
+  @xselect=get_xeditable_select(SrField.types_hash, "/review/edit_field/nil/type", 'select-type')
   haml %s{systematic_reviews/fields}
 end
 

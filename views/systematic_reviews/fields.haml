@@ -5,27 +5,35 @@
     %a{:href=>url("/review/#{@review.id}")}=@review.name
   %li{:class=>:active}=t(:Fields)
 
+:javascript
+  #{@xselect.javascript}
 
 - if @campos.empty?
   %p
     %em=t(:No_fields)
 - else
-  %ul.list-group
-    -@campos.each do |campo|
-      %li.list-group-item
-        =a_editable(campo[:id], 'campo-order', "/review/edit_field/#{campo[:id]}/order", campo[:order])
-        %span=".-"
-        =a_editable(campo[:id], 'campo-name', "/review/edit_field/#{campo[:id]}/name", campo[:name])
-        %span=":"
-        =a_textarea_editable(campo[:id], 'campo-description', "/review/edit_field/#{campo[:id]}/description", campo[:description])
-        %span=". #{t(:Type)}: "
-        =a_editable(campo[:id], 'campo-type', "/review/edit_field/#{campo[:id]}/type", campo[:type])
-        %span=". #{t(:Options)}: "
-        =a_textarea_editable(campo[:id], 'campo-options', "/review/edit_field/#{campo[:id]}/options", campo[:options])
-        .btn-group.btn-group-sm
-          %a.btn.btn-danger{:href=>"/review/#{@review[:id]}/field/#{campo[:id]}/delete"}
-            %span.glyphicon.glyphicon-remove
-            =t(:Delete)
+  %table.table.table-bordered
+    %thead
+      %tr
+        %th=t(:Order)
+        %th=t(:Description)
+        %th=t("fields.code")
+        %th=t(:Type)
+        %th=t(:Options)
+        %th=t(:Delete)
+    %tbody
+      -@campos.each do |campo|
+        %tr
+          %td=a_editable(campo[:id], 'campo-order', "/review/edit_field/#{campo[:id]}/order", campo[:order])
+          %td=a_textarea_editable(campo[:id], 'campo-description', "/review/edit_field/#{campo[:id]}/description", campo[:description])
+          %td=a_editable(campo[:id], 'campo-name', "/review/edit_field/#{campo[:id]}/name", campo[:name])
+          %td=@xselect.html(campo[:id], campo[:type])
+          %td=a_textarea_editable(campo[:id], 'campo-options', "/review/edit_field/#{campo[:id]}/options", campo[:options])
+          %td
+            .btn-group.btn-group-sm
+              %a.btn.btn-danger{:href=>"/review/#{@review[:id]}/field/#{campo[:id]}/delete"}
+                %span.glyphicon.glyphicon-remove
+                =t(:Delete)
 
 %a.btn.btn-primary{:href=>"/review/#{@review[:id]}/update_field_table"}=t("fields.update_fields_table")
 

@@ -31,6 +31,12 @@ class SrField < Sequel::Model
   def self.is_valid_type?(type)
     AVAILABLE_TYPES.include? type.to_s.chomp.to_sym
   end
+  def self.types_hash
+    AVAILABLE_TYPES.inject({}) {|ac,v|
+      ac[v]=I18n::t("fields.#{v}")
+      ac
+    }
+  end
   def self.types_a_sequel(campo)
     if campo[:type] == 'text'
       [campo[:name].to_sym, String, null: true]

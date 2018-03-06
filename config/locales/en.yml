@@ -668,3 +668,4 @@ en:
   You_re_the_administrator_of_this_systematic_review: "You’re the administrator of this systematic review"
   References_count_to_canonical: "<strong>Canonical references:</strong> cited by %{in} / reference to %{out} / %{in_sta} cited by STA"
   create_new_field: "Create new personalized field"
+  Select_an_option: "Select an option"
