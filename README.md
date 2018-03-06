@@ -16,21 +16,18 @@ Web based platform to manage complete process of systematic literature reviews. 
 * Flexible work-flow.  The main stages of text searching, screening relevant articles, data extraction and reporting are clearly defined.  However, changes can be made at any stage already finalized, and will automatically reflect in subsequent stages.
 * Imports information from various bibliographic databases, such as - WoS, Scopus, Ebscohost, Scielo - using BibTeX.
 * Integration with Crossref allows deduplication of articles (using DOI), and searching for information on references
-
-
-
-
 * File repository.  PDF and ODF file viewing support online via [ViewerJS](http://viewerjs.org/)-
 * Multiple ways to analyze data: comments and tagging at each stage of review, and generation of customized forms for information extraction.
-* Various report types:  For data extracted from texts, detailed reports on the decision process at each review stage, as well as a [PRISMA flowchart](http://prisma-statement.org/prismastatement/flowdiagram.aspx) for process overviews, ready for publication. 
-* Different export file types: Can export references as BibTeX and generate Graphml, to graph relations between papers
-* Unit and integration tests for main software features.
+* Various report types:  For data extracted from texts, detailed reports on the decision process at each review stage, as well as a [PRISMA flow diagram](http://prisma-statement.org/prismastatement/flowdiagram.aspx) for process overviews, ready for publication. 
+* Different export file types: Can export references as BibTeX and generate GraphML, to graph relations between papers.
+* Unit and integration tests for main software features. See https://buhos.org/api/file.rspec.html .
 
 ## Documentation
 
 There is a user [manual available](https://github.com/clbustos/buhos/tree/master/docs/manual) with a quick guide for understanding the systematic review methodology that supports the software.
 
 The API is documented using [Yard](https://yardoc.org/) and is available on [https://www.buhos.org/api](https://www.buhos.org/api). Only available in English.
+
 
 ## Get Started
 
@@ -64,7 +61,7 @@ By default, the application is configured to run on port 4567.
 #### Prerequisites
 
 
-On Linux, a ruby 2.4 installation with bundler is needed, and development libraries for mysql and sqlite. We recommend using [RVM](https://rvm.io/).
+On Linux, a ruby 2.4 installation with bundler is needed, and development libraries for MySQL and SQLite. We recommend using [RVM](https://rvm.io/).
 
 
 On Ubuntu, the following script installs all required dependencies:
@@ -138,7 +135,7 @@ If you wish to use a MySQL database, you should create it before configuring the
     GRANT ALL PRIVILEGES ON buhos.* TO buhos_user@localhost;
     FLUSH PRIVILEGES;
 
-First, the installation language should be defined.  Second, information on the specific database should be provided (sqlite / mysql). By default, a SQLite database will be installed in db.sqlite. If you have a SCOPUS API key, the relevant information can be submitted along with the proxy settings, if applicable.
+First, the installation language should be defined.  Second, information on the specific database should be provided (SQLite / MySQL). By default, a SQLite database will be installed in db.sqlite. If you have a SCOPUS API key, the relevant information can be submitted along with the proxy settings, if applicable.
 As the final step, the database will be populated. You must restart the application before using it.
 
     
