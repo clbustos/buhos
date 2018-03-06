@@ -10,9 +10,14 @@ describe 'Personalized forms:' do
   def create_field_1
     post '/review/1/new_field', name:'field_1', order:1, description:'First question', type:'text' ,options:''
   end
+
   def create_field_2
     post '/review/1/new_field', name:'field_2', order:2, description:'Second question', type:'text' ,options:''
   end
+  def bad_field_3
+    post '/review/1/new_field', name:'field_3', order:3, description:'First question', type:'no_type' ,options:''
+  end
+
   def delete_all_fields
 
   end
@@ -32,6 +37,21 @@ describe 'Personalized forms:' do
     end
     it "should add a new field on database" do
       expect(SrField.where(:systematic_review_id=>1,:name=>'field_1').count).to eq(1)
+    end
+  end
+  context "when we add a new text field with wrong type" do
+    before(:context) do
+      bad_field_3
+    end
+    it "should not be redirect" do
+      expect(last_response).to_not be_redirect
+    end
+    it "should be status 500" do
+      expect(last_response.status).to eq(500)
+    end
+
+    it "should not add a new field on database" do
+      expect(SrField.where(:systematic_review_id=>1,:name=>'field_3').count).to eq(0)
     end
   end
 

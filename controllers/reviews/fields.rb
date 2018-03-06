@@ -30,7 +30,12 @@ post '/review/:rs_id/new_field' do |rs_id|
 
   @campo_previo=@review.fields.where(:name=>name)
   if @campo_previo.empty?
-    SrField.insert(:systematic_review_id=>rs_id, :order=>params['order'],:name=>name, :description=>params['description'], :type=>params['type'].chomp,:options=>params['options'])
+
+    type=params['type'].chomp
+
+    halt 500, "Not valid type #{type}" unless SrField.is_valid_type?(type)
+
+    SrField.insert(:systematic_review_id=>rs_id, :order=>params['order'],:name=>name, :description=>params['description'], :type=>type,:options=>params['options'])
     add_message(t('sr_new_sr_edit_field.doesnt_existfield.success', name:params['name']))
 
   else
