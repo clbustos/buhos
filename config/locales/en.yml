@@ -466,7 +466,7 @@ en:
   Search_view: "See search"
   searches: "Searches"
   searches_for_systematic_review: "Searches for Systematic Review %{sr_name}"
-  searches_user: "User %{user_name}searches"
+  searches_user: "User '%{user_name}' searches"
   Select_systematic_review_to_analyze: "Select systematic review to be analyzed"
   Send: "Send"
   Send_message_to_group: "Send message to group"
