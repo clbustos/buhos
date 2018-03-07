@@ -55,7 +55,8 @@
     
 <li><a href="#technical_specifications">Características técnicas del software</a></li>
 <li><a href="#user_specifications">Especificaciones del usuario</a></li>
-    <li><a href="#license">Licencia</a></li>
+<li><a href="#glossary">Glosario</a></li>
+<li><a href="#license">Licencia</a></li>
 </ul>
 
 </nav>
@@ -514,6 +515,23 @@ passenger_ruby &lt;ruby_location&gt;
 <li>Se presenta un reporte del proceso, que muestra las decisiones de los usuarios sobre cada documento, así como la resolución del administradores</li>
 <li>Se muestra un reporte del proceso de extracción de datos, con la presentación tabulada de códigos libres y la lista de resultados por formulario.</li>
 </ul>
+</article>
+<article>
+    <h2 id="glossary">Glosario</h2>
+    <dl>
+        <dt>Bola de nieve hacia atrás</dt><dd>Incorporación de documentos que citan a los textos seleccionados en la revisión. Buhos no cuenta todavía con una forma automática de realizar esta acción, pero una vez seleccionado los documentos se puede realizar una búsqueda en alguna base bibliográfica de importancia y guardar los resultados en la interface de Búsquedas.</dd>
+        <dt>Bola de nieve hacia atrás</dt><dd>Incorporación de documentos que aparecen citados de manera relevante o con frecuencia en los textos seleccionados en la revisión. En Buhos, este proceso se realiza de forma automática en la etapa de Tamizaje de referencias para las referencias de los textos seleccionados en la etapa de Tamizaje por título y resumen.</dd>
+        <dt>Búsqueda</dt><dd>Búsqueda realizada en una base de datos bibliográfica indexada, una búsqueda informal o el resultado de una bola de nieve hacia adelante o hacia atrás. El sistema tiene plena compatibilidad con BibTeX para importar y exportar estas búsquedas.</dd>
+        <dt>Documento Canónico</dt><dd>Representación única de un documento en el sistema. Tanto los registros que aparecen en las búsquedas como las referencias que se listan en estos registros, pueden ser asignados a un documento canónico.</dd>
+        <dt>DOI®</dt><dd>
+        <p>DOI es un acrónimo por 'identificador digital de objeto' en inglés (digital object identifier). </p>
+        <p>El sistema DOI está diseñado para funcionar en Internet. Un nombre DOI se asigna de manera permanente a un objeto para proveer a un enlace persistente relacionado al objeto, incluyendo donde el objeto o la información sobre él se encuentra en Internet. Mientras que la información sobre el objeto puede cambiar a lo largo del tiempo, su nombre DOI no debe cambiar.</p>
+        <p>Fuente: <a href="https://www.doi.org/doi_handbook/1_Introduction.html">https://www.doi.org/doi_handbook/1_Introduction.html</a></p>
+    </dd>
+        <dt>Referencia</dt><dd>Referencia realizada en algún Registro. Puede o no estar asignado a un Documento Canónico. El sistema permite importar distintas fuentes de referencias para cada registro, por lo que puede ser que dos referencias dentro de un Registro sean al mismo texto. En este caso, se debe garantizar que el Documento Canónico al que hagan referencia también sea el mismo.</dd>
+        <dt>Registro</dt><dd>Documento listado en alguna Búsqueda. Siempre están asignados a un Documento Canónico. Si un mismo texto aparece en dos o más búsquedas, cada vez que aparezca será un Registro distinto, pero todos apuntarán al mismo Documento Canónico.</dd>
+
+    </dl>
 </article>
 <article>
     <h2 id="license">BSD 3-Clause License</h2>
