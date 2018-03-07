@@ -24,7 +24,7 @@ Web based platform to manage complete process of systematic literature reviews. 
 
 ## Documentation
 
-There is a user [manual available](https://github.com/clbustos/buhos/tree/master/docs/manual) with a quick guide for understanding the systematic review methodology that supports the software.
+There is a user manual available in [Spanish](https://buhos.org/manual/es/) with a quick guide for understanding the systematic review methodology that supports the software.
 
 The API is documented using [Yard](https://yardoc.org/) and is available on [https://www.buhos.org/api](https://www.buhos.org/api). Only available in English.
 
