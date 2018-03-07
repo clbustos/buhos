@@ -188,6 +188,7 @@ We use [SemVer](http://semver.org/) for versioning.  To see the available versio
 * **Daniel Lermanda** - Web page designer and UX advisor
 * **María Gabriela Morales** - First conceptualization and revision of the manual
 * **Liz Medina** -  English translation of  home page and manual.
+* **Alejandro Díaz, Pedro Salcedo**: Development of user requirement specifications.
 
 
 ## License

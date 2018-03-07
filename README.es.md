@@ -188,7 +188,7 @@ Usamos [SemVer](http://semver.org/) para for identificar las versiones. Para ver
 * **Daniel Lermanda** - Diseñador de página web y asesoría en experiencia de usuario
 * **María Gabriela Morales** - Primera conceptualización y revisión del manual
 * **Liz Medina** -  traducción al inglés de página de inicio y manual.
-
+* **Alejandro Díaz, Pedro Salcedo**: Desarrollo de requerimientos de usuarios.
 
 ## Licencia
 
