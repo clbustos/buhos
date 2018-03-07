@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<style>
+    header, nav,article {
+        margin:0em 3em 0.5em 3em;
+    }
+</style>
+
+    <title>Buhos Manual</title>
+</head>
+<body>
+<header>
+<h1>BUHOS</h1>
+<p>Software de gestión de revisión sistemática de literatura</p>
+<p>Manual de usuario</p>
+<p>Version 1.0.0 - Revision 2</p>
+</header>
+<nav>
+<h2>Tabla de contenidos</h2>
+<ul>
+<li><a href="#introduction">Introducción</a><ul>
+    <li><a href="#caracteristicas_principales">Características principales del software</a></li>
+</ul></li>
+
+<li><a href="#installation">Instalación</a>
+<ul>
+<li><a href="#installation_windows">Windows</a></li>
+<li><a href="#installation_linux">Debian / Ubuntu /CentOS</a></li>
+<li><a href="#installation_source_code">Desde código fuente</a></li>
+<li><a href="#installation_configuration">Configuración post-instalación</a></li>
+</ul></li>
+
+    <li><a href="#user_guide">Guía rápida de uso</a>
+    <ul>
+<li><a href="#guia_preparacion">Preparación de la revisión sistemática</a></li>
+<li><a href="#guia_busqueda">Etapa de búsqueda</a></li>
+<li><a href="#guia_screening_title_abstract">Etapa de screening de título y resumen</a></li>
+<li><a href="#guide_review_full_text">Revisión de texto completo</a></li>
+<li><a href="#guide_report">Reporte</a></li>
+    </ul></li>
+    
+<li><a href="#technical_specifications">Características técnicas del software</a></li>
+<li><a href="#user_specifications">Especificaciones del usuario</a></li>
+    <li><a href="#license">Licencia</a></li>
+</ul>
+
+</nav>
+
+<article>
+<h2 id="introduction">Introducción</h2>
+<p>Buhos es una aplicación que permite desarrollar y gestionar revisiones sistemáticas de literatura. Puede usarse de manera local o en línea, para el desarrollo de revisiones colaborativas. El software registra cada paso del proceso: la búsqueda de documentos, el tamizaje de aquellos que son útiles para la investigación, la extracción de información y la generación de reportes.</p>
+<p>El software es multiplataforma, pudiendo ser instalado en cualquier sistema operativo que tenga soporte para Ruby. Ha sido probado en Windows 7, 10 y en Ubuntu 14.04 y 16.04. Una vez instalado, se puede acceder al software desde cualquier navegador que cumpla estándares, tales como Firefox o Chrome.</p>
+<p>Buhos se entrega de acuerdo a la licencia de código libre, BSD-3, que le permite a usted y a su organización copiar, modificar y distribuir este programa, mientras no se utilice el nombre del autor para promocionar productos derivados sin permiso.</p>
+<p>El desarrollador y mantenedor responsable del software es Claudio Bustos Navarrete. Cualquier consulta se puede realizar en clbustos@gmail.com</p>
+<p>Como colaboradores, se cuenta con:</p>
+<ul>
+<li>María Gabriela Morales: Conceptualización inicial, Revisión de manual, artículos</li>
+<li>Daniel Lermanda: asesoría en comunicación estrategia.</li>
+<li>Pedro Salcedo, Alejandro Díaz: levantamiento de requerimientos</li>
+<li>Fabiola Sáez, Astrid Sarmiento: revisión de manual.</li>
+</ul>
+
+<h3><span id="caracteristicas_principales" class="anchor"></span>Características principales del software</h3>
+<p>Buhos es un software de gestión y desarrollo de revisiones sistemáticas que comprende el proceso completo de realización de éstas. Para ello, cuenta con las siguientes características</p>
+    
+<table class="table table-bordered">
+<tbody>
+<tr >
+<td ><strong>Etapa</strong></td>
+<td ><strong>Necesidades</strong></td>
+<td ><strong>Características</strong></td>
+</tr>
+<tr >
+<td >Puesta en marcha</td>
+<td ><p>Definir con claridad objetivos, criterios de inclusión y exclusión de artículos, un periodo temporal, así como cuál será su enfoque.</p>
+<p>Asignar revisores para la evaluación y análisis de los artículos.</p></td>
+<td ><p>Cada revisión sistemática cuenta con un formulario especializado que registrar toda la información necesaria.</p>
+<p>Se generan grupos para organizar la asignación de revisores de los documentos, cada revisor puede participar en una o más revisiones.</p>
+<p>En cada revisión, se elige a un miembro como administrador.</p>
+<p>El administrador tiene como función (a) asignar documentos a revisores, (b) resolver qué documentos son incluidos y excluidos en cada etapa, (c) gestionar los <strong>documentos canónicos</strong> de la revisión, juntos a sus archivos y (d) decidir sobre continuar a la siguiente etapa de la revisión.</p></td>
+</tr>
+<tr >
+<td >Búsqueda</td>
+<td ><p>Realizar un seguimiento exhaustivo de las búsquedas realizadas en diversas bases bibliográficas.</p>
+<p>Integrar en una lista común los registros obtenidos de cada base de datos, eliminando duplicados.</p>
+<p>Incluir en las revisiones teóricas o metodológicas, textos citados con mucha frecuencia en los registros obtenidos en la búsqueda, que no necesariamente pertenecen directamente al dominio de la búsqueda.</p></td>
+<td ><p>Las búsquedas pueden ser importadas directamente en formato BibTeX, contándose con soporte específico para Wos, Scopus y Ebscohost.</p>
+<p>Se puede obtener información complementaria desde Crossref, eliminando las duplicaciones usando DOI.</p>
+<p>Se obtiene información sobre las citas realizadas por los artículos en las búsquedas.</p>
+<p>Los registros originales, junto con sus referencias, son estandarizadas en un formato único, denominado <strong>documento canónico</strong>.</p></td>
+</tr>
+<tr >
+<td >Tamizaje de documentos.</td>
+<td ><p>Seleccionar rápidamente los artículos que son útiles, a partir de la información de títulos y resumen.</p>
+<p>Incluir las referencias citadas en artículos, no incluidas en búsquedas originales (<strong>Bola de nieve hacia atrás</strong>).</p></td>
+<td ><p>Se pueden asignar todos o parte de los documentos a los revisores.</p>
+<p>La decisión de cada revisor que evalúa los documentos queda registrada, siendo labor del administrador seleccionar que artículos pasarán a la etapa revisión de texto completo.</p>
+<p>Las razones para incluir o excluir un artículo pueden ser registradas como comentario o como etiquetas, comunes para todos los revisores.</p>
+<p>Para incluir referencias citadas en los artículos de la búsqueda original (Bola de nieve hacia atrás), se define un mínimo de frecuencia de cita de esta referencia en los artículos de la búsqueda original para ser incluido.</p></td>
+</tr>
+<tr >
+<td >Revisión de texto completo y extracción de información</td>
+<td ><p>Disponer de un repositorio de los artículos en formato completo – usualmente PDF - para su lectura.</p>
+<p>Extraer información de un texto, usando formularios personalizados para cada revisión.</p>
+<p>Identificar qué relación existe entre los artículos analizados</p></td>
+<td ><p>Se cuenta con un repositorio de archivos por revisión sistemática, que pueden servir para documentar el proceso o ser asignados a los <strong>documentos canónicos</strong> a revisar.</p>
+<p>Se cuenta con una interface de trabajo donde se muestra cada documento y un formulario único por revisión sistemática, que permita extraer la información necesaria y agregar comentarios a las citaciones realizadas a otros documentos canónicos, lo que permite junto con el uso de etiquetas obtener más información sobre la red de citaciones.</p></td>
+</tr>
+<tr >
+<td >Reporte</td>
+<td ><p>Informar el proceso de revisión sistemática, de acuerdo a estándares establecidos, considerando:</p>
+<ol style="list-style-type: lower-alpha">
+<li>Proceso para informar cuántos documentos son incorporados en la fase de búsqueda, y cuáles son los documentos incluidos y excluidos en cada fase, especificando razones.</li>
+<li>Proceso de reporte de reporte de los datos obtenidos de la fase de extracción, de manera tal de generar el documento final de la manera más eficiente posible.</li>
+</ol></td>
+<td ><p>Se presenta la información completa de documentos incluidos y excluidos, siguiente protocolo PRISMA.</p>
+<p>Se entregan un reporte del proceso, con las decisiones tomadas por cada evaluador y por el administrador en cada etapa del proceso.</p>
+<p>Se entregan reportes de la extracción de datos en formato Word, para su posterior elaboración en un documento final.</p></td>
+</tr>
+</tbody>
+</table>
+</article>
+
+
+<article>
+<h2><span id="installation" class="anchor"></span>Instalación</h2>
+<p>El software Buhos puede ser usado de forma local o en línea. En la primera, la aplicación despliega un servidor web al cual tiene acceso sólo el computador huésped [host]. En forma distribuida, la aplicación es proveída [deployed] por un servidor web como Apache o Nginx, utilizando Passenger.</p>
+
+<p>Se cuenta con configuraciones Vagrant para usar Buhos en modalidad de servidor virtual.</p>
+
+<h3><span id="installation_windows" class="anchor"></span>Windows</h3>
+<p>En Windows, se cuenta con un instalador para el uso local de la aplicación. La última versión se encuentra disponible en:</p>
+<p>https://github.com/clbustos/buhos-windows-tk/tree/master/windows_installer</p>
+
+<h3><span id="installation_linux" class="anchor"></span>Debian / Ubuntu /CentOS</h3>
+
+<p>Para Debian, Ubuntu y CentOS, se cuenta con paquetes disponibles e instrucciones en <a href="https://packager.io/gh/clbustos/buhos">https://packager.io/gh/clbustos/buhos</a>. Por ejemplo, para instalar en Ubuntu 16.04 y configurar la aplicación como un servicio en el puerto 4567, se debe realizar</p>
+
+<pre><code>wget -qO- https://dl.packager.io/srv/clbustos/buhos/key | sudo apt-key add -
+sudo wget -O /etc/apt/sources.list.d/buhos.list \
+https://dl.packager.io/srv/clbustos/buhos/master/installer/ubuntu/16.04.repo
+sudo apt-get update
+sudo apt-get install buhos
+sudo buhos config:set PORT=4567
+sudo buhos scale web=1
+sudo buhos restart
+</code></pre>
+<h3><span id="installation_source_code" class="anchor"></span>Desde código fuente</h3>
+<p>Como requisito previo para instalar el software, se necesita instalar Ruby 2.4 o superior, con librerías de desarrollo para MySQL y SQlite. Además, se debe instalar la gema bundler para descargar las gemas necesarias para que el software funcione.</p>
+<p>En Ubuntu 16, las siguientes instrucciones instalan todas las dependencias requeridas:</p>
+<pre><code>
+apt-get update
+apt-get upgrade -y
+
+apt-get install -y \
+  cloc \
+  gdal-bin \
+  gdebi-core \
+  git \
+  libcurl4-openssl-dev \
+  libgdal-dev \
+  libproj-dev \
+  libxml2-dev \
+  libxml2-dev \
+  build-essential \
+  libmysqlclient-dev \
+  libsqlite3-dev
+
+gpg --keyserver hkp://keys.gnupg.net \
+      --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
+curl -sSL https://get.rvm.io | bash -s $1
+</code></pre>
+<p>En Alpine, las instrucciones requeridas para instalar las dependencias son:</p>
+<pre><code>
+apk update
+apk upgrade
+apk --update add --virtual \
+    build-dependencies \
+    ruby-dev \
+    build-base \
+    ruby \
+    libffi-dev \
+    libxml2-dev \
+    libxslt-dev \
+    mariadb-dev \
+    sqlite-dev \
+    ruby-json \
+    ruby-bigdecimal \
+    ruby-etc
+</code></pre>
+<p>Una vez obtenidas las dependencias, se debe copiar el código fuente desde github, utilizando:</p>
+<pre><code>
+git clone git@github.com:clbustos/buhos.git
+cd buhos</code></pre>
+<p>Se obtienen las gemas necesarias usando bundler</p>
+
+<pre><code>bundler install</code></pre>
+
+<p>Si se quiere utilizar MySQL, se debe crear la base de datos de forma previa. Como usuario root, se puede utilizar un script similar al siguiente:</p>
+
+<pre><code>CREATE DATABASES buhos;
+CREATE USER buhos_user@localhost IDENTIFIED BY 'password';
+GRANT ALL PRIVILEGES ON buhos.* TO buhos_user@localhost;
+FLUSH PRIVILEGES;</code></pre>
+
+<p>Para correr la aplicación de forma local, se puede desplegar un servidor web (thin o puma), usando:</p>
+<pre><code>ruby app.rb</code></pre>
+<p>Se puede acceder al programa usando cualquier navegador en la URI: <code>http://localhost:4567</code></p>
+<p>Si se desea entregar [deploy] el software en línea, se puede proveer la aplicación vía Nginx o Apache, con Passenger. Las instrucciones necesarias para integrar una aplicación Passenger en un servidor de web linux se encuentran en:</p>
+<p><a href="https://www.phusionpassenger.com/library/walkthroughs/deploy/ruby/ownserver/integration_mode.html">https://www.phusionpassenger.com/library/walkthroughs/deploy/ruby/ownserver/integration_mode.html</a></p>
+<p>Como referencia, la configuración de Buhos en Nginx para un servidor web típico es:</p>
+<pre><code>
+server {
+listen 80
+root /home/&lt;user&gt;/&lt;base_dir&gt;;
+passenger_enabled on;
+passenger_ruby &lt;ruby_location&gt;
+}</code></pre>
+<p>En este caso, se podría acceder a la aplicación usando:</p>
+<pre><code>http://localhost/</code></pre>
+<h3><span id="installation_configuration" class="anchor"></span>Configuración post-instalación</h3>
+<p>La primera vez que se ejecuta la aplicación, esta debe ser configurada. Los pasos son 4:</p>
+<ol style="list-style-type: decimal">
+<li>Selección del lenguaje.</li>
+<li>Configuración de las características básicas (base de datos a utilizar, conexión a proxy institucional y uso Scopus).</li>
+<li>Verificar conexión a base datos.</li>
+<li>Reiniciar la aplicación.</li>
+</ol>
+
+<p>Como primer paso de la configuración hay que seleccionar el lenguaje para la instalación.</p>
+<p><img class='border img-fluid' src="images/image1.png" /></p>
+<p>En segundo lugar, debe entregarse información básica para el funcionamiento del sistema. Esto implica seleccionar el uso de una base de datos sqlite, para uso local, o una base de datos MySQL, para un uso distribuido. Si no sabe que opción tomar, ocupe SQLite. Si cuenta con una clave de desarrollo Scopus, puede ingresarla; se utilizará la configuración del proxy si debe usar uno por su universidad o trabajo.</p>
+
+<p><img class='border img-fluid' src="images/image2.png" /></p>
+<p>Una vez configurada la aplicación, esta intenta conectarse a la base de datos. Si el proceso es exitoso, se muestra un mensaje alusivo y se muestra un botón para iniciar el poblamiento de la base de datos, proceso que dura entre 30 a 60 segundos, dependiendo del computador.</p>
+<p><img class='border img-fluid' src="images/image3.png" /></p>
+<p>Si el resultado del proceso es exitoso, se muestra la siguiente pantalla:</p>
+<p><img class='border img-fluid' src="images/image4.png" /></p>
+<p>Al finalizar el proceso, se debe reiniciar la aplicación. De manera predeterminada, el usuario con permisos de administrador tiene como nombre de usuario y password ‘admin’.</p>
+<p><img class='border img-fluid' src="images/image5.png" /></p>
+<p>En linux, para cerrar la aplicación se puede usar <kbd>Ctrl+C</kbd> en consola. En Windows, se puede cerrar la ventana que muestra los logs de sistema.</p>
+</article>
+<article>
+<h2 id="user_guide">Guía de uso</h2>
+
+<p>Para ingresar a la aplicación, se debe ingresar a la URL respectiva (<a href="http://localhost:4567">http://localhost:4567</a> en el caso de la instalación local). En el caso de una instalación recién hecha, recordemos que el nombre de usuario y contraseña son ambos ‘admin’.</p>
+<p><img class='border img-fluid' src="images/image6.png" /></p>
+<p>La interface principal de trabajo es el ‘tablero de trabajo’ , al cual se accede haciendo click en el nombre de la aplicación o en el enlace ‘Mi tablero’.</p>
+<p><img class='border img-fluid' src="images/image7.png" /></p>
+<p>Para mostrar la funcionalidad del software, se utiliza como referencia artículos usando para la revisión sistemática de literatura realizada para documentar este software.</p>
+<h3><span id="guia_preparacion" class="anchor"></span>Preparación de la revisión sistemática</h3>
+
+<p>La revisión sistemática se crea presionando el botón “Nueva revisión sistemática”. Aparece un formulario donde se deben ingresar las características principales de la investigación, entre las cuales se encuentran los años entre los cuales se debe realizar la búsqueda y la taxonomía a la cual pertenece el estudio</p>
+
+<p><img class='border img-fluid' src="images/image8.png" /></p>
+<p>Una vez creada la revisión sistemática, se presenta una ficha técnica. Se observará que surge una amplia variedad de acciones para operar sobre la revisión sistemática.</p>
+<p><img class='border img-fluid' src="images/image9.png" /></p>
+<p>Como se muestra, se definieron tres objetivos, por lo que es posible generar un formulario personalizado para la revisión sistemática. Para ello, se debe presionar en el botón ‘Campos de análisis’.</p>
+<p>Cada formulario está compuesto por uno o más campos. Primero se debe indicar qué lugar ocupará el campo dentro del formulario. Después, qué código tendrá el campo en la base de datos – este sólo podrá ser construido con letras minúsculas, números o el signo ‘_’. En tercer lugar, en la descripción se incluirá el texto que aparecerá en el formulario y, finalmente, qué tipo de campo será. Al terminar, presionar ‘Crear nuevo campo’.</p>
+<p>En el caso del ejemplo, necesitamos tres campos: herramientas, etapa y función. Una vez que el formulario esté completamente definido, presionar el botón ‘Actualizar tabla de registro de campos personalizados’, para generar el formulario.</p>
+<p><img class='border img-fluid' src="images/image10.png" /></p>
+<h3><span id="guia_busqueda" class="anchor"></span>Etapa de búsqueda</h3>
+<p>De forma predeterminada, el sistema inicia la revisión sistemática en la etapa de búsqueda. En esta etapa, se deben registrar las búsquedas realizadas por los distintos evaluadores, hayan sido hechas en bases de datos bibliográficas o de forma informal, en buscadores de distinto tipo.</p>
+<p>Para simplificar el proceso de registro de búsquedas, es posible acceder al tablero de usuario haciendo click en el nombre de la aplicación, donde aparece la siguiente interface.</p>
+<p><img class='border img-fluid' src="images/image11.png" /></p>
+<p>El medio principal para la incorporación de información de búsquedas es el ingreso de archivos BibTeX, que está disponible en prácticamente todos los sistemas de referencia bibliográfica, algunos de ellos son: EndNote, Refwords y Mendeley, por ejemplo.</p>
+<p>Para efectos de demostración, en el directorio de instalación del software se encuentra un archivo manual.bib, con seis textos seleccionados desde el repositorio Mendeley personal del desarrollador. Para ingresar esta búsqueda, se debe hacer click en el botón respectivo del tablero.</p>
+<p>En el formulario, primero hay que indicar el tipo de fuente. Se ofrece la búsqueda en bases de datos indexada, búsqueda informal, bola de nieve hacia atrás (búsqueda en referencias en textos ya elegidos) y bola de nieve hacia adelante (búsqueda de artículos que citan a textos ya elegidos). En el ejemplo que se presenta, corresponde a una búsqueda informal. En segundo lugar, se solicita el ingreso de la base de datos de la cual se obtuvo la búsqueda. En el caso exhibido, al ser obtenido directamente desde Mendeley, aplica la opción ‘general’. En tercer lugar, se deja en blanco el criterio de búsqueda, ya no se usa la base de datos indexada, y se completa la descripción. Finalmente, y en el último espacio del formulario, ingresar el archivo manual.bib.</p>
+<p><img class='border img-fluid' src="images/image12.png" /></p>
+<p>Incorporadas las búsquedas, éstas deben ser procesadas, para luego ser validadas. Para procesarlas, hacer click en el cuadro de chequeo respectivo y presionar en ‘Procesar búsquedas’</p>
+<p><img class='border img-fluid' src="images/image13.png" /></p>
+<p>Al procesar la búsqueda, el sistema captura toda la información posible desde los registros almacenados en el archivo BibTeX. Se puede verificar que son seis los registros que el sistema detecta.</p>
+<p><img class='border img-fluid' src="images/image14.png" /></p>
+<p>Al entrar en ‘Registros’, se observa que el sistema ha ingresado información sobre autores, año de publicación, título, así como el DOI de los documentos. En el caso del ejemplo, el BibTeX poseía el resumen[abstract] de cada artículo, por lo que éste puede ser revisado presionando en el botón respectivo. A cada registro en una búsqueda se le asigna un ‘documento canónico’, correspondiente a la referencia única dentro del sistema a ese documento. De esta manera, si en distintas búsquedas aparece el mismo texto con la misma DOI, el sistema les asignará a todos estos registros el mismo documento canónico.</p>
+<p><img class='border img-fluid' src="images/image15.png" /></p>
+<p>Como las referencias son las esperadas, es posible validar la búsqueda realizada. Para ello, se debe volver a la pantalla de búsquedas y hacer click en el cuadro de chequeo respectivo, y presionar en el botón ‘Válida’. El resultado debería ser el siguiente</p>
+<p><img class='border img-fluid' src="images/image17.png" /></p>
+<p>Una vez que todas las búsquedas son definidas como válidas o no válidas, es posible pasar a la siguiente etapa: revisión[screening] de títulos y abstract. Para ello, es necesario ingresar al tablero presionando en el título de la aplicación. Para administrar las validaciones, hacer click en la línea que dice ‘Número total de búsquedas de la revisión: 1’</p>
+<p><img class='border img-fluid' src="images/image18.png" /></p>
+<p>En la pantalla de administración de búsquedas, se muestran todas las búsquedas realizadas por los distintos usuarios, y se ofrece la posibilidad de validarlas o hacerlas no válidas. Como para todas las búsquedas ya existe una opción, se entrega la opción de avanzar a la siguiente etapa.</p>
+<p><img class='border img-fluid' src="images/image19.png" /></p>
+<h3><span id="guia_screening_title_abstract" class="anchor"></span>Etapa de tamizaje de título y resumen</h3>
+<p>Una vez definidos los registros, deben revisarse para verificar si son útiles o no. Para ello, el primer criterio es ver si el título y resumen del artículo entrega evidencia para ingresar el texto al estudio.</p>
+<p>En la etapa siguiente, el sistema presenta la interface de administración</p>
+<p><img class='border img-fluid' src="images/image20.png" /></p>
+<p>De forma predeterminada, Buhos considera dos usuarios: un administrador con todos los permisos para administrar el sistema y un analista con password y clave ‘analyst’, el que cuenta con la autorización para chequear las revisiones sistemáticas que les están asignadas. En el ejemplo, se asignaron todos los documentos a ambos usuarios para mostrar la resolución de divergencias. Para ello, hay presionar el botón ‘Asignaciones de DC’.</p>
+<p>Se pueden asignar todos los documentos a un usuario, usando los botones ‘Asignar todos’ o asignar individualmente cada documento. En el caso, se presionó los dos botones de ‘Asignar todos’.</p>
+<p><img class='border img-fluid' src="images/image21.png"/></p>
+<p>El resultado debería ser similar al siguiente:</p>
+<p><img class='border img-fluid' src="images/image22.png" /></p>
+<p>Al ingresar al tablero de usuario, se observa que, como administrador, tenemos seis documentos por resolver. Como evaluador, se muestra que hay que decidir sobre seis documentos. Luego, presionar el último enlace, para comenzar el proceso de evaluación.</p>
+<p><img class='border img-fluid' src="images/image23.png" /></p>
+<p>La interface de evaluación, en su parte superior, entrega información general sobre la etapa, los objetivos de la revisión y muestra el estado de avance. En este caso, hay seis documentos sin decisión.</p>
+<p><img class='border img-fluid' src="images/image24.png" /></p>
+<p>Posteriormente, se presenta cada documento a evaluar. En cada uno se muestra el título, su referencia en formato APA, cuántas citaciones tiene y el resumen [abstract]. En base a esta información es que hay que decidir si el documento entrega información suficiente. Del abstract que se presenta como ejemplo, se observa que no entrega información sobre software de revisión sistemática, sino que es una investigación aborda cómo se realizan revisiones. Por tanto, se debe marcar ‘No’ en la decisión, y se puede agregar como etiqueta su condición de investigación sobre revisiones.</p>
+<p><img class='border img-fluid' src="images/image25.png" /></p>
+<p>Al tomar la decisión antes indicada, se aprecia cómo cambia el color del cuadro y se agrega la etiqueta seleccionada.</p>
+<p>El resumen del siguiente texto, sobre GAPScreener, presenta algunas de las palabras claves que se establecieron al definir la revisión sistemática. Queda claro tanto en el título como en el abstract que es una herramienta pertinente a la investigación. Incluso se puede agregar un tag que señale que es una herramienta para la etapa de screening.</p>
+<p><img class='border img-fluid' src="images/image26.png" /></p>
+<p>Al revisar todos los documentos, se puede ver en el tablero de usuarios que ya no existen documentos sin revisar.</p>
+<p><img class='border img-fluid' src="images/image27.png" /></p>
+<p>Ahora se realizará el mismo proceso de revisión, pero por parte del usuario analista. Para ello, hay que salir de la sesión presionando el enlace ‘Salir’ en la cabecera del sitio</p>
+
+<p><img class='border img-fluid' src="./images/image28.png"/></p>
+<p>E ingresar al sistema como analista</p>
+<p><img class='border img-fluid' src="images/image29.png" /></p>
+<p>Se ve en el tablero de usuario del analista que no cuenta con las herramientas de administración, pero sí se indica que tiene documentos sin decisión.</p>
+<p><img class='border img-fluid' src="images/image30.png" /></p>
+<p>El analista, en este ejemplo, marca que todos los documentos son relevantes para la investigación.</p>
+<p>Una vez que todos los usuarios han decidido sobre los textos, es necesario que el administrador resuelva si cada documento debe o no seguir a la siguiente etapa. Ingresamos como administrador al sistema (usuario:admin, password:admin) y se va al enlace ‘Revisar 6 documentos canónicos sin resolución’.</p>
+<p>Si se observa el cuadro ‘Estadísticas de decisiones’, se aprecia que hay cinco documentos con el patrón de decisión de dos ‘Sí’, y hay un documento donde un usuario decide que es relevante y otro que no.</p>
+<p><img class='border img-fluid' src="images/image31.png" /></p>
+<p>Como existe unanimidad, sobre cinco documentos, se presiona en el botón ‘Aceptar’ en la fila correspondiente. Ahí se puede ver que las resoluciones para estos textos pasaron de ‘Sin resolución’ a ‘Sí’</p>
+<p><img class='border img-fluid' src="images/image32.png" /></p>
+<p>Para ver en qué textos se produce la discrepancia se presiona el botón ‘Ver’. El texto es precisamente aquel en que, como administradores, se señaló que no era válido.</p>
+<p><img class='border img-fluid' src="images/image33.png"/></p>
+<p>Aquí, dependiendo del protocolo, hay varias alternativas: se puede enviar un mensaje a los investigadores desde la ficha técnica para comunicar la discordancia, se puede incorporar a un tercer investigador para que dirima o bien resolver en función del rol de administrador. Para el ejemplo, se tomó esta última opción presionando en el botón ‘Sí’, dejando la decisión para la etapa posterior de revisión de texto completo.</p>
+<p>Al recargar la página, se señala que se ha resuelto el estado de todos los documentos canónicos, por lo que es posible pasar a la siguiente etapa. Previo a esto, se deben generar las referencias usando Crossref. Este proceso puede tomar varios minutos. Si se quiere verificar las referencias realizadas, éstas se pueden revisar en la interface de búsqueda.</p>
+<p><img class='border img-fluid' src="images/image34.png" /></p>
+<p>Una vez que el sistema resuelva las referencias por Crossref, se puede avanzar a la siguiente etapa. En esta, se revisa si existe alguna referencia realizada por más de un cierto número de documentos seleccionados en la etapa de revisión de título y resumen. Este número aparece en la ficha técnica de la referencia como ‘Mínimo número de documentos RTR para revisión referencias’; de forma predeterminada, se fija en dos. En el caso del ejemplo, no existe ninguna referencia que cumpla esta condición, así que se pasa a la etapa de revisión de texto completo.</p>
+<p><img class='border img-fluid' src="images/image35.png" /></p>
+<h3><span id="guide_review_full_text" class="anchor"></span>Revisión de texto completo</h3>
+<p>En la revisión de texto completo, además de las interfaces para asignar usuarios a documentos y resolver sobre ellos, se pueden asignar archivos a cada documento canónico. Cuatro de estos documentos son de acceso abierto [open access], así que se encuentran en el directorio de recursos del tutorial; pueden ser incorporados de manera masiva usando el botón ‘Manejo de archivos en lote’</p>
+<p><img class='border img-fluid' src="images/image36.png" /></p>
+<p>Para ingresar los archivos, se debe presionar el botón que dice ‘Examinar’, y seleccionar los cuatro archivos PDF contenidos en la carpeta.</p>
+<p><img class='border img-fluid' src="images/image37.png" /></p>
+<p>Los cuatro documentos han sido cargados, pero no se encuentran asignados a ningún documento canónico. Si se presiona el botón ‘Asignar automáticamente a documentos canónicos’, el sistema intentará hacer la asignación usando metadata desde los PDF.</p>
+<p><img class='border img-fluid' src="images/image38.png" /></p>
+<p>Se aprecia que la asignación automática fue bastante buena, logrando asignar correctamente tres de los cuatro documentos. Para asignar el documento faltante para el archivo de ExaCT sólo es necesario presionar en el cuadro de selección que dice ‘--Sin documento canónico--’, y elegir el documento canónico respectivo.</p>
+<p>Dos de los artículos seleccionados no son de acceso libre. Para propósitos de este ejemplo, serán excluidos de la revisión al considerarlos textos sin acceso, aunque en una revisión real se debería contactar directamente a los autores para conseguir una copia. Para ello, al igual que lo hecho en la etapa de revisión de texto y título, se debe ir a la sección de decisiones por documento y hacemos click sobre el botón que dice ‘No’, para resolver no incluirlos.</p>
+<p><img class='border img-fluid' src="images/image39.png" /></p>
+<p>Los cuatro textos restantes serán asignados de forma manual sólo al administrador. Para ello, se va al botón ‘Asignaciones de DC’ y, ocupando los botones de los textos específicos, se realiza la asignación respectiva.</p>
+<p><img class='border img-fluid' src="images/image40.png" /></p>
+<p>En el tablero de usuario se puede observar que sólo hay cuatro documentos sin resolución y cuatro por analizar.</p>
+<p><img class='border img-fluid' src="images/image41.png" /></p>
+<p>La interface de esta etapa muestra si hubo o no instrucciones específicas al momento de la asignación del documento para el usuario respectivo, así como si se ha realizado alguna decisión sobre el documento.</p>
+<p>Para decidir si el documento es pertinente tras leerlo de forma completa, así como extraer información de él, se debe presionar en el botón que dice ‘Extraer información’.</p>
+<p><img class='border img-fluid' src="images/image42.png" /></p>
+<p>La interface de decisión y extracción de información presenta un cuadro con el archivo PDF, el mismo cuadro de decisión de la etapa de revisión [screening] de título y resumen, además de las preguntas que definimos en los campos de análisis personalizado, al preparar la revisión sistemática.</p>
+<p><img class='border img-fluid' src="images/image43.png" /></p>
+<p>Al finalizar el proceso, desde el tablero nos dirigimos a la administración de la revisión y aceptamos todos los estudios, para avanzar a la etapa final.</p>
+<p><img class='border img-fluid' src="images/image44.png" /></p>
+<h3><span id="guide_report" class="anchor"></span>Reporte</h3>
+<p>El reporte de la revisión sistemática comprende 3 informes en línea y 2 tipos de exportación, a BibTeX y a Graphml. Este último formato, que guarda el grafo dirigido de citaciones realizadas por los documentos canónicos, se puede visualizar en programas como yEd o Gephi.</p>
+<p><img class='border img-fluid' src="images/image45.png" /></p>
+<p>En primera lugar, contamos con diagrama de flujo PRISMA, el cual puede ser editado en un programa de dibujo vectorial como Inkscape.</p>
+<p><img class='border img-fluid' src="images/image46.png" /></p>
+<p>El reporte de extracción de datos nos entrega la lista de códigos en vivo aparecidos en cada formulario, con el número de veces que aparece y el texto donde se encuentra localizado.</p>
+<p><img class='border img-fluid' src="images/image47.png" /></p>
+<p>También se entrega un detalle completo de los ingresos realizados en los formularios</p>
+<p><img class='border img-fluid' src="images/image48.png" /></p>
+<p>En el reporte de proceso se presentan todas las decisiones y resoluciones tomadas por el administrador y los evaluadores.</p>
+<p><img class='border img-fluid' src="images/image49.png" /></p>
+</article>
+<article>
+<h2><span id="external_import" class="anchor"></span>Importación desde bases de datos indexadas</h2>
+<p>Buhos utiliza BibTeX como principal forma para realizar importaciones y exportaciones desde los sistemas de referencias bibliográficas y bases de datos indexadas. Es el método utilizado por RefWorks, por ejemplo, para interactuar con distintas bases de datos.</p>
+<p>En ocasiones, las bases de datos exportan archivos BibTeX con problemas. Si el sistema no los acepta, le recomendamos importar su búsqueda en un sistema de referencia bibliográfica y exportar el BibTex desde allí. Se ha utilizado Mendeley con éxito para ello.</p>
+<h3><span id="external_import_wos" class="anchor"></span>Web of Science</h3>
+
+<p>1.- Hacer la consulta en el cuadro de búsqueda. Se recomienda aprender a utilizar el cuadro avanzado, ya que permite mayor flexibilidad.</p>
+<p><img class='border img-fluid' src="images/image50.png" /></p>
+<p>2.- Seleccionar en el cuadro de exportación la opción “Save to other File Formats”</p>
+<p><img class='border img-fluid' src="images/image51.png" /></p>
+<p>3.- En el cuadro de diálogo, seleccionar las siguientes opciones</p>
+<ul>
+<li>Records: Ingresar manualmente desde 1 hasta el número de registros que el sistema muestra a mano izquierda</li>
+<li>Record context: Full Record and Cited References</li>
+<li>File Format: BibTeX</li>
+</ul>
+<p><img class='border img-fluid' src="images/image52.png" /></p>
+<p>4.- Descargue el archivo BibTeX en una carpeta destinada a esos efectos.</p>
+<h3><span id="external_import_scopus" class="anchor"></span>Scopus</h3>
+
+<p>1.- Hacer la consulta en el cuadro de búsqueda. Se recomienda aprender a utilizar el cuadro avanzado, ya que permite mayor flexibilidad.</p>
+<p><img class='border img-fluid' src="images/image53.png" /></p>
+<p>2.- Presione el enlace ‘All’ en la parte superior de las búsquedas y selección el cuadro de chequeo que dice ‘Select All’</p>
+<p><img class='border img-fluid' src="images/image54.png" /></p>
+<p>3.- Presione en el botón que dice “Export”. Se abrirá un cuadro de diálogo</p>
+<p><img class='border img-fluid' src="images/image55.png" /></p>
+<p>4.- Seleccione como formato BibTeX y seleccione todos los cuadros de información para exportar</p>
+<p><img class='border img-fluid' src="./images/image56.png"/></p>
+<p>5.- Presione el botón ‘Export’ para descargar el archivo BibTeX en una carpeta destinada a esos efectos.</p>
+<h3><span id="external_import_ebscohost" class="anchor"></span>Ebscohost</h3>
+<p>1.- Hacer la consulta en el cuadro de búsqueda. Se recomienda aprender a utilizar el cuadro avanzado, ya que permite mayor flexibilidad.</p>
+<p><img class='border img-fluid' src="images/image57.png" /></p>
+<p>2.- Seleccionar la mayor cantidad de registros por página. La exportación de BibTeX sólo se realiza por página, así que evita realizar mayores esfuerzos.</p>
+<p><img class='border img-fluid' src="images/image58.png" /></p>
+<p>3.- Seleccionar “Share” a mano derecha y elegir la opción de agregar resultados a la carpeta</p>
+<p><img class='border img-fluid' src="images/image59.png" /></p>
+<p>4.- Una vez que se hayan seleccionado todos los ítems en todas las páginas, se debe ir a la carpeta en la cabecera del sitio.</p>
+<p><img class='border img-fluid' src="images/image60.png" /></p>
+<p>5.- Hacer click en el botón que dice ‘Select / Deselect all’ y presionar en el botón ‘Export’ que se encuentra a mano derecha</p>
+<p><img class='border img-fluid' src="images/image61.png" /></p>
+<p>6.- Hacer click en el cuadro de chequeo para eliminar los ítems ya exportados, y seleccionar BibTeX como opción de exportación.</p>
+<p><img class='border img-fluid' src="images/image62.png" /></p>
+<p>7.- Ebscohost presentará una pantalla con el resultado de la exportación. Para grabar, utiliza ‘Guardar como...’ o Control+S. Recuerde grabar el archivo con la extensión ‘.bib’.</p>
+
+<p><img class='border img-fluid' src="images/image63.png" /></p>
+</article>
+
+<article>
+<h2><span id="technical_specifications" class="anchor"></span>Características técnicas del software</h2>
+
+<p>Buhos es una aplicación web, bajo el modelo de cliente servidor. El servidor corre en Sinatra, un framework para desarrollo web, sobre Ruby. Se puede usar como cliente cualquier navegador que satisfaga estándares [standard-compliant], que acepte HTML5 y Javascript.</p>
+<p>Para acceder a la base de datos se utiliza Sequel⁠, una capa de abstracción de base de datos con soporte para más de 10 tipos de bases de datos. Se ha probado extensamente el sistema en Sqlite, para uso local, y Mysql, para uso en línea por múltiples usuarios.</p>
+<p>Del lado del cliente, se utiliza bootstrap<sup>4</sup>⁠, un set de herramientas [toolkit] que permite generar HTML, CSS y Javascript. Se eligió por la facilidad que permite en el desarrollo y la compatibilidad que asegura entre distintos tipos de navegadores.</p>
+<h3><span id="user_specifications" class="anchor"></span>Especificaciones de usuario</h3>
+<p>Objetivo del software: Gestionar el proceso completo de revisión sistemática de literatura</p>
+<p>Funcionalidades:</p>
+<ul>
+<li>Se dispone de investigadores (usuarios) y grupos de investigación.</li>
+<li>Cada investigador puede participar en uno o más grupos</li>
+<li>Cada grupo tiene un administrador.</li>
+<li>Cada revisión pertenece un grupo y tiene un administrador, que puede ser distinto al administrador del grupo.</li>
+<li>El administrador de la revisión sistemática (ARS) se encarga de asignar documentos a personas, resolver que documentos pasan a la siguiente etapa e incluir archivos en cada revisión.</li>
+<li>Cada usuario posee una contraseña, que puede alterar de manera arbitraria.</li>
+<li>Cada usuario posee un Rol</li>
+<li>Cada Rol considera uno o más Permisos</li>
+<li>Cada Permiso permite realizar una acción específica dentro del sistema</li>
+<li>Se pueden crear distintos Roles, que permiten generar configuraciones únicas de permisos dentro del sistema.</li>
+<li>Cada revisión sistemática (desde ahora, RS), contiene los siguientes meta-datos
+<ul>
+<li>Nombre de la investigación</li>
+<li>Fecha de creación</li>
+<li>Objetivos de la investigación</li>
+<li>Años de búsqueda</li>
+<li>Descripción general</li>
+<li>Palabras claves</li>
+<li>Número de referencias mínimas para incluir en etapas de tamizaje de referencias (1)</li>
+</ul></li>
+<li>Cada documento que es analizado en las etapas se denomina Documento Canónico (DC), que contiene al menos los siguientes datos
+<ul>
+<li>Título</li>
+<li>Autores</li>
+<li>Año de publicación</li>
+<li>DOI</li>
+<li>Identificador WOS</li>
+<li>Identificador Scopus</li>
+<li>Identificador Ebscohost</li>
+</ul></li>
+<li>El sistema comprende 5 etapas: búsqueda, tamizaje por título y resumen, tamizaje de referencias, revisión de texto completo y reporte.</li>
+<li>En la etapa de tamizaje de referencias, el sistema presenta automáticamente todas las referencias de los documentos seleccionados en la etapa de tamizaje por título y resumen que cuenta con un número de referencias igual o superior al expresado en (1).</li>
+<li>Cada RS se encuentra en cada momento en una sola etapa</li>
+<li>Se pueden realizar modificaciones en etapas previas, que automáticamente generan efectos en las posteriores.</li>
+<li>Cada RS puede tener 1 o más Búsquedas. Cada Búsqueda considera los siguientes meta-datos
+<ul>
+<li>Fuente: base de datos indexada, búsqueda informal, bola de nieve hacia atrás, bola de nieve hacia adelante</li>
+<li>Base de dato</li>
+<li>Fecha de realización</li>
+<li>Criterio de búsqueda: puede ser el campo literal (SCOPUS) o el procedimiento manual para realizarlo (WoS)</li>
+<li>Descripción complementaria</li>
+</ul></li>
+<li><p>Cada búsqueda contiene uno o más Registros. Cada Registro contiene la siguiente información</p>
+<ul>
+<li>Base de datos de origen</li>
+<li>ID de la base de dato de origen</li>
+<li>Tipo</li>
+<li>Autores</li>
+<li>Año</li>
+<li>Título</li>
+<li>Si es artículo: nombre del journal, volumen, año, páginas</li>
+<li>Si es capítulo de libro: nombre del libro, editores, páginas</li>
+<li>Si es conferencia: nombre de la conferencia, fecha, lugar.</li>
+<li>DOI</li>
+<li>PMID</li>
+</ul></li>
+<li>Los registros de cada Búsqueda son importadas al sistema usando BibTeX.</li>
+<li>Cada Registro se guarda en modo sólo-lectura. El investigador no los puede modificar.</li>
+<li>Cada Registro puede tener uno o más Referencias. Estas son extraídas desde el BibTex, importadas por red desde Crossref, o modificadas de manera manual.</li>
+<li>Cada Registro se asocia a un DC.</li>
+<li>Registros que posean idéntico DOI o EID (Scopus), se asocian al mismo DC.</li>
+<li>Cada Referencia puede estar asociada un DC. Esta asociación se realiza por DOI.</li>
+<li>Si un Registro o una Referencia no tiene DOI, se puede realizar una búsqueda en Crossref que le permite encontrar su DOI.</li>
+<li>El sistema detecta DC con el mismo DOI. Estos DC se pueden fundir en uno solo.</li>
+<li>Cada RS puede tener uno más archivos asociados</li>
+<li>Cada DC puede estar asociado uno o más archivos de su RS.</li>
+<li>En las etapas de tamizaje de título y abstract, tamizaje de referencias y revisión de texto completo, el administrador del grupo asigna uno o más DC a cada miembro.</li>
+<li>Cada Asignación de un DC a un Usuario, puede tener instrucciones. Este comentario es distinto por etapa.</li>
+<li>En las etapas de tamizaje de título y abstract, tamizaje de referencias y revisión de texto completo, cada usuario asignado a un DC puede decidir si este es pertinente o no pertinente para la etapa; también se puede usar de forma temporal la condición ‘indeciso’.</li>
+<li>Cada Decisión tiene un comentario.</li>
+<li>En cada etapa, el administrador resuelve que DC pasan a la siguiente etapa. Esta resolución es arbitraria.</li>
+<li>Cada RS tiene un conjunto de Etiquetas y Tipos de Etiquetas</li>
+<li>Cada Etiqueta se puede asociar a un DC por un usuario de manera positiva (usuario considera que la etiqueta aplica) o negativa (el usuario considera que no aplica).</li>
+<li>Si una etiqueta posee solamente votos negativos, no aparece en la interface de decisión. Esto implica que si un usuario crea una Etiqueta y vota posteriormente de forma negativa, desaparece de su interface, pero no se borra del sistema.</li>
+<li>El administrador puede borrar una Etiqueta del sistema, solo si todos sus votos son negativos.</li>
+<li>Cada RS posee una serie de Campos de Análisis, que forman un formulario a utilizar en la etapa de revisión de texto completo.</li>
+<li>Cada usuario puede enviar y recibir Mensajes Personales, a personas de sus grupos asociados. Estos mensajes sólo pueden ser vistos por las partes involucradas y el administrador.</li>
+<li>Cada usuario puede enviar mensajes Mensajes de Revisión Sistemática. Estos mensajes son visibles para los miembros de la Revisión Sistemática.</li>
+<li>Se presenta un diagrama de flujo PRISMA para representar el proceso de inclusión y exclusión de documentos</li>
+<li>Se presenta un reporte del proceso, que muestra las decisiones de los usuarios sobre cada documento, así como la resolución del administradores</li>
+<li>Se muestra un reporte del proceso de extracción de datos, con la presentación tabulada de códigos libres y la lista de resultados por formulario.</li>
+</ul>
+</article>
+<article>
+    <h2 id="license">BSD 3-Clause License</h2>
+
+    <p>Copyright (c) 2016-2018, Claudio Bustos Navarrete</p>
+    <p>All rights reserved.</p>
+
+<p>Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:</p>
+
+    <p>1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.</p>
+    <p>2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.</p>
+    <p>3. Neither the name of the copyright holder nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.</p>
+
+    <p>THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</p>
+
+</article>
+<footer>
+    © 2016-2018 Claudio Bustos Todos los derechos reservados
+
+</footer>
+</body>
