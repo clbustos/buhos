@@ -27,6 +27,7 @@
 <p>Version 1.0.0 - Revision 7 de Marzo 2018</p>
     <p>Autor: Claudio Bustos</p>
     <p>Revisores: Maria Gabriela Morales, Fabiola Sáez, Astrid Sarmiento</p>
+    <p>&copy; Copyright Claudio Bustos 2018</p>
 </header>
 <nav>
 <h2>Tabla de contenidos</h2>
@@ -52,9 +53,15 @@
 <li><a href="#guide_review_full_text">Revisión de texto completo</a></li>
 <li><a href="#guide_report">Reporte</a></li>
     </ul></li>
-    
-<li><a href="#technical_specifications">Características técnicas del software</a></li>
-<li><a href="#user_specifications">Especificaciones del usuario</a></li>
+
+    <li><a href="#search">Búsqueda</a></li>
+    <li><a href="#software_spec">Especificaciones del software</a>
+<ul>
+    <li><a href="#technical_specifications">Características técnicas del software</a></li>
+    <li><a href="#user_specifications">Especificaciones del usuario</a></li>
+</ul>
+
+    </li>
 <li><a href="#glossary">Glosario</a></li>
 <li><a href="#license">Licencia</a></li>
 </ul>
@@ -376,6 +383,22 @@ passenger_ruby &lt;ruby_location&gt;
 <p>En el reporte de proceso se presentan todas las decisiones y resoluciones tomadas por el administrador y los evaluadores.</p>
 <p><img class='border img-fluid interface' src="images/image49.png" /></p>
 </article>
+
+
+<article>
+    <h2 id="search">Búsqueda</h2>
+    <p>Tras definir las características principales de la Revisión Sistemática, se deben identificar los artículos que son pertinentes para satisfacer los objetivos de la investigación. En la sección sobre <a href="#external_import">Importación desde bases de datos indexadas</a>, se muestra como obtener los archivos BibTeX necesarios desde distintas bases de datos.</p>
+    <p>El procesamiento de los archivos importados implica obtener sus Registros y Referencias. Los Registros corresponden a los documentos que aparecen listados en cada archivo. En algunas bases de datos, como WoS y Scopus, cada Registro también lista a los artículos citados en él. En el sistema, cada uno de estos documentos se denomina una Referencia.</p>
+    <p>Un problema importante al momento de trabajar con los Registros y Referencias es la duplicación, es decir, registros y referencias que aparecen distintos en las bases de datos, pero que realmente apuntan al mismo documento. Dentro del sistema, a esta representación única de un documento se le denomina Documento Canónico.</p>
+    <p>Cada Registro necesariamente se asocia a un Documento Canónico. Al momento de procesar cada búsqueda, si coincide el DOI, identificador de Scopus o WoS de un Registro con el de un Documento Canónico previamente existente, se asocia a él. Si no, se crea un Documento Canónico Nuevo.</p>
+    <p>Para las Referencias, la situación es distinta. La forma en que las distintas bases describen las referencias es muy distinta y si se inscriben de forma manual, existen muchos formatos distintos en los cuales puede aparecer. Por tanto, el sistema guarda de forma literal el texto cada Referencia y, si es posible, trata de asociarlo a un Documento Canónico ya existente. De esta manera, es posible por ejemplo que un Registro cuente con referencias desde distintas fuentes - referencia de WoS, Scopus y manual -, y cada una puede aportar con distintas pistas para asociar este documento a los Documentos Canónicos respectivos.</p>
+    <p> El siguente diagrama de Entidad-Relación muestra la relación existente entre las distintas entidades relacionadas a las búsquedas.</p>
+    <img src="images/Entity_relation_search_es.png" class="border img-fluid interface"/>
+    <p>En ocasiones, resulta de interés saber en qué medida coinciden los Registros entre distintas Búsquedas. Dentro de la interface de Búsqueda, el botón de 'Comparar Registros por Búsqueda' muestra cada Documento Canónico y en que Búsqueda aparece.</p>
+    <img src="images/compare_records.png" class="border img-fluid interface"/>
+</article>
+
+
 <article>
 <h2><span id="external_import" class="anchor"></span>Importación desde bases de datos indexadas</h2>
     <p>Buhos utiliza <code>BibTeX</code> como principal forma para realizar importaciones y exportaciones desde los sistemas de referencias bibliográficas y bases de datos indexadas. Es el método utilizado por RefWorks, por ejemplo, para interactuar con distintas bases de datos.</p>
@@ -422,9 +445,9 @@ passenger_ruby &lt;ruby_location&gt;
 
 <p><img class='border img-fluid interface' src="images/image63.png" /></p>
 </article>
-
 <article>
-<h2><span id="technical_specifications" class="anchor"></span>Características técnicas del software</h2>
+<h2 id="software_spec">Especificaciones del software</h2>
+    <h3><span id="technical_specifications" class="anchor"></span>Características técnicas del software</h3>
 
 <p>Buhos es una aplicación web, bajo el modelo de cliente servidor. El servidor corre en Sinatra, un framework para desarrollo web, sobre Ruby. Se puede usar como cliente cualquier navegador que satisfaga estándares [standard-compliant], que acepte HTML5 y Javascript.</p>
 <p>Para acceder a la base de datos se utiliza Sequel⁠, una capa de abstracción de base de datos con soporte para más de 10 tipos de bases de datos. Se ha probado extensamente el sistema en Sqlite, para uso local, y Mysql, para uso en línea por múltiples usuarios.</p>
