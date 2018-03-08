@@ -42,7 +42,7 @@ module Buhos
         get_auth_from_ruby_files
         get_auth_from_haml
         @permits.flatten!.uniq!.sort!
-
+        @current_route=nil
       end
       def get_auth_from_ruby_files
         Dir.glob("#{@app.dir_base}/**/*.rb").each do |v|
@@ -52,39 +52,52 @@ module Buhos
             filename=v.gsub(@app.dir_base,"")
             @files[filename]={}
             fp.each_line do |line|
-              if line=~/(get|post|put)\s+['"].+?['"]/
-                current_route=line
-                @files[filename][current_route]=[]
-              elsif line=~/def auth|add_auth|def halt_unless/
-                # Do nothing
-              elsif line=~/authorization\(/ or line=~/halt_unless_auth/
-                @files[filename][current_route].push(line) unless @files[filename][current_route].nil?
-                scanner=line.scan(/(auth|halt_unless_auth)\((?:'|")(.+)(?:'|")\)/)
-                if scanner.length>0
-                  @permits.push(scanner.map {|sca| sca[1]})
-                end
-              end
+              process_line_ruby_file(filename, line)
             end
           end
         end
       end
+
+
+
       def get_auth_from_haml
         Dir.glob("#{@app.dir_base}/views/*.haml").each do |v|
           File.open(v,"rb") do |fp|
             filename=v.gsub(@app.dir_base,"")
             @files[filename]={:nil=>[]}
             fp.each_line do |line|
-              if line=~/authorization\(/
-                @files[filename][:nil].push(line) unless @files[filename][:nil].nil?
-                scanner=line.scan(/(auth|halt_unless_auth)\((?:"|')(.+)(?:"|')\)/)
-                if scanner.length>0
-                  @permits.push(scanner.map {|sca| sca[1]})
-                end
-              end
+              process_haml_line(filename, line)
             end
           end
         end
       end
+
+      private
+      def process_haml_line(filename, line)
+        if line =~ /authorization\(/
+          @files[filename][:nil].push(line) unless @files[filename][:nil].nil?
+          scanner = line.scan(/(auth|halt_unless_auth)\((?:"|')(.+)(?:"|')\)/)
+          if scanner.length > 0
+            @permits.push(scanner.map {|sca| sca[1]})
+          end
+        end
+      end
+
+      def process_line_ruby_file(filename, line)
+        if line =~ /(get|post|put)\s+['"].+?['"]/
+          @current_route = line
+          @files[filename][@current_route] = []
+        elsif line =~ /def auth|add_auth|def halt_unless/
+          # Do nothing
+        elsif line =~ /authorization\(/ or line =~ /halt_unless_auth/
+          @files[filename][@current_route].push(line) unless @files[filename][@current_route].nil?
+          scanner = line.scan(/(auth|halt_unless_auth)\((?:'|")(.+)(?:'|")\)/)
+          if scanner.length > 0
+            @permits.push(scanner.map {|sca| sca[1]})
+          end
+        end
+      end
+
     end
 
     def self.get_routes(app)

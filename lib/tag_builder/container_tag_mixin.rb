@@ -26,42 +26,24 @@
 # OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-require_relative "container_tag_mixin"
-
 #
 module TagBuilder
-  # Container for tags between canonical documents
-  class ContainerTagBwCd
-    include TagBuilder::ContainerTagMixin
-    attr_reader :tag_cd_rs_ref
-    def initialize(review,cd_start, cd_end)
-
-      @review = review
-      @class_tags=[]
-      @cd_start = cd_start
-      @cd_end   = cd_end
-      # Tags ya elegidos
-      @tag_cd_rs_ref=::TagBwCd.tags_rs_cd(@review,cd_start, cd_end).to_hash_groups(:tag_id)
-      # Ahora, los tags por defecto que falta por elegir
-
-
-      @review.t_clases_documentos.each do |clase|
-        clase.tags.each do |tag|
-          @class_tags.push(tag.id)
-          unless @tag_cd_rs_ref.keys.include? tag.id
-            @tag_cd_rs_ref[tag.id]=[{:systematic_review_id=>@review.id, :cd_start=>cd_start.id, cd_end=>cd_end.id, :tag_id=>tag.id,:text=>tag.text,:user_id=>0,:decision=>nil}]
-          end
+  # Mixin for ContainerTag related classes
+  module ContainerTagMixin
+    include Enumerable
+    attr_reader :review
+    def ordered_tags(tags)
+      tags.sort {|a, b|
+        tag_1 = a[1][0]
+        tag_2 = b[1][0]
+        if @class_tags.include? tag_1[:tag_id] and !@class_tags.include? tag_2[:tag_id]
+          +1
+        elsif !@class_tags.include? tag_1[:tag_id] and @class_tags.include? tag_2[:tag_id]
+          -1
+        else
+          tag_1[:text] <=> tag_2[:text]
         end
-      end
+      }
     end
-
-    def each
-      ordered_tags(@tag_cd_rs_ref).each do |v|
-        recs=::TagBuilder::TagBwCd.new(v[1])
-        recs.predeterminado=@class_tags.include? v[0]
-        yield recs
-      end
-    end
-
   end
 end

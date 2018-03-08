@@ -33,6 +33,7 @@ es:
   Assigned_DOI_to_record: "Se asignó automáticamente DOI %{doi} a registro %{record_id} : %{author} - %{title} "
   Author: "Autor"
   Automatic_categories: "Categorías automáticas"
+  Authorizations: "Autorizaciones"
   Back: "Atrás"
   Bibliographic_database: "Base de datos bibliográfica"
   Canonical: "Canónico"
@@ -299,6 +300,8 @@ es:
   Not_allowed_with_user_permissions: "Acción no permitida con los permisos del usuario"
   Not_assigned: "No asignado"
   Not_defined: "No definido"
+  No_authorizations: "Sin autorizaciones"
+
   No_permits: "No hay permisos"
   nothing_to_do: "Nada que hacer"
   NR: "Sin resolución"

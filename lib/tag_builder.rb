@@ -42,6 +42,8 @@ end
 
 require_relative 'tag_builder/container_tag_in_cd'
 require_relative 'tag_builder/container_tag_bw_cd'
+require_relative 'tag_builder/container_tag_mixin'
+
 require_relative 'tag_builder/tag_mixin'
 require_relative 'tag_builder/tag_in_cd'
 require_relative 'tag_builder/tag_bw_cd'
