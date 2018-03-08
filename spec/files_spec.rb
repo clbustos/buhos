@@ -12,7 +12,7 @@ describe 'Files:' do
   before(:all) do
     RSpec.configure { |c| c.include RSpecMixin }
     @temp=configure_empty_sqlite
-    SystematicReview.insert(:name=>'Test Review', :group_id=>1, :sr_administrator=>1)
+    SystematicReview.insert(:id=>1,:name=>'Test Review', :group_id=>1, :sr_administrator=>1)
     CanonicalDocument.insert(id:1, :title=>'Canonical Document 1', year:2018)
     login_admin
   end
@@ -173,6 +173,21 @@ describe 'Files:' do
     end
   end
 
+  context "when unassign a file from a systematic review" do
+    before(:each) do
+      if !FileSr[:file_id=>1, :systematic_review_id=>1]
+        FileSr.insert(:file_id=>1, :systematic_review_id=>1)
+      end
+      post '/file/unassign_sr', {  file_id:1, rs_id:1}
+    end
+    it "response should be ok" do
+      expect(last_response).to be_ok
+    end
+    it "should remove relation between Systematic Review and File" do
+      expect(FileSr[:file_id=>1, :systematic_review_id=>1]).to be_falsey
+    end
+
+  end
 
 
   context "when file is deleted" do

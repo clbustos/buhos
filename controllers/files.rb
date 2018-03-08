@@ -192,7 +192,9 @@ post '/file/hide_cd' do
   halt_unless_auth('canonical_document_admin')
   file=IFile[params['file_id']]
   cd=CanonicalDocument[params['cd_id']]
-  return 404 if file.nil? or cd.nil?
+
+  raise Buhos::NoFileIdError , params['file_id'] unless file
+  raise Buhos::NoCdIdError   , params['cd_id'] unless cd
 
   FileCd.where(:file_id=>file.id, :canonical_document_id=>cd.id).update(:not_consider=>true)
   return 200
@@ -207,7 +209,7 @@ post '/file/show_cd' do
   cd=CanonicalDocument[params['cd_id']]
 
   raise Buhos::NoFileIdError , params['file_id'] unless file
-  raise NoCdIdError   , params['cd_id'] unless cd
+  raise Buhos::NoCdIdError   , params['cd_id'] unless cd
 
   FileCd.where(:file_id=>file.id, :canonical_document_id=>cd.id).update(:not_consider=>false)
   return 200
@@ -221,7 +223,7 @@ post '/file/unassign_cd' do
   cd=CanonicalDocument[params['cd_id']]
 
   raise Buhos::NoFileIdError , params['file_id'] unless file
-  raise NoCdIdError   , params['cd_id'] unless cd
+  raise Buhos::NoCdIdError   , params['cd_id'] unless cd
 
   FileCd.where(:file_id=>file.id, :canonical_document_id=>cd.id).delete
   return 200
@@ -231,8 +233,15 @@ end
 post '/file/unassign_sr' do
   halt_unless_auth('review_admin')
   rs=SystematicReview[params['rs_id']]
+  file=IFile[params['file_id']]
+
+
+  raise Buhos::NoFileIdError, params['file_id'] unless file
+  raise Buhos::NoReviewIdError, params['rs_id'] unless rs
+
+
   return 404 if file.nil? or rs.nil?
-  file_Rs.where(:file_id=>file.id, :systematic_review_id=>rs.id).delete
+  FileSr.where(:file_id=>file.id, :systematic_review_id=>rs.id).delete
   return 200
 end
 

@@ -27,7 +27,7 @@
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 require_relative 'systematic_review'
-require_relative 'seguridad'
+require_relative 'security'
 require_relative 'canonical_document'
 
 
