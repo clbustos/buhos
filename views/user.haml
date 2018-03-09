@@ -17,10 +17,18 @@
     %td=permission_a_editable(@have_permit, @usuario[:id], 'user-name', '/user/edit/name', @usuario[:name], t(:Name))
   %tr
     %th=t(:Role)
-    %td=@select_role.html(@usuario[:id], @usuario[:rol_id])
+    %td
+      - if @have_permit
+        =@select_role.html(@usuario[:id], @usuario[:role_id])
+      - else
+        =@usuario[:role_id]
   %tr
     %th=t(:Active_user)
-    %td=@select_active_user.html(@usuario[:id], @usuario[:active])
+    %td
+      -if @have_permit
+        =@select_active_user.html(@usuario[:id], @usuario[:active])
+      -else
+        =t_yes_no_nil(@usuario[:active])
   %tr
     %th=t(:Language)
     %td=@select_language.html(@usuario[:id], @usuario[:language])
