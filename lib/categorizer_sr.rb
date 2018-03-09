@@ -38,7 +38,7 @@ class CategorizerSr
     if(model.nil?)
       @model = Categorize::Models::BagOfWords.new
 
-      @model.max_buckets = @rs.cd_todos_id.length>0 ? Math.log(@rs.cd_todos_id.length).floor*2 : 1
+      @model.max_buckets = @rs.cd_all_id.length>0 ? Math.log(@rs.cd_all_id.length).floor*2 : 1
     else
       @model.min_support = 0.01
       @model=model

@@ -42,7 +42,7 @@ class AnalysisSystematicReview
   # Id for canonical documents associated to references
   attr_reader :cd_ref_id
   # Id for all canonical documents
-  attr_reader :cd_todos_id
+  attr_reader :cd_all_id
   # References between canonical documents
   attr_reader :rec
   # Hash for canonical documents, with incoming citations
@@ -91,14 +91,14 @@ class AnalysisSystematicReview
     @cd_ref_id.include? id
   end
   def cd_count_total
-    @cd_todos_id.length
+    @cd_all_id.length
   end
 
 
 def process_basic_indicators
   @cd_reg_id=@rs.cd_record_id
   @cd_ref_id=@rs.cd_reference_id
-  @cd_todos_id=@rs.cd_todos_id
+  @cd_all_id=@rs.cd_all_id
   @rec=@rs.references_bw_canonical
 end
 

@@ -16,7 +16,7 @@ get '/reviews' do
   @show_only_user=params['show_only_user']
   @show_only_user||='yes'
   if @show_only_user=='yes'
-    @reviewes=SystematicReview.get_revisiones_por_usuario(@usuario.id)
+    @reviewes=SystematicReview.get_reviews_by_user(@usuario.id)
   else
     @reviewes=SystematicReview
   end
@@ -133,7 +133,7 @@ get '/review/:id/canonical_documents' do |id|
   @cd_total_ds=@review.canonical_documents
 
   # Repetidos doi
-  @cd_rep_doi=@review.doi_repetidos
+  @cd_rep_doi=@review.repeated_doi
   ##$log.info(@cd_rep_doi)
 
   @url="/review/#{id}/canonical_documents"
@@ -180,7 +180,7 @@ get '/review/:id/repeated_canonical_documents' do |id|
 
   @review=SystematicReview[id]
   raise Buhos::NoReviewIdError, id if !@review
-  @cd_rep_doi=@review.doi_repetidos
+  @cd_rep_doi=@review.repeated_doi
   @cd_hash=@review.canonical_documents.as_hash
 
   @cd_por_doi=CanonicalDocument.where(:doi => @cd_rep_doi).to_hash_groups(:doi, :id)
@@ -201,7 +201,7 @@ get '/review/:id/tags' do |id|
 
   @select_type=get_xeditable_select(@types_list, "/tags/classes/edit_field/type","select_type")
 
-  @tag_estadisticas=@review.tags_estadisticas
+  @tag_estadisticas=@review.statistics_tags
 
 
   haml "systematic_reviews/tags".to_sym
@@ -242,7 +242,7 @@ post '/review/files/add' do
   if files
     results=Result.new
     files.each do |file|
-      results.add_result(IFile.add_on_sr(file,@review,dir_files,cd))
+      results.add_result(IFile.add_on_sr(file, @review, dir_files, cd))
     end
     add_result results
   else

@@ -185,25 +185,10 @@ module Scopus
       # Author-groups with authors duplicated are eliminated
       def process_author_groups
         author_groups_temp=xml.xpath("//bibrecord/head/author-group").map do |ag|
-            if aff_node=ag.at_xpath("affiliation")
-              city,country,afid1,name=get_affiliation_data(aff_node)
-              aff_id2=get_affiliation_id(ag.at_xpath("affiliation"))
-              if (name=="" and city=="" and country=="")
-                aff_id=nil
-              else
-                aff_id=aff_id2
-              end
-            else
-              aff_id=nil
-            end
-          {:authors=>ag.xpath("author").map {|auth|
-            a=auth.attribute('auid')
-            a ? a.value : nil},
-           :affiliation=>aff_id
-          }
+          process_one_author_group(ag)
         end
 
-        authors_list= []
+        #authors_list= []
         @author_groups=author_groups_temp
 #        @author_groups=[]
 #        author_groups_temp.each do |ag|
@@ -213,6 +198,27 @@ module Scopus
 
       end
 
+
+      def process_one_author_group(ag)
+        if aff_node = ag.at_xpath("affiliation")
+          city, country, afid1, name = get_affiliation_data(aff_node)
+          aff_id2 = get_affiliation_id(ag.at_xpath("affiliation"))
+          if (name == "" and city == "" and country == "")
+            aff_id = nil
+          else
+            aff_id = aff_id2
+          end
+        else
+          aff_id = nil
+        end
+        {:authors => ag.xpath("author").map {|auth|
+          a = auth.attribute('auid')
+          a ? a.value : nil},
+         :affiliation => aff_id
+        }
+      end
+
+      private :process_one_author_group
 
 
       def process_authors
@@ -316,6 +322,8 @@ module Scopus
         @abstract       =process_path(xml, "//dc:description/xmlns:abstract[@xml:lang='eng']/ce:para")
 	@abstract     ||=process_path(xml, "//abstract/ce:para")
       end
+
+
     end
   end
 end

@@ -20,7 +20,9 @@ describe 'Files:' do
   def check_gs
     !gs_available or ENV['TEST_TRAVIS'] or is_windows?
   end
-  
+  def delete_files
+    $db["DELETE FROM files"]
+  end
   def filepath
     filename="2010_Kiritchenko_et_al_ExaCT_automatic_extraction_of_clinical_trial_characteristics_from_journal_publications.pdf"
     path=File.expand_path("#{File.dirname(__FILE__)}/../docs/guide_resources/#{filename}")
@@ -31,12 +33,13 @@ describe 'Files:' do
 
   context 'when upload a file using /review/files/add' do
     before(:context) do
+      delete_files
       uploaded_file=Rack::Test::UploadedFile.new(filepath, "application/pdf", true)
       post '/review/files/add', systematic_review_id:sr_by_name_id('Test Review'), files:[uploaded_file]
     end
     let(:file) {IFile[1]}
     let(:app_helpers) {Class.new {extend Buhos::Helpers}}
-    it "should response will be redirect" do $log.info(last_response.body); expect(last_response).to be_redirect end
+    it "should response will be redirect" do expect(last_response).to be_redirect end
     it "should create an file object" do expect(file).to be_truthy end
     it "should create an file object with correct mime type" do expect(file[:filetype]).to eq("application/pdf") end
     it "should create a file on correct directory" do
@@ -48,6 +51,33 @@ describe 'Files:' do
       expect(File.size(path)).to eq(File.size(filepath))
     end
   end
+
+  context 'when upload a file using /review/files/add, adding a canonical document' do
+    before(:context) do
+      delete_files
+      uploaded_file=Rack::Test::UploadedFile.new(filepath, "application/pdf", true)
+      post '/review/files/add', systematic_review_id:sr_by_name_id('Test Review'), files:[uploaded_file], canonical_document_id:1
+    end
+    let(:file) {IFile[1]}
+    let(:app_helpers) {Class.new {extend Buhos::Helpers}}
+    it "should response will be redirect" do expect(last_response).to be_redirect end
+    it "should create an file object" do expect(file).to be_truthy end
+    it "should create an file object with correct mime type" do expect(file[:filetype]).to eq("application/pdf") end
+    it "should create a file on correct directory" do
+      path="#{app_helpers.dir_files}/#{file[:file_path]}"
+      expect(File.exist? path).to be true
+    end
+    it "should create a file of correct size" do
+      path="#{app_helpers.dir_files}/#{file[:file_path]}"
+      expect(File.size(path)).to eq(File.size(filepath))
+    end
+    it "should create a relationship between file and canonical on database" do
+      filecd=FileCd[canonical_document_id:1, file_id:1]
+      expect(filecd).to be_truthy
+    end
+
+  end
+
 
   context "when access ViewerJs" do
     it "should return correct html" do
@@ -197,6 +227,16 @@ describe 'Files:' do
     it {expect(last_response).to be_ok }
     it "archivo object doesn't exists" do
       expect(IFile[1]).to be_nil
+    end
+  end
+
+  context "when FileSr.files_wo_cd is used" do
+    let(:ds) {FileSr.files_wo_cd(1)}
+    it "should return a dataset" do
+      expect(ds).to be_a(Sequel::Dataset)
+    end
+    it "should be empty" do
+      expect(ds.empty?).to be true
     end
   end
 

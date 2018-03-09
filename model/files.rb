@@ -44,21 +44,11 @@ class IFile < Sequel::Model(:files)
       filetype=file_uploaded[:type]
       if filetype=="application/zip" # @todo Unzip the file if is an archiver
       else
-        sha256=Digest::SHA256.file(file_uploaded[:tempfile]).hexdigest
-        #fp=File.open(archivo[:tempfile],"rb")
-        archivo_o=IFile.where(:sha256=>sha256)
-        if archivo_o.empty?
-          file_path="#{sha256[0]}/#{filename}"
-          ruta_completa="#{basedir}/#{file_path}"
-          FileUtils.mkdir_p File.dirname(ruta_completa) unless File.exist?(File.dirname(ruta_completa))
-          FileUtils.cp file_uploaded[:tempfile],ruta_completa
 
-          file_id=IFile.insert(:filetype=>filetype,:filename=>filename, :file_path=>file_path, :sha256=>sha256)
-        else
-          file_id=archivo_o.first[:id]
-        end
+        file_id = create_file_on_system(basedir, file_uploaded, filename, filetype)
 
         archivo_rs_o=FileSr.where(:file_id=>file_id,:systematic_review_id=>systematic_review[:id])
+
         if archivo_rs_o.empty?
           FileSr.insert(:file_id=>file_id,:systematic_review_id=>systematic_review[:id])
         end
@@ -76,6 +66,32 @@ class IFile < Sequel::Model(:files)
 
   def absolute_path(basedir)
     "#{basedir}/#{self[:file_path]}"
+  end
+
+  # Create a file on system. Add the uploaded file to
+  # basedir, and creates a {IFile} object
+  # @param basedir Base directory for files
+  # @param file_uploaded as rack uploaded file
+  # @param filename, as wanted on the system
+  # @param filetypem as provided by mime types
+  # @return file_id Id attribute from {IFile} object
+  private
+  def self.create_file_on_system(basedir, file_uploaded, filename, filetype)
+    sha256 = Digest::SHA256.file(file_uploaded[:tempfile]).hexdigest
+    #fp=File.open(archivo[:tempfile],"rb")
+    archivo_o = IFile.where(:sha256 => sha256)
+
+    if archivo_o.empty?
+      file_path = "#{sha256[0]}/#{filename}"
+      ruta_completa = "#{basedir}/#{file_path}"
+      FileUtils.mkdir_p File.dirname(ruta_completa) unless File.exist?(File.dirname(ruta_completa))
+      FileUtils.cp file_uploaded[:tempfile], ruta_completa
+
+      file_id = IFile.insert(:filetype => filetype, :filename => filename, :file_path => file_path, :sha256 => sha256)
+    else
+      file_id = archivo_o.first[:id]
+    end
+    file_id
   end
 end
 class FileCd < Sequel::Model

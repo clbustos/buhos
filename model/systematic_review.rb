@@ -59,11 +59,11 @@ class SystematicReview < Sequel::Model
     Systematic_Review_SRTC.where(:sr_id=>self[:id]).map(:srtc_id)
   end
 
-  def t_clases_documentos
-    @t_clases_documentos||=t_classes_dataset.where(:type=>"document")
+  def t_classes_documents
+    @t_classes_documents||=t_classes_dataset.where(:type=>"document")
   end
 
-  def tags_estadisticas(stage=nil)
+  def statistics_tags(stage=nil)
     cd_query=1
     if stage
       cd_ids=cd_id_by_stage(stage)
@@ -85,23 +85,16 @@ AND  #{cd_query} GROUP BY tags.id ORDER BY n_documents DESC ,p_yes DESC,tags.tex
   def stage_name
     Buhos::Stages.get_stage_name(self.stage.to_sym)
   end
-  def administrador_name
+  def administrator_name
     self[:sr_administrator].nil? ? "-- #{I18n::t(:administrator_not_assigned)} --" : User[self[:sr_administrator]].name
   end
-  def get_names_trs
-    (0...TRS.length).inject({}) {|ac,v|
 
-      res=$db["trs_#{TRS_p[v]}".to_sym].where(:id=>self["trs_#{TRS[v]}_id".to_sym]).get(:name)
-      ac[TRS[v]]=res
-      ac
-    }
-  end
-  def self.get_revisiones_por_usuario(us_id)
+  def self.get_reviews_by_user(us_id)
     ids=$db["SELECT r.id FROM systematic_reviews r INNER JOIN groups_users gu on r.group_id=gu.group_id WHERE gu.user_id='#{us_id}'"].map{|v|v[:id]}
     SystematicReview.where(:id=>ids)
   end
 
-  def doi_repetidos
+  def repeated_doi
     canonical_documents.exclude(doi: nil).group_and_count(:doi).having {count.function.* > 1}.all.map {|v| v[:doi]}
   end
 
@@ -117,29 +110,29 @@ AND  #{cd_query} GROUP BY tags.id ORDER BY n_documents DESC ,p_yes DESC,tags.tex
 
 
 
-  def cd_todos_id
+  def cd_all_id
     (cd_record_id + cd_reference_id).uniq
   end
   def cd_hash
-    @cd_hash||=CanonicalDocument.where(:id=>cd_todos_id).as_hash
+    @cd_hash||=CanonicalDocument.where(:id=>cd_all_id).as_hash
   end
 
   # Presenta los documentos canonicos
   # para la revision. Une los por
   # registro y reference
 
-  def canonical_documents(type=:todos)
+  def canonical_documents(type=:all)
     cd_ids=case type
-             when :registro
+             when :record
                cd_record_id
              when :reference
                cd_reference_id
-             when :todos
-                cd_todos_id
+             when :all
+                cd_all_id
              else
                raise (I18n::t(:Not_defined_for_this_stage))
            end
-    if type==:todos
+    if type==:all
       CanonicalDocument.join(cd_id_table, canonical_document_id: :id   )
     else
       CanonicalDocument.where(:id => cd_ids)
@@ -151,7 +144,7 @@ AND  #{cd_query} GROUP BY tags.id ORDER BY n_documents DESC ,p_yes DESC,tags.tex
 
 
   def cd_id_resolutions(stage)
-    Resolution.where(:systematic_review_id=>self[:id], :stage=>stage.to_s,:canonical_document_id=>cd_todos_id,:resolution=>'yes').map(:canonical_document_id)
+    Resolution.where(:systematic_review_id=>self[:id], :stage=>stage.to_s,:canonical_document_id=>cd_all_id,:resolution=>'yes').map(:canonical_document_id)
   end
 
 
