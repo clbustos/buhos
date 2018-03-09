@@ -3,7 +3,7 @@
 - user_allocations=AllocationCd.where(:systematic_review_id=>review[:id], :canonical_document_id=>cd[:id], :stage=>stage ).to_hash(:user_id)
 - if @user_allocations_js.nil?
   - @user_allocations_js=true
-  %script{:type=>'text/javascript', :src=>url('/js/asignacion_users.js')}
+  %script{:type=>'text/javascript', :src=>url('/js/user_allocation.js')}
 
 %ul.asignaciones
   -users_grupos.each do |user|
@@ -12,10 +12,10 @@
     %li.asignacion-user
       / Asignación
       =user[:name]
-      %span{:class=>clase_asignar, :id=>"usuario-asignar-#{review[:id]}-#{cd[:id]}-#{user[:id]}-#{stage}"}
-        %button{:class=>"btn btn-success btn-xs usuario_asignar", "data-rsid"=>review[:id], "data-cdid"=>cd[:id], "data-uid"=>user[:id], "data-stage"=>stage}
+      %span{:class=>clase_asignar, :id=>"user-allocate-#{review[:id]}-#{cd[:id]}-#{user[:id]}-#{stage}"}
+        %button{:class=>"btn btn-success btn-xs user_allocate", "data-rsid"=>review[:id], "data-cdid"=>cd[:id], "data-uid"=>user[:id], "data-stage"=>stage}
           %span.glyphicon.glyphicon-hand-up
-      %span{:class=>clase_desasignar, :id=>"usuario-desasignar-#{review[:id]}-#{cd[:id]}-#{user[:id]}-#{stage}"}
+      %span{:class=>clase_desasignar, :id=>"user-unallocate-#{review[:id]}-#{cd[:id]}-#{user[:id]}-#{stage}"}
         =a_editable(user[:id], "asignacion-instruction-#{user[:id]}-#{review[:id]}-#{cd[:id]}-#{stage}", "/allocation/user/#{user[:id]}/review/#{review[:id]}/cd/#{cd[:id]}/stage/#{stage}/edit_instruction", user_allocations[user[:id]] ? user_allocations[user[:id]][:instruction] : nil, t(:set_instructions))
-        %button{:class=>"btn btn-warning btn-xs usuario_desasignar", "data-rsid"=>review[:id], "data-cdid"=>cd[:id], "data-uid"=>user[:id], "data-stage"=>stage}
+        %button{:class=>"btn btn-warning btn-xs user_unallocate", "data-rsid"=>review[:id], "data-cdid"=>cd[:id], "data-uid"=>user[:id], "data-stage"=>stage}
           %span.glyphicon.glyphicon-hand-down

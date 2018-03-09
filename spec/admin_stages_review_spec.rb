@@ -79,7 +79,7 @@ describe 'Stage administration' do
       expect(assignations_admin['screening_title_abstract'][:n]).to eq(85)
     end
     it "should have 84 assignations on sta if we remove one later" do
-      post '/canonical_document/user_allocation/desasignar', {rs_id:1, cd_id:64, user_id:1, stage:'screening_title_abstract'}
+      post '/canonical_document/user_allocation/unallocate', {rs_id:1, cd_id:64, user_id:1, stage:'screening_title_abstract'}
       expect(assignations_admin['screening_title_abstract'][:n]).to eq(84)
     end
   end
@@ -92,7 +92,7 @@ describe 'Stage administration' do
     end
     it "should have 1 assignations on sta if we add one later" do
       remove_assignations
-      post '/canonical_document/user_allocation/asignar', {rs_id:1, cd_id:64, user_id:1, stage:'screening_title_abstract'}
+      post '/canonical_document/user_allocation/allocate', {rs_id:1, cd_id:64, user_id:1, stage:'screening_title_abstract'}
       expect(assignations_admin['screening_title_abstract'][:n]).to eq(1)
     end
   end
@@ -101,7 +101,7 @@ describe 'Stage administration' do
 
     before(:context) do
       remove_assignations
-      post '/canonical_document/user_allocation/asignar', {rs_id:1, cd_id:64, user_id:2, stage:'screening_title_abstract'}
+      post '/canonical_document/user_allocation/allocate', {rs_id:1, cd_id:64, user_id:2, stage:'screening_title_abstract'}
       get '/review/1/stage/screening_title_abstract/add_assign_user/1/without_allocation'
     end
     it "should have 84 assignations on sta" do

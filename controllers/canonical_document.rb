@@ -167,12 +167,12 @@ post '/canonical_document/user_allocation/:action' do |action|
   stage=params['stage']
   return 404 if !revision or !cd or !user or !stage
   a_cd=AllocationCd[:systematic_review_id=>revision[:id],:canonical_document_id=>cd[:id],:user_id=>user[:id], :stage=>stage]
-  if action=='asignar'
+  if action=='allocate'
     if !a_cd
       AllocationCd.insert(:systematic_review_id=>revision[:id],:canonical_document_id=>cd[:id],:user_id=>user[:id],:stage=>stage,:status=>"assigned")
       return 200
     end
-  elsif action=='desasignar'
+  elsif action=='unallocate'
     if a_cd
       a_cd.delete
       return 200

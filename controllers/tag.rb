@@ -200,62 +200,29 @@ end
 
 
 # Retrieve a basic json for autopredict
-get '/tags/basic_10.json' do
+get /\/tags\/basic_(?:ref_)?10.json/ do
   halt_unless_auth('review_view')
-  require 'json'
-  content_type :json
-  Tag.order(:text).limit(10).map {|v|
-    {id:v[:id],
-     value:v[:text],
-     tokens:v[:text].split(/\s+/)
-    }
-  }.to_json
-end
-
-# Retrieve a basic json for autopredict
-
-get '/tags/basic_ref_10.json' do
-  halt_unless_auth('review_view')
-  require 'json'
-  content_type :json
-  Tag.order(:text).limit(10).map {|v|
-    {id:v[:id],
-     value:v[:text],
-     tokens:v[:text].split(/\s+/)
-    }
-  }.to_json
+  res=Tag.order(:text).limit(10)
+  ds_to_json(res)
 end
 
 # Query for tags (canonical documents)
 
 get '/tags/query_json/:query' do |query|
   halt_unless_auth('review_view')
-  require 'json'
-  content_type :json
 
   res=$db["SELECT id, text,COUNT(*) as n from tags t INNER JOIN tag_in_cds tec ON t.id=tec.tag_id WHERE INSTR(text,?)>0 and decision='yes' GROUP BY t.text ORDER BY n DESC LIMIT 10", query]
-  res.map {|v|
-    {id:v[:id],
-     value:v[:text],
-     tokens:v[:text].split(/\s+/)
-    }
-  }.to_json
+  ds_to_json(res)
+
 end
 
 # Query for tags (relation between canonical documents)
 
 get '/tags/refs/query_json/:query' do |query|
   halt_unless_auth('review_view')
-  require 'json'
-  content_type :json
 
   res=$db["SELECT id, text,COUNT(*) as n from tags t INNER JOIN tag_bw_cds tec ON t.id=tec.tag_id WHERE INSTR(text,?)>0 and decision='yes' GROUP BY t.text ORDER BY n DESC LIMIT 10", query]
-  res.map {|v|
-    {id:v[:id],
-     value:v[:text],
-     tokens:v[:text].split(/\s+/)
-    }
-  }.to_json
+  ds_to_json(res)
 end
 
 
@@ -263,16 +230,10 @@ end
 
 get '/tags/systematic_review/:rs_id/query_json/:query' do |rs_id,query|
   halt_unless_auth('review_view')
-  require 'json'
-  content_type :json
-  
+
   res=$db["SELECT id, text,COUNT(*) as n from tags t INNER JOIN tag_in_cds tec ON t.id=tec.tag_id WHERE INSTR(text,?)>0 and decision='yes' and systematic_review_id=? GROUP BY t.text ORDER BY n DESC LIMIT 10", query, rs_id ]
-  res.map {|v|
-    {id:v[:id],
-     value:v[:text],
-     tokens:v[:text].split(/\s+/)
-    }
-  }.to_json
+  ds_to_json(res)
+
 end
 
 
@@ -281,16 +242,10 @@ end
 
 get '/tags/systematic_review/:rs_id/ref/query_json/:query' do |rs_id,query|
   halt_unless_auth('review_view')
-  require 'json'
-  content_type :json
+
 
   res=$db["SELECT id, text,COUNT(*) as n from tags t INNER JOIN tag_bw_cds tec ON t.id=tec.tag_id WHERE INSTR(text,?)>0 and decision='yes' and systematic_review_id=? GROUP BY t.text ORDER BY n DESC LIMIT 10", query, rs_id ]
-  res.map {|v|
-    {id:v[:id],
-     value:v[:text],
-     tokens:v[:text].split(/\s+/)
-    }
-  }.to_json
+  ds_to_json(res)
 end
 
 # Remove tag allocated to a canonical document
