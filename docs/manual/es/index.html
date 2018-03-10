@@ -116,11 +116,13 @@
 <tr >
 <td >Tamizaje de documentos.</td>
 <td ><p>Seleccionar rápidamente los artículos que son útiles, a partir de la información de títulos y resumen.</p>
-<p>Incluir las referencias citadas en artículos, no incluidas en búsquedas originales (<strong>Bola de nieve hacia atrás</strong>).</p></td>
+<p>Incluir documentos citados en los artículos, que no están incluidos en búsquedas originales 
+    (<strong>Bola de nieve hacia atrás</strong>).</p></td>
 <td ><p>Se pueden asignar todos o parte de los documentos a los revisores.</p>
 <p>La decisión de cada revisor que evalúa los documentos queda registrada, siendo labor del administrador seleccionar que artículos pasarán a la etapa revisión de texto completo.</p>
 <p>Las razones para incluir o excluir un artículo pueden ser registradas como comentario o como etiquetas, comunes para todos los revisores.</p>
-<p>Para incluir referencias citadas en los artículos de la búsqueda original (Bola de nieve hacia atrás), se define un mínimo de frecuencia de cita de esta referencia en los artículos de la búsqueda original para ser incluido.</p></td>
+<p>Para incluir documentos citados en los artículos de la búsqueda original (bola de nieve hacia atrás), 
+    se define un número mínimo de artículos en los cuales esta referencia debe aparecer, para que sea incluido.</p></td>
 </tr>
 <tr >
 <td >Revisión de texto completo y extracción de información</td>
@@ -171,10 +173,10 @@ sudo buhos restart
 </code></pre>
 
 <h3><span id="installation_vagrant" class="anchor"></span>Vagrant</h3>
-   <p>En los directorios <code>vendor/vagrant_alpine</code> y <code>vendor/vagrant_ubuntu_16</code> pueden configuraciones de vagrant para Alpine y Ubuntu 16.04, respectivamente. Se pueden ejecutar usando:</p>
+<p>En los directorios <code>vendor/vagrant_alpine</code> y <code>vendor/vagrant_ubuntu_16</code> pueden encontrarse
+    configuraciones de vagrant para Alpine y Ubuntu 16.04, respectivamente. Se pueden ejecutar usando:</p>
     <pre><code>vagrant up</code></pre>
 <p>De forma predeterminada, la aplicación corre en el puerto 4567.</p>
-
 <h3><span id="installation_source_code" class="anchor"></span>Desde código fuente</h3>
 
     <p>Como requisito previo para instalar el software, se necesita instalar Ruby 2.4 o superior, con librerías de desarrollo para MySQL y SQlite. Además, se debe instalar la gema <code>bundler</code> para descargar las gemas necesarias para que el software funcione.</p>

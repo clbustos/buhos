@@ -55,6 +55,7 @@ var TagManager={};
         update_typeahead_ref();
         update_show_pred_ref();
     };
+
     context.update=function(div_id) {
         update_tag_cd(div_id);
         update_tag_ref(div_id);
@@ -267,6 +268,5 @@ var tagsRefQuery=TagManager.create_bloodhound('/tags/basic_ref_10.json','/tags/r
 
 
 $(document).ready(function() {
-
     TagManager.update();
 });

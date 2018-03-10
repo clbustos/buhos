@@ -67,7 +67,17 @@ module Buhos
 
     end
 
+   def ds_to_json(res)
+     require 'json'
+     content_type :json
 
+     res.map {|v|
+       {id:v[:id],
+        value:v[:text],
+        tokens:v[:text].split(/\s+/)
+       }
+     }.to_json
+   end
 
 
 
