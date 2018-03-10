@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<style>
+    header, nav,article {
+        margin: 0 auto !important;
+        float: none !important;
+        max-width:800px;
+    }
+    .interface {
+        padding:10px;
+
+    }
+</style>
+
+    <title>Buhos Manual</title>
+</head>
+<body>
+<header>
+<h1>BUHOS</h1>
+<p>Systematic Literature Revision Management Software</p>
+<p>User Manual</p>
+<p>Version 1.0.0 - Revision 7 March 2018</p>
+    <p>Author: Claudio Bustos</p>
+    <p>Reviewers: Maria Gabriela Morales, Fabiola S&aacute;ez, Astrid Sarmiento</p>
+    <p>&copy; Copyright Claudio Bustos 2018</p>
+</header>
+<nav>
+<h2>Table of Contents</h2>
+<ul>
+<li><a href="#introduction">Introduction</a><ul>
+    <li><a href="#caracteristicas_principales">Main Software Features</a></li>
+</ul></li>
+
+<li><a href="#installation">Installation</a><ul>
+<li><a href="#installation_windows">Windows</a></li>
+<li><a href="#installation_linux">Debian / Ubuntu /CentOS</a></li>
+<li><a href="#installation_vagrant">Vagrant</a></li>
+<li><a href="#installation_source_code">From Source Code</a></li>
+<li><a href="#installation_configuration">Post-Install Configuration</a></li>
+</ul></li>
+
+    <li><a href="#user_guide">Quick User Guide</a><ul>
+<li><a href="#guia_preparacion">Systematic Review Preparation</a></li>
+<li><a href="#guia_busqueda">Search Stage</a></li>
+<li><a href="#guia_screening_title_abstract">Title and Abstract Screening Stage</a></li>
+<li><a href="#guide_review_full_text">Full-Text Review</a></li>
+<li><a href="#guide_report">Reporting</a></li>
+    </ul></li>
+
+    <li><a href="#search">Search</a></li>
+    <li><a href="#software_spec">Software Specifications</a><ul>
+    <li><a href="#technical_specifications">Technical Features</a></li>
+    <li><a href="#user_specifications">User Specifications</a></li>
+</ul>
+
+    </li>
+<li><a href="#glossary">Glossary</a></li>
+<li><a href="#license">License</a></li>
+</ul>
+
+</nav>
+
+<article>
+<h2 id="introduction">Introduction</h2>
+<p>Buhos is an application that enables the development and management of systematic literature reviews. It may be used individually, on the researcher&apos;s computer or online for developing collaborative reviews. The software supports and records each step of the systematic review process: document search, screening of useful documents for the research, information extraction and reports generation.</p>
+<p>Buhos is a cross-platform software that runs on multiple operating systems. To install the software for individual use, you may use the Windows installer available in the <a href="https://github.com/clbustos/buhos-windows-tk/tree/master/windows_installer">Buhos Windows Toolkit</a>. Packages for Debian, Linux and CentOS can be downloaded from <a href="https://packager.io/gh/clbustos/buhos">https://packager.io/gh/clbustos/buhos</a>. To install directly from the source code, it can be downloaded from  <a href="https://github.com/clbustos/buhos">https://github.com/clbustos/buhos</a>.</p>
+<p>Buhos is delivered under the BSD-3 free code license, which allows you and your organization to copy, modify and distribute the program, on condition that the author&apos;s name not be used to promote derivative products without his express permission.</p>
+<p>Claudio Bustos Navarrete is the software developer and maintainer. Any questions, please e-mail clbustos@gmail.com</p>
+<p>Buhos software development collaborators:</p>
+<ul>
+<li>Mar&iacute;a Gabriela Morales: Initial concept, revision of Manual, articles.</li>
+<li>Daniel Lermanda: Communication strategy consultant.</li>
+<li>Pedro Salcedo, Alejandro D&iacute;az: Requirements assessment.</li>
+<li>Fabiola S&aacute;ez, Astrid Sarmiento: Revision of Manual.</li>
+<li>Liz Medina: English translation, home page and Manual. </li>
+</ul>
+
+<h3><span id="caracteristicas_principales" class="anchor"></span>Main Software Features</h3>
+<p>Buhos is a development and management software that covers all phases and aspects of the systematic literature review process.   To this end the software&apos;s features are:</p>
+    
+<table class="table table-bordered">
+<tbody>
+<tr >
+<td ><strong>Stage </strong></td>
+<td ><strong>Requirements</strong></td>
+<td ><strong>Characteristics</strong></td>
+</tr>
+<tr >
+<td >Startup</td>
+<td ><p>Clearly define the objectives, article inclusion and exclusion criteria, a time window, as well as the approach to be adopted.</p>
+<p>Assign reviewers to perform article evaluations and analyses.</p></td>
+
+<td ><p>Each systematic review is provided with a specialized form to record all the required information.</p>
+<p>Groups are generated to organize the assignment of document reviewers. Each reviewer may participate in one or more reviews.</p>
+<p>In each review, a member is chosen to act as the administrator.</p>
+<p>The administrator of a systematic review has the following functions: (a) assign documents to reviewers, (b) resolve which documents are to be included and excluded at each stage, (c) manage the review&apos;s <strong>canonical documents</strong>, along with their files, and (d) decide to proceed to the next review stage.</p></td>
+</tr>
+<tr >
+<td >Search</td>
+<td><p>Carry out an exhaustive follow-up of the searches done in different bibliographic bases, on Google or other media.</p>
+<p>Integrate the records obtained from each database into a common list, eliminating duplicates.</p>
+<p>Include in the theoretical or methodological reviews, texts frequently cited in the records obtained in the search, that do not necessarily pertain directly  to the search domain.</p></td>
+<td ><p>The searches may be directly imported in BibTeX format, with specific support for Wos, Scopus and Ebscohost.</p>
+<p>Supplemental information can be obtained from Crossref, using DOI to eliminate duplications.</p>
+<p>Information is obtained on citations by articles in the searches.</p>
+<p>The original records with their references are standardized in a single format called <strong>canonical document</strong>.</p></td>
+</tr>
+<tr >
+<td >Document Screening</td>
+<td ><p>Rapidly select useful articles based on the information in their titles and abstracts.</p>
+<p>Include the citations found in articles but not included in the original searches (<strong>backward snowballing</strong>).</p></td>
+<td ><p>Whole or partial documents can be assigned to the reviewers.</p>
+<p>The decisions of each reviewer evaluating the documents are recorded, and it is the administrator&apos;s function to select which articles will go forward to the full-text review stage.</p>
+<p>Reasons for including or excluding an article may be recorded as comments or tags, common to all the reviewers.</p>
+<p>In order for a reference to a specific document to be selected as eligible for inclusion in the literature review process, the reference must appear in a minimum number of articles flagged as relevant during the screening of title and abstract stage. This number is pre-defined by the administrator (Backward Snowballing).</p></td>
+</tr>
+<tr >
+<td >Full-text review and information extraction</td>
+<td ><p>A repository or warehouse is provided of the articles in full format -- usually PDF -- for reading.</p>
+<p>Extract information from a text using forms customized for each review.</p>
+<p>Identify the relationship between the articles analyzed.</p></td>
+<td ><p>There is a repository of the files per systematic review that can serve to document the process or that can be assigned to the <strong>canonical documents</strong> that are pending review.</p>
+<p>There is a work interface in which each document is shown and a single form per systematic review that enables the extraction of required information and the addition of comments to the citations of other canonical documents. This, along with the use of tags, makes it possible to obtain more information on the net of citations.</p></td>
+</tr>
+<tr >
+<td >Reporting</td>
+<td><p>Report on the systematic review process according to established standards, considering:</p>
+<ol style="list-style-type: lower-alpha">
+<li>Process for reporting how many documents are incorporated in the search phase, and which documents are included and excluded in each phase, specifying the reasons.</li>
+<li>Process of reporting the data obtained from the extraction phase, so as to generate the final document in the most efficient manner possible.</li>
+</ol></td>
+<td ><p>Complete information on the included and excluded documents is submitted, following the PRISMA protocol.</p>
+<p>A report on the process is submitted, with the decisions taken by each evaluator and by the administrator at each stage of the process.</p>
+<p>Data extraction reports are provided for subsequent presentation in a final document. </p></td>
+</tr>
+</tbody>
+</table>
+</article>
+
+
+<article>
+<h2><span id="installation" class="anchor"></span>Installation</h2>
+<p>Buhos software can be used locally or online. In the case of local use, the application deploys a web server that can only be accessed by a computer that the software is installed in. In distributed form, the application integrates with a web server such as Apache or Nginx, using Passenger.</p>
+
+<p>Vagrant configurations are available for using Buhos in virtual server mode.</p>
+
+<h3><span id="installation_windows" class="anchor"></span>Windows</h3>
+<p>There is a Windows installer for local use of the application. The latest version is available in:</p>
+<p>https://github.com/clbustos/buhos-windows-tk/tree/master/windows_installer</p>
+
+<h3><span id="installation_linux" class="anchor"></span>Debian / Ubuntu /CentOS</h3>
+
+<p>For Debian, Ubuntu and CentOS, packages and installation instructions are available on <a href="https://packager.io/gh/clbustos/buhos">https://packager.io/gh/clbustos/buhos</a>. For example, to install on Ubuntu 16.04 and configure the application as a service on port 4567,  </p>
+
+<pre><code>wget -qO- https://dl.packager.io/srv/clbustos/buhos/key | sudo apt-key add -
+sudo wget -O /etc/apt/sources.list.d/buhos.list \
+https://dl.packager.io/srv/clbustos/buhos/master/installer/ubuntu/16.04.repo
+sudo apt-get update
+sudo apt-get install buhos
+sudo buhos config:set PORT=4567
+sudo buhos scale web=1
+sudo buhos restart
+</code></pre>
+
+<h3><span id="installation_vagrant" class="anchor"></span>Vagrant should be run</h3>
+   <p>In the directories <code>vendor/vagrant_alpine</code> and <code>vendor/vagrant_ubuntu_16</code> configurations of Vagrant can be found for Alpine and Ubuntu 16.04, respectively. They can be run using:</p>
+    <pre><code>vagrant up</code></pre>
+<p>By default, the application is configured to run on port 4567.</p>
+
+<h3><span id="installation_source_code" class="anchor"></span>From Source Code</h3>
+
+    <p>As a prerequisite for installing the software, Ruby 2.4 or higher should be installed, with development libraries for MySQL and SQlite. In addition, the  <code>bundler</code> gem must be installed to download the gems needed for the software to work.</p>
+<p>En Ubuntu 16, the following instructions install all the required dependencies: </p>
+<pre><code>
+apt-get update
+apt-get upgrade -y
+
+apt-get install -y \
+  cloc \
+  gdal-bin \
+  gdebi-core \
+  git \
+  libcurl4-openssl-dev \
+  libgdal-dev \
+  libproj-dev \
+  libxml2-dev \
+  libxml2-dev \
+  build-essential \
+  libmysqlclient-dev \
+  libsqlite3-dev
+
+gpg --keyserver hkp://keys.gnupg.net \
+      --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
+curl -sSL https://get.rvm.io | bash -s $1
+</code></pre>
+<p>In Alpine, the instructions required to install the dependencies are:</p>
+<pre><code>
+apk update
+apk upgrade
+apk --update add --virtual \
+    build-dependencies \
+    ruby-dev \
+    build-base \
+    ruby \
+    libffi-dev \
+    libxml2-dev \
+    libxslt-dev \
+    mariadb-dev \
+    sqlite-dev \
+    ruby-json \
+    ruby-bigdecimal \
+    ruby-etc
+</code></pre>
+<p>Once the dependencies have been obtained, the source code must be copied from github, using:</p>
+<pre><code>
+git clone git@github.com:clbustos/buhos.git
+cd buhos</code></pre>
+<p>The gems needed are obtained using the gem bundler.</p>
+
+<pre><code>bundler install</code></pre>
+
+<p>If you wish to use MySQL, the data base must be created beforehand. As a root user, a script similar to the following can be used:</p>
+
+<pre><code>CREATE DATABASES buhos;
+CREATE USER buhos_user@localhost IDENTIFIED BY &apos;password&apos;;
+GRANT ALL PRIVILEGES ON buhos.* TO buhos_user@localhost;
+FLUSH PRIVILEGES;</code></pre>
+
+    <p>To run the application locally, you can deploy a web server (<code>thin</code> in *nix o <code>puma</code> in Windows), using:</p>
+<pre><code>ruby app.rb</code></pre>
+<p>The program can be accessed using any browser in the URI: <code>http://localhost:4567</code></p>
+<p>If you wish to deploy the software online, you can provide the application via Nginx or Apache, with Passenger. Instructions for integrating a Passenger application into a Linux web server are found in:</p>
+<p><a href="https://www.phusionpassenger.com/library/walkthroughs/deploy/ruby/ownserver/integration_mode.html">https://www.phusionpassenger.com/library/walkthroughs/deploy/ruby/ownserver/integration_mode.html</a></p>
+<p>As a reference, the Buhos configuration in Nginx for a typical web server is:</p>
+<pre><code>
+server {
+listen 80
+root /home/&lt;user&gt;/&lt;base_dir&gt;;
+passenger_enabled on;
+passenger_ruby &lt;ruby_location&gt;
+}</code></pre>
+<p>In this case, the application could be accessed using:</p>
+<pre><code>http://localhost/</code></pre>
+<h3><span id="installation_configuration" class="anchor"></span>Post-Install Configuration</h3>
+<p>The first time the application is run, it must be configured. There are 4 steps:</p>
+<ol style="list-style-type: decimal">
+<li>Language selection.</li>
+<li>Configuration of basic features (database to be used, institutional proxy connection and Scopus use).</li>
+<li>Verify the connection to the database.</li>
+<li>Restart the application.</li>
+</ol>
+
+<p>As a first step of the configuration the installation language must be selected.</p>
+<p><img class='border img-fluid interface' src="images/image1.png" /></p>
+<p>Secondly, basic information for the operation of the system must be provided. This means selecting the use of a sqlite database for local use, or a MySQL database for distributed use. If you&rsquo;re not sure what choice to make, use SQLite. If you have a Scopus development key, you can enter it; the proxy settings will be used if you must use one for your university or work.</p>
+
+<p><img class='border img-fluid interface' src="images/image2.png" /></p>
+<p>Once the application is configured, it tries to connect to the database. If the process is successful, a confirmation message appears and a button to start populating the database is displayed. This process lasts from 30 to 60 seconds, depending on the computer.</p>
+<p><img class='border img-fluid interface' src="images/image3.png" /></p>
+<p>If the process result is successful, the following screen is displayed:</p>
+<p><img class='border img-fluid interface' src="images/image4.png" /></p>
+<p>At the end of the process, restart the application. By default, a user with administrator permissions will receive &apos;admin&apos; as their user name and password.</p>
+<p><img class='border img-fluid interface' src="images/image5.png" /></p>
+<p>To close the application in Linux,  <kbd>Ctrl+C</kbd> can be used in the console. In Windows, close the window displaying the system logs.</p>
+</article>
+<article>
+<h2 id="user_guide">User Guide</h2>
+
+<p>For a local installation, enter the respective URL (<a href="http://localhost:4567">http://localhost:4567</a> to enter the application. For an installation that has just been carried out, remember that the user name and password are both&apos; admin&apos;.</p>
+<p><img class='border img-fluid interface' src="images/image6.png" /></p>
+<p>The dashboard is the main working interface, accessed by clicking on the application name or the &apos;My Dashboard&apos; link.</p>
+<p><img class='border img-fluid interface' src="images/image7.png" /></p>
+<p>The software functionality is demonstrated by the systematic review of a group (cluster) of articles on software for the performance of systematic reviews.</p>
+<h3><span id="guia_preparacion" class="anchor"></span>Preparation of the Systematic Review</h3>
+
+<p>The systematic review is created by pressing the &quot;New Systematic Review&quot; button. A form is then displayed in which the main features of the research must be entered, including the period of years within which the search should be performed, and the categories that the study falls under according to the Cooper classification.</p>
+
+<p><img class='border img-fluid interface' src="images/image8.png" /></p>
+<p>Once the systematic review has been created, a technical sheet is displayed. A wide variety of possible actions will emerge for deploying the systematic review.</p>
+<p><img class='border img-fluid interface' src="images/image9.png" /></p>
+<p>As shown here, three objectives were defined, thus a customized form can be created for the systematic review. To do this, click on the &apos;Analysis Fields&apos; button.</p>
+<p>Each form is made up of one or more fields. First, indicate where the field should be located inside the form. Second, indicate the code that the field will have in the database. Said code may only consist of lowercase letters, numbers and underscores. Third, the text to be contained in the form will be included in the description, and, finally, the field type. When you have finished, click &lsquo;Create New Field&apos;.</p>
+<p>In the sample case, three fields are required: tools, stage and function. When the form definition is complete, generate the form by pressing the button &apos;Update Customized Field Record Table&apos;.</p>
+<p><img class='border img-fluid interface' src="images/image10.png" /></p>
+<h3><span id="guia_busqueda" class="anchor"></span>Search Stage</h3>
+<p>By default, the system will initiate the search stage of the systematic review. At this stage, the searches done by the different evaluators must be recorded, whether carried out in bibliographic databases or informally, on different search engines.</p>
+<p>To simplify the process of recording searches, the user dashboard can be accessed by clicking on the application name, which will call up the following interface.</p>
+<p><img class='border img-fluid interface' src="images/image11.png" /></p>
+<p>The principal medium for incorporating search information is the entry of BibTeX files, available in virtually all bibliographic reference systems. Some examples: EndNote, Refwords and Mendeley.</p>
+<p>For demonstration purposes, in the software&apos;s installation directory there is a manual. bib file with six texts, selected from the developer&apos;s customized Mendeley repository. To enter this search, click on the appropriate dashboard button.</p>
+<p>Before filling out the form, the font type must first be specified. The following search modalities are offered in indexed databases:  informal search, backward snowballing (search in references contained in selected texts), and forward snowballing (search for articles that cite already-selected texts). The example given is that of an informal search. Secondly, entry of the database is requested from which the search was obtained. In the case shown, upon being obtained directly from Mendeley, the&apos; general&apos; option applies. Thirdly, the search criterion is left blank, as the indexed database is no longer used, and the description is completed. Finally, enter the manual. bib file in the last space on the form.</p>
+<p><img class='border img-fluid interface' src="images/image12.png" /></p>
+<p>When the searches have been incorporated, they must be processed and later validated. To process them, click on the respective check box and click &lsquo;Process searches&rsquo;.</p>
+<p><img class='border img-fluid interface' src="images/image13.png" /></p>
+<p>As the system processes the search, it captures as much information as possible from the records stored in the BibTeX file. It can be verified that the system has detected six records.</p>
+<p><img class='border img-fluid interface' src="images/image14.png" /></p>
+<p>Upon entering &apos;Records&apos;, the system is seen to have entered information on the authors, year of publication, title, as well as the documents&apos; DOI. In the example BibTeX contains the abstract of each article, and can be checked by pressing the corresponding button. Each search record is assigned a &lsquo;canonical document&rsquo; that corresponds to the unique reference in the system to that document. Consequently, if various records of the same text with the same DOI come up in different searches, the system will assign all such records to one same canonical document.</p>
+<p><img class='border img-fluid interface' src="images/image15.png" /></p>
+<p>Since the references are the ones expected, the search that was performed can then be validated. To validate, return to the search screen, click on the appropriate check box, and click the &apos;Valid&apos; button. The result should be as follows</p>
+<p><img class='border img-fluid interface' src="images/image17.png" /></p>
+<p>Once each and every search has been defined as valid or invalid, then we can proceed to the next stage: screening of titles and abstracts. To do this, enter the dashboard, pressing on the application title. To manage the validations, click on the line &lsquo;Total number of review searches: 1&rsquo;</p>
+<p><img class='border img-fluid interface' src="images/image18.png" /></p>
+<p>In the search management screen, all searches performed by the various users are displayed, and the option offered of validating or invalidating them. Since an option already exists for all the searches, the option to advance to the next stage is offered.</p>
+<p><img class='border img-fluid interface' src="images/image19.png" /></p>
+<h3><span id="guia_screening_title_abstract" class="anchor"></span>Title and Abstract Screening Stage</h3>
+<p>Once the records have been defined, they should be reviewed to confirm whether they are useful or not. To determine this, the first criterion is to see whether the article title and abstract evidence eligibility for inclusion of the document into the study.</p>
+<p>In the next stage, the system displays the administration interface.</p>
+<p><img class='border img-fluid interface' src="images/image20.png" /></p>
+<p>By default, Buhos considers two users: an administrator with all the permissions to administer the system, and an analyst with an &apos;analyst&apos; password and key, who is authorized to check the systematic reviews assigned to him/her. In the example, all documents were assigned to both users to show the resolution of divergences. To view, click on the &apos;CD Allocations&apos; button.</p>
+<p>All the documents can be assigned to a user, using the &apos;Assign All&apos; buttons or assigning each document individually. In this case, the two &apos;Assign All&apos; buttons were pressed.</p>
+<p><img class='border img-fluid interface' src="images/image21.png"/></p>
+<p>The result should be similar to the following:</p>
+<p><img class='border img-fluid interface' src="images/image22.png" /></p>
+<p>Upon entering the user dashboard, it will be seen that, as an administrator, we have six documents to resolve. As an evaluator, it is shown that six documents must be decided on. Next, click on the final link to begin the evaluation process.</p>
+<p><img class='border img-fluid interface' src="images/image23.png" /></p>
+<p>The upper portion of the evaluation interface provides general information on the stage in question, the review objectives, and how far advanced it is. In this case there are six documents that have not been decided upon.</p>
+<p><img class='border img-fluid interface' src="images/image24.png" /></p>
+<p>Each document pending assessment is submitted forthwith. The title and abstract of each document is shown, its reference in APA format, and how many citations it has. It is on the basis of this information that it must be decided whether the document provides enough information. It is observed that the sample abstract does not provide information on systematic review software, but rather refers to a study on how reviews are conducted. Therefore the decision should be marked &lsquo;No&rsquo; and its status as research on reviews can be added on as a tag.</p>
+<p><img class='border img-fluid interface' src="images/image25.png" /></p>
+<p>When the above-referenced decision is made, the color of the frame is seen to change and the selected tag is added.</p>
+<p>The abstract of the following text on GAPScreener presents some of the key words that were established when the systematic review was defined. Judging from the document title and abstract the document is clearly relevant to the research. In fact, a tag can even be added indicating that the document is useful for the screening stage.</p>
+<p><img class='border img-fluid interface' src="images/image26.png" /></p>
+<p>During the review of all the documents, the user dashboard display indicates when there are no unchecked documents left.</p>
+<p><img class='border img-fluid interface' src="images/image27.png" /></p>
+<p>The same review process will now be performed, but this time by the user analyst. To proceed, log out by clicking on the &apos;Exit&apos; link at the top of the site,</p>
+
+<p><img class='border img-fluid interface' src="./images/image28.png"/></p>
+<p>then log into the system as an analyst. By default, both the username and the password are &apos;analyst&apos;.</p>
+<p><img class='border img-fluid interface' src="images/image29.png" /></p>
+<p>The analyst&rsquo;s user&apos;s dashboard indicates that he/she has no access to administration tools, but he/she does indicate that he/she has documents awaiting decisions.</p>
+<p><img class='border img-fluid interface' src="images/image30.png" /></p>
+<p>In this example, the analyst points out that all the documents are important for the investigation.</p>
+<p>Once all the users have decided on the texts, the administrator must decide whether it is necessary for him/her to resolve whether each document should or should not proceed to the following stage. We log into the system as administrator (user: admin, password: admin) and go to the link &apos;Unresolved Review 6 canonical documents&apos;.</p>
+<p>The&apos; Decision statistics&apos; box shows five documents with the decision pattern of two affirmatives (&apos;Yes&apos;), one document that one user decides that it is relevant, and another that it is not.</p>
+<p><img class='border img-fluid interface' src="images/image31.png" /></p>
+<p>Since there is unanimity on five documents, click on the             &lsquo;Accept&apos; button in the corresponding row. The resolutions for the texts will have changed from &apos;No resolution&apos; to &apos;Yes&apos;.</p>
+<p><img class='border img-fluid interface' src="images/image32.png" /></p>
+<p>To see which texts the discrepancy occurred in, click on the  &apos;View&apos; button. That text will be precisely the one that an administrator pointed out was invalid.</p>
+<p><img class='border img-fluid interface' src="images/image33.png"/></p>
+<p>In this instance various alternatives exist, depending on the protocol: the technical sheet can be used to report the discrepancy to the researchers, a third researcher can be incorporated to resolve the issue or to exercise the administrator&apos;s function and issue a resolution. In the example, the last option was taken by clicking on the &apos;Yes&apos; button, leaving the decision for the subsequent stage of full-text review.</p>
+<p>When the page is uploaded again, it is stated that the status of all the canonical documents has been resolved, thus allowing you to proceed to the next stage. Prior to this, references must be generated using Crossref. The process can take several minutes. If you want to verify the references that have been made, you can check them in the search interface.</p>
+<p><img class='border img-fluid interface' src="images/image34.png" /></p>
+<p>Once the system resolves the  Crossref references, you can advance to the next stage. In this next stage, you check whether there are any references to more than a certain number of documents selected in the title and abstract review stage. The number of references is listed in the reference data sheet as &apos;Minimum number of RTR documents for reference review&apos;; by default, and by default, it is set at two.  In our example, there is no reference that meets this condition, therefore proceed to the full-text review stage.</p>
+<p><img class='border img-fluid interface' src="images/image35.png" /></p>
+<h3><span id="guide_review_full_text" class="anchor"></span>Full-Text Review</h3>
+<p>In full-text review, aside from the interfaces for assigning users to documents and issuing resolutions on them, files can be assigned to each canonical document. Four of these documents are open-access, so they are in the tutorial&apos;s resource directory and can be massively incorporated with the &apos;Batch File Management&apos; button.</p>
+<p><img class='border img-fluid interface' src="images/image36.png" /></p>
+<p>To enter the files, click on the &apos;Browse&apos; button and select the four PDF files contained in the folder.</p>
+<p><img class='border img-fluid interface' src="images/image37.png" /></p>
+<p>The four documents have been uploaded, but are not assigned to any canonical documents. If you click on &apos;Automatically Assign to Canonical Documents&apos;, the system will try to assign them using metadata from the PDFs.</p>
+<p><img class='border img-fluid interface' src="images/image38.png" /></p>
+<p>The automatic assignment is quite satisfactory, as it correctly assigns three of the four documents. To assign the missing document for the ExaCT file, simply click on the selection box &apos;No Canonical Document&apos;, and select the appropriate canonical document.</p>
+<p>Two of the selected articles are not free access. For purposes of our example, they will be excluded from review as they are considered texts without access, although in a real review the authors should be contacted directly to obtain a copy. To do this, as was done in the text and title review stage, go to the decisions per document section and click on the &apos;No&apos; button to resolve not to include them.</p>
+<p><img class='border img-fluid interface' src="images/image39.png" /></p>
+<p>The remaining four texts will be assigned manually to the administrator only. To do this, go to the &apos;CD Assignments&apos; button, and click on the buttons for the specific texts to make the corresponding assignments.</p>
+<p><img class='border img-fluid interface' src="images/image40.png" /></p>
+<p>The user dashboard will indicate that just four documents lack resolution and four still to be analyzed.</p>
+<p><img class='border img-fluid interface' src="images/image41.png" /></p>
+<p>The interface of this stage shows whether or not there were specific instructions at the time of document assignment for each user, as well as whether any decisions have been made regarding the document.</p>
+<p>To decide if the document is pertinent after reading it completely, as well as to extract information from it, click on the &apos;Extract information&apos; button.</p>
+<p><img class='border img-fluid interface' src="images/image42.png" /></p>
+<p>The decision and information extraction interface displays a box with the PDF file. It is the same decision box as the one for the title and screening review stage, with the questions added that were defined in the custom analysis fields at the time of the systematic review&apos;s preparation.</p>
+<p><img class='border img-fluid interface' src="images/image43.png" /></p>
+<p>Upon completion of the process, from the dashboard we proceed to the management of the review and accept all the studies, then advance to the final stage.</p>
+<p><img class='border img-fluid interface' src="images/image44.png" /></p>
+<h3><span id="guide_report" class="anchor"></span>Reporting</h3>
+<p>The systematic review report includes 3 online reports and 2 export types, to BibTeX and Graphml. The latter format, which stores the directed network of citations by the canonical documents, can be viewed in programs such as yEd or Gephi.</p>
+<p><img class='border img-fluid interface' src="images/image45.png" /></p>
+<p>First, we have a PRISMA flowchart that can be edited in a vector drawing program such as Inkscape.</p>
+<p><img class='border img-fluid interface' src="images/image46.png" /></p>
+<p>The data extraction report gives us the list of live codes displayed on each form, with the number of times it appears and the text where it is located.</p>
+<p><img class='border img-fluid interface' src="images/image47.png" /></p>
+<p>A complete breakdown of the income earned is also provided in the forms.</p>
+<p><img class='border img-fluid interface' src="images/image48.png" /></p>
+<p>The process report shows all decisions and resolutions of the administrator and the evaluators.</p>
+<p><img class='border img-fluid interface' src="images/image49.png" /></p>
+</article>
+
+
+<article>
+    <h2 id="search">Search</h2>
+    <p>After the main features of the Systematic Review have been defined, the articles that are relevant (i.e., that meet the purposes of the research), should be identified. The section on <a href="#external_import">Importing from indexed databases</a> shows how to obtain the required BibTeX files from different databases.</p>
+    <p>The processing of imported files involves obtaining their Records and References. The Records correspond to the documents listed in each file. In some databases, such as WoS and Scopus, each Record also lists the articles cited in it. In the system, each of these documents is called a Reference.</p>
+    <p>Duplication is a major issue in the work with Records and References, i. e., records and references that appear in the databases as different, but that actually point to the same document. Within the system, this unique representation of a document is designated as a Canonical Document.</p>
+    <p>Each Register is necessarily associated with a Canonical Document. When each search is processed, if a Record&apos;s DOI, or its Scopus or WoS identifier, matches that of a previously existing Canonical Document, the Record is associated with the Canonical Document. Otherwise, a new Canonical Document is created.</p>
+    <p>The situation is different from References. There are great disparities between how different bases describe references, and if these are entered manually, they can appear in many different formats. Therefore, the system literally saves the text of each Reference and, if possible, tries to associate it with an existing Canonical Document. Thus it is possible, for example, that a Record may have references from various sources -- WoS, Scopus and manual references -- and each one can contribute different clues to associate this document with the respective Canonical Documents.</p>
+    <p>The following Entity-Relationship diagram shows the existing relationship between the different entities related to the searches.</p><img src="images/Entity_relation_search_es.png" class="border img-fluid interface"/><p>Occasionally it is interesting to know to what extent the Records coincide between different Searches. In the Search interface, the button &apos;Compare Records by Search&apos; displays each Canonical Document and the Search it is found in.</p><img src="images/compare_records.png" class="border img-fluid interface"/></article>
+
+
+<article>
+<h2><span id="external_import" class="anchor"></span>Importing from indexed databases</h2>
+    <p>Buhos mainly uses <code>BibTeX</code> to import and export from bibliographic reference systems and indexed databases.   It is the method that RefWorks uses, for example, to interact with different databases.</p>
+<p>Occasionally, databases export defective BibTeX files. If the system rejects them, we recommend importing your search into a bibliographic reference system and exporting BibTex from there. Mendeley has been used successfully for this.</p>
+<h3><span id="external_import_wos" class="anchor"></span>Web of Science</h3>
+
+<p>1.  Formulate a query in the search box. It is advisable to learn how to use the advanced box, as it allows for greater flexibility.</p>
+<p><img class='border img-fluid interface' src="images/image50.png" /></p>
+<p>2.  Select the &quot;Save to Other File Formats&quot; option in the export box.</p>
+<p><img class='border img-fluid interface' src="images/image51.png" /></p>
+<p>3.  Select the following options in the dialog box.</p>
+<ul>
+<li>Records: Enter manually from 1 to the number of records displayed by the system on the left hand side.</li>
+<li>Record context: Full Record and Cited References</li>
+<li>File Format: BibTeX</li>
+</ul>
+<p><img class='border img-fluid interface' src="images/image52.png" /></p>
+<p>4.  Download the BibTeX file into a dedicated folder.</p>
+<h3><span id="external_import_scopus" class="anchor"></span>Scopus</h3>
+
+<p>1.  Formulate a query in the search box. It is advisable to learn how to use the advanced box, as it allows for greater flexibility.</p>
+<p><img class='border img-fluid interface' src="images/image53.png" /></p>
+<p>2. Click on the&apos; All&apos; link in the upper part of the searches and select the check box &apos;Select All&apos;.</p>
+<p><img class='border img-fluid interface' src="images/image54.png" /></p>
+<p>3. Click on the &ldquo;Export&rdquo; button. A dialogue box will appear.</p>
+<p><img class='border img-fluid interface' src="images/image55.png" /></p>
+<p>4. Select BibTeX as the format and select all the information boxes to be exported.</p>
+<p><img class='border img-fluid interface' src="./images/image56.png"/></p>
+<p>5.  Click the&apos; Export&apos; button to download the BibTeX file to its dedicated folder.</p>
+<h3><span id="external_import_ebscohost" class="anchor"></span>Ebscohost</h3>
+<p>1.  Formulate a query in the search box. It is advisable to learn how to use the advanced box, as it allows for greater flexibility.</p>
+<p><img class='border img-fluid interface' src="images/image57.png" /></p>
+<p>Select the biggest number of records per page. Exporting BibTeX is only done page by page to avoid any need for making extra effort.</p>
+<p><img class='border img-fluid interface' src="images/image58.png" /></p>
+<p>3. - Select &quot;Share&quot; on the right hand side and choose the option to add results to the folder.</p>
+<p><img class='border img-fluid interface' src="images/image59.png" /></p>
+<p>4.  Once all the items have been selected in all the pages, go to the folder in the site header.</p>
+<p><img class='border img-fluid interface' src="images/image60.png" /></p>
+<p>5.  Click on the button &apos;Select/Deselect All&apos; button and click the &apos;Export&apos; button on the right.</p>
+<p><img class='border img-fluid interface' src="images/image61.png" /></p>
+<p>6. Click on the checkbox to delete the already-exported items, and select BibTeX as your export option.</p>
+<p><img class='border img-fluid interface' src="images/image62.png" /></p>
+<p>7.  Ebscohost will display the export result onscreen. To store, use &apos;Save As...&apos; or Control+S. Remember to save the file with the  &apos;. bib&apos; extension.</p>
+
+<p><img class='border img-fluid interface' src="images/image63.png" /></p>
+</article>
+<article>
+<h2 id="software_spec">Software Specifications</h2>
+    <h3><span id="technical_specifications" class="anchor"></span>Technical Features</h3>
+
+<p>X is a web application that uses the client server model. The server runs in Sinatra, a framework for web development, on Ruby. Any browser can be used as a client if it is standard-compliant, and accepts HTML5 and Javascript.</p>
+<p> To access the database, Sequel is used, an abstraction database layer supporting over 10 types of database. The system has been extensively tested in Sqlite for local use, and in Mysql for online use by multiple users.</p>
+<p>On the client side, bootstrap<sup>4</sup>⁠ is used, which is a toolkit for generating HTML, CSS and Javascript. It was chosen because of the ease with which it allows during development and the compatibility it ensures between different types of browsers.</p>
+<h3><span id="user_specifications" class="anchor"></span>User Specifications</h3>
+<p>Software Objective: Manage the complete process of systematic literature review</p>
+<p>Functionalities:</p>
+<ul>
+<li>Access to researchers (users) and research groups.</li>
+<li>Each reviewer can participate in one or more groups.</li>
+<li>Each group has an administrator.</li>
+<li>Each review belongs to a group and has an administrator, which may be a different one than the group administrator.</li>
+<li>The Systematic Review Manager (SRM) is responsible for assigning documents to group members, resolving which documents will move on to the next stage, and including files in each review.</li>
+<li>Each user has a password, that he/she may change as they wish.</li>
+<li>Each user has a Role.</li>
+<li>Each Role makes provision for one or more Authorizations.</li>
+<li>Each Authorization allows the performance of a specific action within the system.</li>
+<li>Different Roles may be created that enable generating unique configurations of authorizations in the system.</li>
+<li>Each systematic review (hereafter SR) contains the following metadata<ul>
+<li>Research Name</li>
+<li>Creation Date</li>
+<li>Research Objectives</li>
+<li>Years to be Searched</li>
+<li>General Description</li>
+<li>Keywords</li>
+<li>Minimum number of references to include in stages of reference screening (1)</li>
+</ul></li>
+<li>Each document analyzed in the stages is designated as a Canonical Document (CD), which contains at least the following data:<ul>
+<li>Title</li>
+<li>Authors</li>
+<li>Publication Year</li>
+<li>DOI</li>
+<li>WOS Identifier</li>
+<li>Scopus Identifier</li>
+<li>Ebscohost Identifier</li>
+</ul></li>
+<li>The system comprises 5 stages: search, title and abstract screening, reference screening, full-text review and reporting.</li>
+<li>In the reference screening stage, the system automatically presents all the references of the selected documents in the title and abstract screening stage with a number of references equal to or greater than that expressed in (1).</li>
+<li>Each SR at any time is found in a single stage.</li>
+<li>Changes can be made in previous steps, which automatically generate effects on subsequent ones.</li>
+<li>Each SR can account for 1 or more Searches. Each Search considers the following metadata.<ul>
+<li>Source:  Indexed database, informal search, backward snowballing, forward snowballing.</li>
+<li>Database</li>
+<li>Search Date</li>
+<li>Search criteria: May be the literal field (SCOPUS) or the manual procedure to carry it out (WoS)</li>
+<li>Supplementary Description</li>
+</ul></li>
+<li><p>Each search contains one or more Records. Each Record contains the following information</p>
+<ul>
+<li>Source database</li>
+<li>Source database I.D.</li>
+<li>Type</li>
+<li>Authors</li>
+<li>Year</li>
+<li>Title</li>
+<li>If an article: Journal name, volume number, year, page numbers.</li>
+<li>If a book chapter: Book title, publishers, page numbers.</li>
+<li>If a conference: Conference title, date, place.</li>
+<li>DOI</li>
+<li>PMID</li>
+</ul></li>
+<li>The records of each Search are imported into the system using BibTeX.</li>
+<li>Each Record is saved in read-only mode. The researcher may not modify the records.</li>
+<li>Each Record can account for 1 or more References. References are extracted from BibTex, imported by network from Crossref, or modified manually.</li>
+<li>Each Register is associated with a CD.</li>
+<li>Records having an identical DOI or EID (Scopus), are associated with the same CD.</li>
+<li>Each Reference can be associated with a CD. The association is done by DOI.</li>
+<li>If a Record or Reference has no DOI, a Crossref search can be performed to enable locating the Record&apos;s DOI.</li>
+<li>The system detects the CD with the same DOI. The CDs can be merged into a unique CD.</li>
+<li>Each SR can have one or more associated files.</li>
+<li>Each CD can be association to one or more files of its SR.</li>
+<li>In the stages of title and abstract screening, reference screening and full-text review, the group administrator assigns one or more CDs to each member.</li>
+<li>Each Assignment of a DC to a User may come with instructions. These comments differ between stages.</li>
+<li>In the stages of title and abstract screening, reference screening and full-text review, each user assigned to a CD can decide whether or not the CD is relevant to the stage concerned. Also, the status of &apos;undecided&apos; may be used temporarily. </li>
+<li>Each Decision is provided with a comment.</li>
+<li>At each stage, the administrator decides when the CD will advance to the next stage. This decision is arbitrary.</li>
+<li>Each SR is supplied with a set of Tags and Tag Types.</li>
+<li>Each Tag can be associated with a CD by a user, either positively (user considers the tag as applicable), or negatively (user believes it does not apply).</li>
+<li>If a tag receives only negative votes, it does not appear in the decision interface. This means that if a user creates a Tag and subsequently votes no, the Tag disappears from the interface, but is not deleted from the system.</li>
+<li>The administrator can only delete a Tag from the system  if all its votes are negative.</li>
+<li>Each SR has a series of Analytical Fields. These create  a form to be used in the full-text review stage.</li>
+<li>Each user can send and receive Personal Messages to individuals in their associated groups. These messages can only be viewed by the parties involved and the administrator.</li>
+<li>Each user can send Systematic Review Messages. The messages are visible to the Systematic Review members.</li>
+<li>A PRISMA flowchart is provided to represent the document inclusion and exclusion process.</li>
+<li>A process report is presented, showing the users&apos; decisions on with respect to each document, as well as the resolutions of the administrators.</li>
+<li>A report of the data extraction process is displayed, with a tabular presentation of free codes and the results list by form.</li>
+</ul>
+</article>
+<article>
+    <h2 id="glossary">Glossary</h2>
+    <dl>
+        <dt>Backward snowballing</dt><dd>Incorporation of documents citing the  texts that were selected in the review. At this time Buhos is not yet equipped to perform this action automatically. However, once the documents are selected, a search can be done in an important bibliographic base and the results stored in the Search interface.</dd>
+        <dt>Backward snowballing</dt><dd>Incorporation of the documents that are significantly or frequently cited in the texts selected by the review. This process is carried out automatically during the stage of reference screening, for the references of texts selected in the Title and Summary Screening stage.</dd>
+        <dt>Search</dt><dd>Search performed in an indexed bibliographic database, an informal search, or the result of a forward or backward snowballing. The system has full compatibility with BibTeX for importing and exporting the searches.</dd>
+        <dt>Canonical Document</dt><dd>Unique representation of a document in the system. Both the records that appear in the searches and the references listed in these records can be assigned to a canonical document.</dd>
+        <dt>DOI®</dt><dd>
+        <p>DOI is an acronym for &apos;Digital Object Identifier&apos;.</p>
+        <p>The DOI system is designed to work on Internet. A DOI name is permanently assigned to an object to provide a persistent link related to the object, including where the object or the information on it is found on the Internet. While information on the object may change over time, its DOI name should not change.</p>
+        <p>Source: <a href="https://www.doi.org/doi_handbook/1_Introduction.html">https://www.doi.org/doi_handbook/1_Introduction.html</a></p>
+    </dd>
+        <dt>Reference</dt><dd>Reference created based on a Record. It may or may not be assigned to a Canonical Document. The system allows different sources of references to be imported for each record, thus it is possible that two references within a Record may be for the same text. Should this be the case, it must be ensured that the Canonical Document to which they refer is the same one as well.</dd>
+        <dt>Record</dt><dd>Document listed in a Search Always assigned to a Canonical Document. If one same text appears in two or more searches, each time it comes up it will be a different Record, but all of them will point to the same Canonical Document.</dd>
+
+    </dl>
+</article>
+<article>
+    <h2 id="license">BSD 3-Clause License</h2>
+
+    <p>Copyright (c) 2016-2018, Claudio Bustos Navarrete</p>
+    <p>All rights reserved.</p>
+
+<p>Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:</p>
+
+    <p>1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.</p>
+    <p>2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.</p>
+    <p>3. Neither the name of the copyright holder nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.</p>
+
+    <p>THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</p>
+
+</article>
+<footer>© 2016-2018 Claudio Bustos   All rights reserved.</footer>
+</body>
