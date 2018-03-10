@@ -148,4 +148,5 @@ class Record < Sequel::Model
   def references
     Reference.where(:id => references_id)
   end
+
 end

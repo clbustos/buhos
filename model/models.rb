@@ -73,3 +73,6 @@ class RecordsReferences < Sequel::Model
 
 end
 
+class RecordsSearch < Sequel::Model
+
+end
