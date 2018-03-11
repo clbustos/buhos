@@ -24,9 +24,10 @@
 <h1>BUHOS</h1>
 <p>Systematic Literature Revision Management Software</p>
 <p>User Manual</p>
-<p>Version 1.0.0 - Revision 7 March 2018</p>
+<p>Version 1.0.0  (draft)- Revision 11 March 2018</p>
     <p>Author: Claudio Bustos</p>
     <p>Reviewers: Maria Gabriela Morales, Fabiola S&aacute;ez, Astrid Sarmiento</p>
+    <p>Translation to English: Elizabeth Medina</p>
     <p>&copy; Copyright Claudio Bustos 2018</p>
 </header>
 <nav>
@@ -46,7 +47,7 @@
 
     <li><a href="#user_guide">Quick User Guide</a><ul>
 <li><a href="#guia_preparacion">Systematic Review Preparation</a></li>
-<li><a href="#guia_busqueda">Search Stage</a></li>
+<li><a href="#guide_search">Search Stage</a></li>
 <li><a href="#guia_screening_title_abstract">Title and Abstract Screening Stage</a></li>
 <li><a href="#guide_review_full_text">Full-Text Review</a></li>
 <li><a href="#guide_report">Reporting</a></li>
@@ -77,11 +78,11 @@
 <li>Daniel Lermanda: Communication strategy consultant.</li>
 <li>Pedro Salcedo, Alejandro D&iacute;az: Requirements assessment.</li>
 <li>Fabiola S&aacute;ez, Astrid Sarmiento: Revision of Manual.</li>
-<li>Liz Medina: English translation, home page and Manual. </li>
+<li>Liz Medina: English translation of home page and Manual. </li>
 </ul>
 
 <h3><span id="caracteristicas_principales" class="anchor"></span>Main Software Features</h3>
-<p>Buhos is a development and management software that covers all phases and aspects of the systematic literature review process.   To this end the software&apos;s features are:</p>
+<p>Buhos is a development and management software that covers all phases and aspects of the systematic literature review process. To this end the software&apos;s features are:</p>
     
 <table class="table table-bordered">
 <tbody>
@@ -175,7 +176,7 @@ sudo buhos restart
 <h3><span id="installation_source_code" class="anchor"></span>From Source Code</h3>
 
     <p>As a prerequisite for installing the software, Ruby 2.4 or higher should be installed, with development libraries for MySQL and SQlite. In addition, the  <code>bundler</code> gem must be installed to download the gems needed for the software to work.</p>
-<p>En Ubuntu 16, the following instructions install all the required dependencies: </p>
+<p>In Ubuntu 16, the following instructions install all the required dependencies: </p>
 <pre><code>
 apt-get update
 apt-get upgrade -y
@@ -257,7 +258,7 @@ passenger_ruby &lt;ruby_location&gt;
 
 <p>As a first step of the configuration the installation language must be selected.</p>
 <p><img class='border img-fluid interface' src="images/image1.png" /></p>
-<p>Secondly, basic information for the operation of the system must be provided. This means selecting the use of a sqlite database for local use, or a MySQL database for distributed use. If you&rsquo;re not sure what choice to make, use SQLite. If you have a Scopus development key, you can enter it; the proxy settings will be used if you must use one for your university or work.</p>
+<p>Secondly, basic information for the operation of the system must be provided. This means selecting the use of a SQLite database for local use, or a MySQL database for distributed use. If you&rsquo;re not sure what choice to make, use SQLite. If you have a Scopus development key, you can enter it; the proxy settings will be used if you must use one for your university or work.</p>
 
 <p><img class='border img-fluid interface' src="images/image2.png" /></p>
 <p>Once the application is configured, it tries to connect to the database. If the process is successful, a confirmation message appears and a button to start populating the database is displayed. This process lasts from 30 to 60 seconds, depending on the computer.</p>
@@ -269,31 +270,31 @@ passenger_ruby &lt;ruby_location&gt;
 <p>To close the application in Linux,  <kbd>Ctrl+C</kbd> can be used in the console. In Windows, close the window displaying the system logs.</p>
 </article>
 <article>
-<h2 id="user_guide">User Guide</h2>
+<h2 id="user_guide">Quick User Guide</h2>
 
-<p>For a local installation, enter the respective URL (<a href="http://localhost:4567">http://localhost:4567</a> to enter the application. For an installation that has just been carried out, remember that the user name and password are both&apos; admin&apos;.</p>
+<p>For a local installation, enter the respective URL (<a href="http://localhost:4567">http://localhost:4567</a>) to enter the application. For an installation that has just been carried out, remember that the user name and password are both &apos;admin&apos;.</p>
 <p><img class='border img-fluid interface' src="images/image6.png" /></p>
 <p>The dashboard is the main working interface, accessed by clicking on the application name or the &apos;My Dashboard&apos; link.</p>
 <p><img class='border img-fluid interface' src="images/image7.png" /></p>
 <p>The software functionality is demonstrated by the systematic review of a group (cluster) of articles on software for the performance of systematic reviews.</p>
 <h3><span id="guia_preparacion" class="anchor"></span>Preparation of the Systematic Review</h3>
 
-<p>The systematic review is created by pressing the &quot;New Systematic Review&quot; button. A form is then displayed in which the main features of the research must be entered, including the period of years within which the search should be performed, and the categories that the study falls under according to the Cooper classification.</p>
+<p>The systematic review is created by pressing the &quot;New Systematic Review&quot; button. A form is then displayed in which the main features of the research must be entered, including the period of years within which the search should be performed, and the categories that the study falls under according to <a href='http://www.cedu.niu.edu/~walker/research/Taxonomy%20of%20Lit%20Reviews.pdf'>Cooper's taxonomy</a>.</p>
 
 <p><img class='border img-fluid interface' src="images/image8.png" /></p>
 <p>Once the systematic review has been created, a technical sheet is displayed. A wide variety of possible actions will emerge for deploying the systematic review.</p>
 <p><img class='border img-fluid interface' src="images/image9.png" /></p>
 <p>As shown here, three objectives were defined, thus a customized form can be created for the systematic review. To do this, click on the &apos;Analysis Fields&apos; button.</p>
-<p>Each form is made up of one or more fields. First, indicate where the field should be located inside the form. Second, indicate the code that the field will have in the database. Said code may only consist of lowercase letters, numbers and underscores. Third, the text to be contained in the form will be included in the description, and, finally, the field type. When you have finished, click &lsquo;Create New Field&apos;.</p>
+<p>Each form is made up of one or more fields. First, indicate where the field should be located inside the form.  Second, the text to be contained in the form will be included in the description. Third, indicate the code that the field will have in the database. Said code may only consist of lowercase letters, numbers and underscores. Finally, indicate the field type (short text, long text, multiple choice). When you have finished, click &lsquo;Create New Field&apos;.</p>
 <p>In the sample case, three fields are required: tools, stage and function. When the form definition is complete, generate the form by pressing the button &apos;Update Customized Field Record Table&apos;.</p>
 <p><img class='border img-fluid interface' src="images/image10.png" /></p>
-<h3><span id="guia_busqueda" class="anchor"></span>Search Stage</h3>
+<h3><span id="guide_search" class="anchor"></span>Search Stage</h3>
 <p>By default, the system will initiate the search stage of the systematic review. At this stage, the searches done by the different evaluators must be recorded, whether carried out in bibliographic databases or informally, on different search engines.</p>
 <p>To simplify the process of recording searches, the user dashboard can be accessed by clicking on the application name, which will call up the following interface.</p>
 <p><img class='border img-fluid interface' src="images/image11.png" /></p>
 <p>The principal medium for incorporating search information is the entry of BibTeX files, available in virtually all bibliographic reference systems. Some examples: EndNote, Refwords and Mendeley.</p>
 <p>For demonstration purposes, in the software&apos;s installation directory there is a manual. bib file with six texts, selected from the developer&apos;s customized Mendeley repository. To enter this search, click on the appropriate dashboard button.</p>
-<p>Before filling out the form, the font type must first be specified. The following search modalities are offered in indexed databases:  informal search, backward snowballing (search in references contained in selected texts), and forward snowballing (search for articles that cite already-selected texts). The example given is that of an informal search. Secondly, entry of the database is requested from which the search was obtained. In the case shown, upon being obtained directly from Mendeley, the&apos; general&apos; option applies. Thirdly, the search criterion is left blank, as the indexed database is no longer used, and the description is completed. Finally, enter the manual. bib file in the last space on the form.</p>
+<p>Before filling out the form, the source type must first be specified. The following search modalities are offered: search in a indexed databases, informal search, backward snowballing (search in references contained in selected texts), and forward snowballing (search for articles that cite already-selected texts). The example given is that of an informal search. Secondly, entry of the database is requested from which the search was obtained. In the case shown, upon being obtained directly from Mendeley, the&apos; general&apos; option applies. Thirdly, the search criterion is left blank, as the indexed database is no longer used, and the description is completed. Finally, enter the manual. bib file in the last space on the form.</p>
 <p><img class='border img-fluid interface' src="images/image12.png" /></p>
 <p>When the searches have been incorporated, they must be processed and later validated. To process them, click on the respective check box and click &lsquo;Process searches&rsquo;.</p>
 <p><img class='border img-fluid interface' src="images/image13.png" /></p>
@@ -311,7 +312,7 @@ passenger_ruby &lt;ruby_location&gt;
 <p>Once the records have been defined, they should be reviewed to confirm whether they are useful or not. To determine this, the first criterion is to see whether the article title and abstract evidence eligibility for inclusion of the document into the study.</p>
 <p>In the next stage, the system displays the administration interface.</p>
 <p><img class='border img-fluid interface' src="images/image20.png" /></p>
-<p>By default, Buhos considers two users: an administrator with all the permissions to administer the system, and an analyst with an &apos;analyst&apos; password and key, who is authorized to check the systematic reviews assigned to him/her. In the example, all documents were assigned to both users to show the resolution of divergences. To view, click on the &apos;CD Allocations&apos; button.</p>
+<p>By default, Buhos considers two users: an administrator with all the permissions to administer the system, and an analyst with an &apos;analyst&apos; username and password, who is authorized to check the systematic reviews assigned to him/her. In the example, all documents were assigned to both users to show the resolution of divergences. To view, click on the &apos;CD Allocations&apos; button.</p>
 <p>All the documents can be assigned to a user, using the &apos;Assign All&apos; buttons or assigning each document individually. In this case, the two &apos;Assign All&apos; buttons were pressed.</p>
 <p><img class='border img-fluid interface' src="images/image21.png"/></p>
 <p>The result should be similar to the following:</p>
@@ -323,12 +324,11 @@ passenger_ruby &lt;ruby_location&gt;
 <p>Each document pending assessment is submitted forthwith. The title and abstract of each document is shown, its reference in APA format, and how many citations it has. It is on the basis of this information that it must be decided whether the document provides enough information. It is observed that the sample abstract does not provide information on systematic review software, but rather refers to a study on how reviews are conducted. Therefore the decision should be marked &lsquo;No&rsquo; and its status as research on reviews can be added on as a tag.</p>
 <p><img class='border img-fluid interface' src="images/image25.png" /></p>
 <p>When the above-referenced decision is made, the color of the frame is seen to change and the selected tag is added.</p>
-<p>The abstract of the following text on GAPScreener presents some of the key words that were established when the systematic review was defined. Judging from the document title and abstract the document is clearly relevant to the research. In fact, a tag can even be added indicating that the document is useful for the screening stage.</p>
+<p>The abstract of the following text on GAPScreener presents some of the key words that were established when the systematic review was defined. Judging from the document title and abstract the document is clearly relevant to the research. In fact, a tag can even be added indicating that the software refered on document is useful for the screening stage.</p>
 <p><img class='border img-fluid interface' src="images/image26.png" /></p>
 <p>During the review of all the documents, the user dashboard display indicates when there are no unchecked documents left.</p>
 <p><img class='border img-fluid interface' src="images/image27.png" /></p>
-<p>The same review process will now be performed, but this time by the user analyst. To proceed, log out by clicking on the &apos;Exit&apos; link at the top of the site,</p>
-
+<p>The same review process will now be performed, but this time by the user analyst. To proceed, log out by clicking on the &apos;Logout&apos; link at the top of the site,</p>
 <p><img class='border img-fluid interface' src="./images/image28.png"/></p>
 <p>then log into the system as an analyst. By default, both the username and the password are &apos;analyst&apos;.</p>
 <p><img class='border img-fluid interface' src="images/image29.png" /></p>
@@ -338,14 +338,14 @@ passenger_ruby &lt;ruby_location&gt;
 <p>Once all the users have decided on the texts, the administrator must decide whether it is necessary for him/her to resolve whether each document should or should not proceed to the following stage. We log into the system as administrator (user: admin, password: admin) and go to the link &apos;Unresolved Review 6 canonical documents&apos;.</p>
 <p>The&apos; Decision statistics&apos; box shows five documents with the decision pattern of two affirmatives (&apos;Yes&apos;), one document that one user decides that it is relevant, and another that it is not.</p>
 <p><img class='border img-fluid interface' src="images/image31.png" /></p>
-<p>Since there is unanimity on five documents, click on the             &lsquo;Accept&apos; button in the corresponding row. The resolutions for the texts will have changed from &apos;No resolution&apos; to &apos;Yes&apos;.</p>
+<p>Since there is unanimity on five documents, click on the &lsquo;Accept&apos; button in the corresponding row. The resolutions for the texts will have changed from &apos;No resolution&apos; to &apos;Yes&apos;.</p>
 <p><img class='border img-fluid interface' src="images/image32.png" /></p>
 <p>To see which texts the discrepancy occurred in, click on the  &apos;View&apos; button. That text will be precisely the one that an administrator pointed out was invalid.</p>
 <p><img class='border img-fluid interface' src="images/image33.png"/></p>
-<p>In this instance various alternatives exist, depending on the protocol: the technical sheet can be used to report the discrepancy to the researchers, a third researcher can be incorporated to resolve the issue or to exercise the administrator&apos;s function and issue a resolution. In the example, the last option was taken by clicking on the &apos;Yes&apos; button, leaving the decision for the subsequent stage of full-text review.</p>
+<p>In this instance various alternatives exist, depending on the systematic review protocol: the technical sheet can be used to report the discrepancy to the researchers, a third researcher can be incorporated to resolve the issue or to exercise the administrator&apos;s function and issue a resolution. In the example, the last option was taken by clicking on the &apos;Yes&apos; button, leaving the decision for the subsequent stage of full-text review.</p>
 <p>When the page is uploaded again, it is stated that the status of all the canonical documents has been resolved, thus allowing you to proceed to the next stage. Prior to this, references must be generated using Crossref. The process can take several minutes. If you want to verify the references that have been made, you can check them in the search interface.</p>
 <p><img class='border img-fluid interface' src="images/image34.png" /></p>
-<p>Once the system resolves the  Crossref references, you can advance to the next stage. In this next stage, you check whether there are any references to more than a certain number of documents selected in the title and abstract review stage. The number of references is listed in the reference data sheet as &apos;Minimum number of RTR documents for reference review&apos;; by default, and by default, it is set at two.  In our example, there is no reference that meets this condition, therefore proceed to the full-text review stage.</p>
+<p>Once the system resolves the  Crossref references, you can advance to the next stage. In this next stage, you check whether there are any references to more than a certain number of documents selected in the title and abstract review stage. The number of references is listed in the reference data sheet as &apos;Minimum number of RTR documents for reference review&apos;; by default, it is set at two.  In our example, there is no reference that meets this condition, therefore proceed to the full-text review stage.</p>
 <p><img class='border img-fluid interface' src="images/image35.png" /></p>
 <h3><span id="guide_review_full_text" class="anchor"></span>Full-Text Review</h3>
 <p>In full-text review, aside from the interfaces for assigning users to documents and issuing resolutions on them, files can be assigned to each canonical document. Four of these documents are open-access, so they are in the tutorial&apos;s resource directory and can be massively incorporated with the &apos;Batch File Management&apos; button.</p>
@@ -369,13 +369,13 @@ passenger_ruby &lt;ruby_location&gt;
 <p>Upon completion of the process, from the dashboard we proceed to the management of the review and accept all the studies, then advance to the final stage.</p>
 <p><img class='border img-fluid interface' src="images/image44.png" /></p>
 <h3><span id="guide_report" class="anchor"></span>Reporting</h3>
-<p>The systematic review report includes 3 online reports and 2 export types, to BibTeX and Graphml. The latter format, which stores the directed network of citations by the canonical documents, can be viewed in programs such as yEd or Gephi.</p>
+    <p>The systematic review report includes 3 online reports and 2 export types, to BibTeX and GraphML. The latter format, which stores the directed network of citations by the canonical documents, can be viewed in programs such as <a href="https://www.yworks.com/products/yed">yEd</a> or <a href="https://gephi.org/">Gephi</a>.</p>
 <p><img class='border img-fluid interface' src="images/image45.png" /></p>
-<p>First, we have a PRISMA flowchart that can be edited in a vector drawing program such as Inkscape.</p>
+    <p>First, we have a PRISMA flowchart that can be edited in a vector drawing program such as <a href="https://inkscape.org/es/">Inkscape</a>.</p>
 <p><img class='border img-fluid interface' src="images/image46.png" /></p>
 <p>The data extraction report gives us the list of live codes displayed on each form, with the number of times it appears and the text where it is located.</p>
 <p><img class='border img-fluid interface' src="images/image47.png" /></p>
-<p>A complete breakdown of the income earned is also provided in the forms.</p>
+<p>A complete breakdown of the data extracted on each document is also provided.</p>
 <p><img class='border img-fluid interface' src="images/image48.png" /></p>
 <p>The process report shows all decisions and resolutions of the administrator and the evaluators.</p>
 <p><img class='border img-fluid interface' src="images/image49.png" /></p>
@@ -385,16 +385,16 @@ passenger_ruby &lt;ruby_location&gt;
 <article>
     <h2 id="search">Search</h2>
     <p>After the main features of the Systematic Review have been defined, the articles that are relevant (i.e., that meet the purposes of the research), should be identified. The section on <a href="#external_import">Importing from indexed databases</a> shows how to obtain the required BibTeX files from different databases.</p>
-    <p>The processing of imported files involves obtaining their Records and References. The Records correspond to the documents listed in each file. In some databases, such as WoS and Scopus, each Record also lists the articles cited in it. In the system, each of these documents is called a Reference.</p>
-    <p>Duplication is a major issue in the work with Records and References, i. e., records and references that appear in the databases as different, but that actually point to the same document. Within the system, this unique representation of a document is designated as a Canonical Document.</p>
+    <p>The processing of imported files involves obtaining their <strong>Records</strong> and <strong>References</strong>. The Records correspond to the documents listed in each file. In some databases, such as WoS and Scopus, each Record also lists the articles cited in it. In the system, each of these documents is called a Reference.</p>
+    <p>Duplication is a major issue in the work with Records and References, i. e., records and references that appear in the databases as different, but that actually point to the same paper or document. Within the system, this unique representation of a document is designated as a <strong>Canonical Document</strong>.</p>
     <p>Each Register is necessarily associated with a Canonical Document. When each search is processed, if a Record&apos;s DOI, or its Scopus or WoS identifier, matches that of a previously existing Canonical Document, the Record is associated with the Canonical Document. Otherwise, a new Canonical Document is created.</p>
     <p>The situation is different from References. There are great disparities between how different bases describe references, and if these are entered manually, they can appear in many different formats. Therefore, the system literally saves the text of each Reference and, if possible, tries to associate it with an existing Canonical Document. Thus it is possible, for example, that a Record may have references from various sources -- WoS, Scopus and manual references -- and each one can contribute different clues to associate this document with the respective Canonical Documents.</p>
-    <p>The following Entity-Relationship diagram shows the existing relationship between the different entities related to the searches.</p><img src="images/Entity_relation_search_es.png" class="border img-fluid interface"/><p>Occasionally it is interesting to know to what extent the Records coincide between different Searches. In the Search interface, the button &apos;Compare Records by Search&apos; displays each Canonical Document and the Search it is found in.</p><img src="images/compare_records.png" class="border img-fluid interface"/></article>
+    <p>The following Entity-Relationship diagram shows the existing relationship between the different entities related to the searches.</p><img src="images/Entity_relation_search_en.png" class="border img-fluid interface"/><p>Occasionally it is interesting to know to what extent the Records coincide between different Searches. In the Search interface, the button &apos;Compare Records by Search&apos; displays each Canonical Document and the Search it is found in.</p><img src="images/compare_records.png" class="border img-fluid interface"/></article>
 
 
 <article>
 <h2><span id="external_import" class="anchor"></span>Importing from indexed databases</h2>
-    <p>Buhos mainly uses <code>BibTeX</code> to import and export from bibliographic reference systems and indexed databases.   It is the method that RefWorks uses, for example, to interact with different databases.</p>
+    <p>Buhos mainly uses <code>BibTeX</code> to import and export from bibliographic reference systems and indexed databases.   It is the method that <a href="https://www.refworks.com/">RefWorks</a> uses, for example, to interact with different databases.</p>
 <p>Occasionally, databases export defective BibTeX files. If the system rejects them, we recommend importing your search into a bibliographic reference system and exporting BibTex from there. Mendeley has been used successfully for this.</p>
 <h3><span id="external_import_wos" class="anchor"></span>Web of Science</h3>
 
@@ -442,9 +442,9 @@ passenger_ruby &lt;ruby_location&gt;
 <h2 id="software_spec">Software Specifications</h2>
     <h3><span id="technical_specifications" class="anchor"></span>Technical Features</h3>
 
-<p>X is a web application that uses the client server model. The server runs in Sinatra, a framework for web development, on Ruby. Any browser can be used as a client if it is standard-compliant, and accepts HTML5 and Javascript.</p>
-<p> To access the database, Sequel is used, an abstraction database layer supporting over 10 types of database. The system has been extensively tested in Sqlite for local use, and in Mysql for online use by multiple users.</p>
-<p>On the client side, bootstrap<sup>4</sup>⁠ is used, which is a toolkit for generating HTML, CSS and Javascript. It was chosen because of the ease with which it allows during development and the compatibility it ensures between different types of browsers.</p>
+<p><strong>Buhos</strong> is a web application that uses the client server model. The server runs in Sinatra, a framework for web development, on Ruby. Any browser can be used as a client if it is standard-compliant, and accepts HTML5 and Javascript.</p>
+<p> To access the database, Sequel is used, an abstraction database layer supporting over 10 types of database. The system has been extensively tested in SQLite for local use, and in MySQL for online use by multiple users.</p>
+<p>On the client side, Bootstrap is used, which is a toolkit for generating HTML, CSS and Javascript. It was chosen because of the ease with which it allows during development and the compatibility it ensures between different types of browsers.</p>
 <h3><span id="user_specifications" class="anchor"></span>User Specifications</h3>
 <p>Software Objective: Manage the complete process of systematic literature review</p>
 <p>Functionalities:</p>
@@ -483,7 +483,7 @@ passenger_ruby &lt;ruby_location&gt;
 <li>Changes can be made in previous steps, which automatically generate effects on subsequent ones.</li>
 <li>Each SR can account for 1 or more Searches. Each Search considers the following metadata.<ul>
 <li>Source:  Indexed database, informal search, backward snowballing, forward snowballing.</li>
-<li>Database</li>
+<li>Database </li>
 <li>Search Date</li>
 <li>Search criteria: May be the literal field (SCOPUS) or the manual procedure to carry it out (WoS)</li>
 <li>Supplementary Description</li>
@@ -521,7 +521,7 @@ passenger_ruby &lt;ruby_location&gt;
 <li>Each Tag can be associated with a CD by a user, either positively (user considers the tag as applicable), or negatively (user believes it does not apply).</li>
 <li>If a tag receives only negative votes, it does not appear in the decision interface. This means that if a user creates a Tag and subsequently votes no, the Tag disappears from the interface, but is not deleted from the system.</li>
 <li>The administrator can only delete a Tag from the system  if all its votes are negative.</li>
-<li>Each SR has a series of Analytical Fields. These create  a form to be used in the full-text review stage.</li>
+<li>Each SR has a series of Custom Analysis Fields. These create  a Customized Form to be used in the full-text review stage.</li>
 <li>Each user can send and receive Personal Messages to individuals in their associated groups. These messages can only be viewed by the parties involved and the administrator.</li>
 <li>Each user can send Systematic Review Messages. The messages are visible to the Systematic Review members.</li>
 <li>A PRISMA flowchart is provided to represent the document inclusion and exclusion process.</li>

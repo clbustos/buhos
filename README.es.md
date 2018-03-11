@@ -24,7 +24,7 @@ Plataforma basada en web para gestionar el proceso completo de revisiones sistem
 
 ## Documentación
 
-Se cuenta con un manual disponible en  [español](https://buhos.org/manual/es/), que contiene una guía rápida para entender la metodología de revisión sistemática que sustena el software.
+Se cuenta con un manual disponible en  [español](https://buhos.org/manual/es/) e [inglés](https://buhos.org/manual/en/), que contiene una guía rápida para entender la metodología de revisión sistemática que sustena el software.
 
 La API está documentada usando [Yard](https://yardoc.org/) y está disponible en [https://www.buhos.org/api](https://www.buhos.org/api). Sólo se encuentra disponible en inglés.
 
