@@ -183,6 +183,7 @@ module Buhos
       begin
         db=Sequel.connect(ENV['DATABASE_URL'], :encoding => 'utf8',:reconnect=>true)
       rescue Sequel::DatabaseConnectionError => e
+        @db_url=ENV['DATABASE_URL']
         @error_conexion=e
       end
       haml "installer/populate_database".to_sym, :layout=>"installer/layout".to_sym

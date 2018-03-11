@@ -22,7 +22,7 @@
 - if @error_conexion
   %div.alert.alert-danger
     =t("installer.error_connection_database")
-
+    %p=@db_url
   %pre.alert.alert-danger=@error_conexion.message
 - else
   %div.alert.alert-success=t("installer.successful_connection")
