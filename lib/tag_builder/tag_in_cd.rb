@@ -25,13 +25,13 @@
 # CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
 # OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-require_relative 'tag_mixin.rb'
-module TagBuilder
 
+require_relative 'tag_mixin.rb'
+#
+module TagBuilder
+  # Provides information and HTML for tags related to Canonical Documents
   class TagInCd
     include TagMixin
-    attr_reader :id, :text, :positivos, :negativos
-    attr_accessor :predeterminado
     def initialize(votos)
       initialize_common(votos)
 

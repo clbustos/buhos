@@ -32,6 +32,8 @@
 # cd tags and relations tags are mannaged by a object inside the class
 #
 module TagMixin
+  attr_reader :id, :text, :positivos, :negativos
+  attr_accessor :predeterminado
 
   def initialize_common(votos)
     @votos=votos
@@ -64,12 +66,12 @@ module TagMixin
     @predeterminado or @positivos > 0
   end
 
-  def boton_positivo_html
+  def boton_positivo_html(ru)
     raise "To implement"
   end
 
 
-  def boton_negativo_html
+  def boton_negativo_html(ru)
     raise "To implement"
   end
 end

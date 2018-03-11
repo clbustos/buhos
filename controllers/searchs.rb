@@ -192,7 +192,7 @@ post '/searches/update_batch' do
     elsif params['action']=='invalid'
       searches.update(:valid=>false)
     elsif params['action']=='delete'
-      searches.delete()
+      searches.each do |search| search.delete() end
     elsif params['action']=='process'
       results=Result.new
       searches.each do |search|

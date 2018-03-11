@@ -59,6 +59,7 @@ class Search < Sequel::Model
   end
 
 
+
   def self.get_source_name(source)
     source.nil? ? "source.error_no_source" : SOURCES_NAMES[source.to_sym]
   end
@@ -122,7 +123,10 @@ class Search < Sequel::Model
       $db[:records_searches].where(:search_id => self[:id], :record_id => records_por_borrar).delete
     end
   end
-  #
-  # @return
+  # Delete a search, and all references and associations to records
+  def delete
+    RecordsSearch.where(search_id:self[:id]).delete
+    super
+  end
 
 end
