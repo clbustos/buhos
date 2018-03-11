@@ -177,7 +177,7 @@ module Buhos
     end
 
     get '/installer/populate_database' do
-
+      ENV['DATABASE_URL']=nil;
       Dotenv.load(env_file)
       @error_conexion=false
       begin
