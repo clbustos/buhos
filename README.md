@@ -130,7 +130,7 @@ The app uses a web-based configuration.  Once the server starts, point your brow
 
 If you wish to use a MySQL database, you should create it before configuring the sofware.  Using the MySQL root user, the instructions would be:
 
-    CREATE DATABASES buhos;
+    CREATE DATABASE buhos;
     CREATE USER buhos_user@localhost IDENTIFIED BY 'password';
     GRANT ALL PRIVILEGES ON buhos.* TO buhos_user@localhost;
     FLUSH PRIVILEGES;

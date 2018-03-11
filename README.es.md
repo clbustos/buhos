@@ -129,7 +129,7 @@ La aplicación se configura mediante la web. Una vez que el servidor se inicia, 
 
 Si desea utilizar una base de datos MySQL, se debe crear antes de configurar el software. Usando el usuario root de MySQL, las instrucciones serían 
 
-    CREATE DATABASES buhos;
+    CREATE DATABASE buhos;
     CREATE USER buhos_user@localhost IDENTIFIED BY 'password';
     GRANT ALL PRIVILEGES ON buhos.* TO buhos_user@localhost;
     FLUSH PRIVILEGES;
