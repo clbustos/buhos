@@ -29,7 +29,10 @@ There is a user manual available in [English](https://buhos.org/manual/en/) and 
 The API is documented using [Yard](https://yardoc.org/) and is available on [https://www.buhos.org/api](https://www.buhos.org/api). Only available in English.
 
 
+
 ## Get Started
+
+There is a demo available on [https://demo.buhos.org](https://demo.buhos.org). You could use the software using 'admin' as username and password. Don't do anything important here, because the database is refreshed periodically.
 
 ### On Windows
 
