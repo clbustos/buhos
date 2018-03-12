@@ -67,10 +67,10 @@ HEREDOC
         end
         str+="<data key='d1'><![CDATA[#{CGI.escapeHTML(v[1].title)}]]></data>
 <data key='d2'>#{v[1].year.to_i}</data>
-<data key='d3'>#{ars.cd_count_entrada(v[0]).to_i}</data>
-<data key='output_n'>#{ars.cd_count_salida(v[0]).to_i}</data>
-<data key='d5'>#{ars.cd_en_registro?(v[0]) ? "true" : "false"}</data>
-<data key='d6'>#{ars.cd_en_reference?(v[0]) ? "true" : "false"}</data>
+<data key='d3'>#{ars.cd_count_incoming(v[0]).to_i}</data>
+<data key='output_n'>#{ars.cd_count_outgoing(v[0]).to_i}</data>
+<data key='d5'>#{ars.cd_in_record?(v[0]) ? "true" : "false"}</data>
+<data key='d6'>#{ars.cd_in_reference?(v[0]) ? "true" : "false"}</data>
 <data key='d7'>#{ars.cd_in_resolution_stage?(v[0], "screening_title_abstract") ? "true" : "false"}</data>
 </node>"
       }.join("\n")

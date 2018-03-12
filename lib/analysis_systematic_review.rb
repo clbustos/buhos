@@ -46,9 +46,9 @@ class AnalysisSystematicReview
   # References between canonical documents
   attr_reader :rec
   # Hash for canonical documents, with incoming citations
-  attr_reader :ref_count_entrada
+  attr_reader :ref_count_incoming
   # Hash for canonical documents, with out citations
-  attr_reader :ref_count_salida
+  attr_reader :ref_count_outgoing
   #
   # @param rs object Systematic_Review
   def initialize(rs)
@@ -60,16 +60,16 @@ class AnalysisSystematicReview
   def cd_hash
     @rs.cd_hash
   end
-  def cd_count_entrada(id)
-    @ref_count_entrada[id]
+  def cd_count_incoming(id)
+    @ref_count_incoming[id]
   end
 
-  def cd_count_entrada_rtr(id)
+  def cd_count_incoming_sta(id)
     @cd_reference_rtr[id]
   end
 
-  def cd_count_salida(id)
-    @ref_count_salida[id]
+  def cd_count_outgoing(id)
+    @ref_count_outgoing[id]
   end
 
   def cd_count_ref
@@ -82,12 +82,12 @@ class AnalysisSystematicReview
 
   # Check if a CD is part of a Record.
   # In other words, if CD is allocated to a Record inside one of its searches
-  def cd_en_registro?(id)
+  def cd_in_record?(id)
     @cd_reg_id.include? id
   end
   # Check if a CD is part of a Record.
   # In other words, if CD is allocated to a Reference inside to one of its searches
-  def cd_en_reference?(id)
+  def cd_in_reference?(id)
     @cd_ref_id.include? id
   end
   def cd_count_total
@@ -105,10 +105,10 @@ end
 private :process_basic_indicators
 
 def process_cite_number
-  @ref_count_entrada=@rec.to_hash_groups(:cd_end).inject({}) {|ac, v|
+  @ref_count_incoming=@rec.to_hash_groups(:cd_end).inject({}) {|ac, v|
     ac[v[0]]=v[1].length; ac
   }
-  @ref_count_salida=@rec.to_hash_groups(:cd_start).inject({}) {|ac, v|
+  @ref_count_outgoing=@rec.to_hash_groups(:cd_start).inject({}) {|ac, v|
     ac[v[0]]=v[1].length; ac
   }
 
@@ -139,10 +139,10 @@ def cd_in_resolution_stage?(id, stage)
 end
 
 def more_cited(n=20)
-  @ref_count_entrada.sort_by {|a| a[1]}.reverse[0...n]
+  @ref_count_incoming.sort_by {|a| a[1]}.reverse[0...n]
 end
 def with_more_references(n=20)
-  @ref_count_salida.sort_by {|a| a[1]}.reverse[0...n]
+  @ref_count_outgoing.sort_by {|a| a[1]}.reverse[0...n]
 end
 
 def pattern_order(a)
