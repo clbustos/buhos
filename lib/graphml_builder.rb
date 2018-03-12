@@ -39,7 +39,16 @@ class GraphML_Builder
       cd_hash=@sr.canonical_documents.order(:year).as_hash
     end
 
-    head=<<HEREDOC
+    head=build_head
+    nodos = build_nodes(ars, cd_hash)
+    edges= build_edges(ars, cd_hash)
+    footer="\n</graph>\n</graphml>"
+    [head, nodos, edges, footer].join("\n")
+  end
+
+  private
+  def build_head
+    <<HEREDOC
 <?xml version="1.0" encoding="UTF-8"?>
 <graphml xmlns="http://graphml.graphdrawing.org/xmlns"
 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -58,14 +67,22 @@ http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
 <graph id="G" edgedefault="directed">
 
 HEREDOC
-      nodos=cd_hash.map {|v|
-        str="<node id='n#{v[0]}'>"
-        if v[1].doi
-          str+="<data key='d0'><![CDATA[#{CGI.escapeHTML(v[1].doi)}]]></data>"
-        else
-          str+="<data key='d0'></data>"
-        end
-        str+="<data key='d1'><![CDATA[#{CGI.escapeHTML(v[1].title)}]]></data>
+  end
+  def build_edges(ars, cd_hash)
+    ars.rec.find_all {|x| cd_hash[x[:cd_start]] and cd_hash[x[:cd_end]]}.map {|v|
+      "<edge source='n#{v[:cd_start]}' target='n#{v[:cd_end]}' directed='true' />"
+    }.join("\n")
+  end
+
+  def build_nodes(ars, cd_hash)
+    cd_hash.map {|v|
+      str = "<node id='n#{v[0]}'>"
+      if v[1].doi
+        str += "<data key='d0'><![CDATA[#{CGI.escapeHTML(v[1].doi)}]]></data>"
+      else
+        str += "<data key='d0'></data>"
+      end
+      str += "<data key='d1'><![CDATA[#{CGI.escapeHTML(v[1].title)}]]></data>
 <data key='d2'>#{v[1].year.to_i}</data>
 <data key='d3'>#{ars.cd_count_incoming(v[0]).to_i}</data>
 <data key='output_n'>#{ars.cd_count_outgoing(v[0]).to_i}</data>
@@ -73,11 +90,6 @@ HEREDOC
 <data key='d6'>#{ars.cd_in_reference?(v[0]) ? "true" : "false"}</data>
 <data key='d7'>#{ars.cd_in_resolution_stage?(v[0], "screening_title_abstract") ? "true" : "false"}</data>
 </node>"
-      }.join("\n")
-      edges=ars.rec.find_all{|x| cd_hash[x[:cd_start]] and cd_hash[x[:cd_end]] }.map {|v|
-        "<edge source='n#{v[:cd_start]}' target='n#{v[:cd_end]}' directed='true' />"
-      }.join("\n")
-      footer="\n</graph>\n</graphml>"
-      [head, nodos, edges, footer].join("\n")
+    }.join("\n")
   end
 end
