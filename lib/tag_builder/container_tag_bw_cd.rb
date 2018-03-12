@@ -45,7 +45,7 @@ module TagBuilder
       # Ahora, los tags por defecto que falta por elegir
 
 
-      @review.t_classes_documents.each do |clase|
+      T_Class.classes_documents(@review).each do |clase|
         clase.tags.each do |tag|
           @class_tags.push(tag.id)
           unless @tag_cd_rs_ref.keys.include? tag.id

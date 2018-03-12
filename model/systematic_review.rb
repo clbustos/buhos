@@ -59,9 +59,9 @@ class SystematicReview < Sequel::Model
     Systematic_Review_SRTC.where(:sr_id=>self[:id]).map(:srtc_id)
   end
 
-  def t_classes_documents
-    @t_classes_documents||=t_classes_dataset.where(:type=>"document")
-  end
+#  def t_classes_documents
+#    @t_classes_documents||=t_classes_dataset.where(:type=>"document")
+#  end
 
   def statistics_tags(stage=nil)
     cd_query=1

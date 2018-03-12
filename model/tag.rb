@@ -39,6 +39,10 @@ class Tag < Sequel::Model
 end
 
 class T_Class < Sequel::Model
+
+  def self.classes_documents(sr)
+    T_Class.where(:systematic_review_id=>sr[:id], :type=>'document').or(:systematic_review_id=>sr[:id], :type=>'general')
+  end
   def tags
     Tag.join(:tag_in_classes, tag_id: :id ).select_all(:tags).where(:tc_id=>self.id)
   end

@@ -39,12 +39,11 @@ module TagBuilder
       @review=review
       @class_tags=[]
       @cd=cd
-      # Tags ya elegidos
+      # Tags already elected
       @tag_cd_rs=::TagInCd.tags_rs_cd(@review,cd).to_hash_groups(:tag_id)
-      # Ahora, los tags por defecto que falta por elegir
-
-
-      @review.t_classes_documents.each do |clase|
+      # Tag in classes
+      #$log.info(@review.t_classes_documents)
+      T_Class.classes_documents(@review).each do |clase|
         clase.tags.each do |tag|
           @class_tags.push(tag.id)
           unless @tag_cd_rs.keys.include? tag.id
