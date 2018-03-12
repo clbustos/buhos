@@ -70,25 +70,29 @@ module Sinatra
       def t_desc_value(term, value)
         "<strong>#{::I18n::t(term)}:</strong>&nbsp;#{value}"
       end
-      # Canonical title for systematic review pages
-      def t_systematic_review_title(sr_name, secondary, traslate_secondary=true)
-        secondary_traslation= traslate_secondary ? ::I18n::t(secondary) : secondary
-        @title="#{secondary_traslation} - #{::I18n::t(:systematic_review_title, sr_name:sr_name)}"
-        "<h2>#{::I18n::t(:systematic_review_title, sr_name:sr_name)}</h2><h3>#{secondary_traslation}</h3>"
 
+      def t_generic_title(object_name, secondary, translate_secondary=true)
+        secondary_traslation= translate_secondary ? ::I18n::t(secondary) : secondary
+        @title="#{secondary_traslation} - #{object_name}"
+        "<h2>#{object_name}</h2><h3>#{secondary_traslation}</h3>"
       end
 
-      def t_canonical_document_title(cd_title, secondary, traslate_secondary=true)
-        secondary_traslation= traslate_secondary ? ::I18n::t(secondary) : secondary
-        @title="#{secondary_traslation} - #{::I18n::t(:canonical_document_title, cd_title:cd_title)}"
-        "<h2>#{::I18n::t(:canonical_document_title, cd_title:cd_title)}</h2><h3>#{secondary_traslation}</h3>"
-
+      # Set title for systematic review pages
+      def t_systematic_review_title(sr_name, secondary, translate_secondary=true)
+        sr_title = ::I18n::t(:systematic_review_title, sr_name: sr_name)
+        t_generic_title(sr_title, secondary, translate_secondary)
       end
 
+      # Set title for canonical document pages
+      def t_canonical_document_title(cd_title, secondary, translate_secondary=true)
+        cd_title = ::I18n::t(:canonical_document_title, cd_title: cd_title)
+        t_generic_title(cd_title, secondary, translate_secondary)
+      end
+
+      # Set title for searches pages
       def t_search_title(sr_name, search_name, secondary)
         @title="#{::I18n::t(secondary)} - #{::I18n::t(:search_title, search_name:search_name)} - #{::I18n::t(:systematic_review_title_abbrev, sr_name:sr_name)}"
         "<h2>#{::I18n::t(:search_title, search_name: search_name)} - #{::I18n::t(:systematic_review_title_abbrev, sr_name:sr_name)}</h2><h3>#{::I18n::t(secondary)}</h3>"
-
       end
       def available_locales
         [:es,:en]
