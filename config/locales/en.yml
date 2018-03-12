@@ -554,7 +554,7 @@ en:
   Systematic_review: "Systematic review"
   Systematic_review_administration_stage: "Systematic review <strong>%{sr_name}</strong>: stage %{stage_name}"
   Systematic_review_automatic_categories: "Automatic systematic review categories"
-  Systematic_review_canonical_documents: "Systematic canonical document review"
+  Systematic_review_canonical_documents: "Canonical documents associated to systematic review  "
   Systematic_review_edit: "Systematic review editing"
   Systematic_review_fields: "Systematic review fields"
   Systematic_review_messages: "Messages for systematic review"

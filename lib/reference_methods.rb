@@ -41,12 +41,19 @@ module ReferenceMethods
     end
 
   end
-
-  def ref_apa_6
-    ##$log.info("#{self.class} #{author}")
-    doi_t = doi.to_s!="" ? "doi: #{doi}" : ""
-    "#{author} (#{year}). #{title}. #{journal}, #{volume}, #{pages}.#{doi_t}"
+  def ref_apa_6_base(text_author)
+    "#{text_author} (#{year}). #{title}. #{journal}, #{volume}, #{pages}.#{doi_t}"
   end
+  def doi_t
+    doi.to_s!="" ? "doi: #{doi}" : ""
+  end
+  def ref_apa_6
+    ref_apa_6_base(author)
+  end
+  def ref_apa_6_brief
+    ref_apa_6_base(authors_apa_6)
+  end
+
   def authors_apa_6
     return "--NA--" if author.nil?
     authors=author.split(" and ").map {|v| v.strip}
@@ -60,14 +67,9 @@ module ReferenceMethods
     end
     author_ref
   end
-  def ref_apa_6_brief
-    doi_t = doi.to_s!="" ? "doi: #{doi}" : ""
-    "#{authors_apa_6} (#{year}). #{title}. #{journal}, #{volume}, #{pages}.#{doi_t}"
-
-  end
   def ref_apa_6_brief_html
     doi_t = doi ? "doi: #{a_doi(doi)}" : ""
-    CGI.escapeHTML("#{authors_apa_6} (#{year}). #{title}. #{journal}, #{volume}, #{pages}.")+doi_t
+    CGI.escapeHTML("#{authors_apa_6} (#{year}). #{title}. <em>#{journal}, #{volume}</em>, #{pages}.")+doi_t
 
   end
 end
