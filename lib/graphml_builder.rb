@@ -26,11 +26,17 @@
 # OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+
+# Builds a GraphML XML for a given systematic review and stage
 class GraphML_Builder
+  # @param sr [SystematicReview]
+  # @param stage [String] name of stage. Could be nil
   def initialize(sr, stage)
     @sr=sr
     @stage=stage
   end
+  # Return a string with GraphML XML
+  # @return  [String]
   def generate_graphml
     ars=AnalysisSystematicReview.new(@sr)
     if @stage
@@ -59,9 +65,9 @@ http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
 <key id="d1" for="node" attr.name="title"      attr.type="string"/>
 <key id="d2" for="node" attr.name="year"       attr.type="int"/>
 <key id="d3" for="node" attr.name="input_n"    attr.type="int"/>
-<key id="d5" for="node" attr.name="on_register" attr.type="boolean"/>
-<key id="d6" for="node" attr.name="on_reference" attr.type="boolean"/>
-<key id="d7" for="node" attr.name="on_title_abstract" attr.type="boolean"/>
+<key id="d5" for="node" attr.name="record_on_search" attr.type="boolean"/>
+<key id="d6" for="node" attr.name="reference_from_record" attr.type="boolean"/>
+<key id="d7" for="node" attr.name="record_selected_screening_title_abstract" attr.type="boolean"/>
 <key id="output_n" for="node" attr.name="output_n"   attr.type="int"/>
 
 <graph id="G" edgedefault="directed">
