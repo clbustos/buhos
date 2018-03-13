@@ -45,17 +45,22 @@ var TagManager={};
         return(tags_query);
     };
 
+    // update all selectors related to CD Tags
     var update_tag_cd=function(div_id) {
         update_tags_cd_rs(div_id);
         update_typeahead_cd(div_id);
         update_show_pred_cd(div_id);
     };
+    // update all selectors related to Between CD Tags
+
     var update_tag_ref=function(div_id) {
         update_tags_cd_rs_ref();
         update_typeahead_ref();
         update_show_pred_ref();
     };
 
+    // update all selectors.
+    // Public functions
     context.update=function(div_id) {
         update_tag_cd(div_id);
         update_tag_ref(div_id);
@@ -67,33 +72,21 @@ var TagManager={};
     };
 
     // POST TAG DATA
-    var send_post_create_tag_cd=function(info_tag,val) {
+
+    var send_post_create_tag=function(info_tag,val) {
         if(val.trim()=="") {
             alert("TAG: No text")
         } else {
             $.post(info_tag.url, {value: val}, function (data) {
                 var div_id=info_tag.getDivId();
                 $(div_id).replaceWith(data);
-                update_tag_cd(div_id);
+                info_tag.updateDiv();
             }).fail(function () {
                 alert("TAG: Can't create (server error)")
             })
         }
     };
 
-    var send_post_create_tag_ref=function(info_tag, val) {
-        if(val.trim()=="") {
-            alert("El tag no tiene text")
-        } else {
-            $.post(info_tag.url, {value: val}, function (data) {
-                var div_id="#tags-cd_start-"+info_tag.cd_start_pk+"-cd_end-"+info_tag.cd_end_pk+"-rs-"+info_tag.rs_pk;
-                $(div_id).replaceWith(data);
-                update_tag_ref(div_id)
-            }).fail(function () {
-                alert("Can't create tag")
-            })
-        }
-    };
 
     var unbind_actions=function(sa,sn,kn) {
         $(sa).unbind("click");
@@ -113,14 +106,11 @@ var TagManager={};
     TagCdInfo.prototype.getDivId = function() {
         return "#tags-cd-"+this.cd_pk+"-rs-"+this.rs_pk;
     };
-    var create_tag_cd=function(e, FUNC) {
-        var info_tag=new TagCdInfo(e);
-        val=FUNC(info_tag.cd_pk, info_tag.rs_pk);
-        send_post_create_tag_cd(info_tag, val);
-        return(false);
+
+    TagCdInfo.prototype.updateDiv = function() {
+        update_tag_cd(this.getDivId());
     };
 
-    // retrieve information from Bw CD tag
 
     var TagCdRefInfo=function(e) {
         this.url    =e.attr("data-url");
@@ -130,10 +120,28 @@ var TagManager={};
         this.tag_id =e.attr("tag-pk")
     };
 
+    TagCdRefInfo.prototype.getDivId = function() {
+        return "#tags-cd_start-"+this.cd_start_pk+"-cd_end-"+this.cd_end_pk+"-rs-"+this.rs_pk
+    };
+
+    TagCdRefInfo.prototype.updateDiv = function() {
+        update_tag_ref(this.getDivId());
+    };
+
+    var create_tag_cd=function(e, FUNC) {
+        var info_tag=new TagCdInfo(e);
+        val=FUNC(info_tag.cd_pk, info_tag.rs_pk);
+        send_post_create_tag(info_tag, val);
+        return(false);
+    };
+
+    // retrieve information from Bw CD tag
+
+
     var create_tag_ref=function(e, FUNC) {
         var info_tag=new TagCdRefInfo(e);
         val=FUNC(info_tag.cd_start_pk, info_tag.cd_end_pk, info_tag.rs_pk);
-        send_post_create_tag_ref(info_tag,val);
+        send_post_create_tag(info_tag,val);
         return(false);
     };
 
@@ -144,7 +152,7 @@ var TagManager={};
             $.post(info_tag.url, {tag_id:info_tag.tag_id}, function (data) {
                 var div_id=info_tag.getDivId();
                 $(div_id).replaceWith(data);
-                update_tag_cd(div_id);
+                info_tag.updateDiv();
             }).fail(function () {
                 alert("TAG: Can't run the action")
             })
@@ -178,17 +186,17 @@ var TagManager={};
 
     var action_click_ref=function(sel_act) {
         $(sel_act).click(function(){
-            var info_tag=TagCdRefInfo($(this));
+            var info_tag=new TagCdRefInfo($(this));
 
-            $.post(url, {tag_id:info_tag.tag_id}, function (data) {
-                var div_id="#tags-cd_start-"+info_tag.cd_start_pk+"-cd_end-"+info_tag.cd_end_pk+"-rs-"+info_tag.rs_pk;
+            $.post(info_tag.url, {tag_id: info_tag.tag_id}, function (data) {
+                var div_id= info_tag.getDivId();
                 $(div_id).replaceWith(data);
-                update_tag_ref(div_id);
+                info_tag.updateDiv();
             }).fail(function () {
                 alert("TAG:Can't perform on relation tag")
             })
         });
-    }
+    };
     var update_tags_cd_rs_ref=function(div_id) {
 
         div_id = typeof div_id !== 'undefined' ? div_id : false;
@@ -202,7 +210,9 @@ var TagManager={};
         action_click_ref(sel_act);
 
         $(selector_nuevo).click(function() {
-            return(create_tag_ref($(this), function(cd_start_pk, cd_end_pk, rs_pk) {console.log("#tag-cd_start-"+cd_start_pk+"-cd_end-"+cd_end_pk+"-rs-"+rs_pk+"-nuevotag"); return $("#tag-cd_start-"+cd_start_pk+"-cd_end-"+cd_end_pk+"-rs-"+rs_pk+"-nuevotag").val().trim()}));
+            return(create_tag_ref($(this), function(cd_start_pk, cd_end_pk, rs_pk) {
+                return $("#tag-cd_start-"+cd_start_pk+"-cd_end-"+cd_end_pk+"-rs-"+rs_pk+"-nuevotag").val().trim();
+            }));
         });
 
         $(keypres_nuevo).on('keypress', function(e) {
