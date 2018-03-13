@@ -98,8 +98,8 @@ namespace :db do
   desc "Update sqlite blank file"
   task :blank_sqlite => "db/blank.sqlite"
 
-  file "db/blank.sqlite" => ["db/create_schema.rb"] do
-    require_relative 'db//buhos/create_schema'
+  file "db/blank.sqlite" => ["lib/buhos/create_schema.rb"] do
+    require_relative 'lib//buhos/create_schema'
     log = Logger.new(STDOUT)
     FileUtils.rm("db/blank.sqlite") if File.exist? "db/blank.sqlite"
     Buhos::SchemaCreation.create_db_from_scratch("sqlite://db/blank.sqlite", "en",log)
