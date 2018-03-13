@@ -54,9 +54,9 @@ var TagManager={};
     // update all selectors related to Between CD Tags
 
     var update_tag_ref=function(div_id) {
-        update_tags_cd_rs_ref();
-        update_typeahead_ref();
-        update_show_pred_ref();
+        update_tags_cd_rs_ref(div_id);
+        update_typeahead_ref(div_id);
+        update_show_pred_ref(div_id);
     };
 
     // update all selectors.
@@ -71,8 +71,7 @@ var TagManager={};
         return(result);
     };
 
-    // POST TAG DATA
-
+    // Send POST to create a tag
     var send_post_create_tag=function(info_tag,val) {
         if(val.trim()=="") {
             alert("TAG: No text")
@@ -95,7 +94,7 @@ var TagManager={};
     };
 
     // retrieve information from Cd tag
-    var TagCdInfo=function(e) {
+    var TagInCdInfo=function(e) {
         this.url    =e.attr("data-url");
         this.cd_pk  =e.attr("cd-pk");
         this.rs_pk  =e.attr("rs-pk");
@@ -103,16 +102,19 @@ var TagManager={};
 
     };
 
-    TagCdInfo.prototype.getDivId = function() {
+    TagInCdInfo.prototype.getDivId = function() {
         return "#tags-cd-"+this.cd_pk+"-rs-"+this.rs_pk;
     };
 
-    TagCdInfo.prototype.updateDiv = function() {
+    TagInCdInfo.prototype.updateDiv = function() {
         update_tag_cd(this.getDivId());
     };
 
+    TagInCdInfo.prototype.replaceWith=function(data) {
+        $(this.getDivId()).replaceWith(data);
+    };
 
-    var TagCdRefInfo=function(e) {
+    var TagBwCdInfo=function(e) {
         this.url    =e.attr("data-url");
         this.cd_start_pk=e.attr("cd_start-pk");
         this.cd_end_pk=e.attr("cd_end-pk");
@@ -120,16 +122,16 @@ var TagManager={};
         this.tag_id =e.attr("tag-pk")
     };
 
-    TagCdRefInfo.prototype.getDivId = function() {
+    TagBwCdInfo.prototype.getDivId = function() {
         return "#tags-cd_start-"+this.cd_start_pk+"-cd_end-"+this.cd_end_pk+"-rs-"+this.rs_pk
     };
 
-    TagCdRefInfo.prototype.updateDiv = function() {
+    TagBwCdInfo.prototype.updateDiv = function() {
         update_tag_ref(this.getDivId());
     };
 
     var create_tag_cd=function(e, FUNC) {
-        var info_tag=new TagCdInfo(e);
+        var info_tag=new TagInCdInfo(e);
         val=FUNC(info_tag.cd_pk, info_tag.rs_pk);
         send_post_create_tag(info_tag, val);
         return(false);
@@ -139,7 +141,7 @@ var TagManager={};
 
 
     var create_tag_ref=function(e, FUNC) {
-        var info_tag=new TagCdRefInfo(e);
+        var info_tag=new TagBwCdInfo(e);
         val=FUNC(info_tag.cd_start_pk, info_tag.cd_end_pk, info_tag.rs_pk);
         send_post_create_tag(info_tag,val);
         return(false);
@@ -148,10 +150,9 @@ var TagManager={};
 
     var action_click_cd=function(sel_action) {
         $(sel_action).click(function(){
-            var info_tag=new TagCdInfo($(this));
+            var info_tag=new TagInCdInfo($(this));
             $.post(info_tag.url, {tag_id:info_tag.tag_id}, function (data) {
-                var div_id=info_tag.getDivId();
-                $(div_id).replaceWith(data);
+                info_tag.replaceWith(data);
                 info_tag.updateDiv();
             }).fail(function () {
                 alert("TAG: Can't run the action")
@@ -163,9 +164,9 @@ var TagManager={};
 
         div_id = typeof div_id !== 'undefined' ? div_id : false;
 
-        var selector_action = get_selector(div_id, " .boton_accion_tag_cd_rs");
+        var selector_action = get_selector(div_id, ".boton_accion_tag_cd_rs");
         var selector_nuevo  = get_selector(div_id, ".boton_nuevo_tag_cd_rs");
-        var keypres_nuevo   = get_selector( div_id, ".nuevo_tag_cd_rs");
+        var keypres_nuevo   = get_selector(div_id, ".nuevo_tag_cd_rs");
 
         unbind_actions(selector_action,selector_nuevo,keypres_nuevo);
 
@@ -186,7 +187,7 @@ var TagManager={};
 
     var action_click_ref=function(sel_act) {
         $(sel_act).click(function(){
-            var info_tag=new TagCdRefInfo($(this));
+            var info_tag=new TagBwCdInfo($(this));
 
             $.post(info_tag.url, {tag_id: info_tag.tag_id}, function (data) {
                 var div_id= info_tag.getDivId();
@@ -201,14 +202,12 @@ var TagManager={};
 
         div_id = typeof div_id !== 'undefined' ? div_id : false;
 
-        var sel_act= get_selector(div_id, " .boton_accion_tag_cd_rs_ref");
+        var sel_act        = get_selector(div_id, " .boton_accion_tag_cd_rs_ref");
         var selector_nuevo = get_selector(div_id, ".boton_nuevo_tag_cd_rs_ref");
-        var keypres_nuevo= get_selector( div_id, ".nuevo_tag_cd_rs_ref");
+        var keypres_nuevo  = get_selector(div_id, ".nuevo_tag_cd_rs_ref");
 
         unbind_actions(sel_act,selector_nuevo,keypres_nuevo);
-
         action_click_ref(sel_act);
-
         $(selector_nuevo).click(function() {
             return(create_tag_ref($(this), function(cd_start_pk, cd_end_pk, rs_pk) {
                 return $("#tag-cd_start-"+cd_start_pk+"-cd_end-"+cd_end_pk+"-rs-"+rs_pk+"-nuevotag").val().trim();
