@@ -36,7 +36,7 @@ describe 'Personal messages:' do
       post "/message/#{mens[:id]}/seen_by/#{2}"
     end
     it {expect(last_response).to be_ok}
-    it {expect(Message[subject:@subject].read).to be true}
+    it {expect(Message[subject:@subject].viewed).to be true}
 
   end
 

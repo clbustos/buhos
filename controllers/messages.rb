@@ -14,8 +14,6 @@ get '/review/:id/messages' do |id|
   @review=SystematicReview[id]
   raise Buhos::NoReviewIdError, id if !@review
   @mensajes_rs=@review.message_srs_dataset.order(Sequel.desc(:time))
-  #@mensajes_rs_vistos=MessageSrSeen.where(:read=>true,:m_rs_id=>@mensajes_rs.select_map(:id), :user_id=>session['user_id']).select_map(:m_rs_id)
-  #$log.info(@mensajes_rs_vistos)
   @usuario=User[session['user_id']]
   haml %s{systematic_reviews/messages}
 end
@@ -45,9 +43,9 @@ post '/message_sr/:ms_id/seen_by/:user_id' do |ms_id, user_id|
 
 
   unless ms.empty?
-    ms.update(:read=>true)
+    ms.update(:viewed=>true)
   else
-    MessageSrSeen.insert(:m_rs_id=>ms_id, :user_id=>user_id,:read=>true)
+    MessageSrSeen.insert(:m_rs_id=>ms_id, :user_id=>user_id,:viewed=>true)
   end
   return 200
 end
@@ -56,7 +54,7 @@ post '/message/:m_id/seen_by/:user_id' do |m_id, user_id|
   halt_unless_auth('message_edit')
   ms=Message.where(:id=>m_id, :user_to=>user_id)
   if ms
-    ms.update(:read=>true)
+    ms.update(:viewed=>true)
   end
   return 200
 end
@@ -102,7 +100,7 @@ post '/message_per/:m_id/reply' do |m_id|
   @subject=params['subject'].chomp
   @text=params['text'].chomp
   $db.transaction(:rollback=>:reraise) do
-    id=Message.insert(:user_from=>@user_id, :user_to=>m_per.user_from , :reply_to=>m_per.id, :time=>DateTime.now(), :subject=>@subject, :text=>@text, :read=>false)
+    id=Message.insert(:user_from=>@user_id, :user_to=>m_per.user_from , :reply_to=>m_per.id, :time=>DateTime.now(), :subject=>@subject, :text=>@text, :viewed=>false)
     add_message(t("messages.add_reply_to", subject: m_per.subject))
   end
   redirect back

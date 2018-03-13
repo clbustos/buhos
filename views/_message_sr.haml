@@ -1,6 +1,6 @@
 - # Params: usuario, mensaje_rs
 - message_type||='received'
-- mensaje_rs_visto=MessageSrSeen[:read=>true,:m_rs_id=>mensaje_rs.id, :user_id=>usuario.id]
+- mensaje_rs_visto=MessageSrSeen[:viewed=>true,:m_rs_id=>mensaje_rs.id, :user_id=>usuario.id]
 - mensajes_hijos=MessageSr.where(:reply_to=>mensaje_rs.id).order(Sequel.desc(:time))
 - clase_marcar =!mensaje_rs_visto  ? "" : "hidden"
 - clase_visto  = mensaje_rs_visto ? "" : "hidden"

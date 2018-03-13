@@ -1,6 +1,6 @@
 - # Params: usuario, mensaje,
 - message_type||='received'
-- message_read=message_per[:read]
+- message_read=message_per[:viewed]
 - mensajes_hijos=Message.where(:reply_to=>message_per.id).order(Sequel.desc(:time))
 - clase_marcar =!message_read  ? "" : "hidden"
 - clase_read  = message_read ? "" : "hidden"

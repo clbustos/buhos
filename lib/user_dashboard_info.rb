@@ -34,10 +34,10 @@ class UserDashboardInfo
     @sr_active=user.systematic_reviews.where(:active=>true)
   end
   def unread_personal_messages
-    Message.where(:user_to=>@user[:id]).exclude(:read=>true)
+    Message.where(:user_to=>@user[:id]).exclude(:viewed=>true)
   end
   def unread_sr_messages(sr_id)
-    ids=$db["SELECT mr.id FROM message_srs mr LEFT JOIN message_sr_seens mrv ON mr.id=mrv.m_rs_id WHERE mr.systematic_review_id=? AND ( user_id IS NULL OR (user_id=? AND read!=1))",sr_id, @user[:id]].map(:id)
+    ids=$db["SELECT mr.id FROM message_srs mr LEFT JOIN message_sr_seens mrv ON mr.id=mrv.m_rs_id WHERE mr.systematic_review_id=? AND ( user_id IS NULL OR (user_id=? AND viewed!=1))",sr_id, @user[:id]].map(:id)
     MessageSr.where(:id=>ids)
   end
   # Return the searches not ready for review

@@ -12,7 +12,7 @@ Sequel.migration do
       DateTime :time
       String :subject
       String :text, :text=>true
-      Bool :read
+      Bool :viewed
       index [:user_from]
       index [:user_to]
     end
@@ -28,7 +28,7 @@ Sequel.migration do
     create_table(:message_sr_seens) do
       foreign_key :m_rs_id,   :message_srs, :null=>false, :key=>[:id]
       foreign_key :user_id, :users, :null=>false, :key=>[:id]
-      Bool :read
+      Bool :viewed
       primary_key [:m_rs_id, :user_id]
     end
   end

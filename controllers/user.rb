@@ -118,7 +118,7 @@ get '/user/:user_id/messages' do |user_id|
   @messages_personal_sent=Message.where(:user_from=>user_id).order(Sequel.desc(:time))
 
 
-  @n_not_readed=@messages_personal.where(:read=>false).count
+  @n_not_readed=@messages_personal.where(:viewed=>false).count
   @srs=@user.systematic_reviews
 
   haml "users/messages".to_sym
@@ -150,7 +150,7 @@ post '/user/:user_id/compose_message/send' do |user_id|
   destination=params['to']
   @user_to=User[destination]
   if @user_to
-    Message.insert(:user_from=>user_id, :user_to=>destination, :reply_to=>nil, :time=>DateTime.now(), :subject=>subject, :text=>text, :read=>false)
+    Message.insert(:user_from=>user_id, :user_to=>destination, :reply_to=>nil, :time=>DateTime.now(), :subject=>subject, :text=>text, :viewed=>false)
     add_message(t("messages.new_message_for_user", user_name:@user_to[:name]))
 
   else
