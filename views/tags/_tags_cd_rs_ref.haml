@@ -31,7 +31,7 @@
         %li{:class=>"tag #{class_predeterminado} #{class_escondido}",:id=>"tag-cd_start-#{cd_start.id}-cd_start-#{cd_end.id}-rs-#{review.id}-#{tag.id}"}
           %span.glyphicon.glyphicon-tag
           %span.text=tag.text
-          =tag.botones_html(user_id)
+          =tag.buttons_html(user_id)
 
     %li.tag.nuevo_tag{:id=>"tag-cd_start-#{cd_start.id}-cd_end-#{cd_end.id}-rs-#{review.id}-nuevo"}
       %span.glyphicon.glyphicon-tag

@@ -45,12 +45,12 @@ module TagMixin
     @tag_id=votos[0][:tag_id]
   end
 
-  def botones_html(user_id)
+  def buttons_html(user_id)
     ru = resultado_usuario(user_id)
     "
 <div class='btn-group btn-group-xs'>
-  #{boton_positivo_html(ru)}
-    #{boton_negativo_html(ru)}
+  #{button_positive_html(ru)}
+    #{button_negative_html(ru)}
 </div>"
   end
 
@@ -66,12 +66,24 @@ module TagMixin
     @predeterminado or @positivos > 0
   end
 
-  def boton_positivo_html(ru)
-    raise "To implement"
+  def button_same_html(btn_class, glyphicon_class, number)
+    "<button class='btn btn-#{btn_class}'><span class='glyphicon glyphicon-#{glyphicon_class}'></span> <span class='badge '>#{number}</span></button>"
   end
 
-
-  def boton_negativo_html(ru)
-    raise "To implement"
+  def button_positive_html(ru)
+    if ru.nil? or ru[:decision]=='no'
+      button_change_html(:approve, :plus, positivos)
+    else
+      button_same_html(:success, :plus, positivos)
+    end
   end
+
+  def button_negative_html(ru)
+    if ru.nil? or ru[:decision]=='yes'
+      button_change_html(:reject, :minus, negativos)
+    else
+      button_same_html(:danger, :minus, negativos)
+    end
+  end
+
 end
