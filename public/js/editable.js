@@ -27,6 +27,8 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 
+$.ajaxSetup({async:true})
+
 function buscar_similares_canonico() {
 
     $(".buscar_similares_canonico").click(function() {

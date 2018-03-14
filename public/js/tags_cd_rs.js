@@ -148,9 +148,16 @@ var TagManager={};
     };
 
 
-    var action_click_cd=function(sel_action) {
+    var action_click=async function(sel_action, type) {
         $(sel_action).click(function(){
-            var info_tag=new TagInCdInfo($(this));
+            switch(type) {
+                case 'tag_in_cd':
+                    var info_tag=new TagInCdInfo($(this));
+                    break;
+                case 'tag_bw_cd':
+                    var info_tag=new TagBwCdInfo($(this));
+                    break;
+            }
             $.post(info_tag.url, {tag_id:info_tag.tag_id}, function (data) {
                 info_tag.replaceWith(data);
                 info_tag.updateDiv();
@@ -160,6 +167,7 @@ var TagManager={};
 
         });
     };
+
     var update_tags_cd_rs=function(div_id) {
 
         div_id = typeof div_id !== 'undefined' ? div_id : false;
@@ -170,9 +178,7 @@ var TagManager={};
 
         unbind_actions(selector_action,selector_nuevo,keypres_nuevo);
 
-        action_click_cd(selector_action);
-
-
+        action_click(selector_action, 'tag_in_cd');
         $(selector_nuevo).click(function() {
             return(create_tag_cd($(this), function(cd_pk, rs_pk) {return $("#tag-cd-"+cd_pk+"-rs-"+rs_pk+"-nuevotag").val().trim()}));
         });
@@ -185,19 +191,6 @@ var TagManager={};
         });
     };
 
-    var action_click_ref=function(sel_act) {
-        $(sel_act).click(function(){
-            var info_tag=new TagBwCdInfo($(this));
-
-            $.post(info_tag.url, {tag_id: info_tag.tag_id}, function (data) {
-                var div_id= info_tag.getDivId();
-                $(div_id).replaceWith(data);
-                info_tag.updateDiv();
-            }).fail(function () {
-                alert("TAG:Can't perform on relation tag")
-            })
-        });
-    };
     var update_tags_cd_rs_ref=function(div_id) {
 
         div_id = typeof div_id !== 'undefined' ? div_id : false;
@@ -207,7 +200,7 @@ var TagManager={};
         var keypres_nuevo  = get_selector(div_id, ".nuevo_tag_cd_rs_ref");
 
         unbind_actions(sel_act,selector_nuevo,keypres_nuevo);
-        action_click_ref(sel_act);
+        action_click(sel_act, 'tag_bw_cd');
         $(selector_nuevo).click(function() {
             return(create_tag_ref($(this), function(cd_start_pk, cd_end_pk, rs_pk) {
                 return $("#tag-cd_start-"+cd_start_pk+"-cd_end-"+cd_end_pk+"-rs-"+rs_pk+"-nuevotag").val().trim();
