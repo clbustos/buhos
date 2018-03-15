@@ -9,7 +9,7 @@ Web based platform to manage complete process of systematic literature reviews. 
 
 ## Features
 
-* Multi-platform:  Runs on Linux (tested on Ubuntu 14.04 and 16.06) and Windows (tested on Windows 7 and 10)
+* Multi-platform:  Runs on Linux (tested on Ubuntu 14.04 and 16.06), Windows (tested on Windows 7 and 10) and MacOS (tested on High Sierra)
 * Supports individual and group-based systematic reviews.
 * Internal messaging system for personal messages o messages related to systematic reviews.
 * Internationalization, using *I18n*. Available in English and Spanish.
