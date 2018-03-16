@@ -232,6 +232,7 @@ en:
     es: "Español"
   Login: "User name"
   login:
+    software_description: "Systematic Literature Revision Management Software"
     instruction: "Enter user name and password"
     submit: "Enter"
   login_submit: "Enter"

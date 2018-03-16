@@ -695,3 +695,15 @@ p.instructions {
     background:black;
     color:white;
 }
+
+.logo-login {
+    width:100%;
+    margin-bottom:30px;
+}
+
+.description-login {
+    text-align:center;
+    font-size:11pt;
+    margin-bottom:30px;
+    color:#93badc;
+}

@@ -1,0 +1,42 @@
+!!! 5
+%html{:lang=>::I18n.locale}
+  %head
+    %meta{:charset=>'utf-8'}
+    %meta{'http-equiv'=>'X-UA-Compatible',:content=>'IE=edge'}
+    %meta{:name=>'viewport',:content=>'width=device-width, initial-scale=1'}
+
+    
+    %title= @title.nil? ?  t(:App_title) : "#{get_title_head} - #{t(:App_title)}"
+
+    %script{:type=>'text/javascript', :src=>url('/js/jquery-3.1.0.min.js')}
+    %script{:type=>'text/javascript', :src=>url('/js/bootstrap.min.js')}
+    %script{:type=>'text/javascript', :src=>url('/js/tablesorter-master/jquery.tablesorter.min.js')}
+    %script{:type=>'text/javascript', :src=>url('/js/tablesorter-master/addons/pager/jquery.tablesorter.pager.js')}
+    %script{:type=>'text/javascript', :src=>url('/bootstrap3-editable-1.5.1/bootstrap3-editable/js/bootstrap-editable.min.js')}
+    %script{:type=>'text/javascript', :src=>url('/js/editable.js')}
+
+    %link{:rel=>'icon', :href=>'/favicon.ico', :type=>"image/x-icon"}
+    %link{:rel=>'shortcut icon', :href=>'/favicon.ico', :type=>"image/x-icon"}
+
+    %link{:href=>url('/css/bootstrap.css') , :media => 'screen', :rel=>'stylesheet', :type=>'text/css'}
+    -#%link{:href=>url('/css/bootstrap-theme.css') , :media => 'screen', :rel=>'stylesheet', :type=>'text/css'}
+
+    %link{:href=>url('/css/print.css') , :media => 'print', :rel=>'stylesheet', :type=>'text/css'}
+    %link{:href=>url('/bootstrap3-editable-1.5.1/bootstrap3-editable/css/bootstrap-editable.css') , :media => 'screen', :rel=>'stylesheet', :type=>'text/css'}
+    %link{:href=>url('/js/tablesorter-master/addons/pager/jquery.tablesorter.pager.css') , :media => 'screen', :rel=>'stylesheet', :type=>'text/css'}
+    %link{:href=>url('/js/tablesorter-master/themes/blue/style.css') , :media => 'screen', :rel=>'stylesheet', :type=>'text/css'}
+    -#%link{:href=>url('/css/typeahead.css') , :media => 'screen', :rel=>'stylesheet', :type=>'text/css'}
+    %link{:href=>url('/css/main.css') , :media => 'screen', :rel=>'stylesheet', :type=>'text/css'}
+
+
+  %body
+    %section#mensajes
+      =print_messages
+    %section#content
+      =yield
+    %footer.center-block.clearfix
+      .container.text-center
+        .row
+          .col-md-12
+            .text-muted.credit=t(:footer_copyright)
+            .text-muted.credit=t(:footer_conicyt)

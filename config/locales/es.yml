@@ -232,6 +232,7 @@ es:
     es: "Español"
   Login: "Nombre de usuario"
   login:
+    software_description: "Software de Gestión de Revisiones Sistemáticas de Literatura"
     instruction: "Ingrese su usuario y password"
     submit: "Ingresar"
   login_submit: "Ingresar"

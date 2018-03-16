@@ -112,7 +112,7 @@ module Sinatra
 
 
       app.get '/login' do
-        haml :login
+        haml :login_2, :layout=>:layout_empty
       end
 
       app.post '/login' do
