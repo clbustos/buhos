@@ -27,6 +27,28 @@
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 module Sinatra
   module Pagers
+
+
+    class PagerQueryAdapter
+      attr_reader :cds_out
+      def initialize(pager, ads,cds_pre)
+        @pager=pager
+        @ads=ads
+        @cds_pre=cds_pre
+        @cds_out=@cds_pre
+        process
+      end
+
+      def process
+        if @pager.query.to_s!=""
+          cd_ids=@ads.decision_por_cd.find_all {|v|
+            @pager.query==v[1]
+          }.map {|v| v[0]}
+          @cds_out=@cds_pre.where(:id => cd_ids)
+        end
+      end
+    end
+
     class Pager
       attr_reader :page,:query, :cpp, :max_page, :order
       def initialize
@@ -38,6 +60,13 @@ module Sinatra
         @order_col=nil
         @order_dir=nil
       end
+      # Adapt the cds_pre dataset, using decisions made by a user
+      # @param ads [AnalysisUserDecision]
+      # @param cds_pre [Sequel::Dataset]
+      def adapt_cd_dataset(ads,cds_pre)
+        PagerQueryAdapter.new(self, ads,cds_pre).cds_out
+      end
+
       def order=(order)
         @order=order
         @order_col, @order_dir=@order.split("__")
