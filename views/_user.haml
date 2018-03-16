@@ -1,6 +1,6 @@
 %span.usuario>
-  =t(:Welcome_comma)
-  %a{:href=>url("/user/#{session['user_id']}")}=session['name']
-  |
-  %a{:href=>url("/logout")}=t(:Logout)
-  |
+  %a.btn.btn-primary.btn-sm{:href=>url("/user/#{session['user_id']}"), :alt=>session['name']}
+    %span.glyphicon.glyphicon-user
+
+  %a.btn.btn-primary.btn-sm{:href=>url("/logout"), :alt=>t(:Logout)}
+    %span.glyphicon.glyphicon-off
