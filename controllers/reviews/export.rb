@@ -20,7 +20,7 @@ get '/review/:id/generate_graphml' do |id|
   headers["Content-Disposition"] = "attachment;filename=graphml_revision_#{id}.graphml"
 
   content_type 'application/graphml+xml'
-  graphml=GraphML_Builder.new(@review, nil)
+  graphml=Buhos::GraphML_Builder.new(@review, nil)
   graphml.generate_graphml
 end
 
@@ -35,7 +35,7 @@ get '/review/:rev_id/stage/:stage/generate_graphml' do |rev_id, stage|
   headers["Content-Disposition"] = "attachment;filename=graphml_review_#{rev_id}_stage_#{stage}.graphml"
 
   content_type 'application/graphml+xml'
-  graphml=GraphML_Builder.new(@review, stage)
+  graphml=Buhos::GraphML_Builder.new(@review, stage)
   graphml.generate_graphml
 end
 
