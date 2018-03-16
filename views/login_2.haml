@@ -1,0 +1,26 @@
+.container
+  .row
+    .col-md-4.col-md-offset-4
+      %img.logo-login{:src=>"/images/logo.svg"}
+  .row
+    .col-md-4.col-md-offset-4
+      %p.description-login=t("login.software_description")
+  .row
+    .col-md-4.col-md-offset-4
+      .login-panel.panel.panel-primary
+        .panel-heading
+          %h3.panel-title=t("login.instruction")
+        .panel-body
+          %form{:method=>"post",:action=>url("/login"), :class=>"horizontal", :roles=>:form}
+            %fieldset
+              .form-group
+                %input.form-control{:autofocus => "", :name => "user", :placeholder => t(:Login), :type => "text"}
+              .form-group
+                %input.form-control{:name => "password", :placeholder => t(:Password), :type => "password", :value => ""}/
+              - if false
+                .checkbox
+                  %label
+                    %input{:name => "remember", :type => "checkbox", :value => "remember"}>/
+                    Recordarme
+                    / Change this to a button or input when using this as a form
+              %input.enviar{:class=>"btn btn-lg btn-default btn-block",:type=>'submit', :value=>t("login.submit")}
