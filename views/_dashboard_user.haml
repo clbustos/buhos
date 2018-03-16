@@ -4,7 +4,7 @@
   %p=t_desc_value("user_dashboard.unread_personal_messages", a_tag("/user/#{user[:id]}/messages#personal", t("user_dashboard.check_n_unread_messages", count:@udi.unread_personal_messages.count)))
 - user.systematic_reviews.where(:active=>true).each do |sr|
   - is_administrator=@udi.is_administrator_sr?(sr)
-  %div{:class=>"panel #{is_administrator ? "panel-primary" : "panel-default"}"}
+  %div{:class=>"panel #{is_administrator ? "panel-primary" : "panel-black"}"}
     .panel-heading
       .panel-title
         =sr.name
