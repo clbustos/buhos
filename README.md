@@ -1,4 +1,4 @@
-<img src="https://www.buhos.org/wp-content/uploads/2018/03/logo.svg" width="225" alt="Buhos Logo"/>
+<img src="http://buhos.org/public/logo.svg" width="225" alt="Buhos Logo" />
 
 
 [![Build Status](https://travis-ci.org/clbustos/buhos.svg?branch=master)](https://travis-ci.org/clbustos/buhos)
