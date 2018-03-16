@@ -35,14 +35,14 @@
         %div{:style=>"width:180px;"}
           %a{:href=>url('/')}
             %img{:src=>'/images/logo.svg', :class=>'navbar-brand'}
-        %nav{:class=>'navbar navbar-default', :style=>'flex:1'}
+        %nav{:class=>'navbar navbar-default', :style=>'flex:1', :id=>'navbar-container'}
           .container-fluid
             -if settings.development?
               //%span{:class=>"alerta"}="(#{t(:Dev_alert)})"
             -if settings.test?
               //%span{:class=>"alerta"}="(#{t(:Test_alert)})"
             .navbar-header
-              %button{:type=>:button, :class=>"navbar-toggle collapsed", "data-toggle"=> "collapse", "data-target"=>"#nav-main",  "aria-expanded"=>"false"}
+              %button{:type=>:button, :class=>"navbar-toggle collapsed", "data-toggle"=> "collapse", "data-target"=>"#nav-main",  "aria-expanded"=>"false", :id=>'button-navbar'}
                 %span{:class=>'sr-only'}Toggle navigation
                 %span.icon-bar
                 %span.icon-bar
@@ -56,7 +56,7 @@
                   %li{:class=>''}
                     %a{:class=>'nav-link', :href=>"/my_messages"}=t(:My_messages)
                 - if auth_to('review_admin')
-                  %li{:class=>''}
+                  %li{:class=>'hidden-sm'}
                     %a{:class=>'nav-link', :href=>'/reviews'}=t(:Systematic_reviews)
                 -if auth_to('user_admin') or auth_to('group_admin') or auth_to('role_admin')
                   %li{:class=>'dropdown'}

@@ -1,6 +1,6 @@
 %span.usuario>
-  %a.btn.btn-primary.btn-sm{:href=>url("/user/#{session['user_id']}"), :alt=>session['name']}
+  %a.btn.btn-primary.btn-sm.navbar-btn{:href=>url("/user/#{session['user_id']}"), :alt=>session['name']}
     %span.glyphicon.glyphicon-user
 
-  %a.btn.btn-primary.btn-sm{:href=>url("/logout"), :alt=>t(:Logout)}
+  %a.btn.btn-primary.btn-sm.navbar-btn{:href=>url("/logout"), :alt=>t(:Logout)}
     %span.glyphicon.glyphicon-off

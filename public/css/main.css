@@ -635,12 +635,38 @@ p.instructions {
 
 }
 
+@media screen and (max-width: 768px) {
+    .navbar-default {
+        margin-top:0;
+        font-size:100%;
+        background:white;
+        color:black;
+        border:0;
+    }
 
-.navbar-default .navbar-nav > li > a , .navbar-default .navbar-text a , .usuario{
-    color:white;
-    font-weight: bold;
+    #button-navbar {
+        background:#146ab0;
+        color:black;
+        border:1px solid black;
+    }
+    .navbar-default .navbar-toggle .icon-bar {
+        background-color:white;
+
+    }
+    .navbar-default .navbar-nav > li > a , .navbar-default .navbar-text a {
+        color:#146ab9;
+        font-weight: bold;
+    }
+
 }
 
+@media screen and (min-width: 768px) {
+    .navbar-default .navbar-nav > li > a, .navbar-default .navbar-text a, .usuario {
+        color: white;
+        font-weight: bold;
+    }
+
+}
 .navbar-default .navbar-nav > li > a:hover , .navbar-default .navbar-text a:hover {
     color:#93badc;
     font-weight: bold;
@@ -710,5 +736,5 @@ p.instructions {
 }
 
 .user-buttons {
-    margin-top:10px;
+ /*   margin-top:10px;*/
 }
