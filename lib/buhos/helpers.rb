@@ -93,6 +93,17 @@ module Buhos
     def time_sql(time)
       time.strftime("%Y-%m-%d %H:%M:%S")
     end
+    # Truncate a text to given length and add truncate_string at the end
+    def truncate(text, length = 30, truncate_string = "...")
+      if text
+        l = length - truncate_string.chars.length
+        chars = text.chars
+        #$log.info(chars[0..10])
+        (chars.length > length ) ?
+             (chars[0...l] + truncate_string.chars).join('').to_s :
+             text
+      end
+    end
 
   end
 end

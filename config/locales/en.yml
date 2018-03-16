@@ -405,7 +405,7 @@ en:
   resolution_for_n_documents: "Resolved '%{resolution}' status for %{n} documents"
   result_assignation_cd_to_user: "%{added} documents were added and  %{removed} documents were removed from the user %{user_name}"
   Retrieve_information_from_Crossref: "Obtain information from Crossref"
-  Review_full_text: "Review full text"
+  Review_full_text: "Full-text review"
   review_full_text:
     objective: "Stage objective: Extract information from full texts, which involves allocating tags (codifying) the documents as well as their relations, filling out the forms relative to the objectives and defining which texts are to be finally included"
   Review_references: "Review references"

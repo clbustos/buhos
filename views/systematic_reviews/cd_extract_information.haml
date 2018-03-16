@@ -14,9 +14,9 @@
   %li
     %a{:href=>url("/review/#{@sr[:id]}")}=@sr[:name]
   %li
-    %a{:href=>url("/review/#{@sr[:id]}/full_text_review")}=t(:Review_full_text)
+    %a{:href=>url("/review/#{@sr[:id]}/review_full_text")}=t(:Review_full_text)
   %li{:class=>:active}
-    =t(:Cd_extract_information, cd_title:@cd[:title])
+    =t(:Cd_extract_information, cd_title: truncate(@cd[:title].to_s))
 
 .container
   .row
