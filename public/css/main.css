@@ -20,7 +20,7 @@ h1 {
 h2, h3, h4, h5, h6 {
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
 
-  color: #2582A4;
+  color: #146ab0;
 }
 
 h3 a:hover, h3 a:link, h3 a:visited {
@@ -39,12 +39,12 @@ strong {
 }
 
 a {
-  color: #87A019;
+  color: #146ab0;
 }
 
 a:hover {
   text-decoration: none;
-  color: #2582A4;
+  color: #93badc;
 }
 
 .box {
@@ -324,16 +324,16 @@ table.reporte thead th {
     text-align:center;
 }
 table.reporte th {
-    background: #eee;
+    background: #146ab0;
     font-weight: bold;
-    color:black;
+    color:white;
     border:1px solid black;
     padding:0.3em;
 }
 
 table.reporte th.chico {
   font-size:90%;
-    background: #eee;
+    background: #146ab0;
     font-weight: bold;
     color:black;
     border:1px solid black;
@@ -860,4 +860,49 @@ p.instructions {
 
 .dashboard-user {
     margin-top:1em;
+}
+
+
+.navbar-brand {
+    float: left;
+    height: 125px;
+    padding: 10px 10px;
+    font-size: 18px;
+    line-height: 20px;
+}
+
+.navbar-default {
+    margin-top:65px;
+    font-size:110%;
+}
+
+.navbar-default .navbar-nav > li > a {
+    color:black;
+}
+
+.navbar-default .navbar-text {
+    color:black;
+}
+
+
+.panel-primary {
+    border-color: #146ab0;
+}
+
+
+.panel-primary > .panel-heading {
+    border-color: #146ab0;
+    background-color: #146ab0;
+}
+
+.table th {
+    color: #146ab0;
+}
+
+.table > thead > tr > th {
+     border-bottom: 2px solid #93badc;
+}
+
+.table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+    border-top: 1px solid #93badc;
 }
