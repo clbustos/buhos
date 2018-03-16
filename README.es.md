@@ -1,6 +1,5 @@
-<img src="https://www.buhos.org/wp-content/uploads/2018/03/logo.svg" width="225" />
+<img src="https://www.buhos.org/wp-content/uploads/2018/03/logo.svg" width="225" alt="Buhos Logo"/>
 
-# Buhos
 
 [![Status del paquete](https://travis-ci.org/clbustos/buhos.svg?branch=master)](https://travis-ci.org/clbustos/buhos)
 [![Mantenibilidad](https://api.codeclimate.com/v1/badges/ffa582598127f86ed405/maintainability)](https://codeclimate.com/github/clbustos/buhos/maintainability)
