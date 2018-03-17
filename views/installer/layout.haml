@@ -30,12 +30,11 @@
 
   %body
     .container
-      %header
-      %nav{:class=>'navbar navbar-default'}
-        .container-fluid
-          %a{:class=>'navbar-brand', :href=>url('/')}=t(:App_title)
-          %div{:class=>'nav navbar-nav navbar-right'}
-            %p{:class=>'navbar-text'}
+      %div{:style=>'display:flex'}
+        %div{:style=>"width:180px;"}
+          %a{:href=>url('/')}
+            %img{:src=>'/images/logo.svg', :class=>'navbar-brand'}
+      %div{:style=>"clear:both"}
       %section#mensajes
         =print_messages
       %section#content
