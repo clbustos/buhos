@@ -93,7 +93,7 @@ module Sinatra
           session['language']=user.language
 
           ::I18n.locale = session['language'].to_sym
-          
+
           true
         else
           false

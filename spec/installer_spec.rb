@@ -35,6 +35,21 @@ describe "Buhos installer" do
     expect(last_response.body).to include("Instalador")
   end
 
+  context "when /installer/select_language form is sended", :installer=>true do
+    it "should change locale to es if params['language'] is es" do
+      post('/installer/select_language', language:'es')
+      expect(::I18n.locale).to eq(:es)
+    end
+    it "should change locale to es if params['language'] is en" do
+      post('/installer/select_language', language:'en')
+      expect(::I18n.locale).to eq(:en)
+    end
+    it "should raise error if params['language'] is unknown" do
+      expect {post('/installer/select_language', language:'unknown')}.to raise_error(I18n::InvalidLocale)
+
+    end
+
+  end
   it '/installer/basic_data_form should be accessible', :installer=>true do
     get '/installer/basic_data_form'
     expect(last_response).to be_ok
@@ -43,9 +58,6 @@ describe "Buhos installer" do
   end
 
   context 'when basic_data_form is send', :installer=>true do
-
-
-
     form_post={
         db_adapter:     'mysql2',
         db_hostname:    'example.5000m',
@@ -72,7 +84,7 @@ describe "Buhos installer" do
       expect(response.status).to eq(302)
       expect(response.header["Location"]).to eq("http://example.org/installer/populate_database")
     end
-    it "should create correct env file" do
+    it "should create correct env file  for mysql" do
       response
       env_content=dot_env.read
       expect(env_content).to eq("DATABASE_URL=mysql2://other_user:other_password@example.5000m:5000/other_database
@@ -84,5 +96,42 @@ SCOPUS_KEY=scopus_key\n")
 
     end
   end
+
+  context 'when only sqlite data is send', :installer=>true do
+    form_post={
+        db_adapter:     'sqlite',
+        db_hostname:    '',
+        db_port:        '',
+        db_username:    '',
+        db_password:    '',
+        db_database:    '',
+        db_filename:    'db_test.sqlite',
+        proxy_hostname: '',
+        proxy_port:     '',
+        proxy_user:     '',
+        proxy_password: '',
+        scopus_key:     ''
+    }
+
+    let(:dot_env) {Tempfile.new}
+    let(:response) {
+
+      ENV['DOT_ENV']=dot_env.path
+      post('/installer/basic_data_form',form_post)
+    }
+
+    it 'should return correct status and redirect' do
+      expect(response.status).to eq(302)
+      expect(response.header["Location"]).to eq("http://example.org/installer/populate_database")
+    end
+    it "should create correct env file  for mysql" do
+      response
+      env_content=dot_env.read
+      expect(env_content).to eq("DATABASE_URL=sqlite://db_test.sqlite\n")
+
+    end
+  end
+
+
 
 end
