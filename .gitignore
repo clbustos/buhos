@@ -2,6 +2,7 @@ bak/*
 *~
 .env
 .env_test
+.idea/*
 log
 usr/archivos
 *.sqlite

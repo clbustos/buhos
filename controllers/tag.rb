@@ -14,7 +14,7 @@ post '/tags/classes/new' do
   stage=  params['stage']
   stage=nil if stage=="NIL"
   type =  params['type']
-  return 404 if @review.nil?
+  raise Buhos::NoReviewIdError, params['review_id'] if !@review
 
   $db.transaction(:rollback=>:reraise) do
     T_Class.insert(:name=>params["name"],
@@ -82,11 +82,14 @@ get '/tag/:tag_id/rs/:rs_id/stage/:stage/cds' do |tag_id, rs_id, stage|
   @tag=Tag[tag_id]
   raise Buhos::NoTagIdError, tag_id if !@tag
   @review=SystematicReview[rs_id]
+  raise Buhos::NoReviewIdError, rs_id if !@review
 
   @ars=AnalysisSystematicReview.new(@review)
 
   @usuario=User[session['user_id']]
-  return 404 if @tag.nil? or @review.nil?
+
+
+
   @stage=stage
   @cds_tag=TagInCd.cds_rs_tag(@review,@tag,false,stage)
   @cds=CanonicalDocument.where(:id=>@cds_tag.map(:id))
@@ -100,11 +103,11 @@ get '/tag/:tag_id/rs/:rs_id/cds' do |tag_id, rs_id|
   raise Buhos::NoTagIdError, tag_id if !@tag
 
   @review=SystematicReview[rs_id]
+  raise Buhos::NoReviewIdError, rs_id if !@review
 
   @ars=AnalysisSystematicReview.new(@review)
 
   @usuario=User[session['user_id']]
-  return 404 if @tag.nil? or @review.nil?
 
   @cds_tag=TagInCd.cds_rs_tag(@review,@tag)
   @cds=CanonicalDocument.where(:id=>@cds_tag.map(:id))
@@ -123,8 +126,13 @@ end
 post '/tags/cd/:cd_id/rs/:rs_id/:accion' do |cd_id,rs_id,accion|
   halt_unless_auth('review_analyze')
   cd=CanonicalDocument[cd_id]
+  raise Buhos::NoCdIdError, cd_id if !cd
+
   rs=SystematicReview[rs_id]
-  return 405 if cd.nil? or rs.nil?
+  raise Buhos::NoReviewIdError, rs_id if !rs
+
+  tag_id=params['tag_id']
+  tag=Tag[tag_id]
 
   user_id=session['user_id']
   if accion=='add_tag'
@@ -135,16 +143,13 @@ post '/tags/cd/:cd_id/rs/:rs_id/:accion' do |cd_id,rs_id,accion|
       TagInCd.approve_tag(cd,rs,tag,user_id)
     end
   elsif accion=='approve_tag'
-    tag_id=params['tag_id']
-    tag=Tag[tag_id]
-    return 404 if tag.nil?
+    raise Buhos::NoTagIdError, tag_id if !tag
+
     $db.transaction(:rollback=>:reraise) do
       TagInCd.approve_tag(cd,rs,tag,user_id)
     end
   elsif accion=='reject_tag'
-    tag_id=params['tag_id']
-    tag=Tag[tag_id]
-    return 404 if tag.nil?
+    raise Buhos::NoTagIdError, tag_id if !tag
     $db.transaction(:rollback=>:reraise) do
       TagInCd.reject_tag(cd,rs,tag,user_id)
     end
@@ -170,6 +175,9 @@ post '/tags/cd_start/:cd_start_id/cd_end/:cd_end_id/rs/:rs_id/:accion' do |cd_st
 
   user_id = session['user_id']
 
+  tag_id=params['tag_id']
+  tag=Tag[tag_id]
+
   if accion=='add_tag'
     tag_name=params['value'].chomp
     return 405 if tag_name==""
@@ -178,15 +186,13 @@ post '/tags/cd_start/:cd_start_id/cd_end/:cd_end_id/rs/:rs_id/:accion' do |cd_st
       TagBwCd.approve_tag(cd_start,cd_end,rs,tag,user_id)
     end
   elsif accion=='approve_tag'
-    tag_id=params['tag_id']
-    tag=Tag[tag_id]
+
     return 404 if tag.nil?
     $db.transaction(:rollback=>:reraise) do
       TagBwCd.approve_tag(cd_start,cd_end,rs,tag,user_id)
     end
   elsif accion=='reject_tag'
-    tag_id=params['tag_id']
-    tag=Tag[tag_id]
+
     return 404 if tag.nil?
     $db.transaction(:rollback=>:reraise) do
       TagBwCd.reject_tag(cd_start,cd_end,rs,tag,user_id)
