@@ -677,5 +677,5 @@ es:
   "yes": "sí"
   You_re_the_administrator_of_this_systematic_review: "Usted es el administrador de esta revisión sistemática"
   References_count_to_canonical: "<strong>Referencias canónicas:</strong> citado por %{in} / referencia a %{out} / %{in_sta} citado por  TTR "
-  create_new_field: "Create new personalized field"
+  create_new_field: "Crear nuevo campo personalizado"
   Select_an_option: "Seleccione una opción"
