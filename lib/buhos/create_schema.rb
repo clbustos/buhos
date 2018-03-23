@@ -424,11 +424,11 @@ module Buhos
 
 
     def self.allocate_users_to_groups(db, id_admin, id_analyst, id_guest)
-      group_id = db[:groups].replace(:group_administrator => id_admin, :description => "First group, just for demostration", :name => "demo group")
+      group_id = db[:groups].replace(:id=>1,:group_administrator => id_admin, :description => "First group, just for demostration", :name => "demo group")
       db[:groups_users].replace(:group_id => group_id, :user_id => id_admin)
       db[:groups_users].replace(:group_id => group_id, :user_id => id_analyst)
 
-      group_guest = db[:groups].replace(:group_administrator => id_admin, :description => "Guest group", :name => "guest group")
+      group_guest = db[:groups].replace(:id=>2,:group_administrator => id_admin, :description => "Guest group", :name => "guest group")
       db[:groups_users].replace(:group_id => group_guest, :user_id => id_admin)
       db[:groups_users].replace(:group_id => group_guest, :user_id => id_guest)
     end

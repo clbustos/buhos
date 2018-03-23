@@ -26,7 +26,7 @@
 </h1>
 <p>Software de gestión de revisión sistemática de literatura</p>
 <p>Manual de usuario</p>
-<p>Version 1.0.0 - Revision 16 de Marzo 2018</p>
+<p>Version 1.0.0 - Revision 23 de Marzo 2018</p>
     <p>Autor: Claudio Bustos</p>
     <p>Revisores: Maria Gabriela Morales, Fabiola Sáez, Astrid Sarmiento</p>
     <p>&copy; Copyright Claudio Bustos 2018</p>
@@ -292,6 +292,7 @@ passenger_ruby &lt;ruby_location&gt;
 <p><img class='border img-fluid interface' src="images/image9.png" /></p>
 <p>Como se muestra, se definieron tres objetivos, por lo que es posible generar un formulario personalizado para la revisión sistemática. Para ello, se debe presionar en el botón ‘Campos de análisis’.</p>
 <p>Cada formulario está compuesto por uno o más campos. Primero se debe indicar qué lugar ocupará el campo dentro del formulario. Después, qué código tendrá el campo en la base de datos – este sólo podrá ser construido con letras minúsculas, números o el signo ‘_’. En tercer lugar, en la descripción se incluirá el texto que aparecerá en el formulario y, finalmente, qué tipo de campo será. Al terminar, presionar ‘Crear nuevo campo’.</p>
+<p><img class='border img-fluid interface' src="images/image9b.png" /></p>
 <p>En el caso del ejemplo, necesitamos tres campos: herramientas, etapa y función. Una vez que el formulario esté completamente definido, presionar el botón ‘Actualizar tabla de registro de campos personalizados’, para generar el formulario.</p>
 <p><img class='border img-fluid interface' src="images/image10.png" /></p>
 <h3><span id="guia_busqueda" class="anchor"></span>Etapa de búsqueda</h3>
@@ -306,11 +307,11 @@ passenger_ruby &lt;ruby_location&gt;
 <p><img class='border img-fluid interface' src="images/image13.png" /></p>
 <p>Al procesar la búsqueda, el sistema captura toda la información posible desde los registros almacenados en el archivo BibTeX. Se puede verificar que son seis los registros que el sistema detecta.</p>
 <p><img class='border img-fluid interface' src="images/image14.png" /></p>
-<p>Al entrar en ‘Registros’, se observa que el sistema ha ingresado información sobre autores, año de publicación, título, así como el DOI de los documentos. En el caso del ejemplo, el BibTeX poseía el resumen[abstract] de cada artículo, por lo que éste puede ser revisado presionando en el botón respectivo. A cada registro en una búsqueda se le asigna un ‘documento canónico’, correspondiente a la referencia única dentro del sistema a ese documento. De esta manera, si en distintas búsquedas aparece el mismo texto con la misma DOI, el sistema les asignará a todos estos registros el mismo documento canónico.</p>
+<p>Al entrar en ‘Registros’, se observa que el sistema ha ingresado información sobre autores, año de publicación, título, así como el DOI de los documentos. En el caso del ejemplo, el BibTeX poseía el resumen de cada artículo, por lo que éste puede ser revisado presionando en el botón respectivo. A cada registro en una búsqueda se le asigna un ‘documento canónico’, correspondiente a la referencia única dentro del sistema a ese documento. De esta manera, si en distintas búsquedas aparece el mismo texto con la misma DOI, el sistema les asignará a todos estos registros el mismo documento canónico.</p>
 <p><img class='border img-fluid interface' src="images/image15.png" /></p>
 <p>Como las referencias son las esperadas, es posible validar la búsqueda realizada. Para ello, se debe volver a la pantalla de búsquedas y hacer click en el cuadro de chequeo respectivo, y presionar en el botón ‘Válida’. El resultado debería ser el siguiente</p>
 <p><img class='border img-fluid interface' src="images/image17.png" /></p>
-<p>Una vez que todas las búsquedas son definidas como válidas o no válidas, es posible pasar a la siguiente etapa: revisión[screening] de títulos y abstract. Para ello, es necesario ingresar al tablero presionando en el título de la aplicación. Para administrar las validaciones, hacer click en la línea que dice ‘Número total de búsquedas de la revisión: 1’</p>
+<p>Una vez que todas las búsquedas son definidas como válidas o no válidas, es posible pasar a la siguiente etapa:  tamizaje de títulos y abstract. Para ello, es necesario ingresar al tablero presionando en el título de la aplicación. Para administrar las validaciones, hacer click en la línea que dice ‘Número total de búsquedas de la revisión: 1’</p>
 <p><img class='border img-fluid interface' src="images/image18.png" /></p>
 <p>En la pantalla de administración de búsquedas, se muestran todas las búsquedas realizadas por los distintos usuarios, y se ofrece la posibilidad de validarlas o hacerlas no válidas. Como para todas las búsquedas ya existe una opción, se entrega la opción de avanzar a la siguiente etapa.</p>
 <p><img class='border img-fluid interface' src="images/image19.png" /></p>
@@ -318,16 +319,16 @@ passenger_ruby &lt;ruby_location&gt;
 <p>Una vez definidos los registros, deben revisarse para verificar si son útiles o no. Para ello, el primer criterio es ver si el título y resumen del artículo entrega evidencia para ingresar el texto al estudio.</p>
 <p>En la etapa siguiente, el sistema presenta la interface de administración</p>
 <p><img class='border img-fluid interface' src="images/image20.png" /></p>
-<p>De forma predeterminada, Buhos considera dos usuarios: un administrador con todos los permisos para administrar el sistema y un analista con password y clave ‘analyst’, el que cuenta con la autorización para chequear las revisiones sistemáticas que les están asignadas. En el ejemplo, se asignaron todos los documentos a ambos usuarios para mostrar la resolución de divergencias. Para ello, hay presionar el botón ‘Asignaciones de DC’.</p>
+<p>De forma predeterminada, Buhos considera tres usuarios: un administrador con todos los permisos para administrar el sistema, un analista con password y clave ‘analyst’, el que cuenta con la autorización para chequear las revisiones sistemáticas que les están asignadas y un usuario visitante, con password y clave 'guest', qué solo puede observar el sistema y enviar mensajes. En el ejemplo, la revisión sistemática está asignada al grupo donde se encuentran el administrador y el analista,  por lo que se asignarán todos los documentos a ambos usuarios para mostrar la resolución de divergencias. Para ello, hay presionar el botón ‘Asignaciones de DC’.</p>
 <p>Se pueden asignar todos los documentos a un usuario, usando los botones ‘Asignar todos’ o asignar individualmente cada documento. En el caso, se presionó los dos botones de ‘Asignar todos’.</p>
 <p><img class='border img-fluid interface' src="images/image21.png"/></p>
 <p>El resultado debería ser similar al siguiente:</p>
 <p><img class='border img-fluid interface' src="images/image22.png" /></p>
-<p>Al ingresar al tablero de usuario, se observa que, como administrador, tenemos seis documentos por resolver. Como evaluador, se muestra que hay que decidir sobre seis documentos. Luego, presionar el último enlace, para comenzar el proceso de evaluación.</p>
+<p>Al ingresar al tablero de usuario, se observa que, como administrador, tenemos seis documentos por resolver. Como evaluador, se muestra que hay que decidir sobre seis documentos. Presionemos el último enlace, para comenzar el proceso de evaluación.</p>
 <p><img class='border img-fluid interface' src="images/image23.png" /></p>
 <p>La interface de evaluación, en su parte superior, entrega información general sobre la etapa, los objetivos de la revisión y muestra el estado de avance. En este caso, hay seis documentos sin decisión.</p>
 <p><img class='border img-fluid interface' src="images/image24.png" /></p>
-<p>Posteriormente, se presenta cada documento a evaluar. En cada uno se muestra el título, su referencia en formato APA, cuántas citaciones tiene y el resumen [abstract]. En base a esta información es que hay que decidir si el documento entrega información suficiente. Del abstract que se presenta como ejemplo, se observa que no entrega información sobre software de revisión sistemática, sino que es una investigación aborda cómo se realizan revisiones. Por tanto, se debe marcar ‘No’ en la decisión, y se puede agregar como etiqueta su condición de investigación sobre revisiones.</p>
+<p>Posteriormente, se presenta cada documento a evaluar. En cada uno se muestra el título, su referencia en formato APA, cuántas citaciones tiene y el resumen . En base a esta información es que hay que decidir si el documento entrega información suficiente. Del abstract que se presenta como ejemplo, se observa que no entrega información sobre software de revisión sistemática, sino que es una investigación aborda cómo se realizan revisiones. Por tanto, se debe marcar ‘No’ en la decisión, y se puede agregar como etiqueta su condición de investigación sobre revisiones.</p>
 <p><img class='border img-fluid interface' src="images/image25.png" /></p>
 <p>Al tomar la decisión antes indicada, se aprecia cómo cambia el color del cuadro y se agrega la etiqueta seleccionada.</p>
 <p>El resumen del siguiente texto, sobre GAPScreener, presenta algunas de las palabras claves que se establecieron al definir la revisión sistemática. Queda claro tanto en el título como en el abstract que es una herramienta pertinente a la investigación. Incluso se puede agregar un tag que señale que es una herramienta para la etapa de screening.</p>
