@@ -334,13 +334,13 @@ module Buhos
 
     def self.create_users(db, language)
       id_admin = get_id_user_by_login(db, 'admin')
-      id_admin ||= db[:users].replace(:login => 'admin', :name => 'Administrator', :password => Digest::SHA1.hexdigest('admin'), :role_id => 'administrator', :active => 1, :language => language)
+      id_admin ||= db[:users].insert(:login => 'admin', :name => 'Administrator', :password => Digest::SHA1.hexdigest('admin'), :role_id => 'administrator', :active => 1, :language => language)
 
       id_analyst = get_id_user_by_login(db, 'analyst')
-      id_analyst ||= db[:users].replace(:login => 'analyst', :name => 'Analyst', :password => Digest::SHA1.hexdigest('analyst'), :role_id => 'analyst', :active => 1, :language => language)
+      id_analyst ||= db[:users].insert(:login => 'analyst', :name => 'Analyst', :password => Digest::SHA1.hexdigest('analyst'), :role_id => 'analyst', :active => 1, :language => language)
 
       id_guest = get_id_user_by_login(db, 'guest')
-      id_guest ||= db[:users].replace(:login => 'guest', :name => 'Guest', :password => Digest::SHA1.hexdigest('guest'), :role_id => 'guest', :active => 1, :language => language)
+      id_guest ||= db[:users].insert(:login => 'guest', :name => 'Guest', :password => Digest::SHA1.hexdigest('guest'), :role_id => 'guest', :active => 1, :language => language)
       return id_admin, id_analyst, id_guest
     end
 
@@ -363,9 +363,10 @@ module Buhos
       }
 
       taxonomies.each_pair do |category, values|
-        f_id = db[:sr_taxonomies].replace(:name => category)
+        f_id = db[:sr_taxonomies][:name=>category] && db[:sr_taxonomies][:name=>category][:id]
+        f_id = db[:sr_taxonomies].insert(:name => category) unless f_id
         values.each do |name|
-          db[:sr_taxonomy_categories].replace(:srt_id => f_id, :name => name)
+          db[:sr_taxonomy_categories].insert(:srt_id => f_id, :name => name) if  db[:sr_taxonomy_categories].where(:srt_id => f_id, :name => name).empty?
         end
       end
     end
