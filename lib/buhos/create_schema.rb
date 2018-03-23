@@ -427,7 +427,10 @@ module Buhos
       group_id = db[:groups].replace(:group_administrator => id_admin, :description => "First group, just for demostration", :name => "demo group")
       db[:groups_users].replace(:group_id => group_id, :user_id => id_admin)
       db[:groups_users].replace(:group_id => group_id, :user_id => id_analyst)
-      db[:groups_users].replace(:group_id => group_id, :user_id => id_guest)
+
+      group_guest = db[:groups].replace(:group_administrator => id_admin, :description => "Guest group", :name => "guest group")
+      db[:groups_users].replace(:group_id => group_guest, :user_id => id_admin)
+      db[:groups_users].replace(:group_id => group_guest, :user_id => id_guest)
     end
 
     # @!endgroup
