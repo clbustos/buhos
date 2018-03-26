@@ -78,11 +78,15 @@ module HTMLHelpers
     prefix.nil? ? suffix  : "#{prefix}-#{suffix}"
   end
 
-
-  def a_textarea_editable(id, prefix, data_url, v, default_value="--")
-    url_s=url(data_url)
-
-    "<a class='textarea_editable' data-pk='#{id}' data-url='#{url_s}' href='#' id='#{prefix}-#{id}' data-placeholder='#{default_value}'>#{v}</a>"
+  # Generates a textarea input for x-editable.
+  # @param id Primary key of object to edit
+  # @param prefix the id for the element is 'prefix'-'id'
+  # @param data_url URL for edition of text
+  # @param v Current value
+  # @param placeholder Placeholder for field before entering data
+  # @example a_textarea_editable(user.id, 'user-name', 'user/edit/name', user.name, t(:user_name))
+  def a_textarea_editable(id, prefix, data_url, v, placeholder="--")
+    a_generic_editable('textarea_editable',id,prefix,data_url,v,placeholder)
   end
 
   # Generates a text input for x-editable.
@@ -93,8 +97,13 @@ module HTMLHelpers
   # @param placeholder Placeholder for field before entering data
   # @example a_editable(user.id, 'user-name', 'user/edit/name', user.name, t(:user_name))
   def a_editable(id, prefix, data_url, v,placeholder='--')
+    a_generic_editable('name_editable',id,prefix,data_url,v,placeholder)
+  end
+
+
+  def a_generic_editable(a_class,id,prefix,data_url,v,placeholder)
     url_s=url(data_url)
-    "<a class='name_editable' data-pk='#{id}' data-url='#{url_s}' href='#' id='#{prefix}-#{id}' data-placeholder='#{placeholder}'>#{v}</a>"
+    "<a class='#{a_class}' data-pk='#{id}' data-url='#{url_s}' href='#' id='#{prefix}-#{id}' data-placeholder='#{placeholder}'>#{v}</a>"
   end
 
   # Check if we have permission to do an edit
