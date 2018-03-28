@@ -4,6 +4,9 @@
 require 'sinatra'
 require 'dotenv'
 require 'rack/session/moneta'
+require 'sass/plugin/rack'
+use Sass::Plugin::Rack
+
 
 Dotenv.load("./.env") if File.exist? "./env" and ENV['RACK_ENV']!="test"
 
