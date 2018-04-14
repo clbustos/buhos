@@ -114,8 +114,9 @@ class Search < Sequel::Model
 
   def update_records(ref_ids)
     records_ya_ingresados=$db["SELECT record_id FROM records_searches WHERE search_id=?", self[:id]].map {|v| v[:record_id]}
-    records_por_ingresar = ref_ids - records_ya_ingresados
-    records_por_borrar = records_ya_ingresados - ref_ids
+    records_por_ingresar = (ref_ids - records_ya_ingresados).uniq
+    records_por_borrar = (records_ya_ingresados - ref_ids).uniq
+
     if records_por_ingresar
       $db[:records_searches].multi_insert (records_por_ingresar.map {|v| {:record_id => v, :search_id => self[:id]}})
     end
