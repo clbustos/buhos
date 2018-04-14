@@ -458,6 +458,7 @@ en:
   search_processor:
     no_file_available: "No file available to process"
     error_on_reference: "Error in Reference No. %{i}"
+    error_parsing_file: "Error parsing file"
     no_integrator_for_filetype: "No integrator found for this file type"
     no_unique_id_for_integrator: "No File identifier ID found"
     Search_canonical_documents_successfully: "Canonical search files processed successfully"

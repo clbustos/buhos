@@ -57,12 +57,12 @@ class SearchProcessor
     end
   end
 
-  def log_error(message)
-    @result.error("#{::I18n::t(message)}: ID #{@search[:id]}")
+  def log_error(message, extra_info=nil)
+    @result.error("#{::I18n::t(message)}: ID #{@search[:id]} #{extra_info}")
   end
 
-  def log_success(message)
-    @result.success("#{::I18n::t(message)}:ID #{@search[:id]}")
+  def log_success(message, extra_info=nil)
+    @result.success("#{::I18n::t(message)}:ID #{@search[:id]} #{extra_info}")
   end
 
 
@@ -70,8 +70,8 @@ class SearchProcessor
     begin
       integrator = get_integrator
       return false if !integrator
-    rescue BibliographicalImporter::BibTex::RecordBibtexError
-      log_error("search_processor.error_processing_file")
+    rescue BibTeX::ParseError => e
+      log_error("search_processor.error_parsing_file", e.message)
       return false
     end
 

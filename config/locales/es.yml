@@ -463,6 +463,7 @@ es:
   search_processor:
     no_file_available: "No hay archivo disponible para process"
     error_on_reference: "Error en referencia Nº %{i}"
+    error_parsing_file: "Error procesando archivo"
     no_integrator_for_filetype: "No hay integrador para este tipo de archivo"
     no_unique_id_for_integrator: "No existe un id que permita identificar a los archivos"
     Search_canonical_documents_successfully: "Archivos canónicos de búsqueda procesados exitosamente"
