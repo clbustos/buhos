@@ -31,11 +31,18 @@ require 'nokogiri'
 #
 # Provides access to Scopus dev services
 module Scopus
-  # Factory method
+    # Factory method
     def self.process_xml(xml)
+
       xml=Nokogiri::XML(xml) if xml.is_a? String
-      name=xml.children[0].name.gsub("-","").capitalize
-      Scopus::XMLResponse.const_get(name.to_sym).new(xml)
+      if xml.children.length==0
+        # Error
+        Scopus::XMLResponse::XMLEmpty.new
+      else
+        name=xml.children[0].name.gsub("-","").capitalize
+        Scopus::XMLResponse.const_get(name.to_sym).new(xml)
+      end
+
     end
     
     def self.entries_to_csv(entries,csv_file)

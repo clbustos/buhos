@@ -67,9 +67,11 @@ module ReferenceMethods
     end
     author_ref
   end
+  def e_html t
+    CGI.escapeHTML(t.to_s)
+  end
   def ref_apa_6_brief_html
     doi_t = doi ? "doi: #{a_doi(doi)}" : ""
-    CGI.escapeHTML("#{authors_apa_6} (#{year}). #{title}. <em>#{journal}, #{volume}</em>, #{pages}.")+doi_t
-
+    "#{e_html(authors_apa_6)} (#{e_html(year)}). #{e_html(title)}. <em>#{e_html(journal)}, #{e_html(volume)}</em>, #{e_html(pages)}. #{doi_t}"
   end
 end

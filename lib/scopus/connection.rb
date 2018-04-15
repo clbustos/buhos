@@ -76,6 +76,9 @@ module Scopus
     elsif xml.xpath("//atom:error",'atom'=>'http://www.w3.org/2005/Atom').length>0
       @error=true
       @error_msg=xml.xpath("//atom:error").text
+    elsif xml.children.length==0
+      @error=true
+      @error_msg="Empty_XML"
     else
       @error=false
       @error_msg=nil
