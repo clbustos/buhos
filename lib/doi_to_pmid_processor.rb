@@ -26,36 +26,50 @@
 # OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-# Based on an array of records, attach crossref information for each
-class RecordCrossrefProcessor
-  attr_reader :result
-  def initialize(records,db)
-    @records=records
-    @db=db
-    @result=Result.new()
-    process_records
+# Error when Id Converter API doesn't provide a valid response
+class IDConverterApiResponseError < StandardError
+
+end
+
+# Get PMID for a list of Doi, using ID Converter API from NCBI
+# https://www.ncbi.nlm.nih.gov/pmc/tools/id-converter-api/
+class DoiToPmidProcessor
+  BASE_URL="https://www.ncbi.nlm.nih.gov/pmc/utils/idconv/v1.0/"
+  MAX_SLICE=150
+  TOOL="buhos"
+  EMAIL="clbustos.2@gmail.com"
+  attr_reader :doi_list
+  attr_reader :doi_as_pmid
+  def initialize(doi_list)
+    @doi_list=doi_list
+    @doi_as_pmid={}
   end
-  def process_records
-    correct=true
-    @records.each do |record|
-      @db.transaction() do
-        begin
-          @result.add_result(record.add_doi_automatic)
-          if record.doi
-
-            result.add_result(record.references_automatic_crossref)
-          end
-        rescue BadCrossrefResponseError=>e
-
-          result.error(I18n::t("error.problem_record_stop_sync", record_id: record[:id], e_message: e.message))
-          raise Sequel::Rollback
-        end
-        @db.after_rollback {
-          correct=false
-        }
-      end
-      break unless correct
+  # NCBI request that the users should get 200 or less ids
+  # So, we use MAX_SLICE as maximum slice to make requests
+  def process
+    @doi_list.each_slice(MAX_SLICE) do |slice_doi|
+      process_doi_slice(slice_doi)
     end
   end
+  def process_doi_slice(slice_doi)
+    slice_doi_url=slice_doi.map {|v| CGI.escape(v)}.join(",")
+    url="#{BASE_URL}?tool=#{TOOL}&email=#{EMAIL}&idtype=doi&format=json&versions=no&ids=#{slice_doi_url}"
+    $log.info(url)
+    uri = URI(url)
+    res = Net::HTTP.get_response(uri)
 
+    if res.code!="200"
+      raise IDConverterApiResponseError, "Can't retrieve information for slice #{slice_doi_url}. CODE: #{res.code}, Body:#{res.body}"
+    else
+      json=JSON.parse(res.body)
+      if json["status"]!="ok"
+        raise IDConverterApiResponseError, "Error on JSON retrieval #{res.body}"
+      else
+        json["records"].each {|record|
+          @doi_as_pmid[record['doi']]=record["pmid"]
+        }
+      end
+      true
+    end
+  end
 end
