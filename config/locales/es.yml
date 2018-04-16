@@ -43,6 +43,7 @@ es:
     references: "Referencias de este documento canónico"
     references_on_which_appears: "Referencias en las que aparece este documento canónico"
   Canonical_document_assigned_to_this_reference: "Documento canónico asignada a esta referencia"
+  Canonical_document_merge_successful: "Unión de documentos canónicos exitosa"
   Canonical_Document_Status: "Estado del Documento Canónico"
   Canonical_document_title: "Documento canónico %{cd_name}"
   canonical_document_title: "Documento canónico %{cd_title}"

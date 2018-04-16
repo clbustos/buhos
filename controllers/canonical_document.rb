@@ -111,7 +111,7 @@ post '/canonical_document/merge' do
     cds=CanonicalDocument.where(:doi => doi, :id => pk_ids.split(","))
   end
   if (cds.count>1)
-    resultado=CanonicalDocument.unir(cds.map(:id))
+    resultado=CanonicalDocument.merge(cds.map(:id))
   end
   return resultado ? 200 : 500
 end
@@ -158,6 +158,26 @@ get '/canonical_documents/review/:rev_id/automatic_categories' do |rev_id|
   haml %s{systematic_reviews/canonical_documents_automatic_categories}
 end
 
+post '/canonical_document/actions' do
+  halt_unless_auth('canonical_document_admin')
+  action=params['action']
+  halt 500, t(:no_action_specified) unless action
+  halt 500, t(:no_action_specified) if params['canonical_document'].nil?
+  cd_ids=params['canonical_document'].keys
+
+
+  if action=='merge'
+    if CanonicalDocument.merge(cd_ids)
+      add_message(t(:Canonical_document_merge_successful))
+    else
+      add_message(t(:Canonical_document_merge_error), :error)
+    end
+  else
+    return [500, I18n.t(:that_function_doesn_exists)]
+  end
+  redirect back
+end
+
 # Allocate a canonical document to user, for screening or analyze
 post '/canonical_document/user_allocation/:action' do |action|
   halt_unless_auth('review_admin')
@@ -182,6 +202,7 @@ post '/canonical_document/user_allocation/:action' do |action|
   end
 
 end
+
 # View raw crossref information using the doi of the canonical document
 get '/canonical_document/:id/view_crossref_info' do |id|
   halt_unless_auth('canonical_document_view')

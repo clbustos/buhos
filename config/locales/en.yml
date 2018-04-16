@@ -43,6 +43,7 @@ en:
     references: "References to this canonical document"
     references_on_which_appears: "References where this canonical document is mentioned"
   Canonical_document_assigned_to_this_reference: "Canonical document allocated to this reference"
+  Canonical_document_merge_successful: "Successful canonical documents merge"
   Canonical_Document_Status: "Canonical Document Status"
   Canonical_document_title: "Canonical document %{cd_name}"
   canonical_document_title: "Canonical document %{cd_title}"
