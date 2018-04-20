@@ -9,17 +9,17 @@ describe 'PMC::Efetch' do
     expect(@efetch.pmid_list).to eq(@pmid_list)
   end
   it "#process shouldn't raise an error" do
-    expect {@efetch.process}.to_not raise_exception
+    skip if ENV['TEST_TRAVIS']; expect {@efetch.process}.to_not raise_exception
   end
   context "when process a list of correct DOI" do
     before(:all) do
-      @efetch.process
+      skip if ENV['TEST_TRAVIS']; @efetch.process
     end
     it ".pmid_xml should be an PMC::EfetchXMLSummaries" do
-      expect(@efetch.pmid_xml).to be_a(PMC::EfetchXMLSummaries)
+      skip if ENV['TEST_TRAVIS'];expect(@efetch.pmid_xml).to be_a(PMC::EfetchXMLSummaries)
     end
     it ".pmid_xml[0] should be a Nokogiri Object" do
-      expect(@efetch.pmid_xml[0]).to be_a(Nokogiri::XML::Document)
+      skip if ENV['TEST_TRAVIS'];expect(@efetch.pmid_xml[0]).to be_a(Nokogiri::XML::Document)
     end
   end
 

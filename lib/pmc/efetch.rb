@@ -52,7 +52,7 @@ module PMC
   end
 
   class EfetchResponseError < StandardError
-    
+
   end
   class Efetch
     BASE_URL="https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi"
