@@ -26,86 +26,51 @@
 # OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+require 'nokogiri'
+
 #
 module BibliographicalImporter
-  # Based on Crossref JSON
-  # TODO: Create an unique id for this class, to allows use of other JSON formats
-  module JSON
-    # Process references inside JSON
-    class Reference
-      def initialize(v)
-        @v=v
-      end
-      def doi
-        @v['DOI']
-      end
-      def pages
-        if @v['first-page'] and @v['last-page']
-          "#{@v['first-page']}-#{@v['last-page']}"
-        else
-          ""
-        end
-      end
-      def doi_s
-        doi ? "doi:#{doi}":""
-      end
-      def to_s
-        if @v['author'] and @v['article-title']
-          "#{@v['author']} (#{@v['year']}). #{@v['article-title']}. #{@v['journal-title']}, #{@v['volume']}, #{pages}. #{doi_s}"
-        elsif @v['DOI']
-          doi_s
-        else
-          @v.map {|v| "#{v[0]}:#{v[1]}"}.join(";")
-        end
-      end
-    end
+  # Process XML downloaded from PMC Efetch
+
+  module PmcEfetchXml
     class Record
       include ReferenceMethods
       include BibliographicalImporter::CommonRecordAttributes
 
-      attr_reader :jv
-      attr_accessor :references_crossref
-
-
-
-
-      def self.create(json)
-        #type=self.determine_type(bibtex_value)
-        #klass="Reference_#{type.capitalize}".to_sym
-        #BibliographicalImporter::JSON.const_get(klass).send(:new, bibtex_value)
-
-        BibliographicalImporter::JSON::Record.new(json)
+      attr_reader :xml
+      def self.create(xml)
+        BibliographicalImporter::PmcEfetchXml::Record.new(xml)
       end
 
-      def initialize(json_value)
-        @jv=json_value
+      def initialize(xml)
+        @xml=xml
         @authors=[]
         parse_common
-
-
+      end
+      def get_text_at(path)
+        xml_r=xml.at(path)
+        xml_r.nil? ? nil : xml_r.text.to_s
       end
       def parse_common
         begin
-          vh=@jv["message"]
-
-          @uid=vh["URL"]
-          @title=vh["title"].join(";")
-          #$log.info("Parseando")
-          #$log.info(vh["author"])
-          @authors=vh["author"].map {|v|
-            "#{v["family"]}, #{v["given"]}"
-          } unless vh["author"].nil?
+          @uid=get_text_at("PMID")
+          @pubmed=@uid
+          @title=get_text_at("ArticleTitle")
+          @authors=xml.xpath(".//AuthorList/Author").map {|v|
+            "#{v.at('LastName').text}, #{v.at('ForeName').text}"
+          }
 
 #          #$log.info(@authors)
 
-          @journal=vh["container-title"].join(";")
-          @year=vh["issued"]["date-parts"][0][0]
-          @volume=vh["volume"]
-          @pages=vh["page"]
-          @type=vh["type"]
-          @doi=vh["DOI"]
-          @url=vh["URL"]
-          @references_crossref=@jv["message"]["reference"]
+          @journal  =get_text_at("Article/Journal/Title")
+          @year     =get_text_at("Article/Journal/JournalIssue/PubDate/Year")
+          @volume   =get_text_at("Article/Journal/JournalIssue/Volume")
+          @pages    =get_text_at("Article/Pagination")
+          @type     =nil
+          @doi      =get_text_at("Article/ELocationID[@EIdType='doi']")
+          @url=nil
+
+          @abstract =get_text_at("Article/Abstract/AbstractText")
 
         rescue Exception=>e
           #$log.info("Error:#{vh}")
@@ -114,17 +79,12 @@ module BibliographicalImporter
 
       end
 
-      def references
-        @references_crossref.map {|v|
-          Reference.new(v)
-        } unless @references_crossref.nil?
-      end
+
 
 
       def author
         #$log.info(@authors)
         @authors.join (" and ")
-
       end
 
       # Determine the type of the reference. It could be infered by fields
@@ -138,7 +98,7 @@ module BibliographicalImporter
 
     class Reader
       include AbstractReader
-      attr_reader :jb
+      attr_reader :xml_a
       attr_reader :records
       include Enumerable
       def [](x)
@@ -147,23 +107,34 @@ module BibliographicalImporter
       def each(&block)
         @records.each(&block)
       end
-      def initialize(json_bib)
-        @jb=json_bib
+      def initialize(xml_o)
+        if xml_o.is_a? PMC::EfetchXMLSummaries
+          @xml_a=xml_o
+        elsif xml_o.is_a? Nokogiri::XML::Document
+          @xml_a=[xml_o]
+        end
+        @records=[]
         parse_records
       end
 
       def self.open(filename)
-        b=::JSON.parse(File.read(filename))
+        b=File.open(filename) { |f| Nokogiri::XML(f) }
         Reader.new(b)
       end
 
       def self.parse(string)
-        b=::JSON.parse(string)
+        b=Nokogiri::XML(string)
         Reader.new(b)
       end
 
       def parse_records
-        @records=@jb.map {|r| BibliographicalImporter::JSON::Record.create(r)}
+        @xml_a.each do |xml|
+          xml.xpath("//PubmedArticle").each do |article|
+            $log.info(article.xpath(".//AuthorList/Author/LastName").text)
+            @records.push(BibliographicalImporter::PmcEfetchXml::Record.create(article))
+          end
+        end
+
       end
     end
   end

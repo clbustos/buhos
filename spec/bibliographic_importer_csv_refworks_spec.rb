@@ -11,4 +11,4 @@ describe 'BibliographicalImporter::CSV for RefWorks' do
     expect(@bib[0].author).to eq("Alby,Francesca and Zucchermaglio,Cristina and Fatigante,Marilena")
   end
 
-end
+  end

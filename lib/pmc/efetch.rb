@@ -28,7 +28,28 @@
 
 #
 module PMC
+  # Stores the
+  class EfetchXMLSummaries
+    attr_reader :summaries
+    def initialize
+      @summaries=[]
+    end
+    include Enumerable
+    def [](i)
+      @summaries[i]
+    end
+    def each
+      @summaries.each do |e|
+        yield e
+      end
+    end
+    # Checks that e is Nokogiri::XML::Document object or nil
+    def push(e)
+      raise "Not a Nokogiri::Document or nil object" unless e.nil? or e.is_a? Nokogiri::XML::Document
+      @summaries.push(e)
+    end
 
+  end
 
   class Efetch
     BASE_URL="https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi"
@@ -36,9 +57,10 @@ module PMC
     TOOL="buhos"
     EMAIL="clbustos.2@gmail.com"
     attr_reader :pmid_list
+    attr_reader :pmid_xml
     def initialize(pmid_list)
       @pmid_list=pmid_list
-      @pmid_xml={}
+      @pmid_xml=EfetchXMLSummaries.new
       @processed=false
     end
     # NCBI request that the users should get 200 or less ids
@@ -61,22 +83,18 @@ module PMC
       #$log.info(url)
       uri = URI(url)
       res = Net::HTTP.get_response(uri)
-      $log.info(res.body)
+      #$log.info(res.body)
       begin
         xml_o=Nokogiri::XML(res.body)
       rescue
         xml_o=nil
       end
-      $log.info(res.body)
+      #$log.info(res.body)
       if res.code!="200"
         raise EfetchResponseError, "Can't retrieve information for slice #{slice_pmid}. CODE: #{res.code}, Body:#{res.body}"
       else
         if xml_o
-          #$log.info(xml_o)
-          xml_o.xpath("//PubmedArticle").each do |article|
-            pmid=article.at("PMID").text
-            @pmid_xml[pmid]=article
-          end
+          @pmid_xml.push(xml_o)
           :ok
         else
           raise "Problem to get slice #{slice_pmid}"

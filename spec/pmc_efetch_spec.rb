@@ -15,7 +15,12 @@ describe 'PMC::Efetch' do
     before(:all) do
       @efetch.process
     end
-
+    it ".pmid_xml should be an PMC::EfetchXMLSummaries" do
+      expect(@efetch.pmid_xml).to be_a(PMC::EfetchXMLSummaries)
+    end
+    it ".pmid_xml[0] should be a Nokogiri Object" do
+      expect(@efetch.pmid_xml[0]).to be_a(Nokogiri::XML::Document)
+    end
   end
 
 
