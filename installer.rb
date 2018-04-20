@@ -85,11 +85,12 @@ module Buhos
                       proxy_port:     {default:nil},
                       proxy_user:     {default:nil},
                       proxy_password: {default:nil},
-                      scopus_key:     {default:nil}
+                      scopus_key:     {default:nil},
+                      ncbi_api_key:   {default:nil}
         }
       end
       def optional_fields
-        [:proxy_hostname, :proxy_port,:proxy_user, :proxy_password, :scopus_key]
+        [:proxy_hostname, :proxy_port,:proxy_user, :proxy_password, :scopus_key,:ncbi_api_key]
       end
       def install_log(t)
 	  

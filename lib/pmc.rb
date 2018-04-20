@@ -26,50 +26,14 @@
 # OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-# Error when Id Converter API doesn't provide a valid response
-class IDConverterApiResponseError < StandardError
+# Several utilities to work with PubMed API
+module PMC
+
+  def self.api_key
+    ENV['NCBI_API_KEY'] ? "&api_key=#{ENV['NCBI_API_KEY']}" : ""
+  end
 
 end
 
-# Get PMID for a list of Doi, using ID Converter API from NCBI
-# https://www.ncbi.nlm.nih.gov/pmc/tools/id-converter-api/
-class DoiToPmidProcessor
-  BASE_URL="https://www.ncbi.nlm.nih.gov/pmc/utils/idconv/v1.0/"
-  MAX_SLICE=150
-  TOOL="buhos"
-  EMAIL="clbustos.2@gmail.com"
-  attr_reader :doi_list
-  attr_reader :doi_as_pmid
-  def initialize(doi_list)
-    @doi_list=doi_list
-    @doi_as_pmid={}
-  end
-  # NCBI request that the users should get 200 or less ids
-  # So, we use MAX_SLICE as maximum slice to make requests
-  def process
-    @doi_list.each_slice(MAX_SLICE) do |slice_doi|
-      process_doi_slice(slice_doi)
-    end
-  end
-  def process_doi_slice(slice_doi)
-    slice_doi_url=slice_doi.map {|v| CGI.escape(v)}.join(",")
-    url="#{BASE_URL}?tool=#{TOOL}&email=#{EMAIL}&idtype=doi&format=json&versions=no&ids=#{slice_doi_url}"
-    $log.info(url)
-    uri = URI(url)
-    res = Net::HTTP.get_response(uri)
-
-    if res.code!="200"
-      raise IDConverterApiResponseError, "Can't retrieve information for slice #{slice_doi_url}. CODE: #{res.code}, Body:#{res.body}"
-    else
-      json=JSON.parse(res.body)
-      if json["status"]!="ok"
-        raise IDConverterApiResponseError, "Error on JSON retrieval #{res.body}"
-      else
-        json["records"].each {|record|
-          @doi_as_pmid[record['doi']]=record["pmid"]
-        }
-      end
-      true
-    end
-  end
-end
+require_relative 'pmc/doi_to_pmid_processor'
+require_relative 'pmc/efetch'
