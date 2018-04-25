@@ -167,6 +167,10 @@ en:
     show_canonical_document: "Show in DC"
   Files: "Files"
   Filter: "Filter"
+  files:
+    Show_all: "Show all"
+    Show_only_files_assigned_to_cd: "Assigned to CD"
+    Show_only_files_not_assigned_to_cd: "Not assigned to CD"
   footer_conicyt: "Software funded by Conicyt National Doctoral Grant No. 21151499"
   footer_copyright: "2016-2018 Claudio Bustos"
   Full_text_report: "Data extraction report"

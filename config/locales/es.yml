@@ -166,6 +166,10 @@ es:
     unassign_systematic_review: "Quitar de RS"
     show_canonical_document: "Mostrar en DC"
   Files: "Archivos"
+  files:
+    Show_all: "Mostrar todo"
+    Show_only_files_assigned_to_cd: "Asignado a DC"
+    Show_only_files_not_assigned_to_cd: "No asignado a DC"
   Filter: "Filtro"
   footer_conicyt: "Software financiado por Beca Doctorado Nacional Conicyt Nº21151499"
   footer_copyright: "2016-2018 Claudio Bustos"

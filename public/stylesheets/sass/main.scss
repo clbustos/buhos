@@ -584,3 +584,19 @@ p.instructions {
 .user-buttons {
  /*   margin-top:10px;*/
 }
+
+
+/* Tablesorter */
+
+table.tablesorter thead tr {
+  th {
+    background-color: $blue_light;
+  }
+  .headerSortDown {
+    background-color: $blue_dark;
+  }
+  .headerSortUp {
+    background-color: $blue_dark;
+  }
+
+}
