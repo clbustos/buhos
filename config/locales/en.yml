@@ -76,6 +76,7 @@ en:
   complete: "Complete"
   Complete_abstract_manually: "Complete abstract manually"
   Complete_abstract_using_Scopus: "Complete abstract using Scopus"
+  Complete_abstract_using_Pubmed: "Complete abstract using Pubmed"
   Count_canonical_documents: "Number of canonical documents"
   count_canonical_documents: "Number of canonical documents"
   Count_canonical_documents_assigned: "Number of allocated documents"

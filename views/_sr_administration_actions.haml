@@ -13,6 +13,9 @@
     %a{:href=>url("/review/#{review[:id]}/stage/#{stage}/complete_empty_abstract_manual"), :role=>"button", :class=>"btn btn-default "}=t(:Complete_abstract_manually)
     - if scopus_available?
       %a{:href=>url("/review/#{review[:id]}/stage/#{stage}/complete_empty_abstract_scopus"), :role=>"button", :class=>"btn btn-default "}=t(:Complete_abstract_using_Scopus)
+    - if false and pubmed_available? # TODO: IMPLEMENT THIS
+      %a{:href=>url("/review/#{review[:id]}/stage/#{stage}/complete_empty_abstract_pubmed"), :role=>"button", :class=>"btn btn-default "}=t(:Complete_abstract_using_Pubmed)
+
   - if ars.stage_complete? stage
     - if [:screening_title_abstract, :screening_references, :review_full_text].include? stage.to_sym
       %a{:href=>url("/review/#{review[:id]}/stage/#{stage}/generar_references_crossref"), :role=>"button", :class=>"btn btn-default btn-sm"}=t(:Generate_Crossref_references)

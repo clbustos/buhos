@@ -64,10 +64,6 @@ module Buhos
 
   end
 
-  # Exception when no Scopus method is allowed
-  class NoScopusMethodError < StandardError
-
-  end
 
   # Exception when no group id exists
 
@@ -92,6 +88,17 @@ module Buhos
   class NoFileIdError < StandardError
 
   end
+
+  # Exception when no Scopus method is allowed
+  class NoScopusMethodError < StandardError
+
+  end
+
+  # No method available to retrieve a PMC Records
+  class NoPmcMethodError < StandardError
+
+  end
+
   # @!endgroup
 end
 

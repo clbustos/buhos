@@ -57,6 +57,11 @@ module Buhos
       !ENV['SCOPUS_KEY'].nil?
     end
 
+    # Is NCBI API KEY available?
+    def pubmed_available?
+      !ENV['NCBI_API_KEY'].nil?
+    end
+
     # Get title header within 80 chars
     def get_title_head
       if @title.length>80
