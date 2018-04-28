@@ -394,6 +394,7 @@ en:
   Record_title: "Record"
   Records: "Records"
   Records_on_search: "Records in search"
+  Records_from_to: "%{first_record} - %{last_record} of %{total_records}"
   Records_that_cites_this_reference: "Search records citing this reference"
   Redirect_back: "Go back"
   Reference_Crossref_search: "Reference search in Crossref"

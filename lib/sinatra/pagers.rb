@@ -28,8 +28,25 @@
 module Sinatra
   module Pagers
 
+    class PagerCdQueryAdapter
+      attr_reader :cds_out
+      def initialize(pager, cds_pre)
+        @pager=pager
+        @cds_pre=cds_pre
+        @cds_out=@cds_pre
+        process
+      end
+      def process
+        if @pager.query.to_s!=""
+          cd_ids=@cds_pre.find_all {|v|
+            v[:title].include? @pager.query or v[:author].include? @pager.query
+          }.map {|v| v[0]}
+          @cds_out=@cds_pre.where(:id => cd_ids)
+        end
+      end
+    end
 
-    class PagerQueryAdapter
+    class PagerAdsQueryAdapter
       attr_reader :cds_out
       def initialize(pager, ads,cds_pre)
         @pager=pager
@@ -50,21 +67,42 @@ module Sinatra
     end
 
     class Pager
-      attr_reader :page,:query, :cpp, :max_page, :order
+      # Current page
+      attr_reader :page
+      # query string to be processed
+      attr_reader :query
+      # Number of object on each page
+      attr_reader :cpp
+      # Maximum number of pages
+      attr_reader :max_page
+      # String, with forma "<col>__<direction>". Direction could be desc (default) or asc
+      attr_reader :order
+      # Number of records
+      attr_reader :n_records
       def initialize
         @page=1
         @queyr=nil
         @cpp=20
         @max_page=nil
+        @n_records=nil
         @order=nil
         @order_col=nil
         @order_dir=nil
       end
+      # Get an Dataset of CanonicalDocuments and returns a new one, with all pager settings applied
+      # Including using 'query' to select using title or author
+      # 'order'
+      def adapt_cds(cds_pre)
+        pcqa=PagerCdQueryAdapter.new(self, cds_pre)
+        self.max_page=(pcqa.cds_out.count/self.cpp.to_f).ceil
+        cds=self.adjust_query(pcqa.cds_out)
+        cds
+      end
       # Adapt the cds_pre dataset, using decisions made by a user
       # @param ads [AnalysisUserDecision]
       # @param cds_pre [Sequel::Dataset]
-      def adapt_cd_dataset(ads,cds_pre)
-        PagerQueryAdapter.new(self, ads,cds_pre).cds_out
+      def adapt_ads_cds(ads, cds_pre)
+        PagerAdsQueryAdapter.new(self, ads,cds_pre).cds_out
       end
 
       def order=(order)
@@ -86,8 +124,9 @@ module Sinatra
         @max_page=max_page.to_i
         @page=1 if @page>@max_page
       end
-
+      # Retrieves the records to be shown
       def adjust_query(query)
+        @n_records=query.count
         query=query.offset((@page-1)*@cpp).limit(@cpp)
         if @order
           order_o= (@order_dir=='asc') ? @order_col.to_sym : Sequel.desc(@order_col.to_sym)
@@ -96,18 +135,31 @@ module Sinatra
         query
       end
 
+      def current_first_record
+        1+(@page-1)*@cpp
+      end
+      def current_last_record
+        if @page==@max_page
+          @n_records
+        else
+          @page*@cpp
+        end
+      end
 
     end
 
     module Helpers
+      # Retrieve a pager object.
+      # Params are: page, query, cpp, order
       def  get_pager
         pager=Pager.new
-        $log.info(params)
         [:page,:query,:cpp, :order].each {|prop|
           pager.send("#{prop}=",params[prop.to_s]) if params[prop.to_s]
         }
         pager
       end
+
+
     end
     def self.registered(app)
       app.helpers Pagers::Helpers

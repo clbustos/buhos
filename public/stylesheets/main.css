@@ -399,4 +399,13 @@ table.tablesorter thead tr .headerSortDown {
 table.tablesorter thead tr .headerSortUp {
   background-color: #146ab0; }
 
+.pager-order {
+  margin-top: 1em;
+  margin-bottom: 1em; }
+
+.pager-records-count {
+  margin: 20px;
+  display: inline-block;
+  float: right; }
+
 /*# sourceMappingURL=main.css.map */

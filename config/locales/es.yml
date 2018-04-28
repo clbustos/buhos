@@ -398,6 +398,7 @@ es:
   Record_crossref_search_instructions: "Se presentan los resultados de la busqueda de documentos similares en Crossref. Presione el botón 'Asignar DOI' si usted considera que el registro de Crossref es el mismo que se obtuvo desde la base bibliográfica."
   Record_title: "Registro"
   Records: "Registros"
+  Records_from_to: "%{first_record} - %{last_record} de %{total_records}"
   Records_on_search: "Registros en búsqueda"
   Records_that_cites_this_reference: "Registros de búsqueda que citan esta referencia"
   Redirect_back: "Volver atrás"

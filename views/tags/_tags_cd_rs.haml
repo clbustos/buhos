@@ -21,6 +21,8 @@
     });
   -@_tags_cd_rs_js=true
 
+
+
 %div{:id=>"tags-cd-#{cd.id}-rs-#{review.id}"}
   %ul.tags
     -TagBuilder.tag_in_cd(review,cd)  .each do |tag|

@@ -3,20 +3,7 @@
 / Modal
 =@modal_files.html_modal
 
-:javascript
-  button_appareance=function(row_class,t_el) {
-    $(row_class).toggle();
-    t_el.toggleClass("btn-primary");
-  };
 
-  $(document).ready(function(){
-    $("#show_cd_with").click(function(e) {
-      button_appareance('.file-with-cd',$(this));
-    });
-    $("#show_cd_wo").click(function(e) {
-      button_appareance('.file-wo-cd',$(this));
-    });
-  });
 
 %ul.breadcrumb
   %li
@@ -46,9 +33,9 @@
     =t(:Assign_automaticly_to_canonical_documents)
 
 %p
-  .btn-group#show_cd
-    %button.btn.btn-default.btn-primary#show_cd_with=   t("files.Show_only_files_assigned_to_cd")
-    %button.btn.btn-default.btn-primary#show_cd_wo=t("files.Show_only_files_not_assigned_to_cd")
+  .btn-group.toggle_buttons
+    %button.btn.btn-default.btn-primary{"data-class-toggle"=>"file-with-cd"}=   t("files.Show_only_files_assigned_to_cd")
+    %button.btn.btn-default.btn-primary{"data-class-toggle"=>"file-wo-cd"}=t("files.Show_only_files_not_assigned_to_cd")
 
 %table.reporte
   %thead

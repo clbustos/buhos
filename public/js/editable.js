@@ -149,6 +149,14 @@ $(document).ready(function () {
     actualizar_textarea_editable();
     actualizar_name_editable();
 
+    $(".toggle_buttons button").click(function(e) {
+        var class_to="."+$(this).attr('data-class-toggle');
+        $(class_to).toggle();
+        $(this).toggleClass('btn-primary');
+    });
+
+
+
     $('.type_editable').editable({
         type: 'text',
         title: 'Add new type',

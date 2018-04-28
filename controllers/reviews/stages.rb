@@ -21,8 +21,6 @@ get '/review/:id/screening_title_abstract' do |id|
 
   @pager=get_pager
   @pager.order||="year__asc"
-
-
   @order_criteria={:title=>I18n.t(:Title), :year=> I18n.t(:Year), :author=>I18n.t(:Author)}
 
   # $log.info(params)
@@ -37,21 +35,12 @@ get '/review/:id/screening_title_abstract' do |id|
 
   @ads=AnalysisUserDecision.new(id, @user_id,@stage)
 
-  $log.info(@ads)
- # $log.info("HOAL")
+
 
   @cds_pre=@ads.canonical_documents
   @cds_total=@cds_pre.count
-
   @decisions=@ads.decisions
-  # if @pager.query.to_s!=""
-  #   cd_ids=@ads.decision_por_cd.find_all {|v|
-  #     @pager.query==v[1]
-  #   }.map {|v| v[0]}
-  #   @cds_pre=@cds_pre.where(:id => cd_ids)
-  # end
-
-  @cds_pre=@pager.adapt_cd_dataset(@ads, @cds_pre)
+  @cds_pre=@pager.adapt_ads_cds(@ads, @cds_pre)
 
 
   @pager.max_page=(@cds_pre.count/@pager.cpp.to_f).ceil
@@ -100,7 +89,7 @@ get '/review/:id/screening_references' do |id|
   @cds_total=@cds_pre.count
 
 
-  @cds_pre=@pager.adapt_cd_dataset(@ads, @cds_pre)
+  @cds_pre=@pager.adapt_ads_cds(@ads, @cds_pre)
 
 
   @pager.max_page=(@cds_pre.count/@pager.cpp.to_f).ceil
@@ -148,7 +137,7 @@ get '/review/:id/review_full_text' do |id|
   @cds_total=@cds_pre.count
 
 
-  @cds_pre=@pager.adapt_cd_dataset(@ads, @cds_pre)
+  @cds_pre=@pager.adapt_ads_cds(@ads, @cds_pre)
 
   @pager.max_page=(@cds_pre.count/@pager.cpp.to_f).ceil
 

@@ -92,7 +92,17 @@ get '/tag/:tag_id/rs/:rs_id/stage/:stage/cds' do |tag_id, rs_id, stage|
 
   @stage=stage
   @cds_tag=TagInCd.cds_rs_tag(@review,@tag,false,stage)
-  @cds=CanonicalDocument.where(:id=>@cds_tag.map(:id))
+  @cds_pre=CanonicalDocument.where(:id=>@cds_tag.map(:id))
+
+
+  @pager=get_pager
+  @pager.order||="year__asc"
+  @order_criteria={:title=>I18n.t(:Title), :year=> I18n.t(:Year), :author=>I18n.t(:Author)}
+  @cds=@pager.adapt_cds(@cds_pre)
+
+  @url="/tag/#{tag_id}/rs/#{rs_id}/stage/#{stage}/cds"
+
+
   haml '/tags/rs_cds'.to_sym
 end
 
@@ -110,7 +120,16 @@ get '/tag/:tag_id/rs/:rs_id/cds' do |tag_id, rs_id|
   @usuario=User[session['user_id']]
 
   @cds_tag=TagInCd.cds_rs_tag(@review,@tag)
-  @cds=CanonicalDocument.where(:id=>@cds_tag.map(:id))
+  @cds_pre=CanonicalDocument.where(:id=>@cds_tag.map(:id))
+
+
+  @pager=get_pager
+  @pager.order||="year__asc"
+  @order_criteria={:title=>I18n.t(:Title), :year=> I18n.t(:Year), :author=>I18n.t(:Author)}
+  @cds=@pager.adapt_cds(@cds_pre)
+
+
+  @url="/tag/#{tag_id}/rs/#{rs_id}/cds"
   haml '/tags/rs_cds'.to_sym
 end
 

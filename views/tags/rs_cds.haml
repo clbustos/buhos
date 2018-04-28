@@ -3,6 +3,11 @@
     =t_systematic_review_title(@review[:name], I18n::t("systematic_review_page.cd_for_tag_stage", tag_text:@tag.text, stage: t(get_stage_name(@stage)) ), false)
   - else
     =t_systematic_review_title(@review[:name], I18n::t("systematic_review_page.cd_for_tag", tag_text:@tag.text), false)
+
+=partial(:pager_order, :locals=>{:order_criteria=>@order_criteria, :pager=>@pager, :url=>@url})
+
+=partial(:pager,:locals=>{url: @url, pager: @pager})
+
 %table.table.table-bordered.table-condensed
   %tbody
     - @cds.each do |cd|
