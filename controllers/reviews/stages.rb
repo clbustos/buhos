@@ -109,8 +109,8 @@ get '/review/:id/review_full_text' do |id|
   raise Buhos::NoReviewIdError, id if !@review
 
 
-  @usuario=User[session['user_id']]
-  @user_id=@usuario[:id]
+  @user=User[session['user_id']]
+  @user_id=@user[:id]
 
 
   @pager=get_pager()

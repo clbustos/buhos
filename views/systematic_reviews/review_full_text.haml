@@ -1,3 +1,4 @@
+- ajax||=false
 .header=t_systematic_review_title(@review[:name], :Systematic_review_stage_full_text)
 %ul.breadcrumb
   %li
@@ -80,6 +81,8 @@
           %td
             =CGI::escapeHTML cd.ref_apa_6
             %a.btn.btn-primary.btn-sm{:href=>"/review/#{@review[:id]}/extract_information/cd/#{cd[:id]}"}=t(:Extract_information)
+            %br
+            =partial("tags/tags_cd_rs", :locals=>{cd: cd, review:@review, user_id:@user_id, ajax:ajax})
           %td=t(Decision.get_name_decision(decision))
           - if asignacion_o
             %td=asignacion_o[:status]
