@@ -408,4 +408,8 @@ table.tablesorter thead tr .headerSortUp {
   display: inline-block;
   float: right; }
 
+#extract-form {
+  overflow: scroll;
+  height: 500px; }
+
 /*# sourceMappingURL=main.css.map */
