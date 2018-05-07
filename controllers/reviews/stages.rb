@@ -19,7 +19,7 @@ get '/review/:id/screening_title_abstract' do |id|
   @user_id=@usuario[:id]
 
 
-  @pager=get_pager
+  @pager=get_pager([:decision])
   @pager.order||="year__asc"
   @order_criteria={:title=>I18n.t(:Title), :year=> I18n.t(:Year), :author=>I18n.t(:Author)}
 
@@ -40,12 +40,7 @@ get '/review/:id/screening_title_abstract' do |id|
   @cds_pre=@ads.canonical_documents
   @cds_total=@cds_pre.count
   @decisions=@ads.decisions
-  @cds_pre=@pager.adapt_ads_cds(@ads, @cds_pre)
-
-
-  @pager.max_page=(@cds_pre.count/@pager.cpp.to_f).ceil
-
-  @cds=@pager.adjust_query(@cds_pre)
+  @cds=@pager.adapt_ads_cds(@ads, @cds_pre)
 
 
   haml "systematic_reviews/screening_general".to_sym
@@ -64,7 +59,7 @@ get '/review/:id/screening_references' do |id|
   @user_id=@usuario[:id]
 
 
-  @pager=get_pager()
+  @pager=get_pager([:decision])
   @pager.order||="n_references_rtr__desc"
 
 
@@ -89,13 +84,9 @@ get '/review/:id/screening_references' do |id|
   @cds_total=@cds_pre.count
 
 
-  @cds_pre=@pager.adapt_ads_cds(@ads, @cds_pre)
+  @cds=@pager.adapt_ads_cds(@ads, @cds_pre)
 
-
-  @pager.max_page=(@cds_pre.count/@pager.cpp.to_f).ceil
-
-  @cds=@pager.adjust_query(@cds_pre)
-
+$log.info(@pager)
 
   haml "systematic_reviews/screening_general".to_sym
 
@@ -113,13 +104,11 @@ get '/review/:id/review_full_text' do |id|
   @user_id=@user[:id]
 
 
-  @pager=get_pager()
+  @pager=get_pager([:decision])
   @pager.order||="year__asc"
 
 
   @order_criteria={:n_references_rtr=>I18n.t(:RTA_references), :title=>I18n.t(:Title), :year=> I18n.t(:Year), :author=>I18n.t(:Author)}
-
-  # $log.info(params)
 
   @ars=AnalysisSystematicReview.new(@review)
   @cd_total_ds=@review.canonical_documents
@@ -137,11 +126,7 @@ get '/review/:id/review_full_text' do |id|
   @cds_total=@cds_pre.count
 
 
-  @cds_pre=@pager.adapt_ads_cds(@ads, @cds_pre)
-
-  @pager.max_page=(@cds_pre.count/@pager.cpp.to_f).ceil
-
-  @cds=@pager.adjust_query(@cds_pre)
+  @cds=@pager.adapt_ads_cds(@ads, @cds_pre)
 
 
   haml %s{systematic_reviews/review_full_text}

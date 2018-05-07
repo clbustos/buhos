@@ -15,7 +15,7 @@ describe 'Pager on evaluation of papers' do
       expect(last_response.body).to include("85")
     end
     it "shows 29 documents with decision=yes " do
-      get '/review/1/screening_title_abstract?query=yes'
+      get '/review/1/screening_title_abstract?decision=yes'
       expect(last_response.body).to match(/<p.+id='count_search'.+29<\/p>/)
     end
 
@@ -28,7 +28,7 @@ describe 'Pager on evaluation of papers' do
       expect(last_response.body).to include("26")
     end
     it "shows 9 documents with decision=yes " do
-      get '/review/1/screening_references?query=yes'
+      get '/review/1/screening_references?decision=yes'
       expect(last_response.body).to match(/<p.+id='count_search'.+9<\/p>/)
     end
 
@@ -41,12 +41,9 @@ describe 'Pager on evaluation of papers' do
       expect(last_response.body).to include("30")
     end
     it "shows 27 documents with decision=yes " do
-      get '/review/1/review_full_text?query=yes'
+      get '/review/1/review_full_text?decision=yes'
       expect(last_response.body).to match(/<p.+id='count_search'.+27<\/p>/)
     end
-
   end
-
-
 
 end
