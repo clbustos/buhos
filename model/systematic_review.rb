@@ -63,16 +63,15 @@ class SystematicReview < Sequel::Model
 #    @t_classes_documents||=t_classes_dataset.where(:type=>"document")
 #  end
 
-  def statistics_tags(stage=nil)
+  def statistics_tags(stage=nil, order="n_documents DESC ,p_yes DESC,text ASC")
     cd_query=1
     if stage
       cd_ids=cd_id_by_stage(stage)
       cd_query=" canonical_document_id IN (#{cd_ids.join(",")}) "
     end
-
     $db["SELECT t.*, CASE WHEN tecl.tag_id IS NOT NULL THEN 1 ELSE 0 END  as tag_en_clases FROM (SELECT `tags`.*, COUNT(DISTINCT(canonical_document_id)) as n_documents, 1.0*SUM(CASE WHEN decision='yes' THEN 1 ELSE 0 END)/COUNT(*) as p_yes FROM `tags` INNER JOIN `tag_in_cds` tec ON (tec.`tag_id` = `tags`.`id`)
 WHERE tec.systematic_review_id=?
-AND  #{cd_query} GROUP BY tags.id ORDER BY n_documents DESC ,p_yes DESC,tags.text ASC) as t LEFT JOIN tag_in_classes tecl ON t.id=tecl.tag_id GROUP BY t.id
+AND  #{cd_query} GROUP BY tags.id) as t LEFT JOIN tag_in_classes tecl ON t.id=tecl.tag_id GROUP BY t.id ORDER BY #{order}
  ", self.id]
 
 

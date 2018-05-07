@@ -1,5 +1,7 @@
 - ajax||=false
 .header=t_systematic_review_title(@review[:name], :Systematic_review_stage_full_text)
+
+
 %ul.breadcrumb
   %li
     %a{:href=>url("/review/#{@review.id}")}=@review.name
@@ -25,7 +27,7 @@
   %input{:type=>:hidden,:name=>:page, :value=>@pager.page}
   %input{:type=>:hidden,:name=>:order, :value=>@pager.order}
 
-  .form-group-sm
+  .form-group
     %label{:for=>'status'}=t(:Decision)
     %select.form-control{:name=>'decision'}
       %option{:value=>'_no_'}=t(:All)
@@ -33,10 +35,12 @@
         - checked= @pager.extra[:decision].nil?  ? false :  ( @pager.extra[:decision].include?(k) )
         %option{:value=> k, :selected=>checked}
           ="#{t(d_name)} (#{@ads.total_decisions[k].to_i})"
-
+  .form-group
+    %label{:for=>'tags'}=t(:Tags)
+    =partial("tags/select_tag_sr", :locals=>{review:@review})
   %button.btn.btn-default{:type=>"submit"}=t(:Filter)
 
-
+%p
 - if @cds_total!=@pager.n_records
   %p#count_search=t_desc_value(:Count_documents_search, @pager.n_records)
 

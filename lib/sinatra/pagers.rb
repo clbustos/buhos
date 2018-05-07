@@ -56,12 +56,24 @@ module Sinatra
       end
 
       def process
+        cd_ids=@cds_pre.map(:id)
         if @pager.extra[:decision] and @pager.extra[:decision]!="_no_"
-          cd_ids=@ads.decision_por_cd.find_all {|v|
+          cd_ids_decision=@ads.decision_por_cd.find_all {|v|
             @pager.extra[:decision]==v[1]
           }.map {|v| v[0]}
-          @cds_out=@cds_pre.where(:id => cd_ids)
+          cd_ids=cd_ids & cd_ids_decision
         end
+        if @pager.extra[:tag_select]
+          selected_tags=[@pager.extra[:tag_select]].flatten
+          #$log.info(selected_tags)
+          sr=@ads.systematic_review
+          cd_id_tag=selected_tags.map {|tag_id|
+            TagInCd.cds_rs_tag(sr,Tag[tag_id],true).map(:id)
+          }.flatten.uniq
+          cd_ids=cd_ids & cd_id_tag
+        end
+
+        @cds_out=@cds_pre.where(:id => cd_ids)
       end
     end
 
@@ -150,7 +162,14 @@ module Sinatra
       end
 
       def uri_encode(element_to_delete=nil)
-        hash_to_encode=self.extra
+        hash_to_encode=self.extra.inject({}) {|ac,v|
+          if(v[1].is_a? Array)
+            ac["#{v[0]}[]"]=v[1]
+          else
+            ac[v[0]]=v[1]
+          end
+          ac
+        }
         hash_to_encode[:query]    = self.query
         hash_to_encode[:order]    = self.order
         hash_to_encode.delete(element_to_delete) unless element_to_delete.nil?
