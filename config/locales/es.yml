@@ -9,12 +9,14 @@ es:
   Active_user: "Usuario activo"
   actives_and_inactives_systematic_reviews: "activas y no activas"
   Add_DOI_to_references: "Agregar DOI a referencias"
+  Add_PMID_using_available_information: "Agregar PMID usando información disponible"
   Add_info_references_using_crossref: "Agregar información a referencias usando Crossref"
   Added_references_to_record: "Agregadas %{count_references} referencias al registro %{record_id}"
   Administration: "Administración"
   Administrator: "Administrador"
   administrator_not_assigned: "administrador no asignado"
   Advance_next_stage: "Avanzar a la siguiente etapa"
+  All: "Todos"
   APA_Reference: "Referencia APA"
   APA_references: "Referencias APA"
   App_title: "Buhos"
@@ -43,6 +45,7 @@ es:
     references: "Referencias de este documento canónico"
     references_on_which_appears: "Referencias en las que aparece este documento canónico"
   Canonical_document_assigned_to_this_reference: "Documento canónico asignada a esta referencia"
+  Canonical_document_merge_successful: "Unión de documentos canónicos exitosa"
   Canonical_Document_Status: "Estado del Documento Canónico"
   Canonical_document_title: "Documento canónico %{cd_name}"
   canonical_document_title: "Documento canónico %{cd_title}"
@@ -73,8 +76,9 @@ es:
   Compare_records_between_searches: "Comparar registros entre búsquedas"
   Compare_records_by_search: "Comparar registros por búsqueda"
   complete: "Completo"
-  Complete_abstract_manually: "Completar abstract manualmente"
-  Complete_abstract_using_Scopus: "Completar abstract usando Scopus"
+  Complete_abstract_manually: "Completar resúmenes manualmente"
+  Complete_abstract_using_Scopus: "Completar resúmenes usando Scopus"
+  Complete_abstract_using_Pubmed: "Completar resúmenes usando Pubmed"
   Count_canonical_documents: "Número de documentos canónicos"
   count_canonical_documents: "Nº de documentos canónicos"
   Count_canonical_documents_assigned: "Nº documentos asignados"
@@ -120,6 +124,7 @@ es:
   Edit: "Editar"
   Edit_search: "Edición de Búsqueda"
   Empty: "Vacío"
+  empty: "vacío"
   End_year: "Año de término"
   Enter_commentary: "Ingresar comentario"
   error:
@@ -164,6 +169,10 @@ es:
     unassign_systematic_review: "Quitar de RS"
     show_canonical_document: "Mostrar en DC"
   Files: "Archivos"
+  files:
+    Show_all: "Mostrar todo"
+    Show_only_files_assigned_to_cd: "Asignado a DC"
+    Show_only_files_not_assigned_to_cd: "No asignado a DC"
   Filter: "Filtro"
   footer_conicyt: "Software financiado por Beca Doctorado Nacional Conicyt Nº21151499"
   footer_copyright: "2016-2018 Claudio Bustos"
@@ -190,6 +199,7 @@ es:
   Incoming_citations: "Citaciones hacia este documento"
   Information: "Información"
   Information_about_this_cd_on_crossref: "Información acerca de este documento canónico en Crossref"
+  Information_about_this_cd_on_pubmed: "Información acerca de este documento canónico en PubMed"
   installer:
     basic_data_form: "Información básica"
     basic_data_form_instruction: "Ingrese la información necesaria para la base de datos, proxy y acceso a Scopus. Recuerde que si utiliza <em>sqlite</em>, la base de datos será un archivo unitario. Si cuenta con una clave de desarrollo Scopus, puede ingresarla; se utilizará la configuración del proxy si debe usar uno por su universidad o trabajo"
@@ -220,6 +230,7 @@ es:
     proxy_user    : "Nombre de usuario del proxy"
     proxy_password: "Contraseña del proxy"
     scopus_key    : "Clave de desarrollo SCOPUS"
+    ncbi_api_key  : "Clave de desarrollo NCBI"
     schema_creation: "Creación del esquema"
     successful_connection: "Conexión exitosa a base de datos"
     successful_population: "La base fue poblada exitosamente"
@@ -286,6 +297,7 @@ es:
   No_assignation_instructions: "Sin instrucciones"
   No_document_for_this_criteria: "Sin documentos para este criterio"
   No_DOI_to_obtain_information_from_Crossref: "No existe DOI para obtener información desde Crossref"
+  No_PMID_to_obtain_information_from_Pubmed: "No existe PMID para obtener información desde PubMed"
   No_duplicated_DOI: "No hay DOI duplicados"
   No_empty_bibliographic_database_on_search: "No se permite que la búsqueda no tenga asignada una base bibliográfica"
   No_fields: "No hay campos"
@@ -310,6 +322,7 @@ es:
   Number_of_references_to_view: "Número de referencias a ver"
   Objectives: "Objetivos"
   Obtain_information_from_Crossref: "Obtener información desde Crossref"
+  Obtain_information_from_Pubmed: "Obtener información desde Pubmed"
   On_class: "En clase"
   Only_active: "Solo activo"
   only_actives_systematic_reviews: "solo activas"
@@ -346,8 +359,9 @@ es:
     review_analyze: 'Revisión sistemática: analizar'
     review_edit: 'Revisión sistemática: editar'
     review_view: 'Revisión sistemática: ver'
-    roles_admin: 'Roles: Admin'
-    roles_view: 'Roles: Ver'
+    role_admin: 'Roles: Admin'
+    role_view: 'Roles: Ver'
+    pubmed_query: 'Pubmed: Consultar'
     scopus_query: 'Scopus: Consultar'
     search_edit: 'Búsqueda: Editar'
     search_view: 'Búsqueda: Ver'
@@ -379,6 +393,9 @@ es:
   process_report:
     instructions: "Se presenta el desarrollo para las distintas etapas del proceso de revisión sistemática"
   Processing_n_canonical_documents: "Procesando %{count} documentos canónicos"
+  pubmedremote:
+    retrieve_pmid_result: "Resultado de obtención de PMID: %{dois_pmid} con PMID y %{nil_dois} sin PMID"
+    retrieve_pmid_result_bad_dois: "Los siguientes DOIS son erróneos: %{bad_dois}"
   record:
     doi_already_added_to: "DOI ya agregado a registro %{record_title}"
     references_for_crossref_processed: "Se procesaron %{n} referencias desde Crossref"
@@ -391,6 +408,7 @@ es:
   Record_crossref_search_instructions: "Se presentan los resultados de la busqueda de documentos similares en Crossref. Presione el botón 'Asignar DOI' si usted considera que el registro de Crossref es el mismo que se obtuvo desde la base bibliográfica."
   Record_title: "Registro"
   Records: "Registros"
+  Records_from_to: "%{first_record} - %{last_record} de %{total_records}"
   Records_on_search: "Registros en búsqueda"
   Records_that_cites_this_reference: "Registros de búsqueda que citan esta referencia"
   Redirect_back: "Volver atrás"
@@ -463,6 +481,7 @@ es:
   search_processor:
     no_file_available: "No hay archivo disponible para process"
     error_on_reference: "Error en referencia Nº %{i}"
+    error_parsing_file: "Error procesando archivo"
     no_integrator_for_filetype: "No hay integrador para este tipo de archivo"
     no_unique_id_for_integrator: "No existe un id que permita identificar a los archivos"
     Search_canonical_documents_successfully: "Archivos canónicos de búsqueda procesados exitosamente"
@@ -662,7 +681,9 @@ es:
   Users_and_groups: "Usuarios y grupos"
   View: "Ver"
   view_crossref_information: "Ver información Crossref para DOI %{doi}"
+  view_pubmed_information: "Ver información PubMed para PMID %{pmid}"
   View_DOI_record: "Ver registro Crossref para DOI"
+  View_Pubmed_record: "Ver registro PubMed  para PMID"
   View_technical_record: "Ver ficha técnica"
   Welcome_comma: "Bienvenido,"
   Welcome_guest: "Bienvenido,&nbsp;visitante"

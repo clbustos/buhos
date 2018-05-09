@@ -241,8 +241,10 @@ module BibliographicalImporter
         @bib_db=bib_db
         # Scopus generates bibtex with quotes on names. That brokes Bibtex package
         #string_fixed=fix_string(string)
+
         b=BibTeX.parse(string, :strip => false)
         Reader.new(b)
+
       end
 
       def parse_records

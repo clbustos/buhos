@@ -584,3 +584,37 @@ p.instructions {
 .user-buttons {
  /*   margin-top:10px;*/
 }
+
+
+/* Tablesorter */
+
+table.tablesorter thead tr {
+  th {
+    background-color: $blue_light;
+  }
+  .headerSortDown {
+    background-color: $blue_dark;
+  }
+  .headerSortUp {
+    background-color: $blue_dark;
+  }
+
+}
+
+.pager-order {
+  margin-top:1em;
+  margin-bottom:1em;
+}
+
+.pager-records-count {
+  margin:20px;
+  display:inline-block;
+  float:right;
+}
+
+
+#extract-form{
+  overflow: scroll;
+  height:500px;
+
+}

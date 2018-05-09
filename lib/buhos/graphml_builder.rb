@@ -57,22 +57,22 @@ module Buhos
     private
     def build_head
 <<HEREDOC
-  <?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
   <graphml xmlns="http://graphml.graphdrawing.org/xmlns"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns
   http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
   
-  <key id="d0" for="node" attr.name="doi"        attr.type="string"/>
-  <key id="d1" for="node" attr.name="title"      attr.type="string"/>
-  <key id="d2" for="node" attr.name="year"       attr.type="int"/>
-  <key id="d3" for="node" attr.name="input_n"    attr.type="int"/>
-  <key id="d5" for="node" attr.name="record_on_search" attr.type="boolean"/>
-  <key id="d6" for="node" attr.name="reference_from_record" attr.type="boolean"/>
-  <key id="d7" for="node" attr.name="record_selected_screening_title_abstract" attr.type="boolean"/>
-  <key id="output_n" for="node" attr.name="output_n"   attr.type="int"/>
-  
-  <graph id="G" edgedefault="directed">
+    <key id="d0" for="node" attr.name="doi"        attr.type="string"/>
+    <key id="d1" for="node" attr.name="title"      attr.type="string"/>
+    <key id="d2" for="node" attr.name="year"       attr.type="int"/>
+    <key id="d3" for="node" attr.name="input_n"    attr.type="int"/>
+    <key id="d5" for="node" attr.name="record_on_search" attr.type="boolean"/>
+    <key id="d6" for="node" attr.name="reference_from_record" attr.type="boolean"/>
+    <key id="d7" for="node" attr.name="record_selected_screening_title_abstract" attr.type="boolean"/>
+    <key id="output_n" for="node" attr.name="output_n"   attr.type="int"/>
+    
+    <graph id="G" edgedefault="directed">
 HEREDOC
     end
     def build_edges(ars, cd_hash)

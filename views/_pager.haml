@@ -1,6 +1,11 @@
-- # Parámetros: url, page, max_page y extra as hash
+- # Parámetros: url, (page, max_page) or pager y extra as hash
+- pager||=nil
+- if !pager.nil?
+  - page     = pager.page
+  - max_page = pager.max_page
+  - query_l  = pager.uri_encode
 - extra||=nil
-- query_l= extra.nil? ? "" :  "&"+URI.encode_www_form(extra)
+- query_l||= extra.nil? ? "" :  "&"+URI.encode_www_form(extra)
 %nav{"aria-label"=>"Page navigation"}
   %ul.pagination
     %li{:class=>page==1 ? 'disabled': ''}
@@ -10,3 +15,6 @@
         %a{:href=>url("#{url}?page=#{i}#{query_l}")}=i
     %li{:class=>"#{page>=max_page ? 'disabled': ''}"}
       %a{:href=>url("#{url}?page=#{page+1}#{query_l}")}!='&raquo;'
+  - if pager
+    .pager-records-count
+      =t(:Records_from_to, first_record:pager.current_first_record, last_record:pager.current_last_record, total_records:pager.n_records)

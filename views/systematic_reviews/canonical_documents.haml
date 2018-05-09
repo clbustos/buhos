@@ -1,6 +1,15 @@
 .heading
   %h2=t_systematic_review_title(@review.name, :Systematic_review_canonical_documents)
 
+:javascript
+  $(document).ready(function() {
+    $(".canonical_document_action").click(function(e) {
+        var action=$(this).attr('id').split("_")[1];
+        $("#form_canonical_document_action").val(action);
+        //console.log(action);
+        //#e.preventDefault();
+    });
+  });
 
 %ul.breadcrumb
   %li
@@ -18,10 +27,10 @@
 
 %form{:action=>url("/review/#{@review[:id]}/canonical_documents"), :method=>:get,:class=>"form-inline"}
   %div{:class=>"input-group mb-2 mr-sm-2"}
-    %input{:type=>:hidden,:name=>:pagina, :value=>@pager.page}
+    %input{:type=>:hidden,:name=>:page, :value=>@pager.page}
     %input{:type=>:hidden,:name=>:order, :value=>@pager.order}
-    %label{:class=>"", :for=>:search}=t(:Search)
-    %input{:type=>:text, :value=>@pager.query, :name=>:search, :class=>"form-control"}
+    %label{:class=>"", :for=>:query}=t(:Search)
+    %input{:type=>:text, :value=>@pager.query, :name=>:query, :class=>"form-control"}
     .form-group-inline
       %label{:for=>:wo_abstract}=t(:Check_only_documents_without_abstract)
       %input{:type=>:checkbox, :name=>:wo_abstract, :class=>"form-control-checkbox", :value=>'true',:checked=>@wo_abstract}
@@ -32,8 +41,12 @@
 %div{:class=>"btn-group btn-group-sm", :role=>"group"}
   - if auth_to("review_admin")  or review_belongs_to(@review.id, session['user_id'])
     %a{:href=>url("/review/#{@review.id}/repeated_canonical_documents"), :role=>'button', :class=>"btn btn-default"}=t(:Check_duplications)
+  - if pubmed_available?  and auth_to("pubmed_query")  and ( auth_to('review_admin') or review_belongs_to(@review.id, session['user_id']))
+    %a{:href=>url("/canonical_documents/review/#{@review.id}/complete_pubmed_pmid")   , :role=>'button', :class=>"btn btn-default"}
+      %span{:class=>""}
+      =t(:Add_PMID_using_available_information)
   - if scopus_available?  and auth_to("scopus_query")  and ( auth_to('review_admin') or review_belongs_to(@review.id, session['user_id']))
-    %a{:href=>url("/canonical_documents/review/#{@review.id}/complete_scopus_abstract")   , :role=>'button', :class=>"btn btn-default"}
+    %a{:href=>url("/canonical_documents/review/#{@review.id}/complete_abstract_scopus")   , :role=>'button', :class=>"btn btn-default"}
       %span{:class=>""}
       =t(:Complete_abstract_using_Scopus)
   - if auth_to("review_admin")  or review_belongs_to(@review.id, session['user_id'])
@@ -57,7 +70,7 @@
     -["asc","desc"].each do |dir|
       -arrow_dir =  dir=="asc" ? "up" : "down"
       -if @pager.order!="#{crit_order}__#{dir}"
-        %a{:href=>url("/review/#{@review[:id]}/canonical_documents?search=#{@query}&order=#{crit_order}__#{dir}"), :class=>"btn btn-default btn-sm"}
+        %a{:href=>url("/review/#{@review[:id]}/canonical_documents?page=#{@pager.page}&search=#{@query}&order=#{crit_order}__#{dir}"), :class=>"btn btn-default btn-sm"}
           %span{:class=>"glyphicon glyphicon-chevron-#{arrow_dir}"}
           =crit_name
       -else
@@ -66,19 +79,26 @@
           =crit_name
 
 
-= partial(:pager,:locals=>{url: @url, page: @pager.page, max_page: @pager.max_page,:extra=>{query:@pager.query, wo_abstract:@wo_abstract, only_records:@only_records}} )
-.list-group
-  - #$log.info(@cds)
-  - @cds.each do |cd|
-    .list-group-item
-      =CGI::escapeHTML cd.ref_apa_6_brief
-      - #%p=sprintf("<strong>Referencias:</strong> citado por %d / reference a %d", @ars.cd_count_entrada(cd[:id]).to_i, @ars.cd_count_salida(cd[:id]).to_i)
-      %p=t(:References_count_to_canonical, in:cd[:n_total_references_in].to_i, out:cd[:n_total_references_made].to_i, in_sta: cd[:n_references_rtr].to_i)
+= partial(:pager,:locals=>{url: @url, page: @pager.page, max_page: @pager.max_page,:extra=>{query:@pager.query, wo_abstract:@wo_abstract, only_records:@only_records,  order:@pager.order}} )
+%form{:action=>url("/canonical_document/actions"), :method=>:post}
+  %input{:type=>:hidden, :name=>:action, :id=>:form_canonical_document_action}
+  .btn-group.btn-group-sm
+    %button.btn.btn-default{:id=>:action_delete, :class=>'canonical_document_action'}=t(:Delete)
+    %button.btn.btn-default{:id=>:action_merge, :class=>'canonical_document_action'}=t(:Merge)
+  %p
+  .list-group
+    - #$log.info(@cds)
+    - @cds.each do |cd|
+      .list-group-item
+        %input{:type=>:checkbox, :name=>"canonical_document[#{cd.id}]", :value=>1}
+        =CGI::escapeHTML cd.ref_apa_6_brief
+        - #%p=sprintf("<strong>Referencias:</strong> citado por %d / reference a %d", @ars.cd_count_entrada(cd[:id]).to_i, @ars.cd_count_salida(cd[:id]).to_i)
+        %p=t(:References_count_to_canonical, in:cd[:n_total_references_in].to_i, out:cd[:n_total_references_made].to_i, in_sta: cd[:n_references_rtr].to_i)
 
 
-      %div
-        =partial(:canonical_document_button, :locals=>{id:cd[:id]})
-        =partial(:canonical_document_button_abstract_collapsible, :locals=>{cd:cd})
+        %div
+          =partial(:canonical_document_button, :locals=>{id:cd[:id]})
+          =partial(:canonical_document_button_abstract_collapsible, :locals=>{cd:cd})
 
 
-= partial(:pager,:locals=>{url: @url, page: @pager.page, max_page: @pager.max_page,:extra=>{query:@pager.query, wo_abstract:@wo_abstract, only_records:@only_records}} )
+= partial(:pager,:locals=>{url: @url, page: @pager.page, max_page: @pager.max_page,:extra=>{query:@pager.query, wo_abstract:@wo_abstract, only_records:@only_records,  order:@pager.order}} )

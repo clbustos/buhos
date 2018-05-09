@@ -1,0 +1,512 @@
+<?xml version="1.0"?>
+<!DOCTYPE PubmedArticleSet PUBLIC "-//NLM//DTD PubMedArticle, 1st January 2018//EN" "https://dtd.nlm.nih.gov/ncbi/pubmed/out/pubmed_180101.dtd">
+<PubmedArticleSet>
+<PubmedArticle>
+    <MedlineCitation Status="MEDLINE" Owner="NLM">
+        <PMID Version="1">23193287</PMID>
+        <DateCompleted>
+            <Year>2013</Year>
+            <Month>05</Month>
+            <Day>13</Day>
+        </DateCompleted>
+        <DateRevised>
+            <Year>2016</Year>
+            <Month>10</Month>
+            <Day>19</Day>
+        </DateRevised>
+        <Article PubModel="Print-Electronic">
+            <Journal>
+                <ISSN IssnType="Electronic">1362-4962</ISSN>
+                <JournalIssue CitedMedium="Internet">
+                    <Volume>41</Volume>
+                    <Issue>Database issue</Issue>
+                    <PubDate>
+                        <Year>2013</Year>
+                        <Month>Jan</Month>
+                    </PubDate>
+                </JournalIssue>
+                <Title>Nucleic acids research</Title>
+                <ISOAbbreviation>Nucleic Acids Res.</ISOAbbreviation>
+            </Journal>
+            <ArticleTitle>GenBank.</ArticleTitle>
+            <Pagination>
+                <MedlinePgn>D36-42</MedlinePgn>
+            </Pagination>
+            <ELocationID EIdType="doi" ValidYN="Y">10.1093/nar/gks1195</ELocationID>
+            <Abstract>
+                <AbstractText>GenBank&#xAE; (http://www.ncbi.nlm.nih.gov) is a comprehensive database that contains publicly available nucleotide sequences for almost 260 000 formally described species. These sequences are obtained primarily through submissions from individual laboratories and batch submissions from large-scale sequencing projects, including whole-genome shotgun (WGS) and environmental sampling projects. Most submissions are made using the web-based BankIt or standalone Sequin programs, and GenBank staff assigns accession numbers upon data receipt. Daily data exchange with the European Nucleotide Archive (ENA) and the DNA Data Bank of Japan (DDBJ) ensures worldwide coverage. GenBank is accessible through the NCBI Entrez retrieval system, which integrates data from the major DNA and protein sequence databases along with taxonomy, genome, mapping, protein structure and domain information, and the biomedical journal literature via PubMed. BLAST provides sequence similarity searches of GenBank and other sequence databases. Complete bimonthly releases and daily updates of the GenBank database are available by FTP. To access GenBank and its related retrieval and analysis services, begin at the NCBI home page: www.ncbi.nlm.nih.gov.</AbstractText>
+            </Abstract>
+            <AuthorList CompleteYN="Y">
+                <Author ValidYN="Y">
+                    <LastName>Benson</LastName>
+                    <ForeName>Dennis A</ForeName>
+                    <Initials>DA</Initials>
+                    <AffiliationInfo>
+                        <Affiliation>National Center for Biotechnology Information, National Library of Medicine, National Institutes of Health, Building 38A, 8600 Rockville Pike, Bethesda, MD 20894, USA.</Affiliation>
+                    </AffiliationInfo>
+                </Author>
+                <Author ValidYN="Y">
+                    <LastName>Cavanaugh</LastName>
+                    <ForeName>Mark</ForeName>
+                    <Initials>M</Initials>
+                </Author>
+                <Author ValidYN="Y">
+                    <LastName>Clark</LastName>
+                    <ForeName>Karen</ForeName>
+                    <Initials>K</Initials>
+                </Author>
+                <Author ValidYN="Y">
+                    <LastName>Karsch-Mizrachi</LastName>
+                    <ForeName>Ilene</ForeName>
+                    <Initials>I</Initials>
+                </Author>
+                <Author ValidYN="Y">
+                    <LastName>Lipman</LastName>
+                    <ForeName>David J</ForeName>
+                    <Initials>DJ</Initials>
+                </Author>
+                <Author ValidYN="Y">
+                    <LastName>Ostell</LastName>
+                    <ForeName>James</ForeName>
+                    <Initials>J</Initials>
+                </Author>
+                <Author ValidYN="Y">
+                    <LastName>Sayers</LastName>
+                    <ForeName>Eric W</ForeName>
+                    <Initials>EW</Initials>
+                </Author>
+            </AuthorList>
+            <Language>eng</Language>
+            <GrantList CompleteYN="Y">
+                <Grant>
+                    <Agency>Intramural NIH HHS</Agency>
+                    <Country>United States</Country>
+                </Grant>
+            </GrantList>
+            <PublicationTypeList>
+                <PublicationType UI="D016428">Journal Article</PublicationType>
+                <PublicationType UI="D052061">Research Support, N.I.H., Extramural</PublicationType>
+                <PublicationType UI="D052060">Research Support, N.I.H., Intramural</PublicationType>
+            </PublicationTypeList>
+            <ArticleDate DateType="Electronic">
+                <Year>2012</Year>
+                <Month>11</Month>
+                <Day>27</Day>
+            </ArticleDate>
+        </Article>
+        <MedlineJournalInfo>
+            <Country>England</Country>
+            <MedlineTA>Nucleic Acids Res</MedlineTA>
+            <NlmUniqueID>0411011</NlmUniqueID>
+            <ISSNLinking>0305-1048</ISSNLinking>
+        </MedlineJournalInfo>
+        <CitationSubset>IM</CitationSubset>
+        <CommentsCorrectionsList>
+            <CommentsCorrections RefType="Cites">
+                <RefSource>Nature. 2001 Feb 8;409(6821):685-90</RefSource>
+                <PMID Version="1">11217851</PMID>
+            </CommentsCorrections>
+            <CommentsCorrections RefType="Cites">
+                <RefSource>Nat Genet. 1993 Aug;4(4):332-3</RefSource>
+                <PMID Version="1">8401577</PMID>
+            </CommentsCorrections>
+            <CommentsCorrections RefType="Cites">
+                <RefSource>Nucleic Acids Res. 1997 Sep 1;25(17):3389-402</RefSource>
+                <PMID Version="1">9254694</PMID>
+            </CommentsCorrections>
+            <CommentsCorrections RefType="Cites">
+                <RefSource>Nucleic Acids Res. 1998 Sep 1;26(17):3986-90</RefSource>
+                <PMID Version="1">9705509</PMID>
+            </CommentsCorrections>
+            <CommentsCorrections RefType="Cites">
+                <RefSource>Nucleic Acids Res. 2008 Jul 1;36(Web Server issue):W5-9</RefSource>
+                <PMID Version="1">18440982</PMID>
+            </CommentsCorrections>
+            <CommentsCorrections RefType="Cites">
+                <RefSource>Nucleic Acids Res. 2011 Jan;39(Database issue):D28-31</RefSource>
+                <PMID Version="1">20972220</PMID>
+            </CommentsCorrections>
+            <CommentsCorrections RefType="Cites">
+                <RefSource>Nucleic Acids Res. 2011 Jan;39(Database issue):D22-7</RefSource>
+                <PMID Version="1">21062814</PMID>
+            </CommentsCorrections>
+            <CommentsCorrections RefType="Cites">
+                <RefSource>Nucleic Acids Res. 2012 Jan;40(Database issue):D54-6</RefSource>
+                <PMID Version="1">22009675</PMID>
+            </CommentsCorrections>
+            <CommentsCorrections RefType="Cites">
+                <RefSource>Nucleic Acids Res. 2012 Jan;40(Database issue):D136-43</RefSource>
+                <PMID Version="1">22139910</PMID>
+            </CommentsCorrections>
+            <CommentsCorrections RefType="Cites">
+                <RefSource>Nucleic Acids Res. 2012 Jan;40(Database issue):D57-63</RefSource>
+                <PMID Version="1">22139929</PMID>
+            </CommentsCorrections>
+            <CommentsCorrections RefType="Cites">
+                <RefSource>Nucleic Acids Res. 2012 Jan;40(Database issue):D48-53</RefSource>
+                <PMID Version="1">22144687</PMID>
+            </CommentsCorrections>
+            <CommentsCorrections RefType="Cites">
+                <RefSource>Nucleic Acids Res. 2013 Jan;41(Database issue):D8-D20</RefSource>
+                <PMID Version="1">23193264</PMID>
+            </CommentsCorrections>
+        </CommentsCorrectionsList>
+        <MeshHeadingList>
+            <MeshHeading>
+                <DescriptorName UI="D001483" MajorTopicYN="Y">Base Sequence</DescriptorName>
+            </MeshHeading>
+            <MeshHeading>
+                <DescriptorName UI="D030561" MajorTopicYN="Y">Databases, Nucleic Acid</DescriptorName>
+            </MeshHeading>
+            <MeshHeading>
+                <DescriptorName UI="D023281" MajorTopicYN="N">Genomics</DescriptorName>
+            </MeshHeading>
+            <MeshHeading>
+                <DescriptorName UI="D059014" MajorTopicYN="N">High-Throughput Nucleotide Sequencing</DescriptorName>
+            </MeshHeading>
+            <MeshHeading>
+                <DescriptorName UI="D020407" MajorTopicYN="N">Internet</DescriptorName>
+            </MeshHeading>
+            <MeshHeading>
+                <DescriptorName UI="D058977" MajorTopicYN="N">Molecular Sequence Annotation</DescriptorName>
+            </MeshHeading>
+            <MeshHeading>
+                <DescriptorName UI="D017422" MajorTopicYN="N">Sequence Analysis, DNA</DescriptorName>
+            </MeshHeading>
+        </MeshHeadingList>
+    </MedlineCitation>
+    <PubmedData>
+        <History>
+            <PubMedPubDate PubStatus="entrez">
+                <Year>2012</Year>
+                <Month>11</Month>
+                <Day>30</Day>
+                <Hour>6</Hour>
+                <Minute>0</Minute>
+            </PubMedPubDate>
+            <PubMedPubDate PubStatus="pubmed">
+                <Year>2012</Year>
+                <Month>11</Month>
+                <Day>30</Day>
+                <Hour>6</Hour>
+                <Minute>0</Minute>
+            </PubMedPubDate>
+            <PubMedPubDate PubStatus="medline">
+                <Year>2013</Year>
+                <Month>5</Month>
+                <Day>15</Day>
+                <Hour>6</Hour>
+                <Minute>0</Minute>
+            </PubMedPubDate>
+        </History>
+        <PublicationStatus>ppublish</PublicationStatus>
+        <ArticleIdList>
+            <ArticleId IdType="pubmed">23193287</ArticleId>
+            <ArticleId IdType="pii">gks1195</ArticleId>
+            <ArticleId IdType="doi">10.1093/nar/gks1195</ArticleId>
+            <ArticleId IdType="pmc">PMC3531190</ArticleId>
+        </ArticleIdList>
+    </PubmedData>
+</PubmedArticle>
+
+
+<PubmedArticle>
+    <MedlineCitation Status="PubMed-not-MEDLINE" Owner="NLM">
+        <PMID Version="1">29541051</PMID>
+        <DateRevised>
+            <Year>2018</Year>
+            <Month>03</Month>
+            <Day>18</Day>
+        </DateRevised>
+        <Article PubModel="Electronic-eCollection">
+            <Journal>
+                <ISSN IssnType="Print">1664-1078</ISSN>
+                <JournalIssue CitedMedium="Print">
+                    <Volume>9</Volume>
+                    <PubDate>
+                        <Year>2018</Year>
+                    </PubDate>
+                </JournalIssue>
+                <Title>Frontiers in psychology</Title>
+                <ISOAbbreviation>Front Psychol</ISOAbbreviation>
+            </Journal>
+            <ArticleTitle>Raising Awareness for the Replication Crisis in Clinical Psychology by Focusing on Inconsistencies in Psychotherapy Research: How Much Can We Rely on Published Findings from Efficacy Trials?</ArticleTitle>
+            <Pagination>
+                <MedlinePgn>256</MedlinePgn>
+            </Pagination>
+            <ELocationID EIdType="doi" ValidYN="Y">10.3389/fpsyg.2018.00256</ELocationID>
+            <AuthorList CompleteYN="Y">
+                <Author ValidYN="Y">
+                    <LastName>Hengartner</LastName>
+                    <ForeName>Michael P</ForeName>
+                    <Initials>MP</Initials>
+                    <AffiliationInfo>
+                        <Affiliation>Department of Applied Psychology, Zurich University of Applied Sciences, Zurich, Switzerland.</Affiliation>
+                    </AffiliationInfo>
+                </Author>
+            </AuthorList>
+            <Language>eng</Language>
+            <PublicationTypeList>
+                <PublicationType UI="D016428">Journal Article</PublicationType>
+            </PublicationTypeList>
+            <ArticleDate DateType="Electronic">
+                <Year>2018</Year>
+                <Month>02</Month>
+                <Day>28</Day>
+            </ArticleDate>
+        </Article>
+        <MedlineJournalInfo>
+            <Country>Switzerland</Country>
+            <MedlineTA>Front Psychol</MedlineTA>
+            <NlmUniqueID>101550902</NlmUniqueID>
+            <ISSNLinking>1664-1078</ISSNLinking>
+        </MedlineJournalInfo>
+        <CommentsCorrectionsList>
+            <CommentsCorrections RefType="Cites">
+                <RefSource>World Psychiatry. 2016 Jun;15(2):146-54</RefSource>
+                <PMID Version="1">27265705</PMID>
+            </CommentsCorrections>
+            <CommentsCorrections RefType="Cites">
+                <RefSource>J Clin Psychiatry. 2011 Dec;72(12):1669-76</RefSource>
+                <PMID Version="1">22053942</PMID>
+            </CommentsCorrections>
+            <CommentsCorrections RefType="Cites">
+                <RefSource>JAMA. 2003 Jan 22-29;289(4):454-65</RefSource>
+                <PMID Version="1">12533125</PMID>
+            </CommentsCorrections>
+            <CommentsCorrections RefType="Cites">
+                <RefSource>Perspect Psychol Sci. 2012 Nov;7(6):543-54</RefSource>
+                <PMID Version="1">26168111</PMID>
+            </CommentsCorrections>
+            <CommentsCorrections RefType="Cites">
+                <RefSource>Front Behav Neurosci. 2017 Jan 17;11:3</RefSource>
+                <PMID Version="1">28144217</PMID>
+            </CommentsCorrections>
+            <CommentsCorrections RefType="Cites">
+                <RefSource>JAMA Psychiatry. 2017 Apr 1;74(4):319-328</RefSource>
+                <PMID Version="1">28249086</PMID>
+            </CommentsCorrections>
+            <CommentsCorrections RefType="Cites">
+                <RefSource>JAMA Psychiatry. 2014 Jun;71(6):706-15</RefSource>
+                <PMID Version="1">24789675</PMID>
+            </CommentsCorrections>
+            <CommentsCorrections RefType="Cites">
+                <RefSource>N Engl J Med. 2008 Jan 17;358(3):252-60</RefSource>
+                <PMID Version="1">18199864</PMID>
+            </CommentsCorrections>
+            <CommentsCorrections RefType="Cites">
+                <RefSource>Psychol Bull. 2004 Jul;130(4):631-63</RefSource>
+                <PMID Version="1">15250817</PMID>
+            </CommentsCorrections>
+            <CommentsCorrections RefType="Cites">
+                <RefSource>Br J Psychiatry. 2010 Mar;196(3):173-8</RefSource>
+                <PMID Version="1">20194536</PMID>
+            </CommentsCorrections>
+            <CommentsCorrections RefType="Cites">
+                <RefSource>Psychol Med. 2014 Mar;44(4):685-95</RefSource>
+                <PMID Version="1">23552610</PMID>
+            </CommentsCorrections>
+            <CommentsCorrections RefType="Cites">
+                <RefSource>PLoS One. 2012;7(7):e41778</RefSource>
+                <PMID Version="1">22860015</PMID>
+            </CommentsCorrections>
+            <CommentsCorrections RefType="Cites">
+                <RefSource>PLoS One. 2015 Sep 30;10(9):e0137864</RefSource>
+                <PMID Version="1">26422604</PMID>
+            </CommentsCorrections>
+            <CommentsCorrections RefType="Cites">
+                <RefSource>Clin Psychol Rev. 2015 Aug;40:91-110</RefSource>
+                <PMID Version="1">26094079</PMID>
+            </CommentsCorrections>
+            <CommentsCorrections RefType="Cites">
+                <RefSource>Clin Psychol Rev. 2013 Nov;33(7):846-61</RefSource>
+                <PMID Version="1">23664634</PMID>
+            </CommentsCorrections>
+            <CommentsCorrections RefType="Cites">
+                <RefSource>Br J Psychiatry. 2011 Jul;199(1):15-22</RefSource>
+                <PMID Version="1">21719877</PMID>
+            </CommentsCorrections>
+            <CommentsCorrections RefType="Cites">
+                <RefSource>Perspect Psychol Sci. 2007 Mar;2(1):53-70</RefSource>
+                <PMID Version="1">26151919</PMID>
+            </CommentsCorrections>
+            <CommentsCorrections RefType="Cites">
+                <RefSource>World Psychiatry. 2015 Oct;14(3):310-1</RefSource>
+                <PMID Version="1">26407786</PMID>
+            </CommentsCorrections>
+            <CommentsCorrections RefType="Cites">
+                <RefSource>Annu Rev Pharmacol Toxicol. 2015;55:169-89</RefSource>
+                <PMID Version="1">25149917</PMID>
+            </CommentsCorrections>
+            <CommentsCorrections RefType="Cites">
+                <RefSource>Depress Anxiety. 2014 May;31(5):374-8</RefSource>
+                <PMID Version="1">24677535</PMID>
+            </CommentsCorrections>
+            <CommentsCorrections RefType="Cites">
+                <RefSource>Psychol Sci. 2011 Nov;22(11):1359-66</RefSource>
+                <PMID Version="1">22006061</PMID>
+            </CommentsCorrections>
+            <CommentsCorrections RefType="Cites">
+                <RefSource>Perspect Psychol Sci. 2017 Sep;12 (5):742-756</RefSource>
+                <PMID Version="1">28972844</PMID>
+            </CommentsCorrections>
+            <CommentsCorrections RefType="Cites">
+                <RefSource>Am Psychol. 2017 Feb-Mar;72 (2):126-143</RefSource>
+                <PMID Version="1">28221065</PMID>
+            </CommentsCorrections>
+            <CommentsCorrections RefType="Cites">
+                <RefSource>BMJ. 2010 Feb 15;340:c365</RefSource>
+                <PMID Version="1">20156912</PMID>
+            </CommentsCorrections>
+            <CommentsCorrections RefType="Cites">
+                <RefSource>PLoS One. 2008 Aug 28;3(8):e3081</RefSource>
+                <PMID Version="1">18769481</PMID>
+            </CommentsCorrections>
+            <CommentsCorrections RefType="Cites">
+                <RefSource>Psychol Bull. 2010 Mar;136(2):174-8; discussion 182-7</RefSource>
+                <PMID Version="1">20192554</PMID>
+            </CommentsCorrections>
+            <CommentsCorrections RefType="Cites">
+                <RefSource>Clin Psychol Rev. 2010 Aug;30(6):710-20</RefSource>
+                <PMID Version="1">20547435</PMID>
+            </CommentsCorrections>
+            <CommentsCorrections RefType="Cites">
+                <RefSource>Acta Psychiatr Scand. 2014 Sep;130(3):181-92</RefSource>
+                <PMID Version="1">24697518</PMID>
+            </CommentsCorrections>
+            <CommentsCorrections RefType="Cites">
+                <RefSource>Br J Psychiatry. 2017 Jan;210(1):16-23</RefSource>
+                <PMID Version="1">27810891</PMID>
+            </CommentsCorrections>
+            <CommentsCorrections RefType="Cites">
+                <RefSource>Perspect Psychol Sci. 2012 Nov;7(6):555-61</RefSource>
+                <PMID Version="1">26168112</PMID>
+            </CommentsCorrections>
+            <CommentsCorrections RefType="Cites">
+                <RefSource>CMAJ. 2013 Mar 5;185(4):E201-11</RefSource>
+                <PMID Version="1">23359047</PMID>
+            </CommentsCorrections>
+            <CommentsCorrections RefType="Cites">
+                <RefSource>Perspect Psychol Sci. 2012 Nov;7(6):615-31</RefSource>
+                <PMID Version="1">26168121</PMID>
+            </CommentsCorrections>
+            <CommentsCorrections RefType="Cites">
+                <RefSource>Psychol Med. 2017 Apr;47(6):1000-1011</RefSource>
+                <PMID Version="1">27955715</PMID>
+            </CommentsCorrections>
+            <CommentsCorrections RefType="Cites">
+                <RefSource>World Psychiatry. 2016 Oct;15(3):245-258</RefSource>
+                <PMID Version="1">27717254</PMID>
+            </CommentsCorrections>
+            <CommentsCorrections RefType="Cites">
+                <RefSource>Br J Psychiatry. 2015 Apr;206(4):332-8</RefSource>
+                <PMID Version="1">24925985</PMID>
+            </CommentsCorrections>
+            <CommentsCorrections RefType="Cites">
+                <RefSource>BMJ. 2003 May 31;326(7400):1167-70</RefSource>
+                <PMID Version="1">12775614</PMID>
+            </CommentsCorrections>
+            <CommentsCorrections RefType="Cites">
+                <RefSource>Psychol Bull. 2008 Nov;134(6):829-85</RefSource>
+                <PMID Version="1">18954159</PMID>
+            </CommentsCorrections>
+            <CommentsCorrections RefType="Cites">
+                <RefSource>Perspect Psychol Sci. 2012 Nov;7(6):531-6</RefSource>
+                <PMID Version="1">26168109</PMID>
+            </CommentsCorrections>
+            <CommentsCorrections RefType="Cites">
+                <RefSource>Int Clin Psychopharmacol. 2015 Jul;30(4):183-92</RefSource>
+                <PMID Version="1">25932596</PMID>
+            </CommentsCorrections>
+            <CommentsCorrections RefType="Cites">
+                <RefSource>PLoS Med. 2011 Dec;8(12):e1001143</RefSource>
+                <PMID Version="1">22180733</PMID>
+            </CommentsCorrections>
+            <CommentsCorrections RefType="Cites">
+                <RefSource>J Consult Clin Psychol. 1995 Oct;63(5):688-701</RefSource>
+                <PMID Version="1">7593861</PMID>
+            </CommentsCorrections>
+            <CommentsCorrections RefType="Cites">
+                <RefSource>Nature. 2012 May 16;485(7398):298-300</RefSource>
+                <PMID Version="1">22596136</PMID>
+            </CommentsCorrections>
+            <CommentsCorrections RefType="Cites">
+                <RefSource>Clin Psychol Rev. 2012 Mar;32(2):81-92</RefSource>
+                <PMID Version="1">22227111</PMID>
+            </CommentsCorrections>
+            <CommentsCorrections RefType="Cites">
+                <RefSource>J Clin Epidemiol. 2011 Oct;64(10):1060-9</RefSource>
+                <PMID Version="1">21454050</PMID>
+            </CommentsCorrections>
+            <CommentsCorrections RefType="Cites">
+                <RefSource>World Psychiatry. 2013 Jun;12(2):137-48</RefSource>
+                <PMID Version="1">23737423</PMID>
+            </CommentsCorrections>
+            <CommentsCorrections RefType="Cites">
+                <RefSource>Cochrane Database Syst Rev. 2012 Dec 12;12:MR000033</RefSource>
+                <PMID Version="1">23235689</PMID>
+            </CommentsCorrections>
+            <CommentsCorrections RefType="Cites">
+                <RefSource>Science. 2015 Aug 28;349(6251):aac4716</RefSource>
+                <PMID Version="1">26315443</PMID>
+            </CommentsCorrections>
+            <CommentsCorrections RefType="Cites">
+                <RefSource>Psychol Med. 2010 Feb;40(2):211-23</RefSource>
+                <PMID Version="1">19490745</PMID>
+            </CommentsCorrections>
+        </CommentsCorrectionsList>
+        <KeywordList Owner="NOTNLM">
+            <Keyword MajorTopicYN="N">allegiance</Keyword>
+            <Keyword MajorTopicYN="N">clinical psychology</Keyword>
+            <Keyword MajorTopicYN="N">effectiveness</Keyword>
+            <Keyword MajorTopicYN="N">efficacy</Keyword>
+            <Keyword MajorTopicYN="N">methodology</Keyword>
+            <Keyword MajorTopicYN="N">psychotherapy research</Keyword>
+            <Keyword MajorTopicYN="N">publication bias</Keyword>
+            <Keyword MajorTopicYN="N">replication</Keyword>
+        </KeywordList>
+    </MedlineCitation>
+    <PubmedData>
+        <History>
+            <PubMedPubDate PubStatus="received">
+                <Year>2017</Year>
+                <Month>04</Month>
+                <Day>25</Day>
+            </PubMedPubDate>
+            <PubMedPubDate PubStatus="accepted">
+                <Year>2018</Year>
+                <Month>02</Month>
+                <Day>15</Day>
+            </PubMedPubDate>
+            <PubMedPubDate PubStatus="entrez">
+                <Year>2018</Year>
+                <Month>3</Month>
+                <Day>16</Day>
+                <Hour>6</Hour>
+                <Minute>0</Minute>
+            </PubMedPubDate>
+            <PubMedPubDate PubStatus="pubmed">
+                <Year>2018</Year>
+                <Month>3</Month>
+                <Day>16</Day>
+                <Hour>6</Hour>
+                <Minute>0</Minute>
+            </PubMedPubDate>
+            <PubMedPubDate PubStatus="medline">
+                <Year>2018</Year>
+                <Month>3</Month>
+                <Day>16</Day>
+                <Hour>6</Hour>
+                <Minute>1</Minute>
+            </PubMedPubDate>
+        </History>
+        <PublicationStatus>epublish</PublicationStatus>
+        <ArticleIdList>
+            <ArticleId IdType="pubmed">29541051</ArticleId>
+            <ArticleId IdType="doi">10.3389/fpsyg.2018.00256</ArticleId>
+            <ArticleId IdType="pmc">PMC5835722</ArticleId>
+        </ArticleIdList>
+    </PubmedData>
+</PubmedArticle>
+
+</PubmedArticleSet>

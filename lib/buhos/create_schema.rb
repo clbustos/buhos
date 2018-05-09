@@ -400,6 +400,7 @@ module Buhos
           'group_view',
           'message_edit',
           'message_view',
+          'pubmed_query',
           'record_edit',
           'record_view',
           'reference_edit',

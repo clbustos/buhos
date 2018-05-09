@@ -1,0 +1,15 @@
+- if @_select_tag_sr_js.nil?
+  %script{:type=>'text/javascript', :src=>url('/chosen/chosen.jquery.min.js')}
+  %link{:href=>url('/chosen/chosen.min.css') , :media => 'screen', :rel=>'stylesheet', :type=>'text/css'}
+  :javascript
+    $(document).ready(function() {
+      $(".chosen-select").chosen();
+    });
+  - @_select_tag_sr_js=true
+- name_select||="tag_select"
+- selected_tags||=[params[name_select]].flatten
+- tags_estadisticas=review.statistics_tags(nil,"text")
+%select.chosen-select{:name=>"#{name_select}[]", :multiple=>true}
+  - tags_estadisticas.order(:text).each do |tag|
+    - next if tag[:p_yes]==0.0
+    %option{:value=>tag[:id], :selected=>(selected_tags and selected_tags.include?(tag[:id].to_s))}=tag[:text]

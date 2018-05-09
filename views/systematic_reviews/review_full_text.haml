@@ -1,4 +1,7 @@
+- ajax||=false
 .header=t_systematic_review_title(@review[:name], :Systematic_review_stage_full_text)
+
+
 %ul.breadcrumb
   %li
     %a{:href=>url("/review/#{@review.id}")}=@review.name
@@ -20,34 +23,33 @@
 %h3=t(:Review_status)
 %p=t_desc_value(:Count_total_documents_to_review, sprintf("%d", @cds_total))
 
-%form{:action=>url(@url), :method=>:get,:class=>"form-check", :enctype=>"multipart/form-data"}
+%form.form-inline{:action=>url(@url), :method=>:get,:class=>"form-check", :enctype=>"multipart/form-data"}
   %input{:type=>:hidden,:name=>:page, :value=>@pager.page}
   %input{:type=>:hidden,:name=>:order, :value=>@pager.order}
-  %table.reporte
-    %thead
-      - Decision::N_EST.values.each do |k|
-        %th=t(k)
-    %tbody
-      %tr
-        - Decision::N_EST.keys.each do |k|
-          %td=@ads.total_decisions[k].to_i
-      %tr
-        - Decision::N_EST.keys.each do |k|
-          - checked= @pager.query.nil?  ? false :  ( @pager.query.include?(k) )
-          %td
-            %input{:type=>:radio,  :class=>"form-check-input",:name=>"query", :value=>k, :checked=> checked }
-      %tr
-        %td{:colspan=>Decision::N_EST.keys.length}
-          %input{:type=>"submit", :class=>"btn btn-default", :value=>"Filtrar"}
-- if @pager.query
-  %p#count_search=t_desc_value(:Count_documents_search, @cds_pre.count)
+
+  .form-group
+    %label{:for=>'status'}=t(:Decision)
+    %select.form-control{:name=>'decision'}
+      %option{:value=>'_no_'}=t(:All)
+      - Decision::N_EST.each_pair do |k,d_name|
+        - checked= @pager.extra[:decision].nil?  ? false :  ( @pager.extra[:decision].include?(k) )
+        %option{:value=> k, :selected=>checked}
+          ="#{t(d_name)} (#{@ads.total_decisions[k].to_i})"
+  .form-group
+    %label{:for=>'tags'}=t(:Tags)
+    =partial("tags/select_tag_sr", :locals=>{review:@review})
+  %button.btn.btn-default{:type=>"submit"}=t(:Filter)
+
+%p
+- if @cds_total!=@pager.n_records
+  %p#count_search=t_desc_value(:Count_documents_search, @pager.n_records)
 
 .btn-group
   -@order_criteria.each do |crit_order,crit_name|
     -["asc","desc"].each do |dir|
       -arrow_dir =  dir=="asc" ? "up" : "down"
       -if @pager.order!="#{crit_order}__#{dir}"
-        %a{:href=>url("#{@url}?query=#{@pager.query}&order=#{crit_order}__#{dir}"), :class=>"btn btn-default btn-sm"}
+        %a{:href=>url("#{@url}?dummy=#{@pager.uri_encode(:order)}&order=#{crit_order}__#{dir}"), :class=>"btn btn-default btn-sm"}
           %span{:class=>"glyphicon glyphicon-chevron-#{arrow_dir}"}
           =crit_name
       -else
@@ -56,13 +58,13 @@
           =crit_name
 - if @ads.total_decisions[Decision::NO_DECISION].to_i==0 and @cds_total>0
   %p
-    %strong Ha concluido la segunda fase de revision de references.
+    %strong=t("full_text_review.stage_complete_message")
 
 %br
 - if @cds.empty?
   .alert.alert-warning=t(:No_document_for_this_criteria)
 - else
-  = partial(:pager,:locals=>{url: @url, page: @pager.page, max_page: @pager.max_page, :extra=>{query:@pager.query, order:@pager.order}})
+  = partial(:pager,:locals=>{url: @url, pager:@pager})
 
   %table.table.table-rounded.table-bordered
     %thead
@@ -80,6 +82,8 @@
           %td
             =CGI::escapeHTML cd.ref_apa_6
             %a.btn.btn-primary.btn-sm{:href=>"/review/#{@review[:id]}/extract_information/cd/#{cd[:id]}"}=t(:Extract_information)
+            %br
+            =partial("tags/tags_cd_rs", :locals=>{cd: cd, review:@review, user_id:@user_id, ajax:ajax})
           %td=t(Decision.get_name_decision(decision))
           - if asignacion_o
             %td=asignacion_o[:status]
@@ -88,4 +92,4 @@
             %td{:colspan=>2}
               %em=t(:Not_assigned)
 
-  = partial(:pager,:locals=>{url: @url, page: @pager.page, max_page: @pager.max_page, :extra=>{query:@pager.query, order:@pager.order}})
+  = partial(:pager,:locals=>{url: @url, pager:@pager})

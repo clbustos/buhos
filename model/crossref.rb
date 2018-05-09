@@ -37,6 +37,7 @@ class CrossrefDoi < Sequel::Model
   # @param doi [String] a DOI
   # @return [String] raw JSON from Crossref or false if Crossref doesn't have information
   # @raise [ArgumentError] if DOI is nil
+  # TODO: Create a independent class to handle relation with external services
   def self.procesar_doi(doi)
     require 'serrano'
     raise ArgumentError, 'DOI is nil' if doi.nil?

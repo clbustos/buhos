@@ -13,7 +13,7 @@
     -unless ars.nil?
       - text_references=sprintf("<strong>#{t(:Citations)}</strong>: #{t(:this_document_cites)}&nbsp;<strong>%d</strong> / #{t(:this_document_cited_by)}&nbsp;<strong>%d</strong> ", ars.cd_count_outgoing(cd[:id]).to_i, ars.cd_count_incoming(cd[:id]).to_i)
       - if ars.cd_count_incoming_sta(cd[:id])
-        -text_references+=sprintf("/ #{t(:this_document_cited_by_rta_document)}&nbsp;<strong>%d</strong>", ars.cd_count_entrada_rtr(cd[:id]).to_i)
+        -text_references+=sprintf("/ #{t(:this_document_cited_by_rta_document)}&nbsp;<strong>%d</strong>", ars.cd_count_incoming_sta(cd[:id]).to_i)
       %p=text_references
   %p{:class=>""}
     %strong=t(:Abstract)

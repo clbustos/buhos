@@ -164,7 +164,7 @@ get '/review/:id/canonical_documents' do |id|
   @order_criteria={:n_references_rtr=>I18n::t(:RTA_references), :n_total_references_in=>t(:Citations), :n_total_references_made=>t(:Outgoing_citations),  :title=>t(:Title), :year=> t(:Year), :author=>t(:Author)}
 
 
-  @cds=@pager.adjust_query(@cds_pre)
+  @cds=@pager.adjust_page_order(@cds_pre)
 
   @ars=AnalysisSystematicReview.new(@review)
 

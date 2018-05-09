@@ -22,6 +22,10 @@ get '/canonical_document/:id' do |id|
     @cr_doi=@cd.crossref_integrator
   end
 
+
+  if Pmc_Summary[@cd.pmid]
+    @pmc_sum=@cd.pubmed_integrator
+  end
   @references_realizadas=@cd.references_performed
   title(t(:canonical_document_title, cd_title:@cd.ref_apa_6))
   haml :canonical_document
@@ -58,6 +62,19 @@ get '/canonical_document/:id/get_crossref_data' do |id|
   end
   redirect back
 end
+
+get '/canonical_document/:id/get_pubmed_data' do |id|
+  halt_unless_auth('canonical_document_admin')
+
+  @cd=CanonicalDocument[id]
+  if(@cd.pubmed_integrator)
+    add_message("Pubmed agregado para #{id}")
+  else
+    add_message("Error al agregar Pubmed para #{id}", :error)
+  end
+  redirect back
+end
+
 
 # Search references similar to a specific canonical documents, using lexical distance
 get '/canonical_document/:id/search_similar' do |id|
@@ -111,7 +128,7 @@ post '/canonical_document/merge' do
     cds=CanonicalDocument.where(:doi => doi, :id => pk_ids.split(","))
   end
   if (cds.count>1)
-    resultado=CanonicalDocument.unir(cds.map(:id))
+    resultado=CanonicalDocument.merge(cds.map(:id))
   end
   return resultado ? 200 : 500
 end
@@ -158,6 +175,37 @@ get '/canonical_documents/review/:rev_id/automatic_categories' do |rev_id|
   haml %s{systematic_reviews/canonical_documents_automatic_categories}
 end
 
+get '/canonical_documents/review/:rev_id/complete_pubmed_pmid' do |rev_id|
+  @review=SystematicReview[rev_id]
+  halt 500 unless auth_to("pubmed_query")  and ( auth_to('review_admin') or review_belongs_to(@review.id, session['user_id']))
+  # Retrieve all doi we can!
+  @cd_ds=@review.canonical_documents.exclude(:doi=>nil).where(:pmid=>nil)
+  result=PubmedRemote.retrieve_pmid(@cd_ds)
+  add_result(result)
+  redirect back
+end
+
+
+post '/canonical_document/actions' do
+  halt_unless_auth('canonical_document_admin')
+  action=params['action']
+  halt 500, t(:no_action_specified) unless action
+  halt 500, t(:no_action_specified) if params['canonical_document'].nil?
+  cd_ids=params['canonical_document'].keys
+
+
+  if action=='merge'
+    if CanonicalDocument.merge(cd_ids)
+      add_message(t(:Canonical_document_merge_successful))
+    else
+      add_message(t(:Canonical_document_merge_error), :error)
+    end
+  else
+    return [500, I18n.t(:that_function_doesn_exists)]
+  end
+  redirect back
+end
+
 # Allocate a canonical document to user, for screening or analyze
 post '/canonical_document/user_allocation/:action' do |action|
   halt_unless_auth('review_admin')
@@ -182,6 +230,7 @@ post '/canonical_document/user_allocation/:action' do |action|
   end
 
 end
+
 # View raw crossref information using the doi of the canonical document
 get '/canonical_document/:id/view_crossref_info' do |id|
   halt_unless_auth('canonical_document_view')
@@ -191,5 +240,17 @@ get '/canonical_document/:id/view_crossref_info' do |id|
   @doi_json=CrossrefDoi[doi_without_http(@cd.doi)][:json]
   haml "canonical_documents/view_crossref_info".to_sym
 end
+
+
+# View raw pubmed information using the pmid of the canonical document
+get '/canonical_document/:id/view_pubmed_info' do |id|
+  halt_unless_auth('canonical_document_view')
+  @cd=CanonicalDocument[id]
+  raise Buhos::NoCdIdError, id if !@cd
+  @pmc_sum=@cd.pubmed_integrator
+  @xml=Pmc_Summary[@cd.pmid][:xml]
+  haml "canonical_documents/view_pubmed_info".to_sym
+end
+
 
 # @!endgroup

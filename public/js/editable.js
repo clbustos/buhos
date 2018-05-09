@@ -76,10 +76,12 @@ function actualizar_decision(stage,div_id) {
             actualizar_decision(stage,div_replace);
             actualizar_textarea_editable(div_replace);
 
+
+            TagManager.update(div_replace);
             // Tengo que considerar los tags...
-            actualizar_tags_cd_rs(div_replace);
-            actualizar_typeahead(div_replace);
-            actualizar_mostrar_pred(div_replace);
+            // actualizar_tags_cd_rs(div_replace);
+            // actualizar_typeahead(div_replace);
+            // actualizar_mostrar_pred(div_replace);
 
         }).fail(function () {
             alert("No se pudo cargar la decisión")
@@ -146,6 +148,14 @@ function actualizar_textarea_editable(div_id) {
 $(document).ready(function () {
     actualizar_textarea_editable();
     actualizar_name_editable();
+
+    $(".toggle_buttons button").click(function(e) {
+        var class_to="."+$(this).attr('data-class-toggle');
+        $(class_to).toggle();
+        $(this).toggleClass('btn-primary');
+    });
+
+
 
     $('.type_editable').editable({
         type: 'text',

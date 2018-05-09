@@ -1,7 +1,16 @@
+/ Read chosen
+%script{:type=>'text/javascript', :src=>url('/chosen/chosen.jquery.min.js')}
+%link{:href=>url('/chosen/chosen.min.css') , :media => 'screen', :rel=>'stylesheet', :type=>'text/css'}
+:javascript
+  $(document).ready(function() {
+    $(".chosen-select").chosen();
+  });
+
 .header=t_systematic_review_title(@review[:name], :File_batch_management)
 =@modal_files.javascript_header
 / Modal
 =@modal_files.html_modal
+
 
 
 %ul.breadcrumb
@@ -31,6 +40,11 @@
     %span{:class=>"glyphicon glyphicon-king"}
     =t(:Assign_automaticly_to_canonical_documents)
 
+%p
+  .btn-group.toggle_buttons
+    %button.btn.btn-default.btn-primary{"data-class-toggle"=>"file-with-cd"}=   t("files.Show_only_files_assigned_to_cd")
+    %button.btn.btn-default.btn-primary{"data-class-toggle"=>"file-wo-cd"}=t("files.Show_only_files_not_assigned_to_cd")
+
 %table.reporte
   %thead
     %th=t(:Name)
@@ -39,19 +53,20 @@
     %th=t(:Actions)
   %tbody
     -@file_rs.each do |archivo|
-      %tr
+      - has_cd=!archivo[:canonical_document_id].nil?
+      %tr{:class=> has_cd ? "file-with-cd" : "file-wo-cd"}
         %td{:style=>'max-width:300px;overflow:hidden;text-overflow:ellipsis;'}
           =a_editable(archivo[:id], 'filename', "/file/edit_field/filename", archivo[:filename])
         %td
           =a_editable(archivo[:id], 'filetype', "/file/edit_field/filetype", archivo[:filetype])
         %td{:id=>"name_canonico-#{archivo[:id]}"}
-          -if archivo[:canonical_document_id]
+          -if has_cd
             %a{:href=>"/canonical_document/#{archivo[:canonical_document_id]}"}=@canonical_documents_h[archivo[:canonical_document_id]] ? @canonical_documents_h[archivo[:canonical_document_id]].title : "<em>#{t(:No_title)}</em>"
           -else
-            %select{:id=>"select_canonico_#{archivo[:id]}",:name=>"select_canonico_#{archivo[:id]}[]"}
+            %select.chosen-select{:id=>"select_canonico_#{archivo[:id]}",:name=>"select_canonico_#{archivo[:id]}[]"}
               %option{:value=>""}="--#{t(:Without_canonical_document)}--"
               -@cd_validos.each do |cd|
-                %option{:value=>cd[:id]}=CGI.escapeHTML(cd[:title][0..50])
+                %option{:value=>cd[:id]}=CGI.escapeHTML(cd[:title][0..60])
             %button.btn.btn-default.btn-sm.asignar_canonico{"archivo-pk"=>archivo[:id]}
               =t(:Change)
         %td=@modal_files.botones(archivo,archivo[:canonical_document_id],@review.id,true)

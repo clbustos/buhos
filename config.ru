@@ -4,9 +4,13 @@
 require 'sinatra'
 require 'dotenv'
 require 'rack/session/moneta'
-require 'sass/plugin/rack'
-use Sass::Plugin::Rack
 
+# Only update css on development
+
+if ENV['RACK_ENV'].to_sym == :development
+  require 'sass/plugin/rack'
+  use Sass::Plugin::Rack
+end
 
 Dotenv.load("./.env") if File.exist? "./env" and ENV['RACK_ENV']!="test"
 

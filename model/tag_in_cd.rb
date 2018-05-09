@@ -29,22 +29,30 @@
 
 class TagInCd < Sequel::Model
 
-  # Entrega los cds que corresponden a un determinado tag en una determinada revision sistematica
-  def self.cds_rs_tag(revision,tag,solo_pos=false,stage=nil)
+  # Retrievs the CD which uses a specific tag on a specific systematic review
+  # @param systematic_review [SystematicReview]
+  # @param tag [Tag]
+  # @param only_pos Just show tags with positive decisions
+  # @param stage name of stage, if a specific stage tags are needed
+  def self.cds_rs_tag(systematic_review,tag,only_pos=false,stage=nil)
     sql_lista_cd=""
     if stage
-      sql_lista_cd=" AND cd.id IN (#{revision.cd_id_by_stage(stage).join(',')})"
+      sql_lista_cd=" AND cd.id IN (#{systematic_review.cd_id_by_stage(stage).join(',')})"
     end
-    sql_having=solo_pos ? " HAVING n_pos>0 ":""
-    #$db["SELECT cd.*,SUM(IF(decision='yes',1,0)) n_pos, SUM(IF(decision='no',1,0))  n_neg FROM tag_in_cds tcd INNER JOIN canonical_documents cd ON tcd.canonical_document_id=cd.id WHERE tcd.tag_id=? AND tcd.systematic_review_id=? #{sql_lista_cd} GROUP BY canonical_document_id #{sql_having}", tag.id,revision.id]
-    $db["SELECT cd.*,SUM(CASE WHEN decision='yes' then 1 ELSE 0 END) AS n_pos, SUM(CASE WHEN decision='no' THEN 1 ELSE 0 END) AS  n_neg FROM tag_in_cds tcd INNER JOIN canonical_documents cd ON tcd.canonical_document_id=cd.id WHERE tcd.tag_id=? AND tcd.systematic_review_id=? #{sql_lista_cd} GROUP BY canonical_document_id #{sql_having}", tag.id,revision.id]
+    sql_having=only_pos ? " HAVING n_pos>0 ":""
+    #$db["SELECT cd.*,SUM(IF(decision='yes',1,0)) n_pos, SUM(IF(decision='no',1,0))  n_neg FROM tag_in_cds tcd INNER JOIN canonical_documents cd ON tcd.canonical_document_id=cd.id WHERE tcd.tag_id=? AND tcd.systematic_review_id=? #{sql_lista_cd} GROUP BY canonical_document_id #{sql_having}", tag.id,systematic_review.id]
+    $db["SELECT cd.*,SUM(CASE WHEN decision='yes' then 1 ELSE 0 END) AS n_pos, SUM(CASE WHEN decision='no' THEN 1 ELSE 0 END) AS  n_neg FROM tag_in_cds tcd INNER JOIN canonical_documents cd ON tcd.canonical_document_id=cd.id WHERE tcd.tag_id=? AND tcd.systematic_review_id=? #{sql_lista_cd} GROUP BY canonical_document_id #{sql_having}", tag.id,systematic_review.id]
   end
 
-  # Entrega todos los tags que están en una determinada revisión y un determinado canónico
-  def self.tags_rs_cd(revision,cd)
-    Tag.inner_join(:tag_in_cds, :tag_id=>:id).where(:systematic_review_id=>revision.id, :canonical_document_id=>cd.id)
+  # All the tags on a specific systematic review and canonical document
+  def self.tags_rs_cd(sr,cd)
+    Tag.inner_join(:tag_in_cds, :tag_id=>:id).where(:systematic_review_id=>sr.id, :canonical_document_id=>cd.id)
   end
 
+  # All the tags on a specific systematic review
+  def self.tags_rs(systematic_review)
+    Tag.inner_join(:tag_in_cds, :tag_id=>:id).where(:systematic_review_id=>systematic_review.id)
+  end
   def self.approve_tag(cd,rs,tag,user_id)
     raise("Objetos erróneos") if cd.nil? or rs.nil? or tag.nil?
     tec_previo=TagInCd.where(:tag_id=>tag.id, :canonical_document_id=>cd.id, :systematic_review_id=>rs.id, :user_id=>user_id)

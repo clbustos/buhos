@@ -29,6 +29,7 @@
 #
 module BibliographicalImporter
   # Based on Crossref JSON
+  # TODO: Create an unique id for this class, to allows use of other JSON formats
   module JSON
     # Process references inside JSON
     class Reference
@@ -137,9 +138,10 @@ module BibliographicalImporter
 
     class Reader
       include AbstractReader
+      include Enumerable
       attr_reader :jb
       attr_reader :records
-      include Enumerable
+
       def [](x)
         @records[x]
       end

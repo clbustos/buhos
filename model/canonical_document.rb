@@ -39,8 +39,10 @@ class CanonicalDocument < Sequel::Model
     Reference.where(:id => ids)
   end
 
-  # Une los documentos canonicos, de acuerdo al id
-  def self.unir(pks)
+  # Merge canonical documents, according to id
+  # TODO: Create a separate class on lib to handle and test this
+  def self.merge(pks)
+    pks=pks.map {|v| v.to_i}
     pk_id=pks[0]
     pk_otros=pks[1...pks.length]
     resultado=true
@@ -56,9 +58,37 @@ class CanonicalDocument < Sequel::Model
         }
       end
       CanonicalDocument[pk_id].update(fields)
-      Record.where(:canonical_document_id => pks).update(:canonical_document_id => pk_id)
-      Reference.where(:canonical_document_id => pks).update(:canonical_document_id => pk_id)
-      $db[:canonical_documents_autores].where(:canonical_document_id => pks).update(:canonical_document_id => pk_id)
+
+      [:allocation_cds, :bib_references, :decisions, :file_cds, :resolutions, :tag_in_cds, :records, :canonical_document_authors].each do |table|
+
+        pk=$db.schema(table).find_all {|v|
+          v[1][:primary_key]
+        }.map {|v| v[0]}
+        # On each tuple, I have to detect if exists before
+        cache=[]
+        $db[table].select(*pk).where(:canonical_document_id=>pks).each do |row|
+          fixed_row=row.dup
+          fixed_row[:canonical_document_id]=pk_id
+          $log.info(cache)
+          $log.info(fixed_row)
+
+          if cache.include? fixed_row
+            $db[table].where(row).delete
+          else
+            cache.push(fixed_row)
+          end
+
+        end
+
+
+
+
+        $db[table].where(:canonical_document_id=>pks).update(:canonical_document_id=>pk_id)
+      end
+      # TODO: Should verificate tuples as object described before
+      $db[:tag_bw_cds].where(:cd_start=>pks).update(:cd_start=>pk_id)
+      $db[:tag_bw_cds].where(:cd_end=>pks).update(:cd_end=>pk_id)
+
       CanonicalDocument.where(:id => pk_otros).delete
       $db.after_rollback {
         resultado=false
@@ -74,6 +104,17 @@ class CanonicalDocument < Sequel::Model
       false
     end
   end
+
+  def pubmed_integrator
+    if self.pmid
+      PubmedRemote.reference_integrator_xml(self.pmid)
+    else
+      false
+    end
+  end
+
+
+
   def buscar_references_similares(d=nil,sin_canonico=true)
      begin
       require 'levenshtein-ffi'

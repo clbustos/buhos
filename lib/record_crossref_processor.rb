@@ -26,9 +26,7 @@
 # OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-# Based on an array of records, attach crossref information for each on
-#
-
+# Based on an array of records, attach crossref information for each
 class RecordCrossrefProcessor
   attr_reader :result
   def initialize(records,db)

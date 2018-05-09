@@ -28,40 +28,35 @@
     .col-md-7.col-sm-7.resizable#document_viewer
       .embed-responsive.embed-responsive-4by3
         %iframe{:src=>"/ViewerJS/#../file/#{@current_file_id}/download",  :allowfullscreen=>true, :webkitallowfullscreen=>true}
-    .col-md-5.col-sm-5#extract_form
-      .container
-        .row
-          .col-sm-5
-            %div{:id=>"decision-cd-#{@cd[:id]}"}
-              =partial(:decision, :locals=>{review:@sr, cd:@cd, ars:@ars, user_id:@user[:id], stage: @stage , decisions:@decisions, only_buttons:true})
+    .col-md-5.col-sm-5#extract-form
+      %div
+        %div
+          %div{:id=>"decision-cd-#{@cd[:id]}"}
+            =partial(:decision, :locals=>{review:@sr, cd:@cd, ars:@ars, user_id:@user[:id], stage: @stage , decisions:@decisions, only_buttons:true})
         - @form_creator.each_field do |field|
-          .row
-            .col-sm-5
-              %strong=field.description
-          .row
-            .col-sm-5=field.html
+          %div
+            %strong=field.description
+          %div
+            =field.html
         - if @outgoing_citations.count>0
-          .row
-            .col-sm-5
-              %strong=t(:Outgoing_citations)
-              .list-group
-                - @outgoing_citations.each do |cd_out|
-                  .list-group-item
-                    =cd_out.ref_apa_6_brief
-                    %a.btn.btn-default.btn-sm{:href=>"/review/#{@sr[:id]}/extract_information/cd/#{cd_out[:id]}"}=t(:View)
-                    %br
-                    =partial("tags/tags_cd_rs_ref", :locals=>{cd_start: @cd, cd_end:cd_out ,review:@sr, user_id:@user[:id], ajax:ajax})
+          %div
+            %strong=t(:Outgoing_citations)
+            .list-group
+              - @outgoing_citations.each do |cd_out|
+                .list-group-item
+                  =cd_out.ref_apa_6_brief
+                  %a.btn.btn-default.btn-sm{:href=>"/review/#{@sr[:id]}/extract_information/cd/#{cd_out[:id]}"}=t(:View)
+                  %br
+                  =partial("tags/tags_cd_rs_ref", :locals=>{cd_start: @cd, cd_end:cd_out ,review:@sr, user_id:@user[:id], ajax:ajax})
         - if @incoming_citations.count>0
-          .row
-            .col-sm-5
-              %strong=t(:Incoming_citations)
-          .row
-            .col-sm-5
-              .list-group
-                - @incoming_citations.each do |cd_incoming|
-                  .list-group-item
-                    =cd_incoming.ref_apa_6_brief
-                    %a.btn.btn-default.btn-sm{:href=>"/review/#{@sr[:id]}/extract_information/cd/#{cd_incoming[:id]}"}=t(:View)
+          %div
+            %strong=t(:Incoming_citations)
+          %div
+            .list-group
+              - @incoming_citations.each do |cd_incoming|
+                .list-group-item
+                  =cd_incoming.ref_apa_6_brief
+                  %a.btn.btn-default.btn-sm{:href=>"/review/#{@sr[:id]}/extract_information/cd/#{cd_incoming[:id]}"}=t(:View)
 // Here comes the form_creator javascript
 =@form_creator.javascript
 

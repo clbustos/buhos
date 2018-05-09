@@ -11,7 +11,7 @@
   });
 
 %table.reporte
-  - [:author, :year,:title,:journal, :volume,:pages,:doi,:url].each do |field|
+  - [:author, :year,:title,:journal, :volume,:pages,:doi,:pmid,:url].each do |field|
     %tr
       %th=field.capitalize
       %td
@@ -57,6 +57,33 @@
   .btn-group.btn-group-sm
     %a{:href=>url("/canonical_document/#{@cd[:id]}/search_crossref_references"), :role=>:button, :class=>"btn btn-default btn-sm"}=t(:Add_info_references_using_crossref)
     %a{:href=>url("/canonical_document/#{@cd[:id]}/view_crossref_info"), :role=>:button, :class=>"btn btn-default btn-sm"}=t(:View_DOI_record)
+
+
+%h3 PubMed
+
+%p.info=t(:Information_about_this_cd_on_pubmed)
+
+.well
+  - if @pmc_sum
+    =@pmc_sum.ref_apa_6_brief_html
+  - elsif @cd.pmid
+    - if auth_to("pubmed_query")
+      %a{:href=>url("/canonical_document/#{@cd[:id]}/get_pubmed_data")}
+        %button{:class=>"btn btn-primary"}
+          =t(:Obtain_information_from_Pubmed)
+    - else
+      =t(:Ask_information_from_Pubmed_for_admin)
+  - else
+    %p
+      %em=t(:No_PMID_to_obtain_information_from_Pubmed)
+
+
+%p
+-if auth_to("pubmed_query") and @pmc_sum
+  .btn-group.btn-group-sm
+    %a{:href=>url("/canonical_document/#{@cd[:id]}/view_pubmed_info"), :role=>:button, :class=>"btn btn-default btn-sm"}=t(:View_Pubmed_record)
+
+
 
 %h3=t("canonical_document.records_on_which_appears")
 

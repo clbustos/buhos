@@ -243,4 +243,24 @@ get '/review/:rev_id/stage/:stage/complete_empty_abstract_scopus' do |rev_id, st
 end
 
 
+# Automatic retrieval of abstract from Pubmed for
+# documents without abstract
+# TODO: IMPLEMENT THIS
+get '/review/:rev_id/stage/:stage/complete_empty_abstract_pubmed' do |rev_id, stage|
+  halt_unless_auth('review_admin')
+  @review=SystematicReview[rev_id]
+  raise Buhos::NoReviewIdError, rev_id if !@review
+  @ars=AnalysisSystematicReview.new(@review)
+  result=Result.new
+  @cd_wo_abstract=@ars.cd_without_abstract(stage)
+  add_message(I18n::t(:Processing_n_canonical_documents, count:@cd_wo_abstract.count))
+  @cd_wo_abstract.each do |cd|
+    result.add_result(Pmc_Summary.get_abstract_cd(cd[:id]))
+  end
+  add_result(result)
+  redirect back
+end
+
+
+
 # @!endgroup

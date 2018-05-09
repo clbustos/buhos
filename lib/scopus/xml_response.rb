@@ -27,6 +27,14 @@
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 module Scopus
   module XMLResponse
+    class XMLEmpty
+      def error
+        true
+      end
+      def error_msg
+        I18n::t(:empty_xml_file)
+      end
+    end
     class XMLResponseGeneric
     attr_reader :xml
     def initialize(xml)

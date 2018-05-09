@@ -1,0 +1,13 @@
+- # order_criteria, pager, url
+.btn-group.pager-order
+  -order_criteria.each do |crit_order,crit_name|
+    -["asc","desc"].each do |dir|
+      -arrow_dir =  dir=="asc" ? "up" : "down"
+      -if pager.order!="#{crit_order}__#{dir}"
+        %a{:href=>url("#{url}?query=#{pager.query}&order=#{crit_order}__#{dir}"), :class=>"btn btn-default btn-sm"}
+          %span{:class=>"glyphicon glyphicon-chevron-#{arrow_dir}"}
+          =crit_name
+      -else
+        %button{:class=>"btn btn-primary btn-sm"}
+          %span{:class=>"glyphicon glyphicon-chevron-#{arrow_dir}"}
+          =crit_name

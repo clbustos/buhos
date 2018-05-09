@@ -107,6 +107,8 @@ module BibliographicalImporter
     attr_accessor  :id_wos
     # Id for Scopus
     attr_accessor  :id_scopus
+    # Id for pubmed
+    attr_accessor   :pubmed
     attr_accessor  :url
     attr_accessor  :journal_abbr
   end
@@ -127,3 +129,4 @@ end
 require_relative 'bibliographical_importer/bibtex'
 require_relative 'bibliographical_importer/json'
 require_relative 'bibliographical_importer/csv'
+require_relative 'bibliographical_importer/pmc_efetch_xml'

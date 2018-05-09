@@ -70,7 +70,8 @@ describe "Buhos installer" do
         proxy_port:     '3000',
         proxy_user:     'proxy_user',
         proxy_password: 'proxy_pass',
-        scopus_key:     'scopus_key'
+        scopus_key:     'scopus_key',
+        ncbi_api_key:   'ncbi_api_key'
     }
 
     let(:dot_env) {Tempfile.new}
@@ -92,7 +93,8 @@ PROXY_HOSTNAME=proxy.example.com
 PROXY_PORT=3000
 PROXY_USER=proxy_user
 PROXY_PASSWORD=proxy_pass
-SCOPUS_KEY=scopus_key\n")
+SCOPUS_KEY=scopus_key
+NCBI_API_KEY=ncbi_api_key\n")
 
     end
   end
@@ -110,7 +112,8 @@ SCOPUS_KEY=scopus_key\n")
         proxy_port:     '',
         proxy_user:     '',
         proxy_password: '',
-        scopus_key:     ''
+        scopus_key:     '',
+        ncbi_api_key:   ''
     }
 
     let(:dot_env) {Tempfile.new}
