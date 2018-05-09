@@ -53,7 +53,6 @@ module PMC
     def process
       @doi_list.each_slice(MAX_SLICE) do |slice_doi|
         out=process_doi_slice(slice_doi)
-
         while out!=:ok
           out=process_doi_slice(slice_doi)
         end

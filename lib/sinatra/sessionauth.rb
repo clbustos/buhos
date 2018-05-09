@@ -52,6 +52,7 @@ module Sinatra
           false
         else
           if session['role_id']=='administrator'
+
             Authorization.insert(:id=>auth, :description=>::I18n::t("sinatra_auth.permission_created_by_administrator")) if Authorization[auth].nil?
             Role['administrator'].add_auth_to(Authorization[auth]) unless AuthorizationsRole[authorization_id:auth, role_id:'administrator']
             true
@@ -88,7 +89,7 @@ module Sinatra
           session['user']=user[:login]
           session['user_id']=user[:id]
           session['name']=user[:name]
-          session['role_id']=user[:rol_id]
+          session['role_id']=user[:role_id]
           session['authorizations']=user.authorizations.map {|v| v.id}
           session['language']=user.language
 

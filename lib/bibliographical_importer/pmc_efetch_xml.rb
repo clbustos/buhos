@@ -130,7 +130,7 @@ module BibliographicalImporter
       def parse_records
         @xml_a.each do |xml|
           xml.xpath("//PubmedArticle").each do |article|
-            $log.info(article.xpath(".//AuthorList/Author/LastName").text)
+            #$log.info(article.xpath(".//AuthorList/Author/LastName").text)
             @records.push(BibliographicalImporter::PmcEfetchXml::Record.create(article))
           end
         end

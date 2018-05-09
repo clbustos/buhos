@@ -9,6 +9,7 @@ en:
   Active_user: "Active user"
   actives_and_inactives_systematic_reviews: "actives and inactives"
   Add_DOI_to_references: "Add DOI to references"
+  Add_PMID_using_available_information: "Add PMID using available information"
   Add_info_references_using_crossref: "Add information to references using Crossref"
   Added_references_to_record: "Added %{count_references} references to record %{record_id}"
   Administration: "Administration"
@@ -23,6 +24,7 @@ en:
   archivo:
     successful_file_added: "File %{filename} successfully added"
   Ask_information_from_Crossref_for_admin: "Request information from Crossref for administrator"
+  Ask_information_from_Pubmed_for_admin: "Request information from PubMed for administrator"
   Assign_all: "Allocate all"
   Assign_automaticly_to_canonical_documents: "Allocate automatically to canonical documents"
   Assign_canonical_to_references: "Allocate canonicals to references"
@@ -196,7 +198,8 @@ en:
   Im_sorry_the_page_you_request_doesnt_exists: "Sorry, requested page does not exist"
   Incoming_citations: "Citations of this document"
   Information: "Information"
-  Information_about_this_cd_on_crossref: "Information on this canonical document is on Crossref"
+  Information_about_this_cd_on_crossref: "Information on this canonical document from Crossref"
+  Information_about_this_cd_on_pubmed: "Information on this canonical document from PubMed "
   installer:
     basic_data_form: "Basic information"
     basic_data_form_instruction: "Enter the information needed for the database, proxy and access to Scopus. Remember that if you use <em>sqlite</em>, the database will be a unique file. If you have a  Scopus development password you may enter it; if your university or employer requires you to use a proxy configuration it will be used"
@@ -314,6 +317,7 @@ en:
   Number_of_references_to_view: "Number of references to view"
   Objectives: "Objectives"
   Obtain_information_from_Crossref: "Obtain information from Crossref"
+  Obtain_information_from_Pubmed: "Obtain information from PubMed"
   On_class: "In class"
   Only_active: "Only active"
   only_actives_systematic_reviews: "Only active systematic reviews"
@@ -350,8 +354,9 @@ en:
     review_analyze: 'Systematic review: Analyze'
     review_edit: 'Systematic review: Edit'
     review_view: 'Systematic review: See'
-    roles_admin: 'Roles: Admin'
-    roles_view: 'Roles: See'
+    role_admin: 'Roles: Admin'
+    role_view: 'Roles: See'
+    pubmed_query: 'Pubmed: Query'
     scopus_query: 'Scopus: Query'
     search_edit: 'Searches: Edit'
     search_view: 'Searches: See'
@@ -382,6 +387,9 @@ en:
   process_report:
     instructions: "Development presented for various stages of systematic review process"
   Processing_n_canonical_documents: "Processing %{count} canonical documents"
+  pubmedremote:
+    retrieve_pmid_result: "Retrieval PMID from PubMed results: %{dois_pmid} with PMID and %{nil_dois} without PMID"
+    retrieve_pmid_result_bad_dois: "This DOIs are malformed: %{bad_dois}"
   record:
     doi_already_added_to: "DOI already added to %{record_title}"
     references_for_crossref_processed: "%{n} references processed from Crossref"
@@ -665,7 +673,9 @@ en:
   Users_and_groups: "Users and groups"
   View: "View"
   view_crossref_information: "View Crossref information for DOI %{doi}"
+  view_pubmed_information: "View PubMed information for PMID %{pmid}"
   View_DOI_record: "View Crossref for DOI"
+  View_Pubmed_record: "View Pubmed record for PMID"
   View_technical_record: "View technical record"
   Welcome_comma: "Welcome,"
   Welcome_guest: "Welcome,&nbsp;visitor"

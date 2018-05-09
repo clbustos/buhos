@@ -138,9 +138,10 @@ module BibliographicalImporter
 
     class Reader
       include AbstractReader
+      include Enumerable
       attr_reader :jb
       attr_reader :records
-      include Enumerable
+
       def [](x)
         @records[x]
       end

@@ -104,6 +104,17 @@ class CanonicalDocument < Sequel::Model
       false
     end
   end
+
+  def pubmed_integrator
+    if self.pmid
+      PubmedRemote.reference_integrator_xml(self.pmid)
+    else
+      false
+    end
+  end
+
+
+
   def buscar_references_similares(d=nil,sin_canonico=true)
      begin
       require 'levenshtein-ffi'
