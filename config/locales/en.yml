@@ -177,6 +177,8 @@ en:
   footer_conicyt: "Software funded by Conicyt National Doctoral Grant No. 21151499"
   footer_copyright: "2016-2018 Claudio Bustos"
   Full_text_report: "Data extraction report"
+  full_text_review:
+    stage_complete_message:"The full text review phase has been concluded. The report phase will begin when all the group users have responded"
   fulltext_report:
     check_full_text_form: "Review full text of form"
     custom_form: "Personalized form"
