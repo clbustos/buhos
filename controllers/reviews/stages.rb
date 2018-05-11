@@ -104,7 +104,7 @@ get '/review/:id/review_full_text' do |id|
   @user_id=@user[:id]
 
 
-  @pager=get_pager([:decision, :tag_select])
+  @pager=get_pager([:decision, :tag_select, :search_title])
   @pager.order||="year__asc"
 
 

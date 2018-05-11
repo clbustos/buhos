@@ -32,12 +32,15 @@
     %select.form-control{:name=>'decision'}
       %option{:value=>'_no_'}=t(:All)
       - Decision::N_EST.each_pair do |k,d_name|
-        - checked= @pager.extra[:decision].nil?  ? false :  ( @pager.extra[:decision].include?(k) )
+        - checked= @pager.extra[:decision].nil?  ? false :  ( @pager.extra[:decision]==k )
         %option{:value=> k, :selected=>checked}
           ="#{t(d_name)} (#{@ads.total_decisions[k].to_i})"
   .form-group
     %label{:for=>'tags'}=t(:Tags)
     =partial("tags/select_tag_sr", :locals=>{review:@review})
+  .form-group
+    %label{:for=>'search_title'}=t(:Title)
+    %input.form-control{:name=>'search_title', :value=>@pager.extra[:search_title]}
   %button.btn.btn-default{:type=>"submit"}=t(:Filter)
 
 %p
