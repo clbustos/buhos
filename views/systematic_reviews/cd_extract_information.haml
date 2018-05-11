@@ -26,8 +26,13 @@
       =partial(:canonical_document_button, :locals=>{id:@cd[:id]})
   .row
     .col-md-7.col-sm-7.resizable#document_viewer
-      .embed-responsive.embed-responsive-4by3
-        %iframe{:src=>"/ViewerJS/#../file/#{@current_file_id}/download",  :allowfullscreen=>true, :webkitallowfullscreen=>true}
+      - if @current_file_id.nil?
+        %p.alert.alert-warning=t(:No_file)
+        =@modal_files.javascript_header
+        =@modal_files.cargador_archivo(@sr[:id], @cd[:id])
+      - else
+        .embed-responsive.embed-responsive-4by3
+          %iframe{:src=>"/ViewerJS/#../file/#{@current_file_id}/download",  :allowfullscreen=>true, :webkitallowfullscreen=>true}
     .col-md-5.col-sm-5#extract-form
       %div
         %div
