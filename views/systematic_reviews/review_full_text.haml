@@ -83,7 +83,7 @@
         - clase_panel=decision_class_bootstrap(decision,nil)
         %tr{:class=>clase_panel}
           %td
-            =CGI::escapeHTML cd.ref_apa_6
+            =cd.ref_apa_6_brief_html
             %a.btn.btn-primary.btn-sm{:href=>"/review/#{@review[:id]}/extract_information/cd/#{cd[:id]}"}=t(:Extract_information)
             %br
             =partial("tags/tags_cd_rs", :locals=>{cd: cd, review:@review, user_id:@user_id, ajax:ajax})
