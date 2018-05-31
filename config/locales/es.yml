@@ -638,6 +638,7 @@ es:
   Type: "Tipo"
   Type_of_systematic_review_show: "Tipo de revisión mostrada"
   Undecided: "Indeciso"
+  undecided: "Indeciso"
   Union_doesnt_work: "No se pudo unir"
   Update: "Actualizar"
   Upload_files: "Subir archivos"

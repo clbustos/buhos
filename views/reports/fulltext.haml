@@ -44,6 +44,7 @@
         - else
           .list-group
             - analysis_cd.each do |an|
+              - next if an[campo[:name].to_sym].to_s.chomp==""
               .list-group-item
                 =lf_to_br(an[campo[:name].to_sym])
                 =@report.cd_h[an[:canonical_document_id]].cite_apa_6
