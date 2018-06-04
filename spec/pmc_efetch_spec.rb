@@ -9,17 +9,17 @@ describe 'PMC::Efetch' do
     expect(@efetch.pmid_list).to eq(@pmid_list)
   end
   it "#process shouldn't raise an error" do
-    skip if !ENV['NCBI_API_KEY']; expect {@efetch.process}.to_not raise_exception
+    skip if !ENV['NCBI_API_KEY'] or ENV['NCBI_API_KEY']=='ncbi_api_key'; expect {@efetch.process}.to_not raise_exception
   end
   context "when process a list of correct DOI" do
     before(:all) do
-      skip if !ENV['NCBI_API_KEY']; @efetch.process
+      skip if !ENV['NCBI_API_KEY']  or ENV['NCBI_API_KEY']=='ncbi_api_key'; @efetch.process
     end
     it ".pmid_xml should be an PMC::EfetchXMLSummaries" do
-      skip if !ENV['NCBI_API_KEY'];expect(@efetch.pmid_xml).to be_a(PMC::EfetchXMLSummaries)
+      skip if !ENV['NCBI_API_KEY']  or ENV['NCBI_API_KEY']=='ncbi_api_key';expect(@efetch.pmid_xml).to be_a(PMC::EfetchXMLSummaries)
     end
     it ".pmid_xml[0] should be a Nokogiri Object" do
-      skip if !ENV['NCBI_API_KEY'];expect(@efetch.pmid_xml[0]).to be_a(Nokogiri::XML::Document)
+      skip if !ENV['NCBI_API_KEY']  or ENV['NCBI_API_KEY']=='ncbi_api_key';expect(@efetch.pmid_xml[0]).to be_a(Nokogiri::XML::Document)
     end
   end
 end
