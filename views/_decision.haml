@@ -6,6 +6,7 @@
 - #@nbayes_rs||=NBayes_RS.new(revision)
 - ajax||=false
 - abs_pres.keywords =review.keywords_as_array
+- url_base="/review/#{review[:id]}/canonical_document/#{cd[:id]}"
 
 - only_buttons||=false
 - class_buttons  = only_buttons ? "panel-body" : "panel-footer"
@@ -18,9 +19,9 @@
         %strong="#{t(:APA_references)}:"
         =CGI::escapeHTML cd.ref_apa_6
 
-        - text_references=sprintf("<strong>#{t(:Citations)}:</strong> #{t(:cites)} <strong>%d</strong> / #{t(:cited_by)} <strong>%d</strong> ", ars.cd_count_outgoing(cd[:id]).to_i, ars.cd_count_incoming(cd[:id]).to_i)
+        - text_references=sprintf("<strong>#{t(:Citations)}:</strong> #{t(:cites)} <strong><a href='#{url_base}/cites'>%d</a> </strong> / #{t(:cited_by)} <strong><a href='#{url_base}/cited_by'>%d</a></strong> ", ars.cd_count_outgoing(cd[:id]).to_i, ars.cd_count_incoming(cd[:id]).to_i)
         - if ars.cd_count_incoming_sta(cd[:id])
-          -text_references+=sprintf("/ #{t(:cited_by_RTR_documents)} <strong>%d</strong>", ars.cd_count_incoming_sta(cd[:id]).to_i)
+          -text_references+=sprintf("/ #{t(:cited_by_RTR_documents)} <strong><a href='#{url_base}/cited_by_rtr'>%d</a></strong>", ars.cd_count_incoming_sta(cd[:id]).to_i)
         %p=text_references
       %p{:class=>""}
         %strong=t(:Abstract)

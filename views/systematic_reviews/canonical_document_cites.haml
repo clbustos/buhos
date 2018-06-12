@@ -1,0 +1,23 @@
+.heading
+  =t_systematic_review_title(@sr[:name], t("canonical_document.#{@type}", cd_title:@cd[:title]),false)
+
+%ul.breadcrumb
+  %li
+    %a{:href=>url("/reviews")}=t(:Systematic_reviews)
+  %li
+    %a{:href=>url("/review/#{@sr.id}")}=@sr.name
+  %li
+    %a{:href=>url("/review/#{@sr.id}/canonical_document/#{@cd[:id]}")}=@cd[:title]
+  %li.active=t("canonical_document.#{@type}", cd_title:@cd[:title])
+
+- if @cd_to_show.empty?
+  =t(:Without_canonical_document)
+- else
+  =t_desc_value(:count_canonical_documents, @cd_to_show.count)
+  -@cd_to_show.each do |cd|
+    .list-group-item
+      =CGI::escapeHTML cd.ref_apa_6_brief
+      %p=t(:References_count_to_canonical, in:cd[:n_total_references_in].to_i, out:cd[:n_total_references_made].to_i, in_sta: cd[:n_references_rtr].to_i)
+      %div
+        =partial(:canonical_document_button, :locals=>{id:cd[:id]})
+        =partial(:canonical_document_button_abstract_collapsible, :locals=>{cd:cd})
