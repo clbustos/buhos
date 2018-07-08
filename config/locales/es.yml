@@ -121,6 +121,7 @@ es:
   Doesnt_appears_on_any_reference: "No aparece en ninguna referencia"
   DOI_not_assigned_to_record: "No se pudo asignar automáticamente DOI a registro %{record_id} : %{author} - %{title}. Se debe revisar manualmente"
   Download: "Descargar"
+  Download_as_excel: "Descargar como Excel"
   Download_Crossref_information_for_all_documents: "Descargar información Crossref para todos los documentos"
   Duplicated_documents: "Documentos duplicados"
   Duplicated_DOI: "DOI duplicados"
@@ -185,6 +186,7 @@ es:
   fulltext_report:
     check_full_text_form: "Revisar formulario texto completo"
     custom_form: "Formulario personalizado"
+    use: "Uso"
     inline_code: "Código en vivo"
     inline_codes: "Códigos en vivo"
     instructions: "Se presentan los distintos análisis realizados por los evaluadores a los textos completos."
