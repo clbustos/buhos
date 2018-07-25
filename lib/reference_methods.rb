@@ -32,6 +32,7 @@ module ReferenceMethods
 
   def cite_apa_6
     text_authors=author.split(" and ").map {|v| v.split(",")[0]}
+
     n_authors=text_authors.length
 
     if n_authors==1

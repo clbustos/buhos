@@ -1,7 +1,15 @@
 .header=t_systematic_review_title(@sr[:name], :Full_text_report)
 %p.instructions=t("fulltext_report.instructions")
 
+.btn-group
+  %a.btn.btn-default.btn-sm{:href=>"/review/#{@sr[:id]}/report/fulltext/excel_download"}
+    %span.glyphicon.glyphicon-download
+    =t(:Download_as_excel)
+
+
 %h4=t("fulltext_report.inline_codes")
+
+
 
 - @report.get_inline_codes.each_pair do |type, codes0|
   - if codes0.length>0
@@ -44,6 +52,7 @@
         - else
           .list-group
             - analysis_cd.each do |an|
+              - next if an[campo[:name].to_sym].to_s.chomp==""
               .list-group-item
                 =lf_to_br(an[campo[:name].to_sym])
                 =@report.cd_h[an[:canonical_document_id]].cite_apa_6

@@ -9,7 +9,7 @@
 # @!group Screening and analysis of documents
 
 
-# Inteface for stage screening titles and abstract
+# Interface for stage screening titles and abstract
 get '/review/:id/screening_title_abstract' do |id|
   halt_unless_auth('review_analyze')
   @review=SystematicReview[id]

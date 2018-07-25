@@ -34,6 +34,25 @@ require_relative 'buhos/stages'
 # Shows general statistics for systematic reviews and
 # for each article
 class AnalysisSystematicReview
+  class ReferencesBetweenCanonicals
+    def initialize(sr)
+      @sr=sr
+      @rec = @sr.references_bw_canonical
+    end
+    def cites(cd_id)
+      CanonicalDocument.where(:id=>@rec.where(:cd_start=>cd_id).map(:cd_end))
+    end
+    def cited_by(cd_id)
+      CanonicalDocument.where(:id=>@rec.where(:cd_end=>cd_id).map(:cd_start))
+    end
+    def cited_by_rtr(cd_id)
+      rta_cd_id=@sr.resolutions_title_abstract.map(:canonical_document_id)
+      cited_by=@rec.where(:cd_end=>cd_id).map(:cd_start)
+      cd_id_final=rta_cd_id & cited_by
+      CanonicalDocument.where(:id=>cd_id_final)
+    end
+  end
+
   include AnalysisSrStageMixin
   include Buhos::StagesMixin
   attr_reader :rs
@@ -52,14 +71,19 @@ class AnalysisSystematicReview
   #
   # @param rs object Systematic_Review
   def initialize(rs)
-    @rs=rs
+    @rs = rs
     process_basic_indicators
     process_cite_number
     procesar_resolutions
   end
+  def self.reference_between_canonicals(sr)
+    ReferencesBetweenCanonicals.new(sr)
+  end
+
   def cd_hash
     @rs.cd_hash
   end
+
   def cd_count_incoming(id)
     @ref_count_incoming[id]
   end
@@ -85,95 +109,98 @@ class AnalysisSystematicReview
   def cd_in_record?(id)
     @cd_reg_id.include? id
   end
+
   # Check if a CD is part of a Record.
   # In other words, if CD is allocated to a Reference inside to one of its searches
   def cd_in_reference?(id)
     @cd_ref_id.include? id
   end
+
   def cd_count_total
     @cd_all_id.length
   end
 
 
-def process_basic_indicators
-  @cd_reg_id=@rs.cd_record_id
-  @cd_ref_id=@rs.cd_reference_id
-  @cd_all_id=@rs.cd_all_id
-  @rec=@rs.references_bw_canonical
-end
-
-private :process_basic_indicators
-
-def process_cite_number
-  @ref_count_incoming=@rec.to_hash_groups(:cd_end).inject({}) {|ac, v|
-    ac[v[0]]=v[1].length; ac
-  }
-  @ref_count_outgoing=@rec.to_hash_groups(:cd_start).inject({}) {|ac, v|
-    ac[v[0]]=v[1].length; ac
-  }
-
-
-  #cd[:n_references_rtr]
-
-
-  @cd_reference_rtr = @rs.count_references_rtr.inject({}){|ac,v|
-    ac[v[:cd_end]]=v[:n_references_rtr];ac
-  }
-
-
-end
-
-private :process_cite_number
-
-def procesar_resolutions
-  @cd_resolutions=get_stages_ids.inject({}) do |ac,stage|
-    ac[stage]=Resolution.where(:systematic_review_id=>@rs.id, :stage=>stage.to_s).as_hash(:canonical_document_id)
-    ac
+  def process_basic_indicators
+    @cd_reg_id = @rs.cd_record_id
+    @cd_ref_id = @rs.cd_reference_id
+    @cd_all_id = @rs.cd_all_id
+    @rec = @rs.references_bw_canonical
   end
-end
 
-private :procesar_resolutions
+  private :process_basic_indicators
 
-def cd_in_resolution_stage?(id, stage)
-  @cd_resolutions[stage.to_sym][id].nil? ? false : @cd_resolutions[stage.to_sym][id][:resolution] == 'yes'
-end
-
-def more_cited(n=20)
-  @ref_count_incoming.sort_by {|a| a[1]}.reverse[0...n]
-end
-def with_more_references(n=20)
-  @ref_count_outgoing.sort_by {|a| a[1]}.reverse[0...n]
-end
-
-def pattern_order(a)
-  - (1000*a["yes"].to_i + 100*a["no"].to_i + 10*a["undecided"].to_i + 1*a["ND"].to_i)
-end
+  def process_cite_number
+    @ref_count_incoming = @rec.to_hash_groups(:cd_end).inject({}) {|ac, v|
+      ac[v[0]] = v[1].length; ac
+    }
+    @ref_count_outgoing = @rec.to_hash_groups(:cd_start).inject({}) {|ac, v|
+      ac[v[0]] = v[1].length; ac
+    }
 
 
-def files_by_cd
-  $db["SELECT a.*,cds.canonical_document_id FROM files a INNER JOIN file_cds cds ON a.id=cds.file_id INNER JOIN file_srs ars ON a.id=ars.file_id WHERE systematic_review_id=? AND (cds.not_consider = ? OR cds.not_consider IS NULL)", @rs.id, 0].to_hash_groups(:canonical_document_id)
-end
+    #cd[:n_references_rtr]
 
 
-def pattern_name(a)
-  Decision::N_EST.map {|key,name|
-    "#{::I18n::t(name)}:#{a[key]}"
-  }.join(";")
-end
+    @cd_reference_rtr = @rs.count_references_rtr.inject({}) {|ac, v|
+      ac[v[:cd_end]] = v[:n_references_rtr]; ac
+    }
 
-def pattern_id(a)
-  Decision::N_EST.keys.map {|key|
-    "#{key}_#{a[key]}"
-  }.join("__")
-end
 
-def pattern_from_s(text)
-  text.split("__").inject({}){|ac,v|
-    key,value=v.split("_")
-    ac[key]=value.to_i
-    ac
-  }
-end
+  end
+
+  private :process_cite_number
+
+  def procesar_resolutions
+    @cd_resolutions = get_stages_ids.inject({}) do |ac, stage|
+      ac[stage] = Resolution.where(:systematic_review_id => @rs.id, :stage => stage.to_s).as_hash(:canonical_document_id)
+      ac
+    end
+  end
+
+  private :procesar_resolutions
+
+  def cd_in_resolution_stage?(id, stage)
+    @cd_resolutions[stage.to_sym][id].nil? ? false : @cd_resolutions[stage.to_sym][id][:resolution] == 'yes'
+  end
+
+  def more_cited(n = 20)
+    @ref_count_incoming.sort_by {|a| a[1]}.reverse[0...n]
+  end
+
+  def with_more_references(n = 20)
+    @ref_count_outgoing.sort_by {|a| a[1]}.reverse[0...n]
+  end
+
+  def pattern_order(a)
+    -(1000 * a["yes"].to_i + 100 * a["no"].to_i + 10 * a["undecided"].to_i + 1 * a["ND"].to_i)
+  end
+
+
+  def files_by_cd
+    $db["SELECT a.*,cds.canonical_document_id FROM files a INNER JOIN file_cds cds ON a.id=cds.file_id INNER JOIN file_srs ars ON a.id=ars.file_id WHERE systematic_review_id=? AND (cds.not_consider = ? OR cds.not_consider IS NULL)", @rs.id, 0].to_hash_groups(:canonical_document_id)
+  end
+
+
+  def pattern_name(a)
+    Decision::N_EST.map {|key, name|
+      "#{::I18n::t(name)}:#{a[key]}"
+    }.join(";")
+  end
+
+  def pattern_id(a)
+    Decision::N_EST.keys.map {|key|
+      "#{key}_#{a[key]}"
+    }.join("__")
+  end
+
+  def pattern_from_s(text)
+    text.split("__").inject({}) {|ac, v|
+      key, value = v.split("_")
+      ac[key] = value.to_i
+      ac
+    }
+  end
 
 
 end

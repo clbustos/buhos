@@ -37,10 +37,10 @@ module SystematicReviewViewsMixin
 
   def count_references_rtr
     references_bw_canonical
-    resolutions_titulo_resumen # Verifico que exista la tabla de resolutions
+    resolutions_title_abstract # Verifico que exista la tabla de resolutions
     view_name = count_references_rtr_tn
     if !$db.table_exists?(view_name)
-      $db.run("CREATE VIEW #{view_name} AS SELECT cd_end , COUNT(DISTINCT(cd_start)) as n_references_rtr  FROM resolutions r INNER JOIN #{references_bw_canonical_tn} rec ON r.canonical_document_id=rec.cd_start LEFT JOIN #{resolutions_titulo_resumen_tn} as r2 ON r2.canonical_document_id=rec.cd_end WHERE r.systematic_review_id=#{self[:id]} and r.stage='screening_title_abstract' and r.resolution='yes' and r2.canonical_document_id IS NULL GROUP BY cd_end")
+      $db.run("CREATE VIEW #{view_name} AS SELECT cd_end , COUNT(DISTINCT(cd_start)) as n_references_rtr  FROM resolutions r INNER JOIN #{references_bw_canonical_tn} rec ON r.canonical_document_id=rec.cd_start LEFT JOIN #{resolutions_title_abstract_tn} as r2 ON r2.canonical_document_id=rec.cd_end WHERE r.systematic_review_id=#{self[:id]} and r.stage='screening_title_abstract' and r.resolution='yes' and r2.canonical_document_id IS NULL GROUP BY cd_end")
     end
     $db[view_name.to_sym]
 
@@ -71,15 +71,15 @@ module SystematicReviewViewsMixin
     "sr_#{self[:id]}_resolutions_references"
   end
 
-  def resolutions_titulo_resumen
-    view_name = resolutions_titulo_resumen_tn
+  def resolutions_title_abstract
+    view_name = resolutions_title_abstract_tn
     if !$db.table_exists?(view_name)
       $db.run("CREATE VIEW #{view_name} AS SELECT * FROM resolutions  where systematic_review_id=#{self[:id]} and stage='screening_title_abstract'")
     end
     $db[view_name.to_sym]
   end
 
-  def resolutions_titulo_resumen_tn
+  def resolutions_title_abstract_tn
     "sr_#{self[:id]}_resolutions_sta"
   end
 
