@@ -1,9 +1,5 @@
 require_relative 'spec_helper'
-
-
 describe 'Search:' do
-
-
   before(:all) do
     RSpec.configure { |c| c.include RSpecMixin }
     configure_empty_sqlite
