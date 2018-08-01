@@ -1,0 +1,19 @@
+.header=t_systematic_review_title(@review[:name],:Search_add_files)
+
+%ul.breadcrumb
+  %li
+    %a{:href=>url("/review/#{@review.id}")}=@review.name
+  %li
+    %a{:href=>url("/review/#{@review.id}/searches")}=t(:searches)
+  %li.active
+    =t(:Search_add_file)
+
+
+%h3=t(:Upload_files)
+
+%form{:method=>:post, :action=>url("/review/search/add_files"), :enctype=>'multipart/form-data'}
+  %input{:type=>"hidden", :name=>"systematic_review_id",:value=>@review[:id]}
+  .form-group
+    %label=t(:File)
+    %input{:type=>'file', :name=>'files[]', :multiple=>"multiple"}
+  %input{:type=>:submit, :class=>"btn btn-primary",:value=>"Enviar"}

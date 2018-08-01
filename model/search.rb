@@ -41,6 +41,7 @@ class Search < Sequel::Model
            :informal_search,
            :backward_snowballing,
            :forward_snowballing
+
   ]
 
   SOURCES_NAMES={:database_search=> "source.database_search",

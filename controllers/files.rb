@@ -11,49 +11,39 @@
 # Allocate automatically files to canonical documents
 get '/files/rs/:systematic_review_id/assign_to_canonical_documents' do |rs_id|
   halt_unless_auth('file_admin')
-  rs=SystematicReview[rs_id]
+  rs = SystematicReview[rs_id]
 
   raise Buhos::NoReviewIdError, rs_id if !rs
 
 
   require 'pdf-reader'
   # Solo buscar en los files que no tienen canonico asignado
-  pdf_por_revisar=FileSr.files_wo_cd(rs_id).where(:filetype=>'application/pdf')
+  pdf_por_revisar = FileSr.files_wo_cd(rs_id).where(:filetype => 'application/pdf')
   pdf_por_revisar.each do |pdf|
     begin
-      reader=PDF::Reader.new(pdf.absolute_path(dir_files))
-        doi=nil
-        info=reader.info
-        if(info[:doi])
-          doi=info[:doi]
-        elsif(info[:Subject])
-          doi=find_doi(info[:Subject])
-        end
-        if doi.nil?
-          primera_pagina=reader.pages[0].text
-          doi=find_doi(primera_pagina)
-        end
+      pdfp=PdfProcessor.new(pdf.absolute_path(dir_files))
+      doi=pdfp.get_doi
 
-        if(doi)
-          cd=CanonicalDocument.where(:doi=>doi)
-          if cd.count>0
-            $db.transaction do
-              FileCd.insert(:file_id=>pdf[:id], :canonical_document_id=>cd.first[:id])
-            end
-            add_message("Agregado file #{pdf[:filename]} a canónico #{cd[:title]}")
-          else
-            add_message("No puedo encontrar doi: #{doi} en los canonicos", :warning)
+      if doi
+        cd = CanonicalDocument.where(:doi => doi)
+        if cd.count > 0
+          $db.transaction do
+            FileCd.insert(:file_id => pdf[:id], :canonical_document_id => cd.first[:id])
           end
+          add_message("Agregado file #{pdf[:filename]} a canónico #{cd[:title]}")
         else
-          add_message("No puedo encontrar doi en el documento #{pdf[:filename]}", :warning)
+          add_message("No puedo encontrar doi: #{doi} en los canonicos", :warning)
         end
-
-      rescue Exception=>e
-        $log.error("Error on file: #{pdf[:filename]}")
-        add_message("Error on file: #{pdf[:filename]}", :error)
-        #raise
+      else
+        add_message("No puedo encontrar doi en el documento #{pdf[:filename]}", :warning)
       end
+
+    rescue Exception => e
+      $log.error("Error on file: #{pdf[:filename]}")
+      add_message("Error on file: #{pdf[:filename]}", :error)
+      #raise
     end
+  end
   redirect back
 end
 

@@ -316,6 +316,7 @@ es:
   No_search_selected: "No se seleccionó ninguna búsqueda"
   No_similar_references_without_canonical: "No existen referencias similares sin canónico"
   No_systematic_review_for_this_user: "No hay revisiones sistemáticas para este usuario"
+  No_title: "Sin título"
   No_valid_action: "La acción seleccionada no es válida"
   Not_allowed_with_user_permissions: "Acción no permitida con los permisos del usuario"
   Not_assigned: "No asignado"
