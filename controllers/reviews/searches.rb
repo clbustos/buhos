@@ -44,7 +44,6 @@ post '/review/search/add_files' do
 
   @bb_general_id=BibliographicDatabase[:name=>'generic'][:id]
 
-  #$log.info(params)
   @review=SystematicReview[params['systematic_review_id']]
   raise Buhos::NoReviewIdError, id if !@review
   files=params['files']
@@ -56,40 +55,12 @@ post '/review/search/add_files' do
   if files
     results=Result.new
     files.each do |file|
-      # This code should be included on a processor
-      pdfp=PdfProcessor.new(file[:tempfile])
-      doi=pdfp.get_doi
 
-      author=pdfp.author ? pdfp.author.encode('UTF-8', 'binary', invalid: :replace, undef: :replace, replace: '') : I18n::t(:Unknown_author)
-      title=pdfp.title ? pdfp.title.force_encoding("UTF-8") : file[:filename]
-
-      if doi
-        uid="doi:#{doi}"
-      else
-        sha256 = Digest::SHA256.file(file[:tempfile]).hexdigest
-        uid="file:#{sha256}"
-      end
-
-      record=Record.where(:uid=>uid).first
-
-      if !record
-        record_id=Record.insert(:uid=>uid,:author=>author, :title=>title,:type=>"tempfile",:year=>0,:doi=>doi, :bibliographic_database_id=>@bb_general_id)
-        record=Record[record_id]
-      end
-
-      rr=RecordsSearch[:record_id=>record.id, :search_id=>search_id]
-      RecordsSearch.insert(:record_id=>record.id, :search_id=>search_id) unless rr
-
-      if record[:canonical_document_id]
-        cd=CanonicalDocument[record[:canonical_document_id]]
-      else
-        # In this place we should use the methods to search for canonical documents
-        cd_id=CanonicalDocument.insert(:title=>title,:type=>"tempfile",:year=>0,:doi=>doi, :author=>author)
-        cd=CanonicalDocument[cd_id]
-        record.update(:canonical_document_id=>cd_id)
-      end
-      cds_id.push(cd.id)
-      results.add_result(IFile.add_on_sr(file, @review, dir_files, cd))
+      next if file[:type]!~/pdf/ and file[:filename]!~/\.pdf/
+      pdfprocessor=PdfFileProcessor.new(search, file[:tempfile], dir_files)
+      pdfprocessor.process
+      results.add_result(pdfprocessor.results)
+      cds_id.push(pdfprocessor.canonical_document.id)
     end
     add_result results
   else
@@ -97,6 +68,9 @@ post '/review/search/add_files' do
   end
 
   search.update(:file_body=>cds_id.join("\n"))
+
+
+
   redirect back
 
 end

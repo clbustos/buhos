@@ -42,11 +42,9 @@ class RecordCrossrefProcessor
         begin
           @result.add_result(record.add_doi_automatic)
           if record.doi
-
             result.add_result(record.references_automatic_crossref)
           end
         rescue BadCrossrefResponseError=>e
-
           result.error(I18n::t("error.problem_record_stop_sync", record_id: record[:id], e_message: e.message))
           raise Sequel::Rollback
         end

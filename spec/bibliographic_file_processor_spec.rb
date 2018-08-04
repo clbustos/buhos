@@ -10,7 +10,7 @@ describe 'SearchProcessor' do
     let(:searches) {Search.where(:systematic_review_id=>1)}
     it "works on each search" do
       searches.each do |search|
-        sp=SearchProcessor.new(search)
+        sp=BibliographicFileProcessor.new(search)
         expect(sp.result.success?).to be true
       end
     end

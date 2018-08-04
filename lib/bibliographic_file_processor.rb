@@ -29,7 +29,7 @@
 # encoding: utf-8
 #
 
-# Searches on systematic review should be processed, to obtain all necessary information
+# Searches based on bibliography files, like bibtex, should be processed, to obtain all necessary information
 # This class retrieves records and references, using the file attached to a search.
 #
 # Main methods are {.process_file} and {.process_canonical_documents}. Only if file
@@ -45,7 +45,7 @@
 #    for each record on search
 #      create a canonical document
 #
-class SearchProcessor
+class BibliographicFileProcessor
   attr_reader :search
   attr_reader :result
 
@@ -71,7 +71,7 @@ class SearchProcessor
       integrator = get_integrator
       return false if !integrator
     rescue BibTeX::ParseError => e
-      log_error("search_processor.error_parsing_file", e.message)
+      log_error('bibliographic_file_processor.error_parsing_file', e.message)
       return false
     end
 
@@ -85,7 +85,7 @@ class SearchProcessor
 
         ref_i += 1
         if reference.nil?
-          @result.error(::I18n::t("search_processor.error_on_reference", i: ref_i))
+          @result.error(::I18n::t('bibliographic_file_processor.error_on_reference', i: ref_i))
           correct = false
           next
         end
@@ -94,7 +94,7 @@ class SearchProcessor
         bb_id = bb[reference.type.to_s]
         #$log.info(reference.type.to_s )
         if bb_id.nil?
-          @result.error(::I18n::t("search_processor.no_unique_id_for_integrator", integrator: bb_id))
+          @result.error(::I18n::t('bibliographic_file_processor.no_unique_id_for_integrator', integrator: bb_id))
           correct = false
           break
         end
@@ -104,7 +104,7 @@ class SearchProcessor
       end
       @search.update_records(ref_ids)
     end
-    log_success("search_processor.Search_process_file_successfully") if correct
+    log_success('bibliographic_file_processor.Search_process_file_successfully') if correct
     true
   end
 
@@ -114,38 +114,38 @@ class SearchProcessor
     ##$log.info(bb)
     $db.transaction(:rollback => :reraise) do
 
-      @search.records.each do |registro|
+      @search.records.each do |record|
         fields = [:title, :author, :year, :journal, :volume, :pages, :doi, :journal_abbr, :abstract]
 
-        fields_update = crear_hash_update(fields, registro)
+        fields_update = create_hash_update(fields, record)
         ##$log.info(fields)
-        registro_base_id = "#{bb[registro.bibliographic_database_id]}_id".to_sym
+        registro_base_id = "#{bb[record.bibliographic_database_id]}_id".to_sym
 
-        if registro[:canonical_document_id].nil?
+        if record[:canonical_document_id].nil?
           # Verifiquemos si existe doi
-          if registro[:doi].to_s =~ /10\./
-            can_doc = CanonicalDocument[:doi => registro[:doi]]
+          if record[:doi].to_s =~ /10\./
+            can_doc = CanonicalDocument[:doi => record[:doi]]
           end
 
           if can_doc.nil?
-            can_doc_id = CanonicalDocument.insert(fields_update.merge({registro_base_id => registro[:uid]}))
+            can_doc_id = CanonicalDocument.insert(fields_update.merge({registro_base_id => record[:uid]}))
             can_doc = CanonicalDocument[:id => can_doc_id]
           end
-          registro.update(:canonical_document_id => can_doc[:id])
+          record.update(:canonical_document_id => can_doc[:id])
         else
 
 
-          update_cd_fields(fields, registro, registro_base_id)
+          update_cd_fields(fields, record, registro_base_id)
 
         end
       end
     end # db.transaction
-    log_success("search_processor.Search_canonical_documents_successfully")
+    log_success('bibliographic_file_processor.Search_canonical_documents_successfully')
   end
 
-  def crear_hash_update(fields, registro)
+  def create_hash_update(fields, record)
     fields.inject({}) {|ac, v|
-      ac[v] = registro.send(v); ac;
+      ac[v] = record.send(v); ac;
     }
   end
 
@@ -158,15 +158,15 @@ class SearchProcessor
 
   def get_integrator
     if @search[:file_body].nil?
-      log_error("search_processor.no_file_available")
+      log_error('bibliographic_file_processor.no_file_available')
       false
-    elsif @search[:filetype] == "text/x-bibtex" or @search[:filename] =~ /\.bib$/
+    elsif @search[:filetype] == 'text/x-bibtex' or @search[:filename] =~ /\.bib$/
       BibliographicalImporter::BibTex::Reader.parse(@search[:file_body])
-    elsif @search[:filetype] == "text/csv" # Por trabajar
+    elsif @search[:filetype] == 'text/csv' # Por trabajar
       #$log.info(bibliographical_database_name)
       BibliographicalImporter::CSV::Reader.parse(@search[:file_body], @search.bibliographical_database_name)
     else
-      log_error("search_processor.no_integrator_for_filetype")
+      log_error('bibliographic_file_processor.no_integrator_for_filetype')
       false
     end
   end
@@ -189,10 +189,10 @@ class SearchProcessor
     can_doc = CanonicalDocument[registro[:canonical_document_id]]
     # Verificamos si tenemos una nueva información que antes no estaba
     raise Buhos::NoCdIdError, registro[:canonical_document_id] if !can_doc
-    fields_new_info = fields.find_all {|v| (can_doc[v].nil? or can_doc[v].to_s == "") and !(registro[v].nil? or registro[v].to_s == "")}
+    fields_new_info = fields.find_all {|v| (can_doc[v].nil? or can_doc[v].to_s == '') and !(registro[v].nil? or registro[v].to_s == '')}
     ##$log.info(fields.map {|v| registro[v]})
     unless fields_new_info.nil?
-      fields_update_2 = crear_hash_update(fields_new_info, registro)
+      fields_update_2 = create_hash_update(fields_new_info, registro)
       can_doc.update(fields_update_2)
     end
 
@@ -219,7 +219,7 @@ class SearchProcessor
 
     fields = [:title, :author, :year, :journal, :volume, :pages, :doi, :journal_abbr, :abstract]
 
-    fields_update = fields.find_all {|v| reg_o[:field].nil? and reference.send(v) != ""}.inject({}) {|ac, v|
+    fields_update = fields.find_all {|v| reg_o[:field].nil? and reference.send(v) != ''}.inject({}) {|ac, v|
       ac[v] = reference.send(v); ac;
     }
 

@@ -196,7 +196,7 @@ post '/searches/update_batch' do
     elsif params['action']=='process'
       results=Result.new
       searches.each do |search|
-        sp=SearchProcessor.new(search)
+        sp=BibliographicFileProcessor.new(search)
         results.add_result(sp.result)
       end
       add_result(results)
