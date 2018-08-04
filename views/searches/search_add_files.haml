@@ -1,4 +1,4 @@
-.header=t_systematic_review_title(@review[:name],:Search_add_files)
+.header=t_systematic_review_title(@review[:name],:Search_pdf_files)
 
 %ul.breadcrumb
   %li
@@ -6,7 +6,7 @@
   %li
     %a{:href=>url("/review/#{@review.id}/searches")}=t(:searches)
   %li.active
-    =t(:Search_add_file)
+    =t(:Search_pdf_files)
 
 
 %h3=t(:Upload_files)

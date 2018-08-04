@@ -40,14 +40,19 @@ class CanonicalDocument < Sequel::Model
   end
 
   def update_info_using_record(record)
+    result=Result.new
     fields = [:title, :author, :year, :journal, :volume, :pages, :doi, :journal_abbr, :abstract]
     update_data=fields.inject({}) do |ac,v|
-      ac[v]=record.send(v)  unless record.send(v).nil? or (self.send(v).to_s!="")
+
+      ac[v]=record.send(v)  unless record.send(v).nil? or (self.send(v).to_s!="" or self.send(v).to_s!="0" )
       ac
     end
 
-    self.update(update_data) unless update_data.keys.length==0
 
+    $log.info(update_data)
+    self.update(update_data) unless update_data.keys.length==0
+    result.info(I18n::t("canonical_document.updated_using_record", n_fields:update_data.keys.length))
+    result
 
   end
   # Merge canonical documents, according to id

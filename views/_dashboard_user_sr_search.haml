@@ -12,8 +12,8 @@
 - if auth_to("review_analyze") and user.systematic_reviews_id.include? sr[:id]
   .btn-group.btn-group-sm
     %a.btn.btn-default{:role=>:button, :href=>"/review/#{sr[:id]}/search/new"}
-      %span.glyphicon.glyphicon-plus
-      =t("user_dashboard.search_new")
+      %span.glyphicon.glyphicon-new
+      =t("user_dashboard.search_bibliographic_file_new")
     %a.btn.btn-default{:role=>:button, :href=>"/review/#{sr[:id]}/search/add_files"}
-      %span.glyphicon.glyphicon-file
-      =t("user_dashboard.search_add_files")
+      %span.glyphicon.glyphicon-new
+      =t("user_dashboard.search_pdf_files_new")
