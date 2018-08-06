@@ -44,12 +44,12 @@ class CanonicalDocument < Sequel::Model
     fields = [:title, :author, :year, :journal, :volume, :pages, :doi, :journal_abbr, :abstract]
     update_data=fields.inject({}) do |ac,v|
 
-      ac[v]=record.send(v)  unless record.send(v).nil? or (self.send(v).to_s!="" or self.send(v).to_s!="0" )
+      ac[v]=record.send(v)  if !record.send(v).nil? and ((self.send(v).to_s=="")  or (v==:year and self.send(v).to_s=="0"))
       ac
     end
 
 
-    $log.info(update_data)
+    #$log.info(update_data)
     self.update(update_data) unless update_data.keys.length==0
     result.info(I18n::t("canonical_document.updated_using_record", n_fields:update_data.keys.length))
     result

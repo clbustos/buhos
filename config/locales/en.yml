@@ -495,7 +495,7 @@ en:
   Search_valid: "Valid"
   Search_view: "See search"
   Search_by_bibliographic_records: "Search by bibliographic records"
-  Search_by_article_files: "Search by article_files"
+  Search_by_article_files: "Search by article files"
   searches: "Searches"
   searches_for_systematic_review: "Searches for Systematic Review %{sr_name}"
   searches_user: "User '%{user_name}' searches"

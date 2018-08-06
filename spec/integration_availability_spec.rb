@@ -113,7 +113,7 @@ describe 'Resources availability:' do
 
   context "when review searches resources are accessed" do
     it { expect("/review/1/searches/user/1").to be_available_for_admin}
-    it { expect("/review/1/search/new").to be_available_for_admin}
+    it { expect("/review/1/search_bibliographic/new").to be_available_for_admin}
     it { expect("/review/1/searches/compare_records").to be_available_for_admin}
   end
 

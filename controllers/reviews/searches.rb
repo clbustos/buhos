@@ -68,16 +68,13 @@ post '/review/search/add_files' do
   end
 
   search.update(:file_body=>cds_id.join("\n"))
-
-
-
   redirect back
 
 end
 
 
-# Form to create a new search
-get '/review/:id/search/new' do |id|
+# Form to create a new search based on bibliographic files
+get '/review/:id/search_bibliographic/new' do |id|
   halt_unless_auth('search_edit')
 
   require 'date'

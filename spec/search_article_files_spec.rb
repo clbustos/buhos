@@ -1,14 +1,6 @@
 require 'spec_helper'
 
-shared_examples "pdf file" do
-  let(:filesize) {File.size(filepath)}
-  it "should response be ok" do expect(last_response).to be_ok end
-  it "should content type be application/pdf" do expect(last_response.header['Content-Type']).to eq('application/pdf') end
-  it "should content length be correct" do expect(last_response.header['Content-Length']).to eq(filesize.to_s) end
-
-end
-
-describe 'Search made by files:' do
+describe 'Search made by article files:' do
   before(:all) do
     RSpec.configure { |c| c.include RSpecMixin }
     @temp=configure_empty_sqlite

@@ -136,7 +136,7 @@ module Sinatra
       end
       app.error Buhos::NoCdIdError do
         status 404
-        ::I18n::t("error.no_code", object_name: ::I18n::t(:Canonical_document), code:env['sinatra.error'].message)
+        ::I18n::t("error.no_code", object_name: ::I18n::t(:Canonical_document), code: env['sinatra.error'].message)
       end
       app.error Buhos::NoTagIdError do
         status 404
