@@ -37,7 +37,7 @@ class IFile < Sequel::Model(:files)
   # @param basedir basedir where to store files
   # @param cd [CanonicalDocument]
   # @return Result
-  def self.add_on_sr(file_uploaded,systematic_review,basedir, cd=nil)
+  def self.add_on_sr(file_uploaded, systematic_review, basedir, cd = nil)
     result=Result.new
     $db.transaction do
       filename=file_uploaded[:filename].gsub(/[^A-Za-z0-9\.-_]/,"")
@@ -86,7 +86,6 @@ class IFile < Sequel::Model(:files)
       ruta_completa = "#{basedir}/#{file_path}"
       FileUtils.mkdir_p File.dirname(ruta_completa) unless File.exist?(File.dirname(ruta_completa))
       FileUtils.cp file_uploaded[:tempfile], ruta_completa
-
       file_id = IFile.insert(:filetype => filetype, :filename => filename, :file_path => file_path, :sha256 => sha256)
     else
       file_id = archivo_o.first[:id]
@@ -94,6 +93,7 @@ class IFile < Sequel::Model(:files)
     file_id
   end
 end
+
 class FileCd < Sequel::Model
 
 end

@@ -69,8 +69,8 @@ class PdfFileProcessor
   end
 
   def create_record_search_by_ids(record_id, search_id)
-    $log.info Record.all
-    $log.info Search.all
+    #$log.info Record.all
+    #$log.info Search.all
     unless RecordsSearch[:record_id=>record_id, :search_id=>search_id]
       RecordsSearch.insert(:record_id=>record_id, :search_id=>search_id)
     end
