@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Search made by article files:' do
+describe 'Search made with uploaded files:' do
   before(:all) do
     RSpec.configure { |c| c.include RSpecMixin }
     @temp=configure_empty_sqlite
@@ -41,7 +41,7 @@ describe 'Search made by article files:' do
       delete_records
       uploaded_file_1=Rack::Test::UploadedFile.new(filepaths[0], "application/pdf", true)
       uploaded_file_2=Rack::Test::UploadedFile.new(filepaths[1], "application/pdf", true)
-      post '/review/search/add_files', systematic_review_id:sr_by_name_id('Test Review'), files:[uploaded_file_1, uploaded_file_2]
+      post '/review/search/uploaded_files/new', systematic_review_id:sr_by_name_id('Test Review'), files:[uploaded_file_1, uploaded_file_2]
     end
     after(:context) do
       delete_files

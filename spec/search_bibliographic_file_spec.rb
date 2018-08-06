@@ -1,5 +1,5 @@
 require_relative 'spec_helper'
-describe 'Search:' do
+describe 'Search with bibliographic file:' do
   before(:all) do
     RSpec.configure { |c| c.include RSpecMixin }
     configure_empty_sqlite
@@ -30,10 +30,10 @@ describe 'Search:' do
     end
 
   end
-  context 'when create a search by form' do
+  context 'when create a search based on a bibliographic file by form' do
     before(:context) do
       uploaded_file=Rack::Test::UploadedFile.new(filepath, "text/x-bibtex",true)
-      post '/search/update', {search_id:'', file:uploaded_file, systematic_review_id: sr_by_name_id('Test Review') , bibliographic_database_id:bb_by_name_id('generic'), source:'informal_search', date_creation:'2018-01-01'}
+      post '/search/update', {search_id:'', file:uploaded_file, systematic_review_id: sr_by_name_id('Test Review') , bibliographic_database_id:bb_by_name_id('generic'), source:'informal_search', date_creation:'2018-01-01', search_type:"bibliographic_file"}
     end
 
     it "response should be redirect" do

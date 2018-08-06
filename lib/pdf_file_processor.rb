@@ -60,7 +60,6 @@ class PdfFileProcessor
 
   def get_record_by_uid(uid)
     record=Record.where(:uid=>uid).first
-
     if !record
       record_id=Record.insert(:uid=>uid,:author=>author, :title=>title,:type=>"tempfile",:year=>0,:doi=>doi, :bibliographic_database_id=>bb_general_id)
       record=Record[record_id]
@@ -109,40 +108,45 @@ class PdfFileProcessor
   def process
     pdfp=PdfProcessor.new(@filepath)
 
-    @doi=pdfp.get_doi
-    @author=pdfp.author ? pdfp.author.encode('UTF-8', 'binary', invalid: :replace, undef: :replace, replace: '') : ""
-    @title=pdfp.title ? pdfp.title.force_encoding("UTF-8") : ""
+      @doi=pdfp.get_doi
+      @author=pdfp.author ? pdfp.author.encode('UTF-8', 'binary', invalid: :replace, undef: :replace, replace: '') : ""
+      @title=pdfp.title ? pdfp.title.force_encoding("UTF-8") : ""
 
-    #@author=I18n::t(:Unknown_author) if author==""
-    #@title=I18n::t(:Unknown_title) if title==""
+      #@author=I18n::t(:Unknown_author) if author==""
+      #@title=I18n::t(:Unknown_title) if title==""
 
-    if doi
-      uid="doi:#{doi}"
+      if doi
+        uid="doi:#{doi}"
 
-    else
-      sha256 = Digest::SHA256.file(@filepath).hexdigest
-      uid="file:#{sha256}"
+      else
+        sha256 = Digest::SHA256.file(@filepath).hexdigest
+        uid="file:#{sha256}"
+      end
+
+
+      record=get_record_by_uid(uid)
+
+
+      # Recuperamos información desde crossref
+
+
+
+      create_record_search_by_ids(record.id, search_id)
+      cd=get_canonical_document(record)
+
+      file_proc=FileProcessor.new(simulate_file_uploaded, dir_files)
+      file_proc.add_to_sr(systematic_review)
+      file_proc.add_to_cd(cd)
+      file_proc.add_to_record_search(@search, record)
+      @results.success(I18n::t("search.successful_upload", filename:File.basename(@filepath), sr_name:systematic_review.name))
+      # Add crossref information
+      @results.add_result(record.add_doi_automatic)
+      if record.doi
+        @results.add_result(record.references_automatic_crossref)
+        @results.add_result(record.update_info_using_crossref)
+        cd.update_info_using_record(record) if @new_cd
+      end
     end
 
-
-    record=get_record_by_uid(uid)
-
-
-    # Recuperamos información desde crossref
-
-
-
-    create_record_search_by_ids(record.id, search_id)
-    cd=get_canonical_document(record)
-    results.add_result(IFile.add_on_sr(simulate_file_uploaded, systematic_review, dir_files, cd))
-
-    # Add crossref information
-    @results.add_result(record.add_doi_automatic)
-    if record.doi
-      @results.add_result(record.references_automatic_crossref)
-      @results.add_result(record.update_info_using_crossref)
-      cd.update_info_using_record(record) if @new_cd
-    end
-  end
 end
 

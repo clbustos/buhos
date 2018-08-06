@@ -30,7 +30,9 @@ require 'pdf-reader'
 
 require_relative "doi_helpers"
 
-# Class to process PDF
+# Class to process PDF information.
+# Processing to add PDF to a systematic review is performed by PdfFileProcessor
+
 class PdfProcessor
   include DOIHelpers
 

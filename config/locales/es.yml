@@ -479,6 +479,8 @@ es:
     Search_criteria_instructions: "En el caso de las búsquedas realizadas en bases bibliográficas, escriba los criterios de búsqueda utilizados"
     Search_file_instructions: "Para Scopus, Wos y Ebsohost y genérico, utilice archivos BibTeX. Para Scielo, utilice archivo csv"
     Source: "Fuente de los registros"
+    successful_upload: "Archivo %{filename} fue subido exitosamente a revisión sistemática %{sr_name}"
+
   Search_add_doi_references: "Agregado DOI para  %{count} referencias"
   Search_pdf_files: "Búsqueda basada en archivos pdf"
   Search_criteria: "Criterios de búsqueda"
@@ -497,6 +499,12 @@ es:
   Search_references_like_this: "Buscar referencias similares"
   Search_similar: "Buscar similar"
   search_title: "Búsqueda %{search_name}"
+  search_type: "Tipo de búsqueda"
+  search_types:
+    bibliographic_file: "Archivo de bibliografía"
+    uploaded_files: "Subida de archivos"
+    references_list: "lista de referencias"
+    manual: "Registros manuales"
   Search_valid: "Válida"
   Search_view: "Ver búsqueda"
   Search_by_bibliographic_records: "Búsqueda por registros bibliográficos"

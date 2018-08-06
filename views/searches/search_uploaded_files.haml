@@ -11,8 +11,11 @@
 
 %h3=t(:Upload_files)
 
-%form{:method=>:post, :action=>url("/review/search/add_files"), :enctype=>'multipart/form-data'}
+%form{:method=>:post, :action=>url("/review/search/uploaded_files/new"), :enctype=>'multipart/form-data'}
   %input{:type=>"hidden", :name=>"systematic_review_id",:value=>@review[:id]}
+  .form-group
+    %label=t(:Description)
+    %input{:class=>"form-control",:type=>"text", :name=>"description"}
   .form-group
     %label=t(:File)
     %input{:type=>'file', :name=>'files[]', :multiple=>"multiple"}

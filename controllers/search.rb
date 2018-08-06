@@ -159,7 +159,8 @@ post '/search/update' do
           :bibliographic_database_id=>otros_params[:bibliographic_database_id],
           :date_creation=>otros_params[:date_creation],
           :search_criteria=>otros_params[:search_criteria],
-          :description=>otros_params[:description]
+          :description=>otros_params[:description],
+          :search_type=>otros_params[:search_type]
       )
     else
       search=Search[id]

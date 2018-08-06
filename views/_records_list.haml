@@ -1,3 +1,10 @@
+- search||=nil
+- show_files = (!search.nil? and search.is_type?(:uploaded_files))
+- if show_files
+  - modal_files=get_modal_files
+  = modal_files.javascript_header
+  = modal_files.html_modal
+
 - bb=BibliographicDatabase.id_a_name_h
 %p=t_desc_value(:Count_records, records.count)
 .list-group
@@ -20,6 +27,10 @@
       ="[#{bb[registro[:bibliographic_database_id]]}]"
       - if registro[:canonical_document_id]
         =partial(:canonical_document_button, :locals=>{:id=>registro[:canonical_document_id]})
+      - if show_files
+        -search_record=RecordsSearch[:record_id=>registro.id, :search_id=>search.id]
+        -if search_record[:file_id]
+          =modal_files.botones(IFile[search_record[:file_id]] )
       -if registro[:abstract]!=""
         %button{:class=>"btn btn-primary btn-sm", :type=>"button",  "data-toggle"=>'collapse', "data-target"=>"#registro#{registro[:id]}", "aria-expanded"=>"false", "aria-controls"=>"registro#{registro[:id]}"}=t(:Abstract)
         %div{:class=>"collapse", :id=>"registro#{registro[:id]}"}
