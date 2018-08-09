@@ -174,7 +174,7 @@ post '/search/update' do
     end
   end
 
-  redirect "/review/#{otros_params[:systematic_review_id]}/searches"
+  redirect "/review/#{otros_params[:systematic_review_id]}/dashboard"
 end
 
 

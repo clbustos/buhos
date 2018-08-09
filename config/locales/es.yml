@@ -108,6 +108,7 @@ es:
   Count_total_files: "Nº de archivos total"
   current: "En proceso"
   Current_stage: "Etapa actual"
+  Dashboard: "Tablero"
   My_Dashboard: "Mi Tablero"
   My_messages:  "Mis mensajes"
   Dashboard_user: "Tablero usuario %{user_name}"

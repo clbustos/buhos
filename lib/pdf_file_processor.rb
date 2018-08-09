@@ -30,7 +30,7 @@
 
 class PdfFileProcessor
   # @param filepath
-
+  include Buhos::Helpers
   attr_reader :results
   attr_reader :dir_files
   attr_reader :title
@@ -109,8 +109,8 @@ class PdfFileProcessor
     pdfp=PdfProcessor.new(@filepath)
 
       @doi=pdfp.get_doi
-      @author=pdfp.author ? pdfp.author.encode('UTF-8', 'binary', invalid: :replace, undef: :replace, replace: '') : ""
-      @title=pdfp.title ? pdfp.title.force_encoding("UTF-8") : ""
+      @author=pdfp.author ? protect_encoding(pdfp.author) : ""
+      @title=pdfp.title ? protect_encoding(pdfp.title) : ""
 
       #@author=I18n::t(:Unknown_author) if author==""
       #@title=I18n::t(:Unknown_title) if title==""

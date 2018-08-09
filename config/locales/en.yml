@@ -112,6 +112,7 @@ en:
   Current_stage: "Current stage"
   My_Dashboard: "My dashboard"
   My_messages:  "My messages"
+  Dashboard: "Dashboard"
   Dashboard_user: "Dashboard user %{user_name}"
   Date: "Date"
   Date_creation: "Creation date"

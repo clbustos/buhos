@@ -73,8 +73,10 @@
               %div{:class=>'nav navbar-nav navbar-right user-buttons'}
                 =presentar_usuario
       %div{:style=>"clear:both"}
-      %section#mensajes
-        =print_messages
+      -mensajes=print_messages
+      - if mensajes!=""
+        %section#mensajes
+          =mensajes
       %section#content
         =yield
       %footer.center-block.clearfix

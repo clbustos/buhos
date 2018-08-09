@@ -1,0 +1,18 @@
+-#params sr, user
+- udi||=UserDashboardInfo.new(user)
+- is_administrator = udi.is_administrator_sr?(sr)
+%div{:class=>"panel #{is_administrator ? "panel-primary" : "panel-black"}"}
+  .panel-heading
+    .panel-title
+      =sr.name
+      - if is_administrator
+        %span.badge=t(:Administrator)
+  .panel-body
+    .container
+      .row
+        .col-md-8=t_desc_value(:Objectives, lf_to_br(sr.objectives))
+        .col-md-2
+          %a.btn.btn-default.btn-sm{:href=>"/review/#{sr.id}"}=t(:View_technical_record)
+    .dashboard-user=partial(:dashboard_user_sr,:locals=>{user:user, sr:sr})
+  .panel-footer
+    =partial(:review_buttons, :locals=>{:r=>sr})

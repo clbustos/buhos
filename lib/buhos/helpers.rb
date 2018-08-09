@@ -109,6 +109,9 @@ module Buhos
              text
       end
     end
-
+    # Force text x to be utf-8 compatible
+    def protect_encoding(x)
+      x.encode('UTF-8', 'binary', invalid: :replace, undef: :replace, replace: '')
+    end
   end
 end

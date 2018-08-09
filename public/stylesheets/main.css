@@ -254,6 +254,10 @@ ul.tags {
     background-color: lightyellow;
     border: 1px solid darkorange; }
 
+#mensajes {
+  height: 10%;
+  overflow: scroll; }
+
 .mensaje-texto {
   padding-left: 2em;
   max-height: 3em;

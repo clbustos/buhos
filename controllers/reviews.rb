@@ -62,6 +62,15 @@ get "/review/:id" do |id|
   haml %s{systematic_reviews/view}
 end
 
+get '/review/:id/dashboard' do |id|
+  halt_unless_auth('review_edit')
+  @review=SystematicReview[id]
+  @user=User[session['user_id']]
+
+  haml "systematic_reviews/dashboard".to_sym
+
+end
+
 # Form to edit a specific review
 get "/review/:id/edit" do |id|
   halt_unless_auth('review_edit')
@@ -110,7 +119,7 @@ post '/review/update' do
   # Procesamos los srtc
   end
 
-  redirect url("/review/#{id}")
+  redirect url("/review/#{id}/dashboard")
 end
 
 

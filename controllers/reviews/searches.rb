@@ -52,7 +52,7 @@ post '/review/search/uploaded_files/new' do
   $db.transaction do
 
     search_id=Search.insert(:systematic_review_id=>@review.id,:description=>params["description"],
-                            :filetype=>'text/plain',:source=>"informal_search",:valid=>0,:user_id=>session['user_id'], :date_creation=>Date.today,
+                            :filetype=>'text/plain',:source=>"informal_search",:valid=>false,:user_id=>session['user_id'], :date_creation=>Date.today,
                             :bibliographic_database_id=>@bb_general_id, :search_type=>'uploaded_files')
     search=Search[search_id]
     if files
@@ -71,10 +71,7 @@ post '/review/search/uploaded_files/new' do
     end
     search.update(:file_body=>cds_id.join("\n"))
 
-
-    redirect url("/search/#{search.id}")
-
-
+    redirect url("/review/#{@review.id}/dashboard")
   end
   add_message(I18n::t("error.problem_uploading_files"), :error)
   redirect back

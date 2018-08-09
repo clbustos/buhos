@@ -30,7 +30,7 @@
       %div{:id=>"sr-#{sr.id}-#{stage_visualized}", :class=>"tab-pane #{stage_visualized==sr[:stage].to_sym ? 'active' : ''}"}
         %p
         - if stage_visualized==:search
-          =partial(:dashboard_user_sr_search, :locals=>{is_administrator:is_administrator, sr:sr, stage:stage_visualized, user:user})
+          =partial(:dashboard_user_sr_search, :locals=>{is_administrator:is_administrator, sr:sr, stage:stage_visualized, user:user, udi:udi })
         - elsif stage_visualized==:report
           =partial(:dashboard_user_sr_report, :locals=>{is_administrator:is_administrator, sr:sr, stage:stage_visualized, user:user})
         - else

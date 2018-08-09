@@ -11,71 +11,76 @@
       $("#form-action").val(value);
     })
   });
-%p
-- if @searches.count>0
-  %form{:method=>:post, :action=>"/searches/update_batch"}
-    %input{:type=>:hidden, :name=>:action, :id=>'form-action'}
-    %input{:type=>:hidden, :name=>:url_back, :value=>@url_back}
-    .btn-toolbar
-      .btn-group.btn-group-sm{:role=>:group}
-        %button.btn.btn-default.btn-action{:value=>:process}
-          %span{:class=>"glyphicon glyphicon-play"}
-          =t(:Search_process)
-        %button.btn.btn-default.btn-action{:value=>:valid}
-          %span.glyphicon.glyphicon-ok-circle
-          =t(:Search_valid)
-        %button.btn.btn-default.btn-action{:value=>:invalid}
-          %span.glyphicon.glyphicon-ban-circle
-          =t(:Search_invalid)
-      .btn-group.btn-group-xs
-        %button.btn.btn-danger.btn-action{:value=>:delete}
-          %span.glyphicon.glyphicon-remove
-          =t(:Search_delete)
+.panel.panel-default
+  .panel-heading
+    .panel-title
+      =t(:Searches_for_systematic_review, sr_name: @review.name)
+  .panel-body
+    %p
+    - if @searches.count>0
+      %form{:method=>:post, :action=>"/searches/update_batch"}
+        %input{:type=>:hidden, :name=>:action, :id=>'form-action'}
+        %input{:type=>:hidden, :name=>:url_back, :value=>@url_back}
+        .btn-toolbar
+          .btn-group.btn-group-sm{:role=>:group}
+            %button.btn.btn-default.btn-action{:value=>:process}
+              %span{:class=>"glyphicon glyphicon-play"}
+              =t(:Search_process)
+            %button.btn.btn-default.btn-action{:value=>:valid}
+              %span.glyphicon.glyphicon-ok-circle
+              =t(:Search_valid)
+            %button.btn.btn-default.btn-action{:value=>:invalid}
+              %span.glyphicon.glyphicon-ban-circle
+              =t(:Search_invalid)
+          .btn-group.btn-group-xs
+            %button.btn.btn-danger.btn-action{:value=>:delete}
+              %span.glyphicon.glyphicon-remove
+              =t(:Search_delete)
 
-    %table.table.table-bordered
-      %thead
-        %th{:colspan=>2}=t(:Id)
-        %th=t("search.Source")
-        %th=t(:Bibliographic_database)
-        %th=t(:Date)
-        %th=t(:Search_criteria)
-        %th=t(:Description)
-        %th=t(:search_type)
-        %th=t(:Search_valid)
-        %th=t(:Records)
-      %tbody
-        - @searches.each do |g|
-          %tr{:class=>bool_class(g.valid, "success","danger","warning"), :id=>"row-search-#{g.id}"}
-            %td
-              %input{:type=>'checkbox', :name=>"search[]", :value=>g[:id], :class=>'checkbox_interactive'}
-            %td=g.id
-            %td=t(g.source_name)
-            %td=g.bibliographical_database_name
-            %td=g.date_creation
-            %td=g.search_criteria
-            %td=g.description
-            %td
-              =t(g.type_name)
-              - if g.is_type? (:bibliographic_file)
-                =partial("searches/file_link", :locals=>{search:g, not_message_allocated:true})
+        %table.table.table-bordered
+          %thead
+            %th{:colspan=>2}=t(:Id)
+            %th=t("search.Source")
+            %th=t(:Bibliographic_database)
+            %th=t(:Date)
+            %th=t(:Search_criteria)
+            %th=t(:Description)
+            %th=t(:search_type)
+            %th=t(:Search_valid)
+            %th=t(:Records)
+          %tbody
+            - @searches.each do |g|
+              %tr{:class=>bool_class(g.valid, "success","danger","warning"), :id=>"row-search-#{g.id}"}
+                %td
+                  %input{:type=>'checkbox', :name=>"search[]", :value=>g[:id], :class=>'checkbox_interactive'}
+                %td=g.id
+                %td=t(g.source_name)
+                %td=g.bibliographical_database_name
+                %td=g.date_creation
+                %td=g.search_criteria
+                %td=g.description
+                %td
+                  =t(g.type_name)
+                  - if g.is_type? (:bibliographic_file)
+                    =partial("searches/file_link", :locals=>{search:g, not_message_allocated:true})
 
-            %td= t_yes_no_nil(g.valid)
-            %td
-              %a.btn.btn-default{:href=>url("/search/#{g.id}/edit")}
-                %span{:class=>"glyphicon glyphicon-pencil"}
-                =t(:Edit)
-              %a.btn.btn-default{:href=>url("/search/#{g.id}/records")}
-                %span{:class=>"badge"}=g.records_n
-                %span{:class=>"glyphicon glyphicon-list"}
-                =t(:Records)
-              %a.btn.btn-default{:href=>url("/search/#{g.id}/references")}
-                %span{:class=>"glyphicon glyphicon-plane"}
-                =t(:References)
-- else
-  .alert.alert-warning=t(:No_search_on_systematic_review_for_this_user)
-
-.btn-group.btn-group-sm
-  =partial(:buttons_new_search, :locals=>{user: @user, sr: @review  })
-  %a.btn.btn-default{:role=>:button, :href=>url("/review/#{@review.id}/searches/compare_records")}
-    %span.glyphicon.glyphicon-dashboard
-    =t(:Compare_records_by_search)
+                %td= t_yes_no_nil(g.valid)
+                %td
+                  %a.btn.btn-default{:href=>url("/search/#{g.id}/edit")}
+                    %span{:class=>"glyphicon glyphicon-pencil"}
+                    =t(:Edit)
+                  %a.btn.btn-default{:href=>url("/search/#{g.id}/records")}
+                    %span{:class=>"badge"}=g.records_n
+                    %span{:class=>"glyphicon glyphicon-list"}
+                    =t(:Records)
+                  %a.btn.btn-default{:href=>url("/search/#{g.id}/references")}
+                    %span{:class=>"glyphicon glyphicon-plane"}
+                    =t(:References)
+    - else
+      .alert.alert-warning=t(:No_search_on_systematic_review_for_this_user)
+  .panel-footer
+    .btn-group.btn-group-sm
+      =partial(:buttons_new_search, :locals=>{user: @user, sr: @review  })
+      %a.btn.btn-default{:role=>:button, :href=>url("/review/#{@review.id}/searches/compare_records")}
+        %span.glyphicon.glyphicon-dashboard
+        =t(:Compare_records_by_search)

@@ -35,7 +35,7 @@ require_relative "doi_helpers"
 
 class PdfProcessor
   include DOIHelpers
-
+  include Buhos::Helpers
   attr_reader :reader
   def initialize(path)
     @path=path
@@ -58,7 +58,7 @@ class PdfProcessor
     if info[:doi]
       doi = info[:doi]
     elsif info[:Subject]
-      doi = find_doi(info[:Subject])
+      doi = find_doi(protect_encoding(info[:Subject]))
     end
 
     if doi.nil?
