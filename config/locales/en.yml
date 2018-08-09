@@ -664,6 +664,10 @@ en:
       one:    "Check %{count} as yet unvalidated search"
       other:  "Check %{count} as yet unvalidated search"
       zero:   "All searches are validated"
+    check_n_not_ready_records:
+      one:    "Check %{count} as yet unvalid record"
+      other:  "Check %{count} as yet unvalid records"
+      zero:   "All records are valid"
     check_n_undecided_canonical_documents:
       one:    "Check %{count} undecided canonical document"
       other:  "Check %{count} undecided canonical documents"
@@ -676,6 +680,7 @@ en:
     count_canonical_document_without_decision: "Number of undecided canonical documents"
     count_canonical_document_without_resolution: "Number of unresolved canonical documents"
     count_search_not_ready: "Number of validated searches"
+    count_records_not_ready: "Number of valid records"
     count_total_canonical_documents_stage: "Number of canonical documents for this stage"
     count_total_searches: "Total number of review searches"
     no_searches_available: "No searches in this systematic review"

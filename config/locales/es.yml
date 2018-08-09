@@ -673,6 +673,10 @@ es:
       one:    "Revisar %{count} búsqueda aún no validadas"
       other:  "Revisar %{count} búsquedas aún no validadas"
       zero:   "Todas las búsquedas están validadas"
+    check_n_not_ready_records:
+      one:    "Revisar %{count} registro no válido"
+      other:  "Revisar %{count} registros no válidos"
+      zero:   "Todos los registros son válidos"
     check_n_undecided_canonical_documents:
       one:    "Revisar %{count} documento canónico sin decisión"
       other:  "Revisar %{count} documentos canónicos sin decisión"
@@ -685,6 +689,7 @@ es:
     count_canonical_document_without_decision: "Número de documentos canónicos sin decisión"
     count_canonical_document_without_resolution: "Número de documentos canónicos sin resolución"
     count_search_not_ready: "Número de búsquedas validadas"
+    count_records_not_ready: "Número de registros válidos"
     count_total_canonical_documents_stage: "Número de documentos canónicos para esta etapa"
     count_total_searches: "Número total de búsquedas de la revisión"
     no_searches_available: "No hay búsquedas para esta revisión sistemática"
