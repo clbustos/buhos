@@ -255,8 +255,9 @@ ul.tags {
     border: 1px solid darkorange; }
 
 #mensajes {
-  height: 10%;
-  overflow: scroll; }
+  height: 15%;
+  overflow-y: scroll;
+  overflow-x: hidden; }
 
 .mensaje-texto {
   padding-left: 2em;

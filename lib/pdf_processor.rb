@@ -27,7 +27,6 @@
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 require 'pdf-reader'
-
 require_relative "doi_helpers"
 
 # Class to process PDF information.
@@ -40,7 +39,63 @@ class PdfProcessor
   def initialize(path)
     @path=path
     @reader=PDF::Reader.new(@path)
+    @pages={}
   end
+
+
+  def page(i)
+    @pages[i]||=reader.pages[i]
+  end
+
+
+  def keywords
+    page_for_keywords=reader.pages[0..1].index {|page| page.text=~/Keywords?\s*:/}
+    #$log.info(page_for_keywords)
+    return nil if page_for_keywords.nil?
+
+    page(page_for_keywords).text=~/Keywords?\s*:(.+)/
+
+    $1.split(/[,;.]/).map {|v| v.lstrip.chomp}
+
+  end
+
+  def abstract
+
+    # First, we locate the page on which is located the abstract
+    page_for_abstract=reader.pages[0..1].index {|page| page.text=~/Abstract/}
+
+    return nil if page_for_abstract.nil?
+
+    mode=:pre
+    abstract_lines=[]
+    empty_lines=0
+
+    page(page_for_abstract).text.each_line do |r|
+      line=r.chomp.lstrip
+      if mode==:pre and line=~/Abstract/ # We must include other languages
+        mode=:abstract
+        # There is more information on this line?
+
+        if (line_wo_abstract=(line.gsub(/Abstract:?/,"")).lstrip)!=""
+
+          abstract_lines.push(line_wo_abstract)
+        end
+
+      elsif mode==:abstract
+        if line=="" or line=~/Keywords/
+          empty_lines+=1
+          break if empty_lines>2
+        else
+          empty_lines=0
+          abstract_lines.push(line)
+          abstract_lines.push("\n") if line[-1]=="."
+        end
+      end
+
+    end
+    abstract_lines.join("")
+  end
+
 
 
   def title
@@ -48,13 +103,14 @@ class PdfProcessor
   end
 
   def author
-    reader.info[:Author]
+    nil
   end
 
   def get_doi
+
     doi = nil
     info = reader.info
-    $log.info(info)
+    #$log.info(info)
     if info[:doi]
       doi = info[:doi]
     elsif info[:Subject]

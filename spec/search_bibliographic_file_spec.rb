@@ -39,8 +39,8 @@ describe 'Search with bibliographic file:' do
     it "response should be redirect" do
       expect(last_response).to be_redirect
     end
-    it "should response redirects to review searches" do
-      expect(last_response.header['Location']).to eq("http://example.org/review/#{sr_id}/searches")
+    it "should response redirects to review dashboard" do
+      expect(last_response.header['Location']).to eq("http://example.org/review/#{sr_id}/dashboard")
     end
     it "should search be created on dataset" do
       expect(search).to be_truthy
