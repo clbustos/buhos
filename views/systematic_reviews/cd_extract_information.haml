@@ -25,7 +25,7 @@
     .col-md-2
       =partial(:canonical_document_button, :locals=>{id:@cd[:id]})
   .row
-    .col-md-8.col-sm-8.resizable#document_viewer
+    .col-md-8.col-sm-8#document_viewer
       - if @current_file_id.nil?
         %p.alert.alert-warning=t(:No_file)
         =@modal_files.javascript_header
