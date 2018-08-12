@@ -4,29 +4,15 @@ describe 'Search Validator' do
   before(:all) do
     RSpec.configure { |c| c.include RSpecMixin }
     @temp=configure_empty_sqlite
-    SystematicReview.insert(:id=>1,:name=>'Test Review', :group_id=>1, :sr_administrator=>1)
-    SystematicReview.insert(:id=>2,:name=>'Test Review 2', :group_id=>1, :sr_administrator=>1)
-    SystematicReview.insert(:id=>3,:name=>'Test Review 3', :group_id=>1, :sr_administrator=>1)
+    create_sr(n:3)
 
     CanonicalDocument.insert(:id=>1,:title=>nil, :author=>nil, :abstract=>nil, :year=>0)
     CanonicalDocument.insert(:id=>2,:title=>'Title', :author=>'Author', :abstract=>"Abstract",:year=>2000)
     CanonicalDocument.insert(:id=>3,:title=>'Title 2', :author=>'Author 2', :abstract=>"Abstract 2",:year=>2000)
 
-    Search.insert(:id=>1, :systematic_review_id=>1, :bibliographic_database_id=>1, :user_id=>1)
-    Search.insert(:id=>2, :systematic_review_id=>2, :bibliographic_database_id=>1, :user_id=>1)
-    Search.insert(:id=>3, :systematic_review_id=>3, :bibliographic_database_id=>1, :user_id=>1)
+    create_search(:n=>3, :systematic_review_id=>(1..3).to_a)
 
-    Record.insert(:id=>1 ,:bibliographic_database_id=>1,:uid=>"test:1")
-    Record.insert(:id=>2  ,:bibliographic_database_id=>1,:uid=>"test:2", :canonical_document_id=>1)
-    Record.insert(:id=>3, :bibliographic_database_id=>1,:uid=>"test:3", :canonical_document_id=>2)
-    Record.insert(:id=>4, :bibliographic_database_id=>1,:uid=>"test:4", :canonical_document_id=>3)
-
-    RecordsSearch.insert(:search_id=>1, :record_id=>1)
-    RecordsSearch.insert(:search_id=>1, :record_id=>2)
-    RecordsSearch.insert(:search_id=>1, :record_id=>3)
-
-    RecordsSearch.insert(:search_id=>3, :record_id=>3)
-    RecordsSearch.insert(:search_id=>3, :record_id=>4)
+    create_record(:n=>4, :cd_id=>[nil, 1,2,3], :search_id=>[1,1,[1,3],3])
 
     login_admin
   end

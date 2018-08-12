@@ -70,6 +70,47 @@ module RSpecMixin
     rs ? rs[:id] : nil
   end
 
+  # Create 1 or more systematic reviews, with standard titles
+  # @return an array with systematic reviews ids
+  def create_sr(n:1,  group_id:1, sr_administrator:1)
+    1.upto(n).map do |i|
+      SystematicReview.insert(:id=>i,:name=>"Test Systematic Review #{i}", :group_id=>group_id, :sr_administrator=>sr_administrator)
+    end
+  end
+
+  def create_search(n:1,  id:nil, systematic_review_id:1, bb_id:1, user_id:1)
+    ids_to_create =  id.nil? ? (1..n).to_a : id.to_a
+
+    (0...ids_to_create.length).map do |i|
+      #$log.info((ids_to_create[i]))
+      Search.insert(:id=>(ids_to_create[i]),
+                    :systematic_review_id       => systematic_review_id.respond_to?(:index) ? systematic_review_id.to_a[i] : systematic_review_id,
+                    :bibliographic_database_id  => bb_id,
+                    :user_id                    => user_id)
+    end
+  end
+
+  def create_record(n:1, id:nil, uid:nil, cd_id:nil, search_id:nil, bb_id:1)
+    ids_to_create =  id.nil? ? (1..n).to_a : id.to_a
+
+    (0...ids_to_create.length).map do |i|
+
+      r_id=ids_to_create[i]
+      r_uid=uid.nil? ? "test:#{r_id}" : r_uid[i]
+      r_cd =cd_id.nil? ? nil : (cd_id.respond_to?('[]') ? cd_id[i] : cd_id)
+      r_bb =bb_id.respond_to?(:index) ? bb_id[i] : bb_id
+
+      r_id_r=Record.insert(id:r_id, uid:r_uid, canonical_document_id:r_cd, bibliographic_database_id:r_bb )
+      unless search_id.nil?
+        search_ids= search_id[i].respond_to?(:index) ? search_id[i] : [search_id[i]]
+        $log.info(search_ids)
+        search_ids.each {|s_id| RecordsSearch.insert(:search_id=>s_id, :record_id=>r_id_r)   }
+      end
+      r_id_r
+    end
+
+  end
+
   def bb_by_name_id(name)
     bb=BibliographicDatabase[name:name]
     bb ? bb[:id] :nil
