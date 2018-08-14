@@ -65,6 +65,7 @@ module Buhos
       ::RecordsReferences.dataset=self[:records_references]
       ::Resolution.dataset=self[:resolutions]
       ::Record.dataset=self[:records]
+      ::RecordsSearch.dataset=self[:records_searches]
       ::Tag.dataset=self[:tags]
       ::T_Class.dataset=self[:t_classes]
       ::TagInClass.dataset=self[:tag_in_classes]

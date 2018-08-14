@@ -1,3 +1,5 @@
+# Encoding:UTF-8
+
 # Buhos
 # https://github.com/clbustos/buhos
 # Copyright (c) 2016-2018, Claudio Bustos Navarrete
@@ -26,8 +28,61 @@ get '/review/:id/searches' do |id|
 end
 
 
-# Form to create a new search
-get '/review/:id/search/new' do |id|
+get '/review/:id/search/uploaded_files/new' do |id|
+
+  halt_unless_auth('search_edit')
+  @review=SystematicReview[id]
+  raise Buhos::NoReviewIdError, id if !@review
+  haml "searches/search_uploaded_files".to_sym
+end
+
+
+
+post '/review/search/uploaded_files/new' do
+
+  halt_unless_auth('review_edit', 'file_admin')
+
+  @bb_general_id=BibliographicDatabase[:name=>'generic'][:id]
+
+  @review=SystematicReview[params['systematic_review_id']]
+  raise Buhos::NoReviewIdError, id if !@review
+  files=params['files']
+  cds_id=[]
+
+  $db.transaction do
+
+    search_id=Search.insert(:systematic_review_id=>@review.id,:description=>params["description"],
+                            :filetype=>'text/plain',:source=>"informal_search",:valid=>0,:user_id=>session['user_id'], :date_creation=>Date.today,
+                            :bibliographic_database_id=>@bb_general_id, :search_type=>'uploaded_files')
+    search=Search[search_id]
+    if files
+      results=Result.new
+      files.each do |file|
+
+        next if file[:type]!~/pdf/ and file[:filename]!~/\.pdf/
+        pdfprocessor=PdfFileProcessor.new(search, file[:tempfile], dir_files)
+        pdfprocessor.process
+        results.add_result(pdfprocessor.results)
+        cds_id.push(pdfprocessor.canonical_document.id)
+      end
+      add_result results
+    else
+      add_message(I18n::t(:Files_not_uploaded), :error)
+    end
+    search.update(:file_body=>cds_id.join("\n"))
+
+
+    redirect url("/search/#{search.id}")
+
+
+  end
+  add_message(I18n::t("error.problem_uploading_files"), :error)
+  redirect back
+end
+
+
+# Form to create a new search based on bibliographic files
+get '/review/:id/search/bibliographic_file/new' do |id|
   halt_unless_auth('search_edit')
 
   require 'date'
@@ -37,7 +92,7 @@ get '/review/:id/search/new' do |id|
 
   @header=t_systematic_review_title(@review[:name], :New_search)
   @bb_general_id=BibliographicDatabase[:name=>'generic'][:id]
-  @search=Search.new(:user_id=>session['user_id'], :source=>"database_search",:valid=>false, :date_creation=>Date.today, :bibliographic_database_id=>@bb_general_id)
+  @search=Search.new(:user_id=>session['user_id'], :source=>"database_search",:valid=>false, :date_creation=>Date.today, :bibliographic_database_id=>@bb_general_id, :search_type=>"bibliographic_file")
   @usuario=User[session['user_id']]
   haml "searches/search_edit".to_sym
 end

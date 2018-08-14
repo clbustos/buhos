@@ -36,11 +36,22 @@ class Search < Sequel::Model
   many_to_one :bibliographic_database, :class=>BibliographicDatabase
   many_to_many :records, :class=>Record
 
+  TYPES=[:bibliographic_file,
+         :uploaded_files,
+         :references_list,
+         :manual
+  ]
+  TYPES_NAMES={ bibliographic_file: "search_types.bibliographic_file",
+                uploaded_files:     "search_types.uploaded_files",
+                references_list:    "search_types.references_list",
+                manual:             "search_types.type_manual"
+  }
 
   SOURCES=[:database_search,
            :informal_search,
            :backward_snowballing,
            :forward_snowballing
+
   ]
 
   SOURCES_NAMES={:database_search=> "source.database_search",
@@ -58,7 +69,9 @@ class Search < Sequel::Model
     "#{self[:id]} - #{I18n::t(Search.get_source_name(self[:source]))} - #{self.date_creation} - #{self.bibliographical_database_name}"
   end
 
-
+  def self.get_type_name(type)
+    type.nil? ? "source.error_no_type" : TYPES_NAMES[type.to_sym]
+  end
 
   def self.get_source_name(source)
     source.nil? ? "source.error_no_source" : SOURCES_NAMES[source.to_sym]
@@ -67,6 +80,15 @@ class Search < Sequel::Model
   def self.get_source_name_short(source)
     source.nil? ? "source.error_no_source" : SOURCES_NAMES_SHORT[source.to_sym]
 
+  end
+
+
+  def is_type? (type)
+    raise "Invalid type" unless TYPES.include? type.to_sym
+    self[:search_type]==type.to_s
+  end
+  def type_name
+    Search.get_type_name(self[:search_type])
   end
 
   def source_name

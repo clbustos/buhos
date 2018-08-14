@@ -110,7 +110,7 @@ class Reference < Sequel::Model(:bib_references)
     #$log.info("Agregar #{doi_n} a #{self[:id]}")
     status=Result.new
 
-    crossref_doi=CrossrefDoi.procesar_doi(doi_n)
+    crossref_doi=CrossrefDoi.process_doi(doi_n)
 
     unless crossref_doi
       status.error("No puedo procesar DOI #{doi_n}")

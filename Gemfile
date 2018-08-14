@@ -24,6 +24,7 @@ gem 'pdf-reader'
 gem 'grim'
 gem "i18n"
 gem "sqlite3"
+gem 'mimemagic'
 gem "certified", :platforms => :mingw
 gem "sass"
 gem 'rubyXL'

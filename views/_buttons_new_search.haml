@@ -1,0 +1,8 @@
+- #params user, sr
+- if auth_to("review_analyze") and user.systematic_reviews_id.include? sr[:id]
+  %a.btn.btn-default{:role=>:button, :href=>"/review/#{sr[:id]}/search/bibliographic_file/new"}
+    %span.glyphicon.glyphicon-plus
+    =t("user_dashboard.search_bibliographic_file_new")
+  %a.btn.btn-default{:role=>:button, :href=>"/review/#{sr[:id]}/search/uploaded_files/new"}
+    %span.glyphicon.glyphicon-plus
+    =t("user_dashboard.search_pdf_files_new")

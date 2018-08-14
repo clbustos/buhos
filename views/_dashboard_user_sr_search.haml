@@ -9,7 +9,5 @@
   %p=t("user_dashboard.no_searches_available")
 - else
   %p=t_desc_value("user_dashboard.count_search_not_ready", a_tag("/review/#{sr[:id]}/searches/user/#{user[:id]}", t("user_dashboard.check_n_not_ready_search", count: @udi.searches_not_ready(sr[:id]).count)))
-- if auth_to("review_analyze") and user.systematic_reviews_id.include? sr[:id]
-  %a.btn.btn-default.btn-sm{:role=>:button, :href=>"/review/#{sr[:id]}/search/new"}
-    %span.glyphicon.glyphicon-plus
-    =t("user_dashboard.search_new")
+.btn-group.btn-group-sm
+  =partial(:buttons_new_search, :locals=>{user: user, sr: sr  })

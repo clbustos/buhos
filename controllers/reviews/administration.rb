@@ -76,7 +76,7 @@ get '/review/:id/stage/:stage/pattern/:patron/resolution/:resolution' do |id,sta
   patron=@ars.pattern_from_s(patron_s)
   cds=@ars.cd_from_pattern(stage, patron)
 
-  $log.info(cds)
+  #$log.info(cds)
 
   $db.transaction(:rollback=>:reraise) do
     cds.each do |cd_id|

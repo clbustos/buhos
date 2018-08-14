@@ -32,6 +32,10 @@
   %input{:type=>"hidden", :name=>"systematic_review_id",:value=>@review[:id]}
   %input{:type=>"hidden", :name=>"search_id",:value=>@search[:id]}
   .form-group
+    %input{:type=>"hidden", :name=>"search_type",:value=>@search[:search_type]}
+    %label{:for=>"search_type"}=t("search_type")
+    %p=t(@search.type_name)
+  .form-group
     %label{:for=>"source"}=t("search.Source")
     %select.form-control{:id=>"source",:name=>"source"}
       -Search::SOURCES.each do |source|
@@ -51,9 +55,10 @@
   .form-group
     %label=t(:Description)
     %input{:class=>"form-control",:type=>"text", :name=>"description",:value=>@search[:description]}
-  .form-group
-    %label=t(:File)
-    =partial("searches/file_link".to_sym, :locals=>{search:@search})
-    %p.instructions=t("search.Search_file_instructions")
-    %input{:type=>'file', :name=>'file'}
+  - if @search[:search_type]=='bibliographic_file'
+    .form-group
+      %label=t(:File)
+      =partial("searches/file_link".to_sym, :locals=>{search:@search})
+      %p.instructions=t("search.Search_file_instructions")
+      %input{:type=>'file', :name=>'file'}
   %input.btn.btn-primary{:type=>:submit,:value=>t('Send')}

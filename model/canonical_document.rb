@@ -39,6 +39,22 @@ class CanonicalDocument < Sequel::Model
     Reference.where(:id => ids)
   end
 
+  def update_info_using_record(record)
+    result=Result.new
+    fields = [:title, :author, :year, :journal, :volume, :pages, :doi, :journal_abbr, :abstract]
+    update_data=fields.inject({}) do |ac,v|
+
+      ac[v]=record.send(v)  if !record.send(v).nil? and ((self.send(v).to_s=="")  or (v==:year and self.send(v).to_s=="0"))
+      ac
+    end
+
+
+    #$log.info(update_data)
+    self.update(update_data) unless update_data.keys.length==0
+    result.info(I18n::t("canonical_document.updated_using_record", n_fields:update_data.keys.length))
+    result
+
+  end
   # Merge canonical documents, according to id
   # TODO: Create a separate class on lib to handle and test this
   def self.merge(pks)

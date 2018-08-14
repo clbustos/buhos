@@ -51,7 +51,7 @@ describe 'Reference resources' do
       get "/reference/#{reference_wo_doi[:id]}/search_similar?distancia=20"
     end
     it "should response be ok" do
-      $log.info(last_response.body)
+#      $log.info(last_response.body)
       expect(last_response).to be_ok
     end
     it "should show its code" do

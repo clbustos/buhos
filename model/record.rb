@@ -41,14 +41,15 @@ class Record < Sequel::Model
   def add_doi_automatic
     result=Result.new
     if self.doi.nil? or self.doi==""
+      $log.info(self)
       query=crossref_query
-      if query[0]["score"]>100
+
+      if query.length>0 and query[0]["score"]>100
         result.add_result(add_doi(query[0]["doi"]))
         result.success(I18n.t(:Assigned_DOI_to_record, record_id: self[:id], author: self[:author], title: self[:title], doi:query[0]["doi"] ))
       else
         result.warning(I18n.t(:DOI_not_assigned_to_record, record_id: self[:id], author: self[:author], title: self[:title] ))
       end
-
     elsif canonical_document.doi.nil?
         result.add_result(add_doi(self[:doi]))
     elsif canonical_document.doi!=self[:doi]
@@ -81,11 +82,25 @@ class Record < Sequel::Model
 
   end
 
+  # Update record and canonical document using crossref information
+  def update_info_using_crossref
+    result=Result.new
+    ri_json=CrossrefDoi.reference_integrator_json(self[:doi])
+    if ri_json
+      fields = [:title, :author, :year, :journal, :volume, :pages, :doi, :journal_abbr, :abstract]
+      update_data=fields.inject({}) do |ac,v|
+        ac[v]=ri_json.send(v)  unless ri_json.send(v).nil?
+        ac
+      end
+
+      self.update(update_data) unless update_data.keys.length==0
+    end
+    result
+  end
   def references_automatic_crossref
     result=Result.new
     ri_json=CrossrefDoi.reference_integrator_json(self[:doi])
     if ri_json and ri_json.references
-
       ref_ids=[]
       ri_json.references.each do |reference|
         doi=reference.doi
@@ -110,7 +125,7 @@ class Record < Sequel::Model
   # @return Result
   def add_doi(doi)
     status=Result.new
-    crossref_doi=CrossrefDoi.procesar_doi(doi)
+    crossref_doi=CrossrefDoi.process_doi(doi)
 
     unless crossref_doi
       status.error(I18n::t("record.cant_process_doi", doi:doi))

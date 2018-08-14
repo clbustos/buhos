@@ -1,0 +1,15 @@
+-#params not_message_allocated, record
+- not_message_allocated||=false
+- if record[:file_id]
+  -ifile=IFile[record[:file_id]]
+  %p=t("search.there_is_a_file") unless not_message_allocated
+  %p
+    %a{:href=>"/file/#{ifile[:id]}/download"}
+      - if not_message_allocated
+        =ifile[:filename]
+      - else
+        =t_desc_value("search.filename", ifile[:filename])
+      %span.glyphicon.glyphicon-download
+- else
+  %p
+    %em=t("No_file")

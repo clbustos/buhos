@@ -58,6 +58,7 @@ GEM
     levenshtein (0.2.2)
     levenshtein-ffi (1.1.0)
       ffi (~> 1.9)
+    mimemagic (0.3.2)
     mini_portile2 (2.3.0)
     mixlib-log (1.7.1)
     mixlib-shellout (1.6.1)
@@ -106,19 +107,19 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
-    rspec (3.7.0)
-      rspec-core (~> 3.7.0)
-      rspec-expectations (~> 3.7.0)
-      rspec-mocks (~> 3.7.0)
-    rspec-core (3.7.1)
-      rspec-support (~> 3.7.0)
-    rspec-expectations (3.7.0)
+    rspec (3.8.0)
+      rspec-core (~> 3.8.0)
+      rspec-expectations (~> 3.8.0)
+      rspec-mocks (~> 3.8.0)
+    rspec-core (3.8.0)
+      rspec-support (~> 3.8.0)
+    rspec-expectations (3.8.0)
       diff-lcs (>= 1.2.0, < 2.0)
-      rspec-support (~> 3.7.0)
-    rspec-mocks (3.7.0)
+      rspec-support (~> 3.8.0)
+    rspec-mocks (3.8.0)
       diff-lcs (>= 1.2.0, < 2.0)
-      rspec-support (~> 3.7.0)
-    rspec-support (3.7.1)
+      rspec-support (~> 3.8.0)
+    rspec-support (3.8.0)
     ruby-rc4 (0.1.5)
     ruby-stemmer (0.9.6)
     ruby-stemmer (0.9.6-x86-mingw32)
@@ -134,7 +135,7 @@ GEM
     sass-listen (4.0.0)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
-    sequel (5.10.0)
+    sequel (5.11.0)
     serrano (0.5.0)
       faraday (~> 0.14.0)
       faraday_middleware (~> 0.12.2)
@@ -191,6 +192,7 @@ DEPENDENCIES
   i18n
   levenshtein
   levenshtein-ffi
+  mimemagic
   moneta
   mysql2
   nbayes

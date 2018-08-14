@@ -38,7 +38,7 @@ class CrossrefDoi < Sequel::Model
   # @return [String] raw JSON from Crossref or false if Crossref doesn't have information
   # @raise [ArgumentError] if DOI is nil
   # TODO: Create a independent class to handle relation with external services
-  def self.procesar_doi(doi)
+  def self.process_doi(doi)
     require 'serrano'
     raise ArgumentError, 'DOI is nil' if doi.nil?
     co=CrossrefDoi[doi_without_http(doi)]
@@ -66,8 +66,8 @@ class CrossrefDoi < Sequel::Model
   # @param doi
   # @return BibliographicalImporter::JSON::Reader
   def self.reference_integrator_json(doi)
-    co=self.procesar_doi(doi)
-    if(co)
+    co=self.process_doi(doi)
+    if co
       BibliographicalImporter::JSON::Reader.parse(co)[0]
     else
       false

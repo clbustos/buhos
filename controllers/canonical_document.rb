@@ -231,6 +231,7 @@ post '/canonical_document/user_allocation/:action' do |action|
 
 end
 
+
 # View raw crossref information using the doi of the canonical document
 get '/canonical_document/:id/view_crossref_info' do |id|
   halt_unless_auth('canonical_document_view')
@@ -239,6 +240,28 @@ get '/canonical_document/:id/view_crossref_info' do |id|
   @cr_doi=@cd.crossref_integrator
   @doi_json=CrossrefDoi[doi_without_http(@cd.doi)][:json]
   haml "canonical_documents/view_crossref_info".to_sym
+end
+
+
+# Update information about a canonical document using crossref information
+get '/canonical_document/:id/update_using_crossref_info' do |id|
+  halt_unless_auth('canonical_document_admin')
+  @cd=CanonicalDocument[id]
+  #$log.info(@cd)
+  raise Buhos::NoCdIdError, id unless @cd
+  @cr_doi=@cd.crossref_integrator
+
+  if @cr_doi
+    results=@cd.update_info_using_record(@cr_doi)
+  else
+    results=Result.new
+    results.error(I18n::t(:No_DOI_to_obtain_information_from_Crossref))
+  end
+  $log.info(results)
+
+  add_result results
+
+  redirect back
 end
 
 
