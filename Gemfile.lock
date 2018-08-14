@@ -172,7 +172,7 @@ GEM
     windows-pr (1.2.6)
       win32-api (>= 1.4.5)
       windows-api (>= 0.4.0)
-    yard (0.9.15)
+    yard (0.9.16)
     yard-sinatra (1.0.0)
       yard (~> 0.7)
 

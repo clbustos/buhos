@@ -1,5 +1,27 @@
 # CHANGELOG
 
+## 1.0.0-beta12 : 2018-07-25
+
+
+* 86e34a8 Updated Gemfile for win32
+* 65d8f6c Added basic spec for excel report fulltext export
+* 105cf76 Added suppor for excel on fulltext report
+* ee794fc Gemfile updated to unix
+* 6b19036 Updated manual version
+* 32959e5 Bug on documentation: Incorrect name for Forward snowballing
+* 716bf22 Updated rspec
+* 1d0a974 + Added routes to obtain information about citation for documents assigned to a systematic review + Class ReferencesBetweenCanonicals process information about references between canonical documents. Analysis of references between document should use this class from now on. * Some method traslated from spanish
+* 9195de3 Updated Gemfile for Win32. pmc_efetch_spec is skipped when no valid PMC key is stored
+* 5f76062 Updated fulltext report
+* 8488847 Improving extraction interface, with more with on document viewer
+* 5509759 When no file is available on extract informartion form, a form to upload the article is provided
+* f066000 Mergen development version with pmc
+* 99a6522 Added title search on full text review
+* c42f24a Updated locales for full review stage complete
+* 290be69 Updated to pmc branch
+* 842b167 Updated map
+
+
 ## 1.0.0-beta11 : 2018-05-09
 
 * 504cf32 Bug fix: authorization tables for spec doesn't have a description column
