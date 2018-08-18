@@ -135,6 +135,12 @@ module Sinatra
       def get_modal_files
         FileHandler::ModalFiles.new
       end
+      def get_file_canonical_document(cd, manual_file=nil)
+        files_id=FileCd.where(:canonical_document_id=>cd[:id], :not_consider=>false).map(:file_id)
+        files=IFile.where(:id=>files_id).as_hash
+        current_file_id = manual_file || files.keys[0]
+        files[current_file_id]
+      end
     end
 
     def self.registered(app)

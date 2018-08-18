@@ -11,9 +11,7 @@ describe 'Search Validator' do
     CanonicalDocument.insert(:id=>3,:title=>'Title 2', :author=>'Author 2', :abstract=>"Abstract 2",:year=>2000)
 
     create_search(:n=>3, :systematic_review_id=>(1..3).to_a)
-
     create_record(:n=>4, :cd_id=>[nil, 1,2,3], :search_id=>[1,1,[1,3],3])
-
     login_admin
   end
   let(:sv) {SearchValidator.new(SystematicReview[1], User[1])}

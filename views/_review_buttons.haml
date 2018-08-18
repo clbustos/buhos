@@ -23,7 +23,7 @@
   - if auth_to("review_view") or review_belongs_to(r.id, session['user_id'])
     %a{:role=>:button, :href=>url("/review/#{r.id}/fields"), :class=>"btn btn-default"}
       %span.glyphicon.glyphicon-list
-      =t(:Fields_analysis)
+      =t(:Analysis_form)
   - if auth_to("file_view") or review_belongs_to(r.id, session['user_id'])
     %a{:role=>:button, :href=>url("/review/#{r.id}/files"), :class=>"btn btn-default"}
       %span.glyphicon.glyphicon-file

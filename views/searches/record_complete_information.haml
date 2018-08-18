@@ -1,0 +1,34 @@
+.heading=t_systematic_review_title(@review[:name],t(:Record_complete_information, cd_reference: truncate(@cd.ref_apa_6_brief,40)), false )
+- modal_files=get_modal_files
+%ul.breadcrumb
+  %li
+    %a{:href=>url("/review/#{@review.id}")}=@review.name
+  %li
+    %a{:href=>url("/review/#{@review.id}/searches")}=t(:searches)
+  %li
+    %a{:href=>url("/review/#{@review.id}/searches/records")}=t(:Records)
+  - if @user
+    %li
+      %a{:href=>url("/review/#{@review.id}/searches/records/user/#{@user.id}")}=t(:User_records, username:@user.name)
+  %li.active=truncate(t(:Record_complete_information, cd_reference: @cd.ref_apa_6_brief),80)
+
+
+.container
+  .row
+    .col-md-10
+      =@cd.ref_apa_6_brief_html
+    .col-md-2
+      =partial(:canonical_document_button, :locals=>{id:@cd[:id]})
+  .row
+    .col-md-8.col-sm-8#document_viewer
+      - if @current_file_id.nil?
+        %p.alert.alert-warning=t(:No_file)
+        =modal_files.javascript_header
+        =modal_files.cargador_archivo(@review[:id], @cd[:id])
+      - else
+        %div.embed-responsive.embed-responsive-4by3
+          %iframe{:src=>"/ViewerJS/#../file/#{@current_file_id}/download",  :allowfullscreen=>true, :webkitallowfullscreen=>true}
+    .col-md-4.col-sm-4#extract-form
+      %div
+        %div
+          Formulario

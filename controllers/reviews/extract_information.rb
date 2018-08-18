@@ -33,6 +33,7 @@ get '/review/:sr_id/extract_information/cd/:cd_id' do |sr_id,cd_id|
     add_message(t(:Canonical_documento_not_assigned_to_this_user), :error)
     redirect back
   end
+
   @files_id=FileCd.where(:canonical_document_id=>cd_id, :not_consider=>false).map(:file_id)
   @files=IFile.where(:id=>@files_id).as_hash
 

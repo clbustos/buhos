@@ -377,6 +377,7 @@ ul.tags {
 
 #mensajes {
   height: 15%;
+  max-height:15%;
   overflow-y: scroll;
   overflow-x: hidden;
 }
@@ -629,3 +630,4 @@ table.tablesorter thead tr {
   resize: horizontal;
 
 }
+

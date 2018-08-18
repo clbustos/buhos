@@ -92,6 +92,9 @@ end
 
 
 Sequel.inflections do |inflect|
+  inflect.irregular 'criterion','criteria'
+  inflect.irregular 'srcriterion','srcriteria'
+  inflect.irregular 'cdcriterion','cdcriteria'
   # inflect.irregular 'rol','roles'
   # inflect.irregular 'configuracion','configuraciones'
   # inflect.irregular 'authorizations_rol','authorizations_roles'

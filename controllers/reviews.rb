@@ -35,12 +35,15 @@ get '/review/new' do
   require 'date'
   title(t(:Systematic_review_new))
   first_group=User[session['user_id']].groups.first
+  @current_year=DateTime.now.year
   administrator=first_group[:group_administrator]
-  @review=SystematicReview.new(      active:true,
-                                     stage: "search",
-                                     group:first_group,
-                                     sr_administrator:administrator,
-                                     date_creation: Date.today
+  @review=SystematicReview.new(      active:            true,
+                                     stage:             "search",
+                                     group:             first_group,
+                                     sr_administrator:  administrator,
+                                     date_creation:     Date.today,
+                                     year_start:        @current_year,
+                                     year_end:        @current_year
                                      )
   @taxonomy_categories_id=[]
 

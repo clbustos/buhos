@@ -21,13 +21,58 @@ get '/review/:id/searches' do |id|
   @header=t_systematic_review_title(@review[:name], :systematic_review_searches)
   @user=User[session['user_id']]
 
-  $log.info(@user)
+  #$log.info(@user)
 
   @url_back="/review/#{id}/searches"
   haml "systematic_reviews/searches".to_sym
 end
 
 
+get %r{/review/(\d+)/(?:searches/)?records(?:/user/(\d+))?} do
+  halt_unless_auth('record_view')
+  review_id, user_id=params['captures']
+  @review=SystematicReview[review_id]
+  raise Buhos::NoReviewIdError, review_id if !@review
+  records_base=Record.join(:records_searches, record_id: :id).join(:searches, id: :search_id).distinct
+
+  if user_id
+    @users=nil
+    @user=User[user_id]
+    @records=records_base.where(systematic_review_id:review_id, user_id:user_id)
+    @sv={@user.id=>SearchValidator.new(@review,@user)}
+  else
+    @user=nil
+    @records=records_base.where(systematic_review_id:review_id)
+
+    @users=@records.map {|v| v[:user_id]}.uniq
+    @sv=@users.inject({}) do |ac,user_id|
+      ac[user_id]=SearchValidator.new(@review,User[user_id])
+      ac
+    end
+  end
+  @cds=CanonicalDocument.where(:id=>@records.map {|v| v[:canonical_document_id]}.uniq).to_hash
+
+#  $log.info(@cds)
+  haml "searches/records".to_sym
+end
+
+get '/review/:review_id/search/:search_id/record/:record_id/complete_information' do |review_id, search_id, record_id|
+  @review=SystematicReview[review_id]
+  raise Buhos::NoReviewIdError, review_id if !@review
+  @search=Search[search_id]
+  raise Buhos::NoSearchIdError, search_id if !@search
+  @record=Record[record_id]
+  raise Buhos::NoRecordIdError, record_id if !@record
+  @record_search=RecordsSearch[record_id: record_id, search_id:search_id ]
+  raise Buhos::NoRecordSearchIdError, [record_id, search_id] if !@record_search
+  @cd=@record.canonical_document
+  @user=User[params['user_id']]
+
+  current_file_id=get_file_canonical_document(@cd)
+
+  haml "searches/record_complete_information".to_sym
+
+end
 get '/review/:id/search/uploaded_files/new' do |id|
 
   halt_unless_auth('search_edit')

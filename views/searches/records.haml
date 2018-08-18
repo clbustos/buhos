@@ -1,0 +1,33 @@
+- if @user
+  .heading=t_systematic_review_title(@review[:name], t(:User_records, username:@user.name),false)
+- else
+  .heading=t_systematic_review_title(@review[:name],:Records)
+- gq="<span class='glyphicon glyphicon-question-sign'></span>"
+- user_url= @user ? "?user_id=#{@user.id}":""
+%ul.breadcrumb
+  %li
+    %a{:href=>url("/review/#{@review.id}")}=@review.name
+  %li
+    %a{:href=>url("/review/#{@review.id}/searches")}=t(:searches)
+  - if @user
+    %li
+      %a{:href=>url("/review/#{@review.id}/searches/records")}=t(:Records)
+    %li.active=  t(:User_records, username:@user.name)
+  - else
+    %li.active=t(:Records)
+
+- search_list=@records.to_hash_groups(:search_id)
+- search_list.each do |search_id, records_s|
+  .panel.panel-default
+    .panel-heading
+      =t_desc_value(:Search, Search[search_id][:description])
+    .panel-body
+      .list-group
+        -records_s.each do |record|
+          - cd=@cds[record[:canonical_document_id]]
+          -class_record=(@sv[record[:user_id]].valid_records.include?(record.id)) ? "list-group-item" : "list-group-item-danger"
+          %a.list-group-item{:type=>:button, :class=>class_record, :href=>url("/review/#{@review.id}/search/#{search_id}/record/#{record[:record_id]}/complete_information#{user_url}")}
+            = (cd.author.to_s=='' ? "<em>#{t(:No_author)}</em> #{gq}" : cd.author)
+            = (cd.year==0 ? "<em>(#{t(:No_date)} #{gq}).</em>" : "(#{cd.year}).")
+            = (cd.title.to_s=='' ? "<em>#{t(:No_title)}</em> #{gq}." : "#{cd.title}.")
+            = (cd.abstract.to_s=='' ? "<em>#{t(:No_abstract)}</em> #{gq}" : t(:With_Abstract))

@@ -81,6 +81,13 @@ module Buhos
       ::GroupsUser.dataset=self[:groups_users]
       ::AuthorizationsRole.dataset=self[:authorizations_roles]
 
+      ::Criterion.dataset=self[:criteria]
+      
+      ::SrCriterion.dataset=self[:sr_criteria]
+      ::CdCriterion.dataset=self[:cd_criteria]
+
+      ::Criterion.dataset=self[:criteria]
+
 
       ::Search.many_to_many :records, :class=>Record
 

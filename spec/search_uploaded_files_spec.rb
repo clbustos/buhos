@@ -78,6 +78,7 @@ describe 'Search made with uploaded files:' do
       path="#{app_helpers.dir_files}/#{file2[:file_path]}"
       expect(File.size(path)).to eq(File.size(filepaths[1]))
     end
+
   end
 
 end

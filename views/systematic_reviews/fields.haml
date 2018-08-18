@@ -1,9 +1,9 @@
-.header=t_systematic_review_title(@review[:name], :fields_management)
+.header=t_systematic_review_title(@review[:name], :Analysis_form)
 
 %ul.breadcrumb
   %li
     %a{:href=>url("/review/#{@review.id}")}=@review.name
-  %li{:class=>:active}=t(:Fields)
+  %li{:class=>:active}=t(:Analysis_form)
 
 :javascript
   #{@xselect.javascript}

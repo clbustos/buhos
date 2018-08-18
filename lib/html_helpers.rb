@@ -45,6 +45,28 @@ module HTMLHelpers
     end
   end
 
+  def tooltip(text)
+    out=""
+    if @tooltip.nil?
+      out="<script>
+  $(document).ready(function () {
+$('[data-toggle=\"tooltip\"]').tooltip()
+  });
+</script>
+"
+      @tooltip=true
+    end
+    out+="<span class='glyphicon glyphicon-question-sign' data-toggle='tooltip' title='#{text.gsub("'","")}'></span>"
+    out
+  end
+  # A select tag that allows to select a year
+  def select_year(name:, value:, css_class:'form-control')
+    require 'date'
+    current_year=DateTime.now.year
+    options=(1900..current_year).map {|y| "<option value='#{y}' #{(value.to_i==y) ? "selected='selected'":''}>#{y}</option>"}.join("\n")
+    "<select name='#{name}' class='#{css_class}'> #{options}</select>"
+  end
+
   def put_editable(b,&block)
     params=b.params
     value=params['value'].chomp

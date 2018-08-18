@@ -5,6 +5,7 @@
 
 :javascript
   $(document).ready(function () {
+
     $( "#form-date-creation" ).datepicker(
       $.datepicker.regional[ "#{session['language']}" ]
     )
@@ -36,61 +37,75 @@
   %input{:type=>"hidden", :name=>"review_id",:value=>@review[:id]}
   %div{:class=>"form-group"}
     %label{:for=>"name"}=t(:Name)
-    %input{:class=>"form-control",:type=>"text", :name=>"name",:value=>@review[:name]}
+    %input{:required=>true, :class=>"form-control",:type=>"text", :name=>"name",:value=>@review[:name]}
+  %div{:class=>"form-group"}
+    %label=t(:Description)
+    =tooltip(t("systematic_review.description_tip"))
+    %textarea{:class=>"form-control",:name=>"description"}=@review[:description]
   %div{:class=>"form-group"}
     %label=t(:Date_creation)
     %input{:class=>"form-control",:type=>"text", :name=>"date_creation",:value=>@review[:date_creation],:id=>"form-date-creation"}
   %div{:class=>"form-group"}
     %label=t(:Objectives)
-    %textarea{:class=>"form-control",:name=>"objectives"}=@review[:objectives]
+    %textarea{:class=>"form-control",:name=>"objectives", :rows=>5}=@review[:objectives]
   %div{:class=>"form-group"}
     %label=t(:Year_start)
-    %input{:class=>"form-control",:type=>"text", :name=>"year_start",:value=>@review[:year_start]}
+    =select_year(name:'year_start', value:@review[:year_start])
   %div{:class=>"form-group"}
     %label=t(:Year_end)
-    %input{:class=>"form-control",:type=>"text", :name=>"year_end",:value=>@review[:year_end]}
+    =select_year(name:'year_end', value:@review[:year_end])
   %div{:class=>"form-group"}
     %label=t(:Keywords)
     %p.instructions=t(:separe_keywords_with_semicolon)
     %input{:class=>"form-control",:type=>"text", :name=>"keywords",:value=>@review[:keywords]}
-  .checkbox
-    %label
-      %input{:type=>"checkbox", :name=>"active", :value=>1, :checked=>@review[:active] }
-      =t(:Active)
-  %div{:class=>"form-group"}
-    %label=t(:Description)
-    %textarea{:class=>"form-control",:name=>"description"}=@review[:description]
-  %div{:class=>'form-group'}
-    %label=t(:Minimum_RTA_documents_for_reference_review)
-    %select{:class=>"form-check-input", :name=>:n_min_rr_rtr}
-      - 2.upto(20) do |i|
-        %option{:value=>i, :selected=>i==@review.n_min_rr_rtr}=i
-  %div{:class=>"form-group"}
-    %label{:for=>"stage"}=t(:Stage)
-    -get_stages_names.each do |stage_id,stage_name|
-      %input{:class=>"form-check-input",:type=>"radio", :name=>"stage", :value=>stage_id, :checked=>stage_id.to_s==@review[:stage]}=t(stage_name)
 
-  %div{:class=>"form-group"}
-    %label{:for=>"group_id"}=t(:Group)
-    %select{:class=>'form-control seleccion_grupo', :name=>:group_id, :id=>:group_id_select}
-      - Group.all.each do |g|
-        %option{:value=>g.id, :selected=>g.id==@review[:group_id]}=g.name
-  %div{:class=>"form-group"}
-    %label=t(:Administrator)
-    %select{:class=>'form-control', :id=>:group_administrator_select, :name=>:sr_administrator}
-      - @review.group.users.each do |u|
-        %option{:selected=> u.id==@review[:sr_administrator], :value=>u.id}=u.name
 
-  %h3=t(:Taxonomy)
-  %table.reporte
-    - Sr_Taxonomy.each do |sr_taxonomy|
-      %tr
-        %th=t("sr_taxonomy.#{sr_taxonomy[:name]}")
-        %td
-          - Sr_Taxonomy_Category.where(:srt_id=>sr_taxonomy[:id]).each do |srtc|
-            %p 
-              %input{:class=>"form-check-input",:type=>"checkbox", :name=>"srtc[#{srtc[:id]}]", :value=>1, :checked=>@taxonomy_categories_id.include?(srtc[:id])}
-              =t("sr_taxonomy_category.#{srtc[:name]}")
+  %div
+    %ul.nav.nav-tabs{:role=>'tablist'}
+      %li{:role=>'presentation', :class=>'active' }
+        %a{:href=>'#sr-taxonomy', "aria-controls"=>'sr-taxonomy', :role=>'tab', "data-toggle"=>'tab'}=t(:Taxonomy)
+      %li{:role=>'presentation'}
+        %a{:href=>'#sr-advanced', "aria-controls"=>'sr-advanced', :role=>'tab', "data-toggle"=>'tab'}=t(:Advanced)
+    %div{:class=>'tab-content'}
+      %div{:role=>'tabpanel', :class=>'tab-pane active', :id=>'sr-taxonomy'}
+        %table.reporte
+          - Sr_Taxonomy.each do |sr_taxonomy|
+            %tr
+              %th=t("sr_taxonomy.#{sr_taxonomy[:name]}")
+              %td
+                - Sr_Taxonomy_Category.where(:srt_id=>sr_taxonomy[:id]).each do |srtc|
+                  %p
+                    %input{:class=>"form-check-input",:type=>"checkbox", :name=>"srtc[#{srtc[:id]}]", :value=>1, :checked=>@taxonomy_categories_id.include?(srtc[:id])}
+                    =t("sr_taxonomy_category.#{srtc[:name]}")
+      %div{:role=>'tabpanel', :class=>'tab-pane', :id=>'sr-advanced'}
+        %div{:class=>'form-group'}
+          %label=t(:Minimum_RTA_documents_for_reference_review)
+          =tooltip(t("systematic_review.minimun_RTA_document_tip"))
+          %select.form-control{:class=>"form-check-input", :name=>:n_min_rr_rtr}
+            - 2.upto(20) do |i|
+              %option{:value=>i, :selected=>i==@review.n_min_rr_rtr}=i
+        .form-group
+          .checkbox
+            %label
+              %input{:type=>"checkbox", :name=>"active", :value=>1, :checked=>@review[:active] }
+              =t(:Active)
+        %div{:class=>"form-group"}
+          %label{:for=>"stage"}=t(:Stage)
+          -get_stages_names.each do |stage_id,stage_name|
+            %input{:class=>"form-check-input",:type=>"radio", :name=>"stage", :value=>stage_id, :checked=>stage_id.to_s==@review[:stage]}=t(stage_name)
+
+        %div{:class=>"form-group"}
+          %label{:for=>"group_id"}=t(:Group)
+          =tooltip(t("systematic_review.group_tip"))
+          %select{:class=>'form-control seleccion_grupo', :name=>:group_id, :id=>:group_id_select}
+            - Group.all.each do |g|
+              %option{:value=>g.id, :selected=>g.id==@review[:group_id]}=g.name
+        %div{:class=>"form-group"}
+          %label=t(:Administrator)
+          %select{:class=>'form-control', :id=>:group_administrator_select, :name=>:sr_administrator}
+            - @review.group.users.each do |u|
+              %option{:selected=> u.id==@review[:sr_administrator], :value=>u.id}=u.name
+
   %input.form-control{:type=>:submit, :value=>"Enviar"}
 
 
