@@ -26,32 +26,54 @@
 # OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-class Criterion < Sequel::Model
-
-  def self.get_criterion(name)
-    criterion=Criterion.where(:text=>name).first
-    if criterion.nil?
-      criterion_id=Criterion.insert(:text=>name)
-      criterion=Criterion[criterion_id]
+#
+module Buhos
+  class CriteriaProcessor
+    attr_reader :error
+    def initialize(sr)
+      @sr=sr
+      @error=false
     end
-    criterion
-  end
-end
+    def update_criteria(inclusion,exclusion)
+      # Criteria already defined
 
-class SrCriterion < Sequel::Model
-  def self.sr_criterion_add(sr,criterion, type)
-    type=type.to_s
-    raise("Not valid type:#{type}") unless type=='inclusion' or type=='exclusion'
-    if !SrCriterion[systematic_review_id:sr.id, criterion_id:criterion.id]
-      SrCriterion.insert(systematic_review_id:sr.id, criterion_id:criterion.id, criteria_type:type)
+
+      process_hash(inclusion, 'inclusion')
+      process_hash(exclusion, 'exclusion')
+
+      clean_criterion(inclusion, exclusion) unless @error
     end
+
+    def process_hash(param_hash, type)
+      param_hash.each_pair do |key, text|
+
+        if key=='new'
+          crit=Criterion.get_criterion(text.chomp)
+          SrCriterion.sr_criterion_add(@sr,crit, type) if text.chomp!=""
+        elsif Criterion[key][:text]!=text.chomp
+          if CdCriterion.where(criterion_id:key).empty?
+            Criterion[key].update(text:text.chomp)
+          else
+            @error=true
+            break
+          end
+        end
+      end
+    end
+
+    def clean_criterion(inclusion, exclusion)
+      inclusion={} unless inclusion
+      exclusion={} unless exclusion
+      valid_texts=(inclusion.values+exclusion.values).map {|v| v.chomp}.find_all{|v| v!=""}
+      $log.info(valid_texts)
+      ids=Criterion.where(:text=>valid_texts).map(:id)
+      current_criteria=SrCriterion.where(systematic_review_id:@sr.id)
+      raise "Number of valid text is less that ids on database" if valid_texts.length>current_criteria.count
+      to_delete=(current_criteria.map(:criterion_id))-ids
+      SrCriterion.where(criterion_id:to_delete, systematic_review_id:@sr.id).delete if to_delete.length>0
+    end
+
+
+
   end
-  def self.sr_criterion_remove(sr,criterion)
-    SrCriterion.where(systematic_review_id:sr.id, criterion_id:criterion.id).delete
-  end
-end
-
-
-class CdCriterion < Sequel::Model
-
 end

@@ -82,7 +82,6 @@ module Buhos
       ::AuthorizationsRole.dataset=self[:authorizations_roles]
 
       ::Criterion.dataset=self[:criteria]
-      
       ::SrCriterion.dataset=self[:sr_criteria]
       ::CdCriterion.dataset=self[:cd_criteria]
 

@@ -1,4 +1,6 @@
 %script{:type=>'text/javascript', :src=>url('/jquery-ui/jquery-ui.min.js')}
+%script{:type=>'text/javascript', :src=>url('/js/criteria_manager.js')}
+
 %link{:href=>url('/jquery-ui/jquery-ui.css') , :media => 'screen', :rel=>'stylesheet', :type=>'text/css'}
 %link{:href=>url('/jquery-ui/jquery-ui.theme.css') , :media => 'screen', :rel=>'stylesheet', :type=>'text/css'}
 
@@ -8,11 +10,11 @@
 
     $( "#form-date-creation" ).datepicker(
       $.datepicker.regional[ "#{session['language']}" ]
-    )
+    );
 
     $( "#form-date-creation" ).datepicker( "option", "dateFormat", "yy-mm-dd" );
 
-    $( "#form-date-creation" ).datepicker("setDate",new Date(#{@review[:date_creation].year},#{@review[:date_creation].month-1},#{@review[:date_creation].day},0,0,0,0))
+    $( "#form-date-creation" ).datepicker("setDate",new Date(#{@review[:date_creation].year},#{@review[:date_creation].month-1},#{@review[:date_creation].day},0,0,0,0));
 
     $(".seleccion_grupo").change(function() {
 
@@ -58,6 +60,13 @@
     %label=t(:Keywords)
     %p.instructions=t(:separe_keywords_with_semicolon)
     %input{:class=>"form-control",:type=>"text", :name=>"keywords",:value=>@review[:keywords]}
+  %div{:class=>"form-group"}
+    %label=t(:Criteria_inclusion)
+    %div{:id=>'criteria-inclusion'}=partial("systematic_reviews/criteria", :locals=>{ sr:@review, type:'inclusion'  })
+  %div{:class=>"form-group"}
+    %label=t(:Criteria_exclusion)
+    %div{:id=>'criteria-exclusion'}=partial("systematic_reviews/criteria", :locals=>{ sr:@review, type:'exclusion'  })
+
 
 
   %div

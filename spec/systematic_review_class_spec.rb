@@ -5,20 +5,41 @@ describe 'SystematicReview class' do
   before(:all) do
     RSpec.configure { |c| c.include RSpecMixin }
     configure_empty_sqlite
-  end
-
-  it "should be created by a form" do
     post '/login' , :user=>'admin', :password=>'admin'
-    post '/review/update', :review_id=>'', :name=>'Test Review', :group_id=>1, :sr_administrator=>1
-    rs_dataset=SystematicReview.where(:name=>'Test Review')
-    expect(rs_dataset.count).to eq(1)
-    rs=rs_dataset.first
-    expect(rs[:name]).to eq("Test Review")
-    expect(rs[:group_id]).to eq(1)
-    expect(rs[:stage]).to eq('search')
 
   end
-
+  let(:rs_dataset) {SystematicReview.where(:name=>'Test Review')}
+  let(:rs) {SystematicReview.where(:name=>'Test Review').first}
+  context "when created by a form" do
+    before(:context) do
+      post '/review/update', :review_id=>'', :name=>'Test Review',
+           :group_id=>1,
+           :sr_administrator=>1,
+           :criteria=>{"inclusion"=>{"new"=>"inclusion_1"}, "exclusion"=>{"new"=>"exclusion_2"}}
+    end
+    it "generate a single object" do
+    expect(rs_dataset.count).to eq(1)
+    end
+    it "should have correct name" do
+    expect(rs[:name]).to eq("Test Review")
+    end
+    it "should have correct group" do
+    expect(rs[:group_id]).to eq(1)
+    end
+    it "should have correct stage" do
+    expect(rs[:stage]).to eq('search')
+    end
+    it "should be associated to correct criteria" do
+      sr_cr=Criterion.join(:sr_criteria, criterion_id: :id).where(:systematic_review_id=>rs.id)
+      expect(sr_cr.count).to eq(2)
+      expect(sr_cr.map(:text).sort).to eq(['exclusion_2','inclusion_1'])
+    end
+    after(:context) do
+      $db[:sr_criteria].delete
+      $db[:criteria].delete
+      $db[:systematic_reviews].delete
+    end
+  end
 
   after(:all) do
     close_sqlite

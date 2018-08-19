@@ -6,7 +6,7 @@
 # See LICENSE file for more information
 
 
-# @!group Personalized fields
+# @!group Analysis form
 
 
 # List of personalized fields

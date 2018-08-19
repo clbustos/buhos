@@ -59,8 +59,8 @@ get "/review/:id" do |id|
   raise Buhos::NoReviewIdError, id if !@review
 #  return 404 if !@review
 
-  @taxonomy_categories=@review.taxonomy_categories_hash
-
+  @taxonomy_categories  = @review.taxonomy_categories_hash
+  @criteria             = @review.criteria_hash
 
   haml %s{systematic_reviews/view}
 end
@@ -97,8 +97,7 @@ post '/review/update' do
   otros_params.delete("review_id")
   otros_params.delete("captures")
   strc=params.delete("srtc")
-  #No nulos
-  ##$log.info(otros_params)
+  criteria=params.delete("criteria")
   otros_params=otros_params.inject({}) {|ac,v|
     ac[v[0].to_sym]=v[1];ac
   }
@@ -113,13 +112,20 @@ post '/review/update' do
       revision.update(otros_params)
     end
 
+    # Process criteria
+    criteria_processor=Buhos::CriteriaProcessor.new(SystematicReview[id])
+    criteria_processor.update_criteria(criteria['inclusion'], criteria['exclusion'])
+    # Process the srtc
+
     Systematic_Review_SRTC.where(:sr_id=>id).delete
     if !strc.nil? and !strc.keys.nil?
       strc.keys.each {|key|
         Systematic_Review_SRTC.insert(:sr_id=>id, :srtc_id=>key.to_i)
       }
     end
-  # Procesamos los srtc
+
+
+
   end
 
   redirect url("/review/#{id}/dashboard")
