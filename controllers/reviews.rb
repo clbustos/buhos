@@ -59,8 +59,8 @@ get "/review/:id" do |id|
   raise Buhos::NoReviewIdError, id if !@review
 #  return 404 if !@review
 
-  @taxonomy_categories=@review.taxonomy_categories_hash
-
+  @taxonomy_categories  = @review.taxonomy_categories_hash
+  @criteria             = @review.criteria_hash
 
   haml %s{systematic_reviews/view}
 end

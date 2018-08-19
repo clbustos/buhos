@@ -197,4 +197,7 @@ AND  #{cd_query} GROUP BY tags.id) as t LEFT JOIN tag_in_classes tecl ON t.id=te
   def taxonomy_categories_hash
     $db["SELECT sr.name as sr_name, src.name as cat_name FROM sr_taxonomies sr INNER JOIN sr_taxonomy_categories src ON sr.id=src.srt_id INNER JOIN systematic_review_srtcs  srsrtcs ON srsrtcs.srtc_id=src.id WHERE srsrtcs.sr_id=? ORDER BY sr_name, cat_name",self[:id]].to_hash_groups(:sr_name)
   end
+  def criteria_hash
+    $db["SELECT criteria_type, c.id, c.text FROM  criteria c INNER JOIN sr_criteria sr ON c.id=sr.criterion_id WHERE sr.systematic_review_id=?", self[:id]].to_hash_groups(:criteria_type)
+  end
 end

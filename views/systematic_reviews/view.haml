@@ -30,6 +30,19 @@
     %span{:class=>"titulo"}=t(:Description)
     =@review[:description]
   %div{:class=>"list-group-item"}
+    %h4{:class=>"list-group-item-heading"}=t(:Criteria)
+    -['inclusion','exclusion'].each do |criteria_type|
+      - if @criteria[criteria_type]
+        %p=t("Criteria_#{criteria_type}")
+        %ul
+          - @criteria[criteria_type].each do |criterion|
+            %li=criterion[:text]
+      - else
+        %p
+          %em=t("Criteria_no_#{criteria_type}")
+
+
+  %div{:class=>"list-group-item"}
     %span{:class=>"titulo"}=t(:Group)
     %span=@review.group_name
   %div{:class=>"list-group-item"}
