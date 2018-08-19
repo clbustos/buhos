@@ -115,11 +115,11 @@ var TagManager={};
     };
 
     var TagBwCdInfo=function(e) {
-        this.url    =e.attr("data-url");
-        this.cd_start_pk=e.attr("cd_start-pk");
-        this.cd_end_pk=e.attr("cd_end-pk");
-        this.rs_pk  =e.attr("rs-pk");
-        this.tag_id =e.attr("tag-pk")
+        this.url            = e.attr("data-url");
+        this.cd_start_pk    = e.attr("cd_start-pk");
+        this.cd_end_pk      = e.attr("cd_end-pk");
+        this.rs_pk          = e.attr("rs-pk");
+        this.tag_id         = e.attr("tag-pk")
     };
 
     TagBwCdInfo.prototype.getDivId = function() {

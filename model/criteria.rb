@@ -28,10 +28,27 @@
 
 class Criterion < Sequel::Model
 
+  def self.get_criterion(name)
+    criterion=Criterion.where(:text=>name).first
+    if criterion.nil?
+      criterion_id=Criterion.insert(:text=>name)
+      criterion=Criterion[criterion_id]
+    end
+    criterion
+  end
 end
 
 class SrCriterion < Sequel::Model
-
+  def self.sr_criterion_add(sr,criterion, type)
+    type=type.to_s
+    raise("Not valid type:#{type}") unless type=='inclusion' or type=='exclusion'
+    if !SrCriterion[systematic_review_id:sr.id, criterion_id:criterion.id]
+      SrCriterion.insert(systematic_review_id:sr.id, criterion_id:criterion.id, criteria_type:type)
+    end
+  end
+  def self.sr_criterion_remove(sr,criterion)
+    SrCriterion.where(systematic_review_id:sr.id, criterion_id:criterion.id).delete
+  end
 end
 
 

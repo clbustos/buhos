@@ -18,7 +18,7 @@ Sequel.migration do
       foreign_key :canonical_document_id, :canonical_documents, :null=>false, :key=>[:id]
       foreign_key :user_id, :users, :null=>false, :key=>[:id]
       foreign_key :systematic_review_id, :systematic_reviews, :null => false, :key => [:id]
-      Bool :viewed
+      Bool :selected
       primary_key [:criterion_id, :canonical_document_id, :user_id, :systematic_review_id]
     end
 

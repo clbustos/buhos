@@ -422,4 +422,7 @@ table.tablesorter thead tr .headerSortUp {
   overflow: auto;
   resize: horizontal; }
 
+.criteria-list input[type=text] {
+  width: 50%; }
+
 /*# sourceMappingURL=main.css.map */
