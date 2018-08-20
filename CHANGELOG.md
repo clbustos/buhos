@@ -1,5 +1,25 @@
 # CHANGELOG
 
+## 1.0.0-beta13 : 2018-08-20
+
+* e6ee7e3 Added require_relative for Buhos::Helpers on FileHandler
+* ecf4d3b Extra specs for  integration and systematic_review
+* 3b238b8 Reviews can be deleted. Inclusion and exclusion criteria can be added to decisions. Unassigned canonical documents are showed on dashboard
+* 6aaf306 Updated spec for systematic review form. Added criteria on technical record for systematic review
+* 05a2ff7 First implementation on inclusion and exclusion criteria on systematic review. Next step: add criteria on decision process
+* ad1e48b Updating systematic review edit page. Working on record edition
+* c7e48af Created some factories for specs: create_sr, create_search and create_record
+* f6810b1 Allows resizable pdf on extract information
+* c7268e5 PdfProcessor acts like pdfextract.Now, can obtain information about abstract and keywords. Is not perfect, but at least can speed up the * process of complete the information to title and abstract screening stage
+* 103dd0d Fixed dashboard messages on faulty records
+* f7f8c46 New SearchValidator, that checks that all records are ok in search of a systematic review
+* 21448f3 File processing have a new class. All uploads should use this class. Records on searches stores information about files uploaded
+* 8e27b8d Added type for searches. Added reference to file on search_records
+* 4b37632 Added specs for crossref methods and cites related to canonical documents
+*8f2b0ef SearchProcessor renamed to BibliographicFileProcessor. Pdf batch processor is called PdfFileProcessor. Each pdf is processed through Crossref to retrieve basic information and references
+* 7a154e9 Initial support for file based search. You can upload some files, and Buhos grabs information about them using DOI. Like importing on Mendeley, but also importing references ;)
+* b6ed060 Add references, year and title on Excel export
+
 ## 1.0.0-beta12 : 2018-07-25
 
 
