@@ -46,7 +46,7 @@ module BibliographicalImporter
 
 
       def self.create(bibtex_value)
-		    return nil if bibtex_value.is_a? BibTeX::Error
+		    return nil if (bibtex_value.is_a? BibTeX::Error) or (bibtex_value.is_a? BibTeX::Comment) 
         type=self.determine_type(bibtex_value)
         klass="Record_#{type.capitalize}".to_sym
         BibliographicalImporter::BibTex.const_get(klass).send(:new, bibtex_value)
@@ -248,7 +248,7 @@ module BibliographicalImporter
       end
 
       def parse_records
-        @records=@bb.map {|r| BibTex::Record.create(r)}
+        @records=@bb.map {|r| BibTex::Record.create(r)}.find_all {|r| !r.nil?}
       end
     end
 
