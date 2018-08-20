@@ -57,7 +57,9 @@ describe 'Resources availability:' do
     it { expect("/reviews").to be_available_for_admin}
     it { expect("/review/new").to be_available_for_admin}
     it { expect("/review/1").to be_available_for_admin}
+    it { expect("/review/1/dashboard").to be_available_for_admin}
     it { expect("/review/1/edit").to be_available_for_admin}
+    it { expect("/review/1/delete").to be_available_for_admin}
     it { expect("/review/1/canonical_documents").to be_available_for_admin}
     it { expect("/review/1/repeated_canonical_documents").to be_available_for_admin}
 
@@ -112,6 +114,10 @@ describe 'Resources availability:' do
 
 
   context "when review searches resources are accessed" do
+    it { expect("/review/1/records").to be_available_for_admin}
+    it { expect("/review/1/records/user/1").to be_available_for_admin}
+    it { expect("/review/1/search/1/record/1/complete_information").to be_available_for_admin}
+
     it { expect("/review/1/searches/user/1").to be_available_for_admin}
     it { expect("/review/1/search/bibliographic_file/new").to be_available_for_admin}
     it { expect("/review/1/search/uploaded_files/new").to be_available_for_admin}

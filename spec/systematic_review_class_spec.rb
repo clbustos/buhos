@@ -40,6 +40,32 @@ describe 'SystematicReview class' do
       $db[:systematic_reviews].delete
     end
   end
+  context "when deleted by a form" do
+    before do
+      post '/review/update', :review_id=>'', :name=>'Test Review deleted',
+           :group_id=>1,
+           :sr_administrator=>1,
+           :criteria=>{"inclusion"=>{"new"=>"inclusion_1"}, "exclusion"=>{"new"=>"exclusion_2"}}
+    end
+    def rs_deleted
+      SystematicReview.where(:name=>'Test Review deleted').first
+    end
+
+
+    it "should be 1 systematic review before delete" do
+      expect(rs_deleted).to be_truthy
+    end
+    it "should be 0 systematic review after delete" do
+      post "/review/#{rs_deleted[:id]}/delete2", sr_id: rs_deleted[:id]
+      expect(rs_deleted).to be_falsey
+    end
+    after() do
+      $db[:sr_criteria].delete
+      $db[:criteria].delete
+      $db[:systematic_reviews].delete
+    end
+
+  end
 
   after(:all) do
     close_sqlite
