@@ -37,6 +37,7 @@ class PdfFileProcessor
   attr_reader :doi
   attr_reader :author
   attr_reader :canonical_document
+  attr_reader :uid
   def initialize(search, filepath, dir_files)
     @search=search
     @filepath=filepath
@@ -104,6 +105,15 @@ class PdfFileProcessor
   end
 
 
+  def uid
+    if doi
+      "doi:#{doi}"
+
+    else
+      sha256 = Digest::SHA256.file(@filepath).hexdigest
+      "file:#{sha256}"
+    end
+  end
 
   def process
     pdfp=PdfProcessor.new(@filepath)
@@ -115,13 +125,6 @@ class PdfFileProcessor
       #@author=I18n::t(:Unknown_author) if author==""
       #@title=I18n::t(:Unknown_title) if title==""
 
-      if doi
-        uid="doi:#{doi}"
-
-      else
-        sha256 = Digest::SHA256.file(@filepath).hexdigest
-        uid="file:#{sha256}"
-      end
 
 
       record=get_record_by_uid(uid)
@@ -130,10 +133,8 @@ class PdfFileProcessor
       # Recuperamos información desde crossref
 
 
-
       create_record_search_by_ids(record.id, search_id)
       cd=get_canonical_document(record)
-
       file_proc=FileProcessor.new(simulate_file_uploaded, dir_files)
       file_proc.add_to_sr(systematic_review)
       file_proc.add_to_cd(cd)
@@ -142,6 +143,7 @@ class PdfFileProcessor
       # Add crossref information
       @results.add_result(record.add_doi_automatic)
       if record.doi
+        #$log.info("File:#{@filepath} with doi")
         @results.add_result(record.references_automatic_crossref)
         @results.add_result(record.update_info_using_crossref)
         cd.update_info_using_record(record) if @new_cd

@@ -1,0 +1,18 @@
+.heading=t_systematic_review_title(@review[:name],:Delete)
+%ul.breadcrumb
+  %li
+    %a{:href=>url("/reviews")}=t(:Systematic_reviews)
+  %li
+    %a{:href=>url("/review/#{@review[:id]}")}=@review[:name]
+  %li.active=t(:Delete)
+
+.alert.alert-danger=t("systematic_review.delete_warning")
+%form{method: :post, :action=>url("/review/#{@review[:id]}/delete2")}
+  %input{:type=>:hidden, :name=>:sr_id, :value=>@review[:id]}
+  .btn-group.btn-group-lg
+    %a.btn.btn-default{:href=>url("/review/#{@review[:id]}")}=t(:Back)
+    %button.btn.btn-danger{:href=>url("/review/#{@review[:id]}")}=t(:Delete)
+
+%h3=t("systematic_review.statistics")
+
+=partial(:sr_statistics, :locals=>{sr:@review})

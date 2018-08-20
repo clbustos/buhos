@@ -84,7 +84,10 @@ module Buhos
      }.to_json
    end
 
-
+    # Remove innecesary whitespaces
+    def process_abstract_text(t)
+      t.gsub("\.\n","***").gsub(/\s+/," ").gsub("***",".\n")
+    end
 
     # Get an APP config
     def config_get(id)

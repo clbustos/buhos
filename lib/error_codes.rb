@@ -102,6 +102,9 @@ module Buhos
   class NoRecordSearchIdError < StandardError
 
   end
+  class NoCriterionIdError < StandardError
+
+  end
   # @!endgroup
 end
 
@@ -160,6 +163,10 @@ module Sinatra
       app.error Buhos::NoRecordSearchIdError do
         status 404
         ::I18n::t("error.no_code", object_name: ::I18n::t(:Record_on_search), code:env['sinatra.error'].message)
+      end
+      app.error Buhos::NoCriterionIdError do
+        status 404
+        ::I18n::t("error.no_code", object_name: ::I18n::t(:Criterion), code:env['sinatra.error'].message)
       end
     end
   end

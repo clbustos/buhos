@@ -12,7 +12,8 @@
       .row
         .col-md-8=t_desc_value(:Objectives, lf_to_br(sr.objectives))
         .col-md-2
-          %a.btn.btn-default.btn-sm{:href=>"/review/#{sr.id}"}=t(:View_technical_record)
+          .btn-group.btn-group-sm
+            %a.btn.btn-default{:href=>"/review/#{sr.id}"}=t(:View_technical_record)
     .dashboard-user=partial(:dashboard_user_sr,:locals=>{user:user, sr:sr})
   .panel-footer
     =partial(:review_buttons, :locals=>{:r=>sr})

@@ -25,7 +25,7 @@
       .list-group
         -records_s.each do |record|
           - cd=@cds[record[:canonical_document_id]]
-          -class_record=(@sv[record[:user_id]].valid_records.include?(record.id)) ? "list-group-item" : "list-group-item-danger"
+          -class_record=(@sv[record[:user_id]].valid_records_id.include?(record[:record_id])) ? "list-group-item" : "list-group-item-danger"
           %a.list-group-item{:type=>:button, :class=>class_record, :href=>url("/review/#{@review.id}/search/#{search_id}/record/#{record[:record_id]}/complete_information#{user_url}")}
             = (cd.author.to_s=='' ? "<em>#{t(:No_author)}</em> #{gq}" : cd.author)
             = (cd.year==0 ? "<em>(#{t(:No_date)} #{gq}).</em>" : "(#{cd.year}).")

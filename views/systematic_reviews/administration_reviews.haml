@@ -114,7 +114,7 @@
               -apc_doc.each do |archivo|
                 %div
                   =archivo[:id]
-                  =@modal_files.botones(archivo, doc_c[:id])
+                  =@modal_files.buttons(archivo, doc_c[:id])
             - else
               =@modal_files.cargador_archivo(@review[:id],doc_c[:id])
 

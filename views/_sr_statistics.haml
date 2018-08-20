@@ -1,0 +1,16 @@
+%table.table.table-condensed
+  %tr
+    %th=t(:Searches)
+    %th=Search.where(:systematic_review_id=>sr.id).count
+  %tr
+    %th=t(:Files_assigned)
+    %th=FileSr.where(:systematic_review_id=>sr.id).count
+  %tr
+    %th=t(:Canonical_documents_assigned)
+    %th=sr.cd_id_table.count
+  %tr
+    %th=t(:Decisions)
+    %th=Decision.where(:systematic_review_id=>sr.id).count
+  %tr
+    %th=t(:Resolutions)
+    %th=Resolution.where(:systematic_review_id=>sr.id).count

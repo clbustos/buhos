@@ -33,6 +33,9 @@ class SearchValidator
 
   attr_reader :user
   attr_reader :sr
+  attr_reader :valid_records_id
+  attr_reader :invalid_records_id
+
   def initialize(sr, user)
     @sr=sr
     @user=user

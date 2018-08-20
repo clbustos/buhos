@@ -56,39 +56,6 @@ function buscar_similares_canonico() {
     });
 }
 
-function actualizar_decision(stage,div_id) {
-    div_id = typeof div_id !== 'undefined' ? div_id : false;
-    var selector_action=div_id ? div_id+" .dc_decision" : '.dc_decision';
-
-    $(selector_action).unbind("click");
-    $(selector_action).click(function () {
-        var pk_id = $(this).attr("data-pk");
-        var decision = $(this).attr("data-decision");
-        var user_id = $(this).attr("data-user");
-        var only_buttons= $(this).attr("data-onlybuttons");
-        var url = $(this).attr("data-url");
-        //var commentary=$("#commentary-"+pk_id).val()
-        var boton = $(this);
-        boton.prop("disabled", true);
-        var div_replace="#decision-cd-" + pk_id;
-        $.post(url, {pk_id: pk_id, decision: decision, user_id: user_id, only_buttons:only_buttons}, function (data) {
-            $(div_replace).html(data);
-            actualizar_decision(stage,div_replace);
-            actualizar_textarea_editable(div_replace);
-
-
-            TagManager.update(div_replace);
-            // Tengo que considerar los tags...
-            // actualizar_tags_cd_rs(div_replace);
-            // actualizar_typeahead(div_replace);
-            // actualizar_mostrar_pred(div_replace);
-
-        }).fail(function () {
-            alert("No se pudo cargar la decisión")
-        })
-    })
-
-}
 
 
 function actualizar_resolution(stage) {
@@ -119,6 +86,7 @@ function actualizar_resolution(stage) {
 function actualizar_name_editable() {
     $('.name_editable').editable({
         type: 'text',
+        mode:'inline',
         title: 'Ingrese',
         ajaxOptions: {
             type: 'put'

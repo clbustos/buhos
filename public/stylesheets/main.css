@@ -254,11 +254,13 @@ ul.tags {
     background-color: lightyellow;
     border: 1px solid darkorange; }
 
-#mensajes {
-  height: 15%;
-  max-height: 15%;
+#messages {
+  height: 150px;
+  max-height: 150px;
   overflow-y: scroll;
-  overflow-x: hidden; }
+  overflow-x: hidden;
+  border: 1px solid #146ab0;
+  padding: 0.5em; }
 
 .mensaje-texto {
   padding-left: 2em;
@@ -424,5 +426,9 @@ table.tablesorter thead tr .headerSortUp {
 
 .criteria-list input[type=text] {
   width: 50%; }
+
+.only-text {
+  max-height: 550px;
+  overflow: auto; }
 
 /*# sourceMappingURL=main.css.map */

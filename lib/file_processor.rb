@@ -35,6 +35,9 @@ class FileProcessor
   attr_reader :file_id
   attr_reader :basedir
 
+  class NoUploadedFilesType < StandardError
+
+  end
   def initialize(file,basedir=nil)
     @basedir=basedir
     @filetype="application/octet-stream"
@@ -82,7 +85,7 @@ class FileProcessor
 
   def add_to_record_search(search,record)
     $db.transaction do
-      raise "Search should be uploaded_files type" unless search.is_type?(:uploaded_files)
+      raise NoUploadedFilesType, "Search should be uploaded_files type" unless search.is_type?(:uploaded_files)
       rec_sec=RecordsSearch[:record_id=>record[:id], :search_id=>search[:id]]
       if rec_sec
         rec_sec.update(:file_id=>file_id)
