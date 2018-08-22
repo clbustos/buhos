@@ -231,6 +231,8 @@ es:
   Information_about_this_cd_on_pubmed: "Información acerca de este documento canónico en PubMed"
   installer:
     basic_data_form: "Información básica"
+    advanced_configuration: "Configuración avanzada"
+    default_configuration: "Configuración predeterminada"
     basic_data_form_instruction: "Ingrese la información necesaria para la base de datos, proxy y acceso a Scopus. Recuerde que si utiliza <em>sqlite</em>, la base de datos será un archivo unitario. Si cuenta con una clave de desarrollo Scopus, puede ingresarla; se utilizará la configuración del proxy si debe usar uno por su universidad o trabajo"
     cant_read_env_file: "No puedo leer el archivo .env. Por favor, revise la documentación"
     db_adapter: "Adaptador de base de datos"
@@ -322,6 +324,7 @@ es:
   "No": "No"
   "no": "no"
   New_tag: "Nueva etiqueta"
+  Next: "Siguiente"
   No_abstract: "Sin abstract"
   No_assignation_instructions: "Sin instrucciones"
   No_author: "Sin autor"

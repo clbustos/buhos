@@ -48,10 +48,11 @@
 class BibliographicFileProcessor
   attr_reader :search
   attr_reader :result
-
+  attr_reader :error
   def initialize(search)
     @search = search
     @result = Result.new
+    @error = nil
     if process_file
       process_canonical_documents
     end
@@ -72,6 +73,7 @@ class BibliographicFileProcessor
       return false if !integrator
     rescue BibTeX::ParseError => e
       log_error('bibliographic_file_processor.error_parsing_file', e.message)
+      @error=I18n::t('bibliographic_file_processor.error_parsing_file')
       return false
     end
 
@@ -104,6 +106,7 @@ class BibliographicFileProcessor
       end
       @search.update_records(ref_ids)
     end
+    @error=t('bibliographic_file_processor.Search_process_file_error') if !correct
     log_success('bibliographic_file_processor.Search_process_file_successfully') if correct
     true
   end

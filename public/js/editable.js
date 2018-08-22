@@ -87,7 +87,7 @@ function actualizar_name_editable() {
     $('.name_editable').editable({
         type: 'text',
         mode:'inline',
-        title: 'Ingrese',
+        onblur:'submit',
         ajaxOptions: {
             type: 'put'
         }
@@ -101,11 +101,10 @@ function actualizar_textarea_editable(div_id) {
     $(selector_action).unbind("editable");
     $(selector_action).editable({
         type: 'textarea',
-        title: 'Ingrese',
         rows: 10,
         mode: "inline",
         showbuttons:'bottom',
-        onblur:'ignore',
+        onblur:'submit',
         ajaxOptions: {
             type: 'put'
         }

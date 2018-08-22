@@ -128,6 +128,10 @@ And run the application using
 
    > ruby app.rb
 
+or
+
+   > rackup   
+
 ## Post-install configuration
 
 The app uses a web-based configuration.  Once the server starts, point your browser by default to localhost:4567 to begin the installation process.

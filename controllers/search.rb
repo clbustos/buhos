@@ -177,6 +177,10 @@ post '/search/update' do
         sp=BibliographicFileProcessor.new(search)
         add_result(sp.result)
       end
+      unless sp.error.nil?
+        add_message(sp.error, :error)
+        search.delete
+      end
     end
   redirect "/review/#{otros_params[:systematic_review_id]}/dashboard"
 end

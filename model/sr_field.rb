@@ -37,6 +37,7 @@ class SrField < Sequel::Model
       ac
     }
   end
+  # TODO: Multiple
   def self.types_a_sequel(campo)
     if campo[:type] == 'text'
       [campo[:name].to_sym, String, null: true]
@@ -71,7 +72,6 @@ class SrField < Sequel::Model
 
         else
           $db.alter_table(table.to_sym) do
-            # Mïnimo número de references rtr para revisión de references
             add_column(*SrField.types_a_sequel(campo))
           end
         end

@@ -231,6 +231,8 @@ en:
   Information_about_this_cd_on_crossref: "Information on this canonical document from Crossref"
   Information_about_this_cd_on_pubmed: "Information on this canonical document from PubMed "
   installer:
+    advanced_configuration: "Advanced configuration"
+    default_configuration: "Default configuration"
     basic_data_form: "Basic information"
     basic_data_form_instruction: "Enter the information needed for the database, proxy and access to Scopus. Remember that if you use <em>sqlite</em>, the database will be a unique file. If you have a  Scopus development password you may enter it; if your university or employer requires you to use a proxy configuration it will be used"
     cant_read_env_file: "Cannot read .env file. Please check documentation"
@@ -320,6 +322,7 @@ en:
   "No": "No"
   "no": "no"
   New_tag: "New tag"
+  Next: "Next"
   No_abstract: "No abstract"
   No_assignation_instructions: "No instructions"
   No_author: "No author"
