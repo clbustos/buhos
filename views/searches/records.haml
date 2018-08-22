@@ -30,4 +30,10 @@
             = (cd.author.to_s=='' ? "<em>#{t(:No_author)}</em> #{gq}" : cd.author)
             = (cd.year==0 ? "<em>(#{t(:No_date)} #{gq}).</em>" : "(#{cd.year}).")
             = (cd.title.to_s=='' ? "<em>#{t(:No_title)}</em> #{gq}." : "#{cd.title}.")
-            = (cd.abstract.to_s=='' ? "<em>#{t(:No_abstract)}</em> #{gq}" : t(:With_Abstract))
+            - if cd[:abstract]!=""
+              %button{:class=>"btn btn-default btn-sm", :type=>"button",  "data-toggle"=>'collapse', "data-target"=>"#cd_abstract-#{cd[:id]}", "aria-expanded"=>"false", "aria-controls"=>"cd_abstract-#{cd[:id]}"}=t(:Abstract)
+            - else
+              = "<em>#{t(:No_abstract)}</em> #{gq}"
+            - if cd[:abstract]
+              %div{:class=>"collapse", :id=>"cd_abstract-#{cd[:id]}"}
+                .well=cd[:abstract]

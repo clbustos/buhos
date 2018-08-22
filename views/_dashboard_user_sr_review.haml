@@ -13,6 +13,7 @@
        a_tag("/review/#{ sr[:id] }/administration/#{stage}#decision_statistics",
        t("user_dashboard.check_n_canonical_documents_without_resolution",
        count:ars.resolution_pattern(stage)[Resolution::NO_RESOLUTION])))
+      %span.label.label-warning=t(:pending)
   - if asr_stage.cd_without_allocations.count>0
     %p
       %snap.glyphicon.glyphicon-tower
@@ -20,6 +21,7 @@
        a_tag("/review/#{ sr[:id] }/administration/#{stage}/cd_without_allocations",
        t("user_dashboard.check_n_canonical_documents_without_assignation",
        count:asr_stage.cd_without_allocations.count)))
+      %span.label.label-warning=t(:pending)
 - else
   %p=t_desc_value("user_dashboard.count_total_canonical_documents_stage",
   sr.cd_id_by_stage(stage).count)
@@ -28,7 +30,9 @@
   t("user_dashboard.check_n_assigned_canonical_documents",
   count: n_cd_assigned) ) )
 - if adu.total_decisions[Decision::NO_DECISION].to_i>0
-  %p=t_desc_value("user_dashboard.count_canonical_document_without_decision", a_tag("/review/#{ sr[:id] }/#{ stage }?decision=#{ Decision::NO_DECISION }", t("user_dashboard.check_n_undecided_canonical_documents", count: adu.total_decisions[Decision::NO_DECISION])))
+  %p
+    =t_desc_value("user_dashboard.count_canonical_document_without_decision", a_tag("/review/#{ sr[:id] }/#{ stage }?decision=#{ Decision::NO_DECISION }", t("user_dashboard.check_n_undecided_canonical_documents", count: adu.total_decisions[Decision::NO_DECISION])))
+    %span.label.label-warning=t(:pending)
 
 .btn-group.btn-group-sm
   -if is_administrator

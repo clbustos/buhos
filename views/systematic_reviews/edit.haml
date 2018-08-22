@@ -115,6 +115,6 @@
             - @review.group.users.each do |u|
               %option{:selected=> u.id==@review[:sr_administrator], :value=>u.id}=u.name
 
-  %input.form-control{:type=>:submit, :value=>"Enviar"}
+  %input.form-control.btn.btn-primary{:type=>:submit, :value=>"Enviar"}
 
 

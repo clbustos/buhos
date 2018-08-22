@@ -32,7 +32,7 @@ var CriteriaManager={};
                 update_action_buttons("#criteria-"+cr_type);
                 return(false);
             }).fail(function () {
-                alert("Criteria: Can't remove the criterion");
+                alert("Criteria: Can't add the criterion");
                 return(false);
             });
           return(false);
