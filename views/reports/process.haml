@@ -1,6 +1,11 @@
 .header=t_systematic_review_title(@sr[:name], :Process_report)
 %p.instructions=t("process_report.instructions")
 
+.btn-group
+  %a.btn.btn-default.btn-sm{:href=>"/review/#{@sr[:id]}/report/process/excel_download"}
+    %span.glyphicon.glyphicon-download
+    =t(:Download_as, :type=>"Excel")
+
 - @sr.current_stages.each do |stage|
   - next if stage==:report
   %h4=t(get_stage_name(stage))

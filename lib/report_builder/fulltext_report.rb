@@ -50,7 +50,7 @@ module ReportBuilder
       app.headers 'Content-Disposition' => "attachment; filename=fulltext_report_#{@sr[:id]}.xlsx"
       create_excel
     end
-
+    # TODO: Create a new class on directory 'fulltext_report' and replace rubyXL for axlsx (much efficient!)
     def create_excel
       require 'rubyXL'
       workbook = RubyXL::Workbook.new
