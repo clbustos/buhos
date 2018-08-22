@@ -75,7 +75,7 @@ class CanonicalDocument < Sequel::Model
       end
       CanonicalDocument[pk_id].update(fields)
 
-      [:allocation_cds, :bib_references, :decisions, :file_cds, :resolutions, :tag_in_cds, :records, :canonical_document_authors].each do |table|
+      [:allocation_cds, :bib_references, :cd_criteria,:decisions, :file_cds, :resolutions, :tag_in_cds, :records, :canonical_document_authors].each do |table|
 
         pk=$db.schema(table).find_all {|v|
           v[1][:primary_key]

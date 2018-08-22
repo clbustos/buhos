@@ -33,7 +33,7 @@
 
 - if @cd_por_doi.length>0
   %form{:method=>:post, :action=>url("/review/#{@review.id}/automatic_deduplication")}
-    %input.btn.btn-primary{:value=>t(:Automatic_deduplication_of_all_canonical_documents)}
+    %input.btn.btn-primary{:type=>:submit, :value=>t(:Automatic_deduplication_of_all_canonical_documents)}
   - i=0
   - @cd_por_doi.each_pair do |doi, cds_id|
     - i=i+1

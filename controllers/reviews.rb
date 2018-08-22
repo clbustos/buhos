@@ -207,7 +207,7 @@ get '/review/:id/repeated_canonical_documents' do |id|
 end
 
 
-get '/review/:id/automatic_deduplication' do |id|
+post '/review/:id/automatic_deduplication' do |id|
   halt_unless_auth('canonical_document_admin')
 
   @review=SystematicReview[id]
