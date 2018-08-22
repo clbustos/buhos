@@ -74,13 +74,14 @@ class SearchValidator
 
   def update_search(can_docs)
     if can_docs.empty?
-      Search.where(:systematic_review_id=>@sr.id, :user_id=>@user.id).update(:valid=>false)
+      # Don't
+      #Search.where(:systematic_review_id=>@sr.id, :user_id=>@user.id).update(:valid=>false)
     else
       can_docs.to_hash_groups(:s_id).each do |key,recs|
         rec_id=recs.map {|v| v[:r_id]}
         valids=@valid_records_id & rec_id
         invalids=@invalid_records_id & rec_id
-        Search[key].update(:valid=> (valids.length>0 and invalids.length==0))
+        Search[key].update(:valid=> true) if (valids.length>0 and invalids.length==0)
       end
     end
   end
