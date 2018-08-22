@@ -206,6 +206,30 @@ get '/review/:id/repeated_canonical_documents' do |id|
   haml %s{systematic_reviews/repeated_canonical_documents}
 end
 
+
+get '/review/:id/automatic_deduplication' do |id|
+  halt_unless_auth('canonical_document_admin')
+
+  @review=SystematicReview[id]
+  raise Buhos::NoReviewIdError, id if !@review
+  @cd_rep_doi=@review.repeated_doi
+
+  @cd_por_doi=CanonicalDocument.where(:doi => @cd_rep_doi).to_hash_groups(:doi, :id)
+
+  result=Result.new
+  @cd_por_doi.each_pair do |doi, cds_id|
+    resultado=CanonicalDocument.merge(cds_id)
+    if resultado
+      result.success("DOI:#{doi} - #{I18n::t("Canonical_document_merge_successful")}")
+    else
+      result.error("DOI:#{doi} - #{I18n::t("Canonical_document_merge_error")}")
+    end
+  end
+  add_result(result)
+  redirect back
+end
+
+
 # Get tags and classes of tags for a systematic review
 get '/review/:id/tags' do |id|
   halt_unless_auth('review_view')

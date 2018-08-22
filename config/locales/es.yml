@@ -37,6 +37,7 @@ es:
   Author: "Autor"
   Automatic_categories: "Categorías automáticas"
   Authorizations: "Autorizaciones"
+  Automatic_deduplication_of_all_canonical_documents: "Deduplicación automática de todos los documentos canónicos"
   Back: "Atrás"
   Bibliographic_database: "Base de datos bibliográfica"
   bibliographic_file_processor:

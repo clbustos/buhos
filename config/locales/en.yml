@@ -37,6 +37,7 @@ en:
   Assigned_DOI_to_record: "DOI automatically allocated %{doi} to record %{record_id} : %{author} - %{title} "
   Author: "Author"
   Automatic_categories: "Automatic categories"
+  Automatic_deduplication_of_all_canonical_documents: "Automatic deduplication of all canonical documents"
   Authorizations: "Authorizations"
   Back: "Back"
   Bibliographic_database: "Bibliographic database"
