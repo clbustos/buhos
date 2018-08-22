@@ -45,6 +45,8 @@ class SrField < Sequel::Model
       [campo[:name].to_sym, String, text: true, null: true]
     elsif campo[:type] == 'select'
       [campo[:name].to_sym, String, null: true]
+    elsif campo[:type] == 'multiple'
+      [campo[:name].to_sym, String, null: true]
     end
   end
 
@@ -88,5 +90,4 @@ class SrField < Sequel::Model
       ac
     }
   end
-
 end
