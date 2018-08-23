@@ -155,7 +155,7 @@ en:
   End_year: "End year"
   Enter_commentary: "Enter comment"
   error:
-    no_scopus_method: "The Scopus access type %{type}is unknown"
+    no_scopus_method: "The Scopus access type %{type} is unknown"
     error_on_add_crossref_for_cd: "Unable to add Crossref information for CD %{cd_title}"
     no_valid_cd_for_this_systematic_review: "CD %{cd_id} invalid for this systematic review. Check  resolution for this CD in preceding stages."
     problem_record_stop_sync: "Unable to obtain information for record %{record_id}: %{e_message}. Sincronization interrupted"
@@ -165,6 +165,7 @@ en:
   Error_403: "Error 403 – Access denied"
   Error_404: "Error 404 – No such resource"
   Exists_another_role_with_that_name: "Name in use by another role"
+  Export_generic_for_this_stage: "Export %{type} for this stage"
   Export_bibtex_for_this_stage: "Export BibTeX for this stage"
   Export_doi_list_for_this_stage: "Export DOI list for this stage"
   Export_graphml_for_this_stage: "Export GraphML for this stage"
