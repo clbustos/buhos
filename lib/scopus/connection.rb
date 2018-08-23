@@ -27,6 +27,7 @@
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 require 'uri'
 require 'net/http'
+require 'open-uri'
 module Scopus
   class Connection
     extend  Scopus::URIRequest
@@ -54,36 +55,42 @@ module Scopus
     @connection.close if @connection
   end
   
-  
+  # Deprecated. Using open-uri, because was impossible to obtain a sensible way to configure the SSL
   def get_connection
     if @use_proxy
-      proxy = ::Net::HTTP::Proxy(@proxy_host, @proxy_port, @proxy_user, @proxy_pass)
-      proxy.start("api.elsevier.com")
+      #proxy = ::Net::HTTP::Proxy(@proxy_host, @proxy_port, @proxy_user, @proxy_pass)
+      http=Net::HTTP.new("api.elsevier.com", nil, @proxy_host, @proxy_port, @proxy_user, @proxy_pass)
     else
-      Net::HTTP.new("api.elsevier.com")
+      http=Net::HTTP.new("api.elsevier.com")
     end
+    http.use_ssl=true
+    http.ssl_version = :TLSv1_2
+    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+    http
+
   end
-  # Connect to api and start 
+
+  # Connect to api and start
   def connect_server(uri_string)
-    uri = URI(uri_string)
-    req = Net::HTTP::Get.new(uri.request_uri)
-    req['Accept']='application/xml'
-    res = connection.request(req)
-    xml=Nokogiri::XML(res.body)
-    if xml.xpath("//service-error").length>0
-      @error=true
-      @error_msg=xml.xpath("//statusText").text
-    elsif xml.xpath("//atom:error",'atom'=>'http://www.w3.org/2005/Atom').length>0
-      @error=true
-      @error_msg=xml.xpath("//atom:error").text
-    elsif xml.children.length==0
-      @error=true
-      @error_msg="Empty_XML"
-    else
-      @error=false
-      @error_msg=nil
+    proxy_info= @use_proxy ? ["http://#{@proxy_host}:#{@proxy_port}/", @proxy_user, @proxy_pass] : nil
+    open(uri_string, :proxy_http_basic_authentication => proxy_info) do |io|
+
+      xml=Nokogiri::XML(io.read)
+      if xml.xpath("//service-error").length>0
+        @error=true
+        @error_msg=xml.xpath("//statusText").text
+      elsif xml.xpath("//atom:error",'atom'=>'http://www.w3.org/2005/Atom').length>0
+        @error=true
+        @error_msg=xml.xpath("//atom:error").text
+      elsif xml.children.length==0
+        @error=true
+        @error_msg="Empty_XML"
+      else
+        @error=false
+        @error_msg=nil
+      end
+      @xml_response=Scopus.process_xml(xml)
     end
-    @xml_response=Scopus.process_xml(xml)
   end
   
   def get_articles_from_uri(uri)
@@ -102,7 +109,7 @@ module Scopus
           pagina+=1
           uri=next_page.attribute("href").value
         else
-          puts "completo"
+#          puts "completo"
           completo=true
         end
       end  
@@ -123,9 +130,9 @@ module Scopus
         next_page=xml_response.next_page
         if next_page
           uri=next_page.attribute("href").value
-          puts "siguiente pagina"
+          #puts "siguiente pagina"
         else
-          puts "completo"
+          #puts "completo"
           completo=true
         end
       end  
