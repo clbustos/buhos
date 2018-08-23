@@ -73,24 +73,31 @@ module Scopus
   # Connect to api and start
   def connect_server(uri_string)
     proxy_info= @use_proxy ? ["http://#{@proxy_host}:#{@proxy_port}/", @proxy_user, @proxy_pass] : nil
-    open(uri_string, :proxy_http_basic_authentication => proxy_info) do |io|
-
-      xml=Nokogiri::XML(io.read)
-      if xml.xpath("//service-error").length>0
-        @error=true
-        @error_msg=xml.xpath("//statusText").text
-      elsif xml.xpath("//atom:error",'atom'=>'http://www.w3.org/2005/Atom').length>0
-        @error=true
-        @error_msg=xml.xpath("//atom:error").text
-      elsif xml.children.length==0
-        @error=true
-        @error_msg="Empty_XML"
-      else
-        @error=false
-        @error_msg=nil
+    begin
+      open(uri_string, :proxy_http_basic_authentication => proxy_info) do |io|
+        xml=Nokogiri::XML(io.read)
+        if xml.xpath("//service-error").length>0
+          @error=true
+          @error_msg=xml.xpath("//statusText").text
+        elsif xml.xpath("//atom:error",'atom'=>'http://www.w3.org/2005/Atom').length>0
+          @error=true
+          @error_msg=xml.xpath("//atom:error").text
+        elsif xml.children.length==0
+          @error=true
+          @error_msg="Empty_XML"
+        else
+          @error=false
+          @error_msg=nil
+        end
+        @xml_response=Scopus.process_xml(xml)
       end
-      @xml_response=Scopus.process_xml(xml)
+    rescue OpenURI::HTTPError=>e
+      #$log.info(e.message)
+      @error=true
+      @error_msg=e.message
     end
+    
+    
   end
   
   def get_articles_from_uri(uri)
