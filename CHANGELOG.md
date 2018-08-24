@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## 1.0.0-beta14 : 2018-08-24
+
+* 8f4958d OpenURI raise an exception when Scopus doesn't have a document. I prefer the old behavior of Net::HTTP, but SSL negotiation was awful
+* e9a4d58 Add Abstract in Excel export
+* 43452b3 Administrator could expert a list of canonical documents as Excel, by stage. Fixed specs for Scopus: mandatory use of https since April
+* b60c473 Scopus API should work right now. Used open-uri to manage SSL
+* a4950f3 SearchValidator only validate searches, doesn't invalidate searches with problematic records (is up to the administrator). Translation missing on manual abstract retrieval
+* 193c05e Automatic deduplication works ok
+* d53fc9d Added initial support for process report on Excel.
+* f68d639 Changed button for resolutions
+* 20dd3f5 Added support for multiple choice form
+* 00de444 Usability changes: hide advanced configurations on installer. Xeditable short text and long texts now saves on blur (frequent action by users)
+* e81b589 Add abstract on record. Add 'pending' label on pending messages
+* 08239bf Bug fix: SearchValidator change validation on other  users searches
+* 2e9958c Bug fix: Bibliographic file importer fails on bibtex comment
+
 ## 1.0.0-beta13 : 2018-08-20
 
 * e6ee7e3 Added require_relative for Buhos::Helpers on FileHandler
