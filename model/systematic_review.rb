@@ -179,7 +179,7 @@ AND  #{cd_query} GROUP BY tags.id) as t LEFT JOIN tag_in_classes tecl ON t.id=te
   def analysis_cd
     table_name=analysis_cd_tn
     if !$db.table_exists?(table_name)
-      SrField.actualizar_tabla(self)
+      SrField.update_table(self)
     end
     $db[table_name.to_sym]
   end

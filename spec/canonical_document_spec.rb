@@ -80,6 +80,8 @@ describe 'Canonical Record' do
     end
   end
 
+
+
   context "when view information about cites to canonical document assigned to a systematic review" do
     let(:page) {get "/review/1/canonical_document/64/cites"; last_response}
     it "response should be ok" do expect(last_response).to be_ok end
@@ -101,6 +103,14 @@ describe 'Canonical Record' do
     it "response should be ok" do expect(last_response).to be_ok end
     it "should include title of canonical document" do
       expect(page.body).to include I18n::t(:Without_canonical_document)
+    end
+  end
+
+  context "when view Pubmed info for a canonical document" do
+    let(:page) {get "/canonical_document/64/view_pubmed_info"; last_response}
+    it "response should be ok" do expect(last_response).to be_ok end
+    it "should include title of canonical document" do
+      expect(page.body).to include CanonicalDocument[64].title
     end
   end
 

@@ -103,7 +103,7 @@ module RSpecMixin
       r_id_r=Record.insert(id:r_id, uid:r_uid, canonical_document_id:r_cd, bibliographic_database_id:r_bb )
       unless search_id.nil?
         search_ids= search_id[i].respond_to?(:index) ? search_id[i] : [search_id[i]]
-        $log.info(search_ids)
+        #$log.info(search_ids)
         search_ids.each {|s_id| RecordsSearch.insert(:search_id=>s_id, :record_id=>r_id_r)   }
       end
       r_id_r
