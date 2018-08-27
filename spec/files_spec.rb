@@ -32,13 +32,14 @@ describe 'Files:' do
 
 
   context 'when upload a file using /review/files/add' do
+    let(:file) {IFile[1]}
+    let(:app_helpers) {Class.new {extend Buhos::Helpers}}
+
     before(:context) do
       delete_files
       uploaded_file=Rack::Test::UploadedFile.new(filepath, "application/pdf", true)
       post '/review/files/add', systematic_review_id:sr_by_name_id('Test Review'), files:[uploaded_file]
     end
-    let(:file) {IFile[1]}
-    let(:app_helpers) {Class.new {extend Buhos::Helpers}}
     it "should response will be redirect" do expect(last_response).to be_redirect end
     it "should create an file object" do expect(file).to be_truthy end
     it "should create an file object with correct mime type" do expect(file[:filetype]).to eq("application/pdf") end

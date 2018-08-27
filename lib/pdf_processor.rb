@@ -76,8 +76,7 @@ class PdfProcessor
         mode=:abstract
         # There is more information on this line?
 
-        if (line_wo_abstract=(line.gsub(/Abstract:?/,"")).lstrip)!=""
-
+        if (line_wo_abstract=(line.gsub(/(?:Abstract):?/,"")).lstrip)!=""
           abstract_lines.push(line_wo_abstract)
         end
 

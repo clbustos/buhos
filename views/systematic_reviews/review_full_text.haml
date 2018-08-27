@@ -10,14 +10,6 @@
 .well
   =t("review_full_text.objective")
 
-
-:javascript
-  $(document).ready(function() {
-    actualizar_decision('screening_references');
-    }
-  );
-
-
 =partial(:systematic_review_info, :locals=>{systematic_review: @review})
 
 %h3=t(:Review_status)

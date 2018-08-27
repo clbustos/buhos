@@ -25,30 +25,50 @@
 # CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
 # OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-require_relative 'scopus'
-
-class ScopusRemote
-  attr_reader :scopus
-  attr_reader :error
-
-  def initialize
-    @scopus=Scopus::Connection.new(ENV["SCOPUS_KEY"], :proxy_host => ENV["PROXY_HOST"], :proxy_port => ENV["PROXY_PORT"], :proxy_user => ENV["PROXY_USER"], :proxy_pass => ENV["PROXY_PASS"])
-    @error=nil
-  end
-
-  # @param id Id to retrieve. By default, doi
-  # @param type type of identifier. By default, doi, but could it be eid
-  def xml_abstract_by_id(id, type="doi")
-      uri_abstract=@scopus.get_uri_abstract(CGI.escapeElement(id), type=type, {})
-      xml=@scopus.connect_server(uri_abstract)
-      if @scopus.error
-        #$log.info(@scopus.error_msg)
-        @error=@scopus.error_msg
-        false
-      else
-        xml
+module Sinatra
+  module Tabs
+    class TabsContainer
+      def initialize(tabs_ids)
+        @tabs_ids=tabs_ids
+        @first_tab=true
       end
-      
+      def header
+        tabs_li=@tabs_ids.map {|v|
+          "<li role='presentation' class='#{@tabs_ids.keys.first==v[0] ? 'active':''}'>
+<a href='#tab-#{v[0]}' aria-control='tab-#{v[0]}' role='tab' data-toggle='tab'>#{v[1]}</a></li>
+"
+        }
+
+        "<ul class='nav nav-tabs' role='tablist'>
+#{tabs_li.join("\n")}
+</ul>
+"
+      end
+      def start_body
+        @first_tab=true
+        "<div class='tab-content'>"
+      end
+      def tab(id)
+        raise "No id in tabs" if @tabs_ids[id].nil?
+        close_prev= @first_tab ? "" : "</div>"
+
+        current_tab="<div role='tabpanel' class='tab-pane #{@first_tab ? 'active':''}' id='tab-#{id}'>"
+        @first_tab=false
+        "#{close_prev}\n#{current_tab}"
+      end
+
+      def end_body
+        "</div>\n</div>"
+      end
+    end
+    module Helpers
+      def  get_tabs(tabs:)
+        TabsContainer.new(tabs)
+      end
+    end
+    def self.registered(app)
+      app.helpers Tabs::Helpers
+    end
   end
+register Tabs
 end

@@ -74,7 +74,7 @@ class AnalysisSystematicReview
     @rs = rs
     process_basic_indicators
     process_cite_number
-    procesar_resolutions
+    process_resolutions
   end
   def self.reference_between_canonicals(sr)
     ReferencesBetweenCanonicals.new(sr)
@@ -151,14 +151,14 @@ class AnalysisSystematicReview
 
   private :process_cite_number
 
-  def procesar_resolutions
+  def process_resolutions
     @cd_resolutions = get_stages_ids.inject({}) do |ac, stage|
       ac[stage] = Resolution.where(:systematic_review_id => @rs.id, :stage => stage.to_s).as_hash(:canonical_document_id)
       ac
     end
   end
 
-  private :procesar_resolutions
+  private :process_resolutions
 
   def cd_in_resolution_stage?(id, stage)
     @cd_resolutions[stage.to_sym][id].nil? ? false : @cd_resolutions[stage.to_sym][id][:resolution] == 'yes'

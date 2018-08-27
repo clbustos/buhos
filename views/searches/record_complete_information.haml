@@ -1,5 +1,6 @@
 .heading=t_systematic_review_title(@review[:name],t(:Record_complete_information, cd_reference: truncate(@cd.ref_apa_6_brief,40)), false )
 - modal_files=get_modal_files
+- tabs=get_tabs(tabs:{pdf:"PDF", only_text:"Only Text"})
 %ul.breadcrumb
   %li
     %a{:href=>url("/review/#{@review.id}")}=@review.name
@@ -21,14 +22,32 @@
       =partial(:canonical_document_button, :locals=>{id:@cd[:id]})
   .row
     .col-md-8.col-sm-8#document_viewer
-      - if @current_file_id.nil?
+      - if @current_file.nil?
         %p.alert.alert-warning=t(:No_file)
         =modal_files.javascript_header
         =modal_files.cargador_archivo(@review[:id], @cd[:id])
       - else
+        =tabs.header
+        =tabs.start_body
+        =tabs.tab(:pdf)
         %div.embed-responsive.embed-responsive-4by3
-          %iframe{:src=>"/ViewerJS/#../file/#{@current_file_id}/download",  :allowfullscreen=>true, :webkitallowfullscreen=>true}
+          %iframe{:src=>"/ViewerJS/#../file/#{@current_file.id}/download",  :allowfullscreen=>true, :webkitallowfullscreen=>true}
+        =tabs.tab(:only_text)
+        %div.only-text=get_only_text(@current_file).gsub("\n", "<br/>")
+        =tabs.end_body
     .col-md-4.col-sm-4#extract-form
       %div
-        %div
-          Formulario
+        - [:author, :year,:title,:doi].each do |field|
+          %div
+            %strong=t(field.to_s.capitalize)
+          - if auth_to("review_admin")
+            %p=a_editable(@cd[:id], "canonical_document", "/canonical_document/edit_field/#{field}", @cd[field],"")
+          -else
+            %p=@cd[field]
+      %div
+        %strong=t(:Abstract)
+        - if auth_to("review_admin")
+          %p=a_textarea_editable(@cd[:id], "canonical_document", "/canonical_document/edit_field/abstract", @cd[:abstract],"")
+        - else
+          %p=@cd[:abstract]
+

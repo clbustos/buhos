@@ -200,4 +200,33 @@ AND  #{cd_query} GROUP BY tags.id) as t LEFT JOIN tag_in_classes tecl ON t.id=te
   def criteria_hash
     $db["SELECT criteria_type, c.id, c.text FROM  criteria c INNER JOIN sr_criteria sr ON c.id=sr.criterion_id WHERE sr.systematic_review_id=?", self[:id]].to_hash_groups(:criteria_type)
   end
+
+  # Delete systematic review and all associated objects
+  # TODO: Move association to pertinent model
+  def delete
+    $db.transaction do
+      searches_id=Search.where(systematic_review_id:self[:id]).map(:id)
+      m_srs_id=$db[:message_srs].where(systematic_review_id:self[:id]).map(:id)
+
+      $db[:records_searches].where(search_id: searches_id).delete
+      $db[:message_sr_seens].where(m_rs_id: m_srs_id).delete
+
+      $db[:tag_in_cds].where(systematic_review_id: self[:id]).delete
+      $db[:tag_bw_cds].where(systematic_review_id: self[:id]).delete
+      $db[:t_classes].where(systematic_review_id: self[:id]).delete
+      $db[:systematic_review_srtcs].where(sr_id: self[:id]).delete
+      $db[:sr_fields].where(systematic_review_id: self[:id]).delete
+      $db[:sr_criteria].where(systematic_review_id: self[:id]).delete
+      $db[:file_srs].where(systematic_review_id: self[:id]).delete
+      $db[:decisions].where(systematic_review_id: self[:id]).delete
+      $db[:cd_criteria].where(systematic_review_id: self[:id]).delete
+      $db[:allocation_cds].where(systematic_review_id: self[:id]).delete
+
+      Search.where(systematic_review_id:self[:id]).delete
+      $db[:message_srs].where(systematic_review_id:self[:id]).delete
+      $db[:systematic_reviews].where(id:self[:id]).delete
+    end
+    true
+  end
+
 end

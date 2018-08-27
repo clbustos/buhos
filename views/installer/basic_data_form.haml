@@ -30,6 +30,15 @@
     });
 
     update_field_db_adapter("#{@form_fields[:db_adapter][:default]}");
+    
+    $('#config_selector input[type="radio"]').click(function() {
+      var val=$(this).val();
+      if(val==='advanced') {
+        $('#advanced-configuration').removeClass('hidden');
+      } else if (val==='default') {
+      $('#advanced-configuration').addClass('hidden');
+      };
+    });
   });
 
 %ul.breadcrumb
@@ -40,25 +49,36 @@
 
 %p=t_desc_value(:Language,session['language'])
 
+%table#config_selector
+  %tr
+    %td
+      %input{type: :radio, checked:true, name: :configuration, value: "default"}
+    %td=t("installer.default_configuration")
+  %tr
+    %td
+      %input{type: :radio, name: :configuration, value: "advanced"}
+    %td=t("installer.advanced_configuration")      
+
 - if @env_exists
   %p=t("installer.env_exist_instructions")
   %pre=@env_text
   %a.btn.btn-success{:href=>"/installer/populate_database"}=t("installer.go_to_populate_database")
 
-%p=t("installer.basic_data_form_instruction")
-
-
-
 %form{:action=>"/installer/basic_data_form", :method=>:post}
-  -@form_fields.each_pair do |field,val|
-    .form-group{:id=>"form-container-#{field}"}
-      - if field==:db_adapter
-        %label{:for=>field}=t("installer.#{field}")
-        %select.form-control{:name=>field, :id=>"form-db_adapter"}
-          - @available_db_adapters.each do |db_adapter|
-            %option{:selected=>(session[field].nil? ? val[:default] : session[field])==db_adapter, :value=>db_adapter}=db_adapter
-      - else
-        %label{:for=>field}=t("installer.#{field}")
-        %input.form-control{:type=>:text,:name=>field, :id=>"form-#{field}",
-        :value=>session[field].nil? ? val[:default] : session[field] }
-  %input.btn.btn-default{:type=>:submit}
+
+  %div.hidden#advanced-configuration
+    %h3=t("installer.advanced_configuration")
+    %p=t("installer.basic_data_form_instruction")
+    -@form_fields.each_pair do |field,val|
+      .form-group{:id=>"form-container-#{field}"}
+        - if field==:db_adapter
+          %label{:for=>field}=t("installer.#{field}")
+          %select.form-control{:name=>field, :id=>"form-db_adapter"}
+            - @available_db_adapters.each do |db_adapter|
+              %option{:selected=>(session[field].nil? ? val[:default] : session[field])==db_adapter, :value=>db_adapter}=db_adapter
+        - else
+          %label{:for=>field}=t("installer.#{field}")
+          %input.form-control{:type=>:text,:name=>field, :id=>"form-#{field}",
+          :value=>session[field].nil? ? val[:default] : session[field] }
+  %p        
+  %input.btn.btn-primary{:type=>:submit, :value=>t(:Next)}

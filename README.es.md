@@ -124,6 +124,9 @@ Y se ejecuta la aplicación corriendo
 
    > ruby app.rb
 
+or
+
+   > rackup
 ## Configuración post-instalación
 
 La aplicación se configura mediante la web. Una vez que el servidor se inicia, se debe apuntar el navegador de forma predeterminada a http://localhost:4567, para iniciar el proceso de instalación.
@@ -142,7 +145,7 @@ Como paso final, se llena la base de datos. Se debe reiniciar la aplicación ant
 
 ## Implementación
 
-Para su uso por individuos, la aplicación puede ejecutarse sin problemas usando el instalador en Windows, o los paquetes para Ubuntu, Debian o CentOS.
+Para su uso individual, la aplicación puede ejecutarse sin problemas usando el instalador en Windows, o los paquetes para Ubuntu, Debian o CentOS.
 
 Para su uso en línea por múltiples usuarios, se ha probado el uso de Buhos desplegado en un servidor HTTP independiente, usando Passenger como conector con Nginx. Para la base de datos, se ha usado MySQL. En teoría, el software debería funcionar sin problemas en MariaDB y Apache.
 

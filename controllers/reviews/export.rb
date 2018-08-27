@@ -32,12 +32,26 @@ get '/review/:rev_id/stage/:stage/generate_graphml' do |rev_id, stage|
   halt_unless_auth('review_view')
   @review=SystematicReview[rev_id]
   raise Buhos::NoReviewIdError, rev_id if !@review
-  headers["Content-Disposition"] = "attachment;filename=graphml_review_#{rev_id}_stage_#{stage}.graphml"
 
-  content_type 'application/graphml+xml'
   graphml=Buhos::GraphML_Builder.new(@review, stage)
+  graphml.prepare_stream(self)
   graphml.generate_graphml
 end
+
+
+# Generate a Excel file of documents on a specific stage
+#
+
+get '/review/:rev_id/stage/:stage/generate_excel' do |rev_id, stage|
+  halt_unless_auth('review_view')
+  @review=SystematicReview[rev_id]
+  raise Buhos::NoReviewIdError, rev_id if !@review
+  eb=Buhos::ExcelBuilder.new(@review, stage)
+  eb.generate_excel
+  eb.prepare_stream(self)
+  eb.stream
+end
+
 
 # Generate a BibTeX file of documents on a specific stage
 #
@@ -55,6 +69,8 @@ get '/review/:rev_id/stage/:stage/generate_bibtex' do |rev_id, stage|
   bib.to_s
 
 end
+
+
 
 # Generate a list of DOI of documents on a specific stage
 #

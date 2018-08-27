@@ -1,6 +1,6 @@
 .heading
   =t_systematic_review_title(@review[:name], t("systematic_review_page.complete_empty_abstract")+". "+t(:Stage_title, :stage_name=>t(get_stage_name(@stage))),false)
-
+- ars=AnalysisSystematicReview.new(@review)
 %ul.breadcrumb
   %li
     %a{:href=>url("/reviews")}=t(:Systematic_reviews)
@@ -9,7 +9,7 @@
   %li
     %a{:href=>url("/review/#{@review[:id]}/administration_stages")}=t(:Administration)
   %li
-    %a{:href=>url("/reviews/#{@review[:id]}/administration/#{@stage}")}=t(get_stage_name(@stage))
+    %a{:href=>url("/review/#{@review[:id]}/administration/#{@stage}")}=t(get_stage_name(@stage))
   %li{:class=>:active}
     =t("systematic_review_page.complete_empty_abstract")
 
@@ -17,7 +17,10 @@
   - @cd_wo_abstract.each do |cd|
     .list-group-item
       =cd.ref_apa_6_brief_html
-      %p=sprintf("<strong>Referencias canónicas:</strong> citado por %d / reference a %d / citado por %d RTR ", cd[:n_total_references_in].to_i, cd[:n_total_references_made].to_i, cd[:n_references_rtr].to_i )
+      - text_references=sprintf("<strong>#{t(:Citations)}</strong>: #{t(:this_document_cites)}&nbsp;<strong>%d</strong> / #{t(:this_document_cited_by)}&nbsp;<strong>%d</strong> ", ars.cd_count_outgoing(cd[:id]).to_i, ars.cd_count_incoming(cd[:id]).to_i)
+      - if ars.cd_count_incoming_sta(cd[:id])
+        -text_references+=sprintf("/ #{t(:this_document_cited_by_rta_document)}&nbsp;<strong>%d</strong>", ars.cd_count_incoming_sta(cd[:id]).to_i)
+      %p=text_references
 
       %div
         =partial(:canonical_document_button,:locals=>{:id=>cd.id})

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Personalized forms:' do
+describe 'Analysis Form:' do
   before(:all) do
     RSpec.configure { |c| c.include RSpecMixin }
     @temp=configure_empty_sqlite
@@ -21,7 +21,7 @@ describe 'Personalized forms:' do
   def delete_all_fields
 
   end
-  context "when we retrieve the personalized fields of the form the first time" do
+  context "when we retrieve the form custom fields for first time" do
     before(:context) do
       get '/review/1/fields'
     end

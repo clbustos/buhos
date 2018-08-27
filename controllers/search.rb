@@ -152,28 +152,36 @@ post '/search/update' do
     else
 
 
-    if id==""
-      search=Search.create(
-          :systematic_review_id=>otros_params[:systematic_review_id],
-          :source=>otros_params[:source],
-          :bibliographic_database_id=>otros_params[:bibliographic_database_id],
-          :date_creation=>otros_params[:date_creation],
-          :search_criteria=>otros_params[:search_criteria],
-          :description=>otros_params[:description],
-          :search_type=>otros_params[:search_type]
-      )
-    else
-      search=Search[id]
-      search.update(otros_params)
-    end
+      if id==""
+        search=Search.create(
+            :systematic_review_id=>otros_params[:systematic_review_id],
+            :source=>otros_params[:source],
+            :bibliographic_database_id=>otros_params[:bibliographic_database_id],
+            :date_creation=>otros_params[:date_creation],
+            :search_criteria=>otros_params[:search_criteria],
+            :description=>otros_params[:description],
+            :search_type=>otros_params[:search_type]
+        )
+      else
+        search=Search[id]
+        search.update(otros_params)
+      end
 
-    if archivo
-      fp=File.open(archivo[:tempfile],"rb")
-      search.update(:file_body=>fp.read, :filetype=>archivo[:type],:filename=>archivo[:filename])
-      fp.close
-    end
-  end
+      if archivo
+        fp=File.open(archivo[:tempfile],"rb")
+        search.update(:file_body=>fp.read, :filetype=>archivo[:type],:filename=>archivo[:filename])
+        fp.close
+      end
 
+      if search.is_type?(:bibliographic_file)
+        sp=BibliographicFileProcessor.new(search)
+        add_result(sp.result)
+      end
+      unless sp.error.nil?
+        add_message(sp.error, :error)
+        search.delete
+      end
+    end
   redirect "/review/#{otros_params[:systematic_review_id]}/dashboard"
 end
 

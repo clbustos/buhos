@@ -26,6 +26,7 @@
 # OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+require_relative "buhos/helpers"
 
 # Namespace for files related UX
 module FileHandler
@@ -73,7 +74,7 @@ HEREDOC
 </form>"
     end
 
-    def botones(archivo, cd_id = nil, rs_id = nil, eliminar = nil)
+    def buttons(archivo, cd_id = nil, rs_id = nil, eliminar = nil)
       boton_canonico = ""
       boton_rs = ""
       boton_eliminar = ""
@@ -130,22 +131,42 @@ HEREDOC
 end
 
 module Sinatra
-  module SinatraManejadorArchivos
+  module SinatraFileHandler
     module Helpers
+      include Buhos::Helpers
       def get_modal_files
         FileHandler::ModalFiles.new
       end
-      def get_file_canonical_document(cd, manual_file=nil)
-        files_id=FileCd.where(:canonical_document_id=>cd[:id], :not_consider=>false).map(:file_id)
+      def get_file_canonical_document(sr, cd, manual_file=nil)
+        files_id_cd=FileCd.where(:canonical_document_id=>cd[:id], :not_consider=>false).map(:file_id)
+        files_id=FileSr.where(:systematic_review_id=>sr[:id], :file_id=>files_id_cd).map(:file_id)
+
         files=IFile.where(:id=>files_id).as_hash
         current_file_id = manual_file || files.keys[0]
         files[current_file_id]
       end
+      def get_only_text(file)
+
+        raise "Must a IFile file" unless file.is_a? IFile
+        filepath=file.absolute_path(dir_files)
+        if file[:filetype]=~/text/
+          File.read(filepath)
+        elsif file[:filetype]=~/pdf/
+          reader=PDF::Reader.new(filepath)
+          file.update(:pages=>reader.pages.length) if file[:pages].nil?
+
+          reader.pages.map {|page|
+            page.text
+          }.join("\n\n")
+        else
+          nil
+        end
+      end
     end
 
     def self.registered(app)
-      app.helpers SinatraManejadorArchivos::Helpers
+      app.helpers SinatraFileHandler::Helpers
     end
   end
-  register SinatraManejadorArchivos
+  register SinatraFileHandler
 end

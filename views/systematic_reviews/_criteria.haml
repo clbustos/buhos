@@ -10,5 +10,6 @@
             %span.glyphicon.glyphicon-minus
       %li.list-group-item
         %input{:type=>:text, :id=>"criteria-#{type}-new", :name=>"criteria[#{type}][new]", :placeholder=>t("Criteria_new_#{type}")}
-        %button.btn.btn-default.add_criteria{:id=>"criteria-add-#{sr.id}-#{type}", "data-url"=>url("/review/#{sr.id}/criteria/add")}
-          %span.glyphicon.glyphicon-plus
+        -unless sr.id.nil?
+          %button.btn.btn-default.add_criteria{:id=>"criteria-add-#{sr.id}-#{type}", "data-url"=>url("/review/#{sr.id}/criteria/add")}
+            %span.glyphicon.glyphicon-plus

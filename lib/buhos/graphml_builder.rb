@@ -54,6 +54,10 @@ module Buhos
       [head, nodos, edges, footer].join("\n")
     end
 
+    def prepare_stream(app)
+      app.headers["Content-Disposition"] = "attachment;filename=graphml_review_#{@sr.id}_stage_#{@stage}.graphml"
+      app.content_type 'application/graphml+xml'
+    end
     private
     def build_head
 <<HEREDOC

@@ -28,7 +28,7 @@ gem 'mimemagic'
 gem "certified", :platforms => :mingw
 gem "sass"
 gem 'rubyXL'
-
+gem 'axlsx'
 group :production do
   gem "puma", :platforms => :mingw
   gem "thin", :platforms => :ruby

@@ -10,13 +10,13 @@
 # Get a list of systematic Reviews
 get '/reviews' do
   halt_unless_auth('review_view')
-  @usuario=User[session['user_id']]
+  @user=User[session['user_id']]
   @show_inactives=params['show_inactives']
   @show_inactives||='only_actives'
   @show_only_user=params['show_only_user']
   @show_only_user||='yes'
   if @show_only_user=='yes'
-    @reviewes=SystematicReview.get_reviews_by_user(@usuario.id)
+    @reviewes=SystematicReview.get_reviews_by_user(@user.id)
   else
     @reviewes=SystematicReview
   end
@@ -206,6 +206,30 @@ get '/review/:id/repeated_canonical_documents' do |id|
   haml %s{systematic_reviews/repeated_canonical_documents}
 end
 
+
+post '/review/:id/automatic_deduplication' do |id|
+  halt_unless_auth('canonical_document_admin')
+
+  @review=SystematicReview[id]
+  raise Buhos::NoReviewIdError, id if !@review
+  @cd_rep_doi=@review.repeated_doi
+
+  @cd_por_doi=CanonicalDocument.where(:doi => @cd_rep_doi).to_hash_groups(:doi, :id)
+
+  result=Result.new
+  @cd_por_doi.each_pair do |doi, cds_id|
+    resultado=CanonicalDocument.merge(cds_id)
+    if resultado
+      result.success("DOI:#{doi} - #{I18n::t("Canonical_document_merge_successful")}")
+    else
+      result.error("DOI:#{doi} - #{I18n::t("Canonical_document_merge_error")}")
+    end
+  end
+  add_result(result)
+  redirect back
+end
+
+
 # Get tags and classes of tags for a systematic review
 get '/review/:id/tags' do |id|
   halt_unless_auth('review_view')
@@ -262,6 +286,7 @@ post '/review/files/add' do
   if files
     results=Result.new
     files.each do |file|
+      # TODO: Should be replaced by FileProcessor service
       results.add_result(IFile.add_on_sr(file, @review, dir_files, cd))
     end
     add_result results
@@ -292,5 +317,27 @@ get '/review/:id/advance_stage' do |id|
   end
 end
 
+get '/review/:id/delete' do |id|
+  halt_unless_auth('review_admin')
 
+  @review=SystematicReview[id]
+  raise Buhos::NoReviewIdError, id if !@review
+
+  haml "systematic_reviews/delete_warning".to_sym
+end
+
+
+post '/review/:id/delete2' do |id|
+  id2=params['sr_id']
+  @review=SystematicReview[id]
+  raise Buhos::NoReviewIdError, id if !@review
+  raise "#{id} and #{id2} should coincide" if id.to_s!=id2.to_s
+
+  if @review.delete
+    add_message(t("systematic_review.delete_successful"))
+  else
+    add_message(t("systematic_review.delete_unsuccessful"))
+  end
+  redirect url('/reviews')
+end
 # @!endgroup

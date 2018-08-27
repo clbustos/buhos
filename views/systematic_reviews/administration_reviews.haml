@@ -70,10 +70,10 @@
             %span{:class=>"glyphicon glyphicon-triangle-bottom"}
             =t(:View)
           %a{:href=>url("/review/#{@review[:id]}/stage/#{@stage}/pattern/#{@ars.pattern_id(patron)}/resolution/yes"),:class=>"btn btn-success btn-sm", :role=>"button"}
-            %span{:class=>"glyphicon glyphicon glyphicon-ok-circle"}
+            %span{:class=>"glyphicon glyphicon-ok-circle"}
             =t(:Accept)
           %a{:href=>url("/review/#{@review[:id]}/stage/#{@stage}/pattern/#{@ars.pattern_id(patron)}/resolution/no"),:class=>"btn btn-danger btn-sm", :role=>"button"}
-            %span{:class=>"glyphicon glyphicon glyphicon-ban-circle"}
+            %span{:class=>"glyphicon glyphicon-ban-circle"}
             =t(:Reject)
 
 
@@ -114,7 +114,7 @@
               -apc_doc.each do |archivo|
                 %div
                   =archivo[:id]
-                  =@modal_files.botones(archivo, doc_c[:id])
+                  =@modal_files.buttons(archivo, doc_c[:id])
             - else
               =@modal_files.cargador_archivo(@review[:id],doc_c[:id])
 
@@ -140,8 +140,6 @@
           %td
             = (@ars.cd_hash[cd_id]) ? @ars.cd_hash[cd_id].title : t("error.no_valid_cd_for_this_systematic_review", cd_id:cd_id)
             =partial(:canonical_document_button, :locals=>{id:cd_id})
-            %br
-            =partial(:buttons_resolution, :locals=>{:rpc=>rpc, :cd_id=>cd_id, :stage=>@stage, :user_id=>@user_id, :review=>@review})
           - Decision::N_EST.each do |dec,name|
             %td{:class=>"decision decision-#{dec}"}= vals[dec].to_i
-          %td
+          %td=partial(:buttons_resolution, :locals=>{:rpc=>rpc, :cd_id=>cd_id, :stage=>@stage, :user_id=>@user_id, :review=>@review})

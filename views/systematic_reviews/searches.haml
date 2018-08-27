@@ -23,9 +23,6 @@
         %input{:type=>:hidden, :name=>:url_back, :value=>@url_back}
         .btn-toolbar
           .btn-group.btn-group-sm{:role=>:group}
-            %button.btn.btn-default.btn-action{:value=>:process}
-              %span{:class=>"glyphicon glyphicon-play"}
-              =t(:Search_process)
             %button.btn.btn-default.btn-action{:value=>:valid}
               %span.glyphicon.glyphicon-ok-circle
               =t(:Search_valid)
@@ -50,9 +47,11 @@
             %th=t(:Records)
           %tbody
             - @searches.each do |g|
+              - auth_on_search=g.user_id==@user.id or auth_to("review_admin")
               %tr{:class=>bool_class(g.valid, "success","danger","warning"), :id=>"row-search-#{g.id}"}
                 %td
-                  %input{:type=>'checkbox', :name=>"search[]", :value=>g[:id], :class=>'checkbox_interactive'}
+                  -if auth_on_search
+                    %input{:type=>'checkbox', :name=>"search[]", :value=>g[:id], :class=>'checkbox_interactive'}
                 %td=g.id
                 %td=t(g.source_name)
                 %td=g.bibliographical_database_name
@@ -66,9 +65,10 @@
 
                 %td= t_yes_no_nil(g.valid)
                 %td
-                  %a.btn.btn-default{:href=>url("/search/#{g.id}/edit")}
-                    %span{:class=>"glyphicon glyphicon-pencil"}
-                    =t(:Edit)
+                  - if auth_on_search
+                    %a.btn.btn-default{:href=>url("/search/#{g.id}/edit")}
+                      %span{:class=>"glyphicon glyphicon-pencil"}
+                      =t(:Edit)
                   %a.btn.btn-default{:href=>url("/search/#{g.id}/records")}
                     %span{:class=>"badge"}=g.records_n
                     %span{:class=>"glyphicon glyphicon-list"}

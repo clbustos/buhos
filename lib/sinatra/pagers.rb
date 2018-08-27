@@ -193,6 +193,7 @@ module Sinatra
       end
     end
 
+    # Helpers for Module Pagers
     module Helpers
       # Retrieve a pager object.
       # Params are: page, dataset, cpp, order

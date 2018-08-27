@@ -14,4 +14,4 @@
     %select.form-control{:name=>'language', :id=>'language'}
       - available_locales_hash.each_pair do |key,val|
         %option{:value=>key, :selected=>key==::I18n.locale}=val
-  %input{:type=>:submit}
+  %input.btn.btn-primary{:type=>:submit, :value=>t(:Next)}

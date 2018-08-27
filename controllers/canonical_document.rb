@@ -113,6 +113,9 @@ put '/canonical_document/edit_field/:field' do |field|
   halt_unless_auth('canonical_document_admin')
   pk = params['pk']
   value = params['value']
+
+  value=process_abstract_text(value) if field=='abstract'
+
   @cd=CanonicalDocument[pk]
   @cd.update(field.to_sym=>value.chomp)
   return true

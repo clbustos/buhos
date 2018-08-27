@@ -64,7 +64,7 @@ module BibliographicalImporter
 
           @title=row["Title Primary"]
           @abstract=row["Abstract"]
-          @authors=row["Authors, Primary"].split(";")
+          @authors=row["Authors, Primary"].split(";") unless row["Authors, Primary"].nil?
           @journal=row["Periodical Full"]
           @year=row["Pub Year"]
           @volume=row["Volume"]
@@ -74,7 +74,7 @@ module BibliographicalImporter
           @keywords=row["Keywords"]
           @url=row["URL"]
           @journal_abbr=row["Periodical Abbrev"]
-          @uid=digest=Digest::SHA256.hexdigest "#{row["Authors, Primary"]}-#{@year}-#{@title}"
+          @uid=Digest::SHA256.hexdigest "#{row["Authors, Primary"]}-#{@year}-#{@title}"
         rescue Exception => e
           #$log.info("Error:#{row}")
           raise e
@@ -83,7 +83,7 @@ module BibliographicalImporter
       end
 
       def author
-        @authors.join (" and ")
+        @authors.join(" and ")
       end
 
       # Determine the type of the reference. It could be infered by fields

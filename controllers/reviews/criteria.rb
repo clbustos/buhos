@@ -29,6 +29,30 @@ post '/review/:rs_id/criteria/:action' do |rs_id,action|
   partial("systematic_reviews/criteria", :locals=>{sr:@review, ajax:true, type:params['cr_type']})
 end
 
+post '/review/criteria/cd' do
 
+
+  cd = CanonicalDocument[params['cd_id']]
+  sr = SystematicReview[params['sr_id']]
+  user = User[params['user_id']]
+  criterion=Criterion[params['criterion_id']]
+  checked = params['checked'].to_i==1
+
+  raise Buhos::NoReviewIdError, params['sr_id'] if !sr
+  raise Buhos::NoCdIdError , params['cd_id'] if !cd
+  raise Buhos::NoUserIdError, params['user_id'] if !user
+  raise Buhos::NoCriterionIdError, params['criterion_id'] if !criterion
+
+  h_crit={criterion_id:criterion[:id], canonical_document_id: cd[:id], user_id:user[:id], systematic_review_id: sr[:id]}
+  cd_criteria=CdCriterion[h_crit]
+  if !cd_criteria
+    CdCriterion.insert(h_crit.merge({selected:checked}))
+  else
+    cd_criteria.update(selected:checked)
+  end
+  200
+
+
+end
 
 # @!endgroup

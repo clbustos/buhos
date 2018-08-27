@@ -8,7 +8,7 @@ describe "parser of an authorRetrievalResponse object" do
     @connection=Scopus::Connection.new("fauxkey")
   }
   it "get correct URI for a request" do
-    expect(@connection.get_uri_author(25634855600)).to eq("http://api.elsevier.com/content/author?author_id=25634855600&apiKey=fauxkey&view=LIGHT")
+    expect(@connection.get_uri_author(25634855600)).to eq("https://api.elsevier.com/content/author?author_id=25634855600&apiKey=fauxkey&view=LIGHT")
   end
   it "should include correct raw information" do
   pending

@@ -25,9 +25,15 @@
       .list-group
         -records_s.each do |record|
           - cd=@cds[record[:canonical_document_id]]
-          -class_record=(@sv[record[:user_id]].valid_records.include?(record.id)) ? "list-group-item" : "list-group-item-danger"
+          -class_record=(@sv[record[:user_id]].valid_records_id.include?(record[:record_id])) ? "list-group-item" : "list-group-item-danger"
           %a.list-group-item{:type=>:button, :class=>class_record, :href=>url("/review/#{@review.id}/search/#{search_id}/record/#{record[:record_id]}/complete_information#{user_url}")}
             = (cd.author.to_s=='' ? "<em>#{t(:No_author)}</em> #{gq}" : cd.author)
             = (cd.year==0 ? "<em>(#{t(:No_date)} #{gq}).</em>" : "(#{cd.year}).")
             = (cd.title.to_s=='' ? "<em>#{t(:No_title)}</em> #{gq}." : "#{cd.title}.")
-            = (cd.abstract.to_s=='' ? "<em>#{t(:No_abstract)}</em> #{gq}" : t(:With_Abstract))
+            - if cd[:abstract].to_s!=""
+              %button{:class=>"btn btn-default btn-sm", :type=>"button",  "data-toggle"=>'collapse', "data-target"=>"#cd_abstract-#{cd[:id]}", "aria-expanded"=>"false", "aria-controls"=>"cd_abstract-#{cd[:id]}"}=t(:Abstract)
+            - else
+              = "<em>#{t(:No_abstract)}</em> #{gq}"
+            - if cd[:abstract].to_s!=""
+              %div{:class=>"collapse", :id=>"cd_abstract-#{cd[:id]}"}
+                .well=cd[:abstract]

@@ -40,6 +40,7 @@ get %r{/review/(\d+)/(?:searches/)?records(?:/user/(\d+))?} do
     @user=User[user_id]
     @records=records_base.where(systematic_review_id:review_id, user_id:user_id)
     @sv={@user.id=>SearchValidator.new(@review,@user)}
+    @sv[@user.id].validate
   else
     @user=nil
     @records=records_base.where(systematic_review_id:review_id)
@@ -47,9 +48,11 @@ get %r{/review/(\d+)/(?:searches/)?records(?:/user/(\d+))?} do
     @users=@records.map {|v| v[:user_id]}.uniq
     @sv=@users.inject({}) do |ac,user_id|
       ac[user_id]=SearchValidator.new(@review,User[user_id])
+      ac[user_id].validate
       ac
     end
   end
+
   @cds=CanonicalDocument.where(:id=>@records.map {|v| v[:canonical_document_id]}.uniq).to_hash
 
 #  $log.info(@cds)
@@ -68,7 +71,8 @@ get '/review/:review_id/search/:search_id/record/:record_id/complete_information
   @cd=@record.canonical_document
   @user=User[params['user_id']]
 
-  current_file_id=get_file_canonical_document(@cd)
+
+  @current_file=get_file_canonical_document(@review,@cd)
 
   haml "searches/record_complete_information".to_sym
 

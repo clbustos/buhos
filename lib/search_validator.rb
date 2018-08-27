@@ -33,6 +33,9 @@ class SearchValidator
 
   attr_reader :user
   attr_reader :sr
+  attr_reader :valid_records_id
+  attr_reader :invalid_records_id
+
   def initialize(sr, user)
     @sr=sr
     @user=user
@@ -53,7 +56,9 @@ class SearchValidator
     Record.where(:id=>@invalid_records_id)
   end
 
-
+  def searches_n
+    Search.where(:systematic_review_id=>@sr.id, :user_id=>@user.id).count
+  end
 
   def validate
     can_docs=$db["SELECT s.id as s_id, r.id as r_id, cd.id, cd.author, cd.title, cd.abstract, cd.year FROM searches s INNER JOIN records_searches rs ON s.id=rs.search_id INNER JOIN records r ON rs.record_id=r.id LEFT JOIN canonical_documents cd ON r.canonical_document_id=cd.id WHERE s.user_id=? and s.systematic_review_id=?", @user.id, @sr.id]
@@ -64,18 +69,19 @@ class SearchValidator
   end
 
   def valid
-    (valid_records_n>0 and invalid_records_n==0)
+    searches_n==0 or (valid_records_n>0 and invalid_records_n==0)
   end
 
   def update_search(can_docs)
     if can_docs.empty?
-      Search.where(:systematic_review_id=>@sr.id).update(:valid=>false)
+      # Don't
+      #Search.where(:systematic_review_id=>@sr.id, :user_id=>@user.id).update(:valid=>false)
     else
       can_docs.to_hash_groups(:s_id).each do |key,recs|
         rec_id=recs.map {|v| v[:r_id]}
         valids=@valid_records_id & rec_id
         invalids=@invalid_records_id & rec_id
-        Search[key].update(:valid=> (valids.length>0 and invalids.length==0))
+        Search[key].update(:valid=> true) if (valids.length>0 and invalids.length==0)
       end
     end
   end

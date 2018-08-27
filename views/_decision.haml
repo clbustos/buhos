@@ -1,4 +1,13 @@
 - # Parametros: review, cd (canonical_document) | decisions | ars | user_id | stage)
+
+- if @decision_js.nil?
+  %script{:type=>'text/javascript', :src=>url('/js/decision.js')}
+  :javascript
+    $(document).ready(function() {
+      actualizar_decision('#{stage}');
+    });
+
+  - @decision_js=true
 - decision_o=decisions[cd[:id]]
 - decision = decision_o ? decision_o[:decision] : nil
 - clase_panel=decision_class_bootstrap(decision,"panel")
@@ -7,7 +16,6 @@
 - ajax||=false
 - abs_pres.keywords =review.keywords_as_array
 - url_base="/review/#{review[:id]}/canonical_document/#{cd[:id]}"
-
 - only_buttons||=false
 - class_buttons  = only_buttons ? "panel-body" : "panel-footer"
 %div{:class=>"panel #{clase_panel}"}

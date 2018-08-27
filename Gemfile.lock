@@ -6,6 +6,10 @@ GEM
     ai4r (1.13)
     arr-pm (0.0.10)
       cabin (> 0)
+    axlsx (2.0.1)
+      htmlentities (~> 4.3.1)
+      nokogiri (>= 1.4.1)
+      rubyzip (~> 1.0.0)
     backports (3.11.3)
     bibtex-ruby (4.4.7)
       latex-decode (~> 0.0)
@@ -49,6 +53,7 @@ GEM
       temple (>= 0.8.0)
       tilt
     hashery (2.1.2)
+    htmlentities (4.3.4)
     i18n (1.1.0)
       concurrent-ruby (~> 1.0)
     insist (1.0.0)
@@ -69,7 +74,7 @@ GEM
     multi_json (1.13.1)
     multipart-post (2.0.0)
     mustache (0.99.8)
-    mustermann (1.0.2)
+    mustermann (1.0.3)
     mysql2 (0.5.2)
     mysql2 (0.5.2-x86-mingw32)
     nbayes (0.1.1)
@@ -126,10 +131,10 @@ GEM
     ruby-xz (0.2.3)
       ffi (~> 1.9)
       io-like (~> 0.3)
-    rubyXL (3.3.29)
+    rubyXL (3.1.0)
       nokogiri (>= 1.4.4)
-      rubyzip (>= 1.1.6)
-    rubyzip (1.2.1)
+      rubyzip (>= 1.0.0)
+    rubyzip (1.0.0)
     sass (3.5.7)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
@@ -182,6 +187,7 @@ PLATFORMS
 
 DEPENDENCIES
   ai4r
+  axlsx
   bibtex-ruby
   categorize
   certified

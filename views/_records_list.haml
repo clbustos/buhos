@@ -30,7 +30,7 @@
       - if show_files
         -search_record=RecordsSearch[:record_id=>registro.id, :search_id=>search.id]
         -if search_record[:file_id]
-          =modal_files.botones(IFile[search_record[:file_id]] )
+          =modal_files.buttons(IFile[search_record[:file_id]] )
       -if registro[:abstract]!=""
         %button{:class=>"btn btn-primary btn-sm", :type=>"button",  "data-toggle"=>'collapse', "data-target"=>"#registro#{registro[:id]}", "aria-expanded"=>"false", "aria-controls"=>"registro#{registro[:id]}"}=t(:Abstract)
         %div{:class=>"collapse", :id=>"registro#{registro[:id]}"}
