@@ -274,7 +274,11 @@ get '/canonical_document/:id/view_pubmed_info' do |id|
   @cd=CanonicalDocument[id]
   raise Buhos::NoCdIdError, id if !@cd
   @pmc_sum=@cd.pubmed_integrator
-  @xml=Pmc_Summary[@cd.pmid][:xml]
+  if @cd.pmid
+    @xml=Pmc_Summary[@cd.pmid][:xml]
+  else
+    @xml=nil
+  end
   haml "canonical_documents/view_pubmed_info".to_sym
 end
 

@@ -64,7 +64,7 @@ get '/review/:rs_id/update_field_table' do |rs_id|
   @review=SystematicReview[rs_id]
   raise Buhos::NoReviewIdError, rs_id if !@review
   @campos=@review.fields
-  SrField.actualizar_tabla(@review)
+  SrField.update_table(@review)
   add_message(t("fields.sr_table_update_success"))
   redirect back
 end

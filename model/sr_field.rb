@@ -50,7 +50,7 @@ class SrField < Sequel::Model
     end
   end
 
-  def self.actualizar_tabla(rs)
+  def self.update_table(rs)
     table = rs.analysis_cd_tn
     $db.transaction(:rollback => :reraise) do
       #$log.info(table)
