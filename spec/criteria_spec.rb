@@ -10,7 +10,6 @@ describe 'Criteria related models' do
     $db[:sr_criteria].delete
     $db[:cd_criteria].delete
     $db[:criteria].delete
-
   end
   let(:sr) {SystematicReview[1]}
   context "Criterion model" do

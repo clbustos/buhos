@@ -193,7 +193,7 @@ post '/canonical_document/actions' do
   halt_unless_auth('canonical_document_admin')
   action=params['action']
   halt 500, t(:no_action_specified) unless action
-  halt 500, t(:no_action_specified) if params['canonical_document'].nil?
+  halt 500, t(:no_canonical_document) if params['canonical_document'].nil?
   cd_ids=params['canonical_document'].keys
 
 

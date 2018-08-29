@@ -5,8 +5,7 @@ describe 'SystematicReview class' do
   before(:all) do
     RSpec.configure { |c| c.include RSpecMixin }
     configure_empty_sqlite
-    post '/login' , :user=>'admin', :password=>'admin'
-
+    login_admin
   end
   let(:rs_dataset) {SystematicReview.where(:name=>'Test Review')}
   let(:rs) {SystematicReview.where(:name=>'Test Review').first}

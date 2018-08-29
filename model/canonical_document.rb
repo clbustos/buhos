@@ -67,9 +67,10 @@ class CanonicalDocument < Sequel::Model
       columnas.delete(:id)
 
       cds=CanonicalDocument.where(:id => pks)
+      raise("Ids to merge were #{pks.join(',')} and retrieved where #{cds.map{|v|v[:id]}.join(',')}")  if cds.count!=pks.count
       fields=columnas.inject({}) {|ac, v| ac[v]=nil; ac}
       cds.each do |cd|
-        columnas.find_all {|col| fields[col].nil? or fields[col]==""}.each {|col|
+        columnas.find_all {|col|   fields[col].nil? or fields[col]=="" or (col==:year and fields[col]==0)}.each {|col|
           fields[col]=cd[col]
         }
       end
@@ -85,8 +86,8 @@ class CanonicalDocument < Sequel::Model
         $db[table].select(*pk).where(:canonical_document_id=>pks).each do |row|
           fixed_row=row.dup
           fixed_row[:canonical_document_id]=pk_id
-          $log.info(cache)
-          $log.info(fixed_row)
+          #$log.info(cache)
+          #$log.info(fixed_row)
 
           if cache.include? fixed_row
             $db[table].where(row).delete
