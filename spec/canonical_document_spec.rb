@@ -18,6 +18,12 @@ describe 'Canonical Record' do
     end
     it {expect(last_response).to be_redirect}
   end
+  context "when search for pubmed data" do
+    before(:context) do
+      get '/canonical_document/64/get_pubmed_data'
+    end
+    it {expect(last_response).to be_redirect}
+  end
 
   context "when update information of a canonical document using crossref" do
     before(:context) do
