@@ -45,7 +45,7 @@ en:
     no_unique_id_for_integrator: "No unique id for integrator"
     no_file_available: "No file available to process"
     error_on_reference: "Error in Reference No. %{i}"
-    error_parsing_file: "Error parsing file"
+    error_parsing_file: "Error parsing file : %{message}"
     no_integrator_for_filetype: "No integrator found for this file type"
     Search_canonical_documents_successfully: "Canonical search files processed successfully"
     Search_process_file_successfully: "Search file processed successfully"

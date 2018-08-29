@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Fulltext Report' do
+describe 'Process Report' do
   before(:all) do
     RSpec.configure { |c| c.include RSpecMixin }
     @temp=configure_empty_sqlite
@@ -9,16 +9,18 @@ describe 'Fulltext Report' do
   end
   context "when html is retrieved" do
     before(:context) do
-      get '/review/1/report/fulltext/html'
+      get '/review/1/report/process/html'
     end
     it_should_behave_like 'html standard report'
+
   end
 
   context "when full text report excel is downloaded" do
     before(:context) do
-      get '/review/1/report/fulltext/excel_download'
+      get '/review/1/report/process/excel_download'
     end
     it_should_behave_like 'excel standard report'
+
   end
 
 

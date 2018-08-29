@@ -61,6 +61,24 @@ app_path=File.expand_path(File.dirname(__FILE__)+"/..")
 
 module RSpecMixin
   include Rack::Test::Methods
+
+  shared_examples 'html standard report' do
+    it "should response be ok" do expect(last_response).to be_ok end
+    it "should include name of review" do
+      expect(last_response.body).to include("Test Systematic Review")
+    end
+  end
+
+  shared_examples 'excel standard report' do
+    it "should response be ok" do expect(last_response).to be_ok end
+    it "should content type be correct mimetype" do expect(last_response.header['Content-Type']).to eq('application/vnd.openxmlformats-officedocument.spreadsheetml.sheet') end
+    it "should content dispostion be attachment and include .xlsx on name" do
+      expect(last_response.header['Content-Disposition']).to include("attachment") and
+          expect(last_response.header['Content-Disposition']).to include(".xlsx")
+    end
+  end
+
+
   def app() Sinatra::Application end
 	def is_windows?
 		(/cygwin|mswin|mingw|bccwin|wince|emx/ =~ RUBY_PLATFORM) != nil
@@ -169,6 +187,23 @@ module RSpecMixin
   def check_executable_on_path(exe)
     require 'mkmf'
     find_executable exe
+  end
+
+  def sr_for_report
+    create_sr
+    sr1=SystematicReview[1]
+    sr1.stage='report'
+    SrField.insert(:id=>1, :systematic_review_id=>1, :order=>1, :name=>"field_1", :description=>"Field 1", :type=>"textarea")
+    SrField.insert(:id=>2, :systematic_review_id=>1, :order=>2, :name=>"field_2", :description=>"Field 2", :type=>"select", :options=>"a=a;b=b")
+    SrField.insert(:id=>3, :systematic_review_id=>1, :order=>3, :name=>"field_3", :description=>"Field 3", :type=>"multiple", :options=>"a=a;b=b")
+    SrField.update_table(sr1)
+    CanonicalDocument.insert(:id=>1, :title=>"Title 1", :year=>0)
+    create_search
+    create_record(:cd_id=>1, :search_id=>1)
+    $db[:analysis_sr_1].insert(:user_id=>1, :canonical_document_id=>1, :field_1=>"[campo1] [campo2]", :field_2=>"a",:field_3=>"a,b")
+
+    Resolution.insert(:systematic_review_id=>1, :canonical_document_id=>1, :user_id=>1, :stage=>'review_full_text', :resolution=>'yes')
+    sr1
   end
 end
 
