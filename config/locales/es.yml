@@ -328,6 +328,7 @@ es:
   New_tag: "Nueva etiqueta"
   Next: "Siguiente"
   No_abstract: "Sin abstract"
+  no_action_specified: "No se especificó ninguna acción"
   No_assignation_instructions: "Sin instrucciones"
   No_author: "Sin autor"
   No_document_for_this_criteria: "Sin documentos para este criterio"

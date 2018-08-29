@@ -17,10 +17,6 @@ describe 'Fulltext Report' do
     $db[:analysis_sr_1].insert(:user_id=>1, :canonical_document_id=>1, :field_1=>"[campo1] [campo2]", :field_2=>"a",:field_3=>"a,b")
 
     Resolution.insert(:systematic_review_id=>1, :canonical_document_id=>1, :user_id=>1, :stage=>'review_full_text', :resolution=>'yes')
-    ars=Analysis_SR_Stage.new(@sr1, 'report')
-    #p @sr1.cd_id_by_stage(:report)
-    #p ars.resolutions_by_cd
-    #p ars.decisions_by_cd
     login_admin
   end
   context "when html is retrieved" do
