@@ -208,6 +208,9 @@ module BibliographicalImporter
       include Enumerable
       attr_reader :bb
       attr_reader :records
+      def [](x)
+        @records[x]
+      end
       def each(&block)
         @records.each(&block)
       end

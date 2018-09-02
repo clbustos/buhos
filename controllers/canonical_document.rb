@@ -50,31 +50,24 @@ get '/canonical_document/:id/search_crossref_references' do |id|
   redirect back
 end
 
-# Query Crossref for canonical document
-get '/canonical_document/:id/get_crossref_data' do |id|
-  halt_unless_auth('canonical_document_admin')
 
+get '/canonical_document/:id/get_external_data/:type' do |id, type|
+  halt_unless_auth('canonical_document_admin')
   @cd=CanonicalDocument[id]
-  if(@cd.crossref_integrator)
-    add_message("Crossref agregado para #{id}")
+  method="#{type}_integrator".to_sym
+  if @cd.respond_to? method
+    if @cd.send(method)
+      add_message(t("external_data.get_successful", type:type, cd_id:id))
+    else
+      add_message(t("external_data.get_error", type:type, cd_id:id))
+    end
+
   else
-    add_message("Error al agregar Crossref para #{id}", :error)
+    add_message(t("external_data.dont_know_type"), type: type)
   end
+
   redirect back
 end
-
-get '/canonical_document/:id/get_pubmed_data' do |id|
-  halt_unless_auth('canonical_document_admin')
-
-  @cd=CanonicalDocument[id]
-  if(@cd.pubmed_integrator)
-    add_message("Pubmed agregado para #{id}")
-  else
-    add_message("Error al agregar Pubmed para #{id}", :error)
-  end
-  redirect back
-end
-
 
 # Search references similar to a specific canonical documents, using lexical distance
 get '/canonical_document/:id/search_similar' do |id|
@@ -100,9 +93,9 @@ post '/canonical_document/:id/merge_similar_references' do |id|
   halt_unless_auth('canonical_document_admin')
   @cd=CanonicalDocument[id]
   if !params['reference'].nil?
-    references_a_unir=params['reference'].keys
-    Reference.where(:id=>references_a_unir).update(:canonical_document_id=>@cd[:id])
-    add_message("Se unieron #{references_a_unir.length} references al canonico comun #{@cd[:id]}")
+    references_to_merge=params['reference'].keys
+    Reference.where(:id=>references_to_merge).update(:canonical_document_id=>@cd[:id])
+    add_message("Se unieron #{references_to_merge.length} references al canonico comun #{@cd[:id]}")
   end
   redirect back
 end
@@ -184,7 +177,6 @@ get '/canonical_documents/review/:rev_id/complete_pubmed_pmid' do |rev_id|
   # Retrieve all doi we can!
   @cd_ds=@review.canonical_documents.exclude(:doi=>nil).where(:pmid=>nil)
   result=PubmedRemote.retrieve_pmid(@cd_ds)
-
   add_result(result)
   redirect back
 end

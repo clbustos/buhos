@@ -5,6 +5,7 @@ describe 'Criteria related models' do
     RSpec.configure { |c| c.include RSpecMixin }
     @temp=configure_empty_sqlite
     create_sr(n:1)
+    login_admin
   end
   after do
     $db[:sr_criteria].delete
@@ -12,6 +13,42 @@ describe 'Criteria related models' do
     $db[:criteria].delete
   end
   let(:sr) {SystematicReview[1]}
+
+  context "when /review/:rs_id/criteria/add is called" do
+    before(:context) do
+      post '/review/1/criteria/add', text:"test1", cr_type:"inclusion"
+    end
+    it "should add a new criterion to sr" do
+      criterion_1=Criterion.get_criterion('test1')
+      expect(SrCriterion.where(:systematic_review_id=>1, :criterion_id=>criterion_1[:id]).count).to eq(1)
+    end
+  end
+
+  context "when /review/:rs_id/criteria/remove is called" do
+    it "should remove criterion to sr" do
+      post '/review/1/criteria/add', text:"test1", cr_type:"inclusion"
+      criterion_1=Criterion.get_criterion('test1')
+      expect(SrCriterion.where(:systematic_review_id=>1, :criterion_id=>criterion_1[:id]).count).to eq(1)
+      post '/review/1/criteria/remove', cr_id:criterion_1[:id]
+      expect(SrCriterion.where(:systematic_review_id=>1, :criterion_id=>criterion_1[:id]).count).to eq(0)
+    end
+  end
+
+  context "when /review/criteria/id is called" do
+    before(:context) do
+      CanonicalDocument.insert(id:1, title:"CD1", :year=>1)
+      criterion_1=Criterion.get_criterion('test1')
+      post '/review/criteria/cd', cd_id:1,sr_id:1, user_id:1, criterion_id:criterion_1[:id], checked:1
+
+    end
+    it "should add a CdCriterion object" do
+      expect(CdCriterion.where(canonical_document_id:1, criterion_id: Criterion.get_criterion('test1')[:id]).count).to eq(1)
+    end
+    after(:context) do
+      CanonicalDocument.where(:id=>1).delete
+    end
+  end
+
   context "Criterion model" do
 
     it ".get_criteria should create a new criteria" do

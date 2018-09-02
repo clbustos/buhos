@@ -105,6 +105,10 @@ module Buhos
   class NoCriterionIdError < StandardError
 
   end
+  class NoReferenceIdError < StandardError
+
+  end
+
   # @!endgroup
 end
 
@@ -168,6 +172,11 @@ module Sinatra
         status 404
         ::I18n::t("error.no_code", object_name: ::I18n::t(:Criterion), code:env['sinatra.error'].message)
       end
+      app.error Buhos::NoReferenceIdError do
+        status 404
+        ::I18n::t("error.no_code", object_name: ::I18n::t(:References), code:env['sinatra.error'].message)
+      end
+
     end
   end
   register CustomErrors

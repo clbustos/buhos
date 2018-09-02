@@ -138,6 +138,20 @@ describe 'Canonical Document merging' do
 
   end
 
+  context "when /canonical_document/merge is used" do
+
+    before(:context) do
+      pre_context
+      CanonicalDocument.where(:id=>[1,2,3]).update(:doi=>"1234")
+      post "/canonical_document/merge", :doi=>"1234", :pk_ids=>"1,2,3"
+    end
+    it_behaves_like 'correct merge'
+
+    after(:context) do
+      after_context
+    end
+
+  end
 
 
 

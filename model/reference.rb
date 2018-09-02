@@ -46,12 +46,15 @@ class Reference < Sequel::Model(:bib_references)
   extend DOIHelpers
 
   many_to_many :records
+  def self.calculate_id(text)
+    Digest::SHA256.hexdigest text
+  end
   # Retrieve a Reference with a specific text
   # If doesn't exist before, create it
   # @param text reference text, as-is
   # @return a Reference
   def self.get_by_text(text)
-    dig=Digest::SHA256.hexdigest text
+    dig=calculate_id text
     Reference[dig]
   end
   # Retrieve a reference using text and doi
@@ -61,7 +64,7 @@ class Reference < Sequel::Model(:bib_references)
   # @param doi
   # @return Reference or nil
   def self.get_by_text_and_doi(text,doi,create=false)
-    dig=Digest::SHA256.hexdigest text
+    dig=calculate_id text
     if doi
       doi=doi_without_http(doi)
       ref=Reference.where(:id=>dig,:doi=>doi).first

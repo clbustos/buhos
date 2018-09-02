@@ -86,10 +86,14 @@ end
 get '/search/:id/records/complete_doi' do |id|
   halt_unless_auth('search_edit')
   @search=Search[id]
+
   raise Buhos::NoSearchIdError, id if @search.nil?
 
   @records=@search.records_dataset
+
   rcp=RecordCrossrefProcessor.new(@records,$db)
+
+  $log.info(rcp.result)
   add_result(rcp.result)
   redirect back
 end
