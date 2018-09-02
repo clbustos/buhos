@@ -214,7 +214,7 @@ post '/review/:id/automatic_deduplication' do |id|
   raise Buhos::NoReviewIdError, id if !@review
   @cd_rep_doi=@review.repeated_doi
 
-  @cd_por_doi=CanonicalDocument.where(:doi => @cd_rep_doi).to_hash_groups(:doi, :id)
+  @cd_por_doi=CanonicalDocument.where(:doi => @cd_rep_doi).order(:id).to_hash_groups(:doi, :id)
 
   result=Result.new
   @cd_por_doi.each_pair do |doi, cds_id|
@@ -280,14 +280,17 @@ post '/review/files/add' do
   cd_id=params['canonical_document_id']
   if cd_id
     cd=CanonicalDocument[cd_id]
-    return 404 if cd.nil?
+    raise Buhos::NoCdIdError, cd_id if cd.nil?
   end
 
   if files
     results=Result.new
     files.each do |file|
-      # TODO: Should be replaced by FileProcessor service
-      results.add_result(IFile.add_on_sr(file, @review, dir_files, cd))
+
+      file_proc=FileProcessor.new(file, dir_files)
+      file_proc.add_to_sr(@review)
+      file_proc.add_to_cd(cd) if cd
+      results.success(I18n::t("search.successful_upload", filename:File.basename(file_proc.filepath), sr_name:@review.name))
     end
     add_result results
   else

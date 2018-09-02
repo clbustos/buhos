@@ -493,6 +493,7 @@ en:
     cant_obtain_scopus_error: "Unable to use Scopus document, %{cd_title}document, error: %{sr_error}"
     no_scopus_abstract: "Scopus has no abstract for the document %{cd_title}"
     updated_abstract: "The %{cd_title} document abstract was updated using Scopus"
+  Save: "Save"
   Search: "Search"
   search:
     there_is_a_file: "Search already has an allocated file"

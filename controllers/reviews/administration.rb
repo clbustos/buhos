@@ -98,7 +98,7 @@ end
 # Retrieve information from Crossref for all canonical documents
 # approved for a given stage
 
-get '/review/:rev_id/stage/:stage/generar_references_crossref' do |rev_id,stage|
+get '/review/:rev_id/stage/:stage/generate_crossref_references' do |rev_id,stage|
   halt_unless_auth('review_admin')
   @review=SystematicReview[rev_id]
   raise Buhos::NoReviewIdError, id if !@review
@@ -245,7 +245,6 @@ end
 
 # Automatic retrieval of abstract from Pubmed for
 # documents without abstract
-# TODO: IMPLEMENT THIS
 get '/review/:rev_id/stage/:stage/complete_empty_abstract_pubmed' do |rev_id, stage|
   halt_unless_auth('review_admin')
   @review=SystematicReview[rev_id]
@@ -255,7 +254,7 @@ get '/review/:rev_id/stage/:stage/complete_empty_abstract_pubmed' do |rev_id, st
   @cd_wo_abstract=@ars.cd_without_abstract(stage)
   add_message(I18n::t(:Processing_n_canonical_documents, count:@cd_wo_abstract.count))
   @cd_wo_abstract.each do |cd|
-    result.add_result(Pmc_Summary.get_abstract_cd(cd[:id]))
+    result.add_result(PubmedRemote.get_abstract_cd(cd))
   end
   add_result(result)
   redirect back

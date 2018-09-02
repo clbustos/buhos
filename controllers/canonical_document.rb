@@ -184,6 +184,7 @@ get '/canonical_documents/review/:rev_id/complete_pubmed_pmid' do |rev_id|
   # Retrieve all doi we can!
   @cd_ds=@review.canonical_documents.exclude(:doi=>nil).where(:pmid=>nil)
   result=PubmedRemote.retrieve_pmid(@cd_ds)
+
   add_result(result)
   redirect back
 end

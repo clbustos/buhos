@@ -6,44 +6,7 @@ describe 'Canonical Record' do
     @temp=configure_complete_sqlite
     login_admin
   end
-  context "when search for crossref references" do
-    before(:context) do
-      get '/canonical_document/64/search_crossref_references'
-    end
-    it {expect(last_response).to be_redirect}
-  end
-  context "when search for crossref data" do
-    before(:context) do
-      get '/canonical_document/64/get_crossref_data'
-    end
-    it {expect(last_response).to be_redirect}
-  end
-  context "when search for pubmed data" do
-    before(:context) do
-      get '/canonical_document/64/get_pubmed_data'
-    end
-    it {expect(last_response).to be_redirect}
-  end
 
-  context "when update information of a canonical document using crossref" do
-    before(:context) do
-      #CrossrefDoi[doi:"10.1111/jocn.13259"].delete
-      CanonicalDocument[64].update(title:nil, author: nil)
-      get '/canonical_document/64/update_using_crossref_info'
-      #$log.info(CanonicalDocument[64])
-    end
-    let(:cd) {CanonicalDocument[64]}
-    let(:cr) {CanonicalDocument[64].crossref_integrator}
-    it "expect last response to be redirect" do
-      #$log.info(last_response.body)
-      expect(last_response).to be_redirect
-    end
-    it "should update correct title and author" do
-      #$log.info(cd)
-      expect(cd.title).to eq cr.title
-      expect(cd.author).to eq cr.author
-    end
-  end
 
   context "when view crossref information of a canonical document" do
     before(:context) do

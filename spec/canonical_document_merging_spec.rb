@@ -55,7 +55,14 @@ describe 'Canonical Document merging' do
     CanonicalDocument.insert(:id=>4, :title=>"Title 4", :year=>0, :journal=>"J2", :doi=>nil)
 
     create_search
+    Search[1].update(valid:true)
     create_record(n:4, search_id:[1,1,1,1], cd_id:[1,2,3,nil])
+
+    1.upto(4) do |cd_id|
+      Resolution.insert(:systematic_review_id=>1, :canonical_document_id=>cd_id, :user_id=>1, :stage=>'screening_title_abstract', :resolution=>'yes')
+      Resolution.insert(:systematic_review_id=>1, :canonical_document_id=>cd_id, :user_id=>1, :stage=>'review_full_text', :resolution=>'yes')
+    end
+
     # TODO: Add extra fields to compare
   end
 
@@ -63,8 +70,10 @@ describe 'Canonical Document merging' do
     $db[:records_searches].delete
     $db[:searches].delete
     $db[:records].delete
+    $db[:resolutions].delete
     $db[:canonical_documents].delete
     $db[:systematic_reviews].delete
+
   end
 
   context "when /canonical_document/actions is used" do
@@ -112,6 +121,22 @@ describe 'Canonical Document merging' do
 
   end
 
+
+
+  context "when /review/1/automatic_deduplication is used" do
+
+    before(:context) do
+      pre_context
+      CanonicalDocument.where(:id=>[1,2,3]).update(:doi=>"1234")
+      post "/review/1/automatic_deduplication"
+    end
+    it_behaves_like 'correct merge'
+
+    after(:context) do
+      after_context
+    end
+
+  end
 
 
 

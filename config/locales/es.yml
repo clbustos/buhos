@@ -492,6 +492,7 @@ es:
     analyst:      "Analyst"
   Roles: "Roles"
   RTA_references: "Referencias TTR"
+  Save: "Guardar"
   scopus_abstract:
     cant_obtain_identificator_suitable_for_scopus: "No se pudo encontrar identificador válido para usar Scopus, documento %{cd_title}"
     cant_obtain_scopus_error: "No se pudo utilizar documento Scopus, documento %{cd_title}, error: %{sr_error}"
