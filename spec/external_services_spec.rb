@@ -74,6 +74,21 @@ describe 'Stage administration using external data' do
 
   end
 
+  context "when /record/:id/search_crossref is called with a record" do
+    before(:context) do
+      pre_context
+      Record[1].update(title:'Using Framework Analysis')
+      get "/record/1/search_crossref"
+    end
+    it "should show a page including the name of reference" do
+      expect(last_response.body).to include "Using Framework Analysis"
+    end
+    after(:context) do
+      after_context
+    end
+  end
+
+
   context "when /reference/:id/search_crossref is called with a ref without doi" do
     before(:context) do
       pre_context
