@@ -1,6 +1,6 @@
 .heading=t_systematic_review_title(@review[:name],t(:Record_complete_information, cd_reference: truncate(@cd.ref_apa_6_brief,40)), false )
 - modal_files=get_modal_files
-- tabs=get_tabs(tabs:{pdf:"PDF", only_text:"Only Text"})
+- tabs=get_tabs(tabs:{pdf:"PDF", only_text:t(:Only_text)})
 %ul.breadcrumb
   %li
     %a{:href=>url("/review/#{@review.id}")}=@review.name

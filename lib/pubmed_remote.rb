@@ -52,6 +52,26 @@ module PubmedRemote
   result
   end
 
+  def self.get_abstract_cd(cd)
+    result=Result.new
+    if(cd.pmid.nil?)
+      result.error(I18n::t(:No_PMID_to_obtain_information_from_Pubmed))
+    else
+      pmid_integrator=reference_integrator_xml(cd.pmid)
+      if(pmid_integrator)
+        if pmid_integrator.abstract.nil?
+          result.info(I18n::t(:Pubmed_information_retrieved_but_no_abstract))
+        else
+          cd.update(abstract:pmid_integrator.abstract)
+          result.success(:Abstract_retrieved_from_Pubmed)
+        end
+      else
+        result.error(I18n::t(:Invalid_response_from_Pubmed))
+      end
+    end
+    result
+  end
+
   def self.reference_integrator_xml(pmid)
     co=self.process_single_pmid(pmid)
     if(co)

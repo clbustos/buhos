@@ -1,3 +1,15 @@
+:javascript
+  $(document).ready(function() {
+    $(".abstract-button").click(function(e) {
+      var target=$(this).attr("data-target");
+      if($(target).is(":hidden")) {
+        $(target).removeClass('hidden');
+      } else {
+        $(target).addClass('hidden');
+      }
+      return(false);
+    })
+  });
 - if @user
   .heading=t_systematic_review_title(@review[:name], t(:User_records, username:@user.name),false)
 - else
@@ -31,9 +43,10 @@
             = (cd.year==0 ? "<em>(#{t(:No_date)} #{gq}).</em>" : "(#{cd.year}).")
             = (cd.title.to_s=='' ? "<em>#{t(:No_title)}</em> #{gq}." : "#{cd.title}.")
             - if cd[:abstract].to_s!=""
-              %button{:class=>"btn btn-default btn-sm", :type=>"button",  "data-toggle"=>'collapse', "data-target"=>"#cd_abstract-#{cd[:id]}", "aria-expanded"=>"false", "aria-controls"=>"cd_abstract-#{cd[:id]}"}=t(:Abstract)
+              %button{:class=>"btn btn-default btn-sm abstract-button", :type=>"button",  "data-target"=>"#cd_abstract-#{cd[:id]}", "aria-expanded"=>"false", "aria-controls"=>"cd_abstract-#{cd[:id]}"}=t(:Abstract)
             - else
               = "<em>#{t(:No_abstract)}</em> #{gq}"
             - if cd[:abstract].to_s!=""
-              %div{:class=>"collapse", :id=>"cd_abstract-#{cd[:id]}"}
-                .well=cd[:abstract]
+              %div{:class=>"hidden", :id=>"cd_abstract-#{cd[:id]}"}
+                %p
+                .well.well-sm=cd[:abstract]

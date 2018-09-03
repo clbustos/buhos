@@ -73,7 +73,7 @@ class BibliographicFileProcessor
       return false if !integrator
     rescue BibTeX::ParseError => e
       log_error('bibliographic_file_processor.error_parsing_file', e.message)
-      @error=I18n::t('bibliographic_file_processor.error_parsing_file')
+      @error=I18n::t('bibliographic_file_processor.error_parsing_file', message:e.message)
       return false
     end
 
@@ -131,7 +131,9 @@ class BibliographicFileProcessor
           end
 
           if can_doc.nil?
-            can_doc_id = CanonicalDocument.insert(fields_update.merge({registro_base_id => record[:uid]}))
+            fields_to_update=fields_update.merge({registro_base_id => record[:uid]})
+            fields_to_update[:year]=0 if fields_to_update[:year].nil? # A VERY UGLY FIX. Maybe we just update canonical document to allow year=nil
+            can_doc_id = CanonicalDocument.insert(fields_to_update)
             can_doc = CanonicalDocument[:id => can_doc_id]
           end
           record.update(:canonical_document_id => can_doc[:id])
