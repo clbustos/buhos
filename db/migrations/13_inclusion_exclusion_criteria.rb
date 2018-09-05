@@ -7,14 +7,14 @@ Sequel.migration do
     end
 
     create_table(:sr_criteria) do
-      foreign_key :criterion_id, :criteria, :null=>false, :key=>[:id], :default=>nil
+      foreign_key :criterion_id, :criteria, :null=>false, :key=>[:id]
       foreign_key :systematic_review_id, :systematic_reviews, :null => false, :key => [:id]
       String :criteria_type
       primary_key [:criterion_id, :systematic_review_id]
     end
 
     create_table(:cd_criteria) do
-      foreign_key :criterion_id, :criteria, :null=>false, :key=>[:id], :default=>nil
+      foreign_key :criterion_id, :criteria, :null=>false, :key=>[:id]
       foreign_key :canonical_document_id, :canonical_documents, :null=>false, :key=>[:id]
       foreign_key :user_id, :users, :null=>false, :key=>[:id]
       foreign_key :systematic_review_id, :systematic_reviews, :null => false, :key => [:id]
