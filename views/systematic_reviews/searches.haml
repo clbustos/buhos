@@ -48,7 +48,7 @@
           %tbody
             - @searches.each do |g|
               - auth_on_search=g.user_id==@user.id or auth_to("review_admin")
-              %tr{:class=>bool_class(g.valid, "success","danger","warning"), :id=>"row-search-#{g.id}"}
+              %tr{:id=>"row-search-#{g.id}"}
                 %td
                   -if auth_on_search
                     %input{:type=>'checkbox', :name=>"search[]", :value=>g[:id], :class=>'checkbox_interactive'}
@@ -63,7 +63,9 @@
                   - if g.is_type? (:bibliographic_file)
                     =partial("searches/file_link", :locals=>{search:g, not_message_allocated:true})
 
-                %td= t_yes_no_nil(g.valid)
+                %td
+                  = t_yes_no_nil(g.valid)
+                  %span.glyphicon{:class=>"#{g.valid ? 'glyphicon-ok-sign text-success':'glyphicon-remove-sign text-danger' }"}
                 %td
                   - if auth_on_search
                     %a.btn.btn-default{:href=>url("/search/#{g.id}/edit")}

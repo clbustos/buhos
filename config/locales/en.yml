@@ -235,6 +235,7 @@ en:
   Group_deleted: "Group %{group_name} eliminated"
   Id: "ID"
   Im_sorry_the_page_you_request_doesnt_exists: "Sorry, requested page does not exist"
+  Inactive: "Inactive"
   Incoming_citations: "Citations of this document"
   Information: "Information"
   Information_about_this_cd_on_crossref: "Information on this canonical document from Crossref"

@@ -94,10 +94,14 @@
             - 2.upto(20) do |i|
               %option{:value=>i, :selected=>i==@review.n_min_rr_rtr}=i
         .form-group
-          .checkbox
-            %label
-              %input{:type=>"checkbox", :name=>"active", :value=>1, :checked=>@review[:active] }
-              =t(:Active)
+          %label=t(:Systematic_review_active_inactive)
+          %label.radio-inline
+            %input{:type=>"radio", :name=>"active", :value=>1, :checked=>@review[:active] }
+            =t(:Active)
+          %label.radio-inline
+            %input{:type=>"radio", :name=>"active", :value=>0, :checked=>!@review[:active] }
+            =t(:Inactive)
+
         %div{:class=>"form-group"}
           %label{:for=>"stage"}=t(:Stage)
           -get_stages_names.each do |stage_id,stage_name|

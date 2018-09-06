@@ -101,6 +101,8 @@ post '/review/update' do
   otros_params=otros_params.inject({}) {|ac,v|
     ac[v[0].to_sym]=v[1];ac
   }
+
+
   #  aa=SystematicReview.new
   #$log.info(otros_params)
 
