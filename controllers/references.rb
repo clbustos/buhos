@@ -72,17 +72,20 @@ get '/reference/:id/search_crossref' do |id|
   halt_unless_auth('reference_edit')
   @ref=Reference[id]
 
+  raise Buhos::NoReferenceIdError, id if !@ref
+
   if @ref.doi
     result=Result.new
     result.add_result(@ref.add_doi(@ref.doi))
+
     if result.success?
-    add_result(result)
-    redirect back
+      add_result(result)
+      redirect back
     else
       add_result(result)
     end
-
   end
+
   @respuesta=@ref.crossref_query
   haml "systematic_reviews/reference_search_crossref".to_sym
 

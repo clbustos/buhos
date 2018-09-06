@@ -68,6 +68,7 @@ es:
   Canonical_documents: "Documentos canónicos"
   Canonical_documents_duplicated_by_DOI: "Documentos canónicos duplicador por DOI"
   Canonical_documents_assigned: "Documentos canónicos asignados"
+  Canonical_document_merge_error: "Error de unión de documentos canónicos"
   Canonicals: "Canónicos"
   Cant_mark_as_read: "No puedo marcar como leído"
   Cd_extract_information: "Extraer información de: %{cd_title}"
@@ -171,6 +172,10 @@ es:
   Export_to_Bibtex: "Exportar a Bibtex"
   Export_to_Graphml: "Exportar a Graphml"
   Extract_information: "Extraer información"
+  external_data:
+    get_successful: "Obtención exitosa de información desde %{type} para el documento canónico %{cd_id}"
+    get_error: "Error en la obtención de información desde %{type} para el documento canónico %{cd_id}"
+    dont_know_type: "Fuente de información externa %{type} sin soporte"
   Field_new: "Nuevo campo"
   Fields: "Campos"
   fields:
@@ -331,6 +336,7 @@ es:
   no_action_specified: "No se especificó ninguna acción"
   No_assignation_instructions: "Sin instrucciones"
   No_author: "Sin autor"
+  no_canonical_document: "Sin documento canónico"
   No_document_for_this_criteria: "Sin documentos para este criterio"
   No_date: "Sin fecha"
   No_DOI_to_obtain_information_from_Crossref: "No existe DOI para obtener información desde Crossref"
@@ -492,6 +498,7 @@ es:
     analyst:      "Analyst"
   Roles: "Roles"
   RTA_references: "Referencias TTR"
+  Save: "Guardar"
   scopus_abstract:
     cant_obtain_identificator_suitable_for_scopus: "No se pudo encontrar identificador válido para usar Scopus, documento %{cd_title}"
     cant_obtain_scopus_error: "No se pudo utilizar documento Scopus, documento %{cd_title}, error: %{sr_error}"

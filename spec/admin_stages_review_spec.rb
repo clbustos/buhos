@@ -1,6 +1,8 @@
 require 'spec_helper'
 
-describe 'Stage administration' do
+
+
+describe 'Stage administration with complete data' do
   before(:all) do
     RSpec.configure { |c| c.include RSpecMixin }
     @temp=configure_complete_sqlite

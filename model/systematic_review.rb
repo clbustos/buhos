@@ -205,6 +205,9 @@ AND  #{cd_query} GROUP BY tags.id) as t LEFT JOIN tag_in_classes tecl ON t.id=te
   # TODO: Move association to pertinent model
   def delete
     $db.transaction do
+
+      $db[analysis_cd_tn.to_sym].delete if $db.table_exists?(analysis_cd_tn.to_sym)
+
       searches_id=Search.where(systematic_review_id:self[:id]).map(:id)
       m_srs_id=$db[:message_srs].where(systematic_review_id:self[:id]).map(:id)
 
@@ -219,12 +222,14 @@ AND  #{cd_query} GROUP BY tags.id) as t LEFT JOIN tag_in_classes tecl ON t.id=te
       $db[:sr_criteria].where(systematic_review_id: self[:id]).delete
       $db[:file_srs].where(systematic_review_id: self[:id]).delete
       $db[:decisions].where(systematic_review_id: self[:id]).delete
+      $db[:resolutions].where(systematic_review_id: self[:id]).delete
       $db[:cd_criteria].where(systematic_review_id: self[:id]).delete
       $db[:allocation_cds].where(systematic_review_id: self[:id]).delete
 
       Search.where(systematic_review_id:self[:id]).delete
       $db[:message_srs].where(systematic_review_id:self[:id]).delete
       $db[:systematic_reviews].where(id:self[:id]).delete
+
     end
     true
   end

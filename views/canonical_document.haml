@@ -43,7 +43,7 @@
     =@cr_doi.ref_apa_6_brief_html
   - elsif @cd.doi
     - if auth_to("crossref_query")
-      %a{:href=>url("/canonical_document/#{@cd[:id]}/get_crossref_data")}
+      %a{:href=>url("/canonical_document/#{@cd[:id]}/get_external_data/crossref")}
         %button{:class=>"btn btn-primary"}
           =t(:Obtain_information_from_Crossref)
     - else
@@ -69,7 +69,7 @@
     =@pmc_sum.ref_apa_6_brief_html
   - elsif @cd.pmid
     - if auth_to("pubmed_query")
-      %a{:href=>url("/canonical_document/#{@cd[:id]}/get_pubmed_data")}
+      %a{:href=>url("/canonical_document/#{@cd[:id]}/get_external_data/pubmed")}
         %button{:class=>"btn btn-primary"}
           =t(:Obtain_information_from_Pubmed)
     - else

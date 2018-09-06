@@ -201,7 +201,7 @@ module RSpecMixin
     create_search
     create_record(:cd_id=>1, :search_id=>1)
     $db[:analysis_sr_1].insert(:user_id=>1, :canonical_document_id=>1, :field_1=>"[campo1] [campo2]", :field_2=>"a",:field_3=>"a,b")
-
+    Resolution.insert(:systematic_review_id=>1, :canonical_document_id=>1, :user_id=>1, :stage=>'screening_title_abstract', :resolution=>'yes')
     Resolution.insert(:systematic_review_id=>1, :canonical_document_id=>1, :user_id=>1, :stage=>'review_full_text', :resolution=>'yes')
     sr1
   end
