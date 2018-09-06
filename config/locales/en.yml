@@ -691,7 +691,7 @@ en:
   User: "User"
   User_new: "New user"
   User_not_exists: "No such %{user_id}User ID"
-  User_records: "User @{username} records"
+  User_records: "User %{username} records"
   user_dashboard:
     check_n_canonical_documents_without_assignation:
       one:    "Check %{count} unassigned canonical document"
