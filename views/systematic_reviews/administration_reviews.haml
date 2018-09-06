@@ -71,10 +71,10 @@
             =t(:View)
           %a{:href=>url("/review/#{@review[:id]}/stage/#{@stage}/pattern/#{@ars.pattern_id(patron)}/resolution/yes"),:class=>"btn btn-success btn-sm", :role=>"button"}
             %span{:class=>"glyphicon glyphicon-ok-circle"}
-            =t(:Accept)
+            =t(:Document_include)
           %a{:href=>url("/review/#{@review[:id]}/stage/#{@stage}/pattern/#{@ars.pattern_id(patron)}/resolution/no"),:class=>"btn btn-danger btn-sm", :role=>"button"}
             %span{:class=>"glyphicon glyphicon-ban-circle"}
-            =t(:Reject)
+            =t(:Document_exclude)
 
 
 =partial(:sr_administration_actions, :locals=>{review:@review, stage:@stage})

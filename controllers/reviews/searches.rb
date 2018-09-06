@@ -107,7 +107,6 @@ post '/review/search/uploaded_files/new' do
     if files
       results=Result.new
       files.each do |file|
-
         next if file[:type]!~/pdf/ and file[:filename]!~/\.pdf/
         pdfprocessor=PdfFileProcessor.new(search, file[:tempfile], dir_files)
         pdfprocessor.process

@@ -1,6 +1,6 @@
 - # parametros: rpc, cd_id, stage, user_id, review
 %div.btn-group.btn-sm{:id=>"botones_resolution_#{stage}_#{cd_id}"}
-  - crits={'yes'=>{bs:'success', name:t(:Accept), glyphicon: "ok-circle"}, 'no'=>{bs:'danger', name:t('Reject'), glyphicon: "ban-circle"}}
+  - crits={'yes'=>{bs:'success', name:t(:Document_include), glyphicon: "ok-circle"}, 'no'=>{bs:'danger', name:t(:Document_exclude), glyphicon: "ban-circle"}}
   - crits.each_pair do |res_id, crit|
     -cbc=class_bootstrap_contextual( rpc[cd_id]==res_id, 'btn',crit[:bs] )
     -dc_dec= (rpc[cd_id]==res_id) ? '' : 'dc_resolution'
