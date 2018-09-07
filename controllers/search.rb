@@ -58,6 +58,19 @@ get '/search/:id/records' do |id|
 end
 
 
+# Retrieve a single record from a search
+get '/search/:s_id/record/:r_id' do |s_id, r_id|
+  halt_unless_auth('search_view')
+  @search=Search[s_id]
+  raise Buhos::NoSearchIdError, s_id if @search.nil?
+  @reg=Record[r_id]
+  raise Buhos::NoRecordIdError, r_id if @reg.nil?
+  @review=@search.systematic_review
+  @references=@reg.references
+  haml "record".to_sym
+
+end
+
 # List of references for a search
 get '/search/:id/references' do |id|
   halt_unless_auth('search_view')

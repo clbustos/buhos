@@ -1,41 +1,51 @@
+:javascript
+  $(document).ready(function() {
+    $("#reference_delete").click(function(e) {
+      var record_id=$(this).attr("data-pk");
+      $("#record-"+record_id+"-action").val('delete');
+    });
+  })
+- record ||=nil
 - rmc_canonico=CanonicalDocument.where(:id=> references.exclude(canonical_document_id: nil).map(:canonical_document_id))
 - rmc_no_canonico=references.where(canonical_document_id: nil)
 %h4=t(:References_assigned_to_canonical_document)
 
-.list-group
-- rmc_canonico.each do |ref|
-  %div.list-group-item
-    %span{:class=>"badge"}=ref[:n_records]
-    .list-group-item-text
-      ="#{ref[:author]} (#{ref[:year]}). #{ref[:title]}. <em>#{ref[:journal]},#{ref[:volume]}</em>, #{ref[:pages]} "
-      .btn-group
-        %button{:class=>"btn btn-default btn-sm buscar_similares_canonico",:id=>"buscar_similar-#{ref[:id]}"}
-          %span{:class=>"glyphicon glyphicon-search"}
-          =t(:Search_similar)
-        %a{:href=>url("/canonical_document/#{ref[:id]}"), :role=>:button, :class=>"btn btn-success btn-sm"}
-          %span{:class=>"glyphicon glyphicon-king"}
-          =t(:Canonical)
-        - if auth_to("reference_edit")
-          %a{:href=>url("/canonical_document/#{ref[:id]}/clean_references"), :role=>:button, :class=>"btn btn-default btn-sm"}
-            %span{:class=>"glyphicon glyphicon-erase"}
-            =t(:Clear_references)
-      %div{:id=>"buscar_similar-#{ref[:id]}-campo", :style=>"max-height:200px;overflow:auto"}
-
-%p
+%table.table.table-bordered
+  - rmc_canonico.each do |ref|
+    %tr
+      %td
+        %span{:class=>"badge"}=ref[:n_records]
+        ="#{ref[:author]} (#{ref[:year]}). #{ref[:title]}. <em>#{ref[:journal]},#{ref[:volume]}</em>, #{ref[:pages]} "
+      %td
+        .btn-group.btn-group-sm
+          %a{:href=>url("/canonical_document/#{ref[:id]}"), :role=>:button, :class=>"btn btn-success btn-sm"}
+            %span{:class=>"glyphicon glyphicon-king"}
+            =t(:Canonical)
+          - if auth_to("reference_edit")
+            %a{:href=>url("/canonical_document/#{ref[:id]}/clean_references"), :role=>:button, :class=>"btn btn-default btn-sm"}
+              %span{:class=>"glyphicon glyphicon-erase"}
+              =t(:Clear_references)
+        %div{:id=>"buscar_similar-#{ref[:id]}-campo", :style=>"max-height:200px;overflow:auto"}
 
 %h4=t(:References_not_assigned_to_canonical_document)
 
-.list-group
-- rmc_no_canonico.each do |ref|
-  %div.list-group-item
-    %span{:class=>"badge"}=ref[:n]
-    .list-group-item-text
-      =ref[:text]
-      - if ref[:doi]
-        =a_doi(ref[:doi])
-      .btn-group
-        - if auth_to('reference_edit') and auth_to('crossref_query')
-          %a{:href=>url("/reference/#{ref[:id]}/search_crossref"), :role=>:button, :class=>"btn btn-default btn-sm"}
-            %span{:class=>"glyphicon glyphicon-search"}
-            =t(:Search_on_Crossref)
-      %div{:id=>"buscar_similar-#{ref[:id]}-campo"}
+%form{:method=>'post', :action=>record ? url("/record/#{record[:id]}/references_action" ): ""}
+  -if record
+    %input{:type=>:hidden, :name=>:action, :id=>"record-#{record[:id]}-action"}
+    %button.btn.btn-danger#reference_delete{"data-pk"=>record[:id]}=t(:Delete)
+    %p
+  %table.table.table-bordered.table-condensed
+    - rmc_no_canonico.each do |ref|
+      %tr
+        %td
+          %input{:type=>:checkbox, :name=>"references[]", :value=>ref[:id]}
+        %td
+          %span{:class=>"badge"}=ref[:n]
+          =ref[:text]
+          - if ref[:doi]
+            =a_doi(ref[:doi])
+          .btn-group
+            - if auth_to('reference_edit') and auth_to('crossref_query')
+              %a{:href=>url("/reference/#{ref[:id]}/search_crossref"), :role=>:button, :class=>"btn btn-default btn-sm"}
+                %span{:class=>"glyphicon glyphicon-search"}
+                =t(:Search_on_Crossref)

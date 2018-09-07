@@ -1,6 +1,17 @@
 %h2=title(t(:Record_title, rid: @reg[:id]))
+- search=@search
+-if @search
+  %ul.breadcrumb
+    %li
+      %a{:href=>url("/review/#{@review.id}")}=@review.name
+    %li
+      %a{:href=>url("/review/#{@review.id}/searches")}=t(:searches)
+    %li
+      %a{:href=>url("/search/#{@search.id}")}=@search.name
+    %li.active
+      =t(:Record)
 
-=partial(:records_list,:locals=>{:records=>[@reg]})
+=partial(:records_list,:locals=>{:records=>[@reg], :search=>search, :btn_show=>true})
 
 
 %h3=t(:References)
@@ -11,4 +22,4 @@
     %textarea{:name=>:reference_manual, :rows=>5, :cols=>30, :class=>"form-control"}
     %input{:type=>:submit, :value=>"Enviar", :class=>"form-control"}
 
-=partial(:references_list, :locals=>{:references=>@references})
+=partial(:references_list, :locals=>{:references=>@references, :record=>@reg})
