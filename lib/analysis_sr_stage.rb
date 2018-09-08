@@ -88,7 +88,7 @@ class Analysis_SR_Stage
 
   def cd_screened_id
     cds=@sr.cd_id_by_stage(@stage)
-    Decision.where(:canonical_document_id=>cds, :user_id=>@sr.group_users.map {|u| u[:id]}, :stage=>@stage.to_s).group(:canonical_document_id).map(:canonical_document_id)
+    Decision.where(:systematic_review_id=>@sr.id, :canonical_document_id=>cds, :user_id=>@sr.group_users.map {|u| u[:id]}, :stage=>@stage.to_s).group(:canonical_document_id).map(:canonical_document_id)
   end
 
   def cd_rejected_id
@@ -100,7 +100,7 @@ class Analysis_SR_Stage
   def decisions_by_cd
     cds=@sr.cd_id_by_stage(@stage)
 
-    decisions=Decision.where(:canonical_document_id=>cds, :user_id=>@sr.group_users.map {|u| u[:id]}, :stage=>@stage.to_s).group_and_count(:canonical_document_id, :decision).all
+    decisions=Decision.where(:systematic_review_id=>@sr.id, :canonical_document_id=>cds, :user_id=>@sr.group_users.map {|u| u[:id]}, :stage=>@stage.to_s).group_and_count(:canonical_document_id, :decision).all
     n_jueces=@sr.group_users.count
     cds.inject({}) {|ac,v|
       ac[v]=empty_decisions_hash

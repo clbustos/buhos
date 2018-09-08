@@ -488,7 +488,7 @@ es:
   Report_final: "Reporte Final"
   Report_partial: "Reporte Parcial"
   Resolution: "Resolución"
-  Resolutions: "Resolutiones"
+  Resolutions: "Resoluciones"
   resolution_for_n_documents: "Resolución %{resolution} para %{n} documentos"
   result_assignation_cd_to_user: "Se agregaron %{added} documentos y se quitaron %{removed} documentos al usuario %{user_name}"
   Retrieve_information_from_Crossref: "Obtener información desde Crossref"
