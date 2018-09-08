@@ -116,24 +116,24 @@ class Reference < Sequel::Model(:bib_references)
     crossref_doi=CrossrefDoi.process_doi(doi_n)
 
     unless crossref_doi
-      status.error("No puedo procesar DOI #{doi_n}")
+      status.error(I18n::t("add_doi.cant_process_doi", doi:doi_n))
       return status
     end
 
     $db.transaction do
       ##$log.info(co)
       if self[:doi]==doi_n
-        status.info("Ya agregado DOI para reference #{self[:id]}")
+        status.info(I18n::t("add_doi.doi_already_on_reference", doi:doi_n, reference:self[:text]))
       else
         self.update(:doi=>doi_without_http(doi_n))
-        status.success("Se agrega DOI #{doi_n} para reference #{self[:id]}")
+        status.success(I18n::t('add_doi.doi_set_to_reference', doi:doi_n, reference:self[:text]))
       end
 
       if self[:canonical_document_id].nil?
         can_doc=CanonicalDocument[:doi=>doi_without_http(doi_n)]
         if can_doc
           self.update(:canonical_document_id=>can_doc[:id])
-          status.info("Agregado a documento canónico #{can_doc[:id]} ya existente")
+          status.info(I18n::t('add_doi.reference_to_canonical_document', can_doc_id:can_doc[:id], reference:self[:text] ))
         else # No existe el canónico, lo debo crear
           integrator=CrossrefDoi.reference_integrator_json(doi)
           ##$log.info(integrator)
@@ -144,16 +144,16 @@ class Reference < Sequel::Model(:bib_references)
 
           # En casos muy raros no está el año. Tengo que reportar error, no más
           if fields_update[:year].nil?
-            status.error("El DOI #{doi} no tiene año. Extraño, pero tengo que cancelar misión")
-          else
-            can_doc_id=CanonicalDocument.insert(fields_update)
-            self.update(:canonical_document_id=>can_doc_id)
-            status.success("Agregado un nuevo documento canónico #{can_doc_id}: #{integrator.ref_apa_6}")
+            status.error(I18n::t('add_doi.doi_without_year', doi:doi_n))
+            fields_update[:year]=0
           end
+          can_doc_id=CanonicalDocument.insert(fields_update)
+          self.update(:canonical_document_id=>can_doc_id)
+          status.success(I18n::t('add_doi.new_canonical_document', can_doc_id:can_doc_id, can_doc_text:integrator.ref_apa_6))
         end
         $db.after_rollback {
           status=Result.new
-          status.error("Rollback en agregar doi para reference #{self[:id]}")
+          status.error(I18n::t('add_doi.rollback', reference:self[:text]))
         }
       end
     end

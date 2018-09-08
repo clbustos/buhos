@@ -7,6 +7,14 @@ es:
   Active_and_inactive: "Activo e inactivo"
   Active_user: "Usuario activo"
   actives_and_inactives_systematic_reviews: "activas y no activas"
+  add_doi:
+    cant_process_doi: "No puedo procesar DOI %{doi}"
+    doi_already_on_reference: "DOI %{doi} ya asignado a referencia %{reference}"
+    doi_set_to_reference: "DOI %{doi} asignado a referencia %{reference}"
+    reference_to_canonical_document: "Referencia %{reference} asignada a documento canonico %{can_doc_id}"
+    doi_without_year: "DOI %{doi} sin año. Año se fija a 0"
+    new_canonical_document: "Nuevo documento canónico %{can_doc_id}: %{can_doc_text}"
+    rollback: "Error. Rollback para referencia %{reference}"
   Add_DOI_to_references: "Agregar DOI a referencias"
   Add_PMID_using_available_information: "Agregar PMID usando información disponible"
   Add_info_references_using_crossref: "Agregar información a referencias usando Crossref"
@@ -158,6 +166,7 @@ es:
   End_year: "Año de término"
   Enter_commentary: "Ingresar comentario"
   error:
+    bad_crossref_response: "La respuesta al texto '%{text}' fue errónea. Código: %{code}, Cuerpo:%{body}"
     no_scopus_method: "No se reconoce el tipo %{type} para acceder a Scopus"
     error_on_add_crossref_for_cd: "No se pudo agregar información de Crossref para DC %{cd_title}"
     no_valid_cd_for_this_systematic_review: "El DC %{cd_id} no es válido para esta revisión sistemática. Revise la resolución para este DC en etapas anteriores."

@@ -7,6 +7,14 @@ en:
   Active_and_inactive: "Active and inactive"
   Active_user: "Active user"
   actives_and_inactives_systematic_reviews: "actives and inactives"
+  add_doi:
+    cant_process_doi: "Can't process doi %{doi}"
+    doi_already_on_reference: "DOI %{doi} already assigned to reference %{reference}"
+    doi_set_to_reference: "DOI %{doi} assigned to reference %{reference}"
+    reference_to_canonical_document: "Reference %{reference} assigned to canonical document %{canonical_document}"
+    doi_without_year: "DOI %{doi} without year. Year fixed to 0"
+    new_canonical_document: "New canonical document %{can_doc_id}: %{can_doc_text}"
+    rollback: "Error. Rollback for DOI %{doi}"
   Add_DOI_to_references: "Add DOI to references"
   Add_PMID_using_available_information: "Add PMID using available information"
   Add_info_references_using_crossref: "Add information to references using Crossref"
@@ -159,6 +167,7 @@ en:
   End_year: "End year"
   Enter_commentary: "Enter comment"
   error:
+    bad_crossref_response: "Response to text '%{text}' was erroneous. Code: %{code}, Body:%{body}"
     no_scopus_method: "The Scopus access type %{type} is unknown"
     error_on_add_crossref_for_cd: "Unable to add Crossref information for CD %{cd_title}"
     no_valid_cd_for_this_systematic_review: "CD %{cd_id} invalid for this systematic review. Check  resolution for this CD in preceding stages."
