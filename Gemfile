@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 gem 'rake'
+#gem "rubyzip",  ">= 1.2.1"
 gem "sinatra",  '>=2.0.1'
 gem "sequel"
 gem "mysql2"

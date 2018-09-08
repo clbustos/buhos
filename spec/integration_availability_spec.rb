@@ -129,6 +129,7 @@ describe 'Resources availability:' do
     it { expect("/search/1").to be_available_for_admin}
     it { expect("/search/1/edit").to be_available_for_admin}
     it { expect("/search/1/records").to be_available_for_admin}
+    it { expect("/search/1/record/1").to be_available_for_admin}
     it { expect("/search/1/references").to be_available_for_admin}
   end
   context "when reports are accessed" do
