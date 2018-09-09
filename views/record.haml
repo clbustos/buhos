@@ -14,7 +14,7 @@
 
 =partial(:records_list,:locals=>{:records=>[@reg], :search=>search, :btn_show=>true})
 %p
-  =t_desc_value("record.raw", @reg.raw_key_value)
+  =t_desc_value("record.raw", "#{@reg.raw_key_value}")
 
 
 %h3=t(:References)

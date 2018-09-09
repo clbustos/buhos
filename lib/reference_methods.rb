@@ -31,7 +31,7 @@ module ReferenceMethods
   include DOIHelpers
 
   def raw_key_value
-    [:authors_apa_6, :year, :title, :journal, :volume, :pages, :doi].map {|k|
+    [:uid, :authors_apa_6, :year, :title, :journal, :volume, :pages, :doi].map {|k|
       v=self.send(k)
       "<strong>#{k}:</strong>#{v.nil? ? I18n::t(:no_value) : v}"}.join("; ")
   end
