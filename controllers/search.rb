@@ -193,11 +193,12 @@ post '/search/update' do
       if search.is_type?(:bibliographic_file)
         sp=BibliographicFileProcessor.new(search)
         add_result(sp.result)
+        unless sp.error.nil?
+          add_message(sp.error, :error)
+          search.delete
+        end
       end
-      unless sp.error.nil?
-        add_message(sp.error, :error)
-        search.delete
-      end
+
     end
   redirect "/review/#{otros_params[:systematic_review_id]}/dashboard"
 end

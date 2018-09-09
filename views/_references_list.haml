@@ -45,7 +45,7 @@
           - if ref[:doi]
             =a_doi(ref[:doi])
           .btn-group
-            - if auth_to('reference_edit') and auth_to('crossref_query')
+            - if auth_to('crossref_query') and auth_to('reference_edit')
               %a{:href=>url("/reference/#{ref[:id]}/search_crossref"), :role=>:button, :class=>"btn btn-default btn-sm"}
                 %span{:class=>"glyphicon glyphicon-search"}
                 =t(:Search_on_Crossref)

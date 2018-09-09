@@ -47,10 +47,10 @@ class Reference < Sequel::Model(:bib_references)
 
   many_to_many :records
   def self.calculate_id(text)
+    raise ArgumentError, I18n::t(:Reference_text_cant_be_nil) if text.nil?
     Digest::SHA256.hexdigest text
   end
   # Retrieve a Reference with a specific text
-  # If doesn't exist before, create it
   # @param text reference text, as-is
   # @return a Reference
   def self.get_by_text(text)
