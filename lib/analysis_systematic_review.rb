@@ -202,5 +202,13 @@ class AnalysisSystematicReview
     }
   end
 
+  # Analysis of sources and databases
+  def summary_sources_databases
+    $db["SELECT  s.source, s.bibliographic_database_id,  COUNT(*) as n FROM records r
+    INNER JOIN records_searches rs ON r.id=rs.record_id
+    INNER JOIN searches s ON s.id=rs.search_id WHERE s.systematic_review_id=?
+    GROUP BY  s.source, s.bibliographic_database_id ORDER BY s.source, s.bibliographic_database_id", @rs.id]
+  end
+
 
 end
