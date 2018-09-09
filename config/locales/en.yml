@@ -572,6 +572,8 @@ en:
   Show_systematic_review: "Show systematic reviews"
   Show_sr_only_user: "User only"
   Show_sr_all: "All"
+  Similar_canonical_documents: "Similar canonical documents"
+  Similarity: "Similarity"
   sinatra_auth:
     error_on_auth: "Authentication Error"
     permission_created_by_administrator: "Authorization issued by administrator"

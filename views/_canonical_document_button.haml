@@ -1,3 +1,5 @@
-%a.btn.btn-sm.btn-default{:href=>url("/canonical_document/#{id}"), :role=>:button}
+- review||=nil
+- url_button = review ? url("/review/#{review[:id]}/canonical_document/#{id}") : url("/canonical_document/#{id}")
+%a.btn.btn-sm.btn-default{:href=>url_button, :role=>:button}
   %span{:class=>"glyphicon glyphicon-king"}
   =t(:Canonical)

@@ -11,6 +11,7 @@ gem 'bibtex-ruby'
 gem "unicode"
 gem 'levenshtein-ffi', :require => 'levenshtein', :platforms => :ruby
 gem 'levenshtein'
+gem 'narray', :platforms => :ruby
 gem 'serrano'
 gem 'dotenv'
 #gem 'scopus'
@@ -30,6 +31,7 @@ gem "certified", :platforms => :mingw
 gem "sass"
 gem 'rubyXL'
 gem 'axlsx'
+gem 'tf-idf-similarity'
 group :production do
   gem "puma", :platforms => :mingw
   gem "thin", :platforms => :ruby

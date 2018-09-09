@@ -579,6 +579,8 @@ es:
   Show_systematic_review: "Mostrar revisiones sistemáticas"
   Show_sr_only_user: "Sólo del usuario"
   Show_sr_all: "Todos"
+  Similar_canonical_documents: "Documentos Canónicos Similares"
+  Similarity: "Similitud"
   sinatra_auth:
     error_on_auth: "Error en autentificación"
     permission_created_by_administrator: "Permiso creado por administrador"
