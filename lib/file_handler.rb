@@ -117,7 +117,7 @@ HEREDOC
     <span class='glyphicon glyphicon-download'>#{I18n.t(:Download)}</span>
   </a>
 <button class='btn btn-default btn-sm' data-target='#modalArchivos' data-toggle='modal' type='button' data-name='#{archivo[:filename]}' data-pk='#{archivo[:id]}' data-pages='#{archivo[:pages]}'>
-  <span class='glyphicon glyphicon-eye-open'>#{I18n.t(:View)}</span></button>
+  <span class='glyphicon glyphicon-eye-open'>#{I18n.t(:View_file)}</span></button>
 
 #{boton_canonico}
       #{boton_rs}

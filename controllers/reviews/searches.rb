@@ -101,13 +101,12 @@ post '/review/search/uploaded_files/new' do
   $db.transaction do
 
     search_id=Search.insert(:systematic_review_id=>@review.id,:description=>params["description"],
-                            :filetype=>'text/plain',:source=>"informal_search",:valid=>false,:user_id=>session['user_id'], :date_creation=>Date.today,
+                            :filetype=>'text/plain',:source=>params['source'],:valid=>false,:user_id=>session['user_id'], :date_creation=>Date.today,
                             :bibliographic_database_id=>@bb_general_id, :search_type=>'uploaded_files')
     search=Search[search_id]
     if files
       results=Result.new
       files.each do |file|
-
         next if file[:type]!~/pdf/ and file[:filename]!~/\.pdf/
         pdfprocessor=PdfFileProcessor.new(search, file[:tempfile], dir_files)
         pdfprocessor.process

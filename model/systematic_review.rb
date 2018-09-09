@@ -129,7 +129,7 @@ AND  #{cd_query} GROUP BY tags.id) as t LEFT JOIN tag_in_classes tecl ON t.id=te
              when :all
                 cd_all_id
              else
-               raise (I18n::t(:Not_defined_for_this_stage))
+               raise(I18n::t(:Not_defined_for_this_stage))
            end
     if type==:all
       CanonicalDocument.join(cd_id_table, canonical_document_id: :id   )
@@ -138,10 +138,7 @@ AND  #{cd_query} GROUP BY tags.id) as t LEFT JOIN tag_in_classes tecl ON t.id=te
 
     end
   end
-  # Nombre de la tabla para references entre canonicos
-
-
-
+  # Canonical documents id with resolution for given stage
   def cd_id_resolutions(stage)
     Resolution.where(:systematic_review_id=>self[:id], :stage=>stage.to_s,:canonical_document_id=>cd_all_id,:resolution=>'yes').map(:canonical_document_id)
   end

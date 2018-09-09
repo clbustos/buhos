@@ -1,6 +1,9 @@
 %h2=@title
 
 %ul.breadcrumb
+  - if @review
+    %li
+      %a{:href=>url("/review/#{@review.id}")}=@review.name
   %li.active
     =@cd.title
 
@@ -84,6 +87,27 @@
   .btn-group.btn-group-sm
     %a{:href=>url("/canonical_document/#{@cd[:id]}/view_pubmed_info"), :role=>:button, :class=>"btn btn-default btn-sm"}=t(:View_Pubmed_record)
 
+- if @review
+  %h3=t(:Similar_canonical_documents)
+  - if @sim_all
+    %table.tablesorter
+      %thead
+        %th{:style=>"width:25%"}=t(:Author)
+        %th=t(:Year)
+        %th=t(:Title)
+        %th=t(:Similarity)
+      %tbody
+        -@sim_all.each do |sim|
+          - cd_l=@rs_cds[sim[:id]]
+          %tr
+            %td=cd_l[:author]
+            %td=cd_l[:year]
+            %td
+              =cd_l[:title]
+              =partial(:canonical_document_button, locals:{id:sim[:id], review:@review })
+            %td=sim[:similarity] ? sim[:similarity].round(3) : '--'
+  - else
+    %p.text-alert=t(:Similarity_cant_be_calculated)
 
 
 %h3=t("canonical_document.records_on_which_appears")

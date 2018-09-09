@@ -372,7 +372,7 @@ module Buhos
     end
     # Insert data for bibliographic databases
     def self.insert_bib_db_data(db)
-      ["scopus", "wos", "scielo", "ebscohost", "refworks", "generic"].each do |bib_db|
+      ["scopus", "wos", "scielo", "ebscohost", "refworks", "ieee", "generic"].each do |bib_db|
         db[:bibliographic_databases].replace(:name => bib_db)
       end
     end

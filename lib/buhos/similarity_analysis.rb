@@ -26,49 +26,47 @@
 # OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-require_relative 'doi_helpers'
-module ReferenceMethods
-  include DOIHelpers
+#
+module Buhos
+  class SimilarAnalysisSr
+    attr_reader :error
 
-  def raw_key_value
-    [:uid, :authors_apa_6, :year, :title, :journal, :volume, :pages, :doi].map {|k|
-      v=self.send(k)
-      "<strong>#{k}:</strong>#{v.nil? ? I18n::t(:no_value) : v}"}.join("; ")
-  end
-  def cite_apa_6
-    "(#{authors_apa_6}, #{year})"
-  end
-  def ref_apa_6_base(text_author)
-    "#{text_author} (#{year}). #{title}. #{journal}, #{volume}, #{pages}.#{doi_t}"
-  end
-  def doi_t
-    doi.to_s!="" ? "doi: #{doi}" : ""
-  end
-  def ref_apa_6
-    ref_apa_6_base(author)
-  end
-  def ref_apa_6_brief
-    ref_apa_6_base(authors_apa_6)
-  end
-
-  def authors_apa_6
-    return "--NA--" if author.nil?
-    authors=author.split(" and ").map {|v| v.strip}
-    if authors.length>7
-      author_ref=(authors[0..5]+["..."]+[authors.last]).join(", ")
-
-    elsif authors.length>1
-      author_ref=authors[0..(authors.length-2)].join(", ")+", & "+authors.last
-    else
-      author_ref=author
+    def self.similar_to_cd_in_sr(cd:,sr:)
+      sas=SimilarAnalysisSr.new(sr)
+      sas.process
+      sas.similarity_all_to_one(cd.id)
     end
-    author_ref
-  end
-  def e_html t
-    CGI.escapeHTML(t.to_s)
-  end
-  def ref_apa_6_brief_html
-    doi_t = doi ? "doi: #{a_doi(doi)}" : ""
-    "#{e_html(authors_apa_6)} (#{e_html(year)}). #{e_html(title)}. <em>#{e_html(journal)}, #{e_html(volume)}</em>, #{e_html(pages)}. #{doi_t}"
+    def initialize(sr)
+      raise I18n::t(:Cant_be_nil) if sr.nil?
+      @sr=sr
+      @narray_available=true
+      begin
+        require 'narray'
+      rescue LoadError
+        require 'matrix'
+        @narray_available=false
+      end
+    end
+    def process
+
+      require 'tf-idf-similarity'
+      @cd_w_abstract=@sr.cd_hash.find_all {|v| v[1][:abstract].to_s!=""}
+      @corpus=@cd_w_abstract.map {|v| TfIdfSimilarity::Document.new(v[1][:abstract])}
+
+      @cd_w_abstract_ids=@cd_w_abstract.map {|v|v[0]}
+
+      @model = TfIdfSimilarity::TfIdfModel.new(@corpus, library: (@narray_available ? :narray : :matrix))
+      @matrix = @model.similarity_matrix
+    end
+    def similarity_two(cd_id_1,cd_id_2)
+      index_cd_1=@cd_w_abstract_ids.index(cd_id_1)
+      index_cd_2=@cd_w_abstract_ids.index(cd_id_2)
+      (index_cd_1.nil? or index_cd_2.nil?) ? nil : @matrix[index_cd_1,index_cd_2]
+    end
+    def similarity_all_to_one(cd_id)
+      return nil unless @cd_w_abstract_ids.include? cd_id.to_i
+      ids=@cd_w_abstract.find_all{|v| v[0]!=cd_id.to_i}.map {|v| v[0]}
+      ids.map {|v| {:id=>v, :similarity=>similarity_two(cd_id.to_i,v)}}.sort_by{|v| -v[:similarity]}
+    end
   end
 end

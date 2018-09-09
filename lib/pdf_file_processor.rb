@@ -98,7 +98,7 @@ class PdfFileProcessor
         can_doc_id = CanonicalDocument.insert(:title=>title,:type=>"tempfile",:year=>0,:doi=>doi, :author=>author)
         @canonical_document = CanonicalDocument[:id => can_doc_id]
       end
-      record.update(:canonical_document_id=>can_doc_id)
+      record.update(:canonical_document_id=>@canonical_document[:id])
 
     end
     @canonical_document
@@ -128,13 +128,14 @@ class PdfFileProcessor
 
 
       record=get_record_by_uid(uid)
-
+      $log.info(record)
 
       # Recuperamos información desde crossref
 
 
       create_record_search_by_ids(record.id, search_id)
       cd=get_canonical_document(record)
+        $log.info(cd)
       file_proc=FileProcessor.new(simulate_file_uploaded, dir_files)
       file_proc.add_to_sr(systematic_review)
       file_proc.add_to_cd(cd)

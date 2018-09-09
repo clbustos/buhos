@@ -101,6 +101,8 @@ post '/review/update' do
   otros_params=otros_params.inject({}) {|ac,v|
     ac[v[0].to_sym]=v[1];ac
   }
+
+
   #  aa=SystematicReview.new
   #$log.info(otros_params)
 
@@ -319,6 +321,30 @@ get '/review/:id/advance_stage' do |id|
     redirect back
   end
 end
+
+get '/review/:rev_id/reference/:ref_id/assign_canonical_document' do |rev_id, r_id|
+  halt_unless_auth('reference_edit')
+  @reference=Reference[r_id]
+  raise Buhos::NoReferenceIdError, r_id if @reference.nil?
+  @review=SystematicReview[rev_id]
+  raise Buhos::NoReviewIdError, rev_id if @review.nil?
+  @cds=nil
+  @query=params['query']
+  if @query
+    @cds=@review.canonical_documents
+    @cds=@cds.where(Sequel.like(:author, "%#{@query['author'].chomp}%")) if @query['author'].to_s!=""
+    @cds=@cds.where(:year=>@query['year']) if @query['year'].to_s!=""
+    @cds=@cds.where(Sequel.like(:title, "%#{@query['title'].chomp}%")) if @query['title'].to_s!=""
+    @cds=@cds.order(:author).limit(20)
+  else
+    @query={}
+  end
+
+  haml "systematic_reviews/reference_assign_canonical_document".to_sym
+end
+
+
+
 
 get '/review/:id/delete' do |id|
   halt_unless_auth('review_admin')

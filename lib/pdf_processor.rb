@@ -33,6 +33,8 @@ require_relative "doi_helpers"
 # Processing to add PDF to a systematic review is performed by PdfFileProcessor
 
 class PdfProcessor
+
+
   include DOIHelpers
   include Buhos::Helpers
   attr_reader :reader

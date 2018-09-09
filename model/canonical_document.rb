@@ -75,8 +75,13 @@ class CanonicalDocument < Sequel::Model
         }
       end
       CanonicalDocument[pk_id].update(fields)
+      table_list=[:allocation_cds, :bib_references, :cd_criteria,:decisions, :file_cds, :resolutions, :tag_in_cds, :records, :canonical_document_authors]
+      # We have to add analysis tables
 
-      [:allocation_cds, :bib_references, :cd_criteria,:decisions, :file_cds, :resolutions, :tag_in_cds, :records, :canonical_document_authors].each do |table|
+      SystematicReview.all.each do |sr|
+        table_list.push(sr.analysis_cd_tn.to_sym) if $db.table_exists?(sr.analysis_cd_tn)
+      end
+      table_list.each do |table|
 
         pk=$db.schema(table).find_all {|v|
           v[1][:primary_key]
@@ -96,9 +101,6 @@ class CanonicalDocument < Sequel::Model
           end
 
         end
-
-
-
 
         $db[table].where(:canonical_document_id=>pks).update(:canonical_document_id=>pk_id)
       end

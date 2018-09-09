@@ -12,4 +12,6 @@
 - if @records.count>0
   %a{:href=>"/search/#{@search.id}/records/complete_doi"}
     %button{:class=>"btn btn-default btn-sm"}=t(:Download_Crossref_information_for_all_documents)
-=partial(:records_list, :locals=>{:records=>@records, :search=>@search})
+  =partial(:records_list, :locals=>{:records=>@records, :search=>@search})
+- else
+  %div.alert.alert-warning=t(:No_records_search)

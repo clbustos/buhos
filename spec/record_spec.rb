@@ -3,7 +3,8 @@ require 'spec_helper'
 describe 'Record' do
   before(:all) do
     RSpec.configure { |c| c.include RSpecMixin }
-    @temp=configure_complete_sqlite
+    @temp=configure_empty_sqlite
+    sr_references
     login_admin
   end
   let(:reference) {Record[1]}
@@ -16,9 +17,10 @@ describe 'Record' do
       expect(crossref_query.all? {|v| v.keys.include?('doi')}).to be true
     end
   end
+
   context "#references_id" do
-    it "should retrieve 77 references" do
-      expect(Record[1].references_id.count).to eq(77)
+    it "should retrieve 3 references" do
+      expect(Record[1].references_id.count).to eq(3)
     end
   end
 
@@ -72,12 +74,13 @@ describe 'Record' do
     it {
       expect(@result).to be_a(::Result)
     }
-    it "should process 38 references" do
-      expect(@result.events[0][:message]).to include("38")
+    it "should process 50 references" do
+      expect(@result.events[0][:message]).to include("50")
     end
-    it "record should have now 38 references" do
-      expect(RecordsReferences.where(record_id:1).count).to eq(38)
+    it "record should have now 50 references" do
+      expect(RecordsReferences.where(record_id:1).count).to eq(50)
     end
   end
+
 
 end

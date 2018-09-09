@@ -1,3 +1,18 @@
+- bib_hash=BibliographicDatabase.as_hash(:id)
+%table.table.table-ordered
+  %thead
+    %th=t("search.Source")
+    %th=t(:Bibliographic_database)
+    %th=t(:n)
+  %tbody
+    -report.ars.summary_sources_databases.each do |row|
+      %tr
+        %td=t(Search.get_source_name(row[:source]))
+        %td
+          - if row[:source]=="database_search"
+            =bib_hash[row[:bibliographic_database_id]][:name]
+        %td=row[:n]
+
 %table.table.table-ordered
   %thead
     %th=t(:Id)

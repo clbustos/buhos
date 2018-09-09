@@ -17,6 +17,12 @@
     %label=t(:Description)
     %input{:class=>"form-control",:type=>"text", :name=>"description"}
   .form-group
+    %label{:for=>"source"}=t("search.Source")
+    %select.form-control{:id=>"source",:name=>"source"}
+      -Search::SOURCES.each do |source|
+        %option{:value=>source}=t(Search.get_source_name(source))
+
+  .form-group
     %label=t(:File)
     %input{:type=>'file', :name=>'files[]', :multiple=>"multiple"}
   %input{:type=>:submit, :class=>"btn btn-primary",:value=>"Enviar"}
