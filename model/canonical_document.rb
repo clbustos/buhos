@@ -78,7 +78,7 @@ class CanonicalDocument < Sequel::Model
       table_list=[:allocation_cds, :bib_references, :cd_criteria,:decisions, :file_cds, :resolutions, :tag_in_cds, :records, :canonical_document_authors]
       # We have to add analysis tables
 
-      SystematicReview.each do |sr|
+      SystematicReview.all.each do |sr|
         table_list.push(sr.analysis_cd_tn.to_sym) if $db.table_exists?(sr.analysis_cd_tn)
       end
       table_list.each do |table|
