@@ -11,7 +11,7 @@ gem 'bibtex-ruby'
 gem "unicode"
 gem 'levenshtein-ffi', :require => 'levenshtein', :platforms => :ruby
 gem 'levenshtein'
-gem 'narray', :platforms => :ruby
+gem 'narray'
 gem 'serrano'
 gem 'dotenv'
 #gem 'scopus'
