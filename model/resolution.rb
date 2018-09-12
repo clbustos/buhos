@@ -31,5 +31,6 @@ require_relative 'systematic_review'
 
 class Resolution < Sequel::Model
   NO_RESOLUTION='NR'
+  PREVIOUS_REJECT="PR"
 end
 

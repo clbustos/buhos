@@ -41,6 +41,42 @@ module Buhos
     def sql_in
       "IN (#{searches_id.join(",")})"
     end
+    def records
+      Record.join(:records_searches, record_id: :id ).where(search_id: @searches_id)
+    end
+    def canonical_documents_id
+      records.map(&:canonical_document_id).uniq
+    end
+    def records_by_cd
+      $db["SELECT canonical_document_id, COUNT(*) as n FROM records_searches rs
+INNER JOIN records r ON rs.record_id=r.id WHERE rs.search_id #{sql_in} GROUP BY r.canonical_document_id ORDER BY n desc"]
+    end
+    def resolutions_by_cd(sr,stage)
+      ars=Analysis_SR_Stage.new(sr,stage)
+      rbc=ars.resolutions_by_cd
+      canonical_documents_id.inject({}) do |ac,v|
+        ac[v]=rbc[v]
+        ac
+      end
+    end
+
+    def resolutions_by_cd_summary(sr,stage)
+      resolutions_by_cd(sr, stage).inject({}) {|ac,v|
+        type=v[1].nil? ? Resolution::PREVIOUS_REJECT : v[1]
+        ac[type]||=0
+        ac[type]+=1
+        ac
+      }
+    end
+
+
+    def records_by_cd_summary
+      records_by_cd.inject({}) do |ac,v|
+        ac[v[:n]]||=0
+        ac[v[:n]]+=1
+        ac
+      end
+    end
     def summary_sources_databases
       $db["SELECT  s.source, s.bibliographic_database_id,  COUNT(*) as n FROM records r
     INNER JOIN records_searches rs ON r.id=rs.record_id
