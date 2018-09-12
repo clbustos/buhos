@@ -37,7 +37,7 @@
         =tabs.end_body
     .col-md-4.col-sm-4#extract-form
       %div
-        - [:author, :year,:title,:doi].each do |field|
+        - [:title, :author, :year,:doi].each do |field|
           %div
             %strong=t(field.to_s.capitalize)
           - if auth_to("review_admin")

@@ -57,10 +57,16 @@ function buscar_similares_canonico() {
 }
 
 
+function actualizar_resolution(stage, div_id) {
 
-function actualizar_resolution(stage) {
+    div_id = typeof div_id !== 'undefined' ? div_id : false;
+    var selector_action=div_id ? div_id+" .dc_resolution" : '.dc_resolution';
 
-    $(".dc_resolution").click(function () {
+
+
+    $(selector_action).unbind("click");
+
+    $(selector_action).click(function () {
         var pk_id = $(this).attr("data-pk");
         var resolution = $(this).attr("data-resolution");
         var user_id = $(this).attr("data-user");
@@ -69,12 +75,11 @@ function actualizar_resolution(stage) {
 
         //var commentary=$("#commentary-"+pk_id).val()
         var boton = $(this);
-        boton.prop("disabled", true)
+        boton.prop("disabled", true);
         $.post(url, {pk_id: pk_id, resolution: resolution, user_id: user_id}, function (data) {
-            $("#botones_resolution_"+stage+"_"+ pk_id).html(data)
-            //update_textarea_editable();
-            //setTimeout(function() {
-            //},2000);
+            $("#botones_resolution_"+stage+"_"+ pk_id).html(data);
+            var to_update="#botones_resolution_"+stage+"_"+pk_id;
+            actualizar_resolution(stage,to_update);
 
         }).fail(function () {
             alert("No se pudo cargar la resolution")
