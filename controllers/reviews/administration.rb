@@ -97,46 +97,49 @@ end
 
 # Retrieve information from Crossref for all canonical documents
 # approved for a given stage
+# TODO: Move this to independent class
 
 get '/review/:rev_id/stage/:stage/generate_crossref_references' do |rev_id,stage|
   halt_unless_auth('review_admin')
   @review=SystematicReview[rev_id]
   raise Buhos::NoReviewIdError, id if !@review
-
   result=Result.new
-  dois_agregados=0
-  cd_i=Resolution.where(:systematic_review_id=>rev_id, :resolution=>"yes", :stage=>stage.to_s).map {|v|v [:canonical_document_id]}
-  cd_i.each do |cd_id|
-    @cd=CanonicalDocument[cd_id]
+  begin
+    dois_agregados=0
+    cd_i=Resolution.where(:systematic_review_id=>rev_id, :resolution=>"yes", :stage=>stage.to_s).map {|v|v [:canonical_document_id]}
+    cd_i.each do |cd_id|
+      @cd=CanonicalDocument[cd_id]
 
-    # first, we process all records pertinent with this canonical document.
-    records=Record.where(:canonical_document_id=>cd_id)
-    rcp=RecordCrossrefProcessor.new(records,$db)
-    result.add_result(rcp.result)
-    if @cd.crossref_integrator
-      begin
-        # Agregar dois a references
-        @cd.references_performed.where(:canonical_document_id=>nil).each do |ref|
-          # primero agregamos doi si podemos
-          # Si tiene doi, tratamos de
-          rp=ReferenceProcessor.new(ref)
-          if ref.doi.nil?
-            dois_agregados+=1 if rp.process_doi
-          end
+      # first, we process all records pertinent with this canonical document.
+      records=Record.where(:canonical_document_id=>cd_id)
+      rcp=RecordCrossrefProcessor.new(records,$db)
+      result.add_result(rcp.result)
+      if @cd.crossref_integrator
+        begin
+          # Agregar dois a references
+          @cd.references_performed.where(:canonical_document_id=>nil).each do |ref|
+            # primero agregamos doi si podemos
+            # Si tiene doi, tratamos de
+            rp=ReferenceProcessor.new(ref)
+            if ref.doi.nil?
+              dois_agregados+=1 if rp.process_doi
+            end
 
-          if !ref.doi.nil?
-            result.add_result(ref.add_doi(ref[:doi]))
+            if !ref.doi.nil?
+              result.add_result(ref.add_doi(ref[:doi]))
+            end
           end
+        rescue StandardError=>e
+          result.error(e.message)
         end
-      rescue Exception=>e
-        result.error(e.message)
+      else
+        result.error(I18n::t("error.error_on_add_crossref_for_cd", cd_title:@cd[:title]))
       end
-    else
-      result.error(I18n::t("error.error_on_add_crossref_for_cd", cd_title:@cd[:title]))
     end
+    result.info(I18n::t(:Search_add_doi_references, :count=>dois_agregados))
+  rescue Faraday::ConnectionFailed=>e
+    result.error("#{t(:No_connection_to_crossref)}:#{e.message}")
   end
-  result.info(I18n::t(:Search_add_doi_references, :count=>dois_agregados))
-
   add_result(result)
   redirect back
 end

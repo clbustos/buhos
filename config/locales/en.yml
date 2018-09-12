@@ -375,6 +375,7 @@ en:
   Not_allowed_with_user_permissions: "Action not allowed by user authorizations"
   Not_assigned: "Not allocated"
   No_authorizations: "No authorizations"
+  No_connection_to_crossref: "No connection to crossref"
   Not_defined: "Not defined"
   Not_defined_for_this_stage: "Not defined for this stage"
   No permits: "No authorizations"
