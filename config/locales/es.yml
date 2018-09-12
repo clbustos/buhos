@@ -29,6 +29,7 @@ es:
   APA_references: "Referencias APA"
   App_title: "Buhos"
   App_title_installer: "Instalación - Buhos"
+  Analyze: "Analizar"
   Analysis_form: "Formulario de análisis"
   archivo:
     successful_file_added: "Archivo %{filename} agregado con éxito"
@@ -513,6 +514,7 @@ es:
     stage_complete_message: "Ha concluido la fase de tamizaje de documentos más citados entre aquellos de la fase de tamizaje por título y resumen. Cuando todos los usuarios del grupo hayan contestado, comenzara la fase de revisión de texto completo"
   Rol: "Rol"
   Role: "Rol"
+  role_without_authorizations: "Rol sin autorizaciones"
   role_without_name: "Cada rol debe tener un nombre"
   Role_delete: "Eliminar rol"
   Role_deleted_name: "Rol %{role} eliminado"
@@ -563,6 +565,7 @@ es:
     manual: "Registros manuales"
   Search_valid: "Válida"
   Search_view: "Ver búsqueda"
+  Searches_analysis: "Análisis de búsquedas %{searches_id}"
   Search_by_bibliographic_records: "Búsqueda por registros bibliográficos"
   Search_by_article_files: "Búsqueda por archivos de artículos"
   Searches: "Búsquedas"

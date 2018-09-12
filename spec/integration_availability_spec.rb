@@ -122,6 +122,7 @@ describe 'Resources availability:' do
     it { expect("/review/1/search/bibliographic_file/new").to be_available_for_admin}
     it { expect("/review/1/search/uploaded_files/new").to be_available_for_admin}
     it { expect("/review/1/searches/compare_records").to be_available_for_admin}
+    it { expect("/review/1/searches/analyze").to be_available_for_admin}
   end
 
 

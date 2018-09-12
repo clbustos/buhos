@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 gem 'rake'
-#gem "rubyzip",  ">= 1.2.1"
+gem "rubyzip",  ">= 1.2.1"
+gem 'zip-zip'
 gem "sinatra",  '>=2.0.1'
 gem "sequel"
 gem "mysql2"
@@ -30,7 +31,7 @@ gem 'mimemagic'
 gem "certified", :platforms => :mingw
 gem "sass"
 gem 'rubyXL'
-gem 'axlsx'
+gem 'axlsx' , ">=2.0.0"
 gem 'tf-idf-similarity'
 group :production do
   gem "puma", :platforms => :mingw

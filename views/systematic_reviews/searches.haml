@@ -19,10 +19,14 @@
     %p
     - if @searches.count>0
       %form{:method=>:post, :action=>"/searches/update_batch"}
+        %input{:type=>:hidden, :name=>:sr_id, :value=>@review.id}
         %input{:type=>:hidden, :name=>:action, :id=>'form-action'}
         %input{:type=>:hidden, :name=>:url_back, :value=>@url_back}
         .btn-toolbar
           .btn-group.btn-group-sm{:role=>:group}
+            %button.btn.btn-default.btn-action{:value=>:analyze}
+              %span.glyphicon.glyphicon-eye-open
+              =t(:Analyze)
             %button.btn.btn-default.btn-action{:value=>:valid}
               %span.glyphicon.glyphicon-ok-circle
               =t(:Search_valid)

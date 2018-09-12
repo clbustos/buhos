@@ -1,0 +1,12 @@
+- if @review
+  .header=t_systematic_review_title(@review.name, t(:Searches_analysis, searches_id:@searches_id), false)
+
+%ul.breadcrumb
+  %li
+    %a{:href=>url("/review/#{@review.id}")}=truncate(@review.name)
+  %li
+    %a{:href=>url("/review/#{@review.id}/searches")}=t(:searches)
+  %li.active
+    =t(:Searches_analysis, searches_id:@searches_id)
+
+=partial("searches/summary_sources_databases".to_sym, locals:{summary_sources_databases:@an_searches.summary_sources_databases})

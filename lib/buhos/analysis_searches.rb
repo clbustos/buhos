@@ -26,45 +26,26 @@
 # OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-class AuthorizationsRole < Sequel::Model
+#
+module Buhos
+  # Class to analysis groups of searches:
+  # - Number of
+  class AnalysisSearches
+    attr_reader :searches
+    attr_reader :searches_id
+    def initialize(searches)
 
-end
-
-class Role < Sequel::Model(:roles)
-
-  many_to_many :authorizations, :join_table=>:authorizations_roles, :left_key=>:role_id, :right_key=>:authorization_id
-  one_to_many :users
-  def include_authorization?(auth)
-    ##$log.info("POR BUSCAR:#{authorization}")
-    ##$log.info(authorizations)
-    authorizations.any? {|v|
-    ##$log.info(v[:id]);
-     v[:id]==auth}
-  end
-
-  def delete
-    AuthorizationsRole.where(:role_id=>self[:id]).delete
-    super
-  end
-
-  def add_auth_to(auth)
-    pr=AuthorizationsRole[role_id:self[:id], authorization_id:auth[:id]]
-    AuthorizationsRole.insert(role_id:self[:id], authorization_id:auth[:id]) unless pr
-  end
-
-end
-
-
-class Authorization < Sequel::Model
-  many_to_many :roles, :join_table=>:authorization_roles, :left_key=>:authorization_id, :right_key=>:role_id
-end
-
-
-class User < Sequel::Model
-  many_to_one :role
-
-  def authorizations
-    ##$log.info(self.rol)
-    Role[self[:role_id]].authorizations
+      @searches=searches
+      @searches_id=@searches.map(&:id)
+    end
+    def sql_in
+      "IN (#{searches_id.join(",")})"
+    end
+    def summary_sources_databases
+      $db["SELECT  s.source, s.bibliographic_database_id,  COUNT(*) as n FROM records r
+    INNER JOIN records_searches rs ON r.id=rs.record_id
+    INNER JOIN searches s ON s.id=rs.search_id WHERE s.id #{sql_in}
+    GROUP BY  s.source, s.bibliographic_database_id ORDER BY s.source, s.bibliographic_database_id"]
+    end
   end
 end

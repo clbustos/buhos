@@ -157,6 +157,10 @@ module RSpecMixin
   def login_admin
     post '/login', :user=>"admin", :password=>"admin"
   end
+  def login_analyst
+    post '/login', :user=>"analyst", :password=>"analyst"
+  end
+
   def configure_complete_sqlite
 	if(is_windows?)
 		temppath="#{$base}/spec/usr/db_temp.sqlite"

@@ -6,10 +6,11 @@ GEM
     ai4r (1.13)
     arr-pm (0.0.10)
       cabin (> 0)
-    axlsx (2.0.1)
-      htmlentities (~> 4.3.1)
-      nokogiri (>= 1.4.1)
-      rubyzip (~> 1.0.0)
+    axlsx (3.0.0.pre)
+      htmlentities (~> 4.3, >= 4.3.4)
+      mimemagic (~> 0.3)
+      nokogiri (~> 1.8, >= 1.8.2)
+      rubyzip (~> 1.2, >= 1.2.1)
     backports (3.11.4)
     bibtex-ruby (4.4.7)
       latex-decode (~> 0.0)
@@ -132,10 +133,10 @@ GEM
     ruby-xz (0.2.3)
       ffi (~> 1.9)
       io-like (~> 0.3)
-    rubyXL (3.1.0)
+    rubyXL (3.3.30)
       nokogiri (>= 1.4.4)
-      rubyzip (>= 1.0.0)
-    rubyzip (1.0.0)
+      rubyzip (>= 1.1.6)
+    rubyzip (1.2.2)
     sass (3.5.7)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
@@ -184,6 +185,8 @@ GEM
     yard (0.9.16)
     yard-sinatra (1.0.0)
       yard (~> 0.7)
+    zip-zip (0.3)
+      rubyzip (>= 1.0.0)
 
 PLATFORMS
   ruby
@@ -191,7 +194,7 @@ PLATFORMS
 
 DEPENDENCIES
   ai4r
-  axlsx
+  axlsx (>= 2.0.0)
   bibtex-ruby
   categorize
   certified
@@ -216,6 +219,7 @@ DEPENDENCIES
   rspec
   ruby-stemmer
   rubyXL
+  rubyzip (>= 1.2.1)
   sass
   sequel
   serrano
@@ -227,6 +231,7 @@ DEPENDENCIES
   unicode
   yard
   yard-sinatra
+  zip-zip
 
 BUNDLED WITH
    1.16.4
