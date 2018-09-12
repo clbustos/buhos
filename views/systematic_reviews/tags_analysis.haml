@@ -1,0 +1,28 @@
+- if @user
+  .header=t_systematic_review_title(@review[:name], t(:Tags_analysis_user, username:@user.name), false)
+  - tag_rename_url=url("/tag/rename/review/#{@review[:id]}/user/#{@user[:id]}")
+- else
+  .header=t_systematic_review_title(@review[:name], :Tags_analysis)
+  - tag_rename_url=url("/tag/rename/review/#{@review[:id]}/")
+%ul.breadcrumb
+  %li
+    %a{:href=>url("/review/#{@review.id}")}=truncate(@review.name)
+  %li{:class=>:active}=t(:Tags_analysis)
+
+-tags=@a_tags.get_tags
+%table.table.table-condensed
+  %thead
+    %th{:colspan=>2}=t(:Tag)
+    %th=t(:Yes)
+    %th=t(:No)
+  %tbody
+    -tags.each do |tag|
+      %tr
+        %td
+          %input{:type=>'checkbox', :name=>'tag[]', :value=>tag[:id]}
+        %td
+          =a_editable(tag[:id], 'tag', tag_rename_url, tag[:text])
+          %a.btn.btn-default{:href=>url("/tag/#{tag[:id]}/rs/#{@review.id}/cds")}
+            =t(:Canonical_documents_assigned)
+        %td=tag[:d_yes]
+        %td=tag[:d_no]

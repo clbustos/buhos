@@ -712,6 +712,8 @@ es:
   Tag_class: "Tipo de etiqueta"
   Tags: "Etiquetas"
   Tags_statistics: "Estadísticas de la etiqueta"
+  Tags_analysis: "Análisis de etiquetas"
+  Tags_analysis_user: "Análisis de etiquetas usuario %{username}"
   Taxonomy: "Taxonomía"
   Text: "Texto"
   Test_alert: "Entorno de prueba"

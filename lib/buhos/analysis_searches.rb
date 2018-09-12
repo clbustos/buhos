@@ -29,7 +29,8 @@
 #
 module Buhos
   # Class to analysis groups of searches:
-  # - Number of
+  # - Resolutions of each document on every stage
+  # - Databases and types of every search
   class AnalysisSearches
     attr_reader :searches
     attr_reader :searches_id

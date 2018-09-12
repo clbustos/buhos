@@ -26,47 +26,43 @@
 # OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-class Tag < Sequel::Model
-  def self.get_tag(name)
-    tag=Tag.where(:text=>name).first
-    if tag.nil?
-      tag_id=Tag.insert(:text=>name)
-      tag=Tag[tag_id]
+#
+module Buhos
+  # Analysis of a set of tags
+  # Criteria could be: systematic review, user, canonical_document
+  class AnalysisTags
+    def initialize
+      @canonical_document_id=nil
+      @user_id=nil
+      @systematic_review_id=nil
     end
-    tag
-  end
+    def canonical_document_id(cd_id)
+      cd_id=[cd_id] unless cd_id.is_a? Array
+      @canonical_document_id=cd_id
+    end
+    def user_id(user_id)
+      user_id=[user_id] unless user_id.is_a? Array
 
-  def delete_if_unused
-    if TagInCd.where(:tag_id=>self[:id]).empty? and TagBwCd.where(:tag_id=>self[:id]).empty?
-      Tag[self[:id]].delete
+      @user_id=user_id
+    end
+    def systematic_review_id(sr_id)
+      sr_id=[sr_id] unless sr_id.is_a? Array
+
+      @systematic_review_id=sr_id
+    end
+    def get_tags
+      where=["1=1"]
+      where.push " canonical_document IN (#{@canonical_document_id.join(',')})" if @canonical_document_id
+      where.push " user_id IN (#{@user_id.join(',')})" if @user_id
+      where.push " systematic_review_id IN (#{@systematic_review_id.join(',')})" if @systematic_review_id
+
+      query="SELECT t.id, t.text, SUM(CASE WHEN decision='yes' THEN 1 ELSE 0 END) as d_yes,
+SUM(CASE WHEN decision='no' THEN 1 ELSE 0 END)  as d_no
+FROM tags t INNER JOIN tag_in_cds tic ON t.id=tag_id WHERE #{where.join(' AND ')}
+GROUP BY t.id
+ORDER BY t.text"
+
+      $db[query]
     end
   end
 end
-
-class T_Class < Sequel::Model
-
-  def self.classes_documents(sr)
-    T_Class.where(:systematic_review_id=>sr[:id], :type=>'document').or(:systematic_review_id=>sr[:id], :type=>'general')
-  end
-  def tags
-    Tag.join(:tag_in_classes, tag_id: :id ).select_all(:tags).where(:tc_id=>self.id)
-  end
-  def allocate_tag(tag)
-    tag_en_clase=TagInClass.where(:tag_id=>tag[:id],:tc_id=>self.id)
-    if(tag_en_clase.empty?)
-      TagInClass.insert(:tag_id=>tag[:id],:tc_id=>self.id)
-    end
-
-  end
-
-
-  def deallocate_tag(tag)
-    TagInClass.where(:tag_id=>tag[:id], :tc_id=>self.id).delete
-  end
-end
-
-
-class TagInClass < Sequel::Model
-
-end
-

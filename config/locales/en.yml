@@ -705,6 +705,8 @@ en:
   Tag_class: "Tag class"
   Tags: "Tags"
   Tags_statistics: "Tag statistics"
+  Tags_analysis: "Tags analysis"
+  Tags_analysis_user: "Tags analysis for user %{username}"
   Taxonomy: "Taxonomy"
   Text: "Text"
   Test_alert: "Test environment"

@@ -282,13 +282,33 @@ post '/tag/delete_rs' do
   return 404 if rs.nil? or tag.nil?
   $db.transaction(:rollback=>:reraise) {
     TagInCd.where(:tag_id=>tag.id, :systematic_review_id=>rs.id).delete
-    if TagInCd.where(:tag_id=>tag.id).empty? and TagBwCd.where(:tag_id=>tag.id).empty?
-      Tag[tag.id].delete
-    end
+    tag.delete_if_unused
   }
   return 200
 end
 
+
+put '/tag/rename/review/:sr_id/user/:user_id' do |sr_id, user_id|
+  halt_unless_auth('tag_edit')
+
+  pk = params['pk']
+  value = params['value'].chomp
+
+  @review=SystematicReview[sr_id]
+  raise Buhos::NoReviewIdError, sr_id if !@review
+  @user = User[user_id]
+  raise Buhos::NoUserIdError, user_id if !@user
+  @tag  = Tag[pk]
+  raise Buhos::NoTagIdError, pk if !@tag
+
+  $db.transaction do
+    new_tag=Tag.get_tag(value)
+    TagInCd.where(:tag_id=>pk, :systematic_review_id=>sr_id, :user_id=>user_id).update(:tag_id=>new_tag.id)
+    @tag.delete_if_unused
+  end
+  return 200
+
+end
 
 # Not supported code
 #
