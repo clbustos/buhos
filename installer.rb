@@ -139,8 +139,8 @@ module Buhos
 
     get '/installer/basic_data_form' do
       @form_fields=form_fields
-      @env_exists=File.exist?(env_file)
-      @env_text=File.read(env_file) if @env_exists
+      @env_exists=File.exist?("#{base_dir}/#{env_file}")
+      @env_text=File.read("#{base_dir}/#{env_file}") if @env_exists
       @available_db_adapters=available_db_adapters
       haml "installer/basic_data_form".to_sym, :layout=>"installer/layout".to_sym
     end
@@ -181,7 +181,7 @@ module Buhos
 
     get '/installer/populate_database' do
       ENV['DATABASE_URL']=nil
-      Dotenv.load(env_file)
+      Dotenv.load("#{base_dir}/#{env_file}")
       @error_conexion=false
       begin
         db=Sequel.connect(ENV['DATABASE_URL'], :encoding => 'utf8',:reconnect=>true)
@@ -193,7 +193,7 @@ module Buhos
     end
 
     get '/installer/populate_database_2' do
-      Dotenv.load(env_file)
+      Dotenv.load("#{base_dir}/#{env_file}")
 
       log_db_install=Logger.new("#{base_dir}/log/installer_sql.log")
       db=Sequel.connect(ENV['DATABASE_URL'], :encoding => 'utf8',:reconnect=>true)
