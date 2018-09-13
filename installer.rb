@@ -170,7 +170,7 @@ module Buhos
         File.chmod(0700,env_file)
 
         #begin
-        Dotenv.load(env_file)
+        Dotenv.load("#{base_dir}/#{env_file}")
       rescue Errno::EACCES
         halt(500,t("installer.no_env_file_access"))
       rescue StandardError
