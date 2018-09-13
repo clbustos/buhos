@@ -93,9 +93,9 @@ module Buhos
         [:proxy_hostname, :proxy_port,:proxy_user, :proxy_password, :scopus_key,:ncbi_api_key]
       end
       def install_log(t)
-	  
-		Dir.mkdir 'log' unless File.exists? 'log'
-        log=Logger.new('log/installer.log')
+      base_dir=File.expand(File.dirname(__FILE__))
+      Dir.mkdir "#{base_dir}/log" unless File.exists? "#{base_dir}/log"
+        log=Logger.new("#{base_dir}/log/installer.log")
         log.info(t)
       end
     end
