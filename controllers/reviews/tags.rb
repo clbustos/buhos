@@ -20,6 +20,10 @@ get '/review/:id/tags/user/:user_id' do |sr_id, user_id|
   @a_tags.systematic_review_id sr_id
   @a_tags.user_id  user_id
 
+  @sim_an=Buhos::SimilarAnalysisSr.new(@review)
+
+  @sim_an.process
+
   haml "systematic_reviews/tags_analysis".to_sym
 end
 

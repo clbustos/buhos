@@ -58,6 +58,24 @@ module Buhos
       @model = TfIdfSimilarity::TfIdfModel.new(@corpus, library: (@narray_available ? :narray : :matrix))
       @matrix = @model.similarity_matrix
     end
+    def mean_similarity(cd_ids)
+      return nil if cd_ids.length<2
+
+      n=cd_ids.length
+      n_sims=0
+      total=0
+      0.upto(n-2) do |i|
+        (i+1).upto(n-1) do |j|
+          sim=similarity_two(cd_ids[i],cd_ids[j])
+          $log.info(sim)
+          if sim
+            total+=sim
+            n_sims+=1
+          end
+        end
+      end
+      (total.to_f/n_sims).round(3)
+    end
     def similarity_two(cd_id_1,cd_id_2)
       index_cd_1=@cd_w_abstract_ids.index(cd_id_1)
       index_cd_2=@cd_w_abstract_ids.index(cd_id_2)

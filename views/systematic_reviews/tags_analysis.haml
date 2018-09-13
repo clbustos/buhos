@@ -9,12 +9,15 @@
     %a{:href=>url("/review/#{@review.id}")}=truncate(@review.name)
   %li{:class=>:active}=t(:Tags_analysis)
 
--tags=@a_tags.get_tags
+-tags=@a_tags.get_tags_decision_stats
+-cd_by_tag=@a_tags.canonical_documents_by_tag
+
 %table.table.table-condensed
   %thead
     %th{:colspan=>2}=t(:Tag)
     %th=t(:Yes)
     %th=t(:No)
+    %th=t(:Similarity)
   %tbody
     -tags.each do |tag|
       %tr
@@ -26,3 +29,4 @@
             =t(:Canonical_documents_assigned)
         %td=tag[:d_yes]
         %td=tag[:d_no]
+        %td=@sim_an.mean_similarity(cd_by_tag[tag[:id]].map {|v| v[:canonical_document_id]})

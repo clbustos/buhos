@@ -45,23 +45,32 @@ module Buhos
 
       @user_id=user_id
     end
+
+    def canonical_documents_by_tag
+      $db["SELECT tag_id, canonical_document_id FROM tag_in_cds WHERE #{where_sql} AND decision='yes'" ].to_hash_groups(:tag_id)
+    end
+    def where_sql
+      where=["1=1"]
+      where.push " canonical_document IN (#{@canonical_document_id.join(',')})" if @canonical_document_id
+      where.push " user_id IN (#{@user_id.join(',')})" if @user_id
+      where.push " systematic_review_id IN (#{@systematic_review_id.join(',')})" if @systematic_review_id
+      where.join(' AND ')
+    end
+
     def systematic_review_id(sr_id)
       sr_id=[sr_id] unless sr_id.is_a? Array
 
       @systematic_review_id=sr_id
     end
-    def get_tags
-      where=["1=1"]
-      where.push " canonical_document IN (#{@canonical_document_id.join(',')})" if @canonical_document_id
-      where.push " user_id IN (#{@user_id.join(',')})" if @user_id
-      where.push " systematic_review_id IN (#{@systematic_review_id.join(',')})" if @systematic_review_id
 
+    def get_tags_decision_stats
       query="SELECT t.id, t.text, SUM(CASE WHEN decision='yes' THEN 1 ELSE 0 END) as d_yes,
 SUM(CASE WHEN decision='no' THEN 1 ELSE 0 END)  as d_no
-FROM tags t INNER JOIN tag_in_cds tic ON t.id=tag_id WHERE #{where.join(' AND ')}
+FROM tags t INNER JOIN tag_in_cds tic ON t.id=tag_id WHERE #{where_sql}
 GROUP BY t.id
-ORDER BY t.text"
-
+HAVING d_yes>0
+ORDER BY t.text
+"
       $db[query]
     end
   end
