@@ -167,7 +167,7 @@ module Buhos
           file.puts final_env
         }
         # Only the user that runs the server have access to .env
-        File.chmod(0700,env_file)
+        File.chmod(0700,"#{base_dir}/#{env_file}")
 
         #begin
         Dotenv.load("#{base_dir}/#{env_file}")
