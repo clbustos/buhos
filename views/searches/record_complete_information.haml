@@ -41,7 +41,7 @@
           %div
             %strong=t(field.to_s.capitalize)
           - if auth_to("review_admin")
-            %p=a_editable(@cd[:id], "canonical_document", "/canonical_document/edit_field/#{field}", @cd[field],"")
+            %p=a_editable(@cd[:id], "canonical_document-#{field}", "/canonical_document/edit_field/#{field}", @cd[field],"")
           -else
             %p=@cd[field]
       %div
