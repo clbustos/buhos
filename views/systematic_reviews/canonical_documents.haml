@@ -25,19 +25,6 @@
 %p
   =t_desc_value(:Duplicated_DOI,@cd_rep_doi.length)
 
-%form{:action=>url("/review/#{@review[:id]}/canonical_documents"), :method=>:get,:class=>"form-inline"}
-  %div{:class=>"input-group mb-2 mr-sm-2"}
-    %input{:type=>:hidden,:name=>:page, :value=>@pager.page}
-    %input{:type=>:hidden,:name=>:order, :value=>@pager.order}
-    %label{:class=>"", :for=>:query}=t(:Search)
-    %input{:type=>:text, :value=>@pager.query, :name=>:query, :class=>"form-control"}
-    .form-group-inline
-      %label{:for=>:wo_abstract}=t(:Check_only_documents_without_abstract)
-      %input{:type=>:checkbox, :name=>:wo_abstract, :class=>"form-control-checkbox", :value=>'true',:checked=>@wo_abstract}
-    .form-group-inline
-      %label{:for=>:only_records}=t(:Check_only_documents_on_search_no_references)
-      %input{:type=>:checkbox, :name=>:only_records, :class=>"form-control-checkbox", :checked=>@only_records, :value=>'true'}
-  %input{:type=>:submit, :class=>'btn btn-default '}
 %div{:class=>"btn-group btn-group-sm", :role=>"group"}
   - if auth_to("review_admin")  or review_belongs_to(@review.id, session['user_id'])
     %a{:href=>url("/review/#{@review.id}/repeated_canonical_documents"), :role=>'button', :class=>"btn btn-default"}=t(:Check_duplications)
@@ -59,6 +46,22 @@
   %a{:href=>url("/review/#{@review.id}/resolved_bibtex"),  :role=>'button', :class=>"btn btn-default"}
     %span{:class=>"glyphicon glyphicon-save"}
     =t(:Export_to_Bibtex)
+%p
+%form.form-inline{:action=>url("/review/#{@review[:id]}/canonical_documents"), :method=>:get}
+  %input{:type=>:hidden,:name=>:page, :value=>@pager.page}
+  %input{:type=>:hidden,:name=>:order, :value=>@pager.order}
+  %div{:class=>"form-group"}
+    %label{:class=>"", :for=>:query}=t(:Search)
+    %input{:type=>:text, :value=>@pager.query, :name=>:query, :class=>"form-control"}
+    .checkbox
+      %label{:for=>:wo_abstract}=t(:Check_only_documents_without_abstract)
+      %input{:type=>:checkbox, :name=>:wo_abstract, :class=>"form-control-checkbox", :value=>'true',:checked=>@wo_abstract}
+    .checkbox
+      %label{:for=>:only_records}=t(:Check_only_documents_on_search_no_references)
+      %input{:type=>:checkbox, :name=>:only_records, :class=>"form-control-checkbox", :checked=>@only_records, :value=>'true'}
+  %input{:type=>:submit, :class=>'btn btn-default '}
+%p
+
 
 %p
   %strong="#{t(:Count_search_documents)}:"
@@ -86,15 +89,16 @@
     %button.btn.btn-danger{:id=>:action_delete, :class=>'canonical_document_action'}=t(:Delete)
     %button.btn.btn-default{:id=>:action_merge, :class=>'canonical_document_action'}=t(:Merge)
   %p
-  .list-group
-    - #$log.info(@cds)
+  %table.table.table-condensed
     - @cds.each do |cd|
-      .list-group-item
-        %input{:type=>:checkbox, :name=>"canonical_document[#{cd.id}]", :value=>1}
-        =CGI::escapeHTML cd.ref_apa_6_brief
-        - #%p=sprintf("<strong>Referencias:</strong> citado por %d / reference a %d", @ars.cd_count_entrada(cd[:id]).to_i, @ars.cd_count_salida(cd[:id]).to_i)
-        %p=t(:References_count_to_canonical, in:cd[:n_total_references_in].to_i, out:cd[:n_total_references_made].to_i, in_sta: cd[:n_references_rtr].to_i)
-        %div
+      %tr
+        %td
+          %input{:type=>:checkbox, :name=>"canonical_document[#{cd.id}]", :value=>1}
+        %td
+          =CGI::escapeHTML cd.ref_apa_6_brief
+          %br
+          =t(:References_count_to_canonical, in:cd[:n_total_references_in].to_i, out:cd[:n_total_references_made].to_i, in_sta: cd[:n_references_rtr].to_i)
+        %td
           =partial(:canonical_document_button, :locals=>{id:cd[:id], review:@review})
           =partial(:canonical_document_button_abstract_collapsible, :locals=>{cd:cd})
 

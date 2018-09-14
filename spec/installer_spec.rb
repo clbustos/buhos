@@ -54,7 +54,6 @@ describe "Buhos installer" do
     get '/installer/basic_data_form'
     expect(last_response).to be_ok
     expect(last_response.body).to_not be_empty
-
   end
 
   context 'when basic_data_form is send', :installer=>true do

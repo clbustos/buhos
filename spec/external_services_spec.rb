@@ -195,7 +195,10 @@ describe 'Stage administration using external data' do
       get '/review/1/stage/review_full_text/generate_crossref_references'
     end
     it "should response be ok" do
-      expect(last_response).to be_redirect
+      expect(last_response).to be_ok
+    end
+    it "should stream responses for DOI" do
+      skip "Spec should be implemented"
     end
     after(:context) do
       after_context

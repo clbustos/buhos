@@ -59,6 +59,9 @@ module Buhos
         File.expand_path(File.dirname(__FILE__))
       end
 
+      def log_dir
+        "log"
+      end
       def env_file
         if ENV['RACK_ENV'].to_s == "test"
           ENV['DOT_ENV'] ? ENV['DOT_ENV'] : ".env.test"
@@ -94,10 +97,9 @@ module Buhos
       def optional_fields
         [:proxy_hostname, :proxy_port,:proxy_user, :proxy_password, :scopus_key,:ncbi_api_key]
       end
-      def install_log(t)
-
-      Dir.mkdir "#{base_dir}/log" unless File.exists? "#{base_dir}/log"
-        log=Logger.new("#{base_dir}/log/installer.log")
+    def install_log(t)
+      Dir.mkdir log_dir unless File.exists? log_dir
+        log=Logger.new("#{log_dir}/installer.log")
         log.info(t)
       end
     end
@@ -139,8 +141,8 @@ module Buhos
 
     get '/installer/basic_data_form' do
       @form_fields=form_fields
-      @env_exists=File.exist?("#{base_dir}/#{env_file}")
-      @env_text=File.read("#{base_dir}/#{env_file}") if @env_exists
+      @env_exists=File.exist?(env_file)
+      @env_text=File.read(env_file) if @env_exists
       @available_db_adapters=available_db_adapters
       haml "installer/basic_data_form".to_sym, :layout=>"installer/layout".to_sym
     end
@@ -163,14 +165,14 @@ module Buhos
       final_env=connection_string+("\n")+extra_env.join("\n")
       begin
 
-        File.open("#{base_dir}/#{env_file}","w") {|file|
+        File.open(env_file,"w") {|file|
           file.puts final_env
         }
         # Only the user that runs the server have access to .env
-        File.chmod(0700,"#{base_dir}/#{env_file}")
+        File.chmod(0700,env_file)
 
         #begin
-        Dotenv.load("#{base_dir}/#{env_file}")
+        Dotenv.load(env_file)
       rescue Errno::EACCES
         halt(500,t("installer.no_env_file_access"))
       rescue StandardError
@@ -181,7 +183,7 @@ module Buhos
 
     get '/installer/populate_database' do
       ENV['DATABASE_URL']=nil
-      Dotenv.load("#{base_dir}/#{env_file}")
+      Dotenv.load(env_file)
       @error_conexion=false
       begin
         db=Sequel.connect(ENV['DATABASE_URL'], :encoding => 'utf8',:reconnect=>true)
@@ -193,9 +195,9 @@ module Buhos
     end
 
     get '/installer/populate_database_2' do
-      Dotenv.load("#{base_dir}/#{env_file}")
+      Dotenv.load(env_file)
 
-      log_db_install=Logger.new("#{base_dir}/log/installer_sql.log")
+      log_db_install=Logger.new("#{log_dir}/installer_sql.log")
       db=Sequel.connect(ENV['DATABASE_URL'], :encoding => 'utf8',:reconnect=>true)
       db.logger=log_db_install
       load("lib/buhos/create_schema.rb")
