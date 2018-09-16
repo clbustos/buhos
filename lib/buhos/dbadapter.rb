@@ -73,6 +73,10 @@ module Buhos
       ::TagBwCd.dataset=self[:tag_bw_cds]
       ::SystematicReview.dataset=self[:systematic_reviews]
       ::SrField.dataset=self[:sr_fields]
+      ::SrTaxonomy.dataset=self[:sr_taxonomies]
+      ::SrTaxonomyCategory.dataset=self[:sr_taxonomy_categories]
+      ::Systematic_Review_SRTC.dataset=self[:systematic_review_srtcs]
+
       ::User.dataset=self[:users]
       ::Authorization.dataset=self[:authorizations]
       ::Role.dataset=self[:roles]
@@ -87,6 +91,7 @@ module Buhos
 
       ::Criterion.dataset=self[:criteria]
 
+      ::Pmc_Summary.dataset=self[:pmc_summaries]
 
       ::Search.many_to_many :records, :class=>Record
 

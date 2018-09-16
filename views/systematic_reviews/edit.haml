@@ -78,11 +78,11 @@
     %div{:class=>'tab-content'}
       %div{:role=>'tabpanel', :class=>'tab-pane active', :id=>'sr-taxonomy'}
         %table.reporte
-          - Sr_Taxonomy.each do |sr_taxonomy|
+          - SrTaxonomy.each do |sr_taxonomy|
             %tr
               %th=t("sr_taxonomy.#{sr_taxonomy[:name]}")
               %td
-                - Sr_Taxonomy_Category.where(:srt_id=>sr_taxonomy[:id]).each do |srtc|
+                - SrTaxonomyCategory.where(:srt_id=>sr_taxonomy[:id]).each do |srtc|
                   %p
                     %input{:class=>"form-check-input",:type=>"checkbox", :name=>"srtc[#{srtc[:id]}]", :value=>1, :checked=>@taxonomy_categories_id.include?(srtc[:id])}
                     =t("sr_taxonomy_category.#{srtc[:name]}")
