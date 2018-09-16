@@ -20,6 +20,14 @@ describe 'Stage administration using external data' do
     @ref_id=Reference.calculate_id(@reference_text)
     Reference.insert(:id=>@ref_id, :text=>@reference_text)
     RecordsReferences.insert(record_id:1, reference_id:@ref_id)
+
+    unless ENV["NO_CROSSREF_MOCKUP"]
+      $db[:crossref_dois].insert(:doi=>doi_ex,:json=>read_fixture("10.1007___s00204-017-1980-3.json"))
+      $db[:crossref_dois].insert(:doi=>doi_ref,:json=>read_fixture("10.1177___14614456020040040101.json"))
+
+      $db[:crossref_queries].insert(:id=>'32e989d317ea4172766cc80e484dceaebd67dd7a962a15891ad0bd1eef6428af',:json=>read_fixture('32e989d317ea4172766cc80e484dceaebd67dd7a962a15891ad0bd1eef6428af.json'))
+      $db[:crossref_queries].insert(:id=>'b853d71e3273321a0423a6b4b4ebefb313bfdef4c3d133f219c1e8cb0ef35398',:json=>read_fixture('b853d71e3273321a0423a6b4b4ebefb313bfdef4c3d133f219c1e8cb0ef35398.json'))
+    end
   end
   def after_context
     SystematicReview[1].delete
@@ -28,6 +36,9 @@ describe 'Stage administration using external data' do
     $db[:records].delete
     $db[:bib_references].delete
     $db[:canonical_documents].delete
+    $db[:crossref_dois].delete
+    $db[:crossref_queries].delete
+    $db[:searches].delete
   end
   before(:all) do
     RSpec.configure { |c| c.include RSpecMixin }
@@ -128,6 +139,9 @@ describe 'Stage administration using external data' do
       $db[:bib_references].delete
       Record[1].update(:title=>"Using Framework Analysis in nursing research: a worked example", :year=>2013, :author=>"Ward, D. and Furber, C. and Tierney, S. and Swallow, V.", :canonical_document_id=>1, :doi=>doi_ex)
       CanonicalDocument.insert(:title=>'dummy', :year=>0, :doi=>"10.1289/ehp.1307893")
+
+
+
       get '/search/1/records/complete_doi'
     end
     let(:cd_on_ref) {CanonicalDocument.where(:doi=>"10.1289/ehp.1307893").first}
@@ -147,6 +161,7 @@ describe 'Stage administration using external data' do
 
     after(:context) do
       after_context
+      $db[:crossref_dois].delete
     end
 
   end
@@ -188,23 +203,72 @@ describe 'Stage administration using external data' do
     end
   end
 
-  context "when /review/:rev_id/stage/:stage/generate_crossref_references is called" do
+
+  context "when /review/:rev_id/stage/:stage/complete_empty_abstract_scopus is called" do
     before(:context) do
       pre_context
+      Scopus_Abstract.insert(:id=>"2-s2.0-85019269575", :doi=>"10.1007/s00204-017-1980-3", :xml=>read_fixture("scopus_ex_1.xml"))
       CanonicalDocument[1].update(abstract:nil)
-      get '/review/1/stage/review_full_text/generate_crossref_references'
+      get '/review/1/stage/review_full_text/complete_empty_abstract_scopus'
     end
     it "should response be ok" do
-      expect(last_response).to be_ok
+      expect(last_response).to be_redirect
     end
-    it "should stream responses for DOI" do
-      skip "Spec should be implemented"
+    it "should include correct abstract on canonical document" do
+      expect(CanonicalDocument[1].abstract).to include("pioneered in the clinical field,")
     end
     after(:context) do
+      $db[:scopus_abstracts].delete
       after_context
     end
 
   end
+
+  context "when /canonical_documents/review/:review_id/complete_abstract_scopus is called" do
+    before(:context) do
+      pre_context
+      Scopus_Abstract.insert(:id=>"2-s2.0-85019269575", :doi=>"10.1007/s00204-017-1980-3", :xml=>read_fixture("scopus_ex_1.xml"))
+      CanonicalDocument[1].update(abstract:nil)
+      get '/canonical_documents/review/1/complete_abstract_scopus'
+    end
+    it "should response be ok" do
+      expect(last_response).to be_redirect
+    end
+    it "should include correct abstract on canonical document" do
+      expect(CanonicalDocument[1].abstract).to include("pioneered in the clinical field,")
+    end
+    after(:context) do
+      $db[:scopus_abstracts].delete
+      after_context
+    end
+
+  end
+
+  context "when /canonical_document/:id/search_abstract_scopus is called" do
+    before(:context) do
+      pre_context
+      Scopus_Abstract.insert(:id=>"2-s2.0-85019269575", :doi=>"10.1007/s00204-017-1980-3", :xml=>read_fixture("scopus_ex_1.xml"))
+      CanonicalDocument[1].update(abstract:nil)
+      get '/canonical_document/1/search_abstract_scopus'
+    end
+    it "should response be ok" do
+      expect(last_response).to be_redirect
+    end
+    it "should include correct abstract on canonical document" do
+      expect(CanonicalDocument[1].abstract).to include("pioneered in the clinical field,")
+    end
+    after(:context) do
+      $db[:scopus_abstracts].delete
+      after_context
+    end
+
+  end
+
+
+
+
+
+
   context "when /review/:rev_id/stage/:stage/complete_empty_abstract_pubmed is called" do
     before(:context) do
       pre_context
@@ -222,6 +286,7 @@ describe 'Stage administration using external data' do
     end
 
   end
+
 
   context "when search for crossref references" do
     before(:context) do
@@ -261,10 +326,8 @@ describe 'Stage administration using external data' do
   context "when update information of a canonical document using crossref" do
     before(:context) do
       pre_context
-      #CrossrefDoi[doi:"10.1111/jocn.13259"].delete
       CanonicalDocument[1].update(title:nil, author: nil)
       get '/canonical_document/1/update_using_crossref_info'
-      #$log.info(CanonicalDocument[64])
     end
     let(:cd) {CanonicalDocument[1]}
     let(:cr) {CanonicalDocument[1].crossref_integrator}
@@ -280,6 +343,25 @@ describe 'Stage administration using external data' do
     after(:context) do
       after_context
     end
+  end
+  context "when /search/:id/references/generate_canonical_doi/:n called using crossref" do
+    before(:context) do
+      pre_context
+      get '/search/1/references/generate_canonical_doi/20'
+    end
+
+    it "expect last response to be redirect" do
+      expect(last_response).to be_redirect
+    end
+    it "should update correct title and author" do
+
+    end
+    after(:context) do
+      after_context
+    end
+
+
+
   end
 
 

@@ -80,6 +80,8 @@ get '/review/:id/canonical_documents' do |id|
   @tags_a=Buhos::AnalysisTags.new
   @tags_a.systematic_review_id(@review.id)
 
+  #$log.info($db[:canonical_documents].all)
+  #$log.info(@cds.all)
 
   haml %s{systematic_reviews/canonical_documents}
 end

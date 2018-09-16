@@ -186,6 +186,7 @@ module Buhos
       Dotenv.load(env_file)
       @error_conexion=false
       begin
+        p ENV['DATABASE_URL']
         db=Sequel.connect(ENV['DATABASE_URL'], :encoding => 'utf8',:reconnect=>true)
       rescue Sequel::DatabaseConnectionError => e
         @db_url=ENV['DATABASE_URL']

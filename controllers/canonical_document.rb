@@ -138,7 +138,7 @@ get '/canonical_documents/review/:review_id/complete_abstract_scopus' do |rev_id
   @cd_wo_abstract=@rev.canonical_documents.where(Sequel.lit("abstract IS NULL OR abstract=''")).select_map(:id)
   add_message("Se procesan #{@cd_wo_abstract.count} documentos canonicos")
   @cd_wo_abstract.each do |cd|
-    add_result(Scopus_Abstract.obtener_abstract_cd(cd))
+    add_result(Scopus_Abstract.get_abstract_cd(cd))
   end
   redirect back
 end
@@ -146,7 +146,7 @@ end
 # Query Scopus for abstract
 get '/canonical_document/:id/search_abstract_scopus' do |id|
   halt_unless_auth('canonical_document_admin')
-  add_result(Scopus_Abstract.obtener_abstract_cd(id))
+  add_result(Scopus_Abstract.get_abstract_cd(id))
   redirect back
 end
 

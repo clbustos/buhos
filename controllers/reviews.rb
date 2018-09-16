@@ -68,7 +68,9 @@ end
 get '/review/:id/dashboard' do |id|
   halt_unless_auth('review_edit')
   @review=SystematicReview[id]
+  raise Buhos::NoReviewIdError, id if !@review
   @user=User[session['user_id']]
+
 
   haml "systematic_reviews/dashboard".to_sym
 

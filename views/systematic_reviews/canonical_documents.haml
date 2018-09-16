@@ -115,7 +115,7 @@
         %td
           =t(:Records_from_to, first_record:@pager.current_first_record, last_record:@pager.current_last_record , total_records: @cds_total)
     - @cds.each do |cd|
-      %tr
+      %tr{:id=>"canonical-document-#{cd.id}"}
         %td
           %input.checkbox_cd{:type=>:checkbox, :name=>"canonical_document[#{cd.id}]", :value=>1}
         %td

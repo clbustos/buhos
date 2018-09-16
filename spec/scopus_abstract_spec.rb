@@ -22,7 +22,7 @@ describe 'Scopus_Abstract' do
   end
   context '.obtener_abstract_cd method' do
     it 'should return a Result object with error if abstract is not available' do
-      result=Scopus_Abstract.obtener_abstract_cd(20)
+      result=Scopus_Abstract.get_abstract_cd(20)
       expect(result.success?).to be false
     end
   end

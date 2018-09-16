@@ -270,7 +270,7 @@ get '/review/:rev_id/stage/:stage/complete_empty_abstract_scopus' do |rev_id, st
   @cd_wo_abstract=@ars.cd_without_abstract(stage)
   add_message(I18n::t(:Processing_n_canonical_documents, count:@cd_wo_abstract.count))
   @cd_wo_abstract.each do |cd|
-    result.add_result(Scopus_Abstract.obtener_abstract_cd(cd[:id]))
+    result.add_result(Scopus_Abstract.get_abstract_cd(cd[:id]))
   end
   add_result(result)
   redirect back

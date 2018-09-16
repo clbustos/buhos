@@ -104,7 +104,8 @@ module RSpecMixin
       Search.insert(:id=>(ids_to_create[i]),
                     :systematic_review_id       => systematic_review_id.respond_to?(:index) ? systematic_review_id.to_a[i] : systematic_review_id,
                     :bibliographic_database_id  => bb_id,
-                    :user_id                    => user_id)
+                    :user_id                    => user_id
+                    )
     end
   end
 
@@ -240,6 +241,10 @@ module RSpecMixin
   def delete_references
     $db[:records_references].delete
     $db[:references].delete
+  end
+
+  def read_fixture(filename)
+    File.read(File.expand_path( File.join([File.dirname(__FILE__),"fixtures",filename   ])))
   end
 
 end

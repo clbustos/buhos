@@ -135,3 +135,20 @@ RSpec::Matchers.define :be_prohibited do
   end
 end
 
+RSpec::Matchers.define :responds_with_404 do
+  match do |actual|
+    get actual
+    #expect(last_response).to_not be_ok
+    expect(last_response.status).to eq(404)
+  end
+
+  description do
+    "route #{actual} responds with 404 status"
+  end
+
+  failure_message do |actual|
+    last_response.body=~/<section id='content'>(.+?)<\/section>/m
+    show_body=$1.nil? ? last_response.body : $1
+    "expected #{actual} to not be available, but status was #{last_response.status} and content was '#{show_body}'"
+  end
+end

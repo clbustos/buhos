@@ -134,10 +134,10 @@ end
 # Join canonicals to references
 get '/search/:id/references/generate_canonical_doi/:n' do |id, n|
   halt_unless_auth('search_edit')
-  search=Search[id]
+  @search=Search[id]
   raise Buhos::NoSearchIdError, id if @search.nil?
 
-  col_dois=search.references_wo_canonical_w_doi_n(n)
+  col_dois=@search.references_wo_canonical_w_doi_n(n)
   result=Result.new
   col_dois.each do |col_doi|
     Reference.where(:doi => col_doi[:doi]).each do |ref|

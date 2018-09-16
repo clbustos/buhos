@@ -7,6 +7,10 @@ describe 'Bibliographic File Processor' do
     @temp=configure_empty_sqlite
     create_sr
     create_search
+    CrossrefDoi.insert(:doi=>"10.1186/s13643-016-0263-z", :json=>read_fixture("10.1186___s13643-016-0263-z.json")) unless ENV["NO_CROSSREF_MOCKUP"]
+  end
+  after(:all) do
+    $db[:crossref_dois].delete
   end
 
   def manual_bibtex

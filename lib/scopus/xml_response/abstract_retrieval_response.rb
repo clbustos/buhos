@@ -110,7 +110,7 @@ module Scopus
       end
       def process_affiliations
         xml.xpath("/xmlns:abstracts-retrieval-response/xmlns:affiliation").each do |x|
-          id=x.attribute("id").value
+          id=x.attribute("id").nil? ? "" : x.attribute("id").value
           next if id==""
           name=process_path(x, "xmlns:affilname")
           city=process_path(x, "xmlns:affiliation-city")

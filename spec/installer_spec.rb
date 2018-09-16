@@ -126,13 +126,76 @@ NCBI_API_KEY=ncbi_api_key\n")
       expect(response.status).to eq(302)
       expect(response.header["Location"]).to eq("http://example.org/installer/populate_database")
     end
-    it "should create correct env file  for mysql" do
+    it "should create correct env file  for sqlite" do
       response
       env_content=dot_env.read
       expect(env_content).to eq("DATABASE_URL=sqlite://db_test.sqlite\n")
-
     end
   end
+
+  context "when /installer/populate_database is called", :installer=>true do
+    let(:dot_env) {Tempfile.new}
+    let(:sqlite_path) {Tempfile.new}
+
+    let(:response) {
+
+      ENV['DOT_ENV']=dot_env.path
+
+      form_post={
+          db_adapter:     'sqlite',
+          db_hostname:    '',
+          db_port:        '',
+          db_username:    '',
+          db_password:    '',
+          db_database:    '',
+          db_filename:    sqlite_path.path,
+          proxy_hostname: '',
+          proxy_port:     '',
+          proxy_user:     '',
+          proxy_password: '',
+          scopus_key:     '',
+          ncbi_api_key:   ''
+      }
+      post('/installer/basic_data_form',form_post)
+      get '/installer/populate_database'
+    }
+    it "should show success message" do
+      expect(response.body).to include("Successful connection")
+    end
+  end
+
+  context "when /installer/populate_database is called", :installer=>true do
+    let(:dot_env) {Tempfile.new}
+    let(:sqlite_path) {Tempfile.new}
+    let(:response) {
+
+      ENV['DOT_ENV']=dot_env.path
+
+      form_post={
+          db_adapter:     'sqlite',
+          db_hostname:    '',
+          db_port:        '',
+          db_username:    '',
+          db_password:    '',
+          db_database:    '',
+          db_filename:    sqlite_path.path,
+          proxy_hostname: '',
+          proxy_port:     '',
+          proxy_user:     '',
+          proxy_password: '',
+          scopus_key:     '',
+          ncbi_api_key:   ''
+      }
+      post('/installer/basic_data_form',form_post)
+      get '/installer/populate_database'
+      get '/installer/populate_database_2'
+    }
+    it "should show success message" do
+      expect(response).to be_ok
+    end
+  end
+
+
 
 
 
