@@ -4,13 +4,6 @@
     %a{:href=>url("/review/#{@review.id}")}=@review.name
   %li.active
     =t(:searches)
-:javascript
-  $(document).ready(function() {
-    $(".btn-action").click(function() {
-      var value=$(this).attr('value');
-      $("#form-action").val(value);
-    })
-  });
 .panel.panel-default
   .panel-heading
     .panel-title
@@ -24,17 +17,17 @@
         %input{:type=>:hidden, :name=>:url_back, :value=>@url_back}
         .btn-toolbar
           .btn-group.btn-group-sm{:role=>:group}
-            %button.btn.btn-default.btn-action{:value=>:analyze}
+            %button.btn.btn-default.btn-action{"data-action"=>:analyze}
               %span.glyphicon.glyphicon-eye-open
               =t(:Analyze)
-            %button.btn.btn-default.btn-action{:value=>:valid}
+            %button.btn.btn-default.btn-action{"data-action"=>:valid}
               %span.glyphicon.glyphicon-ok-circle
               =t(:Search_valid)
-            %button.btn.btn-default.btn-action{:value=>:invalid}
+            %button.btn.btn-default.btn-action{"data-action"=>:invalid}
               %span.glyphicon.glyphicon-ban-circle
               =t(:Search_invalid)
           .btn-group.btn-group-xs
-            %button.btn.btn-danger.btn-action{:value=>:delete}
+            %button.btn.btn-danger.btn-action{"data-action"=>:delete}
               %span.glyphicon.glyphicon-remove
               =t(:Search_delete)
 

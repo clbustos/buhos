@@ -28,46 +28,22 @@
 
 #
 module Buhos
-  # Stages ids, names, and methods to access them
-  module Stages
-    STAGE_SEARCH=:search
-    STAGE_SCREENING_TITLE_ABSTRACT=:screening_title_abstract
-    STAGE_SCREENING_REFERENCES=:screening_references
-    STAGE_REVIEW_FULL_TEXT=:review_full_text
-    STAGE_REPORT=:report
-    IDS=[STAGE_SEARCH,
-            STAGE_SCREENING_TITLE_ABSTRACT,
-            STAGE_SCREENING_REFERENCES,
-            STAGE_REVIEW_FULL_TEXT,
-            #:analysis,
-            STAGE_REPORT
-    ]
+  # Helper for review related controllers
+  module ControllerReview
+    # helper function that init tags related methods
+    def sr_tags_prev(sr_id)
+      halt_unless_auth('review_analyze')
+      @cd_ids=params['cd_id'].split(",").map(&:to_i).delete_if {|v| v==0}.sort
+      @url_back=params['url_back']
+      @user_id=params['user_id']
+      @review=SystematicReview[sr_id]
+      raise Buhos::NoReviewIdError, sr_id if !@review
+      @user=User[@user_id]
+      raise Buhos::NoUserIdError, @user_id if !@user
+      @cds=CanonicalDocument.where(:id=>@cd_ids).order(:id)
 
-    NAMES={STAGE_SEARCH=> "stage.search",
-           STAGE_SCREENING_TITLE_ABSTRACT=> "stage.screening_title_abstract",
-           STAGE_SCREENING_REFERENCES=> "stage.screening_references",
-           STAGE_REVIEW_FULL_TEXT=> "stage.review_full_text",
-                 #:analysis => "stage.analysis",
-           STAGE_REPORT=> "stage.report"}
+      add_message(I18n::t(:List_of_cd_not_compatible)) unless @cds.count==@cd_ids.length
 
-    def self.get_stage_name(stage)
-      NAMES[stage.to_sym]
-    end
-  end
-
-  module StagesMixin
-    def get_stage_name(stage)
-      Buhos::Stages.get_stage_name(stage)
-    end
-    def get_stages_ids
-      Buhos::Stages::IDS
-    end
-    def get_stages_names
-      Buhos::Stages::NAMES
-    end
-    def get_stages_names_t
-      Buhos::Stages::NAMES.inject({}) {|ac,v|  ac[v[0]]=I18n.t(v[1]);ac  }
     end
   end
 end
-

@@ -431,4 +431,12 @@ table.tablesorter thead tr .headerSortUp {
   max-height: 550px;
   overflow: auto; }
 
+.tag-small {
+  padding: 2px;
+  border-radius: 5px;
+  display: inline;
+  background: #93badc;
+  color: white;
+  margin-right: 0.5em; }
+
 /*# sourceMappingURL=main.css.map */

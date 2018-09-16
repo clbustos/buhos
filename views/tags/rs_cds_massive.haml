@@ -1,0 +1,34 @@
+.heading
+  =t_systematic_review_title(@review[:name], :massive_assignent_of_tags_to_cd)
+
+%form.form#submit-new{:method=>'post', :action=>url("/review/#{@review[:id]}/canonical_documents/tags/actions")}
+  %input{:type=>:hidden, :name=>:action, :value=>'none'}
+  %input{:type=>:hidden, :name=>:cd_id, :value=>@cd_ids.join(",")}
+  %input{:type=>:hidden, :name=>:url_back, :id=>:url_back, :value=>@url_back}
+  %input{:type=>:hidden, :name=>:sr_id, :value=>@review.id}
+  %input{:type=>:hidden, :name=>:user_id, :value=>@user.id}
+  .row.form-group
+    %label.col-md-2{:for=>'tags'}=t(:Previous_tags)
+    .col-md-6
+      =partial("tags/select_tag_sr", :locals=>{review:@review, name_select:"tags_all"})
+      .btn-group.btn-sm
+        %button.btn.btn-success.btn-action{"data-action"=>:add_for_all, "data-toggle"=>"tooltip", :title=>t(:Add_for_all)}
+          %span.glyphicon.glyphicon-plus
+        %button.btn.btn-danger.btn-action{"data-action"=>:remove_for_all, "data-toggle"=>"tooltip", :title=>t(:Remove_for_all)}
+          %span.glyphicon.glyphicon-trash
+
+  .row.form-group
+    %label.col-sm-2{:for=>'new_tags'}=t(:New_tag)
+    .col-sm-6
+      %input{:type=>'text', :id=>'new_tags', :name=>'new_tags'}
+      %button.btn.btn-sm.btn-success.btn-action{"data-action"=>:add_new, "data-toggle"=>"tooltip", :title=>t(:Add)}
+        %span.glyphicon.glyphicon-plus
+
+%a.btn.btn-default{:href=>url(@url_back)}=t(:Back)
+%h3=t(:Canonical_documents_assigned)
+%ul
+  -@cds.each do |cd|
+    %li
+      =cd.ref_apa_6_brief_html
+      =partial("tags/tags_cd_rs", locals:{review:@review, cd:cd, user_id:@user.id})
+

@@ -35,6 +35,7 @@ module Buhos
       @canonical_document_id=nil
       @user_id=nil
       @systematic_review_id=nil
+      @canonical_documents_by_tag=nil
     end
     def canonical_document_id(cd_id)
       cd_id=[cd_id] unless cd_id.is_a? Array
@@ -45,9 +46,15 @@ module Buhos
 
       @user_id=user_id
     end
+    def tags_in_cds
+      @canonical_documents_by_tag||=Tag.join(:tag_in_cds, tag_id: :id).where(Sequel.lit(where_sql)).where(:decision=>TagInCd::DECISION_YES).select(:tag_id, :text, :canonical_document_id)
+    end
+    def tags_by_canonical_document
+      @tags_by_canonical_document||=tags_in_cds.to_hash_groups(:canonical_document_id)
+    end
 
     def canonical_documents_by_tag
-      $db["SELECT tag_id, canonical_document_id FROM tag_in_cds WHERE #{where_sql} AND decision='yes'" ].to_hash_groups(:tag_id)
+      @canonical_documents_by_tag||=tags_in_cds.to_hash_groups(:tag_id)
     end
     def where_sql
       where=["1=1"]
@@ -65,7 +72,8 @@ module Buhos
 
     def get_tags_decision_stats
       query="SELECT t.id, t.text, SUM(CASE WHEN decision='yes' THEN 1 ELSE 0 END) as d_yes,
-SUM(CASE WHEN decision='no' THEN 1 ELSE 0 END)  as d_no
+SUM(CASE WHEN decision='no' THEN 1 ELSE 0 END)  as d_no,
+COUNT(DISTINCT(canonical_document_id)) as n_documents
 FROM tags t INNER JOIN tag_in_cds tic ON t.id=tag_id WHERE #{where_sql}
 GROUP BY t.id
 HAVING d_yes>0

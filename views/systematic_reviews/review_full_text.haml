@@ -12,6 +12,12 @@
 
 =partial(:systematic_review_info, :locals=>{systematic_review: @review})
 
+.btn-group.btn-group-sm
+  %a.btn.btn-default{:href=>url("/review/#{@review.id}/tags/user/#{@user_id}")}
+    %span.gliphicon.glyphicon-tags
+    =t(:Tags)
+
+
 %h3=t(:Review_status)
 %p=t_desc_value(:Count_total_documents_to_review, sprintf("%d", @cds_total))
 

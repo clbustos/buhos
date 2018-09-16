@@ -8,6 +8,25 @@
 
 # @!group Tags related to systematic reviews
 
+# Get tags and classes of tags for a systematic review
+get '/review/:id/tags' do |id|
+  halt_unless_auth('review_view')
+  @review=SystematicReview[id]
+  raise Buhos::NoReviewIdError, id if !@review
+  @stages_list={:NIL=>"--Todas--"}.merge(get_stages_names_t)
+
+  @select_stage=get_xeditable_select(@stages_list, "/tags/classes/edit_field/stage","select_stage")
+  @select_stage.nil_value=:NIL
+  @types_list={general:"General", document:"Documento", relation:"Relación"}
+
+  @select_type=get_xeditable_select(@types_list, "/tags/classes/edit_field/type","select_type")
+
+  @tag_estadisticas=@review.statistics_tags
+
+
+  haml "systematic_reviews/tags".to_sym
+end
+
 
 # Interface for stage screening titles and abstract
 get '/review/:id/tags/user/:user_id' do |sr_id, user_id|

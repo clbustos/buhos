@@ -27,15 +27,15 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 
-$.ajaxSetup({async:true})
+$.ajaxSetup({async:true});
 
 function buscar_similares_canonico() {
 
     $(".buscar_similares_canonico").click(function() {
-        var partes=$(this).attr("id").split("-")
-        var id=partes[1]
-        var boton=$(this)
-        var contenedor="#buscar_similar-"+id+"-campo"
+        var partes=$(this).attr("id").split("-");
+        var id=partes[1];
+        var boton=$(this);
+        var contenedor="#buscar_similar-"+id+"-campo";
         boton.prop("disabled",true);
         $(contenedor).html("<em>Espere, por favor...</em>");
         $.get("/canonical_document/"+id+"/search_similar",{"ajax":1}, function(html_div) {
@@ -139,11 +139,11 @@ $(document).ready(function () {
 
 
     $('.select_editable').change(function() {
-        pais_id=$(this).val();
-        url=$(this).attr('data-url');
-        pk=$(this).attr('data-pk');
-        td_parent=$(this).parents("td");
-        obj=jQuery.param({pk:pk, value:pais_id});
+        var pais_id=$(this).val();
+        var url=$(this).attr('data-url');
+        var pk=$(this).attr('data-pk');
+        var td_parent=$(this).parents("td");
+        var obj=jQuery.param({pk:pk, value:pais_id});
         $.post(url, obj,function () {
             td_parent.addClass("verde")
         }).fail(function() {
@@ -153,9 +153,12 @@ $(document).ready(function () {
 
     });
 
+    $('.btn-action').click(function() {
+       var form=$(this.form);
+       form.find("input[name='action']").val($(this).data('action'));
+
+    });
 
     $(".tablesorter").tablesorter();
-
-
 
 });

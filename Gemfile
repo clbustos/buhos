@@ -15,6 +15,7 @@ gem 'levenshtein'
 gem 'narray', :platforms => :ruby
 gem 'serrano'
 gem 'dotenv'
+gem 'treetop'
 #gem 'scopus'
 gem 'nokogiri'
 gem 'moneta'

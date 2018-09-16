@@ -3,8 +3,22 @@
 
 :javascript
   $(document).ready(function() {
+    $("#all_canonical_documents").click(function(e){
+      if($(this).prop('checked')) {
+        $(".checkbox_cd").prop('checked', true);
+      } else {
+        $(".checkbox_cd").prop('checked', false);
+      }
+    });
+
     $(".canonical_document_action").click(function(e) {
         var action=$(this).attr('id').split("_")[1];
+
+        // Check if some
+        if ($('.checkbox_cd:checked').length == 0)  {
+         e.preventDefault();
+         return(false );
+        }
         $("#form_canonical_document_action").val(action);
         //console.log(action);
         //#e.preventDefault();
@@ -18,9 +32,24 @@
     %a{:href=>url("/review/#{@review.id}")}=@review.name
   %li.active=t(:Canonical_documents)
 
-
 %p
   =sprintf("<strong>#{t(:Count_canonical_documents)}</strong>: #{t(:Total)}=%d, #{t(:Records)}=%d, #{t(:References)}=%d",@ars.cd_count_total, @ars.cd_count_reg, @ars.cd_count_ref)
+
+%form.form-inline{:action=>url("/review/#{@review[:id]}/canonical_documents"), :method=>:get}
+  %input{:type=>:hidden,:name=>:page, :value=>@pager.page}
+  %input{:type=>:hidden,:name=>:order, :value=>@pager.order}
+  %div{:class=>"form-group"}
+    %label{:class=>"", :for=>:query}=t(:Search)
+    %input{:type=>:text, :value=>@pager.query, :name=>:query, :class=>"form-control"}
+    .checkbox
+      %label{:for=>:wo_abstract}=t(:Check_only_documents_without_abstract)
+      %input{:type=>:checkbox, :name=>:wo_abstract, :class=>"form-control-checkbox", :value=>'true',:checked=>@wo_abstract}
+    .checkbox
+      %label{:for=>:only_records}=t(:Check_only_documents_on_search_no_references)
+      %input{:type=>:checkbox, :name=>:only_records, :class=>"form-control-checkbox", :checked=>@only_records, :value=>'true'}
+  %input{:type=>:submit, :class=>'btn btn-default '}
+
+
 
 %p
   =t_desc_value(:Duplicated_DOI,@cd_rep_doi.length)
@@ -46,27 +75,12 @@
   %a{:href=>url("/review/#{@review.id}/resolved_bibtex"),  :role=>'button', :class=>"btn btn-default"}
     %span{:class=>"glyphicon glyphicon-save"}
     =t(:Export_to_Bibtex)
-%p
-%form.form-inline{:action=>url("/review/#{@review[:id]}/canonical_documents"), :method=>:get}
-  %input{:type=>:hidden,:name=>:page, :value=>@pager.page}
-  %input{:type=>:hidden,:name=>:order, :value=>@pager.order}
-  %div{:class=>"form-group"}
-    %label{:class=>"", :for=>:query}=t(:Search)
-    %input{:type=>:text, :value=>@pager.query, :name=>:query, :class=>"form-control"}
-    .checkbox
-      %label{:for=>:wo_abstract}=t(:Check_only_documents_without_abstract)
-      %input{:type=>:checkbox, :name=>:wo_abstract, :class=>"form-control-checkbox", :value=>'true',:checked=>@wo_abstract}
-    .checkbox
-      %label{:for=>:only_records}=t(:Check_only_documents_on_search_no_references)
-      %input{:type=>:checkbox, :name=>:only_records, :class=>"form-control-checkbox", :checked=>@only_records, :value=>'true'}
-  %input{:type=>:submit, :class=>'btn btn-default '}
-%p
+%br
 
 
-%p
-  %strong="#{t(:Count_search_documents)}:"
-  =@cds_total
 
+
+= partial(:pager,:locals=>{url: @url, page: @pager.page, max_page: @pager.max_page,:extra=>{query:@pager.query, wo_abstract:@wo_abstract, only_records:@only_records,  order:@pager.order}} )
 
 .btn-group
   -@order_criteria.each do |crit_order,crit_name|
@@ -81,26 +95,39 @@
           %span{:class=>"glyphicon glyphicon-chevron-#{arrow_dir}"}
           =crit_name
 
-
-= partial(:pager,:locals=>{url: @url, page: @pager.page, max_page: @pager.max_page,:extra=>{query:@pager.query, wo_abstract:@wo_abstract, only_records:@only_records,  order:@pager.order}} )
 %form{:action=>url("/canonical_document/actions"), :method=>:post}
   %input{:type=>:hidden, :name=>:action, :id=>:form_canonical_document_action}
-  .btn-group.btn-group-sm
-    %button.btn.btn-danger{:id=>:action_delete, :class=>'canonical_document_action'}=t(:Delete)
-    %button.btn.btn-default{:id=>:action_merge, :class=>'canonical_document_action'}=t(:Merge)
+  %input{:type=>:hidden, :name=>:url_back, :id=>:url_back, :value=>@url}
+  %input{:type=>:hidden, :name=>:sr_id, :value=>@review.id}
+  %input{:type=>:hidden, :name=>:user_id, :value=>@user.id}
   %p
   %table.table.table-condensed
+    - if @cds.count>0
+      %tr
+        %td
+          %input{:type=>:checkbox, :id=>'all_canonical_documents'}
+        %td
+          .btn-group.btn-group-sm
+            %button.btn.btn-danger{:id=>:action_delete, :class=>'canonical_document_action',  "data-toggle"=>"tooltip", :title=>t(:Delete)}
+              %span.glyphicon.glyphicon-trash
+            %button.btn.btn-default{:id=>:action_merge, :class=>'canonical_document_action'}=t(:Merge)
+            %button.btn.btn-default{:id=>:action_tags,  :class=>'canonical_document_action'}=t(:Tags)
+        %td
+          =t(:Records_from_to, first_record:@pager.current_first_record, last_record:@pager.current_last_record , total_records: @cds_total)
     - @cds.each do |cd|
       %tr
         %td
-          %input{:type=>:checkbox, :name=>"canonical_document[#{cd.id}]", :value=>1}
+          %input.checkbox_cd{:type=>:checkbox, :name=>"canonical_document[#{cd.id}]", :value=>1}
         %td
+          =partial("tags/tags_cd_rs_small", locals: {tags_a:@tags_a, user_id:@user.id, review:@review, cd:cd})
           =CGI::escapeHTML cd.ref_apa_6_brief
+          =partial(:canonical_document_button_abstract_collapsible, :locals=>{cd:cd})
           %br
           =t(:References_count_to_canonical, in:cd[:n_total_references_in].to_i, out:cd[:n_total_references_made].to_i, in_sta: cd[:n_references_rtr].to_i)
+
         %td
           =partial(:canonical_document_button, :locals=>{id:cd[:id], review:@review})
-          =partial(:canonical_document_button_abstract_collapsible, :locals=>{cd:cd})
+
 
 
 = partial(:pager,:locals=>{url: @url, page: @pager.page, max_page: @pager.max_page,:extra=>{query:@pager.query, wo_abstract:@wo_abstract, only_records:@only_records,  order:@pager.order}} )

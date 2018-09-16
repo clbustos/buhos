@@ -196,6 +196,12 @@ post '/canonical_document/actions' do
     else
       add_message(t(:Canonical_document_merge_error), :error)
     end
+  elsif action=='tags'
+    url_action="/review/#{params[:sr_id]}/canonical_documents/tags?"
+    url_action+="cd_id="+params['canonical_document'].keys.join(',')
+    url_action+="&url_back="+params['url_back']
+    url_action+="&user_id="+params['user_id']
+    redirect(url(url_action))
   else
     return [500, I18n.t(:that_function_doesn_exists)]
   end
