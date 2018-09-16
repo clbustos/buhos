@@ -42,9 +42,6 @@
           =abs_pres.html_with_keywords
       -if auth_to("review_admin")
         =partial(:canonical_document_button, :locals=>{id: cd[:id]})
-      -if false and @nbayes_rs.cd_resultado(cd[:id])["no"]>0.5
-        %div{:class=>"alert alert-warning"} Según el clasificar bayes, este text no se asemeja mucho a los seleccionados previamente
-
 
   %div{:class=>class_buttons}
     =partial(:decision_buttons, :locals=>{decisions:decisions, cd:cd, user_id:user_id, stage:stage, review:review, ajax:ajax, only_buttons:only_buttons})
