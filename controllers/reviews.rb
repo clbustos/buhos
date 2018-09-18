@@ -100,6 +100,7 @@ post '/review/update' do
   otros_params.delete("captures")
   strc=params.delete("srtc")
   criteria=params.delete("criteria")
+  criteria||={'inclusion'=>[], 'exclusion'=>[]}
   otros_params=otros_params.inject({}) {|ac,v|
     ac[v[0].to_sym]=v[1];ac
   }
@@ -119,6 +120,7 @@ post '/review/update' do
     # Process criteria
     criteria_processor=Buhos::CriteriaProcessor.new(SystematicReview[id])
     criteria_processor.update_criteria(criteria['inclusion'], criteria['exclusion'])
+
     # Process the srtc
 
     Systematic_Review_SRTC.where(:sr_id=>id).delete
@@ -139,20 +141,6 @@ end
 
 
 
-# Get a list of repeated canonical documents, using DOI
-# @todo Check another ways to deduplicate
-get '/review/:id/repeated_canonical_documents' do |id|
-  halt_unless_auth('review_view')
-
-  @review=SystematicReview[id]
-  raise Buhos::NoReviewIdError, id if !@review
-  @cd_rep_doi=@review.repeated_doi
-  @cd_hash=@review.canonical_documents.as_hash
-
-  @cd_por_doi=CanonicalDocument.where(:doi => @cd_rep_doi).to_hash_groups(:doi, :id)
-  ##$log.info(@cd_por_doi)
-  haml %s{systematic_reviews/repeated_canonical_documents}
-end
 
 
 post '/review/:id/automatic_deduplication' do |id|

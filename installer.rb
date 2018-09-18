@@ -91,11 +91,12 @@ module Buhos
                       proxy_user:     {default:nil},
                       proxy_password: {default:nil},
                       scopus_key:     {default:nil},
-                      ncbi_api_key:   {default:nil}
+                      ncbi_api_key:   {default:nil},
+                      crossref_email: {default:nil}
         }
       end
       def optional_fields
-        [:proxy_hostname, :proxy_port,:proxy_user, :proxy_password, :scopus_key,:ncbi_api_key]
+        [:proxy_hostname, :proxy_port,:proxy_user, :proxy_password, :scopus_key,:ncbi_api_key,:crossref_email]
       end
     def install_log(t)
       Dir.mkdir log_dir unless File.exists? log_dir

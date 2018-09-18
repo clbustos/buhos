@@ -108,7 +108,9 @@ module Buhos
   class NoReferenceIdError < StandardError
 
   end
+  class NoAuthorizationId < StandardError
 
+  end
   # @!endgroup
 end
 
@@ -176,7 +178,10 @@ module Sinatra
         status 404
         ::I18n::t("error.no_code", object_name: ::I18n::t(:References), code:env['sinatra.error'].message)
       end
-
+      app.error Buhos::NoAuthorizationId do
+        status 404
+        ::I18n::t("error.no_code", object_name: ::I18n::t(:Authorizations), code:env['sinatra.error'].message)
+      end
     end
   end
   register CustomErrors

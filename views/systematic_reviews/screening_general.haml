@@ -26,6 +26,9 @@
         - checked= @pager.extra[:decision].nil?  ? false :  ( @pager.extra[:decision] == k )
         %option{:value=> k, :selected=>checked}
           ="#{t(d_name)} (#{@ads.total_decisions[k].to_i})"
+  .form-group
+    %label{:for=>:query}=t(:Search)
+    %input{:type=>:text, :value=>@pager.query, :name=>:query, :class=>"form-control"}
   %button.btn.btn-default{:type=>"submit"}=t(:Filter)
   %input{:type=>:hidden,:name=>:page, :value=>@pager.page}
   %input{:type=>:hidden,:name=>:order, :value=>@pager.order}

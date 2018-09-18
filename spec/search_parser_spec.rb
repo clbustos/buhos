@@ -13,16 +13,16 @@ describe 'SearchParser' do
   it ".to_sql should include both clausules by AND by default" do
     parser=Buhos::SearchParser.new
     parser.parse(" author( a1 a2)")
-    expect(parser.to_sql).to include("INSTR(author, 'a1')>0")
-    expect(parser.to_sql).to include("INSTR(author, 'a2')>0")
-    expect(parser.to_sql).to match(/INSTR\(author, 'a1'\)>0.+AND.+INSTR\(author, 'a2'\)>0/)
+    expect(parser.to_sql).to include("INSTR(LOWER(author), 'a1')>0")
+    expect(parser.to_sql).to include("INSTR(LOWER(author), 'a2')>0")
+    expect(parser.to_sql).to match(/INSTR\(LOWER\(author\), 'a1'\)>0.+AND.+INSTR\(LOWER\(author\), 'a2'\)>0/)
 
   end
 
   it ".to_sql should include both clausules by OR using or: option" do
     parser=Buhos::SearchParser.new
     parser.parse(" author(a1) author(a2)")
-    expect(parser.to_sql(or_union: true)).to match(/INSTR\(author, 'a1'\)>0.+OR.+INSTR\(author, 'a2'\)>0/)
+    expect(parser.to_sql(or_union: true)).to match(/INSTR\(LOWER\(author\), 'a1'\)>0.+OR.+INSTR\(LOWER\(author\), 'a2'\)>0/)
 
   end
 

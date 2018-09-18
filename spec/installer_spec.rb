@@ -70,7 +70,8 @@ describe "Buhos installer" do
         proxy_user:     'proxy_user',
         proxy_password: 'proxy_pass',
         scopus_key:     'scopus_key',
-        ncbi_api_key:   'ncbi_api_key'
+        ncbi_api_key:   'ncbi_api_key',
+        crossref_email: 'crossref_email'
     }
 
     let(:dot_env) {Tempfile.new}
@@ -93,7 +94,8 @@ PROXY_PORT=3000
 PROXY_USER=proxy_user
 PROXY_PASSWORD=proxy_pass
 SCOPUS_KEY=scopus_key
-NCBI_API_KEY=ncbi_api_key\n")
+NCBI_API_KEY=ncbi_api_key
+CROSSREF_EMAIL=crossref_email\n")
 
     end
   end
@@ -112,7 +114,8 @@ NCBI_API_KEY=ncbi_api_key\n")
         proxy_user:     '',
         proxy_password: '',
         scopus_key:     '',
-        ncbi_api_key:   ''
+        ncbi_api_key:   '',
+        crossref_email: ''
     }
 
     let(:dot_env) {Tempfile.new}
@@ -154,7 +157,8 @@ NCBI_API_KEY=ncbi_api_key\n")
           proxy_user:     '',
           proxy_password: '',
           scopus_key:     '',
-          ncbi_api_key:   ''
+          ncbi_api_key:   '',
+          crossref_email: ''
       }
       post('/installer/basic_data_form',form_post)
       get '/installer/populate_database'
@@ -184,7 +188,8 @@ NCBI_API_KEY=ncbi_api_key\n")
           proxy_user:     '',
           proxy_password: '',
           scopus_key:     '',
-          ncbi_api_key:   ''
+          ncbi_api_key:   '',
+          crossref_email: ''
       }
       post('/installer/basic_data_form',form_post)
       get '/installer/populate_database'

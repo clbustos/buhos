@@ -14,25 +14,6 @@ describe 'Criteria related models' do
   end
   let(:sr) {SystematicReview[1]}
 
-  context "when /review/:rs_id/criteria/add is called" do
-    before(:context) do
-      post '/review/1/criteria/add', text:"test1", cr_type:"inclusion"
-    end
-    it "should add a new criterion to sr" do
-      criterion_1=Criterion.get_criterion('test1')
-      expect(SrCriterion.where(:systematic_review_id=>1, :criterion_id=>criterion_1[:id]).count).to eq(1)
-    end
-  end
-
-  context "when /review/:rs_id/criteria/remove is called" do
-    it "should remove criterion to sr" do
-      post '/review/1/criteria/add', text:"test1", cr_type:"inclusion"
-      criterion_1=Criterion.get_criterion('test1')
-      expect(SrCriterion.where(:systematic_review_id=>1, :criterion_id=>criterion_1[:id]).count).to eq(1)
-      post '/review/1/criteria/remove', cr_id:criterion_1[:id]
-      expect(SrCriterion.where(:systematic_review_id=>1, :criterion_id=>criterion_1[:id]).count).to eq(0)
-    end
-  end
 
   context "when /review/criteria/id is called" do
     before(:context) do

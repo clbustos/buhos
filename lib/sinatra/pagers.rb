@@ -47,18 +47,19 @@ module Sinatra
 
     class PagerAdsQueryAdapter
       attr_reader :cds_out
-      def initialize(pager, ads,cds_pre)
+      def initialize(pager, ads, cds_pre, no_query:false)
         @pager=pager
         @ads=ads
         @cds_pre=cds_pre
         @cds_out=@cds_pre
+        @no_query=no_query
         process
       end
 
       def process
         cd_ids=@cds_pre.map(:id)
         if @pager.extra[:decision] and @pager.extra[:decision]!="_no_"
-          cd_ids_decision=@ads.decision_por_cd.find_all {|v|
+          cd_ids_decision=@ads.decision_by_cd.find_all {|v|
             @pager.extra[:decision]==v[1]
           }.map {|v| v[0]}
           cd_ids=cd_ids & cd_ids_decision
@@ -71,6 +72,14 @@ module Sinatra
             TagInCd.cds_rs_tag(sr,Tag[tag_id],true).map(:id)
           }.flatten.uniq
           cd_ids=cd_ids & cd_id_tag
+        end
+
+        if @pager.query and !@no_query
+          query=@pager.query
+          query="title(#{@pager.query})" unless query=~/\(|\)/
+          sp=Buhos::SearchParser.new
+          sp.parse(query)
+          cd_ids = cd_ids & @cds_pre.where(Sequel.lit(sp.to_sql)).select_map(:id)
         end
 
         if @pager.extra[:search_title]
@@ -89,6 +98,7 @@ module Sinatra
             cd_ids=[]
           end
         end
+
         @cds_out=@cds_pre.where(:id => cd_ids)
       end
     end
@@ -130,8 +140,8 @@ module Sinatra
       # Adapt the cds_pre dataset, using decisions made by a user
       # @param ads [AnalysisUserDecision]
       # @param cds_pre [Sequel::Dataset]
-      def adapt_ads_cds(ads, cds_pre)
-        paqa=PagerAdsQueryAdapter.new(self, ads,cds_pre)
+      def adapt_ads_cds(ads, cds_pre, no_query:false)
+        paqa=PagerAdsQueryAdapter.new(self, ads, cds_pre, no_query: no_query)
         @max_page=(paqa.cds_out.count/self.cpp.to_f).ceil
         adjust_page_order(paqa.cds_out)
       end

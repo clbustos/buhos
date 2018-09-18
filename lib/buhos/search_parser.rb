@@ -134,9 +134,9 @@ module Buhos
       #p e
       if e.is_a? Array
         if e[0]==:string
-          "INSTR(#{field}, '#{::Sequel.lit e[1]}')>0 "
+          "INSTR(LOWER(#{field}), '#{::Sequel.lit e[1].downcase}')>0 "
         elsif e[0]==:string_q
-          "INSTR(#{field}, '#{::Sequel.lit(e[1].gsub('"',""))}')>0 "
+          "INSTR(LOWER(#{field}), '#{::Sequel.lit(e[1].gsub('"',"").downcase)}')>0 "
         elsif e[0]==:boolean
           "(#{to_sql_elements(field,e[2])} #{e[1]} #{to_sql_elements(field,e[3])})"
         else

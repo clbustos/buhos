@@ -185,4 +185,25 @@ get %r{/review/(\d+)/canonical_document/(\d+)/(cites|cited_by|cited_by_rtr)} do
   haml "systematic_reviews/canonical_document_cites".to_sym
 end
 
+
+# Get a list of repeated canonical documents, using DOI
+# @todo Check another ways to deduplicate
+get '/review/:id/repeated_canonical_documents' do |id|
+  halt_unless_auth('review_view')
+
+  @review=SystematicReview[id]
+  raise Buhos::NoReviewIdError, id if !@review
+  @cd_rep_doi=@review.repeated_doi
+
+
+  @cd_hash=CanonicalDocument.where(:doi => @cd_rep_doi).to_hash(:id)
+
+  @cd_por_doi=CanonicalDocument.where(:doi => @cd_rep_doi).to_hash_groups(:doi, :id)
+
+
+  ##$log.info(@cd_por_doi)
+  haml %s{systematic_reviews/repeated_canonical_documents}
+end
+
+
 # @!endgroup

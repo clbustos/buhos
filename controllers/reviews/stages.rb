@@ -40,8 +40,13 @@ get '/review/:id/screening_title_abstract' do |id|
   @cds_pre=@ads.canonical_documents
   @cds_total=@cds_pre.count
   @decisions=@ads.decisions
-  @cds=@pager.adapt_ads_cds(@ads, @cds_pre)
-
+  begin
+    @cds=@pager.adapt_ads_cds(@ads, @cds_pre)
+  rescue Buhos::SearchParser::ParsingError => e
+    add_message(e.message,:error )
+    params['query']=nil
+    @cds=@pager.adapt_ads_cds(@ads, @cds_pre, no_query:true)
+  end
 
   haml "systematic_reviews/screening_general".to_sym
 
@@ -120,7 +125,7 @@ get '/review/:id/review_full_text' do |id|
 
   @cds_pre=@ads.canonical_documents.join_table(:left, @review.count_references_rtr_tn.to_sym, cd_end: :id)
 
-  @asignaciones=@ads.asignaciones.to_hash(:canonical_document_id)
+  @assignations=@ads.assignations.to_hash(:canonical_document_id)
 
   @decisions=@ads.decisions
   @cds_total=@cds_pre.count
@@ -128,7 +133,9 @@ get '/review/:id/review_full_text' do |id|
 
   @cds=@pager.adapt_ads_cds(@ads, @cds_pre)
 
-
+  @a_tags=Buhos::AnalysisTags.new
+  @a_tags.systematic_review_id(@review.id)
+  @a_tags.user_id(@user_id)
   haml %s{systematic_reviews/review_full_text}
 end
 

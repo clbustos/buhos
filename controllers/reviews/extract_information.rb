@@ -84,4 +84,33 @@ put '/review/:sr_id/extract_information/cd/:cd_id/user/:user_id/update_field' do
   return true
 end
 
+
+get '/review/:sr_id/extract_information/cd/:cd_id/by_similarity' do |sr_id, cd_id|
+  halt_unless_auth('review_analyze')
+
+  @sr=SystematicReview[sr_id]
+  raise Buhos::NoReviewIdError, sr_id if !@sr
+
+  @cd=CanonicalDocument[cd_id]
+  raise Buhos::NoCdIdError, cd_id if !@cd
+
+  @user=User[session['user_id']]
+
+  @ads=AnalysisUserDecision.new(sr_id, @user[:id], Buhos::Stages::STAGE_REVIEW_FULL_TEXT)
+  undecided=@ads.decision_by_cd.find_all {|v| v[1]==Decision::NO_DECISION}.map {|v|v[0]}
+
+  if undecided.length==0
+    add_message(t(:No_undecided_documents_left), :success)
+    redirect url("/review/#{@sr[:id]}/#{Buhos::Stages::STAGE_REVIEW_FULL_TEXT}")
+  else
+    sim_an=Buhos::SimilarAnalysisSr.new(@sr)
+    sim_an.process
+    sato=sim_an.similarity_all_to_one(cd_id).find_all {|v| undecided.include? v[:id]}.sort_by{|a| a[:similarity]}.last
+    redirect url("/review/#{@sr[:id]}/extract_information/cd/#{sato[:id]}")
+  end
+  ""
+
+end
+
+
 # @!endgroup

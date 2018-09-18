@@ -77,10 +77,11 @@
       - @cds.each do |cd|
         - decision_o=@decisions[cd[:id]]
         - decision = decision_o ? decision_o[:decision] : nil
-        - asignacion_o=@asignaciones[cd[:id]]
+        - asignacion_o=@assignations[cd[:id]]
         - clase_panel=decision_class_bootstrap(decision,nil)
         %tr{:class=>clase_panel}
           %td
+            =partial("tags/tags_cd_rs_small", locals:{user_id:@user_id, review:@review, cd:cd, tags_a:@tags_a})
             =cd.ref_apa_6_brief_html
             %a.btn.btn-primary.btn-sm{:href=>"/review/#{@review[:id]}/extract_information/cd/#{cd[:id]}"}=t(:Extract_information)
             %br

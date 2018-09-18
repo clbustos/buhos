@@ -136,6 +136,59 @@ describe 'Bibliographic File Processor' do
 
   end
 
+  context "when a real BibTeX with references is used" do
+    before do
+      Search.where(:id=>2).delete
+      Search.insert(:id=>2, :systematic_review_id=>1, :bibliographic_database_id=>1, :file_body=>read_fixture("wos.bib"), :filename=>'wos.bib', :filetype => 'text/x-bibtex')
 
+      @bpf=BibliographicFileProcessor.new(Search[2])
+    end
+
+    it "should error be false" do
+      expect(@bpf.error).to be_falsey
+    end
+    it "should maintain 1 records" do
+      expect(Record.count).to eq(1)
+    end
+    it "should maintain 1 canonical documents" do
+      expect(CanonicalDocument.count).to eq(1)
+    end
+
+    it "should create 353 references" do
+      expect(Reference.count).to eq(353)
+    end
+
+
+    after do
+      $db[:records_references].delete
+      $db[:bib_references].delete
+      $db[:records_references].delete
+      $db[:records_searches].delete
+      $db[:records].delete
+      $db[:canonical_documents].delete
+    end
+  end
+
+  context "when #get_integrator is called" do
+
+    before do
+      Search.where(:id=>2).delete
+      Search.insert(:id=>2, :systematic_review_id=>1, :bibliographic_database_id=>1, :file_body=>"", :filename=>'strange.no_type', :filetype => 'unknown/x-unknown')
+
+      @bpf=BibliographicFileProcessor.new(Search[2])
+    end
+    it "should retrieve false " do
+      expect(@bpf.get_integrator).to be false
+    end
+    after do
+      $db[:records_references].delete
+      $db[:bib_references].delete
+      $db[:records_references].delete
+      $db[:records_searches].delete
+      $db[:records].delete
+      $db[:canonical_documents].delete
+    end
+
+  end
 
 end
