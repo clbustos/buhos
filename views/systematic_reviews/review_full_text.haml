@@ -37,8 +37,8 @@
     %label{:for=>'tags'}=t(:Tags)
     =partial("tags/select_tag_sr", :locals=>{review:@review})
   .form-group
-    %label{:for=>'search_title'}=t(:Title)
-    %input.form-control{:name=>'search_title', :value=>@pager.extra[:search_title]}
+    %label{:for=>'query'}=t(:Search)
+    %input.form-control{:name=>'query', :value=>@pager.query}
   %button.btn.btn-default{:type=>"submit"}=t(:Filter)
 
 %p

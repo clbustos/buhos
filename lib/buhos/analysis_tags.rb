@@ -46,6 +46,12 @@ module Buhos
 
       @user_id=user_id
     end
+
+    def tag_id(tag_id)
+      tag_id=[tag_id] unless tag_id.is_a? Array
+      @tag_id=tag_id
+    end
+    # List of tuples of tag_id, text and canonical_document_id
     def tags_in_cds
       @canonical_documents_by_tag||=Tag.join(:tag_in_cds, tag_id: :id).where(Sequel.lit(where_sql)).where(:decision=>TagInCd::DECISION_YES).select(:tag_id, :text, :canonical_document_id)
     end
@@ -61,6 +67,7 @@ module Buhos
       where.push " canonical_document IN (#{@canonical_document_id.join(',')})" if @canonical_document_id
       where.push " user_id IN (#{@user_id.join(',')})" if @user_id
       where.push " systematic_review_id IN (#{@systematic_review_id.join(',')})" if @systematic_review_id
+      where.push " tag_id IN (#{@tag_id.join(',')})" if @tag_id
       where.join(' AND ')
     end
 

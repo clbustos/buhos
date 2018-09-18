@@ -48,6 +48,10 @@ class User < Sequel::Model
     User[self[:id]].update(:password=>Digest::SHA1.hexdigest(password))
   end
 
+  def correct_password?(test_password)
+    self.password == Digest::SHA1.hexdigest(test_password)
+  end
+
 
 
   def self.create_new_user(language='en')

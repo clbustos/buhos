@@ -305,6 +305,7 @@ en:
     en: "English"
     es: "Español"
   Login: "User name"
+  Login_already_used: "Login already used"
   login:
     software_description: "Systematic Literature Revision Management Software"
     instruction: "Enter user name and password"
@@ -389,6 +390,7 @@ en:
   No permits: "No authorizations"
   No_tag_defined: "No tag defined"
   No_undecided_documents_left: "No undefined documents left"
+  No_user_found: "No user found"
   nothing_to_do: "Nothing more to do"
   NR: "No resolution"
   ND: "No decision"

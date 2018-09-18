@@ -106,7 +106,7 @@ get '/tag/:tag_id/rs/:rs_id/stage/:stage/cds' do |tag_id, rs_id, stage|
   haml '/tags/rs_cds'.to_sym
 end
 
-# Retrieve canonical document what uses a tag
+# Retrieve canonical document what uses a tag, for a given user
 get '/tag/:tag_id/rs/:rs_id/cds' do |tag_id, rs_id|
   halt_unless_auth('review_view')
   @tag=Tag[tag_id]
@@ -119,8 +119,13 @@ get '/tag/:tag_id/rs/:rs_id/cds' do |tag_id, rs_id|
 
   @usuario=User[session['user_id']]
 
-  @cds_tag=TagInCd.cds_rs_tag(@review,@tag)
-  @cds_pre=CanonicalDocument.where(:id=>@cds_tag.map(:id))
+  @analysis_tag=Buhos::AnalysisTags.new
+  @analysis_tag.systematic_review_id(@review.id)
+  @analysis_tag.user_id(@usuario.id)
+  @analysis_tag.tag_id(tag_id)
+  @cds_id=@analysis_tag.tags_in_cds.group_by(:canonical_document_id).map{|v| v[:canonical_document_id]}
+
+  @cds_pre=CanonicalDocument.where(:id=>@cds_id)
 
 
   @pager=get_pager

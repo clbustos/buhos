@@ -304,6 +304,7 @@ es:
     en: "English"
     es: "Español"
   Login: "Nombre de usuario"
+  Login_already_used: "Login ya utilizado"
   login:
     software_description: "Software de Gestión de Revisiones Sistemáticas de Literatura"
     instruction: "Ingrese su usuario y password"
@@ -392,6 +393,7 @@ es:
   Not_defined_for_this_stage: "No definido para esta etapa"
   No_authorizations: "Sin autorizaciones"
   No_permits: "No hay permisos"
+  No_user_found: "No se encontraron usuarios"
   nothing_to_do: "Nada que hacer"
   NR: "Sin resolución"
   ND: "Sin decisión"

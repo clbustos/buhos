@@ -89,7 +89,13 @@ get '/review/:id/screening_references' do |id|
   @cds_total=@cds_pre.count
 
 
-  @cds=@pager.adapt_ads_cds(@ads, @cds_pre)
+  begin
+    @cds=@pager.adapt_ads_cds(@ads, @cds_pre)
+  rescue Buhos::SearchParser::ParsingError => e
+    add_message(e.message,:error )
+    params['query']=nil
+    @cds=@pager.adapt_ads_cds(@ads, @cds_pre, no_query:true)
+  end
 
 $log.info(@pager)
 
@@ -131,7 +137,13 @@ get '/review/:id/review_full_text' do |id|
   @cds_total=@cds_pre.count
 
 
-  @cds=@pager.adapt_ads_cds(@ads, @cds_pre)
+  begin
+    @cds=@pager.adapt_ads_cds(@ads, @cds_pre)
+  rescue Buhos::SearchParser::ParsingError => e
+    add_message(e.message,:error )
+    params['query']=nil
+    @cds=@pager.adapt_ads_cds(@ads, @cds_pre, no_query:true)
+  end
 
   @a_tags=Buhos::AnalysisTags.new
   @a_tags.systematic_review_id(@review.id)

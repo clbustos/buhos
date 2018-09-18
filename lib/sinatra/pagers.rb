@@ -82,23 +82,6 @@ module Sinatra
           cd_ids = cd_ids & @cds_pre.where(Sequel.lit(sp.to_sql)).select_map(:id)
         end
 
-        if @pager.extra[:search_title]
-          tokens=@pager.extra[:search_title].split(/\s/).map {|v| v.downcase.chomp }
-
-          cd_title=@cds_pre.find_all {|v|
-            tokens.all? {|token|
-              v[:title].downcase.include? token
-            }
-          }
-
-          if cd_title.length>0
-            cd_ids=cd_ids & cd_title.map {|v| v[:id]}
-            #$log.info(cd_ids)
-          else
-            cd_ids=[]
-          end
-        end
-
         @cds_out=@cds_pre.where(:id => cd_ids)
       end
     end
