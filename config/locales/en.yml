@@ -240,6 +240,7 @@ en:
     inline_code: "Live code"
     inline_codes: "Live codes"
     use: "Use"
+    uses_inside_reference: "Uses inside reference"
     instructions: " The evaluators' analyses of the full texts are submitted"
     no_analysis_for_this_user: "No analysis for this user"
     no_analysis_for_user: "No analysis for user %{user_name}"

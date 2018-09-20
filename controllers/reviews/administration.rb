@@ -8,9 +8,10 @@
 
 
 # @!group stages administration
-
-
 # List of administration interfaces by stage
+
+
+require 'serrano'
 get '/review/:id/administration_stages' do |id|
   halt_unless_auth('review_admin')
   @review=SystematicReview[id]
@@ -118,7 +119,7 @@ get '/review/:rev_id/stage/:stage/generate_crossref_references_stream' do |rev_i
   start = request.env['HTTP_LAST_EVENT_ID'] ? request.env['HTTP_LAST_EVENT_ID'].to_i+1 : 0
 
   content_type "text/event-stream"
-  $log.info("Start:#{start}")
+  #$log.info("Start:#{start}")
   stream do |out|
     begin
       dois_agregados=0
@@ -165,7 +166,9 @@ get '/review/:rev_id/stage/:stage/generate_crossref_references_stream' do |rev_i
           result.error(I18n::t("error.error_on_add_crossref_for_cd", cd_title:@cd[:title]))
         end
       end
-      result.info(I18n::t(:Search_add_doi_references, :count=>dois_agregados))
+      mes_dois_added=I18n::t(:Search_add_doi_references, :count=>dois_agregados)
+      result.info(mes_dois_added)
+      out << "data: #{mes_dois_added}\n\n"
     rescue Faraday::ConnectionFailed=>e
       result.error("#{t(:No_connection_to_crossref)}:#{e.message}")
     end

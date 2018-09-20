@@ -237,6 +237,7 @@ es:
     check_full_text_form: "Revisar formulario texto completo"
     custom_form: "Formulario personalizado"
     use: "Uso"
+    uses_inside_reference: "Usos dentro de referencia"
     inline_code: "Código en vivo"
     inline_codes: "Códigos en vivo"
     instructions: "Se presentan los distintos análisis realizados por los evaluadores a los textos completos."

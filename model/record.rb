@@ -40,11 +40,8 @@ class Record < Sequel::Model
   # y verifica que el DOI del canónico calce
   def add_doi_automatic
     result=Result.new
-    $log.info(self)
     if self.doi.nil? or self.doi==""
-      $log.info(self)
       query=crossref_query
-
       if query.length>0 and query[0]["score"]>100
         result.add_result(add_doi(query[0]["doi"]))
         result.success(I18n.t(:Assigned_DOI_to_record, record_id: self[:id], author: self[:author], title: self[:title], doi:query[0]["doi"] ))
