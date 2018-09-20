@@ -41,7 +41,7 @@ module Sinatra
   module Xeditable_Checkbox
     class Checkbox < XeditableAbstract
       def xeditable_type
-        'checklists'
+        'checklist'
       end
 
       def html(id, value)
