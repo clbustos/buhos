@@ -31,7 +31,7 @@ gem "sqlite3"
 gem 'mimemagic'
 gem "certified", :platforms => :mingw
 gem "sass"
-gem 'rubyXL'
+#gem 'rubyXL'
 gem 'axlsx' , ">=2.0.0"
 gem 'tf-idf-similarity'
 group :production do
