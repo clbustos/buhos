@@ -26,9 +26,11 @@
 # OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
+require_relative "buhos/textual_analysis_mixin"
 class CategorizerSr
   attr_reader :categorias_cd_id
-  STOPWORDS=%w{the an a with we dont to in that these those from each @ i it other how is are why}
+  include Buhos::TextualAnalysisMixin
+
 
   def initialize(rs,model=nil)
     require 'categorize'

@@ -27,47 +27,20 @@
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #
+
+require 'unicode_utils'
 module Buhos
-  # Stages ids, names, and methods to access them
-  module Stages
-    STAGE_SEARCH=:search
-    STAGE_SCREENING_TITLE_ABSTRACT=:screening_title_abstract
-    STAGE_SCREENING_REFERENCES=:screening_references
-    STAGE_REVIEW_FULL_TEXT=:review_full_text
-    STAGE_REPORT=:report
-    IDS=[STAGE_SEARCH,
-            STAGE_SCREENING_TITLE_ABSTRACT,
-            STAGE_SCREENING_REFERENCES,
-            STAGE_REVIEW_FULL_TEXT,
-            #:analysis,
-            STAGE_REPORT
-    ].freeze
 
-    NAMES={STAGE_SEARCH=> "stage.search",
-           STAGE_SCREENING_TITLE_ABSTRACT=> "stage.screening_title_abstract",
-           STAGE_SCREENING_REFERENCES=> "stage.screening_references",
-           STAGE_REVIEW_FULL_TEXT=> "stage.review_full_text",
-                 #:analysis => "stage.analysis",
-           STAGE_REPORT=> "stage.report"}.freeze
+  # Mixin with constant and methods useful for textual analysis
+  module TextualAnalysisMixin
+  # List of stopwords in English
+    STOPWORDS=['i', 'me', 'my', 'myself', 'we', 'our', 'ours', 'ourselves', 'you', 'your', 'yours', 'yourself', 'yourselves', 'he', 'him', 'his', 'himself', 'she', 'her', 'hers', 'herself', 'it', 'its', 'itself', 'they', 'them', 'their', 'theirs', 'themselves', 'what', 'which', 'who', 'whom', 'this', 'that', 'these', 'those', 'am', 'is', 'are', 'was', 'were', 'be', 'been', 'being', 'have', 'has', 'had', 'having', 'do', 'does', 'did', 'doing', 'a', 'an', 'the', 'and', 'but', 'if', 'or', 'because', 'as', 'until', 'while', 'of', 'at', 'by', 'for', 'with', 'about', 'against', 'between', 'into', 'through', 'during', 'before', 'after', 'above', 'below', 'to', 'from', 'up', 'down', 'in', 'out', 'on', 'off', 'over', 'under', 'again', 'further', 'then', 'once', 'here', 'there', 'when', 'where', 'why', 'how', 'all', 'any', 'both', 'each', 'few', 'more', 'most', 'other', 'some', 'such', 'no', 'nor', 'not', 'only', 'own', 'same', 'so', 'than', 'too', 'very', 'can', 'will', 'just', 'don', 'should', 'now','et','al','ie','.',';',',', 'n','-','(',')',":","=", "&"].freeze
 
-    def self.get_stage_name(stage)
-      NAMES[stage.to_sym]
+    def tokenize(text, use_stemmer=true)
+      tokens = (UnicodeUtils.each_word(UnicodeUtils.downcase(text)).to_a - STOPWORDS).delete_if {|v| v==' ' or v=="\n"}
+      tokens=Lingua.stemmer tokens if use_stemmer
+      tokens
     end
-  end
 
-  module StagesMixin
-    def get_stage_name(stage)
-      Buhos::Stages.get_stage_name(stage)
-    end
-    def get_stages_ids
-      Buhos::Stages::IDS
-    end
-    def get_stages_names
-      Buhos::Stages::NAMES
-    end
-    def get_stages_names_t
-      Buhos::Stages::NAMES.inject({}) {|ac,v|  ac[v[0]]=I18n.t(v[1]);ac  }
-    end
   end
 end
-

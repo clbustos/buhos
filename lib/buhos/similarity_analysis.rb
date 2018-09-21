@@ -26,11 +26,15 @@
 # OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+
+require_relative 'textual_analysis_mixin'
 #
 module Buhos
   class SimilarAnalysisSr
+    include TextualAnalysisMixin
     attr_reader :error
-
+    attr_reader :matrix
+    attr_accessor :use_stemmer
     def self.similar_to_cd_in_sr(cd:,sr:)
       sas=SimilarAnalysisSr.new(sr)
       sas.process
@@ -40,6 +44,7 @@ module Buhos
       raise I18n::t(:Cant_be_nil) if sr.nil?
       @sr=sr
       @narray_available=true
+      @use_stemmer=true
       begin
         require 'narray'
       rescue LoadError
@@ -50,13 +55,20 @@ module Buhos
     def process
 
       require 'tf-idf-similarity'
+      require 'unicode_utils'
+      require 'lingua/stemmer'
+
       @cd_w_abstract=@sr.cd_hash.find_all {|v| v[1][:abstract].to_s!=""}
-      @corpus=@cd_w_abstract.map {|v| TfIdfSimilarity::Document.new(v[1][:abstract])}
+      @corpus=@cd_w_abstract.map {|v| to_tf_idf_similarity v[1][:abstract]}
 
       @cd_w_abstract_ids=@cd_w_abstract.map {|v|v[0]}
 
       @model = TfIdfSimilarity::TfIdfModel.new(@corpus, library: (@narray_available ? :narray : :matrix))
       @matrix = @model.similarity_matrix
+    end
+    def to_tf_idf_similarity(text)
+      tokens=tokenize(text, @use_stemmer)
+      TfIdfSimilarity::Document.new(text, :tokens => tokens)
     end
     def mean_similarity(cd_ids)
       return nil if cd_ids.length<2
