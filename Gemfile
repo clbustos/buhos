@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 gem 'rake'
+gem "rubyzip",  ">= 1.2.1"
+gem 'zip-zip'
 gem "sinatra",  '>=2.0.1'
 gem "sequel"
 gem "mysql2"
@@ -10,16 +12,14 @@ gem 'bibtex-ruby'
 gem "unicode"
 gem 'levenshtein-ffi', :require => 'levenshtein', :platforms => :ruby
 gem 'levenshtein'
+gem 'narray', :platforms => :ruby
 gem 'serrano'
 gem 'dotenv'
-#gem 'scopus'
+gem 'treetop'
 gem 'nokogiri'
 gem 'moneta'
-gem 'nbayes'
 gem 'ruby-stemmer'
-gem 'classifier-reborn'
 gem 'categorize' , :platforms => :ruby
-gem 'ai4r'
 gem 'pdf-reader'
 gem 'grim'
 gem "i18n"
@@ -27,8 +27,15 @@ gem "sqlite3"
 gem 'mimemagic'
 gem "certified", :platforms => :mingw
 gem "sass"
-gem 'rubyXL'
-gem 'axlsx'
+gem 'axlsx' , ">=2.0.0"
+gem 'tf-idf-similarity'
+
+#gem 'rubyXL'
+gem 'ai4r'
+#gem 'scopus'
+#gem 'nbayes'
+#gem 'classifier-reborn'
+
 group :production do
   gem "puma", :platforms => :mingw
   gem "thin", :platforms => :ruby

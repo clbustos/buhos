@@ -116,5 +116,7 @@ module Buhos
     def protect_encoding(x)
       x.encode('UTF-8', 'binary', invalid: :replace, undef: :replace, replace: '')
     end
+
+
   end
 end

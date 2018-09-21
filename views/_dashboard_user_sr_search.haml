@@ -19,6 +19,6 @@
 .btn-group.btn-group-sm
   =partial(:buttons_new_search, :locals=>{user: user, sr: sr  })
   -if is_administrator
-    %a.btn.btn-default{:href=>"/review/#{sr.id}/administration/search"}
+    %a.btn.btn-default{:href=>"/review/#{sr.id}/administration/search", :id=>"dashboard-#{sr[:id]}-administrator-search"}
       %snap.glyphicon.glyphicon-tower
       =t(:Administration)

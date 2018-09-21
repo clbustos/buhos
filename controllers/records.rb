@@ -12,6 +12,9 @@
 get '/record/:id' do |id|
   halt_unless_auth('record_view')
   @reg=Record[id]
+
+  raise Buhos::NoRecordIdError, id if !@reg
+
   @references=@reg.references
   haml "record".to_sym
 end
@@ -21,6 +24,9 @@ get '/record/:id/search_crossref' do |id|
   halt_unless_auth('record_edit')
 
   @reg=Record[id]
+
+  raise Buhos::NoRecordIdError, id if !@reg
+
   @respuesta=@reg.crossref_query
   # #$log.info(@respuesta)
   haml "systematic_reviews/record_search_crossref".to_sym
@@ -29,8 +35,11 @@ end
 # Assign a DOI to a record
 get '/record/:id/assign_doi/:doi' do |id,doi|
   halt_unless_auth('record_edit')
+
+  @reg=Record[id]
+  raise Buhos::NoRecordIdError, id if !@reg
+
   $db.transaction(:rollback=>:reraise) do
-    @reg=Record[id]
     doi=doi.gsub("***","/")
     result=@reg.add_doi(doi)
     add_result(result)
@@ -38,6 +47,29 @@ get '/record/:id/assign_doi/:doi' do |id,doi|
   redirect back
 end
 
+
+# Reference action
+#
+post '/record/:id/references_action' do |id|
+  halt_unless_auth('reference_edit')
+  record=Record[id]
+  raise Buhos::NoRecordIdError, id if record.nil?
+  action=params['action']
+  references=params['references']
+  if action=='delete'
+    if references
+      $db.transaction do
+        rr=RecordsReferences.where(:record_id=>id, :reference_id=>references)
+        count=rr.count
+        rr.delete
+        add_message(t(:Count_references_delete, count:count))
+      end
+    else
+      add_message(t(:No_references_selected), :error)
+    end
+  end
+  redirect back
+end
 # Add manual references to a record
 post '/record/:id/manual_references' do |id|
   halt_unless_auth('record_edit')
@@ -46,10 +78,11 @@ post '/record/:id/manual_references' do |id|
     if ref_man
       partes=ref_man.split("\n").map {|v| v.strip.gsub("[ Links ]", "").gsub(/\s+/, ' ')}.find_all {|v| v!=""}
       partes.each do |parte|
+        parte=parte.chomp.lstrip
         ref=Reference.get_by_text_and_doi(parte, nil, true)
-        ref_reg=RecordsReference.where(:record_id => id, :reference_id => ref[:id]).first
+        ref_reg=RecordsReferences.where(:record_id => id, :reference_id => ref[:id]).first
         unless ref_reg
-          RecordsReference.insert(:record_id => id, :reference_id => ref[:id])
+          RecordsReferences.insert(:record_id => id, :reference_id => ref[:id])
         end
       end
       add_message(::I18n.t(:Added_references_to_record, :record_id=>id, :count_references=>partes.length))

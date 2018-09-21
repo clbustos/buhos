@@ -1,0 +1,92 @@
+[
+  {
+    "doi": "http://dx.doi.org/10.18130/v3gs1z",
+    "score": 18.960613,
+    "normalizedScore": 100,
+    "title": "Localized Analysis Framework using Smartphones",
+    "fullCitation": "Bommae Kim, 'Localized Analysis Framework using Smartphones'",
+    "coins": "ctx_ver=Z39.88-2004&amp;rft_id=info%3Adoi%2Fhttp%3A%2F%2Fdx.doi.org%2F10.18130%2Fv3gs1z&amp;rfr_id=info%3Asid%2Fcrossref.org%3Asearch&amp;rft.atitle=Localized+Analysis+Framework+using+Smartphones&amp;rft.aufirst=Bommae&amp;rft.aulast=Kim&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Aunknown&amp;rft.genre=unknown&amp;rft.au=Bommae+Kim",
+    "year": null
+  },
+  {
+    "doi": "http://dx.doi.org/10.31219/osf.io/a93b5",
+    "score": 17.979853,
+    "normalizedScore": 94,
+    "title": "Data Analysis using RapidMiner",
+    "fullCitation": "Masoud Karimi, 2017, 'Data Analysis using RapidMiner'",
+    "coins": "ctx_ver=Z39.88-2004&amp;rft_id=info%3Adoi%2Fhttp%3A%2F%2Fdx.doi.org%2F10.31219%2Fosf.io%2Fa93b5&amp;rfr_id=info%3Asid%2Fcrossref.org%3Asearch&amp;rft.atitle=Data+Analysis+using+RapidMiner&amp;rft.date=2017&amp;rft.aufirst=Masoud&amp;rft.aulast=Karimi&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Aunknown&amp;rft.genre=unknown&amp;rft.au=Masoud+Karimi",
+    "year": "2017"
+  },
+  {
+    "doi": "http://dx.doi.org/10.5220/0006227600970104",
+    "score": 16.749836,
+    "normalizedScore": 88,
+    "title": "Adopting NoSQL Databases Using a Quality Attribute Framework and Risks Analysis",
+    "fullCitation": "Hilda Mackin, Charles Tappert, Gonzalo Perez, 2016, 'Adopting NoSQL Databases Using a Quality Attribute Framework and Risks Analysis', <i>Proceedings of the Fifth International Conference on Telecommunications and Remote Sensing</i>",
+    "coins": "ctx_ver=Z39.88-2004&amp;rft_id=info%3Adoi%2Fhttp%3A%2F%2Fdx.doi.org%2F10.5220%2F0006227600970104&amp;rfr_id=info%3Asid%2Fcrossref.org%3Asearch&amp;rft.atitle=Adopting+NoSQL+Databases+Using+a+Quality+Attribute+Framework+and+Risks+Analysis&amp;rft.jtitle=Proceedings+of+the+Fifth+International+Conference+on+Telecommunications+and+Remote+Sensing&amp;rft.date=2016&amp;rft.aufirst=Hilda&amp;rft.aulast=Mackin&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Ajournal&amp;rft.genre=proceeding&amp;rft.au=Hilda+Mackin&amp;rft.au=+Charles+Tappert&amp;rft.au=+Gonzalo+Perez",
+    "year": "2016"
+  },
+  {
+    "doi": "http://dx.doi.org/10.1002/9781118921111.ch6",
+    "score": 16.499435,
+    "normalizedScore": 87,
+    "title": "Using Sensitivity Analysis",
+    "fullCitation": "2015, 'Using Sensitivity Analysis', <i>Financial Forecasting, Analysis, and Modelling</i>, pp. 137-156",
+    "coins": "ctx_ver=Z39.88-2004&amp;rft_id=info%3Adoi%2Fhttp%3A%2F%2Fdx.doi.org%2F10.1002%2F9781118921111.ch6&amp;rfr_id=info%3Asid%2Fcrossref.org%3Asearch&amp;rft.atitle=Using+Sensitivity+Analysis&amp;rft.jtitle=Financial+Forecasting%2C+Analysis%2C+and+Modelling&amp;rft.date=2015&amp;rft.spage=137&amp;rft.epage=156&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook&amp;rft.genre=bookitem",
+    "year": "2015"
+  },
+  {
+    "doi": "http://dx.doi.org/10.1002/9781118921111.ch7",
+    "score": 16.416607,
+    "normalizedScore": 86,
+    "title": "Using Scenarios",
+    "fullCitation": "2015, 'Using Scenarios', <i>Financial Forecasting, Analysis, and Modelling</i>, pp. 157-178",
+    "coins": "ctx_ver=Z39.88-2004&amp;rft_id=info%3Adoi%2Fhttp%3A%2F%2Fdx.doi.org%2F10.1002%2F9781118921111.ch7&amp;rfr_id=info%3Asid%2Fcrossref.org%3Asearch&amp;rft.atitle=Using+Scenarios&amp;rft.jtitle=Financial+Forecasting%2C+Analysis%2C+and+Modelling&amp;rft.date=2015&amp;rft.spage=157&amp;rft.epage=178&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook&amp;rft.genre=bookitem",
+    "year": "2015"
+  },
+  {
+    "doi": "http://dx.doi.org/10.25148/etd.fi11120205",
+    "score": 16.416607,
+    "normalizedScore": 86,
+    "title": "Analysis of Housing Partnerships Using the Balanced Scorecard Framework",
+    "fullCitation": "Zhayda L Garzon, 'Analysis of Housing Partnerships Using the Balanced Scorecard Framework'",
+    "coins": "ctx_ver=Z39.88-2004&amp;rft_id=info%3Adoi%2Fhttp%3A%2F%2Fdx.doi.org%2F10.25148%2Fetd.fi11120205&amp;rfr_id=info%3Asid%2Fcrossref.org%3Asearch&amp;rft.atitle=Analysis+of+Housing+Partnerships+Using+the+Balanced+Scorecard+Framework&amp;rft.aufirst=Zhayda+L&amp;rft.aulast=Garzon&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Aunknown&amp;rft.genre=unknown&amp;rft.au=Zhayda+L+Garzon",
+    "year": null
+  },
+  {
+    "doi": "http://dx.doi.org/10.1002/9781118921111.ch8",
+    "score": 15.286446,
+    "normalizedScore": 80,
+    "title": "Using Monte Carlo Simulation",
+    "fullCitation": "2015, 'Using Monte Carlo Simulation', <i>Financial Forecasting, Analysis, and Modelling</i>, pp. 179-202",
+    "coins": "ctx_ver=Z39.88-2004&amp;rft_id=info%3Adoi%2Fhttp%3A%2F%2Fdx.doi.org%2F10.1002%2F9781118921111.ch8&amp;rfr_id=info%3Asid%2Fcrossref.org%3Asearch&amp;rft.atitle=Using+Monte+Carlo+Simulation&amp;rft.jtitle=Financial+Forecasting%2C+Analysis%2C+and+Modelling&amp;rft.date=2015&amp;rft.spage=179&amp;rft.epage=202&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook&amp;rft.genre=bookitem",
+    "year": "2015"
+  },
+  {
+    "doi": "http://dx.doi.org/10.1109/cybconf.2015.7175953",
+    "score": 15.286446,
+    "normalizedScore": 80,
+    "title": "Exploitability analysis using predictive cybersecurity framework",
+    "fullCitation": "Subil Abraham, Suku Nair, 2015, 'Exploitability analysis using predictive cybersecurity framework', <i>2015 IEEE 2nd International Conference on Cybernetics (CYBCONF)</i>",
+    "coins": "ctx_ver=Z39.88-2004&amp;rft_id=info%3Adoi%2Fhttp%3A%2F%2Fdx.doi.org%2F10.1109%2Fcybconf.2015.7175953&amp;rfr_id=info%3Asid%2Fcrossref.org%3Asearch&amp;rft.atitle=Exploitability+analysis+using+predictive+cybersecurity+framework&amp;rft.jtitle=2015+IEEE+2nd+International+Conference+on+Cybernetics+%28CYBCONF%29&amp;rft.date=2015&amp;rft.aufirst=Subil&amp;rft.aulast=Abraham&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Ajournal&amp;rft.genre=proceeding&amp;rft.au=Subil+Abraham&amp;rft.au=+Suku+Nair",
+    "year": "2015"
+  },
+  {
+    "doi": "http://dx.doi.org/10.1016/b978-012088514-5/50026-6",
+    "score": 15.286446,
+    "normalizedScore": 80,
+    "title": "System Modeling Using the DoD Architecture Framework",
+    "fullCitation": "Jeffrey O. Grady, 2006, 'System Modeling Using the DoD Architecture Framework', <i>System Requirements Analysis</i>, pp. 275-287",
+    "coins": "ctx_ver=Z39.88-2004&amp;rft_id=info%3Adoi%2Fhttp%3A%2F%2Fdx.doi.org%2F10.1016%2Fb978-012088514-5%2F50026-6&amp;rfr_id=info%3Asid%2Fcrossref.org%3Asearch&amp;rft.atitle=System+Modeling+Using+the+DoD+Architecture+Framework&amp;rft.jtitle=System+Requirements+Analysis&amp;rft.date=2006&amp;rft.spage=275&amp;rft.epage=287&amp;rft.aufirst=Jeffrey+O.&amp;rft.aulast=Grady&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook&amp;rft.genre=bookitem&amp;rft.au=Jeffrey+O.+Grady",
+    "year": "2006"
+  },
+  {
+    "doi": "http://dx.doi.org/10.1109/icasic.2005.1611477",
+    "score": 15.286446,
+    "normalizedScore": 80,
+    "title": "VLSI Interconnect Signal Analysis Using a Projection Framework Method",
+    "fullCitation": "G. Suzuki, 'VLSI Interconnect Signal Analysis Using a Projection Framework Method', <i>2005 6th International Conference on ASIC</i>",
+    "coins": "ctx_ver=Z39.88-2004&amp;rft_id=info%3Adoi%2Fhttp%3A%2F%2Fdx.doi.org%2F10.1109%2Ficasic.2005.1611477&amp;rfr_id=info%3Asid%2Fcrossref.org%3Asearch&amp;rft.atitle=VLSI+Interconnect+Signal+Analysis+Using+a+Projection+Framework+Method&amp;rft.jtitle=2005+6th+International+Conference+on+ASIC&amp;rft.aufirst=G.&amp;rft.aulast=Suzuki&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Ajournal&amp;rft.genre=proceeding&amp;rft.au=G.+Suzuki",
+    "year": null
+  }
+]

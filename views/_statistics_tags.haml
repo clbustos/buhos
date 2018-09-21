@@ -1,6 +1,6 @@
-- # Params: tag_estadisticas, review, stage
-- stage||=nil
-- tags_estadisticas=review.statistics_tags(stage)
+- # Params: tag_estadisticas, review
+- tags_statistics=Buhos::AnalysisTags.new
+- tags_statistics.systematic_review_id(review.id)
 
 - if @estadisticas_tags_js.nil?
   - @estadisticas_tags_js=true
@@ -10,22 +10,22 @@
 %table.reporte.tablesorter
   %thead
     %th=t(:Tag)
-    %th=t(:On_class)
-    %th=t(:Documents)
-    %th=t(:percent_positive)
+    %th=t(:Distinct_documents)
+    %th=t(:Yes)
+    %th=t(:No)
     %th=t(:Actions)
   %tbody
-    - tags_estadisticas.each do |tag|
+    - tags_statistics.get_tags_decision_stats.each do |tag|
       %tr{:id=>"tag-fila-#{tag[:id]}"}
         %td=tag[:text]
-        %td=tag[:con_clase]==1 ? "Sí" : "No"
         %td
-          - url_link= stage.nil? ? "/tag/#{tag[:id]}/rs/#{review.id}/cds" : "/tag/#{tag[:id]}/rs/#{review.id}/stage/#{stage}/cds"
+          - url_link= "/tag/#{tag[:id]}/rs/#{review.id}/cds"
           %a{:href=>url(url_link)}=tag[:n_documents]
-        %td=(tag[:p_yes]*100).to_i
+        %td=tag[:d_yes]
+        %td=tag[:d_no]
         %td
           .btn-group.btn-group-sm
-            -if tag[:p_yes]==0
+            -if tag[:d_yes]==0 and tag[:d_no]>0
               %button.btn.btn-default.borrar_tag{"tag-pk"=>tag[:id],"rs-pk"=>review.id}
                 %span.glyphicon.glyphicon-remove
                   Borrar

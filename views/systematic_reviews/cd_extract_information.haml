@@ -18,7 +18,7 @@
     .col-md-10
       =@cd.ref_apa_6_brief_html
     .col-md-2
-      =partial(:canonical_document_button, :locals=>{id:@cd[:id]})
+      =partial(:canonical_document_button, :locals=>{id:@cd[:id], review:@sr})
   .row
     .col-md-8.col-sm-8#document_viewer
       - if @current_file_id.nil?
@@ -56,8 +56,9 @@
               - @incoming_citations.each do |cd_incoming|
                 .list-group-item
                   =cd_incoming.ref_apa_6_brief
-                  %a.btn.btn-default.btn-sm{:href=>"/review/#{@sr[:id]}/extract_information/cd/#{cd_incoming[:id]}"}=t(:View)
+                  %a.btn.btn-default.btn-sm{:href=>url("/review/#{@sr[:id]}/extract_information/cd/#{cd_incoming[:id]}")}=t(:View)
+  .row
+    .col-md-12
+      %a.btn.btn-primary{:href=>url("/review/#{@sr[:id]}/extract_information/cd/#{@cd[:id]}/by_similarity")}=t(:Continue_by_similarity)
 // Here comes the form_creator javascript
 =@form_creator.javascript
-
-

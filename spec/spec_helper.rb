@@ -104,7 +104,8 @@ module RSpecMixin
       Search.insert(:id=>(ids_to_create[i]),
                     :systematic_review_id       => systematic_review_id.respond_to?(:index) ? systematic_review_id.to_a[i] : systematic_review_id,
                     :bibliographic_database_id  => bb_id,
-                    :user_id                    => user_id)
+                    :user_id                    => user_id
+                    )
     end
   end
 
@@ -126,7 +127,19 @@ module RSpecMixin
       end
       r_id_r
     end
+  end
 
+  def create_references(texts:, cd_id:nil, record_id:nil)
+
+    cd_ids=cd_id.nil? ? nil : (cd_id.is_a?(Array) ? cd_id : [cd_id] * texts.length)
+    records_id=record_id.nil? ? nil : (record_id.is_a?(Array) ? record_id: [record_id] * texts.length)
+    (0...texts.length).map do |i|
+      reference=Reference.get_by_text_and_doi(texts[i],nil, true)
+      reference.update(canonical_document_id:cd_ids[i]) if cd_ids
+      if records_id
+        RecordsReferences.insert(reference_id: reference.id, record_id: records_id[i])
+      end
+    end
   end
 
   def bb_by_name_id(name)
@@ -145,6 +158,10 @@ module RSpecMixin
   def login_admin
     post '/login', :user=>"admin", :password=>"admin"
   end
+  def login_analyst
+    post '/login', :user=>"analyst", :password=>"analyst"
+  end
+
   def configure_complete_sqlite
 	if(is_windows?)
 		temppath="#{$base}/spec/usr/db_temp.sqlite"
@@ -189,6 +206,8 @@ module RSpecMixin
     find_executable exe
   end
 
+  # Create a systematic report with a form with 3 fields, 1 canonical document, 1 search, 1 record
+  # and 2 positive resolutions for document 1
   def sr_for_report
     create_sr
     sr1=SystematicReview[1]
@@ -205,6 +224,29 @@ module RSpecMixin
     Resolution.insert(:systematic_review_id=>1, :canonical_document_id=>1, :user_id=>1, :stage=>'review_full_text', :resolution=>'yes')
     sr1
   end
+
+  def doi_reference_1
+    "10.1007/s10664-018-9626-5"
+  end
+  def sr_references
+    sr_for_report
+    Record[1].update(:author=>"Al-Zubidy, A and Carver JC", :title=>"Identification and prioritization of SLR search tool requirements: an SLR and a survey", :journal=>"Empir Softw Eng.", :year=>"2018", :pages=>"1–31", :doi=>"10.1007/s10664-018-9626-5")
+
+    ref_1="Allman-Farinelli M, Byron A, Collins C, Gifford J, Williams P (2014) Challenges and lessons from systematic literature reviews for the australian dietary guidelines. Aust J Prim Health 20(3):236–240"
+    ref_2="Babar MA, Zhang H (2009) Systematic literature reviews in software engineering: preliminary results from interviews with researchers. In: 3rd international symposium on empirical software engineering and measurement. IEEE Computer Society, pp 346–355"
+    ref_3="Badampudi D, Wohlin C, Petersen K (2015) Experiences from using snowballing and database searches in systematic literature studies. In: 19th international conference on evaluation and assessment in software engineering. ACM, p 17"
+    create_references(texts:[ref_1,ref_2 , ref_3], record_id:1)
+  end
+
+  def delete_references
+    $db[:records_references].delete
+    $db[:references].delete
+  end
+
+  def read_fixture(filename)
+    File.read(File.expand_path( File.join([File.dirname(__FILE__),"fixtures",filename   ])))
+  end
+
 end
 
 

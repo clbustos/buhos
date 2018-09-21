@@ -26,40 +26,24 @@
 # OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-class NBayes_RS
-  attr_reader :nbayes_rtr
-  STOPWORDS=%w{the an a with we dont to in that these those from each @ i}
+#
+module Buhos
+  # Helper for review related controllers
+  module ControllerReview
+    # helper function that init tags related methods
+    def sr_tags_prev(sr_id)
+      halt_unless_auth('review_analyze')
+      @cd_ids=params['cd_id'].split(",").map(&:to_i).delete_if {|v| v==0}.sort
+      @url_back=params['url_back']
+      @user_id=params['user_id']
+      @review=SystematicReview[sr_id]
+      raise Buhos::NoReviewIdError, sr_id if !@review
+      @user=User[@user_id]
+      raise Buhos::NoUserIdError, @user_id if !@user
+      @cds=CanonicalDocument.where(:id=>@cd_ids).order(:id)
 
-  def initialize(rs)
-    require 'nbayes'
-    require 'lingua/stemmer'
-    @rs=rs
-    @nbayes_rtr=nbayes_rtr_calculo
-  end
+      add_message(I18n::t(:List_of_cd_not_compatible)) unless @cds.count==@cd_ids.length
 
-  def get_stemmer(text)
-    res=Lingua.stemmer(text.split(/[\s-]+/).map {|vv| vv.downcase.gsub(/[[:punct:]]/, "")}.find_all {|v| !STOPWORDS.include? v})
-    res.is_a?(Array) ? res : [res]
-  end
-
-  def nbayes_rtr_calculo
-    nbayes = NBayes::Base.new
-    names = (CanonicalDocument.select(:title, :abstract, :journal, :resolution).join_table(:inner, :resolutions, canonical_document_id: :id).where(:systematic_review_id => @rs.id)).map {|v| {:name => get_stemmer("#{v[:title]} #{v[:abstract]}")+[v[:journal]], :resolution => v[:resolution]}}
-    names.each do |n|
-      nbayes.train(n[:name], n[:resolution])
     end
-    #$log.info(nbayes)
-    nbayes
-  end
-
-  private :nbayes_rtr_calculo
-
-  # Entrega la clasificación para un cd_id específico
-  def cd_resultado(cd_id)
-    cd=@rs.cd_hash[cd_id]
-    tokens=get_stemmer("#{cd[:title]} #{cd[:abstract]}")+[cd[:journal]]
-    res={"yes" => 0, "no" => 0}.merge(nbayes_rtr.classify(tokens))
-    #$log.info(res)
-    res
   end
 end

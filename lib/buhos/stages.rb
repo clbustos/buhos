@@ -30,20 +30,25 @@
 module Buhos
   # Stages ids, names, and methods to access them
   module Stages
-    IDS=[:search,
-            :screening_title_abstract,
-            :screening_references,
-            :review_full_text,
+    STAGE_SEARCH=:search
+    STAGE_SCREENING_TITLE_ABSTRACT=:screening_title_abstract
+    STAGE_SCREENING_REFERENCES=:screening_references
+    STAGE_REVIEW_FULL_TEXT=:review_full_text
+    STAGE_REPORT=:report
+    IDS=[STAGE_SEARCH,
+            STAGE_SCREENING_TITLE_ABSTRACT,
+            STAGE_SCREENING_REFERENCES,
+            STAGE_REVIEW_FULL_TEXT,
             #:analysis,
-            :report
-    ]
+            STAGE_REPORT
+    ].freeze
 
-    NAMES={:search=> "stage.search",
-                 :screening_title_abstract=> "stage.screening_title_abstract",
-                 :screening_references => "stage.screening_references",
-                 :review_full_text=> "stage.review_full_text",
+    NAMES={STAGE_SEARCH=> "stage.search",
+           STAGE_SCREENING_TITLE_ABSTRACT=> "stage.screening_title_abstract",
+           STAGE_SCREENING_REFERENCES=> "stage.screening_references",
+           STAGE_REVIEW_FULL_TEXT=> "stage.review_full_text",
                  #:analysis => "stage.analysis",
-                 :report=> "stage.report"}
+           STAGE_REPORT=> "stage.report"}.freeze
 
     def self.get_stage_name(stage)
       NAMES[stage.to_sym]

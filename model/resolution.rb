@@ -30,6 +30,20 @@ require_relative 'canonical_document'
 require_relative 'systematic_review'
 
 class Resolution < Sequel::Model
+  RESOLUTION_ACCEPT='yes'
+  RESOLUTION_REJECT='no'
   NO_RESOLUTION='NR'
+  PREVIOUS_REJECT="PR"
+
+  NAMES={
+      RESOLUTION_ACCEPT=>:Included,
+      RESOLUTION_REJECT=>:Rejected,
+      NO_RESOLUTION=>:No_resolution,
+      PREVIOUS_REJECT=>:Previous_reject
+  }
+
+  def self.get_name_resolution(x)
+    x.nil? ? NO_RESOLUTION : NAMES[x]
+  end
 end
 

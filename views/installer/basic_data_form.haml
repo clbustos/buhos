@@ -52,11 +52,11 @@
 %table#config_selector
   %tr
     %td
-      %input{type: :radio, checked:true, name: :configuration, value: "default"}
+      %input{type: :radio, checked:true, name: :configuration, value: "default", :id=>'configuration-default'}
     %td=t("installer.default_configuration")
   %tr
     %td
-      %input{type: :radio, name: :configuration, value: "advanced"}
+      %input{type: :radio, name: :configuration, value: "advanced",:id=>'configuration-advanced'}
     %td=t("installer.advanced_configuration")      
 
 - if @env_exists

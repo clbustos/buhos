@@ -72,7 +72,7 @@ module Scopus
 
   # Connect to api and start
   def connect_server(uri_string)
-    proxy_info= @use_proxy ? ["http://#{@proxy_host}:#{@proxy_port}/", @proxy_user, @proxy_pass] : nil
+    proxy_info= [(@use_proxy ? "http://#{@proxy_host}:#{@proxy_port}/" :nil), @proxy_user.to_s, @proxy_pass.to_s]
     begin
       open(uri_string, :proxy_http_basic_authentication => proxy_info) do |io|
         xml=Nokogiri::XML(io.read)

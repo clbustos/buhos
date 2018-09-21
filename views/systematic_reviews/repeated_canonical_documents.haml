@@ -43,6 +43,6 @@
         %button{:class=>"btn btn-default unir_cd_por_doi", "data-i"=>i, "data-doi"=>doi, "data-pk"=>cds_id.join(",") }Unir
       %ul.list-group
         - cds_id.each do |cd_id|
-          %li.list-group-item=@cd_hash[cd_id].ref_apa_6
+          %li.list-group-item=@cd_hash[cd_id].ref_apa_6_brief_html
 - else
   %em=t(:No_duplicated_DOI)

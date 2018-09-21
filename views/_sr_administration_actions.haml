@@ -19,6 +19,6 @@
 
   - if ars.stage_complete? stage
     - if [:screening_title_abstract, :screening_references, :review_full_text].include? stage.to_sym
-      %a{:href=>url("/review/#{review[:id]}/stage/#{stage}/generar_references_crossref"), :role=>"button", :class=>"btn btn-default btn-sm"}=t(:Generate_Crossref_references)
+      %a{:href=>url("/review/#{review[:id]}/stage/#{stage}/generate_crossref_references"), :role=>"button", :class=>"btn btn-default btn-sm"}=t(:Generate_Crossref_references)
     - if stage==review[:stage].to_s
       %a.btn.btn-primary{:href=>"/review/#{review[:id]}/advance_stage"}=t(:Advance_next_stage)

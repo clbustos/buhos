@@ -2,14 +2,11 @@
 - criteria=Criterion.join(:sr_criteria, :criterion_id=> :id).where(:systematic_review_id=>sr.id, :criteria_type=>type).order(:criterion_id)
 .criteria-list
   %div
-    %ul.list-group
-      - criteria.each do |criterion|
-        %li.list-group-item
-          %input{:type=>:text, :id=>"criteria-#{type}-#{criterion[:criterion_id]}", :name=>"criteria[#{type}][#{criterion[:criterion_id]}]", :value=>criterion[:text]}
-          %button.btn.btn-default.del_criteria{:id=>"criteria-remove-#{sr.id}-#{type}-#{criterion[:criterion_id]}", "data-url"=>url("/review/#{sr.id}/criteria/remove")}
-            %span.glyphicon.glyphicon-minus
-      %li.list-group-item
-        %input{:type=>:text, :id=>"criteria-#{type}-new", :name=>"criteria[#{type}][new]", :placeholder=>t("Criteria_new_#{type}")}
-        -unless sr.id.nil?
-          %button.btn.btn-default.add_criteria{:id=>"criteria-add-#{sr.id}-#{type}", "data-url"=>url("/review/#{sr.id}/criteria/add")}
-            %span.glyphicon.glyphicon-plus
+    %ul.list-group{:id=>"criteria-#{sr.id}-#{type}-list"}
+      :javascript
+
+        var criteria=[#{criteria.map {|v| "'#{v[:text]}'"}.join(',')}];
+        for(var i=0; i< criteria.length; i++) {
+          CriteriaManager.create_criterion('#{sr.id}', '#{type}', criteria[i]);
+        }
+        CriteriaManager.create_new('#{sr.id}', '#{type}',  '#{t("Criteria_new_#{type}")}');

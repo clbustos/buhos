@@ -26,6 +26,9 @@
 # OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+
+require_relative("fulltext_report/excel")
+
 #
 module ReportBuilder
   class FulltextReport
@@ -48,109 +51,8 @@ module ReportBuilder
     def output_excel_download
       app.headers 'Content-Type' => "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
       app.headers 'Content-Disposition' => "attachment; filename=fulltext_report_#{@sr[:id]}.xlsx"
-      create_excel
-    end
-    # TODO: Create a new class on directory 'fulltext_report' and replace rubyXL for axlsx (much efficient!)
-    def create_excel
-      require 'rubyXL'
-      workbook = RubyXL::Workbook.new
-
-      # First, we process the inline codes
-      #
-      #     %table.tablesorter
-
-      ws_ic = workbook.worksheets[0]
-      ws_ic.sheet_name=I18n::t("fulltext_report.inline_code")
-      create_excel_inlines_codes(ws_ic)
-      ws_cf=workbook.add_worksheet(I18n::t("fulltext_report.custom_form"))
-      create_excel_custom_form(ws_cf)
-      workbook.stream
-    end
-
-    def create_excel_inlines_codes(ws)
-      ws.change_row_bold(0,true)
-      ws.change_column_width(0,20)
-      ws.change_column_width(1,20)
-      ws.change_column_width(2,5)
-      ws.change_column_width(3,5)
-      ws.change_column_width(4,60)
-      ws.change_column_width(5,60)
-
-      ws.add_cell(0,0,I18n::t("Fields_analysis"))
-      ws.add_cell(0,1,I18n::t("fulltext_report.inline_code"))
-      ws.add_cell(0,2,"n")
-      ws.add_cell(0,3,I18n::t("fulltext_report.use"))
-      ws.add_cell(0,4,I18n::t(:Text))
-      ws.add_cell(0,5,I18n::t(:APA_Reference))
-
-      i=1
-      self.get_inline_codes.each_pair do |type, codes0|
-        name_field=fields[type][:description]
-        codes=codes0.sort {|a,b|  a[0]<=>b[0] }
-        codes.each do |v|
-
-          v[1].each do |use_data|
-            cd_id=use_data[:cd_id]
-            cita=cd_h[cd_id].cite_apa_6
-            use_i=1
-            use_data[:uses].each do |use|
-              ws.add_cell(i,0,name_field)
-              ws.add_cell(i,1,v[0])
-              ws.add_cell(i,2,v[1].length)
-              ws.add_cell(i,3,use_i)
-
-              ws.add_cell(i,4,use)
-              ws.add_cell(i,5,cita)
-              (4..5).each {|j| ws[i][j].change_text_wrap(true) }
-
-              i+=1
-              use_i+=1
-            end
-          end
-        end
-      end
-    end
-    def create_excel_custom_form(ws)
-      ws.change_row_bold(0,true)
-      ws.change_column_width(0,20)
-      ws.change_column_width(1,10)
-      ws.change_column_width(2,60)
-      ws.change_column_width(3,20)
-      ws.change_column_width(4,5)
-      ws.change_column_width(5,30)
-
-      ws.add_cell(0,0,I18n::t("Fields_analysis"))
-      ws.add_cell(0,1,I18n::t("User"))
-      ws.add_cell(0,2,I18n::t(:Text))
-      ws.add_cell(0,3,I18n::t(:Author))
-      ws.add_cell(0,4,I18n::t(:Year))
-      ws.add_cell(0,5,I18n::t(:Title))
-
-
-      i=1
-      fields.each_pair do |campo_id, campo|
-        @sr.group_users.each do |gu|
-          analysis_cd=analysis_rs.where(:user_id=>gu[:id], :canonical_document_id=>cd_h.keys).order(:canonical_document_id)
-
-            if campo[:type]=='select' or campo[:type]=='multiple'
-              ws.add_cell(i,0,campo[:description])
-              ws.add_cell(i,1,gu[:name])
-              ws.add_cell(i,1,"to do")
-            else
-              analysis_cd.each do |an|
-                next if an[campo[:name].to_sym].to_s.chomp==""
-                  ws.add_cell(i,0,campo[:description])
-                  ws.add_cell(i,1,gu[:name])
-                  ws.add_cell(i,2,an[campo[:name].to_sym])
-                  ws.add_cell(i,3,cd_h[an[:canonical_document_id]].authors_apa_6)
-                  ws.add_cell(i,4,cd_h[an[:canonical_document_id]].year)
-                  ws.add_cell(i,5,cd_h[an[:canonical_document_id]].title)
-                  (2..5).each {|j| ws[i][j].change_text_wrap(true) }
-                i+=1
-              end
-            end
-        end
-      end
+      ReportBuilder::FullTextReport::Excel.create(self)
+      #create_excel
     end
 
 

@@ -6,32 +6,43 @@
 
 .well
   =t("#{@stage}.objective")
-
-
 =partial(:systematic_review_info, :locals=>{systematic_review: @review})
+
+.btn-group.btn-group-sm
+  %a.btn.btn-default{:href=>url("/review/#{@review.id}/tags/user/#{@user_id}")}
+    %span.gliphicon.glyphicon-tags
+    =t(:Tags)
 
 %h3=t(:Review_status)
 %p=t_desc_value(:Count_total_documents_to_review, sprintf("%d", @cds_total))
 
 
-%form.form-inline{:action=>url(@url), :method=>:get,:class=>"form-check", :enctype=>"multipart/form-data"}
-  %input{:type=>:hidden,:name=>:page, :value=>@pager.page}
-  %input{:type=>:hidden,:name=>:order, :value=>@pager.order}
-
-  .form-group-sm
+%form.form-inline{:action=>url(@url), :method=>:get}
+  .form-group
     %label{:for=>'status'}=t(:Decision)
     %select.form-control{:name=>'decision'}
       %option{:value=>'_no_', :selected=>@pager.extra[:decision].to_s=='_no_'}=t(:All)
       - Decision::N_EST.each_pair do |k,d_name|
-        - checked= @pager.extra[:decision].nil?  ? false :  ( @pager.extra[:decision]==k )
+        - checked= @pager.extra[:decision].nil?  ? false :  ( @pager.extra[:decision] == k )
         %option{:value=> k, :selected=>checked}
           ="#{t(d_name)} (#{@ads.total_decisions[k].to_i})"
-
+  .form-group
+    %label{:for=>:query}=t(:Search)
+    %input{:type=>:text, :value=>@pager.query, :name=>:query, :class=>"form-control"}
   %button.btn.btn-default{:type=>"submit"}=t(:Filter)
-
+  %input{:type=>:hidden,:name=>:page, :value=>@pager.page}
+  %input{:type=>:hidden,:name=>:order, :value=>@pager.order}
 
 - if @cds_total!=@pager.n_records
   %p#count_search=t_desc_value(:Count_documents_search, @pager.n_records)
+
+%p
+
+- if @ads.total_decisions[Decision::NO_DECISION].to_i==0 and @cds_total>0
+  .well.well-sm
+    %strong=t("#{@stage}.stage_complete_message")
+
+
 
 .btn-group
   -@order_criteria.each do |crit_order,crit_name|
@@ -45,10 +56,6 @@
         %button{:class=>"btn btn-primary btn-sm"}
           %span{:class=>"glyphicon glyphicon-chevron-#{arrow_dir}"}
           =crit_name
-- if @ads.total_decisions[Decision::NO_DECISION].to_i==0 and @cds_total>0
-  %p
-    %strong=t("#{@stage}.stage_complete_message")
-
 -if @cds.count>0
   = partial(:pager,:locals=>{url: @url, pager:@pager})
   .list-group

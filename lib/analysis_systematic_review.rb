@@ -68,6 +68,8 @@ class AnalysisSystematicReview
   attr_reader :ref_count_incoming
   # Hash for canonical documents, with out citations
   attr_reader :ref_count_outgoing
+  # Hash for stages, with canonical documents ids included
+  attr_reader :cd_included_by_stage
   #
   # @param rs object Systematic_Review
   def initialize(rs)
@@ -126,6 +128,11 @@ class AnalysisSystematicReview
     @cd_ref_id = @rs.cd_reference_id
     @cd_all_id = @rs.cd_all_id
     @rec = @rs.references_bw_canonical
+
+    @cd_included_by_stage=get_stages_ids.inject({}) do |ac, stage|
+      ac[stage]=@rs.cd_id_by_stage(stage)
+      ac
+    end
   end
 
   private :process_basic_indicators
@@ -161,7 +168,12 @@ class AnalysisSystematicReview
   private :process_resolutions
 
   def cd_in_resolution_stage?(id, stage)
-    @cd_resolutions[stage.to_sym][id].nil? ? false : @cd_resolutions[stage.to_sym][id][:resolution] == 'yes'
+    @cd_resolutions[stage.to_sym][id].nil? ? Resolution::NO_RESOLUTION : @cd_resolutions[stage.to_sym][id][:resolution]
+  end
+
+  def cd_included_in_stage? (cd_id, stage)
+    $log.info(@cd_included_by_stage)
+    @cd_included_by_stage[stage.to_sym].include? cd_id
   end
 
   def more_cited(n = 20)
@@ -202,5 +214,25 @@ class AnalysisSystematicReview
     }
   end
 
+
+  # Analysis of sources and databases
+  def summary_sources_databases
+    $db["SELECT  s.source, s.bibliographic_database_id,  COUNT(*) as n FROM records r
+    INNER JOIN records_searches rs ON r.id=rs.record_id
+    INNER JOIN searches s ON s.id=rs.search_id WHERE s.systematic_review_id=?
+    GROUP BY  s.source, s.bibliographic_database_id ORDER BY s.source, s.bibliographic_database_id", @rs.id]
+  end
+
+  def status_in_stages_cd(cd)
+    stages_id=get_stages_ids.dup
+    stages_id.shift
+    status=stages_id.inject({}) do |ac, stage|
+      ac[stage]={
+          :included=>cd_included_in_stage?(cd.id, stage),
+          :resolution=>cd_in_resolution_stage?(cd.id, stage)}
+      ac
+    end
+    status
+  end
 
 end

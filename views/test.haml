@@ -1,0 +1,20 @@
+%h2 ejemplo
+:javascript
+  $(document).ready(function() {
+  $("#bottles-button").click(function() {
+        // thanks to @konstantinhaase for this nice HTML5 solution!
+    alert("hola");
+    var src = new EventSource('/bottles');
+    src.onmessage = function(e) {
+       if(e.data=='CLOSE') {
+          $('#bottles-output').append("\nCerrando");
+          src.close();
+        } else {
+        $('#bottles-output').append("\n" + e.data)
+       }
+    };
+  });
+  });
+
+%pre#bottles-output
+%input#bottles-button{:type=>"button", :value=>"Bottles!"}

@@ -5,7 +5,6 @@ describe 'Tags:' do
     RSpec.configure { |c| c.include RSpecMixin }
     configure_empty_sqlite
     SystematicReview.insert(:name=>'Test Review', :group_id=>1, :sr_administrator=>1)
-
     login_admin
 
   end
@@ -84,6 +83,29 @@ describe 'Tags:' do
     it "should not tag name appears on response" do expect(last_response.body).to_not include("tag5") end
 
     it "should TagInClass object not exist" do  expect(TagInClass[tc_id: t_class[:id], tag_id: tag[:id]]).to be_nil end
+
+  end
+
+  context "when delete a tag using /tag/delete_rs" do
+    before(:context) do
+      tag=Tag.get_tag('TAG1')
+      CanonicalDocument.insert(:id=>1, :year=>0, :title=>'CD1')
+      TagInCd.insert(systematic_review_id:1,tag_id:tag.id, user_id:1, canonical_document_id:1, decision:1  )
+      post '/tag/delete_rs', :rs_id=>1, :tag_id=>tag.id
+    end
+    it "should not have any tag with name TAG1" do
+      expect(Tag.where(:text=>'TAG1').count).to eq(0)
+    end
+    it "should not have any TagInCd with canonical document 1" do
+      expect(TagInCd.where(:canonical_document_id=>1).count).to eq(0)
+    end
+    after(:context) do
+      $db[:tag_in_cds].delete
+      $db[:tag_in_classes].delete
+
+      $db[:tags].delete
+
+    end
 
   end
 

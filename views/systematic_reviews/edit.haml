@@ -16,21 +16,21 @@
 
     $( "#form-date-creation" ).datepicker("setDate",new Date(#{@review[:date_creation].year},#{@review[:date_creation].month-1},#{@review[:date_creation].day},0,0,0,0));
 
-    $(".seleccion_grupo").change(function() {
+    $(".select_group").change(function() {
 
         var valor=$(this).val();
         var select_id="group_administrator_select";
         $.getJSON("/group/"+valor+"/datos.json",function(data) {
-         option_html="";
+         var option_html="";
          for(var i=0; i<data.users.length;i++) {
-         user_id       = data.users[i].id;
-         user_name     = data.users[i].name;
-         selected_attr = (user_id== data.group_administrator) ? "selected='selected'": "" ;
+         var user_id       = data.users[i].id;
+         var user_name     = data.users[i].name;
+         var selected_attr = (user_id== data.group_administrator) ? "selected='selected'": "" ;
            option_html=option_html+("<option "+selected_attr+" value='"+ user_id+"'>"+user_name+"</option>");
          }
           $("#"+select_id).html("<select class='form-control' name='sr_administrator' id='"+select_id+"'>"+option_html+"</select>");
         }).fail(function() {
-        alert("#{t(:Json_cant_obtain_information)}")
+          alert("#{t(:Json_cant_obtain_information)}")
         });
     });
   });
@@ -78,11 +78,11 @@
     %div{:class=>'tab-content'}
       %div{:role=>'tabpanel', :class=>'tab-pane active', :id=>'sr-taxonomy'}
         %table.reporte
-          - Sr_Taxonomy.each do |sr_taxonomy|
+          - SrTaxonomy.each do |sr_taxonomy|
             %tr
               %th=t("sr_taxonomy.#{sr_taxonomy[:name]}")
               %td
-                - Sr_Taxonomy_Category.where(:srt_id=>sr_taxonomy[:id]).each do |srtc|
+                - SrTaxonomyCategory.where(:srt_id=>sr_taxonomy[:id]).each do |srtc|
                   %p
                     %input{:class=>"form-check-input",:type=>"checkbox", :name=>"srtc[#{srtc[:id]}]", :value=>1, :checked=>@taxonomy_categories_id.include?(srtc[:id])}
                     =t("sr_taxonomy_category.#{srtc[:name]}")
@@ -94,10 +94,14 @@
             - 2.upto(20) do |i|
               %option{:value=>i, :selected=>i==@review.n_min_rr_rtr}=i
         .form-group
-          .checkbox
-            %label
-              %input{:type=>"checkbox", :name=>"active", :value=>1, :checked=>@review[:active] }
-              =t(:Active)
+          %label=t(:Systematic_review_active_inactive)
+          %label.radio-inline
+            %input{:type=>"radio", :name=>"active", :value=>1, :checked=>@review[:active] }
+            =t(:Active)
+          %label.radio-inline
+            %input{:type=>"radio", :name=>"active", :value=>0, :checked=>!@review[:active] }
+            =t(:Inactive)
+
         %div{:class=>"form-group"}
           %label{:for=>"stage"}=t(:Stage)
           -get_stages_names.each do |stage_id,stage_name|
@@ -106,7 +110,7 @@
         %div{:class=>"form-group"}
           %label{:for=>"group_id"}=t(:Group)
           =tooltip(t("systematic_review.group_tip"))
-          %select{:class=>'form-control seleccion_grupo', :name=>:group_id, :id=>:group_id_select}
+          %select{:class=>'form-control select_group', :name=>:group_id, :id=>:group_id_select}
             - Group.all.each do |g|
               %option{:value=>g.id, :selected=>g.id==@review[:group_id]}=g.name
         %div{:class=>"form-group"}

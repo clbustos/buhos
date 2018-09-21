@@ -14,6 +14,7 @@ require 'cgi'
 get '/reference/:id' do |id|
   halt_unless_auth('reference_view')
   @ref=Reference[id]
+  raise Buhos::NoReferenceIdError, id unless @ref
   @records=@ref.records
   haml :reference
 end
@@ -23,6 +24,8 @@ get '/reference/:id/search_similar' do |id|
   halt_unless_auth('reference_edit')
 
   @ref=Reference[id]
+  raise Buhos::NoReferenceIdError, id unless @ref
+
   @ajax=!params['ajax'].nil?
   @distancia=params['distancia'].to_i
   @distancia=30 if @distancia==0
@@ -106,6 +109,22 @@ get '/reference/:id/assign_doi/:doi' do |id,doi|
     redirect back
   end
 
+end
+
+post '/reference/assign_canonical_document' do
+  halt_unless_auth('reference_edit')
+  @canonical_document=CanonicalDocument[params['cd_id']]
+  @reference=Reference[params['ref_id']]
+
+  raise Buhos::NoReferenceIdError, params['ref_id'] if !@reference
+  raise Buhos::NoCdIdError, params['cd_id'] if !@canonical_document
+
+  $db.transaction do
+    @reference.update(:canonical_document_id=>@canonical_document.id)
+    add_message(t("canonical_document.assigned_to_reference", cd_title:@canonical_document.title, reference:@reference.text))
+  end
+
+  redirect back
 end
 
 # @!endgroup

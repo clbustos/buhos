@@ -6,4 +6,4 @@
   %pre.alert.alert-danger=@error.message
 - else
   %div.alert.alert-success=t("installer.successful_population")
-  %a.btn.btn-primary{:href=>"/installer/end_installation.rb"}=t("installer.end_installation")
+  %a.btn.btn-primary{:href=>"/installer/end_installation.rb",:id=>"end_installation"}=t("installer.end_installation")

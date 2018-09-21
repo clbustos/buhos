@@ -32,6 +32,7 @@
 class CrossrefDoi < Sequel::Model
   include DOIHelpers
   extend DOIHelpers
+  extend Buhos::Helpers
   # Given a DOI, query Crossref, store the result
   # and return a raw JSON
   # @param doi [String] a DOI
@@ -51,6 +52,15 @@ class CrossrefDoi < Sequel::Model
         #$log.info("Malformed URI: #{doi}")
         return false
       end
+
+      if ENV["CROSSREF_FILE"]
+        FileUtils.mkdir_p "#{dir_base}/usr/crossref"
+        File.open("#{dir_base}/usr/crossref/#{doi_without_http(doi).gsub('/','___')}.json","w") do |fp|
+          fp.write(resultado.to_json)
+        end
+      end
+
+
       if co
         co.update(:json=>resultado.to_json)
       else
@@ -87,6 +97,7 @@ end
 # and stores the result
 
 class CrossrefQuery < Sequel::Model
+  extend Buhos::Helpers
   # Takes a text and returns a processed JSON
   # @param t [String] a text that represents a document
   # @return a processed json
@@ -102,9 +113,18 @@ class CrossrefQuery < Sequel::Model
       res = Net::HTTP.get_response(uri)
       #$log.info(res)
       if res.code!="200"
-        raise BadCrossrefResponseError, "El text #{t} no entrego una respuesta adecuada. Fue #{res.code}, #{res.body}"
+        raise BadCrossrefResponseError, I18n::t("error.bad_crossref_response", text:t, code:res.code, body:res.body)
       end
       json_raw = res.body
+
+      if ENV["CROSSREF_FILE"]
+        FileUtils.mkdir_p "#{dir_base}/usr/crossref"
+        File.open("#{dir_base}/usr/crossref/#{digest}.json","w") do |fp|
+          fp.write(json_raw.force_encoding(Encoding::UTF_8))
+        end
+      end
+
+
       CrossrefQuery.insert(:id=>digest.force_encoding(Encoding::UTF_8),:query=>t.force_encoding(Encoding::UTF_8),:json=>json_raw.force_encoding(Encoding::UTF_8))
     else
       json_raw=cq[:json]

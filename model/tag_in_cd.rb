@@ -28,7 +28,8 @@
 
 
 class TagInCd < Sequel::Model
-
+  DECISION_YES="yes"
+  DECISION_NO="no"
   # Retrievs the CD which uses a specific tag on a specific systematic review
   # @param systematic_review [SystematicReview]
   # @param tag [Tag]
@@ -53,23 +54,45 @@ class TagInCd < Sequel::Model
   def self.tags_rs(systematic_review)
     Tag.inner_join(:tag_in_cds, :tag_id=>:id).where(:systematic_review_id=>systematic_review.id)
   end
-  def self.approve_tag(cd,rs,tag,user_id)
-    raise("Objetos erróneos") if cd.nil? or rs.nil? or tag.nil?
-    tec_previo=TagInCd.where(:tag_id=>tag.id, :canonical_document_id=>cd.id, :systematic_review_id=>rs.id, :user_id=>user_id)
-    if tec_previo.empty?
-      TagInCd.insert(:tag_id=>tag.id, :canonical_document_id=>cd.id, :systematic_review_id=>rs.id, :user_id=>user_id,:decision=>"yes")
-    else
-      tec_previo.update(:decision=>"yes")
+  def self.approve_tag_batch(cd_a,rs,tag,user_id)
+    result=Result.new
+    $db.transaction do
+      cd_a.each do |cd|
+        TagInCd.approve_tag(cd,rs,tag,user_id)
+      end
+      result.success(I18n::t(:Tag_assigned_to_canonical_documents, tag_text:tag.text, cd_ids:cd_a.map(&:id)))
+    end
+    result
+  end
 
+
+  def self.reject_tag_batch(cd_a,rs,tag,user_id)
+    result=Result.new
+    $db.transaction do
+      cd_a.each do |cd|
+        TagInCd.reject_tag(cd,rs,tag,user_id)
+      end
+      result.success(I18n::t(:Tag_removed_to_canonical_documents, tag_text:tag.text, cd_ids:cd_a.map(&:id)))
+    end
+    result
+  end
+
+  def self.approve_tag(cd,rs,tag,user_id)
+    raise(I18n::t(:Object_error)) if cd.nil? or rs.nil? or tag.nil?
+    tag_in_cd_previous=TagInCd.where(:tag_id=>tag.id, :canonical_document_id=>cd.id, :systematic_review_id=>rs.id, :user_id=>user_id)
+    if tag_in_cd_previous.empty?
+      TagInCd.insert(:tag_id=>tag.id, :canonical_document_id=>cd.id, :systematic_review_id=>rs.id, :user_id=>user_id,:decision=>DECISION_YES)
+    else
+      tag_in_cd_previous.update(:decision=>DECISION_YES)
     end
   end
   def self.reject_tag(cd,rs,tag,user_id)
-    raise(I18n::t(:Strange_objects)) if cd.nil? or rs.nil? or tag.nil?
+    raise(I18n::t(:Object_error)) if cd.nil? or rs.nil? or tag.nil?
     tec_previo=TagInCd.where(:tag_id=>tag.id, :canonical_document_id=>cd.id, :systematic_review_id=>rs.id, :user_id=>user_id)
     if tec_previo.empty?
-      TagInCd.insert(:tag_id=>tag.id, :canonical_document_id=>cd.id, :systematic_review_id=>rs.id, :user_id=>user_id,:decision=>"no")
+      TagInCd.insert(:tag_id=>tag.id, :canonical_document_id=>cd.id, :systematic_review_id=>rs.id, :user_id=>user_id,:decision=>DECISION_NO)
     else
-      tec_previo.update(:decision=>"no")
+      tec_previo.update(:decision=>DECISION_NO)
     end
 
   end

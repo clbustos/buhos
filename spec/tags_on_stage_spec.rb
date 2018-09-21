@@ -142,4 +142,44 @@ describe 'Tags on stage forms' do
     it{expect('/tags/systematic_review/1/ref/query_json/new_relat').to be_available}
   end
 
+  context "when analyzing tags from specific systematic review and user" do
+    before(:context) do
+      login_admin
+      get '/review/1/tags/user/1'
+    end
+    it "should response be ok" do
+      expect(last_response).to be_ok
+    end
+  end
+
+
+  context "when renaming tag from specific systematic review and user" do
+    before(:context) do
+      login_admin
+      old_tag=Tag.get_tag("Flying birds")
+      TagInCd.insert(tag_id:old_tag[:id], user_id:1, systematic_review_id:1, decision:'yes', canonical_document_id:40)
+      put '/tag/rename/review/1/user/1', pk:old_tag.id, value: "Excellents birds"
+    end
+
+    it "should create a link between new tag and document" do
+      new_tag=Tag.get_tag("Excellents birds")
+      expect(TagInCd.where(user_id:1, systematic_review_id:1, decision:'yes', canonical_document_id:40, tag_id:new_tag[:id]).count).to eq(1)
+    end
+    it "should delete reference for old tag" do
+      expect(Tag.where(text:'Flying birds').count).to eq(0)
+    end
+
+    it "should delete the link between old tag and document" do
+      old_tag=Tag.where(text:"Flying birds")
+      expect(TagInCd.where(user_id:1, systematic_review_id:1, decision:'yes', canonical_document_id:40, tag_id:old_tag[:id]).count).to eq(0)
+    end
+
+    after(:context) do
+      tags=Tag.where(text:['Flying birds', 'Excellents birds'])
+      TagInCd.where(tag_id:tags.map(&:id)).delete
+      tags.delete
+
+    end
+  end
+
 end

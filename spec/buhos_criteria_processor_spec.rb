@@ -14,7 +14,7 @@ describe 'Buhos::CriteriaProcessor' do
   end
   let(:cp) {Buhos::CriteriaProcessor.new(@sr)}
   it "should do nothing if empty" do
-    cp.update_criteria({"new"=>""}   , {"new"=>""})
+    cp.update_criteria([]   , [])
     expect(SrCriterion.where(systematic_review_id:1).empty?).to be_truthy
   end
   context "with some predefined criteria" do
@@ -25,37 +25,20 @@ describe 'Buhos::CriteriaProcessor' do
     end
 
     it "should add a criterion" do
-      cp.update_criteria({crit(1)[:id]=>"criterion_1",  'new'=>"criterion_3"}   , {crit(2)[:id]=>"criterion_2"})
+      cp.update_criteria(["criterion_1", "criterion_3"]   , ["criterion_2"])
       expect(SrCriterion.where(systematic_review_id:1, criteria_type:'inclusion').map(:criterion_id).sort).to eq([crit(1)[:id],crit(3)[:id]])
       expect(SrCriterion.where(systematic_review_id:1, criteria_type:'exclusion').map(:criterion_id).sort).to eq([crit(2)[:id]])
     end
     it "should not add a criterion if text is empty" do
-      cp.update_criteria({crit(1)[:id]=>"criterion_1",  'new'=>""}   , {crit(2)[:id]=>"criterion_2"})
+      cp.update_criteria(["criterion_1",  ""]   , ["criterion_2"])
       expect(SrCriterion.where(systematic_review_id:1, criteria_type:'inclusion').map(:criterion_id).sort).to eq([crit(1)[:id]])
       expect(SrCriterion.where(systematic_review_id:1, criteria_type:'exclusion').map(:criterion_id).sort).to eq([crit(2)[:id]])
     end
 
     it "should remove a criterion" do
-      cp.update_criteria({crit(1)[:id]=>"criterion_1"}, {})
+      cp.update_criteria(["criterion_1"], [])
       expect(SrCriterion.where(systematic_review_id:1, criteria_type:'inclusion').map(:criterion_id).sort).to eq([crit(1)[:id]])
       expect(SrCriterion.where(systematic_review_id:1, criteria_type:'exclusion').map(:criterion_id).sort).to eq([])
-    end
-    it "should change criterion name, if unused" do
-      id_crit_2=crit(2)[:id]
-      expect(Criterion.count).to eq(2)
-      cp.update_criteria({crit(1)[:id]=>"criterion_1"}, {id_crit_2=>"criterion_2_new"})
-      expect(Criterion.count).to eq(2)
-      expect(SrCriterion.where(systematic_review_id:1, criteria_type:'inclusion').map(:criterion_id).sort).to eq([crit(1)[:id]])
-      expect(SrCriterion.where(systematic_review_id:1, criteria_type:'exclusion').map(:criterion_id).sort).to eq([id_crit_2])
-      expect(Criterion[id_crit_2][:text]).to eq("criterion_2_new")
-    end
-    it "should not change criterion name, if used" do
-      id_crit_1=crit(1)[:id]
-      cp.update_criteria({id_crit_1=>"criterion_1_new"}, {crit(2)[:id]=>"criterion_2"})
-      expect(SrCriterion.where(systematic_review_id:1, criteria_type:'inclusion').map(:criterion_id).sort).to eq([crit(1)[:id]])
-      expect(SrCriterion.where(systematic_review_id:1, criteria_type:'exclusion').map(:criterion_id).sort).to eq([crit(2)[:id]])
-      expect(Criterion[id_crit_1][:text]).to eq("criterion_1")
-      expect(cp.error).to be_truthy
     end
 
     after do

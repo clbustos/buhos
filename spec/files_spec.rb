@@ -80,6 +80,26 @@ describe 'Files:' do
   end
 
 
+
+  context '/files/rs/:systematic_review_id/assign_to_canonical_documents is called' do
+    let(:file) {IFile[1]}
+    let(:app_helpers) {Class.new {extend Buhos::Helpers}}
+
+    before(:context) do
+      delete_files
+      uploaded_file=Rack::Test::UploadedFile.new(filepath, "application/pdf", true)
+      post '/review/files/add', systematic_review_id:sr_by_name_id('Test Review'), files:[uploaded_file]
+      $db[:file_cds].delete
+      get "/files/rs/#{sr_by_name_id('Test Review')}/assign_to_canonical_documents"
+    end
+    it "should return a redirect" do
+
+      expect(last_response).to be_redirect
+    end
+
+  end
+
+
   context "when access ViewerJs" do
     it "should return correct html" do
       get '/ViewerJS/index.html'
@@ -149,10 +169,8 @@ describe 'Files:' do
     it "response should be ok " do expect(last_response).to be_ok end
     it "response should include a link to document" do expect(last_response.body).to include("/canonical_document/1") end
     it "relation should be included on database" do expect(FileCd[:file_id=>1, :canonical_document_id=>1]).to be_truthy end
-
-
-
   end
+
 
 
   context "when unassign a file to a canonical document" do

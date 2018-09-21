@@ -30,6 +30,11 @@ require_relative 'doi_helpers'
 module ReferenceMethods
   include DOIHelpers
 
+  def raw_key_value
+    [:uid, :authors_apa_6, :year, :title, :journal, :volume, :pages, :doi].map {|k|
+      v=self.send(k)
+      "<strong>#{k}:</strong>#{v.nil? ? I18n::t(:no_value) : v}"}.join("; ")
+  end
   def cite_apa_6
     "(#{authors_apa_6}, #{year})"
   end

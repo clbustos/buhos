@@ -52,8 +52,8 @@ put '/user/edit/:field' do |field|
     user=User[id]
     raise Buhos::NoUserIdError, id if !user
     if field=='login'
-      return 405 if User.where(:login=>value).exclude(:id=>id).count>0
-      return 405 if value.chomp==""
+      halt 405, t(:Login_already_used) if User.where(:login=>value).exclude(:id=>id).count>0
+      halt 405, t(:Login_cant_be_nil) if value.chomp==""
     end
     user.update(field.to_sym=>value)
   }

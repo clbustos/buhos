@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Canonical Record' do
+describe 'Canonical Document' do
   before(:all) do
     RSpec.configure { |c| c.include RSpecMixin }
     @temp=configure_complete_sqlite

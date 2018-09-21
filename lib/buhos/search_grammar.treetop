@@ -1,0 +1,54 @@
+grammar SearchGrammar
+
+  rule filtergroup
+    filter+ <FilterGroup>
+  end
+
+  rule filter
+    space? required  expression <Filter>
+  end
+
+  rule required
+     ('author' / 'year' / 'title' / 'keywords' / 'journal' / 'abstract') <Required>
+  end
+
+  rule expression
+    space? '(' body ')' space? <Expression>
+  end
+
+  rule body
+    (expression  / boolean / string / identifier / space)* <Body>
+  end
+
+  rule boolean
+    (identifier / expression) space ('AND' / 'OR') space (identifier / expression) <Boolean>
+  end
+
+  rule string
+    '"' ([^"\\] / "\\" . )* '"' <String>
+  end
+
+  rule identifier
+     [a-zA-Z0-9]+ <Identifier>
+  end
+
+  rule space
+    [\s\n\t\r]+ <Space>
+  end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+end

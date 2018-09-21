@@ -23,6 +23,7 @@
               %span{:class=>"glyphicon glyphicon-pencil"}
               =t(:Role_edit)
           - if role.users_dataset.empty? and auth_to('role_admin')
-            %a.btn.btn-default.btn-sm{:href=>url("/role/#{role[:id]}/delete")}
-              %span{:class=>"glyphicon glyphicon-remove"}
-              =t(:Role_delete)
+            %form{:method=>:post, :action=>url("/role/#{role[:id]}/delete")}
+              %button.btn.btn-danger.btn-sm
+                %span{:class=>"glyphicon glyphicon-remove"}
+                =t(:Role_delete)

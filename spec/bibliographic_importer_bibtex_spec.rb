@@ -2,9 +2,12 @@ require 'spec_helper'
 require 'ostruct'
 require_relative "../lib/bibliographical_importer/bibtex"
 describe 'BibliographicalImporter::BibTeX' do
+  before(:all) do
+    RSpec.configure { |c| c.include RSpecMixin }
+  end
   context "using WoS BibTeX" do
     before(:context) do
-      @bib=BibliographicalImporter::BibTex::Reader.parse(File.read("#{$base}/spec/fixtures/wos.bib"))
+      @bib=BibliographicalImporter::BibTex::Reader.parse( read_fixture("wos.bib") )
     end
     it "should retrieve 1 articles" do
       expect(@bib.records.length).to eq(1)

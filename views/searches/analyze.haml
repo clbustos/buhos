@@ -1,0 +1,46 @@
+- if @review
+  .header=t_systematic_review_title(@review.name, t(:Searches_analysis, searches_id:@searches_id), false)
+
+%ul.breadcrumb
+  %li
+    %a{:href=>url("/review/#{@review.id}")}=truncate(@review.name)
+  %li
+    %a{:href=>url("/review/#{@review.id}/searches")}=t(:searches)
+  %li.active
+    =t(:Searches_analysis, searches_id:@searches_id)
+
+=partial("searches/summary_sources_databases".to_sym, locals:{summary_sources_databases:@an_searches.summary_sources_databases})
+
+%h3=t(:Records_by_canonical_document_summary)
+
+-rbcs=@an_searches.records_by_cd_summary.to_a.sort_by {|v| -v[0]}
+
+%table.table.table-condensed
+  %th
+    %tr
+      %th=t(:Records_by_canonical_document)
+      %th=t(:n)
+  %tbody
+    -rbcs.each do |row|
+      %tr
+        %td
+          = row[0] > 1 ? t(:Duplicated_on_records, n:row[0]) : t(:Unique)
+        %td=row[1]
+    %tr
+      %td=t(:Total_different_documents)
+      %td=rbcs.reduce(0) {|sum,v| sum+v[1]}
+
+%h3=t(:Resolutions_by_stage)
+- res_types=["yes","no", Resolution::PREVIOUS_REJECT, Resolution::NO_RESOLUTION]
+%table.table.table-condensed
+  %thead
+    %th=t(:Stage)
+    - res_types.each do |rt|
+      %th=t("resolution.#{rt}")
+  %tbody
+    - [:screening_title_abstract, :review_full_text, :report].each do |stage|
+      -stat=@an_searches.resolutions_by_cd_summary(@review, stage)
+      %tr
+        %td=t(Buhos::Stages.get_stage_name(stage))
+        - res_types.each do |rt|
+          %td=stat[rt]

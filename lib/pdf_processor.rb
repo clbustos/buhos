@@ -33,6 +33,55 @@ require_relative "doi_helpers"
 # Processing to add PDF to a systematic review is performed by PdfFileProcessor
 
 class PdfProcessor
+
+  class Abstract
+    #attr_accessor :reader
+
+    def initialize(pdf_processor)
+      @pdf_processor=pdf_processor
+      @reader=pdf_processor.reader
+      @mode=:pre
+      @abstract_lines=[]
+      @empty_lines=0
+    end
+    # parse every line of the abstract
+    # @return Boolean true if another line is needed. false if need to break the loop
+    def parse_line_abstract(line)
+      if line=="" or line=~/Keywords/
+        @empty_lines+=1
+        return false if @empty_lines>2
+      else
+        @empty_lines=0
+        @abstract_lines.push(line)
+        @abstract_lines.push("\n") if line[-1]=="."
+      end
+      true
+    end
+    private :parse_line_abstract
+    def parse
+      # First, we locate the page on which is located the abstract
+      page_for_abstract=@reader.pages[0..1].index {|page_n| page_n.text=~/Abstract/}
+      return nil if page_for_abstract.nil?
+
+      @pdf_processor.page(page_for_abstract).text.each_line do |r|
+        line=r.chomp.lstrip
+        if @mode==:pre and line=~/Abstract/ # We must include other languages
+          @mode=:abstract
+          # There is more information on this line?
+          if (line_wo_abstract=(line.gsub(/(?:Abstract):?/,"")).lstrip)!=""
+            @abstract_lines.push(line_wo_abstract)
+          end
+
+        elsif @mode==:abstract
+          break if !parse_line_abstract(line)
+        end
+
+      end
+      @abstract_lines.join("")
+    end
+
+  end
+
   include DOIHelpers
   include Buhos::Helpers
   attr_reader :reader
@@ -59,43 +108,11 @@ class PdfProcessor
 
   end
 
+
+
   def abstract
-
-    # First, we locate the page on which is located the abstract
-    page_for_abstract=reader.pages[0..1].index {|page| page.text=~/Abstract/}
-
-    return nil if page_for_abstract.nil?
-
-    mode=:pre
-    abstract_lines=[]
-    empty_lines=0
-
-    page(page_for_abstract).text.each_line do |r|
-      line=r.chomp.lstrip
-      if mode==:pre and line=~/Abstract/ # We must include other languages
-        mode=:abstract
-        # There is more information on this line?
-
-        if (line_wo_abstract=(line.gsub(/(?:Abstract):?/,"")).lstrip)!=""
-          abstract_lines.push(line_wo_abstract)
-        end
-
-      elsif mode==:abstract
-        if line=="" or line=~/Keywords/
-          empty_lines+=1
-          break if empty_lines>2
-        else
-          empty_lines=0
-          abstract_lines.push(line)
-          abstract_lines.push("\n") if line[-1]=="."
-        end
-      end
-
-    end
-    abstract_lines.join("")
+    Abstract.new(self).parse
   end
-
-
 
   def title
     reader.info[:Title]
@@ -106,7 +123,6 @@ class PdfProcessor
   end
 
   def get_doi
-
     doi = nil
     info = reader.info
     #$log.info(info)

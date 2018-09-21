@@ -12,7 +12,6 @@
 - decision = decision_o ? decision_o[:decision] : nil
 - clase_panel=decision_class_bootstrap(decision,"panel")
 - abs_pres=AbstractPresentation.new
-- #@nbayes_rs||=NBayes_RS.new(revision)
 - ajax||=false
 - abs_pres.keywords =review.keywords_as_array
 - url_base="/review/#{review[:id]}/canonical_document/#{cd[:id]}"
@@ -41,10 +40,7 @@
           -#$log.info(abs_pres)
           =abs_pres.html_with_keywords
       -if auth_to("review_admin")
-        =partial(:canonical_document_button, :locals=>{id: cd[:id]})
-      -if false and @nbayes_rs.cd_resultado(cd[:id])["no"]>0.5
-        %div{:class=>"alert alert-warning"} Según el clasificar bayes, este text no se asemeja mucho a los seleccionados previamente
-
+        =partial(:canonical_document_button, :locals=>{id: cd[:id], review:review})
 
   %div{:class=>class_buttons}
     =partial(:decision_buttons, :locals=>{decisions:decisions, cd:cd, user_id:user_id, stage:stage, review:review, ajax:ajax, only_buttons:only_buttons})

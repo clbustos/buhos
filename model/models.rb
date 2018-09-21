@@ -50,11 +50,11 @@ end
 
 
 
-class Sr_Taxonomy < Sequel::Model
+class SrTaxonomy < Sequel::Model
 
 end
 
-class Sr_Taxonomy_Category < Sequel::Model
+class SrTaxonomyCategory < Sequel::Model
 
 end
 

@@ -1,0 +1,14 @@
+- #params : user_id, review, cd, tags_a
+- tags_a||=nil
+- if tags_a.nil?
+  - tags_a=Buhos::AnalysisTags.new
+  - tags_a.systematic_review_id(@review.id)
+  - tags_a.user_id(@user.id)
+
+- tbcd=tags_a.tags_by_canonical_document[cd.id]
+
+- if tbcd
+  - tbcd.each do |tag|
+    .tag-small
+      %span.glyphicon.glyphicon-tag
+      =tag[:text]

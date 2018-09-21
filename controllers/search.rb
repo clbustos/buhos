@@ -58,6 +58,19 @@ get '/search/:id/records' do |id|
 end
 
 
+# Retrieve a single record from a search
+get '/search/:s_id/record/:r_id' do |s_id, r_id|
+  halt_unless_auth('search_view')
+  @search=Search[s_id]
+  raise Buhos::NoSearchIdError, s_id if @search.nil?
+  @reg=Record[r_id]
+  raise Buhos::NoRecordIdError, r_id if @reg.nil?
+  @review=@search.systematic_review
+  @references=@reg.references
+  haml "record".to_sym
+
+end
+
 # List of references for a search
 get '/search/:id/references' do |id|
   halt_unless_auth('search_view')
@@ -121,10 +134,10 @@ end
 # Join canonicals to references
 get '/search/:id/references/generate_canonical_doi/:n' do |id, n|
   halt_unless_auth('search_edit')
-  search=Search[id]
+  @search=Search[id]
   raise Buhos::NoSearchIdError, id if @search.nil?
 
-  col_dois=search.references_wo_canonical_w_doi_n(n)
+  col_dois=@search.references_wo_canonical_w_doi_n(n)
   result=Result.new
   col_dois.each do |col_doi|
     Reference.where(:doi => col_doi[:doi]).each do |ref|
@@ -180,11 +193,12 @@ post '/search/update' do
       if search.is_type?(:bibliographic_file)
         sp=BibliographicFileProcessor.new(search)
         add_result(sp.result)
+        unless sp.error.nil?
+          add_message(sp.error, :error)
+          search.delete
+        end
       end
-      unless sp.error.nil?
-        add_message(sp.error, :error)
-        search.delete
-      end
+
     end
   redirect "/review/#{otros_params[:systematic_review_id]}/dashboard"
 end
@@ -193,6 +207,8 @@ end
 # Update actions for searchs: valid, invalid, delete
 post '/searches/update_batch' do
   halt_unless_auth('search_edit')
+  @sr=SystematicReview[params['sr_id']]
+  raise Buhos::NoReviewIdError, params['sr_id'] if @sr.nil?
   #$log.info(params)
   if params["action"].nil?
     add_message(I18n::t(:No_valid_action), :error)
@@ -200,7 +216,9 @@ post '/searches/update_batch' do
     add_message(I18n::t(:No_search_selected), :error)
   else
     searches=Search.where(:id=>params['search'])
-    if params['action']=='valid'
+    if params['action']=='analyze'
+      redirect url("/review/#{@sr.id}/searches/analyze/#{searches.map {|v|v[:id]}.join(',')}")
+    elsif params['action']=='valid'
       searches.update(:valid=>true)
     elsif params['action']=='invalid'
       searches.update(:valid=>false)
