@@ -40,7 +40,7 @@
           -#$log.info(abs_pres)
           =abs_pres.html_with_keywords
       -if auth_to("review_admin")
-        =partial(:canonical_document_button, :locals=>{id: cd[:id]})
+        =partial(:canonical_document_button, :locals=>{id: cd[:id], review:review})
 
   %div{:class=>class_buttons}
     =partial(:decision_buttons, :locals=>{decisions:decisions, cd:cd, user_id:user_id, stage:stage, review:review, ajax:ajax, only_buttons:only_buttons})

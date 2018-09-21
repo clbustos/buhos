@@ -50,6 +50,12 @@
         %td=t_yes_no_nil(status[:included])
         %td=t(Resolution.get_name_resolution(status[:resolution]))
 
+- unless @cd.systematic_review_included.empty?
+  %h3=t(:Included_in_the_following_reviews)
+  %ul
+    - @cd.systematic_review_included.each do |sr|
+      %li
+        %a{:href=>url("/review/#{sr.id}/canonical_document/#{@cd.id}")}=sr.name
 
 %h3 Crossref
 

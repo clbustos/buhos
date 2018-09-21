@@ -32,6 +32,12 @@ class CanonicalDocument < Sequel::Model
   one_to_many :records
 
   include ReferenceMethods
+  # Systematic reviews where at least one positive resolution is made
+  def systematic_review_included
+    SystematicReview.join(:resolutions, systematic_review_id: :id ).where(canonical_document_id:self[:id], :resolution=>Resolution::RESOLUTION_ACCEPT.to_s).distinct.select_all(:systematic_reviews)
+  end
+
+
   # Cada documento genérico realiza references. ¿A quién las hace?
 
   def references_performed

@@ -21,6 +21,5 @@ Sequel.migration do
       Bool :selected
       primary_key [:criterion_id, :canonical_document_id, :user_id, :systematic_review_id]
     end
-
   end
 end
