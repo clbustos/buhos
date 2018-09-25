@@ -111,6 +111,7 @@ en:
   Complete_abstract_manually: "Complete abstract manually"
   Complete_abstract_using_Scopus: "Complete abstract using Scopus"
   Complete_abstract_using_Pubmed: "Complete abstract using Pubmed"
+  Conflict_of_interest: "Conflict of interes"
   Count_canonical_documents: "Number of canonical documents"
   count_canonical_documents: "Number of canonical documents"
   Count_canonical_documents_assigned: "Number of allocated documents"
@@ -474,6 +475,8 @@ en:
   pubmedremote:
     retrieve_pmid_result: "Retrieval PMID from PubMed results: %{dois_pmid} with PMID and %{nil_dois} without PMID"
     retrieve_pmid_result_bad_dois: "This DOIs are malformed: %{bad_dois}"
+  Quality_assesment: "Quality assesment"
+  Quality_assesment_criteria: "Quality assesment criteria"
   record:
     raw: "Record raw"
     doi_already_added_to: "DOI already added to %{record_title}"
@@ -512,6 +515,7 @@ en:
   Remove_for_all: "Remove for all"
   Report_final: "Final Report"
   Report_partial: "Partial Report"
+  Research_questions: "Research Questions"
   Resolution: "Resolution"
   Resolutions: "Resolutions"
   Resolutions_by_stage: "Resolutions by stage"

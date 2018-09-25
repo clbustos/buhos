@@ -109,6 +109,7 @@ es:
   Complete_abstract_manually: "Completar resúmenes manualmente"
   Complete_abstract_using_Scopus: "Completar resúmenes usando Scopus"
   Complete_abstract_using_Pubmed: "Completar resúmenes usando Pubmed"
+  Conflict_of_interest: "Conflicto de interes"
   Count_canonical_documents: "Número de documentos canónicos"
   count_canonical_documents: "Nº de documentos canónicos"
   Count_canonical_documents_assigned: "Nº documentos asignados"
@@ -478,6 +479,8 @@ es:
   pubmedremote:
     retrieve_pmid_result: "Resultado de obtención de PMID: %{dois_pmid} con PMID y %{nil_dois} sin PMID"
     retrieve_pmid_result_bad_dois: "Los siguientes DOIS son erróneos: %{bad_dois}"
+  Quality_assesment: "Evaluación de calidad"
+  Quality_assesment_criteria: "Criterios de evaluación de calidad"
   record:
     raw: "Registro en bruto"
     doi_already_added_to: "DOI ya agregado a registro %{record_title}"
@@ -516,6 +519,7 @@ es:
   Remove_for_all: "Remover de todos"
   Report_final: "Reporte Final"
   Report_partial: "Reporte Parcial"
+  Research_questions: "Preguntas de investigación"
   Resolution: "Resolución"
   Resolutions: "Resoluciones"
   Resolutions_by_stage: "Resoluciones por etapa"
