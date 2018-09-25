@@ -1,7 +1,8 @@
 Sequel.migration do
-  change do
 
-    alter_table(:searches) do
+  up do
+
+    alter_table(:systematic_reviews) do
       add_column :research_questions, String, :text=>true
       add_column :conflict_of_interest, String, :text=>true
     end
@@ -48,7 +49,15 @@ Sequel.migration do
       String      :commentary,              :text=>true
       primary_key [:quality_criterion_id, :canonical_document_id, :user_id, :systematic_review_id, :scale_id]
     end
+  end
 
-
+  down do
+    from(:scales_items).delete
+    from(:scales).delete
+    drop_table(:cd_quality_criteria)
+    drop_table(:sr_quality_criteria)
+    drop_table(:quality_criteria)
+    drop_table(:scales_items)
+    drop_table(:scales)
   end
 end

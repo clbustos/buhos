@@ -20,6 +20,11 @@ ENV['RACK_ENV'] = 'test'
 ENV['DATABASE_URL']='sqlite::memory:'
 
 
+locales_root=File.join(File.dirname(__FILE__),'..', 'config','locales', '*.yml')
+
+::I18n.load_path+=Dir[locales_root]
+::I18n.locale=:en
+
 $base=File.expand_path("..",File.dirname(__FILE__))
 
 

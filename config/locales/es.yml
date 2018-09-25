@@ -360,6 +360,7 @@ es:
   "No": "No"
   "no": "no"
   New_tag: "Nueva etiqueta"
+  New_scale: "Nueva escala"
   Next: "Siguiente"
   No_abstract: "Sin abstract"
   no_action_specified: "No se especificó ninguna acción"
@@ -556,6 +557,20 @@ es:
   Roles: "Roles"
   RTA_references: "Referencias TTR"
   Save: "Guardar"
+  scales:
+    not_applicable: "No aplica"
+    cant_say: "No se puede evaluar"
+    "No": "No"
+    "Yes": "Sí"
+    Partial: "Parcial"
+    Complete: "Completo"
+    dichomotic: "Dicotómica"
+    dichotomic_description: "Escala dicotomica"
+    three_values: "Tres valores"
+    three_values_description: "Escala de tres valores: No, parcial, completo cumplimiento"
+
+  Scales: "Escalas"
+  Scale_items: "Ítems de escala"
   scopus_abstract:
     cant_obtain_identificator_suitable_for_scopus: "No se pudo encontrar identificador válido para usar Scopus, documento %{cd_title}"
     cant_obtain_scopus_error: "No se pudo utilizar documento Scopus, documento %{cd_title}, error: %{sr_error}"

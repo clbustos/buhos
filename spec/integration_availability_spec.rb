@@ -18,6 +18,7 @@ describe 'Resources availability:' do
     it { expect("/admin/users").to be_available_for_admin}
     it { expect("/admin/groups").to be_available_for_admin}
     it { expect("/admin/roles").to be_available_for_admin}
+    it { expect("/admin/scales").to be_available_for_admin}
 
     # Private methods
 
