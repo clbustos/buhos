@@ -92,12 +92,19 @@ puts `whoami`
   browser.link(:text =>"My dashboard").click
   browser.link(:id =>"dashboard-1-administrator-search").click
   browser.link(:text =>"Advance to next stage").click
-  browser.link(:text =>"Exclude Document").click
-  
-  sel=[1,5,20,21]
+  browser.link(:text =>"Include Document").click
+
+
+  # Inclusion only
+  #  sel=[1,5,20,21]
+
+# Exclusion only
+
+sel=[5,19, 24]
+
   
   sel.each do |cd_id|
-    browser.button(:id=>"resolution-#{cd_id}-yes").click
+    browser.button(:id=>"resolution-#{cd_id}-no").click
   end
   
 
