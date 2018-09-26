@@ -1,0 +1,21 @@
+-#param: summary_sources_databases
+- bib_hash=BibliographicDatabase.as_hash
+- total=0
+%table.table.table-ordered
+  %thead
+    %th=t("search.Source")
+    %th=t(:Bibliographic_database)
+    %th=t(:n)
+  %tbody
+    -summary_sources_databases.each do |row|
+      -total+=row[:n].to_i
+      %tr
+        %td=t(Search.get_source_name(row[:source]))
+        %td
+          - if row[:source]=="database_search"
+            =bib_hash[row[:bibliographic_database_id]][:name]
+        %td=row[:n]
+    %tr
+      %td=t(:Total)
+      %td
+      %td=total

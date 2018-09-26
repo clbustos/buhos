@@ -14,6 +14,7 @@ require 'cgi'
 get '/reference/:id' do |id|
   halt_unless_auth('reference_view')
   @ref=Reference[id]
+  raise Buhos::NoReferenceIdError, id unless @ref
   @records=@ref.records
   haml :reference
 end
@@ -23,6 +24,8 @@ get '/reference/:id/search_similar' do |id|
   halt_unless_auth('reference_edit')
 
   @ref=Reference[id]
+  raise Buhos::NoReferenceIdError, id unless @ref
+
   @ajax=!params['ajax'].nil?
   @distancia=params['distancia'].to_i
   @distancia=30 if @distancia==0

@@ -35,7 +35,7 @@
     - @ars.user_decisions(@stage).each do |user_id, edu|
       %tr
         %th=edu[:usuario].name
-        %td=edu[:adu].asignaciones.count
+        %td=edu[:adu].assignations.count
         - Decision::N_EST.each do |dec,name|
           %td=edu[:adu].total_decisions[dec].to_i
 

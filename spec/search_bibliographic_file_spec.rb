@@ -1,5 +1,5 @@
 require_relative 'spec_helper'
-describe 'Search with bibliographic file:' do
+describe 'Search importing bibliographic file:' do
   before(:all) do
     RSpec.configure { |c| c.include RSpecMixin }
     configure_empty_sqlite
@@ -106,7 +106,7 @@ describe 'Search with bibliographic file:' do
   context 'when process the search using batch form' do
     before(:context) do
       searches_id=[1]
-      post '/searches/update_batch', {search:1,searches:searches_id, action:'process', url_back:'URL_BACK'}
+      post '/searches/update_batch', {sr_id:1, search:1, searches:searches_id, action:'process', url_back:'URL_BACK'}
     end
     it "response should be redirect" do
       #$log.info(last_response)
@@ -116,6 +116,7 @@ describe 'Search with bibliographic file:' do
       expect(last_response.header['Location']).to eq("http://example.org/URL_BACK")
     end
   end
+
   context "records when search is already processed" do
 
     let(:expected_titles) do
@@ -163,7 +164,7 @@ describe 'Search with bibliographic file:' do
     it "response should be redirect" do
       expect(last_response).to be_redirect
     end
-    it "search should be validadet" do
+    it "search should be validated" do
       expect(search[:valid]).to be true
     end
   end

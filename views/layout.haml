@@ -71,7 +71,7 @@
                       %li<
                         %a{:class=>'dropdown-item', :href=>url('/admin/roles')}=t(:Roles)
               %div{:class=>'nav navbar-nav navbar-right user-buttons'}
-                =presentar_usuario
+                =show_user
       %div{:style=>"clear:both"}
       -mensajes=print_messages
       - if mensajes!=""

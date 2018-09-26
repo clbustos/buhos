@@ -59,9 +59,8 @@ get '/role/:role_id/edit' do |role_id|
 end
 
 # Deletes a role
-# @todo modify to use POST or DELETE method
 
-get '/role/:role_id/delete' do |role_id|
+post '/role/:role_id/delete' do |role_id|
   halt_unless_auth('role_admin')
 
   error(403) if role_id=="administrator" or role_id=="analyst"
@@ -81,12 +80,16 @@ post '/role/update' do
     redirect back
   end
 
+  if params['authorizations'].nil?
+    add_message(t(:role_without_authorizations), :error)
+    redirect back
+  end
   @role=Role[old_id]
   return 404 if !@role
   exists_another=Role[new_id]
   if old_id==new_id or !exists_another
   $db.transaction(:rollback=>:reraise) do
-    AuthorizationsRole.where(:rol_id=>old_id).delete
+    AuthorizationsRole.where(:role_id=>old_id).delete
 
 
       if (old_id!=new_id)
@@ -95,8 +98,8 @@ post '/role/update' do
       else
         @role.update(:description=>params['description'].chomp)
       end
-      params['permits'].each {|authorization_i|
-        AuthorizationsRole.insert(:rol_id=>new_id,:authorization_id=>authorization_i)
+      params['authorizations'].each {|authorization_i|
+        AuthorizationsRole.insert(:role_id=>new_id,:authorization_id=>authorization_i)
       }
     end
   else

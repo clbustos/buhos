@@ -12,6 +12,9 @@
 get '/record/:id' do |id|
   halt_unless_auth('record_view')
   @reg=Record[id]
+
+  raise Buhos::NoRecordIdError, id if !@reg
+
   @references=@reg.references
   haml "record".to_sym
 end
@@ -21,6 +24,9 @@ get '/record/:id/search_crossref' do |id|
   halt_unless_auth('record_edit')
 
   @reg=Record[id]
+
+  raise Buhos::NoRecordIdError, id if !@reg
+
   @respuesta=@reg.crossref_query
   # #$log.info(@respuesta)
   haml "systematic_reviews/record_search_crossref".to_sym
@@ -29,8 +35,11 @@ end
 # Assign a DOI to a record
 get '/record/:id/assign_doi/:doi' do |id,doi|
   halt_unless_auth('record_edit')
+
+  @reg=Record[id]
+  raise Buhos::NoRecordIdError, id if !@reg
+
   $db.transaction(:rollback=>:reraise) do
-    @reg=Record[id]
     doi=doi.gsub("***","/")
     result=@reg.add_doi(doi)
     add_result(result)

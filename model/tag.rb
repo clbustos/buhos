@@ -36,6 +36,11 @@ class Tag < Sequel::Model
     tag
   end
 
+  def delete_if_unused
+    if TagInCd.where(:tag_id=>self[:id]).empty? and TagBwCd.where(:tag_id=>self[:id]).empty?
+      Tag[self[:id]].delete
+    end
+  end
 end
 
 class T_Class < Sequel::Model

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<abstracts-retrieval-response xmlns="http://www.elsevier.com/xml/svapi/abstract/dtd" xmlns:ait="http://www.elsevier.com/xml/ani/ait" xmlns:ce="http://www.elsevier.com/xml/ani/common" xmlns:cto="http://www.elsevier.com/xml/cto/dtd" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dn="http://www.elsevier.com/xml/svapi/abstract/dtd" xmlns:prism="http://prismstandard.org/namespaces/basic/2.0/" xmlns:xocs="http://www.elsevier.com/xml/xocs/dtd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <coredata>
+    <prism:url>https://api.elsevier.com/content/abstract/scopus_id/85019269575</prism:url>
+    <dc:identifier>SCOPUS_ID:85019269575</dc:identifier>
+    <eid>2-s2.0-85019269575</eid>
+    <pubmed-id>28501917</pubmed-id>
+    <prism:doi>10.1007/s00204-017-1980-3</prism:doi>
+    <dc:title>A primer on systematic reviews in toxicology</dc:title>
+    <prism:aggregationType>Journal</prism:aggregationType>
+    <srctype>j</srctype>
+    <subtype>re</subtype>
+    <subtypeDescription>Review</subtypeDescription>
+    <citedby-count>4</citedby-count>
+    <prism:publicationName>Archives of Toxicology</prism:publicationName>
+    <dc:publisher>Springer Verlag
+      service@springer.de</dc:publisher>
+    <source-id>24604</source-id>
+    <prism:issn>14320738 03405761</prism:issn>
+    <prism:volume>91</prism:volume>
+    <prism:issueIdentifier>7</prism:issueIdentifier>
+    <prism:startingPage>2551</prism:startingPage>
+    <prism:endingPage>2575</prism:endingPage>
+    <prism:pageRange>2551-2575</prism:pageRange>
+    <prism:coverDate>2017-07-01</prism:coverDate>
+    <openaccess>1</openaccess>
+    <openaccessFlag>true</openaccessFlag>
+    <dc:creator>
+      <author seq="1" auid="7202629475">
+        <ce:initials>S.</ce:initials>
+        <ce:indexed-name>Hoffmann S.</ce:indexed-name>
+        <ce:surname>Hoffmann</ce:surname>
+        <ce:given-name>Sebastian</ce:given-name>
+        <preferred-name>
+          <ce:initials>S.</ce:initials>
+          <ce:indexed-name>Hoffmann S.</ce:indexed-name>
+          <ce:surname>Hoffmann</ce:surname>
+          <ce:given-name>Sebastian</ce:given-name>
+        </preferred-name>
+        <author-url>https://api.elsevier.com/content/author/author_id/7202629475</author-url>
+        <affiliation id="60006183" href="https://api.elsevier.com/content/affiliation/affiliation_id/60006183" />
+        <affiliation id="114976514" href="https://api.elsevier.com/content/affiliation/affiliation_id/114976514" />
+      </author>
+    </dc:creator>
+    <dc:description>
+      <abstract original="y" xml:lang="eng">
+        <ce:para>Systematic reviews, pioneered in the clinical field, provide a transparent, methodologically rigorous and reproducible means of summarizing the available evidence on a precisely framed research question. Having matured to a well-established approach in many research fields, systematic reviews are receiving increasing attention as a potential tool for answering toxicological questions. In the larger framework of evidence-based toxicology, the advantages and obstacles of, as well as the approaches for, adapting and adopting systematic reviews to toxicology are still being explored. To provide the toxicology community with a starting point for conducting or understanding systematic reviews, we herein summarized available guidance documents from various fields of application. We have elaborated on the systematic review process by breaking it down into ten steps, starting with planning the project, framing the question, and writing and publishing the protocol, and concluding with interpretation and reporting. In addition, we have identified the specific methodological challenges of toxicological questions and have summarized how these can be addressed. Ultimately, this primer is intended to stimulate scientific discussions of the identified issues to fuel the development of toxicology-specific methodology and to encourage the application of systematic review methodology to toxicological issues.</ce:para>
+      </abstract>
+    </dc:description>
+  </coredata>
+
+</abstracts-retrieval-response>
+

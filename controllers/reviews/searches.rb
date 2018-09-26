@@ -28,6 +28,29 @@ get '/review/:id/searches' do |id|
 end
 
 
+
+
+get %r{/review/(\d+)/searches/analyze(?:/(.*))?} do
+  sr_id, search_ids=params['captures']
+  @review=SystematicReview[sr_id]
+  raise Buhos::NoReviewIdError, sr_id if !@review
+
+  if search_ids.to_s!=""
+    @searches=Search.where(:id=>search_ids.split(","))
+  else
+    @searches=Search.where(:systematic_review_id=>sr_id)
+  end
+
+
+
+
+  @an_searches=Buhos::AnalysisSearches.new(@searches)
+  @searches_id=@an_searches.searches_id.join(", ")
+  haml "searches/analyze".to_sym
+
+
+end
+
 get %r{/review/(\d+)/(?:searches/)?records(?:/user/(\d+))?} do
   halt_unless_auth('record_view')
   review_id, user_id=params['captures']

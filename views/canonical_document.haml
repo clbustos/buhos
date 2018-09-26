@@ -36,6 +36,26 @@
     - if !@cd.abstract
       %a{:href=>url("/canonical_document/#{@cd[:id]}/search_abstract_scopus"), :role=>:button, :class=>"btn btn-default"}=t(:Complete_abstract_using_Scopus)
 
+- if @review
+  %h3=t(:Status_by_stage)
+  -status_in_stages=@asr.status_in_stages_cd(@cd)
+  %table.table
+    %thead
+      %th=t(:Stage)
+      %th=t(:Included)
+      %th=t(:Resolution)
+    -status_in_stages.each do |stage, status|
+      %tr
+        %td=t(get_stage_name(stage))
+        %td=t_yes_no_nil(status[:included])
+        %td=t(Resolution.get_name_resolution(status[:resolution]))
+
+- unless @cd.systematic_review_included.empty?
+  %h3=t(:Included_in_the_following_reviews)
+  %ul
+    - @cd.systematic_review_included.each do |sr|
+      %li
+        %a{:href=>url("/review/#{sr.id}/canonical_document/#{@cd.id}")}=sr.name
 
 %h3 Crossref
 
@@ -107,8 +127,9 @@
               =partial(:canonical_document_button, locals:{id:sim[:id], review:@review })
             %td=sim[:similarity] ? sim[:similarity].round(3) : '--'
   - else
-    %p.text-alert=t(:Similarity_cant_be_calculated)
-
+    .alert.alert-warning
+      %p=t(:Similarity_cant_be_calculated)
+      %p=t(:Add_abstract_to_get_similarity)
 
 %h3=t("canonical_document.records_on_which_appears")
 

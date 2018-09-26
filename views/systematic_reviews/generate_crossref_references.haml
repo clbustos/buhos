@@ -1,0 +1,22 @@
+.heading=t_systematic_review_title(@review[:name], :Generate_Crossref_references)
+
+:javascript
+  $(document).ready(function() {
+
+        // thanks to @konstantinhaase for this nice HTML5 solution!
+
+    var src = new EventSource('/review/#{@review[:id]}/stage/#{@stage}/generate_crossref_references_stream');
+    src.onmessage = function(e) {
+       if(e.data=='CLOSE') {
+          $('#button-end').removeClass('hidden');
+          src.close();
+        } else {
+          $('#output').append("\n" + e.data)
+       }
+    };
+
+  });
+
+
+%pre#output
+%a.hidden.btn.btn-primary#button-end{:href=>url("/review/#{@review[:id]}/administration/#{@stage}")}=t(:Back)

@@ -157,6 +157,7 @@ helpers DOIHelpers
 helpers HTMLHelpers
 helpers Buhos::Helpers
 helpers Buhos::StagesMixin
+helpers Buhos::ControllerReview
 
 
 

@@ -14,7 +14,7 @@ describe 'SystematicReview class' do
       post '/review/update', :review_id=>'', :name=>'Test Review',
            :group_id=>1,
            :sr_administrator=>1,
-           :criteria=>{"inclusion"=>{"new"=>"inclusion_1"}, "exclusion"=>{"new"=>"exclusion_2"}}
+           :criteria=>{"inclusion"=>["inclusion_1"], "exclusion"=>["exclusion_2"]}
     end
     it "generate a single object" do
     expect(rs_dataset.count).to eq(1)
@@ -44,7 +44,7 @@ describe 'SystematicReview class' do
       post '/review/update', :review_id=>'', :name=>'Test Review deleted',
            :group_id=>1,
            :sr_administrator=>1,
-           :criteria=>{"inclusion"=>{"new"=>"inclusion_1"}, "exclusion"=>{"new"=>"exclusion_2"}}
+           :criteria=>{"inclusion"=>["inclusion_1"], "exclusion"=>["exclusion_2"]}
     end
     def rs_deleted
       SystematicReview.where(:name=>'Test Review deleted').first

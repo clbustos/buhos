@@ -55,8 +55,13 @@ module Buhos
       def auth_to(p)
         true
       end
+      def base_dir
+        File.expand_path(File.dirname(__FILE__))
+      end
 
-
+      def log_dir
+        "log"
+      end
       def env_file
         if ENV['RACK_ENV'].to_s == "test"
           ENV['DOT_ENV'] ? ENV['DOT_ENV'] : ".env.test"
@@ -86,16 +91,16 @@ module Buhos
                       proxy_user:     {default:nil},
                       proxy_password: {default:nil},
                       scopus_key:     {default:nil},
-                      ncbi_api_key:   {default:nil}
+                      ncbi_api_key:   {default:nil},
+                      crossref_email: {default:nil}
         }
       end
       def optional_fields
-        [:proxy_hostname, :proxy_port,:proxy_user, :proxy_password, :scopus_key,:ncbi_api_key]
+        [:proxy_hostname, :proxy_port,:proxy_user, :proxy_password, :scopus_key,:ncbi_api_key,:crossref_email]
       end
-      def install_log(t)
-	  
-		Dir.mkdir 'log' unless File.exists? 'log'
-        log=Logger.new('log/installer.log')
+    def install_log(t)
+      Dir.mkdir log_dir unless File.exists? log_dir
+        log=Logger.new("#{log_dir}/installer.log")
         log.info(t)
       end
     end
@@ -178,7 +183,7 @@ module Buhos
     end
 
     get '/installer/populate_database' do
-      ENV['DATABASE_URL']=nil;
+      ENV['DATABASE_URL']=nil
       Dotenv.load(env_file)
       @error_conexion=false
       begin
@@ -193,7 +198,7 @@ module Buhos
     get '/installer/populate_database_2' do
       Dotenv.load(env_file)
 
-      log_db_install=Logger.new("log/installer_sql.log")
+      log_db_install=Logger.new("#{log_dir}/installer_sql.log")
       db=Sequel.connect(ENV['DATABASE_URL'], :encoding => 'utf8',:reconnect=>true)
       db.logger=log_db_install
       load("lib/buhos/create_schema.rb")

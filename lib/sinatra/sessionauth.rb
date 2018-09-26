@@ -36,9 +36,9 @@ module Sinatra
           session['role_id']
         end
       end
-      def presentar_usuario
+      def show_user
         ##$log.info(session)
-        if(!session['user'].nil?)
+        if !session['user'].nil?
           partial(:user)
         else
           partial(:guest)
@@ -52,9 +52,14 @@ module Sinatra
           false
         else
           if session['role_id']=='administrator'
-
-            Authorization.insert(:id=>auth, :description=>::I18n::t("sinatra_auth.permission_created_by_administrator")) if Authorization[auth].nil?
-            Role['administrator'].add_auth_to(Authorization[auth]) unless AuthorizationsRole[authorization_id:auth, role_id:'administrator']
+            @admin_authorization_roles||=AuthorizationsRole.where(:role_id=>"administrator").select_map(:authorization_id)
+            #@authorizations_cache||=Authorization.to_hash(:id)
+            #Authorization.insert(:id=>auth, :description=>::I18n::t("sinatra_auth.permission_created_by_administrator")) if @authorizations_cache[auth].nil?
+            unless @admin_authorization_roles.include? auth
+              auth_o=Authorization[auth]
+              raise Buhos::NoAuthorizationId, auth unless auth_o
+              Role['administrator'].add_auth_to(auth_o)
+            end
             true
           elsif session['authorizations'].include? auth
             true

@@ -37,7 +37,7 @@ class Scopus_Abstract < Sequel::Model
     end
   end
 
-  def self.agregar_desde_xml(xml)
+  def self.add_from_xml(xml)
     sa=Scopus_Abstract[xml.eid]
     if !sa
       Scopus_Abstract.insert(:id => xml.eid, :xml => xml.xml.to_s, :doi => xml.doi)
@@ -45,7 +45,7 @@ class Scopus_Abstract < Sequel::Model
 
   end
 
-  def self.obtener_abstract_cd(cd_id)
+  def self.get_abstract_cd(cd_id)
     result=Result.new
     cd=CanonicalDocument[cd_id]
     #$log.info("Procesando scopus para CD:#{cd.id}")
@@ -67,7 +67,7 @@ class Scopus_Abstract < Sequel::Model
       sr=ScopusRemote.new
       xml=sr.xml_abstract_by_id(id, type)
       if xml
-        agregar_desde_xml(xml)
+        add_from_xml(xml)
       else
         result.error(I18n::t("scopus_abstract.cant_obtain_scopus_error", cd_title:cd[:title], sr_error: sr.error))
         return result

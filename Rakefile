@@ -27,6 +27,8 @@ YARD::Rake::YardocTask.new do |t|
 end
 
 
+# USE NO_CROSSREF_MOCKUP=1 to test crossref services
+
 RSpec::Core::RakeTask.new(:spec) do |t|
 
   t.pattern = Dir.glob('spec/**/*_spec.rb')
@@ -34,6 +36,8 @@ RSpec::Core::RakeTask.new(:spec) do |t|
 # t.rspec_opts << ' more options'
   #t.rcov = true
 end
+
+
 
 RSpec::Core::RakeTask.new(:spec_html) do |t|
   t.pattern = Dir.glob('spec/**/*_spec.rb')

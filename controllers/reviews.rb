@@ -68,7 +68,9 @@ end
 get '/review/:id/dashboard' do |id|
   halt_unless_auth('review_edit')
   @review=SystematicReview[id]
+  raise Buhos::NoReviewIdError, id if !@review
   @user=User[session['user_id']]
+
 
   haml "systematic_reviews/dashboard".to_sym
 
@@ -98,6 +100,7 @@ post '/review/update' do
   otros_params.delete("captures")
   strc=params.delete("srtc")
   criteria=params.delete("criteria")
+  criteria||={'inclusion'=>[], 'exclusion'=>[]}
   otros_params=otros_params.inject({}) {|ac,v|
     ac[v[0].to_sym]=v[1];ac
   }
@@ -117,6 +120,7 @@ post '/review/update' do
     # Process criteria
     criteria_processor=Buhos::CriteriaProcessor.new(SystematicReview[id])
     criteria_processor.update_criteria(criteria['inclusion'], criteria['exclusion'])
+
     # Process the srtc
 
     Systematic_Review_SRTC.where(:sr_id=>id).delete
@@ -135,78 +139,8 @@ end
 
 
 
-# List of canonical documents of a review
-get '/review/:id/canonical_documents' do |id|
-  halt_unless_auth('review_view')
-
-  @review=SystematicReview[id]
-  raise Buhos::NoReviewIdError, id if !@review
-
-  @pager=get_pager
-
-  @pager.order||="n_total_references_in__desc"
-
-  @wo_abstract=params['wo_abstract']=='true'
-  @only_records=params['only_records']=='true'
-
-  @ars=AnalysisSystematicReview.new(@review)
-  @cd_total_ds=@review.canonical_documents
-
-  # Repetidos doi
-  @cd_rep_doi=@review.repeated_doi
-  ##$log.info(@cd_rep_doi)
-
-  @url="/review/#{id}/canonical_documents"
-  @cds_pre=@review.canonical_documents.left_join(@review.count_references_bw_canonical, cd_id: Sequel[:canonical_documents][:id]).left_join(@review.count_references_rtr, cd_end: :cd_id)
 
 
-
-  if @pager.query
-    @cds_pre=@cds_pre.where(Sequel.ilike(:title, "%#{@pager.query}%"))
-  end
-  if @wo_abstract
-    @cds_pre=@cds_pre.where(:abstract=>nil)
-  end
-  if @only_records
-    @cds_pre=@cds_pre.where(:id=>@ars.cd_reg_id)
-  end
-
-
-
-  @cds_total=@cds_pre.count
-
-
-  @pager.max_page=(@cds_total/@pager.cpp.to_f).ceil
-
-#  $log.info(@pager)
-
-
-  @order_criteria={:n_references_rtr=>I18n::t(:RTA_references), :n_total_references_in=>t(:Citations), :n_total_references_made=>t(:Outgoing_citations),  :title=>t(:Title), :year=> t(:Year), :author=>t(:Author)}
-
-
-  @cds=@pager.adjust_page_order(@cds_pre)
-
-  @ars=AnalysisSystematicReview.new(@review)
-
-
-  haml %s{systematic_reviews/canonical_documents}
-end
-
-
-# Get a list of repeated canonical documents, using DOI
-# @todo Check another ways to deduplicate
-get '/review/:id/repeated_canonical_documents' do |id|
-  halt_unless_auth('review_view')
-
-  @review=SystematicReview[id]
-  raise Buhos::NoReviewIdError, id if !@review
-  @cd_rep_doi=@review.repeated_doi
-  @cd_hash=@review.canonical_documents.as_hash
-
-  @cd_por_doi=CanonicalDocument.where(:doi => @cd_rep_doi).to_hash_groups(:doi, :id)
-  ##$log.info(@cd_por_doi)
-  haml %s{systematic_reviews/repeated_canonical_documents}
-end
 
 
 post '/review/:id/automatic_deduplication' do |id|
@@ -232,24 +166,6 @@ post '/review/:id/automatic_deduplication' do |id|
 end
 
 
-# Get tags and classes of tags for a systematic review
-get '/review/:id/tags' do |id|
-  halt_unless_auth('review_view')
-  @review=SystematicReview[id]
-  raise Buhos::NoReviewIdError, id if !@review
-  @stages_list={:NIL=>"--Todas--"}.merge(get_stages_names_t)
-
-  @select_stage=get_xeditable_select(@stages_list, "/tags/classes/edit_field/stage","select_stage")
-  @select_stage.nil_value=:NIL
-  @types_list={general:"General", document:"Documento", relation:"Relación"}
-
-  @select_type=get_xeditable_select(@types_list, "/tags/classes/edit_field/type","select_type")
-
-  @tag_estadisticas=@review.statistics_tags
-
-
-  haml "systematic_reviews/tags".to_sym
-end
 
 
 
@@ -369,4 +285,8 @@ post '/review/:id/delete2' do |id|
   end
   redirect url('/reviews')
 end
+
+
+
+
 # @!endgroup

@@ -40,7 +40,12 @@ class RecordCrossrefProcessor
     @records.each do |record|
       @db.transaction() do
         begin
-          @result.add_result(record.add_doi_automatic)
+          # A very fast comprobation, comparing canonical document and record
+          if record.doi.to_s=="" and record.canonical_document.doi!=""
+            record.update(:doi=>record.canonical_document.doi)
+          else
+            @result.add_result(record.add_doi_automatic)
+          end
           if record.doi
             result.add_result(record.references_automatic_crossref)
           end

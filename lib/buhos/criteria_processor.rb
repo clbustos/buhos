@@ -34,46 +34,31 @@ module Buhos
       @sr=sr
       @error=false
     end
-    def update_criteria(inclusion,exclusion)
+    def update_criteria(inclusion, exclusion)
       # Criteria already defined
+      inclusion||=[]
+      exclusion||=[]
+      inclusion=inclusion.map {|v| v.to_s.chomp}.delete_if {|v| v==""}
+      exclusion=exclusion.map {|v| v.to_s.chomp}.delete_if {|v| v==""}
 
+      process_array(inclusion, 'inclusion')
+      process_array(exclusion, 'exclusion')
 
-      process_hash(inclusion, 'inclusion')
-      process_hash(exclusion, 'exclusion')
-
-      clean_criterion(inclusion, exclusion) unless @error
     end
 
-    def process_hash(param_hash, type)
-      param_hash.each_pair do |key, text|
+    def process_array(param_array, type)
+      previous_ids=SrCriterion.where(:criteria_type=>type.to_s, :systematic_review_id=>@sr.id).select_map(:criterion_id)
+      new_ids=[]
+      param_array.each do |text|
+        crit=Criterion.get_criterion(text.chomp)
+        new_ids.push(crit[:id])
+        SrCriterion.sr_criterion_add(@sr,crit, type)
+      end
 
-        if key=='new'
-          crit=Criterion.get_criterion(text.chomp)
-          SrCriterion.sr_criterion_add(@sr,crit, type) if text.chomp!=""
-        elsif Criterion[key][:text]!=text.chomp
-          if CdCriterion.where(criterion_id:key).empty?
-            Criterion[key].update(text:text.chomp)
-          else
-            @error=true
-            break
-          end
-        end
+      to_delete=previous_ids-new_ids
+      to_delete.each do |criterion_id|
+        SrCriterion.sr_criterion_remove(@sr, Criterion[criterion_id])
       end
     end
-
-    def clean_criterion(inclusion, exclusion)
-      inclusion={} unless inclusion
-      exclusion={} unless exclusion
-      valid_texts=(inclusion.values+exclusion.values).map {|v| v.chomp}.find_all{|v| v!=""}
-      $log.info(valid_texts)
-      ids=Criterion.where(:text=>valid_texts).map(:id)
-      current_criteria=SrCriterion.where(systematic_review_id:@sr.id)
-      raise "Number of valid text is less that ids on database" if valid_texts.length>current_criteria.count
-      to_delete=(current_criteria.map(:criterion_id))-ids
-      SrCriterion.where(criterion_id:to_delete, systematic_review_id:@sr.id).delete if to_delete.length>0
-    end
-
-
-
   end
 end

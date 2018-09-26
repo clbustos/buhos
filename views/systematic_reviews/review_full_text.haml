@@ -12,6 +12,12 @@
 
 =partial(:systematic_review_info, :locals=>{systematic_review: @review})
 
+.btn-group.btn-group-sm
+  %a.btn.btn-default{:href=>url("/review/#{@review.id}/tags/user/#{@user_id}")}
+    %span.gliphicon.glyphicon-tags
+    =t(:Tags)
+
+
 %h3=t(:Review_status)
 %p=t_desc_value(:Count_total_documents_to_review, sprintf("%d", @cds_total))
 
@@ -31,8 +37,8 @@
     %label{:for=>'tags'}=t(:Tags)
     =partial("tags/select_tag_sr", :locals=>{review:@review})
   .form-group
-    %label{:for=>'search_title'}=t(:Title)
-    %input.form-control{:name=>'search_title', :value=>@pager.extra[:search_title]}
+    %label{:for=>'query'}=t(:Search)
+    %input.form-control{:name=>'query', :value=>@pager.query}
   %button.btn.btn-default{:type=>"submit"}=t(:Filter)
 
 %p
@@ -71,10 +77,11 @@
       - @cds.each do |cd|
         - decision_o=@decisions[cd[:id]]
         - decision = decision_o ? decision_o[:decision] : nil
-        - asignacion_o=@asignaciones[cd[:id]]
+        - asignacion_o=@assignations[cd[:id]]
         - clase_panel=decision_class_bootstrap(decision,nil)
         %tr{:class=>clase_panel}
           %td
+            =partial("tags/tags_cd_rs_small", locals:{user_id:@user_id, review:@review, cd:cd, tags_a:@tags_a})
             =cd.ref_apa_6_brief_html
             %a.btn.btn-primary.btn-sm{:href=>"/review/#{@review[:id]}/extract_information/cd/#{cd[:id]}"}=t(:Extract_information)
             %br

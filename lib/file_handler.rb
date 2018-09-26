@@ -69,7 +69,7 @@ HEREDOC
   <input type='hidden' name='canonical_document_id' value='#{cd_id}' />
   <div class='form-group'>
     <input type='file' name='files[]'/>
-    <input type='submit' class='btn btn-primary btn-sm' value='#{I18n.t(:Send)}'/>
+    <input type='submit' class='btn btn-primary btn-sm' value='#{I18n.t(:Upload_file)}'/>
 </div>
 </form>"
     end

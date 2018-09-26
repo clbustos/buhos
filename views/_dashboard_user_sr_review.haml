@@ -36,6 +36,6 @@
 
 .btn-group.btn-group-sm
   -if is_administrator
-    %a.btn.btn-default{:href=>"/review/#{sr.id}/administration/#{stage}"}
+    %a.btn.btn-default{:href=>"/review/#{sr.id}/administration/#{stage}", :id=>"dashboard-#{sr[:id]}-administrator-#{stage}"}
       %snap.glyphicon.glyphicon-tower
       =t(:Administration)

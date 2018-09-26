@@ -138,7 +138,7 @@ get '/canonical_documents/review/:review_id/complete_abstract_scopus' do |rev_id
   @cd_wo_abstract=@rev.canonical_documents.where(Sequel.lit("abstract IS NULL OR abstract=''")).select_map(:id)
   add_message("Se procesan #{@cd_wo_abstract.count} documentos canonicos")
   @cd_wo_abstract.each do |cd|
-    add_result(Scopus_Abstract.obtener_abstract_cd(cd))
+    add_result(Scopus_Abstract.get_abstract_cd(cd))
   end
   redirect back
 end
@@ -146,7 +146,7 @@ end
 # Query Scopus for abstract
 get '/canonical_document/:id/search_abstract_scopus' do |id|
   halt_unless_auth('canonical_document_admin')
-  add_result(Scopus_Abstract.obtener_abstract_cd(id))
+  add_result(Scopus_Abstract.get_abstract_cd(id))
   redirect back
 end
 
@@ -196,6 +196,12 @@ post '/canonical_document/actions' do
     else
       add_message(t(:Canonical_document_merge_error), :error)
     end
+  elsif action=='tags'
+    url_action="/review/#{params[:sr_id]}/canonical_documents/tags?"
+    url_action+="cd_id="+params['canonical_document'].keys.join(',')
+    url_action+="&url_back="+params['url_back']
+    url_action+="&user_id="+params['user_id']
+    redirect(url(url_action))
   else
     return [500, I18n.t(:that_function_doesn_exists)]
   end

@@ -133,7 +133,7 @@ class Reference < Sequel::Model(:bib_references)
         can_doc=CanonicalDocument[:doi=>doi_without_http(doi_n)]
         if can_doc
           self.update(:canonical_document_id=>can_doc[:id])
-          status.info(I18n::t('add_doi.reference_to_canonical_document', can_doc_id:can_doc[:id], reference:self[:text] ))
+          status.info(I18n::t('add_doi.reference_to_canonical_document', canonical_document:can_doc[:title], reference:self[:text] ))
         else # No existe el canónico, lo debo crear
           integrator=CrossrefDoi.reference_integrator_json(doi)
           ##$log.info(integrator)
