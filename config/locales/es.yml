@@ -49,6 +49,7 @@ es:
   Assigned_DOI_to_record: "Se asignó automáticamente DOI %{doi} a registro %{record_id} : %{author} - %{title} "
   Author: "Autor"
   Automatic_categories: "Categorías automáticas"
+  Authorization: "Autorización"
   Authorizations: "Autorizaciones"
   Automatic_deduplication_of_all_canonical_documents: "Deduplicación automática de todos los documentos canónicos"
   Back: "Atrás"
@@ -233,7 +234,7 @@ es:
   footer_copyright: "2016-2018 Claudio Bustos"
   full_text_review:
       stage_complete_message: "La etapa de extracción de texto completo. La etapa de reporte se iniciará cuando todos los usuarios del grupo hayan concluido."
-  Full_text_report: "Reporte de extracción de datos"
+  Full_text_report: "Reporte de extracción de información"
   fulltext_report:
     check_full_text_form: "Revisar formulario texto completo"
     custom_form: "Formulario personalizado"
@@ -378,6 +379,7 @@ es:
   No_file: "Sin archivo"
   No_groups_for_user: "No hay grupos asignados a este usuario"
   No_messages_on_this_systematic_review: "No hay mensajes en esta revisión sistemática"
+  No_quality_criteria_defined: "No se han definido criterios de calidad"
   No_records_search: "Sin registros en esta búsqueda"
   no_references_to_search_on_crossref: "No hay referencias para buscar en Crossref"
   No_references_selected: "No se seleccionaron referencias"
@@ -480,8 +482,18 @@ es:
   pubmedremote:
     retrieve_pmid_result: "Resultado de obtención de PMID: %{dois_pmid} con PMID y %{nil_dois} sin PMID"
     retrieve_pmid_result_bad_dois: "Los siguientes DOIS son erróneos: %{bad_dois}"
+  quality_assesment:
+    criterion_cant_be_empty: "El criterio no puede estar vacío"
+    quality_criterion_assigned_to_rs: "Criterio de calidad %{criterion} asignado a revisión %{review}"
+    quality_criteria_already_defined: "Criterio de calidad %{criterion} ya asignado"
+    invalid_attribute: "Atributo inválido"
+    change_text_criterion_to: "Criterion cambió de %{old_text} a %{new_text}"
+    criterion_unassigned_from_rs: "Criterio %{criterion} ya no aplica para revisión %{review}"
+    same_criterion: "Se utilizó el mismo nombre"
   Quality_assesment: "Evaluación de calidad"
   Quality_assesment_criteria: "Criterios de evaluación de calidad"
+  Quality_assesment_criterion: "Criterio de evaluación de calidad"
+  Quality_criterion_new: "Nuevo criterio de evaluación de calidad"
   record:
     raw: "Registro en bruto"
     doi_already_added_to: "DOI ya agregado a registro %{record_title}"
@@ -557,6 +569,7 @@ es:
   Roles: "Roles"
   RTA_references: "Referencias TTR"
   Save: "Guardar"
+  Scale: "Escala"
   scales:
     not_applicable: "No aplica"
     cant_say: "No se puede evaluar"

@@ -29,6 +29,8 @@
 class QualityCriterion < Sequel::Model
 
   def self.get_criterion(name)
+    name=name.chomp.lstrip
+    raise ArgumentError if name==""
     criterion=QualityCriterion.where(:text=>name).first
     if criterion.nil?
       criterion_id=QualityCriterion.insert(:text=>name)
@@ -39,6 +41,8 @@ class QualityCriterion < Sequel::Model
 end
 
 class SrQualityCriterion < Sequel::Model
+  unrestrict_primary_key
+
 end
 
 

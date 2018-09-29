@@ -111,6 +111,14 @@ module Buhos
   class NoAuthorizationId < StandardError
 
   end
+  class NoScaleIdError < StandardError
+
+  end
+
+  class NoQualityCriterionIdError < StandardError
+
+  end
+
   # @!endgroup
 end
 
@@ -180,7 +188,16 @@ module Sinatra
       end
       app.error Buhos::NoAuthorizationId do
         status 404
-        ::I18n::t("error.no_code", object_name: ::I18n::t(:Authorizations), code:env['sinatra.error'].message)
+        ::I18n::t("error.no_code", object_name: ::I18n::t(:Authorization), code:env['sinatra.error'].message)
+      end
+      app.error Buhos::NoScaleIdError do
+        status 404
+        ::I18n::t("error.no_code", object_name: ::I18n::t(:Scale), code:env['sinatra.error'].message)
+      end
+
+      app.error Buhos::NoQualityCriterionIdError do
+        status 404
+        ::I18n::t("error.no_code", object_name: ::I18n::t(:Quality_assesment_criterion), code:env['sinatra.error'].message)
       end
     end
   end

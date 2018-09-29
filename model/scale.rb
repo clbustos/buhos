@@ -28,7 +28,12 @@
 #
 
 class Scale < Sequel::Model
-
+  def self.to_hash
+    Scale.all.inject({}) do |ac, v|
+      ac[ v[:id] ]=v[:name]
+      ac
+    end
+  end
 end
 
 class ScalesItem < Sequel::Model

@@ -1,0 +1,45 @@
+.header=t_systematic_review_title(@review[:name], :Quality_assesment_criteria)
+
+%ul.breadcrumb
+  %li
+    %a{:href=>url("/review/#{@review.id}")}=@review.name
+  %li{:class=>:active}=t(:Quality_assesment_criteria)
+
+:javascript
+  #{@xselect.javascript}
+
+- if @sr_quality_criteria.empty?
+  %p
+    %em=t(:No_quality_criteria_defined)
+- else
+  %table.table.table-bordered
+    %thead
+      %tr
+        %th=t(:Order)
+        %th=t(:Description)
+        %th=t(:Scale)
+        %th=t(:Delete)
+    %tbody
+      -@sr_quality_criteria.each do |qc|
+        %tr
+          %td=a_editable(qc[:id], 'qc-order', "/review/#{@review.id}/edit_quality_criterion/order", qc[:order])
+          %td=a_textarea_editable(qc[:id], 'qc-text', "/review/#{@review.id}/edit_quality_criterion/text", qc[:text])
+          %td=@xselect.html(qc[:id], qc[:scale_id])
+          %td
+            .btn-group.btn-group-sm
+              %form{:method=>:post, :action=>"/review/#{@review[:id]}/quality_criterion/#{qc[:id]}/delete"}
+                %button.btn.btn-danger
+                  %span.glyphicon.glyphicon-remove
+                  =t(:Delete)
+
+%h3=t(:Quality_criterion_new)
+%form{:method=>"post", :action=>"/review/#{@review[:id]}/new_quality_criterion",:class=>"form-group"}
+  .form-group
+    %label{:for=>'description'}=t(:Description)
+    %input.form-control{:type=>'text', :name=>'text'}
+  .form-group
+    %label{:for=>'scale'}=t(:Scale)
+    %select.form-control{:name=>'scale_id'}
+      - Scale.to_hash.each_pair do |id,name|
+        %option{:value=>id}=name
+  %input.btn.btn-default{:type=>:submit, :value=>t(:create_new_field)}
