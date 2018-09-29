@@ -34,6 +34,14 @@ class Scale < Sequel::Model
       ac
     end
   end
+
+  def items_hash
+    ScalesItem.where(scale_id:self[:id]).order(:value).all.inject({}) do |ac,v|
+      ac[ v[:value] ]=v[:name]
+      ac
+    end
+  end
+
 end
 
 class ScalesItem < Sequel::Model

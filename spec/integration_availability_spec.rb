@@ -67,6 +67,8 @@ describe 'Resources availability:' do
     it { expect("/review/1/searches").to be_available_for_admin}
     it { expect("/review/1/tags").to be_available_for_admin}
     it { expect("/review/1/messages").to be_available_for_admin}
+    it { expect("/review/1/quality_assesment_criteria").to be_available_for_admin}
+
     it { expect("/review/1/fields").to be_available_for_admin}
     it { expect("/review/1/files").to be_available_for_admin}
   end
@@ -112,6 +114,11 @@ describe 'Resources availability:' do
 
   end
 
+  context "when user enter quality assessment form" do
+    it { expect("/review/1/quality_assessment/cd/137").to be_available_for_admin}
+
+
+  end
 
 
   context "when review searches resources are accessed" do

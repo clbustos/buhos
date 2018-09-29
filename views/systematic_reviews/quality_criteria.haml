@@ -42,4 +42,4 @@
     %select.form-control{:name=>'scale_id'}
       - Scale.to_hash.each_pair do |id,name|
         %option{:value=>id}=name
-  %input.btn.btn-default{:type=>:submit, :value=>t(:create_new_field)}
+  %input.btn.btn-default{:type=>:submit, :value=>t("quality_assesment.add_new_criterion")}

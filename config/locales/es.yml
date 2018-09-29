@@ -483,6 +483,10 @@ es:
     retrieve_pmid_result: "Resultado de obtención de PMID: %{dois_pmid} con PMID y %{nil_dois} sin PMID"
     retrieve_pmid_result_bad_dois: "Los siguientes DOIS son erróneos: %{bad_dois}"
   quality_assesment:
+    add_new_criterion: "Agregar nuevo criterio de calidad"
+    compliance: "Cumplimiento"
+    cant_comment_before_assessment: "No se puede comentar antes de hacer la evaluación"
+    assess_quality_document: "Evaluación de calidad del documento %{cd_title}"
     criterion_cant_be_empty: "El criterio no puede estar vacío"
     quality_criterion_assigned_to_rs: "Criterio de calidad %{criterion} asignado a revisión %{review}"
     quality_criteria_already_defined: "Criterio de calidad %{criterion} ya asignado"

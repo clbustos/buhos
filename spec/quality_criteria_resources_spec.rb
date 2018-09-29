@@ -84,7 +84,6 @@ describe 'Quality criteria assessment' do
 
   context "when /review/:sr_id/quality_criterion/:qc_id/delete is used to delete assignation to quality_criteria" do
     before do
-
       post "/review/1/quality_criterion/#{qc[:id]}/delete"
     end
     it "should be redirect" do

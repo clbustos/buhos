@@ -1,0 +1,55 @@
+.heading
+  =t_systematic_review_title(@sr[:name], t("quality_assesment.assess_quality_document", cd_title:@cd[:title]),false)
+- ajax||=false
+:javascript
+  #{@xselect_a.map {|v|v[1].javascript}.join("\n")}
+
+%ul.breadcrumb
+  %li
+    %a{:href=>url("/reviews")}=t(:Systematic_reviews)
+  %li
+    %a{:href=>url("/review/#{@sr[:id]}")}=@sr[:name]
+  %li
+    %a{:href=>url("/review/#{@sr[:id]}/review_full_text")}=t(:Review_full_text)
+  %li{:class=>:active}
+    =t("quality_assesment.assess_quality_document", cd_title: truncate(@cd[:title].to_s))
+
+.container
+  .row
+    .col-md-10
+      =@cd.ref_apa_6_brief_html
+    .col-md-2
+      =partial(:canonical_document_button, :locals=>{id:@cd[:id], review:@sr})
+  .row
+    .col-md-8.col-sm-8#document_viewer
+      - if @current_file_id.nil?
+        %p.alert.alert-warning=t(:No_file)
+        =@modal_files.javascript_header
+        =@modal_files.cargador_archivo(@sr[:id], @cd[:id])
+      - else
+        %div.embed-responsive.embed-responsive-4by3
+          %iframe{:src=>"/ViewerJS/#../file/#{@current_file_id}/download",  :allowfullscreen=>true, :webkitallowfullscreen=>true}
+    .col-md-4.col-sm-4#extract-form
+      %div
+        %div
+          %div{:id=>"decision-cd-#{@cd[:id]}"}
+            =partial(:decision, :locals=>{review:@sr, cd:@cd, ars:@ars, user_id:@user[:id], stage: @stage , decisions:@decisions, only_buttons:true})
+      %div
+
+        - @sr_quality_criteria.each do |sr_qc|
+          - qc_id=sr_qc[:quality_criterion_id]
+          %div
+            %strong=sr_qc[:text]
+          %div
+            %em="#{t("quality_assesment.compliance")}"
+            =@xselect_a[sr_qc[:scale_id]].html(qc_id, (@cd_qc[qc_id] ? @cd_qc[qc_id][:value] : nil) )
+            %br
+            %em="#{t(:Commentary)}"
+            =a_editable(qc_id, 'qs-commentary',@url_commentary , (@cd_qc[qc_id] ? @cd_qc[qc_id][:commentary] : nil))
+
+  .row
+    .col-md-12
+      .btn-group
+        %a.btn.btn-primary{:href=>url("/review/#{@sr[:id]}/extract_information/cd/#{@cd[:id]}")}=t(:Extract_information)
+        %a.btn.btn-primary{:href=>url("/review/#{@sr[:id]}/quality_assessment/cd/#{@cd[:id]}/by_similarity")}=t(:Continue_by_similarity)
+

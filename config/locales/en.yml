@@ -478,6 +478,10 @@ en:
     retrieve_pmid_result: "Retrieval PMID from PubMed results: %{dois_pmid} with PMID and %{nil_dois} without PMID"
     retrieve_pmid_result_bad_dois: "This DOIs are malformed: %{bad_dois}"
   quality_assesment:
+    add_new_criterion: "Add new quality criterion"
+    compliance: "Compliance"
+    cant_comment_before_assessment: "Can't comment before perform the assessment"
+    assess_quality_document: "Quality assesment of document %{cd_title}"
     criterion_cant_be_empty: "Criterion can't be empty"
     quality_criterion_assigned_to_rs: "Quality criterion %{criterion} assigned to review %{review}"
     quality_criteria_already_defined: "Quality criterion %{criterion} already assigned"
