@@ -42,17 +42,17 @@
           %a{:role=>:button, :href=>url("/review/#{r.id}/administration_stages"), :class=>"btn btn-default"}
             %span{:class=>"glyphicon glyphicon-cert-sign"}
             =t(:Stages_administration)
-      - if stages_avanzadas.include? :screening_title_abstract and (auth_to("review_analyze") or revision_analizada_por(r.id, session['user_id']))
+      - if stages_avanzadas.include? :screening_title_abstract and (auth_to("review_analyze") or review_analyzed_by(r.id, session['user_id']))
         %li
           %a{:role=>:button, :href=>url("/review/#{r.id}/screening_title_abstract"), :class=>"btn btn-default "}
             %span{:class=>"glyphicon glyphicon-ok-sign"}
             =t("stage.screening_title_abstract")
-      - if stages_avanzadas.include? :screening_references and (auth_to("review_analyze") or revision_analizada_por(r.id, session['user_id']))
+      - if stages_avanzadas.include? :screening_references and (auth_to("review_analyze") or review_analyzed_by(r.id, session['user_id']))
         %li
           %a{:role=>:button, :href=>url("/review/#{r.id}/screening_references"), :class=>"btn btn-default "}
             %span{:class=>"glyphicon glyphicon-ok-sign"}
             =t("stage.screening_references")
-      - if stages_avanzadas.include? :screening_references and (auth_to("review_analyze") or revision_analizada_por(r.id, session['user_id']))
+      - if stages_avanzadas.include? :screening_references and (auth_to("review_analyze") or review_analyzed_by(r.id, session['user_id']))
         %li
           %a{:role=>:button, :href=>url("/review/#{r.id}/review_full_text"), :class=>"btn btn-default "}
             %span{:class=>"glyphicon glyphicon-ok-sign"}

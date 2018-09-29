@@ -8,12 +8,11 @@ describe 'Resources availability:' do
     RSpec.configure { |c| c.include RSpecMixin }
 
     @temp=configure_complete_sqlite
-
-
   end
 
 
   it { expect("/").to be_available_for_admin}
+
   context "when admin resources are accessed" do
     it { expect("/admin/users").to be_available_for_admin}
     it { expect("/admin/groups").to be_available_for_admin}
@@ -180,6 +179,13 @@ describe 'Resources availability:' do
     it {expect("/tag/2/rs/1/stage/screening_title_abstract/cds").to be_available_for_admin}
   end
 
+  context "when logout is used" do
+    it "should redirect to login" do
+      get '/logout'
+      get "/admin/authorizations"
+      expect(last_response.body).to include('login')
+    end
+  end
 
   after(:all) do
     @temp=nil

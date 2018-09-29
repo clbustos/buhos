@@ -12,10 +12,13 @@ describe 'Quality criteria assessment' do
 
   before do
     qc=QualityCriterion.get_criterion('criterion_1')
+    CanonicalDocument.insert(id:1, title:"DC1", year:0)
     Buhos::QualityCriteriaProcessor.add_criterion_to_rs(SystematicReview[id:1],qc,Scale[1])
   end
 
   after do
+    $db[:cd_quality_criteria].delete
+    $db[:canonical_documents].delete
     $db[:sr_quality_criteria].delete
     $db[:cd_quality_criteria].delete
     $db[:quality_criteria].delete
@@ -38,21 +41,38 @@ describe 'Quality criteria assessment' do
       expect(last_response.body).to include('criterion_1')
     end
   end
-
   context "when /review/:rs_id/new_quality_criterion is used to create a new quality_criteria" do
-    before(:context) do
-      post '/review/1/new_quality_criterion', text:'criterion_2', scale_id:1
+    context "with non empty text" do
+      before(:context) do
+        post '/review/1/new_quality_criterion', text:'criterion_2', scale_id:1
+      end
+      it "should be redirect" do
+        expect(last_response).to be_redirect
+      end
+      it "should include criterion_1 and 2" do
+        get '/review/1/quality_assesment_criteria'
+        expect(last_response.body).to include('criterion_1')
+        expect(last_response.body).to include('criterion_2')
+      end
     end
-    it "should be redirect" do
-      expect(last_response).to be_redirect
-    end
-    it "should include criterion_1 and 2" do
-      get '/review/1/quality_assesment_criteria'
-      expect(last_response.body).to include('criterion_1')
-      expect(last_response.body).to include('criterion_2')
+
+    context "with empty text" do
+      before(:context) do
+        post '/review/1/new_quality_criterion', text:'', scale_id:1
+      end
+      it "should be redirect" do
+        expect(last_response).to be_redirect
+      end
+      it "should not create another SrQualityCriterion" do
+        expect(SrQualityCriterion.all.count).to eq(1)
+      end
+      it "should include criterion_1 and a error message" do
+        get '/review/1/quality_assesment_criteria'
+        expect(last_response.body).to include('criterion_1')
+        expect(last_response.body).to include('error')
+      end
     end
   end
-
 
   context "when /review/:sr_id/edit_quality_criterion/:attr is used to modify attributes" do
     it "should change scale" do
@@ -95,5 +115,17 @@ describe 'Quality criteria assessment' do
   end
 
 
+  context "when '/review/:sr_id/quality_assessment/cd/:cd_id/user/:user_id/:action is used to update an evaluation" do
+    before do
+      put '/review/1/quality_assessment/cd/1/user/1/evaluation', pk:qc[:id], value:0
+    end
+    it "should be ok" do
+      expect(last_response).to be_ok
+    end
+    it "should create a new CdQualityCriterion object" do
+      expect(CdQualityCriterion[systematic_review_id:1, quality_criterion_id:qc[:id], canonical_document_id:1, user_id:1]).to be_truthy
+    end
+
+  end
 
 end
