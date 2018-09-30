@@ -137,6 +137,12 @@ es:
   Criteria_exclusion: "Criterios de exclusión"
   Criteria_no_inclusion: "Sin criterios de inclusión"
   Criteria_no_exclusion: "Sin criterios de exclusión"
+  criteria:
+    no_data: "Sin datos"
+    present: "Presente"
+    absent:  "Ausente"
+    cant_say: "No se puede decir"
+    not_valid_presence_type: "Tipo %{tipo} no válido como presencia"
   current: "En proceso"
   Current_stage: "Etapa actual"
   Dashboard: "Tablero"
@@ -236,6 +242,7 @@ es:
       stage_complete_message: "La etapa de extracción de texto completo. La etapa de reporte se iniciará cuando todos los usuarios del grupo hayan concluido."
   Full_text_report: "Reporte de extracción de información"
   fulltext_report:
+    inclusion_exclusion_criteria: "Inclusion / Exclusion criteria"
     check_full_text_form: "Revisar formulario texto completo"
     custom_form: "Formulario personalizado"
     use: "Uso"
@@ -448,6 +455,7 @@ es:
     role_admin: 'Roles: Admin'
     role_view: 'Roles: Ver'
     pubmed_query: 'Pubmed: Consultar'
+    scale_admin:  'Escalas: Admin'
     scopus_query: 'Scopus: Consultar'
     search_edit: 'Búsqueda: Editar'
     search_view: 'Búsqueda: Ver'

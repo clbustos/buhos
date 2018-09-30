@@ -35,9 +35,7 @@
         - if !cd.abstract
           %em=t(:No_abstract)
         -else
-          -#$log.info(cd)
           -abs_pres.text=cd.abstract
-          -#$log.info(abs_pres)
           =abs_pres.html_with_keywords
       -if auth_to("review_admin")
         =partial(:canonical_document_button, :locals=>{id: cd[:id], review:review})

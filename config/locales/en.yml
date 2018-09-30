@@ -139,6 +139,12 @@ en:
   Criteria_exclusion: "Exclusion Criteria"
   Criteria_no_inclusion: "No inclusion criteria"
   Criteria_no_exclusion: "No exclusion criteria"
+  criteria:
+    no_data: "No data"
+    present: "Present"
+    absent:  "Absent"
+    cant_say: "Can't say"
+    not_valid_presence_type: "Not valid presence type '%{type}'"
   current: "In process"
   Current_stage: "Current stage"
   My_Dashboard: "My dashboard"
@@ -235,6 +241,7 @@ en:
   footer_copyright: "2016-2018 Claudio Bustos"
   Full_text_report: "Information extraction report"
   fulltext_report:
+    inclusion_exclusion_criteria: "Inclusion / Exclusion criteria"
     check_full_text_form: "Review full text form"
     custom_form: "Personalized form"
     inline_code: "Live code"
@@ -444,6 +451,7 @@ en:
     role_admin: 'Roles: Admin'
     role_view: 'Roles: See'
     pubmed_query: 'Pubmed: Query'
+    scale_admin:  'Scales: Admin'
     scopus_query: 'Scopus: Query'
     search_edit: 'Searches: Edit'
     search_view: 'Searches: See'

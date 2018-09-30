@@ -1,13 +1,19 @@
--# decision, review, crit_type, cd, user_id, cd_criteria
--if review.criteria_hash[crit_type].nil?
-  =t("Criteria_no_#{crit_type}")
--else
-  %strong=t("Criteria_#{crit_type}")
-  %table.table.table-condensed
-    - review.criteria_hash[crit_type].each do |val|
-      %tr
-        %td=val[:text]
-        %td
-          %input.criteria_cd_user{:type=>:checkbox, :id=>"cd_criterions-#{review[:id]}-#{cd[:id]}-#{user_id}-#{val[:id]}",
-                  :checked=>(cd_criteria[val[:id]] and cd_criteria[val[:id]][:selected]),
-                  :data=>{sr_id:review[:id], cd_id:cd[:id], user_id:user_id, criterion_id:val[:id], url:url("/review/criteria/cd")}}
+%div{:id=>"criteria-user-#{review[:id]}-#{cd[:id]}-#{user_id}"}
+  -# review, cd, user_id, cd_criteria
+  - create_data=lambda {|present_type, val| {sr_id:review[:id], cd_id:cd[:id], user_id:user_id, criterion_id:val[:id], presence: present_type,  url:url("/review/criteria/cd")}}
+  - classes_button={CdCriterion::PRESENT_YES=>'btn-success', CdCriterion::PRESENT_NO=>'btn-danger', CdCriterion::PRESENT_CANT_SAY=>'btn-warning'}
+  - SrCriterion::TYPES.each do |crit_type|
+    -if review.criteria_hash[crit_type].nil?
+      %em=t("Criteria_no_#{crit_type}")
+    -else
+      %strong=t("Criteria_#{crit_type}")
+      %table.table.table-condensed
+        - review.criteria_hash[crit_type].each do |val|
+          - presence=cd_criteria[val[:id]]&.presence
+          %tr
+            %td=val[:text]
+            %td
+              .btn-group.btn-group-sm
+                -CdCriterion::PRESENT_LIST.each do |present_type|
+                  %button.btn.criteria_cd_user{:class=> (presence==present_type ? classes_button[presence] : "btn-default"), :id=>"cd_criterions-#{review[:id]}-#{cd[:id]}-#{user_id}-#{val[:id]}",
+                    :data=>create_data.call(present_type, val)}=t(CdCriterion.get_name_present(present_type))

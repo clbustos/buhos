@@ -38,6 +38,8 @@ module ReportBuilder
       @sr=sr
       @app=app
       @ars=AnalysisSystematicReview.new(sr)
+      @aiec=Buhos::AnalysisIncExcCriteria.new(sr)
+      $log.info(@aiec.percent_by_cd)
       @cd_h=CanonicalDocument.where(:id=>@sr.cd_id_by_stage(:report)).to_hash
       @analysis_rs=@sr.analysis_cd
       @fields=@sr.fields.to_hash(:name)
