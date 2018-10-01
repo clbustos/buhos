@@ -126,7 +126,6 @@ module Buhos
       redirect '/installer/select_language'
     end
     get '/installer/select_language' do
-
       haml "installer/select_language".to_sym, :layout=>"installer/layout".to_sym
     end
 
