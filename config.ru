@@ -5,9 +5,11 @@ require 'sinatra'
 require 'dotenv'
 require 'rack/session/moneta'
 
+
 # Only update css on development
 
-if ENV['RACK_ENV'].to_sym == :development
+ 
+if ENV['RACK_ENV'].to_sym == :development and !RUBY_PLATFORM=~/mingw32/
   require 'sass/plugin/rack'
   use Sass::Plugin::Rack
 end

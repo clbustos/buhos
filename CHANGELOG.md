@@ -1,5 +1,65 @@
 # CHANGELOG
 
+## 1.0.0-RC1    : 2018-10-01
+
+No new features will be added on this branch. New development will occur in 1.1.0 branch
+
+
+* 16ea39e Stable release on windows, thanks to ruby-stemmer changes
+* 38ec78f First version of criteria report. Quality criteria on information extract report and inclusion / exclusion for process report
+* e9d6dd7 Inclusion and exclusion criteria with multiple options, not just 'yes' and 'no' Updating some spec, to avoid order specific problems (rspec --bisect is marvelous)
+* 2ebcd99 Updated documentation
+* e6800a2 New form to assess quality on each document. Just need to add information on process report for complete quality assessment coverage (for now)
+* 4be6bad Added controller for scales
+* 4ff039b Updated backward snowball
+* cf53b83 added information on each canonical document about systematic review in which are included
+* 1282d07 Improvement on textual analysis tools. Added review for a better canonical document revision on extract information screen
+* 63a1174 Bug fix: Multiple options (checkbox) not works on extract information dialog
+* 969df73 removed dependence on rubyXL (for now)
+* 0a71349 Refactored excel output using axlsx
+* fb30246 New user just can be created using the button. Bug fix on list ofdocuments by tag. New spec: user resources
+* 9df4009 New criteria edit on systematic review page, less prone to errors. more rigid method to add authorizations: just raise an error if method is not know
+* 051d1d3 Deleted bayes classifier. Added independent Abstract class of PdfProcessor
+* ae2ec46 New specs for non availability, generate crossref references and canonical documents tags. Crossref specs are based on mockups
+* e89d343 Updated DBAdapter to include some missing models. Some models names were changed, to remove underscores
+* 10eaa4e Summary: Improvements on canonical documents and tag management + Added a search parser based on Treetop. Allows very powerful searching. Implemented on canonical documents page, but later we will use on review pages + Tags on canonical documents appears besides names on "canonical documents" page. Also, batch inclusion and remove allowed
+* b863cfe Fix errors on specs
+* 6098738 Working example of Watir performing a backward-snowball reference search
+* a3eb854 Added EventSource when updating crossref
+* 5c0de11 Added id for radio on basic installer configuration
+* 10b06e5 Added id on administrator button (fixed)
+* e36044d Bug fix: on record_complete_information fields should have unique id
+* 5a7bfd4 Added similarity on tags analysis. Added id on finalize link on installer
+* ab116dd Improvements on tags management and bug fix + New tags button on reviews allows to check tags assigned by user, and rename it on the fly, to fix errors or merge tags JIT * Bug fix: Error on connecting to Scopus without a proxy
+* 04f2ff5 Added exception handling for crossref no connection
+* a66eb95 New searches analysis: duplication analysis and tracking of resolutions across stages
+* 4647846 * Bug fix: roles couldn't be edited + Initial support for searches analyses + New spec for roles administration resources.
+* d0bcc81 Bug fix: Can't update resolution without refresh page. Added option to delete resolution
+* 59e6caf Narray works fine on Windows
+* 60a2189 Bug fix: analysis tables should be updated when canonical_documents are merged. New similarity analysis  on canonical documents view, based on td-idf vectors. Works like a charm using Narray
+* 5c9f843 Added summary of documents by search source
+* d3283f5 Add source on file importing. Add uid on raw record
+* a1d7c07 Added a method to assign manually a canonical document to a reference. Also, new record and reference specs based on empty sqlite, not complete one. The aim is to remove dependency on complete_sqlite database
+* fa8140a Bug fix: Decision aren't filtered by systematic_review
+* 21c9736 Translated messages related to DOI adding (needs refactoring, I known). Added IEEE as a search engine
+* a78b98f Add spec for /search/X/record/X availabity
+* 7099ec1 - Buttons for reference appears on demand - Reference link to records could be deleted
+* 3b09cfd - Bug fix: Systematic review can't be set as inactive - UI improvement: Valid and invalid searches will be signaled with glyphicons, not row color
+* febf2e8 - Bug fix: Add a PDF for a previously included canonical documents raise an Exception - On resolution, use on "included-excluded" instead of "accept-reject", because user think on accept or reject the voters opinion, not the document (my mistake)
+* 054f298 Bug fix: username have incorrect tag on translation
+* 050cb1e Fixed error on translation of Analysis form. Added spec for record/search_crossref
+* cc309b4 New bibliographic_importer_bibtex spec. New tests for canonical documents merge, criteria and external services
+* 01b012e External services spec on external_services_spec.rb. Implemented retrieval of abstract using pubmed (pmid should be assigned before)
+* c4f1f60 Bug fix: Click on abstract on records lists doesn't open complete information page. 'Only text' was a fixed text, not included on translation
+* 18696d6 Better BibliographicFileProcessor test, from smoke test to unit test. Process and Full Text reports spec share examples for html and Excel. It should be easy to add other standard formats
+* d2ce679 Spec for excel export in administration page
+* 313c9fa New spec for canonical document merging
+
+## 1.0.0-beta15 : 2018-08-27
+
+* 45967bb Bug fix: cite_apa_6 fail then author is nil. New spec for ReferenceMethods
+
+
 ## 1.0.0-beta14 : 2018-08-24
 
 * 8f4958d OpenURI raise an exception when Scopus doesn't have a document. I prefer the old behavior of Net::HTTP, but SSL negotiation was awful
