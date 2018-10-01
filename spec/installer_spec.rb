@@ -164,11 +164,12 @@ CROSSREF_EMAIL=crossref_email\n")
       get '/installer/populate_database'
     }
     it "should show success message" do
+      skip if is_windows?
       expect(response.body).to include("Successful connection")
     end
   end
 
-  context "when /installer/populate_database is called", :installer=>true do
+  context "when /installer/populate_database_2 is called", :installer=>true do
     let(:dot_env) {Tempfile.new}
     let(:sqlite_path) {Tempfile.new}
     let(:response) {
@@ -196,6 +197,7 @@ CROSSREF_EMAIL=crossref_email\n")
       get '/installer/populate_database_2'
     }
     it "should show success message" do
+     skip if is_windows?
       expect(response).to be_ok
     end
   end
