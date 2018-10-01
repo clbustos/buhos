@@ -88,6 +88,13 @@ namespace :db do
   desc "Run migrations"
   task :migrate, [:version] do |t, args|
     require "sequel"
+    require 'i18n'
+
+    locales_root=File.join(File.dirname(__FILE__),'config','locales', '*.yml')
+    ::I18n.load_path+=Dir[locales_root]
+    #::I18n.locale=:en
+
+    require_relative 'lib/buhos/create_schema'
     base_dir=File.dirname(__FILE__)
     Sequel.extension :migration
     db = Sequel.connect(ENV["DATABASE_URL"])
@@ -97,8 +104,13 @@ namespace :db do
     else
       puts "Migrating to latest"
       Sequel::Migrator.run(db, "#{base_dir}/db/migrations")
+      Buhos::SchemaCreation.create_bootstrap_data(db)
     end
   end
+
+
+
+
   desc "Update sqlite blank file"
   task :blank_sqlite => "db/blank.sqlite"
 

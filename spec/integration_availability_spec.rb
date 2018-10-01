@@ -8,16 +8,16 @@ describe 'Resources availability:' do
     RSpec.configure { |c| c.include RSpecMixin }
 
     @temp=configure_complete_sqlite
-
-
   end
 
 
   it { expect("/").to be_available_for_admin}
+
   context "when admin resources are accessed" do
     it { expect("/admin/users").to be_available_for_admin}
     it { expect("/admin/groups").to be_available_for_admin}
     it { expect("/admin/roles").to be_available_for_admin}
+    it { expect("/admin/scales").to be_available_for_admin}
 
     # Private methods
 
@@ -66,6 +66,8 @@ describe 'Resources availability:' do
     it { expect("/review/1/searches").to be_available_for_admin}
     it { expect("/review/1/tags").to be_available_for_admin}
     it { expect("/review/1/messages").to be_available_for_admin}
+    it { expect("/review/1/quality_assesment_criteria").to be_available_for_admin}
+
     it { expect("/review/1/fields").to be_available_for_admin}
     it { expect("/review/1/files").to be_available_for_admin}
   end
@@ -111,6 +113,11 @@ describe 'Resources availability:' do
 
   end
 
+  context "when user enter quality assessment form" do
+    it { expect("/review/1/quality_assessment/cd/137").to be_available_for_admin}
+
+
+  end
 
 
   context "when review searches resources are accessed" do
@@ -172,6 +179,13 @@ describe 'Resources availability:' do
     it {expect("/tag/2/rs/1/stage/screening_title_abstract/cds").to be_available_for_admin}
   end
 
+  context "when logout is used" do
+    it "should redirect to login" do
+      get '/logout'
+      get "/admin/authorizations"
+      expect(last_response.body).to include('login')
+    end
+  end
 
   after(:all) do
     @temp=nil

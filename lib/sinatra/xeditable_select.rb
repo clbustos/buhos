@@ -65,6 +65,10 @@ module Sinatra
       end
     end
     module Helpers
+      # Create a Xeditable_Select::Select object
+      # @param values hash with values for select
+      # @param url to send information on change
+      # @param html_class class to add to select
       def get_xeditable_select(values, url, html_class)
         Select.new(values, url, html_class)
       end

@@ -20,6 +20,11 @@ ENV['RACK_ENV'] = 'test'
 ENV['DATABASE_URL']='sqlite::memory:'
 
 
+locales_root=File.join(File.dirname(__FILE__),'..', 'config','locales', '*.yml')
+
+::I18n.load_path+=Dir[locales_root]
+::I18n.locale=:en
+
 $base=File.expand_path("..",File.dirname(__FILE__))
 
 
@@ -57,7 +62,19 @@ app_path=File.expand_path(File.dirname(__FILE__)+"/..")
 # Load rack test
 #
 
-
+#
+# RSpec.configure do |config|
+#   # ...
+#   config.define_derived_metadata(file_path: %r{/spec/}) do |metadata|
+#     # do not overwrite type if it's already set
+#     next if metadata.key?(:type)
+#
+#     match = metadata[:location].match(%r{/spec/([^/]+)/})
+#     match = metadata[:location].match(%r{/spec/([^_]+)}) if match.nil?
+#
+#     metadata[:type] = match[1].to_sym
+#   end
+# end
 
 module RSpecMixin
   include Rack::Test::Methods

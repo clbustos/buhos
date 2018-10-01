@@ -29,13 +29,6 @@
 module Sinatra
   module SessionAuth
     module Helpers
-      def rol_usuario
-        if(!session['user'].nil?)
-          "guest"
-        else
-          session['role_id']
-        end
-      end
       def show_user
         ##$log.info(session)
         if !session['user'].nil?
@@ -82,7 +75,7 @@ module Sinatra
         auth_to("review_admin") and SystematicReview[:id=>review_id, :sr_administrator=>user_id]
       end
 
-      def revision_analizada_por(review_id,user_id)
+      def review_analyzed_by(review_id, user_id)
         auth_to("review_analyze") and !$db["SELECT * FROM groups_users gu INNER JOIN systematic_reviews rs ON gu.group_id=rs.group_id WHERE rs.id=? AND gu.user_id=?", review_id, user_id].empty?
       end
 
@@ -106,7 +99,7 @@ module Sinatra
         end
       end
 
-      def desautorizar
+      def logout
         session.delete('user')
       end
     end
@@ -125,7 +118,7 @@ module Sinatra
       end
 
       app.post '/login' do
-        if(authorize(params['user'], params['password']))
+        if authorize(params['user'], params['password'])
           add_message ::I18n.t(:Successful_authentification)
           #log.info( ::I18n::t("sinatra_auth.sucessful_auth_for_user", user:params['user']))
           redirect(url("/"))
@@ -137,7 +130,7 @@ module Sinatra
 
 
       app.get '/logout' do
-        desautorizar
+        logout
         redirect(url('/login'))
       end
 

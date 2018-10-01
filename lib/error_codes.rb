@@ -34,83 +34,70 @@ module Buhos
   # @!group Error Codes
 
   # Exception when no systematic review id exists
-  class NoReviewIdError < StandardError
+  class NoReviewIdError < StandardError ; end
 
-  end
 
   # Exception when no user id exists
-  class NoUserIdError < StandardError
+  class NoUserIdError < StandardError ; end
 
-  end
 
   # Exception when no cd id exists
-  class NoCdIdError < StandardError
+  class NoCdIdError < StandardError ; end
 
-  end
 
   # Exception when no search id exists
 
-  class NoSearchIdError < StandardError
+  class NoSearchIdError < StandardError ; end
 
-  end
 
   # Exception when no tag id exists
-  class NoTagIdError < StandardError
+  class NoTagIdError < StandardError ; end
 
-  end
 
   # Exception when no class tag id exists
-  class NoTagClassIdError < StandardError
+  class NoTagClassIdError < StandardError ; end
 
-  end
 
 
   # Exception when no group id exists
 
-  class NoGroupIdError < StandardError
-  end
+  class NoGroupIdError < StandardError ; end
 
   # Exception when no role id exists
 
-  class NoRoleIdError < StandardError
+  class NoRoleIdError < StandardError ; end
 
-  end
+
 
   # Exception when no record id exists
 
-  class NoRecordIdError < StandardError
+  class NoRecordIdError < StandardError ; end
 
-  end
 
 
   # Exception when no {IFile} id exists
 
-  class NoFileIdError < StandardError
-
-  end
+  class NoFileIdError < StandardError ; end
 
   # Exception when no Scopus method is allowed
-  class NoScopusMethodError < StandardError
-
-  end
+  class NoScopusMethodError < StandardError ; end
 
   # No method available to retrieve a PMC Records
-  class NoPmcMethodError < StandardError
+  class NoPmcMethodError < StandardError ; end
 
-  end
+  class NoRecordSearchIdError < StandardError ; end
 
-  class NoRecordSearchIdError < StandardError
+  class NoCriterionIdError < StandardError ; end
 
-  end
-  class NoCriterionIdError < StandardError
+  class NoReferenceIdError < StandardError ; end
 
-  end
-  class NoReferenceIdError < StandardError
+  class NoAuthorizationId < StandardError ; end
 
-  end
-  class NoAuthorizationId < StandardError
+  class NoScaleIdError < StandardError ; end
 
-  end
+
+  class NoQualityCriterionIdError < StandardError ; end
+
   # @!endgroup
 end
 
@@ -180,7 +167,16 @@ module Sinatra
       end
       app.error Buhos::NoAuthorizationId do
         status 404
-        ::I18n::t("error.no_code", object_name: ::I18n::t(:Authorizations), code:env['sinatra.error'].message)
+        ::I18n::t("error.no_code", object_name: ::I18n::t(:Authorization), code:env['sinatra.error'].message)
+      end
+      app.error Buhos::NoScaleIdError do
+        status 404
+        ::I18n::t("error.no_code", object_name: ::I18n::t(:Scale), code:env['sinatra.error'].message)
+      end
+
+      app.error Buhos::NoQualityCriterionIdError do
+        status 404
+        ::I18n::t("error.no_code", object_name: ::I18n::t(:Quality_assesment_criterion), code:env['sinatra.error'].message)
       end
     end
   end

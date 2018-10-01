@@ -329,6 +329,7 @@ module Buhos
         allocate_users_to_groups(db, id_admin, id_analyst, id_guest)
         insert_bib_db_data(db)
         insert_taxonomies_data(db)
+        insert_basic_scales(db)
       end
     end
 
@@ -376,7 +377,21 @@ module Buhos
         db[:bibliographic_databases].replace(:name => bib_db)
       end
     end
+    def self.insert_basic_scales(db)
+      scales = {
+          1=>{-99=>'not_applicable', -98=>'cant_say', 0=>'No', 1=>'Yes'},
+          2=>{-99=>'not_applicable', -98=>'cant_say', 0=>'No', 1=>'Partial', 2=>'Complete'}
+      }
 
+        db[:scales].replace(:id=>1, :name=>I18n::t("scales.dichomotic"), :description=>I18n::t('scales.dichotomic_description'))
+        db[:scales].replace(:id=>2, :name=>I18n::t("scales.three_values"), :description=>I18n::t('scales.three_values_description'))
+
+      scales.each_pair do |scale_id, values|
+        values.each_pair do |value, name|
+          db[:scales_items].replace(scale_id:scale_id, value:value, name:I18n::t("scales.#{name}"))
+        end
+      end
+    end
     def self.allocate_authorizations_to_roles(db)
       analyst_permits = ['review_view', 'review_analyze', 'message_view', 'message_edit', 'search_view', 'search_edit', 'record_view', 'record_edit', 'reference_view', 'reference_edit', 'file_view', 'canonical_document_view', 'group_view']
       analyst_permits.each do |auth|
@@ -412,6 +427,7 @@ module Buhos
           'review_view',
           'role_admin',
           'role_view',
+          'scale_admin',
           'scopus_query',
           'search_edit',
           'search_view',

@@ -17,11 +17,43 @@ Web based platform to manage complete process of systematic literature reviews. 
 * Flexible work-flow.  The main stages of text searching, screening relevant articles, data extraction and reporting are clearly defined.  However, changes can be made at any stage already finalized, and will automatically reflect in subsequent stages.
 * Imports information from various bibliographic databases, such as - WoS, Scopus, Ebscohost, Scielo - using BibTeX.
 * Integration with Crossref allows deduplication of articles (using DOI), and searching for information on references
-* File repository.  PDF and ODF file viewing support online via [ViewerJS](http://viewerjs.org/)-
+* File repository.  PDF and ODF file viewing support online via [ViewerJS](http://viewerjs.org/).
 * Multiple ways to analyze data: comments and tagging at each stage of review, and generation of customized forms for information extraction.
 * Various report types:  For data extracted from texts, detailed reports on the decision process at each review stage, as well as a [PRISMA flow diagram](http://prisma-statement.org/prismastatement/flowdiagram.aspx) for process overviews, ready for publication. 
 * Different export file types: Can export references as BibTeX and generate GraphML, to graph relations between papers.
 * Unit and integration tests for main software features. See https://buhos.org/api/file.rspec.html .
+
+Using Kitchenham & Chartes (2007), Buhos support the 'conducting the review' phase in full, and have partial support for other stages:
+
+### Planning the review
+
+Stage                                     | Support
+------------------------------------------|--------
+Identification of the need for a review   | No
+Commissioning a review                    | No
+Specifying the research question(s)       | Yes
+Developing a review protocol              | Yes
+Evaluating the review protocol            | No
+
+### Conducting the review
+
+Stage                                     | Support
+------------------------------------------|--------
+Identification of research                | Yes
+Selection of primary studies              | Yes
+Study quality assessment                  | Yes
+Data extraction and monitoring            | Yes
+Data synthesis                            | Yes
+
+### Reporting the review
+
+Stage                                     | Support
+------------------------------------------|--------
+Specifying dissemination mechanisms       | No
+Formatting the main report                | Partial
+Evaluating the report                     | No
+
+
 
 ## Documentation
 

@@ -28,6 +28,7 @@
 
 #
 module Buhos
+  # Provide action to process Inclusion vs Exclusion criteria
   class CriteriaProcessor
     attr_reader :error
     def initialize(sr)

@@ -85,9 +85,10 @@ put '/review/:sr_id/extract_information/cd/:cd_id/user/:user_id/update_field' do
 end
 
 
-get '/review/:sr_id/extract_information/cd/:cd_id/by_similarity' do |sr_id, cd_id|
+get '/review/:sr_id/:action/cd/:cd_id/by_similarity' do |sr_id,action, cd_id|
   halt_unless_auth('review_analyze')
 
+  return 500, I18n::t(:No_valid_action) unless ['extract_information', 'quality_assessment'].include? action
   @sr=SystematicReview[sr_id]
   raise Buhos::NoReviewIdError, sr_id if !@sr
 
@@ -106,7 +107,7 @@ get '/review/:sr_id/extract_information/cd/:cd_id/by_similarity' do |sr_id, cd_i
     sim_an=Buhos::SimilarAnalysisSr.new(@sr)
     sim_an.process
     sato=sim_an.similarity_all_to_one(cd_id).find_all {|v| undecided.include? v[:id]}.sort_by{|a| a[:similarity]}.last
-    redirect url("/review/#{@sr[:id]}/extract_information/cd/#{sato[:id]}")
+    redirect url("/review/#{@sr[:id]}/#{action}/cd/#{sato[:id]}")
   end
   ""
 

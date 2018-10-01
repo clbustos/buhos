@@ -143,6 +143,7 @@ GEM
     sqlite3 (1.3.13)
     stud (0.0.23)
     temple (0.8.0)
+    test-prof (0.7.1)
     tf-idf-similarity (0.1.6)
       unicode_utils (~> 1.4)
     thin (1.7.2)
@@ -196,6 +197,7 @@ DEPENDENCIES
   simplecov
   sinatra (>= 2.0.1)
   sqlite3
+  test-prof
   tf-idf-similarity
   thin
   treetop

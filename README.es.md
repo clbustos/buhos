@@ -23,6 +23,39 @@ Plataforma basada en web para gestionar el proceso completo de revisiones sistem
 * Distintos tipos de archivos para exportar: Se pueden exportar las referencias como BibTeX, así como generar archivos GraphML para realizar análisis de grafos.
 * Test unitarios y de integración para los principales recursos del software
 
+
+Usando como referencia a Kitchenham & Chartes (2007), Buhos apoya de forma completa la fase de 'realizar la revisión', y de forma parcial las otras etapas
+
+### Planning the review
+
+Etapa                                            | Soporte
+-------------------------------------------------|--------
+Identíficación de la necesidad de una revisión   | No
+Comisionar la revisión                           | No
+Especificar la(s) pregunta(s) de investigación   | Sí
+Desarrollar un protocolo de revisión             | Sí
+Evaluar el protocolo de revisión                 | Sí
+
+### Realizar la revisión
+
+Etapa                                     | Soporte
+------------------------------------------|--------
+Identificación de investigaciones         | Sí
+Selección de estudios primarios           | Sí
+Evaluación de calidad de los estudios     | Sí
+Extracción de información y monitoreo     | Sí
+Síntesis de información                   | Sí
+
+### Reportar la revisión
+
+Etapa                                     | Soporte
+------------------------------------------|--------
+Especificar mecanismos de difusión        | No
+Formatear el formato final                | Parcial
+Evaluar el reporte                        | No
+
+
+
 ## Documentación
 
 Se cuenta con un manual disponible en  [español](https://buhos.org/manual/es/) e [inglés](https://buhos.org/manual/en/), que contiene una guía rápida para entender la metodología de revisión sistemática que sustena el software.

@@ -8,6 +8,16 @@ describe 'Canonical Document' do
   end
 
 
+
+  context "when /review/:sr_id/:action/cd/:cd_id/by_similarity is used to continue with another canonical document on extraction" do
+    before(:context) do
+      get '/review/1/extract_information/cd/64/by_similarity'
+    end
+    let(:cd) {CanonicalDocument[64]}
+    it "should redirect" do
+      expect(last_response).to be_redirect
+    end
+  end
   context "when view crossref information of a canonical document" do
     before(:context) do
       get '/canonical_document/64/view_crossref_info'

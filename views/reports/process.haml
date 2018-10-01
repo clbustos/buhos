@@ -6,7 +6,36 @@
     %span.glyphicon.glyphicon-download
     =t(:Download_as, :type=>"Excel")
 
+- n_presence=CdCriterion::PRESENT_LIST.length
+- criteria=@report.aiec.criteria
+- cd_list=CanonicalDocument.where(id:@report.aiec.cd_ids).order(:title)
+- proportion = @report.aiec.proportion_by_cd
+
+
 - @sr.current_stages.each do |stage|
   - next if stage==:report
   %h4=t(get_stage_name(stage))
   =partial("report_process_#{stage}", :locals=>{sr:@sr, ars:@ars, stage:stage, report:@report})
+
+
+%h4=t("process_report.inclusion_exclusion_criteria")
+
+- if criteria.empty?
+  .well=t(:No_inclusion_exclusion_criteria)
+-else
+  %table.table.table-condensed
+    %thead
+      %th=t(:Criteria)
+      %th=t(:Type)
+      - CdCriterion::PRESENT_LIST.each do |presence_type|
+        %th=t(CdCriterion.get_name_present(presence_type))
+    %tbody
+      - cd_list.each do |cd|
+        %tr
+          %td{:colspan=>1+n_presence}=cd.ref_apa_6_brief_html
+        - criteria.each do |crit|
+          %tr
+            %td=crit[:text]
+            %td=t(SrCriterion.get_name_type(crit[:criteria_type]))
+            - CdCriterion::PRESENT_LIST.each do |presence_type|
+              %td=percent_from_proportion(proportion[cd[:id]][crit[:id]][presence_type])

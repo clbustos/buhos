@@ -10,25 +10,12 @@ describe 'Criteria related models' do
   after do
     $db[:sr_criteria].delete
     $db[:cd_criteria].delete
+    $db[:canonical_documents].delete
     $db[:criteria].delete
   end
   let(:sr) {SystematicReview[1]}
 
 
-  context "when /review/criteria/id is called" do
-    before(:context) do
-      CanonicalDocument.insert(id:1, title:"CD1", :year=>1)
-      criterion_1=Criterion.get_criterion('test1')
-      post '/review/criteria/cd', cd_id:1,sr_id:1, user_id:1, criterion_id:criterion_1[:id], checked:1
-
-    end
-    it "should add a CdCriterion object" do
-      expect(CdCriterion.where(canonical_document_id:1, criterion_id: Criterion.get_criterion('test1')[:id]).count).to eq(1)
-    end
-    after(:context) do
-      CanonicalDocument.where(:id=>1).delete
-    end
-  end
 
   context "Criterion model" do
 
@@ -69,5 +56,28 @@ describe 'Criteria related models' do
       expect(SrCriterion.count).to eq(1)
     end
   end
+
+  context "when /review/criteria/id is called" do
+    before do
+      CanonicalDocument.insert(id:1, title:"CD1", :year=>1)
+      criterion_1=Criterion.get_criterion('test1')
+      SrCriterion.sr_criterion_add(sr,criterion_1,'inclusion')
+      post '/review/criteria/cd', cd_id:1,sr_id:1, user_id:1, criterion_id:criterion_1[:id], presence:CdCriterion::PRESENT_YES
+    end
+    it "shoud response be correct" do
+      expect(last_response).to be_ok
+    end
+    it "should response include an id object" do
+
+      expect(last_response.body).to include('criteria-user-1-1-1')
+    end
+    it "should add a CdCriterion object" do
+      #p CdCriterion.all
+      expect(CdCriterion[canonical_document_id:1, criterion_id: Criterion.get_criterion('test1')[:id], user_id:1, systematic_review_id:1][:presence]).to eq(CdCriterion::PRESENT_YES)
+    end
+
+  end
+
+
 
 end
