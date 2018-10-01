@@ -241,7 +241,9 @@ es:
   full_text_review:
       stage_complete_message: "La etapa de extracción de texto completo. La etapa de reporte se iniciará cuando todos los usuarios del grupo hayan concluido."
   Full_text_report: "Reporte de extracción de información"
+
   fulltext_report:
+    quality_assessment: "Evaluación de calidad"
     inclusion_exclusion_criteria: "Inclusion / Exclusion criteria"
     check_full_text_form: "Revisar formulario texto completo"
     custom_form: "Formulario personalizado"
@@ -385,6 +387,7 @@ es:
   No_fields: "No hay campos"
   No_file: "Sin archivo"
   No_groups_for_user: "No hay grupos asignados a este usuario"
+  No_inclusion_exclusion_criteria: "Sin criterios de inclusion / exclusion"
   No_messages_on_this_systematic_review: "No hay mensajes en esta revisión sistemática"
   No_quality_criteria_defined: "No se han definido criterios de calidad"
   No_records_search: "Sin registros en esta búsqueda"
@@ -430,6 +433,7 @@ es:
     not_equal_password: "Las password no son iguales. Corregir"
     password_updated: "Password actualizada"
   pending: "Pendiente"
+  Percent: "Porcentaje"
   percent_positive: "% positivos"
   Permissions: "Permisos"
   Previous_tags: "Etiquetas previas"

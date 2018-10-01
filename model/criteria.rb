@@ -41,6 +41,9 @@ class SrCriterion < Sequel::Model
   INCLUSION='inclusion'
   EXCLUSION='exclusion'
   TYPES=[INCLUSION, EXCLUSION]
+  def self.get_name_type(x)
+    "Criteria_#{x}"
+  end
   def self.sr_criterion_add(sr,criterion, type)
     type=type.to_s
     raise("Not valid type:#{type}") unless type==INCLUSION or type==EXCLUSION

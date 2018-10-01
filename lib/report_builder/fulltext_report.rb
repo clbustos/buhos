@@ -33,16 +33,15 @@ require_relative("fulltext_report/excel")
 module ReportBuilder
   class FulltextReport
     include ReportAbstract
-    attr_reader  :cd_h, :ars, :analysis_rs, :fields
+    attr_reader  :cd_h, :ars, :analysis_rs, :fields, :aqc
     def initialize(sr,app)
       @sr=sr
       @app=app
       @ars=AnalysisSystematicReview.new(sr)
-      @aiec=Buhos::AnalysisIncExcCriteria.new(sr)
-      $log.info(@aiec.percent_by_cd)
       @cd_h=CanonicalDocument.where(:id=>@sr.cd_id_by_stage(:report)).to_hash
       @analysis_rs=@sr.analysis_cd
       @fields=@sr.fields.to_hash(:name)
+      @aqc=Buhos::AnalysisQualityCriteria.new(sr)
     end
 
     def output(format)

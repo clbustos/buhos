@@ -30,12 +30,15 @@
 module Buhos
   class AnalysisIncExcCriteria
     attr_reader :sr
+    attr_reader :criteria
+    attr_reader :cd_ids
     def initialize(sr)
       @sr=sr
       @criteria=SrCriterion.join(:criteria, id: :criterion_id).where(systematic_review_id:@sr.id).order(:criteria_type, :criterion_id)
       set_canonical_documents
       @users_id=@sr.group_users.map(&:id)
-      @cd_criteria=CdCriterion.where(systematic_review_id:@sr.id)
+      @user_n=@users_id.length
+      @cd_criteria=CdCriterion.where(systematic_review_id:@sr.id, canonical_document_id:@cd_ids).order(:user_id, :canonical_document_id, :criterion_id)
     end
 
     def set_canonical_documents
@@ -43,20 +46,21 @@ module Buhos
       cd_included=@sr.cd_all_id
       @cd_ids=cd_ids_with_dec & cd_included
     end
+    private :set_canonical_documents
+    def proportion_by_cd
+      crit_perc=lambda {@criteria.inject({}) { |ac,criterion|
+        ac[criterion[:id]]=CdCriterion::PRESENCE_VALID.inject({}) {|ac2,presence| ac2[presence]=0; ac2}
+        ac
+      }}
 
-    def percent_by_cd
-      crit_perc=@criteria.inject({}) do |ac,criterion|
-        ac[criterion[:id]]=0
-        ac
-      end
       percents=@cd_ids.inject({}) do |ac,cd_id|
-        ac[cd_id]=crit_perc.dup
+        ac[cd_id]=crit_perc.call
         ac
       end
+
       @cd_criteria.each do |row|
-        $log.info(row)
         next unless @cd_ids.include? row[:canonical_document_id]
-        percents[row[:canonical_document_id]][row[:criterion_id]]+=1
+        percents[row[:canonical_document_id]][row[:criterion_id]][row[:presence]]+= 1.to_f/@user_n
       end
       percents
 

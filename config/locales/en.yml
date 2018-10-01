@@ -241,14 +241,14 @@ en:
   footer_copyright: "2016-2018 Claudio Bustos"
   Full_text_report: "Information extraction report"
   fulltext_report:
-    inclusion_exclusion_criteria: "Inclusion / Exclusion criteria"
+    quality_assessment: "Quality Assessment"
     check_full_text_form: "Review full text form"
     custom_form: "Personalized form"
     inline_code: "Live code"
     inline_codes: "Live codes"
     use: "Use"
     uses_inside_reference: "Uses inside reference"
-    instructions: " The evaluators' analyses of the full texts are submitted"
+    instructions: " The evaluators' analyses of the full texts"
     no_analysis_for_this_user: "No analysis for this user"
     no_analysis_for_user: "No analysis for user %{user_name}"
   full_text_review:
@@ -379,6 +379,7 @@ en:
   No_fields: "No fields"
   No_file: "No file"
   No_groups_for_user: "No groups allocated to this user"
+  No_inclusion_exclusion_criteria: "No inclusion / exclusion criteria"
   No_messages_on_this_systematic_review: "No messages in this systematic review"
   No_quality_criteria_defined: "No quality criteria defined"
   no_references_to_search_on_crossref: "No references to search on Crossref"
@@ -426,6 +427,7 @@ en:
     not_equal_password: "The passwords are not identical. Correct"
     password_updated: "Password updated"
   pending: "Pending"
+  Percent: "Percent"
   percent_positive: "% positive"
   Permissions: "Authorizations"
   Previous_tags: "Previous tags"
@@ -481,6 +483,7 @@ en:
   Process_report: "Process report"
   process_report:
     instructions: "Development presented for various stages of systematic review process"
+    inclusion_exclusion_criteria: "Inclusion / Exclusion criteria"
   Processing_n_canonical_documents: "Processing %{count} canonical documents"
   pubmedremote:
     retrieve_pmid_result: "Retrieval PMID from PubMed results: %{dois_pmid} with PMID and %{nil_dois} without PMID"
