@@ -10,15 +10,17 @@ gem "rspec"
 gem "rack-test"
 gem 'bibtex-ruby'
 gem "unicode"
-gem 'levenshtein-ffi', :require => 'levenshtein', :platforms => :ruby
+gem 'levenshtein-ffi', :platforms=>:ruby, :require => 'levenshtein'
+#gem 'levenshtein-ffi', :require => 'levenshtein', :git => 'https://github.com/tosie/levenshtein-ffi.git'
+
 gem 'levenshtein'
-gem 'narray', :platforms => :ruby
+gem 'narray'
 gem 'serrano'
 gem 'dotenv'
 gem 'treetop'
-gem 'nokogiri'
+gem 'nokogiri', :platforms=> :ruby
 gem 'moneta'
-gem 'ruby-stemmer'
+gem 'ruby-stemmer', :git => 'https://github.com/clbustos/ruby-stemmer.git'
 gem 'categorize' , :platforms => :ruby
 gem 'pdf-reader'
 gem 'grim'
@@ -45,6 +47,8 @@ group :development do
   gem 'pkgr'
   gem 'yard', :require => false
   gem 'yard-sinatra', :require => false
+  gem 'pry'
+#  gem 'ruby-prof'
 end
 
 group :test do

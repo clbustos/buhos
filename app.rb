@@ -28,6 +28,8 @@
 # OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+
+
 require "bundler/setup"
 if (/cygwin|mswin|mingw|bccwin|wince|emx/ =~ RUBY_PLATFORM) != nil
 	# Windows doesn't have proper management of certificates for SSL. 
@@ -66,6 +68,8 @@ end
 if !$test_mode
   Dotenv.load("./.env")
 end
+
+
 
 
 

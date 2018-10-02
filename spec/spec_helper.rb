@@ -270,7 +270,9 @@ end
 module RSpecMixinInstaller
   include Rack::Test::Methods
   def app() Buhos::Installer end
-
+  def is_windows?
+		(/cygwin|mswin|mingw|bccwin|wince|emx/ =~ RUBY_PLATFORM) != nil
+	end
 end
 
 
