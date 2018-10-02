@@ -7,9 +7,37 @@
     =t(:Download_as, :type=>"Excel")
 
 
+- criteria=@report.aqc.criteria
+- scales=@report.aqc.scale_items
+- cd_list=CanonicalDocument.where(id:@report.aqc.cd_ids).order(:title)
+- proportion = @report.aqc.proportion_by_cd
+
+
+
+
+
+%h4=t("fulltext_report.custom_form")
+- @report.fields.each_pair do |campo_id, campo|
+  - @sr.group_users.each do |gu|
+    - analysis_cd=@report.analysis_rs.where(:user_id=>gu[:id], :canonical_document_id=>@report.cd_h.keys).order(:canonical_document_id)
+    - if analysis_cd.empty?
+      %p
+        %em="#{campo.description} (#{campo.name} ) - #{t("fulltext_report.no_analysis_for_user", {user_name:gu[:name]})}"
+    - else
+      .panel.panel-default
+        .panel-heading="#{campo.description} (#{campo.name}) - #{gu[:name]} - #{campo[:type]}"
+        - if campo[:type]=='select' or campo[:type]=='multiple'
+          =@report.html_field(campo_id,gu[:id])
+        - else
+          .list-group
+            - analysis_cd.each do |an|
+              - next if an[campo[:name].to_sym].to_s.chomp==""
+              .list-group-item
+                =lf_to_br(an[campo[:name].to_sym])
+                =@report.cd_h[an[:canonical_document_id]].cite_apa_6
+
+
 %h4=t("fulltext_report.inline_codes")
-
-
 
 - @report.get_inline_codes.each_pair do |type, codes0|
   - if codes0.length>0
@@ -36,23 +64,24 @@
                   =@report.cd_h[cd_id].cite_apa_6
                   %a.btn.btn-default.btn-xs{:href=>"/review/#{@sr[:id]}/extract_information/cd/#{cd_id}"}=t("fulltext_report.check_full_text_form")
 
+%h4=t("fulltext_report.quality_assessment")
 
-%h4=t("fulltext_report.custom_form")
-- @report.fields.each_pair do |campo_id, campo|
-  - @sr.group_users.each do |gu|
-    - analysis_cd=@report.analysis_rs.where(:user_id=>gu[:id], :canonical_document_id=>@report.cd_h.keys).order(:canonical_document_id)
-    - if analysis_cd.empty?
-      %p
-        %em="#{campo.description} (#{campo.name} ) - #{t("fulltext_report.no_analysis_for_user", {user_name:gu[:name]})}"
-    - else
-      .panel.panel-default
-        .panel-heading="#{campo.description} (#{campo.name}) - #{gu[:name]} - #{campo[:type]}"
-        - if campo[:type]=='select' or campo[:type]=='multiple'
-          =@report.html_field(campo_id,gu[:id])
-        - else
-          .list-group
-            - analysis_cd.each do |an|
-              - next if an[campo[:name].to_sym].to_s.chomp==""
-              .list-group-item
-                =lf_to_br(an[campo[:name].to_sym])
-                =@report.cd_h[an[:canonical_document_id]].cite_apa_6
+- if criteria.empty?
+  .well=t(:No_quality_criteria_defined)
+- else
+  %table.table.table-condensed
+    %thead
+      %th=t(:Criteria)
+      %th=t(:Percent)
+    %tbody
+      - cd_list.each do |cd|
+        %tr
+          %td{:colspan=>2}=cd.ref_apa_6_brief_html
+        - criteria.each do |criterion|
+          %tr
+            %td=criterion[:text]
+            %td
+              -scales[criterion[:scale_id]].each do |scale|
+                %strong="#{scale[:name]}:"
+                =percent_from_proportion(proportion[cd[:id]][criterion[:id]][scale[:value]])
+                %br

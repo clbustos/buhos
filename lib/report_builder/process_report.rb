@@ -33,9 +33,11 @@ module ReportBuilder
   class ProcessReport
     include ReportAbstract
     attr_reader  :cd_h, :ars
+    attr_reader :aiec
     def initialize(sr,app)
       @sr=sr
       @app=app
+      @aiec=Buhos::AnalysisIncExcCriteria.new(sr)
       @ars=AnalysisSystematicReview.new(sr)
     end
 

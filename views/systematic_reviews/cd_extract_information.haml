@@ -59,6 +59,8 @@
                   %a.btn.btn-default.btn-sm{:href=>url("/review/#{@sr[:id]}/extract_information/cd/#{cd_incoming[:id]}")}=t(:View)
   .row
     .col-md-12
-      %a.btn.btn-primary{:href=>url("/review/#{@sr[:id]}/extract_information/cd/#{@cd[:id]}/by_similarity")}=t(:Continue_by_similarity)
+      .btn-group
+        %a.btn.btn-primary{:href=>url("/review/#{@sr[:id]}/quality_assessment/cd/#{@cd[:id]}")}=t(:Quality_assesment)
+        %a.btn.btn-primary{:href=>url("/review/#{@sr[:id]}/extract_information/cd/#{@cd[:id]}/by_similarity")}=t(:Continue_by_similarity)
 // Here comes the form_creator javascript
 =@form_creator.javascript

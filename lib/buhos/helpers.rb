@@ -118,5 +118,8 @@ module Buhos
     end
 
 
+    def percent_from_proportion(x)
+      sprintf("%0.1f%%",x.to_f*100)
+    end
   end
 end

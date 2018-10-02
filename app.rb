@@ -140,15 +140,6 @@ require 'digest/sha1'
 
 
 
-# Internacionalización!
-#require 'i18n'
-
-
-#::I18n::Backend::Simple.send(:include, I18n::Backend::Fallbacks)
-
-
-
-
 
 
 

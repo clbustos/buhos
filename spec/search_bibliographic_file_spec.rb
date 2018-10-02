@@ -16,24 +16,17 @@ describe 'Search importing bibliographic file:' do
   let(:sr_id) {sr_by_name_id('Test Review')}
   let(:bb_id) {bb_by_name_id('generic')}
 
-  # Just some preliminary checks. Don't load the rest of suite if this fails
 
-  context 'when check initial state' do
-    it "should be 0 searches" do
-      expect(Search.count).to eq(0)
-    end
-    it "should be 0 records" do
-      expect(Record.count).to eq(0)
-    end
-    it "should be 0 references" do
-      expect(Reference.count).to eq(0)
-    end
-
+  def update_search
+    uploaded_file=Rack::Test::UploadedFile.new(filepath, "text/x-bibtex",true)
+    post '/search/update', {search_id:'', file:uploaded_file, systematic_review_id: sr_by_name_id('Test Review') , bibliographic_database_id:bb_by_name_id('generic'), source:'informal_search', date_creation:'2018-01-01', search_type:"bibliographic_file"}
   end
+
+
+
   context 'when create a search based on a bibliographic file by form' do
     before(:context) do
-      uploaded_file=Rack::Test::UploadedFile.new(filepath, "text/x-bibtex",true)
-      post '/search/update', {search_id:'', file:uploaded_file, systematic_review_id: sr_by_name_id('Test Review') , bibliographic_database_id:bb_by_name_id('generic'), source:'informal_search', date_creation:'2018-01-01', search_type:"bibliographic_file"}
+      update_search
     end
 
     it "response should be redirect" do
@@ -57,11 +50,17 @@ describe 'Search importing bibliographic file:' do
 
     # Remember that sqlite sends to ruby a ASCII-8BIT
     it "should search contains correct file content" do
-
       expect(search[:file_body].force_encoding('UTF-8')).to eq(File.binread(filepath).force_encoding('UTF-8'))
     end
+
+
   end
+
+
   context "when review searches is accessed" do
+    before(:context) do
+      update_search
+    end
     let(:response) {get "/review/#{sr_by_name_id('Test Review')}/searches"}
     it { expect(response).to be_ok}
     it "should include a row for new search" do
@@ -69,7 +68,13 @@ describe 'Search importing bibliographic file:' do
     end
 
   end
+
+
+
   context "when search view is accesed" do
+    before(:context) do
+      update_search
+    end
     let(:response) {get '/search/1'}
     it { expect(response).to be_ok}
     it "should include the bibliographic database name " do
@@ -81,6 +86,9 @@ describe 'Search importing bibliographic file:' do
   end
 
   context "when edit form search is acceded" do
+    before(:context) do
+      update_search
+    end
     let(:response) {get '/search/1/edit'}
     it { expect(response).to be_ok}
     it "should include the bibliographic database name " do
@@ -94,16 +102,20 @@ describe 'Search importing bibliographic file:' do
 
 
   context "when search file is downloaded" do
+    before(:context) do
+      update_search
+    end
     let(:response) {get '/search/1/file/download'}
 
     it { expect(response).to be_ok}
-    it "should response be ok" do expect(last_response).to be_ok end
-    it "should content type be text/x-bibtex" do expect(last_response.header['Content-Type']).to include('text/x-bibtex') end
-    it "should content length be correct" do expect(last_response.header['Content-Length']).to eq(filesize.to_s) end
-    it "should filename will be correct" do expect(last_response.header['Content-Disposition']).to eq('attachment; filename=manual.bib') end
+    it "should response be ok" do expect(response).to be_ok end
+    it "should content type be text/x-bibtex" do expect(response.header['Content-Type']).to include('text/x-bibtex') end
+    it "should content length be correct" do expect(response.header['Content-Length']).to eq(filesize.to_s) end
+    it "should filename will be correct" do expect(response.header['Content-Disposition']).to eq('attachment; filename=manual.bib') end
   end
 
   context 'when process the search using batch form' do
+
     before(:context) do
       searches_id=[1]
       post '/searches/update_batch', {sr_id:1, search:1, searches:searches_id, action:'process', url_back:'URL_BACK'}
@@ -131,6 +143,8 @@ describe 'Search importing bibliographic file:' do
     end
     before(:context) do
       searches_id=[1]
+      update_search
+
       post '/searches/update_batch', {search:1,searches:searches_id, action:'process', url_back:'URL_BACK'}
     end
     let(:records) {Search[1].records_dataset }
@@ -159,6 +173,8 @@ describe 'Search importing bibliographic file:' do
   end
   context 'when validate the search with direct link' do
     before(:context) do
+      update_search
+
       get '/search/1/validate'
     end
     it "response should be redirect" do
@@ -171,6 +187,7 @@ describe 'Search importing bibliographic file:' do
 
   context 'when invalidate the search with direct link' do
     before(:context) do
+      update_search
       get '/search/1/invalidate'
     end
     it "response should be redirect" do
@@ -182,6 +199,8 @@ describe 'Search importing bibliographic file:' do
   end
   context "when try to add DOI for each reference" do
     before(:context) do
+      update_search
+
       get '/search/1/references/search_doi'
     end
     it "response should be redirect" do

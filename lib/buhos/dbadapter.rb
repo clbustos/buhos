@@ -91,6 +91,12 @@ module Buhos
 
       ::Criterion.dataset=self[:criteria]
 
+      ::QualityCriterion.dataset=self[:quality_criteria]
+      ::SrQualityCriterion.dataset=self[:sr_quality_criteria]
+      ::CdQualityCriterion.dataset=self[:cd_quality_criteria]
+      ::Scale.dataset=self[:scales]
+
+
       ::Pmc_Summary.dataset=self[:pmc_summaries]
 
       ::Search.many_to_many :records, :class=>Record
@@ -103,6 +109,7 @@ module Buhos
       ::SystematicReview.one_to_many :message_srs, :class=>MessageSr
 
 
+      ::QualityCriterion
 
       ::Group.many_to_many :users
     end

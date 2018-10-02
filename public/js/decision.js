@@ -13,13 +13,18 @@ function actualizar_decision(stage,div_id) {
         var user_id= $(this).attr("data-user-id");
         var criterion_id= $(this).attr("data-criterion-id");
         var url= $(this).attr("data-url");
-        var checked=$(this).prop("checked") ? 1: 0;
-        var div_replace="#decision-cd-" + cd_id;
+        var presence=$(this).attr("data-presence");
+        var div_replace="#criteria-user-" + sr_id+"-"+cd_id+"-"+user_id;
+        var div_decision="#decision-cd-" + cd_id;
 
-        $.post(url, {cd_id: cd_id, sr_id:sr_id, user_id:user_id, checked:checked, criterion_id:criterion_id}, function (data) {
-            actualizar_decision(stage,div_replace);
-        }).fail(function () {
-            alert("Can't update criteria")
+        $.post(url, {cd_id: cd_id, sr_id:sr_id, user_id:user_id, presence:presence, criterion_id:criterion_id}, function (data) {
+            $(div_replace).html(data);
+            actualizar_decision(stage,div_decision);
+            actualizar_textarea_editable(div_decision);
+            TagManager.update(div_decision);
+        }).fail(function (data) {
+            console.log(data);
+            alert("Can't update criteria.");
         });
 
 

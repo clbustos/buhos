@@ -21,7 +21,7 @@ describe 'Buhos::CriteriaProcessor' do
     before do
       SrCriterion.sr_criterion_add(@sr, crit(1), 'inclusion')
       SrCriterion.sr_criterion_add(@sr, crit(2), 'exclusion')
-      CdCriterion.insert(criterion_id:crit(1)[:id], canonical_document_id:1, user_id:1, systematic_review_id:1, selected:true)
+      CdCriterion.insert(criterion_id:crit(1)[:id], canonical_document_id:1, user_id:1, systematic_review_id:1, presence:CdCriterion::PRESENT_YES)
     end
 
     it "should add a criterion" do

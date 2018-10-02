@@ -33,9 +33,9 @@ require_relative 'systematic_review'
 class Decision < Sequel::Model
   NO_DECISION='ND'
   N_EST={
-      "yes" => :Yes,
-      "no" => :No,
-      "undecided" => :Undecided,
+      'yes' => :Yes,
+      'no' => :No,
+      'undecided' => :Undecided,
       Decision::NO_DECISION =>  :Without_decision,
 
   }

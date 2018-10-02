@@ -48,6 +48,9 @@
     %label=t(:Date_creation)
     %input{:class=>"form-control",:type=>"text", :name=>"date_creation",:value=>@review[:date_creation],:id=>"form-date-creation"}
   %div{:class=>"form-group"}
+    %label=t(:Research_questions)
+    %textarea{:class=>"form-control",:name=>"research_questions", :rows=>5}=@review[:research_questions]
+  %div{:class=>"form-group"}
     %label=t(:Objectives)
     %textarea{:class=>"form-control",:name=>"objectives", :rows=>5}=@review[:objectives]
   %div{:class=>"form-group"}
@@ -118,6 +121,10 @@
           %select{:class=>'form-control', :id=>:group_administrator_select, :name=>:sr_administrator}
             - @review.group.users.each do |u|
               %option{:selected=> u.id==@review[:sr_administrator], :value=>u.id}=u.name
+
+        %div{:class=>"form-group"}
+          %label=t(:Conflict_of_interest)
+          %textarea{:class=>"form-control",:name=>"conflict_of_interest", :rows=>5}=@review[:conflict_of_interest]
 
   %input.form-control.btn.btn-primary{:type=>:submit, :value=>t(:Save)}
 
