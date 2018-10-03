@@ -37,7 +37,7 @@ post '/review/criteria/cd' do
 
   cd_criteria_list=CdCriterion.where(systematic_review_id:sr[:id], canonical_document_id:cd[:id], user_id:user[:id]).to_hash(:criterion_id)
 
-  partial(:criteria_cd, locals:{review:sr, cd:cd, user_id:user[:id], cd_criteria:cd_criteria_list})
+  partial(:criteria_cd, locals:{review:sr, cd:cd, user_id:user[:id], cd_criteria:cd_criteria_list, open:true})
 end
 
 # @!endgroup
