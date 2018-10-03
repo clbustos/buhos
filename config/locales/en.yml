@@ -252,7 +252,7 @@ en:
     no_analysis_for_this_user: "No analysis for this user"
     no_analysis_for_user: "No analysis for user %{user_name}"
   full_text_review:
-    stage_complete_message:"The full text review phase has been concluded. The report phase will begin when all the group users have responded"
+    stage_complete_message: "The full text review phase has been concluded. The report phase will begin when all the group users have responded"
   Generate_Crossref_references: "Generate references using Crossref"
   Group: "Group"
   Group_edit: "Group edit"
@@ -267,6 +267,7 @@ en:
   Inactive: "Inactive"
   Included: "Included"
   Included_in_the_following_reviews: "Included in the following reviews"
+  Inclusion_and_exclusion_criteria: "Inclusion and exclusion criteria"
   Incoming_citations: "Citations of this document"
   Information: "Information"
   Information_about_this_cd_on_crossref: "Information on this canonical document from Crossref"
