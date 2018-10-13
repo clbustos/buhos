@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 # TODO: Check references on bibtex
-describe 'Bibliographic File Processor' do
+describe 'BibliographicFileProcessor' do
   before(:all) do
     RSpec.configure { |c| c.include RSpecMixin }
     @temp=configure_empty_sqlite
@@ -20,11 +20,11 @@ describe 'Bibliographic File Processor' do
     dois=["10.1145/2372233.2372243", "10.1186/s13643-016-0263-z", "10.1186/1472-6947-10-56", "10.1186/s13643-017-0421-y", "10.1186/1471-2105-9-205", "10.1136/bmj.38636.593461.68"]
     dois.map{|v| "@article{a#{v.gsub(/[\/\.-]/,'')},\ntitle={{#{v}}},\ndoi = {#{v}}\n}" }.join("\n")
   end
-  context "when usual BibTeX is used" do
+
+
+  context "when invalid file is used" do
     before(:context) do
-
-      Search[1].update(:file_body=>manual_bibtex, :filename=>'manual.bib', :filetype => 'text/x-bibtex')
-
+      Search[1].update(:file_body=>"NOTHING RELEVANT", :filename=>'nothing.txt', :filetype => 'text/plain')
     end
     before do
       @bpf=BibliographicFileProcessor.new(Search[1])
@@ -32,12 +32,68 @@ describe 'Bibliographic File Processor' do
     it "should error be false" do
       expect(@bpf.error).to be_falsey
     end
+
+    it "should #result contain a message" do
+      expect(@bpf.result.count).to eq(1)
+    end
+
+    it "should #result contain a message with the search id" do
+
+
+      mes1=I18n::t('bibliographic_file_processor.no_integrator_for_filetype')
+      expect(@bpf.result.events[0][:message]).to match(/#{mes1}.+ID 1\s*$/)
+    end
+    it "should not create any record" do
+      expect(Record.count).to eq(0)
+    end
+    it "should not create any canonical document" do
+      expect(CanonicalDocument.count).to eq(0)
+    end
+
+    it "should #canonical_document_processed be false" do
+      expect(@bpf.canonical_document_processed).to be false
+    end
+    after do
+      $db[:bib_references].delete
+      $db[:records_references].delete
+      $db[:records_searches].delete
+      $db[:records].delete
+      $db[:canonical_documents].delete
+    end
+  end
+
+  context "when usual BibTeX is used" do
+    before(:context) do
+      Search[1].update(:file_body=>manual_bibtex, :filename=>'manual.bib', :filetype => 'text/x-bibtex')
+    end
+    before do
+      @bpf=BibliographicFileProcessor.new(Search[1])
+    end
+    it "should error be false" do
+      expect(@bpf.error).to be_falsey
+    end
+
+    it "should #result contain two messages" do
+      expect(@bpf.result.count).to eq(2)
+    end
+
+    it "should #result contain two messages with the correct search and canonical id" do
+      mes1=I18n::t('bibliographic_file_processor.Search_process_file_successfully')
+      mes2=I18n::t('bibliographic_file_processor.Search_canonical_documents_successfully')
+      expect(@bpf.result.events[0][:message]).to match(/#{mes1}.+ID 1\s*$/)
+      expect(@bpf.result.events[1][:message]).to match(/#{mes2}.+ID 1\s+#{I18n::t(:Count_canonical_documents)}\s+:\s+6$/)
+    end
+
     it "should create 6 records" do
       expect(Record.count).to eq(6)
     end
     it "should create 6 canonical documents" do
       expect(CanonicalDocument.count).to eq(6)
     end
+    it "should #canonical_document_processed be true" do
+      expect(@bpf.canonical_document_processed).to be true
+    end
+
     after do
       $db[:bib_references].delete
       $db[:records_references].delete
@@ -50,10 +106,7 @@ describe 'Bibliographic File Processor' do
 
   context "when a basic BibTeX is used" do
     before(:context) do
-
-
       Search[1].update(:file_body=>minimal_bibtex, :filename=>'manual.bib', :filetype => 'text/x-bibtex')
-
     end
     before do
       @bpf=BibliographicFileProcessor.new(Search[1])
@@ -64,6 +117,19 @@ describe 'Bibliographic File Processor' do
     it "should create 6 records" do
       expect(Record.count).to eq(6)
     end
+
+
+    it "should #result contain two messages" do
+      expect(@bpf.result.count).to eq(2)
+    end
+
+    it "should #result contain two messages with the correct search and canonical id" do
+      mes1=I18n::t('bibliographic_file_processor.Search_process_file_successfully')
+      mes2=I18n::t('bibliographic_file_processor.Search_canonical_documents_successfully')
+      expect(@bpf.result.events[0][:message]).to match(/#{mes1}.+ID 1\s*$/)
+      expect(@bpf.result.events[1][:message]).to match(/#{mes2}.+ID 1\s+#{I18n::t(:Count_canonical_documents)}\s+:\s+6$/)
+    end
+
     it "should create 6 canonical documents" do
       expect(CanonicalDocument.count).to eq(6)
     end
@@ -90,6 +156,10 @@ describe 'Bibliographic File Processor' do
     it "should error be false" do
       expect(@bpf.error).to be_falsey
     end
+
+
+
+
     it "should maintain 6 records" do
       expect(Record.count).to eq(6)
     end
@@ -116,8 +186,18 @@ describe 'Bibliographic File Processor' do
       @bpf=BibliographicFileProcessor.new(Search[1])
 
     end
-    it "should .error be true" do
+    it "should #error be true" do
       expect(@bpf.error).to be_truthy
+    end
+    it "should #result contain a message" do
+      expect(@bpf.result.count).to eq(1)
+    end
+
+    it "should #result contain a message with the search id" do
+
+
+      mes1=I18n::t('bibliographic_file_processor.error_parsing_file')
+      expect(@bpf.result.events[0][:message]).to match(/#{mes1}.+ID 1.+BibTeX.+/)
     end
     it "should not create any record" do
       expect(Record.count).to eq(0)

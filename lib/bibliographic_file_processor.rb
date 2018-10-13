@@ -49,11 +49,14 @@ class BibliographicFileProcessor
   attr_reader :search
   attr_reader :result
   attr_reader :error
+  attr_reader :canonical_document_processed
   def initialize(search)
     @search = search
     @result = Result.new
     @error = nil
+    @canonical_document_processed=false
     if process_file
+
       process_canonical_documents
     end
   end
@@ -70,10 +73,10 @@ class BibliographicFileProcessor
   def process_file
     begin
       integrator = get_integrator
-      return false if !integrator
+      return false unless integrator
     rescue BibTeX::ParseError => e
       log_error('bibliographic_file_processor.error_parsing_file', e.message)
-      @error=I18n::t('bibliographic_file_processor.error_parsing_file', message:e.message)
+      @error="#{I18n::t('bibliographic_file_processor.error_parsing_file')} #{e.message}"
       return false
     end
 
@@ -106,25 +109,28 @@ class BibliographicFileProcessor
       end
       @search.update_records(ref_ids)
     end
-    @error=t('bibliographic_file_processor.Search_process_file_error') if !correct
-    log_success('bibliographic_file_processor.Search_process_file_successfully') if correct
+    if correct
+      log_success('bibliographic_file_processor.Search_process_file_successfully')
+    else
+      @error=t('bibliographic_file_processor.Search_process_file_error')
+      log_error('bibliographic_file_processor.Search_process_file_error')
+    end
+
     true
   end
 
   def process_canonical_documents
 
     bb = BibliographicDatabase.id_a_name_h
-    ##$log.info(bb)
     $db.transaction(:rollback => :reraise) do
 
       @search.records.each do |record|
         fields = [:title, :author, :year, :journal, :volume, :pages, :doi, :journal_abbr, :abstract]
 
         fields_update = create_hash_update(fields, record)
-        ##$log.info(fields)
         registro_base_id = "#{bb[record.bibliographic_database_id]}_id".to_sym
-
         if record[:canonical_document_id].nil?
+          can_doc = nil
           # Verifiquemos si existe doi
           if record[:doi].to_s =~ /10\./
             can_doc = CanonicalDocument[:doi => record[:doi]]
@@ -145,7 +151,8 @@ class BibliographicFileProcessor
         end
       end
     end # db.transaction
-    log_success('bibliographic_file_processor.Search_canonical_documents_successfully')
+    @canonical_document_processed=true
+    log_success('bibliographic_file_processor.Search_canonical_documents_successfully', "#{I18n::t(:Count_canonical_documents)} : #{@search.records.count}" )
   end
 
   def create_hash_update(fields, record)
@@ -193,7 +200,7 @@ class BibliographicFileProcessor
   def update_cd_fields(fields, registro, registro_base_id)
     can_doc = CanonicalDocument[registro[:canonical_document_id]]
     # Verificamos si tenemos una nueva información que antes no estaba
-    raise Buhos::NoCdIdError, registro[:canonical_document_id] if !can_doc
+    raise Buhos::NoCdIdError, registro[:canonical_document_id] unless can_doc
     fields_new_info = fields.find_all {|v| (can_doc[v].nil? or can_doc[v].to_s == '') and !(registro[v].nil? or registro[v].to_s == '')}
     ##$log.info(fields.map {|v| registro[v]})
     unless fields_new_info.nil?
