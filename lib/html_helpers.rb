@@ -47,14 +47,14 @@ module HTMLHelpers
 
   def tooltip(text)
     out=""
-    if @tooltip.nil?
+    if @tooltip_js.nil?
       out="<script>
   $(document).ready(function () {
 $('[data-toggle=\"tooltip\"]').tooltip()
   });
 </script>
 "
-      @tooltip=true
+      @tooltip_js=true
     end
     out+="<span class='glyphicon glyphicon-question-sign' data-toggle='tooltip' title='#{text.gsub("'","")}'></span>"
     out
@@ -69,11 +69,12 @@ $('[data-toggle=\"tooltip\"]').tooltip()
 
   def put_editable(b,&block)
     params=b.params
-    value=params['value'].chomp
+    value=params['value'].to_s.chomp
     return 505 if value==""
-    id=params['pk']
+    id=params['pk'].to_s.chomp
+    return 505 if id.to_s==""
     block.call(id, value)
-    return 200
+    200
   end
 
   def class_bootstrap_contextual(cond, prefix, clase, clase_no="default")
@@ -133,7 +134,7 @@ $('[data-toggle=\"tooltip\"]').tooltip()
     if have_permit
       a_editable(id,prefix,data_url,v,placeholder)
     else
-      v
+      v.to_s
     end
   end
 end
