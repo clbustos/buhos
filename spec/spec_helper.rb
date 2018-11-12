@@ -257,7 +257,7 @@ module RSpecMixin
 
   def delete_references
     $db[:records_references].delete
-    $db[:references].delete
+    $db[:bib_references].delete
   end
 
   def read_fixture(filename)

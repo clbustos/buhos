@@ -92,6 +92,7 @@ end
 post '/canonical_document/:id/merge_similar_references' do |id|
   halt_unless_auth('canonical_document_admin')
   @cd=CanonicalDocument[id]
+  raise Buhos::NoCdIdError, id if !@cd
   if !params['reference'].nil?
     references_to_merge=params['reference'].keys
     Reference.where(:id=>references_to_merge).update(:canonical_document_id=>@cd[:id])
@@ -153,6 +154,9 @@ end
 #  Reset all references asssigned to a canonical document
 get '/canonical_document/:ref_id/clean_references' do |cd_id|
   halt_unless_auth('canonical_document_admin')
+  @cd=CanonicalDocument[cd_id]
+  raise Buhos::NoCdIdError, cd_id if !@cd
+
   Reference.where(:canonical_document_id => cd_id).update(:canonical_document_id => nil, :doi => nil)
   add_message("Las references para canonico #{cd_id} estan limpias")
   redirect back
@@ -240,7 +244,7 @@ get '/canonical_document/:id/view_crossref_info' do |id|
   @cd=CanonicalDocument[id]
   raise Buhos::NoCdIdError, id if !@cd
   @cr_doi=@cd.crossref_integrator
-  @doi_json=CrossrefDoi[doi_without_http(@cd.doi)][:json]
+  @doi_json=CrossrefDoi[doi_without_http(@cd.doi)][:json] if @cd.doi
   haml "canonical_documents/view_crossref_info".to_sym
 end
 
