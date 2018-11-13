@@ -56,12 +56,15 @@ get '/canonical_document/:id/get_external_data/:type' do |id, type|
   @cd=CanonicalDocument[id]
   method="#{type}_integrator".to_sym
   if @cd.respond_to? method
-    if @cd.send(method)
-      add_message(t("external_data.get_successful", type:type, cd_id:id))
-    else
-      add_message(t("external_data.get_error", type:type, cd_id:id))
+    begin
+      if @cd.send(method)
+        add_message(t("external_data.get_successful", type:type, cd_id:id))
+      else
+        add_message(t("external_data.get_error", type:type, cd_id:id))
+      end
+    rescue Buhos::NoCrossrefConnection => e
+      add_message(t("external_data.get_error", type:e.message, cd_id:id), :error)
     end
-
   else
     add_message(t("external_data.dont_know_type"), type: type)
   end

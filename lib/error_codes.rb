@@ -31,7 +31,16 @@ require_relative 'sinatra/i18n'
 
 
 module Buhos
-  # @!group Error Codes
+  # @!group Error Codes: Connection problems
+
+  class NoCrossrefConnection < StandardError; end
+
+  class NoPubmedConnection < StandardError; end
+
+  class NoScopusConnection < StandardError; end
+
+  # @!endgroup
+  # @!group Error Codes: No Object
 
   # Exception when no systematic review id exists
   class NoReviewIdError < StandardError ; end

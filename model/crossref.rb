@@ -117,14 +117,13 @@ class CrossrefQuery < Sequel::Model
       end
       json_raw = res.body
 
+      # CROSSREF_FILE allows to store the raw version of JSON on file
       if ENV["CROSSREF_FILE"]
         FileUtils.mkdir_p "#{dir_base}/usr/crossref"
         File.open("#{dir_base}/usr/crossref/#{digest}.json","w") do |fp|
           fp.write(json_raw.force_encoding(Encoding::UTF_8))
         end
       end
-
-
       CrossrefQuery.insert(:id=>digest.force_encoding(Encoding::UTF_8),:query=>t.force_encoding(Encoding::UTF_8),:json=>json_raw.force_encoding(Encoding::UTF_8))
     else
       json_raw=cq[:json]
