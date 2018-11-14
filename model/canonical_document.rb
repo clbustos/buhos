@@ -148,7 +148,7 @@ class CanonicalDocument < Sequel::Model
 
 
 
-  def buscar_references_similares(d=nil,sin_canonico=true)
+  def search_similar_references(d=nil, sin_canonico=true)
      begin
       require 'levenshtein-ffi'
     rescue LoadError

@@ -81,7 +81,7 @@ get '/canonical_document/:id/search_similar' do |id|
   @ajax=!params['ajax'].nil?
   @distancia=params['distancia'].to_i
   @distancia=30 if @distancia==0
-  @ref_similares=@cd.buscar_references_similares(@distancia)
+  @ref_similares=@cd.search_similar_references(@distancia)
   ##$log.info(@ref_similares)
   if @ajax
     haml "canonical_documents/reference_search_similar".to_sym, :layout=>nil

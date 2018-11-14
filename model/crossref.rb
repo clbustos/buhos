@@ -46,7 +46,9 @@ class CrossrefDoi < Sequel::Model
     if !co or co[:json].nil?
       begin
         resultado=Serrano.works(ids: CGI.escape(doi))
-      rescue Serrano::NotFound=>e
+      rescue Faraday::ConnectionFailed => e
+        raise Buhos::NoCrossrefConnection.new(e.message)
+      rescue Serrano::NotFound => e
         return false
       rescue URI::InvalidURIError
         #$log.info("Malformed URI: #{doi}")
@@ -110,7 +112,12 @@ class CrossrefQuery < Sequel::Model
     if !cq
       url="https://search.crossref.org/dois?q=#{CGI.escape(t)}"
       uri = URI(url)
-      res = Net::HTTP.get_response(uri)
+      begin
+        res = Net::HTTP.get_response(uri)
+      rescue SocketError =>e
+        raise Buhos::NoCrossrefConnection.new(e.message)
+      end
+
       #$log.info(res)
       if res.code!="200"
         raise BadCrossrefResponseError, I18n::t("error.bad_crossref_response", text:t, code:res.code, body:res.body)
