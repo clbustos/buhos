@@ -46,7 +46,9 @@ class CrossrefDoi < Sequel::Model
     if !co or co[:json].nil?
       begin
         resultado=Serrano.works(ids: CGI.escape(doi))
-      rescue Serrano::NotFound=>e
+      rescue Faraday::ConnectionFailed => e
+        raise Buhos::NoCrossrefConnection.new(e.message)
+      rescue Serrano::NotFound => e
         return false
       rescue URI::InvalidURIError
         #$log.info("Malformed URI: #{doi}")
@@ -110,21 +112,25 @@ class CrossrefQuery < Sequel::Model
     if !cq
       url="https://search.crossref.org/dois?q=#{CGI.escape(t)}"
       uri = URI(url)
-      res = Net::HTTP.get_response(uri)
+      begin
+        res = Net::HTTP.get_response(uri)
+      rescue SocketError =>e
+        raise Buhos::NoCrossrefConnection.new(e.message)
+      end
+
       #$log.info(res)
       if res.code!="200"
         raise BadCrossrefResponseError, I18n::t("error.bad_crossref_response", text:t, code:res.code, body:res.body)
       end
       json_raw = res.body
 
+      # CROSSREF_FILE allows to store the raw version of JSON on file
       if ENV["CROSSREF_FILE"]
         FileUtils.mkdir_p "#{dir_base}/usr/crossref"
         File.open("#{dir_base}/usr/crossref/#{digest}.json","w") do |fp|
           fp.write(json_raw.force_encoding(Encoding::UTF_8))
         end
       end
-
-
       CrossrefQuery.insert(:id=>digest.force_encoding(Encoding::UTF_8),:query=>t.force_encoding(Encoding::UTF_8),:json=>json_raw.force_encoding(Encoding::UTF_8))
     else
       json_raw=cq[:json]

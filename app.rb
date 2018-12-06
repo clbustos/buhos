@@ -39,15 +39,12 @@ end
 
 
 require 'sinatra'
-
-# Vamos a activar el reloader en todos los casos
-# Como el sistema está en vivo, es más peligroso hacer lo otro
 require 'haml'
 require 'logger'
 require 'i18n'
 require 'dotenv'
+require 'digest/sha1'
 
-#require 'i18n/backend/fallbacks'
 
 
 Dir.glob("lib/*.rb").each do |f|
@@ -68,10 +65,6 @@ end
 if !$test_mode
   Dotenv.load("./.env")
 end
-
-
-
-
 
 set :session_secret, 'super secret2'
 
@@ -138,13 +131,6 @@ Dir.glob("model/*.rb").each do |f|
 end
 
 
-require 'digest/sha1'
-
-
-
-
-
-
 
 
 helpers Sinatra::Partials
@@ -155,17 +141,12 @@ helpers Buhos::StagesMixin
 helpers Buhos::ControllerReview
 
 
-
-
 error 403 do
   haml :error403
 end
 error 404 do
   haml :error404
 end
-
-
-
 
 
 # INICIO

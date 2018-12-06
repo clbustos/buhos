@@ -62,10 +62,15 @@ class Scopus_Abstract < Sequel::Model
 
 
     sa=Scopus_Abstract.get(type, id)
-
     if !sa
-      sr=ScopusRemote.new
-      xml=sr.xml_abstract_by_id(id, type)
+      begin
+        sr=ScopusRemote.new
+        xml=sr.xml_abstract_by_id(id, type)
+      rescue SocketError => e
+        xml=false
+        sr=OpenStruct.new
+        sr.error=e.message
+      end
       if xml
         add_from_xml(xml)
       else
@@ -75,6 +80,7 @@ class Scopus_Abstract < Sequel::Model
     else
       xml=Scopus.process_xml(sa[:xml])
     end
+
 
 
 

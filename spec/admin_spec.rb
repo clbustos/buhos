@@ -1,8 +1,6 @@
 require_relative 'spec_helper'
 require 'sinatra'
 
-
-
 describe 'Buhos administration' do
   before(:all) do
     RSpec.configure { |c| c.include RSpecMixin }
@@ -86,10 +84,11 @@ describe 'Buhos administration' do
       @group_id=Group.insert(:name=>'New group 2', :description=>'description', group_administrator:1)
       get "/group/#{@group_id}/delete"
     end
+
     it "should response be redirect" do
-      #$log.info(last_response.body)
       expect(last_response).to be_redirect
     end
+
     it "shoud delete object" do
       expect(Group[@group_id]).to be_falsey
     end

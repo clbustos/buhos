@@ -51,11 +51,32 @@ module ReferenceMethods
     ref_apa_6_base(authors_apa_6)
   end
 
+  def author_ref_apa_6(x)
+    x=x.to_s.strip
+    if x.include? "," # we assume surname, first-name
+      parts=x.split(",").map(&:strip)
+      return "" if parts.length==0
+      surname=parts[0]
+      names=parts[1].split(' ').map(&:strip)
+      initials=names.map{|v| "#{v[0]}."}.join("")
+      "#{surname}, #{initials}"
+    else # we assume names in order
+      parts=x.split(' ').map(&:strip)
+      if parts.length==1
+        x
+      else
+        surname=parts.pop
+        initials=parts.map{|v| "#{v[0]}."}.join("")
+        "#{surname}, #{initials}"
+      end
+    end
+  end
   def authors_apa_6
     return "--NA--" if author.nil?
-    authors=author.split(" and ").map {|v| v.strip}
+    authors=author.split(" and ").map {|v| author_ref_apa_6(v)}
+    return '--NA--' if authors.all? {|v| v==""}
     if authors.length>7
-      author_ref=(authors[0..5]+["..."]+[authors.last]).join(", ")
+      author_ref=(authors[0..4]+["..."]+[authors.last]).join(", ")
 
     elsif authors.length>1
       author_ref=authors[0..(authors.length-2)].join(", ")+", & "+authors.last

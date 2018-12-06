@@ -25,12 +25,23 @@ describe 'Files:' do
     $db[:systematic_reviews].delete
   end
 
-  def check_gs
-    !gs_available or ENV['TEST_TRAVIS'] or is_windows?
-  end
   def delete_files
     $db["DELETE FROM files"]
   end
+
+  def prepare_context
+    delete_files
+    uploaded_file=Rack::Test::UploadedFile.new(filepath, "application/pdf", true)
+    post '/review/files/add', systematic_review_id:sr_by_name_id('Test Review'), files:[uploaded_file]
+    $db[:file_cds].delete
+    get "/files/rs/#{sr_by_name_id('Test Review')}/assign_to_canonical_documents"
+  end
+
+
+  def check_gs
+    !gs_available or ENV['TEST_TRAVIS'] or is_windows?
+  end
+
   def filepath
     filename="2010_Kiritchenko_et_al_ExaCT_automatic_extraction_of_clinical_trial_characteristics_from_journal_publications.pdf"
     path=File.expand_path("#{File.dirname(__FILE__)}/../docs/guide_resources/#{filename}")
@@ -88,13 +99,7 @@ describe 'Files:' do
   end
 
 
-  def prepare_context
-    delete_files
-    uploaded_file=Rack::Test::UploadedFile.new(filepath, "application/pdf", true)
-    post '/review/files/add', systematic_review_id:sr_by_name_id('Test Review'), files:[uploaded_file]
-    $db[:file_cds].delete
-    get "/files/rs/#{sr_by_name_id('Test Review')}/assign_to_canonical_documents"
-  end
+
 
   context '/files/rs/:systematic_review_id/assign_to_canonical_documents is called' do
     let(:file) {IFile[1]}

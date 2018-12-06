@@ -179,7 +179,7 @@ get %r{/review/(\d+)/canonical_document/(\d+)/(cites|cited_by|cited_by_rtr)} do
   @sr=SystematicReview[@sr_id]
   raise Buhos::NoReviewIdError, sr_id if !@sr
   @cd=CanonicalDocument[@cd_id]
-  raise Buhos::NoCdIdError, cd_id if !@cd
+  raise Buhos::NoCdIdError, @cd_id if !@cd
   @rwc= AnalysisSystematicReview.reference_between_canonicals(@sr)
   @cd_to_show=@rwc.send(@type.to_sym, @cd_id)
   haml "systematic_reviews/canonical_document_cites".to_sym

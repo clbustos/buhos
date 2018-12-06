@@ -42,6 +42,10 @@ class Result
     #@status=:ok
     @events=[]
   end
+  # Number of events
+  def count
+    @events.count
+  end
   def info(message)
     @events.push({type: :info, message: message })
   end

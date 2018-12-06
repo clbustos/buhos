@@ -56,12 +56,15 @@ get '/canonical_document/:id/get_external_data/:type' do |id, type|
   @cd=CanonicalDocument[id]
   method="#{type}_integrator".to_sym
   if @cd.respond_to? method
-    if @cd.send(method)
-      add_message(t("external_data.get_successful", type:type, cd_id:id))
-    else
-      add_message(t("external_data.get_error", type:type, cd_id:id))
+    begin
+      if @cd.send(method)
+        add_message(t("external_data.get_successful", type:type, cd_id:id))
+      else
+        add_message(t("external_data.get_error", type:type, cd_id:id))
+      end
+    rescue Buhos::NoCrossrefConnection => e
+      add_message(t("external_data.get_error", type:e.message, cd_id:id), :error)
     end
-
   else
     add_message(t("external_data.dont_know_type"), type: type)
   end
@@ -78,7 +81,7 @@ get '/canonical_document/:id/search_similar' do |id|
   @ajax=!params['ajax'].nil?
   @distancia=params['distancia'].to_i
   @distancia=30 if @distancia==0
-  @ref_similares=@cd.buscar_references_similares(@distancia)
+  @ref_similares=@cd.search_similar_references(@distancia)
   ##$log.info(@ref_similares)
   if @ajax
     haml "canonical_documents/reference_search_similar".to_sym, :layout=>nil
@@ -92,6 +95,7 @@ end
 post '/canonical_document/:id/merge_similar_references' do |id|
   halt_unless_auth('canonical_document_admin')
   @cd=CanonicalDocument[id]
+  raise Buhos::NoCdIdError, id if !@cd
   if !params['reference'].nil?
     references_to_merge=params['reference'].keys
     Reference.where(:id=>references_to_merge).update(:canonical_document_id=>@cd[:id])
@@ -153,6 +157,9 @@ end
 #  Reset all references asssigned to a canonical document
 get '/canonical_document/:ref_id/clean_references' do |cd_id|
   halt_unless_auth('canonical_document_admin')
+  @cd=CanonicalDocument[cd_id]
+  raise Buhos::NoCdIdError, cd_id if !@cd
+
   Reference.where(:canonical_document_id => cd_id).update(:canonical_document_id => nil, :doi => nil)
   add_message("Las references para canonico #{cd_id} estan limpias")
   redirect back
@@ -240,7 +247,7 @@ get '/canonical_document/:id/view_crossref_info' do |id|
   @cd=CanonicalDocument[id]
   raise Buhos::NoCdIdError, id if !@cd
   @cr_doi=@cd.crossref_integrator
-  @doi_json=CrossrefDoi[doi_without_http(@cd.doi)][:json]
+  @doi_json=CrossrefDoi[doi_without_http(@cd.doi)][:json] if @cd.doi
   haml "canonical_documents/view_crossref_info".to_sym
 end
 

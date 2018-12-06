@@ -48,7 +48,8 @@ group :development do
   gem 'yard', :require => false
   gem 'yard-sinatra', :require => false
   gem 'pry'
-  gem 'ruby-prof'
+  gem 'mutant'
+  gem 'mutant-rspec'
 end
 
 group :test do

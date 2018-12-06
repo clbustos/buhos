@@ -124,7 +124,11 @@ class CanonicalDocument < Sequel::Model
 
   def crossref_integrator
     if self.doi
-      CrossrefDoi.reference_integrator_json(self.doi)
+      begin
+        CrossrefDoi.reference_integrator_json(self.doi)
+      rescue Faraday::ConnectionFailed => e
+        raise Buhos::NoCrossrefConnection.new(e.message)
+      end
     else
       false
     end
@@ -132,7 +136,11 @@ class CanonicalDocument < Sequel::Model
 
   def pubmed_integrator
     if self.pmid
-      PubmedRemote.reference_integrator_xml(self.pmid)
+      begin
+        PubmedRemote.reference_integrator_xml(self.pmid)
+      rescue StandardError => e
+        raise Buhos::NoPubmedConnection.new(e.message)
+      end
     else
       false
     end
@@ -140,7 +148,7 @@ class CanonicalDocument < Sequel::Model
 
 
 
-  def buscar_references_similares(d=nil,sin_canonico=true)
+  def search_similar_references(d=nil, sin_canonico=true)
      begin
       require 'levenshtein-ffi'
     rescue LoadError

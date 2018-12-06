@@ -17,11 +17,6 @@
           "data-pk"=>cd[:id], "data-decision"=>dec_id, "data-user"=>user_id, "data-stage"=>stage,
           :id=>"decision-#{cd[:id]}-#{dec_id}",
           'data-url'=>"/decision/review/#{review_id}/user/#{user_id}/canonical_document/#{cd[:id]}/stage/#{stage}/decision"}=crit[:name]
-  -if decision
-    .row
-      .col-md-12
-        =partial(:criteria_cd, :locals=>{decision:decision, review:review, cd:cd, user_id:user_id, cd_criteria:cd_criteria})
-
   .row
     .col-md-12
       %strong="#{t(:Commentary)}:"
@@ -35,3 +30,7 @@
   .row
     .col-md-12
       =partial("tags/tags_cd_rs", :locals=>{cd: cd, review:review,user_id:user_id, ajax:ajax})
+  -if decision
+    .row
+      .col-md-12
+        =partial(:criteria_cd, :locals=>{decision:decision, review:review, cd:cd, user_id:user_id, cd_criteria:cd_criteria})

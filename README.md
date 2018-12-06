@@ -97,7 +97,7 @@ By default, the application is configured to run on port 4567.
 #### Prerequisites
 
 
-On Linux, a ruby 2.4 installation with bundler is needed, and development libraries for MySQL and SQLite. We recommend using [RVM](https://rvm.io/).
+On Linux, a ruby 2.4 or 2.5 installation with bundler is needed, and development libraries for MySQL and SQLite. We recommend using [RVM](https://rvm.io/).
 
 
 On Ubuntu, the following script installs all required dependencies:

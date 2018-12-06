@@ -94,7 +94,7 @@ De forma predeterminada, la aplicación corre en el puerto 4567.
 #### Requisitos previos
 
 
-En linux, se necesita una instalación de Ruby 2.4 con bundler, y bibliotecas de desarrollo para mysql y sqlite. Recomendamos usar [RVM](https://rvm.io/).
+En linux, se necesita una instalación de Ruby 2.4 o 2.5 con bundler, y bibliotecas de desarrollo para mysql y sqlite. Recomendamos usar [RVM](https://rvm.io/).
 
 
 En Ubuntu, este script instala todas las dependencias

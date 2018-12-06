@@ -3,21 +3,27 @@ require 'spec_helper'
 describe 'Reference' do
   before(:all) do
     RSpec.configure { |c| c.include RSpecMixin }
-    @temp=configure_complete_sqlite
+    @temp = configure_complete_sqlite
     login_admin
   end
-  let(:reference) {Reference.exclude(:doi=>nil).first}
+
+  let(:reference) {  Reference.exclude(:doi=>nil).first  }
+
   context 'when methods to retrieve references are used' do
+
     it "#get_by_text should retrieve a reference object" do
       expect(Reference.get_by_text(reference[:text])).to eq(reference)
     end
+
     it "#get_by_text_and_doi should retrieve a correct reference object" do
       expect(Reference.get_by_text_and_doi(reference[:text], reference[:doi])).to eq(reference)
     end
+
     it "#get_by_text_and_doi(x,x,false) should retrieve nil if reference doesn't exists" do
       Reference.where(doi:'10.XXX').delete
       expect(Reference.get_by_text_and_doi('not exists','10.XXX')).to be_nil
     end
+
     it "#get_by_text_and_doi(x,x,true) should retrieve a new reference if doesn't exists" do
       ref=Reference.get_by_text_and_doi('not exists','10.XXX',true)
       expect(ref).to be_truthy
@@ -54,14 +60,14 @@ describe 'Reference' do
 
   context "#add_doi when no DOI exists" do
     before(:context) do
-      ref=Reference.exclude(:doi=>nil, :canonical_document_id=>nil).first
-      @doi=ref[:doi]
+      ref     = Reference.exclude(:doi=>nil, :canonical_document_id=>nil).first
+      @doi    = ref[:doi]
       ref.update(:doi=>nil,  :canonical_document_id=>nil)
-      @ref_id=ref[:id]
+      @ref_id = ref[:id]
     end
-    let(:result) {Reference[@ref_id].add_doi(@doi)}
-    let(:cd) {CanonicalDocument[:doi=>@doi]}
-    let(:ref) {Reference[@ref_id]}
+    let(:result)  { Reference[@ref_id].add_doi(@doi)  }
+    let(:cd)      { CanonicalDocument[:doi=>@doi]     }
+    let(:ref)     { Reference[@ref_id]                }
     it "should return correct status" do
       expect(result.success?).to be true
     end
@@ -79,7 +85,7 @@ describe 'Reference' do
       res=$db['SELECT b.* FROM bib_references b INNER JOIN crossref_queries c where b.id=c.id LIMIT 1'].first
       @ref=Reference[res[:id]]
     end
-    let(:cq) {@ref.crossref_query}
+    let(:cq) { @ref.crossref_query }
     it "should return an Array" do
       expect(cq).to be_a(Array)
     end
