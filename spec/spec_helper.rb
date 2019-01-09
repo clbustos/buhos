@@ -99,7 +99,25 @@ module RSpecMixin
   def app() Sinatra::Application end
 	def is_windows?
 		(/cygwin|mswin|mingw|bccwin|wince|emx/ =~ RUBY_PLATFORM) != nil
-	end
+  end
+
+  def can_im_create_images_from_pdf?
+    require 'grim'
+    result=true
+    begin
+      tf=Tempfile.new
+
+      pdf   = Grim.reap(fixture_path('empty_pdf.pdf'))
+      pdf[0].save(tf.path,{
+      :density=>100})
+    rescue Grim::UnprocessablePage
+      result=false
+    ensure
+      tf.close
+      tf.unlink
+    end
+    result
+  end
   def sr_by_name_id(name)
     rs=SystematicReview[:name=>name]
     rs ? rs[:id] : nil
@@ -261,7 +279,10 @@ module RSpecMixin
   end
 
   def read_fixture(filename)
-    File.read(File.expand_path( File.join([File.dirname(__FILE__),"fixtures",filename   ])))
+    File.read(fixture_path(filename))
+  end
+  def fixture_path(filename)
+    File.expand_path( File.join([File.dirname(__FILE__),"fixtures",filename   ]))
   end
 
 end

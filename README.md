@@ -178,8 +178,6 @@ If you wish to use a MySQL database, you should create it before configuring the
 First, the installation language should be defined.  Second, information on the specific database should be provided (SQLite / MySQL). By default, a SQLite database will be installed in db.sqlite. If you have a SCOPUS API key, the relevant information can be submitted along with the proxy settings, if applicable.
 As the final step, the database will be populated. You must restart the application before using it.
 
-    
-
 ## Deployment
 
 Individual users can run the application smoothly with the Windows installer or the packages for Ubuntu, Debian or CentOS.
@@ -200,6 +198,11 @@ The location of the Ruby executable can be obtained with
     > which ruby
 
 If you are using [RVM](https://rvm.io/) with Passenger, check [this page](https://rvm.io/deployment/passenger)
+
+## Caveats
+
+Since October 2018, ImageMagick have strict policies to convert pdf to images. If you need to parse pdf as images in Buhos (rarely needed), check [this Stack Overflow entry](https://stackoverflow.com/questions/42928765/convertnot-authorized-aaaa-error-constitute-c-readimage-453).     
+
 
 
 ## Built With

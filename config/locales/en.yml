@@ -189,6 +189,7 @@ en:
     no_scopus_method: "The Scopus access type %{type} is unknown"
     error_on_add_crossref_for_cd: "Unable to add Crossref information for CD %{cd_title}"
     no_valid_cd_for_this_systematic_review: "CD %{cd_id} invalid for this systematic review. Check  resolution for this CD in preceding stages."
+    policy_imagemagick: "ImageMagick doesn't authorize you to create a image. Check ImageMagick policy on google: %{message}"
     problem_record_stop_sync: "Unable to obtain information for record %{record_id}: %{e_message}. Sincronization interrupted"
     no_code: "No %{object_name} with code %{code} available"
     group_without_administrator: "Group does not have administrator"
@@ -255,6 +256,7 @@ en:
   full_text_review:
     stage_complete_message: "The full text review phase has been concluded. The report phase will begin when all the group users have responded"
   Generate_Crossref_references: "Generate references using Crossref"
+  generic_error: "Generic Error: %{message}"
   Group: "Group"
   Group_edit: "Group edit"
   Group_new: "New group"
@@ -421,6 +423,7 @@ en:
   Order: "Order"
   Original: "Original"
   Outgoing_citations: "Citations by this document"
+  page_doesnt_exists: "Page doesn't exists"
   Password: "Password"
   password:
     write_new_password: "Write new password"

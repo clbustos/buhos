@@ -38,7 +38,7 @@ get '/files/rs/:systematic_review_id/assign_to_canonical_documents' do |rs_id|
         add_message("No puedo encontrar doi en el documento #{pdf[:filename]}", :warning)
       end
 
-    rescue Exception => e
+    rescue StandardError => e
       $log.error("Error on file: #{pdf[:filename]}")
       add_message("Error on file: #{pdf[:filename]}", :error)
       #raise
@@ -101,16 +101,17 @@ get '/file/:id/page/:pagina/:format' do |id,pagina,format|
         require 'pdf-reader'
         reader=PDF::Reader.new(filepath)
         file.update(:pages=>reader.pages.length) if file[:pages].nil?
-        return "No existe pagina" if reader.pages.length<pagina
+        return I18n::t(:page_doesnt_exists) if reader.pages.length<pagina
         reader.pages[pagina-1].text
       elsif format=='image'
         require 'grim'
         pdf   = Grim.reap(filepath)
-        return "No existe pagina" if pdf.count<pagina or pagina<1
+        return I18n::t(:page_doesnt_exists) if pdf.count<pagina or pagina<1
         file.update(:pages=>pdf.count) if file[:pages].nil?
-        filepath_image="#{dir_files}/pdf_imagenes/#{file[:sha256][0]}/#{file[:sha256]}_#{pagina}.png"
+        filepath_image="#{dir_files}/pdf_images/#{file[:sha256][0]}/#{file[:sha256]}_#{pagina}.png"
         #$log.info(File.dirname(filepath_image))
         FileUtils.mkdir_p File.dirname(filepath_image) unless File.exist? File.dirname(filepath_image)
+        #FileUtils.touch filepath_image
         unless File.exist? filepath_image
           pdf[pagina-1].save(filepath_image,{
               :density=>300,
@@ -123,8 +124,14 @@ get '/file/:id/page/:pagina/:format' do |id,pagina,format|
       else
         raise I18n::t(:cant_process)
       end
-    rescue StandardError
-      halt 500, I18n::t("Error on processing file")
+    rescue Grim::UnprocessablePage => e
+      if e.message=~/convert: not authorized/
+        return [500,I18n::t("error.policy_imagemagick", message:e.message)]
+      else
+        raise
+      end
+    rescue StandardError =>e
+      halt 500, I18n::t(:generic_error, :message=>e.message)
     end
     
   else

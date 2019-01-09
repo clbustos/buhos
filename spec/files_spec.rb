@@ -167,15 +167,30 @@ describe 'Files:' do
 
   # Works, but is very slow
   context "when user retrieves a page from a pdf as image, response" do
-
     let(:gs_available) {check_executable_on_path('gs')}
-
     before(:context) do
       prepare_context
       get '/file/1/page/17/image'
+      #p last_response.body
     end
-    it {skip if check_gs;expect(last_response).to be_ok }
-    it {skip if check_gs; expect(last_response.header['Content-Type']).to include("image/png") }
+    let(:can_create_images) {can_im_create_images_from_pdf?}
+    it "should return an appropiate response (ok, not ok)" do
+      skip if check_gs
+      if can_create_images
+        expect(last_response).to be_ok , "expected to be ok if authorized, was not ok"
+      else
+        expect(last_response).to_not be_ok , "expected be not ok if not authorized, was ok"
+      end
+    end
+    it "should have appropiate type" do
+      skip if check_gs
+      if can_create_images
+        expect(last_response.header['Content-Type']).to include("image/png")
+      else
+        expect(last_response.header['Content-Type']).to include("text/html")
+      end
+
+    end
     it {skip if check_gs;expect(last_response.header['Content-Length'].to_i).to be >0}
   end
 
