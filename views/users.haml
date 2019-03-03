@@ -31,9 +31,9 @@
             %td
               %input{:type=>:text, :user=>10, :name=>"usuario[#{per[:id]}][login]", :value=>per[:login]}
             %td
-              %input{:type=>:checkbox, :name=>"usuario[#{per[:id]}][activa]", :checked=>per[:active]}
+              %input{:type=>:checkbox, :name=>"usuario[#{per[:id]}][active]", :checked=>per[:active]}
             %td
-              %select{:name=>"usuario[#{per[:id]}][rol_id]"}
+              %select{:name=>"usuario[#{per[:id]}][role_id]"}
                 -@roles.each do |rol|
                   %option{:value=>rol[:id], :selected=>(rol[:id]==per[:rol_id])}=rol[:id]
     %input.btn.btn-default{:type=>"submit",:name=>t(:Update)}
