@@ -27,7 +27,7 @@ get '/user/:user_id' do |user_id|
 
   @rss=@usuario.systematic_reviews.where(:active=>true)
 
-  @select_role=get_xeditable_select(Role.inject({}) {|ac,v| ac[v[:id]]=v[:id];ac},'/user/edit/role_id','select_role')
+  @select_role=get_xeditable_select(Hash[Role.map{ |r| [r[:id], r[:id]] }],'/user/edit/role_id','select_role')
   @select_role.active=false if(!auth_to("user_admin") or user_id.to_i==session['user_id'])
 
   @select_active_user=get_xeditable_select_bool('/user/edit/active','select_active')
