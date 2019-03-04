@@ -33,13 +33,13 @@ class User < Sequel::Model
   end
 
   def systematic_reviews_id
-
     $db["SELECT id FROM systematic_reviews rs INNER JOIN groups_users gu ON rs.group_id=gu.group_id WHERE user_id=?", self[:id]].select_map(:id)
   end
 
   def systematic_reviews
     SystematicReview.where(:id => systematic_reviews_id)
   end
+
   def accesible_users
     User.where(:id=>$db["SELECT DISTINCT(user_id) FROM groups_users WHERE group_id IN (SELECT group_id FROM groups_users WHERE user_id=?)", self[:id]].map(:user_id))
   end
@@ -51,8 +51,6 @@ class User < Sequel::Model
   def correct_password?(test_password)
     self.password == Digest::SHA1.hexdigest(test_password)
   end
-
-
 
   def self.create_new_user(language='en')
     ultimo_usuario=$db["SELECT max(id) as max_id from users"].get(:max_id).to_i

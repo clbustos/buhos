@@ -15,7 +15,7 @@ get '/admin/users/?' do
   if(@usr_bus.nil? or @usr_bus=="")
     @users=[]
   else
-    @users=User.filter(Sequel.like(:name, "%#{@usr_bus}%")).order(:name)
+    @users=User.filter(Sequel.ilike(:name, "%#{@usr_bus}%")).order(:name)
   end
   #log.info(@personas.all)  
   @roles=Role.order()

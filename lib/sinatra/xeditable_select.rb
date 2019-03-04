@@ -58,7 +58,8 @@ module Sinatra
       end
 
       def html(id, value)
-        value_value = value.nil? ? nil_value.to_s : value.to_s
+        value_value = (value && 1 || 0) if [TrueClass, FalseClass].include?(value.class)
+        value_value ||= value.nil? ? nil_value.to_s : value.to_s
         value_text = value.nil? ? values[nil_value.to_s] : values[value.to_s]
         return value_text if !active
         "<a href='#' class='#{html_class}' id='select-#{html_class}-#{id}' data-value='#{value_value}' data-pk='#{id}'>#{value_text}</a>"
@@ -74,8 +75,8 @@ module Sinatra
       end
 
       def get_xeditable_select_bool(url, html_class)
-        values = {0 => ::I18n.t("No"),
-                  1 => ::I18n.t("Yes")
+        values = {'0' => ::I18n.t("No"),
+                  '1' => ::I18n.t("Yes")
         }
         Select.new(values, url, html_class)
       end
