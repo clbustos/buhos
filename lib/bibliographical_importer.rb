@@ -128,5 +128,6 @@ end
 
 require_relative 'bibliographical_importer/bibtex'
 require_relative 'bibliographical_importer/json'
+require_relative 'bibliographical_importer/json_api_crossref'
 require_relative 'bibliographical_importer/csv'
 require_relative 'bibliographical_importer/pmc_efetch_xml'

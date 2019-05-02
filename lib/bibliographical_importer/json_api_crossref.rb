@@ -1,4 +1,4 @@
-# Copyright (c) 2016-2018, Claudio Bustos Navarrete
+# Copyright (c) 2016-2019, Claudio Bustos Navarrete
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -28,9 +28,8 @@
 
 #
 module BibliographicalImporter
-  # Based on Crossref JSON
-  # TODO: Create an unique id for this class, to allows use of other JSON formats
-  module JSON
+  # Based on Crossref JSON api.crossref.org/works
+  module JSONApiCrossref
     # Process references inside JSON
     class Reference
       def initialize(v)
@@ -70,26 +69,20 @@ module BibliographicalImporter
 
 
       def self.create(json)
-        #type=self.determine_type(bibtex_value)
-        #klass="Reference_#{type.capitalize}".to_sym
-        #BibliographicalImporter::JSON.const_get(klass).send(:new, bibtex_value)
-
-        BibliographicalImporter::JSON::Record.new(json)
+        BibliographicalImporter::JSONApiCrossref::Record.new(json)
       end
 
       def initialize(json_value)
         @jv=json_value
         @authors=[]
         parse_common
-
-
       end
       def parse_common
         begin
-          vh=@jv["message"]
-
-          @uid=vh["URL"]
-          @title=vh["title"].join(";")
+          vh=@jv
+          #$log.info(vh)
+          @uid=vh["DOI"]
+          @title=vh["title"].nil? ? I18n::t(:No_title) : vh["title"].join(";")
           #$log.info("Parseando")
           #$log.info(vh["author"])
           @authors=vh["author"].map {|v|
@@ -98,14 +91,16 @@ module BibliographicalImporter
 
 #          #$log.info(@authors)
 
-          @journal=vh["container-title"].join(";")
+
+          @journal=vh["container-title"].nil? ? I18n::t(:No_journal_title) : vh["container-title"].join(";")
+
           @year=vh["issued"]["date-parts"][0][0]
           @volume=vh["volume"]
           @pages=vh["page"]
           @type=vh["type"]
           @doi=vh["DOI"]
           @url=vh["URL"]
-          @references_crossref=@jv["message"]["reference"]
+          #@references_crossref=@jv["message"]["reference"]
 
         rescue Exception=>e
           #$log.info("Error:#{vh}")
@@ -114,11 +109,11 @@ module BibliographicalImporter
 
       end
 
-      def references
-        @references_crossref.map {|v|
-          Reference.new(v)
-        } unless @references_crossref.nil?
-      end
+      #def references
+      #  @references_crossref.map {|v|
+      #    Reference.new(v)
+      #  } unless @references_crossref.nil?
+      #end
 
 
       def author
@@ -162,8 +157,12 @@ module BibliographicalImporter
         b=::JSON.parse(string)
         Reader.new(b)
       end
+      def self.parse_json(json)
+        Reader.new(json)
+      end
+
       def parse_records
-        @records=@jb.map {|r| BibliographicalImporter::JSON::Record.create(r)}
+        @records=@jb["message"]["items"].map {|r| BibliographicalImporter::JSONApiCrossref::Record.create(r)}
       end
     end
   end

@@ -97,7 +97,6 @@ end
 
 # Class that query Crossref for a given text
 # and stores the result
-
 class CrossrefQuery < Sequel::Model
   extend Buhos::Helpers
   # Takes a text and returns a processed JSON
@@ -108,9 +107,9 @@ class CrossrefQuery < Sequel::Model
     require 'digest'
     digest=Digest::SHA256.hexdigest t
     cq=CrossrefQuery[digest]
-
     if !cq
-      url="https://search.crossref.org/dois?q=#{CGI.escape(t)}"
+      #url="https://search.crossref.org/dois?q=#{CGI.escape(t)}"
+      url="https://api.crossref.org/works/?query=#{CGI.escape(t)}"
       uri = URI(url)
       begin
         res = Net::HTTP.get_response(uri)

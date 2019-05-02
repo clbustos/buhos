@@ -89,7 +89,10 @@ get '/reference/:id/search_crossref' do |id|
     end
   end
 
-  @respuesta=@ref.crossref_query
+  @response_crossref=@ref.crossref_query
+  $log.info(@bib_int)
+#  $log.info(@response_crossref)
+
   haml "systematic_reviews/reference_search_crossref".to_sym
 
 end

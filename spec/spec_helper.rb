@@ -170,7 +170,7 @@ module RSpecMixin
     records_id=record_id.nil? ? nil : (record_id.is_a?(Array) ? record_id: [record_id] * texts.length)
     (0...texts.length).map do |i|
       reference=Reference.get_by_text_and_doi(texts[i],nil, true)
-      reference.update(canonical_document_id:cd_ids[i]) if cd_ids
+      reference.update(canonical_document_id:cd_ids[i]) if cd_ids and !cd_ids[i].nil?
       if records_id
         RecordsReferences.insert(reference_id: reference.id, record_id: records_id[i])
       end

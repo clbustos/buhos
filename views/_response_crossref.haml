@@ -1,12 +1,19 @@
 .list-group
-  - respuesta.each do |resp|
+  - message_type=response_crossref["message-type"]
+  - if message_type=='work'
+    - bib_int=BibliographicalImporter::JSON::Reader.parse_json(response_crossref)
+    - items=response_crossref["message"]
+  - else
+    - bib_int=BibliographicalImporter::JSONApiCrossref::Reader.parse_json(response_crossref)
+    - items=response_crossref["message"]["items"]
+  - items.each_index do |i|
+    - resp=items[i]
+    - bib_resp= bib_int[i]
     %div.list-group-item
-      %h4.list-group-item-heading=resp['title']
-      %span{:class=>'badge'}="#{resp['normalizedScore']} / #{resp['score'].round(2)}"
+      %h4.list-group-item-heading=bib_resp.title
+      %span{:class=>'badge'}="#{resp['score'].round(2)}"
       .list-group-item-text
-        =resp['fullCitation']
-        %strong
-          =a_doi(resp['doi'])
-        %a{:href=>"#{base_url}/#{CGI.escape(doi_without_http(resp['doi']).gsub('/','***'))}?volver_url=#{volver_url}"}
+        =bib_resp.ref_apa_6_brief_html
+        %a{:href=>"#{base_url}/#{CGI.escape(doi_without_http(bib_resp.doi).gsub('/','***'))}?volver_url=#{volver_url}"}
           %button{:class=>"btn btn-default btn-sm"}
             =t(:Assign_DOI)

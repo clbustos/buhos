@@ -11,10 +11,12 @@ describe 'Record' do
   context "#crossref_query result" do
     let(:crossref_query) {Record[1].crossref_query}
     it {
-      expect(crossref_query).to be_a(Array)
+      expect(crossref_query).to be_a(Hash)
+      expect(crossref_query["message"]["items"]).to be_a(Array)
+
     }
-    it "every element should have a doi" do
-      expect(crossref_query.all? {|v| v.keys.include?('doi')}).to be true
+    it "every element inside message, items should have a doi" do
+      expect(crossref_query["message"]["items"].all? {|v| v.keys.include?('DOI')}).to be true
     end
   end
 
