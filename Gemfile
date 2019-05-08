@@ -50,7 +50,6 @@ group :development do
   gem 'pry'
   gem 'mutant'
   gem 'mutant-rspec'
-#  gem 'ruby-prof'
 end
 
 group :test do
