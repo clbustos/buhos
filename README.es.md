@@ -227,6 +227,13 @@ Usamos [SemVer](http://semver.org/) para for identificar las versiones. Para ver
 * **Liz Medina** -  traducción al inglés de página de inicio y manual.
 * **Alejandro Díaz, Pedro Salcedo**: Desarrollo de requerimientos de usuarios.
 
+
+### Citación
+
+Si usted utiliza este software en su investigación, por favor cite el siguiente paper:
+
+Bustos, C., Morales, M.G., Salcedo, P., & Díaz, Alejandro (2018). Buhos: A web-based systematic literature review management software. SoftwareX, 7, 360-372. [https://doi.org/10.1016/j.softx.2018.10.004](https://doi.org/10.1016/j.softx.2018.10.004)  
+
 ## Licencia
 
 Este proyecto está licenciado para la Licencia BSD de 3 cláusulas - vea el archivo [LICENSE](LICENSE) para mayores detalles.

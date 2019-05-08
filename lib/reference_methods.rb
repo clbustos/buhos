@@ -57,9 +57,13 @@ module ReferenceMethods
       parts=x.split(",").map(&:strip)
       return "" if parts.length==0
       surname=parts[0]
-      names=parts[1].split(' ').map(&:strip)
-      initials=names.map{|v| "#{v[0]}."}.join("")
-      "#{surname}, #{initials}"
+      if parts[1].nil?
+        "#{surname}"
+      else
+        names=parts[1].split(' ').map(&:strip)
+        initials=names.map{|v| "#{v[0]}."}.join("")
+        "#{surname}, #{initials}"
+      end
     else # we assume names in order
       parts=x.split(' ').map(&:strip)
       if parts.length==1
@@ -73,6 +77,7 @@ module ReferenceMethods
   end
   def authors_apa_6
     return "--NA--" if author.nil?
+
     authors=author.split(" and ").map {|v| author_ref_apa_6(v)}
     return '--NA--' if authors.all? {|v| v==""}
     if authors.length>7

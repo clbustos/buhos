@@ -4,6 +4,12 @@ describe 'Stage administration using external data' do
   def pmid_ex
     28501917
   end
+  def reference_text_1
+    "Antaki C. (2002) Personalised revision of ‘failed’ questions. Discourse Studies 4(4), 411–428."
+  end
+  def reference_1
+    Reference.get_by_text(reference_text_1)
+  end
   def doi_ex
     "10.1007/s00204-017-1980-3"
   end
@@ -16,10 +22,10 @@ describe 'Stage administration using external data' do
     sr_for_report
     CanonicalDocument[1].update(:title=>"Using Framework Analysis in nursing research: a worked example.", :doi=>doi_ex, :pmid=>pmid_ex)
     Search[1].update(:valid=>true)
-    @reference_text="Antaki C. (2002) Personalised revision of ‘failed’ questions. Discourse Studies 4(4), 411–428."
-    @ref_id=Reference.calculate_id(@reference_text)
-    Reference.insert(:id=>@ref_id, :text=>@reference_text)
-    RecordsReferences.insert(record_id:1, reference_id:@ref_id)
+
+    create_references(texts: [reference_text_1],
+                      cd_id:[nil],
+                      record_id:1)
 
     unless ENV["NO_CROSSREF_MOCKUP"]
       $db[:crossref_dois].insert(:doi=>doi_ex,:json=>read_fixture("10.1007___s00204-017-1980-3.json"))
@@ -49,7 +55,8 @@ describe 'Stage administration using external data' do
   context "when /references/search_crossref_by_doi/:doi is used with a doi assigned to a ref" do
     before(:context) do
       pre_context
-      Reference[@ref_id].update(doi:doi_ref)
+      reference_1.update(doi:doi_ref)
+      CanonicalDocument.where(doi:doi_ref).delete
       get "/references/search_crossref_by_doi/#{doi_ref.gsub('/','***')}"
     end
     it "should redirect" do
@@ -70,14 +77,15 @@ describe 'Stage administration using external data' do
   context "when add_doi on a valid reference" do
     before(:context) do
       pre_context
-      Reference[@ref_id].add_doi(doi_ref)
+      CanonicalDocument.where(:doi=>doi_ref).delete
+      reference_1.add_doi(doi_ref)
     end
     let(:cd_assoc) {CanonicalDocument.where(:doi=>doi_ref).first}
     it "should create a canonical document with correct information" do
       expect(cd_assoc).to be_truthy
     end
     it "should link reference to canonical document with correct information" do
-      expect(Reference[@ref_id].canonical_document_id).to eq(cd_assoc.id)
+      expect(reference_1.canonical_document_id).to eq(cd_assoc.id)
     end
     after(:context) do
       after_context
@@ -103,10 +111,12 @@ describe 'Stage administration using external data' do
   context "when /reference/:id/search_crossref is called with a ref without doi" do
     before(:context) do
       pre_context
-      get "/reference/#{@ref_id}/search_crossref"
+      ref_id=reference_1.id
+      get "/reference/#{ref_id}/search_crossref"
     end
+
     it "should show a page including the name of reference" do
-      expect(last_response.body).to include @reference_text
+      expect(last_response.body).to include reference_text_1
     end
     after(:context) do
       after_context
@@ -116,15 +126,16 @@ describe 'Stage administration using external data' do
   context "when /reference/:id/search_crossref is called with a ref with a doi" do
     before(:context) do
       pre_context
-      Reference[@ref_id].update(doi:doi_ref)
-      get "/reference/#{@ref_id}/search_crossref"
+      CanonicalDocument.where(doi:doi_ref).delete
+      reference_1.update(doi:doi_ref)
+      get "/reference/#{reference_1.id}/search_crossref"
     end
 
     it "should redirect" do
       expect(last_response).to be_redirect
     end
     it "should create a canonical document with correct doi" do
-      expect(CanonicalDocument.where(doi:"10.1177/14614456020040040101").count).to eq(1)
+      expect(CanonicalDocument.where(doi:doi_ref).count).to eq(1)
     end
     after(:context) do
       after_context
@@ -170,15 +181,16 @@ describe 'Stage administration using external data' do
   context "when /canonical_document/:id/search_crossref_references used" do
     before(:context) do
       pre_context
-      Reference[@ref_id].update(:doi=>"10.1177/14614456020040040101")
+      CanonicalDocument.where(doi:doi_ref).delete
+      reference_1.update(doi:doi_ref, canonical_document_id:nil)
       get '/canonical_document/1/search_crossref_references'
     end
-    let(:cd_assoc) {CanonicalDocument.where(:doi=>"10.1177/14614456020040040101").first}
+    let(:cd_assoc) {CanonicalDocument.where(:doi=>doi_ref).first}
     it "should create a canonical document with correct information" do
       expect(cd_assoc).to be_truthy
     end
     it "should link reference to canonical document with correct information" do
-      expect(Reference[@ref_id].canonical_document_id).to eq(cd_assoc.id)
+      expect(reference_1.canonical_document_id).to eq(cd_assoc.id)
     end
     after(:context) do
       after_context

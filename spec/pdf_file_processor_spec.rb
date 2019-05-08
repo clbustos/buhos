@@ -17,6 +17,10 @@ describe 'PdfFileProcessor' do
     SystematicReview.insert(:id=>1,:name=>'Test Review', :group_id=>1, :sr_administrator=>1)
     Search.insert(id:1,systematic_review_id:1, bibliographic_database_id:1,search_type:'uploaded_files')
 
+    unless ENV["NO_CROSSREF_MOCKUP"]
+      $db[:crossref_queries].insert(:id=>'12336f68cbf9e2f21c2e1f30b582b4d8cfb6c98d2c384004384e8abe78dab24d',:json=>read_fixture('12336f68cbf9e2f21c2e1f30b582b4d8cfb6c98d2c384004384e8abe78dab24d.json'))
+    end
+
 
     login_admin
   end
@@ -25,6 +29,8 @@ describe 'PdfFileProcessor' do
     pfp_local=PdfFileProcessor.new(Search[2], get_file1, @dir_files)
     expect {pfp_local.process}.to raise_error(FileProcessor::NoUploadedFilesType)
   end
+
+
   context "when process is executed" do
     before(:context) do
       @pfp=PdfFileProcessor.new(Search[1], get_file1, @dir_files)

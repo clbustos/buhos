@@ -162,7 +162,6 @@ module BibliographicalImporter
         b=::JSON.parse(string)
         Reader.new(b)
       end
-
       def parse_records
         @records=@jb.map {|r| BibliographicalImporter::JSON::Record.create(r)}
       end

@@ -27,8 +27,9 @@ get '/record/:id/search_crossref' do |id|
 
   raise Buhos::NoRecordIdError, id if !@reg
 
-  @respuesta=@reg.crossref_query
-  # #$log.info(@respuesta)
+  @response_crossref=@reg.crossref_query
+
+  #$log.info(@respuesta)
   haml "systematic_reviews/record_search_crossref".to_sym
 end
 

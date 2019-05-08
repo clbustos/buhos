@@ -1,7 +1,7 @@
 language:
   ruby
 rvm:
-  - '2.5.3'	
+  - '2.6.0'
 cache: bundler
 script:
   bundle exec rake spec

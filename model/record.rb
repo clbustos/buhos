@@ -36,15 +36,18 @@ class Record < Sequel::Model
   def crossref_query
     CrossrefQuery.generate_query_from_text( ref_apa_6 )
   end
+
   # Asigna un doi automaticamente desde crossref
   # y verifica que el DOI del canónico calce
   def add_doi_automatic
     result=Result.new
     if self.doi.nil? or self.doi==""
       query=crossref_query
-      if query.length>0 and query[0]["score"]>100
-        result.add_result(add_doi(query[0]["doi"]))
-        result.success(I18n.t(:Assigned_DOI_to_record, record_id: self[:id], author: self[:author], title: self[:title], doi:query[0]["doi"] ))
+      items=query["message"]["items"]
+      $log.info(query)
+      if items.length>0 and items[0]["score"]>100
+        result.add_result(add_doi(items[0]["DOI"]))
+        result.success(I18n.t(:Assigned_DOI_to_record, record_id: self[:id], author: self[:author], title: self[:title], doi:items[0]["DOI"] ))
       else
         result.warning(I18n.t(:DOI_not_assigned_to_record, record_id: self[:id], author: self[:author], title: self[:title] ))
       end

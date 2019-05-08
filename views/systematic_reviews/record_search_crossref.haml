@@ -11,4 +11,4 @@
 
 %p.instructions=t(:Record_crossref_search_instructions)
 
-=partial(:response_crossref,:locals=>{:respuesta=>@respuesta,:base_url=>"/record/#{@reg.id}/assign_doi/", :volver_url=>"/record/#{@reg.id}"})
+=partial(:response_crossref,:locals=>{:response_crossref=>@response_crossref,:base_url=>"/record/#{@reg.id}/assign_doi/", :volver_url=>"/record/#{@reg.id}"})
