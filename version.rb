@@ -1,3 +1,3 @@
 module Buhos
-  VERSION="1.0.0-RC1"
+  VERSION="1.0.1"
 end
