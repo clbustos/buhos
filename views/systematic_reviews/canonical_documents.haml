@@ -112,6 +112,7 @@
               %span.glyphicon.glyphicon-trash
             %button.btn.btn-default{:id=>:action_merge, :class=>'canonical_document_action'}=t(:Merge)
             %button.btn.btn-default{:id=>:action_tags,  :class=>'canonical_document_action'}=t(:Tags)
+            %button.btn.btn-default{:id=>:action_bibtex,  :class=>'canonical_document_action'}=t(:Export_to_Bibtex)
         %td
           =t(:Records_from_to, first_record:@pager.current_first_record, last_record:@pager.current_last_record , total_records: @cds_total)
     - @cds.each do |cd|

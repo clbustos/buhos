@@ -209,6 +209,13 @@ post '/canonical_document/actions' do
     url_action+="&url_back="+params['url_back']
     url_action+="&user_id="+params['user_id']
     redirect(url(url_action))
+  elsif action=='bibtex'
+    @canonicos=CanonicalDocument.where(:id=>cd_ids).order(:author,:year)
+
+    bib=BibliographicalImporter::BibTex::Writer.generate(@canonicos)
+    headers["Content-Disposition"] = "attachment;filename=canonical_document_list.bib"
+    content_type 'text/x-bibtex'
+    return bib.to_s
   else
     return [500, I18n.t(:that_function_doesn_exists)]
   end
