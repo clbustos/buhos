@@ -46,7 +46,7 @@ require 'dotenv'
 require 'digest/sha1'
 
 
-
+require_relative("lib/buhos")
 Dir.glob("lib/*.rb").each do |f|
   require_relative(f)
 end
