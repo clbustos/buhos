@@ -127,7 +127,6 @@ class Record < Sequel::Model
   def add_doi(doi)
     status=Result.new
     crossref_doi=CrossrefDoi.process_doi(doi)
-
     unless crossref_doi
       status.error(I18n::t("record.cant_process_doi", doi:doi))
       return status

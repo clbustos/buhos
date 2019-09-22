@@ -42,13 +42,20 @@ class CrossrefDoi < Sequel::Model
   def self.process_doi(doi)
     require 'serrano'
     raise ArgumentError, 'DOI is nil' if doi.nil?
+
+    Serrano.configuration do |config|
+      config.base_url = "https://api.crossref.org"
+      config.mailto = ENV['CROSSREF_EMAIL']  if ENV['CROSSREF_EMAIL']
+    end
+
     co=CrossrefDoi[doi_without_http(doi)]
     if !co or co[:json].nil?
       begin
-        resultado=Serrano.works(ids: CGI.escape(doi))
+        resultado=Serrano.works(ids: doi)
       rescue Faraday::ConnectionFailed => e
         raise Buhos::NoCrossrefConnection.new(e.message)
       rescue Serrano::NotFound => e
+        #p e
         return false
       rescue URI::InvalidURIError
         #$log.info("Malformed URI: #{doi}")
