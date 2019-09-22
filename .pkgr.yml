@@ -1,5 +1,5 @@
 name: buhos
-build_dependencies:
+dependencies:
   - cloc 
   - gdal-bin
   - gdebi-core
@@ -12,3 +12,20 @@ build_dependencies:
   - build-essential 
   - libmysqlclient-dev 
   - libsqlite3-dev
+targets:
+  centos-6:
+  ubuntu-14.04:
+  ubuntu-16.04:
+  debian-10:
+    dependencies:
+      - cloc 
+      - gdal-bin
+      - gdebi-core
+      - git 
+      - libcurl4-openssl-dev 
+      - libgdal-dev 
+      - libproj-dev 
+      - libxml2-dev 
+      - libxml2-dev 
+      - build-essential 
+      - libmariadb-dev
