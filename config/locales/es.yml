@@ -431,6 +431,7 @@ es:
   Original: "Original"
   Outgoing_citations: "Citaciones realizadas por este documento"
   page_doesnt_exists: "No existe la página"
+  Pages: "Páginas"
   Password: "Contraseña"
   password:
     write_new_password: "Escriba la nueva password"
@@ -873,6 +874,7 @@ es:
   View_DOI_record: "Ver registro Crossref para DOI"
   View_Pubmed_record: "Ver registro PubMed  para PMID"
   View_technical_record: "Ver ficha técnica"
+  Volume: "Volumen"
   Welcome_comma: "Bienvenido,"
   Welcome_guest: "Bienvenido,&nbsp;visitante"
   With_Abstract: "Con resumen"

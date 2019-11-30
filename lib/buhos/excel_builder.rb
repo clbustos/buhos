@@ -70,17 +70,21 @@ module Buhos
         cds=@sr.canonical_documents.order(:title)
       end
       wb.add_worksheet(:name => I18n::t(get_stage_name(stage))) do |sheet|
-        sheet.add_row     [I18n::t(:Id), I18n::t(:Title), I18n::t(:Year), I18n::t(:Author), I18n::t(:Doi), I18n::t(:Abstract)], :style=> [@blue_cell]*6
+        sheet.add_row     [I18n::t(:Id), I18n::t(:Title), I18n::t(:Year), I18n::t(:Author), I18n::t(:Journal), I18n::t(:Volume), I18n::t(:Pages), I18n::t(:Doi), I18n::t(:Abstract)], :style=> [@blue_cell]*9
 
         cds.each do |cd|
           row_height=((1+cd.abstract.to_s.length)/80.0).ceil*14
-          sheet.add_row (([:id, :title, :year, :author, :doi].map {|v| cd[v].to_s.gsub(/\s+/,' ')})+[cd[:abstract]]), :style=>[nil,@wrap_text,nil,nil,nil,@wrap_text], :height=>row_height
+          sheet.add_row (([:id, :title, :year, :author, :journal, :volume, :pages,  :doi].map {|v| cd[v].to_s.gsub(/\s+/,' ')})+[cd[:abstract]]), :style=>[nil,@wrap_text,nil,nil,nil,nil,nil,nil,@wrap_text], :height=>row_height
         end
 
-        sheet.column_info[1].width = 40
-        sheet.column_info[3].width = 30
-        sheet.column_info[4].width = 20
-        sheet.column_info[5].width = 60
+        sheet.column_info[1].width = 30
+        sheet.column_info[2].width = 10
+        sheet.column_info[3].width = 20
+        sheet.column_info[4].width = 25
+        sheet.column_info[5].width = 10
+        sheet.column_info[6].width = 10
+        sheet.column_info[7].width = 15
+        sheet.column_info[8].width = 30
 
       end
     end
