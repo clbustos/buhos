@@ -15,7 +15,7 @@ Sequel.migration do
     end
 
     create_table(:scales_items) do
-      foreign_key :scale_id,                 :scales,                     :null=>false, :key=>[:id], :default=>nil
+      foreign_key :scale_id,                 :scales,                     :null=>false, :key=>[:id]
       Integer     :value,                                                 :null=>false
       String      :name,                                                  :null=>false
       primary_key [:scale_id, :value]
