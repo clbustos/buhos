@@ -281,6 +281,7 @@ en:
     basic_data_form: "Basic information"
     basic_data_form_instruction: "Enter the information needed for the database, proxy and access to Scopus. Remember that if you use <em>sqlite</em>, the database will be a unique file. If you have a  Scopus development password you may enter it; if your university or employer requires you to use a proxy configuration it will be used"
     cant_read_env_file: "Cannot read .env file. Please check documentation"
+    crossref_email: "Crossref e-mail"
     db_adapter: "Database adapter"
     db_database: "Database name."
     db_filename: "Database file name"

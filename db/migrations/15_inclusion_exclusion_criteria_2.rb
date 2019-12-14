@@ -1,7 +1,7 @@
 Sequel.migration do
   up do
     alter_table(:cd_criteria) do
-      add_column :presence, :String
+      add_column :presence, String
     end
     from(:cd_criteria).where(selected:'0').update(presence:'present')
     from(:cd_criteria).where(selected:'1').update(presence:'absent')
@@ -12,7 +12,7 @@ Sequel.migration do
 
   down do
     alter_table(:cd_criteria) do
-      add_column :selected, :String
+      add_column :selected, String
     end
     from(:cd_criteria).where(presence:'present').update(selected:'1')
     from(:cd_criteria).where(presence:'absent' ).update(selected:'0')
