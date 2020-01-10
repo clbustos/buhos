@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 gem 'rake'
-gem "rubyzip",  ">= 1.2.1"
+gem "rubyzip",  ">= 1.3.0"
 gem 'zip-zip'
 gem "sinatra",  '>=2.0.1'
 gem "sequel"
