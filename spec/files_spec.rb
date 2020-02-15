@@ -166,7 +166,7 @@ describe 'Files:' do
   end
 
   # Works, but is very slow
-  context "when user retrieves a page from a pdf as image, response" do
+  context "when user retrieves a page from a pdf coverted as a image, response" do
     let(:gs_available) {check_executable_on_path('gs')}
     before(:context) do
       prepare_context
@@ -174,7 +174,7 @@ describe 'Files:' do
       #p last_response.body
     end
     let(:can_create_images) {can_im_create_images_from_pdf?}
-    it "should return an appropiate response (ok, not ok)" do
+    it "should return an appropiate response, according to capacity to create images " do
       skip if check_gs
       if can_create_images
         expect(last_response).to be_ok , "expected to be ok if authorized, was not ok"

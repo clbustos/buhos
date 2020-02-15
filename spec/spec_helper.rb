@@ -106,7 +106,6 @@ module RSpecMixin
     result=true
     begin
       tf=Tempfile.new
-
       pdf   = Grim.reap(fixture_path('empty_pdf.pdf'))
       pdf[0].save(tf.path,{
       :density=>100})
