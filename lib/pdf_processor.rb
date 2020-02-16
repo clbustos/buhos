@@ -115,7 +115,7 @@ class PdfProcessor
   end
 
   def title
-    reader.info[:Title]
+    !reader.info.nil? ? reader.info[:Title] : "--No title--"
   end
 
   def author
@@ -125,11 +125,12 @@ class PdfProcessor
   def get_doi
     doi = nil
     info = reader.info
-    #$log.info(info)
-    if info[:doi]
-      doi = info[:doi]
-    elsif info[:Subject]
-      doi = find_doi(protect_encoding(info[:Subject]))
+    unless info.nil?
+      if info[:doi]
+        doi = info[:doi]
+      elsif info[:Subject]
+        doi = find_doi(protect_encoding(info[:Subject]))
+      end
     end
 
     if doi.nil?

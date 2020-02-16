@@ -234,6 +234,8 @@ module BibliographicalImporter
             parts[1]=parts[1].gsub(/[^0-9a-zA-Z,]/,"").strip
             #p parts
             parts.join("{")
+          elsif line=~/^s*Early Access Date\s*=/
+            line.gsub("Early Access Date","Early_Access_Date")
           else
             line
           end
