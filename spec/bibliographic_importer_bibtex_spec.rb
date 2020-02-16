@@ -8,6 +8,10 @@ describe 'BibliographicalImporter::BibTeX' do
   context "using WoS BibTeX" do
     before(:context) do
       @bib=BibliographicalImporter::BibTex::Reader.parse( read_fixture("wos.bib") )
+
+    end
+    it "should be a  Record_Wos" do
+      expect(@bib.records[0]).to be_instance_of(BibliographicalImporter::BibTex::Record_Wos)
     end
     it "should retrieve 1 articles" do
       expect(@bib.records.length).to eq(1)
@@ -30,7 +34,7 @@ describe 'BibliographicalImporter::BibTeX' do
 
   context "using Scopus BibTeX" do
     before(:context) do
-      @bib=BibliographicalImporter::BibTex::Reader.parse(File.read("#{$base}/spec/fixtures/scopus.bib"))
+      @bib=BibliographicalImporter::BibTex::Reader.parse(read_fixture("scopus.bib"))
     end
     it "should retrieve 1 articles" do
       expect(@bib.records.length).to eq(1)
@@ -47,6 +51,48 @@ describe 'BibliographicalImporter::BibTeX' do
       expect(@bib[0].references_scopus.count).to eq(358)
     end
   end
+
+  context "when a broken Scopus BibTeX is used" do
+    def text
+      read_fixture("scopus_wrong.bib")
+    end
+    before(:context) do
+      @bib=BibliographicalImporter::BibTex::Reader.parse(text)
+
+    end
+    it "should retrieve 11 articles" do
+      expect(@bib.records.length).to eq(11)
+    end
+    it "no title should be excluded" do
+      titulos=text.each_line.inject([]) {|ac,v|
+        if v=~/^title=\{(.+?)\}/
+          ac.push($1)
+        end
+        ac
+      }
+      h=@bib.records.find_all do |record|
+        !record.title.nil?
+      end
+
+      expect((titulos-h.map {|v| v.title})).to eq([])
+    end
+    it "no author should be excluded" do
+      author=text.each_line.inject([]) {|ac,v|
+        if v=~/^author=\{(.+?)\}/
+          ac.push($1)
+        end
+        ac
+      }
+      h=@bib.records.find_all do |record|
+        !record.author.nil?
+      end
+
+      expect((author-h.map {|v| v.author})).to eq([])
+    end
+end
+
+
+
 
   context "using auto-generated BibTeX" do
     before(:context) do

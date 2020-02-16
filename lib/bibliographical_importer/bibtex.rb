@@ -135,8 +135,7 @@ module BibliographicalImporter
       end
 
       def parse_specific
-
-        @references_wos= quitar_llaves(@bv["cited-references"].to_s).split(".\n   ") unless @bv['cited-references'].nil?
+        @references_wos= quitar_llaves(@bv["cited-references"].to_s).split(".\n").map {|v| v.strip} unless @bv['cited-references'].nil?
         @journal_abbr=quitar_llaves(@bv["journal-iso"].to_s)
         @keywords_plus=quitar_llaves(strip_lines(@bv["keywords-plus"].to_s)).split("; ")
         @keywords=quitar_llaves(strip_lines(@bv[:keywords])).split("; ")
@@ -221,7 +220,8 @@ module BibliographicalImporter
       end
 
       def self.open(filename)
-        b=BibTeX.open(filename, :strip => false)
+        tc=fix_string(File.read(filename))
+        b=BibTeX.parse(tc, :strip => false)
         Reader.new(b)
       end
       # @deprecated for bibtex-ruby>=4.4.5
@@ -230,7 +230,10 @@ module BibliographicalImporter
       def self.fix_string(string)
         string.each_line.map { |line|
           if line=~/^\s*\@.+\{(.+),$/
-            line.gsub("'","")
+            parts=line.split("{")
+            parts[1]=parts[1].gsub(/[^0-9a-zA-Z,]/,"").strip
+            #p parts
+            parts.join("{")
           else
             line
           end
@@ -243,9 +246,9 @@ module BibliographicalImporter
       def self.parse(string, bib_db=nil)
         @bib_db=bib_db
         # Scopus generates bibtex with quotes on names. That brokes Bibtex package
-        #string_fixed=fix_string(string)
+        string_fixed=fix_string(string)
 
-        b=BibTeX.parse(string, :strip => false)
+        b=BibTeX.parse(string_fixed, :strip => false)
         Reader.new(b)
 
       end

@@ -16,6 +16,7 @@ describe 'BibliographicFileProcessor' do
   def manual_bibtex
     File.read(File.dirname(__FILE__)+"/../docs/guide_resources/manual.bib")
   end
+
   def minimal_bibtex
     dois=["10.1145/2372233.2372243", "10.1186/s13643-016-0263-z", "10.1186/1472-6947-10-56", "10.1186/s13643-017-0421-y", "10.1186/1471-2105-9-205", "10.1136/bmj.38636.593461.68"]
     dois.map{|v| "@article{a#{v.gsub(/[\/\.-]/,'')},\ntitle={{#{v}}},\ndoi = {#{v}}\n}" }.join("\n")
@@ -104,6 +105,7 @@ describe 'BibliographicFileProcessor' do
   end
 
 
+
   context "when a basic BibTeX is used" do
     before(:context) do
       Search[1].update(:file_body=>minimal_bibtex, :filename=>'manual.bib', :filetype => 'text/x-bibtex')
@@ -138,8 +140,9 @@ describe 'BibliographicFileProcessor' do
       expect(w_author.count).to eq(0)
     end
     after do
-      $db[:bib_references].delete
       $db[:records_references].delete
+
+      $db[:bib_references].delete
       $db[:records_searches].delete
       $db[:records].delete
       $db[:canonical_documents].delete
@@ -180,6 +183,34 @@ describe 'BibliographicFileProcessor' do
     end
   end
 
+  context "when erroneous Scopus BibTeX is used" do
+    before do
+      Search[1].update(:file_body=>read_fixture("scopus_wrong.bib"), :filename=>'manual.bib', :filetype => 'text/x-bibtex')
+      @bpf=BibliographicFileProcessor.new(Search[1])
+
+    end
+    it "should #error be true" do
+      expect(@bpf.error).to be_falsey
+    end
+    it "should maintain 11 records" do
+      expect(Record.count).to eq(11)
+    end
+
+    it "should maintain 11 canonical documents" do
+      expect(CanonicalDocument.count).to eq(11)
+    end
+
+    after do
+      $db[:records_references].delete
+      $db[:bib_references].delete
+
+      $db[:records_searches].delete
+      $db[:records].delete
+      $db[:canonical_documents].delete
+    end
+
+  end
+
   context "when erroneous BibTeX is used" do
     before do
       Search[1].update(:file_body=>minimal_bibtex.gsub(",",""), :filename=>'manual.bib', :filetype => 'text/x-bibtex')
@@ -207,8 +238,9 @@ describe 'BibliographicFileProcessor' do
     end
 
     after do
-      $db[:bib_references].delete
       $db[:records_references].delete
+      $db[:bib_references].delete
+
       $db[:records_searches].delete
       $db[:records].delete
       $db[:canonical_documents].delete
