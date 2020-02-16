@@ -87,7 +87,6 @@ class BibliographicFileProcessor
       ref_ids = []
       ref_i = 0
       integrator.each do |reference|
-
         ref_i += 1
         if reference.nil?
           @result.error(::I18n::t('bibliographic_file_processor.error_on_reference', i: ref_i))

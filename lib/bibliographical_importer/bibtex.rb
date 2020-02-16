@@ -239,11 +239,11 @@ module BibliographicalImporter
         scielo_mode= string.include? "publisher = {scielo}"
 
         string.each_line.map { |line|
-
-          if line=~/^\s*\@.+\{(.+),$/
+          #puts line
+          if line=~/^\s*\@.+\{(.+),\s*$/
+            #puts "\n***Es intro***\n"
             parts=line.split("{")
             parts[1]=parts[1].gsub(/[^0-9a-zA-Z,]/,"").strip
-
             #p parts
             parts.join("{")
           elsif line=~/^s*Early Access Date\s*=/
@@ -266,6 +266,7 @@ module BibliographicalImporter
       # @param bib_db [String] NOT USED
       # @return BibTex::Reader
       def self.parse(string, bib_db=nil)
+
         @bib_db=bib_db
         # Scopus generates bibtex with quotes on names. That brokes Bibtex package
         string_fixed=fix_string(string)

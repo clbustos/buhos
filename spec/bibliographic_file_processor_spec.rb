@@ -245,8 +245,9 @@ describe 'BibliographicFileProcessor' do
       $db[:records].delete
       $db[:canonical_documents].delete
     end
-
   end
+
+
 
   context "when a real BibTeX with references is used" do
     before do
@@ -273,6 +274,53 @@ describe 'BibliographicFileProcessor' do
 
     after do
       $db[:records_references].delete
+      $db[:bib_references].delete
+      $db[:records_references].delete
+      $db[:records_searches].delete
+      $db[:records].delete
+      $db[:canonical_documents].delete
+    end
+  end
+
+
+  context "when a real Scielo BibTeX is used" do
+    def bibtex_text
+      read_fixture("scielo.bib")
+    end
+    before(:context) do
+      Search[1].update(:file_body=>bibtex_text, :filename=>'manual.bib', :filetype => 'text/x-bibtex')
+    end
+    before do
+      @bpf=BibliographicFileProcessor.new(Search[1])
+    end
+    it "should error be false" do
+      expect(@bpf.error).to be_falsey
+    end
+
+
+    it "should create 13 records" do
+      expect(Record.count).to eq(13)
+    end
+
+    it "should create 13 canonical documents" do
+      expect(CanonicalDocument.count).to eq(13)
+    end
+    it "should all canonical documents have correct titles" do
+      bt=read_fixture("scielo.bib")
+      titles=bt.each_line.inject([]) {|ac,v|
+        if v=~/title\s*=\s*\{\{(.+)\}\}/
+          ac.push($1)
+        end
+        ac
+      }
+
+      titles_recorded=Record.all.map {|v| v[:title]}
+      expect(titles-titles_recorded).to eq([])
+    end
+    it "should #canonical_document_processed be true" do
+      expect(@bpf.canonical_document_processed).to be true
+    end
+    after do
       $db[:bib_references].delete
       $db[:records_references].delete
       $db[:records_searches].delete
