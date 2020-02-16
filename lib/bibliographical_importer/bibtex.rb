@@ -59,7 +59,7 @@ module BibliographicalImporter
           type=:wos
         elsif bibtex_value[:url].to_s=~/search\.ebscohost.com/
           type=:ebscohost
-        elsif bibtex_value[:url].to_s=~/scielo/
+        elsif bibtex_value[:url].to_s=~/scielo/ or bibtex_value[:publisher]=~/scielo/
           type=:scielo
         else
           type=:generic
@@ -74,6 +74,7 @@ module BibliographicalImporter
         parse_common
         parse_specific
         check_title
+        check_journal
       end
 
       def parse_common
@@ -100,6 +101,13 @@ module BibliographicalImporter
         if title=~/^{(.+)}+/
           @title=$1
         end
+      end
+      # Scielo adds extra {} on journal titles
+      def check_journal
+        if journal=~/^{(.+)}+/
+          @journal=$1
+        end
+
       end
 
     end
@@ -171,7 +179,6 @@ module BibliographicalImporter
     class Record_Ebscohost < Record
       def parse_specific
         @keywords=@bv[:keywords].split(", ")
-
         results=/(db=.+)/.match(@bv[:url])
         @uid=results[0]
       end
@@ -224,18 +231,31 @@ module BibliographicalImporter
         b=BibTeX.parse(tc, :strip => false)
         Reader.new(b)
       end
-      # @deprecated for bibtex-ruby>=4.4.5
-      # If ID for a bibtex contains a single quote, class just fail
-      # This method just delete the quote, until Bibtex class fix it
+
+      # BibTex doesn't have a standard reference, so any real provider
+      # generates BibTex that brokes bibtex library
+      #
       def self.fix_string(string)
+        scielo_mode= string.include? "publisher = {scielo}"
+
         string.each_line.map { |line|
+
           if line=~/^\s*\@.+\{(.+),$/
             parts=line.split("{")
             parts[1]=parts[1].gsub(/[^0-9a-zA-Z,]/,"").strip
+
             #p parts
             parts.join("{")
           elsif line=~/^s*Early Access Date\s*=/
             line.gsub("Early Access Date","Early_Access_Date")
+          elsif scielo_mode and line=~/^\s*author\s*=\s*\{(.+)\}/ # Sorry for this code :(
+            parts=$1.split(",")
+            #p parts
+            authors=(0...(parts.length/2)).map {|v|
+              "#{parts[v*2].strip}, #{parts[v*2+1].strip}"
+            }.join(" and ")
+            out=line.gsub(/^(\s*author\s*=\s*\{)(.+)(\}.*)$/) {|v| "#{$1}#{authors}#{$3}"}
+            out
           else
             line
           end

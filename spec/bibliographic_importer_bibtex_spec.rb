@@ -52,6 +52,31 @@ describe 'BibliographicalImporter::BibTeX' do
     end
   end
 
+  context "using Scielo BibTeX" do
+    before(:context) do
+      @bib=BibliographicalImporter::BibTex::Reader.parse(read_fixture("scielo.bib"))
+    end
+    it "first record should be a Scielo Record" do
+      expect(@bib[0]).to be_instance_of(BibliographicalImporter::BibTex::Record_Scielo)
+    end
+    it "should retrieve 13 articles" do
+      expect(@bib.records.length).to eq(13)
+    end
+    it "author should include Oliveira and Viviani" do
+      %w{Oliveira Viviani}.each do |author|
+        expect(@bib[0].author).to include author
+      end
+    end
+    it "title should be 'Entre a fralda e a lousa: A questão das identidades docentes em berçários'" do
+      expect(@bib[0].title).to eq("Entre a fralda e a lousa: A questão das identidades docentes em berçários")
+    end
+    it "journal should be 'Revista Portuguesa de Educação'" do
+      expect(@bib[0].journal).to eq("Revista Portuguesa de Educação")
+    end
+
+  end
+
+
   context "when a broken Scopus BibTeX is used" do
     def text
       read_fixture("scopus_wrong.bib")
