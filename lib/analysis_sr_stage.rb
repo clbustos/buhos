@@ -67,7 +67,7 @@ class Analysis_SR_Stage
   # Check what Canonical documents aren't assigned yet
   def cd_without_allocations
     cds=@sr.cd_id_by_stage(@stage)
-    assignations=AllocationCd.where(:systematic_review_id=>@sr.id, :stage=>@stage.to_s).group(:canonical_document_id).map(:canonical_document_id)
+    assignations=AllocationCd.where(:systematic_review_id=>@sr.id, :stage=>@stage.to_s).group(:canonical_document_id, :user_id).map(:canonical_document_id).uniq
     CanonicalDocument.where(:id=>cds-assignations)
   end
 
