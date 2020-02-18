@@ -165,9 +165,6 @@ GEM
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
     rake (13.0.1)
-    rb-fsevent (0.10.3)
-    rb-inotify (0.10.1)
-      ffi (~> 1.0)
     rspec (3.9.0)
       rspec-core (~> 3.9.0)
       rspec-expectations (~> 3.9.0)
@@ -187,11 +184,10 @@ GEM
       io-like (~> 0.3)
     ruby2_keywords (0.0.2)
     rubyzip (1.3.0)
-    sass (3.7.4)
-      sass-listen (~> 4.0.0)
-    sass-listen (4.0.0)
-      rb-fsevent (~> 0.9, >= 0.9.4)
-      rb-inotify (~> 0.9, >= 0.9.7)
+    sassc (2.2.1)
+      ffi (~> 1.9)
+    sassc (2.2.1-x86-mingw32)
+      ffi (~> 1.9)
     sequel (5.29.0)
     serrano (0.5.4)
       faraday (>= 0.15, < 0.18)
@@ -275,7 +271,7 @@ DEPENDENCIES
   rspec
   ruby-stemmer!
   rubyzip (>= 1.3.0)
-  sass
+  sassc
   sequel
   serrano
   simplecov

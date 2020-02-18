@@ -85,7 +85,7 @@ module AnalysisSrStageMixin
 
   end
 
-# Señala cuales son los jueces (personas de deben evaluar) y cuantos juicios tienen
+  # Who are the judges and how many decisions they take
   def user_decisions(stage)
     @rs.group_users.inject({}) {|ac, usuario|
       ac[usuario.id] = {usuario: usuario, adu: AnalysisUserDecision.new(@rs.id, usuario.id, stage)}
@@ -129,8 +129,5 @@ module AnalysisSrStageMixin
   def stage_complete?(stage)
     get_asrs(stage).stage_complete?
   end
-
-
-
 
 end

@@ -4,7 +4,9 @@
 :javascript
   $(document).ready(function() {
     actualizar_resolution('#{@stage}');
+    $('[data-toggle="popover"]').popover()
     }
+
   );
 
 
@@ -141,5 +143,9 @@
             = (@ars.cd_hash[cd_id]) ? @ars.cd_hash[cd_id].title : t("error.no_valid_cd_for_this_systematic_review", cd_id:cd_id)
             =partial(:canonical_document_button, :locals=>{id:cd_id})
           - Decision::N_EST.each do |dec,name|
-            %td{:class=>"decision decision-#{dec}"}= vals[dec].to_i
+            %td{:class=>"decision decision-#{dec}"}
+              - if vals[dec].to_i>0
+                %button.btn.btn-default{type:'button', "data-toggle":'popover', title:t(:Users), 'data-content':@text_decision_cd.text_decision_cd(cd_id, dec)}= vals[dec].to_i
+              - else
+                0
           %td=partial(:buttons_resolution, :locals=>{:rpc=>rpc, :cd_id=>cd_id, :stage=>@stage, :user_id=>@user_id, :review=>@review})

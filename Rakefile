@@ -84,6 +84,15 @@ task :build_deb do |t|
 
 end
 
+desc "Update css using sass"
+task :update_css => "public/stylesheets/main.css"
+file "public/stylesheets/main.css" => ["public/stylesheets/sass/main.scss"] do |t|
+  require 'sassc'
+  css=SassC::Engine.new(File.read("public/stylesheets/sass/main.scss"), style: :compressed).render
+  File.open("public/stylesheets/main.css","w") {|fp| fp.write(css) }
+end
+
+
 namespace :db do
   desc "Run migrations"
   task :migrate, [:version] do |t, args|
@@ -107,7 +116,6 @@ namespace :db do
       Buhos::SchemaCreation.create_bootstrap_data(db)
     end
   end
-
 
 
 

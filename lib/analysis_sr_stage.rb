@@ -97,6 +97,7 @@ class Analysis_SR_Stage
   def cd_accepted_id
     resolutions_by_cd.find_all {|v| v[1]=='yes'}.map {|v| v[0]}
   end
+  # Number of decisions by cd
   def decisions_by_cd
     cds=@sr.cd_id_by_stage(@stage)
 
@@ -112,10 +113,8 @@ class Analysis_SR_Stage
     }
   end
 
+
   def cd_without_abstract
     CanonicalDocument.where(id:@sr.cd_id_by_stage(@stage)).where(Sequel.lit("abstract IS NULL OR abstract=''"))
   end
-
-
-
 end

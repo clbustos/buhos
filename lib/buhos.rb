@@ -12,6 +12,7 @@ require_relative 'buhos/analysis_searches'
 require_relative 'buhos/analysis_tags'
 require_relative 'buhos/analysis_inc_exc_criteria'
 require_relative 'buhos/analysis_quality_criteria'
+require_relative 'buhos/analysis_cd_decisions'
 
 require_relative 'buhos/search_parser'
 require_relative 'buhos/controller_review'

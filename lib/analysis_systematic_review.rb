@@ -172,7 +172,7 @@ class AnalysisSystematicReview
   end
 
   def cd_included_in_stage? (cd_id, stage)
-    $log.info(@cd_included_by_stage)
+    #$log.info(@cd_included_by_stage)
     @cd_included_by_stage[stage.to_sym].include? cd_id
   end
 

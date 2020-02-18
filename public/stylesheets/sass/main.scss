@@ -316,15 +316,17 @@ td.decision {
    width:5em;
 }
 
-.decision-yes {
+
+
+.decision-yes, .decision-yes > button.btn-default {
     color:darkgreen;
 }
-.decision-no {
-    color:darkred;
+.decision-no, .decision-no > button.btn-default {
+  color:darkred;
 }
 
-.decision-undecided {
-    color:sandybrown;
+.decision-undecided,  .decision-undecided > button.btn-default {
+  color:sandybrown;
 }
 
 
@@ -341,10 +343,8 @@ ul.tags {
     background-color: #fff;
     border: 1px solid #aaa;
     border-radius: 3px;
-
     text-overflow: ellipsis;
-    #overflow: hidden;
-
+    /*overflow: hidden;*/
     font-size: 11px;
     -webkit-transition: .2s;
     transition: .2s;
@@ -430,7 +430,7 @@ ul.asignaciones {
     border-radius: 3px;
 
     text-overflow: ellipsis;
-    #overflow: hidden;
+    /*overflow: hidden;*/
 
     font-size: 12px;
     -webkit-transition: .2s;

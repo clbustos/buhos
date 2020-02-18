@@ -28,7 +28,7 @@ gem "i18n"
 gem "sqlite3"
 gem 'mimemagic'
 gem "certified", :platforms => :mingw
-gem "sass"
+
 gem 'axlsx' , ">=2.0.0"
 gem 'tf-idf-similarity'
 
@@ -50,6 +50,7 @@ group :development do
   gem 'pry'
   gem 'mutant'
   gem 'mutant-rspec'
+  gem "sassc"
 end
 
 group :test do
