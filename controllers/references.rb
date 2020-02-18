@@ -57,17 +57,43 @@ end
 
 # Query crossref using reference DOI
 # @todo check differences with {/reference/:id/search_crossref}
-get '/references/search_crossref_by_doi/:doi' do |doi|
-  halt_unless_auth('reference_edit')
-  doi=doi.gsub("***", "/")
-  result=Result.new
-  Reference.where(:doi => doi).each do |ref|
-    result.add_result(ref.add_doi(doi))
-  end
+# @deprecated
+#get '/references/search_crossref_by_doi/:doi' do |doi|
+#  halt_unless_auth('reference_edit')
+#  doi=doi.gsub("***", "/")
+#  result=Result.new
+#  Reference.where(:doi => doi).each do |ref|
+#    result.add_result(ref.add_doi(doi))
+#  end
+#
+#  add_result(result)
+#  redirect back
+#end
 
+# Query one or more references on Crossref using their DOIs
+#
+
+post '/references/search_crossref_by_doi' do
+  halt_unless_auth('reference_edit')
+  dois=params['doi']
+  result=Result.new
+  #$log.info("Procesando :#{dois}")
+
+  if !dois
+    result.error(I18n::t(:one_or_more_DOI_needed))
+  else
+    dois.each do |doi|
+      #$log.info("Buscando:#{doi}")
+      Reference.where(:doi=>doi).each do |ref|
+        result.add_result(ref.add_doi(doi))
+        #$log.info(result)
+      end
+    end
+  end
   add_result(result)
   redirect back
 end
+
 
 # Query crossref for a specific references
 # @todo check differences with {'/references/search_crossref_by_doi/:doi}

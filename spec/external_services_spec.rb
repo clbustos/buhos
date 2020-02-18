@@ -7,8 +7,17 @@ describe 'Stage administration using external data' do
   def reference_text_1
     "Antaki C. (2002) Personalised revision of ‘failed’ questions. Discourse Studies 4(4), 411–428."
   end
+  def reference_text_2
+    "Bustos, Morales, Salcedo & Díaz (2018). Buhos: A web-based systematic literature review management software"
+  end
+  def doi_ref_2
+    "10.1016/j.softx.2018.10.004"
+  end
   def reference_1
     Reference.get_by_text(reference_text_1)
+  end
+  def reference_2
+    Reference.get_by_text(reference_text_2)
   end
   def doi_ex
     "10.1007/s00204-017-1980-3"
@@ -23,13 +32,15 @@ describe 'Stage administration using external data' do
     CanonicalDocument[1].update(:title=>"Using Framework Analysis in nursing research: a worked example.", :doi=>doi_ex, :pmid=>pmid_ex)
     Search[1].update(:valid=>true)
 
-    create_references(texts: [reference_text_1],
-                      cd_id:[nil],
+    create_references(texts: [reference_text_1, reference_text_2],
+                      cd_id:[nil,nil],
                       record_id:1)
 
     unless ENV["NO_CROSSREF_MOCKUP"]
       $db[:crossref_dois].insert(:doi=>doi_ex,:json=>read_fixture("10.1007___s00204-017-1980-3.json"))
       $db[:crossref_dois].insert(:doi=>doi_ref,:json=>read_fixture("10.1177___14614456020040040101.json"))
+      $db[:crossref_dois].insert(:doi=>doi_ref_2, :json=>read_fixture("10.1016___j.softx.2018.10.004.json"))
+
 
       $db[:crossref_queries].insert(:id=>'32e989d317ea4172766cc80e484dceaebd67dd7a962a15891ad0bd1eef6428af',:json=>read_fixture('32e989d317ea4172766cc80e484dceaebd67dd7a962a15891ad0bd1eef6428af.json'))
       $db[:crossref_queries].insert(:id=>'b853d71e3273321a0423a6b4b4ebefb313bfdef4c3d133f219c1e8cb0ef35398',:json=>read_fixture('b853d71e3273321a0423a6b4b4ebefb313bfdef4c3d133f219c1e8cb0ef35398.json'))
@@ -52,19 +63,21 @@ describe 'Stage administration using external data' do
     login_admin
   end
 
-  context "when /references/search_crossref_by_doi/:doi is used with a doi assigned to a ref" do
+  context "when /references/search_crossref_by_doi is used with a couple of dois assigned" do
     before(:context) do
       pre_context
       reference_1.update(doi:doi_ref)
-      CanonicalDocument.where(doi:doi_ref).delete
-      get "/references/search_crossref_by_doi/#{doi_ref.gsub('/','***')}"
+      reference_2.update(doi:doi_ref_2)
+      CanonicalDocument.where(doi:[doi_ref,doi_ref_2]).delete
+      post "/references/search_crossref_by_doi", doi:  [doi_ref, doi_ref_2]
     end
     it "should redirect" do
-      p last_response.body
+      #p last_response.body
       expect(last_response).to be_redirect
     end
     it "should create a canonical document with correct doi" do
       expect(CanonicalDocument.where(doi:doi_ref).count).to eq(1)
+      expect(CanonicalDocument.where(doi:doi_ref_2).count).to eq(1)
     end
 
 

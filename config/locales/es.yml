@@ -423,6 +423,7 @@ es:
   Obtain_information_from_Crossref: "Obtener información desde Crossref"
   Obtain_information_from_Pubmed: "Obtener información desde Pubmed"
   On_class: "En clase"
+  One_or_more_DOI_needed: "Se necesita uno o más DOIs"
   Only_active: "Solo activo"
   Only_text:  "Solo texto"
   only_actives_systematic_reviews: "solo activas"

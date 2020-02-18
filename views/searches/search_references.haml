@@ -49,19 +49,23 @@
 
 %h4=t(:More_cited_references_without_canonical_with_DOI)
 
+%form{:method=>:post, :action=>url("/references/search_crossref_by_doi")}
+  .btn-toolbar
+    .btn-group.btn-group-sm{:role=>:group}
+      %button.btn.btn-default.btn-action{"data-action"=>:search_on_crossref}
+        %span.glyphicon.glyphicon-search
+        =t(:Search_on_crossref)
 
-.list-group
-- @rmc_sin_canonico_con_doi.each do |ref|
-  %div.list-group-item
-    -#$log.info(ref)
-    %span{:class=>"badge"}=ref[:n]
-    .list-group-item-text
-      =ref[:text]
-      %a{:href=>url("/references/search_crossref_by_doi/#{CGI.escape(ref[:doi].gsub("/","***"))}")}
-        %button{:class=>"btn btn-default btn-sm"}
-          %span{:class=>"glyphicon glyphicon-search"}
-          =t(:Search_on_crossref)
-      %div{:id=>"buscar_similar-#{ref[:id]}-campo"}
+  %input{:type=>"hidden", :name=>"search_id",:value=>@search.id}
+  .list-group
+    - @rmc_sin_canonico_con_doi.each do |ref|
+      %div.list-group-item
+        -#$log.info(ref)
+        %span{:class=>"badge"}=ref[:n]
+        .list-group-item-text
+          %input{type:'checkbox', name:'doi[]', value:ref[:doi]}
+          =ref[:text]
+          %div{:id=>"buscar_similar-#{ref[:id]}-campo"}
 
 %p
 

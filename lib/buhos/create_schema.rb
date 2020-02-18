@@ -27,6 +27,7 @@
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 
+
 #
 module Buhos
   # Module to create a blank, but usable schema for Buhos
@@ -383,12 +384,12 @@ module Buhos
           2=>{-99=>'not_applicable', -98=>'cant_say', 0=>'No', 1=>'Partial', 2=>'Complete'}
       }
 
-        db[:scales].replace(:id=>1, :name=>I18n::t("scales.dichomotic"), :description=>I18n::t('scales.dichotomic_description'))
-        db[:scales].replace(:id=>2, :name=>I18n::t("scales.three_values"), :description=>I18n::t('scales.three_values_description'))
+        db[:scales].replace(:id=>1, :name=>::I18n::t("scales.dichomotic"), :description=>::I18n::t('scales.dichotomic_description'))
+        db[:scales].replace(:id=>2, :name=>::I18n::t("scales.three_values"), :description=>::I18n::t('scales.three_values_description'))
 
       scales.each_pair do |scale_id, values|
         values.each_pair do |value, name|
-          db[:scales_items].replace(scale_id:scale_id, value:value, name:I18n::t("scales.#{name}"))
+          db[:scales_items].replace(scale_id:scale_id, value:value, name: ::I18n::t("scales.#{name}"))
         end
       end
     end
