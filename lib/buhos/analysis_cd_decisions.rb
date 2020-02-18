@@ -56,7 +56,7 @@ module Buhos
       }
 
 
-      res.join("<br/>\n")
+      res.join(" | \n")
     end
   end
 end
