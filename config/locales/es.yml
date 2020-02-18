@@ -498,6 +498,7 @@ es:
   Process_report: "Reporte del proceso"
   process_report:
     instructions: "Se presenta el desarrollo para las distintas etapas del proceso de revisión sistemática"
+    inclusion_exclusion_criteria: "Criterios de inclusión / exclusion"
   Processing_n_canonical_documents: "Procesando %{count} documentos canónicos"
   pubmedremote:
     retrieve_pmid_result: "Resultado de obtención de PMID: %{dois_pmid} con PMID y %{nil_dois} sin PMID"
