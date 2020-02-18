@@ -102,12 +102,16 @@ class Analysis_SR_Stage
     cds=@sr.cd_id_by_stage(@stage)
 
     decisions=Decision.where(:systematic_review_id=>@sr.id, :canonical_document_id=>cds, :user_id=>@sr.group_users.map {|u| u[:id]}, :stage=>@stage.to_s).group_and_count(:canonical_document_id, :decision).all
-    n_jueces=@sr.group_users.count
+    n_jueces_por_cd=AllocationCd.where(:systematic_review_id=>@sr.id, :canonical_document_id=>cds, :stage=>@stage.to_s).group_and_count(:canonical_document_id).as_hash(:canonical_document_id)
+
+
+#    n_jueces=@sr.group_users.count
     cds.inject({}) {|ac,v|
       ac[v]=empty_decisions_hash
       ac[v]=ac[v].merge decisions.find_all   {|dec|      dec[:canonical_document_id]==v }
                             .inject({}) {|ac1,v1|   ac1[v1[:decision]]=v1[:count]; ac1 }
       suma=ac[v].inject(0) {|ac1,v1| ac1+v1[1]}
+      n_jueces=n_jueces_por_cd[v].nil? ? 0 : n_jueces_por_cd[v][:count]
       ac[v][Decision::NO_DECISION]=n_jueces-suma
       ac
     }

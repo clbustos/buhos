@@ -47,6 +47,23 @@ module Buhos
       decisions=Decision.where(:systematic_review_id=>@sr.id, :canonical_document_id=>cds, :user_id=>@sr.group_users.map {|u| u[:id]}, :stage=>@stage.to_s).to_hash_groups(:canonical_document_id)
       decisions
     end
+
+    def to_html(cd_id)
+      res_raw=@all_decisions[cd_id].inject({}) do |ac,v|
+        dec=v[:decision]
+        ac[dec]||=[]
+        text=v[:commentary].nil? ? @user_names[v[:user_id]] : "#{@user_names[v[:user_id]]}  (#{v[:commentary]})"
+        ac[dec].push(text)
+        ac
+      end
+      out_html=res_raw.map do |dec,v|
+        dec_name=I18n::t(Decision.get_name_decision(dec))
+        author_html=v.map {|v| "<span class='decision-author'>#{v}</span>"}
+        "<li><span='decision-name'>#{dec_name}</name>: #{author_html.join('; ')}</li>"
+      end
+      "<ul>\n#{out_html.join("\n")}\n</ul>"
+    end
+
     #@param cd_id canonical document id
     #@param dec decision taken
     def text_decision_cd(cd_id, dec)

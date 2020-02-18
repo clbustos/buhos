@@ -132,20 +132,14 @@
     %h4=@ars.pattern_name bloque.first[1]
   %table.reporte
     %thead
-      %th=t(:Document)
-      - Decision::N_EST.each do |dec,name|
-        %th=t(Decision.get_name_decision(dec))
-      %th=t(:Resolution)
+      %th.md-5=t(:Document)
+      %th.md-5=t(:Decisions)
+      %th.md-2=t(:Resolution)
     %tbody
       - bloque.each do |cd_id,vals|
         %tr
-          %td
+          %td.md-5
             = (@ars.cd_hash[cd_id]) ? @ars.cd_hash[cd_id].title : t("error.no_valid_cd_for_this_systematic_review", cd_id:cd_id)
             =partial(:canonical_document_button, :locals=>{id:cd_id})
-          - Decision::N_EST.each do |dec,name|
-            %td{:class=>"decision decision-#{dec}"}
-              - if vals[dec].to_i>0
-                %button.btn.btn-default{type:'button', "data-toggle":'popover', title:t(:Users), 'data-content':@text_decision_cd.text_decision_cd(cd_id, dec)}= vals[dec].to_i
-              - else
-                0
-          %td=partial(:buttons_resolution, :locals=>{:rpc=>rpc, :cd_id=>cd_id, :stage=>@stage, :user_id=>@user_id, :review=>@review})
+          %td.md-5=@text_decision_cd.to_html(cd_id)
+          %td.md-2=partial(:buttons_resolution, :locals=>{:rpc=>rpc, :cd_id=>cd_id, :stage=>@stage, :user_id=>@user_id, :review=>@review})
