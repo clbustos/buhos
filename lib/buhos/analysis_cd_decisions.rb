@@ -45,7 +45,7 @@ module Buhos
     def all_decisions
       cds=@sr.cd_id_by_stage(@stage)
       decisions=Decision.where(:systematic_review_id=>@sr.id, :canonical_document_id=>cds, :user_id=>@sr.group_users.map {|u| u[:id]}, :stage=>@stage.to_s).to_hash_groups(:canonical_document_id)
-      decisions
+      decisions.nil? ? {} : decisions
     end
 
     def to_html(cd_id)
