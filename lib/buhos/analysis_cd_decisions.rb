@@ -49,7 +49,7 @@ module Buhos
     end
 
     def to_html(cd_id)
-      if @all_decisions.nil?
+      if @all_decisions.nil? or @all_decisions[cd_id].nil?
         return ""
       end
       res_raw=@all_decisions[cd_id].inject({}) do |ac,v|
