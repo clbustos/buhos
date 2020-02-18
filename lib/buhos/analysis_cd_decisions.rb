@@ -59,7 +59,7 @@ module Buhos
       out_html=res_raw.map do |dec,v|
         dec_name=I18n::t(Decision.get_name_decision(dec))
         author_html=v.map {|v| "<span class='decision-author'>#{v}</span>"}
-        "<li><span='decision-name'>#{dec_name}</name>: #{author_html.join('; ')}</li>"
+        "<li><span class='decision-name'>#{dec_name}</span>: #{author_html.join('; ')}</li>"
       end
       "<ul>\n#{out_html.join("\n")}\n</ul>"
     end
