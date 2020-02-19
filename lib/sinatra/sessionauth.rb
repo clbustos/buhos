@@ -105,9 +105,11 @@ module Sinatra
     end
     def self.registered(app)
       app.helpers SessionAuth::Helpers
-
+      # todo: create a list of uri not evaluated for authentification
       app.before do
-        if session['user'].nil?
+        external_path=/file\/\d+\/download_external/
+        #$log.info(request.path_info=~external_path)
+        if session['user'].nil? and external_path.nil?
           request.path_info='/login'
         end
       end

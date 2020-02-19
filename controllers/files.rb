@@ -83,6 +83,17 @@ get '/file/:id/download' do |id|
   send_file(file.absolute_path(dir_files))
 end
 
+# Download a file
+get '/file/:id/download_external' do |id|
+
+  file=IFile[id]
+  return 404 if file.nil?
+
+  #headers["Content-Disposition"] = "attachment;filename=#{file[:filename]}"
+
+  content_type file[:filetype]
+  send_file(file.absolute_path(dir_files))
+end
 
 
 # Get a specific page on a document.
