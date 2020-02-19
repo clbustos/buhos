@@ -83,6 +83,25 @@ get '/file/:id/download' do |id|
   send_file(file.absolute_path(dir_files))
 end
 
+# Requires poppler-utils on Ubuntu
+get '/file/:id/to_text/download_external' do |id|
+  file=IFile[id]
+  return 404 if file.nil?
+  if file[:filetype]=~/pdf/
+    # Ok, this is a hack!
+    temp_pdf=Tempfile.new("file_pdf#{id}")
+    temp_html=Tempfile.new("file_html#{id}")
+
+    temp_pdf.write(File.read(file.absolute_path(dir_files)))
+    temp_pdf.close
+    `pdftotext -layout  #{temp_pdf.path} #{temp_html.path}`
+    temp_pdf.unlink
+    temp_html.close
+    content_type "text/plain"
+    send_file(temp_html.path)
+  end
+end
+
 # Download a file
 get '/file/:id/download_external' do |id|
 
