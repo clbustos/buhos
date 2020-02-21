@@ -84,6 +84,7 @@ get '/file/:id/download' do |id|
 end
 
 # Requires poppler-utils on Ubuntu
+# Todo: use pdf-reader
 get '/file/:id/to_text/download_external' do |id|
   file=IFile[id]
   return 404 if file.nil?

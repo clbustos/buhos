@@ -105,7 +105,7 @@
     %tbody
       -@cds.each do |doc_c|
         %tr
-          %td=doc_c[:id]
+          %td="##{doc_c[:id]}"
           %td=doc_c[:title]
           %td=doc_c[:author]
           %td=doc_c[:journal]

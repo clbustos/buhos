@@ -1,5 +1,15 @@
 %h2=title(t(:Users))
 
+:javascript
+  $(document).ready(function() {
+    $("#all_users").click(function(e){
+      if($(this).prop('checked')) {
+        $(".user").prop('checked', true);
+      } else {
+        $(".user").prop('checked', false);
+      }
+    });
+  });
 - if auth_to("user_admin")
   %a.btn.btn-default{:href=>url("/user/new")}
     %span{:class=>"glyphicon glyphicon-plus"}
@@ -14,9 +24,27 @@
 - if @users.count>0
 
   %form{:method=>'post',:action=>url('/admin/users/update')}
-    %table.table.table-bordered
+    %input{:type=>:hidden, :name=>:action, :id=>'form-action'}
+    .btn-toolbar
+      .btn-group.btn-group-sm{:role=>:group}
+        %button.btn.btn-default.btn-action{"data-action"=>:active}
+          %span.glyphicon.glyphicon-ok-circle
+          =t(:User_active)
+        %button.btn.btn-default.btn-action{"data-action"=>:inactive}
+          %span.glyphicon.glyphicon-ban-circle
+          =t(:User_inactive)
+        %button.btn.btn-default.btn-action{"data-action"=>:edit}
+          %span.glyphicon.glyphicon-edit
+          =t(:Edit)
+
+      .btn-group.btn-group-xs
+        %button.btn.btn-danger.btn-action{"data-action"=>:delete}
+          %span.glyphicon.glyphicon-trash
+          =t(:Search_delete)
+    %table.table.table-flush.table-striped
       %thead
-        %th=t(:Delete)
+        %th
+          %input#all_users{:type=>:checkbox, :name=>'all_users'}
         %th=t(:User_name)
         %th=t(:Login)
         %th=t(:Active)
@@ -25,17 +53,10 @@
         -@users.each do |per|
           %tr
             %td
-              %input{:type=>:checkbox, :name=>"usuario[#{per[:id]}][borrar]"}
-            %td
-              %input{:type=>:text, :size=>40, :name=>"usuario[#{per[:id]}][name]", :value=>per[:name].force_encoding("UTF-8")}
-            %td
-              %input{:type=>:text, :user=>10, :name=>"usuario[#{per[:id]}][login]", :value=>per[:login]}
-            %td
-              %input{:type=>:checkbox, :name=>"usuario[#{per[:id]}][active]", :checked=>per[:active]}
-            %td
-              %select{:name=>"usuario[#{per[:id]}][role_id]"}
-                -@roles.each do |role|
-                  %option{:value=>role[:id], :selected=>(role[:id]==per[:role_id])}=role[:id]
-    %input.btn.btn-default{:type=>"submit",:name=>t(:Update)}
+              %input.user{:type=>:checkbox, :name=>"user[]", :value=>per[:id]}
+            %td=per[:name].force_encoding("UTF-8")
+            %td=per[:login]
+            %td=per[:active] ? t("Yes") : t("No")
+            %td=per[:role_id]
 - else
   .alert.alert-warning=t(:No_user_found)

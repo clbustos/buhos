@@ -262,6 +262,7 @@ module RSpecMixin
   def doi_reference_1
     "10.1007/s10664-018-9626-5"
   end
+
   def sr_references
     sr_for_report
     Record[1].update(:author=>"Al-Zubidy, A and Carver JC", :title=>"Identification and prioritization of SLR search tool requirements: an SLR and a survey", :journal=>"Empir Softw Eng.", :year=>"2018", :pages=>"1–31", :doi=>"10.1007/s10664-018-9626-5")

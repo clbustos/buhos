@@ -94,10 +94,62 @@ describe 'Buhos administration' do
     end
   end
 
+  context "when user is made active" do
+    before(:context) do
+      post '/login' , :user=>'admin', :password=>'admin'
+      rule=Role.limit(1).first
+
+      @user_id = User.insert(login:"user_2", name:"User 2", active:false, password:'111', role_id:rule[:id])
+      post '/admin/users/update', user:[@user_id], action:'active'
+    end
+    it "should be active" do
+      expect(User[@user_id][:active]).to be_truthy
+    end
+    after(:context) do
+      User[@user_id].delete
+    end
+  end
+
+  context "when user is made inactive" do
+    before(:context) do
+      post '/login' , :user=>'admin', :password=>'admin'
+      rule=Role.limit(1).first
+
+      @user_id = User.insert(login:"user_2", name:"User 2", active:true, password:'111', role_id:rule[:id])
+      post '/admin/users/update', user:[@user_id], action:'inactive'
+    end
+    it "should be active" do
+      expect(User[@user_id][:active]).to be_falsey
+    end
+    after(:context) do
+      User[@user_id].delete
+    end
+  end
+
+  context "when users are deleted" do
+    before(:context) do
+      post '/login' , :user=>'admin', :password=>'admin'
+      rule=Role.limit(1).first
+
+      @user_1 = User.insert(login:"user_2", name:"User 2", active:true, password:'111', role_id:rule[:id])
+      @user_2 = User.insert(login:"user_3", name:"User 3", active:true, password:'111', role_id:rule[:id])
+      post '/admin/users/delete', users:"#{@user_1},#{@user_2}", action:'delete'
+    end
+
+    it "should delete users" do
+      expect(User.where(id: [@user_1, @user_2]).count).to eq(0)
+    end
+    after(:context) do
+      User.where(id: [@user_1, @user_2]).delete
+    end
+  end
+
+
 
   after(:all) do
     @temp=nil
     close_sqlite
   end
+
 
 end

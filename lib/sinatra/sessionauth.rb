@@ -107,8 +107,9 @@ module Sinatra
       app.helpers SessionAuth::Helpers
       # todo: create a list of uri not evaluated for authentification
       app.before do
-        external_path=/file\/\d+\/download_external/
+        external_path=request.path_info=~/file\/\d+\/download_external/
         #$log.info(request.path_info=~external_path)
+        #external_path=nil
         if session['user'].nil? and external_path.nil?
           request.path_info='/login'
         end
