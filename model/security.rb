@@ -48,7 +48,6 @@ class Role < Sequel::Model(:roles)
   end
 
   def add_auth_to(auth)
-
     pr=AuthorizationsRole[role_id:self[:id], authorization_id:auth[:id]]
     AuthorizationsRole.insert(role_id:self[:id], authorization_id:auth[:id]) unless pr
   end

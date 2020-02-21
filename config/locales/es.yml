@@ -592,7 +592,8 @@ es:
   Role_deleted_name: "Rol %{role} eliminado"
   role:
     administrator: "Administrador"
-    analyst:      "Analyst"
+    analyst:      "Analista"
+    guest:        "Visitante"
   Roles: "Roles"
   RTA_references: "Referencias TTR"
   Save: "Guardar"
@@ -829,7 +830,11 @@ es:
     Users_admin: "Administración de usuarios"
     are_you_sure_delete: "¿Está seguro que quiere eliminar los siguientes usuarios?"
     no_valid_user_selected: "No se seleccionaron usuarios válidos"
-
+    multiple_edit: "Edición de múltiples usuarios"
+    update_failed: "La actualización del usuario %{id} falló: %{message}"
+    update_was_successful: "La actualización del usuario %{id} fue exitosa"
+    user_should_have_a_name: "Se debe asignar un nombre al usuario %{id}"
+    user_should_have_a_login: "Se debe asignar un login al usuario %{id}"
   User: "Usuario"
   User_new: "Nuevo usuario"
   User_not_exists: "Usuario con id %{user_id} no existe"

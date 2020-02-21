@@ -39,7 +39,16 @@ post '/admin/users/update' do
   elsif params['action']=='delete'
     @users_id=users
     @users=User.where(:id=>@users_id)
-    return haml "users/delete_confirm".to_sym
+    if @users_id.map(&:to_i).include? session['user_id']
+      add_message(::I18n.t("users_admin.cant_delete_itself"))
+      redirect back
+    else
+      return haml "users/delete_confirm".to_sym
+    end
+  elsif params['action']=='edit'
+    @users_id=users
+    @users=User.where(:id=>@users_id)
+    return haml "users/multiple_edit".to_sym
   end
   redirect back
 end
@@ -48,8 +57,9 @@ end
 post '/admin/users/delete' do
   if params['action']=='delete'
     users=User.where(:id=>params['users'].split(","))
+
     if !users
-      add_message(t(::I18n.t("users_admin.no_valid_user_selected"), :error))
+      add_message(::I18n.t("users_admin.no_valid_user_selected"), :error)
     else
       $db.transaction do
         User.where(:id=>params['users'].split(",")).delete
@@ -59,4 +69,44 @@ post '/admin/users/delete' do
   end
   redirect url('admin/users')
 end
+
+post '/admin/users/update_edit' do
+  user_info=params['user']
+  if !user_info
+    add_message(::I18n.t("users_admin.no_valid_user_selected"), :error)
+    redirect url("admin/users")
+  else
+    result=Result.new
+    user_info.each do |user_id, user_info|
+      begin
+        if user_info[:name].strip==""
+          result.error(::I18n.t("users_admin.user_should_have_a_name", id: user_id))
+        elsif user_info[:login].strip==""
+          result.error(::I18n.t("users_admin.user_should_have_a_login", id: user_id))
+        else
+          $db.transaction do
+            User[user_id].update(name:user_info[:name],
+                                 login:user_info[:login],
+                                 active: user_info[:active].to_i==1,
+                                 role_id: user_info[:role_id],
+                                 language: user_info[:language])
+            result.success(::I18n.t("users_admin.update_was_successful", id: user_id))
+            end
+        end
+
+        rescue Exception => e
+          result.error(::I18n.t("users_admin.update_failed", id: user_id, message:e.message))
+        end
+    end
+    add_result(result)
+  end
+  if result.success?
+    redirect url("admin/users")
+  else
+    @users_id=user_info.keys
+    @users=User.where(:id=>@users_id)
+    return haml "users/multiple_edit".to_sym
+  end
+end
+
 # @!endgroup

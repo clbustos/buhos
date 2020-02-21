@@ -1,0 +1,27 @@
+.header
+  %h2=title(t("users_admin.delete_confirmation"))
+
+%ul.breadcrumb
+  %li
+    %a{:href=>"/admin/users"}=t("users_admin.Users_admin")
+  %li.active
+    =t("users_admin.delete_confirmation")
+
+.alert.alert-warning=t("users_admin.are_you_sure_delete")
+
+%ul
+  -@users.each do |user|
+    %li=user[:name]
+
+%form{:method=>"post", :action=>url("/admin/users/delete")}
+  %input{:type=>:hidden, :name=>:users, :value=>@users_id.join(",")}
+  %input{:type=>:hidden, :name=>:action, :id=>'form-action'}
+  .btn-toolbar
+    .btn-group.btn-group-sm{:role=>:group}
+      %button.btn.btn-danger.btn-action{"data-action"=>:delete}
+        %span.glyphicon.glyphicon-trash
+        =t(:Delete)
+      %button.btn.btn-default.btn-action{"data-action"=>:cancel}
+        %span.glyphicon.glyphicon-remove
+        =t(:Cancel)
+
