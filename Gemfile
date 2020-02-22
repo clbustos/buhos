@@ -12,7 +12,7 @@ gem 'bibtex-ruby'
 gem "unicode"
 gem 'levenshtein-ffi', :platforms=>:ruby, :require => 'levenshtein'
 #gem 'levenshtein-ffi', :require => 'levenshtein', :git => 'https://github.com/tosie/levenshtein-ffi.git'
-
+gem 'elsevier_api', :git => 'https://github.com/clbustos/elsevier_api.git'
 gem 'levenshtein'
 gem 'narray'
 gem 'serrano'
@@ -34,7 +34,7 @@ gem 'tf-idf-similarity'
 
 #gem 'rubyXL'
 gem 'ai4r'
-#gem 'scopus'
+
 #gem 'nbayes'
 #gem 'classifier-reborn'
 

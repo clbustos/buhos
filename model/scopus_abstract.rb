@@ -78,7 +78,7 @@ class Scopus_Abstract < Sequel::Model
         return result
       end
     else
-      xml=Scopus.process_xml(sa[:xml])
+      xml=ElsevierApi.process_xml(sa[:xml])
     end
 
 

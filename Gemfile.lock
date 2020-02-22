@@ -1,8 +1,15 @@
 GIT
-  remote: https://github.com/clbustos/ruby-stemmer.git
-  revision: d0c07374e3344582db7f1713a9f0ec4b1aa3c878
+  remote: https://github.com/clbustos/elsevier_api.git
+  revision: ba8ca962f5bd48c1df670558980550a954a2ba2a
   specs:
-    ruby-stemmer (1.0.0)
+    elsevier_api (0.1.1)
+      curb (~> 0.9.10)
+
+GIT
+  remote: https://github.com/clbustos/ruby-stemmer.git
+  revision: 1447243f20dbf85b6c3356727e8e9674b373067e
+  specs:
+    ruby-stemmer (2.0.1)
 
 GEM
   remote: https://rubygems.org/
@@ -26,7 +33,7 @@ GEM
       mimemagic (~> 0.3)
       nokogiri (~> 1.8, >= 1.8.2)
       rubyzip (~> 1.2, >= 1.2.1)
-    backports (3.16.0)
+    backports (3.16.1)
     bibtex-ruby (5.1.1)
       latex-decode (~> 0.0)
     cabin (0.9.0)
@@ -40,6 +47,7 @@ GEM
       adamantium (~> 0.2.0)
       equalizer (~> 0.0.9)
     concurrent-ruby (1.1.6)
+    curb (0.9.10)
     daemons (1.3.1)
     diff-lcs (1.3)
     docile (1.3.2)
@@ -51,7 +59,7 @@ GEM
       ffi (~> 1.9)
     faraday (0.17.3)
       multipart-post (>= 1.2, < 3)
-    faraday_middleware (0.13.1)
+    faraday_middleware (0.14.0)
       faraday (>= 0.7.4, < 1.0)
     ffi (1.12.2)
     ffi (1.12.2-x86-mingw32)
@@ -189,11 +197,11 @@ GEM
     sassc (2.2.1-x86-mingw32)
       ffi (~> 1.9)
     sequel (5.29.0)
-    serrano (0.5.4)
-      faraday (>= 0.15, < 0.18)
-      faraday_middleware (>= 0.12.2, < 0.14.0)
+    serrano (0.6.0)
+      faraday (>= 0.15, < 1.0)
+      faraday_middleware (>= 0.12.2, < 0.15.0)
       multi_json (~> 1.13, >= 1.13.1)
-      thor (~> 0.20.0)
+      thor (>= 0.20, < 1.1)
     simplecov (0.18.2)
       docile (~> 1.1)
       simplecov-html (~> 0.11)
@@ -213,7 +221,7 @@ GEM
       daemons (~> 1.0, >= 1.0.9)
       eventmachine (~> 1.0, >= 1.0.4)
       rack (>= 1, < 3)
-    thor (0.20.3)
+    thor (1.0.1)
     thread_safe (0.3.6)
     tilt (2.0.10)
     treetop (1.6.10)
@@ -250,6 +258,7 @@ DEPENDENCIES
   categorize
   certified
   dotenv
+  elsevier_api!
   grim
   haml
   i18n
