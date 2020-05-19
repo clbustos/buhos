@@ -27,6 +27,7 @@
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 require 'pdf-reader'
+require_relative 'buhos'
 require_relative "doi_helpers"
 
 # Class to process PDF information.
