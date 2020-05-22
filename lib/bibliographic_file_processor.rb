@@ -1,4 +1,4 @@
-# Copyright (c) 2016-2018, Claudio Bustos Navarrete
+# Copyright (c) 2016-2020, Claudio Bustos Navarrete
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -172,7 +172,9 @@ class BibliographicFileProcessor
       log_error('bibliographic_file_processor.no_file_available')
       false
     elsif @search[:filetype] == 'text/x-bibtex' or @search[:filename] =~ /\.bib$/
-      BibliographicalImporter::BibTex::Reader.parse(@search[:file_body])
+      file_body=@search[:file_body].force_encoding("utf-8")
+      file_body.scrub!("*") unless file_body.valid_encoding? # Fast fix. Just delete all non-utf8 characters
+      BibliographicalImporter::BibTex::Reader.parse(file_body)
     elsif @search[:filetype] == 'text/csv' # Por trabajar
       #$log.info(bibliographical_database_name)
       BibliographicalImporter::CSV::Reader.parse(@search[:file_body], @search.bibliographical_database_name)
@@ -233,9 +235,12 @@ class BibliographicFileProcessor
     fields_update = fields.find_all {|v| reg_o[:field].nil? and reference.send(v) != ''}.inject({}) {|ac, v|
       ac[v] = reference.send(v); ac;
     }
-
-    reg_o.update(fields_update)
-
+    begin
+      reg_o.update(fields_update)
+    rescue Exception=>e
+      $log.info(fields_update)
+      raise "Problemas para actualizar referencia #{reference.uid}, #{e.message}"
+    end
     # Procesar references
     cited_references = reference.cited_references
     unless cited_references.nil?
