@@ -49,6 +49,8 @@
         %th=t(:Login)
         %th=t(:Active)
         %th=t(:Role)
+        - if @have_permit_password
+          %th=t(:Change_password)
       %tbody
         -@users.each do |per|
           %tr
@@ -59,5 +61,11 @@
             %td=per[:login]
             %td=per[:active] ? t("Yes") : t("No")
             %td=per[:role_id]
+            %td
+              .btn-group
+                - if @have_permit_password
+                  %a.btn.btn-default{:href=>"/user/#{per.id}/change_password"}
+                    %span.glyphicon.glyphicon-lock
+                    =t(:Change_password)
 - else
   .alert.alert-warning=t(:No_user_found)

@@ -17,6 +17,9 @@ get '/admin/users/?' do
   else
     @users=User.filter(Sequel.ilike(:name, "%#{@usr_bus}%")).order(:name)
   end
+
+  @have_permit_password = auth_to("user_admin")
+
   #log.info(@personas.all)
   @roles=Role.order()
   haml :users
