@@ -96,18 +96,13 @@ module BibliographicalImporter
       def strip_lines(value)
         value.to_s.gsub(/\n\s*/, ' ')
       end
-      # I don't understand why, but Scopus and Mendelay adds extra {} at titles. Better remove it
+      # Many reference systems, like Mendelay and Scopus, and some databases (Scopus) adds extra {} at titles. Better remove it
       def check_title
-        if title=~/^{(.+)}+/
-          @title=$1
-        end
+        @title=title.gsub(/[\{\}]/,"")
       end
       # Scielo adds extra {} on journal titles
       def check_journal
-        if journal=~/^{(.+)}+/
-          @journal=$1
-        end
-
+        @journal=journal.gsub(/[\{\}]/,"")
       end
 
     end
@@ -235,9 +230,11 @@ module BibliographicalImporter
       # BibTex doesn't have a standard reference, so any real provider
       # generates BibTex that brokes bibtex library
       #
+      # Also, check if encoding is adequate
+      #
       def self.fix_string(string)
         scielo_mode= string.include? "publisher = {scielo}"
-
+        string=string.encode("UTF-8", invalid: :replace, replace:"?")
         string.each_line.map { |line|
           #puts line
           if line=~/^\s*\@.+\{(.+),\s*$/
@@ -268,7 +265,7 @@ module BibliographicalImporter
       def self.parse(string, bib_db=nil)
 
         @bib_db=bib_db
-        # Scopus generates bibtex with quotes on names. That brokes Bibtex package
+
         string_fixed=fix_string(string)
 
         b=BibTeX.parse(string_fixed, :strip => false)

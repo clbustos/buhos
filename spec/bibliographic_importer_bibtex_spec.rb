@@ -117,6 +117,40 @@ describe 'BibliographicalImporter::BibTeX' do
 end
 
 
+  context "when a BibTeX with ISO-8859-1 is used" do
+    def text
+      read_fixture("encoding_iso_8859_1.bib").encode("UTF-8", invalid: :replace, replace:"?")
+    end
+    before(:context) do
+      @bib=BibliographicalImporter::BibTex::Reader.parse(text)
+    end
+    it "should retrieve 1 article" do
+      expect(@bib.records.length).to eq(1)
+    end
+    it "no title should be excluded" do
+      titulos=text.each_line.inject([]) {|ac,v|
+        if v=~/^title=\{(.+?)\}/
+
+          ac.push($1)
+        end
+        ac
+      }
+      h=@bib.records.find_all do |record|
+        !record.title.nil?
+      end
+
+      expect((titulos-h.map {|v| v.title})).to eq([])
+    end
+    it "no author should be excluded" do
+
+      h=@bib.records.find_all do |record|
+        !record.author.nil?
+      end
+      expect((h.map {|v| v.author})).to eq(["{Cleland-Huang}, J. and {M?der}, P. and {Mirakhorli}, M. and {Amornborvornwong}, S."])
+    end
+  end
+
+
   context "when a broken WoS BibTeX is used" do
     def text
       read_fixture("wos_wrong.bib")
@@ -159,8 +193,7 @@ end
 
   context "using auto-generated BibTeX" do
     before(:context) do
-
-      cds=[OpenStruct.new(id:1, title:"Title 1", abstract:"Abs", journal:"J1", year:2018, volume:1, pages:"1-2",
+      cds=[OpenStruct.new(id:1, title:"{Title} 1", abstract:"Abs", journal:"Journal of {MANAGEMENT}", year:2018, volume:1, pages:"1-2",
                           doi:"1", url:nil, author:"Levin, Tony and Gabriel, Peter")]
       bib_int=BibliographicalImporter::BibTex::Writer.generate(cds).to_s
       @bib=BibliographicalImporter::BibTex::Reader.parse(bib_int)
@@ -176,6 +209,9 @@ end
     end
     it "title should be 'Title 1'" do
       expect(@bib[0].title).to eq("Title 1")
+    end
+    it "journal should be 'Journal of MANAGEMENT'" do
+      expect(@bib[0].journal).to eq("Journal of MANAGEMENT")
     end
   end
 
