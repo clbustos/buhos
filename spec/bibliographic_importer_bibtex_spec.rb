@@ -193,9 +193,10 @@ end
 
   context "using auto-generated BibTeX" do
     before(:context) do
-      cds=[OpenStruct.new(id:1, title:"{Title} 1", abstract:"Abs", journal:"Journal of {MANAGEMENT}", year:2018, volume:1, pages:"1-2",
+      cds=[OpenStruct.new(id:1, title:"{Title} {number} 1", abstract:"Abs", journal:"{Journal} of {MANAGEMENT}", year:2018, volume:1, pages:"1-2",
                           doi:"1", url:nil, author:"Levin, Tony and Gabriel, Peter")]
       bib_int=BibliographicalImporter::BibTex::Writer.generate(cds).to_s
+      #p bib_int
       @bib=BibliographicalImporter::BibTex::Reader.parse(bib_int)
 
     end
@@ -207,8 +208,8 @@ end
         expect(@bib[0].author).to include author
       end
     end
-    it "title should be 'Title 1'" do
-      expect(@bib[0].title).to eq("Title 1")
+    it "title should be 'Title number 1'" do
+      expect(@bib[0].title).to eq("Title number 1")
     end
     it "journal should be 'Journal of MANAGEMENT'" do
       expect(@bib[0].journal).to eq("Journal of MANAGEMENT")
