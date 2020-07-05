@@ -14,9 +14,11 @@ apk --update add --virtual \
         libxslt-dev \
         mariadb-dev \
         sqlite-dev \
+        curl-dev \
         ruby-json \
         ruby-bigdecimal \
-        ruby-etc
+        ruby-etc \
+        git
 
 
 #adduser vagrant staff

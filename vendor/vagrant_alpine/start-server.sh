@@ -3,4 +3,4 @@
 
 cd ~/buhos
 killall ruby
-rackup config.ru -D -E PRODUCTION
+bundle exec rackup config.ru -D -E PRODUCTION
