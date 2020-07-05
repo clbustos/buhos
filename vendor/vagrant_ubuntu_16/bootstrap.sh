@@ -21,7 +21,9 @@ apt-get install -y \
   libxml2-dev \
   ghostscript \
   imagemagick \
-  xpdf
+  xpdf \
+  curl
+  libcurl4-openssl-dev
 
 apt-get install -y build-essential \
     libmysqlclient-dev \
@@ -29,7 +31,7 @@ apt-get install -y build-essential \
 
 adduser vagrant staff
 
-git clone
+#git clone
 
 if [ ! -L /home/vagrant/buhos ]
 then
