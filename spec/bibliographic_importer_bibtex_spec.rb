@@ -77,9 +77,9 @@ describe 'BibliographicalImporter::BibTeX' do
   end
 
 
-  context "when a broken Scopus BibTeX is used" do
+  context "when a broken Scopus BibTeX is used (version 1)" do
     def text
-      read_fixture("scopus_wrong.bib")
+      read_fixture("scopus_wrong_1.bib")
     end
     before(:context) do
       @bib=BibliographicalImporter::BibTex::Reader.parse(text)
@@ -115,6 +115,46 @@ describe 'BibliographicalImporter::BibTeX' do
       expect((author-h.map {|v| v.author})).to eq([])
     end
 end
+
+  context "when a broken Scopus BibTeX is used (version 2)" do
+    def text
+      read_fixture("scopus_wrong_2.bib")
+    end
+    before(:context) do
+      @bib=BibliographicalImporter::BibTex::Reader.parse(text)
+
+    end
+    it "should retrieve 1 article" do
+      expect(@bib.records.length).to eq(1)
+    end
+    it "no title should be excluded" do
+      titulos=text.each_line.inject([]) {|ac,v|
+        if v=~/^title=\{(.+?)\}/
+          ac.push($1)
+        end
+        ac
+      }
+      h=@bib.records.find_all do |record|
+        !record.title.nil?
+      end
+
+      expect((titulos-h.map {|v| v.title})).to eq([])
+    end
+    it "no author should be excluded" do
+      author=text.each_line.inject([]) {|ac,v|
+        if v=~/^author=\{(.+?)\}/
+          ac.push($1)
+        end
+        ac
+      }
+      h=@bib.records.find_all do |record|
+        !record.author.nil?
+      end
+
+      expect((author-h.map {|v| v.author})).to eq([])
+    end
+  end
+
 
 
   context "when a BibTeX with ISO-8859-1 is used" do

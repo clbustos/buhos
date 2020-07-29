@@ -243,6 +243,8 @@ module BibliographicalImporter
             parts[1]=parts[1].gsub(/[^0-9a-zA-Z,]/,"").strip
             #p parts
             parts.join("{")
+          elsif line=~/funding_text\s+(\d)/
+            line.gsub("funding_text ","funding_text_")
           elsif line=~/^s*Early Access Date\s*=/
             line.gsub("Early Access Date","Early_Access_Date")
           elsif scielo_mode and line=~/^\s*author\s*=\s*\{(.+)\}/ # Sorry for this code :(
