@@ -185,7 +185,7 @@ describe 'BibliographicFileProcessor' do
 
   context "when erroneous Scopus BibTeX is used" do
     before do
-      Search[1].update(:file_body=>read_fixture("scopus_wrong.bib"), :filename=>'manual.bib', :filetype => 'text/x-bibtex')
+      Search[1].update(:file_body=>read_fixture("scopus_wrong_1.bib"), :filename=>'manual.bib', :filetype => 'text/x-bibtex')
       @bpf=BibliographicFileProcessor.new(Search[1])
 
     end
