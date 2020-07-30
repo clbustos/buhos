@@ -124,8 +124,8 @@ end
       @bib=BibliographicalImporter::BibTex::Reader.parse(text)
 
     end
-    it "should retrieve 1 article" do
-      expect(@bib.records.length).to eq(1)
+    it "should retrieve 34 articles" do
+      expect(@bib.records.length).to eq(37)
     end
     it "no title should be excluded" do
       titulos=text.each_line.inject([]) {|ac,v|
