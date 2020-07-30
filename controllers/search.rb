@@ -177,7 +177,8 @@ post '/search/update' do
             :date_creation=>otros_params[:date_creation],
             :search_criteria=>otros_params[:search_criteria],
             :description=>otros_params[:description],
-            :search_type=>otros_params[:search_type]
+            :search_type=>otros_params[:search_type],
+            :user_id=>session['user_id']
         )
       else
         search=Search[id]
