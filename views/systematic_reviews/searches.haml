@@ -34,6 +34,7 @@
         %table.table.table-bordered
           %thead
             %th{:colspan=>2}=t(:Id)
+            %th=t(:User)
             %th=t("search.Source")
             %th=t(:Bibliographic_database)
             %th=t(:Date)
@@ -50,6 +51,7 @@
                   -if auth_on_search
                     %input{:type=>'checkbox', :name=>"search[]", :value=>g[:id], :class=>'checkbox_interactive'}
                 %td=g.id
+                %td=User[g.user_id].name
                 %td=t(g.source_name)
                 %td=g.bibliographical_database_name
                 %td=g.date_creation
