@@ -139,7 +139,12 @@
       - bloque.each do |cd_id,vals|
         %tr
           %td.md-5
-            = (@ars.cd_hash[cd_id]) ? @ars.cd_hash[cd_id].title : t("error.no_valid_cd_for_this_systematic_review", cd_id:cd_id)
-            =partial(:canonical_document_button, :locals=>{id:cd_id})
+            - if @ars.cd_hash[cd_id]
+              = CGI::escapeHTML @ars.cd_hash[cd_id].ref_apa_6_brief
+              %br
+              = partial(:canonical_document_button, :locals=>{id:cd_id})
+              = partial(:canonical_document_button_abstract_collapsible, :locals=>{cd:@ars.cd_hash[cd_id]})
+            - else
+              =t("error.no_valid_cd_for_this_systematic_review", cd_id:cd_id)
           %td.md-5=@text_decision_cd.to_html(cd_id)
           %td.md-2=partial(:buttons_resolution, :locals=>{:rpc=>rpc, :cd_id=>cd_id, :stage=>@stage, :user_id=>@user_id, :review=>@review})
