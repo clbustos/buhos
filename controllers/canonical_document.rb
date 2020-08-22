@@ -121,13 +121,17 @@ end
 # Merge two or more canonical documents
 post '/canonical_document/merge' do
   halt_unless_auth('canonical_document_admin')
+
+
   doi=params['doi']
   pk_ids=params['pk_ids']
 
   if doi
     cds=CanonicalDocument.where(:doi => doi, :id => pk_ids.split(","))
+  else
+    cds=CanonicalDocument.where(:id => pk_ids.split(","))
   end
-  if (cds.count>1)
+  if cds.count>1
     resultado=CanonicalDocument.merge(cds.map(:id))
   end
   return resultado ? 200 : 500

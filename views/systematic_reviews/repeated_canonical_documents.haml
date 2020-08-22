@@ -17,6 +17,23 @@
         alert("#{t(:Union_doesnt_work)}")
       })
     });
+
+    $(".unir_cd_por_metadata").click(function() {
+
+      var pk_ids =$(this).attr("data-pk");
+      var div_i  =$(this).attr("data-i");
+      var boton  =$(this);
+      boton.prop('disabled',true);
+
+      $.post("#{url('/canonical_document/merge')}",{pk_ids:pk_ids},function() {
+        $("#pair-"+div_i).hide()
+      }).fail(function() {
+            boton.prop('disabled',false);
+        alert("#{t(:Union_doesnt_work)}")
+      })
+    });
+
+
   });
 %ul.breadcrumb
   %li
@@ -26,8 +43,8 @@
   %li
     %a{:href=>url("/review/#{@review.id}/repeated_canonical_documents")}=t(:Duplicated_documents)
 
-%p=t_desc_value(:count_canonical_documents, @cd_total.to_i)
 %p=t_desc_value(:count_duplicated_DOI,@cd_rep_doi.length)
+%p=t_desc_value(:count_duplicated_metadata,@cd_rep_metadata.length)
 
 %h3=t(:Canonical_documents_duplicated_by_DOI)
 
@@ -46,3 +63,21 @@
           %li.list-group-item=@cd_hash[cd_id].ref_apa_6_brief_html
 - else
   %em=t(:No_duplicated_DOI)
+
+%h3=t(:Canonical_documents_duplicated_by_metadata)
+
+- if @cd_rep_metadata.length>0
+  -i=0
+  - @cd_rep_metadata.each do |cds_id|
+    - i=i+1
+    %div{:class=>"panel panel-default", :id=>"pair-#{i}"}
+      .panel-heading
+        ="Ids: #{cds_id[0]} - #{cds_id[1]}"
+        %button{:class=>"btn btn-default unir_cd_por_metadata", "data-i"=>i, "data-pk"=>cds_id.join(",") }Unir
+      .panel-body
+        %ul.list-group
+          - cds_id.each do |cd_id|
+            %li.list-group-item=@cd_hash[cd_id].ref_apa_6_brief_html
+- else
+  %em=t(:No_duplicated_metadata)
+

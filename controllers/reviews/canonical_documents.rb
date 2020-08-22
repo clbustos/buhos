@@ -193,10 +193,14 @@ get '/review/:id/repeated_canonical_documents' do |id|
 
   @review=SystematicReview[id]
   raise Buhos::NoReviewIdError, id if !@review
-  @cd_rep_doi=@review.repeated_doi
+  @cds=@review.canonical_documents
+  @dup_analysis=Buhos::DuplicateAnalysis.new(@cds)
 
+  @cd_rep_doi=@dup_analysis.by_doi
+  @cd_rep_metadata=@dup_analysis.by_metadata
+  @cd_hash=@cds.to_hash(:id)
 
-  @cd_hash=CanonicalDocument.where(:doi => @cd_rep_doi).to_hash(:id)
+  @cd_por_doi=CanonicalDocument.where(:doi => @cd_rep_doi).to_hash_groups(:doi, :id)
 
   @cd_por_doi=CanonicalDocument.where(:doi => @cd_rep_doi).to_hash_groups(:doi, :id)
 

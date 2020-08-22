@@ -93,9 +93,9 @@ AND  #{cd_query} GROUP BY tags.id) as t LEFT JOIN tag_in_classes tecl ON t.id=te
     SystematicReview.where(:id=>ids)
   end
 
-  def repeated_doi
-    canonical_documents.exclude(doi: nil).group_and_count(:doi).having {count.function.* > 1}.all.map {|v| v[:doi]}
-  end
+  
+
+
 
   def cd_record_id
     Record.join(:records_searches, :record_id => :id).join(:searches, :id => :search_id).join(SystematicReview.where(:id => self[:id]), :id => :systematic_review_id).select_all(:canonical_documents).where(:valid=>true).group(:canonical_document_id).select_map(:canonical_document_id)

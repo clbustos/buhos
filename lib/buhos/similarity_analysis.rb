@@ -52,6 +52,7 @@ module Buhos
         @narray_available=false
       end
     end
+
     def process
 
       require 'tf-idf-similarity'
@@ -88,7 +89,7 @@ module Buhos
       end
       (total.to_f/n_sims).round(3)
     end
-    def similarity_two(cd_id_1,cd_id_2)
+    def similarity_two(cd_id_1, cd_id_2)
       index_cd_1=@cd_w_abstract_ids.index(cd_id_1)
       index_cd_2=@cd_w_abstract_ids.index(cd_id_2)
       (index_cd_1.nil? or index_cd_2.nil?) ? nil : @matrix[index_cd_1,index_cd_2]

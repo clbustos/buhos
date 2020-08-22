@@ -7,6 +7,7 @@ require_relative 'buhos/criteria_processor'
 require_relative 'buhos/quality_criteria_processor'
 require_relative 'buhos/excel_builder'
 require_relative 'buhos/similarity_analysis'
+require_relative 'buhos/duplicate_analysis'
 
 require_relative 'buhos/analysis_searches'
 require_relative 'buhos/analysis_tags'
