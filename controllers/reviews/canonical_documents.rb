@@ -27,7 +27,9 @@ get '/review/:id/canonical_documents' do |id|
   @cd_total_ds=@review.canonical_documents
 
   # Repetidos doi
-  @cd_rep_doi=@review.repeated_doi
+  @dup_analysis=Buhos::DuplicateAnalysis.new(@cd_total_ds)
+
+  @cd_rep_doi=@dup_analysis.by_doi
   ##$log.info(@cd_rep_doi)
 
   @url="/review/#{id}/canonical_documents"
