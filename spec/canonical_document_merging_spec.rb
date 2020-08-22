@@ -138,7 +138,7 @@ describe 'Canonical Document merging' do
 
   end
 
-  context "when /canonical_document/merge is used" do
+  context "when /canonical_document/merge is used usign doi" do
 
     before(:context) do
       pre_context
@@ -153,6 +153,21 @@ describe 'Canonical Document merging' do
 
   end
 
+  context "when /canonical_document/merge is used usign doi" do
+
+    before(:context) do
+      pre_context
+      CanonicalDocument.where(:id=>[1,2]).update(:doi=>nil)
+      CanonicalDocument.where(:id=>[3]).update(:doi=>"1234")
+      post "/canonical_document/merge", :pk_ids=>"1,2,3"
+    end
+    it_behaves_like 'correct merge'
+
+    after(:context) do
+      after_context
+    end
+
+  end
 
 
 end

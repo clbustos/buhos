@@ -188,7 +188,7 @@ get %r{/review/(\d+)/canonical_document/(\d+)/(cites|cited_by|cited_by_rtr)} do
 end
 
 
-# Get a list of repeated canonical documents, using DOI
+# Get a list of repeated canonical documents, using DOI and metadata
 # @todo Check another ways to deduplicate
 get '/review/:id/repeated_canonical_documents' do |id|
   halt_unless_auth('review_view')

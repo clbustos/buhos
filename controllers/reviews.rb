@@ -148,7 +148,11 @@ post '/review/:id/automatic_deduplication' do |id|
 
   @review=SystematicReview[id]
   raise Buhos::NoReviewIdError, id if !@review
-  @cd_rep_doi=@review.repeated_doi
+
+  @dup_analysis=Buhos::DuplicateAnalysis.new(@review.canonical_documents)
+
+  @cd_rep_doi=@dup_analysis.by_doi
+
 
   @cd_por_doi=CanonicalDocument.where(:doi => @cd_rep_doi).order(:id).to_hash_groups(:doi, :id)
 
