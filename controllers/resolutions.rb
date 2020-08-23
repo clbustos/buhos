@@ -25,7 +25,7 @@ post '/resolution/review/:id/canonical_document/:cd_id/stage/:stage/resolution' 
       if res.empty?
         Resolution.insert(:systematic_review_id=>rev_id, :canonical_document_id=>cd_id, :stage=>stage, :resolution=>resolution, :user_id=>user_id, :commentary=>"Resuelto en forma especifica en #{DateTime.now.to_s}")
       else
-        res.update(:resolution=>resolution, :user_id=>user_id, :commentary=>"Actualizado en forma especifica en #{DateTime.now.to_s}")
+        res.update(:resolution=>resolution, :user_id=>user_id)
       end
     end
   end
@@ -39,11 +39,16 @@ post '/resolution/review/:id/canonical_document/:cd_id/stage/:stage/resolution' 
   partial(:buttons_resolution, :locals=>{:rpc=>rpc, :rcompc=>rcompc, :cd_id=>cd_id.to_i, :stage=>stage, :user_id=>user_id, :review=>review})
 end
 
-put '/resolution/review/:id/canonical_document/:cd_id/stage/:stage/resolution_commentary' do |rev_id, cd_id, stage|
+put '/resolution/review/:id/canonical_document/:cd_id/stage/:stage/user/:user_id/resolution_commentary' do |rev_id, cd_id, stage, user_id|
   halt_unless_auth('review_admin')
   $db.transaction(:rollback => :reraise) do
     res=Resolution.where(:systematic_review_id=>rev_id, :canonical_document_id=>cd_id, :stage=>stage)
-    res.update(:commentary=>params['value'].chomp)
+    if res.empty?
+      Resolution.insert(:systematic_review_id=>rev_id, :canonical_document_id=>cd_id, :stage=>stage, :resolution=>Resolution::NO_RESOLUTION, :user_id=>user_id, :commentary=>params['value'].chomp)
+    else
+      res.update(:commentary=>params['value'].chomp)
+    end
+
   end
   return 200
 end
