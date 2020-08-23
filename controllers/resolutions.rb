@@ -34,8 +34,18 @@ post '/resolution/review/:id/canonical_document/:cd_id/stage/:stage/resolution' 
   ars=AnalysisSystematicReview.new(review)
 
   rpc=ars.resolution_by_cd(stage)
+  rcompc=ars.resolution_commentary_by_cd(stage)
 
-  partial(:buttons_resolution, :locals=>{:rpc=>rpc, :cd_id=>cd_id.to_i, :stage=>stage, :user_id=>user_id, :review=>review})
+  partial(:buttons_resolution, :locals=>{:rpc=>rpc, :rcompc=>rcompc, :cd_id=>cd_id.to_i, :stage=>stage, :user_id=>user_id, :review=>review})
+end
+
+put '/resolution/review/:id/canonical_document/:cd_id/stage/:stage/resolution_commentary' do |rev_id, cd_id, stage|
+  halt_unless_auth('review_admin')
+  $db.transaction(:rollback => :reraise) do
+    res=Resolution.where(:systematic_review_id=>rev_id, :canonical_document_id=>cd_id, :stage=>stage)
+    res.update(:commentary=>params['value'].chomp)
+  end
+  return 200
 end
 
 # @!endgroup

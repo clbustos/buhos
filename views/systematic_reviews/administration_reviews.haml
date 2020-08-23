@@ -125,8 +125,9 @@
 
 %h3=t(:Decisions_by_document)
 
-- dep_ord=@ars.decisions_by_cd(@stage).sort_by {|cd_id,a| @ars.pattern_order a }
-- rpc=@ars.resolution_by_cd(@stage)
+- dep_ord = @ars.decisions_by_cd(@stage).sort_by {|cd_id,a| @ars.pattern_order a }
+- rpc     = @ars.resolution_by_cd(@stage)
+- rcompc  = @ars.resolution_commentary_by_cd(@stage)
 - dep_ord.chunk_while {|antes, despues|  antes[1]==despues[1]}.each do |bloque|
   %a{:name=>"patron_#{@ars.pattern_id(bloque.first[1])}"}
     %h4=@ars.pattern_name bloque.first[1]
@@ -147,4 +148,4 @@
             - else
               =t("error.no_valid_cd_for_this_systematic_review", cd_id:cd_id)
           %td.md-5=@text_decision_cd.to_html(cd_id)
-          %td.md-2=partial(:buttons_resolution, :locals=>{:rpc=>rpc, :cd_id=>cd_id, :stage=>@stage, :user_id=>@user_id, :review=>@review})
+          %td.md-2=partial(:buttons_resolution, :locals=>{:rpc=>rpc, :rcompc=>rcompc, :cd_id=>cd_id, :stage=>@stage, :user_id=>@user_id, :review=>@review})

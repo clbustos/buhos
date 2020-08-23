@@ -1,4 +1,4 @@
-- # parametros: rpc, cd_id, stage, user_id, review
+- # parametros: rcompc, rpc, cd_id, stage, user_id, review
 %div.btn-group.btn-sm{:id=>"botones_resolution_#{stage}_#{cd_id}"}
   - crits={'yes'=>{bs:'success', name:t(:Document_include), glyphicon: "ok-circle"}, 'no'=>{bs:'danger', name:t(:Document_exclude), glyphicon: "ban-circle"}, 'delete'=>{bs:'warning', name:t(:Delete), glyphicon: 'remove'}}
   - crits.each_pair do |res_id, crit|
@@ -8,3 +8,5 @@
     %button{:class=>"btn btn-sm #{cbc} #{dc_dec}", "data-stage"=>stage_id, "data-pk"=>cd_id, "data-resolution"=>res_id, "data-stage"=>stage , "data-user"=>user_id, :id=>"resolution-#{cd_id}-#{res_id}", 'data-url'=>"/resolution/review/#{review[:id]}/canonical_document/#{cd_id}/stage/#{stage}/resolution"}
       %span{:class=>"glyphicon glyphicon-#{crit[:glyphicon]}"}
       =crit[:name]
+- if rpc[cd_id]!=Resolution::NO_RESOLUTION
+  %p=a_textarea_editable(cd_id, "resolution", "/resolution/review/#{review[:id]}/canonical_document/#{cd_id}/stage/#{stage}/resolution_commentary", rcompc[cd_id],"")

@@ -81,6 +81,15 @@ class Analysis_SR_Stage
     }
   end
 
+  def resolutions_commentary_by_cd
+    cds=@sr.cd_id_by_stage(@stage)
+    resolutions=Resolution.where(:systematic_review_id=>@sr.id, :canonical_document_id=>cds, :stage=>@stage.to_s).as_hash(:canonical_document_id)
+    cds.inject({}) {|ac,v|
+      val=resolutions[v].nil? ? nil : resolutions[v][:commentary]
+      ac[v]=val
+      ac
+    }
+  end
 
   def empty_decisions_hash
     Decision::N_EST.keys.inject({}) {|ac,v|  ac[v]=0;ac }

@@ -34,11 +34,17 @@ module AnalysisSrStageMixin
   def get_asrs(stage)
     Analysis_SR_Stage.new(@rs, stage)
   end
-  # Se entrega un hash de cada cd con su resolution
+  # A hash, with key=cd_id and value= resolution
   def resolution_by_cd(stage)
     @resolution_by_cd_h ||= {}
     @resolution_by_cd_h[stage] ||= get_asrs(stage).resolutions_by_cd
   end
+  # A hash, with key=cd_id and value= resolution commentary
+  def resolution_commentary_by_cd(stage)
+    @resolution_commentary_by_cd_h ||= {}
+    @resolution_commentary_by_cd_h[stage] ||= get_asrs(stage).resolutions_commentary_by_cd
+  end
+
   # Count how many DC belongs to each pattern
   def count_by_pattern(list)
     list.inject({}) {|ac, v|
