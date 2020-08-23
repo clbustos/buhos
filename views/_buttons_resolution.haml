@@ -8,4 +8,4 @@
     %button{:class=>"btn btn-sm #{cbc} #{dc_dec}", "data-stage"=>stage_id, "data-pk"=>cd_id, "data-resolution"=>res_id, "data-stage"=>stage , "data-user"=>user_id, :id=>"resolution-#{cd_id}-#{res_id}", 'data-url'=>"/resolution/review/#{review[:id]}/canonical_document/#{cd_id}/stage/#{stage}/resolution"}
       %span{:class=>"glyphicon glyphicon-#{crit[:glyphicon]}"}
       =crit[:name]
-%p=a_textarea_editable( cd_id, "resolution", "/resolution/review/#{review[:id]}/canonical_document/#{cd_id}/stage/#{stage}/user/#{user_id}/resolution_commentary", rcompc[cd_id],"")
+  %p=a_textarea_editable( cd_id, "resolution", "/resolution/review/#{review[:id]}/canonical_document/#{cd_id}/stage/#{stage}/user/#{user_id}/resolution_commentary", rcompc[cd_id],"")
