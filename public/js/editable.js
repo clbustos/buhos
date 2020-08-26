@@ -80,6 +80,8 @@ function actualizar_resolution(stage, div_id) {
             $("#botones_resolution_"+stage+"_"+ pk_id).html(data);
             var to_update="#botones_resolution_"+stage+"_"+pk_id;
             actualizar_resolution(stage,to_update);
+            actualizar_textarea_editable(to_update);
+
 
         }).fail(function () {
             alert("No se pudo cargar la resolution")
