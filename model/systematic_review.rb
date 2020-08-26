@@ -157,7 +157,7 @@ AND  #{cd_query} GROUP BY tags.id) as t LEFT JOIN tag_in_classes tecl ON t.id=te
         # Solo dejamos aquellos que tengan más de una references
       when 'review_full_text'
         rtr=resolutions_title_abstract.where(:resolution=>'yes', :canonical_document_id=>cd_record_id).select_map(:canonical_document_id)
-        rr=resolutions_references.where(:resolution=>'yes', :canonical_document_id=>cd_reference_id).select_map(:canonical_document_id)
+        rr=resolutions_references.where(:resolution=>'yes', :canonical_document_id=>cd_reference_id-cd_record_id).select_map(:canonical_document_id)
         (rtr+rr).uniq
       when 'report'
         resolutions_full_text.where(:resolution=>'yes',:canonical_document_id=>cd_all_id).select_map(:canonical_document_id)
