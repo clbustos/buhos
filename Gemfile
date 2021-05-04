@@ -5,6 +5,7 @@ gem 'zip-zip'
 gem "sinatra",  '>=2.0.1'
 gem "sequel"
 gem "mysql2"
+gem "json"
 gem "haml"
 gem "rspec"
 gem "rack-test"
