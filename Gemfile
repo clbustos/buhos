@@ -29,7 +29,7 @@ gem "i18n"
 gem "sqlite3"
 gem 'mimemagic'
 gem "certified", :platforms => :mingw
-
+gem 'simple_xlsx_reader'
 gem 'caxlsx'
 gem 'tf-idf-similarity'
 

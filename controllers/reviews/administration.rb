@@ -197,6 +197,61 @@ get '/review/:rev_id/administration/:stage/cd_assignations' do |rev_id, stage|
   @type="all"
   haml("systematic_reviews/cd_assignations_to_user".to_sym)
 end
+post '/review/:rev_id/administration/:stage/cd_assignations_excel/:mode' do |rev_id, stage, mode|
+  halt_unless_auth('review_admin')
+  review=SystematicReview[rev_id]
+  raise Buhos::NoReviewIdError, rev_id if !review
+
+  cds_id=review.cd_id_by_stage(stage)
+  stage=stage
+  cds=CanonicalDocument.where(:id=>cds_id).order(:author)
+  users_grupos=review.group_users
+  archivo=params.delete("file")
+  
+  if mode=="load"
+    require 'simple_xlsx_reader'
+    doc = SimpleXlsxReader.open(archivo["tempfile"])
+    sheet=doc.sheets.first
+    header=sheet.headers
+    id_index=header.find_index("id")
+    users_assignation={}
+    header.each_index { |i|
+      if header[i]=~/\[(\d+)\].+/
+        users_assignation[i]=$1
+      end
+    }
+    number_of_actions=0
+    $db.transaction(:rollback => :reraise) do
+      sheet.data.each do |row|
+        cd_id=row[id_index]
+        user_allocations=AllocationCd.where(:systematic_review_id=>review[:id], :canonical_document_id=>cd_id, :stage=>stage ).to_hash(:user_id)
+        #$log.debug(user_allocations)
+        users_assignation.each do |i,user_id|
+          if !row[i].nil?
+            #$log.debug("#{row[i]}: #{user_id}")
+            if row[i].to_i==0 and user_allocations[user_id.to_i]
+              number_of_actions+=1
+             # $log.debug("Deleting")
+                AllocationCd.where(:systematic_review_id=>review[:id], :canonical_document_id=>cd_id, :stage=>stage, :user_id=>user_id).delete
+            elsif row[i].to_i==1 and !user_allocations[user_id.to_i]
+            #$log.debug("assing")
+              number_of_actions+=1
+              AllocationCd.insert(:systematic_review_id=>review[:id], :canonical_document_id=>cd_id, :stage=>stage, :user_id=>user_id, :status=>"Massive assign")
+            end
+          end
+        end
+      end
+    end
+
+
+    add_message(t("systematic_review_page.cd_assignations_number", n:number_of_actions))
+    redirect back
+    # Aquí es-> fp.read
+  else
+    raise "Not implemented"
+  end
+
+end
 
 get '/review/:rev_id/administration/:stage/cd_assignations_excel/:mode' do |rev_id, stage, mode|
   halt_unless_auth('review_admin')
@@ -204,7 +259,6 @@ get '/review/:rev_id/administration/:stage/cd_assignations_excel/:mode' do |rev_
   raise Buhos::NoReviewIdError, rev_id if !review
 
   cds_id=review.cd_id_by_stage(stage)
-  ars=AnalysisSystematicReview.new(review)
   stage=stage
   cds=CanonicalDocument.where(:id=>cds_id).order(:author)
   users_grupos=review.group_users
@@ -231,12 +285,9 @@ get '/review/:rev_id/administration/:stage/cd_assignations_excel/:mode' do |rev_
     headers 'Content-Type' => "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
     headers 'Content-Disposition' => "attachment; filename=cd_assignation_#{rev_id}_#{stage}.xlsx"
     package.to_stream
+  else
 
-
-
-  elsif mode=="load"
-    
-    return "HOLA"
+    raise "Not implemented"
   end
 
 end

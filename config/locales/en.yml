@@ -757,6 +757,10 @@ en:
   Systematic_review_active_inactive: "Active / Inactive SR"
   Systematic_review_all_user: "SR user / all"
   systematic_review_page:
+    cd_assignations_number: "A total of %{n} assignations were performed"
+    cd_assignations_excel: "Assignation of canonical documents using Excel files"
+    cd_assignations_batch: "Batch Assignation of canonical documents to users"
+    cd_assignations_by_cd: "Assignation of canonical documents to specific users"
     screening_title_abstract: "Title and abstract screening"
     screening_references: "References screening"
     cd_assignations: "Assignation of Canonical Documents to users"

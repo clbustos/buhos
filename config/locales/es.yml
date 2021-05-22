@@ -764,6 +764,10 @@ es:
   Systematic_review_active_inactive: "RS Activa / Inactiva"
   Systematic_review_all_user: "RS usuario / todos"
   systematic_review_page:
+    cd_assignations_number: "Se realizaron %{n} asignaciones a usuarios"
+    cd_assignations_excel: "Asignación de documentos canónicos usando archivos Excel"
+    cd_assignations_batch: "Asignación masiva de documentos canónicos a usuarios"
+    cd_assignations_by_cd: "Asignación de documentos canónicos a usuarios específicos"
     screening_title_abstract: "Tamizaje de título y resumen"
     screening_references: "Tamizaje de referencias"
     cd_assignations_excel_output: "Excel para asignar documentos canónicos a usuarios"
