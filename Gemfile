@@ -30,7 +30,7 @@ gem "sqlite3"
 gem 'mimemagic'
 gem "certified", :platforms => :mingw
 
-gem 'axlsx' , ">=2.0.0"
+gem 'caxlsx'
 gem 'tf-idf-similarity'
 
 #gem 'rubyXL'

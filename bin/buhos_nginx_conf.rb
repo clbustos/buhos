@@ -1,5 +1,5 @@
 require 'optparse'
-options = { :dir=>File.expand_path(File.join(Dir.getwd, "..")),
+options = { :path=>File.expand_path(File.join(Dir.getwd, "..")),
 :ruby_path=>`which ruby`}
 
 OptionParser.new do |opts|

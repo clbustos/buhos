@@ -37,6 +37,7 @@ require 'dotenv'
 
 #require 'i18n/backend/fallbacks'
 
+require_relative 'lib/buhos'
 
 Dir.glob("lib/*.rb").each do |f|
   require_relative(f)

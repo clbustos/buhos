@@ -194,7 +194,7 @@ module Buhos
           Date :date_creation
           String :search_criteria, :text => true
           String :description, :text => true
-          File   :file_body
+          File   :file_body # TODO: On mysql, this should be replaced to longblob
           String :filetype, :size => 50
           String :filename, :size => 128
 
