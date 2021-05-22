@@ -216,14 +216,13 @@ get '/review/:rev_id/administration/:stage/cd_assignations_excel/:mode' do |rev_
     wrap_text = wb.styles.add_style alignment: { wrap_text: true }
     little_text = wb.styles.add_style
     wb.add_worksheet(:name => t(:Assign)) do |sheet|
-      header=["id","reference"]+users_grupos.map {|v| v[:name]}
+      header=["id","reference"]+users_grupos.map {|v| "[#{v[:id]}] #{v[:name]}"}
       sheet.add_row header, :style=> [blue_cell]*(2+users_grupos.count)
       cds.each do |cd|
         row=[cd[:id], cd.ref_apa_6]
         user_allocations=AllocationCd.where(:systematic_review_id=>review[:id], :canonical_document_id=>cd[:id], :stage=>stage ).to_hash(:user_id)
         asignaciones= users_grupos.map {|user|  user_allocations[user[:id]].nil?  ? 0 : 1  }
         sheet.add_row row+asignaciones, style: ([wrap_text]*2)+[nil]*users_grupos.count
-
       end
       sheet.column_widths *([nil, 30]+ [5]*users_grupos.count)
       sheet.column_widths *([nil, 30]+ [5]*users_grupos.count)
@@ -235,7 +234,8 @@ get '/review/:rev_id/administration/:stage/cd_assignations_excel/:mode' do |rev_
 
 
 
-  else
+  elsif mode=="load"
+    
     return "HOLA"
   end
 
