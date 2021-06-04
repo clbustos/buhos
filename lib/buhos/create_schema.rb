@@ -162,7 +162,7 @@ module Buhos
           String :ebscohost_id, :size => 255
           Integer :year, :null => false
           String :journal_abbr, :size => 100
-          String :abstract, :text => true
+          String :abstract, :text => true, size: :long
           Integer :duplicated
           String :url, :text => true
           String :scielo_id, :size => 255
@@ -194,7 +194,7 @@ module Buhos
           Date :date_creation
           String :search_criteria, :text => true
           String :description, :text => true
-          File   :file_body # TODO: On mysql, this should be replaced to longblob
+          File   :file_body, size: :long
           String :filetype, :size => 50
           String :filename, :size => 128
 
@@ -226,7 +226,7 @@ module Buhos
           foreign_key :canonical_document_id, :canonical_documents, :key => [:id]
           String :journal_abbr, :size => 128
           Integer :year
-          String :abstract, :text => true
+          String :abstract, :text => true, size: :long
           String :url, :text => true
 
           index [:bibliographic_database_id]
@@ -280,7 +280,7 @@ module Buhos
 
         db.create_table? :scopus_abstracts do
           String :id, :primary_key => true
-          String :xml, :text => true
+          String :xml, :text => true, size: :long
           String :doi, :size => 255
         end
 

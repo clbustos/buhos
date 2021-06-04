@@ -17,12 +17,12 @@ describe 'Search importing bibliographic file:' do
   let(:bb_id) {bb_by_name_id('generic')}
 
 
+
+
   def update_search
     uploaded_file=Rack::Test::UploadedFile.new(filepath, "text/x-bibtex",true)
     post '/search/update', {search_id:'', file:uploaded_file, systematic_review_id: sr_by_name_id('Test Review') , bibliographic_database_id:bb_by_name_id('generic'), source:'informal_search', date_creation:'2018-01-01', search_type:"bibliographic_file"}
   end
-
-
 
   context 'when create a search based on a bibliographic file by form' do
     before(:context) do
