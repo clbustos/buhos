@@ -39,8 +39,11 @@ module SystematicReviewViewsMixin
     references_bw_canonical
     resolutions_title_abstract # Verifico que exista la tabla de resolutions
     view_name = count_references_rtr_tn
-    if !$db.table_exists?(view_name)
-      $db.run("CREATE VIEW #{view_name} AS SELECT cd_end , COUNT(DISTINCT(cd_start)) as n_references_rtr  FROM resolutions r INNER JOIN #{references_bw_canonical_tn} rec ON r.canonical_document_id=rec.cd_start LEFT JOIN #{resolutions_title_abstract_tn} as r2 ON r2.canonical_document_id=rec.cd_end WHERE r.systematic_review_id=#{self[:id]} and r.stage='screening_title_abstract' and r.resolution='yes' and r2.canonical_document_id IS NULL GROUP BY cd_end")
+    if @count_references_rtr_table_exists.nil?
+        @count_references_rtr_table_exists=true
+      if !$db.table_exists?(view_name)
+        $db.run("CREATE VIEW #{view_name} AS SELECT cd_end , COUNT(DISTINCT(cd_start)) as n_references_rtr  FROM resolutions r INNER JOIN #{references_bw_canonical_tn} rec ON r.canonical_document_id=rec.cd_start LEFT JOIN #{resolutions_title_abstract_tn} as r2 ON r2.canonical_document_id=rec.cd_end WHERE r.systematic_review_id=#{self[:id]} and r.stage='screening_title_abstract' and r.resolution='yes' and r2.canonical_document_id IS NULL GROUP BY cd_end")
+      end
     end
     $db[view_name.to_sym]
 
@@ -49,8 +52,12 @@ module SystematicReviewViewsMixin
 
   def resolutions_full_text
     view_name = resolutions_full_text_tn
-    if !$db.table_exists?(view_name)
-      $db.run("CREATE VIEW #{view_name} AS SELECT * FROM resolutions  where systematic_review_id=#{self[:id]} and stage='review_full_text'")
+    if @resolutions_full_text_tn_exists.nil?
+      @resolutions_full_text_tn_exists=true
+      if !$db.table_exists?(view_name)
+        $db.run("CREATE VIEW #{view_name} AS SELECT * FROM resolutions  where systematic_review_id=#{self[:id]} and stage='review_full_text'")
+      end
+
     end
     $db[view_name.to_sym]
   end
@@ -61,8 +68,12 @@ module SystematicReviewViewsMixin
 
   def resolutions_references
     view_name = resolutions_references_tn
-    if !$db.table_exists?(view_name)
-      $db.run("CREATE VIEW #{view_name} AS SELECT * FROM resolutions  where systematic_review_id=#{self[:id]} and stage='screening_references'")
+    if @resolutions_references_tn_exists.nil?
+      @resolutions_references_tn_exists=true
+      if !$db.table_exists?(view_name)
+        $db.run("CREATE VIEW #{view_name} AS SELECT * FROM resolutions  where systematic_review_id=#{self[:id]} and stage='screening_references'")
+      end
+
     end
     $db[view_name.to_sym]
   end
@@ -73,8 +84,11 @@ module SystematicReviewViewsMixin
 
   def resolutions_title_abstract
     view_name = resolutions_title_abstract_tn
-    if !$db.table_exists?(view_name)
-      $db.run("CREATE VIEW #{view_name} AS SELECT * FROM resolutions  where systematic_review_id=#{self[:id]} and stage='screening_title_abstract'")
+    if @resolutions_title_abstract_tn_exists.nil?
+      @resolutions_title_abstract_tn_exists=true
+      if !$db.table_exists?(view_name)
+        $db.run("CREATE VIEW #{view_name} AS SELECT * FROM resolutions  where systematic_review_id=#{self[:id]} and stage='screening_title_abstract'")
+      end
     end
     $db[view_name.to_sym]
   end
@@ -85,8 +99,11 @@ module SystematicReviewViewsMixin
 
   def count_references_bw_canonical
     view_name = count_references_bw_canonical_tn
-    if !$db.table_exists?(view_name)
-      $db.run("CREATE VIEW #{view_name} AS SELECT cd.canonical_document_id as cd_id, COUNT(DISTINCT(r1.cd_end)) as n_total_references_made, COUNT(DISTINCT(r2.cd_start)) as n_total_references_in FROM #{cd_id_table_tn} cd LEFT JOIN #{references_bw_canonical_tn} r1 ON cd.canonical_document_id=r1.cd_start LEFT JOIN #{references_bw_canonical_tn} r2 ON cd.canonical_document_id=r2.cd_end GROUP BY cd.canonical_document_id")
+    if @count_references_bw_canonical_tn_exists.nil?
+      @count_references_bw_canonical_tn_exists=true
+      if !$db.table_exists?(view_name)
+        $db.run("CREATE VIEW #{view_name} AS SELECT cd.canonical_document_id as cd_id, COUNT(DISTINCT(r1.cd_end)) as n_total_references_made, COUNT(DISTINCT(r2.cd_start)) as n_total_references_in FROM #{cd_id_table_tn} cd LEFT JOIN #{references_bw_canonical_tn} r1 ON cd.canonical_document_id=r1.cd_start LEFT JOIN #{references_bw_canonical_tn} r2 ON cd.canonical_document_id=r2.cd_end GROUP BY cd.canonical_document_id")
+      end
     end
     $db[view_name.to_sym]
   end
@@ -108,8 +125,11 @@ module SystematicReviewViewsMixin
 # Los campos son cd_start y cd_end
   def references_bw_canonical
     view_name = references_bw_canonical_tn
-    if !$db.table_exists?(view_name)
-      $db.run("CREATE VIEW #{view_name} AS SELECT r.canonical_document_id as cd_start, ref.canonical_document_id as cd_end FROM records r INNER JOIN records_searches br ON r.id=br.record_id INNER JOIN searches b ON br.search_id=b.id  INNER JOIN  records_references rr ON rr.record_id=r.id INNER JOIN bib_references ref ON ref.id=rr.reference_id   WHERE systematic_review_id='#{self[:id]}' AND ref.canonical_document_id IS NOT NULL AND b.valid=1 GROUP BY cd_start, cd_end")
+    if @references_bw_canonical_tn_exists.nil?
+      @references_bw_canonical_tn_exists=true
+      if !$db.table_exists?(view_name)
+        $db.run("CREATE VIEW #{view_name} AS SELECT r.canonical_document_id as cd_start, ref.canonical_document_id as cd_end FROM records r INNER JOIN records_searches br ON r.id=br.record_id INNER JOIN searches b ON br.search_id=b.id  INNER JOIN  records_references rr ON rr.record_id=r.id INNER JOIN bib_references ref ON ref.id=rr.reference_id   WHERE systematic_review_id='#{self[:id]}' AND ref.canonical_document_id IS NOT NULL AND b.valid=1 GROUP BY cd_start, cd_end")
+      end
     end
     $db[view_name.to_sym]
   end
@@ -118,12 +138,15 @@ module SystematicReviewViewsMixin
 # Entrega todos los id pertinentes para la revision sistematica
   def cd_id_table
     view_name = cd_id_table_tn
-    if !$db.table_exists?(view_name)
-      $db.run("CREATE VIEW #{view_name} AS SELECT DISTINCT(r.canonical_document_id) FROM records r INNER JOIN records_searches br ON r.id=br.record_id INNER JOIN searches b ON br.search_id=b.id WHERE b.systematic_review_id=#{self[:id]} AND b.valid=1
+    if @cd_id_table_tn_exists.nil?
+      @cd_id_table_tn_exists=true
+      if !$db.table_exists?(view_name)
+        $db.run("CREATE VIEW #{view_name} AS SELECT DISTINCT(r.canonical_document_id) FROM records r INNER JOIN records_searches br ON r.id=br.record_id INNER JOIN searches b ON br.search_id=b.id WHERE b.systematic_review_id=#{self[:id]} AND b.valid=1
 
-      UNION
+        UNION
 
-      SELECT DISTINCT r.canonical_document_id FROM searches b INNER JOIN records_searches br ON b.id=br.search_id INNER JOIN records_references rr ON br.record_id=rr.record_id INNER JOIN bib_references r ON rr.reference_id=r.id  WHERE b.systematic_review_id=#{self[:id]} and r.canonical_document_id IS NOT NULL and b.valid=1 GROUP BY r.canonical_document_id")
+        SELECT DISTINCT r.canonical_document_id FROM searches b INNER JOIN records_searches br ON b.id=br.search_id INNER JOIN records_references rr ON br.record_id=rr.record_id INNER JOIN bib_references r ON rr.reference_id=r.id  WHERE b.systematic_review_id=#{self[:id]} and r.canonical_document_id IS NOT NULL and b.valid=1 GROUP BY r.canonical_document_id")
+      end
     end
     $db[view_name.to_sym]
   end

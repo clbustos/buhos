@@ -151,14 +151,19 @@ end
 
 # INICIO
 
+
+#require 'flamegraph'
 get '/' do
-  log.info("Parto en /")
-  if session['user'].nil?
-    log.info("/ sin id: basico")
-    redirect url('/login')
-  else
-    @user=User[session['user_id']]
-    haml :main
-  end
+
+  #Flamegraph.generate("test") do
+    log.info("Parto en /")
+    if session['user'].nil?
+      log.info("/ sin id: basico")
+      redirect url('/login')
+    else
+      @user=User[session['user_id']]
+      haml :main
+    end
+  #end
 end
 

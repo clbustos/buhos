@@ -135,7 +135,6 @@ AND  #{cd_query} GROUP BY tags.id) as t LEFT JOIN tag_in_classes tecl ON t.id=te
       CanonicalDocument.join(cd_id_table, canonical_document_id: :id   )
     else
       CanonicalDocument.where(:id => cd_ids)
-
     end
   end
   # Canonical documents id with resolution for given stage

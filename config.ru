@@ -50,8 +50,10 @@ else
           threadsafe:     true
       })
 end
+#require 'rack-mini-profiler'
 
 use Rack::ShowExceptions
+#use Rack::MiniProfiler
 
 if File.exist?("config/installed")
   require_relative 'app.rb'

@@ -1,4 +1,7 @@
 source 'https://rubygems.org'
+#gem 'rack-mini-profiler'
+#gem 'stackprof'
+#gem 'flamegraph'
 gem 'rake'
 gem "rubyzip",  ">= 1.3.0"
 gem 'zip-zip'

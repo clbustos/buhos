@@ -65,9 +65,7 @@ class AnalysisUserDecision
   # Si existen asignaciones, sólo se consideran estas
   def procesar_cd_ids
     cd_stage=systematic_review.cd_id_by_stage(@stage)
-
     @assignations=AllocationCd.where(:systematic_review_id=>@rs_id, :user_id=>@user_id, :canonical_document_id=>cd_stage, :stage=>@stage)
-
     if @assignations.empty?
       @cd_ids=[]
     else
@@ -75,25 +73,30 @@ class AnalysisUserDecision
     end
   end
   def process_basic_indicators
-    @decisions=Decision.where(:user_id => @user_id, :systematic_review_id => @rs_id,
-                               :stage => @stage, :canonical_document_id=>@cd_ids).as_hash(:canonical_document_id)
+    if @cd_ids.empty?
+      @decisions=[]
+      @decision_by_cd={}
+      @total_decisions={}
+    else
+      @decisions=Decision.where(:user_id => @user_id, :systematic_review_id => @rs_id,
+                                 :stage => @stage, :canonical_document_id=>@cd_ids).as_hash(:canonical_document_id)
 
 
-    @decision_by_cd=@cd_ids.inject({}) {|ac, cd_id|
-      dec_id=@decisions[cd_id]
+      @decision_by_cd=@cd_ids.inject({}) {|ac, cd_id|
+        dec_id=@decisions[cd_id]
 
-      dec_dec=dec_id  ? dec_id[:decision] : Decision::NO_DECISION
-      dec_dec=Decision::NO_DECISION if dec_dec.nil?
-      ac[cd_id]=dec_dec
-      ac
-    }
-    @total_decisions=@cd_ids.inject({}) {|ac,cd_id|
-      dec=@decision_by_cd[cd_id]
-      dec_i= dec.nil? ? Decision::NO_DECISION : dec
-      ac[ dec_i]||=0
-      ac[ dec_i]+=1
-      ac
-    }
+        dec_dec=dec_id  ? dec_id[:decision] : Decision::NO_DECISION
+        dec_dec=Decision::NO_DECISION if dec_dec.nil?
+        ac[cd_id]=dec_dec
+        ac
+      }
+      @total_decisions=@cd_ids.inject({}) {|ac,cd_id|
+        dec=@decision_by_cd[cd_id]
+        dec_i= dec.nil? ? Decision::NO_DECISION : dec
+        ac[ dec_i]||=0
+        ac[ dec_i]+=1
+        ac
+      }
+    end
   end
-
 end

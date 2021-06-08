@@ -31,8 +31,8 @@ get '/review/:id/administration/:stage' do |id,stage|
 
   @stage=stage
   @ars=AnalysisSystematicReview.new(@review)
-  @cd_without_allocation=@ars.cd_without_allocations(stage)
 
+  @cd_without_allocation=@ars.cd_without_allocations(stage)
   @text_decision_cd= Buhos::AnalysisCdDecisions.new(@review, stage)
 
   @cds_id=@review.cd_id_by_stage(stage)

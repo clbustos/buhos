@@ -127,8 +127,8 @@ class AnalysisSystematicReview
     @cd_reg_id = @rs.cd_record_id
     @cd_ref_id = @rs.cd_reference_id
     @cd_all_id = @rs.cd_all_id
-    @rec = @rs.references_bw_canonical
 
+    @rec = @rs.references_bw_canonical
     @cd_included_by_stage=get_stages_ids.inject({}) do |ac, stage|
       ac[stage]=@rs.cd_id_by_stage(stage)
       ac

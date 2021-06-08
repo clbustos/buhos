@@ -1,5 +1,6 @@
 - udi=UserDashboardInfo.new(user)
 - is_administrator=udi.is_administrator_sr?(sr)
+- ars = is_administrator ? AnalysisSystematicReview.new(sr) : nil
 - if udi.unread_sr_messages(sr[:id]).count>0
   %p=t_desc_value("user_dashboard.unread_sr_messages", a_tag("/user/#{user[:id]}/messages#sr_#{sr[:id]}",  t("user_dashboard.check_n_unread_messages", count:@udi.unread_sr_messages(sr[:id]).count)))
 - et_av=sr.current_stages
@@ -34,4 +35,4 @@
         - elsif stage_visualized==:report
           =partial(:dashboard_user_sr_report, :locals=>{is_administrator:is_administrator, sr:sr, stage:stage_visualized, user:user})
         - else
-          =partial(:dashboard_user_sr_review, :locals=>{is_administrator:is_administrator, sr:sr, stage:stage_visualized, user:user,adu:adu})
+          =partial(:dashboard_user_sr_review, :locals=>{is_administrator:is_administrator, sr:sr, stage:stage_visualized, user:user,adu:adu, ars:ars})
