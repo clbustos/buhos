@@ -2,7 +2,7 @@
 - is_administrator=udi.is_administrator_sr?(sr)
 - ars = is_administrator ? AnalysisSystematicReview.new(sr) : nil
 - if udi.unread_sr_messages(sr[:id]).count>0
-  %p=t_desc_value("user_dashboard.unread_sr_messages", a_tag("/user/#{user[:id]}/messages#sr_#{sr[:id]}",  t("user_dashboard.check_n_unread_messages", count:@udi.unread_sr_messages(sr[:id]).count)))
+  %p=t_desc_value("user_dashboard.unread_sr_messages", a_tag("/user/#{user[:id]}/messages#sr_#{sr[:id]}",  t("user_dashboard.check_n_unread_messages", count:udi.unread_sr_messages(sr[:id]).count)))
 - et_av=sr.current_stages
 %div
   %ul.nav.nav-tabs{:role=>:tablist}

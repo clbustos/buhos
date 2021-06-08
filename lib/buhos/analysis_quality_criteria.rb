@@ -42,7 +42,7 @@ module Buhos
       @user_n=@users_id.length
       @cd_criteria=CdQualityCriterion.where(systematic_review_id:@sr.id, quality_criterion_id: @criteria_id, canonical_document_id:@cd_ids).order(:user_id, :canonical_document_id, :quality_criterion_id)
 
-      @scale_items=ScalesItem.join(:scales, id: :scale_id).select_all(:scales_items).where(scale_id:@criteria.map {|v| v[:scale_id]}.uniq ).to_hash_groups(:scale_id)
+      @scale_items=ScalesItem.join(:scales, id: :scale_id).select_all(:scales_items).where(scale_id: @criteria.map {|v| v[:scale_id]}.uniq ).to_hash_groups(:scale_id)
     end
 
     def set_canonical_documents
