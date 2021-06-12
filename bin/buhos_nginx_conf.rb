@@ -17,8 +17,6 @@ OptionParser.new do |opts|
   
 end.parse!
 
-p options
-
 if options[:domain].nil?
   raise "No domain name defined"
 end
@@ -52,9 +50,6 @@ server {
 }
 
 server {
-
-
-
     server_name #{options[:domain]};
     listen 80;
 }
