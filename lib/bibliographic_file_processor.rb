@@ -1,4 +1,4 @@
-# Copyright (c) 2016-2020, Claudio Bustos Navarrete
+# Copyright (c) 2016-2021, Claudio Bustos Navarrete
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -174,7 +174,14 @@ class BibliographicFileProcessor
     elsif @search[:filetype] == 'text/x-bibtex' or @search[:filename] =~ /\.bib$/
       file_body=@search[:file_body].force_encoding("utf-8")
       file_body.scrub!("*") unless file_body.valid_encoding? # Fast fix. Just delete all non-utf8 characters
-      BibliographicalImporter::BibTex::Reader.parse(file_body)
+      begin
+        BibliographicalImporter::BibTex::Reader.parse(file_body)
+      rescue BibTeX::ParseError=>e
+        log_error('bibliographic_file_processor.bibtex_integrator_failed', "<#{e.class}> : #{e.message}")
+        @error=::I18n::t('bibliographic_file_processor.bibtex_integrator_failed'.to_sym)
+        false
+      end
+
     elsif @search[:filetype] == 'text/csv' # Por trabajar
       #$log.info(bibliographical_database_name)
       BibliographicalImporter::CSV::Reader.parse(@search[:file_body], @search.bibliographical_database_name)

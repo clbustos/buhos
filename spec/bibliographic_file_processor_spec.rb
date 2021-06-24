@@ -225,9 +225,9 @@ describe 'BibliographicFileProcessor' do
     end
 
     it "should #result contain a message with the search id" do
-
-
-      mes1=I18n::t('bibliographic_file_processor.error_parsing_file')
+      mes1=I18n::t('bibliographic_file_processor.bibtex_integrator_failed')
+      #puts @bpf.result.events[0][:message]
+      #p mes1
       expect(@bpf.result.events[0][:message]).to match(/#{mes1}.+ID 1.+BibTeX.+/)
     end
     it "should not create any record" do

@@ -55,6 +55,7 @@ es:
   Back: "Atrás"
   Bibliographic_database: "Base de datos bibliográfica"
   bibliographic_file_processor:
+    bibtex_integrator_failed: "Falló procesador de archivos Bibtex "
     no_file_available: "No hay archivo disponible para process"
     error_on_reference: "Error en referencia Nº %{i}"
     error_parsing_file: "Error procesando archivo"
@@ -242,7 +243,7 @@ es:
     Show_only_files_not_assigned_to_cd: "No asignado a DC"
   Filter: "Filtro"
   footer_conicyt: "Software financiado por Beca Doctorado Nacional Conicyt Nº21151499"
-  footer_copyright: "© 2016-2020 Claudio Bustos"
+  footer_copyright: "© 2016-2021 Claudio Bustos"
   full_text_review:
       stage_complete_message: "La etapa de extracción de texto completo. La etapa de reporte se iniciará cuando todos los usuarios del grupo hayan concluido."
   Full_text_report: "Reporte de extracción de información"

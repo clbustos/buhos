@@ -173,7 +173,7 @@ module BibliographicalImporter
     end
     class Record_Ebscohost < Record
       def parse_specific
-        @keywords=@bv[:keywords].split(", ")
+        @keywords=@bv[:keywords].nil? ? [] : @bv[:keywords].split(", ")
         results=/(db=.+)/.match(@bv[:url])
         @uid=results[0]
       end
