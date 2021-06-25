@@ -314,6 +314,7 @@ es:
     scopus_key    : "Clave de desarrollo SCOPUS"
     ncbi_api_key  : "Clave de desarrollo NCBI"
     schema_creation: "Creación del esquema"
+    schema_migrations: "Migración del esquema"
     successful_connection: "Conexión exitosa a base de datos"
     successful_population: "La base fue poblada exitosamente"
   Journal: "Journal"

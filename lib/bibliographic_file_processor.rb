@@ -246,6 +246,7 @@ class BibliographicFileProcessor
       reg_o.update(fields_update)
     rescue Exception=>e
       $log.info(fields_update)
+      #$log.info(fields_update[:abstract].encoding)
       raise "Problemas para actualizar referencia #{reference.uid}, #{e.message}"
     end
     # Procesar references

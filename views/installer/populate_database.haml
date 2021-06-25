@@ -6,6 +6,7 @@
 :javascript
   $(document).ready(function() {
     $("#populate_database").click(function() {
+      $("#populate_database").addClass("disabled")
       $("#result_population_wait").html("#{t("installer.please_wait")}")
       $( "#result_population" ).load( "/installer/populate_database_2");
     });

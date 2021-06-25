@@ -206,7 +206,7 @@ module Buhos
         db.create_table? :records do
           primary_key :id
           foreign_key :bibliographic_database_id , :bibliographic_databases, :null => false, :key => [:id]
-          String :uid, :size => 255
+          String :uid, :text => true
           String :type, :size => 255
           String :title, :text => true
           String :author, :text => true
