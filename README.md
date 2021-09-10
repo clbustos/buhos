@@ -10,7 +10,7 @@ Web based platform to manage complete process of systematic literature reviews. 
 
 ## Features
 
-* Multi-platform:  Runs on Linux (tested on Ubuntu 14.04 and 16.06), Windows (tested on Windows 7 and 10) and MacOS (tested on High Sierra)
+* Multi-platform:  Runs on Linux (tested on Ubuntu 14.04, 16.06, 18.4 and 21.04), Windows (tested on Windows 7 and 10) and MacOS (tested on High Sierra)
 * Supports individual and group-based systematic reviews.
 * Internal messaging system for personal messages o messages related to systematic reviews.
 * Internationalization, using *I18n*. Available in English and Spanish.
@@ -201,7 +201,7 @@ If you are using [RVM](https://rvm.io/) with Passenger, check [this page](https:
 
 ## Caveats
 
-Since October 2018, ImageMagick have strict policies to convert pdf to images. If you need to parse pdf as images in Buhos (rarely needed), check [this Stack Overflow entry](https://stackoverflow.com/questions/42928765/convertnot-authorized-aaaa-error-constitute-c-readimage-453).     
+Since October 2018, ImageMagick have strict policies to convert pdf to images. If you need to parse pdf as images in Buhos (rarely needed), or test the software using the specification suite, check [this Stack Overflow entry](https://stackoverflow.com/questions/42928765/convertnot-authorized-aaaa-error-constitute-c-readimage-453).     
 
 
 
