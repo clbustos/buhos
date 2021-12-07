@@ -223,7 +223,6 @@ We use [SemVer](http://semver.org/) for versioning.  To see the available versio
 
 ## Authorship
 
-
 ### Developers
 
 * **Claudio  Bustos** - *Main developer* - [clbustos](https://github.com/clbustos)
