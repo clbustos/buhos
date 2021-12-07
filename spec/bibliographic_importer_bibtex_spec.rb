@@ -27,6 +27,9 @@ describe 'BibliographicalImporter::BibTeX' do
     it "title should be 'Behavioral software engineering: A definition and systematic literature review'" do
       expect(@bib[0].title).to eq("Behavioral software engineering: A definition and systematic literature review")
     end
+    it "year should be 2015" do
+		expect(@bib[0].year).to eq("2015")
+    end
     it "references should be 353" do
       expect(@bib[0].references_wos.count).to eq(353)
     end
@@ -70,6 +73,10 @@ describe 'BibliographicalImporter::BibTeX' do
     it "title should be 'Entre a fralda e a lousa: A questão das identidades docentes em berçários'" do
       expect(@bib[0].title).to eq("Entre a fralda e a lousa: A questão das identidades docentes em berçários")
     end
+    it "year should be 2019" do
+      expect(@bib[0].year).to eq("2019")
+    end
+
     it "journal should be 'Revista Portuguesa de Educação'" do
       expect(@bib[0].journal).to eq("Revista Portuguesa de Educação")
     end
@@ -187,6 +194,27 @@ end
         !record.author.nil?
       end
       expect((h.map {|v| v.author})).to eq(["{Cleland-Huang}, J. and {M?der}, P. and {Mirakhorli}, M. and {Amornborvornwong}, S."])
+    end
+  end
+
+  context "when a new (2021) WoS BibTeX is used" do
+    def text
+      read_fixture("wos_2021.bib")
+    end
+    before(:context) do
+      @bib=BibliographicalImporter::BibTex::Reader.parse(text)
+    end
+    it "should be a  Record_Wos" do
+      expect(@bib.records[0]).to be_instance_of(BibliographicalImporter::BibTex::Record_Wos)
+    end
+
+
+    it "should retrieve 1 article" do
+      expect(@bib.records.length).to eq(1)
+    end
+
+    it "year should be 2010" do
+      expect(@bib[0].year).to eq("2010")
     end
   end
 
