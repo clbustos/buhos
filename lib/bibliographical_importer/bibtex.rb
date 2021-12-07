@@ -55,7 +55,7 @@ module BibliographicalImporter
       def self.determine_type(bibtex_value)
         if bibtex_value[:source].to_s=="Scopus"
           type=:scopus
-        elsif bibtex_value["unique-id"].to_s=~/ISI:/
+        elsif bibtex_value["unique-id"].to_s=~/(ISI|WOS):/
           type=:wos
         elsif bibtex_value[:url].to_s=~/search\.ebscohost.com/
           type=:ebscohost
