@@ -35,6 +35,7 @@ gem "certified", :platforms => :mingw
 gem 'simple_xlsx_reader'
 gem 'caxlsx'
 gem 'tf-idf-similarity'
+gem 'ref_parsers'
 
 #gem 'rubyXL'
 gem 'ai4r'

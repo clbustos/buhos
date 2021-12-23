@@ -13,6 +13,9 @@ describe 'BibliographicFileProcessor' do
     $db[:crossref_dois].delete
   end
 
+  def manual_pubmed_summary
+    read_fixture("pubmed-heartattac-set.nbib")
+  end
   def manual_bibtex
     File.read(File.dirname(__FILE__)+"/../docs/guide_resources/manual.bib")
   end
@@ -54,6 +57,58 @@ describe 'BibliographicFileProcessor' do
     it "should #canonical_document_processed be false" do
       expect(@bpf.canonical_document_processed).to be false
     end
+    after do
+      $db[:bib_references].delete
+      $db[:records_references].delete
+      $db[:records_searches].delete
+      $db[:records].delete
+      $db[:canonical_documents].delete
+    end
+  end
+
+
+  context "when usual PubmedSummary is used" do
+    before(:context) do
+      Search[1].update(:file_body=>manual_pubmed_summary, :filename=>'heart.nbib', :filetype => 'application/nbib')
+    end
+
+    before do
+      @bpf=BibliographicFileProcessor.new(Search[1])
+    end
+    it "should error be false" do
+      expect(@bpf.error).to be_falsey
+    end
+
+    it "should #result contain two messages" do
+      expect(@bpf.result.count).to eq(2)
+    end
+
+    it "should #result contain two messages with the correct search and canonical id" do
+      mes1=I18n::t('bibliographic_file_processor.Search_process_file_successfully')
+      mes2=I18n::t('bibliographic_file_processor.Search_canonical_documents_successfully')
+      expect(@bpf.result.events[0][:message]).to match(/#{mes1}.+ID 1\s*$/)
+      expect(@bpf.result.events[1][:message]).to match(/#{mes2}.+ID 1\s+#{I18n::t(:Count_canonical_documents)}\s+:\s+5$/)
+    end
+
+    it "should create 5 records" do
+      expect(Record.count).to eq(5)
+    end
+    it "should create 5 canonical documents" do
+      expect(CanonicalDocument.count).to eq(5)
+    end
+    it "should #canonical_document_processed be true" do
+      expect(@bpf.canonical_document_processed).to be true
+    end
+
+    it "Canonical documents DOIs should be correct" do
+      dois=CanonicalDocument.exclude(doi:nil).map {|cd| cd.doi}
+      expect(dois.sort).to eq(["10.1371/journal.pone.0139442", "10.1111/jan.14210", "10.1089/jwh.2016.6156"].sort)
+    end
+    it "Canonical documents pmid should be correct" do
+      pmids=CanonicalDocument.exclude(pmid:nil).map {|cd| cd.pmid}
+      expect(pmids.sort).to eq(["26426421","31566810","28418750","15455807","7026815"].sort)
+    end
+
     after do
       $db[:bib_references].delete
       $db[:records_references].delete

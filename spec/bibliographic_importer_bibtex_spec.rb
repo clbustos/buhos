@@ -33,6 +33,10 @@ describe 'BibliographicalImporter::BibTeX' do
     it "references should be 353" do
       expect(@bib[0].references_wos.count).to eq(353)
     end
+    it "DOI should be correct " do
+      expect(@bib[0].doi).to eq("10.1016/j.jss.2015.04.084")
+
+    end
   end
 
   context "using Scopus BibTeX" do
@@ -52,6 +56,12 @@ describe 'BibliographicalImporter::BibTeX' do
     end
     it "references should be 358" do
       expect(@bib[0].references_scopus.count).to eq(358)
+    end
+    it "DOI shouldn't have any brackets " do
+
+      dois=@bib.find_all {|record| !record.doi.nil? and record.doi=~/[{}]/}
+      expect(dois.map {|d|d.doi}).to eq([])
+
     end
   end
 
@@ -80,7 +90,12 @@ describe 'BibliographicalImporter::BibTeX' do
     it "journal should be 'Revista Portuguesa de Educação'" do
       expect(@bib[0].journal).to eq("Revista Portuguesa de Educação")
     end
+    it "DOI shouldn't have any brackets " do
 
+      dois=@bib.find_all {|record| !record.doi.nil? and record.doi=~/[{}]/}
+      expect(dois.map {|d|d.doi}).to eq([])
+
+    end
   end
 
 

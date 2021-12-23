@@ -25,70 +25,83 @@
 # CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
 # OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-require 'nokogiri'
+#
 
 #
 module BibliographicalImporter
-  # Process XML downloaded from PMC Efetch
+  # Process Pubmed Summaries (nbib files)
+  module PubmedSummary
 
-  module PmcEfetchXml
+
+
     class Record
       include ReferenceMethods
       include BibliographicalImporter::CommonRecordAttributes
 
-      attr_reader :xml
-      def self.create(xml)
-        BibliographicalImporter::PmcEfetchXml::Record.new(xml)
+      attr_reader :ps_value
+
+
+      def self.create(record)
+        BibliographicalImporter::PubmedSummary::Record.new(record)
       end
 
-      def initialize(xml)
-        @xml=xml
+      def initialize(ps_value)
+        @ps_value=ps_value
         @authors=[]
         parse_common
       end
-      def get_text_at(path)
-        xml_r=xml.at(path)
-        xml_r.nil? ? nil : xml_r.text.to_s
-      end
+
       def parse_common
+        ##$log.info(@row)
         begin
-          @uid=get_text_at("PMID")
-          @pmid=@uid
-          @title=get_text_at("ArticleTitle")
-          @authors=xml.xpath(".//AuthorList/Author").map {|v|
-            "#{v.at('LastName').text}, #{v.at('ForeName').text}"
-          }
+          require 'digest'
 
-#          #$log.info(@authors)
+          @type=:pubmed
 
-          @journal  =get_text_at("Article/Journal/Title")
-          @year     =get_text_at("Article/Journal/JournalIssue/PubDate/Year")
-          @volume   =get_text_at("Article/Journal/JournalIssue/Volume")
-          @pages    =get_text_at("Article/Pagination")
-          @type     =nil
-          @doi      =get_text_at("Article/ELocationID[@EIdType='doi']")
-          @url=nil
+          @title    =strip_lines(ps_value["TI"]).gsub(/\s+/," ")
+          @abstract =ps_value["AB"]
+          if ps_value["FAU"].nil?
+            @authors=[]
+          elsif ps_value["FAU"].is_a? String
+            @authors=[ps_value["FAU"]]
+          else
+            @authors=ps_value["FAU"]
+          end
+          @journal  =ps_value["JT"]
+          @year     =ps_value["DP"].gsub("\D+","")
+          @volume   =ps_value["VI"]
+          @pages    = ps_value["PG"]
+          @pmid     = ps_value["type"]
 
-          @abstract =get_text_at("Article/Abstract/AbstractText")
 
-        rescue Exception=>e
-          #$log.info("Error:#{vh}")
+          if  ps_value["LID"].nil?
+            @doi=nil
+          elsif  ps_value["LID"].is_a? Array
+            value_with_doi = ps_value["LID"].find {|val|
+                val=~/\[doi\]/
+            }
+            @doi= value_with_doi.gsub(/\s*\[doi\]/,"") if !value_with_doi.nil?
+          else
+            @doi=ps_value["LID"].gsub(/\s*\[doi\]/,"") if ps_value["LID"]=~/\[doi\]/
+          end
+          @keywords=ps_value["MH"]
+          @journal_abbr=ps_value["TA"]
+          @uid="PMID:#{@pmid}"
+        rescue Exception => e
+          #$log.info("Error:#{row}")
           raise e
         end
 
       end
 
-
-
-
       def author
-        #$log.info(@authors)
-        @authors.join (" and ")
+        @authors.join(" and ")
       end
 
       # Determine the type of the reference. It could be infered by fields
-
+      def cited_references
+        nil
+      end
 
 
       def strip_lines(value)
@@ -98,43 +111,38 @@ module BibliographicalImporter
 
     class Reader
       include AbstractReader
-      attr_reader :xml_a
       attr_reader :records
+      attr_reader :base
       include Enumerable
+
       def [](x)
         @records[x]
       end
+
       def each(&block)
         @records.each(&block)
       end
-      def initialize(xml_o)
-        if xml_o.is_a? PMC::EfetchXMLSummaries
-          @xml_a=xml_o
-        elsif xml_o.is_a? Nokogiri::XML::Document
-          @xml_a=[xml_o]
-        end
-        @records=[]
+
+      def initialize(parser_o)
+        @parser_o=parser_o
         parse_records
       end
 
       def self.open(filename)
-        b=File.open(filename) { |f| Nokogiri::XML(f) }
-        Reader.new(b)
+        raise "Not implemented"
       end
 
       def self.parse(string)
-        b=Nokogiri::XML(string)
+        require 'ref_parsers'
+        parser = RefParsers::PubMedParser.new
+        b=parser.parse(string)
         Reader.new(b)
       end
 
       def parse_records
-        @xml_a.each do |xml|
-          xml.xpath("//PubmedArticle").each do |article|
-            #$log.info(article.xpath(".//AuthorList/Author/LastName").text)
-            @records.push(BibliographicalImporter::PmcEfetchXml::Record.create(article))
-          end
-        end
-
+        @records=@parser_o.map {|r|
+          BibliographicalImporter::PubmedSummary::Record.create(r)
+        }
       end
     end
   end

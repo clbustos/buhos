@@ -56,7 +56,6 @@ class BibliographicFileProcessor
     @error = nil
     @canonical_document_processed=false
     if process_file
-
       process_canonical_documents
     end
   end
@@ -111,7 +110,7 @@ class BibliographicFileProcessor
     if correct
       log_success('bibliographic_file_processor.Search_process_file_successfully')
     else
-      @error=t('bibliographic_file_processor.Search_process_file_error')
+      @error=::I18n::t('bibliographic_file_processor.Search_process_file_error')
       log_error('bibliographic_file_processor.Search_process_file_error')
     end
 
@@ -124,15 +123,20 @@ class BibliographicFileProcessor
     $db.transaction(:rollback => :reraise) do
 
       @search.records.each do |record|
-        fields = [:title, :author, :year, :journal, :volume, :pages, :doi, :journal_abbr, :abstract]
+        fields = [:title, :author, :year, :journal, :volume, :pages, :doi, :journal_abbr, :abstract, :pmid]
 
         fields_update = create_hash_update(fields, record)
         registro_base_id = "#{bb[record.bibliographic_database_id]}_id".to_sym
+
+
         if record[:canonical_document_id].nil?
           can_doc = nil
           # Verifiquemos si existe doi
           if record[:doi].to_s =~ /10\./
             can_doc = CanonicalDocument[:doi => record[:doi]]
+          end
+          if can_doc.nil? and !record[:pmid].nil?
+            can_doc = CanonicalDocument[:pmid => record[:pmid]]
           end
 
           if can_doc.nil?
@@ -181,7 +185,8 @@ class BibliographicFileProcessor
         @error=::I18n::t('bibliographic_file_processor.bibtex_integrator_failed'.to_sym)
         false
       end
-
+    elsif @search[:filetype] == 'application/nbib' or @search[:filetype] == 'application/x-pubmed' or @search[:filename] =~ /\.nbib$/
+      BibliographicalImporter::PubmedSummary::Reader.parse(@search[:file_body])
     elsif @search[:filetype] == 'text/csv' # Por trabajar
       #$log.info(bibliographical_database_name)
       BibliographicalImporter::CSV::Reader.parse(@search[:file_body], @search.bibliographical_database_name)
@@ -237,7 +242,7 @@ class BibliographicFileProcessor
     #              :references_wos, :references_scopus, :cited, :id_wos,
     #              :id_scopus,:url, :journal_abbr
 
-    fields = [:title, :author, :year, :journal, :volume, :pages, :doi, :journal_abbr, :abstract]
+    fields = [:title, :author, :year, :journal, :volume, :pages, :doi, :journal_abbr, :abstract, :pmid]
 
     fields_update = fields.find_all {|v| reg_o[:field].nil? and reference.send(v) != ''}.inject({}) {|ac, v|
       ac[v] = reference.send(v); ac;
