@@ -5,7 +5,10 @@
 - abs_pres.keywords =review.keywords_as_array
 
 %div{:class=>"panel-heading"}
-  =CGI::escapeHTML cd.title
+  - if cd.title.nil?
+    .alert.alert-danger=t(:No_title)
+  - else
+    =CGI::escapeHTML cd.title
 %div{:class=>"panel-body"}
   %p
     %strong="#{t(:APA_Reference)}:"
