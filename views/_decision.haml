@@ -20,7 +20,10 @@
 %div{:class=>"panel #{clase_panel}"}
   - if !only_buttons
     %div{:class=>"panel-heading"}
-      =CGI::escapeHTML cd.title
+      -if cd.title.nil?
+        Sin título
+      -else
+        =CGI::escapeHTML cd.title
     %div{:class=>"panel-body"}
       %p
         %strong="#{t(:APA_references)}:"
