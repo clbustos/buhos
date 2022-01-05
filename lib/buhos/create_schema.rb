@@ -374,8 +374,9 @@ module Buhos
     end
     # Insert data for bibliographic databases
     def self.insert_bib_db_data(db)
-      ["scopus", "wos", "scielo", "ebscohost", "refworks", "ieee", "generic"].each do |bib_db|
-        db[:bibliographic_databases].replace(:name => bib_db)
+      ["scopus", "wos", "scielo", "ebscohost", "refworks", "ieee", "generic", "pubmed"].each do |bib_db|
+        bib_db_o=db[:bibliographic_databases][:name=>bib_db]
+        db[:bibliographic_databases].insert(:name => bib_db) unless bib_db_o
       end
     end
     def self.insert_basic_scales(db)
