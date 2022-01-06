@@ -8,10 +8,7 @@
     =@cd.title
 
 
-:javascript
-  $(document).ready(function() {
-    buscar_similares_canonico();
-  });
+
 
 %table.reporte
   - [:author, :year,:title,:journal, :volume,:pages,:doi,:pmid,:url].each do |field|
@@ -37,6 +34,9 @@
       %a{:href=>url("/canonical_document/#{@cd[:id]}/search_abstract_scopus"), :role=>:button, :class=>"btn btn-default"}=t(:Complete_abstract_using_Scopus)
 
 - if @review
+  %a{:href=>url("/review/#{@review[:id]}/canonical_document/#{@cd[:id]}/similar"), :role=>:button, :class=>"btn btn-default"}=t(:Similar_canonical_documents)
+
+
   %h3=t(:Status_by_stage)
   -status_in_stages=@asr.status_in_stages_cd(@cd)
   %table.table
@@ -107,29 +107,7 @@
   .btn-group.btn-group-sm
     %a{:href=>url("/canonical_document/#{@cd[:id]}/view_pubmed_info"), :role=>:button, :class=>"btn btn-default btn-sm"}=t(:View_Pubmed_record)
 
-- if @review
-  %h3=t(:Similar_canonical_documents)
-  - if @sim_all
-    %table.tablesorter
-      %thead
-        %th{:style=>"width:25%"}=t(:Author)
-        %th=t(:Year)
-        %th=t(:Title)
-        %th=t(:Similarity)
-      %tbody
-        -@sim_all.each do |sim|
-          - cd_l=@rs_cds[sim[:id]]
-          %tr
-            %td=cd_l[:author]
-            %td=cd_l[:year]
-            %td
-              =cd_l[:title]
-              =partial(:canonical_document_button, locals:{id:sim[:id], review:@review })
-            %td=sim[:similarity] ? sim[:similarity].round(3) : '--'
-  - else
-    .alert.alert-warning
-      %p=t(:Similarity_cant_be_calculated)
-      %p=t(:Add_abstract_to_get_similarity)
+
 
 %h3=t("canonical_document.records_on_which_appears")
 

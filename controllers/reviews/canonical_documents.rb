@@ -173,6 +173,27 @@ get "/review/:sr_id/canonical_document/:cd_id" do |sr_id, cd_id|
 
 end
 
+
+get "/review/:sr_id/canonical_document/:cd_id/similar" do |sr_id, cd_id|
+  halt_unless_auth('review_view')
+  @sr_id=sr_id
+  @cd_id=cd_id
+  @review=SystematicReview[@sr_id]
+  raise Buhos::NoReviewIdError, sr_id if !@review
+  @cd=CanonicalDocument[@cd_id]
+  raise Buhos::NoCdIdError, cd_id if !@cd
+  @rs_cds=@review.cd_hash
+
+  title(t(:Similar_canonical_documents))
+
+
+  @sim_all=Buhos::SimilarAnalysisSr.similar_to_cd_in_sr( cd:@cd, sr:@review)
+  @references_realizadas=@cd.references_performed
+  haml "canonical_documents/similar".to_sym
+
+end
+
+
 get %r{/review/(\d+)/canonical_document/(\d+)/(cites|cited_by|cited_by_rtr)} do
   halt_unless_auth('review_view')
   @sr_id=params[:captures][0]

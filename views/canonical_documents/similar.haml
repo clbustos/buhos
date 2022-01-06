@@ -1,0 +1,37 @@
+:javascript
+  $(document).ready(function() {
+    buscar_similares_canonico();
+  });
+
+
+.heading=t_canonical_document_title(@cd.title, :Similar_canonical_documents)
+%ul.breadcrumb
+  %li
+    %a{:href=>url("/review/#{@review[:id]}")}=@review.name
+  %li
+    %a{:href=>url("/review/#{@review[:id]}/canonical_document/#{@cd.id}")}=@cd.title
+  %li.active
+    =t(:Similar_canonical_documents)
+
+%h3=t()
+- if @sim_all
+  %table.tablesorter
+    %thead
+      %th{:style=>"width:25%"}=t(:Author)
+      %th=t(:Year)
+      %th=t(:Title)
+      %th=t(:Similarity)
+    %tbody
+      -@sim_all.each do |sim|
+        - cd_l=@rs_cds[sim[:id]]
+        %tr
+          %td=cd_l[:author]
+          %td=cd_l[:year]
+          %td
+            =cd_l[:title]
+            =partial(:canonical_document_button, locals:{id:sim[:id], review:@review })
+          %td=sim[:similarity] ? sim[:similarity].round(3) : '--'
+- else
+  .alert.alert-warning
+    %p=t(:Similarity_cant_be_calculated)
+    %p=t(:Add_abstract_to_get_similarity)
