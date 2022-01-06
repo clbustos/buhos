@@ -14,12 +14,12 @@ describe 'Search Validator' do
     create_record(:n=>4, :cd_id=>[nil, 1,2,3], :search_id=>[1,1,[1,3],3])
     login_admin
   end
-  let(:sv) {SearchValidator.new(SystematicReview[1], User[1])}
-  let(:sv2) {SearchValidator.new(SystematicReview[2], User[1])}
-  let(:sv3) {SearchValidator.new(SystematicReview[3], User[1])}
-  let(:sv4) {SearchValidator.new(SystematicReview[3], User[2])}
+  let(:sv) {SearchValidatorUser.new(SystematicReview[1], User[1])}
+  let(:sv2) {SearchValidatorUser.new(SystematicReview[2], User[1])}
+  let(:sv3) {SearchValidatorUser.new(SystematicReview[3], User[1])}
+  let(:sv4) {SearchValidatorUser.new(SystematicReview[3], User[2])}
   it "should be initialized correctly" do
-    expect(sv).to be_a(SearchValidator)
+    expect(sv).to be_a(SearchValidatorUser)
   end
 
   context "on invalid records" do

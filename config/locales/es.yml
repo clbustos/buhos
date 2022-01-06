@@ -243,7 +243,7 @@ es:
     Show_only_files_not_assigned_to_cd: "No asignado a DC"
   Filter: "Filtro"
   footer_conicyt: "Software financiado por Beca Doctorado Nacional Conicyt Nº21151499"
-  footer_copyright: "© 2016-2021 Claudio Bustos"
+  footer_copyright: "© 2016-2022 Claudio Bustos"
   full_text_review:
       stage_complete_message: "La etapa de extracción de texto completo. La etapa de reporte se iniciará cuando todos los usuarios del grupo hayan concluido."
   Full_text_report: "Reporte de extracción de información"
@@ -893,6 +893,11 @@ es:
     search_new: "Nueva búsqueda"
     unread_personal_messages: "Mensajes personales sin leer"
     unread_sr_messages: "Mensajes de la revisión sistemática sin leer"
+    user_check_n_not_ready_records:
+      one:    "Revisar %{count} registro no válido del usuario"
+      other:  "Revisar %{count} registros no válidos del usuario"
+      zero:   "Todos los registros son válidos para el usuario"
+    user_count_records_not_ready: "Número de registros válidos del usuario"
   User_name: "Nombre real del usuario"
   User_title: "Usuario %{user_name} (%{login})"
   User_active: "Activo"

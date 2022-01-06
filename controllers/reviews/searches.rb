@@ -2,7 +2,7 @@
 
 # Buhos
 # https://github.com/clbustos/buhos
-# Copyright (c) 2016-2021, Claudio Bustos Navarrete
+# Copyright (c) 2016-2022, Claudio Bustos Navarrete
 # All rights reserved.
 # Licensed BSD 3-Clause License
 # See LICENSE file for more information
@@ -56,26 +56,20 @@ get %r{/review/(\d+)/(?:searches/)?records(?:/user/(\d+))?} do
   review_id, user_id=params['captures']
   @review=SystematicReview[review_id]
   raise Buhos::NoReviewIdError, review_id if !@review
-  records_base=Record.join(:records_searches, record_id: :id).join(:searches, id: :search_id).distinct
+  records_base=Record.select(:record_id, :search_id, :canonical_document_id).join(:records_searches, record_id: :id).join(:searches, id: :search_id).distinct
 
   if user_id
     @users=nil
     @user=User[user_id]
     @records=records_base.where(systematic_review_id:review_id, user_id:user_id)
-    @sv={@user.id=>SearchValidator.new(@review,@user)}
-    @sv[@user.id].validate
+    @sv=SearchValidatorUser.new(@review, @user)
   else
     @user=nil
     @records=records_base.where(systematic_review_id:review_id)
-
     @users=@records.map {|v| v[:user_id]}.uniq
-    @sv=@users.inject({}) do |ac,user_id|
-      ac[user_id]=SearchValidator.new(@review,User[user_id])
-      ac[user_id].validate
-      ac
-    end
+    @sv=SearchValidatorGeneral.new(@review)
   end
-
+  @sv.validate
   @cds=CanonicalDocument.where(:id=>@records.map {|v| v[:canonical_document_id]}.uniq).to_hash
 
 #  $log.info(@cds)

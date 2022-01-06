@@ -1,4 +1,4 @@
-# Copyright (c) 2016-2021, Claudio Bustos Navarrete
+# Copyright (c) 2016-2022, Claudio Bustos Navarrete
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -29,7 +29,7 @@
 
 # Validates the searches of a specific user on a given sistematic review
 # A search is valid if all records have enough information: title, year, authors and abstract
-class SearchValidator
+class SearchValidatorUser
 
   attr_reader :user
   attr_reader :sr

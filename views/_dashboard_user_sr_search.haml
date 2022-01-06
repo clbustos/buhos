@@ -1,5 +1,8 @@
 - #params sr, user, udi
-- sv=SearchValidator.new(sr,user)
+- if is_administrator
+  - sv = SearchValidatorGeneral.new(sr)
+- else
+  - sv = SearchValidatorUser.new(sr,user)
 - sv.validate
 - if is_administrator
   %p
@@ -13,9 +16,12 @@
     =t("user_dashboard.no_searches_available")
 - else
   %p
-    =t_desc_value("user_dashboard.count_records_not_ready", a_tag("/review/#{sr[:id]}/searches/records/user/#{user[:id]}", t("user_dashboard.check_n_not_ready_records", count: sv.invalid_records_n)))
-    - if sv.invalid_records_n>0
-      %span.label.label-warning=t(:pending)
+  -if is_administrator
+    =t_desc_value("user_dashboard.count_records_not_ready", a_tag("/review/#{sr[:id]}/searches/records", t("user_dashboard.check_n_not_ready_records", count: sv.invalid_records_n)))
+  - else
+    =t_desc_value("user_dashboard.user_count_records_not_ready", a_tag("/review/#{sr[:id]}/searches/records/user/#{user[:id]}", t("user_dashboard.user_check_n_not_ready_records", count: sv.invalid_records_n)))
+  - if sv.invalid_records_n>0
+    %span.label.label-warning=t(:pending)
 .btn-group.btn-group-sm
   =partial(:buttons_new_search, :locals=>{user: user, sr: sr  })
   -if is_administrator

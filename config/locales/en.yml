@@ -244,7 +244,7 @@ en:
     Show_only_files_assigned_to_cd: "Assigned to CD"
     Show_only_files_not_assigned_to_cd: "Not assigned to CD"
   footer_conicyt: "Software funded by Conicyt National Doctoral Grant No. 21151499"
-  footer_copyright: "© 2016-2021 Claudio Bustos"
+  footer_copyright: "© 2016-2022 Claudio Bustos"
   Full_text_report: "Information extraction report"
   fulltext_report:
     quality_assessment: "Quality Assessment"
@@ -872,6 +872,11 @@ en:
     search_pdf_files_new: "New search based on PDF article files"
     unread_personal_messages: "Unread personal messages"
     unread_sr_messages: "Unread systematic review messages"
+    user_check_n_not_ready_records:
+      one: "Check %{count} as yet unvalid record for user"
+      other: "Check %{count} as yet unvalid records for user"
+      zero: "All records are valid for user"
+    user_count_records_not_ready: "Number of valid records for user"
   users_admin:
     action_inactive: "Users made inactive: %{ids}"
     action_active:   "Users made active: %{ids}"
