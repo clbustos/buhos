@@ -1,6 +1,6 @@
 - #params sr, user, udi
 - if is_administrator
-  - sv = SearchValidatorGeneral.new(sr)
+  - sv = SearchValidatorReview.new(sr)
 - else
   - sv = SearchValidatorUser.new(sr,user)
 - sv.validate

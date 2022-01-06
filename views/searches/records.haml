@@ -28,11 +28,31 @@
   - else
     %li.active=t(:Records)
 
+%table.table
+  %thead
+    %th=t(:Id)
+    %th=t(:Search)
+    %th=t(:Count_valid_records)
+    %th=t(:Count_invalid_records)
+  %tbody
+  -@sv.searches.each do |search|
+    %tr
+      %td=search[:id]
+      %td
+        %a{:href=>"#search-#{search[:id]}"}=search[:description]
+      %td=@sv.searches_data[search[:id]][:n_valid_records]
+      %td=@sv.searches_data[search[:id]][:n_invalid_records]
+
+
+
 - search_list=@records.to_hash_groups(:search_id)
 - search_list.each do |search_id, records_s|
-  .panel.panel-default
+  - search_o=Search[search_id]
+  - class_panel = @sv.searches_data[search_id][:valid] ? "panel panel-default" : "panel panel-danger"
+  %a{:name=>"search-#{search_id}"}
+  %div{:class=>class_panel}
     .panel-heading
-      =t_desc_value(:Search, Search[search_id][:description])
+      =t_desc_value(:Search, search_o[:description])
     .panel-body
       .list-group
         -records_s.each do |record|

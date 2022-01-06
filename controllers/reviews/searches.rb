@@ -57,7 +57,6 @@ get %r{/review/(\d+)/(?:searches/)?records(?:/user/(\d+))?} do
   @review=SystematicReview[review_id]
   raise Buhos::NoReviewIdError, review_id if !@review
   records_base=Record.select(:record_id, :search_id, :canonical_document_id).join(:records_searches, record_id: :id).join(:searches, id: :search_id).distinct
-
   if user_id
     @users=nil
     @user=User[user_id]
@@ -67,7 +66,7 @@ get %r{/review/(\d+)/(?:searches/)?records(?:/user/(\d+))?} do
     @user=nil
     @records=records_base.where(systematic_review_id:review_id)
     @users=@records.map {|v| v[:user_id]}.uniq
-    @sv=SearchValidatorGeneral.new(@review)
+    @sv=SearchValidatorReview.new(@review)
   end
   @sv.validate
   @cds=CanonicalDocument.where(:id=>@records.map {|v| v[:canonical_document_id]}.uniq).to_hash

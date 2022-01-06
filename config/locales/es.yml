@@ -125,6 +125,8 @@ es:
   count_duplicated_DOI: "Nº de documentos con DOI duplicado"
   count_duplicated_metadata: "Nº de documentos con metadatos duplicados"
   Count_records: "Número de registros"
+  Count_valid_records: "Número de registros válidos"
+  Count_invalid_records: "Número de registros no válidos"
   Count_references_total: "Número de referencias total"
   Count_references_with_canonical: "Número de referencias con canónicos"
   Count_references_with_doi_without_canonical: "Número de referencias con DOI, sin canónico"

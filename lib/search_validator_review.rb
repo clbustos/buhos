@@ -30,17 +30,15 @@ require_relative 'search_validator'
 
 # Validates the searches of a specific user on a given sistematic review
 # A search is valid if all records have enough information: title, year, authors and abstract
-class SearchValidatorUser < SearchValidator
+class SearchValidatorReview < SearchValidator
 
-  attr_reader :user
   attr_reader :sr
 
-  def initialize(sr, user)
+  def initialize(sr)
     @sr=sr
-    @user=user
     super()
   end
   def can_docs_query
-    $db["SELECT s.id as s_id, r.id as r_id, cd.id, cd.author, cd.title, cd.abstract, cd.year FROM searches s INNER JOIN records_searches rs ON s.id=rs.search_id INNER JOIN records r ON rs.record_id=r.id LEFT JOIN canonical_documents cd ON r.canonical_document_id=cd.id WHERE s.user_id=? and s.systematic_review_id=?", @user.id, @sr.id]
+    $db["SELECT s.id as s_id, r.id as r_id, cd.id, cd.author, cd.title, cd.abstract, cd.year FROM searches s INNER JOIN records_searches rs ON s.id=rs.search_id INNER JOIN records r ON rs.record_id=r.id LEFT JOIN canonical_documents cd ON r.canonical_document_id=cd.id WHERE s.systematic_review_id=?", @sr.id]
   end
 end

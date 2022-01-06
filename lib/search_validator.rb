@@ -27,18 +27,18 @@
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 
-# Validates the searches for a given sistematic review
+# Abstract class to validate  searches
 # A search is valid if all records have enough information: title, year, authors and abstract
-class SearchValidatorGeneral
+class SearchValidator
 
-  attr_reader :sr
   attr_reader :valid_records_id
   attr_reader :invalid_records_id
+  attr_reader :searches_data
 
-  def initialize(sr)
-    @sr=sr
+  def initialize
     @valid_records_id=[]
     @invalid_records_id=[]
+    @searches_data={}
 
   end
   def valid_records_n
@@ -55,11 +55,17 @@ class SearchValidatorGeneral
   end
 
   def searches_n
-    Search.where(:systematic_review_id=>@sr.id).count
+    Search.where(:systematic_review_id=>@sr.id, :user_id=>@user.id).count
+  end
+  def searches
+    Search.where(:id=>@searches_data.keys)
   end
 
+  def can_docs_query
+    raise "Should be implemented"
+  end
   def validate
-    can_docs=$db["SELECT s.id as s_id, r.id as r_id, cd.id, cd.author, cd.title, cd.abstract, cd.year FROM searches s INNER JOIN records_searches rs ON s.id=rs.search_id INNER JOIN records r ON rs.record_id=r.id LEFT JOIN canonical_documents cd ON r.canonical_document_id=cd.id WHERE s.systematic_review_id=?",  @sr.id]
+    can_docs=can_docs_query
     #$log.info(can_docs.all)
     @valid_records_id=can_docs.find_all {|v| v[:author].to_s!="" and v[:title].to_s!="" and v[:abstract].to_s!="" and v[:year]!=0}.map {|v| v[:r_id]}
     @invalid_records_id=can_docs.map {|v| v[:r_id]} - @valid_records_id
@@ -79,6 +85,10 @@ class SearchValidatorGeneral
         rec_id=recs.map {|v| v[:r_id]}
         valids=@valid_records_id & rec_id
         invalids=@invalid_records_id & rec_id
+        @searches_data[key]={
+          :n_valid_records=>valids.length,
+          :n_invalid_records=>invalids.length,
+          :valid=>(valids.length>0 and invalids.length==0)}
         Search[key].update(:valid=> true) if (valids.length>0 and invalids.length==0)
       end
     end
