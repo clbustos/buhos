@@ -40,14 +40,13 @@
         - [:title, :author, :year,:doi].each do |field|
           %div
             %strong=t(field.to_s.capitalize)
-          - if auth_to("review_admin")
+          - if auth_to("review_admin") or auth_to("canonical_document_admin")
             %p=a_editable(@cd[:id], "canonical_document-#{field}", "/canonical_document/edit_field/#{field}", @cd[field],"")
           -else
             %p=@cd[field]
       %div
         %strong=t(:Abstract)
-        - if auth_to("review_admin")
+        - if auth_to("review_admin") or auth_to("canonical_document_admin")
           %p=a_textarea_editable(@cd[:id], "canonical_document", "/canonical_document/edit_field/abstract", @cd[:abstract],"")
         - else
           %p=@cd[:abstract]
-

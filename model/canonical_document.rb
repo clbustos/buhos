@@ -26,6 +26,9 @@
 # OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+require_relative '../lib/reference_methods'
+
+
 class CanonicalDocument < Sequel::Model
   # Corresponde a las references que tienen como canónico a este objeto
   one_to_many :references
