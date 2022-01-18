@@ -40,7 +40,7 @@
         -else
           -abs_pres.text=cd.abstract
           =abs_pres.html_with_keywords
-      -if auth_to("review_admin")
+      -if auth_to("review_admin") or auth_to("canonical_document_admin")
         =partial(:canonical_document_button, :locals=>{id: cd[:id], review:review})
 
   %div{:class=>class_buttons}
