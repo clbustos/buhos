@@ -15,7 +15,7 @@
     %tr
       %th=field.capitalize
       %td
-        - if auth_to("review_admin")
+        - if auth_to("review_admin") or auth_to("canonical_document_admin")
           =a_editable(@cd[:id], "canonical_document", "/canonical_document/edit_field/#{field}", @cd[field],"")
         -else
           =@cd[field]
@@ -23,7 +23,7 @@
 
 %h3=t(:Abstract)
 %p
-  - if auth_to("review_admin")
+  - if auth_to("review_admin") or auth_to("canonical_document_admin")
     =a_textarea_editable(@cd[:id], "canonical_document", "/canonical_document/edit_field/abstract", @cd[:abstract],"")
   - else
     =@cd[:abstract]
