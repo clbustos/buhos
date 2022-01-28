@@ -424,6 +424,8 @@ module Buhos
           'reference_view',
           'reflection',
           'review_admin',
+          'review_admin_view',
+          'semantic_scholar_query',
           'review_analyze',
           'review_edit',
           'review_view',

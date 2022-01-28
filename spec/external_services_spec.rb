@@ -168,6 +168,7 @@ describe 'Stage administration using external data' do
 
       get '/search/1/records/complete_doi'
     end
+
     let(:cd_on_ref) {CanonicalDocument.where(:doi=>"10.1289/ehp.1307893").first}
     it "should create a correct crossref_integrator on Canonical Document" do
       expect(Record[1].canonical_document.crossref_integrator).to be_truthy

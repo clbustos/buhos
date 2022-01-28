@@ -37,6 +37,7 @@ module Buhos
 
   class NoPubmedConnection < StandardError; end
 
+
   class NoScopusConnection < StandardError; end
 
   # @!endgroup
@@ -90,6 +91,13 @@ module Buhos
 
   # Exception when no Scopus method is allowed
   class NoScopusMethodError < StandardError ; end
+
+  # Exception when no ScholarMethod  is allowed
+  class NoSemanticScholarMethod < StandardError ; end
+
+  # Generic Semantic Scholar Error
+  class SemanticScholarError < StandardError; end
+
 
   # No method available to retrieve a PMC Records
   class NoPmcMethodError < StandardError ; end

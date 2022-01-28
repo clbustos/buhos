@@ -115,6 +115,7 @@ en:
   Continue_by_similarity: "Go to next undecided article by similarity"
   Complete_abstract_manually: "Complete abstract manually"
   Complete_abstract_using_Scopus: "Complete abstract using Scopus"
+  Complete_abstract_using_Semantic_Scholar: "Complete abstract using Semantic Scholar"
   Complete_abstract_using_Pubmed: "Complete abstract using Pubmed"
   Conflict_of_interest: "Conflict of interes"
   Count_canonical_documents: "Number of canonical documents"
@@ -123,7 +124,7 @@ en:
   Count_canonical_records: "Number of records with allocated canonical document"
   Count_canonical_records_and_references: "Number of records and references with allocated canonical document"
   Count_canonical_references: "Number of references with allocated canonical document"
-  Count_documents_search: "Number of searched documents"
+  Count_documents_search: "Number of documents found"
   count_duplicated_DOI: "Number of duplicated DOI documents"
   count_duplicated_metadata: "Number of duplicated metadata documents"
   Count_records: "Number of records"
@@ -133,7 +134,6 @@ en:
   Count_references_with_canonical: "Number of references with canonical"
   Count_references_with_doi_without_canonical: "Number of DOI references without canonical"
   Count_references_delete: "Number of references deleted: %{count}"
-  Count_search_documents: "Documents adjusted to search"
   Count_searches_on_systematic_review: "Number of searches on systematic review"
   Count_systematic_review: "Number of systematic reviews"
   Count_total_documents_to_review: "Number of documents for review"
@@ -192,7 +192,7 @@ en:
   Enter_commentary: "Enter comment"
   error:
     bad_crossref_response: "Response to text '%{text}' was erroneous. Code: %{code}, Body:%{body}"
-    no_scopus_method: "The Scopus access type %{type} is unknown"
+    no_scopus_method: "The Scopus type object identifier '%{type}' is unknown"
     error_on_add_crossref_for_cd: "Unable to add Crossref information for CD %{cd_title}"
     no_valid_cd_for_this_systematic_review: "CD %{cd_id} invalid for this systematic review. Check  resolution for this CD in preceding stages."
     policy_imagemagick: "ImageMagick doesn't authorize you to create a image. Check ImageMagick policy on google: %{message}"
@@ -366,10 +366,9 @@ en:
   More_cited_references_with_canonical_without_DOI: "More cited references by canonicals, not by DOI"
   More_cited_references_without_canonical_with_DOI: "More cited references by DOI, not by canonicals"
   More_cited_references_without_canonical_without_DOI: "More cited references neither by canonicals nor by DOI"
-  More_incoming_citations: "Canonical documents cited more by canonicals"
+  More_incoming_citations: "Canonical documents cited more often by other canonicals"
   More_info: "More information"
-  More_outgoing_citations: "Canonical documents making more citations of canonicals"
-  Multiple_option: "Multiple alternatives"
+  More_outgoing_citations: "Canonical documents making more citations to others canonicals"
   n: "n"
   Name: "Name"
   New_class: "New class"
@@ -454,6 +453,7 @@ en:
   auth:
     canonical_document_admin: "Canonical Document: Admin"
     canonical_document_view: "Canonical Document: See"
+    semantic_scholar_query: "Semantic Scholar: Query"
     crossref_query: 'Crossref: Query'
     file_admin: 'Files: Admin'
     file_view: 'Files: See'
@@ -463,10 +463,11 @@ en:
     message_view: 'Messages: See'
     record_edit: 'Records: Edit'
     record_view: 'Records: See'
-    reference_edit: 'References: Editar'
+    reference_edit: 'References: Edit'
     reference_view: 'References: See'
     reflection: 'Reflection (software)'
     review_admin: 'Systematic review: Admin'
+    review_admin_view: 'Systematic review: Admin See'
     review_analyze: 'Systematic review: Analyze'
     review_edit: 'Systematic review: Edit'
     review_view: 'Systematic review: See'
@@ -560,7 +561,6 @@ en:
   Reject: "Reject"
   Rejected: "Rejected"
   Remove_assign_all: "Remove all assignations"
-  Remove_for_all: "Remove for all"
   Report_final: "Final Report"
   Report_partial: "Partial Report"
   Research_questions: "Research Questions"
@@ -618,6 +618,11 @@ en:
     cant_obtain_scopus_error: "Unable to use Scopus document, %{cd_title}document, error: %{sr_error}"
     no_scopus_abstract: "Scopus has no abstract for the document %{cd_title}"
     updated_abstract: "The %{cd_title} document abstract was updated using Scopus"
+  semantic_scholar_paper:
+    cant_obtain_identificator_suitable_for_semantic_scholar: "Unable to find valid identifier to use Semantic Scholar , %{cd_title} document"
+    cant_obtain_semantic_scholar_error: "Unable to use Semantic Scholar document, %{cd_title} document, error: %{sr_error}"
+    no_semantic_scholar_abstract: "Semantic Scholar has no abstract for the document %{cd_title}"
+    updated_abstract: "The %{cd_title} document abstract was updated using Semantic Scholar"
   Save: "Save"
   Search: "Search"
   search:

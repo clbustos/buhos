@@ -107,12 +107,10 @@ get '/review/:rev_id/stage/:stage/generate_crossref_references' do |rev_id,stage
   @review=SystematicReview[rev_id]
   @stage=stage
   raise Buhos::NoReviewIdError, id if !@review
-
   haml "/systematic_reviews/generate_crossref_references".to_sym
 end
 
 get '/review/:rev_id/stage/:stage/generate_crossref_references_stream' do |rev_id,stage|
-
   halt_unless_auth('review_admin')
   @review=SystematicReview[rev_id]
   raise Buhos::NoReviewIdError, id if !@review

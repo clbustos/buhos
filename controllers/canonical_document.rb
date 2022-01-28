@@ -158,6 +158,15 @@ get '/canonical_document/:id/search_abstract_scopus' do |id|
   redirect back
 end
 
+
+# Query Semantic Scholar for abstract
+get '/canonical_document/:id/search_abstract_semantic_scholar' do |id|
+  halt_unless_auth('canonical_document_admin')
+  add_result(Semantic_Scholar_Paper.get_abstract_cd(id))
+
+  redirect back
+end
+
 #  Reset all references asssigned to a canonical document
 get '/canonical_document/:ref_id/clean_references' do |cd_id|
   halt_unless_auth('canonical_document_admin')

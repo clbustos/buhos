@@ -113,6 +113,7 @@ es:
   complete: "Completo"
   Complete_abstract_manually: "Completar resúmenes manualmente"
   Complete_abstract_using_Scopus: "Completar resúmenes usando Scopus"
+  Complete_abstract_using_Semantic_Scholar: "Completar resúmenes usando Semantic Scholar"
   Complete_abstract_using_Pubmed: "Completar resúmenes usando Pubmed"
   Conflict_of_interest: "Conflicto de interes"
   Count_canonical_documents: "Número de documentos canónicos"
@@ -131,7 +132,6 @@ es:
   Count_references_with_canonical: "Número de referencias con canónicos"
   Count_references_with_doi_without_canonical: "Número de referencias con DOI, sin canónico"
   Count_references_delete: "Número de referencias eliminadas: %{count}"
-  Count_search_documents: "Documentos ajustados a búsqueda"
   Count_searches_on_systematic_review: "Número de búsquedas en revisión sistemática"
   Count_systematic_review: "Nº de revisiones sistemáticas"
   Count_total_documents_to_review: "Número de documentos a revisar"
@@ -366,10 +366,9 @@ es:
   More_cited_references_with_canonical_without_DOI: "Referencias más citadas con canónico, sin DOI"
   More_cited_references_without_canonical_with_DOI: "Referencias más citadas con DOI, sin canónico "
   More_cited_references_without_canonical_without_DOI: "Referencias más citadas sin canónico ni DOI"
-  More_incoming_citations: "Documentos canónicos que reciben más citas desde canónicos"
+  More_incoming_citations: "Documentos canónicos que reciben más citas desde otros canónicos"
   More_info: "Más información"
-  More_outgoing_citations: "Documentos canónicos que realizan más citas a canónicos"
-  Multiple_option: "Multiples alternativas"
+  More_outgoing_citations: "Documentos canónicos que realizan más citas a otros canónicos"
   Multiple_choice_one: "Alternativas múltiples (solo 1 )"
   Multiple_choice_several: "Alternativas múltiples (1 o más)"
   n: "n"
@@ -457,6 +456,7 @@ es:
   auth:
     canonical_document_admin: "Documento Canónico: Admin"
     canonical_document_view: "Documento Canónico: Ver"
+    semantic_scholar_query: "Semantic Scholar: Consultar"
     crossref_query: 'Crossref: Consultar'
     file_admin: 'Archivos: Admin'
     file_view: 'Archivos: Ver'
@@ -470,6 +470,7 @@ es:
     reference_view: 'Referencia: Ver'
     reflection: 'Reflexión'
     review_admin: 'Revisión sistemática: administrar'
+    review_admin_view: 'Revisión sistemática: ver administración'
     review_analyze: 'Revisión sistemática: analizar'
     review_edit: 'Revisión sistemática: editar'
     review_view: 'Revisión sistemática: ver'
@@ -563,7 +564,6 @@ es:
   Reject: "Rechazar"
   Rejected: "Rechazado"
   Remove_assign_all: "Quitar asignación todos"
-  Remove_for_all: "Remover de todos"
   Report_final: "Reporte Final"
   Report_partial: "Reporte Parcial"
   Research_questions: "Preguntas de investigación"
@@ -624,6 +624,11 @@ es:
     cant_obtain_scopus_error: "No se pudo utilizar documento Scopus, documento %{cd_title}, error: %{sr_error}"
     no_scopus_abstract: "Scopus no tiene resument para documento %{cd_title}"
     updated_abstract: "Se actualizó el resumen del documento %{cd_title} usando Scopus"
+  semantic_scholar_paper:
+    cant_obtain_identificator_suitable_for_semantic_scholar: "No se pudo encontrar identificador válido para usar Semantic Scholar, documento %{cd_title}"
+    cant_obtain_semantic_scholar_error: "No se pudo utilizar documento Semantic Scholar, documento %{cd_title}, error: %{sr_error}"
+    no_semantic_scholar_abstract: "Semantic Scholar no tiene resument para documento  %{cd_title}"
+    updated_abstract: "Se actualizó el resumen del documento %{cd_title} usando Semantic Scholar"
   Search: "Búsqueda"
   search:
     there_is_a_file: "La búsqueda ya tiene un archivo asignado"

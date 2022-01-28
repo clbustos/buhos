@@ -32,23 +32,24 @@
   -if auth_to("scopus_query")
     - if !@cd.abstract
       %a{:href=>url("/canonical_document/#{@cd[:id]}/search_abstract_scopus"), :role=>:button, :class=>"btn btn-default"}=t(:Complete_abstract_using_Scopus)
+  -if auth_to("semantic_scholar_query")
+    - if !@cd.abstract
+      %a{:href=>url("/canonical_document/#{@cd[:id]}/search_abstract_semantic_scholar"), :role=>:button, :class=>"btn btn-default"}=t(:Complete_abstract_using_Semantic_Scholar)
+  - if @review
+    %a{:href=>url("/review/#{@review[:id]}/canonical_document/#{@cd[:id]}/similar"), :role=>:button, :class=>"btn btn-default"}=t(:Similar_canonical_documents)
 
-- if @review
-  %a{:href=>url("/review/#{@review[:id]}/canonical_document/#{@cd[:id]}/similar"), :role=>:button, :class=>"btn btn-default"}=t(:Similar_canonical_documents)
-
-
-  %h3=t(:Status_by_stage)
-  -status_in_stages=@asr.status_in_stages_cd(@cd)
-  %table.table
-    %thead
-      %th=t(:Stage)
-      %th=t(:Included)
-      %th=t(:Resolution)
-    -status_in_stages.each do |stage, status|
-      %tr
-        %td=t(get_stage_name(stage))
-        %td=t_yes_no_nil(status[:included])
-        %td=t(Resolution.get_name_resolution(status[:resolution]))
+    %h3=t(:Status_by_stage)
+    -status_in_stages=@asr.status_in_stages_cd(@cd)
+    %table.table
+      %thead
+        %th=t(:Stage)
+        %th=t(:Included)
+        %th=t(:Resolution)
+      -status_in_stages.each do |stage, status|
+        %tr
+          %td=t(get_stage_name(stage))
+          %td=t_yes_no_nil(status[:included])
+          %td=t(Resolution.get_name_resolution(status[:resolution]))
 
 - unless @cd.systematic_review_included.empty?
   %h3=t(:Included_in_the_following_reviews)
