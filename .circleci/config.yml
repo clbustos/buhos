@@ -9,7 +9,12 @@ jobs:
           APP_ENV: test
     steps:
       - checkout
-
+      - run:
+          name: Setup Code Climate test-reporter
+          command: |
+          # download test reporter as a static binary
+            curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+            chmod +x ./cc-test-reporter      
       # Restore bundle cache
       - type: cache-restore
         key: sinatra-demo-{{ checksum "Gemfile.lock" }}
@@ -22,10 +27,18 @@ jobs:
         key: sinatra-demo-{{ checksum "Gemfile.lock" }}
         paths:
           - vendor/bundle
+      - run:
+          name: Pre test
+          command: |
+            ./cc-test-reporter before-build
 
       # Run minitest
       - type: shell
         command: bundle exec rake
+      - run:
+          name: Post test
+          command: |
+            ./cc-test-reporter after-build --coverage-input-type simplecov --exit-code $?
 
       # Save artifacts
       - type: store_test_results

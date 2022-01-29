@@ -1,7 +1,6 @@
 <img src="http://buhos.org/public/logo.svg" width="225" alt="Buhos Logo" />
 
-
-[![Build Status](https://travis-ci.org/clbustos/buhos.svg?branch=master)](https://travis-ci.org/clbustos/buhos)
+[![CircleCI](https://circleci.com/gh/clbustos/buhos/tree/master.svg?style=svg)](https://circleci.com/gh/clbustos/buhos/tree/master)
 [![Maintainability](https://api.codeclimate.com/v1/badges/ffa582598127f86ed405/maintainability)](https://codeclimate.com/github/clbustos/buhos/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/ffa582598127f86ed405/test_coverage)](https://codeclimate.com/github/clbustos/buhos/test_coverage)
 
