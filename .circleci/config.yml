@@ -27,7 +27,7 @@ jobs:
     steps:
       - checkout
       - ruby/install-deps
-      - run
+      - run:
         name: Install bundler
         command: bundle install
       -ruby/rspec-test
