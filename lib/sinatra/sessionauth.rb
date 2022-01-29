@@ -66,6 +66,10 @@ module Sinatra
         halt 403 if args.any? {|per| !auth_to(per)}
       end
 
+      def halt_unless_auth_any(*args)
+        halt 403 unless args.any? {|per| auth_to(per)}
+      end
+
       def is_session_user(user_id)
         user_id.to_i==session['user_id']
       end

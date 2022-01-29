@@ -71,12 +71,13 @@
           %a{:href=>"#patron_#{@ars.pattern_id(patron)}",:class=>"btn btn-default btn-sm", :role=>"button"}
             %span{:class=>"glyphicon glyphicon-triangle-bottom"}
             =t(:View)
-          %a{:href=>url("/review/#{@review[:id]}/stage/#{@stage}/pattern/#{@ars.pattern_id(patron)}/resolution/yes"),:class=>"btn btn-success btn-sm", :role=>"button"}
-            %span{:class=>"glyphicon glyphicon-ok-circle"}
-            =t(:Document_include)
-          %a{:href=>url("/review/#{@review[:id]}/stage/#{@stage}/pattern/#{@ars.pattern_id(patron)}/resolution/no"),:class=>"btn btn-danger btn-sm", :role=>"button"}
-            %span{:class=>"glyphicon glyphicon-ban-circle"}
-            =t(:Document_exclude)
+          - if auth_to('review_admin')
+            %a{:href=>url("/review/#{@review[:id]}/stage/#{@stage}/pattern/#{@ars.pattern_id(patron)}/resolution/yes"),:class=>"btn btn-success btn-sm", :role=>"button"}
+              %span{:class=>"glyphicon glyphicon-ok-circle"}
+              =t(:Document_include)
+            %a{:href=>url("/review/#{@review[:id]}/stage/#{@stage}/pattern/#{@ars.pattern_id(patron)}/resolution/no"),:class=>"btn btn-danger btn-sm", :role=>"button"}
+              %span{:class=>"glyphicon glyphicon-ban-circle"}
+              =t(:Document_exclude)
 
 
 =partial(:sr_administration_actions, :locals=>{review:@review, stage:@stage})
@@ -87,11 +88,11 @@
 
 
   %h3=t(:Canonical_Document_Status)
-
-  .btn-group.btn-group-sm
-    %a{:href=>url("/review/#{@review[:id]}/files"),:class=>"btn btn-default btn-sm", :role=>"button"}
-      %span.glyphicon.glyphicon-file
-      =t(:File_batch_management)
+  - if auth_to('review_admin')
+    .btn-group.btn-group-sm
+      %a{:href=>url("/review/#{@review[:id]}/files"),:class=>"btn btn-default btn-sm", :role=>"button"}
+        %span.glyphicon.glyphicon-file
+        =t(:File_batch_management)
 
 
   %table.tablesorter.reporte
@@ -116,9 +117,11 @@
               -apc_doc.each do |archivo|
                 %div
                   =archivo[:id]
-                  =@modal_files.buttons(archivo, doc_c[:id])
+                  - if auth_to('review_admin')
+                    =@modal_files.buttons(archivo, doc_c[:id])
             - else
-              =@modal_files.cargador_archivo(@review[:id],doc_c[:id])
+              - if auth_to('review_admin')
+                =@modal_files.cargador_archivo(@review[:id],doc_c[:id])
 
 
   =partial(:statistics_tags, :locals=>{review:@review, stage:@stage})
@@ -148,4 +151,7 @@
             - else
               =t("error.no_valid_cd_for_this_systematic_review", cd_id:cd_id)
           %td.md-5=@text_decision_cd.to_html(cd_id)
-          %td.md-2=partial(:buttons_resolution, :locals=>{:rpc=>rpc, :rcompc=>rcompc, :cd_id=>cd_id, :stage=>@stage, :user_id=>@user_id, :review=>@review})
+          - if auth_to('review_admin')
+            %td.md-2=partial(:buttons_resolution, :locals=>{:rpc=>rpc, :rcompc=>rcompc, :cd_id=>cd_id, :stage=>@stage, :user_id=>@user_id, :review=>@review})
+          - else
+            %td.md-2=partial(:buttons_resolution_view, :locals=>{:rpc=>rpc, :rcompc=>rcompc, :cd_id=>cd_id, :stage=>@stage, :user_id=>@user_id, :review=>@review})

@@ -13,7 +13,7 @@
 
 require 'serrano'
 get '/review/:id/administration_stages' do |id|
-  halt_unless_auth('review_admin')
+  halt_unless_auth_any('review_admin', 'review_admin_view')
   @review=SystematicReview[id]
   raise Buhos::NoReviewIdError, id if !@review
   @ars=AnalysisSystematicReview.new(@review)
@@ -23,7 +23,7 @@ end
 
 # Interface to administrate a stage
 get '/review/:id/administration/:stage' do |id,stage|
-  halt_unless_auth('review_admin')
+  halt_unless_auth_any('review_admin', 'review_admin_view')
   @review=SystematicReview[id]
 
   raise Buhos::NoReviewIdError, id if !@review
@@ -71,7 +71,7 @@ end
 # Set a resolution for a given pattern
 
 get '/review/:id/stage/:stage/pattern/:patron/resolution/:resolution' do |id,stage,patron_s,resolution|
-  halt_unless_auth('review_admin')
+  halt_unless_auth_any('review_admin', 'review_admin_view')
   @review=SystematicReview[id]
   raise Buhos::NoReviewIdError, id if !@review
 
@@ -103,7 +103,7 @@ end
 # TODO: Move this to independent class
 
 get '/review/:rev_id/stage/:stage/generate_crossref_references' do |rev_id,stage|
-  halt_unless_auth('review_admin')
+  halt_unless_auth_any('review_admin')
   @review=SystematicReview[rev_id]
   @stage=stage
   raise Buhos::NoReviewIdError, id if !@review
@@ -111,7 +111,7 @@ get '/review/:rev_id/stage/:stage/generate_crossref_references' do |rev_id,stage
 end
 
 get '/review/:rev_id/stage/:stage/generate_crossref_references_stream' do |rev_id,stage|
-  halt_unless_auth('review_admin')
+  halt_unless_auth_any('review_admin')
   @review=SystematicReview[rev_id]
   raise Buhos::NoReviewIdError, id if !@review
   result=Result.new
@@ -184,7 +184,7 @@ end
 
 # List of allocations of canonical documents to users
 get '/review/:rev_id/administration/:stage/cd_assignations' do |rev_id, stage|
-  halt_unless_auth('review_admin')
+  halt_unless_auth_any('review_admin', 'review_admin_view')
   @review=SystematicReview[rev_id]
   raise Buhos::NoReviewIdError, rev_id if !@review
 
@@ -252,7 +252,7 @@ post '/review/:rev_id/administration/:stage/cd_assignations_excel/:mode' do |rev
 end
 
 get '/review/:rev_id/administration/:stage/cd_assignations_excel/:mode' do |rev_id, stage, mode|
-  halt_unless_auth('review_admin')
+  halt_unless_auth_any('review_admin', 'review_admin_view')
   review=SystematicReview[rev_id]
   raise Buhos::NoReviewIdError, rev_id if !review
 
@@ -295,7 +295,7 @@ end
 
 
 get '/review/:rev_id/administration/:stage/cd_without_allocations' do |rev_id, stage|
-  halt_unless_auth('review_admin')
+  halt_unless_auth_any('review_admin', 'review_admin_view')
   @review=SystematicReview[rev_id]
   raise Buhos::NoReviewIdError, rev_id if !@review
   @ars=AnalysisSystematicReview.new(@review)
@@ -346,7 +346,7 @@ end
 # List of documents without abstract
 
 get '/review/:rev_id/stage/:stage/complete_empty_abstract_manual' do |rev_id, stage|
-  halt_unless_auth('review_admin')
+  halt_unless_auth_any('review_admin', 'review_admin_view')
   @review=SystematicReview[rev_id]
   raise Buhos::NoReviewIdError, rev_id if !@review
   @ars=AnalysisSystematicReview.new(@review)

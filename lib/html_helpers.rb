@@ -76,9 +76,9 @@ $('[data-toggle=\"tooltip\"]').tooltip()
     block.call(id, value)
     200
   end
-
-  def class_bootstrap_contextual(cond, prefix, clase, clase_no="default")
-    cond ? "#{prefix}-#{clase}" : "#{prefix}-#{clase_no}"
+  # If cond is true,  add css_class. If false, add css_class_no
+  def class_bootstrap_contextual(cond, prefix, css_class, css_class_no="default")
+    cond ? "#{prefix}-#{css_class}" : "#{prefix}-#{css_class_no}"
   end
   def bool_class(x, yes,no,nil_class)
     if x.nil?

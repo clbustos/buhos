@@ -13,46 +13,47 @@
   %li{:class=>:active}
     =t("systematic_review_page.cd_assignations")
 
-%h3=t("systematic_review_page.cd_assignations_excel").to_sym
+- if auth_to('review_admin')
+  %h3=t("systematic_review_page.cd_assignations_excel").to_sym
 
-.btn-group
-  %a.btn.btn-sm.btn-default{:href=>"/review/#{@review[:id]}/administration/#{@stage}/cd_assignations_excel/save"}
-    %span.glyphicon.glyphicon.glyphicon-save-file
-    =t("systematic_review_page.cd_assignations_excel_output").to_sym
+  .btn-group
+    %a.btn.btn-sm.btn-default{:href=>"/review/#{@review[:id]}/administration/#{@stage}/cd_assignations_excel/save"}
+      %span.glyphicon.glyphicon.glyphicon-save-file
+      =t("systematic_review_page.cd_assignations_excel_output").to_sym
 
-%p=t("systematic_review_page.cd_assignations_excel_input").to_sym
+  %p=t("systematic_review_page.cd_assignations_excel_input").to_sym
 
-%form{:method=>:post, :action=>url("/review/#{@review[:id]}/administration/#{@stage}/cd_assignations_excel/load"), :enctype=>'multipart/form-data'}
-  .form-group
-    %label=t(:File)
-    %input{:type=>'file', :name=>'file', :multiple=>"multiple"}
-  %input{:type=>:submit, :class=>"btn btn-primary",:value=>"Enviar"}
-
-
-
-%h3=t("systematic_review_page.cd_assignations_batch").to_sym
+  %form{:method=>:post, :action=>url("/review/#{@review[:id]}/administration/#{@stage}/cd_assignations_excel/load"), :enctype=>'multipart/form-data'}
+    .form-group
+      %label=t(:File)
+      %input{:type=>'file', :name=>'file', :multiple=>"multiple"}
+    %input{:type=>:submit, :class=>"btn btn-primary",:value=>"Enviar"}
 
 
-%table.table
-  %thead
-    %th=t(:User_name)
-    %th=t(:Count_canonical_documents_assigned)
-    %th=t(:Actions)
-  %tbody
-  -@review.group_users.each do |usuario|
-    - cd_id_assigned=@ars.cd_id_assigned_by_user(@stage,usuario[:id])
-    %tr
-      %td=usuario.name
-      %td=cd_id_assigned.count
-      %td
-        - add_disabled = cd_id_assigned.count==@cds.count ? "disabled":""
-        - remove_disabled = cd_id_assigned.count==0 ? "disabled":""
-        %a{:href=>"/review/#{@review.id}/stage/#{@stage}/add_assign_user/#{usuario.id}/#{@type}",:class=>"btn btn-default #{add_disabled}"}
-          %span.glyphicon.glyphicon-hand-up
-          =t(:Assign_all)
-        %a{:href=>"/review/#{@review.id}/stage/#{@stage}/rem_assign_user/#{usuario.id}/#{@type}",:class=>"btn btn-default #{remove_disabled}"}
-          %span.glyphicon.glyphicon-hand-down
-          =t(:Remove_assign_all)
+
+  %h3=t("systematic_review_page.cd_assignations_batch").to_sym
+
+
+  %table.table
+    %thead
+      %th=t(:User_name)
+      %th=t(:Count_canonical_documents_assigned)
+      %th=t(:Actions)
+    %tbody
+    -@review.group_users.each do |usuario|
+      - cd_id_assigned=@ars.cd_id_assigned_by_user(@stage,usuario[:id])
+      %tr
+        %td=usuario.name
+        %td=cd_id_assigned.count
+        %td
+          - add_disabled = cd_id_assigned.count==@cds.count ? "disabled":""
+          - remove_disabled = cd_id_assigned.count==0 ? "disabled":""
+          %a{:href=>"/review/#{@review.id}/stage/#{@stage}/add_assign_user/#{usuario.id}/#{@type}",:class=>"btn btn-default #{add_disabled}"}
+            %span.glyphicon.glyphicon-hand-up
+            =t(:Assign_all)
+          %a{:href=>"/review/#{@review.id}/stage/#{@stage}/rem_assign_user/#{usuario.id}/#{@type}",:class=>"btn btn-default #{remove_disabled}"}
+            %span.glyphicon.glyphicon-hand-down
+            =t(:Remove_assign_all)
 
 %h3=t("systematic_review_page.cd_assignations_by_cd").to_sym
 

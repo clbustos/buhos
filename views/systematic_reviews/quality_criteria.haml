@@ -22,24 +22,30 @@
     %tbody
       -@sr_quality_criteria.each do |qc|
         %tr
-          %td=a_editable(qc[:id], 'qc-order', "/review/#{@review.id}/edit_quality_criterion/order", qc[:order])
-          %td=a_textarea_editable(qc[:id], 'qc-text', "/review/#{@review.id}/edit_quality_criterion/text", qc[:text])
-          %td=@xselect.html(qc[:id], qc[:scale_id])
-          %td
-            .btn-group.btn-group-sm
-              %form{:method=>:post, :action=>"/review/#{@review[:id]}/quality_criterion/#{qc[:id]}/delete"}
-                %button.btn.btn-danger
-                  %span.glyphicon.glyphicon-remove
-                  =t(:Delete)
-
-%h3=t(:Quality_criterion_new)
-%form{:method=>"post", :action=>"/review/#{@review[:id]}/new_quality_criterion",:class=>"form-group"}
-  .form-group
-    %label{:for=>'description'}=t(:Description)
-    %input.form-control{:type=>'text', :name=>'text'}
-  .form-group
-    %label{:for=>'scale'}=t(:Scale)
-    %select.form-control{:name=>'scale_id'}
-      - Scale.to_hash.each_pair do |id,name|
-        %option{:value=>id}=name
-  %input.btn.btn-default{:type=>:submit, :value=>t("quality_assesment.add_new_criterion")}
+          - if auth_to('review_admin')
+            %td=a_editable(qc[:id], 'qc-order', "/review/#{@review.id}/edit_quality_criterion/order", qc[:order])
+            %td=a_textarea_editable(qc[:id], 'qc-text', "/review/#{@review.id}/edit_quality_criterion/text", qc[:text])
+            %td=@xselect.html(qc[:id], qc[:scale_id])
+            %td
+              .btn-group.btn-group-sm
+                %form{:method=>:post, :action=>"/review/#{@review[:id]}/quality_criterion/#{qc[:id]}/delete"}
+                  %button.btn.btn-danger
+                    %span.glyphicon.glyphicon-remove
+                    =t(:Delete)
+          - else
+            %td=qc[:order]
+            %td=qc[:text]
+            %td=qc[:scale_id]
+            %td
+- if auth_to('review_admin')
+  %h3=t(:Quality_criterion_new)
+  %form{:method=>"post", :action=>"/review/#{@review[:id]}/new_quality_criterion",:class=>"form-group"}
+    .form-group
+      %label{:for=>'description'}=t(:Description)
+      %input.form-control{:type=>'text', :name=>'text'}
+    .form-group
+      %label{:for=>'scale'}=t(:Scale)
+      %select.form-control{:name=>'scale_id'}
+        - Scale.to_hash.each_pair do |id,name|
+          %option{:value=>id}=name
+    %input.btn.btn-default{:type=>:submit, :value=>t("quality_assesment.add_new_criterion")}

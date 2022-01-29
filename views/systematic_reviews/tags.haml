@@ -87,25 +87,25 @@
           .col-md-9.col-lg-8
             %div{:id=>"tags-clase-#{t_class.id}"}
               =partial("tags/tags_class", :locals=>{t_class: t_class})
-
-.panel.panel-default
-  .panel-heading
-    =t(:New_class)
-  .panel-body
-    %form{:method=>"post",:action=>url("/tags/classes/new")}
-      %input{:type=>:hidden, :name=>:review_id, :value=>@review.id}
-      .form-group
-        %label{:for=>"name"}=t(:Name)
-        %input{:class=>"form-control",:type=>"text", :name=>"name"}
-      .form-group
-        %label{:for=>"stage"}=t(:Stage)
-        %select{:name=>"stage", :class=>"form-control"}
-          - @stages_list.each do |stage_id, stage_name|
-            %option{:value=>stage_id}=stage_name
-      .form-group
-        %label{:for=>"type"}=t(:Type)
-        %select{:name=>"type", :class=>"form-control"}
-          - @types_list.each do |type_id, type_name|
-            %option{:value=>type_id}=type_name
-      %input{:type=>:submit, :value=>"Agregar clase nueva", :class=>"btn btn-default"}
+- if auth_to('tag_edit')
+  .panel.panel-default
+    .panel-heading
+      =t(:New_class)
+    .panel-body
+      %form{:method=>"post",:action=>url("/tags/classes/new")}
+        %input{:type=>:hidden, :name=>:review_id, :value=>@review.id}
+        .form-group
+          %label{:for=>"name"}=t(:Name)
+          %input{:class=>"form-control",:type=>"text", :name=>"name"}
+        .form-group
+          %label{:for=>"stage"}=t(:Stage)
+          %select{:name=>"stage", :class=>"form-control"}
+            - @stages_list.each do |stage_id, stage_name|
+              %option{:value=>stage_id}=stage_name
+        .form-group
+          %label{:for=>"type"}=t(:Type)
+          %select{:name=>"type", :class=>"form-control"}
+            - @types_list.each do |type_id, type_name|
+              %option{:value=>type_id}=type_name
+        %input{:type=>:submit, :value=>"Agregar clase nueva", :class=>"btn btn-default"}
 =partial(:statistics_tags, :locals=>{review:@review})

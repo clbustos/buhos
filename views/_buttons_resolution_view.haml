@@ -1,0 +1,11 @@
+- # parametros: rcompc, rpc, cd_id, stage, user_id, review
+%div
+  %div.btn-group.btn-sm
+    - crits={'yes'=>{bs:'success', name:t(:Document_include), glyphicon: "ok-circle"}, 'no'=>{bs:'danger', name:t(:Document_exclude), glyphicon: "ban-circle"}, 'delete'=>{bs:'warning', name:t(:Delete), glyphicon: 'remove'}}
+    - crits.each_pair do |res_id, crit|
+      - next if rpc[cd_id]==Resolution::NO_RESOLUTION and res_id=='delete'
+      -cbc=class_bootstrap_contextual( rpc[cd_id]==res_id, 'btn',crit[:bs] )
+      %span{:class=>"btn btn-sm #{cbc}"}
+        %span{:class=>"glyphicon glyphicon-#{crit[:glyphicon]}"}
+        =crit[:name]
+  %p=rcompc[cd_id]

@@ -47,8 +47,12 @@ class UserDashboardInfo
   def adu_for_sr(sr,stage)
     AnalysisUserDecision.new(sr[:id], @user[:id], stage)
   end
+  # The user is the administrator of a specific systematic review
   def is_administrator_sr?(sr)
     user[:id]==sr[:sr_administrator]
   end
 
+  def is_member?(sr)
+    sr.group_users.nil? ? false : sr.group_users.include?(user)
+  end
 end

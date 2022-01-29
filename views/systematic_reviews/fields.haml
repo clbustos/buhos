@@ -34,30 +34,30 @@
               %a.btn.btn-danger{:href=>"/review/#{@review[:id]}/field/#{campo[:id]}/delete"}
                 %span.glyphicon.glyphicon-remove
                 =t(:Delete)
+- if auth_to('review_admin')
+  %a.btn.btn-primary{:href=>"/review/#{@review[:id]}/update_field_table"}=t("fields.update_fields_table")
 
-%a.btn.btn-primary{:href=>"/review/#{@review[:id]}/update_field_table"}=t("fields.update_fields_table")
-
-%h3=t(:Field_new)
-%form{:method=>"post", :action=>"/review/#{@review[:id]}/new_field",:class=>"form-group"}
-  .form-group
-    %label{:for=>'order'}=t(:Order)
-    %input.form-control{:type=>'number', :min=>"1",:max=>100, :name=>'order'}
-  .form-group
-    %label{:for=>'description'}=t(:Description)
-    %input.form-control{:type=>'text', :name=>'description'}
-  .form-group
-    %label{:for=>'Nombre'}=t("fields.code")
-    %p=t("fields.code_instructions")
-    %input.form-control{:type=>'text', :name=>'name'}
-  .form-group
-    %label{:for=>'type'}=t(:Type)
-    %select.form-control{:name=>'type'}
-      - SrField::AVAILABLE_TYPES.each do |type|
-        %option{:value=>type}=t("fields.#{type}")
-  .form-group
-    %label{:for=>'options'}=t(:Options)
-    %br
-    %p<= t('fields.format_instruction')
-    %pre opcion1=text2;opcion2=text2...
-    %input.form-control{:type=>'text', :name=>'options', :size=>20}
-  %input.btn.btn-default{:type=>:submit, :value=>t(:create_new_field)}
+  %h3=t(:Field_new)
+  %form{:method=>"post", :action=>"/review/#{@review[:id]}/new_field",:class=>"form-group"}
+    .form-group
+      %label{:for=>'order'}=t(:Order)
+      %input.form-control{:type=>'number', :min=>"1",:max=>100, :name=>'order'}
+    .form-group
+      %label{:for=>'description'}=t(:Description)
+      %input.form-control{:type=>'text', :name=>'description'}
+    .form-group
+      %label{:for=>'Nombre'}=t("fields.code")
+      %p=t("fields.code_instructions")
+      %input.form-control{:type=>'text', :name=>'name'}
+    .form-group
+      %label{:for=>'type'}=t(:Type)
+      %select.form-control{:name=>'type'}
+        - SrField::AVAILABLE_TYPES.each do |type|
+          %option{:value=>type}=t("fields.#{type}")
+    .form-group
+      %label{:for=>'options'}=t(:Options)
+      %br
+      %p<= t('fields.format_instruction')
+      %pre opcion1=text2;opcion2=text2...
+      %input.form-control{:type=>'text', :name=>'options', :size=>20}
+    %input.btn.btn-default{:type=>:submit, :value=>t(:create_new_field)}
