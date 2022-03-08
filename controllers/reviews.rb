@@ -153,8 +153,9 @@ post '/review/:id/automatic_deduplication' do |id|
 
   @cd_rep_doi=@dup_analysis.by_doi
 
-
-  @cd_por_doi=CanonicalDocument.where(:doi => @cd_rep_doi).order(:id).to_hash_groups(:doi, :id)
+  @cds=@review.canonical_documents
+  @cd_ids=@cds.map {|cd| cd.id}
+  @cd_por_doi=CanonicalDocument.where(doi: @cd_rep_doi, id:@cd_ids).order(:id).to_hash_groups(:doi, :id)
 
   result=Result.new
   @cd_por_doi.each_pair do |doi, cds_id|

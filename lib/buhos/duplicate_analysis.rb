@@ -41,7 +41,7 @@ module Buhos
 
       @canonical_documents=cds
     end
-
+    # Returns a list of repeated doi
     def by_doi
       canonical_documents.exclude(doi: nil).group_and_count(:doi).having {count.function.* > 1}.all.map {|v| v[:doi]}
     end
