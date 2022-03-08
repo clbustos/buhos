@@ -112,6 +112,10 @@ module AnalysisSrStageMixin
     get_asrs(stage).cd_screened_id
   end
 
+  def cd_resolved_id(stage)
+    get_asrs(stage).cd_resolved_id
+  end
+
   def outgoing_citations(stage, cd_id)
     get_asrs(stage).outcoming_citations cd_id
   end

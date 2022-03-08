@@ -47,8 +47,11 @@ module ReportBuilder
       @n_rec_back_snow=sr.cd_id_by_stage("screening_references").length # records obtained by snowballing
       @n_rec_other=@sources_identification.inject(0) {|ac,v| ac+v[1]} - @n_rec_database+ @n_rec_back_snow
       @n_rec_non_duplicated=sr.cd_id_by_stage("screening_references").length + sr.cd_id_by_stage("screening_title_abstract").length
-      @n_rec_screened=@ars.cd_screened_id("screening_references").count+@ars.cd_screened_id("screening_title_abstract").count
-      @n_rec_rej_screen=@ars.cd_rejected_id("screening_references").count+@ars.cd_rejected_id("screening_title_abstract").count
+
+      @n_rec_screened=@ars.cd_resolved_id("screening_references").count+@ars.cd_resolved_id("screening_title_abstract").count
+
+
+      @n_rec_rej_screen=@ars.cd_rejected_id("screening_references").count + @ars.cd_rejected_id("screening_title_abstract").count
       @n_rec_full_assed=sr.cd_id_by_stage("review_full_text").count
       @n_rec_full_rej=@ars.cd_rejected_id("review_full_text").count
       @n_rec_full_ace=@ars.cd_accepted_id("review_full_text").count

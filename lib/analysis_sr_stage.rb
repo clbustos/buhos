@@ -95,11 +95,16 @@ class Analysis_SR_Stage
     Decision::N_EST.keys.inject({}) {|ac,v|  ac[v]=0;ac }
   end
 
+  # Canonical document id for document screened on certain stage
+  # it should be noted that documents could be partially screened, not necessarily  resolved
   def cd_screened_id
     cds=@sr.cd_id_by_stage(@stage)
     Decision.where(:systematic_review_id=>@sr.id, :canonical_document_id=>cds, :user_id=>@sr.group_users.map {|u| u[:id]}, :stage=>@stage.to_s).group(:canonical_document_id).map(:canonical_document_id)
   end
 
+  def cd_resolved_id
+    resolutions_by_cd.find_all {|v| (v[1]=='no' or v[1]=='yes')}.map {|v| v[0]}
+  end
   def cd_rejected_id
     resolutions_by_cd.find_all {|v| v[1]=='no'}.map {|v| v[0]}
   end
