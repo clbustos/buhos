@@ -38,7 +38,8 @@ module Buhos
       set_canonical_documents
       @users_id=@sr.group_users.map(&:id)
       @user_n=@users_id.length
-      @cd_criteria=CdCriterion.where(systematic_review_id:@sr.id, canonical_document_id:@cd_ids).order(:user_id, :canonical_document_id, :criterion_id)
+      @criteria_id=@criteria.map {|crit| crit[:id]}
+      @cd_criteria=CdCriterion.where(systematic_review_id:@sr.id, canonical_document_id:@cd_ids, criterion_id:@criteria_id ).order(:user_id, :canonical_document_id, :criterion_id)
     end
 
     def set_canonical_documents
@@ -48,18 +49,20 @@ module Buhos
     end
     private :set_canonical_documents
     def proportion_by_cd
+
       crit_perc=lambda {@criteria.inject({}) { |ac,criterion|
         ac[criterion[:id]]=CdCriterion::PRESENCE_VALID.inject({}) {|ac2,presence| ac2[presence]=0; ac2}
         ac
       }}
-
       percents=@cd_ids.inject({}) do |ac,cd_id|
         ac[cd_id]=crit_perc.call
         ac
       end
-
+      #$log.info(percents)
       @cd_criteria.each do |row|
-        next unless @cd_ids.include? row[:canonical_document_id]
+
+        next unless @cd_ids.include? row[:canonical_document_id] and @criteria_id.include? row[:criterion_id]
+
         percents[row[:canonical_document_id]][row[:criterion_id]][row[:presence]]+= 1.to_f/@user_n
       end
       percents
