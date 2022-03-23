@@ -66,7 +66,7 @@
             %select.chosen-select{:id=>"select_canonico_#{archivo[:id]}",:name=>"select_canonico_#{archivo[:id]}[]"}
               %option{:value=>""}="--#{t(:Without_canonical_document)}--"
               -@cd_validos.each do |cd|
-                %option{:value=>cd[:id]}=CGI.escapeHTML(cd[:title][0..60])
+                %option{:value=>cd[:id]}=CGI.escapeHTML(cd[:title][0..70])
             %button.btn.btn-default.btn-sm.asignar_canonico{"archivo-pk"=>archivo[:id]}
               =t(:Change)
         %td=@modal_files.buttons(archivo,archivo[:canonical_document_id],@review.id,true)
