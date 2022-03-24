@@ -134,7 +134,26 @@ module SystematicReviewViewsMixin
     $db[view_name.to_sym]
   end
 
-
+  def bib_references
+    view_name = bib_references_tn
+    if @bib_references_tn_exists.nil?
+      @bib_references_tn_exists=true
+      if !$db.table_exists?(view_name)
+        $db.run("CREATE VIEW #{view_name} AS SELECT refs.id, refs.text, refs.doi, refs.canonical_document_id,
+COUNT(DISTINCT(r.canonical_document_id)) as cited_by_cd_n,
+COUNT(DISTINCT(s.id)) as searches_count
+FROM bib_references refs
+INNER JOIN records_references rr ON refs.id = rr.reference_id
+INNER JOIN records r ON rr.record_id=r.id
+INNER JOIN records_searches br ON r.id=br.record_id
+INNER JOIN searches s ON br.search_id=s.id WHERE s.systematic_review_id=#{self[:id]} GROUP BY refs.id")
+      end
+    end
+    $db[view_name.to_sym]
+  end
+  def bib_references_tn
+    "sr_bib_references_#{self[:id]}"
+  end
 # Entrega todos los id pertinentes para la revision sistematica
   def cd_id_table
     view_name = cd_id_table_tn

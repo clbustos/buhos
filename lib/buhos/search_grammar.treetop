@@ -9,7 +9,7 @@ grammar SearchGrammar
   end
 
   rule required
-     ('author' / 'year' / 'title' / 'keywords' / 'journal' / 'abstract') <Required>
+     ('author' / 'year' / 'title' / 'keywords' / 'journal' / 'abstract' / 'text') <Required>
   end
 
   rule expression

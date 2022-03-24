@@ -167,7 +167,7 @@ get "/review/:sr_id/canonical_document/:cd_id" do |sr_id, cd_id|
 
   @asr=AnalysisSystematicReview.new(@review)
 
-  @sim_all=Buhos::SimilarAnalysisSr.similar_to_cd_in_sr( cd:@cd, sr:@review)
+  #@sim_all=Buhos::SimilarAnalysisSr.similar_to_cd_in_sr( cd:@cd, sr:@review)
   @references_realizadas=@cd.references_performed
   haml :canonical_document
 

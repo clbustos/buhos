@@ -90,8 +90,6 @@ post '/role/update' do
   if old_id==new_id or !exists_another
   $db.transaction(:rollback=>:reraise) do
     AuthorizationsRole.where(:role_id=>old_id).delete
-
-
       if (old_id!=new_id)
         Role.unrestrict_primary_key
         Role.where(:id=>old_id).update(:id=>new_id, :description=>params['description'].chomp)

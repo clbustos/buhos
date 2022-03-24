@@ -57,6 +57,28 @@ class Reference < Sequel::Model(:bib_references)
     dig=calculate_id text
     Reference[dig]
   end
+
+  def records_in_sr(review)
+    query="SELECT DISTINCT(rr.record_id) as record_id FROM  records_references rr
+INNER JOIN records_searches rs ON rs.record_id=rr.record_id
+INNER JOIN searches s ON rs.search_id=s.id
+WHERE s.systematic_review_id=? and rr.reference_id=?"
+    records_id=$db[query, review[:id], self[:id]].map {|row| row[:record_id]}
+    Record.where(id:records_id)
+  end
+
+
+  def self.remove_canonicals(refs)
+    result=Result.new
+    $db.transaction do
+      refs.each do |ref|
+        ref.update(canonical_document_id: nil)
+      end
+      result.success(I18n::t(:Removed_canonical_document_from_reference , :ref_ids => refs.map(&:id)) )
+    end
+    result
+  end
+
   # Retrieve a reference using text and doi
   # If doesn't exists before, and param create is true
   # create it
