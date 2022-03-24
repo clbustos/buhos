@@ -36,7 +36,8 @@
     - if !@cd.abstract
       %a{:href=>url("/canonical_document/#{@cd[:id]}/search_abstract_semantic_scholar"), :role=>:button, :class=>"btn btn-default"}=t(:Complete_abstract_using_Semantic_Scholar)
   - if @review
-    %a{:href=>url("/review/#{@review[:id]}/canonical_document/#{@cd[:id]}/similar"), :role=>:button, :class=>"btn btn-default"}=t(:Similar_canonical_documents)
+    .div
+      %a{:href=>url("/review/#{@review[:id]}/canonical_document/#{@cd[:id]}/similar"), :role=>:button, :class=>"btn btn-default"}=t(:Similar_canonical_documents)
 
     %h3=t(:Status_by_stage)
     -status_in_stages=@asr.status_in_stages_cd(@cd)

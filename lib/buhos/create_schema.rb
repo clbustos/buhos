@@ -268,14 +268,14 @@ module Buhos
         db.create_table? :crossref_queries do
           String :id, :size => 100, :primary_key => true
           String :query, :text => true
-          String :json, :text => true
+          String :json, :text => true, size: :long
         end
 
 
         db.create_table? :crossref_dois do
           String :doi, :size => 100, :primary_key => true
           String :bibtex, :text => true
-          String :json, :text => true
+          String :json, :text => true, size: :long
         end
 
         db.create_table? :scopus_abstracts do
@@ -347,9 +347,10 @@ module Buhos
     end
 
     def self.create_roles(db)
-      db[:roles].replace(:id => 'administrator', :description => 'App administrator')
-      db[:roles].replace(:id => 'analyst', :description => 'App analyst')
-      db[:roles].replace(:id => 'guest', :description => 'Guest')
+
+      db[:roles].insert(:id => 'administrator', :description => 'App administrator') unless db[:roles][id:'administrator']
+      db[:roles].insert(:id => 'analyst', :description => 'App analyst') unless db[:roles][id:'analyst']
+      db[:roles].insert(:id => 'guest', :description => 'Guest') unless db[:roles][id:'guest']
     end
 
     # Insert data for taxonomies
@@ -385,8 +386,8 @@ module Buhos
           2=>{-99=>'not_applicable', -98=>'cant_say', 0=>'No', 1=>'Partial', 2=>'Complete'}
       }
 
-        db[:scales].replace(:id=>1, :name=>::I18n::t("scales.dichomotic"), :description=>::I18n::t('scales.dichotomic_description'))
-        db[:scales].replace(:id=>2, :name=>::I18n::t("scales.three_values"), :description=>::I18n::t('scales.three_values_description'))
+        db[:scales].insert(:id=>1, :name=>::I18n::t("scales.dichomotic"), :description=>::I18n::t('scales.dichotomic_description')) unless db[:scales][id:1]
+        db[:scales].insert(:id=>2, :name=>::I18n::t("scales.three_values"), :description=>::I18n::t('scales.three_values_description'))  unless db[:scales][id:2]
 
       scales.each_pair do |scale_id, values|
         values.each_pair do |value, name|
@@ -439,20 +440,34 @@ module Buhos
           'user_admin'
       ]
       authorizations.each do |auth|
-        db[:authorizations].replace(:id => auth)
-        db[:authorizations_roles].replace(:authorization_id => auth, :role_id => 'administrator')
+        db[:authorizations].insert(:id => auth) unless db[:authorizations][id:auth]
+        #puts(db[:authorizations_roles].where(:authorization_id => auth, :role_id => 'administrator').count)
+        db[:authorizations_roles].insert(:authorization_id => auth, :role_id => 'administrator') unless db[:authorizations_roles].where(:authorization_id => auth, :role_id => 'administrator').count>0
       end
     end
 
-
+    def self.insert_group_user_if_not_exists(db, group_id, user_id)
+      if db[:groups_users].where(:group_id => group_id, :user_id => user_id).count==0
+        db[:groups_users].insert(:group_id => group_id, :user_id => user_id)
+      end
+    end
     def self.allocate_users_to_groups(db, id_admin, id_analyst, id_guest)
-      group_id = db[:groups].replace(:id=>1,:group_administrator => id_admin, :description => "First group, just for demostration", :name => "demo group")
-      db[:groups_users].replace(:group_id => group_id, :user_id => id_admin)
-      db[:groups_users].replace(:group_id => group_id, :user_id => id_analyst)
+      if db[:groups][id:1]
+        group_id = 1
+      else
+        group_id = db[:groups].insert(:id=>1,:group_administrator => id_admin, :description => "First group, just for demostration", :name => "demo group")
+      end
+      insert_group_user_if_not_exists(db,group_id, id_admin)
+      insert_group_user_if_not_exists(db,group_id, id_analyst)
+      if db[:groups][id:2]
+        group_guest = 2
+      else
+        group_guest = db[:groups].insert(:id=>2,:group_administrator => id_admin, :description => "Guest group", :name => "guest group")
+      end
 
-      group_guest = db[:groups].replace(:id=>2,:group_administrator => id_admin, :description => "Guest group", :name => "guest group")
-      db[:groups_users].replace(:group_id => group_guest, :user_id => id_admin)
-      db[:groups_users].replace(:group_id => group_guest, :user_id => id_guest)
+      insert_group_user_if_not_exists(db,group_guest, id_admin)
+      insert_group_user_if_not_exists(db,group_guest, id_guest)
+
     end
 
     # @!endgroup

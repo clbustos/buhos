@@ -16,6 +16,9 @@
     %a{:role=>:button, :href=>url("/review/#{r.id}/canonical_documents"), :class=>"btn btn-default"}
       %span{:class=>"glyphicon glyphicon-king"}
       =t(:Canonical_documents)
+    %a{:role=>:button, :href=>url("/review/#{r.id}/references"), :class=>"btn btn-default"}
+      %span{:class=>"glyphicon glyphicon-plane"}
+      =t(:References)
   - if auth_to("search_view") or review_belongs_to(r.id, session['user_id'])
     %a{:role=>:button, :href=>url("/review/#{r.id}/searches"), :class=>"btn btn-default"}
       %span{:class=>"glyphicon glyphicon-book"}

@@ -1,0 +1,26 @@
+.header
+  =t_systematic_review_title(@review[:name], t(:Create_canonical_for_references), false)
+%ul.breadcrumb
+  %li
+    %a{:href=>url("/review/#{@review.id}")}=@review.name
+  %li.active
+    =t(:Create_canonical_for_references)
+
+
+.well
+  - @references.each  do |ref|
+    %p=ref.text
+%form{:method=>"post", :action=>url("/review/#{@review.id}/create_canonical_for_references")}
+  %input{type: "hidden", name: "review_id", value:@review.id}
+  - @references.each do |ref|
+    %input{type: "hidden", name: "references[#{ref[:id]}]", value:"true"}
+  %div.form-group
+    %label{:for=>"author"}=t(:Author)
+    %input.form-control{:type=>"text", :name=>"author"}
+  %div.form-group
+    %label{:for=>"title"}=t(:Title)
+    %input.form-control{:type=>"text", :name=>"title"}
+  %div.form-group
+    %label{:for=>"year"}=t(:Year)
+    %input.form-control{:type=>"text", :name=>"year"}
+  %input.btn.btn-primary{:type=>:submit, :value=>t(:Search)}

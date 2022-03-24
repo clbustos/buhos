@@ -1,0 +1,5 @@
+- review||=nil
+- url_button = review ? url("/review/#{review[:id]}/reference/#{reference[:id]}") : url("/reference/#{reference[:id]}")
+%a.btn.btn-sm.btn-default{:href=>url_button, :role=>:button}
+  %span{:class=>"glyphicon glyphicon-plane"}
+  =t(:Reference)

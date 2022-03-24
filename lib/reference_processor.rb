@@ -29,6 +29,9 @@
 # Class that add doi and canonical documents to references
 # Later, we could add PMID and EID support
 class ReferenceProcessor
+
+  include DOIHelpers
+  extend DOIHelpers
   attr_reader :reference, :result
   def initialize(reference)
     @reference=reference
@@ -56,6 +59,71 @@ class ReferenceProcessor
     else
       false
     end
+  end
+  # Assign several references to canonical documents
+  # If the reference already have a canonical_document, skip
+  # If can retrieve doi, assign to canonical_document using that doi
+  # If canonical_document not exists for a doi, create the canonical_document and assign the doi
+  # If not doi is present, try a search on crossref. Is score > 100, create the canonical_document
+  # If not, just create the title
+  # @return Result
+  def self.assign_to_canonical_document(references)
+    result=Result.new
+    $db.transaction do
+      references.each do |ref|
+        if ref[:doi].nil?
+          rp=ReferenceProcessor.new(ref)
+          rp.process_doi
+        end
+
+        if !ref[:canonical_document_id].nil?
+          result.info("Reference #{ref[:text]} have already a canonical_document_assigned")
+        elsif !ref[:doi].nil?
+          result.add_result(add_doi(ref))
+        else # no doi, no canonical document
+          query=CrossrefQuery.generate_query_from_text( ref[:text])
+          items=query["message"]["items"]
+          $log.info(query)
+          if items.length>0 and items[0]["score"]>100
+            doi=doi_without_http(items[0]["DOI"])
+            ref.update(:doi=>doi)
+            result.add_result(add_doi(ref))
+          else
+            result.warning("Can't assign doi to reference #{ref[:text]}")
+          end
+
+        end
+      end
+    end
+    result
+  end
+
+  def self.add_doi(ref)
+    result =Result.new
+    doi=ref[:doi]
+    cd = CanonicalDocument[:doi => doi]
+    if cd
+      ref.update(:canonical_document_id => cd[:id])
+      result.success("Reference #{ref[:text]} assigned to canonical document #{cd[:id]}")
+    else
+      ri_json = CrossrefDoi.reference_integrator_json(ref[:doi])
+      if ri_json
+        fields = [:title, :author, :year, :journal, :volume, :pages, :doi, :journal_abbr, :abstract]
+        update_data = fields.inject({}) do |ac, v|
+          ac[v] = ri_json.send(v) unless ri_json.send(v).nil?
+          ac
+        end
+        if update_data.keys.length > 0
+          update_data[:year]=0 if update_data[:year].nil?
+          cd_id = CanonicalDocument.insert(update_data)
+          ref.update(:canonical_document_id => cd_id)
+          result.success("Canonical document #{cd_id} created and reference #{ref[:text]} assigned to it")
+        end
+      else
+        result.error("Can't process doi #{ref[:doi]} for reference #{ref[:text]}")
+      end
+    end
+    result
   end
 
 end

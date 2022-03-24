@@ -106,7 +106,7 @@ get '/search/:id/records/complete_doi' do |id|
 
   rcp=RecordCrossrefProcessor.new(@records,$db)
 
-  $log.info(rcp.result)
+  #$log.info(rcp.result)
   add_result(rcp.result)
   redirect back
 end
