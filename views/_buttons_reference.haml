@@ -3,3 +3,5 @@
 %a.btn.btn-sm.btn-default{:href=>url_button, :role=>:button}
   %span{:class=>"glyphicon glyphicon-plane"}
   =t(:Reference)
+-unless reference[:canonical_document_id].nil?
+  =partial(:canonical_document_button, :locals=>{review: review, id: reference[:canonical_document_id]})

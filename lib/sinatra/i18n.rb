@@ -29,7 +29,7 @@ module Sinatra
   module I18n
     module Helpers
       def get_lang(http_lang)
-        accepted=["en","es"]
+        accepted=["en","es","pl"]
         unless http_lang.nil?
           langs=http_lang.split(",").map {|v|
             v.split(";")[0].split("-")[0]
@@ -95,7 +95,7 @@ module Sinatra
         "<h2>#{::I18n::t(:search_title, search_name: search_name)} - #{::I18n::t(:systematic_review_title_abbrev, sr_name:sr_name)}</h2><h3>#{::I18n::t(secondary)}</h3>"
       end
       def available_locales
-        [:es,:en]
+        [:es,:en,:pl]
       end
       def available_locales_hash
         available_locales.inject({}) {|ac,v|
@@ -113,7 +113,7 @@ module Sinatra
         if session['language'].nil?
           language=get_lang(request.env['HTTP_ACCEPT_LANGUAGE'])
           #$log.info("Desde HTTP:#{language}")
-          language='en' unless ['en','es'].include? language
+          language='en' unless ['en','es','pl'].include? language
           ::I18n.locale = language
         else
           ::I18n.locale = session['language'].to_sym
@@ -126,7 +126,7 @@ module Sinatra
         app.set :locales, File.join(app.root, 'config','locales', '*.yml')
       end
       ::I18n.load_path+=Dir[app.locales]
-      ::I18n.config.available_locales = [:es,:en]
+      ::I18n.config.available_locales = [:es,:en,:pl]
       ::I18n.default_locale=:en
       #::I18n.backend.load_translations(app.locales)
     end

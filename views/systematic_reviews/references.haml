@@ -100,7 +100,6 @@
             %br
               %strong="#{t(:Canonical_document)}:"
               =CGI::escapeHTML @cd_hash[ref[:canonical_document_id]].ref_apa_6_brief
-              =partial(:canonical_document_button, :locals=>{review: @review, id: ref[:canonical_document_id]})
           %br
           =t(:References_count_raw, searches_count:ref[:searches_count], in: ref[:cited_by_cd_n])
         %td
