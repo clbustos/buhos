@@ -331,6 +331,7 @@ es:
   locale:
     en: "English"
     es: "Español"
+    pl: "Polki"
   Login: "Nombre de usuario"
   Login_already_used: "Login ya utilizado"
   login:

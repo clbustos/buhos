@@ -231,7 +231,7 @@ We use [SemVer](http://semver.org/) for versioning.  To see the available versio
 * **María Gabriela Morales** - First conceptualization and revision of the manual
 * **Liz Medina** -  English translation of  home page and manual.
 * **Alejandro Díaz, Pedro Salcedo**: Development of user requirement specifications.
-
+* **Anna Hawrot**: Polki (polish) translation
 ### Citation
 
 If you use this software for your research, please cite the following paper:
