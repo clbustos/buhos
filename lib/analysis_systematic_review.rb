@@ -46,7 +46,7 @@ class AnalysisSystematicReview
       CanonicalDocument.where(:id=>@rec.where(:cd_end=>cd_id).map(:cd_start))
     end
     def cited_by_rtr(cd_id)
-      rta_cd_id=@sr.resolutions_title_abstract.map(:canonical_document_id)
+      rta_cd_id=@sr.resolutions_title_abstract.where(:resolution=>'yes').map(:canonical_document_id)
       cited_by=@rec.where(:cd_end=>cd_id).map(:cd_start)
       cd_id_final=rta_cd_id & cited_by
       CanonicalDocument.where(:id=>cd_id_final)
