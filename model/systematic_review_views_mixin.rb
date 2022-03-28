@@ -152,8 +152,13 @@ INNER JOIN searches s ON br.search_id=s.id WHERE s.systematic_review_id=#{self[:
     $db[view_name.to_sym]
   end
   def bib_references_tn
-    "sr_bib_references_#{self[:id]}"
+    "sr_#{self[:id]}_bib_references"
   end
+# Vistas especiales
+def cd_id_table_tn
+  "sr_#{self[:id]}_cd_id"
+end
+
 # Entrega todos los id pertinentes para la revision sistematica
   def cd_id_table
     view_name = cd_id_table_tn
@@ -170,8 +175,4 @@ INNER JOIN searches s ON br.search_id=s.id WHERE s.systematic_review_id=#{self[:
     $db[view_name.to_sym]
   end
 
-# Vistas especiales
-  def cd_id_table_tn
-    "rs_cd_id_#{self[:id]}"
-  end
 end

@@ -40,6 +40,15 @@ module Buhos
   #
   # db should have a correct and usable version of Buhos.
   module SchemaCreation
+    VIEWS_BN=["sr_###_references_between_cd_rtr_n",
+              "sr_###_resolutions_full_text",
+              "sr_###_resolutions_references",
+              "sr_###_resolutions_sta",
+              "sr_###_references_between_cd_n",
+              "sr_###_references_between_cd",
+              "sr_###_bib_references",
+              "sr_###_cd_id"]
+
     # Create a usable db to work on Buhos
     # @param db_url a [String] with a connection that Sequel.connect understand, or a Sequel::Database
     # @param language used to assign default language for users
@@ -56,6 +65,7 @@ module Buhos
       Sequel.extension :migration
       Sequel::Migrator.run(db, "db/migrations")
       Buhos::SchemaCreation.create_bootstrap_data(db,language)
+      Buhos::SchemaCreation.delete_views(db,language)
       db
     end
 
@@ -333,6 +343,23 @@ module Buhos
         insert_basic_scales(db)
       end
     end
+
+    def self.delete_views(db,language='en')
+      #require 'logger'
+      #db.loggers << Logger.new($stdout)
+        db[:systematic_reviews].each do |rev|
+          rev_id=rev[:id]
+            VIEWS_BN.each do  |view_n|
+              table_name=view_n.gsub("###", rev_id.to_s)
+              if db.table_exists?(table_name.to_sym)
+                db.transaction do
+                  db.drop_view(table_name.to_sym)
+                end
+              end
+            end
+        end
+      end
+
 
     def self.create_users(db, language)
       id_admin = get_id_user_by_login(db, 'admin')

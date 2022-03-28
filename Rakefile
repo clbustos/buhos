@@ -114,6 +114,8 @@ namespace :db do
       puts "Migrating to latest"
       Sequel::Migrator.run(db, "#{base_dir}/db/migrations")
       Buhos::SchemaCreation.create_bootstrap_data(db)
+      Buhos::SchemaCreation.delete_views(db)
+
     end
   end
 

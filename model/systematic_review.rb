@@ -39,10 +39,6 @@ class SystematicReview < Sequel::Model
 
 
 
-
-
-
-
   def keywords_as_array
     keywords.nil? ? nil : keywords.split(";").map {|v| v.strip}
   end
@@ -69,7 +65,10 @@ class SystematicReview < Sequel::Model
       cd_ids=cd_id_by_stage(stage)
       cd_query=" canonical_document_id IN (#{cd_ids.join(",")}) "
     end
-    $db["SELECT t.*, CASE WHEN tecl.tag_id IS NOT NULL THEN 1 ELSE 0 END  as tag_en_clases FROM (SELECT `tags`.*, COUNT(DISTINCT(canonical_document_id)) as n_documents, 1.0*SUM(CASE WHEN decision='yes' THEN 1 ELSE 0 END)/COUNT(*) as p_yes FROM `tags` INNER JOIN `tag_in_cds` tec ON (tec.`tag_id` = `tags`.`id`)
+    $db["SELECT t.*, CASE WHEN tecl.tag_id IS NOT NULL THEN 1 ELSE 0 END  as tag_en_clases
+FROM (SELECT `tags`.*, COUNT(DISTINCT(canonical_document_id)) as n_documents,
+1.0*SUM(CASE WHEN decision='yes' THEN 1 ELSE 0 END)/COUNT(*) as p_yes FROM `tags`
+INNER JOIN `tag_in_cds` tec ON (tec.`tag_id` = `tags`.`id`)
 WHERE tec.systematic_review_id=?
 AND  #{cd_query} GROUP BY tags.id) as t LEFT JOIN tag_in_classes tecl ON t.id=tecl.tag_id GROUP BY t.id ORDER BY #{order}
  ", self.id]
@@ -102,7 +101,12 @@ AND  #{cd_query} GROUP BY tags.id) as t LEFT JOIN tag_in_classes tecl ON t.id=te
   end
 
   def cd_reference_id
-    $db["SELECT canonical_document_id FROM searches b INNER JOIN records_searches br ON b.id=br.search_id INNER JOIN records_references rr ON br.record_id=rr.record_id INNER JOIN bib_references r ON rr.reference_id=r.id  WHERE b.systematic_review_id=? and r.canonical_document_id IS NOT NULL AND b.valid=1 GROUP BY r.canonical_document_id", self[:id]].select_map(:canonical_document_id)
+    $db["SELECT canonical_document_id FROM searches b
+INNER JOIN records_searches br ON b.id=br.search_id
+INNER JOIN records_references rr ON br.record_id=rr.record_id
+INNER JOIN bib_references r ON rr.reference_id=r.id
+WHERE b.systematic_review_id=? and r.canonical_document_id IS NOT NULL AND b.valid=1
+GROUP BY r.canonical_document_id", self[:id]].select_map(:canonical_document_id)
   end
 
 
@@ -139,12 +143,11 @@ AND  #{cd_query} GROUP BY tags.id) as t LEFT JOIN tag_in_classes tecl ON t.id=te
   end
   # Canonical documents id with resolution for given stage
   def cd_id_resolutions(stage)
-    Resolution.where(:systematic_review_id=>self[:id], :stage=>stage.to_s,:canonical_document_id=>cd_all_id,:resolution=>'yes').map(:canonical_document_id)
+    Resolution.where(:systematic_review_id=>self[:id], :stage=>stage.to_s,:canonical_document_id=>cd_all_id, :resolution=>'yes').map(:canonical_document_id)
   end
 
-
-
-  # Entrega la lista de canónicos documentos apropiados para cada stage
+  # Returns an array with the list of canonical documents by stage
+  # @param stage name of the stage. Could be ["search", "screening_title_abstract", "screening_references", "review_full_text", "report"]
   def cd_id_by_stage(stage)
     case stage.to_s
       when 'search'
@@ -162,7 +165,7 @@ AND  #{cd_query} GROUP BY tags.id) as t LEFT JOIN tag_in_classes tecl ON t.id=te
         resolutions_full_text.where(:resolution=>'yes',:canonical_document_id=>cd_all_id).select_map(:canonical_document_id)
       else
 
-        raise 'no definido'
+        raise 'Not defined'
     end
   end
   def fields
