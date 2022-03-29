@@ -418,19 +418,19 @@ module Buhos
 
       scales.each_pair do |scale_id, values|
         values.each_pair do |value, name|
-          db[:scales_items].replace(scale_id:scale_id, value:value, name: ::I18n::t("scales.#{name}"))
+          db[:scales_items].insert(scale_id:scale_id, value:value, name: ::I18n::t("scales.#{name}")) if db[:scales_items].where(scale_id:scale_id, value:value).count==0
         end
       end
     end
     def self.allocate_authorizations_to_roles(db)
       analyst_permits = ['review_view', 'review_analyze', 'message_view', 'message_edit', 'search_view', 'search_edit', 'record_view', 'record_edit', 'reference_view', 'reference_edit', 'file_view', 'canonical_document_view', 'group_view']
       analyst_permits.each do |auth|
-        db[:authorizations_roles].replace(:authorization_id => auth, :role_id => 'analyst')
-      end
+        db[:authorizations_roles].replace(:authorization_id => auth, :role_id => 'analyst') if db[:authorizations_roles].where(:authorization_id => auth, :role_id => 'analyst').count==0
+       end
 
       guest_permits = ['review_view', 'message_view', 'message_edit', 'search_view', 'record_view', 'reference_view', 'file_view', 'canonical_document_view', 'group_view']
       guest_permits.each do |auth|
-        db[:authorizations_roles].replace(:authorization_id => auth, :role_id => 'guest')
+        db[:authorizations_roles].replace(:authorization_id => auth, :role_id => 'guest') if db[:authorizations_roles].where(:authorization_id => auth, :role_id => 'guest').count==0
       end
     end
 

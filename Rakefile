@@ -125,7 +125,12 @@ namespace :db do
   task :blank_sqlite => "db/blank.sqlite"
 
   file "db/blank.sqlite" => ["lib/buhos/create_schema.rb"] do
-    require_relative 'lib//buhos/create_schema'
+    require_relative 'lib/buhos/create_schema'
+    require 'i18n'
+
+    locales_root=File.join(File.dirname(__FILE__),'config','locales', '*.yml')
+    ::I18n.load_path+=Dir[locales_root]
+
     log = Logger.new(STDOUT)
     FileUtils.rm("db/blank.sqlite") if File.exist? "db/blank.sqlite"
     Buhos::SchemaCreation.create_db_from_scratch("sqlite://db/blank.sqlite", "en",log)
