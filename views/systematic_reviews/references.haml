@@ -98,8 +98,14 @@
             %strong="[DOI:#{ref[:doi]}]"
           -unless ref[:canonical_document_id].nil?
             %br
-              %strong="#{t(:Canonical_document)}:"
-              =CGI::escapeHTML @cd_hash[ref[:canonical_document_id]].ref_apa_6_brief
+            %strong="#{t(:Canonical_document)}:"
+            =CGI::escapeHTML @cd_hash[ref[:canonical_document_id]].ref_apa_6_brief
+            - status=@asr.status_in_stages_cd_id(ref[:canonical_document_id]).find_all {|key,val| val[:included]}
+            - status_t=status.map {|key,val| "#{t(Buhos::Stages.get_stage_name(key))} (#{t(val[:resolution])})" }
+            - if status_t.length>0
+              %div.lista-etapas
+                - status_t.each do |status|
+                  %span.etapa=status
           %br
           =t(:References_count_raw, searches_count:ref[:searches_count], in: ref[:cited_by_cd_n])
         %td

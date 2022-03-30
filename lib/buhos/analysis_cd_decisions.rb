@@ -48,6 +48,25 @@ module Buhos
       decisions
     end
 
+    def to_text(cd_id)
+      if @all_decisions.nil? or @all_decisions[cd_id].nil?
+        return ""
+      end
+      res_raw=@all_decisions[cd_id].inject({}) do |ac,v|
+        dec=v[:decision]
+        ac[dec]||=[]
+        text=v[:commentary].nil? ? @user_names[v[:user_id]] : "#{@user_names[v[:user_id]]}  (#{v[:commentary]})"
+        ac[dec].push(text)
+        ac
+      end
+      out_html=res_raw.map do |dec,v|
+        dec_name=I18n::t(Decision.get_name_decision(dec))
+        author_html=v.map {|v| "#{v}"}
+        "**#{dec_name}** : #{author_html.join('; ')} | "
+      end
+      "#{out_html.join("\n")}"
+    end
+
     def to_html(cd_id)
       if @all_decisions.nil? or @all_decisions[cd_id].nil?
         return ""

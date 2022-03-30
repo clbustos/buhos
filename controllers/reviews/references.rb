@@ -80,6 +80,9 @@ get '/review/:id/references' do |id|
 
   cd_ids=@refs.map {|ref|ref[:canonical_document_id]}.find_all{ |cd_id| !cd_id.nil?}
   @cd_hash=CanonicalDocument.where(id:cd_ids).as_hash(:id)
+
+  @asr=AnalysisSystematicReview.new(@review)
+
   #$log.info(@cd_hash)
   haml %s{systematic_reviews/references}
 end

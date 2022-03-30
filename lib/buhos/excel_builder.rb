@@ -69,10 +69,12 @@ module Buhos
         resolutions_val   = @ars.resolution_by_cd(stage)
         resolutions_com = @ars.resolution_commentary_by_cd(stage)
         cds=CanonicalDocument.where(:id=>@sr.cd_id_by_stage(@stage)).order(:title)
+        text_decision_cd= Buhos::AnalysisCdDecisions.new(@sr, @stage)
       else
         cds=@sr.canonical_documents.order(:title)
         resolutions_val   = nil
         resolutions_com   = nil
+        text_decision_cd= nil
       end
 
 
@@ -80,15 +82,17 @@ module Buhos
       wb.add_worksheet(:name => "#{I18n::t(get_stage_name(stage))}") do |sheet|
         sheet.add_row     [I18n::t(:Id), I18n::t(:Title), I18n::t(:Year), I18n::t(:Author), I18n::t(:Journal),
                            I18n::t(:Volume), I18n::t(:Pages), I18n::t(:Doi), I18n::t(:Abstract),
+                           I18n::t(:Decisions),
                            I18n::t(:Resolution), I18n::t(:Commentary)], :style=> [@blue_cell]*11
 
         cds.each do |cd|
           row_height=((1+cd.abstract.to_s.length)/80.0).ceil*14
-          resolution_val=resolutions_val.nil? ? "" : resolutions_val[cd[:id]]
-          resolution_com=resolutions_com.nil? ? "" : resolutions_com[cd[:id]]
+          decisions_val = text_decision_cd.nil? ? "" : text_decision_cd.to_text(cd[:id])
+          resolution_val=resolutions_val.nil?   ? "" : resolutions_val[cd[:id]]
+          resolution_com=resolutions_com.nil?   ? "" : resolutions_com[cd[:id]]
           cd_values=([:id, :title, :year, :author, :journal, :volume, :pages,  :doi].map { |v| cd[v].to_s.gsub(/\s+/,' ')})
-          sheet.add_row (cd_values+ [cd[:abstract], resolution_val, resolution_com]),
-                        :style=>[nil,@wrap_text,nil,nil,nil,nil,nil,nil,@wrap_text,nil, @wrap_text],
+          sheet.add_row (cd_values+ [cd[:abstract], decisions_val, resolution_val, resolution_com]),
+                        :style=>[nil,@wrap_text,nil,nil,nil,nil,nil,nil,@wrap_text, @wrap_text,nil, @wrap_text],
                         :height=>row_height
         end
 
@@ -100,8 +104,9 @@ module Buhos
         sheet.column_info[6].width = 10
         sheet.column_info[7].width = 15
         sheet.column_info[8].width = 30
-        sheet.column_info[9].width = 10
-        sheet.column_info[10].width = 25
+        sheet.column_info[9].width = 30
+        sheet.column_info[10].width = 10
+        sheet.column_info[11].width = 30
 
       end
       if @stage
@@ -111,14 +116,15 @@ module Buhos
           wb.add_worksheet(:name => I18n::t('resolution.yes')) do |sheet|
             sheet.add_row     [I18n::t(:Id), I18n::t(:Title), I18n::t(:Year), I18n::t(:Author),
                                I18n::t(:Journal), I18n::t(:Volume), I18n::t(:Pages), I18n::t(:Doi),
-                               I18n::t(:Abstract), I18n::t(:Commentary) ], :style=> [@blue_cell]*10
+                               I18n::t(:Abstract), I18n::t(:Decisions), I18n::t(:Commentary) ], :style=> [@blue_cell]*10
 
             cd_accepted.each do |cd|
               row_height=((1+cd.abstract.to_s.length)/80.0).ceil*14
               cd_values=([:id, :title, :year, :author, :journal, :volume, :pages,  :doi].map {|v| cd[v].to_s.gsub(/\s+/,' ')})
               resolution_com=resolutions_com.nil? ? "" : resolutions_com[cd[:id]]
-              sheet.add_row (cd_values+[cd[:abstract], resolution_com]),
-                            :style=>[nil,@wrap_text,nil,nil,nil,nil,nil,nil,@wrap_text, @wrap_text], :height=>row_height
+              decisions_val = text_decision_cd.nil? ? "" : text_decision_cd.to_text(cd[:id])
+              sheet.add_row (cd_values+[cd[:abstract], decisions_val, resolution_com]),
+                            :style=>[nil,@wrap_text,nil,nil,nil,nil,nil,nil,@wrap_text,@wrap_text, @wrap_text], :height=>row_height
             end
 
             sheet.column_info[1].width = 30

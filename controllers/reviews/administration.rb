@@ -195,6 +195,10 @@ get '/review/:rev_id/administration/:stage/cd_assignations' do |rev_id, stage|
   @type="all"
   haml("systematic_reviews/cd_assignations_to_user".to_sym)
 end
+
+
+
+
 post '/review/:rev_id/administration/:stage/cd_assignations_excel/:mode' do |rev_id, stage, mode|
   halt_unless_auth('review_admin')
   review=SystematicReview[rev_id]

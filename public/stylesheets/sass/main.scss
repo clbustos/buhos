@@ -658,3 +658,12 @@ table.tablesorter thead tr {
   color:white;
   margin-right:0.5em;
 }
+div.lista-etapas {
+  span.etapa {
+    border: 1px solid $blue_light;
+    padding: 0.25em;
+    border-radius: 6px;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+  }
+}

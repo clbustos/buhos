@@ -175,7 +175,6 @@ class AnalysisSystematicReview
     #$log.info(@cd_included_by_stage)
     @cd_included_by_stage[stage.to_sym].include? cd_id
   end
-
   def more_cited(n = 20)
     @ref_count_incoming.sort_by {|a| a[1]}.reverse[0...n]
   end
@@ -224,12 +223,16 @@ class AnalysisSystematicReview
   end
 
   def status_in_stages_cd(cd)
+    status_in_stages_cd_id(cd.id)
+  end
+
+  def status_in_stages_cd_id(cd_id)
     stages_id=get_stages_ids.dup
     stages_id.shift
     status=stages_id.inject({}) do |ac, stage|
       ac[stage]={
-          :included=>cd_included_in_stage?(cd.id, stage),
-          :resolution=>cd_in_resolution_stage?(cd.id, stage)}
+        :included=>cd_included_in_stage?(cd_id, stage),
+        :resolution=>cd_in_resolution_stage?(cd_id, stage)}
       ac
     end
     status
