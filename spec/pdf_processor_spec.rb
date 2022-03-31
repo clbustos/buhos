@@ -36,6 +36,7 @@ describe 'PdfProcessor' do
   context "on Kiritchenko(2010)" do
     let(:abstract) {pdfp1.abstract}
     it 'should retrieve the abstract' do
+      puts abstract
       expect(abstract).to_not include("Abstract")
       expect(abstract).to include("Background:")
       expect(abstract).to include("Conclusions:")

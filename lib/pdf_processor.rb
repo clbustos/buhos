@@ -48,9 +48,10 @@ class PdfProcessor
     # parse every line of the abstract
     # @return Boolean true if another line is needed. false if need to break the loop
     def parse_line_abstract(line)
+
       if line=="" or line=~/Keywords/
         @empty_lines+=1
-        return false if @empty_lines>2
+        return false if @empty_lines>=2
       else
         @empty_lines=0
         @abstract_lines.push(line)
