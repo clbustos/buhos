@@ -212,6 +212,7 @@ es:
   Export_graphml_for_this_stage: "Exportar GraphML para esta etapa"
   Export_to_Bibtex: "Exportar a Bibtex"
   Export_to_Graphml: "Exportar a Graphml"
+  Export_decisions_excel: "Exportar Excel con decisiones"
   Extract_information: "Extraer información"
   external_data:
     get_successful: "Obtención exitosa de información desde %{type} para el documento canónico %{cd_id}"
@@ -278,6 +279,7 @@ es:
   Group_deleted: "Grupo %{group_name} eliminado"
   Id: "Id"
   Im_sorry_the_page_you_request_doesnt_exists: "Lo siento, la página que solicitó no existe"
+  Import_export_decisions: "Importar/Exportar decisiones"
   Inactive: "Inactiva"
   Included: "Incluido"
   Included_in_the_following_reviews: "Incluido en las siguientes revisiones"
@@ -623,7 +625,6 @@ es:
     dichotomic_description: "Escala dicotomica"
     three_values: "Tres valores"
     three_values_description: "Escala de tres valores: No, parcial, completo cumplimiento"
-
   Scales: "Escalas"
   Scale_items: "Ítems de escala"
   scopus_abstract:
@@ -646,7 +647,6 @@ es:
     Search_file_instructions: "Para Scopus, Wos y Ebsohost y genérico, utilice archivos BibTeX. Para Scielo, utilice archivo csv"
     Source: "Fuente de los registros"
     successful_upload: "Archivo %{filename} fue subido exitosamente a revisión sistemática %{sr_name}"
-
   Search_add_doi_references: "Agregado DOI para  %{count} referencias"
   Search_pdf_files: "Búsqueda basada en archivos pdf"
   Search_criteria: "Criterios de búsqueda"
@@ -794,6 +794,7 @@ es:
     cd_for_tag: "Documentos canónicos para tag '%{tag_text}'"
     cd_for_tag_stage: "Documentos canónicos para tag '%{tag_text}', etapa %{stage}"
     complete_empty_abstract: "Completar resúmenes faltantes"
+    import_decisions_excel: "Importar decisiones: %{n_insert} inserciones, %{n_update} actualizaciones"
     report: "Reporte"
     review_full_text_administration: "Administración de revisión de texto completo"
     screening_references_administration: "Administración de referencias"

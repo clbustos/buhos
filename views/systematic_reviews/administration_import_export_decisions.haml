@@ -1,0 +1,28 @@
+.heading
+  %h2=t_systematic_review_title(@review.name, :Import_export_decisions)
+
+%ul.breadcrumb
+  %li
+    %a{:href=>url("/review/#{@review.id}")}=@review.name
+  %li
+    %a{:href=>url("/review/#{@review.id}/administration")}=t(:Administration)
+  %li
+    %a{:href=>url("/review/#{@review.id}/administration/#{@stage}")}=@stage_name
+  %li{:class=>"active"}=t(:Import_export_decisions)
+
+
+%h3=t(:Export_decisions_excel)
+
+%a{:href=>url("/review/#{@review[:id]}/stage/#{@stage}/export_decisions_excel"),:class=>"btn btn-default btn-sm", :role=>"button"}
+  %span{:class=>"glyphicon glyphicon-ok-circle"}
+  =t(:Export_decisions_excel)
+
+
+%h3=t(:Upload_files)
+
+%form{:method=>:post, :action=>url("/review/import_decisions_excel"), :enctype=>'multipart/form-data'}
+  %input{:type=>"hidden", :name=>"systematic_review_id",:value=>@review[:id]}
+  .form-group
+    %label=t(:File)
+    %input{:type=>'file', :name=>'file', :multiple=>"multiple"}
+  %input{:type=>:submit, :class=>"btn btn-primary",:value=>"Enviar"}

@@ -209,7 +209,7 @@ post '/review/:rev_id/administration/:stage/cd_assignations_excel/:mode' do |rev
   cds=CanonicalDocument.where(:id=>cds_id).order(:author)
   users_grupos=review.group_users
   archivo=params.delete("file")
-  
+
   if mode=="load"
     require 'simple_xlsx_reader'
     doc = SimpleXlsxReader.open(archivo["tempfile"])
@@ -253,6 +253,18 @@ post '/review/:rev_id/administration/:stage/cd_assignations_excel/:mode' do |rev
     raise "Not implemented"
   end
 
+end
+
+
+
+get '/review/:sr_id/stage/:stage/import_export_decisions' do |sr_id, stage|
+  halt_unless_auth_any('review_admin', 'review_admin_view')
+  @review=SystematicReview[sr_id]
+  raise Buhos::NoReviewIdError, sr_id if !@review
+  @stage=stage.to_sym
+  @name_stage=get_stage_name(@stage)
+
+  haml("systematic_reviews/administration_import_export_decisions".to_sym)
 end
 
 get '/review/:rev_id/administration/:stage/cd_assignations_excel/:mode' do |rev_id, stage, mode|

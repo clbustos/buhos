@@ -205,6 +205,7 @@ pl:
   Export_graphml_for_this_stage: "Eksportuj GraphML dla teg oetapu"
   Export_to_Bibtex: "Eksportuj do Bibtex"
   Export_to_Graphml: "Eksportuj do Graphml"
+  Export_decisions_excel: "Eksportuj Excel with decisions (?)"
   Extract_information: "Ekstrahuj informacje"
   external_data:
     get_successful: "Pomyślnie pobrano z %{type} informacje o dokumencie wzorcowym %{cd_id}."
@@ -268,6 +269,7 @@ pl:
   Groups: "Grupy"
   Group_deleted: "Grupa %{group_name} została usunięta"
   Id: "ID"
+  Import_export_decisions: "Importar/Exportar decisiones (?)"
   Im_sorry_the_page_you_request_doesnt_exists: "Strona, której szukasz, nie instieje."
   Inactive: "Nieaktywne"
   Included: "Włączony"
@@ -769,6 +771,7 @@ pl:
     cd_for_tag: "Dokumenty wzorcowe oznaczone tagiem '%{tag_text}'"
     cd_for_tag_stage: "Dokumenty kanoniczne oznaczone tagiem '%{tag_text}', etap %{stage}"
     complete_empty_abstract: "Dodaj brakujące abstrakty"
+    import_decisions_excel: "Import decisions: %{n_insert} inserts, %{n_update} updates ??"
     report: "Raport"
     screening_references_administration: "Zarządzanie cytowaniami"
     review_full_text_administration: "Zarzadzanie przeglądem pełnych tekstów"

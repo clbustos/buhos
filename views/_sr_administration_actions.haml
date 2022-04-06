@@ -9,7 +9,7 @@
     %a{:href=>url("/review/#{review[:id]}/stage/#{stage}/generate_doi_list"), :role=>"button", :class=>"btn btn-default "}=t(:Export_doi_list_for_this_stage)
     %a{:href=>url("/review/#{review[:id]}/stage/#{stage}/generate_bibtex"), :role=>"button", :class=>"btn btn-default "}=t(:Export_bibtex_for_this_stage)
     %a{:href=>url("/review/#{review[:id]}/stage/#{stage}/generate_excel"), :role=>"button", :class=>"btn btn-default "}=t(:Export_generic_for_this_stage, type:"Excel")
-
+    %a{:href=>url("/review/#{review[:id]}/stage/#{stage}/import_export_decisions"), :role=>"button", :class=>"btn btn-default "}=t(:Import_export_decisions)
   - if [:screening_title_abstract, :screening_references].include? stage.to_sym and ars.cd_without_abstract(stage).count>0
     %a{:href=>url("/review/#{review[:id]}/stage/#{stage}/complete_empty_abstract_manual"), :role=>"button", :class=>"btn btn-default "}=t(:Complete_abstract_manually)
     - if scopus_available?

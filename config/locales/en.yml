@@ -214,6 +214,7 @@ en:
   Export_to_Bibtex: "Export to Bibtex"
   Export_to_Graphml: "Export to Graphml"
   Extract_information: "Extract información"
+  Export_decisions_excel: "Export Excel with decisions"
   external_data:
     get_successful: "Successful retrieval from %{type} for canonical document %{cd_id}"
     get_error: "Error on retrieval from %{type} for canonical document %{cd_id}"
@@ -277,6 +278,7 @@ en:
   Group_deleted: "Group %{group_name} eliminated"
   Id: "ID"
   Im_sorry_the_page_you_request_doesnt_exists: "Sorry, requested page does not exist"
+  Import_export_decisions: "Import/Export decisions"
   Inactive: "Inactive"
   Included: "Included"
   Included_in_the_following_reviews: "Included in the following reviews"
@@ -787,6 +789,7 @@ en:
     cd_for_tag: "Canonical Documents for tag '%{tag_text}'"
     cd_for_tag_stage: "Canonical Documents for tag '%{tag_text}', etapa %{stage}"
     complete_empty_abstract: "Complete missing abstracts"
+    import_decisions_excel: "Import decisions: %{n_insert} inserts, %{n_update} updates"
     report: "Report"
     screening_references_administration: "Administration of references"
     review_full_text_administration: "Administration of full-text stage"
