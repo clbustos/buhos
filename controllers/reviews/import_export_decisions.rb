@@ -41,7 +41,7 @@ post '/review/import_decisions_excel' do
   n_update=0
   n_insert=0
   n_errors=0
-  $db.transaction(:rollback => :always) do
+  $db.transaction(:rollback => :reraise) do
     sheet.data.each do |row|
       sr_id      = row[sr_idx].to_i
       cd_id      = row[cd_idx].to_i
