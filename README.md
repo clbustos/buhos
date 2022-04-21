@@ -14,7 +14,7 @@ Web based platform to manage complete process of systematic literature reviews. 
 * Internal messaging system for personal messages o messages related to systematic reviews.
 * Internationalization, using *I18n*. Available in English and Spanish.
 * Flexible work-flow.  The main stages of text searching, screening relevant articles, data extraction and reporting are clearly defined.  However, changes can be made at any stage already finalized, and will automatically reflect in subsequent stages.
-* Imports information from various bibliographic databases, such as - WoS, Scopus, Ebscohost, Scielo - using BibTeX.
+* Imports information from various bibliographic databases, such as - WoS, Scopus, Ebscohost, Scielo, Pubmed - using BibTeX.
 * Integration with Crossref allows deduplication of articles (using DOI), and searching for information on references
 * File repository.  PDF and ODF file viewing support online via [ViewerJS](http://viewerjs.org/).
 * Multiple ways to analyze data: comments and tagging at each stage of review, and generation of customized forms for information extraction.
