@@ -10,7 +10,7 @@ Plataforma basada en web para gestionar el proceso completo de revisiones sistem
 
 ## Características
 
-* Multi-platforma: Corre en Linux(probado en Ubuntu 14.04 y 16.06), Windows (probado en Windows 7 y 10) y MacOS (probado en High Sierra)
+* Multi-platforma: Corre en Linux(probado en Ubuntu 14.04, 16.06, 18.04, 21.10), Windows (probado en Windows 7 y 10) y MacOS (probado en High Sierra)
 * Puede ser usado para realizar revisiones sistemáticas por un individuo o por un grupo de trabajo.
 * Sistema de mensajería interna, para mensajes personales o relacionados a las revisiones sistemáticas.
 * Multilenguaje, usando *I18n*. Disponible en inglés y español.
