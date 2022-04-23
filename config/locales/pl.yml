@@ -830,6 +830,7 @@ pl:
   User_new: "Nowy użytkownik"
   User_not_exists: "%{user_id}User ID nie istnieje"
   User_records: "Rekordy użytkownika %{username}"
+  user_should_be_included_in_one_group_at_least: "Użytkownik **should be included at least in one** grupa"
   user_dashboard:
     check_n_canonical_documents_without_assignation:
       one:    "Sprawdź nieprzydzielony dokumenty wzorcowy: %{count}"

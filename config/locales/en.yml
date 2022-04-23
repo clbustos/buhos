@@ -849,6 +849,7 @@ en:
   User_new: "New user"
   User_not_exists: "No such %{user_id}User ID"
   User_records: "User %{username} records"
+  user_should_be_included_in_one_group_at_least: "User should be included at least in one group"
   user_dashboard:
     check_n_canonical_documents_without_assignation:
       one:    "Check %{count} unassigned canonical document"

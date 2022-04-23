@@ -850,6 +850,7 @@ es:
   Upload_files: "Subir archivos"
   Upload_file: "Subir archivo"
   Use_Statistics: "Estadísticas de uso"
+  user_should_be_included_in_one_group_at_least: "El usuario debería estar incluido al menos en un grupo"
   users_admin:
     action_inactive: "Usuarios inactivados: %{ids}"
     action_active:   "Usuarios activados: %{ids}"
