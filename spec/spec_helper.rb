@@ -136,6 +136,7 @@ module RSpecMixin
     (0...ids_to_create.length).map do |i|
       #$log.info((ids_to_create[i]))
       Search.insert(:id=>(ids_to_create[i]),
+                    :source                     => "informal_search",
                     :systematic_review_id       => systematic_review_id.respond_to?(:index) ? systematic_review_id.to_a[i] : systematic_review_id,
                     :bibliographic_database_id  => bb_id,
                     :user_id                    => user_id

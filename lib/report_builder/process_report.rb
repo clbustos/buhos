@@ -39,6 +39,7 @@ module ReportBuilder
       @app=app
       @aiec=Buhos::AnalysisIncExcCriteria.new(sr)
       @ars=AnalysisSystematicReview.new(sr)
+
     end
 
     def output(format)

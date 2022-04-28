@@ -1,4 +1,5 @@
 - bib_hash=BibliographicDatabase.as_hash(:id)
+- sources_arbs= report.ars.sources_accepted_resolutions_by_stage
 %table.table.table-ordered
   %thead
     %th=t("search.Source")
@@ -25,6 +26,9 @@
     %th=t(:File)
     %th=t(:Search_valid)
     %th=t(:Count_records)
+    %th=t(:Records_accepted_in_title_abstract_screening)
+    %th=t(:Records_accepted_in_full_text_analysis)
+
   %tbody
     - @sr.searches.each do |g|
       %tr
@@ -38,3 +42,9 @@
         %td=g.filename.nil? ? t(:No_file) : "#{g.filename} [#{g.filetype}]"
         %td= t_yes_no_nil(g.valid)
         %td=g.records_n
+        -if sources_arbs[g.id]
+          %td=sources_arbs[g.id][Buhos::Stages::STAGE_SCREENING_TITLE_ABSTRACT]
+          %td=sources_arbs[g.id][Buhos::Stages::STAGE_REVIEW_FULL_TEXT]
+        - else
+          %td --
+          %td --

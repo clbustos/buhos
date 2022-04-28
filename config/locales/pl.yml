@@ -543,6 +543,8 @@ pl:
   Records_by_canonical_document: "Nº rekordów według dokumentów wzorcowych"
   Records_on_search: "Rekordy w wyszukiwaniu"
   Record_on_search: "Rekordy w wyszukiwaniu"
+  Records_accepted_in_title_abstract_screening: "Rekordy accepted in title and abstract stage"
+  Records_accepted_in_full_text_analysis: "Rekordy accepted in full text analysis"
   Record_raw: "Surowy rekord"
   Records_from_to: "%{first_record} - %{last_record} z %{total_records}"
   Records_that_cites_this_reference: "Rekordy (z wyszukiwań), które cytują to cytowanie"

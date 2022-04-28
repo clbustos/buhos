@@ -556,6 +556,8 @@ es:
   Records_by_canonical_document: "Nº de registros por documento canónico"
   Records_from_to: "%{first_record} - %{last_record} de %{total_records}"
   Records_on_search: "Registros en búsqueda"
+  Records_accepted_in_title_abstract_screening: "Registros aceptados en la etapa de tamizaje de título y resumen"
+  Records_accepted_in_full_text_analysis: "Registros aceptados en la etapa de texto completo"
   Record_raw: "Registro en bruto"
   Records_that_cites_this_reference: "Registros de búsqueda que citan esta referencia"
   Redirect_back: "Volver atrás"

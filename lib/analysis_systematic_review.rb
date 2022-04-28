@@ -39,18 +39,22 @@ class AnalysisSystematicReview
       @sr=sr
       @rec = @sr.references_bw_canonical
     end
+
     def cites(cd_id)
       CanonicalDocument.where(:id=>@rec.where(:cd_start=>cd_id).map(:cd_end))
     end
+
     def cited_by(cd_id)
       CanonicalDocument.where(:id=>@rec.where(:cd_end=>cd_id).map(:cd_start))
     end
+
     def cited_by_rtr(cd_id)
       rta_cd_id=@sr.resolutions_title_abstract.where(:resolution=>'yes').map(:canonical_document_id)
       cited_by=@rec.where(:cd_end=>cd_id).map(:cd_start)
       cd_id_final=rta_cd_id & cited_by
       CanonicalDocument.where(:id=>cd_id_final)
     end
+
   end
 
   include AnalysisSrStageMixin
@@ -78,6 +82,7 @@ class AnalysisSystematicReview
     process_cite_number
     process_resolutions
   end
+
   def self.reference_between_canonicals(sr)
     ReferencesBetweenCanonicals.new(sr)
   end
@@ -221,7 +226,26 @@ class AnalysisSystematicReview
     INNER JOIN searches s ON s.id=rs.search_id WHERE s.systematic_review_id=?
     GROUP BY  s.source, s.bibliographic_database_id ORDER BY s.source, s.bibliographic_database_id", @rs.id]
   end
+  # Provides the number of accepted resolutions by stage
+  def sources_accepted_resolutions_by_stage
+    res=$db["SELECT s.id as search_id, r.canonical_document_id AS cd_id FROM records r
+          INNER JOIN records_searches rs ON r.id=rs.record_id
+          INNER JOIN searches s ON s.id=rs.search_id WHERE s.systematic_review_id=? GROUP BY s.id, r.canonical_document_id", @rs.id]
+    res2=res.inject({}) {|ac,v|
+      search_id=v[:search_id]
+      ac[search_id]||={Buhos::Stages::STAGE_SCREENING_TITLE_ABSTRACT=>0,
+                     Buhos::Stages::STAGE_REVIEW_FULL_TEXT=>0}
 
+      siscd=status_in_stages_cd_id(v[:cd_id])
+      [Buhos::Stages::STAGE_SCREENING_TITLE_ABSTRACT, Buhos::Stages::STAGE_REVIEW_FULL_TEXT].each do |stage|
+        if siscd[stage][:resolution]==Resolution::RESOLUTION_ACCEPT
+          ac[search_id][stage]+=1
+        end
+      end
+      ac
+    }
+    res2
+  end
   def status_in_stages_cd(cd)
     status_in_stages_cd_id(cd.id)
   end

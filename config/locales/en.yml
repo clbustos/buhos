@@ -555,6 +555,8 @@ en:
   Record_raw: "Raw Record"
   Records_from_to: "%{first_record} - %{last_record} of %{total_records}"
   Records_that_cites_this_reference: "Search records citing this reference"
+  Records_accepted_in_title_abstract_screening: "Records accepted in title and abstract stage"
+  Records_accepted_in_full_text_analysis: "Records accepted in full text analysis"
   Redirect_back: "Go back"
   Reference_text_cant_be_nil: "Reference can't be nil"
   Reference_Crossref_search: "Reference search in Crossref"

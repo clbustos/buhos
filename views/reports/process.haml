@@ -8,7 +8,7 @@
 
 - n_presence=CdCriterion::PRESENT_LIST.length
 - criteria=@report.aiec.criteria
-- cd_list=CanonicalDocument.where(id:@report.aiec.cd_ids).order(:title)
+- cd_list=CanonicalDocument.where(id: @report.aiec.cd_ids).order(:title)
 - proportion = @report.aiec.proportion_by_cd
 
 
