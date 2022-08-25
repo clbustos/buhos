@@ -120,7 +120,8 @@ On Ubuntu, the following script installs all required dependencies:
       xpdf \
       build-essential \
       libmysqlclient-dev \
-      libsqlite3-dev
+      libsqlite3-dev \
+      ruby-dev
     
     # Install RVM
     

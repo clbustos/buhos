@@ -25,7 +25,7 @@ gem 'treetop'
 gem 'nokogiri', :platforms=> :ruby
 gem 'moneta'
 gem 'ruby-stemmer', :git => 'https://github.com/clbustos/ruby-stemmer.git'
-gem 'categorize' , :platforms => :ruby
+#gem 'categorize' , :platforms => :ruby
 gem 'pdf-reader'
 gem 'grim'
 gem "i18n"
