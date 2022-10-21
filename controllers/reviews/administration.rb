@@ -226,19 +226,23 @@ post '/review/:rev_id/administration/:stage/cd_assignations_excel/:mode' do |rev
     $db.transaction(:rollback => :reraise) do
       sheet.data.each do |row|
         cd_id=row[id_index]
-        user_allocations=AllocationCd.where(:systematic_review_id=>review[:id], :canonical_document_id=>cd_id, :stage=>stage ).to_hash(:user_id)
-        #$log.debug(user_allocations)
-        users_assignation.each do |i,user_id|
-          if !row[i].nil?
-            #$log.debug("#{row[i]}: #{user_id}")
-            if row[i].to_i==0 and user_allocations[user_id.to_i]
-              number_of_actions+=1
-             # $log.debug("Deleting")
-                AllocationCd.where(:systematic_review_id=>review[:id], :canonical_document_id=>cd_id, :stage=>stage, :user_id=>user_id).delete
-            elsif row[i].to_i==1 and !user_allocations[user_id.to_i]
-            #$log.debug("assing")
-              number_of_actions+=1
-              AllocationCd.insert(:systematic_review_id=>review[:id], :canonical_document_id=>cd_id, :stage=>stage, :user_id=>user_id, :status=>"Massive assign")
+        if cd_id.nil?
+          add_message("Row without information", :error)
+        else
+          user_allocations=AllocationCd.where(:systematic_review_id=>review[:id], :canonical_document_id=>cd_id, :stage=>stage ).to_hash(:user_id)
+          #$log.debug(user_allocations)
+          users_assignation.each do |i,user_id|
+            if !row[i].nil?
+              #$log.debug("#{row[i]}: #{user_id}")
+              if row[i].to_i==0 and user_allocations[user_id.to_i]
+                number_of_actions+=1
+               # $log.debug("Deleting")
+                  AllocationCd.where(:systematic_review_id=>review[:id], :canonical_document_id=>cd_id, :stage=>stage, :user_id=>user_id).delete
+              elsif row[i].to_i==1 and !user_allocations[user_id.to_i]
+              #$log.debug("assing")
+                number_of_actions+=1
+                AllocationCd.insert(:systematic_review_id=>review[:id], :canonical_document_id=>cd_id, :stage=>stage, :user_id=>user_id, :status=>"Massive assign")
+              end
             end
           end
         end
