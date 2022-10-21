@@ -107,7 +107,7 @@ module Buhos
     end
 
 
-    set :session_secret, 'installer_secret'
+    set :session_secret, '9fc065605ac004449ff9bd312eb40ee43874c5f6d1e371c2875b05d7486091b412cd1422356f737e3d3e221f107188d6ebefe025fe7240e84f6e751895a418b6'
 
     enable :logging, :dump_errors, :raise_errors, :sessions
 

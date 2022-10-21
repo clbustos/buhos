@@ -9,9 +9,9 @@ require 'rack/session/moneta'
 
 Dotenv.load("./.env") if File.exist? "./env" and ENV['RACK_ENV']!="test"
 
-session_key         = ENV['PRODUCTION_SESSION_KEY']        || 'key'
+session_key         = ENV['PRODUCTION_SESSION_KEY']        || 'bd813bbefa24b9e7b0342034ade918dbd15500a4356accc5c144fedfa8f50cc91c71d81b336b921fb6367ce050e27bc51ff5822d2f04785856a9c5cfe26e019a'
 session_domain      = ENV['PRODUCTION_SESSION_DOMAIN']     || 'localhost'
-session_secret_key  = ENV['PRODUCTION_SESSION_SECRET_KEY'] || 'very_secret_key'
+session_secret_key  = ENV['PRODUCTION_SESSION_SECRET_KEY'] || 'a2a7674d180fb2f55033bbf26fd0708117cb4351655dec6f9e0fbce40c9d30c928d01ee298773db589cf624ad23ee5c7ab42f03274665fcebbb11faf4dea3e9e'
 
 
 #Sinatra::Application.default_options.merge!(
@@ -20,7 +20,7 @@ session_secret_key  = ENV['PRODUCTION_SESSION_SECRET_KEY'] || 'very_secret_key'
 #)
 
 disable :run
-set :session_secret, "Secreto"
+set :session_secret, "bd813bbefa24b9e7b0342034ade918dbd15500a4356accc5c144fedfa8f50cc91c71d81b336b921fb6367ce050e27bc51ff5822d2f04785856a9c5cfe26e019a"
 set :show_exceptions, true
 
 if ENV['RACK_ENV'].to_sym == :production

@@ -66,7 +66,7 @@ if !$test_mode
   Dotenv.load("./.env")
 end
 
-set :session_secret, 'super secret2'
+set :session_secret, 'd290f527d209bd4cd94db2dbdecf29cabaa6499c04bcd83278e3863cd7b25490859df1173c2aa2fd2ede7db09b9208b588badf8298519c23fc16220b356c0029'
 
 enable :logging, :dump_errors, :raise_errors, :sessions
 
