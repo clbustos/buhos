@@ -23,7 +23,7 @@ get '/canonical_document/:id' do |id|
   end
 
 
-  if Pmc_Summary[@cd.pmid]
+  if Pmc_Summary[@cd.pubmed_id]
     @pmc_sum=@cd.pubmed_integrator
   end
   @references_realizadas=@cd.references_performed
@@ -195,7 +195,7 @@ get '/canonical_documents/review/:rev_id/complete_pubmed_pmid' do |rev_id|
   @review=SystematicReview[rev_id]
   halt 500 unless auth_to("pubmed_query")  and ( auth_to('review_admin') or review_belongs_to(@review.id, session['user_id']))
   # Retrieve all doi we can!
-  @cd_ds=@review.canonical_documents.exclude(:doi=>nil).where(:pmid=>nil)
+  @cd_ds=@review.canonical_documents.exclude(:doi=>nil).where(:pubmed_id=>nil)
   result=PubmedRemote.retrieve_pmid(@cd_ds)
   add_result(result)
   redirect back
@@ -300,8 +300,8 @@ get '/canonical_document/:id/view_pubmed_info' do |id|
   @cd=CanonicalDocument[id]
   raise Buhos::NoCdIdError, id if !@cd
   @pmc_sum=@cd.pubmed_integrator
-  if @cd.pmid
-    @xml=Pmc_Summary[@cd.pmid][:xml]
+  if @cd.pubmed_id
+    @xml=Pmc_Summary[@cd.pubmed_id][:xml]
   else
     @xml=nil
   end

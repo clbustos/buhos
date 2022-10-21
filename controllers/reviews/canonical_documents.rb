@@ -161,7 +161,7 @@ get "/review/:sr_id/canonical_document/:cd_id" do |sr_id, cd_id|
   end
 
 
-  if Pmc_Summary[@cd.pmid]
+  if Pmc_Summary[@cd.pubmed_id]
     @pmc_sum=@cd.pubmed_integrator
   end
 

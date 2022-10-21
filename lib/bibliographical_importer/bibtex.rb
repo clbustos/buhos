@@ -34,6 +34,9 @@ module BibliographicalImporter
 # Unifies Scopus, WoS, Ebscohost and generic BibTeX formats.
 #
   module BibTex
+    # A BibTex Record
+    # Class method create() is a factory, that creates a specific
+    # Record_XXX object.
     class Record
 
       include CommonRecordAttributes
@@ -42,8 +45,9 @@ module BibliographicalImporter
 
 
       COMMON_FIELDS=[:title, :abstract, :journal, :year, :volume, :pages,
-                     :language, :affiliation, :doi, :cited, :url, :author]
-
+                     :language, :affiliation, :doi, :cited, :url, :author,
+                     :wos_id, :scopus_id, :ebscohost_id, :scielo_id, :refworks_id
+      ]
 
       def self.create(bibtex_value)
 		    return nil if (bibtex_value.is_a? BibTeX::Error) or (bibtex_value.is_a? BibTeX::Comment) 
@@ -114,6 +118,7 @@ module BibliographicalImporter
         @keywords=@bv[:keywords].to_s.split(";  ")
         results=/eid=([^&]+)/.match(@bv[:url])
         @uid=results[0]
+        @scopus_id=results[0]
       end
 
       def type
@@ -143,6 +148,7 @@ module BibliographicalImporter
         @keywords_plus=quitar_llaves(strip_lines(@bv["keywords-plus"].to_s)).split("; ")
         @keywords=quitar_llaves(strip_lines(@bv[:keywords])).split("; ")
         @uid=quitar_llaves(@bv['unique-id'])
+        @wos_id = @uid
       end
 
       def type
@@ -165,6 +171,7 @@ module BibliographicalImporter
       def parse_specific
         results=/(pid=[^&]+)/.match(@bv[:url])
         @uid=results[0]
+        @scielo_id=@uid
       end
 
       def cited_references
@@ -176,6 +183,7 @@ module BibliographicalImporter
         @keywords=@bv[:keywords].nil? ? [] : @bv[:keywords].split(", ")
         results=/(db=.+)/.match(@bv[:url])
         @uid=results[0]
+        @ebscohost_id=@uid
       end
 
       def type

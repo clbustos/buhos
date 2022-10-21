@@ -35,8 +35,11 @@ describe 'BibliographicalImporter::BibTeX' do
     end
     it "DOI should be correct " do
       expect(@bib[0].doi).to eq("10.1016/j.jss.2015.04.084")
-
     end
+    it "wos_id should be correct " do
+      expect(@bib[0].wos_id).to eq("ISI:000358699700002")
+    end
+
   end
 
   context "using Scopus BibTeX" do

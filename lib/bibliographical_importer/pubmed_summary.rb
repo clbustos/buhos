@@ -86,7 +86,8 @@ module BibliographicalImporter
           end
           @keywords=ps_value["MH"]
           @journal_abbr=ps_value["TA"]
-          @uid="PMID:#{@pmid}"
+          @uid="#{@pmid}"
+          @pubmed_id=@pmid
         rescue Exception => e
           #$log.info("Error:#{row}")
           raise e

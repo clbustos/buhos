@@ -16,6 +16,7 @@ get '/record/:id' do |id|
   raise Buhos::NoRecordIdError, id if !@reg
 
   @references=@reg.references
+
   haml "record".to_sym
 end
 

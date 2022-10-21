@@ -123,7 +123,7 @@ class BibliographicFileProcessor
     $db.transaction(:rollback => :reraise) do
 
       @search.records.each do |record|
-        fields = [:title, :author, :year, :journal, :volume, :pages, :doi, :journal_abbr, :abstract, :pmid]
+        fields = [:title, :author, :year, :journal, :volume, :pages, :doi, :journal_abbr, :abstract, :pubmed_id]
 
         fields_update = create_hash_update(fields, record)
         registro_base_id = "#{bb[record.bibliographic_database_id]}_id".to_sym
@@ -135,8 +135,8 @@ class BibliographicFileProcessor
           if record[:doi].to_s =~ /10\./
             can_doc = CanonicalDocument[:doi => record[:doi]]
           end
-          if can_doc.nil? and !record[:pmid].nil?
-            can_doc = CanonicalDocument[:pmid => record[:pmid]]
+          if can_doc.nil? and !record[:pubmed_id].nil?
+            can_doc = CanonicalDocument[:pubmed_id => record[:pubmed_id]]
           end
 
           if can_doc.nil?
@@ -175,6 +175,14 @@ class BibliographicFileProcessor
     if @search[:file_body].nil?
       log_error('bibliographic_file_processor.no_file_available')
       false
+    elsif @search[:filetype] == 'application/json' or @search[:filename] =~ /\.json$/
+      begin
+        BibliographicalImporter::Json::Reader.parse(file_body)
+      rescue BibTeX::ParseError=>e
+        log_error('bibliographic_file_processor.json_integrator_failed', "<#{e.class}> : #{e.message}")
+        @error=::I18n::t('bibliographic_file_processor.json_integrator_failed'.to_sym)
+        false
+      end
     elsif @search[:filetype] == 'text/x-bibtex' or @search[:filename] =~ /\.bib$/
       file_body=@search[:file_body].force_encoding("utf-8")
       file_body.scrub!("*") unless file_body.valid_encoding? # Fast fix. Just delete all non-utf8 characters
@@ -237,12 +245,7 @@ class BibliographicFileProcessor
     end
 
 
-    #attr_accessor :uid,:title, :abstract, :author, :journal, :year, :volume, :pages,
-    #              :type, :language, :affiliation, :doi, :keywords,:keywords_plus,
-    #              :references_wos, :references_scopus, :cited, :id_wos,
-    #              :id_scopus,:url, :journal_abbr
-
-    fields = [:title, :author, :year, :journal, :volume, :pages, :doi, :journal_abbr, :abstract, :pmid]
+    fields = [:title, :author, :year, :journal, :volume, :pages, :doi, :journal_abbr, :abstract, :pubmed_id]
 
     fields_update = fields.find_all {|v| reg_o[:field].nil? and reference.send(v) != ''}.inject({}) {|ac, v|
       ac[v] = reference.send(v); ac;

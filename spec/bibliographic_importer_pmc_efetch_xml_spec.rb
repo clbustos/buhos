@@ -8,7 +8,7 @@ describe 'BibliographicalImporter::PmcEfetchXml' do
     expect(@bib.records.length).to eq(2)
   end
   it "first article should have correct pubmed id" do
-    expect(@bib[0].pmid).to eq("23193287")
+    expect(@bib[0].pubmed_id).to eq("23193287")
   end
   it "first article should have correct doi" do
     expect(@bib[0].doi).to eq("10.1093/nar/gks1195")

@@ -31,10 +31,10 @@ describe 'BibliographicalImporter::PubmedSummary' do
       expect(@bib[0].doi).to eq("10.1037/ser0000195")
     end
     it "pubmed  should be '30080086'" do
-      expect(@bib[0].pmid).to eq("30080086")
+      expect(@bib[0].pubmed_id).to eq("30080086")
     end
     it "keywords  should be an Array" do
-      expect(@bib[0].pmid).to eq("30080086")
+      expect(@bib[0].pubmed_id).to eq("30080086")
     end
 
   end
@@ -66,7 +66,7 @@ describe 'BibliographicalImporter::PubmedSummary' do
       expect(all_dois).to eq(["10.1371/journal.pone.0139442", "10.1111/jan.14210", "10.1089/jwh.2016.6156", nil, nil])
     end
     it "pubmed  should be correct" do
-      all_pmid=@bib.map {|b| b.pmid}
+      all_pmid=@bib.map {|b| b.pubmed_id}
       expect(all_pmid).to eq(["26426421", "31566810", "28418750", "15455807", "7026815"])
     end
 

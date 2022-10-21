@@ -54,7 +54,7 @@ module BibliographicalImporter
       def parse_common
         begin
           @uid=get_text_at("PMID")
-          @pmid=@uid
+          @pubmed_id=@uid
           @title=get_text_at("ArticleTitle")
           @authors=xml.xpath(".//AuthorList/Author").map {|v|
             "#{v.at('LastName').text}, #{v.at('ForeName').text}"

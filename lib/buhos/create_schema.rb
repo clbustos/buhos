@@ -167,14 +167,14 @@ module Buhos
           String :editorial, :size => 255
           String :doi, :size => 255
           String :pubmed, :size => 255
-          String :wos_id, :size => 32
-          String :scopus_id, :size => 255
-          String :ebscohost_id, :size => 255
           Integer :year, :null => false
           String :journal_abbr, :size => 100
           String :abstract, :text => true, size: :long
           Integer :duplicated
           String :url, :text => true
+          String :wos_id, :size => 32
+          String :scopus_id, :size => 255
+          String :ebscohost_id, :size => 255
           String :scielo_id, :size => 255
           String :refworks_id, :size => 255
         end

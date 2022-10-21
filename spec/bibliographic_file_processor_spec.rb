@@ -7,7 +7,8 @@ describe 'BibliographicFileProcessor' do
     @temp=configure_empty_sqlite
     create_sr
     create_search
-    CrossrefDoi.insert(:doi=>"10.1186/s13643-016-0263-z", :json=>read_fixture("10.1186___s13643-016-0263-z.json")) unless ENV["NO_CROSSREF_MOCKUP"]
+    CrossrefDoi.insert(:doi=>"10.1186/s13643-016-0263-z",
+                       :json=>read_fixture("10.1186___s13643-016-0263-z.json")) unless ENV["NO_CROSSREF_MOCKUP"]
   end
   after(:all) do
     $db[:crossref_dois].delete
@@ -105,7 +106,7 @@ describe 'BibliographicFileProcessor' do
       expect(dois.sort).to eq(["10.1371/journal.pone.0139442", "10.1111/jan.14210", "10.1089/jwh.2016.6156"].sort)
     end
     it "Canonical documents pmid should be correct" do
-      pmids=CanonicalDocument.exclude(pmid:nil).map {|cd| cd.pmid}
+      pmids=CanonicalDocument.exclude(pubmed_id:nil).map {|cd| cd.pubmed_id}
       expect(pmids.sort).to eq(["26426421","31566810","28418750","15455807","7026815"].sort)
     end
 

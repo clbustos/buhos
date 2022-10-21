@@ -103,14 +103,16 @@ module BibliographicalImporter
 
     attr_accessor  :references_crossref
     attr_accessor  :cited
-    # Id for WOS
-    attr_accessor  :id_wos
-    # Id for Scopus
-    attr_accessor  :id_scopus
-    # Id for pubmed
-    attr_accessor   :pmid
+
     attr_accessor  :url
     attr_accessor  :journal_abbr
+
+    attr_accessor :wos_id
+    attr_accessor :scopus_id
+    attr_accessor :ebscohost_id
+    attr_accessor :scielo_id
+    attr_accessor :refworks_id
+    attr_accessor :pubmed_id
   end
 
 
