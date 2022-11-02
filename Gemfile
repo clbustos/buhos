@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 #gem 'stackprof'
 #gem 'flamegraph'
 gem 'rake'
+gem 'rack'
 gem "rubyzip",  ">= 1.3.0"
 gem 'zip-zip'
 gem "sinatra",  '>=2.0.1'
