@@ -41,7 +41,7 @@ module Buhos
     attr_reader :stage
     # @param sr [SystematicReview]
     # @param stage [String] name of stage. Could be nil
-    def initialize(sr, stage)
+    def initialize(sr,stage)
       @sr=sr
       @stage=stage
     end
@@ -70,29 +70,30 @@ module Buhos
         resolutions_com = @ars.resolution_commentary_by_cd(stage)
         cds=CanonicalDocument.where(:id=>@sr.cd_id_by_stage(@stage)).order(:title)
         text_decision_cd= Buhos::AnalysisCdDecisions.new(@sr, @stage)
+        name_sheet=I18n::t(get_stage_name(stage))
       else
         cds=@sr.canonical_documents.order(:title)
         resolutions_val   = nil
         resolutions_com   = nil
         text_decision_cd= nil
+        name_sheet=I18n::t(:All)
       end
 
 
-
-      wb.add_worksheet(:name => "#{I18n::t(get_stage_name(stage))}") do |sheet|
+      wb.add_worksheet(:name => name_sheet) do |sheet|
         sheet.add_row     [I18n::t(:Id), I18n::t(:Title), I18n::t(:Year), I18n::t(:Author), I18n::t(:Journal),
-                           I18n::t(:Volume), I18n::t(:Pages), I18n::t(:Doi), I18n::t(:Abstract),
+                           I18n::t(:Volume), I18n::t(:Pages), I18n::t(:Doi), "wos_id","scielo_id","scopus_id", I18n::t(:Abstract),
                            I18n::t(:Decisions),
-                           I18n::t(:Resolution), I18n::t(:Commentary)], :style=> [@blue_cell]*11
+                           I18n::t(:Resolution), I18n::t(:Commentary)], :style=> [@blue_cell]*15
 
         cds.each do |cd|
           row_height=((1+cd.abstract.to_s.length)/80.0).ceil*14
           decisions_val = text_decision_cd.nil? ? "" : text_decision_cd.to_text(cd[:id])
           resolution_val=resolutions_val.nil?   ? "" : resolutions_val[cd[:id]]
           resolution_com=resolutions_com.nil?   ? "" : resolutions_com[cd[:id]]
-          cd_values=([:id, :title, :year, :author, :journal, :volume, :pages,  :doi].map { |v| cd[v].to_s.gsub(/\s+/,' ')})
+          cd_values=([:id, :title, :year, :author, :journal, :volume, :pages,  :doi, :wos_id, :scielo_id, :scopus_id].map { |v| cd[v].to_s.gsub(/\s+/,' ')})
           sheet.add_row (cd_values+ [cd[:abstract], decisions_val, resolution_val, resolution_com]),
-                        :style=>[nil,@wrap_text,nil,nil,nil,nil,nil,nil,@wrap_text, @wrap_text,nil, @wrap_text],
+                        :style=>[nil,@wrap_text,nil,nil,nil,nil,nil,nil,nil,nil,nil, @wrap_text, @wrap_text,nil, @wrap_text],
                         :height=>row_height
         end
 
@@ -103,10 +104,15 @@ module Buhos
         sheet.column_info[5].width = 10
         sheet.column_info[6].width = 10
         sheet.column_info[7].width = 15
-        sheet.column_info[8].width = 30
-        sheet.column_info[9].width = 30
-        sheet.column_info[10].width = 10
+
+        sheet.column_info[8].width = 15
+        sheet.column_info[9].width = 15
+        sheet.column_info[10].width = 15
+
         sheet.column_info[11].width = 30
+        sheet.column_info[12].width = 30
+        sheet.column_info[13].width = 10
+        sheet.column_info[14].width = 30
 
       end
       if @stage

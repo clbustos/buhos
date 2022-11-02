@@ -1,0 +1,47 @@
+.header=t_systematic_review_title(@review[:name], :Import_export)
+%ul.breadcrumb
+  %li
+    %a{:href=>url("/review/#{@review[:id]}")}=@review.name
+  %li
+    %a{:href=>url("/review/#{@review[:id]}/canonical_documents")}=t(:Canonical_documents)
+  %li.active
+    =t(:Import_export_canonical_documents)
+
+
+%h3=t(:Export)
+
+%ul.list-group
+  %li.list-group-item
+    %h4 Graphml
+    %a{:href=>url("/review/#{@review.id}/generate_graphml"),  :role=>'button', :class=>"btn btn-default"}
+      %span{:class=>"glyphicon glyphicon-save"}
+      =t(:Export_to_Graphml)
+    - get_stages_ids.each do |stage|
+      %br
+      %a{:href=>url("/review/#{@review.id}/stage/#{stage}/generate_graphml"),  :role=>'button', :class=>"btn btn-default"}
+        %span{:class=>"glyphicon glyphicon-save"}
+        =t(:Export_to_Graphml_stage, stage: t("stage.#{stage}".to_sym))
+  %li.list-group-item
+    %h4 Bibtex
+    %a{:href=>url("/review/#{@review.id}/generate_bibtex"),  :role=>'button', :class=>"btn btn-default"}
+      %span{:class=>"glyphicon glyphicon-save"}
+      =t(:Export_to_Bibtex)
+    - get_stages_ids.each do |stage|
+      %br
+      %a{:href=>url("/review/#{@review.id}/stage/#{stage}/generate_bibtex"),  :role=>'button', :class=>"btn btn-default"}
+        %span{:class=>"glyphicon glyphicon-save"}
+        =t(:Export_to_Bibtex_stage, stage: t("stage.#{stage}".to_sym))
+
+  %li.list-group-item
+    %h4 Excel
+    %a{:href=>url("/review/#{@review.id}/generate_excel"),  :role=>'button', :class=>"btn btn-default"}
+      %span{:class=>"glyphicon glyphicon-save"}
+      =t(:Export_to_Excel)
+    - get_stages_ids.each do |stage|
+      %br
+      %a{:href=>url("/review/#{@review.id}/stage/#{stage}/generate_excel"),  :role=>'button', :class=>"btn btn-default"}
+        %span{:class=>"glyphicon glyphicon-save"}
+        =t(:Export_to_Excel_stage, stage: t("stage.#{stage}".to_sym))
+
+
+%h3=t(:Import)

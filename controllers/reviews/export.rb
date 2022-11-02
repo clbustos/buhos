@@ -13,6 +13,7 @@
 # Warning: Could be very big!
 # @see http://graphml.graphdrawing.org/ GraphML website
 # @see '/review/:rev_id/stage/:stage/generate_graphml'
+
 get '/review/:id/generate_graphml' do |id|
   halt_unless_auth('review_view')
   @review=SystematicReview[id]
@@ -39,6 +40,15 @@ get '/review/:rev_id/stage/:stage/generate_graphml' do |rev_id, stage|
 end
 
 
+get '/review/:rev_id/generate_excel' do |rev_id|
+  halt_unless_auth('review_view')
+  @review=SystematicReview[rev_id]
+  raise Buhos::NoReviewIdError, rev_id if !@review
+  eb=Buhos::ExcelBuilder.new(@review,nil)
+  eb.generate_excel
+  eb.prepare_stream(self)
+  eb.stream
+end
 # Generate a Excel file of documents on a specific stage
 #
 
@@ -52,6 +62,19 @@ get '/review/:rev_id/stage/:stage/generate_excel' do |rev_id, stage|
   eb.stream
 end
 
+
+get '/review/:rev_id/generate_bibtex' do |rev_id|
+  halt_unless_auth('review_view')
+  @review=SystematicReview[rev_id]
+  raise Buhos::NoReviewIdError, rev_id if !@review
+  canonicos_id=@review.cd_all_id
+  @canonicos_resueltos=CanonicalDocument.where(:id=>canonicos_id).order(:author,:year)
+  bib=BibliographicalImporter::BibTex::Writer.generate(@canonicos_resueltos)
+  headers["Content-Disposition"] = "attachment;filename=systematic_review_#{rev_id}_all.bib"
+  content_type 'text/x-bibtex'
+  bib.to_s
+
+end
 
 # Generate a BibTeX file of documents on a specific stage
 #

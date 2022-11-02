@@ -89,12 +89,21 @@ get '/review/:id/canonical_documents' do |id|
 end
 
 
+get "/review/:sr_id/canonical_documents/import_export" do |sr_id|
+  halt_unless_auth('review_view')
+  @sr_id=sr_id
+  @review=SystematicReview[@sr_id]
+  raise Buhos::NoReviewIdError, sr_id if !@review
+
+
+
+  haml "canonical_documents/import_export".to_sym
+end
+
 get "/review/:sr_id/canonical_documents/tags" do |sr_id|
   sr_tags_prev(sr_id)
 
   haml "tags/rs_cds_massive".to_sym
-
-
 end
 
 
