@@ -85,6 +85,10 @@ module BibliographicalImporter
         COMMON_FIELDS.each do |t|
           send("#{t}=", strip_lines(@bv[t].to_s))
         end
+        # pmid is changed to pubmed_id
+        #if @bv['pmid'].to_s!=""
+        #  @pubmed_id=@bv['pmid'].to_s
+        #end
       end
 
       def authors
@@ -119,6 +123,7 @@ module BibliographicalImporter
         results=/eid=([^&]+)/.match(@bv[:url])
         @uid=results[0]
         @scopus_id=results[0]
+
       end
 
       def type
@@ -292,7 +297,7 @@ module BibliographicalImporter
         bib = BibTeX::Bibliography.new
         canonical_documents.each do |cd|
           campos=[:title, :abstract, :journal, :year, :volume, :pages,
-               :doi, :url, :author]
+               :doi, :url, :author, :scopus_id, :wos_id, :scielo_id]
 
           hash_c=campos.inject({}) {|ac,v|
             ac[v]=cd.send(v)

@@ -123,7 +123,8 @@ class BibliographicFileProcessor
     $db.transaction(:rollback => :reraise) do
 
       @search.records.each do |record|
-        fields = [:title, :author, :year, :journal, :volume, :pages, :doi, :journal_abbr, :abstract, :pubmed_id]
+        fields = [:title, :author, :year, :journal, :volume, :pages, :doi, :journal_abbr, :abstract, :pubmed_id,
+                  :wos_id, :scopus_id, :scielo_id]
 
         fields_update = create_hash_update(fields, record)
         registro_base_id = "#{bb[record.bibliographic_database_id]}_id".to_sym
@@ -245,7 +246,8 @@ class BibliographicFileProcessor
     end
 
 
-    fields = [:title, :author, :year, :journal, :volume, :pages, :doi, :journal_abbr, :abstract, :pubmed_id]
+    fields = [:title, :author, :year, :journal, :volume, :pages, :doi, :journal_abbr, :abstract, :pubmed_id,
+              :wos_id, :scopus_id, :scielo_id]
 
     fields_update = fields.find_all {|v| reg_o[:field].nil? and reference.send(v) != ''}.inject({}) {|ac, v|
       ac[v] = reference.send(v); ac;

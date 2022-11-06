@@ -202,8 +202,12 @@ describe 'BibliographicalImporter::BibTeX' do
 
   context "using auto-generated BibTeX" do
     before(:context) do
-      cds=[OpenStruct.new(id:1, title:"{Title} {number} 1", abstract:"Abs", journal:"{Journal} of {MANAGEMENT}", year:2018, volume:1, pages:"1-2",
-                          doi:"1", url:nil, author:"Levin, Tony and Gabriel, Peter")]
+      cds=[OpenStruct.new(id:1, title:"{Title} {number} 1", abstract:"Abs", journal:"{Journal} of {MANAGEMENT}",
+                          year:2018, volume:1, pages:"1-2",
+                          doi:"1", url:nil, author:"Levin, Tony and Gabriel, Peter",
+                          scopus_id:"scopus-1",
+                          wos_id:"wos-1",
+                          scielo_id:"scielo-1")]
       bib_int=BibliographicalImporter::BibTex::Writer.generate(cds).to_s
       #p bib_int
       @bib=BibliographicalImporter::BibTex::Reader.parse(bib_int)
@@ -223,6 +227,17 @@ describe 'BibliographicalImporter::BibTeX' do
     it "journal should be 'Journal of MANAGEMENT'" do
       expect(@bib[0].journal).to eq("Journal of MANAGEMENT")
     end
+    it "scielo_id should be 'scielo-1'" do
+      expect(@bib[0].scielo_id).to eq("scielo-1")
+    end
+    it "wos_id should be 'wos-1'" do
+      expect(@bib[0].wos_id).to eq("wos-1")
+    end
+
+    it "scopus_id should be 'scopus-1'" do
+      expect(@bib[0].scopus_id).to eq("scopus-1")
+    end
+
   end
 
 
