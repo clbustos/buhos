@@ -1,0 +1,33 @@
+.header=t_systematic_review_title(@review[:name], :Review_import_of_canonical_documents)
+%ul.breadcrumb
+  %li
+    %a{:href=>url("/review/#{@review[:id]}")}=@review.name
+  %li
+    %a{:href=>url("/review/#{@review[:id]}/canonical_documents")}=t(:Canonical_documents)
+  %li
+    %a{:href=>url("/review/#{@review[:id]}/canonical_documents/import_export")}=t(:Import_export_canonical_documents)
+  %li.active
+    =t(:Review_import_of_canonical_documents)
+
+%h3=t(:Review_import_of_canonical_documents)
+
+%form{:method=>:post, :action=>url("/review/#{@review[:id]}/canonical_documents/import_excel_reviewed")}
+  - if @updated_data_per_cd.length>0
+    -i=0
+    - @updated_data_per_cd.each do |cd_id, data|
+      - i=i+1
+      %div{:class=>"panel panel-default", :id=>"pair-#{i}"}
+        .panel-heading
+          %input{:type=>:checkbox, :checked=>true, :name=>"canonical_document[#{cd_id}][updated]"}
+          ="[#{cd_id}]"
+          =data["original_title"]
+        %table.table
+          - data.each do |key,val|
+            - if key!="original_title"
+              %tr
+                %td
+                  %span.titulo="#{key}:"
+                %td
+                  %input{:type=>:text, :name=>"canonical_document[#{cd_id}][#{key}]",  :value=> val}
+  %input.btn.btn-default{:type=>"submit",:value=>t(:Save)}
+

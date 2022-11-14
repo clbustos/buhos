@@ -2,6 +2,7 @@
   %h2=t(:Systematic_review_repeated_documents, sr_name:@review.name)
 :javascript
   $(document).ready(function() {
+
     $(".unir_cd_por_doi").click(function() {
 
       var doi    = $(this).attr("data-doi");
@@ -12,6 +13,58 @@
 
       $.post("#{url('/canonical_document/merge')}",{doi:doi, pk_ids:pk_ids},function() {
         $("#doi-"+div_i).hide()
+      }).fail(function() {
+            boton.prop('disabled',false);
+        alert("#{t(:Union_doesnt_work)}")
+      })
+    });
+
+
+    $(".unir_cd_por_scielo_id").click(function() {
+
+      var scielo_id    = $(this).attr("data-scielo-id");
+      var pk_ids =$(this).attr("data-pk");
+      var div_i  =$(this).attr("data-i");
+      var boton  =$(this);
+      boton.prop('disabled', true);
+
+      $.post("#{url('/canonical_document/merge')}",{scielo_id: scielo_id, pk_ids:pk_ids},function(data) {
+
+        $("#scielo_id-"+div_i).hide()
+      }).fail(function() {
+            boton.prop('disabled',false);
+        alert("#{t(:Union_doesnt_work)}")
+      })
+    });
+
+
+    $(".unir_cd_por_wos_id").click(function() {
+
+      var wos_id    = $(this).attr("data-wos-id");
+      var pk_ids =$(this).attr("data-pk");
+      var div_i  =$(this).attr("data-i");
+      var boton  =$(this);
+      boton.prop('disabled',true);
+
+      $.post("#{url('/canonical_document/merge')}",{wos_id:wos_id, pk_ids:pk_ids},function() {
+        $("#wos_id-"+div_i).hide()
+      }).fail(function() {
+            boton.prop('disabled',false);
+        alert("#{t(:Union_doesnt_work)}")
+      })
+    });
+
+
+    $(".unir_cd_por_scopus_id").click(function() {
+
+      var scopus_id    = $(this).attr("data-scopus-id");
+      var pk_ids =$(this).attr("data-pk");
+      var div_i  =$(this).attr("data-i");
+      var boton  =$(this);
+      boton.prop('disabled',true);
+
+      $.post("#{url('/canonical_document/merge')}",{scopus_id:scopus_id, pk_ids:pk_ids},function() {
+        $("#scopus_id-"+div_i).hide()
       }).fail(function() {
             boton.prop('disabled',false);
         alert("#{t(:Union_doesnt_work)}")
@@ -44,13 +97,19 @@
     %a{:href=>url("/review/#{@review.id}/repeated_canonical_documents")}=t(:Duplicated_documents)
 
 %p=t_desc_value(:count_duplicated_DOI,@cd_rep_doi.length)
+%p=t_desc_value(:count_duplicated_scopus,@cd_rep_scopus.length)
+%p=t_desc_value(:count_duplicated_wos,@cd_rep_wos.length)
+%p=t_desc_value(:count_duplicated_scielo,@cd_rep_scielo.length)
+
 %p=t_desc_value(:count_duplicated_metadata,@cd_rep_metadata.length)
 
-%h3=t(:Canonical_documents_duplicated_by_DOI)
+%h3=t(:Canonical_documents_duplicated_by_unique_id)
+- ['doi','wos','scopus','scielo'].each do |type|
+  %form{:method=>:post, :action=>url("/review/#{@review.id}/canonical_document/automatic_deduplication/#{type}")}
+    %input.btn.btn-primary{:type=>:submit, :value=>t("Automatic_deduplication_of_all_canonical_documents", type:type)}
 
 - if @cd_por_doi.length>0
-  %form{:method=>:post, :action=>url("/review/#{@review.id}/automatic_deduplication")}
-    %input.btn.btn-primary{:type=>:submit, :value=>t(:Automatic_deduplication_of_all_canonical_documents)}
+  %h4 DOI
   - i=0
   - @cd_por_doi.each_pair do |doi, cds_id|
     - i=i+1
@@ -62,7 +121,56 @@
         - cds_id.each do |cd_id|
           %li.list-group-item=@cd_hash[cd_id].ref_apa_6_brief_html
 - else
-  %em=t(:No_duplicated_DOI)
+  %p
+    %em=t(:No_duplicated_DOI)
+
+- if @cd_por_scielo.length>0
+  %h4 Scielo
+  - i=0
+  - @cd_por_scielo.each_pair do |scielo_id, cds_id|
+    - i=i+1
+    %div{:class=>"panel panel-default", :id=>"scielo_id-#{i}"}
+      .panel-heading="Scielo: #{scielo_id}"
+      .panel-body
+        %button{:class=>"btn btn-default unir_cd_por_scielo_id", "data-i"=>i, "data-scielo-id"=>scielo_id, "data-pk"=>cds_id.join(",") }Unir
+      %ul.list-group
+        - cds_id.each do |cd_id|
+          %li.list-group-item=@cd_hash[cd_id].ref_apa_6_brief_html
+- else
+  %p
+    %em=t(:No_duplicated_Scielo)
+
+- if @cd_por_wos.length>0
+  %h4 WOS
+  - i=0
+  - @cd_por_wos.each_pair do |wos_id, cds_id|
+    - i=i+1
+    %div{:class=>"panel panel-default", :id=>"wos_id-#{i}"}
+      .panel-heading="WOS: #{wos_id}"
+      .panel-body
+        %button{:class=>"btn btn-default unir_cd_por_wos_id", "data-i"=>i, "data-wos-id"=>wos_id, "data-pk"=>cds_id.join(",") }Unir
+      %ul.list-group
+        - cds_id.each do |cd_id|
+          %li.list-group-item=@cd_hash[cd_id].ref_apa_6_brief_html
+- else
+  %p
+    %em=t(:No_duplicated_Wos)
+
+- if @cd_por_scopus.length>0
+  %h4 Scopus
+  - i=0
+  - @cd_por_scopus.each_pair do |scopus_id, cds_id|
+    - i=i+1
+    %div{:class=>"panel panel-default", :id=>"scopus_id-#{i}"}
+      .panel-heading="Scopus: #{scopus_id}"
+      .panel-body
+        %button{:class=>"btn btn-default unir_cd_por_scopus_id", "data-i"=>i, "data-scopus-id"=>scopus_id, "data-pk"=>cds_id.join(",") }Unir
+      %ul.list-group
+        - cds_id.each do |cd_id|
+          %li.list-group-item=@cd_hash[cd_id].ref_apa_6_brief_html
+- else
+  %p
+    %em=t(:No_duplicated_Wos)
 
 %h3=t(:Canonical_documents_duplicated_by_metadata)
 

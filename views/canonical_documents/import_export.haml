@@ -45,3 +45,12 @@
 
 
 %h3=t(:Import)
+%ul.list-group
+  %li.list-group-item
+    - if auth_to('review_admin')
+      %form{:method=>:post, :action=>url("/review/#{@review.id}/canonical_documents/import_excel"), :enctype=>'multipart/form-data'}
+        %input{:type=>"hidden", :name=>"systematic_review_id",:value=>@review[:id]}
+        .form-group
+          %label=t(:File)
+          %input{:type=>'file', :name=>'file', :multiple=>"multiple"}
+          %input{:type=>:submit, :class=>"btn btn-primary",:value=>"Enviar"}

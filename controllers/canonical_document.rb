@@ -124,16 +124,28 @@ post '/canonical_document/merge' do
 
 
   doi=params['doi']
+  scielo_id=params['scielo_id']
+  scopus_id=params['scopus_id']
+  wos_id=params['wos_id']
+
   pk_ids=params['pk_ids']
 
   if doi
     cds=CanonicalDocument.where(:doi => doi, :id => pk_ids.split(","))
+  elsif scielo_id
+    cds=CanonicalDocument.where(:scielo_id => scielo_id, :id => pk_ids.split(","))
+  elsif wos_id
+    cds=CanonicalDocument.where(:wos_id => wos_id, :id => pk_ids.split(","))
+  elsif scopus_id
+    cds=CanonicalDocument.where(:scopus_id => scopus_id, :id => pk_ids.split(","))
   else
     cds=CanonicalDocument.where(:id => pk_ids.split(","))
   end
+
   if cds.count>1
     resultado=CanonicalDocument.merge(cds.map(:id))
   end
+  $log.info(resultado)
   return resultado ? 200 : 500
 end
 

@@ -45,6 +45,15 @@ module Buhos
     def by_doi
       canonical_documents.exclude(doi: nil).group_and_count(:doi).having {count.function.* > 1}.all.map {|v| v[:doi]}
     end
+    def by_scopus_id
+      canonical_documents.exclude(scopus_id: nil).group_and_count(:scopus_id).having {count.function.* > 1}.all.map {|v| v[:scopus_id]}
+    end
+    def by_wos_id
+      canonical_documents.exclude(wos_id: nil).group_and_count(:wos_id).having {count.function.* > 1}.all.map {|v| v[:wos_id]}
+    end
+    def by_scielo_id
+      canonical_documents.exclude(scielo_id: nil).group_and_count(:scielo_id).having {count.function.* > 1}.all.map {|v| v[:scielo_id]}
+    end
     def cd_is_identical(cd1,cd2)
       cd1[:title]==cd2[:title] and cd1[:year]==cd2[:year] and (cd1[:journal].nil? or (cd1[:journal]==cd2[:journal] and cd1[:pages]==cd2[:pages]))
     end
@@ -56,9 +65,9 @@ module Buhos
       t1="#{cd1[:year]} #{cd1[:title]} #{cd1[:authors]} #{cd1[:journal]} #{cd1[:pages]}".gsub(/[^A-Za-z\d\s]/,"").downcase
       t2="#{cd2[:year]} #{cd2[:title]} #{cd2[:authors]} #{cd2[:journal]} #{cd2[:pages]}".gsub(/[^A-Za-z\d\s]/,"").downcase
       if(t1.length>10)
-        d=Levenshtein.distance(t1,t2)
-        d<5
-
+        #d=Levenshtein.distance(t1,t2)
+        #d<5
+        t1==t2
       else
         false
 

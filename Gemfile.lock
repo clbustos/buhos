@@ -113,10 +113,10 @@ GEM
     mysql2 (0.5.4)
     narray (0.6.1.2)
     nio4r (2.5.8)
-    nokogiri (1.13.6)
+    nokogiri (1.13.9)
       mini_portile2 (~> 2.8.0)
       racc (~> 1.4)
-    nokogiri (1.13.6-x86-mingw32)
+    nokogiri (1.13.9-x86-mingw32)
       racc (~> 1.4)
     parser (3.1.2.0)
       ast (~> 2.4.1)
@@ -182,7 +182,7 @@ GEM
       multi_json (~> 1.15)
       rexml (~> 3.2, >= 3.2.5)
       thor (~> 1.2, >= 1.2.1)
-    simple_xlsx_reader (1.0.5)
+    simple_xlsx_reader (2.0.0)
       nokogiri
       rubyzip
     simplecov (0.21.2)

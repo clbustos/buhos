@@ -84,14 +84,15 @@ class CanonicalDocument < Sequel::Model
         }
       end
       CanonicalDocument[pk_id].update(fields)
-      table_list=[:allocation_cds, :bib_references, :cd_criteria,:decisions, :file_cds, :resolutions, :tag_in_cds, :records, :canonical_document_authors]
+      table_list=[:allocation_cds, :bib_references, :cd_criteria,:decisions, :file_cds,
+                  :resolutions, :tag_in_cds, :records, :canonical_document_authors]
       # We have to add analysis tables
 
       SystematicReview.all.each do |sr|
         table_list.push(sr.analysis_cd_tn.to_sym) if $db.table_exists?(sr.analysis_cd_tn)
       end
-      table_list.each do |table|
 
+      table_list.each do |table|
         pk=$db.schema(table).find_all {|v|
           v[1][:primary_key]
         }.map {|v| v[0]}
@@ -102,7 +103,6 @@ class CanonicalDocument < Sequel::Model
           fixed_row[:canonical_document_id]=pk_id
           #$log.info(cache)
           #$log.info(fixed_row)
-
           if cache.include? fixed_row
             $db[table].where(row).delete
           else
@@ -110,9 +110,9 @@ class CanonicalDocument < Sequel::Model
           end
 
         end
-
         $db[table].where(:canonical_document_id=>pks).update(:canonical_document_id=>pk_id)
       end
+
       # TODO: Should verificate tuples as object described before
       $db[:tag_bw_cds].where(:cd_start=>pks).update(:cd_start=>pk_id)
       $db[:tag_bw_cds].where(:cd_end=>pks).update(:cd_end=>pk_id)

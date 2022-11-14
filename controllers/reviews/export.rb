@@ -45,7 +45,7 @@ get '/review/:rev_id/generate_excel' do |rev_id|
   @review=SystematicReview[rev_id]
   raise Buhos::NoReviewIdError, rev_id if !@review
   eb=Buhos::ExcelBuilder.new(@review,nil)
-  eb.generate_excel
+  eb.generate_excel(true)
   eb.prepare_stream(self)
   eb.stream
 end
@@ -57,7 +57,7 @@ get '/review/:rev_id/stage/:stage/generate_excel' do |rev_id, stage|
   @review=SystematicReview[rev_id]
   raise Buhos::NoReviewIdError, rev_id if !@review
   eb=Buhos::ExcelBuilder.new(@review, stage)
-  eb.generate_excel
+  eb.generate_excel(true)
   eb.prepare_stream(self)
   eb.stream
 end

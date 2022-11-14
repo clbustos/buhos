@@ -47,23 +47,28 @@ module Buhos
     end
     # Return a string with GraphML XML
     # @return  [String]
-    def generate_excel
+    def generate_excel(technical=false)
       @package = Axlsx::Package.new
       wb = @package.workbook
       @blue_cell = wb.styles.add_style  :fg_color => "0000FF", :sz => 12, :alignment => { :horizontal=> :center }
       @wrap_text= wb.styles.add_style({:alignment => {:horizontal => :left, :vertical => :top, :wrap_text => true}} )
-      add_canonical_documents(wb)
+      add_canonical_documents(wb, technical)
 
     end
     def prepare_stream(app)
-      app.headers["Content-Disposition"] = "attachment;filename=excel_review_#{@sr.id}_stage_#{@stage}.xlsx"
+      if @stage
+        app.headers["Content-Disposition"] = "attachment;filename=excel_review_#{@sr.id}_stage_#{@stage}.xlsx"
+      else
+        app.headers["Content-Disposition"] = "attachment;filename=excel_review_#{@sr.id}_all.xlsx"
+      end
       app.content_type 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
     end
     def stream
       @package.to_stream
     end
 
-    def add_canonical_documents(wb)
+    def add_canonical_documents(wb, technical)
+
       if @stage
         @ars=AnalysisSystematicReview.new(@sr)
         resolutions_val   = @ars.resolution_by_cd(stage)
@@ -71,6 +76,7 @@ module Buhos
         cds=CanonicalDocument.where(:id=>@sr.cd_id_by_stage(@stage)).order(:title)
         text_decision_cd= Buhos::AnalysisCdDecisions.new(@sr, @stage)
         name_sheet=I18n::t(get_stage_name(stage))
+
       else
         cds=@sr.canonical_documents.order(:title)
         resolutions_val   = nil
@@ -80,11 +86,31 @@ module Buhos
       end
 
 
+
       wb.add_worksheet(:name => name_sheet) do |sheet|
-        sheet.add_row     [I18n::t(:Id), I18n::t(:Title), I18n::t(:Year), I18n::t(:Author), I18n::t(:Journal),
-                           I18n::t(:Volume), I18n::t(:Pages), I18n::t(:Doi), "wos_id","scielo_id","scopus_id", I18n::t(:Abstract),
-                           I18n::t(:Decisions),
-                           I18n::t(:Resolution), I18n::t(:Commentary)], :style=> [@blue_cell]*15
+        if technical
+          if @stage
+            sheet.add_row     ["canonical_document_id","title", "year","author","journal",
+                               "volume","pages", "doi", "wos_id","scielo_id","scopus_id", "abstract",
+                               "decisions","resolution","commentary"], :style=> [@blue_cell]*15
+          else
+            sheet.add_row     ["canonical_document_id","title", "year","author","journal",
+                               "volume","pages", "doi", "wos_id","scielo_id","scopus_id", "abstract"], :style=> [@blue_cell]*12
+          end
+
+        else
+          if @stage
+          sheet.add_row     [I18n::t(:Id), I18n::t(:Title), I18n::t(:Year), I18n::t(:Author), I18n::t(:Journal),
+                             I18n::t(:Volume), I18n::t(:Pages), I18n::t(:Doi), "wos_id","scielo_id","scopus_id", I18n::t(:Abstract),
+                             I18n::t(:Decisions),
+                             I18n::t(:Resolution), I18n::t(:Commentary)], :style=> [@blue_cell]*15
+          else
+            sheet.add_row     [I18n::t(:Id), I18n::t(:Title), I18n::t(:Year), I18n::t(:Author), I18n::t(:Journal),
+                               I18n::t(:Volume), I18n::t(:Pages), I18n::t(:Doi), "wos_id","scielo_id","scopus_id",
+                               I18n::t(:Abstract)], :style=> [@blue_cell]*12
+
+          end
+        end
 
         cds.each do |cd|
           row_height=((1+cd.abstract.to_s.length)/80.0).ceil*14
@@ -115,6 +141,7 @@ module Buhos
         sheet.column_info[14].width = 30
 
       end
+
       if @stage
 
         cd_accepted=CanonicalDocument.where(:id=>@ars.cd_accepted_id(@stage)).order(:title)
