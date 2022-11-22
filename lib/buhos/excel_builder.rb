@@ -68,77 +68,72 @@ module Buhos
     end
 
     def add_canonical_documents(wb, technical)
-
+      @tag_analysis=AnalysisTags.new()
+      @tag_analysis.systematic_review_id(@sr.id)
       if @stage
         @ars=AnalysisSystematicReview.new(@sr)
         resolutions_val   = @ars.resolution_by_cd(stage)
         resolutions_com = @ars.resolution_commentary_by_cd(stage)
-        cds=CanonicalDocument.where(:id=>@sr.cd_id_by_stage(@stage)).order(:title)
+        cds_id=@sr.cd_id_by_stage(@stage)
+        cds=CanonicalDocument.where(:id=>cds_id).order(:title)
+        @tag_analysis.canonical_document_id(cds_id)
         text_decision_cd= Buhos::AnalysisCdDecisions.new(@sr, @stage)
         name_sheet=I18n::t(get_stage_name(stage))
-
       else
         cds=@sr.canonical_documents.order(:title)
+        @tag_analysis.canonical_document_id(cds.map {|row| row[:id]})
         resolutions_val   = nil
         resolutions_com   = nil
         text_decision_cd= nil
         name_sheet=I18n::t(:All)
       end
 
-
-
+      tags_by_cd=@tag_analysis.tags_by_canonical_document().each_with_object({}) {|item_v,hash|
+        cd_id, tags=item_v
+        hash[cd_id]=tags.map {|v| v[:text].strip}.uniq.join("; ")
+      }
       wb.add_worksheet(:name => name_sheet) do |sheet|
         if technical
           if @stage
             sheet.add_row     ["canonical_document_id","title", "year","author","journal",
                                "volume","pages", "doi", "wos_id","scielo_id","scopus_id", "abstract",
-                               "decisions","resolution","commentary"], :style=> [@blue_cell]*15
+                               "tags","decisions","resolution","commentary"], :style=> [@blue_cell]*16
           else
             sheet.add_row     ["canonical_document_id","title", "year","author","journal",
-                               "volume","pages", "doi", "wos_id","scielo_id","scopus_id", "abstract"], :style=> [@blue_cell]*12
+                               "volume","pages", "doi", "wos_id","scielo_id","scopus_id", "abstract","tags"], :style=> [@blue_cell]*13
           end
 
         else
           if @stage
           sheet.add_row     [I18n::t(:Id), I18n::t(:Title), I18n::t(:Year), I18n::t(:Author), I18n::t(:Journal),
-                             I18n::t(:Volume), I18n::t(:Pages), I18n::t(:Doi), "wos_id","scielo_id","scopus_id", I18n::t(:Abstract),
+                             I18n::t(:Volume), I18n::t(:Pages), I18n::t(:Doi), "wos_id","scielo_id","scopus_id",
+                             I18n::t(:Abstract),I18n::t(:Tags),
                              I18n::t(:Decisions),
-                             I18n::t(:Resolution), I18n::t(:Commentary)], :style=> [@blue_cell]*15
+                             I18n::t(:Resolution), I18n::t(:Commentary)], :style=> [@blue_cell]*16
           else
             sheet.add_row     [I18n::t(:Id), I18n::t(:Title), I18n::t(:Year), I18n::t(:Author), I18n::t(:Journal),
                                I18n::t(:Volume), I18n::t(:Pages), I18n::t(:Doi), "wos_id","scielo_id","scopus_id",
-                               I18n::t(:Abstract)], :style=> [@blue_cell]*12
-
+                               I18n::t(:Abstract),I18n::t(:Tags)], :style=> [@blue_cell]*13
           end
         end
 
         cds.each do |cd|
+          $log.info(cd[:id])
           row_height=((1+cd.abstract.to_s.length)/80.0).ceil*14
           decisions_val = text_decision_cd.nil? ? "" : text_decision_cd.to_text(cd[:id])
           resolution_val=resolutions_val.nil?   ? "" : resolutions_val[cd[:id]]
           resolution_com=resolutions_com.nil?   ? "" : resolutions_com[cd[:id]]
+          tags_val = tags_by_cd[cd[:id]].nil? ? "" :  tags_by_cd[cd[:id]]
           cd_values=([:id, :title, :year, :author, :journal, :volume, :pages,  :doi, :wos_id, :scielo_id, :scopus_id].map { |v| cd[v].to_s.gsub(/\s+/,' ')})
-          sheet.add_row (cd_values+ [cd[:abstract], decisions_val, resolution_val, resolution_com]),
-                        :style=>[nil,@wrap_text,nil,nil,nil,nil,nil,nil,nil,nil,nil, @wrap_text, @wrap_text,nil, @wrap_text],
+          sheet.add_row (cd_values+ [cd[:abstract], tags_val, decisions_val, resolution_val, resolution_com]),
+                        :style=>[nil,@wrap_text,nil,nil,nil,nil,nil,nil,nil,nil,nil, @wrap_text, @wrap_text,nil, nil, @wrap_text],
                         :height=>row_height
         end
 
-        sheet.column_info[1].width = 30
-        sheet.column_info[2].width = 10
-        sheet.column_info[3].width = 20
-        sheet.column_info[4].width = 25
-        sheet.column_info[5].width = 10
-        sheet.column_info[6].width = 10
-        sheet.column_info[7].width = 15
-
-        sheet.column_info[8].width = 15
-        sheet.column_info[9].width = 15
-        sheet.column_info[10].width = 15
-
-        sheet.column_info[11].width = 30
-        sheet.column_info[12].width = 30
-        sheet.column_info[13].width = 10
-        sheet.column_info[14].width = 30
+        widths=[30,10,20,25,10,10,15,15,15,15,30,30,10,30]
+        widths.each_with_index {|v,i|
+          sheet.column_info[i].width = v
+        }
 
       end
 
@@ -149,33 +144,28 @@ module Buhos
           wb.add_worksheet(:name => I18n::t('resolution.yes')) do |sheet|
             sheet.add_row     [I18n::t(:Id), I18n::t(:Title), I18n::t(:Year), I18n::t(:Author),
                                I18n::t(:Journal), I18n::t(:Volume), I18n::t(:Pages), I18n::t(:Doi),
-                               I18n::t(:Abstract), I18n::t(:Decisions), I18n::t(:Commentary) ], :style=> [@blue_cell]*10
+                               I18n::t(:Abstract),I18n::t(:Tags), I18n::t(:Decisions), I18n::t(:Commentary) ], :style=> [@blue_cell]*10
 
             cd_accepted.each do |cd|
               row_height=((1+cd.abstract.to_s.length)/80.0).ceil*14
               cd_values=([:id, :title, :year, :author, :journal, :volume, :pages,  :doi].map {|v| cd[v].to_s.gsub(/\s+/,' ')})
               resolution_com=resolutions_com.nil? ? "" : resolutions_com[cd[:id]]
               decisions_val = text_decision_cd.nil? ? "" : text_decision_cd.to_text(cd[:id])
-              sheet.add_row (cd_values+[cd[:abstract], decisions_val, resolution_com]),
-                            :style=>[nil,@wrap_text,nil,nil,nil,nil,nil,nil,@wrap_text,@wrap_text, @wrap_text], :height=>row_height
+              tags_val = tags_by_cd[cd[:id]].nil? ? "" :  tags_by_cd[cd[:id]]
+
+              sheet.add_row (cd_values+[cd[:abstract], tags_val, decisions_val, resolution_com]),
+                            :style=>[nil,@wrap_text,nil,nil,nil,nil,nil,nil,@wrap_text,@wrap_text, @wrap_text, @wrap_text], :height=>row_height
             end
 
-            sheet.column_info[1].width = 30
-            sheet.column_info[2].width = 10
-            sheet.column_info[3].width = 20
-            sheet.column_info[4].width = 25
-            sheet.column_info[5].width = 10
-            sheet.column_info[6].width = 10
-            sheet.column_info[7].width = 15
-            sheet.column_info[8].width = 30
-            sheet.column_info[9].width = 30
+            widths=[30,10,20,25,10,10,15,30,30]
+            widths.each_with_index {|v,i|
+              sheet.column_info[i].width = v
+            }
+
           end
         end
 
       end
-
-
-
     end
 
   end

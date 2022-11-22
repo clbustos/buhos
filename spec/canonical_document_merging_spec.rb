@@ -123,12 +123,12 @@ describe 'Canonical Document merging' do
 
 
 
-  context "when /review/1/automatic_deduplication is used" do
+  context "when /review/1/canonical_document/automatic_deduplication/doi is used" do
 
     before(:context) do
       pre_context
       CanonicalDocument.where(:id=>[1,2,3]).update(:doi=>"1234")
-      post "/review/1/automatic_deduplication"
+      post "/review/1/canonical_document/automatic_deduplication/doi"
     end
     it_behaves_like 'correct merge'
 
@@ -138,7 +138,67 @@ describe 'Canonical Document merging' do
 
   end
 
-  context "when /canonical_document/merge is used usign doi" do
+  context "when /review/1/canonical_document/automatic_deduplication/scopus is used" do
+
+    before(:context) do
+      pre_context
+      CanonicalDocument.where(:id=>[1,2,3]).update(:scopus_id=>"2-s2.23")
+      post "/review/1/canonical_document/automatic_deduplication/scopus"
+    end
+    it_behaves_like 'correct merge'
+
+    after(:context) do
+      after_context
+    end
+
+  end
+
+  context "when /review/1/canonical_document/automatic_deduplication/wos is used" do
+
+    before(:context) do
+      pre_context
+      CanonicalDocument.where(:id=>[1,2,3]).update(:wos_id=>"WOS:123456")
+      post "/review/1/canonical_document/automatic_deduplication/wos"
+    end
+    it_behaves_like 'correct merge'
+
+    after(:context) do
+      after_context
+    end
+
+  end
+
+  context "when /review/1/canonical_document/automatic_deduplication/scielo is used" do
+
+    before(:context) do
+      pre_context
+      CanonicalDocument.where(:id=>[1,2,3]).update(:scielo_id=>"SCIELO:234")
+      post "/review/1/canonical_document/automatic_deduplication/scielo"
+    end
+    it_behaves_like 'correct merge'
+
+    after(:context) do
+      after_context
+    end
+
+  end
+
+
+  context "when /review/1/canonical_document/automatic_deduplication/pubmed is used" do
+
+    before(:context) do
+      pre_context
+      CanonicalDocument.where(:id=>[1,2,3]).update(:pubmed_id=>"12345")
+      post "/review/1/canonical_document/automatic_deduplication/pubmed"
+    end
+    it_behaves_like 'correct merge'
+
+    after(:context) do
+      after_context
+    end
+
+  end
+  context "when /canonical_document/merge is used using doi" do
 
     before(:context) do
       pre_context
@@ -150,10 +210,9 @@ describe 'Canonical Document merging' do
     after(:context) do
       after_context
     end
-
   end
 
-  context "when /canonical_document/merge is used usign doi" do
+  context "when /canonical_document/merge is used using pk" do
 
     before(:context) do
       pre_context

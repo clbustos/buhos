@@ -233,6 +233,7 @@ get '/review/:id/repeated_canonical_documents' do |id|
   @cd_rep_scielo = @dup_analysis.by_scielo_id
   @cd_rep_wos    = @dup_analysis.by_wos_id
   @cd_rep_scopus = @dup_analysis.by_scopus_id
+  @cd_rep_pubmed = @dup_analysis.by_pubmed_id
 
   @cd_rep_metadata=@dup_analysis.by_metadata
   @cd_hash=@cds.to_hash(:id)
@@ -241,6 +242,7 @@ get '/review/:id/repeated_canonical_documents' do |id|
   @cd_por_scielo=CanonicalDocument.where(:scielo_id => @cd_rep_scielo, :id=>@cd_hash.keys()).to_hash_groups(:scielo_id, :id)
   @cd_por_wos=CanonicalDocument.where(:wos_id => @cd_rep_wos, :id=>@cd_hash.keys()).to_hash_groups(:wos_id, :id)
   @cd_por_scopus=CanonicalDocument.where(:scopus_id => @cd_rep_scopus, :id=>@cd_hash.keys()).to_hash_groups(:scopus_id, :id)
+  @cd_por_pubmed=CanonicalDocument.where(:pubmed_id => @cd_rep_pubmed, :id=>@cd_hash.keys()).to_hash_groups(:pubmed_id, :id)
 
 
   ##$log.info(@cd_por_doi)
@@ -256,11 +258,6 @@ post '/review/:id/canonical_document/automatic_deduplication/:type' do |id, type
 
   @dup_analysis=Buhos::DuplicateAnalysis.new(@review.canonical_documents)
 
-  @cd_rep_doi=@dup_analysis.by_doi
-
-  @cd_rep_scielo = @dup_analysis.by_scielo_id
-  @cd_rep_wos    = @dup_analysis.by_wos_id
-  @cd_rep_scopus = @dup_analysis.by_scopus_id
 
   @cds=@review.canonical_documents
   @cd_ids=@cds.map {|cd| cd.id}
@@ -270,6 +267,8 @@ post '/review/:id/canonical_document/automatic_deduplication/:type' do |id, type
   result=Result.new
 
   if type=="doi"
+    @cd_rep_doi=@dup_analysis.by_doi
+
     @cd_por_doi=CanonicalDocument.where(doi: @cd_rep_doi, id: @cd_ids).order(:id).to_hash_groups(:doi, :id)
 
     @cd_por_doi.each_pair do |doi, cds_id|
@@ -284,6 +283,8 @@ post '/review/:id/canonical_document/automatic_deduplication/:type' do |id, type
     end
   end
   if type=="scielo"
+    @cd_rep_scielo = @dup_analysis.by_scielo_id
+
     @cd_por_scielo=CanonicalDocument.where(:scielo_id => @cd_rep_scielo, :id=>@cd_ids).to_hash_groups(:scielo_id, :id)
 
     @cd_por_scielo.each_pair do |scielo_id, cds_id|
@@ -298,7 +299,29 @@ post '/review/:id/canonical_document/automatic_deduplication/:type' do |id, type
       end
     end
   end
+
+  if type=="pubmed"
+    @cd_rep_pubmed = @dup_analysis.by_pubmed_id
+
+    @cd_por_pubmed=CanonicalDocument.where(:pubmed_id => @cd_rep_pubmed, :id=>@cd_ids).to_hash_groups(:pubmed_id, :id)
+
+    @cd_por_pubmed.each_pair do |pubmed_id, cds_id|
+      if CanonicalDocument.where(id:cds_id).count()==cds_id.length
+
+        resultado=CanonicalDocument.merge(cds_id)
+        if resultado
+          result.success("Pubmed:#{pubmed_id} - #{I18n::t("Canonical_document_merge_successful")}")
+        else
+          result.error("Pubmed:#{pubmed_id} - #{I18n::t("Canonical_document_merge_error")}")
+        end
+      end
+    end
+  end
+
+
   if type=="scopus"
+    @cd_rep_scopus = @dup_analysis.by_scopus_id
+
     @cd_por_scopus=CanonicalDocument.where(:scopus_id => @cd_rep_scopus, :id=>@cd_ids).to_hash_groups(:scopus_id, :id)
 
     @cd_por_scopus.each_pair do |scopus_id, cds_id|
@@ -314,6 +337,8 @@ post '/review/:id/canonical_document/automatic_deduplication/:type' do |id, type
     end
   end
   if type=="wos"
+    @cd_rep_wos    = @dup_analysis.by_wos_id
+
     @cd_por_wos=CanonicalDocument.where(:wos_id => @cd_rep_wos, :id=>@cd_ids).to_hash_groups(:wos_id, :id)
 
     @cd_por_wos.each_pair do |wos_id, cds_id|

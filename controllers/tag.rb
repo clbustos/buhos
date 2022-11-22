@@ -121,10 +121,9 @@ get '/tag/:tag_id/rs/:rs_id/cds' do |tag_id, rs_id|
 
   @analysis_tag=Buhos::AnalysisTags.new
   @analysis_tag.systematic_review_id(@review.id)
-  @analysis_tag.user_id(@usuario.id)
+  #@analysis_tag.user_id(@usuario.id)
   @analysis_tag.tag_id(tag_id)
   @cds_id=@analysis_tag.tags_in_cds.group_by(:canonical_document_id).map{|v| v[:canonical_document_id]}
-
   @cds_pre=CanonicalDocument.where(:id=>@cds_id)
 
 

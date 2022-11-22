@@ -29,12 +29,13 @@
 #
 module Buhos
   # Analysis of a set of tags
-  # Criteria could be: systematic review, user, canonical_document
+  # Criteria could be: systematic review, user, canonical_document, tag_id
   class AnalysisTags
     def initialize
       @canonical_document_id=nil
       @user_id=nil
       @systematic_review_id=nil
+      @tag_id=nil
       @canonical_documents_by_tag=nil
     end
     def canonical_document_id(cd_id)
@@ -45,6 +46,10 @@ module Buhos
       user_id=[user_id] unless user_id.is_a? Array
 
       @user_id=user_id
+    end
+    def systematic_review_id(sr_id)
+      sr_id=[sr_id] unless sr_id.is_a? Array
+      @systematic_review_id=sr_id
     end
 
     def tag_id(tag_id)
@@ -64,18 +69,13 @@ module Buhos
     end
     def where_sql
       where=["1=1"]
-      where.push " canonical_document IN (#{@canonical_document_id.join(',')})" if @canonical_document_id
+      where.push " canonical_document_id IN (#{@canonical_document_id.join(',')})" if @canonical_document_id
       where.push " user_id IN (#{@user_id.join(',')})" if @user_id
       where.push " systematic_review_id IN (#{@systematic_review_id.join(',')})" if @systematic_review_id
       where.push " tag_id IN (#{@tag_id.join(',')})" if @tag_id
       where.join(' AND ')
     end
 
-    def systematic_review_id(sr_id)
-      sr_id=[sr_id] unless sr_id.is_a? Array
-
-      @systematic_review_id=sr_id
-    end
 
     def get_tags_decision_stats
       query="SELECT t.id, t.text, SUM(CASE WHEN decision='yes' THEN 1 ELSE 0 END) as d_yes,

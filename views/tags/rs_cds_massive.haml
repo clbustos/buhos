@@ -1,5 +1,5 @@
 .heading
-  =t_systematic_review_title(@review[:name], :massive_assignent_of_tags_to_cd)
+  =t_systematic_review_title(@review[:name], :massive_assignment_of_tags_to_cd)
 
 %form.form#submit-new{:method=>'post', :action=>url("/review/#{@review[:id]}/canonical_documents/tags/actions")}
   %input{:type=>:hidden, :name=>:action, :value=>'none'}
