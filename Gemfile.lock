@@ -24,7 +24,6 @@ GEM
     bibtex-ruby (6.0.0)
       latex-decode (~> 0.0)
     cabin (0.9.0)
-    categorize (0.0.12)
     caxlsx (3.2.0)
       htmlentities (~> 4.3, >= 4.3.4)
       marcel (~> 1.0)
@@ -236,7 +235,6 @@ PLATFORMS
 DEPENDENCIES
   ai4r
   bibtex-ruby
-  categorize
   caxlsx
   certified
   dotenv
