@@ -85,7 +85,7 @@ get '/review/:id/canonical_documents' do |id|
   #$log.info($db[:canonical_documents].all)
   #$log.info(@cds.all)
 
-  haml %s{systematic_reviews/canonical_documents}
+  haml %s{systematic_reviews/canonical_documents}, escape_html: false
 end
 
 
@@ -97,13 +97,13 @@ get "/review/:sr_id/canonical_documents/import_export" do |sr_id|
 
 
 
-  haml "canonical_documents/import_export".to_sym
+  haml "canonical_documents/import_export".to_sym, escape_html: false
 end
 
 get "/review/:sr_id/canonical_documents/tags" do |sr_id|
   sr_tags_prev(sr_id)
 
-  haml "tags/rs_cds_massive".to_sym
+  haml "tags/rs_cds_massive".to_sym, escape_html: false
 end
 
 
@@ -178,7 +178,7 @@ get "/review/:sr_id/canonical_document/:cd_id" do |sr_id, cd_id|
 
   #@sim_all=Buhos::SimilarAnalysisSr.similar_to_cd_in_sr( cd:@cd, sr:@review)
   @references_realizadas=@cd.references_performed
-  haml :canonical_document
+  haml :canonical_document, escape_html: false
 
 end
 
@@ -198,7 +198,7 @@ get "/review/:sr_id/canonical_document/:cd_id/similar" do |sr_id, cd_id|
 
   @sim_all=Buhos::SimilarAnalysisSr.similar_to_cd_in_sr( cd:@cd, sr:@review)
   @references_realizadas=@cd.references_performed
-  haml "canonical_documents/similar".to_sym
+  haml "canonical_documents/similar".to_sym, escape_html: false
 
 end
 
@@ -214,7 +214,7 @@ get %r{/review/(\d+)/canonical_document/(\d+)/(cites|cited_by|cited_by_rtr)} do
   raise Buhos::NoCdIdError, @cd_id if !@cd
   @rwc= AnalysisSystematicReview.reference_between_canonicals(@sr)
   @cd_to_show=@rwc.send(@type.to_sym, @cd_id)
-  haml "systematic_reviews/canonical_document_cites".to_sym
+  haml "systematic_reviews/canonical_document_cites".to_sym, escape_html: false
 end
 
 
@@ -246,7 +246,7 @@ get '/review/:id/repeated_canonical_documents' do |id|
 
 
   ##$log.info(@cd_por_doi)
-  haml %s{systematic_reviews/repeated_canonical_documents}
+  haml %s{systematic_reviews/repeated_canonical_documents}, escape_html: false
 end
 
 

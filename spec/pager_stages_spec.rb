@@ -8,6 +8,7 @@ describe 'Pager on evaluation of papers' do
   before(:each) do
     post '/login' , :user=>'admin', :password=>'admin'
   end
+
   context 'when screening title abstract' do
 
     it "shows that are 85 documents to review " do

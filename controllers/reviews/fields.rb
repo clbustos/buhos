@@ -18,7 +18,7 @@ get '/review/:rs_id/fields' do |rs_id|
   @campos=@review.fields
 
   @xselect=get_xeditable_select(SrField.types_hash, "/review/edit_field/nil/type", 'select-type')
-  haml %s{systematic_reviews/fields}
+  haml %s{systematic_reviews/fields}, escape_html: false
 end
 
 # Add a new field

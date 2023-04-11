@@ -11,7 +11,7 @@ base_fixtures=File.expand_path(File.dirname(__FILE__)+"/fixtures/")
 base_png=File.expand_path(File.dirname(__FILE__)+"/")
 Watir.default_timeout=60*10
 
-FileUtils.rm_rf(dir) if File.exists? dir
+FileUtils.rm_rf(dir) if File.exist? dir
 Dir.mkdir(dir)
 
 port=rand(100)+9000

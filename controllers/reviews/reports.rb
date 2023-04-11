@@ -19,7 +19,7 @@ get '/review/:sr_id/report/:type/:format' do |sr_id,type,format|
   @report=ReportBuilder.get_report(@sr, @type, self)
   if format=='html'
 
-    haml "/reports/#{type.downcase}".to_sym
+    haml "/reports/#{type.downcase}".to_sym, :escape_html=>false
   else
     @report.output(format)
   end

@@ -22,7 +22,7 @@ get '/admin/users/?' do
 
   #log.info(@personas.all)
   @roles=Role.order()
-  haml :users
+  haml :users, escape_html: false
 end
 
 # Update information for users

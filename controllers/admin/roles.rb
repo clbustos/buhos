@@ -12,7 +12,7 @@ get '/admin/roles' do
   halt_unless_auth('role_admin')
   @roles=Role
   @authorizations=Authorization.order(:id)
-  haml "admin/roles".to_sym
+  haml "admin/roles".to_sym, escape_html: false
 end
 
 
@@ -28,7 +28,7 @@ get '/role/new' do
   @role=Role.create({:id=>role_id, :description=>I18n::t('Description')})
   @authorizations=Authorization.order(:id)
 
-  haml "admin/role_edit".to_sym
+  haml "admin/role_edit".to_sym, escape_html: false
 end
 
 # Information about a role
@@ -40,7 +40,7 @@ get '/role/:id' do |role_id|
   @role=Role[role_id]
   raise Buhos::NoRoleIdError, role_id if @role.nil?
   @authorizations=Authorization.order(:id)
-  haml "admin/role_view".to_sym
+  haml "admin/role_view".to_sym, escape_html: false
 end
 
 # Form to update a role
@@ -55,7 +55,7 @@ get '/role/:role_id/edit' do |role_id|
   @authorizations=Authorization.order(:id)
 
   return 404 if @role.nil?
-  haml "admin/role_edit".to_sym
+  haml "admin/role_edit".to_sym, escape_html: false
 end
 
 # Deletes a role

@@ -24,7 +24,7 @@ get '/admin/authorizations' do
   auth=Buhos::Reflection.get_authorizations(self)
   @files=auth.files
   @permits=auth.permits
-  haml "admin/permits".to_sym
+  haml "admin/permits".to_sym, escape_html: false
 
 end
 

@@ -48,7 +48,7 @@ get '/review/:id/screening_title_abstract' do |id|
     @cds=@pager.adapt_ads_cds(@ads, @cds_pre, no_query:true)
   end
 
-  haml "systematic_reviews/screening_general".to_sym
+  haml "systematic_reviews/screening_general".to_sym, escape_html: false
 
 end
 
@@ -99,7 +99,7 @@ get '/review/:id/screening_references' do |id|
 
 $log.info(@pager)
 
-  haml "systematic_reviews/screening_general".to_sym
+  haml "systematic_reviews/screening_general".to_sym, escape_html: false
 
 end
 
@@ -148,7 +148,7 @@ get '/review/:id/review_full_text' do |id|
   @a_tags=Buhos::AnalysisTags.new
   @a_tags.systematic_review_id(@review.id)
   @a_tags.user_id(@user_id)
-  haml %s{systematic_reviews/review_full_text}
+  haml %s{systematic_reviews/review_full_text}, escape_html: false
 end
 
 

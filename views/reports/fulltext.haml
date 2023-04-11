@@ -22,7 +22,7 @@
     - analysis_cd=@report.analysis_rs.where(:user_id=>gu[:id], :canonical_document_id=>@report.cd_h.keys).order(:canonical_document_id)
     - if analysis_cd.empty?
       %p
-        %em="#{campo.description} (#{campo.name} ) - #{t("fulltext_report.no_analysis_for_user", {user_name:gu[:name]})}"
+        %em="#{campo.description} (#{campo.name} ) - #{t("fulltext_report.no_analysis_for_user", user_name:gu[:name])}"
     - else
       .panel.panel-default
         .panel-heading="#{campo.description} (#{campo.name}) - #{gu[:name]} - #{campo[:type]}"

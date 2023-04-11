@@ -41,8 +41,8 @@ module Sinatra
       end
 
       # Just a wrapper for I18n::t method
-      def t(*args)
-        ::I18n::t(*args)
+      def t(...)
+        ::I18n::t(...)
       end
 
       def t_taxonomy_group(term)

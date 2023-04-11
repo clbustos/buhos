@@ -17,7 +17,7 @@ get '/review/:id/administration_stages' do |id|
   @review=SystematicReview[id]
   raise Buhos::NoReviewIdError, id if !@review
   @ars=AnalysisSystematicReview.new(@review)
-  haml %s{systematic_reviews/administration_stages}
+  haml %s{systematic_reviews/administration_stages}, escape_html: false
 
 end
 
@@ -62,9 +62,9 @@ get '/review/:id/administration/:stage' do |id,stage|
   @modal_files=get_modal_files
 
   if %w{screening_title_abstract screening_references review_full_text}.include? stage
-    haml "systematic_reviews/administration_reviews".to_sym
+    haml "systematic_reviews/administration_reviews".to_sym, escape_html: false
   else
-    haml "systematic_reviews/administration_#{stage}".to_sym
+    haml "systematic_reviews/administration_#{stage}".to_sym, escape_html: false
   end
 end
 
@@ -107,7 +107,7 @@ get '/review/:rev_id/stage/:stage/generate_crossref_references' do |rev_id,stage
   @review=SystematicReview[rev_id]
   @stage=stage
   raise Buhos::NoReviewIdError, id if !@review
-  haml "/systematic_reviews/generate_crossref_references".to_sym
+  haml "/systematic_reviews/generate_crossref_references".to_sym, escape_html: false
 end
 
 get '/review/:rev_id/stage/:stage/generate_crossref_references_stream' do |rev_id,stage|
@@ -193,7 +193,7 @@ get '/review/:rev_id/administration/:stage/cd_assignations' do |rev_id, stage|
   @stage=stage
   @cds=CanonicalDocument.where(:id=>@cds_id).order(:author)
   @type="all"
-  haml("systematic_reviews/cd_assignations_to_user".to_sym)
+  haml("systematic_reviews/cd_assignations_to_user".to_sym, escape_html: false)
 end
 
 
@@ -268,7 +268,7 @@ get '/review/:sr_id/stage/:stage/import_export_decisions' do |sr_id, stage|
   @stage=stage.to_sym
   @name_stage=get_stage_name(@stage)
 
-  haml("systematic_reviews/administration_import_export_decisions".to_sym)
+  haml "systematic_reviews/administration_import_export_decisions".to_sym, escape_html: false
 end
 
 get '/review/:rev_id/administration/:stage/cd_assignations_excel/:mode' do |rev_id, stage, mode|
@@ -323,7 +323,7 @@ get '/review/:rev_id/administration/:stage/cd_without_allocations' do |rev_id, s
   @stage=stage
   @cds=@ars.cd_without_allocations(stage).order(:author)
   @type="without_allocation"
-  haml("systematic_reviews/cd_assignations_to_user".to_sym)
+  haml "systematic_reviews/cd_assignations_to_user".to_sym , escape_html: false
 end
 
 
@@ -372,7 +372,7 @@ get '/review/:rev_id/stage/:stage/complete_empty_abstract_manual' do |rev_id, st
   @ars=AnalysisSystematicReview.new(@review)
   @stage=stage
   @cd_wo_abstract=@ars.cd_without_abstract(stage)
-  haml("systematic_reviews/complete_abstract_manual".to_sym)
+  haml "systematic_reviews/complete_abstract_manual".to_sym, escape_html: false
 end
 
 # Automatic retrieval of abstract from Scopus for

@@ -15,7 +15,7 @@ gem "rspec"
 gem "rack-test"
 gem 'bibtex-ruby'
 gem "unicode"
-gem 'levenshtein-ffi', :platforms=>:ruby, :require => 'levenshtein'
+gem 'levenshtein-ffi', :force_ruby_platform=>true , :require => 'levenshtein'
 #gem 'levenshtein-ffi', :require => 'levenshtein', :git => 'https://github.com/tosie/levenshtein-ffi.git'
 gem 'elsevier_api', :git => 'https://github.com/clbustos/elsevier_api.git'
 gem 'levenshtein'
@@ -23,14 +23,14 @@ gem 'narray'
 gem 'serrano'
 gem 'dotenv'
 gem 'treetop'
-gem 'nokogiri', :platforms=> :ruby
+gem 'nokogiri', :force_ruby_platform=> true
 gem 'moneta'
 gem 'ruby-stemmer', :git => 'https://github.com/clbustos/ruby-stemmer.git'
 #gem 'categorize' , :platforms => :ruby
 gem 'pdf-reader'
-gem 'grim'
+gem 'grim', :git=>"https://github.com/GeneralProducts/grim"
 gem "i18n"
-gem "sqlite3"
+gem "sqlite3", :force_ruby_platform=>:true
 gem 'mimemagic'
 gem "certified", :platforms => :mingw
 gem 'simple_xlsx_reader'
@@ -46,7 +46,7 @@ gem 'ai4r'
 
 group :production do
   gem "puma", :platforms => :mingw
-  gem "thin", :platforms => :ruby
+  gem "thin", :force_ruby_platform=>true
 
 end
 group :development do

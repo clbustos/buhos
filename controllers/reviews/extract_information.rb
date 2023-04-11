@@ -52,7 +52,7 @@ get '/review/:sr_id/extract_information/cd/:cd_id' do |sr_id,cd_id|
   @incoming_citations=CanonicalDocument.where(:id=>@ars.incoming_citations(@stage,cd_id)).order(:year,:author)
   @outgoing_citations=CanonicalDocument.where(:id=>@ars.outgoing_citations(@stage,cd_id)).order(:year,:author)
 
-  haml "systematic_reviews/cd_extract_information".to_sym
+  haml "systematic_reviews/cd_extract_information".to_sym, escape_html: false
 end
 
 # Update information of a specific personalized field
