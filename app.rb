@@ -162,7 +162,7 @@ get '/' do
       redirect url('/login')
     else
       @user=User[session['user_id']]
-      haml :main
+      haml :main, :escape_html=>false
     end
   #end
 end

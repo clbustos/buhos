@@ -17,7 +17,7 @@ get '/review/:rs_id/quality_assesment_criteria' do |rs_id|
   @sr_quality_criteria=SrQualityCriterion.join(:quality_criteria, id: :quality_criterion_id).where(systematic_review_id:rs_id)
 
   @xselect=get_xeditable_select(Scale.to_hash, "/review/#{rs_id}/edit_quality_criterion/scale_id", 'select-criteria')
-  haml  "systematic_reviews/quality_criteria".to_sym
+  haml  "systematic_reviews/quality_criteria".to_sym, escape_html: false
 end
 
 # Add a new field

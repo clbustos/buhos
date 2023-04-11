@@ -84,7 +84,7 @@ get '/review/:id/references' do |id|
   @asr=AnalysisSystematicReview.new(@review)
 
   #$log.info(@cd_hash)
-  haml %s{systematic_reviews/references}
+  haml %s{systematic_reviews/references}, escape_html: false
 end
 
 
@@ -107,7 +107,7 @@ get "/review/:sr_id/reference/:ref_id" do |sr_id, ref_id|
   title(t(:reference_title, ref_title:@ref.text))
   @records=@ref.records_in_sr(@review)
 
-  haml :reference
+  haml :reference, escape_html: false
 
 end
 
@@ -153,7 +153,7 @@ get '/review/:sr_id/assign_canonical_to_references' do |sr_id|
   @references=Reference.where(:id=>@ref_ids)
   raise Buhos::NoReviewIdError, sr_id if !@review
 
-  haml "systematic_reviews/references_create_canonical_document".to_sym
+  haml "systematic_reviews/references_create_canonical_document".to_sym, escape_html: false
 end
 
 post '/review/:sr_id/create_canonical_for_references' do |sr_id|

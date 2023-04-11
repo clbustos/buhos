@@ -64,7 +64,7 @@ get '/review/:sr_id/quality_assessment/cd/:cd_id' do |sr_id,cd_id|
 
   @cd_qc=CdQualityCriterion.where(systematic_review_id:sr_id, user_id:@user[:id], canonical_document_id:@cd[:id]).to_hash(:quality_criterion_id)
   $log.info(@cd_qc)
-  haml "systematic_reviews/quality_assessment".to_sym
+  haml "systematic_reviews/quality_assessment".to_sym, escape_html: false
 end
 
 

@@ -6,7 +6,7 @@ module Sinatra::Partials
     template_array = template.to_s.split('/')
     template = template_array[0..-2].join('/') + "/_#{template_array[-1]}"
     options = args.last.is_a?(Hash) ? args.pop : {}
-    options.merge!(:layout => false)
+    options.merge!(:layout => false, :escape_html=>false)
     if collection = options.delete(:collection) then
       collection.inject([]) do |buffer, member|
         buffer << haml(:"#{template}", options.merge(:layout =>

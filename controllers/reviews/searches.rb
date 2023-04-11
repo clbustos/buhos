@@ -24,7 +24,7 @@ get '/review/:id/searches' do |id|
   #$log.info(@user)
 
   @url_back="/review/#{id}/searches"
-  haml "systematic_reviews/searches".to_sym
+  haml "systematic_reviews/searches".to_sym, escape_html: false
 end
 
 
@@ -46,7 +46,7 @@ get %r{/review/(\d+)/searches/analyze(?:/(.*))?} do
 
   @an_searches=Buhos::AnalysisSearches.new(@searches)
   @searches_id=@an_searches.searches_id.join(", ")
-  haml "searches/analyze".to_sym
+  haml "searches/analyze".to_sym, escape_html: false
 
 
 end
@@ -72,7 +72,7 @@ get %r{/review/(\d+)/(?:searches/)?records(?:/user/(\d+))?} do
   @cds=CanonicalDocument.where(:id=>@records.map {|v| v[:canonical_document_id]}.uniq).to_hash
 
 #  $log.info(@cds)
-  haml "searches/records".to_sym
+  haml "searches/records".to_sym, escape_html: false
 end
 
 get '/review/:review_id/search/:search_id/record/:record_id/complete_information' do |review_id, search_id, record_id|
@@ -90,7 +90,7 @@ get '/review/:review_id/search/:search_id/record/:record_id/complete_information
 
   @current_file=get_file_canonical_document(@review,@cd)
 
-  haml "searches/record_complete_information".to_sym
+  haml "searches/record_complete_information".to_sym, escape_html: false
 
 end
 get '/review/:id/search/uploaded_files/new' do |id|
@@ -98,7 +98,7 @@ get '/review/:id/search/uploaded_files/new' do |id|
   halt_unless_auth('search_edit')
   @review=SystematicReview[id]
   raise Buhos::NoReviewIdError, id if !@review
-  haml "searches/search_uploaded_files".to_sym
+  haml "searches/search_uploaded_files".to_sym, escape_html: false
 end
 
 
@@ -157,7 +157,7 @@ get '/review/:id/search/bibliographic_file/new' do |id|
   @bb_general_id=BibliographicDatabase[:name=>'generic'][:id]
   @search=Search.new(:user_id=>session['user_id'], :source=>"database_search",:valid=>false, :date_creation=>Date.today, :bibliographic_database_id=>@bb_general_id, :search_type=>"bibliographic_file")
   @usuario=User[session['user_id']]
-  haml "searches/search_edit".to_sym
+  haml "searches/search_edit".to_sym, escape_html: false
 end
 
 
@@ -172,7 +172,7 @@ get '/review/:rs_id/searches/user/:user_id' do |rs_id,user_id|
   @header=t_systematic_review_title(@review[:name], t(:searches_user, :user_name=>User[user_id][:name]), false)
   @url_back="/review/#{rs_id}/searches/user/#{user_id}"
   @searches=@review.searches_dataset.where(:user_id=>user_id)
-  haml "systematic_reviews/searches".to_sym
+  haml "systematic_reviews/searches".to_sym, escape_html: false
 end
 
 
@@ -208,7 +208,7 @@ get '/review/:rs_id/searches/compare_records' do |rs_id|
     base_n+sec_n
   }
 
-  haml "searches/compare_records".to_sym
+  haml "searches/compare_records".to_sym, escape_html: false
 end
 
 # @!endgroup

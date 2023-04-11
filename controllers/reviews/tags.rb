@@ -24,7 +24,7 @@ get '/review/:id/tags' do |id|
   @tag_estadisticas=@review.statistics_tags
 
 
-  haml "systematic_reviews/tags".to_sym
+  haml "systematic_reviews/tags".to_sym, escape_html: false
 end
 
 
@@ -43,7 +43,7 @@ get '/review/:id/tags/user/:user_id' do |sr_id, user_id|
 
   @sim_an.process
 
-  haml "systematic_reviews/tags_analysis".to_sym
+  haml "systematic_reviews/tags_analysis".to_sym, escape_html: false
 end
 
 

@@ -90,7 +90,7 @@ post '/review/:sr_id/canonical_documents/import_excel' do |sr_id|
     end
 
   }
-  haml %s{canonical_documents/import_review}
+  haml %s{canonical_documents/import_review}, escape_html: false
 
 end
 

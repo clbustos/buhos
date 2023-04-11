@@ -11,7 +11,7 @@
 get '/admin/scales' do
   halt_unless_auth('scale_admin')
   @scales=Scale.all
-  haml :scales
+  haml :scales, escape_html: false
 end
 
 # Display form to edit a scale
