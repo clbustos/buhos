@@ -17,7 +17,7 @@ get '/review/:id/administration_stages' do |id|
   @review=SystematicReview[id]
   raise Buhos::NoReviewIdError, id if !@review
   @ars=AnalysisSystematicReview.new(@review)
-  haml %s{systematic_reviews/administration_stages}, escape_html: false
+  haml("systematic_reviews/administration_stages".to_sym, escape_html: false)
 
 end
 
@@ -212,6 +212,7 @@ post '/review/:rev_id/administration/:stage/cd_assignations_excel/:mode' do |rev
 
   if mode=="load"
     require 'simple_xlsx_reader'
+    SimpleXlsxReader.configuration.auto_slurp = true
     doc = SimpleXlsxReader.open(archivo["tempfile"])
     sheet=doc.sheets.first
     header=sheet.headers

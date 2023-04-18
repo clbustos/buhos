@@ -24,6 +24,8 @@ post '/review/import_decisions_excel' do
   archivo=params.delete("file")
 
   require 'simple_xlsx_reader'
+  SimpleXlsxReader.configuration.auto_slurp = true
+
   #$log.info(archivo)
   doc = SimpleXlsxReader.open(archivo["tempfile"])
 

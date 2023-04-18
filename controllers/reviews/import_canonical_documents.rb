@@ -53,6 +53,7 @@ post '/review/:sr_id/canonical_documents/import_excel' do |sr_id|
   archivo=params.delete("file")
 
   require 'simple_xlsx_reader'
+  SimpleXlsxReader.configuration.auto_slurp = true
   #$log.info(archivo)
   doc = SimpleXlsxReader.open(archivo["tempfile"])
 
@@ -90,7 +91,7 @@ post '/review/:sr_id/canonical_documents/import_excel' do |sr_id|
     end
 
   }
-  haml %s{canonical_documents/import_review}, escape_html: false
+  haml "canonical_documents/import_review".to_sym, escape_html: false
 
 end
 
