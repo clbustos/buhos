@@ -25,7 +25,7 @@ get '/reviews' do
   @reviewes=@reviewes.where(:active => 1) if @show_inactives=='only_actives'
 
 
-  haml :reviews
+  haml :reviews, escape_html: false
 end
 
 # Form to create a new systematic review
@@ -51,7 +51,7 @@ get '/review/new' do
                                      )
   @taxonomy_categories_id=[]
 
-  haml %s{systematic_reviews/edit}
+  haml %s{systematic_reviews/edit}, escape_html: false
 end
 
 # View a specific review
@@ -66,7 +66,7 @@ get "/review/:id" do |id|
   @taxonomy_categories  = @review.taxonomy_categories_hash
   @criteria             = @review.criteria_hash
 
-  haml %s{systematic_reviews/view}
+  haml %s{systematic_reviews/view}, escape_html: false
 end
 
 get '/review/:id/dashboard' do |id|
@@ -76,7 +76,7 @@ get '/review/:id/dashboard' do |id|
   @user=User[session['user_id']]
 
 
-  haml "systematic_reviews/dashboard".to_sym
+  haml "systematic_reviews/dashboard".to_sym, escape_html: false
 
 end
 
@@ -88,7 +88,7 @@ get "/review/:id/edit" do |id|
   raise Buhos::NoReviewIdError, id if !@review
   @taxonomy_categories_id=@review.taxonomy_categories_id
   title(t(:Systematic_review_edit, sr_name:@review.name))
-  haml %s{systematic_reviews/edit}
+  haml %s{systematic_reviews/edit}, escape_html: false
 end
 
 

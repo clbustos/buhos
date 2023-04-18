@@ -36,7 +36,7 @@ get '/user/:user_id' do |user_id|
   @select_language=get_xeditable_select(available_locales_hash, '/user/edit/language','select_language')
   @select_language.active=false if(!auth_to("user_admin") and user_id.to_i!=session['user_id'])
 
-  haml :user
+  haml :user, escape_html: false
 end
 
 # An alias to /user/:user_id
@@ -68,7 +68,7 @@ get '/user/:user_id/change_password' do |user_id|
 
   return 403 unless (is_session_user(user_id) or auth_to("user_admin"))
 
-  haml "users/change_password".to_sym
+  haml "users/change_password".to_sym, escape_html: false
 end
 
 
@@ -121,7 +121,7 @@ get '/user/:user_id/messages' do |user_id|
   @n_not_readed=@messages_personal.where(:viewed=>false).count
   @srs=@user.systematic_reviews
 
-  haml "users/messages".to_sym
+  haml "users/messages".to_sym, escape_html: false
 end
 
 # Compose a personal message
@@ -134,7 +134,7 @@ get '/user/:user_id/compose_message' do |user_id|
   @ms_id="NEW"
   @ms_text=""
 
-  haml "users/compose_message".to_sym
+  haml "users/compose_message".to_sym, escape_html: false
 end
 
 # Send a personal message

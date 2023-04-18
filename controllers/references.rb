@@ -16,7 +16,7 @@ get '/reference/:id' do |id|
   @ref=Reference[id]
   raise Buhos::NoReferenceIdError, id unless @ref
   @records=@ref.records
-  haml :reference
+  haml :reference, escape_html: false
 end
 
 # Search references similar to a specific one

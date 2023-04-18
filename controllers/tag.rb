@@ -103,7 +103,7 @@ get '/tag/:tag_id/rs/:rs_id/stage/:stage/cds' do |tag_id, rs_id, stage|
   @url="/tag/#{tag_id}/rs/#{rs_id}/stage/#{stage}/cds"
 
 
-  haml '/tags/rs_cds'.to_sym
+  haml '/tags/rs_cds'.to_sym, escape_html: false
 end
 
 # Retrieve canonical document what uses a tag, for a given user
@@ -134,7 +134,7 @@ get '/tag/:tag_id/rs/:rs_id/cds' do |tag_id, rs_id|
 
 
   @url="/tag/#{tag_id}/rs/#{rs_id}/cds"
-  haml '/tags/rs_cds'.to_sym
+  haml '/tags/rs_cds'.to_sym, escape_html: false
 end
 
 

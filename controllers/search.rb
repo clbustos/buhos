@@ -15,7 +15,7 @@ get '/search/:id' do |id|
   @search=Search[id]
   raise Buhos::NoSearchIdError, id if @search.nil?
   @review=@search.systematic_review
-  haml %s{searches/search_view}
+  haml %s{searches/search_view}, escape_html: false
 end
 
 # Form to edit a search
@@ -25,7 +25,7 @@ get '/search/:id/edit' do |id|
   @search=Search[id]
   raise Buhos::NoSearchIdError, id if @search.nil?
   @review=@search.systematic_review
-  haml %s{searches/search_edit}
+  haml %s{searches/search_edit}, escape_html: false
 end
 
 
@@ -54,7 +54,7 @@ get '/search/:id/records' do |id|
   @review=@search.systematic_review
   @records=@search.records_dataset.order(:author)
 
-  haml %s{searches/search_records}
+  haml %s{searches/search_records}, escape_html: false
 end
 
 
@@ -67,7 +67,7 @@ get '/search/:s_id/record/:r_id' do |s_id, r_id|
   raise Buhos::NoRecordIdError, r_id if @reg.nil?
   @review=@search.systematic_review
   @references=@reg.references
-  haml "record".to_sym
+  haml "record".to_sym, escape_html: false
 
 end
 
@@ -91,7 +91,7 @@ get '/search/:id/references' do |id|
 
   ##$log.info(@rmc_canonico)
 
-  haml %s{searches/search_references}
+  haml %s{searches/search_references}, escape_html: false
 end
 
 
