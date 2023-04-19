@@ -51,7 +51,7 @@ get '/review/new' do
                                      )
   @taxonomy_categories_id=[]
 
-  haml %s{systematic_reviews/edit}, escape_html: false
+  haml "systematic_reviews/edit".to_sym, escape_html: false
 end
 
 # View a specific review
@@ -66,7 +66,7 @@ get "/review/:id" do |id|
   @taxonomy_categories  = @review.taxonomy_categories_hash
   @criteria             = @review.criteria_hash
 
-  haml %s{systematic_reviews/view}, escape_html: false
+  haml "systematic_reviews/view", escape_html: false
 end
 
 get '/review/:id/dashboard' do |id|
@@ -88,7 +88,7 @@ get "/review/:id/edit" do |id|
   raise Buhos::NoReviewIdError, id if !@review
   @taxonomy_categories_id=@review.taxonomy_categories_id
   title(t(:Systematic_review_edit, sr_name:@review.name))
-  haml %s{systematic_reviews/edit}, escape_html: false
+  haml "systematic_reviews/edit".to_sym, escape_html: false
 end
 
 
@@ -164,7 +164,7 @@ get '/review/:id/files' do |id|
   @cd_validos_id=@review.cd_id_by_stage(@review.stage)
   @cd_validos=@canonical_documents_h.find_all {|v| @cd_validos_id.include? v[0]}.map{|v| v[1]}
   @usuario=User[session['user_id']]
-  haml %s{systematic_reviews/files}
+  haml "systematic_reviews/files".to_sym, escape_html: false
 end
 
 
@@ -238,7 +238,7 @@ get '/review/:rev_id/reference/:ref_id/assign_canonical_document' do |rev_id, r_
     @query={}
   end
 
-  haml "systematic_reviews/reference_assign_canonical_document".to_sym
+  haml "systematic_reviews/reference_assign_canonical_document".to_sym, escape_html: false
 end
 
 
@@ -250,7 +250,7 @@ get '/review/:id/delete' do |id|
   @review=SystematicReview[id]
   raise Buhos::NoReviewIdError, id if !@review
 
-  haml "systematic_reviews/delete_warning".to_sym
+  haml "systematic_reviews/delete_warning".to_sym, escape_html: false
 end
 
 

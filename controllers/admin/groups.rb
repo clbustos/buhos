@@ -20,7 +20,7 @@ get "/group/:id/edit" do |id|
   halt_unless_auth('group_admin')
   @group=Group[id]
   @users_id=@group.users.map {|v| v.id}
-  haml %s{groups/edit}, escape_html: false
+  haml "groups/edit".to_sym, escape_html: false
 end
 
 # Display form to create a new group
@@ -29,7 +29,7 @@ get '/group/new' do
   halt_unless_auth('group_admin')
   @group={:id=>"NA",:description=>"",:group_administrator=>nil}
   @users_id=[]
-  haml %s{groups/edit}, escape_html: false
+  haml "groups/edit".to_sym, escape_html: false
 end
 
 # Display information for a group
@@ -37,7 +37,7 @@ get "/group/:id" do |id|
   halt_unless_auth('group_view')
   @group=Group[id]
   @users_id=@group.users.map {|v| v.id}
-  haml %s{groups/view}, escape_html: false
+  haml "groups/view".to_sym, escape_html: false
 end
 
 

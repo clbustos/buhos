@@ -17,7 +17,7 @@ get '/record/:id' do |id|
 
   @references=@reg.references
 
-  haml "record".to_sym
+  haml "record".to_sym, escape_html: false
 end
 
 # Query crossref for a given record
@@ -31,7 +31,7 @@ get '/record/:id/search_crossref' do |id|
   @response_crossref=@reg.crossref_query
 
   #$log.info(@respuesta)
-  haml "systematic_reviews/record_search_crossref".to_sym
+  haml "systematic_reviews/record_search_crossref".to_sym, escape_html: false
 end
 
 # Assign a DOI to a record

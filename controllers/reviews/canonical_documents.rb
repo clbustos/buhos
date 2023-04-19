@@ -246,7 +246,7 @@ get '/review/:id/repeated_canonical_documents' do |id|
 
 
   ##$log.info(@cd_por_doi)
-  haml %s{systematic_reviews/repeated_canonical_documents}, escape_html: false
+  haml "systematic_reviews/repeated_canonical_documents".to_sym, escape_html: false
 end
 
 

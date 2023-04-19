@@ -84,7 +84,7 @@ get '/review/:id/references' do |id|
   @asr=AnalysisSystematicReview.new(@review)
 
   #$log.info(@cd_hash)
-  haml %s{systematic_reviews/references}, escape_html: false
+  haml "systematic_reviews/references".to_sym, escape_html: false
 end
 
 

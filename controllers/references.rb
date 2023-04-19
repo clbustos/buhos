@@ -32,9 +32,9 @@ get '/reference/:id/search_similar' do |id|
   @ref_similares=@ref.search_similars(@distancia)
   ##$log.info(@ref_similares)
   if @ajax
-    haml "systematic_reviews/reference_search_similar".to_sym, :layout=>nil
+    haml "systematic_reviews/reference_search_similar".to_sym, :layout=>nil, escape_html: false
   else
-    haml "systematic_reviews/reference_search_similar".to_sym
+    haml "systematic_reviews/reference_search_similar".to_sym, escape_html: false
 
   end
 end
@@ -119,7 +119,7 @@ get '/reference/:id/search_crossref' do |id|
   $log.info(@bib_int)
 #  $log.info(@response_crossref)
 
-  haml "systematic_reviews/reference_search_crossref".to_sym
+  haml "systematic_reviews/reference_search_crossref".to_sym, escape_html: false
 
 end
 

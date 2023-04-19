@@ -28,7 +28,7 @@ get '/canonical_document/:id' do |id|
   end
   @references_realizadas=@cd.references_performed
   title(t(:canonical_document_title, cd_title:@cd.ref_apa_6))
-  haml :canonical_document
+  haml :canonical_document , escape_html: false
 end
 
 # Query crossref for all references of a canonical document
@@ -84,9 +84,9 @@ get '/canonical_document/:id/search_similar' do |id|
   @ref_similares=@cd.search_similar_references(@distancia)
   ##$log.info(@ref_similares)
   if @ajax
-    haml "canonical_documents/reference_search_similar".to_sym, :layout=>nil
+    haml "canonical_documents/reference_search_similar".to_sym, :layout=>nil, escape_html: false
   else
-    haml "canonical_documents/reference_search_similar".to_sym
+    haml "canonical_documents/reference_search_similar".to_sym, escape_html: false
 
   end
 end
@@ -200,7 +200,7 @@ get '/canonical_documents/review/:rev_id/automatic_categories' do |rev_id|
   #modelo=Categorize::Models::Cluster.new
   #modelo.num_clusters = 20
   @categorizador=CategorizerSr.new(@review, nil)
-  haml %s{systematic_reviews/canonical_documents_automatic_categories}
+  haml "systematic_reviews/canonical_documents_automatic_categories".to_sym, escape_html: false
 end
 
 get '/canonical_documents/review/:rev_id/complete_pubmed_pmid' do |rev_id|
@@ -280,7 +280,7 @@ get '/canonical_document/:id/view_crossref_info' do |id|
   raise Buhos::NoCdIdError, id if !@cd
   @cr_doi=@cd.crossref_integrator
   @doi_json=CrossrefDoi[doi_without_http(@cd.doi)][:json] if @cd.doi
-  haml "canonical_documents/view_crossref_info".to_sym
+  haml "canonical_documents/view_crossref_info".to_sym, escape_html: false
 end
 
 
@@ -317,7 +317,7 @@ get '/canonical_document/:id/view_pubmed_info' do |id|
   else
     @xml=nil
   end
-  haml "canonical_documents/view_pubmed_info".to_sym
+  haml "canonical_documents/view_pubmed_info".to_sym, escape_html: false
 end
 
 

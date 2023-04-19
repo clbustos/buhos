@@ -17,7 +17,7 @@ get '/review/:id/administration_stages' do |id|
   @review=SystematicReview[id]
   raise Buhos::NoReviewIdError, id if !@review
   @ars=AnalysisSystematicReview.new(@review)
-  haml("systematic_reviews/administration_stages".to_sym, escape_html: false)
+  haml "systematic_reviews/administration_stages".to_sym, escape_html: false
 
 end
 
@@ -193,7 +193,7 @@ get '/review/:rev_id/administration/:stage/cd_assignations' do |rev_id, stage|
   @stage=stage
   @cds=CanonicalDocument.where(:id=>@cds_id).order(:author)
   @type="all"
-  haml("systematic_reviews/cd_assignations_to_user".to_sym, escape_html: false)
+  haml "systematic_reviews/cd_assignations_to_user".to_sym, escape_html: false
 end
 
 

@@ -15,7 +15,7 @@ get '/review/:id/messages' do |id|
   raise Buhos::NoReviewIdError, id if !@review
   @mensajes_rs=@review.message_srs_dataset.order(Sequel.desc(:time))
   @usuario=User[session['user_id']]
-  haml %s{systematic_reviews/messages}
+  haml "systematic_reviews/messages".to_sym , escape_html: false
 end
 
 # Post a message

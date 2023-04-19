@@ -46,12 +46,12 @@ post '/admin/users/update' do
       add_message(::I18n.t("users_admin.cant_delete_itself"))
       redirect back
     else
-      return haml "users/delete_confirm".to_sym
+      return haml "users/delete_confirm".to_sym, escape_html: false
     end
   elsif params['action']=='edit'
     @users_id=users
     @users=User.where(:id=>@users_id)
-    return haml "users/multiple_edit".to_sym
+    return haml "users/multiple_edit".to_sym, escape_html: false
   end
   redirect back
 end
@@ -108,7 +108,7 @@ post '/admin/users/update_edit' do
   else
     @users_id=user_info.keys
     @users=User.where(:id=>@users_id)
-    return haml "users/multiple_edit".to_sym
+    return haml "users/multiple_edit".to_sym, escape_html: false
   end
 end
 
