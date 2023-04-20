@@ -142,10 +142,10 @@ helpers Buhos::ControllerReview
 
 
 error 403 do
-  haml :error403
+  haml :error403, escape_html:false
 end
 error 404 do
-  haml :error404
+  haml :error404, escape_html:false
 end
 
 

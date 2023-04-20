@@ -4,7 +4,7 @@ require_relative 'spec_helper'
 describe 'Buhos extraction of data' do
   before(:all) do
     RSpec.configure { |c| c.include RSpecMixin }
-    @temp=configure_complete_sqlite
+    @temp=configure_complete_sqlite # TODO: REMOVE DEPENDENCE ON COMPLETE SQLITE
   end
   context 'when admin request form for a included document (40)' do
     before(:each) do

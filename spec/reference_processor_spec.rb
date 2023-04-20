@@ -3,7 +3,7 @@ require 'spec_helper'
 describe 'ReferenceProcessor' do
   before(:all) do
     RSpec.configure { |c| c.include RSpecMixin }
-    @temp=configure_complete_sqlite
+    @temp=configure_complete_sqlite # TODO: REMOVE DEPENDENCE ON COMPLETE SQLITE
   end
   context "when reference processor is used" do
     it "should add doi and canonical document to references without them, if possible" do

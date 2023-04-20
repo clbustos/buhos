@@ -3,7 +3,7 @@ require 'spec_helper'
 describe 'Buhos::GraphML_Builder' do
   before(:all) do
     RSpec.configure { |c| c.include RSpecMixin }
-    @temp=configure_complete_sqlite
+    @temp=configure_complete_sqlite # TODO: REMOVE DEPENDENCE ON COMPLETE SQLITE
   end
   context 'when report stage is processed' do
     let(:graph) {Buhos::GraphML_Builder.new(SystematicReview[1],'report')}

@@ -3,7 +3,7 @@ require 'spec_helper'
 describe 'Pager on evaluation of papers' do
   before(:all) do
     RSpec.configure { |c| c.include RSpecMixin }
-    @temp=configure_complete_sqlite
+    @temp=configure_complete_sqlite # TODO: REMOVE DEPENDENCE ON COMPLETE SQLITE
   end
   before(:each) do
     post '/login' , :user=>'admin', :password=>'admin'

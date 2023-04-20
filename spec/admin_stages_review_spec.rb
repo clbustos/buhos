@@ -5,7 +5,7 @@ require 'spec_helper'
 describe 'Stage administration with complete data' do
   before(:all) do
     RSpec.configure { |c| c.include RSpecMixin }
-    @temp=configure_complete_sqlite
+    @temp=configure_complete_sqlite # TODO: REMOVE DEPENDENCE ON COMPLETE SQLITE
     login_admin
   end
   def accept_yes

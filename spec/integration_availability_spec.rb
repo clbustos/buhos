@@ -7,7 +7,7 @@ describe 'Resources availability:' do
   before(:all) do
     RSpec.configure { |c| c.include RSpecMixin }
 
-    @temp=configure_complete_sqlite
+    @temp=configure_complete_sqlite # TODO: REMOVE DEPENDENCE ON COMPLETE SQLITE
   end
 
 

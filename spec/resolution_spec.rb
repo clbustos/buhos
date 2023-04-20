@@ -3,7 +3,7 @@ require 'spec_helper'
 describe 'Resolution on document' do
   before(:all) do
     RSpec.configure { |c| c.include RSpecMixin }
-    @temp=configure_complete_sqlite
+    @temp=configure_complete_sqlite # TODO: REMOVE DEPENDENCE ON COMPLETE SQLITE
     login_admin
     Resolution.where(:systematic_review_id=>1, :canonical_document_id=>41, :stage=>'screening_title_abstract').delete
   end

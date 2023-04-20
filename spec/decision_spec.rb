@@ -3,7 +3,7 @@ require 'spec_helper'
 describe 'Decision on documents' do
   before(:all) do
     RSpec.configure { |c| c.include RSpecMixin }
-    @temp=configure_complete_sqlite
+    @temp=configure_complete_sqlite # TODO: REMOVE DEPENDENCE ON COMPLETE SQLITE
     login_admin
   end
   context 'when decision retrieved on screening title and abstract stage' do
