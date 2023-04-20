@@ -45,15 +45,6 @@
       %input{:type=>:checkbox, :name=>:wo_canonical, :class=>"form-control-checkbox", :value=>'true',:checked=>@wo_canonical}
   %input{:type=>:submit, :class=>'btn btn-default '}
 
-
-%div{:class=>"btn-group btn-group-sm", :role=>"group"}
-  - if false and auth_to("review_admin")  or review_belongs_to(@review.id, session['user_id'])
-    %a{:href=>url("/review/#{@review.id}/repeated_references"), :role=>'button', :class=>"btn btn-default"}=t(:Check_duplications)
-%br
-
-
-
-
 = partial(:pager,:locals=>{url: @url, page: @pager.page, max_page: @pager.max_page,:extra=>{query:@pager.query, wo_canonical:@wo_canonical, order:@pager.order}} )
 
 .btn-group

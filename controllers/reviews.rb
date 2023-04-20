@@ -66,7 +66,7 @@ get "/review/:id" do |id|
   @taxonomy_categories  = @review.taxonomy_categories_hash
   @criteria             = @review.criteria_hash
 
-  haml "systematic_reviews/view", escape_html: false
+  haml "systematic_reviews/view".to_sym, escape_html: false
 end
 
 get '/review/:id/dashboard' do |id|
