@@ -47,7 +47,7 @@ end
 
 # Edit an attribute of a user
 put '/user/edit/:field' do |field|
-  halt_unless_auth('user_admin') or is_session_user(user_id)
+  halt 403 unless (auth_to('user_admin') or is_session_user(user_id))
   put_editable(request) {|id,value|
     user=User[id]
     raise Buhos::NoUserIdError, id if !user
@@ -107,8 +107,7 @@ end
 # Get all user messages
 get '/user/:user_id/messages' do |user_id|
   @user=User[user_id]
-
-
+  
   halt 403 unless (is_session_user(user_id) or auth_to("message_view"))
 
   raise Buhos::NoUserIdError, user_id if !@user
