@@ -47,7 +47,7 @@ end
 
 # Edit an attribute of a user
 put '/user/edit/:field' do |field|
-  halt_unless_auth('user_admin')
+  halt_unless_auth('user_admin') or is_session_user(user_id)
   put_editable(request) {|id,value|
     user=User[id]
     raise Buhos::NoUserIdError, id if !user
