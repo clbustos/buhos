@@ -127,7 +127,7 @@ module Buhos
       redirect '/installer/select_language'
     end
     get '/installer/select_language' do
-      haml "installer/select_language".to_sym, :layout=>"installer/layout".to_sym
+      haml "installer/select_language".to_sym, :layout=>"installer/layout".to_sym, :escape_html=>false
     end
 
 
@@ -145,7 +145,7 @@ module Buhos
       @env_exists=File.exist?(env_file)
       @env_text=File.read(env_file) if @env_exists
       @available_db_adapters=available_db_adapters
-      haml "installer/basic_data_form".to_sym, :layout=>"installer/layout".to_sym
+      haml "installer/basic_data_form".to_sym, :layout=>"installer/layout".to_sym, :escape_html=>false
     end
     post '/installer/basic_data_form' do
       ff=form_fields
@@ -192,7 +192,7 @@ module Buhos
         @db_url=ENV['DATABASE_URL']
         @error_conexion=e
       end
-      haml "installer/populate_database".to_sym, :layout=>"installer/layout".to_sym
+      haml "installer/populate_database".to_sym, :layout=>"installer/layout".to_sym, :escape_html=>false
     end
 
     get '/installer/populate_database_2' do
@@ -216,7 +216,7 @@ module Buhos
       rescue StandardError=>e
         @error=e
       end
-      haml "installer/populate_database_2".to_sym, :layout=>nil
+      haml "installer/populate_database_2".to_sym, :layout=>nil, :escape_html=>false
     end
 
     get '/installer/end_installation.rb' do
@@ -225,7 +225,7 @@ module Buhos
       rescue StandardError=>e
         @e=e
       end
-      haml "installer/end_installation".to_sym, :layout=>"installer/layout".to_sym
+      haml "installer/end_installation".to_sym, :layout=>"installer/layout".to_sym, :escape_html=>false
 
     end
   end
