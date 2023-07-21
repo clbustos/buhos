@@ -49,7 +49,7 @@ end
 put '/user/edit/:field' do |field|
   put_editable(request) {|id,value|
     user=User[id]
-    halt 403 unless (auth_to('user_admin') or is_session_user(id))
+    halt 403 unless (auth_to('user_admin') or (is_session_user(id) and %w{name language}.include? field))
     raise Buhos::NoUserIdError, id if !user
     if field=='login'
       halt 405, t(:Login_already_used) if User.where(:login=>value).exclude(:id=>id).count>0

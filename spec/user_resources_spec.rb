@@ -5,7 +5,8 @@ describe 'User resources:' do
     RSpec.configure { |c| c.include RSpecMixin }
     configure_empty_sqlite
   end
-  context "when editing user data as admin" do
+
+  context "when editing user data as admin, changing user role to guest" do
     before(:context) do
       login_admin
       User[2].update(:role_id=>'analyst')
@@ -19,7 +20,7 @@ describe 'User resources:' do
     end
   end
 
-  context "when editing a login with an already used one" do
+  context "when I edit a user with an existing login" do
     before(:context) do
       login_admin
       User.where(:id=>3).update(:login=>'guest')
@@ -34,7 +35,7 @@ describe 'User resources:' do
     end
   end
 
-  context "when editing user data as analyst" do
+  context "when I edit a user with the role of analyst, changing to guest" do
     before(:context) do
       login_analyst
       User[2].update(:role_id=>'analyst')
@@ -43,7 +44,7 @@ describe 'User resources:' do
     it "should response be not ok" do
       expect(last_response).to_not be_ok
     end
-    it "should change user role to guest" do
+    it "should maintain the user role to analyst" do
       expect(User[2].role_id).to eq('analyst')
     end
   end
@@ -85,6 +86,53 @@ describe 'User resources:' do
     end
 
 
+  end
+
+
+  context "when changing own language as analyst" do
+    before(:context) do
+      login_analyst
+      User[2].update(:language=>'en')
+      put "/user/edit/language", :pk=>2, :value=>'es'
+
+    end
+    it "should response be redirect" do
+      expect(last_response).to be_ok
+    end
+    it "should change the language to es" do
+      expect(User[2].language).to eq('es')
+    end
+  end
+
+
+  context "when changing own name as analyst" do
+    before(:context) do
+      login_analyst
+      User[2].update(:name=>'foo')
+      put "/user/edit/name", :pk=>2, :value=>'bar'
+
+    end
+    it "should response be ok" do
+      expect(last_response).to be_ok
+    end
+    it "should change the name to bar" do
+      expect(User[2].name).to eq('bar')
+    end
+  end
+
+  context "when changing other language as analyst" do
+    before(:context) do
+      login_analyst
+      User[3].update(:language => 'en')
+      put "/user/edit/language", :pk=>3, :value=>'es'
+
+    end
+    it "should response be not ok" do
+      expect(last_response).to_not be_ok
+    end
+    it "should not change the language to es" do
+      expect(User[3].language).to eq('en')
+    end
   end
 
 
