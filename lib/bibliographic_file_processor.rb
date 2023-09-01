@@ -56,7 +56,13 @@ class BibliographicFileProcessor
     @error = nil
     @canonical_document_processed=false
     if process_file
-      process_canonical_documents
+      begin
+        process_canonical_documents
+      rescue Exception=>e
+        log_error('bibliographic_file_processor.error_processing_canonical_documents', e.message)
+        @error="#{I18n::t('bibliographic_file_processor.error_processing_canonical_documents')} #{e.message}"
+        return false
+      end
     end
   end
 
@@ -120,8 +126,7 @@ class BibliographicFileProcessor
   def process_canonical_documents
 
     bb = BibliographicDatabase.id_a_name_h
-    $db.transaction(:rollback => :reraise) do
-
+    $db.transaction(:rollback => :rollback) do
       @search.records.each do |record|
         fields = [:title, :author, :year, :journal, :volume, :pages, :doi, :journal_abbr, :abstract, :pubmed_id,
                   :wos_id, :scopus_id, :scielo_id]

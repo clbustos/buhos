@@ -703,6 +703,7 @@ es:
   Send: "Enviar"
   Send_message_to_group: "Enviar mensaje al grupo"
   separe_keywords_with_semicolon: "Separa las palabras claves con punto y coma (;)"
+  Serious_problem_no_canonical_document_information: "Problema serio, no hay información disponible de documento canónico"
   Short_text: "Texto corto"
   Show_actives_and_inactives: "Mostrar activas y no activas"
   Show_only_actives: "Mostrar sólo activas"

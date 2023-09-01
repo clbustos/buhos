@@ -168,7 +168,7 @@ module Buhos
           String :doi, :size => 255
           String :pubmed, :size => 255
           Integer :year, :null => false
-          String :journal_abbr, :size => 100
+          String :journal_abbr, :size => 255
           String :abstract, :text => true, size: :long
           Integer :duplicated
           String :url, :text => true

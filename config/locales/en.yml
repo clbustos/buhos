@@ -700,6 +700,7 @@ en:
   Send: "Send"
   Send_message_to_group: "Send message to group"
   separe_keywords_with_semicolon: "Separate key words with semicolon (;)"
+  Serious_problem_no_canonical_document_information: "Serious problem, no canonical document information available"
   Show_actives_and_inactives: "Show actives and non-actives"
   Show_only_actives: "Show only actives"
   Show_systematic_review: "Show systematic reviews"

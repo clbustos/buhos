@@ -25,7 +25,7 @@
     .list-group-item{:class=>btn_show ? "": "show-on-focus"}
       - can_doc=registro.canonical_document
       - if can_doc.nil?
-        %span.alert.alert-danger=t(:No_canonical_document)
+        %button.btn.btn-alert.alert-danger=t(:no_canonical_document)
       - else
         = can_doc.ref_apa_6_brief_html
       %span.buttons-record{:class=>btn_show ? "":"hidden"}
@@ -43,9 +43,12 @@
           %a.btn.btn-default.btn-sm{:href=>url("/search/#{search[:id]}/record/#{registro[:id]}")}=t(:Record_raw)
         - else
           %a.btn.btn-default.btn-sm{:href=>url("/record/#{registro[:id]}")}=t(:Record_raw)
-        -if can_doc[:abstract]!=""
-          %button.btn.btn-default.btn-sm{:type=>"button",  "data-toggle"=>'collapse', "data-target"=>"#registro#{registro[:id]}-abstract", "aria-expanded"=>"false", "aria-controls"=>"registro#{registro[:id]}"}=t(:Abstract)
-          %div{:class=>"collapse", :id=>"registro#{registro[:id]}-abstract"}
-            .well=can_doc[:abstract]
+        -if can_doc
+          -if can_doc[:abstract]!=""
+            %button.btn.btn-default.btn-sm{:type=>"button",  "data-toggle"=>'collapse', "data-target"=>"#registro#{registro[:id]}-abstract", "aria-expanded"=>"false", "aria-controls"=>"registro#{registro[:id]}"}=t(:Abstract)
+            %div{:class=>"collapse", :id=>"registro#{registro[:id]}-abstract"}
+              .well=can_doc[:abstract]
+        -else
+          %div.error="#{t(:Serious_problem_no_canonical_document_information)}"
 
     - i=i+1
