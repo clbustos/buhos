@@ -1,5 +1,185 @@
 # CHANGELOG
 
+## 1.2.0        : 2023-09-28
+
+64b1b61 Bug fix: If an error occurs when generating a canonical document in a search, the entire system fails
+a63d1ca Bug fix: user could change its information using PUT, bypassing security
+fa94437 Create ruby.yml
+22a0cb3 Bug fix: haml should be escaped in installer
+1da944c Bug fix: User can't change it owns language
+4f36fd8 Bug fix: quote in search query brokes the parser. Add Anna Hawrot as software tester
+2e2e047 Bug fix: No technical report for systematic review. Bug fix: No code for repeated references
+03e80b2 Added haml escape_html false to 403 and 404 error. Added TODO in spec, to remove dependence on complete sqlite
+4762612 Updated all escape_html remaining for haml
+8284f5f Updated copyright notice to 2016-2023
+1546166 Auto slurp excel files
+5e5a653 Updated haml to escape_html=false on some functions
+b8e7984 Added new polish translation
+8ed40af Updated gemfile
+0983d8d Updated travis
+f7ff907 Test valid for Ruby 3.0
+1f1dc01 Updated to haml 6.X. Should check for escape_html, but...
+eb59431 * Excel export includes tags. * Automatic deduplication  can use pubmed
+be6a92a Update: import / export excel. Deduplication by scielo, wos and scopus
+8880998 wos scopus and scielo added to import
+0db235b Updated rack
+2c13f8c Added massive export on canonical documents to bibtex, excel and graphml. Code was already available, but view is available to complete control of exportations
+dad2f3d If import excel doesn't have any information, just skip it
+23c6dd5 Updated secret keys
+a2d50a4 Deleted references to pmid. Added support for storing of wos_id and scielo_id
+22fe0f9 Added new scopus spec
+476e2ef Updated bibtex scopus spec
+eedc9a6 Space
+a2557fd Updated Gemfile.lock at 2020/05/24
+215b562 Added number of positive resolutions for each search in process report
+b35ccd2 Bug fix: user with permission to create new reviews, but without group raise an error
+650bd98 Added pubmed as imported
+1fe1c40 Bug fix: always rollback on excel import of decisions
+12cfcf9 Importation of decisions via excel
+30e08eb Updated Gemfile at 2022/03/30
+baa3e75 Decisions added to excel exports in administration. References list have information about stages
+9782a4b All replace in create_schema are replaced by select  / insert
+3074512 On migrations, all dynamic views are deleted. This allows us to modify the views when needed
+4663e9a Bug fix: /review/X/canonical_document/X/cited_by_rtr includes all documents with resolutions, even the ones that are excluded for next stages
+4072212 Merge ../buhos_coffee
+1e484de Added polki yaml
+0c1104d Added polish language translation (thanks to Anna Hawrot). Button for canonical document on references at right position
+0685cf8 Bug fix: replace on schema creation breaks updating previous installation. Added general reference management
+2e0e0bd Extra chars on files administration
+13e2ecc Bug fix: Error on process report, when database include inclusion / exclusion inputs with deleted criteria
+4f1432d Added search stage to excel for process report
+82062f5 Added resolution and commentary for administration excel per stage
+bd98834 Change: On Prisma report, screened records are both accepted or rejected. Previously, were merely screened by one or more analyst
+70dccb6 Bug fix: cd_per_doi includes canonical documents from other review
+39625f0 Updated circleci config
+f5a7c3a Updated README using status from circleci
+ae737f7 Added circleci testing
+2a45173 Implemented review_admin_view permission, as a way to create review advisors that can see everything of a review, but can't make resolutions neither assign users
+5bc8e28 Implemented support to complete empty abstract using Semantic Scholar
+5716bb5 canonical document admin could update directly the canonical document interface
+2a4d1e5 Added canonical button for canonical_document_admin on decision interface
+941d06d Added new script to admin user using command line. Permission to edit canonical documents for searches validation was added to canonical_document_admin permission
+c09c150 Similar canonical documents are provided in a separate page
+01ba98a SearchValidatos abstracted, to allow subclassing. Added a table on searches validation
+6324fa5 Updated copyright on all files. Bug fix: excessive time to validate searches. Improvement: administrator have access to all validation searches on dashboard
+3fdaf30 Fix bug on views for decision
+193179d Fix bug on views for canonical_document_descrciption
+0ab268d Now correct bibliographic database correction
+1a32022 Support for Pubmed's nbib files
+916f533 Added new spec for WoS bibtex 2021
+3246fb1 WoS bibtex could incluse WOS as id prefix
+8243446 Doc update
+0ea326a Doc update
+157e400 Added wos wrong fixture 2
+9600cef Updated README - tested on Ubuntu 21.04
+c4ad96c Bug fix for bug fix: broken migration 9
+3e98f1b generic_id for canonical_documents is set to TEXT, instead of VARCHAR
+35956a8 Change uid from varchar to text, because there are titles there are very long
+16851d8 Added fixture for ebscohost file
+12becc5 Gemfile updated to 2021-06-24
+b53e215 Bug fix: bibtex entry without keywords breaks the import. Updated copyright years. Added fixture and spec to text for ebscohost email exports
+9ff7621 Added a little script to create mysql settings for buhos
+dfb59b5 Bug fix: Dashboard crash on unread messages
+b0a29da Improvement: Everytime specific views from a systematic review where accedes, it was checked than the view exists. Now, a boolean is stored in the review systematic object to not check twice. Long term solution: all views creation should be done at systematic review creation
+771acc2 Bibliographic files could be longer that 64k on Mysql.
+5876289 Massive assignation of users using excel
+057441f Added user id on cd allocation
+50f01c5 Added excel output for cd assignation
+5d54bcf Gemfile updated 2021-05-21
+f18e059 Fixed script to add a buhos service in nginx
+a4237a5 Updated Gemfile: 2021-05-04
+9aff3ae Updated copyright clause
+022713f Bug fix: removal of canonical documents from reviews doesn' affect the list of total documents on full text review
+e9d38a9 Merge branch 'master' of ssh://buhos/home/cdx/repos/demo.buhos
+b1185f9 Bug fix: Trying to update the commentary after resolution doesn't work
+2ee5b72 Added commentary for resolutions
+66a2531 Added commentary by default for resolutions using div
+3939e6c Added commentary by default for resolutions
+107f7dc Added commentary for resolutions
+5de4b9f All check passed for new duplication detection
+6f67348 Bug fix: duplicated articles shouyld be reported using DuplicateAnalysis
+6938b2a Duplicate analysis by metadata
+48ce7e2 Gemfile updated
+b95303c Added information to decisions on admin page
+884392a Updated gems upto 2020-07-29. Fix broken spec/bibliographic_file_processor_spec.rb
+3a845c1 Bug fix: all new created searches belongs to admin
+9990787 Added name to searches table
+967b9b6 Bug fix: funding_text with a U+00A0 : NO-BREAK SPACE [NBSP] break the bibtex parser. All NBSP are replaced by underscore
+17c2642 bug fix: funding_text 1 broke analysis
+7643b67 Updated vagrant for ubuntu
+993262c Updated Vagrant for alpine
+0240997 Updated bundle. Added test for bibtex with extra braces
+f098e29 Updated copyright. Automatic encoding of bibtex to UTF-8. Any braces on title and journal are deleted from bibtex, too (I'm looking at you, Zotero)
+f1db86b Added button to change password from users administration page
+b1257fb Bug fix: Non UTF-8 bibtex breaks the app
+f64c0ee Added example script to install on azure
+7353ebe Added dependence on buhos.rn on pdf_processor
+b3e8020 updated Gemfile.lock up to 2020-05-18
+8ed271b Removed Scopus library from lib. Now is available as an independent gem: elsevier_api
+a242522 Multiple users update is available. So, administration interface for users is almost complete
+21db29c Feature: User administration allows to activate , inactivate and delete users
+3e4fd84 Create a raw text for external viewing
+3326faf Allows external access to files
+01c0fb0 Added translate button on extract information
+08667eb Added inclusion / exclusion criteria locale
+fc6c48f Bug fix: no decision made
+a0210f3 Added inclusion / exclusion criteria locale
+ec56dbd Bug fix: no decision made
+bec5a62 Added emphasis on decision name
+120c80b Feature: On decision review by administrator, name and commentary of analysts are available
+e98b1e5 <br> was not useful for tooltips
+33b345d - Removed dependence of config.ru on sass. CSS update was moved to Rakefile - Feature: Name of users and their commentaries are available on administration page. Useful to incorporate or remove papers according to rank of each evaluator.
+dee8fb7 Feature: Can update crossref information for many references at one on a search
+f059c24 Bug fix: A space after comma on identifier on a Scielo Bibtex break the analysis
+8dbef4c Bug fix: Scielo bibtex doesn't handle correctly authors names
+e72654e Bug fix: 1) BibTex with tag 'Early Access Date' broke the bibtex library (thanks, WoS). 2) Pdf without metadata broke PdfProcessor
+24c1ff2 Bug fix: unique-id in bibtex with non-alphanumeric character cause bibtex library to fail
+491959a Bug fix: cd_wihout_allocations generate an invalid query for mysql
+1e2ce53 Update Gemfile.lock uto 2010-02-15
+74ea82d Better spec messages for two test on files_spec
+eaa9dcb Gemfile update:2019/1/10
+9c2d5eb Bump rack from 2.0.7 to 2.0.8
+c1bb847 Updated to 1.0.2
+66d37c5 Updated copyrigth notice
+f160cca Error in migration 15. String should't a symbol
+34083f9 Added extra locales. scale_id default value in quality_criteria not nil
+95e13bf Add locales Next
+3c78012 added extra column on excel builder
+1652234 Updated .pkgr.yml, to customize linux builds
+7aa151e in app.rb, require 'lib/buhos' before all other libs
+0884d4d Merge branch 'master' of https://github.com/clbustos/buhos
+6a0efc2 Updated dependences up to 2019/09/22. Fix a bug on DOI lookup
+8c68e19 Added bibtex export on canonical_document/actions route
+3106b19 Merge from win32
+d90cf55 Added extra fixture
+37c81b7 Gemfile.lock updated 2019-05-02
+b868ade Fixed problems related to deprecation of 'Normalizedscore' on Crossref. All querys to crossref are now directed to api.crossref.org, and related methods are updated
+f4350a6 Merge pull request #1 from AnkurGel/minor_changes
+3a3295a fix selector issue in xeditable bool
+be1798b simple check
+57706da Should update the right attribute in table.
+dda41ed selected value
+98ce91e fix edit form submission
+216d0ec made users search case insensitive
+760c1c5 added migration to add unique constraint on users login
+156c3ad * ImageMagick policies could impede the creation of images on path /file/X/page/X/image. A pertinent error message is presented to user
+4859251 Updated README, citing the paper in SoftwareX
+2494538 Updated Gemfile.lock for Windows
+ec36c83 travis only test 2.5 version
+84a2156 Updated Gemfile and travis version
+07afff7 Capture extra errors related to external sources. Translated search_similar_references
+f6bb94b Capture errors in connections for Scopus, Pubmed and Crossref
+d6c2adf Updated Canonical Document spec, to use empty database. Fixed some bugs on the process
+9cdd8d6 Buhos works fine on ruby 2.5 (at least on Ubuntu)
+b3208e5 App with less clutter
+5a63ac5 Updated Gemfile.lock only for linux
+552e326 Improving bibliographic file processor specs using mutations
+87295dc Better references on apa style
+6891b3a Updated .gitignore
+92b591d Updated htmlhelpers_spec, based on mutation test
+e7822f5 Merge branch 'master' of github.com:clbustos/buhos
+4a725ac Collapsable inc/exc criteria
+
 ## 1.0.0-RC1    : 2018-10-01
 
 No new features will be added on this branch. New development will occur in 1.1.0 branch
