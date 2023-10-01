@@ -19,7 +19,7 @@ describe 'Buhos login' do
     request '/' , 'HTTP_ACCEPT_LANGUAGE'=>'es'
     expect(last_response).to be_ok
     expect(last_response.body).to_not be_empty
-    expect(last_response.body).to include("Contraseña")
+    expect(last_response.body).to include("Revisiones")
   end
   it "Incorrect login redirect to login page" do
     post '/login' , :user=>'noone', :password=>'noone'

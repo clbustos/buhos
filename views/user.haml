@@ -16,6 +16,9 @@
     %th=t(:User_name)
     %td=permission_a_editable(@have_permit, @usuario[:id], 'user-name', '/user/edit/name', @usuario[:name], t(:Name))
   %tr
+    %th=t(:Email)
+    %td=permission_a_editable(@have_permit, @usuario[:id], 'user-email', '/user/edit/email', @usuario[:email], t(:Email))
+  %tr
     %th=t(:Role)
     %td
       - if @have_permit
