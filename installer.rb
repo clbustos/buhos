@@ -93,11 +93,17 @@ module Buhos
                       proxy_password: {default:nil},
                       scopus_key:     {default:nil},
                       ncbi_api_key:   {default:nil},
-                      crossref_email: {default:nil}
+                      crossref_email: {default:nil},
+                      smtp_server: {default:nil},
+                      smtp_user: {default:nil},
+                      smtp_password:  {default:nil},
+                      smtp_security: {default:nil}, #'STARTTLS'
+                      smtp_port: {default:nil} #587
         }
       end
       def optional_fields
-        [:proxy_hostname, :proxy_port,:proxy_user, :proxy_password, :scopus_key,:ncbi_api_key,:crossref_email]
+        [:proxy_hostname, :proxy_port,:proxy_user, :proxy_password, :scopus_key,:ncbi_api_key,:crossref_email,
+         :smtp_server,:smtp_user, :smtp_password, :smtp_security, :smtp_port]
       end
     def install_log(t)
       Dir.mkdir log_dir unless File.exist? log_dir

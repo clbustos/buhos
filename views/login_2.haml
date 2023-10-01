@@ -4,23 +4,26 @@
       %img.logo-login{:src=>"/images/logo.svg"}
   .row
     .col-md-4.col-md-offset-4.col-sm-8.col-sm-offset-2.col-xs-10.col-xs-offset-1
-      %p.description-login=t("login.software_description")
+      %p.description-login=t("login.software_description".to_sym)
   .row
     .col-md-4.col-md-offset-4.col-sm-8.col-sm-offset-2.col-xs-10.col-xs-offset-1
       .login-panel.panel.panel-primary
         .panel-heading
-          %h3.panel-title=t("login.instruction")
+          %h3.panel-title=t("login.instruction".to_sym)
         .panel-body
           %form{:method=>"post",:action=>url("/login"), :class=>"horizontal", :roles=>:form}
             %fieldset
               .form-group
-                %input.form-control{:autofocus => "", :name => "user", :placeholder => t(:Login), :type => "text"}
+                %input.form-control{:autofocus => "", :name => "user", :placeholder => "Login", :type => "text"}
               .form-group
-                %input.form-control{:name => "password", :placeholder => t(:Password), :type => "password", :value => ""}/
+                %input.form-control{:name => "password", :placeholder => "Password", :type => "password", :value => ""}/
               - if false
                 .checkbox
                   %label
                     %input{:name => "remember", :type => "checkbox", :value => "remember"}>/
-                    Recordarme
+                    =t(:remember_me)
                     / Change this to a button or input when using this as a form
-              %input.enviar{:class=>"btn btn-lg btn-default btn-block",:type=>'submit', :value=>t("login.submit")}
+              %input.enviar{:class=>"btn btn-lg btn-default btn-block",:type=>'submit', :value=>t("login.submit".to_sym)}
+        -if allow_password_recovery?
+          .panel-footer
+            %a{:href=>url("/forgotten_password")}=t(:forgotten_password_link)

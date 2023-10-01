@@ -47,6 +47,8 @@
           %input#all_users{:type=>:checkbox, :name=>'all_users'}
         %th=t(:User_name)
         %th=t(:Login)
+        %th=t(:Email)
+        %th=t(:Institution)
         %th=t(:Active)
         %th=t(:Role)
         - if @have_permit_password
@@ -59,6 +61,8 @@
                 %input.user{:type=>:checkbox, :name=>"user[]", :value=>per[:id]}
             %td=per[:name].force_encoding("UTF-8")
             %td=per[:login]
+            %td=per[:email]
+            %td=per[:institution_id]
             %td=per[:active] ? t("Yes") : t("No")
             %td=per[:role_id]
             %td

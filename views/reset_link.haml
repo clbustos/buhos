@@ -1,0 +1,24 @@
+.container
+  .row
+    .col-md-4.col-md-offset-4.col-sm-8.col-sm-offset-2.col-xs-10.col-xs-offset-1
+      %img.logo-login{:src=>"/images/logo.svg"}
+  .row
+    .col-md-4.col-md-offset-4.col-sm-8.col-sm-offset-2.col-xs-10.col-xs-offset-1
+      %p.description-login=t("login.software_description".to_sym)
+  .row
+    .col-md-4.col-md-offset-4.col-sm-8.col-sm-offset-2.col-xs-10.col-xs-offset-1
+      .login-panel.panel.panel-primary
+        .panel-heading
+          %h3.panel-title=t("login.reset_link".to_sym)
+        .panel-body
+          %form{:method=>"post",:action=>url("/reset_link"), :class=>"horizontal", :roles=>:form}
+            %input{type:'hidden', name:'t', value:@t}
+            %input{type:'hidden', name:'user_id', value:@user[:id]}
+            %fieldset
+              .form-group
+                %label{:for=>"password"}=t("password.write_new_password")
+                %input{:class=>"form-control",:type=>"password", :name=>"password"}
+              .form-group
+                %label{:for=>"repeat_password"}=t("password.repeat_new_password")
+                %input{:class=>"form-control",:type=>"password", :name=>"repeat_password"}
+              %input{:type=>:submit, :value=>t("password.Change_password"), :class=>"btn btn-default"}

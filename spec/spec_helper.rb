@@ -17,6 +17,7 @@ require_relative "../lib/buhos/dbadapter"
 require_relative 'rspec_matchers'
 
 ENV['RACK_ENV'] = 'test'
+ENV['SMTP_USER']="out@test.com"
 ENV['DATABASE_URL']='sqlite::memory:'
 
 

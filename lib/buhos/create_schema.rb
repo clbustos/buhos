@@ -26,7 +26,7 @@
 # OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-
+require 'digest'
 
 #
 module Buhos
@@ -73,8 +73,9 @@ module Buhos
     # Updates to database are stored on /db/migrations, so don't forget later to run migrations.
     # @see {self.create_db_from_scratch}
     def self.create_schema(db)
+      # Sequel try to create an already created table even in table exists
 
-      db.transaction do
+      begin
         db.create_table? :roles do
           String :id, :size => 50, :primary_key => true
           String :description
@@ -252,6 +253,8 @@ module Buhos
         end
 
         db.create_join_table?(:search_id => :searches, :record_id => :records)
+
+
         db.create_join_table?({:reference_id => {:table => :bib_references, :type => String}, :record_id => :records}, {:name=>:records_references})
 
         db.create_table? :authorizations do
@@ -363,13 +366,13 @@ module Buhos
 
     def self.create_users(db, language)
       id_admin = get_id_user_by_login(db, 'admin')
-      id_admin ||= db[:users].insert(:login => 'admin', :name => 'Administrator', :password => Digest::SHA1.hexdigest('admin'), :role_id => 'administrator', :active => 1, :language => language)
+      id_admin ||= db[:users].insert(:login => 'admin', :name => 'Administrator', :password => ::Digest::SHA1.hexdigest('admin'), :role_id => 'administrator', :active => 1, :language => language)
 
       id_analyst = get_id_user_by_login(db, 'analyst')
-      id_analyst ||= db[:users].insert(:login => 'analyst', :name => 'Analyst', :password => Digest::SHA1.hexdigest('analyst'), :role_id => 'analyst', :active => 1, :language => language)
+      id_analyst ||= db[:users].insert(:login => 'analyst', :name => 'Analyst', :password => ::Digest::SHA1.hexdigest('analyst'), :role_id => 'analyst', :active => 1, :language => language)
 
       id_guest = get_id_user_by_login(db, 'guest')
-      id_guest ||= db[:users].insert(:login => 'guest', :name => 'Guest', :password => Digest::SHA1.hexdigest('guest'), :role_id => 'guest', :active => 1, :language => language)
+      id_guest ||= db[:users].insert(:login => 'guest', :name => 'Guest', :password => ::Digest::SHA1.hexdigest('guest'), :role_id => 'guest', :active => 1, :language => language)
       return id_admin, id_analyst, id_guest
     end
 

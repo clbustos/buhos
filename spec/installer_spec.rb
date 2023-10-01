@@ -35,7 +35,7 @@ describe "Buhos installer" do
     expect(last_response.body).to include("Instalador")
   end
 
-  context "when /installer/select_language form is sended", :installer=>true do
+  context "when the /installer/select_language form is submitted", :installer=>true do
     it "should change locale to es if params['language'] is es" do
       post('/installer/select_language', language:'es')
       expect(::I18n.locale).to eq(:es)
@@ -71,14 +71,19 @@ describe "Buhos installer" do
         proxy_password: 'proxy_pass',
         scopus_key:     'scopus_key',
         ncbi_api_key:   'ncbi_api_key',
-        crossref_email: 'crossref_email'
+        crossref_email: 'crossref_email',
+        smtp_server: 'smtp.server',
+        smtp_user: 'smtp_user',
+        smtp_password: 'smtp_password',
+        smtp_security: 'STARTTLS',
+        smtp_port: '587'
     }
 
     let(:dot_env) {Tempfile.new}
     let(:response) {
 
       ENV['DOT_ENV']=dot_env.path
-      post('/installer/basic_data_form',form_post)
+      post('/installer/basic_data_form', form_post)
     }
 
     it 'should return correct status and redirect' do
@@ -95,7 +100,12 @@ PROXY_USER=proxy_user
 PROXY_PASSWORD=proxy_pass
 SCOPUS_KEY=scopus_key
 NCBI_API_KEY=ncbi_api_key
-CROSSREF_EMAIL=crossref_email\n")
+CROSSREF_EMAIL=crossref_email
+SMTP_SERVER=smtp.server
+SMTP_USER=smtp_user
+SMTP_PASSWORD=smtp_password
+SMTP_SECURITY=STARTTLS
+SMTP_PORT=587\n")
 
     end
   end
@@ -115,7 +125,13 @@ CROSSREF_EMAIL=crossref_email\n")
         proxy_password: '',
         scopus_key:     '',
         ncbi_api_key:   '',
-        crossref_email: ''
+        crossref_email: '',
+        smtp_server: '',
+        smtp_user: '',
+        smtp_password: '',
+        smtp_security: '',
+        smtp_port: ''
+
     }
 
     let(:dot_env) {Tempfile.new}
@@ -158,7 +174,12 @@ CROSSREF_EMAIL=crossref_email\n")
           proxy_password: '',
           scopus_key:     '',
           ncbi_api_key:   '',
-          crossref_email: ''
+          crossref_email: '',
+          smtp_server: '',
+          smtp_user: '',
+          smtp_password: '',
+          smtp_security: 'STARTTLS',
+          smtp_port: '587'
       }
       post('/installer/basic_data_form',form_post)
       get '/installer/populate_database'
@@ -190,7 +211,12 @@ CROSSREF_EMAIL=crossref_email\n")
           proxy_password: '',
           scopus_key:     '',
           ncbi_api_key:   '',
-          crossref_email: ''
+          crossref_email: '',
+          smtp_server: '',
+          smtp_user: '',
+          smtp_password: '',
+          smtp_security: 'STARTTLS',
+          smtp_port: '587'
       }
       post('/installer/basic_data_form',form_post)
       get '/installer/populate_database'

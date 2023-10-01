@@ -29,6 +29,9 @@
 module Sinatra
   module SessionAuth
     module Helpers
+      def allow_password_recovery?
+        !ENV['SMTP_SERVER'].nil?
+      end
       def show_user
         ##$log.info(session)
         if !session['user'].nil?
@@ -40,6 +43,7 @@ module Sinatra
 
       # Verifica que la persona tenga un authorization específico
       def auth_to(auth)
+
         #log.info(session['authorizations'])
         if session['user'].nil?
           false
@@ -111,10 +115,14 @@ module Sinatra
       app.helpers SessionAuth::Helpers
       # todo: create a list of uri not evaluated for authentification
       app.before do
-        external_path=request.path_info=~/file\/\d+\/download_external/
+        excluded_path=[/file\/\d+\/download_external/,
+                        /forgotten_password/,
+                       /reset_link/
+        ]
+        external_path_match= excluded_path.any? { |regex| request.path_info =~ regex }
         #$log.info(request.path_info=~external_path)
         #external_path=nil
-        if session['user'].nil? and external_path.nil?
+        if session['user'].nil? and not external_path_match
           request.path_info='/login'
         end
       end
@@ -125,7 +133,7 @@ module Sinatra
       end
 
       app.post '/login' do
-        if authorize(params['user'], params['password'])
+        if authorize(params['user'].strip, params['password'].strip)
           add_message ::I18n.t(:Successful_authentification)
           #log.info( ::I18n::t("sinatra_auth.sucessful_auth_for_user", user:params['user']))
           redirect(url("/"))
@@ -139,6 +147,94 @@ module Sinatra
       app.get '/logout' do
         logout
         redirect(url('/login'))
+      end
+
+      app.get '/reset_link' do
+        @t=params['t']
+        if @t
+          @user=User[token_password: @t]
+          if @user and (Time.now - @user.token_datetime)<60*30
+            haml :reset_link, :layout=>:layout_empty, :escape_html=>false
+          else
+            redirect url("/login")  
+          end
+        else
+          redirect url("/login")
+        end
+
+      end
+
+      app.post '/reset_link' do
+
+        @user=User[id: params['user_id']]
+        raise Buhos::NoUserIdError, params['user_id'] unless @user
+        if @user[:token_password]!=params['t']
+          add_message(::I18n::t("sinatra_auth.token_error"), :info)
+          SecurityEvent.add_user_event("token error for password reset",  request.ip,request.path_info,
+                                       "password token", @user[:id] )
+          redirect url("/login")
+        else
+          password_1=params['password']
+          password_2=params['repeat_password']
+          if password_1!=password_2
+            add_message(::I18n::t("password.not_equal_password"), :error)
+            redirect back
+          else
+            @user.update(token_password:nil,token_datetime: nil)
+            @user.change_password(password_1)
+
+            SecurityEvent.add_user_event("password reset by reset link",  request.ip,request.path_info,
+                                         "password changed for user using reset link", @user[:id] )
+            add_message(::I18n::t("sinatra_auth.password_update_relogin"))
+            redirect url("/login")
+          end
+
+        end
+
+      end
+
+
+      app.get '/forgotten_password' do
+        haml :forgotten_password, :layout=>:layout_empty, :escape_html=>false
+      end
+
+      app.post '/forgotten_password' do
+        email=params['email']
+        if not email.include? "@"
+          add_message(::I18n::t("sinatra_auth.not_an_email"), :error)
+          redirect url("/forgotten_password")
+        end
+
+        user=User.where(Sequel.lit('email=? and email IS NOT NULL', email)).first
+        if user
+          previous_datetime=user.token_datetime
+          if previous_datetime
+            #prev_dat=Sequel.string_to_datetime(previous_datetime)
+            if(Time.now - previous_datetime)<60
+              add_message(::I18n::t("sinatra_auth.wait_for_next_reset"), :error)
+              redirect url("/login")
+            end
+          end
+
+
+          token=Digest::SHA1.hexdigest(DateTime.to_s+user.password+user.name)
+          user.update(token_password:token, token_datetime:DateTime.now)
+          url="#{request.base_url}/reset_link?t=#{token}"
+          subject=::I18n::t("sinatra_auth.password_reset_subject")
+          message=::I18n::t("sinatra_auth.password_reset_message", url:url)
+          oe=OutgoingEmail.new()
+          oe.send_email(email,subject,message)
+
+          SecurityEvent.add_user_event("forgotten_password",  request.ip,request.path_info,
+                                       "password request for email #{email}", user[:id] )
+
+        else
+          SecurityEvent.add_nonuser_event("forgotten_password_bad_user",  request.ip,request.path_info,
+                                       "password request for email #{email}", SecurityEvent::SECURITY_MEDIUM )
+        end
+        add_message(::I18n::t("sinatra_auth.if_email_exists_forgotten_sent"), :info)
+        redirect url("/login")
+
       end
 
 
