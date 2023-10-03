@@ -72,17 +72,20 @@ post '/admin/users_batch_edition/excel_import' do
       user_id=row[id_index]
       active=row[id_active].to_i == 1
       email=row[id_email]
-      institution=row[id_institution].nil? ? "**NO INSTITUTION**": row[id_institution].strip
-      language=row[id_language]
       login=row[id_login]
       name=row[id_name]
+
+      next if login.nil? or name.nil?
+
+      institution=row[id_institution].nil? ? "**NO INSTITUTION**": row[id_institution].strip
+      language=row[id_language]
       password=row[id_password]
       role_id=row[id_role]
+
       institution_id=institutions_names[institution] || Institution.find_or_create(name:institution)[:id]
 
         # Login and name should be the same. If not, ok
       if user_id.nil?
-        next if login.nil? or name.nil?
         # Create user, if login and e-mail doesn't exists
 
         if User.where {Sequel.or(email:email, login:login, name:name)}.count>0
