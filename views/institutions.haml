@@ -1,0 +1,25 @@
+%h2=title(t(:Institutions))
+- if auth_to("institutions_admin")
+  %a.btn.btn-default{:href=>url("/institution/new")}
+    %span.glyphicon.glyphicon-plus-sign
+    =t(:New_institution)
+%table.table.table-bordered
+  %thead
+    %th=t(:Id)
+    %th=t(:Name)
+    %th=t(:Actions)
+  %tbody
+    - @institutions.each do |g|
+      %tr
+        %td=g.id
+        %td=g.name
+        %td
+          - if auth_to("institutions_admin")
+            .btn-group.btn-group-sm
+              %a.btn.btn-default{:href=>url("/scale/#{g.id}/edit")}
+                %span.glyphicon.glyphicon-pencil
+                =t(:Edit)
+              %a.btn.btn-default{:href=>url("/scale/#{g.id}/delete")}
+                %span.glyphicon.glyphicon-remove
+                =t(:Delete)
+

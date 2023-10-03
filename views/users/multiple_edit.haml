@@ -13,6 +13,8 @@
       %th=t(:Id)
       %th=t(:User_name)
       %th=t(:Login)
+      %th=t(:Email)
+      %th=t(:Institution)
       %th=t(:Active)
       %th=t(:Role)
     %tbody
@@ -24,6 +26,12 @@
             %input.form-control{type: 'textbox', name:"user[#{pid}][name]", value:per[:name].force_encoding("UTF-8")}
           %td
             %input.form-control{type: 'textbox', name:"user[#{pid}][login]", value:per[:login]}
+          %td
+            %input.form-control{type: 'textbox', name:"user[#{pid}][email]", value:per[:email]}
+          %td
+            %select.form-control{name:"user[#{pid}][institution_id]"}
+              - Institution.order(:name).all do |institution|
+                %option{:value=>institution[:id], :selected=>institution[:id]==per[:institution_id]}=institution[:name]
           %td
             %select.form-control{name:"user[#{pid}][active]"}
               %option{:value=>1, :selected=>per[:active]}=t("Yes")
