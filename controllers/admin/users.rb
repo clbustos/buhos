@@ -70,7 +70,7 @@ post '/admin/users_batch_edition/excel_import' do
   $db.transaction(:rollback => :reraise) do
     sheet.data.each do |row|
       user_id=row[id_index]
-      active=row[id_active]
+      active=row[id_active].to_i == 1
       email=row[id_email]
       institution=row[id_institution].nil? ? "**NO INSTITUTION**": row[id_institution].strip
       language=row[id_language]
@@ -78,7 +78,7 @@ post '/admin/users_batch_edition/excel_import' do
       name=row[id_name]
       password=row[id_password]
       role_id=row[id_role]
-      institution_o=Institution.find_or_create(name:institution)
+      institution_id=institutions_names[institution] || Institution.find_or_create(name:institution)[:id]
 
         # Login and name should be the same. If not, ok
       if user_id.nil?
@@ -86,7 +86,7 @@ post '/admin/users_batch_edition/excel_import' do
         if User.where {Sequel.or(email:email, login:login, name:name)}.count>0
           result.error("User already exists:#{login}, #{name}, #{email}")
         else
-          user_o=User.create(active:active, email:email, institution_id:institution_o[:id],
+          user_o=User.create(active:active, email:email, institution_id:institution_id,
                       language:language, login:login, name:name, password:Digest::SHA1.hexdigest(password),
                              role_id:role_id)
           result.success("User add: #{name}")
@@ -94,7 +94,7 @@ post '/admin/users_batch_edition/excel_import' do
       else
         user_o=User[id:user_id]
         if user_o
-          to_update={active:active, email:email, institution_id:institution_o[:id],
+          to_update={active:active, email:email, institution_id:institution_id,
                      language:language, login:login, name:name,
                      role_id:role_id }
           if !password.nil? and password.strip!=""
@@ -106,10 +106,13 @@ post '/admin/users_batch_edition/excel_import' do
             end
             ac
           }
-          $log.info(to_update_2)
-          user_o.update(values=to_update_2)
-          result.success("User update: #{user_id}")
-
+          #$log.info(to_update_2)
+          if to_update_2.length>0
+            $log.info(to_update_2)
+            user_o.update(values=to_update_2)
+            result.success("User update: #{user_id}")
+            number_of_actions+=1
+          end
         else
           result.error("User doesn't exists:#{user_id}")
         end
@@ -117,8 +120,10 @@ post '/admin/users_batch_edition/excel_import' do
 
     end
   end
-
-  add_message(result)
+  if number_of_actions==0
+    result.info(::I18n::t(:Nothing_to_update))
+  end
+  add_result(result)
   redirect url("/admin/users_batch_edition")
 
 end
