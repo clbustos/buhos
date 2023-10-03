@@ -1,0 +1,25 @@
+.header
+  %h2=title(t("users_admin.batch_edit"))
+
+%ul.breadcrumb
+  %li
+    %a{:href=>"/admin/users"}=t("users_admin.Users_admin")
+  %li.active
+    =t("users_admin.batch_edit")
+
+%h3=t("users_admin.excel_export").to_sym
+
+.btn-group
+  %a.btn.btn-sm.btn-default{:href=>"/admin/users_batch_edition/excel_export"}
+    %span.glyphicon.glyphicon.glyphicon-export
+    =t("users_admin.excel_export").to_sym
+
+%h3=t("users_admin.excel_import").to_sym
+
+%form{:method=>:post, :action=>url("/admin/users_batch_edition/excel_import"), :enctype=>'multipart/form-data'}
+  .form-group
+    %label
+      %span.glyphicon.glyphicon.glyphicon-import
+      =t(:File)
+    %input{:type=>'file', :name=>'file', :multiple=>"multiple"}
+  %input{:type=>:submit, :class=>"btn btn-primary",:value=>"Enviar"}

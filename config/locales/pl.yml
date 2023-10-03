@@ -357,7 +357,7 @@ pl:
   Manual_references_enter: "Dodaj bibliografię ręcznie"
   Merge: "Scal"
   Messages: "Wiadomości"
-  massive_assignent_of_tags_to_cd: "Hurtowe oznaczanie tagami dokumentów wzorcowych"
+  massive_assignment_of_tags_to_cd: "Hurtowe oznaczanie tagami dokumentów wzorcowych"
   messages:
     add_reply_to: "Dodano odpowiedzi do '%{subject}'"
     Collapse: "Zwiń"

@@ -62,6 +62,9 @@ class Systematic_Review_SRTC < Sequel::Model
 
 end
 
+class Institution < Sequel::Model
+
+end
 
 class GroupsUser < Sequel::Model
   many_to_one :user

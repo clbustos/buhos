@@ -463,6 +463,7 @@ module Buhos
           'role_admin',
           'role_view',
           'scale_admin',
+          'institution_admin',
           'scopus_query',
           'search_edit',
           'search_view',

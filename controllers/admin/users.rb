@@ -8,6 +8,121 @@
 
 # @!group users
 
+get '/admin/users_batch_edition' do
+  halt_unless_auth('user_admin')
+  haml "users/batch_edition".to_sym, escape_html: false
+end
+
+
+get '/admin/users_batch_edition/excel_export' do
+  require 'caxlsx'
+
+  halt_unless_auth('user_admin')
+  package = Axlsx::Package.new
+  wb = package.workbook
+  blue_cell = wb.styles.add_style  :fg_color => "0000FF", :sz => 14, :alignment => { :horizontal=> :center }
+  wrap_text = wb.styles.add_style alignment: { wrap_text: true }
+  little_text = wb.styles.add_style
+  users=User.where(Sequel.lit("role_id!='administrator'"))
+  institutions=Institution.to_hash(:id,:name)
+  wb.add_worksheet(:name => t(:Users)) do |sheet|
+    header=["id","active","email","institution","language","login","name","password","role_id"]
+    sheet.add_row header, :style=> [blue_cell]*9
+    users.each do |user|
+      row=[user[:id], user[:active] ? 1:0, user[:email], institutions.fetch(user[:institution_id], nil), user[:language],
+           user[:login], user[:name], nil, user[:role_id]]
+      sheet.add_row row
+    end
+  end
+
+  headers 'Content-Type' => "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+  headers 'Content-Disposition' => "attachment; filename=users.xlsx"
+  package.to_stream
+end
+
+
+post '/admin/users_batch_edition/excel_import' do
+  require 'simple_xlsx_reader'
+  SimpleXlsxReader.configuration.auto_slurp = true
+  archivo=params.delete("file")
+
+  doc = SimpleXlsxReader.open(archivo["tempfile"])
+  sheet=doc.sheets.first
+  header=sheet.headers
+  id_index       = header.find_index("id")
+  id_active      = header.find_index("active")
+  id_email       = header.find_index("email")
+  id_institution = header.find_index("institution")
+  id_language    = header.find_index("language")
+  id_login       = header.find_index("login")
+  id_name        = header.find_index("name")
+  id_password    = header.find_index("password")
+  id_role        = header.find_index("role_id")
+  institutions_names=Institution.to_hash(:name, :id)
+  users_assignation={}
+  header.each_index { |i|
+    if header[i]=~/\[(\d+)\].+/
+      users_assignation[i]=$1
+    end
+  }
+  result=Result.new
+  number_of_actions=0
+  $db.transaction(:rollback => :reraise) do
+    sheet.data.each do |row|
+      user_id=row[id_index]
+      active=row[id_active]
+      email=row[id_email]
+      institution=row[id_institution].nil? ? "**NO INSTITUTION**": row[id_institution].strip
+      language=row[id_language]
+      login=row[id_login]
+      name=row[id_name]
+      password=row[id_password]
+      role_id=row[id_role]
+      institution_o=Institution.find_or_create(name:institution)
+
+        # Login and name should be the same. If not, ok
+      if user_id.nil?
+        # Create user, if login and e-mail doesn't exists
+        if User.where {Sequel.or(email:email, login:login, name:name)}.count>0
+          result.error("User already exists:#{login}, #{name}, #{email}")
+        else
+          user_o=User.create(active:active, email:email, institution_id:institution_o[:id],
+                      language:language, login:login, name:name, password:Digest::SHA1.hexdigest(password),
+                             role_id:role_id)
+          result.success("User add: #{name}")
+        end
+      else
+        user_o=User[id:user_id]
+        if user_o
+          to_update={active:active, email:email, institution_id:institution_o[:id],
+                     language:language, login:login, name:name,
+                     role_id:role_id }
+          if !password.nil? and password.strip!=""
+            to_update[:password]=Digest::SHA1.hexdigest(password)
+          end
+          to_update_2=to_update.inject({}) {|ac,v|
+            if v[1]!=user_o[v[0]]
+              ac[v[0].to_sym]=v[1]
+            end
+            ac
+          }
+          $log.info(to_update_2)
+          user_o.update(values=to_update_2)
+          result.success("User update: #{user_id}")
+
+        else
+          result.error("User doesn't exists:#{user_id}")
+        end
+      end
+
+    end
+  end
+
+  add_message(result)
+  redirect url("/admin/users_batch_edition")
+
+end
+
 # Get list of users
 get '/admin/users/?' do
   halt_unless_auth('user_admin')
@@ -24,6 +139,8 @@ get '/admin/users/?' do
   @roles=Role.order()
   haml :users, escape_html: false
 end
+
+
 
 # Update information for users
 post '/admin/users/update' do
@@ -92,6 +209,8 @@ post '/admin/users/update_edit' do
                                  login:user_info[:login],
                                  active: user_info[:active].to_i==1,
                                  role_id: user_info[:role_id],
+                                 email: user_info[:email],
+                                 institution_id:user_info[:institution_id],
                                  language: user_info[:language])
             result.success(::I18n.t("users_admin.update_was_successful", id: user_id))
             end
@@ -111,5 +230,10 @@ post '/admin/users/update_edit' do
     return haml "users/multiple_edit".to_sym, escape_html: false
   end
 end
+
+
+
+
+
 
 # @!endgroup

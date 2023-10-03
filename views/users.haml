@@ -11,9 +11,13 @@
     });
   });
 - if auth_to("user_admin")
-  %a.btn.btn-default{:href=>url("/user/new")}
-    %span{:class=>"glyphicon glyphicon-plus"}
-    =t(:User_new)
+  .btn-group.btn-group-sm
+    %a.btn.btn-default{:href=>url("/user/new")}
+      %span{:class=>"glyphicon glyphicon-plus"}
+      =t(:User_new)
+    %a.btn.btn-default{:href=>url("/admin/users_batch_edition")}
+      %span{:class=>"glyphicon glyphicon-book"}
+      =t("users_admin.batch_edit".to_sym)
 
   %form{:method=>'get',:action=>url('/admin/users')}
     %p
