@@ -106,7 +106,9 @@ namespace :db do
     require_relative 'lib/buhos/create_schema'
     base_dir=File.dirname(__FILE__)
     Sequel.extension :migration
-    db = Sequel.connect(ENV["DATABASE_URL"])
+    logger=Logger.new("log/rake_migration.log")
+    db = Sequel.connect(ENV["DATABASE_URL"], :encoding => 'utf8',:reconnect=>false)
+    db.logger=logger
     if args[:version]
       puts "Migrating to version #{args[:version]}"
       Sequel::Migrator.run(db, "#{base_dir}/db/migrations", target: args[:version].to_i)
@@ -115,7 +117,6 @@ namespace :db do
       Sequel::Migrator.run(db, "#{base_dir}/db/migrations")
       Buhos::SchemaCreation.create_bootstrap_data(db)
       Buhos::SchemaCreation.delete_views(db)
-
     end
   end
 
