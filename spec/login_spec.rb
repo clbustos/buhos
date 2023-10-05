@@ -5,6 +5,7 @@ describe 'Buhos login' do
   before(:all) do
     RSpec.configure { |c| c.include RSpecMixin }
     configure_empty_sqlite
+    User[1].update(email:"admin@test.com")
   end
 
   it "/login should show a valid page" do
@@ -35,7 +36,7 @@ describe 'Buhos login' do
     expect(last_response.header["Location"]).to eq("http://example.org/")
   end
 
-  it "Correct login redirect to main page and show dashboard" do
+  it "Correct login using login name redirect to main page and show dashboard" do
     post '/login' , :user=>'admin', :password=>'admin'
     get '/'
     expect(last_response).to be_ok
@@ -43,6 +44,13 @@ describe 'Buhos login' do
     expect(last_response.body).to include("Dashboard")
   end
 
+  it "Correct login using e-mail redirect to main page and show dashboard" do
+    post '/login' , :user=>'admin@test.com', :password=>'admin'
+    get '/'
+    expect(last_response).to be_ok
+    expect(last_response.body).to_not be_empty
+    expect(last_response.body).to include("Dashboard")
+  end
 
   after(:all) do
     close_sqlite

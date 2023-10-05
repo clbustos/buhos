@@ -88,7 +88,7 @@ module Sinatra
       end
 
       def authorize(login, password)
-        u=User.filter(:login=>login,:password=>Digest::SHA1.hexdigest(password))
+        u=User.filter(Sequel.lit("(login=? OR email=?) AND password=?", login,login, Digest::SHA1.hexdigest(password)))
         ##$log.info(u.first)
         if u.first
           user=u.first
