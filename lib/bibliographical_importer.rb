@@ -129,6 +129,7 @@ module BibliographicalImporter
 end
 
 require_relative 'bibliographical_importer/bibtex'
+require_relative 'bibliographical_importer/ris'
 require_relative 'bibliographical_importer/json'
 require_relative 'bibliographical_importer/json_api_crossref'
 require_relative 'bibliographical_importer/csv'

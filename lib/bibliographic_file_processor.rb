@@ -173,7 +173,7 @@ class BibliographicFileProcessor
   # Factory method to retrieve a integrator.
   #
   # For BibTex, ReferenceIntegrator::BibTex::Reader takes control and decides how to process using BibTeX fields
-  # For CSV, we need to send the bibliograpic database.
+  # For CSV, we need to send the bibliographic database.
   # @see ReferenceIntegrator::BibTex
   # @see ReferenceIntegrator::CSV
 
@@ -181,9 +181,18 @@ class BibliographicFileProcessor
     if @search[:file_body].nil?
       log_error('bibliographic_file_processor.no_file_available')
       false
+    elsif @search[:filename]=~/\.ris$/
+      begin
+        BibliographicalImporter::Ris::Reader.parse(@search[:file_body])
+      rescue Exception=>e
+        log_error('bibliographic_file_processor.ris_integrator_failed', "<#{e.class}> : #{e.message}")
+        @error=::I18n::t('bibliographic_file_processor.ris_integrator_failed'.to_sym)
+        false
+      end
+
     elsif @search[:filetype] == 'application/json' or @search[:filename] =~ /\.json$/
       begin
-        BibliographicalImporter::Json::Reader.parse(file_body)
+        BibliographicalImporter::Json::Reader.parse(@search[:file_body])
       rescue BibTeX::ParseError=>e
         log_error('bibliographic_file_processor.json_integrator_failed', "<#{e.class}> : #{e.message}")
         @error=::I18n::t('bibliographic_file_processor.json_integrator_failed'.to_sym)
