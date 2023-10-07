@@ -14,7 +14,9 @@ Web based platform to manage complete process of systematic literature reviews. 
 * Internal messaging system for personal messages o messages related to systematic reviews.
 * Internationalization, using *I18n*. Available in English and Spanish.
 * Flexible work-flow.  The main stages of text searching, screening relevant articles, data extraction and reporting are clearly defined.  However, changes can be made at any stage already finalized, and will automatically reflect in subsequent stages.
-* Imports information from various bibliographic databases, such as - WoS, Scopus, Ebscohost, Scielo, Pubmed - using BibTeX.
+* Imports information from various bibliographic databases, such 
+  as - WoS, Scopus, Ebscohost, Scielo, Pubmed, Lilacs and Proquest -  
+  using BibTeX and RIS.
 * Integration with Crossref allows deduplication of articles (using DOI), and searching for information on references
 * File repository.  PDF and ODF file viewing support online via [ViewerJS](http://viewerjs.org/).
 * Multiple ways to analyze data: comments and tagging at each stage of review, and generation of customized forms for information extraction.
@@ -238,6 +240,9 @@ We use [SemVer](http://semver.org/) for versioning.  To see the available versio
 If you use this software for your research, please cite the following paper:
 
 Bustos, C., Morales, M.G., Salcedo, P., & Díaz, Alejandro (2018). Buhos: A web-based systematic literature review management software. SoftwareX, 7, 360-372. [https://doi.org/10.1016/j.softx.2018.10.004](https://doi.org/10.1016/j.softx.2018.10.004)  
+
+
+
 
 ## License
 

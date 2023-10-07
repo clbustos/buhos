@@ -1,0 +1,160 @@
+﻿TY  - JOUR
+AU  - Sánchez-García, ID
+AU  - Gilabert, TS
+AU  - Calvo-Manzano, JA
+TI  - Countermeasures and their taxonomies for risk treatment in cybersecurity: A systematic mapping review
+T2  - COMPUTERS & SECURITY
+LA  - English
+KW  - Risk management
+KW  - Countermeasures
+KW  - Taxonomies
+KW  - Cybersecurity
+KW  - Systematic mapping review
+KW  - INFORMATION SECURITY
+KW  - IDENTIFICATION
+KW  - CHALLENGES
+KW  - FRAMEWORK
+KW  - EXAMPLE
+KW  - TRUST
+AB  - Cybersecurity continues to be one of the principal issues in the computing environment. Organizations and researchers have made various efforts to mitigate the risks of cyberspace. The treatment of cyber risk is a fundamental stage in risk management. In the risk treatment stage, countermeasures are carried out to reduce the probability of risk materialization. This article presents a systematic mapping review of the principal catalogues/taxonomies of countermeasures applied in cybersecurity, involving studies between 2010 and 2021. Seventy-four (74) studies were assessed, and 25 studies were selected for further analysis. We identified 26 catalogues/taxonomies used to address cybersecurity-related risks. After analyzing these 26 catalogues/taxonomies, we identified: (1) the related trends, (2) the type of risks and sectors that these catalogues/taxonomies focus on, (3) the complexity of these taxonomies, and (4) what mentions they make about residual risk. We have identified that institutional taxonomies, which were not created for cybersecurity risks, are fitted for this purpose. The predominant risks in these taxonomies are those related to awareness and cyber-attacks. We note that the complexity of the catalogues/taxonomies is defined by the number of taxa and the number of countermeasures. Another relevant result is the lack of complexity in non-institutional catalogues/taxonomies. Finally, we have identified a lack of relevant information on residual risk in the studies.(c) 2023 The Author(s). Published by Elsevier Ltd. This is an open access article under the CC BY-NC-ND license ( http://creativecommons.org/licenses/by-nc-nd/4.0/ )
+AD  - Univ Politecn Madrid UPM, Escuela Tecn Super Ingn informat, Madrid, SpainC3  - Universidad Politecnica de MadridPU  - ELSEVIER ADVANCED TECHNOLOGY
+PI  - OXFORD
+PA  - OXFORD FULFILLMENT CENTRE THE BOULEVARD, LANGFORD LANE, KIDLINGTON, OXFORD OX5 1GB, OXON, ENGLAND
+SN  - 0167-4048
+SN  - 1872-6208
+J9  - COMPUT SECUR
+JI  - Comput. Secur.
+DA  - MAY
+PY  - 2023
+VL  - 128
+C7  - 103170
+DO  - 10.1016/j.cose.2023.103170
+C6  - MAR 2023
+WE  - Science Citation Index Expanded (SCI-EXPANDED)AN  - WOS:000957555400001
+N1  - Times Cited in Web of Science Core Collection:  0
+Total Times Cited:  0
+Cited Reference Count:  115
+ER  -
+
+TY  - JOUR
+AU  - Cruz, I
+AU  - Batista, N
+AU  - Carvalho, PCM
+TI  - Renewable Hybrid Systems for water pumping: a review
+T2  - IEEE LATIN AMERICA TRANSACTIONS
+LA  - English
+KW  - Hybrid Systems
+KW  - Pumping Water
+KW  - Renewable Energy
+KW  - PUMPED-STORAGE HYDROPOWER
+KW  - POWERED REVERSE-OSMOSIS
+KW  - ENERGY SYSTEM
+KW  - SOLAR-WIND
+KW  - HEAT-PUMP
+KW  - GENERATION
+KW  - FEASIBILITY
+KW  - ELECTRICITY
+KW  - OPERATION
+KW  - ISLAND
+AB  - Several studies and applications of renewable systems for water pumping are developed in the literature, but these are mostly plants operating with a single source, usually photovoltaic (PV). In this article we present a systematic literature review on hybrid renewable systems applied to water pumping, verifying the applicability and the different sources, serving as a reference for future research. PV is the dominant generation with a presence in 86% of the articles; wind appears in 81% and hydro power plants in 53% of the papers.
+AD  - Univ Fed Ceara UFC, Programa Posgrad Engn Mecan, Fortaleza, Ceara, BrazilAD  - Univ Fed Ceara, Dept Engn Elect, Fortaleza, Ceara, BrazilC3  - Universidade Federal do CearaC3  - Universidade Federal do CearaPU  - IEEE-INST ELECTRICAL ELECTRONICS ENGINEERS INC
+PI  - PISCATAWAY
+PA  - 445 HOES LANE, PISCATAWAY, NJ 08855-4141 USA
+SN  - 1548-0992
+J9  - IEEE LAT AM T
+JI  - IEEE Latin Am. Trans.
+DA  - OCT
+PY  - 2022
+VL  - 20
+IS  - 10
+SP  - 2263
+EP  - 2274
+DO  - 10.1109/TLA.2022.9885164
+WE  - Science Citation Index Expanded (SCI-EXPANDED)AN  - WOS:000852215100008
+N1  - Times Cited in Web of Science Core Collection:  0
+Total Times Cited:  0
+Cited Reference Count:  98
+ER  -
+
+TY  - JOUR
+AU  - Castillo, S
+AU  - Grbovic, P
+TI  - The APISSER Methodology for Systematic Literature Reviews in Engineering
+T2  - IEEE ACCESS
+LA  - English
+KW  - Bibliographies
+KW  - Systematics
+KW  - Task analysis
+KW  - Data mining
+KW  - Patents
+KW  - Medical services
+KW  - Soft sensors
+KW  - Engineering method
+KW  - PRISMA
+KW  - systematic literature review
+KW  - state of the art
+AB  - [Background] Every research topic is first to be addressed by understanding its current state of the art. A systematic literature review is a trustworthy method for establishing the published state of the art of any given topic. In engineering sciences, we have failed to consistently, methodologically, and thoroughly execute systematic literature reviews at the beginning of every research path, and to standardize the method to do so. Currently available methodologies fail to link a method to a customized and much-needed tool support. If the high-effort demanding task of executing a systematic literature review is not well tool-supported, it will soon become manually unmanageable to handle the large amount of data involved. [Objective] Therefore, we want to take a step forward towards standardizing the methodology for executing systematic literature reviews in engineering by proposing a tool-supported and task-oriented engineering flow methodology to execute systematic literature reviews in engineering. [Method] Based on the well-known and proven Preferred Reporting Items for Systematic Reviews and Meta-Analyses (PRISMA) methodology from medical sciences, we adapted and enhanced the method to follow a task-oriented engineering flow and to be supported by customized tools. [Results] In this paper, we first present the APISSER methodology for systematic literature reviews in engineering, and then show its practical application in a case study. [Conclusion] We have shown how the method successfully results in the collection of valid literature to report a trustworthy published state of the art in engineering sciences.
+AD  - Univ Innsbruck, Inst Mechatron, Innsbruck Power Elect Lab, A-6020 Innsbruck, AustriaC3  - University of InnsbruckFU  - University of Innsbruck; Vice Rectorate for Research
+FX  - This work was supported by the University of Innsbruck, Vice Rectorate for Research.
+PU  - IEEE-INST ELECTRICAL ELECTRONICS ENGINEERS INC
+PI  - PISCATAWAY
+PA  - 445 HOES LANE, PISCATAWAY, NJ 08855-4141 USA
+SN  - 2169-3536
+J9  - IEEE ACCESS
+JI  - IEEE Access
+PY  - 2022
+VL  - 10
+SP  - 23700
+EP  - 23707
+DO  - 10.1109/ACCESS.2022.3148206
+WE  - Science Citation Index Expanded (SCI-EXPANDED)AN  - WOS:000766578000001
+N1  - Times Cited in Web of Science Core Collection:  4
+Total Times Cited:  4
+Cited Reference Count:  40
+ER  -
+
+TY  - JOUR
+AU  - Quiñones, AVS
+AU  - Bustos, CE
+AU  - Perez, MV
+AU  - Peralta, DL
+AU  - Zañartu, N
+AU  - del Solar, JIV
+TI  - Metasynthesis Regarding the Sociocultural Adaptation of International University
+T2  - QUALITATIVE REPORT
+LA  - English
+KW  - international students
+KW  - metasynthesis
+KW  - review
+KW  - sociocultural adaptation
+KW  - university
+KW  - QUALITATIVE RESEARCH
+KW  - STUDENTS
+KW  - ACCULTURATION
+KW  - ADJUSTMENT
+KW  - EXPERIENCE
+KW  - FOREIGN
+AB  - This study centers on the sociocultural adaptation experience of international students in academic life and daily life. Responses to the guiding question of what differences and similarities are discernible in the sociocultural adaptation processes that international university students experience in the university versus outside university in the receiving society. It presents a metasynthesis of 12 empirical studies that apply qualitative methodologies to the study of international university students' sociocultural adaptation, which were published in scientific journals indexed in Ebscohost, WOS and Scopus from January 2012 to March 2019. The metasynthesis results indicate that sociocultural adaption involves: (1) situations of shock that arise in the two environments of academic and daily life with specific challenges proper to each one, and (2) the deployment of varying intrapersonal and social resources in each context. Academic and daily life can be considered as necessarily linked to sociocultural adaptation given the compensatory function observed in relational dynamics of students as they move between the two settings. The emphasis of the research on presenting sociocultural adaptation as a primarily negative process, the theoretical implications of separating academic life from daily life, and the relevance of exploring the role of social networks in students' daily life are discussed.
+AD  - Univ Concepcion, Concepcion, ChileAD  - Univ Concepcion, Dept Psicol, Concepcion, ChileAD  - Univ Concepcion, Educ Management & Leadership, Concepcion, ChileAD  - Univ Concepcion, Dept Antropol, Concepcion, ChileC3  - Universidad de ConcepcionC3  - Universidad de ConcepcionC3  - Universidad de ConcepcionC3  - Universidad de ConcepcionFU  - National Agency for Research and Development, ANID/Scholarship National Doctoral Grant [21160306]; National Agency for Research and Development [ANID/FONDECYT 1201681]
+FX  - This work was funded by the National Agency for Research and Development, ANID/Scholarship National Doctoral Grant [21160306]. This work was also partially funded by the National Agency for Research and Development, ANID/FONDECYT 1201681, Teaching/Learning Methodologies of Research Practices in Psychology in Latin America and Spain. The authors wish to thank Elizabeth Ann Medina for her work on the English translation of this report.
+PU  - NOVA SOUTHEASTERN UNIV
+PI  - FORT LAUDERDALE-DAVIE
+PA  - 3301 COLLEGE AVE, FORT LAUDERDALE-DAVIE, FL 33314 USA
+SN  - 1052-0147
+SN  - 2160-3715
+J9  - QUAL REP
+JI  - Qual. Rep.
+DA  - MAY
+PY  - 2021
+VL  - 25
+IS  - 5
+SP  - 1567
+EP  - 1600
+C7  - 12
+DO  - 10.46743/2160-3715/2021.4623
+WE  - Emerging Sources Citation Index (ESCI)AN  - WOS:000659001800004
+N1  - Times Cited in Web of Science Core Collection:  0
+Total Times Cited:  0
+Cited Reference Count:  56
+ER  -
+
