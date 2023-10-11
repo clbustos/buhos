@@ -31,6 +31,8 @@ class RisReader
   attr_reader :records
   def initialize(string)
     @string=string
+
+    @errors=[]
     if @string.length>3 and @string.bytes[0..2]==[239,187,191]
       @string=@string[1..-1]
     end
@@ -45,8 +47,9 @@ class RisReader
     # WoS RIS is savage. Both \r and \n are used.
     # No point in be civilized
     lines=@string.split(/[\r\n]+/)
-
+    i=0
     @string.each_line do |line|
+
       line.strip!
       next if line==""
       #puts line.inspect
@@ -73,13 +76,15 @@ class RisReader
       elsif line=~/(^.+):(.+)$/
         current_record[$1]=$2.strip
       else
-        puts "****"
-        hex_codes = line.bytes.map { |b| sprintf("%02X", b) }.join
-        puts hex_codes
-        puts  match.inspect
-        puts line.inspect
-        raise "ERROR"
+        #puts "****"
+        #hex_codes = line.bytes.map { |b| sprintf("%02X", b) }.join
+        #puts hex_codes
+        #puts  match.inspect
+        #puts line.inspect
+        #raise "ERROR"
+        @errors.push({line_number:i, text:line})
       end
+      i+=1
     end
   end
 end

@@ -82,7 +82,7 @@ module BibliographicalImporter
           elsif @record["TI"]
             @title=get_string('TI')
           elsif @record["T1"]
-            @title=get_string('TI')
+            @title=get_string('T1')
           end
           @abstract=
 
