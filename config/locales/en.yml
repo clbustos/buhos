@@ -1,4 +1,13 @@
 en:
+  error_deleting_canonical_documents: "Error on deleting canonical documents"
+  removed_n_canonical_documents: "Removed %{n} canonical documents"
+  Resolve_inconsistency: "Resolve inconsistency"
+  Resolutions_without_support: "Resolutions without support"
+  Resolutions_without_support_explanation: "If changes are made to the searches after resolutions have been made, canonical documents can be removed at various stages, but the resolutions are stored in case it is decided to reintroduce these resolutions. This can create issues in the backward snowballing stage."
+  Decisions_without_support: "Decisions without support"
+  Decisions_without_support_explanation: "If changes are made to the searches after decisions have been made, user decisions are still saved even if the document is no longer saved. This can create problems when detecting patterns."
+  No_canonical_document_inconsistency: "No inconsistencies in canonical documents"
+  Check_inconsistencies: "Check inconsistencies"
   Nothing_to_update: "Nothing to update"
   Batch_edition: "Batch edition"
   Institution: "Institution"

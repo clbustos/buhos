@@ -1,4 +1,11 @@
 pl:
+  Check_inconsistencies: "Sprawdź niezgodności"
+  Nothing_to_update: "Nic do zaktualizowania"
+  Batch_edition: "Edycja grupowa"
+  Institution: "Instytucja"
+  Institutions: "Instytucje"
+  forgotten_password_link: "Zapomniane hasło?"
+  Email: "E-mail"
   Abstract: "Abstrakt"
   Accept: "Zatwierdź"
   Action_not_defined: "Polecenie nie istnieje."

@@ -14,6 +14,9 @@ body {
   font-size: 14px;
 }
 
+
+
+
 h1 {
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
 
@@ -423,6 +426,13 @@ img.archivo {
 }
 
 
+.max_height_25 {
+  padding:1em;
+  border:1px solid #aaaaaa;
+  max-height: 400px;
+  overflow: auto;
+
+}
 ul.asignaciones {
   margin: 0;
   padding: 0 0 0 1em;

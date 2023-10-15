@@ -1,0 +1,50 @@
+.heading
+  %h2=t(:Systematic_review_repeated_documents, sr_name:@review.name)
+%ul.breadcrumb
+  %li
+    %a{:href=>url("/review/#{@review.id}")}=@review.name
+  %li
+    %a{:href=>url("/review/#{@review.id}/canonical_documents")}=t(:Canonical_documents)
+  %li.active
+    =t(:Check_inconsistencies)
+- rws=@inc_analysis.resolutions_without_cd_support
+- dws=@inc_analysis.decisions_without_cd_support
+
+%h3=t(:Resolutions_without_support)
+
+%p=t(:Resolutions_without_support_explanation)
+
+- rws.each_pair do |stage,cds|
+
+  %h4=t(@inc_analysis.get_stage_name(stage))
+  - if cds.length>0
+    %a.btn.btn-default{href:url("/canonical_documents/review/#{@review.id}/resolve_inconsistencies_resolutions/#{stage}")}
+      =t(:Resolve_inconsistency)
+
+    - cds_o=CanonicalDocument.where(id:cds).to_hash(:id,:title)
+    - class_div=cds.count>10 ? "max_height_25":""
+    %div{class:class_div}
+      %ul.list-group
+        - cds.each do |cd_id|
+          %li.list-group-item=cds_o[cd_id].nil? ? "NO CD:#{cd_id}": "#{cd_id}:#{cds_o[cd_id]}"
+  - else
+    %p=t(:No_canonical_document_inconsistency)
+
+
+%h3=t(:Decisions_without_support)
+
+%p=t(:Decisions_without_support_explanation)
+- dws.each_pair do |stage,cds|
+  %h4=t(@inc_analysis.get_stage_name(stage))
+  - if cds.length>0
+    %a.btn.btn-default{href:url("/canonical_documents/review/#{@review.id}/resolve_inconsistencies_decisions/#{stage}")}
+      =t(:Resolve_inconsistency)
+
+    - cds_o=CanonicalDocument.where(id:cds).to_hash(:id,:title)
+    - class_div=cds.count>10 ? "max_height_25":""
+    %div{class:class_div}
+      %ul.list-group
+        - cds.each do |cd_id|
+          %li.list-group-item=cds_o[cd_id].nil? ? "NO CD:#{cd_id}": "#{cd_id}:#{cds_o[cd_id]}"
+  - else
+    %p=t(:No_canonical_document_inconsistency)

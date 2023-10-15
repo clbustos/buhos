@@ -85,7 +85,7 @@ get '/review/:id/canonical_documents' do |id|
   #$log.info($db[:canonical_documents].all)
   #$log.info(@cds.all)
 
-  haml %s{systematic_reviews/canonical_documents}, escape_html: false
+  haml "systematic_reviews/canonical_documents".to_sym, escape_html: false
 end
 
 
@@ -215,6 +215,46 @@ get %r{/review/(\d+)/canonical_document/(\d+)/(cites|cited_by|cited_by_rtr)} do
   @rwc= AnalysisSystematicReview.reference_between_canonicals(@sr)
   @cd_to_show=@rwc.send(@type.to_sym, @cd_id)
   haml "systematic_reviews/canonical_document_cites".to_sym, escape_html: false
+end
+
+
+get '/canonical_documents/review/:id/check_inconsistencies' do |id|
+  halt_unless_auth('review_view')
+
+  @review=SystematicReview[id]
+  raise Buhos::NoReviewIdError, id if !@review
+
+  @inc_analysis=Buhos::InconsistenciesAnalysis.new(@review)
+
+
+
+
+
+
+  haml "systematic_reviews/canonical_documents_inconsistencies".to_sym, escape_html: false
+end
+
+
+get '/canonical_documents/review/:rs_id/resolve_inconsistencies_resolutions/:stage' do |id,stage|
+  halt_unless_auth('review_view')
+
+  @review=SystematicReview[id]
+  raise Buhos::NoReviewIdError, id if !@review
+  @inc_analysis=Buhos::InconsistenciesAnalysis.new(@review)
+  result=@inc_analysis.resolve_inconsistencies_resolutions(stage)
+  add_result(result)
+  redirect back
+end
+
+get '/canonical_documents/review/:rs_id/resolve_inconsistencies_decisions/:stage' do |id,stage|
+  halt_unless_auth('review_view')
+
+  @review=SystematicReview[id]
+  raise Buhos::NoReviewIdError, id if !@review
+  @inc_analysis=Buhos::InconsistenciesAnalysis.new(@review)
+  result=@inc_analysis.resolve_inconsistencies_decisions(stage)
+  add_result(result)
+  redirect back
 end
 
 

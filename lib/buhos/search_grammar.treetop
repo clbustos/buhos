@@ -29,26 +29,12 @@ grammar SearchGrammar
   end
 
   rule identifier
-     [a-zA-Z0-9]+ <Identifier>
+     [a-zA-Z0-9\-:]+ <Identifier>
   end
 
   rule space
     [\s\n\t\r]+ <Space>
   end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 end

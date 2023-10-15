@@ -66,9 +66,13 @@
       %span{:class=>""}
       =t(:Complete_abstract_using_Scopus)
   - if auth_to("review_admin")  or review_belongs_to(@review.id, session['user_id'])
-    %a{:href=>url("/canonical_documents/review/#{@review.id}/automatic_categories")   , :role=>'button', :class=>"btn btn-default"}
+    %a{:href=>url("/canonical_documents/review/#{@review.id}/check_inconsistencies")   , :role=>'button', :class=>"btn btn-default"}
       %span{:class=>""}
-      =t(:Automatic_categories)
+      =t(:Check_inconsistencies)
+    -if false
+      %a{:href=>url("/canonical_documents/review/#{@review.id}/automatic_categories")   , :role=>'button', :class=>"btn btn-default"}
+        %span{:class=>""}
+        =t(:Automatic_categories)
   %a{:href=>url("/review/#{@review.id}/canonical_documents/import_export"),  :role=>'button', :class=>"btn btn-default"}
     %span{:class=>"glyphicon glyphicon-transfer"}
     =t(:Import_export)

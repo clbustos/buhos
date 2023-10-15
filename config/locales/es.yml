@@ -1,4 +1,13 @@
 es:
+  error_deleting_canonical_documents: "Error en eliminar documentos canónicos"
+  removed_n_canonical_documents: "Eliminados %{n} documentos canónicos"
+  Resolve_inconsistency: "Resolver inconsistencia"
+  Resolutions_without_support: "Resoluciones sin soporte"
+  Resolutions_without_support_explanation: "Si se realizan cambios en las búsquedas tras realizar resoluciones, pueden eliminarse documentos canónicos en las distintas etapas, pero las resoluciones quedan almacenadas, por si se decide reincoporar estas resoluciones. Esto puede generar problemas en la etapa de bola de nieve hacia atrás. "
+  Decisions_without_support: "Decisiones sin soporte"
+  Decisions_without_support_explanation: "Si se realizan cambios en las búsquedas tras realizar decisiones, quedan guardadas las decisiones de usuarios aunque el documento ya no esté guardado. Esto puede generar problemas al momento de detectar patrones."
+  No_canonical_document_inconsistency: "Sin inconsistencias de documentos canónicos"
+  Check_inconsistencies: "Revisar inconsistencias"
   Nothing_to_update: "Nada que actualizar"
   Batch_edition: "Edición masiva"
   Institution: "Institución"
