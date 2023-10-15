@@ -1,5 +1,20 @@
 # CHANGELOG
 
+## 1.3.1        : 2023-10-15
+
+7f8b83d Added in canonical documents method to remove inconsistencies in resolutions and decisions
+9915b9c Updated RIS for proquest
+d3628f5 Added RIS fixtures
+7cbf54b Added support for RIS files
+d7bd553 added email as user login method
+ccbf95d Updated migrations and db_complete
+d3700ca Bug: Infinite loop for excel with empty rows
+9a41995 Doesn't trigger a batch update for active field in excel. Add a message if nothing is updated in batch excel user update
+ca18f43 Added batch edition of users using excel
+2d9150e Added script for unattended install. Added forgotten password method. Add class for outgoing email. Email support (only smtp)
+
+
+
 ## 1.2.0        : 2023-09-28
 
 64b1b61 Bug fix: If an error occurs when generating a canonical document in a search, the entire system fails
