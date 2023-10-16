@@ -76,7 +76,7 @@ describe 'BibliographicalImporter::Ris' do
       expect(@bib.records[0]).to be_instance_of(BibliographicalImporter::Ris::Record)
     end
     it "should retrieve 5 articles" do
-      expect(@bib.records.length).to eq(4)
+      expect(@bib.records.length).to eq(2)
     end
     it "author should include " do
       %w{Sánchez-García Gilabert Calvo-Manzano}.each do |author|
@@ -92,8 +92,10 @@ describe 'BibliographicalImporter::Ris' do
     it "year should be 2023" do
       expect(@bib[0].year).to eq("2023")
     end
-    it "DOI should be correct " do
+    it "both DOI should be correct " do
       expect(@bib[0].doi).to eq("10.1016/j.cose.2023.103170")
+      expect(@bib[1].doi).to eq("10.1109/TLA.2022.9885164")
+
     end
   end
 

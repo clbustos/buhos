@@ -76,13 +76,13 @@ describe 'RisReader' do
     end
   end
 
-  context "when wos is used" do
+  context "when WoS RIS is used" do
     before(:context) do
       @ris_readers=RisReader.new(read_fixture("wos.ris"))
       @ris_readers.process
     end
-    it "should return 11 records" do
-      expect(@ris_readers.records.length).to eq(4)
+    it "should return 2 records" do
+      expect(@ris_readers.records.length).to eq(2)
     end
     it "should return correct first author for first record" do
       expect(@ris_readers.records[0]["AU"][0]).to eq("Sánchez-García, ID")
@@ -95,11 +95,11 @@ describe 'RisReader' do
     end
 
     it "should return correct pages" do
-      expect(@ris_readers.records[0]["SP"]).to eq("2263")
-      expect(@ris_readers.records[0]["EP"]).to eq("2274")
+      expect(@ris_readers.records[1]["SP"]).to eq("2263")
+      expect(@ris_readers.records[1]["EP"]).to eq("2274")
     end
     it "should return correct DOI" do
-      expect(@ris_readers.records[0]["DO"]).to eq("10.1109/TLA.2022.9885164")
+      expect(@ris_readers.records[1]["DO"]).to eq("10.1109/TLA.2022.9885164")
     end
     it "should return include Risk management as KW" do
       expect(@ris_readers.records[0]["KW"].include? "Risk management").to be_truthy

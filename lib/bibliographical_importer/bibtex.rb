@@ -254,7 +254,8 @@ module BibliographicalImporter
           if line=~/^\s*\@.+\{(.+),\s*$/
             #puts "\n***Es intro***:#{line}\n"
             parts=line.split("{")
-            parts[1]=parts[1].gsub(/[^0-9a-zA-Z,]/,"").strip
+            parts[1]=parts[1].gsub(/[^0-9a-zA-Z]/,"").strip+","
+            #$log.info(parts)
             #p parts
             parts.join("{")
           elsif line=~/^s*Early Access Date\s*=/

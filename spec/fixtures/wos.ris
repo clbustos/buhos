@@ -76,85 +76,4 @@ Total Times Cited:  0
 Cited Reference Count:  98
 ER  -
 
-TY  - JOUR
-AU  - Castillo, S
-AU  - Grbovic, P
-TI  - The APISSER Methodology for Systematic Literature Reviews in Engineering
-T2  - IEEE ACCESS
-LA  - English
-KW  - Bibliographies
-KW  - Systematics
-KW  - Task analysis
-KW  - Data mining
-KW  - Patents
-KW  - Medical services
-KW  - Soft sensors
-KW  - Engineering method
-KW  - PRISMA
-KW  - systematic literature review
-KW  - state of the art
-AB  - [Background] Every research topic is first to be addressed by understanding its current state of the art. A systematic literature review is a trustworthy method for establishing the published state of the art of any given topic. In engineering sciences, we have failed to consistently, methodologically, and thoroughly execute systematic literature reviews at the beginning of every research path, and to standardize the method to do so. Currently available methodologies fail to link a method to a customized and much-needed tool support. If the high-effort demanding task of executing a systematic literature review is not well tool-supported, it will soon become manually unmanageable to handle the large amount of data involved. [Objective] Therefore, we want to take a step forward towards standardizing the methodology for executing systematic literature reviews in engineering by proposing a tool-supported and task-oriented engineering flow methodology to execute systematic literature reviews in engineering. [Method] Based on the well-known and proven Preferred Reporting Items for Systematic Reviews and Meta-Analyses (PRISMA) methodology from medical sciences, we adapted and enhanced the method to follow a task-oriented engineering flow and to be supported by customized tools. [Results] In this paper, we first present the APISSER methodology for systematic literature reviews in engineering, and then show its practical application in a case study. [Conclusion] We have shown how the method successfully results in the collection of valid literature to report a trustworthy published state of the art in engineering sciences.
-AD  - Univ Innsbruck, Inst Mechatron, Innsbruck Power Elect Lab, A-6020 Innsbruck, AustriaC3  - University of InnsbruckFU  - University of Innsbruck; Vice Rectorate for Research
-FX  - This work was supported by the University of Innsbruck, Vice Rectorate for Research.
-PU  - IEEE-INST ELECTRICAL ELECTRONICS ENGINEERS INC
-PI  - PISCATAWAY
-PA  - 445 HOES LANE, PISCATAWAY, NJ 08855-4141 USA
-SN  - 2169-3536
-J9  - IEEE ACCESS
-JI  - IEEE Access
-PY  - 2022
-VL  - 10
-SP  - 23700
-EP  - 23707
-DO  - 10.1109/ACCESS.2022.3148206
-WE  - Science Citation Index Expanded (SCI-EXPANDED)AN  - WOS:000766578000001
-N1  - Times Cited in Web of Science Core Collection:  4
-Total Times Cited:  4
-Cited Reference Count:  40
-ER  -
-
-TY  - JOUR
-AU  - Quiñones, AVS
-AU  - Bustos, CE
-AU  - Perez, MV
-AU  - Peralta, DL
-AU  - Zañartu, N
-AU  - del Solar, JIV
-TI  - Metasynthesis Regarding the Sociocultural Adaptation of International University
-T2  - QUALITATIVE REPORT
-LA  - English
-KW  - international students
-KW  - metasynthesis
-KW  - review
-KW  - sociocultural adaptation
-KW  - university
-KW  - QUALITATIVE RESEARCH
-KW  - STUDENTS
-KW  - ACCULTURATION
-KW  - ADJUSTMENT
-KW  - EXPERIENCE
-KW  - FOREIGN
-AB  - This study centers on the sociocultural adaptation experience of international students in academic life and daily life. Responses to the guiding question of what differences and similarities are discernible in the sociocultural adaptation processes that international university students experience in the university versus outside university in the receiving society. It presents a metasynthesis of 12 empirical studies that apply qualitative methodologies to the study of international university students' sociocultural adaptation, which were published in scientific journals indexed in Ebscohost, WOS and Scopus from January 2012 to March 2019. The metasynthesis results indicate that sociocultural adaption involves: (1) situations of shock that arise in the two environments of academic and daily life with specific challenges proper to each one, and (2) the deployment of varying intrapersonal and social resources in each context. Academic and daily life can be considered as necessarily linked to sociocultural adaptation given the compensatory function observed in relational dynamics of students as they move between the two settings. The emphasis of the research on presenting sociocultural adaptation as a primarily negative process, the theoretical implications of separating academic life from daily life, and the relevance of exploring the role of social networks in students' daily life are discussed.
-AD  - Univ Concepcion, Concepcion, ChileAD  - Univ Concepcion, Dept Psicol, Concepcion, ChileAD  - Univ Concepcion, Educ Management & Leadership, Concepcion, ChileAD  - Univ Concepcion, Dept Antropol, Concepcion, ChileC3  - Universidad de ConcepcionC3  - Universidad de ConcepcionC3  - Universidad de ConcepcionC3  - Universidad de ConcepcionFU  - National Agency for Research and Development, ANID/Scholarship National Doctoral Grant [21160306]; National Agency for Research and Development [ANID/FONDECYT 1201681]
-FX  - This work was funded by the National Agency for Research and Development, ANID/Scholarship National Doctoral Grant [21160306]. This work was also partially funded by the National Agency for Research and Development, ANID/FONDECYT 1201681, Teaching/Learning Methodologies of Research Practices in Psychology in Latin America and Spain. The authors wish to thank Elizabeth Ann Medina for her work on the English translation of this report.
-PU  - NOVA SOUTHEASTERN UNIV
-PI  - FORT LAUDERDALE-DAVIE
-PA  - 3301 COLLEGE AVE, FORT LAUDERDALE-DAVIE, FL 33314 USA
-SN  - 1052-0147
-SN  - 2160-3715
-J9  - QUAL REP
-JI  - Qual. Rep.
-DA  - MAY
-PY  - 2021
-VL  - 25
-IS  - 5
-SP  - 1567
-EP  - 1600
-C7  - 12
-DO  - 10.46743/2160-3715/2021.4623
-WE  - Emerging Sources Citation Index (ESCI)AN  - WOS:000659001800004
-N1  - Times Cited in Web of Science Core Collection:  0
-Total Times Cited:  0
-Cited Reference Count:  56
-ER  -
 
