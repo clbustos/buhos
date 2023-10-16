@@ -86,6 +86,7 @@ module BibliographicalImporter
     # Year of publishing
     attr_accessor  :year
     attr_accessor  :volume
+    attr_accessor  :issue
     attr_accessor  :pages
 
     attr_accessor  :type

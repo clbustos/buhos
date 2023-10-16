@@ -30,9 +30,87 @@
 #
 module BibliographicalImporter
   # Process CSV.
-  # @todo Only support for RefWorks. We need a flexible parser
   module CSV
 
+    # A flexible parser for CSV. Works for Bsv and Scielo
+    class Record_Generic
+      include ReferenceMethods
+      include BibliographicalImporter::CommonRecordAttributes
+
+      attr_reader :row
+
+      STANDARD_FIELDS={
+        "ID"=>:uid,
+        "Title"=>:title,
+        "Authors"=>:authors_parse,
+        "Author(s)"=>:authors_parse,
+        "Journal"=>:journal,
+        "Publication year"=>:year,
+        "Keyword(s)"=>:keywords_parse,
+        "Fulltext URL"=>:url,
+        "Abstract"=>:abstract,
+        "Volume number"=>:volume,
+        "Issue number"=>:issue,
+        "DOI"=>:doi}
+
+      def self.create(row)
+        BibliographicalImporter::CSV::Record_Generic.new(row)
+      end
+
+      def initialize(row_value)
+        @row=row_value
+        @authors=[]
+        parse_common
+      end
+
+      def authors_parse=(author_string)
+        if author_string.include? ";"
+          @authors=author_string.split(";").map {|v| v.strip}
+        elsif author_string.include? ","
+          @authors=author_string.split(",").map {|v| v.strip}
+        end
+      end
+      def keywords_parse=(keyword_string)
+        @keywords=keyword_string
+      end
+
+      def parse_common
+        ##$log.info(@row)
+        begin
+          require 'digest'
+
+          @type="generic"
+          STANDARD_FIELDS.each_pair do |field, met|
+            if !row[field.to_s].nil?
+              self.send("#{met}=".to_sym, row[field.to_s].strip)
+            elsif !row["#{field} "].nil?
+              self.send("#{met}=".to_sym, row["#{field} "].strip)
+            end
+          end
+          if @uid.nil?
+            @uid=Digest::SHA256.hexdigest "#{author}-#{@year}-#{@title}"
+          end
+        rescue Exception => e
+          #$log.info("Error:#{row}")
+          raise e
+        end
+
+      end
+
+      def author
+        @authors.join(" and ")
+      end
+
+      # Determine the type of the reference. It could be inferred by fields
+      def cited_references
+        nil
+      end
+
+
+      def strip_lines(value)
+        value.to_s.gsub(/\n\s*/, ' ')
+      end
+    end
 
 
     class Record_Refworks
@@ -133,7 +211,7 @@ module BibliographicalImporter
         if base=="refworks"
           @records=@csv.map {|r| BibliographicalImporter::CSV::Record_Refworks.create(r)}
         else
-          raise "TODO"
+          @records=@csv.map {|r| BibliographicalImporter::CSV::Record_Generic.create(r)}
         end
       end
     end
