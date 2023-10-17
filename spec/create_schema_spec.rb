@@ -18,8 +18,8 @@ describe 'Buhos::SchemaCreation' do
     it "create 20 categories" do
       expect(db["SELECT * FROM sr_taxonomy_categories"].all.count).to eq(20)
     end
-    it "create 10 bibliographic databases" do
-      expect(db["SELECT * FROM bibliographic_databases"].all.count).to eq(10)
+    it "create correct number of  bibliographic databases" do
+      expect(db["SELECT * FROM bibliographic_databases"].all.count).to eq(Buhos::SchemaCreation::BIBLIOGRAPHICAL_DATABASES.length)
     end
   end
   context '#create_db_from_scratch applied twice' do
@@ -44,8 +44,8 @@ describe 'Buhos::SchemaCreation' do
       expect(db["SELECT * FROM sr_taxonomy_categories"].all.count).to eq(20)
     end
 
-    it "create 10 bibliographic databases" do
-      expect(db["SELECT * FROM bibliographic_databases"].all.count).to eq(10)
+    it "create correct bibliographic databases" do
+      expect(db["SELECT * FROM bibliographic_databases"].all.count).to eq(Buhos::SchemaCreation::BIBLIOGRAPHICAL_DATABASES.length)
     end
   end
 

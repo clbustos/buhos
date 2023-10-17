@@ -49,6 +49,9 @@ module Buhos
               "sr_###_bib_references",
               "sr_###_cd_id"]
 
+    BIBLIOGRAPHICAL_DATABASES=["scopus", "wos", "scielo", "ebscohost", "refworks", "ieee", "generic", "pubmed", "lilacs", "proquest",
+     "bvs"]
+
     # Create a usable db to work on Buhos
     # @param db_url a [String] with a connection that Sequel.connect understand, or a Sequel::Database
     # @param language used to assign default language for users
@@ -405,7 +408,7 @@ module Buhos
     end
     # Insert data for bibliographic databases
     def self.insert_bib_db_data(db)
-      ["scopus", "wos", "scielo", "ebscohost", "refworks", "ieee", "generic", "pubmed", "lilacs", "proquest"].each do |bib_db|
+      BIBLIOGRAPHICAL_DATABASES.each do |bib_db|
         bib_db_o=db[:bibliographic_databases][:name=>bib_db]
         db[:bibliographic_databases].insert(:name => bib_db) unless bib_db_o
       end
@@ -426,12 +429,15 @@ module Buhos
       end
     end
     def self.allocate_authorizations_to_roles(db)
-      analyst_permits = ['review_view', 'review_analyze', 'message_view', 'message_edit', 'search_view', 'search_edit', 'record_view', 'record_edit', 'reference_view', 'reference_edit', 'file_view', 'canonical_document_view', 'group_view']
+      analyst_permits = ['review_view', 'review_analyze', 'message_view', 'message_edit', 'search_view', 'search_edit',
+                         'record_view', 'record_edit', 'reference_view', 'reference_edit', 'file_view',
+                         'canonical_document_view', 'group_view']
       analyst_permits.each do |auth|
         db[:authorizations_roles].replace(:authorization_id => auth, :role_id => 'analyst') if db[:authorizations_roles].where(:authorization_id => auth, :role_id => 'analyst').count==0
        end
 
-      guest_permits = ['review_view', 'message_view', 'message_edit', 'search_view', 'record_view', 'reference_view', 'file_view', 'canonical_document_view', 'group_view']
+      guest_permits = ['review_view', 'message_view', 'message_edit', 'search_view', 'record_view',
+                       'reference_view', 'file_view', 'canonical_document_view', 'group_view']
       guest_permits.each do |auth|
         db[:authorizations_roles].replace(:authorization_id => auth, :role_id => 'guest') if db[:authorizations_roles].where(:authorization_id => auth, :role_id => 'guest').count==0
       end
