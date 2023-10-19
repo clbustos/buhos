@@ -191,7 +191,18 @@ get '/review/:rev_id/administration/:stage/cd_assignations' do |rev_id, stage|
   @cds_id=@review.cd_id_by_stage(stage)
   @ars=AnalysisSystematicReview.new(@review)
   @stage=stage
-  @cds=CanonicalDocument.where(:id=>@cds_id).order(:author)
+
+  @url="/review/#{rev_id}/administration/#{stage}/cd_assignations"
+
+
+
+  @cds_pre=CanonicalDocument.where(:id=>@cds_id) #.order(:author)
+
+  @pager=get_pager
+  @pager.order||="title__asc"
+  @order_criteria={:title=>I18n.t(:Title), :year=> I18n.t(:Year), :author=>I18n.t(:Author)}
+  @cds=@pager.adapt_cds(@cds_pre)
+
   @type="all"
   haml "systematic_reviews/cd_assignations_to_user".to_sym, escape_html: false
 end

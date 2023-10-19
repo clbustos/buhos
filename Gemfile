@@ -52,6 +52,7 @@ group :production do
 end
 group :development do
   gem 'pkgr'
+  gem 'rubocop'
   gem 'yard', :require => false
   gem 'yard-sinatra', :require => false
   gem 'pry'

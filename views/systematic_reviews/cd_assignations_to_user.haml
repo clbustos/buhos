@@ -59,8 +59,13 @@
 
 %h3=t("systematic_review_page.cd_assignations_by_cd").to_sym
 
+=partial(:pager_order, :locals=>{:order_criteria=>@order_criteria, :pager=>@pager, :url=>@url, :extra=>{query:@pager.query}})
+
+=partial(:pager, :locals=>{url: @url, pager: @pager})
+
+%p
 
 - @cds.each do |cd|
-  %div{:class=>"panel panel-default"}
+  %div.panel.panel-default
     =partial(:canonical_document_description, :locals=>{review: @review, cd: cd, ars:@ars})
     =partial(:canonical_document_assignations, :locals=>{review: @review, cd: cd, stage:@stage})
