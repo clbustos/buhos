@@ -112,7 +112,7 @@ module Buhos
           String :objectives, :text => true
           Integer :year_start
           Integer :year_end
-          String :keywords, :size => 255
+          String :keywords, :text =>true
           foreign_key :group_id, :groups, :null => false, :key => [:id]
           foreign_key :sr_administrator, :users, :key => [:id]
           TrueClass :active, :default => true, :null => false
