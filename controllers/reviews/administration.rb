@@ -182,30 +182,7 @@ end
 
 # @!group Allocation of canonical documents to users
 
-# List of allocations of canonical documents to users
-get '/review/:rev_id/administration/:stage/cd_assignations' do |rev_id, stage|
-  halt_unless_auth_any('review_admin', 'review_admin_view')
-  @review=SystematicReview[rev_id]
-  raise Buhos::NoReviewIdError, rev_id if !@review
 
-  @cds_id=@review.cd_id_by_stage(stage)
-  @ars=AnalysisSystematicReview.new(@review)
-  @stage=stage
-
-  @url="/review/#{rev_id}/administration/#{stage}/cd_assignations"
-
-
-
-  @cds_pre=CanonicalDocument.where(:id=>@cds_id) #.order(:author)
-
-  @pager=get_pager
-  @pager.order||="title__asc"
-  @order_criteria={:title=>I18n.t(:Title), :year=> I18n.t(:Year), :author=>I18n.t(:Author)}
-  @cds=@pager.adapt_cds(@cds_pre)
-
-  @type="all"
-  haml "systematic_reviews/cd_assignations_to_user".to_sym, escape_html: false
-end
 
 
 
@@ -325,16 +302,52 @@ end
 # List of all canonical documents without allocation
 # to users
 
+# List of allocations of canonical documents to users
+get '/review/:rev_id/administration/:stage/cd_assignations' do |rev_id, stage|
+  halt_unless_auth_any('review_admin', 'review_admin_view')
+  @review=SystematicReview[rev_id]
+  raise Buhos::NoReviewIdError, rev_id if !@review
+
+  @cds_id=@review.cd_id_by_stage(stage)
+  @ars=AnalysisSystematicReview.new(@review)
+  @stage=stage
+
+  @url="/review/#{rev_id}/administration/#{stage}/cd_assignations"
+
+
+
+  @cds_pre=CanonicalDocument.where(:id=>@cds_id) #.order(:author)
+
+  @pager=get_pager
+  @pager.order||="title__asc"
+  @order_criteria={:title=>I18n.t(:Title), :year=> I18n.t(:Year), :author=>I18n.t(:Author)}
+  @cds=@pager.adapt_cds(@cds_pre)
+
+  @type="all"
+  haml "systematic_reviews/cd_assignations_to_user".to_sym, escape_html: false
+end
+
 
 get '/review/:rev_id/administration/:stage/cd_without_allocations' do |rev_id, stage|
   halt_unless_auth_any('review_admin', 'review_admin_view')
   @review=SystematicReview[rev_id]
   raise Buhos::NoReviewIdError, rev_id if !@review
+
   @ars=AnalysisSystematicReview.new(@review)
+  @cds_id=@ars.cd_without_allocations(stage).map {|cd|cd[:id]}
 
   @stage=stage
-  @cds=@ars.cd_without_allocations(stage).order(:author)
+
+  @cds_pre=CanonicalDocument.where(:id=>@cds_id) #.order(:author)
+
+  @pager=get_pager
+  @pager.order||="title__asc"
+  @order_criteria={:title=>I18n.t(:Title), :year=> I18n.t(:Year), :author=>I18n.t(:Author)}
+
+  @cds=@pager.adapt_cds(@cds_pre)
   @type="without_allocation"
+
+
   haml "systematic_reviews/cd_assignations_to_user".to_sym , escape_html: false
 end
 
