@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: ~/circleci-demo-ruby-sinatra
     docker:
-      - image: cimg/ruby:2.7.5-browsers
+      - image: cimg/ruby:3.2.2-browsers
         environment:
           TESTOPTS: "--ci-dir=/tmp/test-results"
           APP_ENV: test
