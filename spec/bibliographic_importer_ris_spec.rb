@@ -75,7 +75,7 @@ describe 'BibliographicalImporter::Ris' do
     it "should be a  Ris::Record" do
       expect(@bib.records[0]).to be_instance_of(BibliographicalImporter::Ris::Record)
     end
-    it "should retrieve 5 articles" do
+    it "should retrieve 2 articles" do
       expect(@bib.records.length).to eq(2)
     end
     it "author should include " do
@@ -95,6 +95,38 @@ describe 'BibliographicalImporter::Ris' do
     it "both DOI should be correct " do
       expect(@bib[0].doi).to eq("10.1016/j.cose.2023.103170")
       expect(@bib[1].doi).to eq("10.1109/TLA.2022.9885164")
+
+    end
+  end
+
+
+  context "using Ebscohost Ris" do
+    before(:context) do
+      @bib=BibliographicalImporter::Ris::Reader.parse( read_fixture("ebscohost.ris") )
+    end
+    it "should be a  Ris::Record" do
+      expect(@bib.records[0]).to be_instance_of(BibliographicalImporter::Ris::Record)
+    end
+    it "should retrieve 2 articles" do
+      expect(@bib.records.length).to eq(2)
+    end
+    it "author should include " do
+      %w{Landis}.each do |author|
+        expect(@bib[1].author).to include author
+      end
+    end
+    it "authors should be 9" do
+      expect(@bib[0].authors.count).to eq(9)
+    end
+    it "title should be correct" do
+      expect(@bib[0].title.include? "A Culturally Adapted Intervention").to be_truthy
+    end
+    it "year should be 2019" do
+      expect(@bib[0].year).to eq("2019")
+    end
+    it "both DOI should be correct " do
+      expect(@bib[0].doi).to eq("10.1111/famp.12381")
+      expect(@bib[1].doi).to eq("10.1080/01609513.2020.1811014")
 
     end
   end

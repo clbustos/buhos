@@ -84,8 +84,6 @@ module BibliographicalImporter
           elsif @record["T1"]
             @title=get_string('T1')
           end
-          @abstract=
-
           @abstract=get_string("AB")
           @author=get_string("AU", " ; ")
           @authors=@record["AU"]
@@ -95,12 +93,33 @@ module BibliographicalImporter
             @journal=get_string('JF')
           end
 
-          @year=get_string("PY")
+          if @record['Y1']
+            parts_date=get_string('Y1').split("/")
+            @year=parts_date[0]
+          elsif @record['PY']
+            @year=get_string("PY")
+          end
+
           @volume=get_string("VL")
           @pages="#{get_string("SP")}-#{get_string("EP")}"
-          @doi=get_string("DO")
+
+
+          if @record['DO']
+            @doi=get_string("DO")
+          elsif @record['DI']
+            @doi=get_string("DI")
+          end
+
           @keywords=get_string("KW")
           @journal_abbr=get_string("JF")
+
+          if @record['L3']
+            l3=get_string('L3')
+            if l3=~/^10\./ and @doi.nil?
+              @doi=l3
+            end
+            @url=l3
+          end
 
           @uid=Digest::SHA256.hexdigest "#{get_string("AU")}-#{@year}-#{@title}"
         rescue Exception => e
