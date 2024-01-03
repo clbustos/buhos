@@ -199,6 +199,67 @@ describe 'BibliographicalImporter::BibTeX' do
   end
 
 
+  context "when a broken WoS BibTeX (2) is used" do
+    def text
+      read_fixture("wos_wrong_2.bib")
+    end
+    before(:context) do
+      @bib=BibliographicalImporter::BibTex::Reader.parse(text)
+    end
+    it "should retrieve 2 article" do
+      expect(@bib.records.length).to eq(2)
+    end
+    it "no title should be excluded" do
+      titulos=text.each_line.inject([]) {|ac,v|
+        if v=~/^title=\{(.+?)\}/
+          ac.push($1)
+        end
+        ac
+      }
+      h=@bib.records.find_all do |record|
+        !record.title.nil?
+      end
+
+      expect((titulos-h.map {|v| v.title})).to eq([])
+    end
+    it "no author should be excluded" do
+      author=text.each_line.inject([]) {|ac,v|
+        if v=~/^author=\{(.+?)\}/
+          ac.push($1)
+        end
+        ac
+      }
+      h=@bib.records.find_all do |record|
+        !record.author.nil?
+      end
+
+      expect((author-h.map {|v| v.author})).to eq([])
+    end
+  end
+
+  context "when a erroneus Ebscohost is used" do
+    def text
+      read_fixture("EBSCO_wrong_2.bib")
+    end
+    before(:context) do
+      @bib=BibliographicalImporter::BibTex::Reader.parse(text)
+    end
+    it "should retrieve 1 article" do
+      expect(@bib.records.length).to eq(1)
+    end
+
+    it "title should be correct" do
+      expect(@bib.records[0].title).to include("La labor docente de las profesoras")
+    end
+
+    it "year should be correct" do
+      expect(@bib.records[0].year).to eq("2023")
+    end
+    it "volume should be correct" do
+      expect(@bib.records[0].volume).to eq("50")
+    end
+  end
+
 
   context "using auto-generated BibTeX" do
     before(:context) do

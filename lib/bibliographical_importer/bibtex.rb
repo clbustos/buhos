@@ -79,6 +79,7 @@ module BibliographicalImporter
         parse_specific
         check_title
         check_journal
+        check_year
       end
 
       def parse_common
@@ -112,6 +113,14 @@ module BibliographicalImporter
       def check_journal
         @journal=journal.gsub(/[\{\}]/,"")
       end
+      # Some ($$&#$%(#$#)) add a complete date on year field. Just remove all that is not a
+      # 4 digit sequence
+      def check_year
+        if year.include? "/"
+          @year=year.split("/")[0]
+        end
+      end
+
 
     end
 

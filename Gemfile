@@ -16,8 +16,8 @@ gem "rspec"
 gem "rack-test"
 gem 'bibtex-ruby'
 gem "unicode"
-gem 'levenshtein-ffi', :force_ruby_platform=>true , :require => 'levenshtein'
-#gem 'levenshtein-ffi', :require => 'levenshtein', :git => 'https://github.com/tosie/levenshtein-ffi.git'
+#gem 'levenshtein-ffi', :force_ruby_platform=>true , :require => 'levenshtein'
+gem 'levenshtein-ffi', :require => 'levenshtein', :git => 'https://github.com/remix/levenshtein-ffi.git'
 gem 'elsevier_api', :git => 'https://github.com/clbustos/elsevier_api.git'
 gem 'levenshtein'
 gem 'narray'
@@ -37,7 +37,7 @@ gem "certified", :platforms => :mingw
 gem 'simple_xlsx_reader'
 gem 'caxlsx'
 gem 'tf-idf-similarity'
-gem 'ref_parsers'
+gem 'ref_parsers', :git=>'https://github.com/kariem2k/ref_parsers.git'
 
 #gem 'rubyXL'
 gem 'ai4r'

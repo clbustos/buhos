@@ -17,6 +17,19 @@ GIT
   specs:
     ruby-stemmer (3.0.0)
 
+GIT
+  remote: https://github.com/kariem2k/ref_parsers.git
+  revision: 2b0788b7982628e2375fa64bbd29160fdaf17887
+  specs:
+    ref_parsers (0.1.3)
+
+GIT
+  remote: https://github.com/remix/levenshtein-ffi.git
+  revision: 5e8dd3d1fa6cc797d6cea78ea142a333edda8d83
+  specs:
+    levenshtein-ffi (1.1.0)
+      ffi (~> 1.9)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -26,18 +39,15 @@ GEM
     arr-pm (0.0.12)
     ast (2.4.2)
     backports (3.24.1)
-    base64 (0.2.0)
     bibtex-ruby (6.0.0)
       latex-decode (~> 0.0)
-    bigdecimal (3.1.4)
+    bigdecimal (3.1.5)
     cabin (0.9.0)
     caxlsx (4.0.0)
       htmlentities (~> 4.3, >= 4.3.4)
       marcel (~> 1.0)
       nokogiri (~> 1.10, >= 1.10.4)
       rubyzip (>= 1.3.0, < 3)
-    chef-utils (18.3.0)
-      concurrent-ruby
     clamp (1.0.1)
     coderay (1.1.3)
     concurrent-ruby (1.2.2)
@@ -48,16 +58,32 @@ GEM
     docile (1.4.0)
     dotenv (2.8.1)
     eventmachine (1.2.7)
-    facter (4.5.1)
-      hocon (~> 1.3)
-      thor (>= 1.0.1, < 2.0)
-    faraday (2.7.11)
-      base64
-      faraday-net_http (>= 2.0, < 3.1)
+    facter (2.5.7)
+    faraday (1.10.3)
+      faraday-em_http (~> 1.0)
+      faraday-em_synchrony (~> 1.0)
+      faraday-excon (~> 1.1)
+      faraday-httpclient (~> 1.0)
+      faraday-multipart (~> 1.0)
+      faraday-net_http (~> 1.0)
+      faraday-net_http_persistent (~> 1.0)
+      faraday-patron (~> 1.0)
+      faraday-rack (~> 1.0)
+      faraday-retry (~> 1.0)
       ruby2_keywords (>= 0.0.4)
-    faraday-follow_redirects (0.1.0)
-      faraday (>= 2, < 3)
-    faraday-net_http (3.0.2)
+    faraday-em_http (1.0.0)
+    faraday-em_synchrony (1.0.0)
+    faraday-excon (1.1.0)
+    faraday-httpclient (1.0.1)
+    faraday-multipart (1.0.4)
+      multipart-post (~> 2)
+    faraday-net_http (1.0.1)
+    faraday-net_http_persistent (1.2.0)
+    faraday-patron (1.0.0)
+    faraday-rack (1.0.0)
+    faraday-retry (1.0.3)
+    faraday_middleware (1.2.0)
+      faraday (~> 1.0)
     ffi (1.16.3)
     fpm (1.15.1)
       arr-pm (~> 0.0.11)
@@ -67,22 +93,19 @@ GEM
       pleaserun (~> 0.0.29)
       rexml
       stud
-    haml (6.2.3)
+    haml (6.3.0)
       temple (>= 0.8.2)
       thor
       tilt
     hashery (2.1.2)
-    hocon (1.4.0)
     htmlentities (4.3.4)
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
     insist (1.0.0)
-    json (2.6.3)
+    json (2.7.1)
     language_server-protocol (3.17.0.3)
     latex-decode (0.4.0)
     levenshtein (0.2.2)
-    levenshtein-ffi (1.1.0)
-      ffi (~> 1.9)
     mail (2.8.1)
       mini_mime (>= 0.1.1)
       net-imap
@@ -95,26 +118,26 @@ GEM
       rake
     mini_mime (1.1.5)
     mini_portile2 (2.8.5)
-    mixlib-log (3.0.9)
-    mixlib-shellout (3.2.7)
-      chef-utils
+    mixlib-log (1.7.1)
+    mixlib-shellout (1.6.1)
     moneta (1.6.0)
     multi_json (1.15.0)
+    multipart-post (2.3.0)
     mustache (0.99.8)
     mustermann (3.0.0)
       ruby2_keywords (~> 0.0.1)
-    mutant (0.11.24)
+    mutant (0.11.26)
       diff-lcs (~> 1.3)
       parser (~> 3.2.2, >= 3.2.2.4)
       regexp_parser (~> 2.8.2)
       sorbet-runtime (~> 0.5.0)
       unparser (~> 0.6.9)
-    mutant-rspec (0.11.24)
-      mutant (= 0.11.24)
+    mutant-rspec (0.11.26)
+      mutant (= 0.11.26)
       rspec-core (>= 3.8.0, < 4.0.0)
     mysql2 (0.5.5)
     narray (0.6.1.2)
-    net-imap (0.4.4)
+    net-imap (0.4.8)
       date
       net-protocol
     net-pop (0.1.2)
@@ -123,10 +146,10 @@ GEM
       timeout
     net-smtp (0.4.0)
       net-protocol
-    nokogiri (1.15.4)
+    nokogiri (1.15.5)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
-    parallel (1.23.0)
+    parallel (1.24.0)
     parser (3.2.2.4)
       ast (~> 2.4.1)
       racc
@@ -136,13 +159,13 @@ GEM
       hashery (~> 2.0)
       ruby-rc4
       ttfunk
-    pkgr (1.4.0)
-      facter
-      fpm
-      mixlib-log
-      mixlib-shellout
-      rake
-      thor
+    pkgr (1.9.0)
+      facter (~> 2.1)
+      fpm (~> 1.1)
+      mixlib-log (~> 1.6)
+      mixlib-shellout (~> 1.4)
+      rake (~> 12.2.1)
+      thor (~> 0.19)
     pleaserun (0.0.32)
       cabin (> 0)
       clamp
@@ -161,9 +184,8 @@ GEM
     rack-test (2.1.0)
       rack (>= 1.3)
     rainbow (3.1.1)
-    rake (13.1.0)
-    ref_parsers (0.2.2)
-    regexp_parser (2.8.2)
+    rake (12.2.1)
+    regexp_parser (2.8.3)
     rexml (3.2.6)
     rspec (3.12.0)
       rspec-core (~> 3.12.0)
@@ -178,7 +200,7 @@ GEM
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.12.0)
     rspec-support (3.12.1)
-    rubocop (1.57.2)
+    rubocop (1.59.0)
       json (~> 2.3)
       language_server-protocol (>= 3.17.0)
       parallel (~> 1.10)
@@ -186,7 +208,7 @@ GEM
       rainbow (>= 2.2.2, < 4.0)
       regexp_parser (>= 1.8, < 3.0)
       rexml (>= 3.2.5, < 4.0)
-      rubocop-ast (>= 1.28.1, < 2.0)
+      rubocop-ast (>= 1.30.0, < 2.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 2.4.0, < 3.0)
     rubocop-ast (1.30.0)
@@ -197,14 +219,13 @@ GEM
     rubyzip (2.3.2)
     sassc (2.4.0)
       ffi (~> 1.9)
-    sequel (5.74.0)
+    sequel (5.75.0)
       bigdecimal
-    serrano (1.4)
-      faraday (~> 2.2)
-      faraday-follow_redirects (~> 0.1.0)
-      multi_json (~> 1.15)
-      rexml (~> 3.2, >= 3.2.5)
-      thor (~> 1.2, >= 1.2.1)
+    serrano (0.6.2)
+      faraday (~> 1.0, >= 1.0.1)
+      faraday_middleware (~> 1.0)
+      multi_json (~> 1.13, >= 1.13.1)
+      thor (>= 0.20, < 1.1)
     simple_xlsx_reader (5.0.0)
       nokogiri
       rubyzip
@@ -219,19 +240,19 @@ GEM
       rack (~> 2.2, >= 2.2.4)
       rack-protection (= 3.1.0)
       tilt (~> 2.0)
-    sorbet-runtime (0.5.11120)
-    sqlite3 (1.6.8)
+    sorbet-runtime (0.5.11158)
+    sqlite3 (1.6.9)
       mini_portile2 (~> 2.8.0)
     stud (0.0.23)
     temple (0.10.3)
-    test-prof (1.2.3)
+    test-prof (1.3.1)
     tf-idf-similarity (0.2.0)
       unicode_utils (~> 1.4)
     thin (1.8.2)
       daemons (~> 1.0, >= 1.0.9)
       eventmachine (~> 1.0, >= 1.0.4)
       rack (>= 1, < 3)
-    thor (1.3.0)
+    thor (0.20.3)
     tilt (2.3.0)
     timeout (0.4.1)
     treetop (1.6.12)
@@ -250,6 +271,7 @@ GEM
       rubyzip (>= 1.0.0)
 
 PLATFORMS
+  ruby
   x86_64-linux
 
 DEPENDENCIES
@@ -264,7 +286,7 @@ DEPENDENCIES
   i18n
   json
   levenshtein
-  levenshtein-ffi
+  levenshtein-ffi!
   mail
   mimemagic
   moneta
@@ -280,7 +302,7 @@ DEPENDENCIES
   rack
   rack-test
   rake
-  ref_parsers
+  ref_parsers!
   rspec
   rubocop
   ruby-stemmer!
@@ -302,4 +324,4 @@ DEPENDENCIES
   zip-zip
 
 BUNDLED WITH
-   2.3.26
+   2.5.1
