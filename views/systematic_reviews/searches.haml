@@ -45,7 +45,7 @@
             %th=t(:Records)
           %tbody
             - @searches.each do |g|
-              - auth_on_search=g.user_id==@user.id or auth_to("review_admin")
+              - auth_on_search = auth_to("review_admin")  or g.user_id==@user.id or review_belongs_to(@review.id, @user.id)
               %tr{:id=>"row-search-#{g.id}"}
                 %td
                   -if auth_on_search

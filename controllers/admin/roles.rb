@@ -1,6 +1,6 @@
 # Buhos
 # https://github.com/clbustos/buhos
-# Copyright (c) 2016-2023, Claudio Bustos Navarrete
+# Copyright (c) 2016-2024, Claudio Bustos Navarrete
 # All rights reserved.
 # Licensed BSD 3-Clause License
 # See LICENSE file for more information
