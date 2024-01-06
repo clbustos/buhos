@@ -7,11 +7,13 @@ require 'i18n'
 options = { :host => 'localhost',
             :user => 'buhos',
             :password => 'password',
+            'password_root' =>'password',
             :database => 'buhos_db',
             :port => '3306',
             :basedir => Dir.pwd,
             :language => 'en',
             :reset => false}
+
 
 
 
@@ -27,6 +29,10 @@ OptionParser.new do |opts|
   opts.on("-pPASSWORD", "--password=PASSWORD", "Password") do |v|
     options[:password] = v
   end
+  opts.on("-tPASSWORDROOT","--root_password=PASSWORDROOT","Root password") do |v|
+    options[:root_password]=v
+  end
+
 
   opts.on("-Ddatabase", "--database=DATABASE", "Database to use") do |v|
     options[:database] = v.chomp
@@ -63,27 +69,31 @@ env_file = File.join(path, ".env")
 
 if options[:reset]
   require 'mysql2'
-  client = Mysql2::Client.new(:host => options[:host], :username => "root", :port => options[:port])
+  client = Mysql2::Client.new(:host => options[:host], :username => "root", :port => options[:port],
+                              :password=>options[:root_password])
   database_escaped = client.escape(options[:database])
 
-  client.query "DROP DATABASE #{database_escaped}"
+  client.query "DROP DATABASE IF EXISTS #{database_escaped}"
   client.query "CREATE DATABASE #{database_escaped}"
   client.close
-end
+
 
 unless File.exist?(env_file)
   require 'mysql2'
-  client = Mysql2::Client.new(:host => options[:host], :username => "root", :port => options[:port])
+  client = Mysql2::Client.new(:host => options[:host], :username => "root", :port => options[:port], :password=>options[:root_password])
   user_escaped = client.escape(options[:user])
   host_escaped = client.escape(options[:host])
 
   password_escaped = client.escape(options[:password])
   database_escaped = client.escape(options[:database])
 
+  puts client.query("DROP USER '#{user_escaped}'@'#{host_escaped}'")
+  puts client.query("flush privileges")
   puts client.query("CREATE USER '#{user_escaped}'@'#{host_escaped}' IDENTIFIED BY '#{password_escaped}'")
-  puts client.query("CREATE DATABASE #{database_escaped}")
+  puts client.query("CREATE DATABASE IF NOT EXISTS #{database_escaped}")
   puts client.query("GRANT ALL PRIVILEGES ON #{database_escaped}.* TO '#{user_escaped}'@'#{host_escaped}';")
   client.close
+
 
   connection_string = sprintf("DATABASE_URL=%s://%s:%s@%s:%d/%s", "mysql2", user_escaped, password_escaped, host_escaped,
                               options[:port], database_escaped)
