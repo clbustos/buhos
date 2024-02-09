@@ -123,7 +123,7 @@ describe 'Files:' do
     it "should return correct html" do
       get '/ViewerJS/index.html'
       expect(last_response).to be_ok
-      expect(last_response.body).to include("This file is the compiled version of the ViewerJS module")
+      expect(last_response.body).to include("This file is part of ViewerJS")
     end
   end
 
