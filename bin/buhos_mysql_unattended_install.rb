@@ -77,7 +77,7 @@ if options[:reset]
   client.query "CREATE DATABASE #{database_escaped}"
   client.close
 
-
+end
 unless File.exist?(env_file)
   require 'mysql2'
   client = Mysql2::Client.new(:host => options[:host], :username => "root", :port => options[:port], :password=>options[:root_password])
@@ -87,7 +87,7 @@ unless File.exist?(env_file)
   password_escaped = client.escape(options[:password])
   database_escaped = client.escape(options[:database])
 
-  puts client.query("DROP USER '#{user_escaped}'@'#{host_escaped}'")
+  puts client.query("DROP USER IF EXISTS '#{user_escaped}'@'#{host_escaped}'")
   puts client.query("flush privileges")
   puts client.query("CREATE USER '#{user_escaped}'@'#{host_escaped}' IDENTIFIED BY '#{password_escaped}'")
   puts client.query("CREATE DATABASE IF NOT EXISTS #{database_escaped}")
@@ -151,7 +151,7 @@ config_dir=File.join(path, "config")
 installed_file = File.join(path, "config", "installed")
 
 unless File.exist? installed_file
-  Dir.mkdir config_dir unless File.exists? config_dir
+  Dir.mkdir config_dir unless File.exist? config_dir
   File.chown(owner_uid, group_gid, config_dir)
   File.open(installed_file, "w") { |file| file.puts "Installed on #{DateTime.now()}" }
   File.chown(owner_uid, group_gid, installed_file)
