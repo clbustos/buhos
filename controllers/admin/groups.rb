@@ -27,8 +27,16 @@ end
 
 get '/group/new' do
   halt_unless_auth('group_admin')
-  @group={:id=>"NA",:description=>"",:group_administrator=>nil}
+  Group_I = Struct.new(:id, :name, :description, :group_administrator)
+  @group   = Group_I.new('NA',
+                         params['name'],
+                         params['description'],
+                         params['admin_id']
+  )
   @users_id=[]
+  if params['users']
+    @users_id=params['users'].map {|v| v.to_i}
+  end
   haml "groups/edit".to_sym, escape_html: false
 end
 
@@ -64,20 +72,51 @@ post '/group/update' do
 
   id=params['group_id']
   name=params['name']
-
+  error=false
   if name.chomp==""
     add_message(t(:group_without_name), :error)
-    redirect back
+    error=true
   end
   description=params['description']
+  if description.chomp==""
+    add_message(t(:group_without_description), :error)
+    error=true
+  end
 
-  administrador=params['group_administrator']
+  admin_id=params['group_administrator']
   users=params['users'] ? params['users'].keys : []
+  if users.length==0
+    add_message(t(:group_without_users), :error)
+    error=true
+  end
+
+
+  if not users.include? admin_id
+    add_message(t(:group_should_include_admin_as_user), :error)
+    error=true
+  end
+
+  if error
+    if id=="NA"
+      new_params={
+        name:name,
+        description:description,
+        admin_id:admin_id,
+        "users[]"=>users
+      }
+      uri = URI.parse(url("group/new"))
+      uri.query=URI.encode_www_form(new_params)
+      redirect to(uri)
+    else
+      redirect back
+    end
+  end
+
   if id=="NA"
-    group=Group.create(:name=>name,:description=>description, :group_administrator=>administrador)
+    group=Group.create(:name=>name,:description=>description, :group_administrator=>admin_id)
     id=group.id
   else
-    Group[id].update(:name=>name,:description=>description, :group_administrator=>administrador)
+    Group[id].update(:name=>name,:description=>description, :group_administrator=>admin_id)
   end
   GroupsUser.where(:group_id=>id).delete()
   users.each {|u|
