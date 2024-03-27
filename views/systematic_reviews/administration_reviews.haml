@@ -5,6 +5,9 @@
   $(document).ready(function() {
     actualizar_resolution('#{@stage}');
     $('[data-toggle="popover"]').popover()
+
+
+
     }
 
   );
@@ -141,7 +144,7 @@
       %th.md-2=t(:Resolution)
     %tbody
       - bloque.each do |cd_id,vals|
-        %tr
+        %tr{:class=>"resolution_#{rpc[cd_id]}"}
           %td.md-5
             - if @ars.cd_hash[cd_id]
               = CGI::escapeHTML @ars.cd_hash[cd_id].ref_apa_6_brief
