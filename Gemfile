@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 #gem 'stackprof'
 #gem 'flamegraph'
 gem 'mail'
-gem 'rake'
+gem 'rake', ">=13.0.0"
 gem 'rack'
 gem "rubyzip",  ">= 1.3.0"
 gem 'zip-zip'

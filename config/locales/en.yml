@@ -1,4 +1,5 @@
 en:
+  Assign_to: "Assign to"
   error_deleting_canonical_documents: "Error on deleting canonical documents"
   removed_n_canonical_documents: "Removed %{n} canonical documents"
   Resolve_inconsistency: "Resolve inconsistency"
@@ -580,6 +581,7 @@ en:
     already_added_doi: "DOI %{doi} was already added to record %{record_id}"
     already_added_doi_on_cd: "The DOI %{doi} had been added to the canonical document %{cd_title}"
     assigned_doi_to_cd: "DOI %{doi} added in the canonical document %{cd_title}"
+  Reassign: "Reassign"
   Record_crossref_search: "Record search in Crossref"
   Record_crossref_search_instructions: "Search results of similar documents in Crossref are submitted. Press key 'Allocate DOI' if you consider that the Crossref record is the same as that obtained from the bibliographic database."
   Record_title: "Record"
@@ -826,6 +828,13 @@ en:
   Systematic_review_active_inactive: "Active / Inactive SR"
   Systematic_review_all_user: "SR user / all"
   systematic_review_page:
+    massive_reassignation_from_to: "Massive reassignation from user %{from} to user %{to}"
+    result_massive_reassignation_from_to: "Successful reassignation of %{assigned_number} of %{original_number}, from user %{user_from} to user %{user_to}"
+    should_assign_at_least_one_canonical_document: "Should assign at least one document"
+    cd_assigned_and_resolved: "Canonical documents assigned and resolved"
+    cd_assigned_and_not_resolved: "Canonical documents assigned and not resolved yet"
+    cd_assigned_and_not_resolved_list: "List of canonical documents assigned, but not resolved"
+    cd_reassignations: "Reassignations of Canonical Documents"
     cd_assignations_number: "A total of %{n} assignations were performed"
     cd_assignations_excel: "Assignation of canonical documents using Excel files"
     cd_assignations_batch: "Batch Assignation of canonical documents to users"

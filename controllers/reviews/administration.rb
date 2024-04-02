@@ -383,6 +383,70 @@ get '/review/:rev_id/stage/:stage/rem_assign_user/:user_id/:type' do |rev_id, st
   redirect back
 end
 
+get '/review/:rev_id/stage/:stage/reassign_user/:user_id' do |rev_id, stage, user_id|
+  halt_unless_auth('review_admin')
+  # Type doesn't have meaning here
+  @review=SystematicReview[rev_id]
+  raise Buhos::NoReviewIdError, rev_id if !@review
+  @user=User[user_id]
+  raise Buhos::NoUserIdError, user_id if !@user
+  @asr=::Analysis_SR_Stage.new(@review, stage)
+  @stage=stage
+
+  @cdid_abu=@asr.cd_id_assigned_by_user(user_id)
+
+  @resolved=@asr.cd_resolved_id
+
+  @assigned_not_resolved_id=@cdid_abu-@resolved
+  @cd_assigned_not_resolved=CanonicalDocument.where(id:@assigned_not_resolved_id).order_by(:year)
+
+
+  haml "systematic_reviews/cd_reassignations".to_sym , escape_html: false
+
+end
+
+post '/review/reassign_cd_to_user' do
+  rev_id=params['review_id']
+  @review=SystematicReview[rev_id]
+  raise Buhos::NoReviewIdError, rev_id if !@review
+  user_id_from=params['user_id_from']
+  @user_from=User[user_id_from]
+  raise Buhos::NoUserIdError, user_id_from if !@user_from
+
+  user_id_to=params['user_id_to']
+  @user_to=User[user_id_to]
+  raise Buhos::NoUserIdError, user_id_to if !@user_to
+
+  @stage=params['stage']
+  @asr=::Analysis_SR_Stage.new(@review, @stage)
+  @cdid_abu=@asr.cd_id_assigned_by_user(user_id_from)
+
+  @resolved=@asr.cd_resolved_id
+
+  @assigned_not_resolved_id=@cdid_abu-@resolved
+
+  if params['canonical_documents']
+    canonical_documents=params['canonical_documents'].keys.map {|v| v.to_i}
+    #$log.info(@assigned_not_resolved_id)
+    #$log.info(canonical_documents)
+    cds_id=@assigned_not_resolved_id & canonical_documents
+    result=AllocationCd.reassign_assignations(rev_id, @stage, user_id_from, user_id_to, cds_id,
+                                       ::I18n::t("systematic_review_page.massive_reassignation_from_to",
+                                                 from:user_id_from,
+                                                 to:user_id_to))
+    add_result(result)
+    redirect back
+
+  else
+    add_message(::I18n::t("systematic_review_page.should_assign_at_least_one_canonical_document"), :error)
+    redirect url("/review/#{rev_id}/stage/#{@stage}/reassign_user/#{user_id_from}")
+  end
+
+
+
+
+end
+
 
 # @!endgroup
 

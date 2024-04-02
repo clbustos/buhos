@@ -36,8 +36,8 @@ module Buhos
     def initialize(rs)
       @systematic_review=rs
     end
-    # Check the canonical documents that have resolutions,
-    # but no canonical_documents that support them
+    # Check resolutions that have no canonical_documents that support them
+    # Usually, could be the effect of  change the search after screening
     def resolutions_without_cd_support
 
       stages=[Buhos::Stages::STAGE_SCREENING_TITLE_ABSTRACT,

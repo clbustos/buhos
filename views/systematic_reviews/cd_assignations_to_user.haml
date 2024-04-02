@@ -42,20 +42,22 @@
       %th=t(:Count_canonical_documents_assigned)
       %th=t(:Actions)
     %tbody
-    -@review.group_users.each do |usuario|
-      - cd_id_assigned=@ars.cd_id_assigned_by_user(@stage,usuario[:id])
+    -@review.group_users.each do |user|
+      - cd_id_assigned=@ars.cd_id_assigned_by_user(@stage,user[:id])
       %tr
-        %td=usuario.name
+        %td=user.name
         %td=cd_id_assigned.count
         %td
           - add_disabled = cd_id_assigned.count==@cds.count ? "disabled":""
           - remove_disabled = cd_id_assigned.count==0 ? "disabled":""
-          %a{:href=>"/review/#{@review.id}/stage/#{@stage}/add_assign_user/#{usuario.id}/#{@type}",:class=>"btn btn-default #{add_disabled}"}
+          %a{:href=>"/review/#{@review.id}/stage/#{@stage}/add_assign_user/#{user.id}/#{@type}",:class=>"btn btn-default #{add_disabled}"}
             %span.glyphicon.glyphicon-hand-up
             =t(:Assign_all)
-          %a{:href=>"/review/#{@review.id}/stage/#{@stage}/rem_assign_user/#{usuario.id}/#{@type}",:class=>"btn btn-default #{remove_disabled}"}
+          %a{:href=>"/review/#{@review.id}/stage/#{@stage}/rem_assign_user/#{user.id}/#{@type}",:class=>"btn btn-default #{remove_disabled}"}
             %span.glyphicon.glyphicon-hand-down
             =t(:Remove_assign_all)
+          %a{:href=>"/review/#{@review.id}/stage/#{@stage}/reassign_user/#{user.id}",:class=>"btn btn-default #{remove_disabled}"}
+            =t(:Reassign)
 
 %h3=t("systematic_review_page.cd_assignations_by_cd").to_sym
 

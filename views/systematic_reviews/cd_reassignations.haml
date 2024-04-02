@@ -1,0 +1,68 @@
+%script
+  :plain
+    document.addEventListener('DOMContentLoaded', function() {
+      const allCanonicalDocumentCheckbox = document.getElementById('all_canonical_document');
+
+      // Get all checkboxes with the class "checkbox_select_cd"
+        const checkboxes = document.querySelectorAll('.checkbox_select_cd');
+
+        // Add an event listener to the "all_canonical_document" checkbox
+        allCanonicalDocumentCheckbox.addEventListener('change', function() {
+        // Loop through all checkboxes with the class "checkbox_select_cd"
+        checkboxes.forEach(function(checkbox) {
+        // Set the checked state of each checkbox to the same value as the "all_canonical_document" checkbox
+        checkbox.checked = allCanonicalDocumentCheckbox.checked;
+        });
+      });
+    });
+
+.heading
+  =t_systematic_review_title(@review[:name], t("systematic_review_page.cd_reassignations")+". "+t(:Stage_title, :stage_name=>t(get_stage_name(@stage))),false)
+
+%ul.breadcrumb
+  %li
+    %a{:href=>url("/reviews")}=t(:Systematic_reviews)
+  %li
+    %a{:href=>url("/review/#{@review[:id]}")}=@review[:name]
+  %li
+    %a{:href=>url("/review/#{@review[:id]}/stages_administration")}=t(:Administration)
+  %li
+    %a{:href=>url("/review/#{@review[:id]}/administration/#{@stage}")}=t(get_stage_name(@stage))
+  %li{:class=>:active}
+    =t("systematic_review_page.cd_reassignations")
+
+%p
+  =t_desc_value(:User, @user[:name])
+%p=t_desc_value("systematic_review_page.cd_assigned_and_resolved", @cdid_abu.length)
+%p=t_desc_value("systematic_review_page.cd_assigned_and_not_resolved", @assigned_not_resolved_id.length)
+%h3=t("systematic_review_page.cd_assigned_and_not_resolved_list")
+%form{:method=>:post, :action=>url("/review/reassign_cd_to_user")}
+  %input{:type=>"hidden", :name=>"user_id_from", value: @user[:id]}
+  %input{:type=>"hidden", :name=>"review_id", value: @review[:id]}
+  %input{:type=>"hidden", :name=>"stage", value: @stage}
+  %div{:class=>"form-group"}
+    %label=t(:Assign_to)
+    %select{:class=>'form-control', :id=>"user_to_assign_to", :name=>"user_id_to"}
+      - @review.group.users.each do |u|
+        - if u[:id]!=@user[:id]
+          %option{:value=>u.id}=u.name
+  %div{:class=>"form-group"}
+    %input.form-control.btn.btn-primary{:type=>:submit, :value=>t(:Reassign)}
+  %div{:class=>"form-group"}
+    %table.table
+      %tr
+        %th
+          %input{type:"checkbox", id:"all_canonical_document"}>
+          =t(:All)
+
+        %th=t(:Id)
+        %th=t(:Name)
+      %tbody
+        - @cd_assigned_not_resolved.each do |cd|
+          %tr
+            %td
+              %input{type:"checkbox", name:"canonical_documents[#{cd[:id]}]", class:"checkbox_select_cd"}
+            %td=cd[:id]
+            %td=cd.ref_apa_6
+
+
