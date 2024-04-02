@@ -115,7 +115,10 @@ class Analysis_SR_Stage
   def decisions_by_cd
     cds=@sr.cd_id_by_stage(@stage)
 
-    decisions=Decision.where(:systematic_review_id=>@sr.id, :canonical_document_id=>cds, :user_id=>@sr.group_users.map {|u| u[:id]}, :stage=>@stage.to_s).group_and_count(:canonical_document_id, :decision).all
+    decisions=Decision.where(:systematic_review_id=>@sr.id,
+                             :canonical_document_id=>cds,
+                             :user_id=>@sr.group_users.map {|u| u[:id]},
+                             :stage=>@stage.to_s).group_and_count(:canonical_document_id, :decision).all
     n_jueces_por_cd=AllocationCd.where(:systematic_review_id=>@sr.id, :canonical_document_id=>cds, :stage=>@stage.to_s).group_and_count(:canonical_document_id).as_hash(:canonical_document_id)
 
 
