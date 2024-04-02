@@ -7,10 +7,51 @@
     $('[data-toggle="popover"]').popover()
 
 
+    var toggleButton = document.getElementById('toggle-resolved');
+    var resolutionYesElements = document.querySelectorAll('.row-resolution-yes');
+    var resolutionNoElements = document.querySelectorAll('.row-resolution-no');
 
+    toggleButton.addEventListener('click', function() {
+      toggleVisibility(resolutionYesElements, resolutionNoElements);
+    });
+
+    function toggleVisibility(resolutionYesElements, resolutionNoElements) {
+      resolutionYesElements.forEach(function(element) {
+        if (isTableRow(element)) {
+          if(element.style.display != 'none') {
+            element.style.display = 'none';
+          } else {
+            element.style.display = 'table-row';
+          }
+        } else {
+          console.warn('Element is not a table row:', element);
+        }
+      });
+
+      resolutionNoElements.forEach(function(element) {
+        if (isTableRow(element)) {
+          if(element.style.display != 'none') {
+            element.style.display = 'none';
+          } else {
+            element.style.display = 'table-row';
+          }
+        } else {
+          console.warn('Element is not a table row:', element);
+        }
+      });
     }
 
-  );
+    function isTableRow(element) {
+      var currentElement = element;
+      while (currentElement !== null) {
+        if (currentElement.tagName.toLowerCase() === 'tr') {
+          return true;
+        }
+        currentElement = currentElement.parentElement;
+      }
+      return false;
+    }
+  });
 
 
 
@@ -129,8 +170,9 @@
 
   =partial(:statistics_tags, :locals=>{review:@review, stage:@stage})
 
-%h3=t(:Decisions_by_document)
+%button.btn.btn-primary#toggle-resolved=t(:Toggle_resolved)
 
+%h3=t(:Decisions_by_document)
 - dep_ord = @ars.decisions_by_cd(@stage).sort_by {|cd_id,a| @ars.pattern_order a }
 - rpc     = @ars.resolution_by_cd(@stage)
 - rcompc  = @ars.resolution_commentary_by_cd(@stage)
@@ -144,7 +186,8 @@
       %th.md-2=t(:Resolution)
     %tbody
       - bloque.each do |cd_id,vals|
-        %tr{:class=>"resolution_#{rpc[cd_id]}"}
+
+        %tr{:class=>"row-resolution-#{rpc[cd_id]}"}
           %td.md-5
             - if @ars.cd_hash[cd_id]
               = CGI::escapeHTML @ars.cd_hash[cd_id].ref_apa_6_brief

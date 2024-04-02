@@ -881,6 +881,7 @@ en:
   Taxonomy: "Taxonomy"
   Text: "Text"
   Test_alert: "Test environment"
+  Toggle_resolved: "Toggle resolved"
   that_function_doesn_exists: "Nonexistent function"
   The_error_will_be_reported_to_administrator: "Error will be reported to administrator"
   this_document_cited_by: "cited by"
