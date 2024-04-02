@@ -89,7 +89,6 @@ module Buhos
     #@param cd_id canonical document id
     #@param dec decision taken
     def text_decision_cd(cd_id, dec)
-
       res=@all_decisions[cd_id].find_all {|v| v[:decision]==dec}.map {|v|
         v[:commentary].nil? ? "#{@user_names[v[:user_id]]}" : "#{@user_names[v[:user_id]]} : #{v[:commentary]}"
       }
