@@ -252,6 +252,7 @@ class BibliographicFileProcessor
   private :update_cd_fields
 
   def process_reference(bb_id, reference)
+    result= Result.new
     reg_o = Record[:uid => reference.uid, :bibliographic_database_id => bb_id]
 
     if reg_o.nil?
@@ -264,14 +265,19 @@ class BibliographicFileProcessor
               :wos_id, :scopus_id, :scielo_id]
 
     fields_update = fields.find_all {|v| reg_o[:field].nil? and reference.send(v) != ''}.inject({}) {|ac, v|
-      ac[v] = reference.send(v); ac;
+      v2=reference.send(v).nil? ? nil : reference.send(v).encode("utf-8", invalid: :replace, undef: :replace, replace: '_').force_encoding("utf-8").scrub()
+      #v2=reference.send(v).nil? ? nil : reference.send(v)
+      #$log.info("#{v},#{v2.valid_encoding?}") unless v2.nil?
+      ac[v] = v2; ac;
     }
     begin
       reg_o.update(fields_update)
     rescue Exception=>e
+      error=true
       $log.info(fields_update)
-      #$log.info(fields_update[:abstract].encoding)
-      raise "Problemas para actualizar referencia #{reference.uid}, #{e.message}"
+      message="Problemas para actualizar referencia #{reference.uid}, #{e.message}"
+      $log.error(message)
+      result.error(message)
     end
     # Procesar references
     cited_references = reference.cited_references
