@@ -72,7 +72,8 @@ es:
   Back: "Atrás"
   Bibliographic_database: "Base de datos bibliográfica"
   bibliographic_file_processor:
-    bibtex_integrator_failed: "Falló procesador de archivos Bibtex "
+    bibtex_integrator_failed: "Falló procesador de archivos BibTeX"
+    pubmed_integrator_failed: "Falló procesador de archivos Pubmed "
     no_file_available: "No hay archivo disponible para process"
     error_on_reference: "Error en referencia Nº %{i}"
     error_parsing_file: "Error procesando archivo"

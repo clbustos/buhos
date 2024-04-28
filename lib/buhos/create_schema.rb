@@ -173,7 +173,7 @@ module Buhos
           String :pubmed, :size => 255
           Integer :year, :null => false
           String :journal_abbr, :size => 255
-          String :abstract, :text => true, size: :long
+          longtext :abstract
           Integer :duplicated
           String :url, :text => true
           String :wos_id, :size => 32
@@ -240,7 +240,7 @@ module Buhos
           foreign_key :canonical_document_id, :canonical_documents, :key => [:id]
           String :journal_abbr, :size => 128
           Integer :year
-          String :abstract, :text => true, size: :long
+          longtext :abstract
           String :url, :text => true
 
           index [:bibliographic_database_id]
@@ -284,19 +284,19 @@ module Buhos
         db.create_table? :crossref_queries do
           String :id, :size => 100, :primary_key => true
           String :query, :text => true
-          String :json, :text => true, size: :long
+          longtext  :json
         end
 
 
         db.create_table? :crossref_dois do
           String :doi, :size => 100, :primary_key => true
           String :bibtex, :text => true
-          String :json, :text => true, size: :long
+          longtext :json
         end
 
         db.create_table? :scopus_abstracts do
           String :id, :primary_key => true
-          String :xml, :text => true, size: :long
+          longtext :xml
           String :doi, :size => 255
         end
 

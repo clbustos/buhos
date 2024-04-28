@@ -64,6 +64,8 @@ pl:
   Back: "Powrót"
   Bibliographic_database: "Baza bibliograficzna"
   bibliographic_file_processor:
+    bibtex_integrator_failed: "Procesor plików BibTeX nie powiódł się"
+    pubmed_integrator_failed: "Procesor plików Pubmed nie powiódł się"
     no_unique_id_for_integrator: "Brak unikalnego id dla integratora"
     no_file_available: "Brak pliku, który można przetworzyć"
     error_on_reference: "Błąd w cytowaniu nr. %{i}"
@@ -949,6 +951,6 @@ pl:
   "yes": "tak"
   You_re_the_administrator_of_this_systematic_review: "Zarządzasz tym przeglądem systematycznym"
   References_count_to_canonical: "<strong>Cytowania w dokumentach wzorcowych:</strong> cytowany przez %{in} / cytuje %{out} / %{in_sta} cytowania przez dokumenty w PTA"
-  References_count_raw: "<strong>Statistics:</strong> cited by %{in} canonical references / available on  %{searches_count} searches [NEEDS TRANSLATION]"
+  References_count_raw: "<strong>Statystyki:</strong> cytowany przez %{in} kanonicznych odniesień / dostępny w %{searches_count} wyszukiwaniach"
   create_new_field: "Utwórz nowe pole w formularzu"
   Select_an_option: "Wybierz opcję"

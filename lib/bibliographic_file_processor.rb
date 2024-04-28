@@ -78,6 +78,7 @@ class BibliographicFileProcessor
   def process_file
     begin
       integrator = get_integrator
+      #$log.info(integrator)
       return false unless integrator
     rescue BibTeX::ParseError => e
       log_error('bibliographic_file_processor.error_parsing_file', e.message)
@@ -85,7 +86,6 @@ class BibliographicFileProcessor
       return false
     end
 
-    #$log.info(integrator)
     correct = true
     $db.transaction do
       bb = BibliographicDatabase.name_a_id_h
@@ -107,9 +107,13 @@ class BibliographicFileProcessor
           correct = false
           break
         end
-
         reg_o=process_reference(bb_id, reference)
-        ref_ids.push(reg_o[:id])
+        if reg_o.is_a? Result
+          @result.add_result(reg_o)
+          correct=false
+        else
+          ref_ids.push(reg_o[:id])
+        end
       end
       @search.update_records(ref_ids)
     end
@@ -119,7 +123,6 @@ class BibliographicFileProcessor
       @error=::I18n::t('bibliographic_file_processor.Search_process_file_error')
       log_error('bibliographic_file_processor.Search_process_file_error')
     end
-
     true
   end
 
@@ -198,7 +201,7 @@ class BibliographicFileProcessor
         @error=::I18n::t('bibliographic_file_processor.json_integrator_failed'.to_sym)
         false
       end
-    elsif @search[:filetype] == 'text/x-bibtex' or @search[:filename] =~ /\.bib$/
+    elsif @search[:filetype] == 'text/x-bibtex' or @search[:filename] =~ /\.bib$/ or @search[:filename] =~ /\.bibtex$/
       file_body=@search[:file_body].force_encoding("utf-8")
       file_body.scrub!("*") unless file_body.valid_encoding? # Fast fix. Just delete all non-utf8 characters
       begin
@@ -209,7 +212,14 @@ class BibliographicFileProcessor
         false
       end
     elsif @search[:filetype] == 'application/nbib' or @search[:filetype] == 'application/x-pubmed' or @search[:filename] =~ /\.nbib$/
-      BibliographicalImporter::PubmedSummary::Reader.parse(@search[:file_body])
+      begin
+        BibliographicalImporter::PubmedSummary::Reader.parse(@search[:file_body])
+      rescue PubmedSummary::ParseError=>e
+        log_error('bibliographic_file_processor.pubmed_integrator_failed', "<#{e.class}> : #{e.message}")
+        @error=::I18n::t('bibliographic_file_processor.pubmed_integrator_failed'.to_sym)
+        false
+      end
+
     elsif @search[:filetype] == 'text/csv' # Por trabajar
       #$log.info(bibliographical_database_name)
       BibliographicalImporter::CSV::Reader.parse(@search[:file_body], @search.bibliographical_database_name)
@@ -274,11 +284,13 @@ class BibliographicFileProcessor
       reg_o.update(fields_update)
     rescue Exception=>e
       error=true
-      $log.info(fields_update)
-      message="Problemas para actualizar referencia #{reference.uid}, #{e.message}"
+      $log.error(fields_update)
+      message="process_reference error:  #{reference.uid}, #{e.message}"
       $log.error(message)
       result.error(message)
+      return result
     end
+
     # Procesar references
     cited_references = reference.cited_references
     unless cited_references.nil?
