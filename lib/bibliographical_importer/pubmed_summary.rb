@@ -68,7 +68,12 @@ module BibliographicalImporter
             @authors=ps_value["FAU"]
           end
           @journal  =ps_value["JT"]
-          @year     =ps_value["DP"].gsub("\D+","")
+          if ps_value["DP"]=~/(\d{4}+)/
+            @year=$1
+          else
+            @year     =ps_value["DP"].gsub(/\D+/,"")
+          end
+          $log.info(@year)
           @volume   =ps_value["VI"]
           @pages    = ps_value["PG"]
           @pmid     = ps_value["type"]
