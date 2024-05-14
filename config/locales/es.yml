@@ -846,6 +846,7 @@ es:
     screening_title_abstract: "Tamizaje de título y resumen"
     screening_references: "Tamizaje de referencias"
     cd_assignations_excel_output: "Excel para asignar documentos canónicos a usuarios"
+    cd_assignations_excel_not_assigned_output: "Excel para asignar documentos no asignados todavía a usuarios"
     cd_assignations_excel_input: "Asignar documentos canónicos a usuarios usando un archivo Excel"
     cd_assignations: "Asignación de Documentos Canónicos a usuarios"
     cd_for_tag: "Documentos canónicos para tag '%{tag_text}'"

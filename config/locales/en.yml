@@ -844,6 +844,7 @@ en:
     screening_references: "References screening"
     cd_assignations: "Assignation of Canonical Documents to users"
     cd_assignations_excel_output: "Excel to assign canonical documents to users"
+    cd_assignations_excel_not_assigned_output: "Excel to assign not assigned canonical documents to users"
     cd_assignations_excel_input: "Assing canonical documents to users using an Excel file"
     cd_for_tag: "Canonical Documents for tag '%{tag_text}'"
     cd_for_tag_stage: "Canonical Documents for tag '%{tag_text}', etapa %{stage}"
