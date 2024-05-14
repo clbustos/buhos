@@ -15,14 +15,13 @@
 
 - if auth_to('review_admin')
   %h3=t("systematic_review_page.cd_assignations_excel").to_sym
-
   .btn-group
     %a.btn.btn-sm.btn-default{:href=>"/review/#{@review[:id]}/administration/#{@stage}/cd_assignations_excel/save"}
       %span.glyphicon.glyphicon.glyphicon-export
-      =t("systematic_review_page.cd_assignations_excel_output").to_sym
+      =t(:All)
     %a.btn.btn-sm.btn-default{:href=>"/review/#{@review[:id]}/administration/#{@stage}/cd_assignations_excel/save_only_not_assigned"}
       %span.glyphicon.glyphicon.glyphicon-export
-      =t("systematic_review_page.cd_assignations_excel_not_assigned_output").to_sym
+      =t(:Not_assigned)
 
   %p=t("systematic_review_page.cd_assignations_excel_input").to_sym
 
