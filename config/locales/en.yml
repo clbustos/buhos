@@ -459,6 +459,7 @@ en:
   No_valid_action: "Selected action invalid"
   Not_allowed_with_user_permissions: "Action not allowed by user authorizations"
   Not_assigned: "Not allocated"
+  Not_resolved: "Not resolved"
   No_authorizations: "No authorizations"
   No_connection_to_crossref: "No connection to crossref"
   Not_defined: "Not defined"

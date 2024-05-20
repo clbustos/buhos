@@ -463,6 +463,7 @@ es:
   No_valid_action: "La acción seleccionada no es válida"
   Not_allowed_with_user_permissions: "Acción no permitida con los permisos del usuario"
   Not_assigned: "No asignado"
+  Not_resolved: "No resuelto"
   Not_defined: "No definido"
   Not_defined_for_this_stage: "No definido para esta etapa"
   No_authorizations: "Sin autorizaciones"
