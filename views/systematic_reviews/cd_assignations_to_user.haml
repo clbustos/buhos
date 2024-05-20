@@ -19,9 +19,12 @@
     %a.btn.btn-sm.btn-default{:href=>"/review/#{@review[:id]}/administration/#{@stage}/cd_assignations_excel/save"}
       %span.glyphicon.glyphicon.glyphicon-export
       =t(:All)
-    %a.btn.btn-sm.btn-default{:href=>"/review/#{@review[:id]}/administration/#{@stage}/cd_assignations_excel/save_only_not_assigned"}
+    %a.btn.btn-sm.btn-default{:href=>"/review/#{@review[:id]}/administration/#{@stage}/cd_assignations_excel/save_only_not_allocated"}
       %span.glyphicon.glyphicon.glyphicon-export
       =t(:Not_assigned)
+    %a.btn.btn-sm.btn-default{:href=>"/review/#{@review[:id]}/administration/#{@stage}/cd_assignations_excel/save_only_not_resolved"}
+      %span.glyphicon.glyphicon.glyphicon-export
+      =t(:Not_resolved)
 
   %p=t("systematic_review_page.cd_assignations_excel_input").to_sym
 

@@ -269,7 +269,7 @@ get '/review/:rev_id/administration/:stage/cd_assignations_excel/:mode' do |rev_
   stage=stage
   cds=CanonicalDocument.where(:id=>cds_id).order(:author)
   users_grupos=review.group_users
-  if mode=="save" or mode=="save_only_not_assigned"
+  if mode=="save" or mode=="save_only_not_allocated" or mode=="save_only_not_resolved"
     require 'caxlsx'
     package = Axlsx::Package.new
     wb = package.workbook
@@ -282,9 +282,11 @@ get '/review/:rev_id/administration/:stage/cd_assignations_excel/:mode' do |rev_
       cds.each do |cd|
         row=[cd[:id], cd.ref_apa_6]
         user_allocations=AllocationCd.where(:systematic_review_id=>review[:id], :canonical_document_id=>cd[:id], :stage=>stage ).to_hash(:user_id)
+        resolutions=Resolution.where(:systematic_review_id=>review[:id], :canonical_document_id=>cd[:id], :stage=>stage).to_hash(:canonical_document_id)
+        $log.info(resolutions)
         asignaciones= users_grupos.map {|user|  user_allocations[user[:id]].nil?  ? 0 : 1  }
         total=asignaciones.inject(0) {|sum,v|sum+v}
-        if mode=="save" or (mode=="save_only_not_assigned" and total==0)
+        if mode=="save" or (mode=="save_only_not_allocated" and total==0)
           sheet.add_row row+asignaciones, style: ([wrap_text]*2)+[nil]*users_grupos.count
         end
       end
