@@ -282,11 +282,11 @@ get '/review/:rev_id/administration/:stage/cd_assignations_excel/:mode' do |rev_
       cds.each do |cd|
         row=[cd[:id], cd.ref_apa_6]
         user_allocations=AllocationCd.where(:systematic_review_id=>review[:id], :canonical_document_id=>cd[:id], :stage=>stage ).to_hash(:user_id)
-        resolutions=Resolution.where(:systematic_review_id=>review[:id], :canonical_document_id=>cd[:id], :stage=>stage).to_hash(:canonical_document_id)
-        $log.info(resolutions)
+        resolution=Resolution[:systematic_review_id=>review[:id], :canonical_document_id=>cd[:id], :stage=>stage]
+        $log.info(resolution)
         asignaciones= users_grupos.map {|user|  user_allocations[user[:id]].nil?  ? 0 : 1  }
         total=asignaciones.inject(0) {|sum,v|sum+v}
-        if mode=="save" or (mode=="save_only_not_allocated" and total==0)
+        if mode=="save" or (mode=="save_only_not_allocated" and total==0) or (mode=="save_only_not_resolved" and not resolution)
           sheet.add_row row+asignaciones, style: ([wrap_text]*2)+[nil]*users_grupos.count
         end
       end
