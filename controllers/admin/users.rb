@@ -60,7 +60,7 @@ post '/admin/users_batch_edition/excel_import' do
   id_role        = header.find_index("role_id")
   
   lista_excel={"id"=> id_index,"active"=> id_active, "email"=>id_email, 
-  "institution"=>id_institution, "language"=>language,
+  "institution"=>id_institution, "language"=>id_language,
   "login"=>id_login, "name"=>id_name, "password"=>id_password,
   "role_id"=>id_role}
   result=Result.new
