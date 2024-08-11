@@ -128,6 +128,30 @@ describe 'BibliographicalImporter::BibTeX' do
   end
 
 
+  context "when a erroneus sage is used" do
+    def text
+      read_fixture("sage_wrong.bib")
+    end
+    before(:context) do
+      @bib=BibliographicalImporter::BibTex::Reader.parse(text)
+    end
+    it "should retrieve 1 article" do
+      expect(@bib.records.length).to eq(3)
+    end
+
+    it "title should be correct" do
+      expect(@bib.records[0].title).to include("part-time work to enhance learning")
+    end
+
+    it "year should be correct" do
+      expect(@bib.records[0].year).to eq("2021")
+    end
+    it "volume should be correct" do
+      expect(@bib.records[0].volume).to eq("35")
+    end
+  end
+
+
   context "using auto-generated BibTeX" do
     before(:context) do
       cds=[OpenStruct.new(id:1, title:"{Title} {number} 1", abstract:"Abs", journal:"{Journal} of {MANAGEMENT}",

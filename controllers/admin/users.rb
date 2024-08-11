@@ -58,6 +58,21 @@ post '/admin/users_batch_edition/excel_import' do
   id_name        = header.find_index("name")
   id_password    = header.find_index("password")
   id_role        = header.find_index("role_id")
+  
+  lista_excel={"id"=> id_index,"active"=> id_active, "email"=>id_email, 
+  "institution"=>id_institution, "language"=>language,
+  "login"=>id_login, "name"=>id_name, "password"=>id_password,
+  "role_id"=>id_role}
+  result=Result.new
+  missing_fields=lista_excel.find_all{|field,value| value.nil?}.map{|x| x[0]}
+  if missing_fields.len>0
+    result.error("Missing fields:#{missing_fields.join(', ')}")
+    add_result(result)
+    redirect url("/admin/users_batch_edition")
+  end
+  
+  
+
   institutions_names=Institution.to_hash(:name, :id)
   users_assignation={}
   header.each_index { |i|
@@ -65,7 +80,6 @@ post '/admin/users_batch_edition/excel_import' do
       users_assignation[i]=$1
     end
   }
-  result=Result.new
   number_of_actions=0
   $db.transaction(:rollback => :reraise) do
     sheet.data.each do |row|

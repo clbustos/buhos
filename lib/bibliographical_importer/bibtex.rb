@@ -118,6 +118,9 @@ module BibliographicalImporter
       def check_year
         if year.include? "/"
           @year=year.split("/")[0]
+        elsif year=~/(\d{4,4})[a-zA-Z]/
+          $log.info($1)
+          @year=$1
         end
       end
 
