@@ -61,7 +61,7 @@ module BibliographicalImporter
           type=:scopus
         elsif bibtex_value["unique-id"].to_s=~/(ISI|WOS):/
           type=:wos
-        elsif bibtex_value[:url].to_s=~/search\.ebscohost.com/
+        elsif bibtex_value[:url].to_s=~/search\.ebscohost.com/ or bibtex_value[:url].to_s=~/research\.ebsco\.com/
           type=:ebscohost
         elsif bibtex_value[:url].to_s=~/scielo/ or bibtex_value[:publisher]=~/scielo/
           type=:scielo
@@ -195,10 +195,11 @@ module BibliographicalImporter
         nil
       end
     end
+
     class Record_Ebscohost < Record
       def parse_specific
         @keywords=@bv[:keywords].nil? ? [] : @bv[:keywords].split(", ")
-        results=/(db=.+)/.match(@bv[:url])
+        results=/((?:db|id)=.+)/.match(@bv[:url])
         @uid=results[0]
         @ebscohost_id=@uid
       end
@@ -211,6 +212,7 @@ module BibliographicalImporter
         nil
       end
     end
+
     class Record_Generic < Record
       def parse_specific
         if @doi.to_s!=""
@@ -252,15 +254,18 @@ module BibliographicalImporter
         Reader.new(b)
       end
 
-      # BibTex doesn't have a standard reference, so any real provider
-      # generates BibTex that brokes bibtex library
+      # BibTeX doesn't have a strict standard, so providers may generate BibTeX
+      # entries that break the bibtex library.
       #
-      # Also, check if encoding is adequate
+      # Additionally, check if the encoding is correct.
       #
       def self.fix_string(string)
         scielo_mode= string.include? "publisher = {scielo}"
+        ebscohost_mode = string.include? "research.ebsco.com"
         string=string.encode("UTF-8", invalid: :replace, replace:"?")
         string.gsub!("\u00A0","_") # nonbreaking space!
+
+
         string.each_line.map { |line|
           #puts line
           if line=~/^\s*\@.+\{(.+),\s*$/
@@ -270,6 +275,12 @@ module BibliographicalImporter
             #$log.info(parts)
             #p parts
             parts.join("{")
+          elsif ebscohost_mode and line=~/^\s*([a-z]+)\s*=\s*\"(.+)",\s*$/
+            tag=$1
+            inside=$2.gsub('"',"").gsub("{","").gsub("}","")
+            out="#{tag} = {#{inside}},\n"
+            #print(out)
+            out
           elsif line=~/^s*Early Access Date\s*=/
             line.gsub("Early Access Date","Early_Access_Date")
           elsif scielo_mode and line=~/^\s*author\s*=\s*\{(.+)\}/ # Sorry for this code :(
