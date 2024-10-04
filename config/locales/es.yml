@@ -1,4 +1,7 @@
 es:
+  Documents_without_decisions: "Documentos sin decisiones"
+  No_document_without_decisions: "No hay documentos que no tengan decisiones"
+  View_documents_with_no_decision: "Ver documentos sin decisiones"
   Assign_to: "Asignar a"
   error_deleting_canonical_documents: "Error en eliminar documentos canónicos"
   removed_n_canonical_documents: "Eliminados %{n} documentos canónicos"

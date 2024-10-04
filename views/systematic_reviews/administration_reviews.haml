@@ -113,9 +113,14 @@
         %td{:class=>"decision decision-no"}=resolutions_patron[patron]["no"]
         %td{:class=>"decision decision-undecided"}=resolutions_patron[patron][Resolution::NO_RESOLUTION]
         %td
-          %a{:href=>"#patron_#{@ars.pattern_id(patron)}",:class=>"btn btn-default btn-sm", :role=>"button"}
-            %span{:class=>"glyphicon glyphicon-triangle-bottom"}
-            =t(:View)
+          - if @ars.pattern_id(patron)=="yes_0__no_0__undecided_0__ND_0"
+            %a{:href=>url("/review/#{@review[:id]}/administration/#{@stage}/no_decision_document"),:class=>"btn btn-warning btn-sm", :role=>"button"}
+              %span{:class=>"glyphicon glyphicon-triangle-bottom"}
+              =t(:View)
+          - else
+            %a{:href=>"#patron_#{@ars.pattern_id(patron)}",:class=>"btn btn-default btn-sm", :role=>"button"}
+              %span{:class=>"glyphicon glyphicon-triangle-bottom"}
+              =t(:View)
           - if auth_to('review_admin')
             %a{:href=>url("/review/#{@review[:id]}/stage/#{@stage}/pattern/#{@ars.pattern_id(patron)}/resolution/yes"),:class=>"btn btn-success btn-sm", :role=>"button"}
               %span{:class=>"glyphicon glyphicon-ok-circle"}
@@ -178,27 +183,32 @@
 - rpc     = @ars.resolution_by_cd(@stage)
 - rcompc  = @ars.resolution_commentary_by_cd(@stage)
 - dep_ord.chunk_while {|antes, despues|  antes[1]==despues[1]}.each do |bloque|
-  %a{:name=>"patron_#{@ars.pattern_id(bloque.first[1])}"}
-    %h4=@ars.pattern_name bloque.first[1]
-  %table.table.table-bordered
-    %thead
-      %th.col-md-5=t(:Document)
-      %th.col-md-5=t(:Decisions)
-      %th.col-md-2=t(:Resolution)
-    %tbody
-      - bloque.each do |cd_id,vals|
-
-        %tr{:class=>"row-resolution-#{rpc[cd_id]}"}
-          %td.col-md-5
-            - if @ars.cd_hash[cd_id]
-              = CGI::escapeHTML @ars.cd_hash[cd_id].ref_apa_6_brief
-              %br
-              = partial(:canonical_document_button, :locals=>{id:cd_id})
-              = partial(:canonical_document_button_abstract_collapsible, :locals=>{cd:@ars.cd_hash[cd_id]})
+  -pattern_name=@ars.pattern_id(bloque.first[1])
+  %a{:name=>"patron_#{pattern_name}"}
+  %h4=@ars.pattern_name bloque.first[1]
+  - if pattern_name=='yes_0__no_0__undecided_0__ND_0'
+    %a.btn.btn-sm.btn-warning{:href=>"/review/#{@review[:id]}/administration/#{@stage}/no_decision_document"}
+      %span.glyphicon.glyphicon-list
+      =t(:View_documents_with_no_decision)
+  - else
+    %table.table.table-bordered
+      %thead
+        %th.col-md-5=t(:Document)
+        %th.col-md-5=t(:Decisions)
+        %th.col-md-2=t(:Resolution)
+      %tbody
+        - bloque.each do |cd_id,vals|
+          %tr{:class=>"row-resolution-#{rpc[cd_id]}"}
+            %td.col-md-5
+              - if @ars.cd_hash[cd_id]
+                = CGI::escapeHTML @ars.cd_hash[cd_id].ref_apa_6_brief
+                %br
+                = partial(:canonical_document_button, :locals=>{id:cd_id})
+                = partial(:canonical_document_button_abstract_collapsible, :locals=>{cd:@ars.cd_hash[cd_id]})
+              - else
+                =t("error.no_valid_cd_for_this_systematic_review", cd_id:cd_id)
+            %td.col-md-5=@text_decision_cd.to_html(cd_id)
+            - if auth_to('review_admin')
+              %td.col-md-2=partial(:buttons_resolution, :locals=>{:rpc=>rpc, :rcompc=>rcompc, :cd_id=>cd_id, :stage=>@stage, :user_id=>@user_id, :review=>@review})
             - else
-              =t("error.no_valid_cd_for_this_systematic_review", cd_id:cd_id)
-          %td.col-md-5=@text_decision_cd.to_html(cd_id)
-          - if auth_to('review_admin')
-            %td.col-md-2=partial(:buttons_resolution, :locals=>{:rpc=>rpc, :rcompc=>rcompc, :cd_id=>cd_id, :stage=>@stage, :user_id=>@user_id, :review=>@review})
-          - else
-            %td.col-md-2=partial(:buttons_resolution_view, :locals=>{:rpc=>rpc, :rcompc=>rcompc, :cd_id=>cd_id, :stage=>@stage, :user_id=>@user_id, :review=>@review})
+              %td.col-md-2=partial(:buttons_resolution_view, :locals=>{:rpc=>rpc, :rcompc=>rcompc, :cd_id=>cd_id, :stage=>@stage, :user_id=>@user_id, :review=>@review})
