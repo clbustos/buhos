@@ -68,6 +68,23 @@ get '/review/:id/administration/:stage' do |id,stage|
   end
 end
 
+
+
+get '/review/:id/administration/:stage/no_decision_document' do |id,stage|
+  halt_unless_auth_any('review_admin', 'review_admin_view')
+  @review=SystematicReview[id]
+
+  raise Buhos::NoReviewIdError, id if !@review
+
+
+  @stage=stage
+  @ars=AnalysisSystematicReview.new(@review)
+
+  @text_decision_cd= Buhos::AnalysisCdDecisions.new(@review, stage)
+  @user_id=session['user_id']
+
+  haml "systematic_reviews/administration_reviews_no_decision_document".to_sym, escape_html: false
+end
 # Set a resolution for a given pattern
 
 get '/review/:id/stage/:stage/pattern/:patron/resolution/:resolution' do |id,stage,patron_s,resolution|

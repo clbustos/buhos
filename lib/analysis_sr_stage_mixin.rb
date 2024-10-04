@@ -58,9 +58,15 @@ module AnalysisSrStageMixin
   end
   # Se analiza cada cd y se cuenta cuantas decisions para cada type
   def decisions_by_cd(stage)
-
     @decisions_by_cd_h ||= {}
     @decisions_by_cd_h[stage] ||= get_asrs(stage).decisions_by_cd
+  end
+  def cd_with_no_decisions(stage)
+    dbc=decisions_by_cd(stage)
+    result=dbc.find_all { |key, vars|
+      Decision::N_EST.keys.inject(0) {|ac,v| ac+vars[v]}==0
+    }.map {|v|v[0]}
+    result
   end
 
 # Define cuantos CD están en cada patrón

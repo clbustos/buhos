@@ -1,4 +1,7 @@
 en:
+  Documents_without_decisions: "Document without decisions"
+  No_document_without_decisions: "No document without decisions"
+  View_documents_with_no_decision: "View documents without decisions"
   Assign_to: "Assign to"
   error_deleting_canonical_documents: "Error on deleting canonical documents"
   removed_n_canonical_documents: "Removed %{n} canonical documents"
@@ -853,6 +856,7 @@ en:
     screening_references_administration: "Administration of references"
     review_full_text_administration: "Administration of full-text stage"
     screening_title_abstract_administration: "Administration of title and abstract review"
+    search_administration: "Administration of searches"
     search_administration: "Administration of searches"
     search_administration_instructions: "Revise each systematic review to ensure there is information on source, date and search criteria. Mark all problematic searches 'invalid'. Only validated searches will be used in subsequent stages."
     stages: Etapas
