@@ -52,7 +52,7 @@ Dir.glob("lib/*.rb").each do |f|
 end
 
 $test_mode=ENV['RACK_ENV'].to_s == "test"
-$cache = CacheBuilder.with(Cache).set_expiry('60s').set_max(1000).build
+$cache = CacheBuilder.with(Cache).set_expiry('120s').set_max(1000).build
 
 
 

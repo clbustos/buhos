@@ -8,6 +8,7 @@ module Sinatra::Partials
     template_array = template.to_s.split('/')
     template = template_array[0..-2].join('/') + "/_#{template_array[-1]}"
     options = args.last.is_a?(Hash) ? args.pop : {}
+    cache_option = options.delete(:cache)
     options.merge!(:layout => false, :escape_html=>false)
     lambda_func=lambda {
       if collection = options.delete(:collection) then
@@ -20,13 +21,10 @@ module Sinatra::Partials
       end
     }
     #$log.info("#{template},  #{options}")
-    if options[:cache]
+    if cache_option
       if $cache.exists?(key)
-        $log.info("cache #{key}")
         $cache.get(key)
       else
-        $log.info("update cache #{key}")
-
         out=lambda_func.call()
         $cache.put(key, out)
         out
