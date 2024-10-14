@@ -136,4 +136,25 @@ namespace :db do
     FileUtils.rm("db/blank.sqlite") if File.exist? "db/blank.sqlite"
     Buhos::SchemaCreation.create_db_from_scratch("sqlite://db/blank.sqlite", "en",log)
   end
+
+
+  desc "Update db_complete file"
+  task :complete_sqlite => "db/db_complete.sqlite"
+  require "sequel"
+  require 'i18n'
+
+  file "db/db_complete.sqlite" => ["lib/buhos/create_schema.rb"] do
+    require_relative 'lib/buhos/create_schema'
+    base_dir=File.dirname(__FILE__)
+
+    Sequel.extension :migration
+
+    locales_root=File.join(File.dirname(__FILE__),'config','locales', '*.yml')
+    ::I18n.load_path+=Dir[locales_root]
+
+    db = Sequel.connect("sqlite://db/db_complete.sqlite", :encoding => 'utf8',:reconnect=>false)
+    Sequel::Migrator.run(db, "#{base_dir}/db/migrations")
+    Buhos::SchemaCreation.create_bootstrap_data(db)
+    Buhos::SchemaCreation.delete_views(db)
+  end
 end

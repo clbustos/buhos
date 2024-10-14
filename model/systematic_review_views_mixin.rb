@@ -29,6 +29,84 @@
 # Mixin for methods to view and create
 # views related to systematic reviews
 module SystematicReviewViewsMixin
+
+
+  def cd_record_id_table_tn
+    "sr_#{self[:id]}_record_id_table"
+  end
+
+  def cd_record_id_table
+    view_name = cd_record_id_table_tn
+    if @cd_record_id_table_exists.nil?
+      @cd_record_id_table_exists=true
+      if !$db.table_exists?(view_name)
+        $db.run("CREATE VIEW #{view_name} AS
+SELECT cd.id as cd_id FROM canonical_documents cd INNER JOIN
+records r ON cd.id=r.canonical_document_id INNER JOIN
+records_searches rs ON r.id=rs.record_id INNER JOIN
+searches s ON s.id=rs.search_id
+where s.valid=1 AND s.systematic_review_id=#{self[:id]} GROUP BY cd.id")
+      end
+    end
+    $db[view_name.to_sym]
+  end
+
+  ## cd_reference_id tables
+
+  ##
+  def cd_reference_id_table_tn
+    "sr_#{self[:id]}_reference_id_table"
+  end
+
+  def cd_reference_id_table
+    view_name = cd_reference_id_table_tn
+    if @cd_reference_id_table_exists.nil?
+      @cd_reference_id_table_exists=true
+      if !$db.table_exists?(view_name)
+        $db.run("CREATE VIEW #{view_name} AS
+SELECT canonical_document_id as cd_id FROM searches b
+INNER JOIN records_searches br ON b.id=br.search_id
+INNER JOIN records_references rr ON br.record_id=rr.record_id
+INNER JOIN bib_references r ON rr.reference_id=r.id
+WHERE b.systematic_review_id=#{self[:id]} and r.canonical_document_id IS NOT NULL AND b.valid=1
+GROUP BY r.canonical_document_id
+")
+      end
+    end
+    $db[view_name.to_sym]
+  end
+
+  ## cd_all_id tables
+
+  ##
+  def cd_all_id_table_tn
+    "sr_#{self[:id]}_all_id_table"
+  end
+
+  def cd_all_id_table
+    view_name = cd_all_id_table_tn
+    if @cd_all_id_table_exists.nil?
+      @cd_all_id_table_exists=true
+      cd_record_id_table
+      cd_reference_id_table
+      if !$db.table_exists?(view_name)
+        $db.run("CREATE VIEW #{view_name} AS
+      SELECT cd_id FROM #{cd_record_id_table_tn}
+    UNION
+    SELECT cd_id FROM #{cd_reference_id_table_tn}
+")
+      end
+    end
+    $db[view_name.to_sym]
+  end
+
+
+
+
+
+
+
+
 # Cuenta el número de references hechas a cada reference para la segunda stage
 # Se eliminan como destinos aquellos documentos que ya fueron parte de la resolución de la primera stage
   def count_references_rtr_tn

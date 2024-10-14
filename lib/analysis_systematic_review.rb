@@ -132,8 +132,8 @@ class AnalysisSystematicReview
     @cd_reg_id = @rs.cd_record_id
     @cd_ref_id = @rs.cd_reference_id
     @cd_all_id = @rs.cd_all_id
-
     @rec = @rs.references_bw_canonical
+
     @cd_included_by_stage=get_stages_ids.inject({}) do |ac, stage|
       ac[stage]=@rs.cd_id_by_stage(stage)
       ac
@@ -194,7 +194,7 @@ class AnalysisSystematicReview
 
 
   def files_by_cd
-    $db["SELECT a.*,cds.canonical_document_id FROM files a INNER JOIN file_cds cds ON a.id=cds.file_id INNER JOIN file_srs ars ON a.id=ars.file_id WHERE systematic_review_id=? AND (cds.not_consider = ? OR cds.not_consider IS NULL)", @rs.id, 0].to_hash_groups(:canonical_document_id)
+    $db["SELECT a.*,cds.canonical_document_id  FROM files a INNER JOIN file_cds cds ON a.id=cds.file_id INNER JOIN file_srs ars ON a.id=ars.file_id WHERE systematic_review_id=? AND (cds.not_consider = ? OR cds.not_consider IS NULL)", @rs.id, 0].to_hash_groups(:canonical_document_id)
   end
 
 

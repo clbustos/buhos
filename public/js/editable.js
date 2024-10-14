@@ -79,7 +79,7 @@ function actualizar_resolution(stage, div_id) {
 
         div_base="botones_resolution_"+stage+"_"+pk_id;
         $("#"+div_base+" button").prop("disabled", true);
-        
+
 
         $.post(url, {pk_id: pk_id, resolution: resolution, user_id: user_id}, function (data) {
             $("#botones_resolution_"+stage+"_"+ pk_id).html(data);

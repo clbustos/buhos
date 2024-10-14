@@ -1,0 +1,100 @@
+.heading
+
+  =t_systematic_review_title(@review[:name], "systematic_review_page.documents_by_decision")
+
+
+:javascript
+  $(document).ready(function() {
+    actualizar_resolution('#{@stage}');
+   $('[data-toggle="popover"]').popover()
+
+
+    var toggleButton = document.getElementById('toggle-resolved');
+    var resolutionYesElements = document.querySelectorAll('.row-resolution-yes');
+    var resolutionNoElements = document.querySelectorAll('.row-resolution-no');
+
+    toggleButton.addEventListener('click', function() {
+      toggleVisibility(resolutionYesElements, resolutionNoElements);
+    });
+
+    function toggleVisibility(resolutionYesElements, resolutionNoElements) {
+      resolutionYesElements.forEach(function(element) {
+        if (isTableRow(element)) {
+          if(element.style.display != 'none') {
+            element.style.display = 'none';
+          } else {
+            element.style.display = 'table-row';
+          }
+        } else {
+          console.warn('Element is not a table row:', element);
+        }
+      });
+
+      resolutionNoElements.forEach(function(element) {
+        if (isTableRow(element)) {
+          if(element.style.display != 'none') {
+            element.style.display = 'none';
+          } else {
+            element.style.display = 'table-row';
+          }
+        } else {
+          console.warn('Element is not a table row:', element);
+        }
+      });
+    }
+
+    function isTableRow(element) {
+      var currentElement = element;
+      while (currentElement !== null) {
+        if (currentElement.tagName.toLowerCase() === 'tr') {
+          return true;
+        }
+        currentElement = currentElement.parentElement;
+      }
+      return false;
+    }
+  });
+
+%ul.breadcrumb
+  %li
+    %a{:href=>url("/reviews")}=t(:Systematic_reviews)
+  %li
+    %a{:href=>url("/review/#{@review[:id]}")}=@review[:name]
+  %li
+    %a{:href=>url("/review/#{@review[:id]}/administration_stages")}=t(:Administration)
+  %li
+    %a{:href=>url("/review/#{@review[:id]}/administration/#{@stage}")}=t("systematic_review_page.#{@stage}_administration")
+  %li{:class=>"active"}=@pattern_name
+
+%h3=@pattern_name
+
+%button.btn.btn-primary#toggle-resolved=t(:Toggle_resolved)
+
+
+
+- rpc     = @ars.resolution_by_cd(@stage)
+- rcompc  = @ars.resolution_commentary_by_cd(@stage)
+- if @cds.length>0
+  %table.table.table-bordered
+    %thead
+      %th.col-md-5=t(:Document)
+      %th.col-md-5=t(:Decisions)
+      %th.col-md-2=t(:Resolution)
+    %tbody
+      - @cds.each do |cd_id|
+        %tr{:class=>"row-resolution-#{rpc[cd_id]}"}
+          %td.col-md-5
+            - if @ars.cd_hash[cd_id]
+              = CGI::escapeHTML @ars.cd_hash[cd_id].ref_apa_6_brief
+              %br
+              = partial(:canonical_document_button, :locals=>{id:cd_id})
+              = partial(:canonical_document_button_abstract_collapsible, :locals=>{cd:@ars.cd_hash[cd_id]})
+            - else
+              =t("error.no_valid_cd_for_this_systematic_review", cd_id:cd_id)
+          %td.col-md-5=@text_decision_cd.to_html(cd_id)
+          - if auth_to('review_admin')
+            %td.col-md-2=partial(:buttons_resolution, :locals=>{:rpc=>rpc, :rcompc=>rcompc, :cd_id=>cd_id, :stage=>@stage, :user_id=>@user_id, :review=>@review})
+          - else
+            %td.col-md-2=partial(:buttons_resolution_view, :locals=>{:rpc=>rpc, :rcompc=>rcompc, :cd_id=>cd_id, :stage=>@stage, :user_id=>@user_id, :review=>@review})
+- else
+  %div.warning=t(:No_documents_pattern, pattern:@pattern_name)

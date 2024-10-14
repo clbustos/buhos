@@ -95,26 +95,45 @@ AND  #{cd_query} GROUP BY tags.id) as t LEFT JOIN tag_in_classes tecl ON t.id=te
   
 
 
-
-  def cd_record_id
-    Record.join(:records_searches, :record_id => :id).join(:searches, :id => :search_id).join(SystematicReview.where(:id => self[:id]), :id => :systematic_review_id).select_all(:canonical_documents).where(:valid=>true).group(:canonical_document_id).select_map(:canonical_document_id)
+  #Old method. Deprecated
+  # @deprecated
+  def cd_record_id_old
+    Record.join(:records_searches, :record_id => :id).
+      join(:searches, :id => :search_id).join(SystematicReview.where(:id => self[:id]), :id => :systematic_review_id).
+      select_all(:canonical_documents).where(:valid=>true).
+      group(:canonical_document_id).select_map(:canonical_document_id)
   end
-
-  def cd_reference_id
-    $db["SELECT canonical_document_id FROM searches b
+  # @deprecated
+  #
+  def cd_reference_id_old
+    $db["SELECT canonical_document_id as cd_id FROM searches b
 INNER JOIN records_searches br ON b.id=br.search_id
 INNER JOIN records_references rr ON br.record_id=rr.record_id
 INNER JOIN bib_references r ON rr.reference_id=r.id
 WHERE b.systematic_review_id=? and r.canonical_document_id IS NOT NULL AND b.valid=1
-GROUP BY r.canonical_document_id", self[:id]].select_map(:canonical_document_id)
+GROUP BY r.canonical_document_id", self[:id]].select_map(:cd_id)
+  end
+
+  def cd_record_id
+    cd_record_id_table.select_map(:cd_id)
+  end
+
+
+  def cd_reference_id
+    cd_reference_id_table.select_map(:cd_id)
   end
 
 
 
 
-
+  def cd_all_id_old
+   $db["SELECT cd_id FROM #{cd_record_table_tn}
+    UNION
+    SELECT cd_id FROM #{cd_reference_id_table_tn}
+    "].map(:cd_id)
+  end
   def cd_all_id
-    (cd_record_id + cd_reference_id).uniq
+    cd_all_id_table.select_map(:cd_id)
   end
   def cd_hash
     @cd_hash||=CanonicalDocument.where(:id=>cd_all_id).as_hash
@@ -123,7 +142,6 @@ GROUP BY r.canonical_document_id", self[:id]].select_map(:canonical_document_id)
   # Presenta los documentos canonicos
   # para la revision. Une los por
   # registro y reference
-
   def canonical_documents(type=:all)
     cd_ids=case type
              when :record
@@ -141,9 +159,18 @@ GROUP BY r.canonical_document_id", self[:id]].select_map(:canonical_document_id)
       CanonicalDocument.where(:id => cd_ids)
     end
   end
+
   # Canonical documents id with resolution for given stage
   def cd_id_resolutions(stage)
-    Resolution.where(:systematic_review_id=>self[:id], :stage=>stage.to_s,:canonical_document_id=>cd_all_id, :resolution=>'yes').map(:canonical_document_id)
+    #Resolution.where(:systematic_review_id=>self[:id],
+    #                 :stage=>stage.to_s,
+    #                 :canonical_document_id=>cd_all_id,
+    #                 :resolution=>'yes').map(:canonical_document_id)
+    Resolution.join(cd_all_id_table, canonical_document_id: :cd_id).where(
+      :systematic_review_id=>self[:id],
+                     :stage=>stage.to_s,
+                     :resolution=>'yes'
+    )
   end
 
   # Returns an array with the list of canonical documents by stage
@@ -158,11 +185,19 @@ GROUP BY r.canonical_document_id", self[:id]].select_map(:canonical_document_id)
         count_references_rtr.where( Sequel.lit("n_references_rtr >= #{self[:n_min_rr_rtr]}") ).map(:cd_end)
         # Solo dejamos aquellos que tengan más de una references
       when 'review_full_text'
-        rtr=resolutions_title_abstract.where(:resolution=>'yes', :canonical_document_id=>cd_record_id).select_map(:canonical_document_id)
-        rr=resolutions_references.where(:resolution=>'yes', :canonical_document_id=>cd_reference_id-cd_record_id).select_map(:canonical_document_id)
+        #        rtr=resolutions_title_abstract.where(:resolution=>'yes',
+        #                                     :canonical_document_id=>cd_record_id).select_map(:canonical_document_id)
+        rtr=resolutions_title_abstract.join(cd_record_id_table, cd_id: :canonical_document_id).where(
+        :resolution=>'yes'
+        ).select_map(:canonical_document_id)
+
+        rr=resolutions_references.where(:resolution=>'yes',
+                                        :canonical_document_id=>cd_reference_id-cd_record_id).select_map(:canonical_document_id)
         (rtr+rr).uniq
       when 'report'
-        resolutions_full_text.where(:resolution=>'yes',:canonical_document_id=>cd_all_id).select_map(:canonical_document_id)
+        #resolutions_full_text.where(:resolution=>'yes',:canonical_document_id=>cd_all_id).select_map(:canonical_document_id)
+        resolutions_full_text.join(cd_all_id_table, cd_id: :canonical_document_id).where(
+          :resolution=>'yes').select_map(:canonical_document_id)
       else
 
         raise 'Not defined'

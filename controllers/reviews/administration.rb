@@ -31,7 +31,6 @@ get '/review/:id/administration/:stage' do |id,stage|
 
   @stage=stage
   @ars=AnalysisSystematicReview.new(@review)
-
   @cd_without_allocation=@ars.cd_without_allocations(stage)
   @text_decision_cd= Buhos::AnalysisCdDecisions.new(@review, stage)
 
@@ -69,22 +68,20 @@ get '/review/:id/administration/:stage' do |id,stage|
 end
 
 
-
-get '/review/:id/administration/:stage/no_decision_document' do |id,stage|
+get '/review/:id/stage/:stage/pattern/:patron/view' do |id,stage,patron_s|
   halt_unless_auth_any('review_admin', 'review_admin_view')
   @review=SystematicReview[id]
-
-  raise Buhos::NoReviewIdError, id if !@review
-
-
   @stage=stage
+  raise Buhos::NoReviewIdError, id if !@review
   @ars=AnalysisSystematicReview.new(@review)
-
+  @pattern=@ars.pattern_from_s(patron_s)
+  @pattern_name=@ars.pattern_name(@pattern)
   @text_decision_cd= Buhos::AnalysisCdDecisions.new(@review, stage)
+  @cds=@ars.cd_from_pattern(stage, @pattern)
   @user_id=session['user_id']
-
-  haml "systematic_reviews/administration_reviews_no_decision_document".to_sym, escape_html: false
+  haml "systematic_reviews/administration_reviews_documents_by_decision".to_sym, escape_html: false
 end
+
 # Set a resolution for a given pattern
 
 get '/review/:id/stage/:stage/pattern/:patron/resolution/:resolution' do |id,stage,patron_s,resolution|
@@ -95,7 +92,6 @@ get '/review/:id/stage/:stage/pattern/:patron/resolution/:resolution' do |id,sta
   @ars=AnalysisSystematicReview.new(@review)
   patron=@ars.pattern_from_s(patron_s)
   cds=@ars.cd_from_pattern(stage, patron)
-
   #$log.info(cds)
 
   $db.transaction(:rollback=>:reraise) do
@@ -103,9 +99,17 @@ get '/review/:id/stage/:stage/pattern/:patron/resolution/:resolution' do |id,sta
       res=Resolution.where(:systematic_review_id=>id, :canonical_document_id=>cd_id, :stage=>stage)
 
       if res.empty?
-        Resolution.insert(:systematic_review_id=>id, :canonical_document_id=>cd_id, :stage=>stage, :resolution=>resolution, :user_id=>session['user_id'], :commentary=>"Resuelto en forma masiva en #{DateTime.now.to_s}")
+        Resolution.insert(:systematic_review_id=>id,
+                          :canonical_document_id=>cd_id,
+                          :stage=>stage,
+                          :resolution=>resolution,
+                          :user_id=>session['user_id'],
+                          :timestamp=>DateTime.now,
+                          :commentary=>"Resuelto en forma masiva en #{DateTime.now.to_s}")
       else
-        res.update(:resolution=>resolution, :user_id=>session['user_id'], :commentary=>"Actualizado en forma masiva en #{DateTime.now.to_s}")
+        res.update(:resolution=>resolution, :user_id=>session['user_id'],
+                   :timestamp=>DateTime.now,
+                   :commentary=>"Actualizado en forma masiva en #{DateTime.now.to_s}")
 
       end
     end

@@ -833,6 +833,7 @@ en:
   Systematic_review_active_inactive: "Active / Inactive SR"
   Systematic_review_all_user: "SR user / all"
   systematic_review_page:
+    documents_by_decision: "Documents by decision"
     massive_reassignation_from_to: "Massive reassignation from user %{from} to user %{to}"
     result_massive_reassignation_from_to: "Successful reassignation of %{assigned_number} of %{original_number}, from user %{user_from} to user %{user_to}"
     should_assign_at_least_one_canonical_document: "Should assign at least one document"

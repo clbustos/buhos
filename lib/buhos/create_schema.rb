@@ -47,7 +47,11 @@ module Buhos
               "sr_###_references_between_cd_n",
               "sr_###_references_between_cd",
               "sr_###_bib_references",
-              "sr_###_cd_id"]
+              "sr_###_cd_id",
+              "sr_###_record_id_table",
+              "sr_###_reference_id_table",
+              "sr_###_all_id_table"
+    ]
 
     BIBLIOGRAPHICAL_DATABASES=["scopus", "sage", "wos", "scielo", "ebscohost",
                                "refworks", "ieee", "generic", "pubmed", "lilacs",
