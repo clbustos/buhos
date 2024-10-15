@@ -71,6 +71,10 @@ end
 
 set :session_secret, 'd290f527d209bd4cd94db2dbdecf29cabaa6499c04bcd83278e3863cd7b25490859df1173c2aa2fd2ede7db09b9208b588badf8298519c23fc16220b356c0029'
 
+
+use Rack::Session::Cookie, :key => "rack.session",
+    :path => "/backend"
+
 enable :logging, :dump_errors, :raise_errors, :sessions
 
 configure :development do |c|
