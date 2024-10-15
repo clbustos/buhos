@@ -2,6 +2,8 @@ source 'https://rubygems.org'
 #gem 'rack-mini-profiler'
 #gem 'stackprof'
 #gem 'flamegraph'
+gem "passenger", ">= 5.0.25", require: "phusion_passenger/rack_handler"
+
 gem 'libcache'
 gem 'rufus-scheduler'
 gem 'tzinfo-data'
