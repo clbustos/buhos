@@ -133,7 +133,8 @@ module Sinatra
       end
 
       app.post '/login' do
-        if authorize(params['user'].strip, params['password'].strip)
+
+        if !params['user'].nil? and !params['password'].nil? and  authorize(params['user'].strip, params['password'].strip)
           add_message ::I18n.t(:Successful_authentification)
           #log.info( ::I18n::t("sinatra_auth.sucessful_auth_for_user", user:params['user']))
           redirect(url("/"))
