@@ -76,16 +76,7 @@ GEM
     faraday-net_http (3.3.0)
       net-http
     ffi (1.17.0)
-    ffi (1.17.0-aarch64-linux-gnu)
-    ffi (1.17.0-aarch64-linux-musl)
-    ffi (1.17.0-arm-linux-gnu)
-    ffi (1.17.0-arm-linux-musl)
-    ffi (1.17.0-arm64-darwin)
-    ffi (1.17.0-x86-linux-gnu)
-    ffi (1.17.0-x86-linux-musl)
-    ffi (1.17.0-x86_64-darwin)
     ffi (1.17.0-x86_64-linux-gnu)
-    ffi (1.17.0-x86_64-linux-musl)
     fpm (1.15.1)
       arr-pm (~> 0.0.11)
       backports (>= 2.6.2)
@@ -218,7 +209,7 @@ GEM
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.13.0)
     rspec-support (3.13.1)
-    rubocop (1.66.1)
+    rubocop (1.67.0)
       json (~> 2.3)
       language_server-protocol (>= 3.17.0)
       parallel (~> 1.10)
@@ -260,8 +251,8 @@ GEM
       rack (~> 2.2, >= 2.2.4)
       rack-protection (= 3.2.0)
       tilt (~> 2.0)
-    sorbet-runtime (0.5.11602)
-    sqlite3 (2.1.0)
+    sorbet-runtime (0.5.11604)
+    sqlite3 (1.7.3)
       mini_portile2 (~> 2.8.0)
     stud (0.0.23)
     temple (0.10.3)
@@ -298,20 +289,8 @@ GEM
       rubyzip (>= 1.0.0)
 
 PLATFORMS
-  aarch64-linux
-  aarch64-linux-gnu
-  aarch64-linux-musl
-  arm-linux
-  arm-linux-gnu
-  arm-linux-musl
-  arm64-darwin
   ruby
-  x86-linux
-  x86-linux-gnu
-  x86-linux-musl
-  x86_64-darwin
-  x86_64-linux-gnu
-  x86_64-linux-musl
+  x86_64-linux
 
 DEPENDENCIES
   ai4r
@@ -355,7 +334,7 @@ DEPENDENCIES
   simple_xlsx_reader
   simplecov
   sinatra (>= 2.0.1)
-  sqlite3
+  sqlite3 (= 1.7.3)
   test-prof
   tf-idf-similarity
   thin

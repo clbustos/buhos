@@ -36,7 +36,7 @@ gem 'ruby-stemmer', :git => 'https://github.com/clbustos/ruby-stemmer.git'
 gem 'pdf-reader'
 gem 'grim', :git=>"https://github.com/GeneralProducts/grim"
 gem "i18n"
-gem "sqlite3", :force_ruby_platform=>:true
+gem "sqlite3", "=1.7.3",:force_ruby_platform=>:true
 gem 'mimemagic'
 gem "certified", :platforms => :mingw
 gem 'simple_xlsx_reader'
