@@ -21,7 +21,7 @@ module Sinatra::Partials
       end
     }
     #$log.info("#{template},  #{options}")
-    if cache_option
+    if False and cache_option
       if $cache.exists?(key)
         $cache.get(key)
       else
