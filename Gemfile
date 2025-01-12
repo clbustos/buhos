@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 #gem 'stackprof'
 #gem 'flamegraph'
 gem "passenger", ">= 5.0.25", require: "phusion_passenger/rack_handler"
-
+gem "csv"
 gem 'libcache'
 gem 'rufus-scheduler'
 gem 'tzinfo-data'
