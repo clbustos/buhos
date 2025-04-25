@@ -681,3 +681,69 @@ div.lista-etapas {
     -webkit-border-radius: 6px;
   }
 }
+
+
+@media (prefers-color-scheme: dark) {
+  body {
+    color: #eee;
+    background: #121212;
+  }
+  
+  
+  table {
+      color: #eee;
+    background: #121212;
+
+  }
+  
+  .breadcrumb {
+	background: #eee;
+	color:#121212;
+  }
+  
+  .well {
+	background: #444444;
+	color:#fff;
+  }
+  
+  .logo-login {
+	content: url("/images/logo_dm.svg");
+  }
+  
+  .list-group-item {
+	background: #444444;
+	color:#fff;
+  
+}
+  
+  
+  .navbar-brand {
+   content: url("/images/logo_dm.svg");
+}
+
+  .panel-body {
+    background: #121212;
+
+  }
+  
+  .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+	background: #444444;
+	color:#fff;
+  }
+  .panel-footer {
+   background: #121212;
+  }
+  
+  
+  .btn-default {
+  background-color: #444444;
+  color: #fff;
+  border-color:#adadad;
+}
+
+.table-striped > tbody > tr:nth-of-type(2n+1) {
+   background-color: #444444;
+  color: #fff;
+}
+
+}

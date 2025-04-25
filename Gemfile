@@ -21,6 +21,7 @@ gem "rspec"
 gem "rack-test"
 gem 'bibtex-ruby'
 gem "unicode"
+gem "ostruct"
 #gem 'levenshtein-ffi', :force_ruby_platform=>true , :require => 'levenshtein'
 gem 'levenshtein-ffi', :require => 'levenshtein', :git => 'https://github.com/remix/levenshtein-ffi.git'
 gem 'elsevier_api', :git => 'https://github.com/clbustos/elsevier_api.git'

@@ -1,6 +1,6 @@
 # encoding: UTF-8
 
-# Copyright (c) 2016-2024, Claudio Bustos Navarrete
+# Copyright (c) 2016-2025, Claudio Bustos Navarrete
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -32,9 +32,9 @@
 
 require "bundler/setup"
 if (/cygwin|mswin|mingw|bccwin|wince|emx/ =~ RUBY_PLATFORM) != nil
-	# Windows doesn't have proper management of certificates for SSL. 
-	# So, we have to user 'certified' gem to fix it
-	require 'certified'
+  # Windows doesn't have proper management of certificates for SSL.
+  # So, we have to user 'certified' gem to fix it
+  require 'certified'
 end
 
 
