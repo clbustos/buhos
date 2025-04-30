@@ -1,4 +1,4 @@
-# Copyright (c) 2016-2024, Claudio Bustos Navarrete, Alexis Vielma (thanks for the patience)
+# Copyright (c) 2016-2025, Claudio Bustos Navarrete, Alexis Vielma (thanks for the patience)
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without

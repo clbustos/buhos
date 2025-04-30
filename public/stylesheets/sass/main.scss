@@ -4,15 +4,135 @@ http://www.freecsstemplates.org
 Released for free under a Creative Commons Attribution 2.5 License
 */
 
+
+
+$light_surface_active: #fff;
+$light_active: #555;
+
+
+
+$light_surface_1:#fff;
+$light_surface_2:#fefefe;
+$light_surface_3:#fdfdfd;
+
+$light_primary: black;
+$light_secondary: #3c5d5c;
+$light_tertiary: #fff7d6;
+
+$light_element1:#111111;
+$light_element2:#222222;
+$light_element3:#333333;
+
+
+$dark_surface_1: #121212;
+$dark_surface_2: #232323;
+$dark_surface_3: #343434;
+
+$dark_surface_active: #555;
+$dark_active: #eee;
+
+$dark_primary: #eee;
+$dark_secondary: #72faca;
+$dark_tertiary: #eee8a9;
+
+$background_imp_dark: #444;
+$foreground_imp_dark: #eee;
+
+$light_border_color: #adadad;
+$dark_border_color: #adadad;
+
 $blue_dark: #146ab0;
 $blue_light: #93badc;
+
+
+$dark_element1:#eeeeee;
+$dark_element2:#dddddd;
+$dark_element3:#cccccc;
+
+$light_green_success:#020;
+$light_green_success_bg:#dff0d8;
+
+$dark_green_success: #bbd5b3;
+$dark_green_success_bg: #2f5031;
+
+:root[color-mode="light"] {
+  --surface1: #{$light_surface_1};
+  --surface2: #{$light_surface_2};
+  --surface3: #{$light_surface_3};
+
+
+  --element1: #{$light_element1};
+  --element2: #{$light_element2};
+  --element3: #{$light_element3};
+  --elementInverse: #eee;
+  --primary: #{$light_primary};
+  --secondary:#{$light_secondary} ;
+  --tertiary: #{$light_tertiary};
+  --border-botton: #{$light_border_color};
+  --box-shadow: 20px 20px 60px #cacaca, -20px -20px 60px #ffffff;
+  --logo: url("/images/logo.svg");
+  --surface_active:#{$light_surface_active};
+  --active:#{$light_active};
+  --link:#{$blue_dark};
+  --green_success:#{$light_green_success};
+  --green_success_bg:#{$light_green_success_bg};
+
+}
+
+:root[color-mode="dark"] {
+  --surface1: #{$dark_surface_1};
+  --surface2: #{$dark_surface_2};
+  --surface3: #{$dark_surface_3};
+  --element1: #{$dark_element1};
+  --element2: #{$dark_element2};
+  --element3: #{$dark_element3};
+  --elementInverse: #111;
+  --primary: #{$dark_primary};
+  --secondary: #{$dark_secondary};
+  --tertiary: #{$dark_tertiary};
+  --border-botton: #{$dark_border_color};
+
+  --box-shadow: 20px 20px 60px #1d1d1d, -20px -20px 60px #272727;
+  --logo: url("/images/logo_dm.svg");
+
+
+  --surface_active:#{$dark_surface_active};
+  --active:#{$dark_active};
+  --link:#{$blue_light};
+  --green_success:#{$dark_green_success};
+  --green_success_bg:#{$dark_green_success_bg};
+}
+
 /* Elements */
+
+
+html {
+}
+
+
 
 body {
   margin: 20px 0;
   font-family: Verdana, Arial, Helvetica, sans-serif;
   font-size: 14px;
+  background-color: $light_surface_1;
+  background-color: var(--surface1, $light_surface_1);
+  color:$light_element1;
+  color: var(--element1, $light_element1);
 }
+
+
+
+
+:root[color-mode="light"] .color-mode .light--hidden {
+  display: none;
+}
+
+:root[color-mode="dark"] .color-mode .dark--hidden {
+  display: none;
+}
+
+
 
 
 
@@ -24,7 +144,6 @@ h1 {
 
 h2, h3, h4, h5, h6 {
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-
   color: $blue_dark;
 }
 
@@ -43,9 +162,7 @@ strong {
   color: #808080;
 }
 
-a {
-  color: $blue_dark;
-}
+
 
 a:hover {
   text-decoration: none;
@@ -84,7 +201,6 @@ a:hover {
 
 
 .enviar {
-
   border:1px solid #AAAAFF;
   padding:1px;
   background-color:white;
@@ -137,12 +253,48 @@ a:hover {
 
 
 
+@mixin surface1-element1 {
+  background-color: $light_surface_1;
+  background-color: var(--surface1, $light_surface_1);
+  color: $light_element1;
+  color: var(--primary, $light_element1);
 
-table {
-    border-collapse: collapse;   
-    color:black;
-    font-size:10pt;
 }
+
+@mixin surface2-element2 {
+  background-color: $light_surface_2;
+  background-color: var(--surface2, $light_surface_2);
+  color: $light_element2;
+  color: var(--element2, $light_element2);
+}
+
+@mixin surface3-element3 {
+  background-color: $light_surface_3;
+  background-color: var(--surface3, $light_surface_3);
+  color: $light_element3;
+  color: var(--element3, $light_element3);
+}
+
+@mixin active {
+  background-color: $light_surface_active;
+  background-color: var(--surface_active, $light_surface_active);
+  color: $light_active;
+  color: var(--active, $light_active);
+}
+
+
+
+.logo-login {
+  width:100%;
+  margin-bottom:30px;
+  content: url("/images/logo.svg");
+  content: var(--logo, url("/images/logo.svg"));
+
+}
+
+
+
+
 table.a95 {
 /*    width:95%;*/
 }
@@ -299,9 +451,19 @@ border-color:#A4B74C;;
 
 /** breadcrumb */
 
+.breadcrumb {
+  @include surface2-element2;
+
+}
+
+
+
+
 #breadcrumb {
 margin-left:1em;
 margin-bottom:0.5em;
+
+
 
   select {
     overflow: hidden;
@@ -352,7 +514,8 @@ ul.tags {
     min-height: 30px;
     line-height: 25px;
     padding: 0 0.25em;
-    background-color: #fff;
+    @include surface2-element2;
+
     border: 1px solid #aaa;
     border-radius: 3px;
     text-overflow: ellipsis;
@@ -370,6 +533,8 @@ ul.tags {
     }
     input {
       border: 0;
+      @include surface3-element3;
+
     }
     span.badge {
       font-size:10px;
@@ -487,6 +652,11 @@ p.instructions {
     padding: 10px 10px;
     font-size: 18px;
     line-height: 20px;
+
+  content: url("/images/logo.svg");
+  content: var(--logo, url("/images/logo.svg"));
+
+
 }
 
 .navbar-default {
@@ -532,6 +702,109 @@ p.instructions {
   }
 
 }
+
+a {
+
+
+  color: $blue_dark;
+  color: var(--link, $blue_dark);
+}
+
+
+table {
+  border-collapse: collapse;
+  font-size:10pt;
+  @include surface1-element1;
+}
+
+/**
+Bootstrap changes
+**/
+
+.panel  {
+  @include surface2-element2;
+}
+.panel-body {
+  @include surface2-element2;
+}
+.panel-footer {
+  @include surface2-element2;
+}
+.well, .list-group-item, p.instructions {
+  @include surface2-element2  ;
+}
+
+@mixin dl_color_background($color_light, $bg_light, $color_dark, $bg_dark, $class_name) {
+  :root[color-mode="light"] {
+    --#{$class_name}-color: #{$color_light};
+    --#{$class_name}-background: #{$bg_light};
+  }
+  :root[color-mode="dark"] {
+    --#{$class_name}-color: #{$color_dark};
+    --#{$class_name}-background: #{$bg_dark};
+  }
+
+  .#{$class_name} {
+
+    color: $color_light;
+    color: var(--#{$class_name}-color, $color_light);
+    background-color: $bg_light;
+    background-color: var(--#{$class_name}-background, $bg_light);
+  }
+}
+
+
+@include dl_color_background(#555,#fff, $dark_element3,$dark_surface_3 , "form-control");
+@include dl_color_background(#333,#fff,$dark_element3,$dark_surface_3, "btn-default");
+
+
+
+
+.table > thead > tr > td.success,
+.table > tbody > tr > td.success,
+.table > tfoot > tr > td.success,
+.table > thead > tr > th.success,
+.table > tbody > tr > th.success,
+.table > tfoot > tr > th.success,
+.table > thead > tr.success > td,
+.table > tbody > tr.success > td,
+.table > tfoot > tr.success > td,
+.table > thead > tr.success > th,
+.table > tbody > tr.success > th,
+.table > tfoot > tr.success > th {
+  color: $light_green_success;
+  color: var(--green_success, $light_green_success);
+  background-color: $light_green_success_bg;
+  background-color: var(--green_success_bg, $light_green_success_bg);
+
+}
+
+
+.panel-success > .panel-heading {
+  color: $light_green_success;
+  color: var(--green_success, $light_green_success);
+  background-color: $light_green_success_bg;
+  background-color: var(--green_success_bg, $light_green_success_bg);
+
+}
+
+.panel-success > .panel-heading {
+  border-color: #d6e9c6;
+}
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+  @include active;
+}
+
+.table-striped > tbody > tr:nth-of-type(2n+1) {
+  background-color: #f9f9f9;
+  background-color: var(--surface3, #f9f9f9);
+}
+
+a.list-group-item, button.list-group-item {
+  color: #555;
+  color: var(--element3, #555);
+}
+
 
 .navbar-default {
 
@@ -595,10 +868,7 @@ p.instructions {
     color: white;
   }
 }
-.logo-login {
-    width:100%;
-    margin-bottom:30px;
-}
+
 
 .description-login {
     text-align:center;
@@ -683,67 +953,13 @@ div.lista-etapas {
 }
 
 
-@media (prefers-color-scheme: dark) {
-  body {
-    color: #eee;
-    background: #121212;
-  }
-  
-  
-  table {
-      color: #eee;
-    background: #121212;
 
-  }
-  
-  .breadcrumb {
-	background: #eee;
-	color:#121212;
-  }
-  
-  .well {
-	background: #444444;
-	color:#fff;
-  }
-  
-  .logo-login {
-	content: url("/images/logo_dm.svg");
-  }
-  
-  .list-group-item {
-	background: #444444;
-	color:#fff;
-  
-}
-  
-  
-  .navbar-brand {
-   content: url("/images/logo_dm.svg");
+.color-mode__btn {
+  color: #111111;
+  color: var(--element1, #111111);
 }
 
-  .panel-body {
-    background: #121212;
 
-  }
-  
-  .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
-	background: #444444;
-	color:#fff;
-  }
-  .panel-footer {
-   background: #121212;
-  }
-  
-  
-  .btn-default {
-  background-color: #444444;
-  color: #fff;
-  border-color:#adadad;
-}
 
-.table-striped > tbody > tr:nth-of-type(2n+1) {
-   background-color: #444444;
-  color: #fff;
-}
 
-}
+

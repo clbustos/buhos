@@ -215,6 +215,9 @@ es:
   Edit_search: "Edición de Búsqueda"
   Empty: "Vacío"
   empty: "vacío"
+  Enable_disable_dark_mode: "Activar/desactivar modo oscuro"
+  Toggle_light_mode: "Cambiar a modo claro"
+  Toggle_dark_mode: "Cambiar a modo oscuro"
   End_year: "Año de término"
   Enter_commentary: "Ingresar comentario"
   error:
@@ -278,7 +281,7 @@ es:
     Show_only_files_not_assigned_to_cd: "No asignado a DC"
   Filter: "Filtro"
   footer_conicyt: "Software financiado por Beca Doctorado Nacional Conicyt Nº21151499"
-  footer_copyright: "© 2016-2024 Claudio Bustos"
+  footer_copyright: "© 2016-2025 Claudio Bustos"
   full_text_review:
       stage_complete_message: "La etapa de extracción de texto completo. La etapa de reporte se iniciará cuando todos los usuarios del grupo hayan concluido."
   Full_text_report: "Reporte de extracción de información"

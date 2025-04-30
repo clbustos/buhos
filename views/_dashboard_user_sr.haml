@@ -14,7 +14,7 @@
             =t(get_stage_name(stage))
             %br
             -clase_bt_sr = sr.stage.to_sym==stage ? "primary" : "default"
-            %button{:style=>"margin-top:1em;", :class=>"btn btn-default btn-sm btn-#{clase_bt_sr}"}= sr.stage.to_sym==stage ? t(:Report_final) : t(:Report_partial)
+            %button{:style=>"margin-top:1em;", :class=>"btn btn-sm btn-#{clase_bt_sr}"}= sr.stage.to_sym==stage ? t(:Report_final) : t(:Report_partial)
       - else
         - clase_sr = sr.stage.to_sym==stage ? "active" : ( et_av.include?(stage) ? "default" : "disabled" )
 
@@ -24,7 +24,7 @@
             =t(get_stage_name(stage))
             %br
             -clase_bt_sr = sr.stage.to_sym==stage ? "primary" : ( et_av.include?(stage) ? "success" : "pending" )
-            %button{:style=>"margin-top:1em;", :class=>"btn btn-default btn-sm btn-#{clase_bt_sr}"}= sr.stage.to_sym==stage ? t(:current) : ( et_av.include?(stage) ? t(:complete) : t(:pending) )
+            %button{:style=>"margin-top:1em;", :class=>"btn btn-sm btn-#{clase_bt_sr}"}= sr.stage.to_sym==stage ? t(:current) : ( et_av.include?(stage) ? t(:complete) : t(:pending) )
   %div{:class=>"tab-content"}
     - get_stages_ids.each do |stage_visualized|
       - adu=udi.adu_for_sr(sr,stage_visualized)

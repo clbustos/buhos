@@ -52,7 +52,12 @@
               %a{:href=>url("/review/#{rs[:id]}")}=rs[:name]
 
 
-.btn-group
+.btn-group.color-mode
+  %button.btn.btn-default.color-mode__btn.light--hidden
+    =t(:Toggle_light_mode)
+  %button.btn.btn-default.color-mode__btn.dark--hidden
+    =t(:Toggle_dark_mode)
+.btn-group.color-mode__header
   - if session['user_id']==@usuario.id
     %a.btn.btn-default{:href=>"/user/#{@usuario.id}/messages"}
       %span.glyphicon.glyphicon-envelope
@@ -61,3 +66,4 @@
     %a.btn.btn-default{:href=>"/user/#{@usuario.id}/change_password"}
       %span.glyphicon.glyphicon-lock
       =t(:Change_password)
+
