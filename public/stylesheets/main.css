@@ -479,7 +479,7 @@ Bootstrap changes
   --form-control-color: #cccccc;
   --form-control-background: #343434; }
 
-.form-control {
+.form-control, select {
   color: #555;
   color: var(--form-control-color, #555);
   background-color: #fff;

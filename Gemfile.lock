@@ -6,7 +6,7 @@ GIT
 
 GIT
   remote: https://github.com/clbustos/elsevier_api.git
-  revision: ba8ca962f5bd48c1df670558980550a954a2ba2a
+  revision: 366b2882c6f16eb292ab3e5ed5b89c163b16b9ac
   specs:
     elsevier_api (0.1.1)
       curb (~> 0.9.10)
@@ -34,6 +34,8 @@ GEM
   remote: https://rubygems.org/
   specs:
     Ascii85 (1.1.1)
+    addressable (2.8.7)
+      public_suffix (>= 2.0.2, < 7.0)
     afm (0.2.2)
     ai4r (1.13)
     arr-pm (0.0.12)
@@ -183,6 +185,7 @@ GEM
     pry (0.14.2)
       coderay (~> 1.1)
       method_source (~> 1.0)
+    public_suffix (6.0.2)
     raabro (1.4.0)
     racc (1.8.1)
     rack (2.2.10)
@@ -295,6 +298,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  addressable
   ai4r
   bibtex-ruby
   caxlsx
