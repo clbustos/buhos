@@ -55,6 +55,12 @@ $light_green_success_bg:#dff0d8;
 $dark_green_success: #bbd5b3;
 $dark_green_success_bg: #2f5031;
 
+$light_danger: #a94442;
+$light_danger_bg: #f1dddd;
+
+$dark_danger: #a94442;
+$dark_danger_bg: #f1dddd;
+
 :root[color-mode="light"] {
   --surface1: #{$light_surface_1};
   --surface2: #{$light_surface_2};
@@ -76,7 +82,8 @@ $dark_green_success_bg: #2f5031;
   --link:#{$blue_dark};
   --green_success:#{$light_green_success};
   --green_success_bg:#{$light_green_success_bg};
-
+  --danger:#{$light_danger};
+  --danger_bg:#{$light_danger_bg};
 }
 
 :root[color-mode="dark"] {
@@ -101,6 +108,11 @@ $dark_green_success_bg: #2f5031;
   --link:#{$blue_light};
   --green_success:#{$dark_green_success};
   --green_success_bg:#{$dark_green_success_bg};
+
+  --danger:#{$dark_danger};
+  --danger_bg:#{$dark_danger_bg};
+
+
 }
 
 /* Elements */
@@ -131,8 +143,6 @@ body {
 :root[color-mode="dark"] .color-mode .dark--hidden {
   display: none;
 }
-
-
 
 
 
@@ -275,11 +285,21 @@ a:hover {
   color: var(--element3, $light_element3);
 }
 
+
 @mixin active {
   background-color: $light_surface_active;
   background-color: var(--surface_active, $light_surface_active);
   color: $light_active;
   color: var(--active, $light_active);
+}
+
+
+
+@mixin surface2-danger {
+  background-color: $light_danger_bg;
+  background-color: var(--danger_bg, $light_danger_bg);
+  color: $light_danger;
+  color: var(--danger, $light_danger);
 }
 
 
@@ -704,8 +724,6 @@ p.instructions {
 }
 
 a {
-
-
   color: $blue_dark;
   color: var(--link, $blue_dark);
 }
@@ -730,8 +748,16 @@ Bootstrap changes
 .panel-footer {
   @include surface2-element2;
 }
-.well, .list-group-item, p.instructions {
+.well,  p.instructions {
   @include surface2-element2  ;
+}
+
+.list-group-item {
+  @include surface2-element2  ;
+}
+
+.list-group-item-danger {
+  @include surface2-danger  ;
 }
 
 @mixin dl_color_background($color_light, $bg_light, $color_dark, $bg_dark, $class_name) {
@@ -800,10 +826,7 @@ Bootstrap changes
   background-color: var(--surface3, #f9f9f9);
 }
 
-a.list-group-item, button.list-group-item {
-  color: #555;
-  color: var(--element3, #555);
-}
+
 
 
 .navbar-default {

@@ -21,7 +21,9 @@ Released for free under a Creative Commons Attribution 2.5 License
   --active:#555;
   --link:#146ab0;
   --green_success:#020;
-  --green_success_bg:#dff0d8; }
+  --green_success_bg:#dff0d8;
+  --danger:#a94442;
+  --danger_bg:#f1dddd; }
 
 [color-mode="dark"]:root {
   --surface1: #121212;
@@ -41,7 +43,9 @@ Released for free under a Creative Commons Attribution 2.5 License
   --active:#eee;
   --link:#93badc;
   --green_success:#bbd5b3;
-  --green_success_bg:#2f5031; }
+  --green_success_bg:#2f5031;
+  --danger:#a94442;
+  --danger_bg:#f1dddd; }
 
 /* Elements */
 body {
@@ -465,11 +469,23 @@ Bootstrap changes
   color: #222222;
   color: var(--element2, #222222); }
 
-.well, .list-group-item, p.instructions {
+.well, p.instructions {
   background-color: #fefefe;
   background-color: var(--surface2, #fefefe);
   color: #222222;
   color: var(--element2, #222222); }
+
+.list-group-item {
+  background-color: #fefefe;
+  background-color: var(--surface2, #fefefe);
+  color: #222222;
+  color: var(--element2, #222222); }
+
+.list-group-item-danger {
+  background-color: #f1dddd;
+  background-color: var(--danger_bg, #f1dddd);
+  color: #a94442;
+  color: var(--danger, #a94442); }
 
 [color-mode="light"]:root {
   --form-control-color: #555;
@@ -479,7 +495,7 @@ Bootstrap changes
   --form-control-color: #cccccc;
   --form-control-background: #343434; }
 
-.form-control, select {
+.form-control {
   color: #555;
   color: var(--form-control-color, #555);
   background-color: #fff;
@@ -534,10 +550,6 @@ Bootstrap changes
 .table-striped > tbody > tr:nth-of-type(2n+1) {
   background-color: #f9f9f9;
   background-color: var(--surface3, #f9f9f9); }
-
-a.list-group-item, button.list-group-item {
-  color: #555;
-  color: var(--element3, #555); }
 
 .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-text a:hover {
   color: #93badc;

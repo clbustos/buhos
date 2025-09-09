@@ -75,6 +75,10 @@ class Semantic_Scholar_Paper < Sequel::Model
       begin
         sr=SemanticScholar::Remote.new
         json=sr.json_by_id(id, type)
+      rescue Buhos::SemanticScholarError => e
+        json=false
+        sr=OpenStruct.new
+        sr.error=e.message
       rescue SocketError => e
         json=false
         sr=OpenStruct.new
