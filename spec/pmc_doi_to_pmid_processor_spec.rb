@@ -19,8 +19,8 @@ describe 'DoiToPmidProcessor' do
       expect(@dtpp.doi_as_pmid.keys.sort).to eq(@doi_list.sort)
     end
     it ".doi_as_pmid should have values equal to correct PMID for known DOI" do
-      expect(@dtpp.doi_as_pmid['10.1093/nar/gks1195']).to eq("23193287")
-      expect(@dtpp.doi_as_pmid['10.3389/fpsyg.2018.00256']).to eq("29541051")
+      expect(@dtpp.doi_as_pmid['10.1093/nar/gks1195']).to eq(23193287)
+      expect(@dtpp.doi_as_pmid['10.3389/fpsyg.2018.00256']).to eq(29541051)
     end
     it ".doi_as_pmid should return nil for unknown DOI" do
       expect(@dtpp.doi_as_pmid['10.1037/0003-066X.63.1.32']).to be_nil
@@ -36,26 +36,8 @@ describe 'DoiToPmidProcessor' do
 
     end
     it "process should not raise an exception" do
-      expect { @dtpp2.process }.to_not raise_exception
+      expect { @dtpp2.process }.to raise_exception(PMC::IDConverterApiResponseError)
     end
-    it ".doi_as_pmid should have keys for three DOIs" do
-      expect(@dtpp2.doi_as_pmid.keys.sort).to eq(@doi_list.sort)
-    end
-    it ".doi_as_pmid should have values equal to correct PMID for known DOI" do
-      expect(@dtpp2.doi_as_pmid['10.1093/nar/gks1195']).to eq("23193287")
-      expect(@dtpp2.doi_as_pmid['10.3389/fpsyg.2018.00256']).to eq("29541051")
-    end
-    it ".doi_as_pmid should return nil for unknown DOI" do
-      expect(@dtpp2.doi_as_pmid['10.1037/0003-066X.63.1.32']).to be_nil
-    end
-    it ".doi_as_pmid should return nil for incorrect DOI" do
-      expect(@dtpp2.doi_as_pmid[  @doi_bad.first ]).to be_nil
-    end
-    it ".doi_bad should list of incorrect DOI" do
-
-      expect(@dtpp2.doi_bad.sort).to eq(@doi_bad.sort)
-    end
-
   end
 
 

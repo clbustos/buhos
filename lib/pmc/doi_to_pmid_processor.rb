@@ -36,10 +36,10 @@ module PMC
   # Get PMID for a list of Doi, using ID Converter API from NCBI
   # https://www.ncbi.nlm.nih.gov/pmc/tools/id-converter-api/
   class DoiToPmidProcessor
-    BASE_URL="https://www.ncbi.nlm.nih.gov/pmc/utils/idconv/v1.0/"
+    BASE_URL="https://pmc.ncbi.nlm.nih.gov/tools/idconv/api/v1/articles/"
     MAX_SLICE=150
     TOOL="buhos"
-    EMAIL="clbustos.2@gmail.com"
+    EMAIL="no-reply@buhos.org"
     attr_reader :doi_list
     attr_reader :doi_as_pmid
     attr_reader :doi_bad
@@ -76,14 +76,8 @@ module PMC
       end
 
       if res.code!="200"
-        message=json ? CGI.unescape(json["message"]) : nil
-        if message=~/ID type of '(.+?)' is unknown/ or message=~/ID type 'doi' mismatch for '(.+?)'/
-          @doi_bad.push($1)
-          return :retry
-        else
-          raise IDConverterApiResponseError, "Can't retrieve information for slice #{slice_doi_url}. CODE: #{res.code}, Body:#{res.body}"
-        end
 
+        raise IDConverterApiResponseError, "Can't retrieve information for slice #{slice_doi_url}. CODE: #{res.code}, Body:#{res.body}"
       else
         if json
           if json["status"]!="ok"

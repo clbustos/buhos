@@ -140,7 +140,8 @@ module RSpecMixin
                     :source                     => "informal_search",
                     :systematic_review_id       => systematic_review_id.respond_to?(:index) ? systematic_review_id.to_a[i] : systematic_review_id,
                     :bibliographic_database_id  => bb_id,
-                    :user_id                    => user_id
+                    :user_id                    => user_id,
+                    :valid                      => true
                     )
     end
   end
@@ -151,10 +152,10 @@ module RSpecMixin
     (0...ids_to_create.length).map do |i|
 
       r_id=ids_to_create[i]
-      r_uid=uid.nil? ? "test:#{r_id}" : r_uid[i]
+      r_uid=uid.nil? ? "test:#{r_id}" : uid[i]
       r_cd =cd_id.nil? ? nil : (cd_id.respond_to?('[]') ? cd_id[i] : cd_id)
       r_bb =bb_id.respond_to?(:index) ? bb_id[i] : bb_id
-
+      #puts "#{[r_id,r_uid, r_cd,r_bb]}"
       r_id_r=Record.insert(id:r_id, uid:r_uid, canonical_document_id:r_cd, bibliographic_database_id:r_bb )
       unless search_id.nil?
         search_ids= search_id[i].respond_to?(:index) ? search_id[i] : [search_id[i]]
@@ -242,7 +243,7 @@ module RSpecMixin
     find_executable exe
   end
 
-  # Create a systematic report with a form with 3 fields, 1 canonical document, 1 search, 1 record
+  # Create a systematic report with a form with 3 fields, 2 canonical documents, 1 search, 2 records
   # and 2 positive resolutions for document 1
   def sr_for_report
     create_sr
@@ -255,10 +256,42 @@ module RSpecMixin
     CanonicalDocument.insert(:id=>1, :title=>"Title 1", :year=>0)
     create_search
     create_record(:cd_id=>1, :search_id=>1)
-    $db[:analysis_sr_1].insert(:user_id=>1, :canonical_document_id=>1, :field_1=>"[campo1] [campo2]", :field_2=>"a",:field_3=>"a,b")
-    Resolution.insert(:systematic_review_id=>1, :canonical_document_id=>1, :user_id=>1, :stage=>'screening_title_abstract', :resolution=>'yes')
-    Resolution.insert(:systematic_review_id=>1, :canonical_document_id=>1, :user_id=>1, :stage=>'review_full_text', :resolution=>'yes')
+    $db[:analysis_sr_1].insert(:user_id=>1,
+                               :canonical_document_id=>1,
+                               :field_1=>"[campo1] [campo2]",
+                               :field_2=>"a",:field_3=>"a,b")
+    Resolution.insert(:systematic_review_id=>1, :canonical_document_id=>1,
+                      :user_id=>1, :stage=>'screening_title_abstract', :resolution=>'yes',  :commentary=>'STA1')
+    Resolution.insert(:systematic_review_id=>1, :canonical_document_id=>1,
+                      :user_id=>1, :stage=>'review_full_text', :resolution=>'yes')
     sr1
+  end
+
+
+  def sr_for_report_down
+    $db[:file_srs].delete
+    $db[:decisions].delete
+    $db[:resolutions].delete
+    $db[:allocation_cds].delete
+    $db[:records_references].delete
+    $db[:bib_references].delete
+    $db[:sr_criteria].delete
+    $db[:sr_fields].delete
+    $db[:message_srs].delete
+    $db[:criteria].delete
+    $db[:canonical_document_authors].delete
+    $db[:cd_criteria].delete
+    $db[:cd_quality_criteria].delete
+    $db[:analysis_sr_1].delete
+    $db[:file_cds].delete
+    $db[:records_references].delete
+    $db[:records_searches].delete
+    $db[:records].delete
+    $db[:records].delete
+    $db[:canonical_documents].delete
+    $db[:searches].delete
+    $db[:systematic_review_srtcs].delete
+    $db[:systematic_reviews].delete
   end
 
   def doi_reference_1

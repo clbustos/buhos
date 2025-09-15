@@ -58,7 +58,7 @@ module PMC
     BASE_URL="https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi"
     MAX_SLICE=150
     TOOL="buhos"
-    EMAIL="clbustos.2@gmail.com"
+    EMAIL="no-reply@buhos.org"
     attr_reader :pmid_list
     attr_reader :pmid_xml
     def initialize(pmid_list)

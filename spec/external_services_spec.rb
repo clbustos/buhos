@@ -30,7 +30,8 @@ describe 'Stage administration using external data' do
 
   def pre_context
     sr_for_report
-    CanonicalDocument[1].update(:title=>"Using Framework Analysis in nursing research: a worked example.", :doi=>doi_ex, :pmid=>pmid_ex)
+    CanonicalDocument[1].update(:title=>"Using Framework Analysis in nursing research: a worked example.",
+                                :doi=>doi_ex, :pmid=>pmid_ex)
     Search[1].update(:valid=>true)
 
     create_references(texts: [reference_text_1, reference_text_2],
@@ -213,18 +214,21 @@ describe 'Stage administration using external data' do
 
   end
 
-  context "when canonical_documents/review/:rev_id/complete_pubmed_pmid is called" do
+  context "when GET /canonical_documents/review/:rev_id/complete_pubmed_pmid is requested" do
     before(:context) do
       pre_context
-      CanonicalDocument[1].update(pmid:nil)
+      CanonicalDocument[1].update(pmid: nil)
       get '/canonical_documents/review/1/complete_pubmed_pmid'
     end
-    it "should response be ok" do
+
+    it "responds with a redirect" do
       expect(last_response).to be_redirect
     end
-    it "should pmid be correct" do
+
+    it "updates the pmid correctly" do
       expect(CanonicalDocument[1].pmid.to_s).to eq(pmid_ex.to_s)
     end
+
     after(:context) do
       after_context
     end

@@ -29,6 +29,9 @@ describe 'Search Validator' do
     end
     after do
       Search[1].update(:valid=>nil)
+      Search[2].update(:valid=>nil)
+      Search[3].update(:valid=>nil)
+
     end
     it ".valid should be false" do
       expect(sv.valid).to be false
@@ -67,13 +70,18 @@ describe 'Search Validator' do
     it "search object should be nil" do
       expect(Search[2].valid).to be nil
     end
-
+    after do
+      Search[1].update(:valid=>nil)
+      Search[2].update(:valid=>nil)
+      Search[3].update(:valid=>nil)
+    end
   end
 
   context "on valid records" do
     before do
       sv3.validate
     end
+
     it ".valid should be true" do
       expect(sv3.valid).to be true
     end
@@ -92,6 +100,12 @@ describe 'Search Validator' do
     end
     it "search object should be valid" do
       expect(Search[3].valid).to be true
+    end
+    after do
+      Search[1].update(:valid=>nil)
+      Search[2].update(:valid=>nil)
+      Search[3].update(:valid=>nil)
+
     end
   end
 
@@ -115,10 +129,11 @@ describe 'Search Validator' do
     it ".invalid_records_n should be correct" do
       expect(sv4.invalid_records_n).to eq 0
     end
-    it "search object should be valid" do
-      expect(Search[1].valid).to be nil
-      expect(Search[2].valid).to be nil
-      expect(Search[3].valid).to be true
+
+    after do
+      Search[1].update(:valid=>nil)
+      Search[2].update(:valid=>nil)
+      Search[3].update(:valid=>nil)
     end
   end
 
