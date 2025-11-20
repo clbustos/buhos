@@ -77,13 +77,12 @@
 - if @cds.length>0
   %table.table.table-bordered
     %thead
-      %th.col-md-5=t(:Document)
-      %th.col-md-5=t(:Decisions)
+      %th.col-md-10=t(:Document)
       %th.col-md-2=t(:Resolution)
     %tbody
       - @cds.each do |cd_id|
         %tr{:class=>"row-resolution-#{rpc[cd_id]}"}
-          %td.col-md-5
+          %td.col-md-10
             - if @ars.cd_hash[cd_id]
               = CGI::escapeHTML @ars.cd_hash[cd_id].ref_apa_6_brief
               %br
@@ -91,7 +90,8 @@
               = partial(:canonical_document_button_abstract_collapsible, :locals=>{cd:@ars.cd_hash[cd_id]})
             - else
               =t("error.no_valid_cd_for_this_systematic_review", cd_id:cd_id)
-          %td.col-md-5=@text_decision_cd.to_html(cd_id)
+            %p.alert=t(:Decisions)
+            =@text_decision_cd.to_html(cd_id)
           - if auth_to('review_admin')
             %td.col-md-2=partial(:buttons_resolution, :locals=>{:rpc=>rpc, :rcompc=>rcompc, :cd_id=>cd_id, :stage=>@stage, :user_id=>@user_id, :review=>@review})
           - else
