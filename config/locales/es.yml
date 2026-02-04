@@ -75,9 +75,12 @@ es:
   Back: "Atrás"
   Bibliographic_database: "Base de datos bibliográfica"
   bibliographic_file_processor:
+    pubmed_success: "Importación de Pubmed exitosa"
+    bibtex_success: "Importación de Bibtex exitosa"
     bibtex_integrator_failed: "Falló procesador de archivos BibTeX"
     pubmed_integrator_failed: "Falló procesador de archivos Pubmed "
     no_file_available: "No hay archivo disponible para process"
+    error_on_search: "Error en búsqueda: %{i}"
     error_on_reference: "Error en referencia Nº %{i}"
     error_parsing_file: "Error procesando archivo"
     no_integrator_for_filetype: "No hay integrador para este tipo de archivo"

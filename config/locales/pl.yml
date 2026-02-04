@@ -64,10 +64,13 @@ pl:
   Back: "Powrót"
   Bibliographic_database: "Baza bibliograficzna"
   bibliographic_file_processor:
+    pubmed_success: "Pubmed importing successful"
+    bibtex_success: "Importación de Bibtex exitosa"
     bibtex_integrator_failed: "Procesor plików BibTeX nie powiódł się"
     pubmed_integrator_failed: "Procesor plików Pubmed nie powiódł się"
     no_unique_id_for_integrator: "Brak unikalnego id dla integratora"
     no_file_available: "Brak pliku, który można przetworzyć"
+    error_on_search: "Błąd podczas wyszukiwania: %{i}"
     error_on_reference: "Błąd w cytowaniu nr. %{i}"
     error_parsing_file: "Błąd parsowania pliku"
     no_integrator_for_filetype: "Nie znaleziono integratora dla tego typu pliku."

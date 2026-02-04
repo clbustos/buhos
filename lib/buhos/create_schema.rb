@@ -55,7 +55,7 @@ module Buhos
 
     BIBLIOGRAPHICAL_DATABASES=["scopus", "sage", "wos", "scielo", "ebscohost",
                                "refworks", "ieee", "generic", "pubmed", "lilacs",
-                               "proquest", "bvs" ]
+                               "proquest", "bvs", "base", "redalyc" ]
 
     # Create a usable db to work on Buhos
     # @param db_url a [String] with a connection that Sequel.connect understand, or a Sequel::Database

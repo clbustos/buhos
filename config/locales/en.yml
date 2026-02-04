@@ -76,10 +76,13 @@ en:
   Back: "Back"
   Bibliographic_database: "Bibliographic database"
   bibliographic_file_processor:
+    pubmed_success: "Pubmed importing successful"
+    bibtex_success: "Bibtex importing successful"
     bibtex_integrator_failed: "BibTeX integrator failed"
     pubmed_integrator_failed: "Pubmed integrator failed"
     no_unique_id_for_integrator: "No unique id for integrator"
     no_file_available: "No file available to process"
+    error_on_search: "Error on search: %{i}"
     error_on_reference: "Error in Reference No. %{i}"
     error_parsing_file: "Error parsing file"
     no_integrator_for_filetype: "No integrator found for this file type"

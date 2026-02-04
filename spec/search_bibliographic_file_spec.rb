@@ -71,7 +71,7 @@ describe 'Search importing bibliographic file:' do
 
 
 
-  context "when search view is accesed" do
+  context "when search view is accessed" do
     before(:context) do
       update_search
     end
