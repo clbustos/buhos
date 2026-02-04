@@ -145,9 +145,13 @@ module BibliographicalImporter
     end
 
     def error(message_key, exception = nil)
-      detail = exception ? "<#{exception.class}> : #{exception.message}" : ""
+      if exception
+        detail = "<#{exception.class}> : #{exception.message}"
+        @result.error("#{::I18n.t(message_key.to_sym)} : #{detail} ")
+      else
+        @result.error("#{::I18n.t(message_key.to_sym)}")
+      end
 
-      @result.error("#{::I18n.t(message_key.to_sym)} : #{detail} ")
     end
   end
 end

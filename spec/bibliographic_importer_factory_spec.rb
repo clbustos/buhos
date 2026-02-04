@@ -108,9 +108,9 @@ describe BibliographicalImporter::Factory do
         }
       let(:filename) { "manual.bib" }
 
-      it "returns a success message" do
-        expect(result).to receive(:error).with(::I18n.t('bibliographic_file_processor.bibtex_integrator_failed'))
+      it "returns a failure message" do
         factory.process
+        expect(result.message).to include(::I18n.t('bibliographic_file_processor.bibtex_integrator_failed'))
       end
 
       it "process returns nil" do
