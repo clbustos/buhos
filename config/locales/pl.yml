@@ -271,7 +271,7 @@ pl:
     Show_only_files_assigned_to_cd: "Powiązany z DW"
     Show_only_files_not_assigned_to_cd: "Niepowiązany z DW"
   footer_conicyt: "Oprogramowanie sfinansowane w ramach grantu doktorskiego Conicyt Nr 21151499"
-  footer_copyright: "© 2016-2025 Claudio Bustos"
+  footer_copyright: "© 2016-2026 Claudio Bustos"
   Full_text_report: "Raport z ekstrakcji informacji"
   fulltext_report:
     quality_assessment: "Ocena jakości"
