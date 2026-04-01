@@ -50,9 +50,10 @@ class BibliographicFileProcessor
   attr_reader :result
   attr_reader :error
   attr_reader :canonical_document_processed
-  def initialize(search)
+  def initialize(search, bib_imp, result)
     @search = search
-    @result = Result.new
+    @bib_imp=bib_imp
+    @result = result
     @error = nil
     @canonical_document_processed=false
     if process_file
@@ -61,10 +62,22 @@ class BibliographicFileProcessor
       rescue Exception=>e
         log_error('bibliographic_file_processor.error_processing_canonical_documents', e.message)
         @error="#{I18n::t('bibliographic_file_processor.error_processing_canonical_documents')} #{e.message}"
-        return false
       end
+    else
+      @error="#{I18n::t('bibliographic_file_processor.no_file_to_process')}"
     end
   end
+
+  def self.process_with_saved_file(search)
+    result=Result.new
+    bib_imp=BibliographicalImporter::Factory.build(search.file_body, search.filename, search.filetype, result)
+    bfp=BibliographicFileProcessor.new(search, bib_imp, result)
+    unless result.success?
+      result.error(::I18n::t('bibliographic_file_processor.error_on_search', i: search.id))
+    end
+    bfp
+  end
+
 
   def log_error(message, extra_info=nil)
     @result.error("#{::I18n::t(message)}: ID #{@search[:id]} #{extra_info}")
@@ -76,16 +89,8 @@ class BibliographicFileProcessor
 
 
   def process_file
-    begin
-      integrator = get_integrator
-      #$log.info(integrator)
-      return false unless integrator
-    rescue BibTeX::ParseError => e
-      log_error('bibliographic_file_processor.error_parsing_file', e.message)
-      @error="#{I18n::t('bibliographic_file_processor.error_parsing_file')} #{e.message}"
-      return false
-    end
-
+    integrator = @bib_imp
+    return false unless integrator
     correct = true
     $db.transaction do
       bb = BibliographicDatabase.name_a_id_h
@@ -180,54 +185,6 @@ class BibliographicFileProcessor
   # @see ReferenceIntegrator::BibTex
   # @see ReferenceIntegrator::CSV
 
-  def get_integrator
-    if @search[:file_body].nil?
-      log_error('bibliographic_file_processor.no_file_available')
-      false
-    elsif @search[:filename]=~/\.ris$/
-      begin
-        BibliographicalImporter::Ris::Reader.parse(@search[:file_body])
-      rescue Exception=>e
-        log_error('bibliographic_file_processor.ris_integrator_failed', "<#{e.class}> : #{e.message}")
-        @error=::I18n::t('bibliographic_file_processor.ris_integrator_failed'.to_sym)
-        false
-      end
-
-    elsif @search[:filetype] == 'application/json' or @search[:filename] =~ /\.json$/
-      begin
-        BibliographicalImporter::Json::Reader.parse(@search[:file_body])
-      rescue BibTeX::ParseError=>e
-        log_error('bibliographic_file_processor.json_integrator_failed', "<#{e.class}> : #{e.message}")
-        @error=::I18n::t('bibliographic_file_processor.json_integrator_failed'.to_sym)
-        false
-      end
-    elsif @search[:filetype] == 'text/x-bibtex' or @search[:filename] =~ /\.bib$/ or @search[:filename] =~ /\.bibtex$/
-      file_body=@search[:file_body].force_encoding("utf-8")
-      file_body.scrub!("*") unless file_body.valid_encoding? # Fast fix. Just delete all non-utf8 characters
-      begin
-        BibliographicalImporter::BibTex::Reader.parse(file_body)
-      rescue BibTeX::ParseError=>e
-        log_error('bibliographic_file_processor.bibtex_integrator_failed', "<#{e.class}> : #{e.message}")
-        @error=::I18n::t('bibliographic_file_processor.bibtex_integrator_failed'.to_sym)
-        false
-      end
-    elsif @search[:filetype] == 'application/nbib' or @search[:filetype] == 'application/x-pubmed' or @search[:filename] =~ /\.nbib$/
-      begin
-        BibliographicalImporter::PubmedSummary::Reader.parse(@search[:file_body])
-      rescue PubmedSummary::ParseError=>e
-        log_error('bibliographic_file_processor.pubmed_integrator_failed', "<#{e.class}> : #{e.message}")
-        @error=::I18n::t('bibliographic_file_processor.pubmed_integrator_failed'.to_sym)
-        false
-      end
-
-    elsif @search[:filetype] == 'text/csv' # Por trabajar
-      #$log.info(bibliographical_database_name)
-      BibliographicalImporter::CSV::Reader.parse(@search[:file_body], @search.bibliographical_database_name)
-    else
-      log_error('bibliographic_file_processor.no_integrator_for_filetype')
-      false
-    end
-  end
 
   def get_cit_refs_ids(cited_references)
     cit_refs_ids = []

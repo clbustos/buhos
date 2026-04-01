@@ -60,5 +60,6 @@
       %label=t(:File)
       =partial("searches/file_link".to_sym, :locals=>{search:@search})
       %p.instructions=t("search.Search_file_instructions")
-      %input{:type=>'file', :name=>'file'}
+      .drop-zone
+        %input{:type=>'file', :name=>'file'}
   %input.btn.btn-primary{:type=>:submit,:value=>t('Send')}

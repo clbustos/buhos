@@ -164,44 +164,70 @@ post '/search/update' do
   }
   #  aa=SystematicReview.new
 
-    if params['bibliographic_database_id'].nil?
-      add_message(I18n::t(:No_empty_bibliographic_database_on_search), :error)
+  if params['bibliographic_database_id'].nil?
+    add_message(I18n::t(:No_empty_bibliographic_database_on_search), :error)
+  else
+    result=Result.new
+    devolver=false
+
+    if id==""
+      search=Search.create(
+          :systematic_review_id=>otros_params[:systematic_review_id],
+          :source=>otros_params[:source],
+          :bibliographic_database_id=>otros_params[:bibliographic_database_id],
+          :date_creation=>otros_params[:date_creation],
+          :search_criteria=>otros_params[:search_criteria],
+          :description=>otros_params[:description],
+          :search_type=>otros_params[:search_type],
+          :user_id=>session['user_id']
+      )
     else
-
-
-      if id==""
-        search=Search.create(
-            :systematic_review_id=>otros_params[:systematic_review_id],
-            :source=>otros_params[:source],
-            :bibliographic_database_id=>otros_params[:bibliographic_database_id],
-            :date_creation=>otros_params[:date_creation],
-            :search_criteria=>otros_params[:search_criteria],
-            :description=>otros_params[:description],
-            :search_type=>otros_params[:search_type],
-            :user_id=>session['user_id']
-        )
-      else
-        search=Search[id]
-        search.update(otros_params)
-      end
-
-      if archivo
-        fp=File.open(archivo[:tempfile],"rb")
-        search.update(:file_body=>fp.read, :filetype=>archivo[:type],:filename=>archivo[:filename])
-        fp.close
-      end
-
-      if search.is_type?(:bibliographic_file)
-        sp=BibliographicFileProcessor.new(search)
-        add_result(sp.result)
-        unless sp.error.nil?
-          add_message(sp.error, :error)
-          search.delete
-        end
-      end
-
+      search=Search[id]
+      search.update(otros_params)
     end
-  redirect "/review/#{otros_params[:systematic_review_id]}/dashboard"
+
+    if archivo
+      fp=File.open(archivo[:tempfile],"rb")
+      content=fp.read
+      # if search file is a bibliographic file, check if
+      # file is processable
+      if search.is_type?(:bibliographic_file)
+        bib_processor=BibliographicalImporter::Factory.build(content,
+                                                           archivo[:filename],
+                                                           archivo[:type],
+                                                           result)
+        if bib_processor
+          sp=BibliographicFileProcessor.new(search, bib_processor, result)
+          if sp.error.nil?
+            search.update(:file_body=>content, :filetype=>archivo[:type], :filename=>archivo[:filename])
+          else
+            devolver=true
+            search.update(:valid => false)
+            result.add_result(sp.error)
+          end
+        else
+          devolver=true
+          search.update(:valid => false)
+        end
+
+        add_result(result)
+      else
+        # Just update the file
+        search.update(:file_body=>content, :filetype=>archivo[:type],:filename=>archivo[:filename])
+      end
+      fp.close
+    end
+
+  end
+  if devolver
+    @search=search
+    @review=@search.systematic_review
+    haml "searches/search_edit".to_sym, escape_html: false
+  else
+    redirect "/review/#{otros_params[:systematic_review_id]}/dashboard"
+
+  end
+
 end
 
 
@@ -228,7 +254,7 @@ post '/searches/update_batch' do
     elsif params['action']=='process'
       results=Result.new
       searches.each do |search|
-        sp=BibliographicFileProcessor.new(search)
+        sp=BibliographicFileProcessor.process_with_saved_file(search)
         results.add_result(sp.result)
       end
       add_result(results)

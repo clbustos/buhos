@@ -649,3 +649,13 @@ div.lista-etapas span.etapa {
 .color-mode__btn {
   color: #111111;
   color: var(--element1, #111111); }
+
+.drop-zone {
+  background-color: #fefefe;
+  background-color: var(--surface2, #fefefe);
+  border-color: #adadad;
+  border-color: var(--border-botton, #adadad); }
+
+.drop-zone > input {
+  margin-top: 2em;
+  margin-bottom: 2em; }

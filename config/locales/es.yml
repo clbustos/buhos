@@ -75,9 +75,12 @@ es:
   Back: "Atrás"
   Bibliographic_database: "Base de datos bibliográfica"
   bibliographic_file_processor:
+    pubmed_success: "Importación de Pubmed exitosa"
+    bibtex_success: "Importación de Bibtex exitosa"
     bibtex_integrator_failed: "Falló procesador de archivos BibTeX"
     pubmed_integrator_failed: "Falló procesador de archivos Pubmed "
     no_file_available: "No hay archivo disponible para process"
+    error_on_search: "Error en búsqueda: %{i}"
     error_on_reference: "Error en referencia Nº %{i}"
     error_parsing_file: "Error procesando archivo"
     no_integrator_for_filetype: "No hay integrador para este tipo de archivo"
@@ -281,7 +284,7 @@ es:
     Show_only_files_not_assigned_to_cd: "No asignado a DC"
   Filter: "Filtro"
   footer_conicyt: "Software financiado por Beca Doctorado Nacional Conicyt Nº21151499"
-  footer_copyright: "© 2016-2025 Claudio Bustos"
+  footer_copyright: "© 2016-2026 Claudio Bustos"
   full_text_review:
       stage_complete_message: "La etapa de extracción de texto completo. La etapa de reporte se iniciará cuando todos los usuarios del grupo hayan concluido."
   Full_text_report: "Reporte de extracción de información"

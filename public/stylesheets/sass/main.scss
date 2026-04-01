@@ -981,8 +981,16 @@ div.lista-etapas {
   color: #111111;
   color: var(--element1, #111111);
 }
+.drop-zone {
+  background-color: $light_surface_2;
+  background-color: var(--surface2, $light_surface_2);
+
+  border-color: $light_border_color;
+  border-color: var(--border-botton, $light_border_color);
+}
+.drop-zone > input {
+  margin-top:2em;
+  margin-bottom:2em;
 
 
-
-
-
+}

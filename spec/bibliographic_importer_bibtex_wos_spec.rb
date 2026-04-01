@@ -1,6 +1,7 @@
 require 'spec_helper'
 require 'ostruct'
 require_relative "../lib/bibliographical_importer/bibtex"
+
 describe 'BibliographicalImporter::BibTeX' do
   before(:all) do
     RSpec.configure { |c| c.include RSpecMixin }
