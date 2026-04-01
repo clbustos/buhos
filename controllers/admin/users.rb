@@ -92,8 +92,8 @@ post '/admin/users_batch_edition/excel_import' do
       next if login.nil? or name.nil?
 
       institution=row[id_institution].nil? ? "**NO INSTITUTION**": row[id_institution].strip
-      language=row[id_language]
-      password=row[id_password]
+      language=row[id_language].nil? ? nil: row[id_language]
+      password=row[id_password].nil? ? nil: row[id_password]
       role_id=row[id_role]
 
       institution_id=institutions_names[institution] || Institution.find_or_create(name:institution)[:id]
@@ -116,7 +116,7 @@ post '/admin/users_batch_edition/excel_import' do
           to_update={active:active, email:email, institution_id:institution_id,
                      language:language, login:login, name:name,
                      role_id:role_id }
-          if !password.nil? and password.strip!=""
+          if !password.nil? and password.to_s.strip!=""
             to_update[:password]=Digest::SHA1.hexdigest(password)
           end
           to_update_2=to_update.inject({}) {|ac,v|
