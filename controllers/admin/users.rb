@@ -92,8 +92,8 @@ post '/admin/users_batch_edition/excel_import' do
       next if login.nil? or name.nil?
 
       institution=row[id_institution].nil? ? "**NO INSTITUTION**": row[id_institution].strip
-      language=row[id_language].nil? ? nil: row[id_language]
-      password=row[id_password].nil? ? nil: row[id_password]
+      language=row[id_language].nil? ? nil: row[id_language].to_s
+      password=row[id_password].nil? ? nil: row[id_password].to_s
       role_id=row[id_role]
 
       institution_id=institutions_names[institution] || Institution.find_or_create(name:institution)[:id]
