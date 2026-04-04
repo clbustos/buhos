@@ -12,7 +12,7 @@ Sequel.migration do
       DateTime :created_at, default: Sequel::CURRENT_TIMESTAMP
 
       # Un usuario solo reporta una vez el mismo documento en la misma SR
-      index [:systematic_review_id, :canonical_document_id, :user_id], unique: true
+      index [:systematic_review_id, :canonical_document_id, :user_id], unique: true, name: srrd_sr_cd_user_id
     end
 
     # 2. Tabla para documentos de interés (favoritos/destacados)
