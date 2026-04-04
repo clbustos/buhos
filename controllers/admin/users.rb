@@ -88,9 +88,7 @@ post '/admin/users_batch_edition/excel_import' do
       email=row[id_email]
       login=row[id_login]
       name=row[id_name]
-
       next if login.nil? or name.nil?
-
       institution=row[id_institution].nil? ? "**NO INSTITUTION**": row[id_institution].strip
       language=row[id_language].nil? ? nil: row[id_language].to_s
       password=row[id_password].nil? ? nil: row[id_password].to_s

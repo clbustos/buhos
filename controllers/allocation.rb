@@ -14,7 +14,10 @@ put '/allocation/user/:user_id/review/:rs_id/cd/:cd_id/stage/:stage_id/edit_inst
 
   pk = params['pk']
   value = params['value']
-  AllocationCd.where(:systematic_review_id=>rs_id, :canonical_document_id=>cd_id, :user_id=>user_id, :stage=>stage).update(:instruction=>value.chomp)
+  AllocationCd.where(:systematic_review_id=>rs_id,
+                     :canonical_document_id=>cd_id,
+                     :user_id=>user_id,
+                     :stage=>stage).update(:instructions=>value.chomp)
   return true
 end
 

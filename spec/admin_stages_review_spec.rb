@@ -5,7 +5,31 @@ require 'spec_helper'
 describe 'Stage administration with complete data' do
   before(:all) do
     RSpec.configure { |c| c.include RSpecMixin }
-    @temp=configure_complete_sqlite # TODO: REMOVE DEPENDENCE ON COMPLETE SQLITE
+    @temp=configure_empty_sqlite
+    sr_for_report
+    CanonicalDocument.insert(:id=>2, :title=>"Documento 2", :year=>2020)
+    CanonicalDocument.insert(:id=>3, :title=>"Documento 3", :year=>2020)
+
+    ['screening_title_abstract', 'screening_references', 'review_full_text'].each do |stage|
+
+      AllocationCd.insert(:systematic_review_id=>1,
+                                  :canonical_document_id=>1,
+                                  :user_id=>1,
+                                  :stage=> stage,
+                                  :instructions=>"I #{stage}"
+      )
+
+      Resolution.insert(:systematic_review_id=>1, :canonical_document_id=>2,
+                        :user_id=>2, :stage=>stage,
+                        :resolution=>'yes',
+                        :commentary=>'STA1')
+      Resolution.insert(:systematic_review_id=>1, :canonical_document_id=>3,
+                        :user_id=>2, :stage=>stage,
+                        :resolution=>'no',
+                        :commentary=>'STA1')
+    end
+
+
     login_admin
   end
   def accept_yes
@@ -31,13 +55,31 @@ describe 'Stage administration with complete data' do
     $db["SELECT stage, COUNT(*) as n FROM allocation_cds WHERE systematic_review_id=1 and user_id=1 GROUP BY stage"].to_hash(:stage)
   end
 
-  context "when check number of resolution on each stage" do
-    it "should have 22 yes resolutions on sta"  do expect(res_sta['yes'][:n]).to eq(22) end
-    it "should have 63 no resolutions on sta"   do expect(res_sta['no'][:n]).to eq(63) end
-    it "should have 9 yes resolutions on sr"   do expect(res_sr['yes'][:n]).to eq(9) end
-    it "should have 18 no resolutions on sr"    do expect(res_sr['no'][:n]).to eq(18) end
-    it "should have 27 yes resolutions on rft"  do expect(res_rft['yes'][:n]).to eq(27) end
-    it "should have 3 no resolutions on rft"    do expect(res_rft['no'][:n]).to eq(3) end
+
+  context "when verifying the number of resolutions per stage" do
+    it "returns 2 'yes' resolutions for the STA stage" do
+      expect(res_sta['yes'][:n]).to eq(2)
+    end
+
+    it "returns 1 'no' resolution for the STA stage" do
+      expect(res_sta['no'][:n]).to eq(1)
+    end
+
+    it "returns 1 'yes' resolutions for the SR stage" do
+      expect(res_sr['yes'][:n]).to eq(1)
+    end
+
+    it "returns 1 'no' resolutions for the SR stage" do
+      expect(res_sr['no'][:n]).to eq(1)
+    end
+
+    it "returns 2 'yes' resolution for the RFT stage" do
+      expect(res_rft['yes'][:n]).to eq(2)
+    end
+
+    it "returns 1 'no' resolutions for the RFT stage" do
+      expect(res_rft['no'][:n]).to eq(1)
+    end
   end
 
   context "when accept to 'yes' on 2 'no' decisions on sta" do
@@ -48,28 +90,29 @@ describe 'Stage administration with complete data' do
 
       expect(last_response).to be_redirect
     end
-    it "should have 78 yes resolutions" do expect(res_sta['yes'][:n]).to eq(78) end
-    it "should have 7 no resolutions"   do expect(res_sta['no'][:n]).to eq(7) end
+    it "should have 2 yes resolutions" do expect(res_sta['yes'][:n]).to eq(2) end
+    it "should have 1 no resolutions"   do expect(res_sta['no'][:n]).to eq(1) end
   end
 
 
 
   context "when check assignations on each stage" do
-    it "should have 85 for admin on sta" do expect(assignations_admin['screening_title_abstract'][:n]).to eq(85) end
-    it "should have 26 for admin on sr" do expect(assignations_admin['screening_references'][:n]).to eq(26) end
-    it "should have 30 for admin on rft" do expect(assignations_admin['review_full_text'][:n]).to eq(30) end
+    it "should have 1 for admin on sta" do expect(assignations_admin['screening_title_abstract'][:n]).to eq(1) end
+    it "should have 1 for admin on sr" do expect(assignations_admin['screening_references'][:n]).to eq(1) end
+    it "should have 1 for admin on rft" do expect(assignations_admin['review_full_text'][:n]).to eq(1) end
 
   end
   context 'when add a commentary on a assignation' do
     before(:context) do
-      put '/allocation/user/1/review/1/cd/64/stage/screening_title_abstract/edit_instruction', value:'new instruction'
+      put '/allocation/user/1/review/1/cd/1/stage/screening_title_abstract/edit_instruction', value:'new instruction'
     end
     it "should response be ok" do
       expect(last_response).to be_ok
     end
-    let(:asignacion) {AllocationCd[:systematic_review_id=>1, :user_id=>1, :canonical_document_id=>64, :stage=>"screening_title_abstract"]}
+
+    let(:asignacion) {AllocationCd[:systematic_review_id=>1, :user_id=>1, :canonical_document_id=>1, :stage=>"screening_title_abstract"]}
     it "should create commentary on assignation object" do
-      expect(asignacion[:instruction]).to eq('new instruction')
+      expect(asignacion[:instructions]).to eq('new instruction')
     end
   end
 
@@ -77,12 +120,12 @@ describe 'Stage administration with complete data' do
     before(:context) do
       get '/review/1/stage/screening_title_abstract/add_assign_user/1/all'
     end
-    it "should have 85 assignations on sta" do
-      expect(assignations_admin['screening_title_abstract'][:n]).to eq(85)
+    it "should have 1 assignations on sta" do
+      expect(assignations_admin['screening_title_abstract'][:n]).to eq(1)
     end
     it "should have 84 assignations on sta if we remove one later" do
       post '/canonical_document/user_allocation/unallocate', {rs_id:1, cd_id:64, user_id:1, stage:'screening_title_abstract'}
-      expect(assignations_admin['screening_title_abstract'][:n]).to eq(84)
+      expect(assignations_admin['screening_title_abstract'][:n]).to eq(1)
     end
   end
 
@@ -94,7 +137,7 @@ describe 'Stage administration with complete data' do
     end
     it "should have 1 assignations on sta if we add one later" do
       remove_assignations
-      post '/canonical_document/user_allocation/allocate', {rs_id:1, cd_id:64, user_id:1, stage:'screening_title_abstract'}
+      post '/canonical_document/user_allocation/allocate', {rs_id:1, cd_id:1, user_id:1, stage:'screening_title_abstract'}
       expect(assignations_admin['screening_title_abstract'][:n]).to eq(1)
     end
   end
@@ -106,8 +149,8 @@ describe 'Stage administration with complete data' do
       post '/canonical_document/user_allocation/allocate', {rs_id:1, cd_id:64, user_id:2, stage:'screening_title_abstract'}
       get '/review/1/stage/screening_title_abstract/add_assign_user/1/without_allocation'
     end
-    it "should have 84 assignations on sta" do
-      expect(assignations_admin['screening_title_abstract'][:n]).to eq(84)
+    it "should have 1 assignations on sta" do
+      expect(assignations_admin['screening_title_abstract'][:n]).to eq(1)
     end
   end
 

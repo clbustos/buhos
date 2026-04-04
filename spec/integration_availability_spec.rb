@@ -6,11 +6,26 @@ require_relative 'spec_helper'
 describe 'Resources availability:' do
   before(:all) do
     RSpec.configure { |c| c.include RSpecMixin }
+    @temp=configure_empty_sqlite
+    sr_for_report
+    CanonicalDocument.insert(:id=>2, :title=>"Documento 1", :year=>2020)
+    Tag.insert(:id=>1, :text=>"tag1")
+    TagInCd.insert(:tag_id=>1, :canonical_document_id=>1, :user_id=>1,
+                   :systematic_review_id=>1,
+                   :decision=>"yes")
+    AllocationCd.insert(:systematic_review_id=>1, :canonical_document_id=>1, :user_id=>1,
+                        :stage=>"screening_title_abstract")
+    AllocationCd.insert(:systematic_review_id=>1, :canonical_document_id=>1, :user_id=>1,
+                        :stage=>"review_full_text")
 
-    @temp=configure_complete_sqlite # TODO: REMOVE DEPENDENCE ON COMPLETE SQLITE
+    create_references(texts: ["referencia"], cd_id:1, record_id:1)
+    login_admin
+
+
+
   end
 
-
+  let(:referencia_id) {Reference.calculate_id("referencia") }
   it { expect("/").to be_available_for_admin}
 
   context "when admin resources are accessed" do
@@ -108,13 +123,13 @@ describe 'Resources availability:' do
   end
 
   context "when user enter extract information form" do
-    it { expect("/review/1/extract_information/cd/137").to be_available_for_admin}
+    it { expect("/review/1/extract_information/cd/1").to be_available_for_admin}
 
 
   end
 
   context "when user enter quality assessment form" do
-    it { expect("/review/1/quality_assessment/cd/137").to be_available_for_admin}
+    it { expect("/review/1/quality_assessment/cd/1").to be_available_for_admin}
 
 
   end
@@ -153,8 +168,8 @@ describe 'Resources availability:' do
     it { expect("/record/1").to be_available_for_admin}
   end
   context "when references are acceded" do
-    it {expect("/reference/19e8abd776da3d40aec0158e8ef105959bd9b57bdb5f64ce07ec3d33a0324334").to be_available_for_admin}
-    it {expect("/reference/19e8abd776da3d40aec0158e8ef105959bd9b57bdb5f64ce07ec3d33a0324334/search_similar").to be_available_for_admin}
+    it {expect("/reference/#{referencia_id}").to be_available_for_admin}
+    it {expect("/reference/#{referencia_id}/search_similar").to be_available_for_admin}
 
   end
   context "when canonical documents resources are accessed" do
@@ -175,8 +190,8 @@ describe 'Resources availability:' do
     it { expect("/user/1/change_password").to be_available_for_admin}
   end
   context "when tag resources are accesed" do
-    it {expect("/tag/2/rs/1/cds").to be_available_for_admin}
-    it {expect("/tag/2/rs/1/stage/screening_title_abstract/cds").to be_available_for_admin}
+    it {expect("/tag/1/rs/1/cds").to be_available_for_admin}
+    it {expect("/tag/1/rs/1/stage/screening_title_abstract/cds").to be_available_for_admin}
   end
 
   context "when logout is used" do

@@ -127,7 +127,16 @@ module RSpecMixin
   # @return an array with systematic reviews ids
   def create_sr(n:1,  group_id:1, sr_administrator:1)
     1.upto(n).map do |i|
-      SystematicReview.insert(:id=>i,:name=>"Test Systematic Review #{i}", :group_id=>group_id, :sr_administrator=>sr_administrator)
+      SystematicReview.insert(:id=>i,
+                              :name=>"Test Systematic Review #{i}",
+                              :group_id=>group_id,
+                              :sr_administrator=>sr_administrator,
+                              :date_creation=>Date.today,
+                              :objectives=>"",
+                              :description=>"",
+                              :year_start=>0,
+                              :year_end=>0
+                              )
     end
   end
 

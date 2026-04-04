@@ -23,7 +23,10 @@ post '/resolution/review/:id/canonical_document/:cd_id/stage/:stage/resolution' 
     return 500 unless ['yes','no'].include? resolution
     $db.transaction(:rollback=>:reraise) do
       if res.empty?
-        Resolution.insert(:systematic_review_id=>rev_id, :canonical_document_id=>cd_id, :stage=>stage, :resolution=>resolution, :user_id=>user_id, :commentary=>"Resuelto en forma especifica en #{DateTime.now.to_s}")
+        Resolution.insert(:systematic_review_id=>rev_id, :canonical_document_id=>cd_id, :stage=>stage,
+                          :resolution=>resolution,
+                          :user_id=>user_id,
+                          :commentary=>"Resuelto en forma especifica en #{DateTime.now.to_s}")
       else
         res.update(:resolution=>resolution, :user_id=>user_id)
       end
