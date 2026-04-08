@@ -51,9 +51,16 @@
                 -if auth_to('review_analyze')
                   %li{:class=>''}
                     %a{:class=>'nav-link', :href=>'/'}=t(:My_Dashboard)
-                -if auth_to('message_view')
-                  %li{:class=>''}
-                    %a{:class=>'nav-link', :href=>"/my_messages"}=t(:My_messages)
+                %li{:class=>'dropdown'}
+                  %a{:href=>'#', :class=>'dropdown-toggle', 'data-toggle'=>'dropdown', :role=>'button', 'aria-haspopup'=>'true', 'aria-expanded'=>'false', :id=>'navbarDropdownMenuLink'}
+                    =t(:My_resources)
+                    %span{:class=>:caret}>
+                    %ul.dropdown-menu
+                      %li<
+                        %a{:class=>'nav-link', :href=>"/my_favorites"}=t(:My_favorites)
+                      -if auth_to('message_view')
+                        %li<
+                          %a{:class=>'nav-link', :href=>"/my_messages"}=t(:My_messages)
                 - if auth_to('review_admin')
                   %li{:class=>'hidden-sm'}
                     %a{:class=>'nav-link', :href=>'/reviews'}=t(:Systematic_reviews)
@@ -69,6 +76,8 @@
                         %a{:class=>'dropdown-item', :href=>url('/admin/groups')}=t(:Groups)
                       %li<
                         %a{:class=>'dropdown-item', :href=>url('/admin/roles')}=t(:Roles)
+                      %li<
+                        %a{:class=>'dropdown-item', :href=>url('/admin/authorizations')}=t(:Authorizations)
                       %li<
                         %a{:class=>'dropdown-item', :href=>url('/admin/scales')}=t(:Scales)
                       %li<

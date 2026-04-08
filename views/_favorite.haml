@@ -1,0 +1,16 @@
+- ajax||=false
+
+%div{:id=>"favorite-cd-#{cd.id}-user-#{user_id}"}
+  - if favorite_o
+    %button{:class=>"btn btn-success dc_favorite", "data-pk"=>cd[:id], "data-user"=>user_id,
+            :id=>"favorite-#{cd[:id]}", 'data-url'=>"/favorite/user/#{user_id}/canonical_document/#{cd[:id]}/remove"}
+      %span.glyphicon.glyphicon-star
+    =a_textarea_editable(cd.id,
+      "commentary_favorite_cd",
+      url("/favorite/user/#{user_id}/canonical_document/#{cd[:id]}/commentary_favorite"),
+      favorite_o  ? favorite_o[:commentary] : nil,
+      t(:Enter_commentary))
+  - else
+    %button{:class=>"btn btn-default dc_favorite", "data-pk"=>cd[:id], "data-user"=>user_id,
+            :id=>"favorite-#{cd[:id]}", 'data-url'=>"/favorite/user/#{user_id}/canonical_document/#{cd[:id]}/add"}
+      %span.glyphicon.glyphicon-star-empty

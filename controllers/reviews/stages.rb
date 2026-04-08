@@ -40,6 +40,9 @@ get '/review/:id/screening_title_abstract' do |id|
   @cds_pre=@ads.canonical_documents
   @cds_total=@cds_pre.count
   @decisions=@ads.decisions
+  @favorites = FavoriteDocument.where(user_id: @user_id).
+    inject({}) {|ac,v| ac[v[:canonical_document_id]]=v; ac}
+  $log.info(@favorites)
   begin
     @cds=@pager.adapt_ads_cds(@ads, @cds_pre)
   rescue Buhos::SearchParser::ParsingError => e
@@ -96,8 +99,9 @@ get '/review/:id/screening_references' do |id|
     params['query']=nil
     @cds=@pager.adapt_ads_cds(@ads, @cds_pre, no_query:true)
   end
-
-$log.info(@pager)
+  @favorites = FavoriteDocument.where(user_id: @user_id, systematic_review_id: @review.id)
+                               .to_hash(:canonical_document_id, :commentary)
+  #$log.info(@pager)
 
   haml "systematic_reviews/screening_general".to_sym, escape_html: false
 
@@ -148,6 +152,10 @@ get '/review/:id/review_full_text' do |id|
   @a_tags=Buhos::AnalysisTags.new
   @a_tags.systematic_review_id(@review.id)
   @a_tags.user_id(@user_id)
+
+  @favorites = FavoriteDocument.where(user_id: @user_id, systematic_review_id: @review.id)
+                               .to_hash(:canonical_document_id, :commentary)
+
   haml %s{systematic_reviews/review_full_text}, escape_html: false
 end
 

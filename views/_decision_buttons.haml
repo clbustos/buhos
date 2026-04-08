@@ -6,8 +6,9 @@
 - cd_criteria=CdCriterion.where(systematic_review_id:review[:id], canonical_document_id:cd[:id], user_id:user_id).to_hash(:criterion_id)
 .container-fluid
   .row
-    .col-md-12
+    .col-md-1.col-sm-2
       %strong=t(:Decision)
+    .col-md-11.col-sm-10
       .btn-group
         - crits={'yes'=>{bs:'success',name:t(:Yes)}, 'no'=>{bs:'danger',name:t(:No)}, 'undecided'=>{bs:'warning',name:t(:Undecided)}}
         - crits.each_pair do |dec_id, crit|
@@ -18,17 +19,23 @@
           :id=>"decision-#{cd[:id]}-#{dec_id}",
           'data-url'=>"/decision/review/#{review_id}/user/#{user_id}/canonical_document/#{cd[:id]}/stage/#{stage}/decision"}=crit[:name]
   .row
-    .col-md-12
-      %strong="#{t(:Commentary)}:"
+    .col-md-1.col-sm-2
+      %strong="#{t(:Commentary)} "
+    .col-md-11.col-sm-10
       =a_textarea_editable(cd[:id],
         "commentary-cd",
         url("/decision/review/#{review_id}/user/#{user_id}/canonical_document/#{cd[:id]}/stage/#{stage}/commentary"), decision_o  ?  decision_o.commentary : nil,
         t(:Enter_commentary))
   .row
-    .col-md-12
-      %strong=t(:Tags)
+    .col-md-1.col-sm-2
+      %strong="#{t(:Actions)} "
+    .col-md-11.col-sm-10
+      .btn-group
+        =partial(:favorite, :locals=>{cd: cd, review:review,user_id:user_id, favorite_o:@favorites[cd[:id]]})
   .row
-    .col-md-12
+    .col-md-1.col-sm-2
+      %strong=t(:Tags)
+    .col-md-11.col-sm-10
       =partial("tags/tags_cd_rs", :locals=>{cd: cd, review:review,user_id:user_id, ajax:ajax})
   -if decision
     .row

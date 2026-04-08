@@ -1,5 +1,20 @@
 %h2=title(t(:Authorizations))
 
+%ul
+  - @authorizations.each do |auth|
+    %li
+      =auth[:id]
+      =auth[:description]
+
+%ul.list-group
+  %li.list-group-item
+    %a{:href=>url("/admin/authorizations/renew"), :role=>'button', :class=>"btn btn-default"}=t(:Renew_authorizations)
+
+%h2=t(:Authorizations_on_files)
+%ul
+  - @permits.each do |permit|
+    %li=permit
+
 %table.tablesorter
   %thead
     %th Files
@@ -17,7 +32,3 @@
             - else
               =t(:No_authorizations)
 
-%h2=t(:Authorizations)
-%ul
-  - @permits.each do |permit|
-    %li=permit

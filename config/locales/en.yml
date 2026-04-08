@@ -1,4 +1,10 @@
 en:
+  Authorizations_renewed: "Authorizations renewed"
+  Renew_authorizations: "Renew authorizations"
+  Visibility: "Visibility"
+  My_resources: "My resources"
+  My_favorites: "My favorites"
+  Category: "Category"
   Documents_without_decisions: "Document without decisions"
   No_document_without_decisions: "No document without decisions"
   View_documents_with_no_decision: "View documents without decisions"
@@ -27,6 +33,7 @@ en:
   Active_user: "Active user"
   actives_and_inactives_systematic_reviews: "actives and inactives"
   Add_abstract_to_get_similarity: "To calculate similarity, please complete abstract for this document"
+  Add: "Add"
   add_doi:
     cant_process_doi: "Can't process doi %{doi}"
     doi_already_on_reference: "DOI %{doi} already assigned to reference %{reference}"
@@ -155,7 +162,6 @@ en:
   count_duplicated_scielo: "Number of duplicated scielo documents"
   count_duplicated_scopus: "Number of duplicated scopus documents"
   count_duplicated_wos: "Number of duplicated WOS documents"
-
   count_duplicated_metadata: "Number of duplicated metadata documents"
   Count_records: "Number of records"
   Count_valid_records: "Number of valid records"
@@ -203,6 +209,17 @@ en:
   Description: "Description"
   Dev_alert: "Development"
   Distinct_documents: "Distinct documents"
+  document_reports:
+    document_reports: "Document Reports"
+    report_type: "Report Type"
+    status: "Status"
+    pending: "Pending"
+    resolved: "Resolved"
+    ignored: "Ignored"
+    duplicate: "Duplicate Document"
+    ocr_error: "OCR/Reading Error"
+    wrong_metadata: "Incorrect Metadata"
+    spam: "Spam / Irrelevant Content"
   Document: "Document"
   Document_include: "Include Document"
   Document_exclude: "Exclude Document"
@@ -255,6 +272,21 @@ en:
     get_successful: "Successful retrieval from %{type} for canonical document %{cd_id}"
     get_error: "Error on retrieval from %{type} for canonical document %{cd_id}"
     dont_know_type: "Type %{type} not supported"
+  favorites:
+    My_Library_for: "My Library: %{user}"
+    My_Categories: "My Collections"
+    New_category_name: "New collection name"
+    Make_public: "Make public (share)"
+    No_categories_created: "You haven't created any personal collections yet."
+    My_Favorite_Documents: "My Favorite Documents"
+    No_favorites_yet: "You don't have any documents marked as favorites."
+    No_category: "-- No category --"
+    updated_successfully: "Favorite updated successfully."
+    group_created: "Collection created successfully."
+    group_deleted: "Collection %{fg_id} deleted successfully."
+    Private: "Private"
+    Public: "Público"
+    not_allowed_to_delete: "Not allowed to delete"
   Field_new: "New field"
   Fields: "Fields"
   fields:
@@ -537,6 +569,8 @@ en:
     search_view: 'Searches: See'
     tag_edit: 'Tags: Edit'
     user_admin: 'Users: Admin'
+    institution_admin: 'Institutions: Admin'
+    favorite_edit: 'Favorite: Edit'
   PRISMA_flow_diagram: "PRISMA flow diagram"
   prisma_report:
     "Eligibility": "Eligibility"

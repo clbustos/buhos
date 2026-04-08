@@ -56,6 +56,37 @@ function buscar_similares_canonico() {
     });
 }
 
+function actualizar_favorito(div_id) {
+
+    div_id = typeof div_id !== 'undefined' ? div_id : false;
+    var selector_action=div_id ? div_id+" .dc_favorite" : '.dc_favorite';
+
+    $(selector_action).unbind("click");
+    $(selector_action).click(function () {
+        var pk_id = $(this).attr("data-pk");
+        var user_id = $(this).attr("data-user");
+        var url = $(this).attr("data-url");
+        //var commentary=$("#commentary-"+pk_id).val()
+        var boton = $(this);
+        boton.prop("disabled", true);
+
+        //div_base="botones_resolution_"+stage+"_"+pk_id;
+        //$("#"+div_base+" button").prop("disabled", true);
+
+
+        $.post(url, {pk_id: pk_id,  user_id: user_id}, function (data) {
+            var to_update="#favorite-cd-"+pk_id+"-user-"+user_id;
+
+            $(to_update).replaceWith(data);
+            actualizar_favorito(to_update);
+            actualizar_textarea_editable(to_update);
+        }).fail(function () {
+            alert("No se pudo cargar el favorito")
+        })
+    })
+
+}
+
 
 function actualizar_resolution(stage, div_id) {
 
@@ -127,6 +158,7 @@ function actualizar_textarea_editable(div_id) {
 $(document).ready(function () {
     actualizar_textarea_editable();
     actualizar_name_editable();
+    actualizar_favorito();
 
     $(".toggle_buttons button").click(function(e) {
         var class_to="."+$(this).attr('data-class-toggle');
@@ -163,7 +195,6 @@ $(document).ready(function () {
     $('.btn-action').click(function() {
        var form=$(this.form);
        form.find("input[name='action']").val($(this).data('action'));
-
     });
 
     $(".tablesorter").tablesorter();

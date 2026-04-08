@@ -435,8 +435,9 @@ module Buhos
     end
     def self.allocate_authorizations_to_roles(db)
       analyst_permits = ['review_view', 'review_analyze', 'message_view', 'message_edit', 'search_view', 'search_edit',
-                         'record_view', 'record_edit', 'reference_view', 'reference_edit', 'file_view',
-                         'canonical_document_view', 'group_view']
+                         'record_view', 'record_edit', 'reference_view', 'reference_edit', 'file_view', 'file_admin',
+                         'canonical_document_view', 'group_view', 'crossref_query','pubmed_query','favorite_edit',
+                         'tag_edit']
       analyst_permits.each do |auth|
         db[:authorizations_roles].replace(:authorization_id => auth, :role_id => 'analyst') if db[:authorizations_roles].where(:authorization_id => auth, :role_id => 'analyst').count==0
        end
@@ -479,6 +480,7 @@ module Buhos
           'search_edit',
           'search_view',
           'tag_edit',
+          'favorite_edit',
           'user_admin'
       ]
       authorizations.each do |auth|

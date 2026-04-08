@@ -1,0 +1,83 @@
+.header
+  %h2=t("My_favorites", user: @user[:name])
+
+%ul.breadcrumb
+  %li
+    %a{:href=>"/user/#{@user[:id]}"}=@user[:name]
+  %li.active
+    =t(:My_favorites)
+
+%h3=t("favorites.My_Categories")
+.well
+  %form.form-inline{:action => "/favorite_groups/new", :method => "post"}
+    .form-group
+      %input.form-control{:name => "name", :placeholder => t("favorites.New_category_name"), :required => true}
+    .checkbox
+      %label
+        %input{:type => "checkbox", :name => "is_public", :value => "true"}
+        =t("favorites.Make_public")
+    %button.btn.btn-primary{:type => "submit"}
+      %span.glyphicon.glyphicon-plus
+      =t(:Add)
+
+- if @favorite_groups.empty?
+  %p
+    %em=t("favorites.No_categories_created")
+- else
+  %table.table.table-condensed.table-hover
+    %thead
+      %tr
+        %th=t(:Name)
+        %th=t(:Description)
+        %th=t(:Visibility)
+        %th=t(:Actions)
+    %tbody
+      - @favorite_groups.each do |group|
+        %tr
+          %td
+            =a_editable(group.id, "favorite_group_name", "/favorite_groups/#{group.id}/edit_field/name", group.name, "")
+          %td
+            =a_editable(group.id, "favorite_group_description", "/favorite_groups/#{group.id}/edit_field/description", group.description, "")
+          %td
+            -# Visibilidad editable (Select)
+            %a{:href => "#", :class => "editable-group-public", "data-pk" => group.id, "data-value" => group.is_public ? "1" : "0"}
+              %span.glyphicon{:class => group.is_public ? "glyphicon-eye-open" : "glyphicon-lock"}
+              = group.is_public ? t("favorites.Public") : t("favorites.Private")
+          %td
+            %a.btn.btn-danger.btn-xs{:href => "/favorite_group/#{group.id}/delete", :onclick => "return confirm('#{t(:Are_you_sure)}?');"}
+              %span.glyphicon.glyphicon-trash
+
+%h3=t("favorites.My_Favorite_Documents")
+
+- if @favorite_documents.empty?
+  %p
+    %em=t("favorites.No_favorites_yet")
+- else
+  %form{:id => "favorites_#{@user[:id]}", :action => "/favorites/user/#{@user[:id]}/update", :method => "post"}
+    %table.table.table-striped.table-bordered
+      %thead
+        %tr
+          %th=t(:Document)
+          %th=t(:Category)
+          %th=t(:Commentary)
+          %th=t(:Actions)
+      %tbody
+        - @favorite_documents.each do |fav|
+          %tr
+            %td
+              %strong=fav[:title]
+              %p="#{fav[:author]} (#{fav[:year]})"
+            %td
+              %select.form-control.input-sm{:name => "fav_group[#{fav[:user_id]}_#{fav[:canonical_document_id]}]"}
+                %option{:value => ""}=t("favorites.No_category")
+                - @favorite_groups.each do |group|
+                  %option{:value => group.id, :selected => (group.id == fav[:group_id])}=group.name
+            %td
+              %textarea.form-control{:name => "commentary",
+              :form => "fav_commentary[#{fav[:user_id]}_#{fav[:canonical_document_id]}]"}=fav[:commentary]
+            %td
+              %input{:type=>"checkbox",:name => "fav_delete[#{fav[:user_id]}_#{fav[:canonical_document_id]}]"}
+              =t(:Delete)
+    %button.btn.btn-sm.btn-success{:type => "submit"}
+      %span.glyphicon.glyphicon-save
+      =t(:Save)

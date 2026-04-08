@@ -19,13 +19,6 @@ end
 
 # Get all authorizations used on system
 
-get '/admin/authorizations' do
-  halt_unless_auth('reflection')
-  auth=Buhos::Reflection.get_authorizations(self)
-  @files=auth.files
-  @permits=auth.permits
-  haml "admin/permits".to_sym, escape_html: false
 
-end
 
 # @!endgroup

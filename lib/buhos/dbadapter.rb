@@ -99,6 +99,10 @@ module Buhos
 
       ::Pmc_Summary.dataset=self[:pmc_summaries]
 
+      ::FavoriteGroup.dataset=self[:favorite_groups]
+      ::FavoriteDocument.dataset=self[:favorite_documents]
+      ::DocumentReport.dataset=self[:sr_document_reports]
+
       ::Search.many_to_many :records, :class=>Record
 
 

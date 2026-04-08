@@ -98,6 +98,9 @@ get '/my_messages' do
   redirect "/user/#{session['user_id']}/messages"
 end
 
+get '/my_favorites' do
+  redirect "/user/#{session['user_id']}/favorites"
+end
 
 # @!group Personal messages
 
