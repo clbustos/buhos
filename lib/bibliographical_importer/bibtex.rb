@@ -132,9 +132,20 @@ module BibliographicalImporter
         @references_scopus= @bv["references"].to_s.split("; ") unless @bv['references'].nil?
         @journal_abbr=@bv[:abbrev_source_title].to_s
         @keywords=@bv[:keywords].to_s.split(";  ")
-        results=/eid=([^&]+)/.match(@bv[:url])
-        @uid=results[0]
-        @scopus_id=results[0]
+        url = @bv[:url].to_s
+
+        if url.include?("eid=")
+          # Old format
+          match = /eid=([^&]+)/.match(url)
+          @uid = match[1] if match
+          @scopus_id = match[1] if match
+        else
+          # New format: /publications/<numeric_id>
+          match = /\/publications\/(\d+)/.match(url)
+          @uid = match[1] if match
+          @scopus_id = match[1] if match
+        end
+
 
       end
 
