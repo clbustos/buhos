@@ -64,7 +64,7 @@ put '/favorite_groups/:gid/edit_field/:field' do |gid, field|
   # TODO: Que solo lo pueda modificar un administrador o el usuario dueño
 
   v=params["value"].chomp
-  if @fg and  ["name","description"].include? field
+  if @fg and  ["name","description", 'is_public'].include? field
     @fg.update( field.to_sym => v)
   end
   return 200

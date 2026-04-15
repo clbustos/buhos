@@ -1,6 +1,20 @@
 .header
   %h2=t("My_favorites", user: @user[:name])
 
+:javascript
+  $(document).ready(function() {
+    $(".editable-group-public").editable({
+        type: 'select',
+        source: [{value:0, text:"#{t("favorites.Private")}"},
+                 {value:1, text:"#{t("favorites.Public")}"}],
+        onblur:'submit',
+        ajaxOptions: {
+            type: 'put'
+        }
+    });
+
+  });
+
 %ul.breadcrumb
   %li
     %a{:href=>"/user/#{@user[:id]}"}=@user[:name]
@@ -39,10 +53,9 @@
           %td
             =a_editable(group.id, "favorite_group_description", "/favorite_groups/#{group.id}/edit_field/description", group.description, "")
           %td
-            -# Visibilidad editable (Select)
-            %a{:href => "#", :class => "editable-group-public", "data-pk" => group.id, "data-value" => group.is_public ? "1" : "0"}
-              %span.glyphicon{:class => group.is_public ? "glyphicon-eye-open" : "glyphicon-lock"}
-              = group.is_public ? t("favorites.Public") : t("favorites.Private")
+            %a{:href => "#", :id=>"editable_favorite_public_#{group.id}",
+            :class => "editable-group-public", "data-url"=>url("/favorite_groups/#{group.id}/edit_field/is_public"),
+            "data-pk" => group.id, "data-value" => group.is_public ? "1" : "0"}
           %td
             %a.btn.btn-danger.btn-xs{:href => "/favorite_group/#{group.id}/delete", :onclick => "return confirm('#{t(:Are_you_sure)}?');"}
               %span.glyphicon.glyphicon-trash

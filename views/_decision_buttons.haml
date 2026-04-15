@@ -2,6 +2,7 @@
 - review_id = review[:id]
 - ajax||=ajax
 - decision_o=decisions[cd[:id]]
+- favorite_o=FavoriteDocument.where(user_id: @user_id, canonical_document_id: cd[:id]).first
 - decision = decision_o ? decision_o[:decision] : nil
 - cd_criteria=CdCriterion.where(systematic_review_id:review[:id], canonical_document_id:cd[:id], user_id:user_id).to_hash(:criterion_id)
 .container-fluid
@@ -31,7 +32,7 @@
       %strong="#{t(:Actions)} "
     .col-md-11.col-sm-10
       .btn-group
-        =partial(:favorite, :locals=>{cd: cd, review:review,user_id:user_id, favorite_o:@favorites[cd[:id]]})
+        =partial(:favorite, :locals=>{cd: cd, user_id:user_id, favorite_o: favorite_o})
   .row
     .col-md-1.col-sm-2
       %strong=t(:Tags)
