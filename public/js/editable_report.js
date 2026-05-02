@@ -8,7 +8,6 @@ function actualizar_reportes(div_id) {
         var currentValue = reportButton.attr('data-value');
         var selectedReports = currentValue ? currentValue.split(',') : [];
 
-        reportButton.editable('destroy');
         reportButton.editable({
             type: 'checklist',
             value: selectedReports,
@@ -16,6 +15,7 @@ function actualizar_reportes(div_id) {
             placement: 'bottom',
             showbuttons: true,
             display: false,
+            highlight:false,
             ajaxOptions: {
                 type: 'put',
                 dataType: 'json'
@@ -24,9 +24,13 @@ function actualizar_reportes(div_id) {
             success: function (response, newValue) {
                 var selected = response && response.selected ? response.selected : newValue;
                 var selectedCount = selected ? selected.length : 0;
+                var countBadge = $(this).find('.document-report-count');
+
                 $(this).toggleClass('btn-warning', selectedCount > 0);
                 $(this).toggleClass('btn-default', selectedCount === 0);
                 $(this).attr('data-value', selected ? selected.join(',') : '');
+                countBadge.text(selectedCount);
+                countBadge.toggleClass('hidden', selectedCount === 0);
             }
         });
     });

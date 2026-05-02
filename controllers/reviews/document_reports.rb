@@ -25,20 +25,17 @@ put '/review/:sr_id/document_report/cd/:cd_id/user/:user_id/report_types' do |sr
   }
 
   $db.transaction do
-    reports_scope=DocumentReport.where(criteria)
-    if selected_types.empty?
-      reports_scope.delete
-    else
-      reports_scope.exclude(report_type:selected_types).delete
+    reports_scope=DocumentReport.where(criteria).map(:report_type)
+    reports_scope||=[]
+    to_add=selected_types-reports_scope
+    to_delete=reports_scope-selected_types
+
+    to_add.each do |report_type|
+      DocumentReport.insert(criteria.merge(report_type: report_type))
     end
 
-    selected_types.each do |report_type|
-      report=DocumentReport.where(criteria.merge(report_type:report_type)).first
-      if report
-        report.update(status:'pending')
-      else
-        DocumentReport.create(criteria.merge(report_type:report_type))
-      end
+    to_delete.each do |report_type|
+      DocumentReport.where(criteria.merge(report_type: report_type)).delete
     end
   end
 

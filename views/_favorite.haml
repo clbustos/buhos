@@ -1,7 +1,7 @@
 - # cd, user_id, favorite_o
 - ajax||=false
 
-%div{:id=>"favorite-cd-#{cd.id}-user-#{user_id}"}
+%span{:id=>"favorite-cd-#{cd.id}-user-#{user_id}"}
   - if favorite_o
     %button{:class=>"btn btn-success dc_favorite", "data-pk"=>cd[:id], "data-user"=>user_id,
             :id=>"favorite-#{cd[:id]}", 'data-url'=>"/favorite/user/#{user_id}/canonical_document/#{cd[:id]}/remove"}

@@ -2,13 +2,13 @@
 - report_types=DocumentReport.where(systematic_review_id: review[:id], canonical_document_id: cd[:id], user_id: user_id).exclude(status: 'ignored').map(:report_type)
 - report_active=report_types.any?
 - button_context=report_active ? 'btn-warning' : 'btn-default'
-%a.document-report-editable.btn.btn-sm{:href=>'#',
-  :class=>button_context,
-  :id=>"document-report-#{review[:id]}-#{cd[:id]}-#{user_id}",
-  "data-pk"=>cd[:id],
-  "data-value"=>report_types.join(','),
-  "data-url"=>url("/review/#{review[:id]}/document_report/cd/#{cd[:id]}/user/#{user_id}/report_types"),
-  "data-source"=>DocumentReport.report_type_source,
-  "data-title"=>t('document_reports.document_reports'),
-  "data-emptytext"=>t('document_reports.document_reports')}
-  %span.glyphicon.glyphicon-flag
+%span{:id=>"document-report-span-#{review[:id]}-#{cd[:id]}-#{user_id}"}
+  %button{:href=>'#',
+    :id=>"document-report-#{review[:id]}-#{cd[:id]}-#{user_id}",
+    :class=>"document-report-editable btn btn-sm #{button_context}",
+    "data-pk"=>cd[:id],
+    "data-value"=>report_types.join(','),
+    "data-url"=>url("/review/#{review[:id]}/document_report/cd/#{cd[:id]}/user/#{user_id}/report_types"),
+    "data-source"=>DocumentReport.report_type_source}
+    %span.glyphicon.glyphicon-warning-sign
+    %span.document-report-count.badge{:class=>(report_active ? nil : 'hidden')}=report_types.length

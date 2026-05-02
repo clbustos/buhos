@@ -659,3 +659,8 @@ div.lista-etapas span.etapa {
 .drop-zone > input {
   margin-top: 2em;
   margin-bottom: 2em; }
+
+
+.min-row-height {
+  min-height:2em;
+}

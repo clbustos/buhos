@@ -22,9 +22,10 @@
     =t_desc_value("user_dashboard.user_count_records_not_ready", a_tag("/review/#{sr[:id]}/searches/records/user/#{user[:id]}", t("user_dashboard.user_check_n_not_ready_records", count: sv.invalid_records_n)))
   - if sv.invalid_records_n>0
     %span.label.label-warning=t(:pending)
-.btn-group.btn-group-sm
-  =partial(:buttons_new_search, :locals=>{user: user, sr: sr  })
-  -if is_administrator
-    %a.btn.btn-default{:href=>"/review/#{sr.id}/administration/search", :id=>"dashboard-#{sr[:id]}-administrator-search"}
-      %snap.glyphicon.glyphicon-tower
-      =t(:Administration)
+%p
+  .btn-group.btn-group-sm
+    =partial(:buttons_new_search, :locals=>{user: user, sr: sr  })
+    -if is_administrator
+      %a.btn.btn-default{:href=>"/review/#{sr.id}/administration/search", :id=>"dashboard-#{sr[:id]}-administrator-search"}
+        %snap.glyphicon.glyphicon-tower
+        =t(:Administration)

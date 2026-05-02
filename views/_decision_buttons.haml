@@ -19,7 +19,7 @@
           "data-pk"=>cd[:id], "data-decision"=>dec_id, "data-user"=>user_id, "data-stage"=>stage,
           :id=>"decision-#{cd[:id]}-#{dec_id}",
           'data-url'=>"/decision/review/#{review_id}/user/#{user_id}/canonical_document/#{cd[:id]}/stage/#{stage}/decision"}=crit[:name]
-  .row
+  .row.min-row-height
     .col-md-1.col-sm-2
       %strong="#{t(:Commentary)} "
     .col-md-11.col-sm-10
@@ -27,14 +27,14 @@
         "commentary-cd",
         url("/decision/review/#{review_id}/user/#{user_id}/canonical_document/#{cd[:id]}/stage/#{stage}/commentary"), decision_o  ?  decision_o.commentary : nil,
         t(:Enter_commentary))
-  .row
+  .row.min-row-height
     .col-md-1.col-sm-2
       %strong="#{t(:Actions)} "
     .col-md-11.col-sm-10
       .btn-group
         =partial(:favorite, :locals=>{cd: cd, user_id:user_id, favorite_o: favorite_o})
         =partial(:document_report, :locals=>{review: review, cd: cd, user_id:user_id})
-  .row
+  .row.min-row-height
     .col-md-1.col-sm-2
       %strong=t(:Tags)
     .col-md-11.col-sm-10

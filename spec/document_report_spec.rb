@@ -104,13 +104,17 @@ describe DocumentReport do
     expect(last_response).to be_ok
     expect(last_response.body).to include('document-report-1-1-1')
     expect(last_response.body).to include('document-report-editable btn btn-sm btn-default')
+    expect(last_response.body).to include('document-report-count badge hidden')
 
     DocumentReport.create(systematic_review_id:1, canonical_document_id:1, user_id:1, report_type:'duplicate')
+    DocumentReport.create(systematic_review_id:1, canonical_document_id:1, user_id:1, report_type:'ocr_error')
 
     get '/review/1/screening_title_abstract'
 
     expect(last_response).to be_ok
     expect(last_response.body).to include('document-report-editable btn btn-sm btn-warning')
-    expect(last_response.body).to include('data-value=\'duplicate\'')
+    expect(last_response.body).to include('data-value=\'duplicate,ocr_error\'')
+    expect(last_response.body).to include('document-report-count badge')
+    expect(last_response.body).to include('>2</span>')
   end
 end
