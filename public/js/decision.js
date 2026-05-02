@@ -44,6 +44,7 @@ function actualizar_decision(stage,div_id) {
             $(div_replace).html(data);
             actualizar_decision(stage,div_replace);
             actualizar_textarea_editable(div_replace);
+            actualizar_reportes(div_replace);
 
 
             TagManager.update(div_replace);

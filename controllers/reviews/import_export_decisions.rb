@@ -9,6 +9,39 @@
 
 # @!group Import and export decisions
 
+get '/review/:sr_id/stage/:stage/export_decisions_excel' do |sr_id, stage|
+  halt_unless_auth_any('review_admin', 'review_admin_view')
+  @review=SystematicReview[sr_id]
+  raise Buhos::NoReviewIdError, sr_id if !@review
+
+  require 'caxlsx'
+  package = Axlsx::Package.new
+  wb = package.workbook
+  header_style = wb.styles.add_style :fg_color => "0000FF", :sz => 14, :alignment => { :horizontal=> :center }
+  wrap_text = wb.styles.add_style alignment: { wrap_text: true }
+
+  decisions=Decision.where(:systematic_review_id=>sr_id, :stage=>stage).order(:canonical_document_id, :user_id)
+
+  wb.add_worksheet(:name => "decisions") do |sheet|
+    header=["systematic_review_id", "canonical_document_id", "user_id", "stage", "decision", "commentary"]
+    sheet.add_row header, :style=> [header_style]*header.length
+    decisions.each do |decision|
+      sheet.add_row [
+        decision[:systematic_review_id],
+        decision[:canonical_document_id],
+        decision[:user_id],
+        decision[:stage],
+        decision[:decision],
+        decision[:commentary]
+      ], :style=> [nil, nil, nil, nil, nil, wrap_text]
+    end
+  end
+
+  headers 'Content-Type' => "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+  headers 'Content-Disposition' => "attachment; filename=decisions_#{sr_id}_#{stage}.xlsx"
+  package.to_stream
+end
+
 # TODO: The system doesn't check proper authorization. Use with care
 post '/review/import_decisions_excel' do
   halt_unless_auth_any('review_admin', 'review_admin_view')

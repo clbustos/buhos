@@ -3,7 +3,11 @@ require 'spec_helper'
 describe 'Scopus_Abstract' do
   before(:all) do
     RSpec.configure { |c| c.include RSpecMixin }
-    @temp=configure_complete_sqlite # TODO: REMOVE DEPENDENCE ON COMPLETE SQLITE
+    @temp=configure_empty_sqlite
+    Scopus_Abstract.insert(:id=>'2-s2.0-84893079388',
+                           :doi=>'10.1016/j.bjps.2013.09.004',
+                           :xml=>read_fixture('scopus_ex_1.xml'))
+    CanonicalDocument.insert(:id=>20, :title=>'Document without Scopus identifiers', :year=>2020)
   end
   before(:each) do
     login_admin

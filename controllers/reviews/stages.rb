@@ -40,7 +40,7 @@ get '/review/:id/screening_title_abstract' do |id|
   @cds_pre=@ads.canonical_documents
   @cds_total=@cds_pre.count
   @decisions=@ads.decisions
-  @favorites = FavoriteDocument.where(user_id: @user_id).
+  @favorites = FavoriteDocument.where(user_id: @user_id, activo: true).
     inject({}) {|ac,v| ac[v[:canonical_document_id]]=v; ac}
   $log.info(@favorites)
   begin
@@ -157,5 +157,4 @@ end
 
 
 # @!endgroup
-
 
