@@ -5,8 +5,12 @@ describe 'Reference' do
     RSpec.configure { |c| c.include RSpecMixin }
     @temp=configure_empty_sqlite
     login_admin
+    pre_context
   end
 
+  after(:all) do
+    after_context
+  end
 
   def reference_text_1
     "Antaki C. (2002) Personalised revision of ‘failed’ questions. Discourse Studies 4(4), 411–428."
@@ -44,6 +48,17 @@ describe 'Reference' do
     end
   end
 
+  def reset_reference_1(canonical_document_id: 1, doi: doi_ex)
+    Reference.get_by_text(reference_text_1).update(
+      canonical_document_id: canonical_document_id,
+      doi: doi
+    )
+  end
+
+  def reference_1
+    Reference.get_by_text(reference_text_1)
+  end
+
   def after_context
     SystematicReview[1].delete
     $db[:records_references].delete
@@ -62,9 +77,6 @@ describe 'Reference' do
   end
 
   context 'when methods to retrieve references are used' do
-    before(:context) do
-      pre_context
-    end
     it "#get_by_text should retrieve a reference object" do
       expect(Reference.get_by_text(reference[:text])).to eq(reference)
     end
@@ -83,71 +95,60 @@ describe 'Reference' do
       expect(ref).to be_truthy
       expect(ref).to eq(Reference.get_by_text('not exists'))
     end
-    after(:context) do
-      after_context
-    end
 
   end
 
 
   context "#search_similars is used, without considering references with canonical documents" do
     before(:context) do
-      pre_context
+      reset_reference_1
+      @result=reference_1.search_similars(100) # We use 100 to speed the process
     end
-    after(:context) do
-      after_context
-    end
-    let(:result) {reference.search_similars(100)} # We use 100 to speed the process
+
     it "should return an array" do
-      expect(result).to be_a(Array)
-      expect(result.length).to be >= 1
+      expect(@result).to be_a(Array)
+      expect(@result.length).to be >= 1
 
     end
     it "every element should have fields :id, :canonical_document_id, :text, :distancia" do
 
-      expect(result.all? {|v|  v.keys.sort==[:canonical_document_id, :distancia, :id, :text] }).to be true
+      expect(@result.all? {|v|  v.keys.sort==[:canonical_document_id, :distancia, :id, :text] }).to be true
     end
     it "no element should have canonical_document_id assigned" do
-      expect(result.all? {|v|  v[:canonical_document_id].nil? }).to be true
+      expect(@result.all? {|v|  v[:canonical_document_id].nil? }).to be true
     end
   end
 
   context "#search_similars is used, considering references with canonical documents" do
     before(:context) do
-      pre_context
+      reset_reference_1
+      @result=reference_1.search_similars(100, false)
     end
-    after(:context) do
-      after_context
-    end
-    let(:result) {reference.search_similars(100, false)}
+
     it "should return an array" do
-      expect(result).to be_a(Array)
-      expect(result.length).to be >= 1
+      expect(@result).to be_a(Array)
+      expect(@result.length).to be >= 1
     end
     it "every element should have fields :id, :canonical_document_id, :text, :distancia" do
 
-      expect(result.all? {|v|  v.keys.sort==[:canonical_document_id, :distancia, :id, :text] }).to be true
+      expect(@result.all? {|v|  v.keys.sort==[:canonical_document_id, :distancia, :id, :text] }).to be true
     end
     it "at least one element should have canonical_document_id assigned" do
-      expect(result.any? {|v|  !v[:canonical_document_id].nil? }).to be true
+      expect(@result.any? {|v|  !v[:canonical_document_id].nil? }).to be true
     end
   end
 
 
   context "#add_doi when no DOI exists" do
     before(:context) do
-      pre_context
-      Reference.get_by_text(reference_text_1).update(canonical_document_id:nil, doi:nil)
-    end
-    after(:context) do
-      after_context
+      reset_reference_1(canonical_document_id: nil, doi: nil)
+      @result=Reference.get_by_text(reference_text_1).add_doi(doi_ex)
     end
 
-    let(:result)  { Reference.get_by_text(reference_text_1).add_doi(doi_ex)  }
     let(:cd)      { CanonicalDocument[:doi=>doi_ex] }
     let(:ref)     { Reference.get_by_text(reference_text_1) }
     it "should return correct status" do
-      expect(result.success?).to be true
+      expect(@result.success?).to be true
     end
     it "should return correct doi" do
       expect(ref[:doi]).to eq(doi_ex)
@@ -161,18 +162,15 @@ describe 'Reference' do
 
   context "#crossref_query when need to query crossref using text" do
     before(:context) do
-      pre_context
-      Reference.get_by_text(reference_text_1).update(canonical_document_id:nil, doi:nil)
+      reset_reference_1(canonical_document_id: nil, doi: nil)
+      @cq=Reference.get_by_text(reference_text_1).crossref_query
     end
-    after(:context) do
-      after_context
-    end
-    let(:cq) { Reference.get_by_text(reference_text_1).crossref_query }
+
     it "should return an Hash" do
-      expect(cq).to be_a(Hash)
+      expect(@cq).to be_a(Hash)
     end
     it "should include doi 10.1177/14614456020040040101" do
-      ref_int=BibliographicalImporter::JSONApiCrossref::Reader.parse_json(cq)
+      ref_int=BibliographicalImporter::JSONApiCrossref::Reader.parse_json(@cq)
       expect(ref_int[0].doi).to eq(doi_ref)
     end
   end

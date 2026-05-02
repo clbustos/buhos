@@ -30,8 +30,6 @@ describe 'BibliographicFileProcessor' do
   context "when invalid file is used" do
     before(:context) do
       Search[1].update(:file_body=>"NOTHING RELEVANT", :filename=>'nothing.txt', :filetype => 'text/plain')
-    end
-    before do
       @bpf=BibliographicFileProcessor.process_with_saved_file(Search[1])
     end
     it "should error be false" do
@@ -59,7 +57,7 @@ describe 'BibliographicFileProcessor' do
     it "should #canonical_document_processed be false" do
       expect(@bpf.canonical_document_processed).to be false
     end
-    after do
+    after(:context) do
       $db[:bib_references].delete
       $db[:records_references].delete
       $db[:records_searches].delete
@@ -72,9 +70,6 @@ describe 'BibliographicFileProcessor' do
   context "when usual PubmedSummary is used" do
     before(:context) do
       Search[1].update(:file_body=>manual_pubmed_summary, :filename=>'heart.nbib', :filetype => 'application/nbib')
-    end
-
-    before do
       @bpf=BibliographicFileProcessor.process_with_saved_file(Search[1])
     end
     it "should error be false" do
@@ -111,7 +106,7 @@ describe 'BibliographicFileProcessor' do
       expect(pmids.sort).to eq(["26426421","31566810","28418750","15455807","7026815"].sort)
     end
 
-    after do
+    after(:context) do
       $db[:bib_references].delete
       $db[:records_references].delete
       $db[:records_searches].delete
@@ -123,8 +118,6 @@ describe 'BibliographicFileProcessor' do
   context "when usual BibTeX is used" do
     before(:context) do
       Search[1].update(:file_body=>manual_bibtex, :filename=>'manual.bib', :filetype => 'text/x-bibtex')
-    end
-    before do
       @bpf=BibliographicFileProcessor.process_with_saved_file(Search[1])
     end
     it "should error be false" do
@@ -152,7 +145,7 @@ describe 'BibliographicFileProcessor' do
       expect(@bpf.canonical_document_processed).to be true
     end
 
-    after do
+    after(:context) do
       $db[:bib_references].delete
       $db[:records_references].delete
       $db[:records_searches].delete
@@ -166,8 +159,6 @@ describe 'BibliographicFileProcessor' do
   context "when a basic BibTeX is used" do
     before(:context) do
       Search[1].update(:file_body=>minimal_bibtex, :filename=>'manual.bib', :filetype => 'text/x-bibtex')
-    end
-    before do
       @bpf=BibliographicFileProcessor.process_with_saved_file(Search[1])
     end
     it "should error be false" do
@@ -197,7 +188,7 @@ describe 'BibliographicFileProcessor' do
       w_author=CanonicalDocument.find_all {|v| !v[:author].nil?}
       expect(w_author.count).to eq(0)
     end
-    after do
+    after(:context) do
       $db[:records_references].delete
 
       $db[:bib_references].delete
@@ -208,7 +199,7 @@ describe 'BibliographicFileProcessor' do
   end
 
   context "when a basic BibTeX is used and later updated" do
-    before do
+    before(:context) do
       Search[1].update(:file_body=>minimal_bibtex, :filename=>'manual.bib', :filetype => 'text/x-bibtex')
       @bpf=BibliographicFileProcessor.process_with_saved_file(Search[1])
       Search[1].update(:file_body=>manual_bibtex, :filename=>'manual.bib', :filetype => 'text/x-bibtex')
@@ -232,7 +223,7 @@ describe 'BibliographicFileProcessor' do
       expect(w_author.count).to eq(6)
     end
 
-    after do
+    after(:context) do
       $db[:bib_references].delete
       $db[:records_references].delete
       $db[:records_searches].delete
@@ -242,7 +233,7 @@ describe 'BibliographicFileProcessor' do
   end
 
   context "when erroneous Scopus BibTeX is used" do
-    before do
+    before(:context) do
       Search[1].update(:file_body=>read_fixture("scopus_wrong_1.bib"), :filename=>'manual.bib', :filetype => 'text/x-bibtex')
       @bpf=BibliographicFileProcessor.process_with_saved_file(Search[1])
 
@@ -258,7 +249,7 @@ describe 'BibliographicFileProcessor' do
       expect(CanonicalDocument.count).to eq(11)
     end
 
-    after do
+    after(:context) do
       $db[:records_references].delete
       $db[:bib_references].delete
 
@@ -270,7 +261,7 @@ describe 'BibliographicFileProcessor' do
   end
 
   context "when erroneous BibTeX is used" do
-    before do
+    before(:context) do
       Search[1].update(:file_body=>minimal_bibtex.gsub(",",""), :filename=>'manual.bib', :filetype => 'text/x-bibtex')
       @bpf=BibliographicFileProcessor.process_with_saved_file(Search[1])
 
@@ -295,7 +286,7 @@ describe 'BibliographicFileProcessor' do
       expect(CanonicalDocument.count).to eq(0)
     end
 
-    after do
+    after(:context) do
       $db[:records_references].delete
       $db[:bib_references].delete
 
@@ -308,7 +299,7 @@ describe 'BibliographicFileProcessor' do
 
 
   context "when a real BibTeX with references is used" do
-    before do
+    before(:context) do
       Search.where(:id=>2).delete
       Search.insert(:id=>2, :systematic_review_id=>1, :bibliographic_database_id=>1, :file_body=>read_fixture("wos.bib"), :filename=>'wos.bib', :filetype => 'text/x-bibtex')
 
@@ -330,7 +321,7 @@ describe 'BibliographicFileProcessor' do
     end
 
 
-    after do
+    after(:context) do
       $db[:records_references].delete
       $db[:bib_references].delete
       $db[:records_references].delete
@@ -347,8 +338,6 @@ describe 'BibliographicFileProcessor' do
     end
     before(:context) do
       Search[1].update(:file_body=>bibtex_text, :filename=>'manual.bib', :filetype => 'text/x-bibtex')
-    end
-    before do
       @bpf=BibliographicFileProcessor.process_with_saved_file(Search[1])
     end
     it "should error be false" do
@@ -378,7 +367,7 @@ describe 'BibliographicFileProcessor' do
     it "should #canonical_document_processed be true" do
       expect(@bpf.canonical_document_processed).to be true
     end
-    after do
+    after(:context) do
       $db[:bib_references].delete
       $db[:records_references].delete
       $db[:records_searches].delete

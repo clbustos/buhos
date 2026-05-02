@@ -3,13 +3,14 @@ require 'spec_helper'
 describe 'Tags on stage forms' do
   before(:all) do
     RSpec.configure { |c| c.include RSpecMixin }
-    @temp=configure_complete_sqlite # TODO: REMOVE DEPENDENCE ON COMPLETE SQLITE
+    @temp=configure_empty_sqlite
+    create_stage_dataset
     login_admin
   end
 
   context "when tag added on a document" do
     before(:context) do
-      post '/tags/cd/40/rs/1/add_tag', value:'new_tag'
+      post '/tags/cd/4/rs/1/add_tag', value:'new_tag'
     end
     it {expect(last_response).to be_ok}
     it "should response body include new tag" do
@@ -17,7 +18,7 @@ describe 'Tags on stage forms' do
     end
     let(:tag_en_cd) {
       tag_id=Tag[text:'new_tag'][:id]
-      TagInCd[user_id:1,tag_id:tag_id, canonical_document_id:40, systematic_review_id:1]
+      TagInCd[user_id:1,tag_id:tag_id, canonical_document_id:4, systematic_review_id:1]
     }
     it "should object tag_en_cd created " do
       expect(tag_en_cd).to be_truthy
@@ -51,7 +52,7 @@ describe 'Tags on stage forms' do
 
   context "when tag added for a relation between documents" do
     before(:context) do
-      post '/tags/cd_start/2/cd_end/88/rs/1/add_tag', value:'new_relation_tag'
+      post '/tags/cd_start/2/cd_end/6/rs/1/add_tag', value:'new_relation_tag'
     end
     it {expect(last_response).to be_ok}
     it "should response body include new tag" do
@@ -60,7 +61,7 @@ describe 'Tags on stage forms' do
     let(:tag_en_cd) {
       tag_id=Tag[text:'new_relation_tag'][:id]
 
-      TagBwCd[user_id:1,tag_id:tag_id, cd_start:2, cd_end:88, systematic_review_id:1]
+      TagBwCd[user_id:1,tag_id:tag_id, cd_start:2, cd_end:6, systematic_review_id:1]
     }
     it "should object tag_en_cd created " do
       expect(tag_en_cd).to be_truthy
@@ -75,13 +76,13 @@ describe 'Tags on stage forms' do
   context "when previous tag is approved by another user" do
     before(:context) do
       login_admin
-      post '/tags/cd/40/rs/1/add_tag', value:'new_tag_2'
+      post '/tags/cd/4/rs/1/add_tag', value:'new_tag_2'
 
       tag_id=Tag.get_tag('new_tag_2')[:id]
       post '/login', user:'analyst', password:'analyst'
 
 
-      post '/tags/cd/40/rs/1/approve_tag', tag_id:tag_id
+      post '/tags/cd/4/rs/1/approve_tag', tag_id:tag_id
     end
     it {expect(last_response).to be_ok}
     it "should response body include new tag" do
@@ -91,7 +92,7 @@ describe 'Tags on stage forms' do
     let(:tag_en_cd) {
       tag_id=Tag[text:'new_tag_2'][:id]
 
-      TagInCd.where(tag_id:tag_id, canonical_document_id:40, systematic_review_id:1)
+      TagInCd.where(tag_id:tag_id, canonical_document_id:4, systematic_review_id:1)
     }
     it "should object tag_en_cd created " do
       expect(tag_en_cd).to be_truthy
@@ -105,12 +106,12 @@ describe 'Tags on stage forms' do
   context "when previous tag is rejected by another user" do
     before(:context) do
       login_admin
-      post '/tags/cd/40/rs/1/add_tag', value:'new_tag_3'
+      post '/tags/cd/4/rs/1/add_tag', value:'new_tag_3'
 
       tag_id=Tag.get_tag('new_tag_3')[:id]
       post '/login', user:'analyst', password:'analyst'
 
-      post '/tags/cd/40/rs/1/reject_tag', tag_id:tag_id
+      post '/tags/cd/4/rs/1/reject_tag', tag_id:tag_id
     end
     it {expect(last_response).to be_ok}
     it "should response body include new tag" do
@@ -120,7 +121,7 @@ describe 'Tags on stage forms' do
     let(:tag_en_cd) {
       tag_id=Tag[text:'new_tag_3'][:id]
 
-      TagInCd.where(tag_id:tag_id, canonical_document_id:40, systematic_review_id:1)
+      TagInCd.where(tag_id:tag_id, canonical_document_id:4, systematic_review_id:1)
     }
     it "should object tag_en_cd created " do
       expect(tag_en_cd).to be_truthy
@@ -157,13 +158,13 @@ describe 'Tags on stage forms' do
     before(:context) do
       login_admin
       old_tag=Tag.get_tag("Flying birds")
-      TagInCd.insert(tag_id:old_tag[:id], user_id:1, systematic_review_id:1, decision:'yes', canonical_document_id:40)
+      TagInCd.insert(tag_id:old_tag[:id], user_id:1, systematic_review_id:1, decision:'yes', canonical_document_id:4)
       put '/tag/rename/review/1/user/1', pk:old_tag.id, value: "Excellents birds"
     end
 
     it "should create a link between new tag and document" do
       new_tag=Tag.get_tag("Excellents birds")
-      expect(TagInCd.where(user_id:1, systematic_review_id:1, decision:'yes', canonical_document_id:40, tag_id:new_tag[:id]).count).to eq(1)
+      expect(TagInCd.where(user_id:1, systematic_review_id:1, decision:'yes', canonical_document_id:4, tag_id:new_tag[:id]).count).to eq(1)
     end
     it "should delete reference for old tag" do
       expect(Tag.where(text:'Flying birds').count).to eq(0)
@@ -171,7 +172,7 @@ describe 'Tags on stage forms' do
 
     it "should delete the link between old tag and document" do
       old_tag=Tag.where(text:"Flying birds")
-      expect(TagInCd.where(user_id:1, systematic_review_id:1, decision:'yes', canonical_document_id:40, tag_id:old_tag[:id]).count).to eq(0)
+      expect(TagInCd.where(user_id:1, systematic_review_id:1, decision:'yes', canonical_document_id:4, tag_id:old_tag[:id]).count).to eq(0)
     end
 
     after(:context) do

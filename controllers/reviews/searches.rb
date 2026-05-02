@@ -87,6 +87,22 @@ get '/review/:review_id/search/:search_id/record/:record_id/complete_information
   @cd=@record.canonical_document
   @user=User[params['user_id']]
 
+  cache_buster=Time.now.to_i
+  user_records_path=@user ? "/review/#{@review.id}/searches/records/user/#{@user.id}" : "/review/#{@review.id}/searches/records"
+  @records_path="#{user_records_path}?_ts=#{cache_buster}"
+
+  search_validator=@user ? SearchValidatorUser.new(@review, @user) : SearchValidatorReview.new(@review)
+  search_validator.validate
+  invalid_records_id=search_validator.invalid_records_id
+  search_records_id=RecordsSearch.where(search_id: @search.id).order(:record_id).map(:record_id)
+  next_invalid_record_id=(search_records_id & invalid_records_id).find {|id| id > @record.id}
+  if next_invalid_record_id
+    next_invalid_path="/review/#{@review.id}/search/#{@search.id}/record/#{next_invalid_record_id}/complete_information"
+    next_invalid_params=[]
+    next_invalid_params.push("user_id=#{@user.id}") if @user
+    next_invalid_params.push("_ts=#{cache_buster}")
+    @next_invalid_record_path="#{next_invalid_path}?#{next_invalid_params.join('&')}"
+  end
 
   @current_file=get_file_canonical_document(@review,@cd)
 

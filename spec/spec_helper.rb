@@ -1,5 +1,5 @@
 require 'simplecov'
-unless ENV['NO_COV']
+if ENV['USE_  COV']
   SimpleCov.start do
     add_filter '/spec/'
     add_filter 'lib/scopus/connection.rb' # Is necessary an API scopus to test it
@@ -15,6 +15,7 @@ require 'logger'
 require_relative "../lib/buhos/create_schema"
 require_relative "../lib/buhos/dbadapter"
 require_relative 'rspec_matchers'
+require_relative 'spec_helper_objects'
 
 ENV['RACK_ENV'] = 'test'
 ENV['SMTP_USER']="out@test.com"
@@ -79,6 +80,7 @@ app_path=File.expand_path(File.dirname(__FILE__)+"/..")
 
 module RSpecMixin
   include Rack::Test::Methods
+  include SpecHelperObjects
 
   shared_examples 'html standard report' do
     it "should response be ok" do expect(last_response).to be_ok end
@@ -208,30 +210,6 @@ module RSpecMixin
     post '/login', :user=>"analyst", :password=>"analyst"
   end
 
-  def configure_complete_sqlite
-	if(is_windows?)
-		temppath="#{$base}/spec/usr/db_temp.sqlite"
-		FileUtils.cp "#{$base}/db/db_complete.sqlite", temppath
-		
-		db=Sequel.connect("sqlite:/#{temppath}", :encoding => 'utf8',:reconnect=>false, :keep_reference=>false)
-		temp=db
-	else
-		temp=Tempfile.new
-		FileUtils.cp "#{$base}/db/db_complete.sqlite", temp.path
-		# check next line. If we can 
-		db=Sequel.connect("sqlite:#{temp.path}", :encoding => 'utf8',:reconnect=>false, :keep_reference=>false)
-    end
-	
-    $db_adapter.use_db(db)
-    $db_adapter.update_model_association
-
-
-
-    #puts "Adaptador: #{$db_adapter.object_id} - #{User.db.object_id}"
-    #puts "Db: #{$db_adapter.current.object_id} - #{$db.object_id} - #{db.object_id}"
-    temp
-  end
-
   def close_sqlite
     $log.info("Closing #{$db}")
     #$db.disconnect
@@ -342,4 +320,3 @@ end
 
 
 #RSpec.configure { |c| c.include RSpecMixin }
-

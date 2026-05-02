@@ -50,3 +50,13 @@
           %p=a_textarea_editable(@cd[:id], "canonical_document", "/canonical_document/edit_field/abstract", @cd[:abstract],"")
         - else
           %p=@cd[:abstract]
+  .row
+    .col-md-12
+      %hr
+      %a.btn.btn-default{:href=>url(@records_path)}
+        %span.glyphicon.glyphicon-list
+        =t(:Records)
+      - if @next_invalid_record_path
+        %a.btn.btn-warning{:href=>url(@next_invalid_record_path)}
+          %span.glyphicon.glyphicon-arrow-right
+          =t(:Next_invalid_record)

@@ -1,5 +1,5 @@
 .header
-  %h2=t("My_favorites", user: @user[:name])
+  %h2=title(t("My_favorites", user: @user[:name]))
 
 :javascript
   $(document).ready(function() {
@@ -22,23 +22,24 @@
     =t(:My_favorites)
 
 %h3=t("favorites.My_Categories")
-.well
-  %form.form-inline{:action => "/favorite_groups/new", :method => "post"}
-    .form-group
-      %input.form-control{:name => "name", :placeholder => t("favorites.New_category_name"), :required => true}
-    .checkbox
-      %label
-        %input{:type => "checkbox", :name => "is_public", :value => "true"}
-        =t("favorites.Make_public")
-    %button.btn.btn-primary{:type => "submit"}
-      %span.glyphicon.glyphicon-plus
-      =t(:Add)
+
+%form.form-inline{:action => "/favorite_groups/new", :method => "post"}
+  .form-group
+    %input.form-control{:name => "name", :placeholder => t("favorites.New_category_name"), :required => true}
+  .checkbox
+    %label
+      %input{:type => "checkbox", :name => "is_public", :value => "true"}
+      =t("favorites.Make_public")
+  %button.btn.btn-default{:type => "submit"}
+    %span.glyphicon.glyphicon-plus
+    =t(:Add)
+%p
 
 - if @favorite_groups.empty?
   %p
     %em=t("favorites.No_categories_created")
 - else
-  %table.table.table-condensed.table-hover
+  %table.table-bordered.table-sm
     %thead
       %tr
         %th=t(:Name)
@@ -67,30 +68,28 @@
     %em=t("favorites.No_favorites_yet")
 - else
   %form{:id => "favorites_#{@user[:id]}", :action => "/favorites/user/#{@user[:id]}/update", :method => "post"}
-    %table.table.table-striped.table-bordered
+    %table.table-bordered.table-sm
       %thead
         %tr
+          %th=t(:Active)
           %th=t(:Document)
           %th=t(:Category)
           %th=t(:Commentary)
-          %th=t(:Actions)
       %tbody
         - @favorite_documents.each do |fav|
           %tr
             %td
+              %input{:type=>"checkbox", :name => "favorites[#{fav[:canonical_document_id]}][activo]", :checked => fav[:activo]}
+            %td
               %strong=fav[:title]
               %p="#{fav[:author]} (#{fav[:year]})"
             %td
-              %select.form-control.input-sm{:name => "fav_group[#{fav[:user_id]}_#{fav[:canonical_document_id]}]"}
+              %select.form-control.input-sm{:name => "favorites[#{fav[:canonical_document_id]}][group_id]"}
                 %option{:value => ""}=t("favorites.No_category")
                 - @favorite_groups.each do |group|
                   %option{:value => group.id, :selected => (group.id == fav[:group_id])}=group.name
             %td
-              %textarea.form-control{:name => "commentary",
-              :form => "fav_commentary[#{fav[:user_id]}_#{fav[:canonical_document_id]}]"}=fav[:commentary]
-            %td
-              %input{:type=>"checkbox",:name => "fav_delete[#{fav[:user_id]}_#{fav[:canonical_document_id]}]"}
-              =t(:Delete)
+              %textarea.form-control{:name => "favorites[#{fav[:canonical_document_id]}][commentary]", :rows=>2}=fav[:commentary]
     %button.btn.btn-sm.btn-success{:type => "submit"}
       %span.glyphicon.glyphicon-save
       =t(:Save)

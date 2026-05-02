@@ -3,7 +3,8 @@ require 'spec_helper'
 describe 'Buhos::GraphML_Builder' do
   before(:all) do
     RSpec.configure { |c| c.include RSpecMixin }
-    @temp=configure_complete_sqlite # TODO: REMOVE DEPENDENCE ON COMPLETE SQLITE
+    @temp=configure_empty_sqlite
+    create_stage_dataset
   end
   context 'when report stage is processed' do
     let(:graph) {Buhos::GraphML_Builder.new(SystematicReview[1],'report')}
@@ -13,7 +14,7 @@ describe 'Buhos::GraphML_Builder' do
       expect {Nokogiri::XML(graph.generate_graphml) }.to_not raise_error
     end
     it "should have one node per document" do
-      expect(xml.xpath("//xmlns:node").length).to eq(27)
+      expect(xml.xpath("//xmlns:node").length).to eq(2)
     end
   end
 
@@ -25,7 +26,7 @@ describe 'Buhos::GraphML_Builder' do
       expect {Nokogiri::XML(graph.generate_graphml) }.to_not raise_error
     end
     it "should have one node per document" do
-      expect(xml.xpath("//xmlns:node").length).to eq(378)
+      expect(xml.xpath("//xmlns:node").length).to eq(8)
     end
   end
 

@@ -60,6 +60,15 @@ describe 'Search Validator' do
     end
 
   end
+  context "when records page is rendered" do
+    before(:context) do
+      get '/review/1/searches/records'
+    end
+
+    it "should show invalid records before valid records" do
+      expect(last_response.body.index("No title")).to be < last_response.body.index("Title.")
+    end
+  end
   context "on empty search" do
     before do
       sv2.validate

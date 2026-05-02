@@ -39,6 +39,9 @@ describe 'Files:' do
 
 
   def check_gs
+    gs_available=ENV['PATH'].to_s.split(File::PATH_SEPARATOR).any? do |path|
+      File.executable?(File.join(path, 'gs'))
+    end
     !gs_available or ENV['TEST_TRAVIS'] or is_windows?
   end
 
@@ -167,31 +170,31 @@ describe 'Files:' do
 
   # Works, but is very slow
   context "when user retrieves a page from a pdf coverted as a image, response" do
-    let(:gs_available) {check_executable_on_path('gs')}
     before(:context) do
       prepare_context
       get '/file/1/page/17/image'
+      @skip_image_specs=check_gs
+      @can_create_images= @skip_image_specs ? false : can_im_create_images_from_pdf?
       #p last_response.body
     end
-    let(:can_create_images) {can_im_create_images_from_pdf?}
     it "should return an appropiate response, according to capacity to create images " do
-      skip if check_gs
-      if can_create_images
+      skip if @skip_image_specs
+      if @can_create_images
         expect(last_response).to be_ok , "expected to be ok if authorized, was not ok"
       else
         expect(last_response).to_not be_ok , "expected be not ok if not authorized, was ok"
       end
     end
     it "should have appropiate type" do
-      skip if check_gs
-      if can_create_images
+      skip if @skip_image_specs
+      if @can_create_images
         expect(last_response.header['Content-Type']).to include("image/png")
       else
         expect(last_response.header['Content-Type']).to include("text/html")
       end
 
     end
-    it {skip if check_gs;expect(last_response.header['Content-Length'].to_i).to be >0}
+    it {skip if @skip_image_specs;expect(last_response.header['Content-Length'].to_i).to be >0}
   end
 
 
@@ -221,8 +224,11 @@ describe 'Files:' do
 
 
   context "when unassign a file to a canonical document" do
-    before(:each) do
+    before(:context) do
       prepare_context
+    end
+    before(:each) do
+      FileCd.where(:file_id=>1, :canonical_document_id=>1).delete
       post '/file/assign_to_canonical',  file_id:1, cd_id:1
     end
 
@@ -244,8 +250,11 @@ describe 'Files:' do
   end
 
   context "when hide a file from canonical document" do
-    before(:each) do
+    before(:context) do
       prepare_context
+    end
+    before(:each) do
+      FileCd.where(:file_id=>1, :canonical_document_id=>1).delete
       post '/file/assign_to_canonical',  file_id:1, cd_id:1
     end
     it "first should be visible" do
@@ -259,8 +268,11 @@ describe 'Files:' do
   end
 
   context "when hide a file from canonical document" do
-    before(:each) do
+    before(:context) do
       prepare_context
+    end
+    before(:each) do
+      FileCd.where(:file_id=>1, :canonical_document_id=>1).delete
       post '/file/assign_to_canonical',  file_id:1, cd_id:1
       post '/file/hide_cd', {  file_id:1, cd_id:1}
     end
@@ -274,8 +286,10 @@ describe 'Files:' do
   end
 
   context "when unassign a file from a systematic review" do
-    before(:each) do
+    before(:context) do
       prepare_context
+    end
+    before(:each) do
       if !FileSr[:file_id=>1, :systematic_review_id=>1]
         FileSr.insert(:file_id=>1, :systematic_review_id=>1)
       end

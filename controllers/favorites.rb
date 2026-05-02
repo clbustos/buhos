@@ -11,10 +11,37 @@ get '/user/:user_id/favorites' do |user_id|
   # Documentos favoritos en orden alfabético por el título del documento canónico
   @favorite_documents = FavoriteDocument.where(user_id: user_id)
                                         .join(:canonical_documents, id: :canonical_document_id)
-                                        .order(:title)
+                                        .order(Sequel.desc(:activo), :title)
 
   haml "users/favorites".to_sym, escape_html: false
 
+end
+
+post '/favorites/user/:user_id/update' do |user_id|
+  halt_unless_auth('favorite_edit')
+  halt_unless_auth('review_view')
+
+  user_id=user_id.to_i
+  favorites=params['favorites'] || {}
+  group_ids=FavoriteGroup.where(user_id: user_id).select_map(:id)
+
+  favorites.each_pair do |cd_id, favorite_params|
+    favorite=FavoriteDocument.where(user_id: user_id, canonical_document_id: cd_id).first
+    next unless favorite
+
+    group_id=favorite_params['group_id'].to_s
+    group_id=group_id.empty? ? nil : group_id.to_i
+    group_id=nil unless group_id.nil? || group_ids.include?(group_id)
+
+    favorite.update(
+      activo: favorite_params.key?('activo'),
+      group_id: group_id,
+      commentary: favorite_params['commentary'].to_s
+    )
+  end
+
+  add_message(t("favorites.updated_successfully"))
+  redirect "/user/#{user_id}/favorites"
 end
 
 
@@ -26,7 +53,12 @@ post '/favorite/user/:user_id/canonical_document/:canonical_id/add' do |user_id,
   raise Buhos::NoCanonicalDocument, id if !@cd
 
 
-  @favorite = FavoriteDocument.find_or_create(user_id: user_id, canonical_document_id: cd_id)
+  @favorite = FavoriteDocument.where(user_id: user_id, canonical_document_id: cd_id).first
+  if @favorite
+    @favorite.update(activo: true)
+  else
+    @favorite = FavoriteDocument.create(user_id: user_id, canonical_document_id: cd_id)
+  end
 
   partial(:favorite, :locals=>{:cd=>@cd, :user_id=>user_id, :favorite_o=>@favorite})
 end
@@ -36,7 +68,7 @@ post '/favorite/user/:user_id/canonical_document/:canonical_id/remove' do |user_
 
   @user = User[user_id]
   @cd = CanonicalDocument[cd_id]
-  FavoriteDocument.where(user_id: user_id, canonical_document_id:cd_id).delete
+  FavoriteDocument.where(user_id: user_id, canonical_document_id:cd_id).update(activo: false)
   @favorite=nil
   partial(:favorite, :locals=>{:cd=>@cd, :user_id=>user_id, :favorite_o=>@favorite})
 end
@@ -76,7 +108,7 @@ post '/favorite_groups/new' do
 
   user_id = session['user_id']
   name=params['name']
-  cuenta=FavoriteGroup.where(name:name).count
+  cuenta=FavoriteGroup.where(user_id:user_id, name:name).count
   if name.length>0
     if cuenta>0
       add_message(t("favorites.group_already_created"), :error)
@@ -100,7 +132,7 @@ get '/favorite_group/:fg_id/delete' do |fg_id|
   halt_unless_auth('favorite_edit')
   user_id = session['user_id']
   @fg=FavoriteGroup[fg_id]
-  if @fg[:user_id]!=user_id
+  if @fg[:user_id]!=user_id.to_i
     add_error(t("favorites.not_allowed_to_delete"))
   else
     @fg.delete
