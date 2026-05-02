@@ -31,14 +31,21 @@ class UserDashboardInfo
   attr_reader :user
   def initialize(user)
     @user=user
-    @sr_active=user.systematic_reviews.where(:active=>true)
+    @sr_active=user.systematic_reviews.where(:active=>true).all
+    @unread_personal_messages=nil
+    @unread_sr_messages={}
+  end
+  def active_systematic_reviews
+    @sr_active
   end
   def unread_personal_messages
-    Message.where(:user_to=>@user[:id]).exclude(:viewed=>true)
+    @unread_personal_messages ||= Message.where(:user_to=>@user[:id]).exclude(:viewed=>true).all
   end
   def unread_sr_messages(sr_id)
-    ids=$db["SELECT mr.id FROM message_srs mr LEFT JOIN message_sr_seens mrv ON mr.id=mrv.m_rs_id WHERE mr.systematic_review_id=? AND ( user_id IS NULL OR (user_id=? AND viewed!=1))",sr_id, @user[:id]].map(:id)
-    MessageSr.where(:id=>ids)
+    @unread_sr_messages[sr_id] ||= begin
+      ids=$db["SELECT mr.id FROM message_srs mr LEFT JOIN message_sr_seens mrv ON mr.id=mrv.m_rs_id WHERE mr.systematic_review_id=? AND ( user_id IS NULL OR (user_id=? AND viewed!=1))",sr_id, @user[:id]].map(:id)
+      MessageSr.where(:id=>ids).all
+    end
   end
   # Return the searches not ready for review
   def searches_not_ready(sr_id)

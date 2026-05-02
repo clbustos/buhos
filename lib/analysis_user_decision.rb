@@ -37,6 +37,8 @@ class AnalysisUserDecision
   attr_reader :total_decisions
   # Raw dataset of AllocationCd
   attr_reader :assignations
+  # Canonical document ids assigned to the user on this stage
+  attr_reader :cd_ids
   def initialize(rs_id,user_id,stage)
     @rs_id=rs_id
     @user_id=user_id

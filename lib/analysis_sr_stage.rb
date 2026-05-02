@@ -66,9 +66,15 @@ class Analysis_SR_Stage
   end
   # Check what Canonical documents aren't assigned yet
   def cd_without_allocations
+    CanonicalDocument.where(:id=>cd_without_allocations_id)
+  end
+  def cd_without_allocations_id
     cds=@sr.cd_id_by_stage(@stage)
     assignations=AllocationCd.where(:systematic_review_id=>@sr.id, :stage=>@stage.to_s).group(:canonical_document_id, :user_id).map(:canonical_document_id).uniq
-    CanonicalDocument.where(:id=>cds-assignations)
+    cds-assignations
+  end
+  def cd_without_allocations_count
+    cd_without_allocations_id.length
   end
 
   def resolutions_by_cd
@@ -77,6 +83,13 @@ class Analysis_SR_Stage
     cds.inject({}) {|ac,v|
       val=resolutions[v].nil? ? Resolution::NO_RESOLUTION : resolutions[v][:resolution]
       ac[v]=val
+      ac
+    }
+  end
+  def resolution_pattern
+    resolutions_by_cd.inject({}) {|ac, v|
+      ac[v[1]] ||= 0
+      ac[v[1]] += 1
       ac
     }
   end

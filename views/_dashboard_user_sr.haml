@@ -1,8 +1,8 @@
-- udi=UserDashboardInfo.new(user)
+- udi||=UserDashboardInfo.new(user)
 - is_administrator = udi.is_administrator_sr?(sr) || (udi.is_member?(sr) and auth_to('review_admin_view'))
-- ars = is_administrator ? AnalysisSystematicReview.new(sr) : nil
-- if udi.unread_sr_messages(sr[:id]).count>0
-  %p=t_desc_value("user_dashboard.unread_sr_messages", a_tag("/user/#{user[:id]}/messages#sr_#{sr[:id]}",  t("user_dashboard.check_n_unread_messages", count:udi.unread_sr_messages(sr[:id]).count)))
+- unread_sr_messages_count=udi.unread_sr_messages(sr[:id]).count
+- if unread_sr_messages_count>0
+  %p=t_desc_value("user_dashboard.unread_sr_messages", a_tag("/user/#{user[:id]}/messages#sr_#{sr[:id]}",  t("user_dashboard.check_n_unread_messages", count:unread_sr_messages_count)))
 - et_av=sr.current_stages
 %div
   %ul.nav.nav-tabs{:role=>:tablist}
@@ -27,7 +27,6 @@
             %button{:style=>"margin-top:1em;", :class=>"btn btn-sm btn-#{clase_bt_sr}"}= sr.stage.to_sym==stage ? t(:current) : ( et_av.include?(stage) ? t(:complete) : t(:pending) )
   %div{:class=>"tab-content"}
     - get_stages_ids.each do |stage_visualized|
-      - adu=udi.adu_for_sr(sr,stage_visualized)
       %div{:id=>"sr-#{sr.id}-#{stage_visualized}", :class=>"tab-pane #{stage_visualized==sr[:stage].to_sym ? 'active' : ''}"}
         %p
         - if stage_visualized==:search
@@ -35,4 +34,5 @@
         - elsif stage_visualized==:report
           =partial(:dashboard_user_sr_report, :locals=>{is_administrator:is_administrator,   sr:sr, stage:stage_visualized, user:user})
         - else
-          =partial(:dashboard_user_sr_review, :locals=>{is_administrator:is_administrator,  sr:sr, stage:stage_visualized, user:user,adu:adu, ars:ars})
+          - adu=udi.adu_for_sr(sr,stage_visualized)
+          =partial(:dashboard_user_sr_review, :locals=>{is_administrator:is_administrator,  sr:sr, stage:stage_visualized, user:user,adu:adu})

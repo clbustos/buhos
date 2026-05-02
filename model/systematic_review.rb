@@ -176,7 +176,9 @@ GROUP BY r.canonical_document_id", self[:id]].select_map(:cd_id)
   # Returns an array with the list of canonical documents by stage
   # @param stage name of the stage. Could be ["search", "screening_title_abstract", "screening_references", "review_full_text", "report"]
   def cd_id_by_stage(stage)
-    case stage.to_s
+    stage_key=stage.to_s
+    @cd_id_by_stage ||= {}
+    @cd_id_by_stage[stage_key] ||= case stage_key
       when 'search'
         cd_record_id # TODO: Check this
       when 'screening_title_abstract'

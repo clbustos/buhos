@@ -1,29 +1,33 @@
-- n_cd_assigned = adu.canonical_documents.count
+- n_cd_assigned = adu.cd_ids.count
 - if is_administrator
   - asr_stage=Analysis_SR_Stage.new(sr, stage)
+  - total_canonical_documents_stage=sr.cd_id_by_stage(stage).count
+  - cd_without_allocations_count=asr_stage.cd_without_allocations_count
+  - no_resolution_count=asr_stage.resolution_pattern[Resolution::NO_RESOLUTION].to_i
   %p
     %a{:href=>"/review/#{sr[:id]}/administration/#{stage}"}
       %snap.glyphicon.glyphicon-tower
-      =t_desc_value("user_dashboard.count_total_canonical_documents_stage", sr.cd_id_by_stage(stage).count)
-  - if ars.resolution_pattern(stage)[Resolution::NO_RESOLUTION].to_i>0
+      =t_desc_value("user_dashboard.count_total_canonical_documents_stage", total_canonical_documents_stage)
+  - if no_resolution_count>0
     %p
       %snap.glyphicon.glyphicon-tower
       =t_desc_value("user_dashboard.count_canonical_document_without_resolution",
        a_tag("/review/#{ sr[:id] }/administration/#{stage}#decision_statistics",
        t("user_dashboard.check_n_canonical_documents_without_resolution",
-       count:ars.resolution_pattern(stage)[Resolution::NO_RESOLUTION])))
+       count:no_resolution_count)))
       %span.label.label-warning=t(:pending)
-  - if asr_stage.cd_without_allocations.count>0
+  - if cd_without_allocations_count>0
     %p
       %snap.glyphicon.glyphicon-tower
       =t_desc_value("user_dashboard.count_canonical_document_without_assignation",
        a_tag("/review/#{ sr[:id] }/administration/#{stage}/cd_without_allocations",
        t("user_dashboard.check_n_canonical_documents_without_assignation",
-       count:asr_stage.cd_without_allocations.count)))
+       count:cd_without_allocations_count)))
       %span.label.label-warning=t(:pending)
 - else
+  - total_canonical_documents_stage=sr.cd_id_by_stage(stage).count
   %p=t_desc_value("user_dashboard.count_total_canonical_documents_stage",
-  sr.cd_id_by_stage(stage).count)
+  total_canonical_documents_stage)
 %p=t_desc_value("user_dashboard.count_canonical_document_assigned",
   a_tag("/review/#{sr[:id]}/#{stage}",
   t("user_dashboard.check_n_assigned_canonical_documents",

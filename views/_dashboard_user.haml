@@ -1,10 +1,12 @@
 %h2=t(:Dashboard_user, user_name:user[:name])
 - udi=UserDashboardInfo.new(user)
-- if udi.unread_personal_messages.count>0
-  %p=t_desc_value("user_dashboard.unread_personal_messages", a_tag("/user/#{user[:id]}/messages#personal", t("user_dashboard.check_n_unread_messages", count: udi.unread_personal_messages.count)))
+- unread_personal_messages_count=udi.unread_personal_messages.count
+- if unread_personal_messages_count>0
+  %p=t_desc_value("user_dashboard.unread_personal_messages", a_tag("/user/#{user[:id]}/messages#personal", t("user_dashboard.check_n_unread_messages", count: unread_personal_messages_count)))
   %span.label.label-warning=t(:pending)
-- user.systematic_reviews.where(:active=>true).each do |sr|
+- active_systematic_reviews=udi.active_systematic_reviews
+- active_systematic_reviews.each do |sr|
   =partial(:dashboard_sr, :locals=>{:user=>user, :sr=>sr, :udi=>udi})
-- if user.systematic_reviews.where(:active=>true).count==0
+- if active_systematic_reviews.count==0
   %p
     %em=t(:No_systematic_review_for_this_user)

@@ -4,14 +4,15 @@
 - else
   - sv = SearchValidatorUser.new(sr,user)
 - sv.validate
+- searches_count=sr.searches.count
 - if is_administrator
   %p
     %a{:href=>"/review/#{sr[:id]}/administration/#{stage}"}
       %snap.glyphicon.glyphicon-tower
-      =t_desc_value("user_dashboard.count_total_searches", sr.searches.count)
+      =t_desc_value("user_dashboard.count_total_searches", searches_count)
 - else
-  %p=t_desc_value("user_dashboard.count_total_searches", sr.searches.count)
-- if   sr.searches.count == 0
+  %p=t_desc_value("user_dashboard.count_total_searches", searches_count)
+- if   searches_count == 0
   %p
     =t("user_dashboard.no_searches_available")
 - else
