@@ -31,7 +31,7 @@
     - @ars.user_decisions(@stage).each do |user_id, edu|
       %tr
         %th=edu[:usuario].name
-        %td=edu[:adu].assignations.count
+        %td=edu[:adu].assignations_count
         - Decision::N_EST.each do |dec,name|
           %td=edu[:adu].total_decisions[dec].to_i
 
@@ -55,6 +55,9 @@
       %th=t(:Without_Resolution)
   %tbody
     - decisions_order.each do |patron, cuenta|
+      - unresolved_count=resolutions_patron[patron][Resolution::NO_RESOLUTION]
+      - include_text= unresolved_count==0 ? t(:All_documents_resolved) : (unresolved_count==cuenta ? t(:Resolve_all_documents_as_included) : t(:Resolve_pending_documents_as_included, n:unresolved_count))
+      - exclude_text= unresolved_count==0 ? t(:All_documents_resolved) : (unresolved_count==cuenta ? t(:Resolve_all_documents_as_excluded) : t(:Resolve_pending_documents_as_excluded, n:unresolved_count))
       %tr
         - Decision::N_EST.each do |dec,name|
           %td{:class=>"decision decision-#{dec}"}= patron[dec]
@@ -68,12 +71,20 @@
             %span{:class=>"glyphicon glyphicon-chevron-right"}
               =t(:View)
           - if auth_to('review_admin')
-            %a{:href=>url("/review/#{@review[:id]}/stage/#{@stage}/pattern/#{@ars.pattern_id(patron)}/resolution/yes"),:class=>"btn btn-success btn-sm", :role=>"button"}
-              %span{:class=>"glyphicon glyphicon-ok-circle"}
-                =t(:Document_include)
-            %a{:href=>url("/review/#{@review[:id]}/stage/#{@stage}/pattern/#{@ars.pattern_id(patron)}/resolution/no"),:class=>"btn btn-danger btn-sm", :role=>"button"}
-              %span{:class=>"glyphicon glyphicon-ban-circle"}
-                =t(:Document_exclude)
+            - if unresolved_count>0
+              %a{:href=>url("/review/#{@review[:id]}/stage/#{@stage}/pattern/#{@ars.pattern_id(patron)}/resolution/yes"),:class=>"btn btn-success btn-sm", :role=>"button"}
+                %span{:class=>"glyphicon glyphicon-ok-circle"}
+                  =include_text
+              %a{:href=>url("/review/#{@review[:id]}/stage/#{@stage}/pattern/#{@ars.pattern_id(patron)}/resolution/no"),:class=>"btn btn-danger btn-sm", :role=>"button"}
+                %span{:class=>"glyphicon glyphicon-ban-circle"}
+                  =exclude_text
+            - else
+              %button{:class=>"btn btn-success btn-sm", :role=>"button", :disabled=>true}
+                %span{:class=>"glyphicon glyphicon-ok-circle"}
+                  =include_text
+              %button{:class=>"btn btn-danger btn-sm", :role=>"button", :disabled=>true}
+                %span{:class=>"glyphicon glyphicon-ban-circle"}
+                  =exclude_text
 
 
 =partial(:sr_administration_actions, :locals=>{review:@review, stage:@stage})

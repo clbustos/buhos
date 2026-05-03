@@ -92,10 +92,15 @@ get '/review/:id/stage/:stage/pattern/:patron/resolution/:resolution' do |id,sta
   @ars=AnalysisSystematicReview.new(@review)
   patron=@ars.pattern_from_s(patron_s)
   cds=@ars.cd_from_pattern(stage, patron)
-  #$log.info(cds)
+  resolved_cds=Resolution.where(:systematic_review_id=>id,
+                                :canonical_document_id=>cds,
+                                :stage=>stage,
+                                :resolution=>[Resolution::RESOLUTION_ACCEPT, Resolution::RESOLUTION_REJECT]).
+      map(:canonical_document_id)
+  cds_to_resolve=cds-resolved_cds
 
   $db.transaction(:rollback=>:reraise) do
-    cds.each do |cd_id|
+    cds_to_resolve.each do |cd_id|
       res=Resolution.where(:systematic_review_id=>id, :canonical_document_id=>cd_id, :stage=>stage)
 
       if res.empty?
@@ -109,12 +114,11 @@ get '/review/:id/stage/:stage/pattern/:patron/resolution/:resolution' do |id,sta
       else
         res.update(:resolution=>resolution, :user_id=>session['user_id'],
                    :timestamp=>DateTime.now,
-                   :commentary=>"Actualizado en forma masiva en #{DateTime.now.to_s}")
-
+                   :commentary=>"Resuelto en forma masiva en #{DateTime.now.to_s}")
       end
     end
   end
-  add_message(I18n::t("resolution_for_n_documents", resolution:resolution, n:cds.length))
+  add_message(I18n::t("resolution_for_n_documents", resolution:resolution, n:cds_to_resolve.length))
   redirect back
 end
 

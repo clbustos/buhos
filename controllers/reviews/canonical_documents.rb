@@ -313,7 +313,7 @@ post '/review/:id/canonical_document/automatic_deduplication/:type' do |id, type
 
     @cd_por_doi.each_pair do |doi, cds_id|
       if CanonicalDocument.where(id:cds_id).count()==cds_id.length
-        resultado=CanonicalDocument.merge(cds_id)
+        resultado=Buhos::CanonicalDocumentMerger.merge(cds_id)
         if resultado
           result.success("DOI:#{doi} - #{I18n::t("Canonical_document_merge_successful")}")
         else
@@ -330,7 +330,7 @@ post '/review/:id/canonical_document/automatic_deduplication/:type' do |id, type
     @cd_por_scielo.each_pair do |scielo_id, cds_id|
       if CanonicalDocument.where(id:cds_id).count()==cds_id.length
 
-        resultado=CanonicalDocument.merge(cds_id)
+        resultado=Buhos::CanonicalDocumentMerger.merge(cds_id)
         if resultado
           result.success("Scielo:#{scielo_id} - #{I18n::t("Canonical_document_merge_successful")}")
         else
@@ -348,7 +348,7 @@ post '/review/:id/canonical_document/automatic_deduplication/:type' do |id, type
     @cd_por_pubmed.each_pair do |pubmed_id, cds_id|
       if CanonicalDocument.where(id:cds_id).count()==cds_id.length
 
-        resultado=CanonicalDocument.merge(cds_id)
+        resultado=Buhos::CanonicalDocumentMerger.merge(cds_id)
         if resultado
           result.success("Pubmed:#{pubmed_id} - #{I18n::t("Canonical_document_merge_successful")}")
         else
@@ -367,7 +367,7 @@ post '/review/:id/canonical_document/automatic_deduplication/:type' do |id, type
     @cd_por_scopus.each_pair do |scopus_id, cds_id|
       if CanonicalDocument.where(id:cds_id).count()==cds_id.length
 
-        resultado=CanonicalDocument.merge(cds_id)
+        resultado=Buhos::CanonicalDocumentMerger.merge(cds_id)
         if resultado
           result.success("Scopus:#{scopus_id} - #{I18n::t("Canonical_document_merge_successful")}")
         else
@@ -384,7 +384,7 @@ post '/review/:id/canonical_document/automatic_deduplication/:type' do |id, type
     @cd_por_wos.each_pair do |wos_id, cds_id|
       if CanonicalDocument.where(id:cds_id).count()==cds_id.length
 
-        resultado=CanonicalDocument.merge(cds_id)
+        resultado=Buhos::CanonicalDocumentMerger.merge(cds_id)
         if resultado
           result.success("WOS:#{wos_id} - #{I18n::t("Canonical_document_merge_successful")}")
         else

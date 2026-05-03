@@ -9,6 +9,7 @@ require_relative 'buhos/excel_builder'
 require_relative 'buhos/similarity_analysis'
 require_relative 'buhos/duplicate_analysis'
 require_relative 'buhos/inconsistencies_analysis'
+require_relative 'buhos/canonical_document_merger'
 
 
 require_relative 'buhos/analysis_searches'

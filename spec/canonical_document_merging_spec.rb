@@ -94,10 +94,10 @@ describe 'Canonical Document merging' do
     end
   end
 
-  context "when CanonicalDocument.merge is used" do
+  context "when Buhos::CanonicalDocumentMerger.merge is used" do
     before(:context) do
       pre_context
-      CanonicalDocument.merge([1,2,3])
+      Buhos::CanonicalDocumentMerger.merge([1,2,3])
     end
     it_behaves_like 'correct merge'
 
@@ -106,11 +106,11 @@ describe 'Canonical Document merging' do
     end
   end
 
-  context "when CanonicalDocument.merge is used with different order" do
+  context "when Buhos::CanonicalDocumentMerger.merge is used with different order" do
     let(:cd) {CanonicalDocument[2]}
     before(:context) do
       pre_context
-      CanonicalDocument.merge([2,3,1])
+      Buhos::CanonicalDocumentMerger.merge([2,3,1])
     end
     it "should canonical document retained equal to first listed" do
       expect(cd).to be_truthy

@@ -77,6 +77,17 @@ class Analysis_SR_Stage
     cd_without_allocations_id.length
   end
 
+  def no_resolution_count
+    cds=@sr.cd_id_by_stage(@stage)
+    return 0 if cds.empty?
+
+    resolved=Resolution.where(:systematic_review_id=>@sr.id,
+                              :canonical_document_id=>cds,
+                              :stage=>@stage.to_s,
+                              :resolution=>[Resolution::RESOLUTION_ACCEPT, Resolution::RESOLUTION_REJECT]).count
+    cds.length-resolved
+  end
+
   def resolutions_by_cd
     cds=@sr.cd_id_by_stage(@stage)
     resolutions=Resolution.where(:systematic_review_id=>@sr.id, :canonical_document_id=>cds, :stage=>@stage.to_s).as_hash(:canonical_document_id)
@@ -132,14 +143,18 @@ class Analysis_SR_Stage
                              :canonical_document_id=>cds,
                              :user_id=>@sr.group_users.map {|u| u[:id]},
                              :stage=>@stage.to_s).group_and_count(:canonical_document_id, :decision).all
+    decisions_by_canonical_document=decisions.inject({}) do |ac, decision_count|
+      cd_id=decision_count[:canonical_document_id]
+      ac[cd_id] ||= {}
+      ac[cd_id][decision_count[:decision]]=decision_count[:count]
+      ac
+    end
     n_jueces_por_cd=AllocationCd.where(:systematic_review_id=>@sr.id, :canonical_document_id=>cds, :stage=>@stage.to_s).group_and_count(:canonical_document_id).as_hash(:canonical_document_id)
 
 
 #    n_jueces=@sr.group_users.count
     cds.inject({}) {|ac,v|
-      ac[v]=empty_decisions_hash
-      ac[v]=ac[v].merge decisions.find_all   {|dec|      dec[:canonical_document_id]==v }
-                            .inject({}) {|ac1,v1|   ac1[v1[:decision]]=v1[:count]; ac1 }
+      ac[v]=empty_decisions_hash.merge(decisions_by_canonical_document[v] || {})
       suma=ac[v].inject(0) {|ac1,v1| ac1+v1[1]}
       n_jueces=n_jueces_por_cd[v].nil? ? 0 : n_jueces_por_cd[v][:count]
       ac[v][Decision::NO_DECISION]=n_jueces-suma

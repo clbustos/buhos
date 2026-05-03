@@ -143,7 +143,7 @@ post '/canonical_document/merge' do
   end
 
   if cds.count>1
-    resultado=CanonicalDocument.merge(cds.map(:id))
+    resultado=Buhos::CanonicalDocumentMerger.merge(cds.map(:id))
   end
   $log.info(resultado)
   return resultado ? 200 : 500
@@ -223,7 +223,7 @@ post '/canonical_document/actions' do
 
 
   if action=='merge'
-    if CanonicalDocument.merge(cd_ids)
+    if Buhos::CanonicalDocumentMerger.merge(cd_ids)
       add_message(t(:Canonical_document_merge_successful))
     else
       add_message(t(:Canonical_document_merge_error), :error)

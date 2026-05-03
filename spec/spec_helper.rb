@@ -1,5 +1,5 @@
 require 'simplecov'
-if ENV['USE_  COV']
+if ENV['USE_COV']
   SimpleCov.start do
     add_filter '/spec/'
     add_filter 'lib/scopus/connection.rb' # Is necessary an API scopus to test it

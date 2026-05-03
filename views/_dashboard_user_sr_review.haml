@@ -3,7 +3,7 @@
   - asr_stage=Analysis_SR_Stage.new(sr, stage)
   - total_canonical_documents_stage=sr.cd_id_by_stage(stage).count
   - cd_without_allocations_count=asr_stage.cd_without_allocations_count
-  - no_resolution_count=asr_stage.resolution_pattern[Resolution::NO_RESOLUTION].to_i
+  - no_resolution_count=asr_stage.no_resolution_count
   %p
     %a{:href=>"/review/#{sr[:id]}/administration/#{stage}"}
       %snap.glyphicon.glyphicon-tower

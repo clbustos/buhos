@@ -99,8 +99,9 @@ module AnalysisSrStageMixin
 
   # Who are the judges and how many decisions they take
   def user_decisions(stage)
+    cd_stage=@rs.cd_id_by_stage(stage)
     @rs.group_users.inject({}) {|ac, usuario|
-      ac[usuario.id] = {usuario: usuario, adu: AnalysisUserDecision.new(@rs.id, usuario.id, stage)}
+      ac[usuario.id] = {usuario: usuario, adu: AnalysisUserDecision.new(@rs.id, usuario.id, stage, cd_stage)}
       ac
     }
   end

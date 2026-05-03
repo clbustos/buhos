@@ -37,13 +37,15 @@ class AnalysisUserDecision
   attr_reader :total_decisions
   # Raw dataset of AllocationCd
   attr_reader :assignations
+  # Number of canonical documents assigned to this user on this stage
+  attr_reader :assignations_count
   # Canonical document ids assigned to the user on this stage
   attr_reader :cd_ids
-  def initialize(rs_id,user_id,stage)
+  def initialize(rs_id,user_id,stage, cd_stage=nil)
     @rs_id=rs_id
     @user_id=user_id
     @stage=stage.to_s
-    @assignations=nil?
+    @cd_stage=cd_stage
     procesar_cd_ids
     process_basic_indicators
     #procesar_numero_citas
@@ -66,13 +68,10 @@ class AnalysisUserDecision
   # Define @cd_ids. Si no se han asignado, los toma todos
   # Si existen asignaciones, sólo se consideran estas
   def procesar_cd_ids
-    cd_stage=systematic_review.cd_id_by_stage(@stage)
+    cd_stage=@cd_stage || systematic_review.cd_id_by_stage(@stage)
     @assignations=AllocationCd.where(:systematic_review_id=>@rs_id, :user_id=>@user_id, :canonical_document_id=>cd_stage, :stage=>@stage)
-    if @assignations.empty?
-      @cd_ids=[]
-    else
-      @cd_ids=@assignations.select_map(:canonical_document_id)
-    end
+    @cd_ids=@assignations.select_map(:canonical_document_id)
+    @assignations_count=@cd_ids.length
   end
   def process_basic_indicators
     if @cd_ids.empty?

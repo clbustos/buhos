@@ -34,6 +34,8 @@ class UserDashboardInfo
     @sr_active=user.systematic_reviews.where(:active=>true).all
     @unread_personal_messages=nil
     @unread_sr_messages={}
+    @unread_sr_messages_count={}
+    @adu_for_sr={}
   end
   def active_systematic_reviews
     @sr_active
@@ -47,12 +49,18 @@ class UserDashboardInfo
       MessageSr.where(:id=>ids).all
     end
   end
+  def unread_sr_messages_count(sr_id)
+    @unread_sr_messages_count[sr_id] ||= $db[
+      "SELECT COUNT(DISTINCT mr.id) AS n FROM message_srs mr LEFT JOIN message_sr_seens mrv ON mr.id=mrv.m_rs_id WHERE mr.systematic_review_id=? AND ( user_id IS NULL OR (user_id=? AND viewed!=1))",
+      sr_id, @user[:id]
+    ].first[:n]
+  end
   # Return the searches not ready for review
   def searches_not_ready(sr_id)
     Search.where(:user_id=>user[:id], :valid=>nil, :systematic_review_id=>sr_id)
   end
   def adu_for_sr(sr,stage)
-    AnalysisUserDecision.new(sr[:id], @user[:id], stage)
+    @adu_for_sr[[sr[:id], stage.to_s]] ||= AnalysisUserDecision.new(sr[:id], @user[:id], stage)
   end
   # The user is the administrator of a specific systematic review
   def is_administrator_sr?(sr)

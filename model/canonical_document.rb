@@ -64,67 +64,6 @@ class CanonicalDocument < Sequel::Model
     result
 
   end
-  # Merge canonical documents, according to id
-  # TODO: Create a separate class on lib to handle and test this
-  def self.merge(pks)
-    pks=pks.map {|v| v.to_i}
-    pk_id=pks[0]
-    pk_otros=pks[1...pks.length]
-    resultado=true
-    $db.transaction(:rollback => :reraise) do
-      columnas=CanonicalDocument.columns
-      columnas.delete(:id)
-
-      cds=CanonicalDocument.where(:id => pks)
-      raise("Ids to merge were #{pks.join(',')} and retrieved where #{cds.map{|v|v[:id]}.join(',')}")  if cds.count!=pks.count
-      fields=columnas.inject({}) {|ac, v| ac[v]=nil; ac}
-      cds.each do |cd|
-        columnas.find_all {|col|   fields[col].nil? or fields[col]=="" or (col==:year and fields[col]==0)}.each {|col|
-          fields[col]=cd[col]
-        }
-      end
-      CanonicalDocument[pk_id].update(fields)
-      table_list=[:allocation_cds, :bib_references, :cd_criteria,:decisions, :file_cds,
-                  :resolutions, :tag_in_cds, :records, :canonical_document_authors]
-      # We have to add analysis tables
-
-      SystematicReview.all.each do |sr|
-        table_list.push(sr.analysis_cd_tn.to_sym) if $db.table_exists?(sr.analysis_cd_tn)
-      end
-
-      table_list.each do |table|
-        pk=$db.schema(table).find_all {|v|
-          v[1][:primary_key]
-        }.map {|v| v[0]}
-        # On each tuple, I have to detect if exists before
-        cache=[]
-        $db[table].select(*pk).where(:canonical_document_id=>pks).each do |row|
-          fixed_row=row.dup
-          fixed_row[:canonical_document_id]=pk_id
-          #$log.info(cache)
-          #$log.info(fixed_row)
-          if cache.include? fixed_row
-            $db[table].where(row).delete
-          else
-            cache.push(fixed_row)
-          end
-
-        end
-        $db[table].where(:canonical_document_id=>pks).update(:canonical_document_id=>pk_id)
-      end
-
-      # TODO: Should verificate tuples as object described before
-      $db[:tag_bw_cds].where(:cd_start=>pks).update(:cd_start=>pk_id)
-      $db[:tag_bw_cds].where(:cd_end=>pks).update(:cd_end=>pk_id)
-
-      CanonicalDocument.where(:id => pk_otros).delete
-      $db.after_rollback {
-        resultado=false
-      }
-    end
-    resultado
-  end
-
   def crossref_integrator
     if self.doi
       begin
