@@ -101,21 +101,14 @@ get '/review/:id/stage/:stage/pattern/:patron/resolution/:resolution' do |id,sta
 
   $db.transaction(:rollback=>:reraise) do
     cds_to_resolve.each do |cd_id|
-      res=Resolution.where(:systematic_review_id=>id, :canonical_document_id=>cd_id, :stage=>stage)
-
-      if res.empty?
-        Resolution.insert(:systematic_review_id=>id,
-                          :canonical_document_id=>cd_id,
-                          :stage=>stage,
-                          :resolution=>resolution,
-                          :user_id=>session['user_id'],
-                          :timestamp=>DateTime.now,
-                          :commentary=>"Resuelto en forma masiva en #{DateTime.now.to_s}")
-      else
-        res.update(:resolution=>resolution, :user_id=>session['user_id'],
-                   :timestamp=>DateTime.now,
-                   :commentary=>"Resuelto en forma masiva en #{DateTime.now.to_s}")
-      end
+      Resolution.set_for_document(
+        systematic_review_id:id,
+        canonical_document_id:cd_id,
+        stage:stage,
+        resolution:resolution,
+        user_id:session['user_id'],
+        commentary:"Resuelto en forma masiva en #{DateTime.now.to_s}"
+      )
     end
   end
   add_message(I18n::t("resolution_for_n_documents", resolution:resolution, n:cds_to_resolve.length))

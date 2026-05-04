@@ -28,6 +28,7 @@
 
 require_relative 'canonical_document'
 require_relative 'systematic_review'
+require_relative 'document_report'
 
 class Resolution < Sequel::Model
   RESOLUTION_ACCEPT='yes'
@@ -45,5 +46,96 @@ class Resolution < Sequel::Model
   def self.get_name_resolution(x)
     x.nil? ? NO_RESOLUTION : NAMES[x]
   end
-end
 
+  def self.merge_canonical_documents(target_id, canonical_document_ids)
+    where(canonical_document_id:canonical_document_ids).
+      all.
+      group_by {|resolution| [resolution[:systematic_review_id], resolution[:stage]]}.
+      each_value do |resolutions|
+        merge_resolution_group(target_id, canonical_document_ids, resolutions)
+      end
+  end
+
+  def self.merge_resolution_group(target_id, canonical_document_ids, resolutions)
+    retained=resolutions.find {|resolution| resolution[:canonical_document_id] == target_id} || resolutions.first
+    resolution_values=resolutions.map {|resolution| resolution[:resolution]}.compact.uniq
+    definitive_values=resolution_values & [RESOLUTION_ACCEPT, RESOLUTION_REJECT]
+
+    where(
+      systematic_review_id:retained[:systematic_review_id],
+      stage:retained[:stage],
+      canonical_document_id:canonical_document_ids
+    ).delete
+
+    if definitive_values.length > 1
+      resolutions.map {|resolution| resolution[:user_id]}.uniq.each do |user_id|
+        DocumentReport.report_conflicting_resolution(
+          systematic_review_id:retained[:systematic_review_id],
+          canonical_document_id:target_id,
+          user_id:user_id
+        )
+      end
+    else
+      merged_values=retained.values.select {|column, _value| columns.include?(column)}
+      merged_values[:canonical_document_id]=target_id
+      merged_values[:resolution]=definitive_values.first || resolution_values.first
+      insert(merged_values)
+    end
+  end
+
+  def self.set_for_document(systematic_review_id:, canonical_document_id:, stage:, resolution:, user_id:, commentary:nil)
+    return delete_for_document(systematic_review_id:systematic_review_id, canonical_document_id:canonical_document_id, stage:stage) if resolution == 'delete'
+    raise ArgumentError, "Invalid resolution #{resolution}" unless [RESOLUTION_ACCEPT, RESOLUTION_REJECT].include?(resolution)
+
+    $db.transaction(:rollback=>:reraise) do
+      attributes={
+        resolution:resolution,
+        user_id:user_id,
+        timestamp:DateTime.now
+      }
+      attributes[:commentary]=commentary unless commentary.nil?
+
+      dataset=where(systematic_review_id:systematic_review_id, canonical_document_id:canonical_document_id, stage:stage)
+      if dataset.empty?
+        insert({
+          systematic_review_id:systematic_review_id,
+          canonical_document_id:canonical_document_id,
+          stage:stage
+        }.merge(attributes))
+      else
+        dataset.update(attributes)
+      end
+
+      DocumentReport.resolve_conflicting_resolution(
+        systematic_review_id:systematic_review_id,
+        canonical_document_id:canonical_document_id
+      )
+    end
+  end
+
+  def self.delete_for_document(systematic_review_id:, canonical_document_id:, stage:)
+    dataset=where(systematic_review_id:systematic_review_id, canonical_document_id:canonical_document_id, stage:stage)
+    return false if dataset.empty?
+
+    dataset.delete
+    true
+  end
+
+  def self.update_commentary_for_document(systematic_review_id:, canonical_document_id:, stage:, user_id:, commentary:)
+    $db.transaction(:rollback=>:reraise) do
+      dataset=where(systematic_review_id:systematic_review_id, canonical_document_id:canonical_document_id, stage:stage)
+      if dataset.empty?
+        insert(
+          systematic_review_id:systematic_review_id,
+          canonical_document_id:canonical_document_id,
+          stage:stage,
+          resolution:NO_RESOLUTION,
+          user_id:user_id,
+          commentary:commentary
+        )
+      else
+        dataset.update(commentary:commentary)
+      end
+    end
+  end
+end

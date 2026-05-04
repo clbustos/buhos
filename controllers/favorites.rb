@@ -1,17 +1,22 @@
+require 'json'
+
 # @!group Documentos favoritos
 
 # Listar todos los favoritos y grupos
 get '/user/:user_id/favorites' do |user_id|
   halt_unless_auth('review_view')
+  halt 403 unless is_session_user(user_id) or auth_to('user_admin')
   @user = User[user_id]
 
   # Grupos del usuario
   @favorite_groups = FavoriteGroup.where(user_id: user_id).order(:name)
 
   # Documentos favoritos en orden alfabético por el título del documento canónico
-  @favorite_documents = FavoriteDocument.where(user_id: user_id)
-                                        .join(:canonical_documents, id: :canonical_document_id)
-                                        .order(Sequel.desc(:activo), :title)
+  favorite_documents = FavoriteDocument.where(user_id: user_id)
+                                       .join(:canonical_documents, id: :canonical_document_id)
+                                       .order(:title)
+  @favorite_documents = favorite_documents.where(activo: true)
+  @inactive_favorite_documents = favorite_documents.where(activo: false)
 
   haml "users/favorites".to_sym, escape_html: false
 
@@ -20,6 +25,7 @@ end
 post '/favorites/user/:user_id/update' do |user_id|
   halt_unless_auth('favorite_edit')
   halt_unless_auth('review_view')
+  halt 403 unless is_session_user(user_id)
 
   user_id=user_id.to_i
   favorites=params['favorites'] || {}
@@ -48,9 +54,10 @@ end
 post '/favorite/user/:user_id/canonical_document/:canonical_id/add' do |user_id, cd_id |
   halt_unless_auth('favorite_edit')
   halt_unless_auth('review_view')
+  halt 403 unless is_session_user(user_id)
   @user = User[user_id]
   @cd = CanonicalDocument[cd_id]
-  raise Buhos::NoCanonicalDocument, id if !@cd
+  raise Buhos::NoCdIdError, cd_id if !@cd
 
 
   @favorite = FavoriteDocument.where(user_id: user_id, canonical_document_id: cd_id).first
@@ -65,17 +72,44 @@ end
 
 post '/favorite/user/:user_id/canonical_document/:canonical_id/remove' do |user_id, cd_id |
   halt_unless_auth('favorite_edit')
+  halt 403 unless is_session_user(user_id)
 
   @user = User[user_id]
   @cd = CanonicalDocument[cd_id]
   FavoriteDocument.where(user_id: user_id, canonical_document_id:cd_id).update(activo: false)
   @favorite=nil
+
   partial(:favorite, :locals=>{:cd=>@cd, :user_id=>user_id, :favorite_o=>@favorite})
+end
+
+post '/favorite/user/:user_id/canonical_document/:canonical_id/restore' do |user_id, cd_id |
+  halt_unless_auth('favorite_edit')
+  halt 403 unless is_session_user(user_id)
+
+  favorite=FavoriteDocument.where(user_id: user_id, canonical_document_id:cd_id).first
+  return 404 unless favorite
+
+  favorite.update(activo: true)
+  content_type :json
+  JSON.generate(ok:true)
+end
+
+post '/favorite/user/:user_id/canonical_document/:canonical_id/destroy' do |user_id, cd_id |
+  halt_unless_auth('favorite_edit')
+  halt 403 unless is_session_user(user_id)
+
+  favorite=FavoriteDocument.where(user_id: user_id, canonical_document_id:cd_id).first
+  return 404 unless favorite && !favorite[:activo]
+
+  favorite.delete
+  content_type :json
+  JSON.generate(ok:true)
 end
 
 
 put "/favorite/user/:user_id/canonical_document/:cd_id/commentary_favorite" do |user_id, cd_id|
   halt_unless_auth('favorite_edit')
+  halt 403 unless is_session_user(user_id)
 
   @user = User[user_id]
   @cd = CanonicalDocument[cd_id]
@@ -93,7 +127,8 @@ put '/favorite_groups/:gid/edit_field/:field' do |gid, field|
   halt_unless_auth('favorite_edit')
 
   @fg=FavoriteGroup[gid]
-  # TODO: Que solo lo pueda modificar un administrador o el usuario dueño
+  halt 404 unless @fg
+  halt 403 unless is_session_user(@fg[:user_id])
 
   v=params["value"].chomp
   if @fg and  ["name","description", 'is_public'].include? field

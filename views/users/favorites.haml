@@ -13,6 +13,29 @@
         }
     });
 
+    $("#favorites-trash-toggle").on("click", function(event) {
+      event.preventDefault();
+      $("#favorites-trash").toggleClass("hidden");
+    });
+
+    $(".favorite-restore").on("click", function(event) {
+      event.preventDefault();
+      var button = $(this);
+      $.post(button.data("url"), function() {
+        button.closest("tr").remove();
+      });
+    });
+
+    $(".favorite-destroy").on("click", function(event) {
+      event.preventDefault();
+      if (!confirm("#{t(:Are_you_sure)}?")) {
+        return;
+      }
+      var button = $(this);
+      $.post(button.data("url"), function() {
+        button.closest("tr").remove();
+      });
+    });
   });
 
 %ul.breadcrumb
@@ -61,7 +84,11 @@
             %a.btn.btn-danger.btn-xs{:href => "/favorite_group/#{group.id}/delete", :onclick => "return confirm('#{t(:Are_you_sure)}?');"}
               %span.glyphicon.glyphicon-trash
 
-%h3=t("favorites.My_Favorite_Documents")
+.clearfix
+  %h3.pull-left=t("favorites.My_Favorite_Documents")
+  %a#favorites-trash-toggle.btn.btn-default.btn-sm.pull-right{:href=>"#"}
+    %span.glyphicon.glyphicon-trash
+    =t("favorites.Trash")
 
 - if @favorite_documents.empty?
   %p
@@ -93,3 +120,34 @@
     %button.btn.btn-sm.btn-success{:type => "submit"}
       %span.glyphicon.glyphicon-save
       =t(:Save)
+
+#favorites-trash.hidden
+  %h3=t("favorites.Inactive_Favorites")
+  - if @inactive_favorite_documents.empty?
+    %p
+      %em=t("favorites.No_inactive_favorites")
+  - else
+    %table.table-bordered.table-sm
+      %thead
+        %tr
+          %th=t(:Document)
+          %th=t(:Category)
+          %th=t(:Commentary)
+          %th=t(:Actions)
+      %tbody
+        - @inactive_favorite_documents.each do |fav|
+          %tr{:id=>"inactive-favorite-#{fav[:canonical_document_id]}"}
+            %td
+              %strong=fav[:title]
+              %p="#{fav[:author]} (#{fav[:year]})"
+            %td
+              - group=@favorite_groups.find {|fg| fg.id == fav[:group_id]}
+              =group ? group.name : t("favorites.No_category")
+            %td=fav[:commentary]
+            %td
+              %button.btn.btn-xs.btn-success.favorite-restore{:type=>"button", "data-url"=>"/favorite/user/#{@user[:id]}/canonical_document/#{fav[:canonical_document_id]}/restore"}
+                %span.glyphicon.glyphicon-repeat
+                =t("favorites.Restore")
+              %button.btn.btn-xs.btn-danger.favorite-destroy{:type=>"button", "data-url"=>"/favorite/user/#{@user[:id]}/canonical_document/#{fav[:canonical_document_id]}/destroy"}
+                %span.glyphicon.glyphicon-remove
+                =t(:Delete)

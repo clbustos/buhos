@@ -32,10 +32,11 @@ require_relative 'systematic_review'
 
 class Decision < Sequel::Model
   NO_DECISION='ND'
+  DECISION_UNDECIDED='undecided'
   N_EST={
       'yes' => :Yes,
       'no' => :No,
-      'undecided' => :Undecided,
+      DECISION_UNDECIDED => :Undecided,
       Decision::NO_DECISION =>  :Without_decision,
 
   }
@@ -44,5 +45,30 @@ class Decision < Sequel::Model
   def self.get_name_decision(x)
     x.nil?  ? N_EST[NO_DECISION] :N_EST[x]
   end
-end
 
+  def self.merge_canonical_documents(target_id, canonical_document_ids)
+    where(canonical_document_id:canonical_document_ids).
+      all.
+      group_by {|decision| [decision[:systematic_review_id], decision[:user_id], decision[:stage]]}.
+      each_value do |decisions|
+        merge_decision_group(target_id, canonical_document_ids, decisions)
+      end
+  end
+
+  def self.merge_decision_group(target_id, canonical_document_ids, decisions)
+    retained=decisions.find {|decision| decision[:canonical_document_id] == target_id} || decisions.first
+    decision_values=decisions.map {|decision| decision[:decision]}.compact.uniq
+    merged_values=retained.values.select {|column, _value| columns.include?(column)}
+    merged_values[:canonical_document_id]=target_id
+    merged_values[:decision]=decision_values.length > 1 ? DECISION_UNDECIDED : decision_values.first
+
+    where(
+      systematic_review_id:retained[:systematic_review_id],
+      user_id:retained[:user_id],
+      stage:retained[:stage],
+      canonical_document_id:canonical_document_ids
+    ).delete
+
+    insert(merged_values)
+  end
+end

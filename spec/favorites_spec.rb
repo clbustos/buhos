@@ -112,4 +112,84 @@ describe 'Favorite documents' do
     it { expect(last_response.body).to include 'Title 1' }
     it { expect(last_response.body).to include 'Inactive from favorites page' }
   end
+
+  context 'when favorites page is shown with inactive favorites' do
+    before(:context) do
+      FavoriteDocument.where(user_id: 1, canonical_document_id: 1).delete
+      FavoriteDocument.create(user_id: 1, canonical_document_id: 1, activo: false, commentary: 'Removed paper')
+      get '/user/1/favorites'
+    end
+
+    it { expect(last_response).to be_ok }
+    it { expect(last_response.body).to include 'favorites-trash-toggle' }
+    it { expect(last_response.body).to include '/favorite/user/1/canonical_document/1/restore' }
+    it { expect(last_response.body).to include '/favorite/user/1/canonical_document/1/destroy' }
+    it { expect(last_response.body).to include 'Removed paper' }
+  end
+
+  context 'when an inactive favorite is restored from the trash' do
+    before(:context) do
+      post '/favorite/user/1/canonical_document/1/restore'
+    end
+
+    it { expect(last_response).to be_ok }
+    it { expect(FavoriteDocument[user_id: 1, canonical_document_id: 1][:activo]).to eq(true) }
+  end
+
+  context 'when an inactive favorite is permanently deleted from the trash' do
+    before(:context) do
+      FavoriteDocument.where(user_id: 1, canonical_document_id: 1).delete
+      FavoriteDocument.create(user_id: 1, canonical_document_id: 1, activo: false)
+      post '/favorite/user/1/canonical_document/1/destroy'
+    end
+
+    it { expect(last_response).to be_ok }
+    it { expect(FavoriteDocument.where(user_id: 1, canonical_document_id: 1).count).to eq(0) }
+  end
+
+  context 'when a favorite category is created' do
+    before(:context) do
+      FavoriteGroup.where(user_id: 1, name: 'Favorites spec category').delete
+      post '/favorite_groups/new', {name: 'Favorites spec category', is_public: 'true'}, 'HTTP_REFERER' => '/user/1/favorites'
+      @group=FavoriteGroup[user_id: 1, name: 'Favorites spec category']
+    end
+
+    it { expect(last_response).to be_redirect }
+    it { expect(@group).to_not be_nil }
+    it { expect(@group[:is_public]).to eq(true) }
+  end
+
+  context 'when a favorite category is edited' do
+    before(:context) do
+      @group_id=FavoriteGroup.insert(user_id: 1, name: 'Category to edit', description: 'Before')
+      put "/favorite_groups/#{@group_id}/edit_field/name", value: 'Edited category'
+      put "/favorite_groups/#{@group_id}/edit_field/description", value: 'After'
+      put "/favorite_groups/#{@group_id}/edit_field/is_public", value: '1'
+    end
+
+    it { expect(last_response).to be_ok }
+    it { expect(FavoriteGroup[@group_id][:name]).to eq('Edited category') }
+    it { expect(FavoriteGroup[@group_id][:description]).to eq('After') }
+    it { expect(FavoriteGroup[@group_id][:is_public]).to eq(true) }
+  end
+
+  context 'when a favorite category belongs to another user' do
+    before(:context) do
+      @group_id=FavoriteGroup.insert(user_id: 2, name: 'Other user category')
+      put "/favorite_groups/#{@group_id}/edit_field/name", value: 'Illegal edit'
+    end
+
+    it { expect(last_response.status).to eq(403) }
+    it { expect(FavoriteGroup[@group_id][:name]).to eq('Other user category') }
+  end
+
+  context 'when a favorite category is deleted' do
+    before(:context) do
+      @group_id=FavoriteGroup.insert(user_id: 1, name: 'Category to delete')
+      get "/favorite_group/#{@group_id}/delete", {}, 'HTTP_REFERER' => '/user/1/favorites'
+    end
+
+    it { expect(last_response).to be_redirect }
+    it { expect(FavoriteGroup[@group_id]).to be_nil }
+  end
 end

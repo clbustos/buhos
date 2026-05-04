@@ -564,6 +564,7 @@ pl:
     spam: "Spam / nieistotna treść"
     status: "Status"
     wrong_metadata: "Nieprawidłowe metadane"
+    conflicting_resolution: "Sprzeczna decyzja końcowa"
   favorites:
     Make_public: "Upublicznij (udostępnij)"
     My_Categories: "Moje kolekcje"
@@ -573,6 +574,10 @@ pl:
     No_categories_created: "Nie utworzono jeszcze żadnych osobistych kolekcji."
     No_category: "-- Bez kategorii --"
     No_favorites_yet: "Nie masz dokumentów oznaczonych jako ulubione."
+    Inactive_Favorites: "Kosz ulubionych"
+    No_inactive_favorites: "Nie ma ulubionych w koszu."
+    Restore: "Przywróć"
+    Trash: "Kosz"
     Private: "Prywatne"
     Public: "Publiczne"
     group_created: "Kolekcja została utworzona pomyślnie."

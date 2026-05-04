@@ -13,24 +13,18 @@ post '/resolution/review/:id/canonical_document/:cd_id/stage/:stage/resolution' 
   resolution=params['resolution']
   user_id=params['user_id']
 
-  res=Resolution.where(:systematic_review_id=>rev_id, :canonical_document_id=>cd_id, :stage=>stage)
-
   if resolution=='delete'
-    return 404 if res.empty?
-    res.delete
+    return 404 unless Resolution.delete_for_document(systematic_review_id:rev_id, canonical_document_id:cd_id, stage:stage)
   else
-
-    return 500 unless ['yes','no'].include? resolution
-    $db.transaction(:rollback=>:reraise) do
-      if res.empty?
-        Resolution.insert(:systematic_review_id=>rev_id, :canonical_document_id=>cd_id, :stage=>stage,
-                          :resolution=>resolution,
-                          :user_id=>user_id,
-                          :commentary=>"Resuelto en forma especifica en #{DateTime.now.to_s}")
-      else
-        res.update(:resolution=>resolution, :user_id=>user_id)
-      end
-    end
+    return 500 unless [Resolution::RESOLUTION_ACCEPT, Resolution::RESOLUTION_REJECT].include? resolution
+    Resolution.set_for_document(
+      systematic_review_id:rev_id,
+      canonical_document_id:cd_id,
+      stage:stage,
+      resolution:resolution,
+      user_id:user_id,
+      commentary:"Resuelto en forma especifica en #{DateTime.now.to_s}"
+    )
   end
 
   review=SystematicReview[rev_id]
@@ -44,15 +38,13 @@ end
 
 put '/resolution/review/:id/canonical_document/:cd_id/stage/:stage/user/:user_id/resolution_commentary' do |rev_id, cd_id, stage, user_id|
   halt_unless_auth('review_admin')
-  $db.transaction(:rollback => :reraise) do
-    res=Resolution.where(:systematic_review_id=>rev_id, :canonical_document_id=>cd_id, :stage=>stage)
-    if res.empty?
-      Resolution.insert(:systematic_review_id=>rev_id, :canonical_document_id=>cd_id, :stage=>stage, :resolution=>Resolution::NO_RESOLUTION, :user_id=>user_id, :commentary=>params['value'].chomp)
-    else
-      res.update(:commentary=>params['value'].chomp)
-    end
-
-  end
+  Resolution.update_commentary_for_document(
+    systematic_review_id:rev_id,
+    canonical_document_id:cd_id,
+    stage:stage,
+    user_id:user_id,
+    commentary:params['value'].chomp
+  )
   return 200
 end
 

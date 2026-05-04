@@ -28,8 +28,54 @@
 
 module Buhos
   class CanonicalDocumentMerger
+    CANONICAL_DOCUMENT_FK = :canonical_document_id
+
+    RELATED_TABLE_RULES = {
+      allocation_cds: { column: CANONICAL_DOCUMENT_FK },
+      bib_references: { column: CANONICAL_DOCUMENT_FK },
+      canonical_document_authors: { column: CANONICAL_DOCUMENT_FK },
+      cd_criteria: { column: CANONICAL_DOCUMENT_FK },
+      cd_quality_criteria: { column: CANONICAL_DOCUMENT_FK },
+      favorite_documents: { column: CANONICAL_DOCUMENT_FK },
+      file_cds: { column: CANONICAL_DOCUMENT_FK },
+      records: { column: CANONICAL_DOCUMENT_FK },
+      sr_document_reports: {
+        column: CANONICAL_DOCUMENT_FK,
+        deduplicate_by: [:systematic_review_id, :canonical_document_id, :user_id, :report_type]
+      },
+      tag_in_cds: { column: CANONICAL_DOCUMENT_FK },
+      useless_cd_allocations: { column: CANONICAL_DOCUMENT_FK }
+    }.freeze
+
+    BETWEEN_DOCUMENT_RULES = {
+      tag_bw_cds: [:cd_start, :cd_end]
+    }.freeze
+
+    SPECIAL_MERGE_RULES = {
+      decisions: { column: CANONICAL_DOCUMENT_FK },
+      resolutions: { column: CANONICAL_DOCUMENT_FK }
+    }.freeze
+
     def self.merge(pks)
       new(pks).merge
+    end
+
+    def self.missing_merge_rules
+      expected = canonical_document_references
+      covered = merge_rule_references
+
+      expected.each_with_object({}) do |(table, columns), missing|
+        unknown_columns = columns - Array(covered[table])
+        missing[table] = unknown_columns if unknown_columns.any?
+      end
+    end
+
+    def self.validate_merge_rules!
+      missing = missing_merge_rules
+      return if missing.empty?
+
+      details = missing.map { |table, columns| "#{table}(#{columns.join(', ')})" }.join(', ')
+      raise "Missing canonical document merge rules for: #{details}"
     end
 
     def initialize(pks)
@@ -41,7 +87,10 @@ module Buhos
     def merge
       resultado = true
       $db.transaction(:rollback => :reraise) do
+        self.class.validate_merge_rules!
         update_canonical_document_fields
+        merge_decisions
+        merge_resolutions
         merge_related_tables
         merge_between_document_tags
         CanonicalDocument.where(:id => @pk_otros).delete
@@ -54,6 +103,69 @@ module Buhos
     end
 
     private
+
+    def self.merge_rule_references
+      references = {}
+
+      RELATED_TABLE_RULES.each do |table, rule|
+        references[table] ||= []
+        references[table] << rule[:column]
+      end
+
+      SPECIAL_MERGE_RULES.each do |table, rule|
+        references[table] ||= []
+        references[table] << rule[:column]
+      end
+
+      BETWEEN_DOCUMENT_RULES.each do |table, columns|
+        references[table] ||= []
+        references[table].concat(columns)
+      end
+
+      dynamic_analysis_tables.each do |table|
+        references[table] ||= []
+        references[table] << CANONICAL_DOCUMENT_FK
+      end
+
+      references
+    end
+
+    def self.canonical_document_references
+      real_tables.each_with_object({}) do |table, references|
+        columns = canonical_document_reference_columns(table)
+        references[table] = columns if columns.any?
+      end
+    end
+
+    def self.real_tables
+      views = $db.respond_to?(:views) ? $db.views : []
+      $db.tables - views - [:canonical_documents]
+    end
+
+    def self.canonical_document_reference_columns(table)
+      foreign_key_columns = foreign_key_reference_columns(table)
+      return foreign_key_columns if foreign_key_columns.any?
+
+      schema_columns = $db.schema(table).map { |column| column[0] }
+      schema_columns & ([CANONICAL_DOCUMENT_FK] + BETWEEN_DOCUMENT_RULES.values.flatten)
+    end
+
+    def self.foreign_key_reference_columns(table)
+      $db.foreign_key_list(table).each_with_object([]) do |foreign_key, columns|
+        next unless foreign_key[:table].to_sym == :canonical_documents
+
+        columns.concat(Array(foreign_key[:columns]))
+      end
+    rescue Sequel::Error, NoMethodError
+      []
+    end
+
+    def self.dynamic_analysis_tables
+      SystematicReview.all.each_with_object([]) do |sr, tables|
+        table = sr.analysis_cd_tn.to_sym
+        tables.push(table) if $db.table_exists?(table)
+      end
+    end
 
     def update_canonical_document_fields
       columnas = CanonicalDocument.columns
@@ -75,13 +187,14 @@ module Buhos
     end
 
     def merge_related_tables
-      related_tables.each do |table|
-        pk = $db.schema(table).find_all { |v| v[1][:primary_key] }.map { |v| v[0] }
+      related_table_rules.each do |table, rule|
+        fk = rule[:column]
+        deduplicate_by = rule[:deduplicate_by] || primary_key_columns(table)
 
         cache = []
-        $db[table].select(*pk).where(:canonical_document_id => @pks).each do |row|
+        $db[table].select(*deduplicate_by).where(fk => @pks).each do |row|
           fixed_row = row.dup
-          fixed_row[:canonical_document_id] = @pk_id
+          fixed_row[fk] = @pk_id
           if cache.include? fixed_row
             $db[table].where(row).delete
           else
@@ -89,24 +202,38 @@ module Buhos
           end
         end
 
-        $db[table].where(:canonical_document_id => @pks).update(:canonical_document_id => @pk_id)
+        $db[table].where(fk => @pks).update(fk => @pk_id)
       end
     end
 
-    def related_tables
-      table_list = [:allocation_cds, :bib_references, :cd_criteria, :decisions, :file_cds,
-                    :resolutions, :tag_in_cds, :records, :canonical_document_authors]
+    def merge_decisions
+      Decision.merge_canonical_documents(@pk_id, @pks)
+    end
 
-      SystematicReview.all.each do |sr|
-        table_list.push(sr.analysis_cd_tn.to_sym) if $db.table_exists?(sr.analysis_cd_tn)
+    def merge_resolutions
+      Resolution.merge_canonical_documents(@pk_id, @pks)
+    end
+
+    def related_table_rules
+      table_rules = self.class::RELATED_TABLE_RULES.dup
+
+      self.class.send(:dynamic_analysis_tables).each do |table|
+        table_rules[table] = { column: self.class::CANONICAL_DOCUMENT_FK }
       end
 
-      table_list
+      table_rules
+    end
+
+    def primary_key_columns(table)
+      $db.schema(table).find_all { |v| v[1][:primary_key] }.map { |v| v[0] }
     end
 
     def merge_between_document_tags
-      $db[:tag_bw_cds].where(:cd_start => @pks).update(:cd_start => @pk_id)
-      $db[:tag_bw_cds].where(:cd_end => @pks).update(:cd_end => @pk_id)
+      self.class::BETWEEN_DOCUMENT_RULES.each do |table, columns|
+        columns.each do |column|
+          $db[table].where(column => @pks).update(column => @pk_id)
+        end
+      end
     end
   end
 end

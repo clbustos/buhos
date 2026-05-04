@@ -10,7 +10,8 @@ class DocumentReport < Sequel::Model(:sr_document_reports)
   many_to_one :canonical_document
 
   # Tipos de reporte permitidos (opcional, para validación)
-  REPORT_TYPES = %w[duplicate ocr_error wrong_metadata spam other]
+  CONFLICTING_RESOLUTION = 'conflicting_resolution'
+  REPORT_TYPES = %w[duplicate ocr_error wrong_metadata spam other conflicting_resolution]
   STATUSES     = %w[pending resolved ignored]
 
   def self.report_type_options
@@ -22,6 +23,32 @@ class DocumentReport < Sequel::Model(:sr_document_reports)
 
   def self.report_type_source
     JSON.generate(report_type_options.map {|key, value| {value:key, text:value}})
+  end
+
+  def self.report_conflicting_resolution(systematic_review_id:, canonical_document_id:, user_id:)
+    criteria={
+      systematic_review_id:systematic_review_id,
+      canonical_document_id:canonical_document_id,
+      user_id:user_id,
+      report_type:CONFLICTING_RESOLUTION
+    }
+    report=where(criteria).first
+
+    if report
+      report.update(status:'pending') unless report.status == 'pending'
+      report
+    else
+      create(criteria.merge(status:'pending'))
+    end
+  end
+
+  def self.resolve_conflicting_resolution(systematic_review_id:, canonical_document_id:)
+    where(
+      systematic_review_id:systematic_review_id,
+      canonical_document_id:canonical_document_id,
+      report_type:CONFLICTING_RESOLUTION,
+      status:'pending'
+    ).update(status:'resolved')
   end
 
   def before_validation
