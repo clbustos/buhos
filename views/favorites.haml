@@ -1,0 +1,42 @@
+.header
+  %h2=title(t("favorites.Public_favorites"))
+
+%ul.breadcrumb
+  %li.active
+    =t(:Favorites)
+
+- visible_groups = @favorite_groups.select {|group| @favorite_documents_by_group[group.id] && !@favorite_documents_by_group[group.id].empty?}
+
+- if visible_groups.empty?
+  %p
+    %em=t("favorites.No_public_favorites")
+- else
+  - visible_groups.each do |group|
+    - user=@favorite_group_users[group.user_id]
+    %h3
+      =CGI::escapeHTML group.name
+      - if user
+        %small
+          =t("favorites.Shared_by", user: user[:name])
+    - if group.description && group.description != ""
+      %p=CGI::escapeHTML group.description
+    - @favorite_documents_by_group[group.id].each do |fav|
+      - cd=@favorite_canonical_documents[fav[:canonical_document_id]]
+      - next unless cd
+      .panel.panel-default
+        .panel-heading
+          - if cd.title.nil?
+            .alert.alert-danger=t(:No_title)
+          - else
+            =CGI::escapeHTML cd.title
+        .panel-body
+          %p
+            %strong="#{t(:APA_references)}:"
+            =CGI::escapeHTML cd.ref_apa_6
+          .btn-group
+            =partial(:canonical_document_button, :locals=>{id:cd[:id]})
+            =partial(:canonical_document_button_abstract_collapsible, :locals=>{cd:cd})
+          - if fav[:commentary] && fav[:commentary] != ""
+            %p
+              %strong="#{t(:Commentary)}:"
+              =CGI::escapeHTML fav[:commentary]

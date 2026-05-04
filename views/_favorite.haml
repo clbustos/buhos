@@ -1,5 +1,5 @@
-- # cd, user_id, favorite_o
-- ajax||=false
+- # cd, user_id, favorite_o optional
+- favorite_o ||= FavoriteDocument.where(user_id: user_id, canonical_document_id: cd[:id], activo: true).first
 
 %span{:id=>"favorite-cd-#{cd.id}-user-#{user_id}"}
   - if favorite_o

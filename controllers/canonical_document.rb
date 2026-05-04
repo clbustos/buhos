@@ -15,6 +15,7 @@ require 'cgi'
 get '/canonical_document/:id' do |id|
   halt_unless_auth('canonical_document_view')
   @cd=CanonicalDocument[id]
+  @user=User[session['user_id']]
   raise Buhos::NoCdIdError, id if !@cd
   @records=@cd.records
   @references=@cd.references

@@ -29,6 +29,7 @@
     =@cd[:abstract]
 
 .btn-group
+  =partial(:favorite, :locals=>{cd: @cd, user_id:@user.id})
   -if auth_to("scopus_query")
     - if !@cd.abstract
       %a{:href=>url("/canonical_document/#{@cd[:id]}/search_abstract_scopus"), :role=>:button, :class=>"btn btn-default"}=t(:Complete_abstract_using_Scopus)
@@ -139,4 +140,3 @@
 %h3=t("canonical_document.references")
 
 =partial(:references_list, :locals=>{:references=>@references_realizadas})
-

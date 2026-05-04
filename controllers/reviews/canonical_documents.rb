@@ -153,6 +153,7 @@ get "/review/:sr_id/canonical_document/:cd_id" do |sr_id, cd_id|
   raise Buhos::NoReviewIdError, sr_id if !@review
   @cd=CanonicalDocument[@cd_id]
   raise Buhos::NoCdIdError, cd_id if !@cd
+  @user=User[session['user_id']]
 
   title(t(:canonical_document_title, cd_title:@cd.ref_apa_6))
 

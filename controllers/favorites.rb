@@ -2,6 +2,31 @@ require 'json'
 
 # @!group Documentos favoritos
 
+# Listar favoritos en categorías públicas
+get '/favorites' do
+  halt_unless_auth('review_view')
+
+  @favorite_groups = FavoriteGroup.where(is_public: true).order(:name).all
+  group_ids = @favorite_groups.collect(&:id)
+  @favorite_documents_by_group = {}
+  @favorite_canonical_documents = {}
+  @favorite_group_users = {}
+
+  unless group_ids.empty?
+    favorite_documents = FavoriteDocument.where(activo: true, group_id: group_ids)
+                                         .join(:canonical_documents, id: :canonical_document_id)
+                                         .order(:title)
+                                         .all
+
+    @favorite_documents_by_group = favorite_documents.group_by(&:group_id)
+    favorite_cds_id = favorite_documents.collect(&:canonical_document_id).uniq
+    @favorite_canonical_documents = CanonicalDocument.where(id: favorite_cds_id).to_hash(:id)
+    @favorite_group_users = User.where(id: @favorite_groups.collect(&:user_id).uniq).to_hash(:id)
+  end
+
+  haml :favorites, escape_html: false
+end
+
 # Listar todos los favoritos y grupos
 get '/user/:user_id/favorites' do |user_id|
   halt_unless_auth('review_view')
@@ -17,6 +42,8 @@ get '/user/:user_id/favorites' do |user_id|
                                        .order(:title)
   @favorite_documents = favorite_documents.where(activo: true)
   @inactive_favorite_documents = favorite_documents.where(activo: false)
+  favorite_cds_id = (@favorite_documents.map(:canonical_document_id) + @inactive_favorite_documents.map(:canonical_document_id)).uniq
+  @favorite_canonical_documents = CanonicalDocument.where(id: favorite_cds_id).to_hash(:id)
 
   haml "users/favorites".to_sym, escape_html: false
 

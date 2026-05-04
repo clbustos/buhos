@@ -22,7 +22,7 @@
       event.preventDefault();
       var button = $(this);
       $.post(button.data("url"), function() {
-        button.closest("tr").remove();
+        window.location.reload();
       });
     });
 
@@ -95,28 +95,30 @@
     %em=t("favorites.No_favorites_yet")
 - else
   %form{:id => "favorites_#{@user[:id]}", :action => "/favorites/user/#{@user[:id]}/update", :method => "post"}
-    %table.table-bordered.table-sm
-      %thead
-        %tr
-          %th=t(:Active)
-          %th=t(:Document)
-          %th=t(:Category)
-          %th=t(:Commentary)
-      %tbody
-        - @favorite_documents.each do |fav|
-          %tr
-            %td
-              %input{:type=>"checkbox", :name => "favorites[#{fav[:canonical_document_id]}][activo]", :checked => fav[:activo]}
-            %td
-              %strong=fav[:title]
-              %p="#{fav[:author]} (#{fav[:year]})"
-            %td
+    - @favorite_documents.each do |fav|
+      - cd=@favorite_canonical_documents[fav[:canonical_document_id]]
+      .panel.panel-default
+        .panel-heading
+          %span=cd.ref_apa_6_brief_html
+        .panel-body
+          .row
+            .col-md-2
+              %label
+                %input{:type=>"checkbox", :name => "favorites[#{fav[:canonical_document_id]}][activo]", :checked => fav[:activo]}
+                =t(:Active)
+            .col-md-3
+              %label=t(:Category)
               %select.form-control.input-sm{:name => "favorites[#{fav[:canonical_document_id]}][group_id]"}
                 %option{:value => ""}=t("favorites.No_category")
                 - @favorite_groups.each do |group|
                   %option{:value => group.id, :selected => (group.id == fav[:group_id])}=group.name
-            %td
+            .col-md-7
               %textarea.form-control{:name => "favorites[#{fav[:canonical_document_id]}][commentary]", :rows=>2}=fav[:commentary]
+        .panel-footer
+          .btn-group
+            =partial(:canonical_document_button_abstract_collapsible, :locals=>{cd:cd})
+            =partial(:canonical_document_button, :locals=>{id:cd[:id]})
+
     %button.btn.btn-sm.btn-success{:type => "submit"}
       %span.glyphicon.glyphicon-save
       =t(:Save)

@@ -4,6 +4,8 @@ es:
   Visibility: "Visibilidad"
   My_resources: "Mis recursos"
   My_favorites: "Mis favoritos"
+  Resources: "Recursos"
+  Favorites: "Favoritos"
   Category: "Categoría"
   Documents_without_decisions: "Documentos sin decisiones"
   No_document_without_decisions: "No hay documentos que no tengan decisiones"
@@ -296,6 +298,9 @@ es:
     not_allowed_to_delete: "No está permitido que elimine esa categoría"
     Private: "Privado"
     Public: "Público"
+    Public_favorites: "Favoritos públicos"
+    No_public_favorites: "No hay favoritos en categorías públicas."
+    Shared_by: "Compartido por %{user}"
   Field_new: "Nuevo campo"
   Fields: "Campos"
   fields:

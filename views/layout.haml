@@ -65,9 +65,16 @@
                       -if auth_to('message_view')
                         %li<
                           %a{:class=>'nav-link', :href=>"/my_messages"}=t(:My_messages)
-                - if auth_to('review_admin')
-                  %li{:class=>'hidden-sm'}
-                    %a{:class=>'nav-link', :href=>'/reviews'}=t(:Systematic_reviews)
+                %li{:class=>'dropdown'}
+                  %a{:href=>'#', :class=>'dropdown-toggle', 'data-toggle'=>'dropdown', :role=>'button', 'aria-haspopup'=>'true', 'aria-expanded'=>'false', :id=>'navbarDropdownMenuLink'}
+                    =t(:Resources)
+                    %span{:class=>:caret}>
+                    %ul.dropdown-menu
+                      %li<
+                        %a{:class=>'nav-link', :href=>"/favorites"}=t(:Favorites)
+                      - if auth_to('review_admin')
+                        %li<
+                          %a{:class=>'nav-link', :href=>'/reviews'}=t(:Systematic_reviews)
                 -if auth_to('user_admin') or auth_to('group_admin') or auth_to('role_admin')
                   %li{:class=>'dropdown'}
                     %a{:href=>'#', :class=>'dropdown-toggle', 'data-toggle'=>'dropdown', :role=>'button', 'aria-haspopup'=>'true', 'aria-expanded'=>'false', :id=>'navbarDropdownMenuLink'}

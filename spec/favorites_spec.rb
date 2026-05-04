@@ -110,7 +110,43 @@ describe 'Favorite documents' do
     it { expect(favorite[:activo]).to eq(false) }
     it { expect(favorite[:group_id]).to be_nil }
     it { expect(last_response.body).to include 'Title 1' }
+    it { expect(last_response.body).to include '/canonical_document/1' }
     it { expect(last_response.body).to include 'Inactive from favorites page' }
+  end
+
+  context 'when active favorites are listed' do
+    before(:context) do
+      CanonicalDocument[1].update(abstract: 'Favorite abstract')
+      FavoriteDocument.where(user_id: 1, canonical_document_id: 1).delete
+      FavoriteDocument.create(user_id: 1, canonical_document_id: 1, activo: true)
+      get '/user/1/favorites'
+    end
+
+    it { expect(last_response).to be_ok }
+    it { expect(last_response.body).to include 'Title 1' }
+    it { expect(last_response.body).to include '/canonical_document/1' }
+    it { expect(last_response.body).to include "data-target='#cd-abstract-1'" }
+  end
+
+  context 'when public favorites are listed' do
+    before(:context) do
+      CanonicalDocument.where(id: 2).delete
+      CanonicalDocument.insert(id: 2, title: 'Private favorite title', year: 0)
+      @public_group_id=FavoriteGroup.insert(user_id: 1, name: 'Public collection', is_public: true)
+      @private_group_id=FavoriteGroup.insert(user_id: 1, name: 'Private collection', is_public: false)
+      FavoriteDocument.where(user_id: 1, canonical_document_id: [1, 2]).delete
+      FavoriteDocument.create(user_id: 1, canonical_document_id: 1, activo: true, group_id: @public_group_id, commentary: 'Public favorite commentary')
+      FavoriteDocument.create(user_id: 1, canonical_document_id: 2, activo: true, group_id: @private_group_id)
+      get '/favorites'
+    end
+
+    it { expect(last_response).to be_ok }
+    it { expect(last_response.body).to include 'Public favorites' }
+    it { expect(last_response.body).to include 'Public collection' }
+    it { expect(last_response.body).to include 'Title 1' }
+    it { expect(last_response.body).to include 'Public favorite commentary' }
+    it { expect(last_response.body).to_not include 'Private collection' }
+    it { expect(last_response.body).to_not include 'Private favorite title' }
   end
 
   context 'when favorites page is shown with inactive favorites' do
@@ -122,6 +158,7 @@ describe 'Favorite documents' do
 
     it { expect(last_response).to be_ok }
     it { expect(last_response.body).to include 'favorites-trash-toggle' }
+    it { expect(last_response.body).to include 'window.location.reload();' }
     it { expect(last_response.body).to include '/favorite/user/1/canonical_document/1/restore' }
     it { expect(last_response.body).to include '/favorite/user/1/canonical_document/1/destroy' }
     it { expect(last_response.body).to include 'Removed paper' }
