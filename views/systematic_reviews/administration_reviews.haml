@@ -90,45 +90,14 @@
 =partial(:sr_administration_actions, :locals=>{review:@review, stage:@stage})
 
 -if @stage.to_sym==:review_full_text
-  =@modal_files.javascript_header
-  =@modal_files.html_modal
-
-
   %h3=t(:Canonical_Document_Status)
-  - if auth_to('review_admin')
-    .btn-group.btn-group-sm
+  .btn-group.btn-group-sm
+    %a{:href=>url("/review/#{@review[:id]}/administration/#{@stage}/canonical_document_status"),:class=>"btn btn-default btn-sm", :role=>"button"}
+      %span.glyphicon.glyphicon-list
+      =t(:Canonical_Document_Status)
+    - if auth_to('review_admin')
       %a{:href=>url("/review/#{@review[:id]}/files"),:class=>"btn btn-default btn-sm", :role=>"button"}
         %span.glyphicon.glyphicon-file
         =t(:File_batch_management)
-
-
-  %table.tablesorter.reporte
-    %thead
-      %th=t(:Id)
-      %th=t(:Title)
-      %th=t(:Author)
-      %th=t(:Journal)
-      %th=t(:Documents)
-
-    %tbody
-      -@cds.each do |doc_c|
-        %tr
-          %td="##{doc_c[:id]}"
-          %td=doc_c[:title]
-          %td=doc_c[:author]
-          %td=doc_c[:journal]
-          %td
-            -apc_doc=@files_by_cd[doc_c[:id]]
-            ="Nº files:#{apc_doc.nil? ? 0 :apc_doc.length }"
-            -if apc_doc
-              -apc_doc.each do |archivo|
-                %div
-                  =archivo[:id]
-                  - if auth_to('review_admin')
-                    =@modal_files.buttons(archivo, doc_c[:id])
-            - else
-              - if auth_to('review_admin')
-                =@modal_files.cargador_archivo(@review[:id],doc_c[:id])
-
 
   =partial(:statistics_tags, :locals=>{review:@review, stage:@stage}, cache:true)

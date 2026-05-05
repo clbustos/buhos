@@ -17,11 +17,12 @@ describe DocumentReport do
       systematic_review_id:1,
       canonical_document_id:1,
       user_id:1,
-      report_type:'duplicate',
-      commentary:'Same document'
+      report_type:DocumentReport::MISSING_FILE,
+      commentary:'Missing file'
     )
 
     expect(report.status).to eq 'pending'
+    expect(report.report_type).to eq 'missing_file'
     expect(report.user).to eq User[1]
     expect(report.systematic_review).to eq SystematicReview[1]
     expect(report.canonical_document).to eq CanonicalDocument[1]

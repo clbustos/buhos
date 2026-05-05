@@ -1,0 +1,61 @@
+.heading
+  =t_systematic_review_title(@review[:name], t(:Canonical_Document_Status), false)
+
+%ul.breadcrumb
+  %li
+    %a{:href=>url("/reviews")}=t(:Systematic_reviews)
+  %li
+    %a{:href=>url("/review/#{@review[:id]}")}=@review[:name]
+  %li
+    %a{:href=>url("/review/#{@review[:id]}/administration_stages")}=t(:Administration)
+  %li
+    %a{:href=>url("/review/#{@review[:id]}/administration/#{@stage}")}=t(@name_stage)
+  %li{:class=>"active"}=t(:Canonical_Document_Status)
+
+=@modal_files.javascript_header
+=@modal_files.html_modal
+
+%p.info=t_desc_value(:Count_canonical_documents, @cds_id.length)
+
+- if auth_to('review_admin')
+  .btn-group.btn-group-sm
+    %a{:href=>url("/review/#{@review[:id]}/files"),:class=>"btn btn-default btn-sm", :role=>"button"}
+      %span.glyphicon.glyphicon-file
+      =t(:File_batch_management)
+
+%table.tablesorter.reporte
+  %thead
+    %th=t(:Id)
+    %th=t(:Title)
+    %th=t(:Author)
+    %th=t(:Journal)
+    %th=t(:Documents)
+    %th=t(:Missing_file_reports)
+    %th=t(:Reported_by_users)
+
+  %tbody
+    -@cds.each do |doc_c|
+      -apc_doc=@files_by_cd[doc_c[:id]]
+      -missing_file_reports=@missing_file_reports_by_cd[doc_c[:id]].to_i
+      %tr
+        %td="##{doc_c[:id]}"
+        %td=doc_c[:title]
+        %td=doc_c[:author]
+        %td=doc_c[:journal]
+        %td
+          ="Nº files:#{apc_doc.nil? ? 0 :apc_doc.length }"
+          -if apc_doc
+            -apc_doc.each do |archivo|
+              %div
+                =archivo[:id]
+                - if auth_to('review_admin')
+                  =@modal_files.buttons(archivo, doc_c[:id])
+          - else
+            - if auth_to('review_admin')
+              =@modal_files.cargador_archivo(@review[:id],doc_c[:id])
+        %td
+          -if missing_file_reports>0
+            %span.label.label-warning=t("document_reports.missing_file")
+          -else
+            %span.label.label-default=t(:No)
+        %td=missing_file_reports

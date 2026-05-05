@@ -93,6 +93,7 @@ describe 'Resources availability:' do
     it { expect("/review/1/administration/screening_title_abstract").to be_available_for_admin}
     it { expect("/review/1/administration/screening_references").to be_available_for_admin}
     it { expect("/review/1/administration/review_full_text").to be_available_for_admin}
+    it { expect("/review/1/administration/review_full_text/canonical_document_status").to be_available_for_admin}
     it { expect("/review/1/administration/report").to be_available_for_admin}
 
 

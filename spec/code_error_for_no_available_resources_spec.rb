@@ -31,6 +31,7 @@ describe 'Error codes for no available resources' do
     it { expect("/review/1/administration/screening_title_abstract").to responds_with_no_review_id_error(1)}
     it { expect("/review/1/administration/screening_references").to responds_with_no_review_id_error(1)}
     it { expect("/review/1/administration/review_full_text").to responds_with_no_review_id_error(1)}
+    it { expect("/review/1/administration/review_full_text/canonical_document_status").to responds_with_no_review_id_error(1)}
     it { expect("/review/1/administration/report").to responds_with_no_review_id_error(1)}
 
 

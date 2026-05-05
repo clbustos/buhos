@@ -350,6 +350,32 @@ get '/review/:rev_id/administration/:stage/cd_assignations' do |rev_id, stage|
   haml "systematic_reviews/cd_assignations_to_user".to_sym, escape_html: false
 end
 
+get '/review/:rev_id/administration/:stage/canonical_document_status' do |rev_id, stage|
+  halt_unless_auth_any('review_admin', 'review_admin_view')
+  @review=SystematicReview[rev_id]
+  raise Buhos::NoReviewIdError, rev_id if !@review
+
+  @stage=stage
+  @ars=AnalysisSystematicReview.new(@review)
+  @cds_id=@review.cd_id_by_stage(stage)
+  @cds=CanonicalDocument.where(:id=>@cds_id)
+  @files_by_cd=@ars.files_by_cd
+  @name_stage=get_stage_name(@stage)
+  @modal_files=get_modal_files
+  @missing_file_reports_by_cd=DocumentReport.
+    where(
+      systematic_review_id:rev_id,
+      canonical_document_id:@cds_id,
+      report_type:DocumentReport::MISSING_FILE
+    ).
+    exclude(status:'ignored').
+    select_group(:canonical_document_id).
+    select_append { count(:user_id).as(:users_count) }.
+    to_hash(:canonical_document_id, :users_count)
+
+  haml "systematic_reviews/administration_canonical_document_status".to_sym, escape_html: false
+end
+
 
 get '/review/:rev_id/administration/:stage/cd_without_allocations' do |rev_id, stage|
   halt_unless_auth_any('review_admin', 'review_admin_view')

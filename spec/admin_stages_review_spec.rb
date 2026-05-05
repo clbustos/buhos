@@ -142,6 +142,41 @@ describe 'Stage administration with complete data' do
     it "should show disabled controls for resolved patterns" do expect(last_response.body).to include("All documents resolved") end
   end
 
+  context "when viewing full text administration" do
+    before(:context) do
+      get '/review/1/administration/review_full_text'
+    end
+    it "should response be ok" do expect(last_response).to be_ok end
+    it "should link to the canonical document status endpoint" do
+      expect(last_response.body).to include('/review/1/administration/review_full_text/canonical_document_status')
+    end
+    it "should not render the canonical document status table inline" do
+      expect(last_response.body).not_to include('Reported by users')
+    end
+  end
+
+  context "when viewing canonical document file status for full text" do
+    before(:context) do
+      DocumentReport.where(
+        systematic_review_id:1,
+        canonical_document_id:1,
+        report_type:DocumentReport::MISSING_FILE
+      ).delete
+      DocumentReport.create(systematic_review_id:1, canonical_document_id:1, user_id:1, report_type:DocumentReport::MISSING_FILE)
+      DocumentReport.create(systematic_review_id:1, canonical_document_id:1, user_id:2, report_type:DocumentReport::MISSING_FILE)
+      get '/review/1/administration/review_full_text/canonical_document_status'
+    end
+    it "should response be ok" do expect(last_response).to be_ok end
+    it "should keep the administration breadcrumb" do
+      expect(last_response.body).to include('/review/1/administration/review_full_text')
+    end
+    it "should show missing file reports by users" do
+      expect(last_response.body).to include('Reported by users')
+      expect(last_response.body).to include('Missing file')
+      expect(last_response.body).to include('>2</td>')
+    end
+  end
+
   context "when viewing the canonical documents for a decision pattern" do
     before(:context) do
       get '/review/1/stage/screening_title_abstract/pattern/yes_0__no_0__undecided_0__ND_0/view'
