@@ -9,7 +9,7 @@
   %li
     %a{:href=>url("/review/#{@sr[:id]}")}=@sr[:name]
   %li
-    %a{:href=>url("/review/#{@sr[:id]}/review_full_text")}=t(:Review_full_text)
+    %a{:href=>url("/review/#{@sr[:id]}/extract_information")}=t("stage.extract_information")
   %li{:class=>:active}
     =t(:Cd_extract_information, cd_title: truncate(@cd[:title].to_s))
 
@@ -33,9 +33,6 @@
           %iframe{:src=>"/ViewerJS/#../file/#{@current_file_id}/download",  :allowfullscreen=>true, :webkitallowfullscreen=>true}
     .col-md-4.col-sm-4#extract-form
       %div
-        %div
-          %div{:id=>"decision-cd-#{@cd[:id]}"}
-            =partial(:decision, :locals=>{review:@sr, cd:@cd, ars:@ars, user_id:@user[:id], stage: @stage , decisions:@decisions, only_buttons:true})
         - @form_creator.each_field do |field|
           %div
             %strong=field.description
@@ -64,6 +61,5 @@
     .col-md-12
       .btn-group
         %a.btn.btn-primary{:href=>url("/review/#{@sr[:id]}/quality_assessment/cd/#{@cd[:id]}")}=t(:Quality_assesment)
-        %a.btn.btn-primary{:href=>url("/review/#{@sr[:id]}/extract_information/cd/#{@cd[:id]}/by_similarity")}=t(:Continue_by_similarity)
 // Here comes the form_creator javascript
 =@form_creator.javascript

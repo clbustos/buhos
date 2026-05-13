@@ -1,0 +1,31 @@
+.heading
+  =t_systematic_review_title(@review[:name], "systematic_review_page.#{@stage}_administration")
+
+=partial(:breadcrumb_review_admin,:locals=>{:name=>t(@name_stage)})
+
+%p.info=t_desc_value(:Count_canonical_documents, @cds_id.length)
+
+%h3=t(:Statistics_by_user)
+
+.btn-group
+  %a.btn.btn-sm.btn-default{:href=>"/review/#{@review[:id]}/administration/#{@stage}/cd_assignations"}
+    %span.glyphicon.glyphicon-list
+    =t(:Check_CD_assignations)
+  - if !@cd_without_allocation.empty?
+    %a.btn.btn-sm.btn-warning{:href=>"/review/#{@review[:id]}/administration/#{@stage}/cd_without_allocations"}
+      %span.glyphicon.glyphicon-list
+      =t(:Check_CD_without_assignations)
+      %span.badge=@cd_without_allocation.count
+
+%table.reporte
+  %thead
+    %th=t(:User)
+    %th=t(:Count_canonical_documents_assigned)
+  %tbody
+    - @review.group_users.each do |user|
+      - adu=AnalysisUserDecision.new(@review[:id], user[:id], @stage)
+      %tr
+        %th= user.name
+        %td= adu.assignations_count
+
+=partial(:sr_administration_actions, :locals=>{review:@review, stage:@stage})

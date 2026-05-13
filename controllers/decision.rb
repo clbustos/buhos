@@ -51,6 +51,7 @@ post '/decision/review/:review_id/user/:user_id/canonical_document/:cd_id/stage/
   decision=params['decision']
   #user_id=params['user_id']
   only_buttons = params['only_buttons'] == "1"
+  compact = params['compact'] == "1"
 
   $db.transaction do
     des=Decision.where(:systematic_review_id => review_id, :user_id => user_id, :canonical_document_id => cd_id, :stage => stage).first
@@ -70,7 +71,7 @@ post '/decision/review/:review_id/user/:user_id/canonical_document/:cd_id/stage/
                             :stage => stage).as_hash(:canonical_document_id)
 
 
-  return partial(:decision, :locals => {review: review, cd: cd, decisions: decisions, ars: ars, user_id: user_id, stage: stage, ajax: true, only_buttons:only_buttons})
+  return partial(:decision, :locals => {review: review, cd: cd, decisions: decisions, ars: ars, user_id: user_id, stage: stage, ajax: true, only_buttons:only_buttons, compact:compact})
 
 
 end

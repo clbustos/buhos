@@ -1,6 +1,11 @@
 .idea
 .sass-cache
 .yardoc
+*.sql
+*.log
+.codex
+.tok
+cargar_base.sh
 bak/*
 *~
 .env

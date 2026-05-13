@@ -174,7 +174,7 @@ GROUP BY r.canonical_document_id", self[:id]].select_map(:cd_id)
   end
 
   # Returns an array with the list of canonical documents by stage
-  # @param stage name of the stage. Could be ["search", "screening_title_abstract", "screening_references", "review_full_text", "report"]
+  # @param stage name of the stage. Could be ["search", "screening_title_abstract", "screening_references", "review_full_text", "extract_information", "report"]
   def cd_id_by_stage(stage)
     stage_key=stage.to_s
     @cd_id_by_stage ||= {}
@@ -196,6 +196,9 @@ GROUP BY r.canonical_document_id", self[:id]].select_map(:cd_id)
         rr=resolutions_references.where(:resolution=>'yes',
                                         :canonical_document_id=>cd_reference_id-cd_record_id).select_map(:canonical_document_id)
         (rtr+rr).uniq
+      when 'extract_information'
+        resolutions_full_text.join(cd_all_id_table, cd_id: :canonical_document_id).where(
+          :resolution=>'yes').select_map(:canonical_document_id)
       when 'report'
         #resolutions_full_text.where(:resolution=>'yes',:canonical_document_id=>cd_all_id).select_map(:canonical_document_id)
         resolutions_full_text.join(cd_all_id_table, cd_id: :canonical_document_id).where(

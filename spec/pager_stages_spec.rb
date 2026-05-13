@@ -5,6 +5,13 @@ describe 'Pager on evaluation of papers' do
     RSpec.configure { |c| c.include RSpecMixin }
     @temp=configure_empty_sqlite
     create_stage_dataset
+    IFile.insert(:id=>1,
+                 :filename=>'full_text.pdf',
+                 :filetype=>'application/pdf',
+                 :file_path=>'f/full_text.pdf',
+                 :sha256=>'full-text-fixture')
+    FileSr.insert(:file_id=>1, :systematic_review_id=>1)
+    FileCd.insert(:file_id=>1, :canonical_document_id=>1)
   end
   before(:each) do
     post '/login' , :user=>'admin', :password=>'admin'
@@ -54,6 +61,24 @@ describe 'Pager on evaluation of papers' do
     it "shows 3 documents with decision=yes " do
       get '/review/1/review_full_text?decision=yes'
       expect(last_response.body).to match(/<p.+id='count_search'.+3<\/p>/)
+    end
+    it "shows a file viewer link for assigned full-text files" do
+      get '/review/1/review_full_text'
+      expect(last_response.body).to include("data-target='#modalArchivos'")
+      expect(last_response.body).to include("data-pk='1'")
+      expect(last_response.body).to include('/file/1/download')
+    end
+    it "shows compact decision buttons" do
+      get '/review/1/review_full_text'
+      expect(last_response.body).to include("id='decision-1-yes'")
+      expect(last_response.body).to include("id='decision-1-no'")
+      expect(last_response.body).to include("data-compact='1'")
+      expect(last_response.body).to include('/decision/review/1/user/1/canonical_document/1/stage/review_full_text/decision')
+    end
+    it "shows a commentary editor for the full text decision" do
+      get '/review/1/review_full_text'
+      expect(last_response.body).to include('/decision/review/1/user/1/canonical_document/1/stage/review_full_text/commentary')
+      expect(last_response.body).to include('commentary-cd')
     end
   end
 

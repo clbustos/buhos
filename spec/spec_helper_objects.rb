@@ -55,6 +55,11 @@ module SpecHelperObjects
       AllocationCd.insert(:systematic_review_id=>1, :canonical_document_id=>cd_id,
                           :user_id=>1, :stage=>'review_full_text')
     end
+
+    [1,6].each do |cd_id|
+      AllocationCd.insert(:systematic_review_id=>1, :canonical_document_id=>cd_id,
+                          :user_id=>1, :stage=>'extract_information')
+    end
   end
 
   def create_stage_decisions

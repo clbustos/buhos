@@ -4,6 +4,7 @@
 - decision_o=decisions[cd[:id]]
 - decision = decision_o ? decision_o[:decision] : nil
 - cd_criteria=CdCriterion.where(systematic_review_id:review[:id], canonical_document_id:cd[:id], user_id:user_id).to_hash(:criterion_id)
+- compact||=false
 .container-fluid
   .row
     .col-md-1.col-sm-2
@@ -15,9 +16,10 @@
           -cbc=class_bootstrap_contextual( decision==dec_id, 'btn',crit[:bs] )
           -dc_dec= (decision==dec_id) ? '' : 'dc_decision'
           %button{:class=>"btn #{cbc} #{dc_dec}", "data-onlybuttons"=>only_buttons ? "1":"0" ,
-          "data-pk"=>cd[:id], "data-decision"=>dec_id, "data-user"=>user_id, "data-stage"=>stage,
-          :id=>"decision-#{cd[:id]}-#{dec_id}",
-          'data-url'=>"/decision/review/#{review_id}/user/#{user_id}/canonical_document/#{cd[:id]}/stage/#{stage}/decision"}=crit[:name]
+            "data-compact"=>compact ? "1":"0",
+            "data-pk"=>cd[:id], "data-decision"=>dec_id, "data-user"=>user_id, "data-stage"=>stage,
+            :id=>"decision-#{cd[:id]}-#{dec_id}",
+            'data-url'=>"/decision/review/#{review_id}/user/#{user_id}/canonical_document/#{cd[:id]}/stage/#{stage}/decision"}=crit[:name]
   .row.min-row-height
     .col-md-1.col-sm-2
       %strong="#{t(:Commentary)} "
@@ -26,19 +28,20 @@
         "commentary-cd",
         url("/decision/review/#{review_id}/user/#{user_id}/canonical_document/#{cd[:id]}/stage/#{stage}/commentary"), decision_o  ?  decision_o.commentary : nil,
         t(:Enter_commentary))
-  .row.min-row-height
-    .col-md-1.col-sm-2
-      %strong="#{t(:Actions)} "
-    .col-md-11.col-sm-10
-      .btn-group
-        =partial(:favorite, :locals=>{cd: cd, user_id:user_id})
-        =partial(:document_report, :locals=>{review: review, cd: cd, user_id:user_id})
-  .row.min-row-height
-    .col-md-1.col-sm-2
-      %strong=t(:Tags)
-    .col-md-11.col-sm-10
-      =partial("tags/tags_cd_rs", :locals=>{cd: cd, review:review,user_id:user_id, ajax:ajax})
-  -if decision
-    .row
-      .col-md-12
-        =partial(:criteria_cd, :locals=>{decision:decision, review:review, cd:cd, user_id:user_id, cd_criteria:cd_criteria})
+  - unless compact
+    .row.min-row-height
+      .col-md-1.col-sm-2
+        %strong="#{t(:Actions)} "
+      .col-md-11.col-sm-10
+        .btn-group
+          =partial(:favorite, :locals=>{cd: cd, user_id:user_id})
+          =partial(:document_report, :locals=>{review: review, cd: cd, user_id:user_id})
+    .row.min-row-height
+      .col-md-1.col-sm-2
+        %strong=t(:Tags)
+      .col-md-11.col-sm-10
+        =partial("tags/tags_cd_rs", :locals=>{cd: cd, review:review,user_id:user_id, ajax:ajax})
+    -if decision
+      .row
+        .col-md-12
+          =partial(:criteria_cd, :locals=>{decision:decision, review:review, cd:cd, user_id:user_id, cd_criteria:cd_criteria})

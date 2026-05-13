@@ -10,7 +10,7 @@
   %li
     %a{:href=>url("/review/#{@sr[:id]}")}=@sr[:name]
   %li
-    %a{:href=>url("/review/#{@sr[:id]}/review_full_text")}=t(:Review_full_text)
+    %a{:href=>url("/review/#{@sr[:id]}/extract_information")}=t("stage.extract_information")
   %li{:class=>:active}
     =t("quality_assesment.assess_quality_document", cd_title: truncate(@cd[:title].to_s))
 
@@ -31,10 +31,6 @@
           %iframe{:src=>"/ViewerJS/#../file/#{@current_file_id}/download",  :allowfullscreen=>true, :webkitallowfullscreen=>true}
     .col-md-4.col-sm-4#extract-form
       %div
-        %div
-          %div{:id=>"decision-cd-#{@cd[:id]}"}
-            =partial(:decision, :locals=>{review:@sr, cd:@cd, ars:@ars, user_id:@user[:id], stage: @stage , decisions:@decisions, only_buttons:true})
-      %div
 
         - @sr_quality_criteria.each do |sr_qc|
           - qc_id=sr_qc[:quality_criterion_id]
@@ -51,5 +47,3 @@
     .col-md-12
       .btn-group
         %a.btn.btn-primary{:href=>url("/review/#{@sr[:id]}/extract_information/cd/#{@cd[:id]}")}=t(:Extract_information)
-        %a.btn.btn-primary{:href=>url("/review/#{@sr[:id]}/quality_assessment/cd/#{@cd[:id]}/by_similarity")}=t(:Continue_by_similarity)
-

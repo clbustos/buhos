@@ -124,14 +124,17 @@ get '/review/:id/review_full_text' do |id|
 
 
   @order_criteria={:n_references_rtr=>I18n.t(:RTA_references), :title=>I18n.t(:Title), :year=> I18n.t(:Year), :author=>I18n.t(:Author)}
+  @stage=Buhos::Stages::STAGE_REVIEW_FULL_TEXT.to_s
 
   @ars=AnalysisSystematicReview.new(@review)
   @cd_total_ds=@review.canonical_documents
+  @modal_files=get_modal_files
+  @files_by_cd=@ars.files_by_cd
 
 
-  @url="/review/#{id}/review_full_text"
+  @url="/review/#{id}/#{@stage}"
 
-  @ads=AnalysisUserDecision.new(id, @user_id, 'review_full_text')
+  @ads=AnalysisUserDecision.new(id, @user_id, @stage)
 
   @cds_pre=@ads.canonical_documents.join_table(:left, @review.count_references_rtr_tn.to_sym, cd_end: :id)
 
@@ -155,6 +158,42 @@ get '/review/:id/review_full_text' do |id|
   haml %s{systematic_reviews/review_full_text}, escape_html: false
 end
 
+# Interface for extraction and quality assessment after full-text review
+get '/review/:id/extract_information' do |id|
+  halt_unless_auth('review_analyze')
+  @review=SystematicReview[id]
+  raise Buhos::NoReviewIdError, id if !@review
+
+  @user=User[session['user_id']]
+  @user_id=@user[:id]
+  @stage=Buhos::Stages::STAGE_REVIEW_EXTRACT_INFORMATION.to_s
+
+  @pager=get_pager([:tag_select, :search_title])
+  @pager.order||="year__asc"
+  @order_criteria={:n_references_rtr=>I18n.t(:RTA_references), :title=>I18n.t(:Title), :year=> I18n.t(:Year), :author=>I18n.t(:Author)}
+
+  @ars=AnalysisSystematicReview.new(@review)
+  @cd_total_ds=@review.canonical_documents
+  @url="/review/#{id}/#{@stage}"
+
+  @ads=AnalysisUserDecision.new(id, @user_id, @stage)
+  @cds_pre=@ads.canonical_documents.join_table(:left, @review.count_references_rtr_tn.to_sym, cd_end: :id)
+  @assignations=@ads.assignations.to_hash(:canonical_document_id)
+  @cds_total=@cds_pre.count
+
+  begin
+    @cds=@pager.adapt_ads_cds(@ads, @cds_pre)
+  rescue Buhos::SearchParser::ParsingError => e
+    add_message(e.message,:error )
+    params['query']=nil
+    @cds=@pager.adapt_ads_cds(@ads, @cds_pre, no_query:true)
+  end
+
+  @a_tags=Buhos::AnalysisTags.new
+  @a_tags.systematic_review_id(@review.id)
+  @a_tags.user_id(@user_id)
+  haml %s{systematic_reviews/extract_information}, escape_html: false
+end
+
 
 # @!endgroup
-

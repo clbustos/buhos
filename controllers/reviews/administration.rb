@@ -62,6 +62,8 @@ get '/review/:id/administration/:stage' do |id,stage|
 
   if %w{screening_title_abstract screening_references review_full_text}.include? stage
     haml "systematic_reviews/administration_reviews".to_sym, escape_html: false
+  elsif stage==Buhos::Stages::STAGE_REVIEW_EXTRACT_INFORMATION.to_s
+    haml "systematic_reviews/administration_extract_information".to_sym, escape_html: false
   else
     haml "systematic_reviews/administration_#{stage}".to_sym, escape_html: false
   end

@@ -179,11 +179,17 @@ describe 'Stage administration with complete data' do
 
   context "when viewing the canonical documents for a decision pattern" do
     before(:context) do
-      get '/review/1/stage/screening_title_abstract/pattern/yes_0__no_0__undecided_0__ND_0/view'
+      get '/review/1/stage/screening_title_abstract/pattern/yes_0__no_0__undecided_0__ND_1/view'
     end
     it "should response be ok" do expect(last_response).to be_ok end
     it "should include the toggle resolved control" do
       expect(last_response.body).to include('toggle-resolved')
+    end
+    it "should include personal favorite and report controls for the session user" do
+      expect(last_response.body).to include('favorite-cd-1-user-1')
+      expect(last_response.body).to include('/favorite/user/1/canonical_document/1/add')
+      expect(last_response.body).to include('document-report-1-1-1')
+      expect(last_response.body).to include('/review/1/document_report/cd/1/user/1/report_types')
     end
   end
 

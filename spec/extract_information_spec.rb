@@ -25,6 +25,8 @@ describe 'Buhos extraction of data' do
                         :stage=>"screening_title_abstract")
         AllocationCd.insert(:systematic_review_id=>1, :canonical_document_id=>1, :user_id=>1,
                         :stage=>"review_full_text")
+        AllocationCd.insert(:systematic_review_id=>1, :canonical_document_id=>1, :user_id=>1,
+                        :stage=>"extract_information")
     $db[:analysis_sr_1].where(:user_id=>1, :canonical_document_id=>1).update(
                           :tools=>"[RevMan]",
                           :stages=>"[RevMan]",

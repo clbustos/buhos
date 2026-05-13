@@ -33,6 +33,9 @@
           =partial(:dashboard_user_sr_search, :locals=>{is_administrator:is_administrator, sr:sr, stage:stage_visualized, user:user, udi:udi })
         - elsif stage_visualized==:report
           =partial(:dashboard_user_sr_report, :locals=>{is_administrator:is_administrator,   sr:sr, stage:stage_visualized, user:user})
+        - elsif stage_visualized==:extract_information
+          - adu=udi.adu_for_sr(sr,stage_visualized)
+          =partial(:dashboard_user_sr_extract_information, :locals=>{is_administrator:is_administrator,  sr:sr, stage:stage_visualized, user:user,adu:adu})
         - else
           - adu=udi.adu_for_sr(sr,stage_visualized)
           =partial(:dashboard_user_sr_review, :locals=>{is_administrator:is_administrator,  sr:sr, stage:stage_visualized, user:user,adu:adu})

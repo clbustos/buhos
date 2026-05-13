@@ -9,7 +9,7 @@
 # @!group Data extraction
 
 # Form to retrieve information from a document
-# in stage review full text
+# in stage extract information
 get '/review/:sr_id/extract_information/cd/:cd_id' do |sr_id,cd_id|
   halt_unless_auth('review_view')
   @sr=SystematicReview[sr_id]
@@ -21,14 +21,14 @@ get '/review/:sr_id/extract_information/cd/:cd_id' do |sr_id,cd_id|
   @cd=CanonicalDocument[cd_id]
   @user=User[session['user_id']]
   return 404 if @sr.nil? or @cd.nil?
-  @stage='review_full_text'
+  @stage=Buhos::Stages::STAGE_REVIEW_EXTRACT_INFORMATION.to_s
   cds_id=@sr.cd_id_by_stage(@stage)
 
   if !cds_id.include?(cd_id.to_i)
     add_message(t(:Canonical_documento_not_assigned_to_this_systematic_review), :error)
     redirect back
   end
-  adu=AnalysisUserDecision.new(sr_id, @user[:id], 'review_full_text')
+  adu=AnalysisUserDecision.new(sr_id, @user[:id], @stage)
   if !adu.allocated_to_cd_id(cd_id)
     add_message(t(:Canonical_documento_not_assigned_to_this_user), :error)
     redirect back
@@ -97,12 +97,13 @@ get '/review/:sr_id/:action/cd/:cd_id/by_similarity' do |sr_id,action, cd_id|
 
   @user=User[session['user_id']]
 
-  @ads=AnalysisUserDecision.new(sr_id, @user[:id], Buhos::Stages::STAGE_REVIEW_FULL_TEXT)
+  extraction_stage=Buhos::Stages::STAGE_REVIEW_EXTRACT_INFORMATION
+  @ads=AnalysisUserDecision.new(sr_id, @user[:id], extraction_stage)
   undecided=@ads.decision_by_cd.find_all {|v| v[1]==Decision::NO_DECISION}.map {|v|v[0]}
 
   if undecided.length==0
     add_message(t(:No_undecided_documents_left), :success)
-    redirect url("/review/#{@sr[:id]}/#{Buhos::Stages::STAGE_REVIEW_FULL_TEXT}")
+    redirect url("/review/#{@sr[:id]}/#{extraction_stage}")
   else
     sim_an=Buhos::SimilarAnalysisSr.new(@sr)
     sim_an.process

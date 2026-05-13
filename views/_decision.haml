@@ -16,6 +16,7 @@
 - abs_pres.keywords =review.keywords_as_array
 - url_base="/review/#{review[:id]}/canonical_document/#{cd[:id]}"
 - only_buttons||=false
+- compact||=false
 - class_buttons  = only_buttons ? "panel-body" : "panel-footer"
 %div{:class=>"panel #{clase_panel}"}
   - if !only_buttons
@@ -44,4 +45,4 @@
         =partial(:canonical_document_button, :locals=>{id: cd[:id], review:review})
 
   %div{:class=>class_buttons}
-    =partial(:decision_buttons, :locals=>{decisions:decisions, cd:cd, user_id:user_id, stage:stage, review:review, ajax:ajax, only_buttons:only_buttons})
+    =partial(:decision_buttons, :locals=>{decisions:decisions, cd:cd, user_id:user_id, stage:stage, review:review, ajax:ajax, only_buttons:only_buttons, compact:compact})

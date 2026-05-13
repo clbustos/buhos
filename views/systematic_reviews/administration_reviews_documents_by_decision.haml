@@ -87,6 +87,10 @@
               = CGI::escapeHTML @ars.cd_hash[cd_id].ref_apa_6_brief
               %br
               = partial(:canonical_document_button, :locals=>{id:cd_id})
+              - if auth_to('favorite_edit')
+                = partial(:favorite, :locals=>{cd:@ars.cd_hash[cd_id], user_id:@user_id})
+              - if auth_to('review_analyze')
+                = partial(:document_report, :locals=>{review:@review, cd:@ars.cd_hash[cd_id], user_id:@user_id})
               = partial(:canonical_document_button_abstract_collapsible, :locals=>{cd:@ars.cd_hash[cd_id]})
             - else
               =t("error.no_valid_cd_for_this_systematic_review", cd_id:cd_id)

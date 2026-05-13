@@ -56,6 +56,8 @@ class Analysis_SR_Stage
     elsif [:screening_title_abstract,:screening_references,:review_full_text].include? @stage
       res=resolutions_by_cd
       res.all? {|v| v[1]=='yes' or v[1]=='no'}
+    elsif @stage==Buhos::Stages::STAGE_REVIEW_EXTRACT_INFORMATION
+      cd_without_allocations_count==0
     else
       raise('Not defined yet')
     end

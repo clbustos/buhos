@@ -17,6 +17,8 @@ describe 'Resources availability:' do
                         :stage=>"screening_title_abstract")
     AllocationCd.insert(:systematic_review_id=>1, :canonical_document_id=>1, :user_id=>1,
                         :stage=>"review_full_text")
+    AllocationCd.insert(:systematic_review_id=>1, :canonical_document_id=>1, :user_id=>1,
+                        :stage=>"extract_information")
 
     create_references(texts: ["referencia"], cd_id:1, record_id:1)
     login_admin
@@ -93,6 +95,7 @@ describe 'Resources availability:' do
     it { expect("/review/1/administration/screening_title_abstract").to be_available_for_admin}
     it { expect("/review/1/administration/screening_references").to be_available_for_admin}
     it { expect("/review/1/administration/review_full_text").to be_available_for_admin}
+    it { expect("/review/1/administration/extract_information").to be_available_for_admin}
     it { expect("/review/1/administration/review_full_text/canonical_document_status").to be_available_for_admin}
     it { expect("/review/1/administration/report").to be_available_for_admin}
 
@@ -119,6 +122,10 @@ describe 'Resources availability:' do
     it { expect("/review/1/review_full_text").to be_available_for_admin}
     it "pager should work on full text review" do
       expect("/review/1/review_full_text?search=yes&order=title__asc&pagina=2").to be_available_for_admin
+    end
+    it { expect("/review/1/extract_information").to be_available_for_admin}
+    it "pager should work on extract information" do
+      expect("/review/1/extract_information?search=yes&order=title__asc&pagina=2").to be_available_for_admin
     end
 
   end

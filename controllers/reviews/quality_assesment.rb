@@ -21,14 +21,14 @@ get '/review/:sr_id/quality_assessment/cd/:cd_id' do |sr_id,cd_id|
   @cd=CanonicalDocument[cd_id]
   @user=User[session['user_id']]
   return 404 if @sr.nil? or @cd.nil?
-  @stage='review_full_text'
+  @stage=Buhos::Stages::STAGE_REVIEW_EXTRACT_INFORMATION.to_s
   cds_id=@sr.cd_id_by_stage(@stage)
 
   if !cds_id.include?(cd_id.to_i)
     add_message(t(:Canonical_documento_not_assigned_to_this_systematic_review), :error)
     redirect back
   end
-  adu=AnalysisUserDecision.new(sr_id, @user[:id], 'review_full_text')
+  adu=AnalysisUserDecision.new(sr_id, @user[:id], @stage)
   if !adu.allocated_to_cd_id(cd_id)
     add_message(t(:Canonical_documento_not_assigned_to_this_user), :error)
     redirect back

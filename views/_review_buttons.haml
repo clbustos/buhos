@@ -55,11 +55,16 @@
           %a{:role=>:button, :href=>url("/review/#{r.id}/screening_references"), :class=>"btn btn-default "}
             %span{:class=>"glyphicon glyphicon-ok-sign"}
             =t("stage.screening_references")
-      - if stages_avanzadas.include? :screening_references and (auth_to("review_analyze") or review_analyzed_by(r.id, session['user_id']))
+      - if stages_avanzadas.include? :review_full_text and (auth_to("review_analyze") or review_analyzed_by(r.id, session['user_id']))
         %li
           %a{:role=>:button, :href=>url("/review/#{r.id}/review_full_text"), :class=>"btn btn-default "}
             %span{:class=>"glyphicon glyphicon-ok-sign"}
             =t("stage.review_full_text")
+      - if stages_avanzadas.include? :extract_information and (auth_to("review_analyze") or review_analyzed_by(r.id, session['user_id']))
+        %li
+          %a{:role=>:button, :href=>url("/review/#{r.id}/extract_information"), :class=>"btn btn-default "}
+            %span{:class=>"glyphicon glyphicon-ok-sign"}
+            =t("stage.extract_information")
   - if auth_to("review_admin") or review_belongs_to(r.id, session['user_id'])
     %a{:role=>:button, :href=>url("/review/#{r.id}/delete"), :class=>"btn btn-danger"}
       %span.glyphicon.glyphicon-trash

@@ -34,11 +34,13 @@ module Buhos
     STAGE_SCREENING_TITLE_ABSTRACT=:screening_title_abstract
     STAGE_SCREENING_REFERENCES=:screening_references
     STAGE_REVIEW_FULL_TEXT=:review_full_text
+    STAGE_REVIEW_EXTRACT_INFORMATION=:extract_information
     STAGE_REPORT=:report
     IDS=[STAGE_SEARCH,
             STAGE_SCREENING_TITLE_ABSTRACT,
             STAGE_SCREENING_REFERENCES,
             STAGE_REVIEW_FULL_TEXT,
+            STAGE_REVIEW_EXTRACT_INFORMATION,
             #:analysis,
             STAGE_REPORT
     ].freeze
@@ -47,6 +49,7 @@ module Buhos
            STAGE_SCREENING_TITLE_ABSTRACT=> "stage.screening_title_abstract",
            STAGE_SCREENING_REFERENCES=> "stage.screening_references",
            STAGE_REVIEW_FULL_TEXT=> "stage.review_full_text",
+           STAGE_REVIEW_EXTRACT_INFORMATION=> "stage.extract_information",
                  #:analysis => "stage.analysis",
            STAGE_REPORT=> "stage.report"}.freeze
 
