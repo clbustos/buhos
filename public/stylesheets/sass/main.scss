@@ -115,6 +115,11 @@ $dark_danger_bg: #f1dddd;
 
 }
 
+:root[color-mode="dark"] input:not(.form-control),
+:root[color-mode="dark"] textarea:not(.form-control) {
+  color: $light_element1;
+}
+
 /* Elements */
 
 
@@ -993,4 +998,8 @@ div.lista-etapas {
   margin-bottom:2em;
 
 
+}
+
+.min-row-height {
+  min-height:2em;
 }

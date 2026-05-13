@@ -47,6 +47,10 @@ Released for free under a Creative Commons Attribution 2.5 License
   --danger:#a94442;
   --danger_bg:#f1dddd; }
 
+[color-mode="dark"]:root input:not(.form-control),
+[color-mode="dark"]:root textarea:not(.form-control) {
+  color: #111111; }
+
 /* Elements */
 body {
   margin: 20px 0;
@@ -660,7 +664,5 @@ div.lista-etapas span.etapa {
   margin-top: 2em;
   margin-bottom: 2em; }
 
-
 .min-row-height {
-  min-height:2em;
-}
+  min-height: 2em; }
