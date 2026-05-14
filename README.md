@@ -4,27 +4,30 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/ffa582598127f86ed405/maintainability)](https://codeclimate.com/github/clbustos/buhos/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/ffa582598127f86ed405/test_coverage)](https://codeclimate.com/github/clbustos/buhos/test_coverage)
 
-Web based platform to manage complete process of systematic literature reviews. Developed using Sinatra, a Ruby-based DSL.
+Web-based platform to manage the complete process of systematic literature reviews. Developed using Sinatra, a Ruby-based DSL.
 
 
 ## Features
 
-* Multi-platform:  Runs on Linux (tested on Ubuntu 14.04, 16.06, 18.4, 21.04, 24.04), Windows (tested on Windows 7 and 10) and MacOS (tested on High Sierra)
+* Multi-platform: Runs on Linux (tested on Ubuntu 14.04, 16.06, 18.04, 21.04 and 24.04), Windows (tested on Windows 7 and 10) and macOS (tested on High Sierra).
 * Supports individual and group-based systematic reviews.
-* Internal messaging system for personal messages o messages related to systematic reviews.
-* Internationalization, using *I18n*. Available in English and Spanish.
-* Flexible work-flow.  The main stages of text searching, screening relevant articles, data extraction and reporting are clearly defined.  However, changes can be made at any stage already finalized, and will automatically reflect in subsequent stages.
-* Imports information from various bibliographic databases, such 
-  as - WoS, Scopus, Ebscohost, Scielo, Pubmed, Lilacs and Proquest -  
-  using BibTeX and RIS formats.
-* Integration with Crossref allows deduplication of articles (using DOI), and searching for information on references
-* File repository.  PDF and ODF file viewing support online via [ViewerJS](http://viewerjs.org/).
-* Multiple ways to analyze data: comments and tagging at each stage of review, and generation of customized forms for information extraction.
-* Various report types:  For data extracted from texts, detailed reports on the decision process at each review stage, as well as a [PRISMA flow diagram](http://prisma-statement.org/prismastatement/flowdiagram.aspx) for process overviews, ready for publication. 
-* Different export file types: Can export references as BibTeX and generate GraphML, to graph relations between papers.
+* Internal messaging system for personal messages and messages related to systematic reviews.
+* Internationalization, using *I18n*. Available in English, Spanish and Polish.
+* Flexible workflow. The main stages of text searching, title and abstract screening, reference screening, full-text review, information extraction, quality assessment and reporting are clearly defined. Changes can be made at any stage already finalized, and are reflected in subsequent stages.
+* Imports information from bibliographic databases and reference managers, including WoS, Scopus, EBSCOhost, SciELO, PubMed, Lilacs and ProQuest, using BibTeX, RIS, PubMed/NBIB, JSON and CSV files.
+* Integration with Crossref allows deduplication of articles using DOI and searching for information on references.
+* Integration with Scopus and PubMed can retrieve missing abstracts and metadata when API credentials are available.
+* File repository. PDF and ODF file viewing support online via [ViewerJS](http://viewerjs.org/). Files can be assigned to canonical documents and used during the full-text review stage.
+* Multiple ways to analyze data: comments, tagging at each stage of review, document reports and customized forms for information extraction.
+* Favorites system: users can mark documents, organize them in categories, add comments and publish public favorite collections.
+* Document reports can identify duplicate records, OCR errors, incorrect metadata, missing files, spam, other issues and conflicting resolutions.
+* Various report types: reports for extracted information, detailed reports on the decision process at each review stage, information extraction reports and a [PRISMA flow diagram](http://prisma-statement.org/prismastatement/flowdiagram.aspx) for process overviews, ready for publication.
+* Different export file types: Can export references as BibTeX, import and export review decisions using Excel, export reports as Excel files and generate GraphML to graph relations between papers.
+* User dashboard for active systematic reviews, assigned documents, pending searches and unread messages.
+* Light and dark color modes.
 * Unit and integration tests for main software features. See https://buhos.org/api/file.rspec.html .
 
-Using Kitchenham & Chartes (2007), Buhos support the 'conducting the review' phase in full, and have partial support for other stages:
+Using Kitchenham & Charters (2007), Buhos supports the 'conducting the review' phase in full, and has partial support for other stages:
 
 ### Planning the review
 
@@ -66,11 +69,11 @@ The API is documented using [Yard](https://yardoc.org/) and is available on [htt
 
 ## Get Started
 
-There is a demo available on [https://demo.buhos.org](https://demo.buhos.org). You could use the software using 'admin' as username and password. Don't do anything important here, because the database is refreshed periodically.
+There is a demo available on [https://demo.buhos.org](https://demo.buhos.org). You can use the software with `admin` as username and password. Do not store important information there, because the database is refreshed periodically.
 
 ### On Windows
 
-The installer for Windows, can be obtained from [Buhos Windows Toolkit](https://github.com/clbustos/buhos-windows-tk/tree/master/windows_installer)
+The installer for Windows can be obtained from [Buhos Windows Toolkit](https://github.com/clbustos/buhos-windows-tk/tree/master/windows_installer).
 
 ### On *nix
 
@@ -98,7 +101,7 @@ By default, the application is configured to run on port 4567.
 #### Prerequisites
 
 
-On Linux, a ruby 2.4 or 2.5 installation with bundler is needed, and development libraries for MySQL and SQLite. We recommend using [RVM](https://rvm.io/).
+On Linux, a Ruby installation with Bundler is needed, along with development libraries for MySQL and SQLite. We recommend using [RVM](https://rvm.io/) or another Ruby version manager.
 
 
 On Ubuntu, the following script installs all required dependencies:
@@ -169,7 +172,7 @@ or
 
 The app uses a web-based configuration.  Once the server starts, point your browser by default to localhost:4567 to begin the installation process.
 
-If you wish to use a MySQL database, you should create it before configuring the sofware.  Using the MySQL root user, the instructions would be:
+If you wish to use a MySQL database, you should create it before configuring the software.  Using the MySQL root user, the instructions would be:
 
     CREATE DATABASE buhos;
     CREATE USER buhos_user@localhost IDENTIFIED BY 'password';
@@ -183,7 +186,7 @@ As the final step, the database will be populated. You must restart the applicat
 
 Individual users can run the application smoothly with the Windows installer or the packages for Ubuntu, Debian or CentOS.
 
-For multiple online users, the use of Buho has been tested deployed on an independent HTTP server, using Passenger as connector with Nginx. MySQL has been used for the database.  In theory, the software should  work smoothly on MariaDB and Apache.
+For multiple online users, Buhos can be deployed on an independent HTTP server, using Passenger as connector with Nginx. MySQL has been used for the database. The software can also use MariaDB and Apache.
 
 A typical nginx configuration should look like this:
     
