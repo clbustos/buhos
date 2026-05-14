@@ -70,7 +70,11 @@ class BibliographicFileProcessor
 
   def self.process_with_saved_file(search)
     result=Result.new
-    bib_imp=BibliographicalImporter::Factory.build(search.file_body, search.filename, search.filetype, result)
+    if BibliographicalImporter::Factory.csv_file?(search.filename, search.filetype)
+      bib_imp=BibliographicalImporter::CSV::SearchBuilder.build(search, result)
+    else
+      bib_imp=BibliographicalImporter::Factory.build(search.file_body, search.filename, search.filetype, result)
+    end
     bfp=BibliographicFileProcessor.new(search, bib_imp, result)
     unless result.success?
       result.error(::I18n::t('bibliographic_file_processor.error_on_search', i: search.id))

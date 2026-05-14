@@ -66,8 +66,8 @@ module Buhos
        !(!cd1[:doi].nil? and !cd2[:doi].nil? and cd1[:doi]!=cd2[:doi])
     end
     def cd_is_very_similar(cd1,cd2)
-      t1="#{cd1[:year]} #{cd1[:title]} #{cd1[:authors]} #{cd1[:journal]} #{cd1[:pages]}".gsub(/[^A-Za-z\d\s]/,"").downcase
-      t2="#{cd2[:year]} #{cd2[:title]} #{cd2[:authors]} #{cd2[:journal]} #{cd2[:pages]}".gsub(/[^A-Za-z\d\s]/,"").downcase
+      t1=normalized_metadata_text(cd1)
+      t2=normalized_metadata_text(cd2)
       if(t1.length>10)
         d=Levenshtein.distance(t1,t2)
         d<5
@@ -78,20 +78,67 @@ module Buhos
       end
     end
 
+    def normalized_metadata_text(cd)
+      "#{cd[:year]} #{cd[:title]} #{cd[:author]} #{cd[:journal]} #{cd[:pages]}".gsub(/[^A-Za-z\d\s]/,"").downcase
+    end
+
+    def metadata_block_keys(cd)
+      text=normalized_metadata_text(cd)
+      length_block=text.length / 10
+      prefixes=[text[0,12]]
+      prefixes << text[0,8] if text.length>=8
+      prefixes << text[0,4] if text.length>=4
+      length_blocks=[length_block-1, length_block, length_block+1].find_all {|block| block>=0}
+      prefixes.compact.uniq.product(length_blocks).map {|prefix, block| [cd[:year], block, prefix]}
+    end
+
+    def push_unique_pair(dups, seen, cd1_id, cd2_id)
+      pair=[cd1_id, cd2_id].sort
+      return if seen[pair]
+
+      seen[pair]=true
+      dups.push(pair)
+    end
+
     # We will use a blocking method based on year.
     # https://www.sciencedirect.com/science/article/pii/S1319157817304512
     # @return array with pairs of duplicates
     def by_metadata
       dups=[]
-      v=canonical_documents.to_hash_groups(:year)
-      v.each do |r1,r2|
-        n=r2.length
+      seen={}
+      fields=[:id, :year, :title, :author, :journal, :pages, :doi]
+      rows=canonical_documents.select(*fields).where(Sequel.~(title: nil)).all
+
+      rows.group_by {|cd| [cd[:year], cd[:title], cd[:journal], cd[:pages]] }.each_value do |group|
+        next if group.length<2
+
+        n=group.length
         0.upto(n-2) do |i|
           (i+1).upto(n-1) do |j|
-            cd1= r2[i]
-            cd2= r2[j]
-            if (cd_is_identical(cd1,cd2) or cd_is_very_similar(cd1,cd2)) and (cd_dois_arent_different(cd1,cd2))
-              dups.push [cd1[:id],cd2[:id]].sort
+            cd1=group[i]
+            cd2=group[j]
+            push_unique_pair(dups, seen, cd1[:id], cd2[:id]) if cd_dois_arent_different(cd1, cd2)
+          end
+        end
+      end
+
+      blocks=Hash.new {|hash, key| hash[key]=[]}
+      rows.each do |cd|
+        metadata_block_keys(cd).each {|key| blocks[key].push(cd)}
+      end
+
+      blocks.each_value do |group|
+        next if group.length<2
+
+        n=group.length
+        0.upto(n-2) do |i|
+          (i+1).upto(n-1) do |j|
+            cd1=group[i]
+            cd2=group[j]
+            next if seen[[cd1[:id], cd2[:id]].sort]
+
+            if cd_dois_arent_different(cd1, cd2) and cd_is_very_similar(cd1, cd2)
+              push_unique_pair(dups, seen, cd1[:id], cd2[:id])
             end
 
           end
@@ -102,6 +149,10 @@ module Buhos
       end
       dups.sort {|a,b| a[0]<=>b[0]}
     end
+
+    private :normalized_metadata_text
+    private :metadata_block_keys
+    private :push_unique_pair
 
   end
 end

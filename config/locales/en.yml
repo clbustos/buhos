@@ -87,8 +87,10 @@ en:
   bibliographic_file_processor:
     pubmed_success: "Pubmed importing successful"
     bibtex_success: "Bibtex importing successful"
+    csv_success: "CSV importing successful"
     bibtex_integrator_failed: "BibTeX integrator failed"
     pubmed_integrator_failed: "Pubmed integrator failed"
+    csv_integrator_failed: "CSV integrator failed"
     no_unique_id_for_integrator: "No unique id for integrator"
     no_file_available: "No file available to process"
     error_on_search: "Error on search: %{i}"

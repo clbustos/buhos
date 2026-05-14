@@ -50,6 +50,59 @@ end
 
 task :default => :spec
 
+task :environment do
+  require 'i18n'
+
+  locales_root=File.join(File.dirname(__FILE__),'config','locales', '*.yml')
+  ::I18n.load_path+=Dir[locales_root]
+  ::I18n.config.available_locales = [:es, :en, :pl]
+  language_candidates = ENV.fetch('LANGUAGE', 'en').split(':').map {|locale| locale.split('_').first.to_sym }
+  ::I18n.locale=(language_candidates & ::I18n.available_locales).first || :en
+
+  FileUtils.mkdir_p('log')
+  $log ||= Logger.new('log/rake.log')
+
+  require_relative 'model/init'
+  require_relative 'model/models'
+  Dir.glob('model/*.rb').each {|f| require_relative(f) }
+  require_relative 'lib/result'
+  require_relative 'lib/bibliographical_importer'
+  require_relative 'lib/bibliographic_file_processor'
+  require_relative 'lib/bibliographic_folder_importer'
+end
+
+namespace :import do
+  desc "Import a folder of bibliographic files. Usage: rake import:bibliographic_folder[path,review_id,user_id] or FOLDER=path REVIEW_ID=1 USER_ID=1"
+  task :bibliographic_folder, [:folder, :review_id, :user_id] => :environment do |t, args|
+    folder = args[:folder] || ENV['FOLDER']
+    review_id = args[:review_id] || ENV['REVIEW_ID']
+    user_id = args[:user_id] || ENV['USER_ID']
+
+    unless folder
+      abort "Folder is required. Usage: rake import:bibliographic_folder[path,review_id,user_id]"
+    end
+
+    importer = BibliographicFolderImporter.new(
+      folder,
+      systematic_review_id: review_id,
+      user_id: user_id
+    ).import
+
+    importer.summaries.each do |summary|
+      status = summary.success ? 'EXITO' : 'FRACASO'
+      search_info = summary.search_id ? "search_id=#{summary.search_id}" : 'search_id=-'
+      puts "[#{status}] #{summary.path} #{search_info}"
+      puts summary.messages unless summary.messages.to_s.empty?
+    end
+
+    if importer.success?
+      puts "Importacion completada con exito: #{importer.summaries.count} archivos"
+    else
+      abort "Importacion finalizada con errores: #{importer.summaries.count {|summary| !summary.success }} fallas"
+    end
+  end
+end
+
 namespace :reflection do
   desc "Show authorizations"
   task :auth do |t|

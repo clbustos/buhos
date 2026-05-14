@@ -31,6 +31,10 @@
 module BibliographicalImporter
   class Factory
     attr_reader :object_created
+    def self.csv_file?(filename, filetype)
+      filetype == 'text/csv' || filename.to_s =~ /\.csv$/i
+    end
+
     def self.build(file_body, filename, filetype, result)
       factory = new(file_body, filename, filetype, result)
       factory.process
@@ -86,7 +90,7 @@ module BibliographicalImporter
     end
 
     def csv?
-      @filetype == 'text/csv'
+      self.class.csv_file?(@filename, @filetype)
     end
 
     # --- Lógica de Parsing ---
@@ -134,8 +138,7 @@ module BibliographicalImporter
     end
 
     def parse_csv
-      # Nota: se asume que @search responde a bibliographical_database_name según tu código original
-      @object_created=BibliographicalImporter::CSV::Reader.parse(@file_body, @search.bibliographical_database_name)
+      @object_created=BibliographicalImporter::CSV::Reader.parse(@file_body, nil)
       success('bibliographic_file_processor.csv_success')
     end
 

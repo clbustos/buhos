@@ -215,5 +215,30 @@ module BibliographicalImporter
         end
       end
     end
+
+    class SearchBuilder
+      def self.build(search, result, file_body: nil, filename: nil, filetype: nil)
+        new(search, result, file_body: file_body, filename: filename, filetype: filetype).build
+      end
+
+      def initialize(search, result, file_body: nil, filename: nil, filetype: nil)
+        @search = search
+        @result = result
+        @file_body = file_body || search.file_body
+        @filename = filename || search.filename
+        @filetype = filetype || search.filetype
+      end
+
+      def build
+        return nil unless BibliographicalImporter::Factory.csv_file?(@filename, @filetype)
+
+        @object_created = BibliographicalImporter::CSV::Reader.parse(@file_body, @search.bibliographical_database_name)
+        @result.success(::I18n.t('bibliographic_file_processor.csv_success'))
+        @object_created
+      rescue StandardError => e
+        @result.error("#{::I18n.t('bibliographic_file_processor.csv_integrator_failed')} : <#{e.class}> : #{e.message} ")
+        nil
+      end
+    end
   end
 end

@@ -192,10 +192,18 @@ post '/search/update' do
       # if search file is a bibliographic file, check if
       # file is processable
       if search.is_type?(:bibliographic_file)
-        bib_processor=BibliographicalImporter::Factory.build(content,
-                                                           archivo[:filename],
-                                                           archivo[:type],
-                                                           result)
+        if BibliographicalImporter::Factory.csv_file?(archivo[:filename], archivo[:type])
+          bib_processor=BibliographicalImporter::CSV::SearchBuilder.build(search,
+                                                                          result,
+                                                                          file_body: content,
+                                                                          filename: archivo[:filename],
+                                                                          filetype: archivo[:type])
+        else
+          bib_processor=BibliographicalImporter::Factory.build(content,
+                                                             archivo[:filename],
+                                                             archivo[:type],
+                                                             result)
+        end
         if bib_processor
           sp=BibliographicFileProcessor.new(search, bib_processor, result)
           if sp.error.nil?

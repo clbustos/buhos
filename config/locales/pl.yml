@@ -70,6 +70,8 @@ pl:
   bibliographic_file_processor:
     pubmed_success: "Pubmed importing successful"
     bibtex_success: "Importación de Bibtex exitosa"
+    csv_success: "CSV importing successful"
+    csv_integrator_failed: "CSV integrator failed"
     bibtex_integrator_failed: "Procesor plików BibTeX nie powiódł się"
     pubmed_integrator_failed: "Procesor plików Pubmed nie powiódł się"
     no_unique_id_for_integrator: "Brak unikalnego id dla integratora"
