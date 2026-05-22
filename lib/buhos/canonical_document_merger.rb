@@ -38,6 +38,7 @@ module Buhos
       cd_quality_criteria: { column: CANONICAL_DOCUMENT_FK },
       favorite_documents: { column: CANONICAL_DOCUMENT_FK },
       file_cds: { column: CANONICAL_DOCUMENT_FK },
+      file_extraction_informations: { column: CANONICAL_DOCUMENT_FK },
       records: { column: CANONICAL_DOCUMENT_FK },
       sr_document_reports: {
         column: CANONICAL_DOCUMENT_FK,

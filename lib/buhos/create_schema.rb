@@ -214,7 +214,7 @@ module Buhos
           String :search_criteria, :text => true
           String :description, :text => true
           File   :file_body, size: :long
-          String :filetype, :size => 50
+          String :filetype, :size => 255
           String :filename, :size => 128
 
           index [:bibliographic_database_id], :name => :bibliographic_database_id_index

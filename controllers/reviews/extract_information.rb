@@ -5,6 +5,7 @@
 # Licensed BSD 3-Clause License
 # See LICENSE file for more information
 
+require 'date'
 
 # @!group Data extraction
 
@@ -40,6 +41,10 @@ get '/review/:sr_id/extract_information/cd/:cd_id' do |sr_id,cd_id|
   @current_file_id = params['file'] || @files.keys[0]
 
   @current_file = @files[@current_file_id]
+  @file_extraction_informations=FileExtractionInformation.
+    where(:systematic_review_id=>@sr[:id], :canonical_document_id=>@cd[:id], :user_id=>@user[:id]).
+    order(:id)
+  @file_extraction_information_files=IFile.where(:id=>@file_extraction_informations.map(:file_id)).as_hash
 
 
   @ars=AnalysisSystematicReview.new(@sr)
@@ -53,6 +58,59 @@ get '/review/:sr_id/extract_information/cd/:cd_id' do |sr_id,cd_id|
   @outgoing_citations=CanonicalDocument.where(:id=>@ars.outgoing_citations(@stage,cd_id)).order(:year,:author)
 
   haml "systematic_reviews/cd_extract_information".to_sym, escape_html: false
+end
+
+# Upload a file used as guideline for the information extraction form.
+post '/review/:sr_id/extract_information/cd/:cd_id/file_extraction_information/add' do |sr_id,cd_id|
+  halt_unless_auth('review_analyze')
+
+  sr=SystematicReview[sr_id]
+  raise Buhos::NoReviewIdError, sr_id if !sr
+
+  cd=CanonicalDocument[cd_id]
+  raise Buhos::NoCdIdError, cd_id if !cd
+
+  user=User[session['user_id']]
+  stage=Buhos::Stages::STAGE_REVIEW_EXTRACT_INFORMATION.to_s
+  adu=AnalysisUserDecision.new(sr_id, user[:id], stage)
+  if !sr.cd_id_by_stage(stage).include?(cd_id.to_i) || !adu.allocated_to_cd_id(cd_id)
+    add_message(t(:Canonical_documento_not_assigned_to_this_user), :error)
+    redirect back
+  end
+
+  files_param=params['file_extraction_information']
+  files=files_param.is_a?(Array) ? files_param : [files_param]
+  files=files.find_all {|file| file && file[:tempfile]}
+
+  if files.any?
+    files.each do |file|
+      file_proc=FileProcessor.new(file, dir_files)
+      file_proc.add_to_sr(sr)
+      FileExtractionInformation.insert(:file_id=>file_proc.file_id,
+                                       :systematic_review_id=>sr[:id],
+                                       :canonical_document_id=>cd[:id],
+                                       :user_id=>user[:id],
+                                       :created_at=>DateTime.now)
+    end
+    add_message("Archivo de pauta subido", :success)
+  else
+    add_message(I18n::t(:Files_not_uploaded), :error)
+  end
+  redirect url("/review/#{sr[:id]}/extract_information/cd/#{cd[:id]}")
+end
+
+# Remove a guideline file from the information extraction form.
+post '/review/:sr_id/extract_information/cd/:cd_id/file_extraction_information/:id/delete' do |sr_id,cd_id,id|
+  halt_unless_auth('review_analyze')
+
+  file_extraction_information=FileExtractionInformation[:id=>id,
+                                                        :systematic_review_id=>sr_id,
+                                                        :canonical_document_id=>cd_id,
+                                                        :user_id=>session['user_id']]
+  return 404 if file_extraction_information.nil?
+  file_extraction_information.delete
+  add_message("Archivo de pauta eliminado", :success)
+  redirect url("/review/#{sr_id}/extract_information/cd/#{cd_id}")
 end
 
 # Update information of a specific personalized field

@@ -4,6 +4,7 @@
 =partial(:breadcrumb_review_admin,:locals=>{:name=>t(@name_stage)})
 
 %p.info=t_desc_value(:Count_canonical_documents, @cds_id.length)
+- stats=@extract_information_stats
 
 %h3=t(:Statistics_by_user)
 
@@ -27,5 +28,77 @@
       %tr
         %th= user.name
         %td= adu.assignations_count
+
+%h3 Estadísticas de completitud
+
+- if stats[:stage_complete]
+  %p.alert.alert-success La etapa de extracción de información está completa.
+- else
+  %p.alert.alert-warning La etapa de extracción de información está incompleta.
+
+%table.reporte
+  %thead
+    %th Canónicos
+    %th Con información
+    - if stats[:quality_active]
+      %th Con calidad
+    %th Completos
+    %th Asignaciones completas
+  %tbody
+    %tr
+      %td=stats[:total_documents]
+      %td="#{stats[:documents_with_information]} / #{stats[:total_documents]}"
+      - if stats[:quality_active]
+        %td="#{stats[:documents_with_quality]} / #{stats[:total_documents]}"
+      %td="#{stats[:complete_documents]} / #{stats[:total_documents]}"
+      %td="#{stats[:assigned_complete]} / #{stats[:assigned_total]}"
+
+- if stats[:quality_active]
+  %p.info="Control de calidad activo: #{stats[:quality_criteria_count]} criterios definidos."
+- else
+  %p.info Control de calidad no activo para esta revisión.
+
+%h4 Estado por usuario asignado
+%table.reporte
+  %thead
+    %th=t(:User)
+    %th=t(:Count_canonical_documents_assigned)
+    %th Con información
+    - if stats[:quality_active]
+      %th Con calidad
+    %th Completos
+  %tbody
+    - stats[:user_statuses].each do |user_status|
+      - user=user_status[:user]
+      %tr
+        %th= user ? user.name : user_status[:user_id]
+        %td=user_status[:assigned_count]
+        %td="#{user_status[:information_count]} / #{user_status[:assigned_count]}"
+        - if stats[:quality_active]
+          %td="#{user_status[:quality_count]} / #{user_status[:assigned_count]}"
+        %td="#{user_status[:complete_count]} / #{user_status[:assigned_count]}"
+
+%h4 Estado por documento canónico
+%table.reporte
+  %thead
+    %th=t(:Canonical_document)
+    %th Asignaciones
+    %th Formulario
+    %th Archivos
+    - if stats[:quality_active]
+      %th Calidad
+    %th Estado
+  %tbody
+    - stats[:document_statuses].each do |document_status|
+      - cd=@cds_hash[document_status[:canonical_document_id]]
+      %tr
+        %td
+          %a{:href=>url("/canonical_document/#{document_status[:canonical_document_id]}")}= cd ? cd[:title] : document_status[:canonical_document_id]
+        %td=document_status[:assigned_count]
+        %td= document_status[:has_form_information] ? t(:Yes) : t(:No)
+        %td= document_status[:has_file_information] ? t(:Yes) : t(:No)
+        - if stats[:quality_active]
+          %td= document_status[:has_quality] ? t(:Yes) : t(:No)
+        %td= document_status[:complete] ? "Completo" : "Incompleto"
 
 =partial(:sr_administration_actions, :locals=>{review:@review, stage:@stage})

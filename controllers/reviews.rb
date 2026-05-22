@@ -159,6 +159,10 @@ get '/review/:id/files' do |id|
   @review=SystematicReview[id]
   raise Buhos::NoReviewIdError, id if !@review
   @file_rs=IFile.join(:file_srs, :file_id => :id).left_join(:file_cds, :file_id => :file_id).where(:systematic_review_id => id).order_by(:filename)
+  @file_extraction_information_by_file=FileExtractionInformation.
+    where(:systematic_review_id=>id).
+    all.
+    group_by {|file_extraction_information| file_extraction_information[:file_id]}
   @modal_files=get_modal_files
   @canonical_documents_h=@review.canonical_documents.order(:title).as_hash
   @cd_validos_id=@review.cd_id_by_stage(@review.stage)

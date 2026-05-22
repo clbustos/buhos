@@ -1,6 +1,8 @@
 .heading
   =t_systematic_review_title(@sr[:name], t(:Cd_extract_information, cd_title:@cd[:title]),false)
 - ajax||=false
+=@modal_files.javascript_header
+=@modal_files.html_modal
 
 
 %ul.breadcrumb
@@ -26,7 +28,6 @@
     .col-md-8.col-sm-8#document_viewer
       - if @current_file_id.nil?
         %p.alert.alert-warning=t(:No_file)
-        =@modal_files.javascript_header
         =@modal_files.cargador_archivo(@sr[:id], @cd[:id])
       - else
         %div.embed-responsive.embed-responsive-4by3
@@ -38,6 +39,35 @@
             %strong=field.description
           %div
             =field.html
+        %hr
+        %div
+          %strong Pautas de extracción
+        %form{:method=>:post, :action=>url("/review/#{@sr[:id]}/extract_information/cd/#{@cd[:id]}/file_extraction_information/add"), :enctype=>'multipart/form-data'}
+          .form-group
+            %input.form-control{:type=>'file', :name=>'file_extraction_information[]', :multiple=>true}
+          %input.btn.btn-primary.btn-sm{:type=>:submit, :value=>t(:Upload_file)}
+        - if @file_extraction_informations.empty?
+          %p
+            %em Sin pautas subidas
+        - else
+          .list-group
+            - @file_extraction_informations.each do |file_extraction_information|
+              - guideline_file=@file_extraction_information_files[file_extraction_information[:file_id]]
+              - if guideline_file
+                .list-group-item
+                  %div{:style=>'overflow:hidden;text-overflow:ellipsis;'}
+                    =a_editable(guideline_file[:id], 'filename', "/file/edit_field/filename", guideline_file[:filename])
+                  .btn-group.btn-group-sm
+                    %a.btn.btn-default{:href=>url("/file/#{guideline_file[:id]}/download")}
+                      %span.glyphicon.glyphicon-download
+                      =t(:Download)
+                    %button.btn.btn-default{"data-target"=>"#modalArchivos", "data-toggle"=>"modal", "data-name"=>guideline_file[:filename], "data-pk"=>guideline_file[:id], "data-pages"=>guideline_file[:pages], :type=>"button"}
+                      %span.glyphicon.glyphicon-eye-open
+                      =t(:View_file)
+                    %form{:method=>:post, :action=>url("/review/#{@sr[:id]}/extract_information/cd/#{@cd[:id]}/file_extraction_information/#{file_extraction_information[:id]}/delete"), :style=>"display:inline;"}
+                      %button.btn.btn-danger{:type=>:submit}
+                        %span.glyphicon.glyphicon-remove
+                        =t("file_handler.delete_file")
         - if @outgoing_citations.count>0
           %div
             %strong=t(:Outgoing_citations)

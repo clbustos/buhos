@@ -59,6 +59,68 @@ describe 'Buhos extraction of data' do
 
   end
 
+  context 'when uploading a guideline file for extraction' do
+    before(:each) do
+      post '/login', :user=>'admin', :password=>'admin'
+      FileExtractionInformation.dataset.delete
+      uploaded_file=Rack::Test::UploadedFile.new(File.expand_path("#{File.dirname(__FILE__)}/../docs/guide_resources/README.md"), "text/plain", true)
+      post '/review/1/extract_information/cd/1/file_extraction_information/add', :file_extraction_information=>uploaded_file
+    end
+
+    let(:file_extraction_information) {FileExtractionInformation.first}
+
+    it {expect(last_response).to be_redirect}
+
+    it "should create the guideline reference" do
+      expect(file_extraction_information).to be_truthy
+      expect(file_extraction_information[:systematic_review_id]).to eq(1)
+      expect(file_extraction_information[:canonical_document_id]).to eq(1)
+      expect(file_extraction_information[:user_id]).to eq(1)
+      expect(IFile[file_extraction_information[:file_id]]).to be_truthy
+      expect(FileSr[:systematic_review_id=>1, :file_id=>file_extraction_information[:file_id]]).to be_truthy
+    end
+
+    it "should show the guideline on the extraction form" do
+      get '/review/1/extract_information/cd/1'
+      expect(last_response).to be_ok
+      expect(last_response.body).to include("Pautas de extracción")
+      expect(last_response.body).to include("README.md")
+    end
+
+    it "should mark the file as guideline on files page" do
+      get '/review/1/files'
+      expect(last_response).to be_ok
+      expect(last_response.body).to include("Pauta")
+    end
+
+    it "should delete the guideline reference" do
+      post "/review/1/extract_information/cd/1/file_extraction_information/#{file_extraction_information[:id]}/delete"
+      expect(last_response).to be_redirect
+      expect(FileExtractionInformation[file_extraction_information[:id]]).to be_nil
+    end
+  end
+
+  context 'when uploading multiple guideline files for extraction' do
+    before(:each) do
+      post '/login', :user=>'admin', :password=>'admin'
+      FileExtractionInformation.dataset.delete
+      uploaded_file_1=Rack::Test::UploadedFile.new(File.expand_path("#{File.dirname(__FILE__)}/../docs/guide_resources/README.md"), "text/plain", true)
+      uploaded_file_2=Rack::Test::UploadedFile.new(File.expand_path("#{File.dirname(__FILE__)}/../Gemfile"), "text/plain", true)
+      post '/review/1/extract_information/cd/1/file_extraction_information/add', :file_extraction_information=>[uploaded_file_1, uploaded_file_2]
+    end
+
+    it "should create all guideline references" do
+      expect(FileExtractionInformation.where(:systematic_review_id=>1, :canonical_document_id=>1, :user_id=>1).count).to eq(2)
+    end
+
+    it "should show all guidelines on the extraction form" do
+      get '/review/1/extract_information/cd/1'
+      expect(last_response).to be_ok
+      expect(last_response.body).to include("README.md")
+      expect(last_response.body).to include("Gemfile")
+    end
+  end
+
 
   context 'when admin request form for a not included document (2)' do
     before(:each) do

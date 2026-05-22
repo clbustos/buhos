@@ -4,7 +4,7 @@ Sequel.migration do
   change do
    create_table(:files) do
      primary_key :id
-     String :filetype, :size=>50
+     String :filetype, :size=>255
      String :filename, :size=>128
      String :file_path, :size=>255
      String :sha256, :size=>64

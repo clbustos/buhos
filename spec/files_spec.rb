@@ -75,6 +75,28 @@ describe 'Files:' do
     end
   end
 
+  context 'when upload a file with a long mime type' do
+    let(:file) {IFile[@file_id]}
+
+    before(:context) do
+      delete_files
+      @long_filetype="application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+      uploaded_file=Rack::Test::UploadedFile.new(File.expand_path("#{File.dirname(__FILE__)}/../docs/guide_resources/README.md"), @long_filetype, true)
+      post '/review/files/add', systematic_review_id:sr_by_name_id('Test Review'), files:[uploaded_file]
+      @file_id=IFile.order(:id).last[:id]
+    end
+
+    it "should create an file object with the full mime type" do
+      expect(file[:filetype]).to eq(@long_filetype)
+    end
+
+    after(:context) do
+      $db[:file_cds].delete
+      $db[:file_srs].delete
+      delete_files
+    end
+  end
+
   context 'when upload a file using /review/files/add, adding a canonical document' do
     before(:context) do
       delete_files

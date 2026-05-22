@@ -280,6 +280,7 @@ post '/file/delete' do
   file=IFile[params['file_id']]
 
   return 404 if file.nil?
+  FileExtractionInformation.where(:file_id => file.id).delete
   FileSr.where(:file_id => file.id).delete
   FileCd.where(:file_id => file.id).delete
   file.delete

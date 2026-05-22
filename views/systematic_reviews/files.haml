@@ -50,10 +50,12 @@
     %th=t(:Name)
     %th=t(:Type)
     %th=t(:Canonical_document)
+    %th Pauta
     %th=t(:Actions)
   %tbody
     -@file_rs.each do |archivo|
       - has_cd=!archivo[:canonical_document_id].nil?
+      - file_extraction_informations=@file_extraction_information_by_file[archivo[:id]] || []
       %tr{:class=> has_cd ? "file-with-cd" : "file-wo-cd"}
         %td{:style=>'max-width:300px;overflow:hidden;text-overflow:ellipsis;'}
           =a_editable(archivo[:id], 'filename', "/file/edit_field/filename", archivo[:filename])
@@ -69,4 +71,15 @@
                 %option{:value=>cd[:id]}=CGI.escapeHTML(cd[:title][0..70])
             %button.btn.btn-default.btn-sm.asignar_canonico{"archivo-pk"=>archivo[:id]}
               =t(:Change)
+        %td
+          - if file_extraction_informations.empty?
+            %button.btn.btn-default.btn-sm{:disabled=>true}
+              %span.glyphicon.glyphicon-unchecked
+              No
+          - else
+            - file_extraction_informations.each do |file_extraction_information|
+              - cd=@canonical_documents_h[file_extraction_information[:canonical_document_id]]
+              %a.btn.btn-info.btn-sm{:href=>url("/review/#{@review[:id]}/extract_information/cd/#{file_extraction_information[:canonical_document_id]}"), :title=>cd ? cd[:title] : ""}
+                %span.glyphicon.glyphicon-ok
+                Pauta
         %td=@modal_files.buttons(archivo,archivo[:canonical_document_id],@review.id,true)

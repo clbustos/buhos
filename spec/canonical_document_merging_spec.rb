@@ -67,6 +67,10 @@ describe 'Canonical Document merging' do
   end
 
   def after_context
+    $db[:file_extraction_informations].delete if $db.table_exists?(:file_extraction_informations)
+    $db[:file_srs].delete
+    $db[:file_cds].delete
+    $db[:files].delete
     $db[:sr_document_reports].delete
     $db[:records_searches].delete
     $db[:searches].delete
@@ -199,6 +203,28 @@ describe 'Canonical Document merging' do
     it "should not create a conflicting resolution report" do
       expect(DocumentReport.where(:systematic_review_id=>1, :canonical_document_id=>1,
                                   :report_type=>'conflicting_resolution').count).to eq(0)
+    end
+
+    after(:context) do
+      after_context
+    end
+  end
+
+  context "when merging documents with extraction guideline files" do
+    before(:context) do
+      pre_context
+      file_id_1=IFile.insert(:filename=>'guideline_1.txt', :filetype=>'text/plain', :sha256=>'guideline_1')
+      file_id_2=IFile.insert(:filename=>'guideline_2.txt', :filetype=>'text/plain', :sha256=>'guideline_2')
+      @file_ids=[file_id_1, file_id_2].sort
+      FileExtractionInformation.insert(:file_id=>file_id_1, :systematic_review_id=>1,
+                                       :canonical_document_id=>1, :user_id=>1)
+      FileExtractionInformation.insert(:file_id=>file_id_2, :systematic_review_id=>1,
+                                       :canonical_document_id=>2, :user_id=>1)
+      Buhos::CanonicalDocumentMerger.merge([1,2])
+    end
+
+    it "should keep all extraction guideline files on the retained document" do
+      expect(FileExtractionInformation.where(:canonical_document_id=>1).map(:file_id).sort).to eq(@file_ids)
     end
 
     after(:context) do

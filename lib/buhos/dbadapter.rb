@@ -48,6 +48,7 @@ module Buhos
       ::IFile.dataset=self[:files]
       ::FileCd.dataset=self[:file_cds]
       ::FileSr.dataset=self[:file_srs]
+      ::FileExtractionInformation.dataset=self[:file_extraction_informations]
       ::AllocationCd.dataset=self[:allocation_cds]
       ::BibliographicDatabase.dataset=self[:bibliographic_databases]
       ::Search.dataset=self[:searches]

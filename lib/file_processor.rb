@@ -29,6 +29,9 @@
 # Process the incorporation of a file to Buhos
 # Could handle upload files, and other types of files
 class FileProcessor
+  DEFAULT_FILETYPE = "application/octet-stream".freeze
+  MAX_FILETYPE_LENGTH = 255
+
   attr_reader :filetype
   attr_reader :filename
   attr_reader :filepath
@@ -40,7 +43,7 @@ class FileProcessor
   end
   def initialize(file,basedir=nil)
     @basedir=basedir
-    @filetype="application/octet-stream"
+    @filetype=DEFAULT_FILETYPE
     @file_id=nil
     if file.is_a? String and File.exist? file # Ok, is a filepath
       require 'mimemagic'
@@ -59,8 +62,9 @@ class FileProcessor
     else
       raise "I don't know what type of file is it"
     end
-    create_file_on_system unless @file_id
+    @filetype=normalize_filetype(@filetype)
     @filename=@filename.gsub(/[^A-Za-z0-9\.-_]/,"")
+    create_file_on_system unless @file_id
   end
 
 
@@ -106,7 +110,7 @@ class FileProcessor
     sha256 = Digest::SHA256.file(@filepath).hexdigest
     archivo_o = IFile.where(:sha256 => sha256)
     if archivo_o.empty?
-      file_path_new = "#{sha256[0]}/#{filename}"
+      file_path_new = "#{sha256[0]}/#{sha256}_#{filename}"
       ruta_completa = "#{basedir}/#{file_path_new}"
       FileUtils.mkdir_p File.dirname(ruta_completa) unless File.exist?(File.dirname(ruta_completa))
       FileUtils.cp filepath, ruta_completa
@@ -117,5 +121,11 @@ class FileProcessor
     @file_id
   end
 private :create_file_on_system
-end
 
+  def normalize_filetype(filetype)
+    normalized=filetype.to_s.strip
+    normalized=DEFAULT_FILETYPE if normalized.empty?
+    normalized[0, MAX_FILETYPE_LENGTH]
+  end
+private :normalize_filetype
+end
