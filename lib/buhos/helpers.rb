@@ -30,6 +30,7 @@
 module Buhos
   # Misc helpers for Buhos
   module Helpers
+    FILES_DIR_ENV_KEY = 'BUHOS_FILES_DIR'.freeze
 
 
 
@@ -43,10 +44,14 @@ module Buhos
       File.expand_path(File.dirname(__FILE__)+"/../..")
     end
     def dir_files
-      dir_files= $test_mode ? "/spec/usr/files" : "/usr/files"
-      dir=File.expand_path(dir_base + "/"+ dir_files)
+      dir_files=configured_files_dir || ($test_mode ? "spec/usr/files" : "usr/files")
+      dir=File.expand_path(dir_files, dir_base)
       FileUtils.mkdir_p(dir) unless File.exist? dir
       dir
+    end
+    def configured_files_dir
+      value=ENV[FILES_DIR_ENV_KEY].to_s.strip
+      value.empty? ? nil : value
     end
     # Set title header for app
     def title(title)
