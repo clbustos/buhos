@@ -25,6 +25,8 @@
 # CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
 # OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+require 'i18n'
+
 module Sinatra
   module I18n
     module Helpers
@@ -123,7 +125,8 @@ module Sinatra
 
       #$log.info(app.root)
       unless defined?(app.locales)
-        app.set :locales, File.join(app.root, 'config','locales', '*.yml')
+        root = app.root || File.expand_path('../..', __dir__)
+        app.set :locales, File.join(root, 'config','locales', '*.yml')
       end
       ::I18n.load_path+=Dir[app.locales]
       ::I18n.config.available_locales = [:es,:en,:pl]

@@ -61,7 +61,7 @@ task :environment do
 
   FileUtils.mkdir_p('log')
   $log ||= Logger.new('log/rake.log')
-
+  require 'sinatra/base'
   require_relative 'model/init'
   require_relative 'model/models'
   Dir.glob('model/*.rb').each {|f| require_relative(f) }
@@ -69,6 +69,7 @@ task :environment do
   require_relative 'lib/bibliographical_importer'
   require_relative 'lib/bibliographic_file_processor'
   require_relative 'lib/bibliographic_folder_importer'
+  require_relative 'lib/buhos/review_document_validator'
 end
 
 namespace :import do
@@ -100,6 +101,22 @@ namespace :import do
     else
       abort "Importacion finalizada con errores: #{importer.summaries.count {|summary| !summary.success }} fallas"
     end
+  end
+end
+
+namespace :review do
+  desc "Validate review documents and complete missing title/abstract. Usage: rake review:validate_documents[review_id] or REVIEW_ID=1 LOG_FILE=log/file.log"
+  task :validate_documents, [:review_id] => :environment do |t, args|
+    review_id = args[:review_id] || ENV['REVIEW_ID']
+    abort "Review id is required. Usage: rake review:validate_documents[review_id] or REVIEW_ID=1" if review_id.to_s.empty?
+
+    review = SystematicReview[review_id.to_i]
+    abort "Review #{review_id} does not exist" unless review
+
+    validator = Buhos::ReviewDocumentValidator.new(review, log_file: ENV['LOG_FILE']).validate
+    puts "Revision #{review.id}: #{validator.stats[:valid]}/#{validator.stats[:total]} documentos validos"
+    puts "Actualizados: #{validator.stats[:updated]}; invalidos: #{validator.stats[:invalid]}; errores: #{validator.stats[:errors]}"
+    puts "Log: #{validator.log_file}"
   end
 end
 
