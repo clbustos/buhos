@@ -25,6 +25,17 @@ describe 'Criteria related models' do
       expect(criterion_1).to be_truthy
       expect(Criterion[:text=>'test1']).to be_truthy
     end
+
+    it ".get_criteria should create criteria longer than 255 characters" do
+      text="criterion #{'a' * 300}"
+      criterion=Criterion.get_criterion(text)
+      expect(criterion[:text]).to eq(text)
+    end
+
+    it "uses a text column for criteria text" do
+      column=$db.schema(:criteria).find {|name, _| name==:text }[1]
+      expect(column[:db_type].downcase).to include('text')
+    end
   end
   context "SrCriterion model" do
     it ".sr_criterion_add should add a new criteria to sr" do

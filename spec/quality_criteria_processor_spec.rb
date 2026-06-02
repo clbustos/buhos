@@ -17,6 +17,19 @@ describe 'QualityCriteriaProcessor:' do
     SystematicReview[1]
   end
 
+  context 'QualityCriterion model' do
+    it ".get_criterion should create criteria longer than 255 characters" do
+      text="quality criterion #{'a' * 300}"
+      criterion=QualityCriterion.get_criterion(text)
+      expect(criterion[:text]).to eq(text)
+    end
+
+    it "uses a text column for quality criteria text" do
+      column=$db.schema(:quality_criteria).find {|name, _| name==:text }[1]
+      expect(column[:db_type].downcase).to include('text')
+    end
+  end
+
   # .add_criterion
 
   context '.add_criterion_to_rs is called on a new quality criterion to a systematic review' do
