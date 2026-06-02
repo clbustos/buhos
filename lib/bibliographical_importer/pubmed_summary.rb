@@ -59,6 +59,11 @@ module BibliographicalImporter
           @type=:pubmed
 
           @title    =strip_lines(ps_value["TI"]).gsub(/\s+/," ")
+
+          #if !@title and ps_value["BTI"]
+          #  @title    =strip_lines(ps_value["BTI"]).gsub(/\s+/," ")
+          #end
+
           @abstract =ps_value["AB"]
           if ps_value["FAU"].nil?
             @authors=[]
