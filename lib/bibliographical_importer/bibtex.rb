@@ -226,7 +226,7 @@ module BibliographicalImporter
         results_uid=/((?:db|id)=.+)/.match(url)
         if url.include?("plink/")
           # new format
-          matchs = /plink\/(.+)/.match(url)
+          matchs = /plink\/.+/.match(url)
           @uid = matchs[1] if matchs
         elsif results_uid
           # New format: /publications/<numeric_id>
