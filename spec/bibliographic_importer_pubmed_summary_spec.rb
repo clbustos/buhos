@@ -77,8 +77,61 @@ describe 'BibliographicalImporter::PubmedSummary' do
 
   end
 
+  context "using Pubmed nbib with rare title" do
+    before(:context) do
+      @bib=BibliographicalImporter::PubmedSummary::Reader.parse(<<-BIBTEX
+PMID- 41505575
+STAT- Publisher
+PB  - Patient-Centered Outcomes Research Institute (PCORI)
+CTI - PCORI Final Research Reports
+DP  - 2020 Jul
+BTI - Comparing Two Diabetes Prevention Programs for American Indian and Alaska Native 
+      Adults in an Urban Community
+AB  - BACKGROUND: American Indian and Alaska Native (AIAN) adults are at increased risk 
+      of developing diabetes. Behavioral interventions targeting modest weight loss and 
+      moderate-to-vigorous physical activity have been shown to be effective in 
+      reducing diabetes risk. 
+CI  - Copyright © 2020. Stanford University School of Medicine. All Rights Reserved.
+FAU - Goldman Rosas, Lisa
+AU  - Goldman Rosas L
+AD  - Stanford University, Stanford, California
+FAU - Vasquez, Jan J
+AU  - Vasquez JJ
+AD  - Stanford University, Stanford, California
+FAU - Lv, Nan
+LA  - eng
+PT  - Review
+PT  - Book
+PL  - Washington (DC)
+EDAT- 2020/07/01 00:00
+CRDT- 2020/07/01 00:00
+AID - NBK620126 [bookaccession]
+AID - 10.25302/07.2020.AD.130602172 [doi]
+BIBTEX
+)
+    end
+    it "should be a  PubmedSummary::Record" do
+      expect(@bib.records[0]).to be_instance_of(BibliographicalImporter::PubmedSummary::Record)
+    end
+    it "should retrieve 3 articles" do
+      expect(@bib.records.length).to eq(1)
+    end
+    it "publication year should be correct" do
+      n_authors=@bib.map {|b| b.year}
+      expect(n_authors).to eq(["2020"])
+    end
+    it "numbers of authors should be [3]" do
+      n_authors=@bib.map {|b| b.authors.count}
+      expect(n_authors).to eq([3])
+    end
+    it "title for article should be 'correct.'" do
+      p @bib.records[0]
+      expect(@bib.records[0].title).to eq("Comparing Two Diabetes Prevention Programs for American Indian and Alaska Native Adults in an Urban Community")
+    end
+  end
 
-  context "using Pubmed nbib with three articles in 2024" do
+
+    context "using Pubmed nbib with three articles in 2024" do
     before(:context) do
       @bib=BibliographicalImporter::PubmedSummary::Reader.parse( read_fixture("pubmed-depression-set.nbib") )
     end

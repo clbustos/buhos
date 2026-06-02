@@ -60,6 +60,9 @@ module BibliographicalImporter
 
           @title    =strip_lines(ps_value["TI"]).gsub(/\s+/," ")
 
+          if @title=="" and ps_value["BTI"].is_a? String
+            @title    =strip_lines(ps_value["BTI"]).gsub(/\s+/," ")
+          end
           #if !@title and ps_value["BTI"]
           #  @title    =strip_lines(ps_value["BTI"]).gsub(/\s+/," ")
           #end
