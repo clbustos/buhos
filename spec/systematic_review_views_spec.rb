@@ -4,7 +4,7 @@ require_relative 'spec_helper'
 describe 'SystematicReviewViewsMixin' do
   before(:all) do
     RSpec.configure { |c| c.include RSpecMixin }
-    configure_empty_sqlite
+    configure_empty_database
     login_admin
   end
   let(:sr) {SystematicReview[1]}

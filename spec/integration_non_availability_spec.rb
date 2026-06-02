@@ -7,7 +7,7 @@ describe 'Resources nonavailability:' do
   before(:all) do
     RSpec.configure { |c| c.include RSpecMixin }
 
-    @temp=configure_empty_sqlite
+    @temp=configure_empty_database
 
     login_admin
   end

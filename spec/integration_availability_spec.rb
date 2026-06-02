@@ -6,7 +6,7 @@ require_relative 'spec_helper'
 describe 'Resources availability:' do
   before(:all) do
     RSpec.configure { |c| c.include RSpecMixin }
-    @temp=configure_empty_sqlite
+    @temp=configure_empty_database
     sr_for_report
     CanonicalDocument.insert(:id=>2, :title=>"Documento 1", :year=>2020)
     Tag.insert(:id=>1, :text=>"tag1")

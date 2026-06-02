@@ -3,7 +3,7 @@ require 'spec_helper'
 describe 'ReferenceProcessor' do
   before(:all) do
     RSpec.configure { |c| c.include RSpecMixin }
-    @temp=configure_empty_sqlite
+    @temp=configure_empty_database
     1.upto(30) do |i|
       doi="10.1000/reference-#{i}"
       CanonicalDocument.insert(:id=>i, :title=>"Reference processor document #{i}", :doi=>doi, :year=>2020)

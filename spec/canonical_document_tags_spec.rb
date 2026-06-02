@@ -3,7 +3,7 @@ require 'spec_helper'
 describe 'Tags on canonical documents' do
   before(:all) do
     RSpec.configure { |c| c.include RSpecMixin }
-    @temp=configure_empty_sqlite
+    @temp=configure_empty_database
     sr_for_report
     Search[1].update(:valid=>true)
     CanonicalDocument[1].update(:title=>'This is the title')

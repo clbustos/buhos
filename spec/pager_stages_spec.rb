@@ -3,7 +3,7 @@ require 'spec_helper'
 describe 'Pager on evaluation of papers' do
   before(:all) do
     RSpec.configure { |c| c.include RSpecMixin }
-    @temp=configure_empty_sqlite
+    @temp=configure_empty_database
     create_stage_dataset
     IFile.insert(:id=>1,
                  :filename=>'full_text.pdf',

@@ -3,7 +3,7 @@ require 'spec_helper'
 describe 'Reference resources' do
   before(:all) do
     RSpec.configure { |c| c.include RSpecMixin }
-    @temp=configure_empty_sqlite
+    @temp=configure_empty_database
     sr_for_report
     @ref_1="Al-Zubidy A, Carver JC. Identification and prioritization of SLR search tool requirements: an SLR and a survey. Empir Softw Eng. 2018;1–31"
     @ref_2="Al-Zubidy A, Carver JC, Hale DP, Hassler EE. Vision for SLR tooling infrastructure: Prioritizing value-added requirements. Inf Softw Technol. Elsevier; 2017 Nov 1;91:72–81."

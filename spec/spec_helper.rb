@@ -195,7 +195,7 @@ module RSpecMixin
     bb ? bb[:id] :nil
   end
 
-  def configure_empty_sqlite
+  def configure_empty_database
 
     db=Buhos::SchemaCreation.create_db_from_scratch(Sequel.connect('sqlite::memory:', :encoding => 'utf8',:reconnect=>false,:keep_reference=>false))
     $db_adapter.use_db(db)

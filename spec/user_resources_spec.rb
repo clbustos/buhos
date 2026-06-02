@@ -3,7 +3,7 @@ require 'spec_helper'
 describe 'User resources:' do
   before(:all) do
     RSpec.configure { |c| c.include RSpecMixin }
-    configure_empty_sqlite
+    configure_empty_database
   end
 
   context "when editing user data as admin, changing user role to guest" do

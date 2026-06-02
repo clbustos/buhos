@@ -3,7 +3,7 @@ require 'spec_helper'
 describe 'Tags:' do
   before(:all) do
     RSpec.configure { |c| c.include RSpecMixin }
-    configure_empty_sqlite
+    configure_empty_database
     SystematicReview.insert(:name=>'Test Review', :group_id=>1, :sr_administrator=>1)
     login_admin
 

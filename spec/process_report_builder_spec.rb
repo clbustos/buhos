@@ -3,7 +3,7 @@ require 'spec_helper'
 describe 'Process Report with resolutions' do
   before(:all) do
     RSpec.configure { |c| c.include RSpecMixin }
-    @temp=configure_empty_sqlite
+    @temp=configure_empty_database
     sr_for_report
     login_admin
   end
@@ -31,7 +31,7 @@ end
 describe 'Process Report without resolutions' do
   before(:all) do
     RSpec.configure { |c| c.include RSpecMixin }
-    @temp=configure_empty_sqlite
+    @temp=configure_empty_database
     sr_for_report
     $db[:resolutions].delete
     $db[:decisions].delete
@@ -58,7 +58,7 @@ end
 describe 'Process Report without searches' do
   before(:all) do
     RSpec.configure { |c| c.include RSpecMixin }
-    @temp=configure_empty_sqlite
+    @temp=configure_empty_database
     sr_for_report
     $db[:resolutions].delete
     $db[:decisions].delete

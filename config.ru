@@ -7,7 +7,7 @@ require 'rack/session/moneta'
 
 
 
-Dotenv.load("./.env") if File.exist? "./env" and ENV['RACK_ENV']!="test"
+#Dotenv.load("./.env") if File.exist? "./env" and ENV['RACK_ENV']!="test"
 
 session_key         = ENV['PRODUCTION_SESSION_KEY']        || 'bd813bbefa24b9e7b0342034ade918dbd15500a4356accc5c144fedfa8f50cc91c71d81b336b921fb6367ce050e27bc51ff5822d2f04785856a9c5cfe26e019a'
 session_domain      = ENV['PRODUCTION_SESSION_DOMAIN']     || 'localhost'

@@ -4,7 +4,7 @@ require_relative 'spec_helper'
 describe 'Buhos login' do
   before(:all) do
     RSpec.configure { |c| c.include RSpecMixin }
-    configure_empty_sqlite
+    configure_empty_database
     User[1].update(email:"admin@test.com")
   end
 

@@ -5,7 +5,7 @@ require 'spec_helper'
 describe 'Canonical Document' do
   before(:all) do
     RSpec.configure { |c| c.include RSpecMixin }
-    @temp=configure_empty_sqlite
+    @temp=configure_empty_database
     sr_references
     Search[1].update(:valid=>true)
     CanonicalDocument[1].update(:title=>'This is the title for CD1', :doi=>'10.14257/ijseia.2016.10.1.16')
@@ -109,7 +109,7 @@ end
 describe "Canonical Document without DOI" do
   before(:all) do
     RSpec.configure { |c| c.include RSpecMixin }
-    @temp=configure_empty_sqlite
+    @temp=configure_empty_database
 
     sr_references
     Search[1].update(:valid=>true)
@@ -134,7 +134,7 @@ end
 describe 'Canonical Document not available' do
   before(:all) do
     RSpec.configure { |c| c.include RSpecMixin }
-    @temp=configure_empty_sqlite
+    @temp=configure_empty_database
 
     sr_references
     Search[1].update(:valid=>true)

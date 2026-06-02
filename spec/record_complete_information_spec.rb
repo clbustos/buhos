@@ -3,7 +3,7 @@ require 'spec_helper'
 describe 'Record complete information' do
   before(:all) do
     RSpec.configure { |c| c.include RSpecMixin }
-    @temp=configure_empty_sqlite
+    @temp=configure_empty_database
     create_sr
     create_search(id:[1], systematic_review_id:1)
 

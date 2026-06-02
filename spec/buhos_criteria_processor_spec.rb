@@ -3,7 +3,7 @@ require 'spec_helper'
 describe 'Buhos::CriteriaProcessor' do
   before(:all) do
     RSpec.configure { |c| c.include RSpecMixin }
-    @temp=configure_empty_sqlite
+    @temp=configure_empty_database
     create_sr(n:1)
     CanonicalDocument.insert(id:1, year:2000, title:"cd 1")
     @sr=SystematicReview[1]

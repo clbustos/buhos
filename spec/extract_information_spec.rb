@@ -4,7 +4,7 @@ require_relative 'spec_helper'
 describe 'Buhos extraction of data' do
   before(:all) do
     RSpec.configure { |c| c.include RSpecMixin }
-    @temp=configure_empty_sqlite
+    @temp=configure_empty_database
     #AllocationCd.insert(:systematic_review_id=>1, :canonical_document_id=>1, :user_id=>1,
     #                    :stage=>"review_full_text")
 

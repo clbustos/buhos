@@ -3,7 +3,7 @@ require 'spec_helper'
 describe 'Decision on documents' do
   before(:all) do
     RSpec.configure { |c| c.include RSpecMixin }
-    @temp=configure_empty_sqlite
+    @temp=configure_empty_database
     sr_for_report
     CanonicalDocument.insert(:id=>2, :title=>"Documento 2", :year=>2020)
     login_admin

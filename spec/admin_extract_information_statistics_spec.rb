@@ -3,7 +3,7 @@ require 'spec_helper'
 describe 'Extract information administration statistics' do
   before(:all) do
     RSpec.configure { |c| c.include RSpecMixin }
-    @temp=configure_empty_sqlite
+    @temp=configure_empty_database
     sr_for_report
     CanonicalDocument.insert(:id=>2, :title=>"Title 2", :year=>2021)
     create_record(:id=>[2], :cd_id=>[2], :search_id=>[1])

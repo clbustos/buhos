@@ -3,7 +3,7 @@ require 'spec_helper'
 describe 'Tags on stage forms' do
   before(:all) do
     RSpec.configure { |c| c.include RSpecMixin }
-    @temp=configure_empty_sqlite
+    @temp=configure_empty_database
     create_stage_dataset
     login_admin
   end

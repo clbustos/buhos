@@ -3,7 +3,7 @@ require 'spec_helper'
 describe 'Favorite documents' do
   before(:all) do
     RSpec.configure { |c| c.include RSpecMixin }
-    @temp=configure_empty_sqlite
+    @temp=configure_empty_database
     sr_for_report
     AllocationCd.insert(:systematic_review_id=>1, :canonical_document_id=>1, :user_id=>1,
                         :stage=>"screening_title_abstract")

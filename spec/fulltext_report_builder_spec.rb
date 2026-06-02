@@ -3,7 +3,7 @@ require 'spec_helper'
 describe 'Fulltext Report' do
   before(:all) do
     RSpec.configure { |c| c.include RSpecMixin }
-    @temp=configure_empty_sqlite
+    @temp=configure_empty_database
     sr_for_report
     login_admin
   end

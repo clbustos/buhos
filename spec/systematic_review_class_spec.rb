@@ -4,7 +4,7 @@ require_relative 'spec_helper'
 describe 'SystematicReview class' do
   before(:all) do
     RSpec.configure { |c| c.include RSpecMixin }
-    configure_empty_sqlite
+    configure_empty_database
     login_admin
   end
   let(:rs_dataset) {SystematicReview.where(:name=>'Test Review')}

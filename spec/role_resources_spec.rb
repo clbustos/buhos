@@ -21,7 +21,7 @@ describe 'Roles resources:' do
 
   before(:all) do
     RSpec.configure { |c| c.include RSpecMixin }
-    @temp=configure_empty_sqlite
+    @temp=configure_empty_database
 
   end
   routes=["/admin/roles","/role/new", "/role/analyst", "/role/guest/edit"]

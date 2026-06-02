@@ -3,7 +3,7 @@ require 'spec_helper'
 describe 'Search Validator' do
   before(:all) do
     RSpec.configure { |c| c.include RSpecMixin }
-    @temp=configure_empty_sqlite
+    @temp=configure_empty_database
     create_sr(n:3)
 
     CanonicalDocument.insert(:id=>1,:title=>nil, :author=>nil, :abstract=>nil, :year=>0)

@@ -3,7 +3,7 @@ require_relative 'spec_helper'
 describe Buhos::Stages do
   before(:all) do
     RSpec.configure { |c| c.include RSpecMixin }
-    configure_empty_sqlite
+    configure_empty_database
     create_stage_dataset
 
     Resolution.where(systematic_review_id:1).delete

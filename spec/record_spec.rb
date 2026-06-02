@@ -3,7 +3,7 @@ require 'spec_helper'
 describe 'Record' do
   before(:all) do
     RSpec.configure { |c| c.include RSpecMixin }
-    @temp=configure_empty_sqlite
+    @temp=configure_empty_database
     sr_references
     login_admin
   end

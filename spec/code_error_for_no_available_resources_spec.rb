@@ -7,7 +7,7 @@ describe 'Error codes for no available resources' do
   before(:all) do
     RSpec.configure { |c| c.include RSpecMixin }
 
-    configure_empty_sqlite
+    configure_empty_database
   end
   before(:each) do
     post '/login', :user=>'admin', :password=>'admin'

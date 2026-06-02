@@ -13,7 +13,7 @@ describe 'PdfFileProcessor' do
     app_helper=Class.new {extend Buhos::Helpers}
     @dir_files=app_helper.dir_files
     RSpec.configure { |c| c.include RSpecMixin }
-    @temp=configure_empty_sqlite
+    @temp=configure_empty_database
     SystematicReview.insert(:id=>1,:name=>'Test Review', :group_id=>1, :sr_administrator=>1)
     Search.insert(id:1,systematic_review_id:1, bibliographic_database_id:1,search_type:'uploaded_files')
 

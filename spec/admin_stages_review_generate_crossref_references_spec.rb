@@ -4,7 +4,7 @@ require 'spec_helper'
 describe 'Generate crossref references on admin stage' do
   before(:all) do
     RSpec.configure { |c| c.include RSpecMixin }
-    @temp=configure_empty_sqlite
+    @temp=configure_empty_database
     sr_for_report
     info={:doi=>"10.14257/ijseia.2016.10.1.16"}
     CanonicalDocument[1].update(info)

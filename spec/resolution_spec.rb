@@ -3,7 +3,7 @@ require 'spec_helper'
 describe 'Resolution on document' do
   before(:all) do
     RSpec.configure { |c| c.include RSpecMixin }
-    @temp=configure_empty_sqlite
+    @temp=configure_empty_database
     login_admin
     sr_for_report
     CanonicalDocument.insert(:id=>2, :title=>"Documento 2", :year=>2020)

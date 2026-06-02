@@ -3,7 +3,7 @@ require 'spec_helper'
 describe 'Create a new systematic review using the web interface' do
   before(:all) do
     RSpec.configure { |c| c.include RSpecMixin }
-    @temp=configure_empty_sqlite
+    @temp=configure_empty_database
     User.insert(:id=>10, :login=>"user_without_group",
                 :password=>Digest::SHA1.hexdigest("user_without_group"),
                 :role_id=>"administrator",:active => 1)

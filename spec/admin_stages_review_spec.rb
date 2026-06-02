@@ -6,7 +6,7 @@ require 'tempfile'
 describe 'Stage administration with complete data' do
   before(:all) do
     RSpec.configure { |c| c.include RSpecMixin }
-    @temp=configure_empty_sqlite
+    @temp=configure_empty_database
     sr_for_report
     CanonicalDocument.insert(:id=>2, :title=>"Documento 2", :year=>2020)
     CanonicalDocument.insert(:id=>3, :title=>"Documento 3", :year=>2020)

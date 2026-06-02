@@ -11,7 +11,7 @@ end
 describe 'Files:' do
   before(:all) do
     RSpec.configure { |c| c.include RSpecMixin }
-    @temp=configure_empty_sqlite
+    @temp=configure_empty_database
     SystematicReview.insert(:id=>1,:name=>'Test Review', :group_id=>1, :sr_administrator=>1)
     CanonicalDocument.insert(id:1, :title=>'Canonical Document 1', year:2018)
     login_admin

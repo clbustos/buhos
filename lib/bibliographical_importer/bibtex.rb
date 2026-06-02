@@ -28,6 +28,7 @@
 # encoding: utf-8
 
 require 'bibtex'
+require 'digest'
 
 #
 module BibliographicalImporter
@@ -73,13 +74,23 @@ module BibliographicalImporter
 
       def initialize(bibtex_value)
         @bv=bibtex_value
+        @uid=default_uid
         @references_wos=[]
         @references_scopus=[]
         parse_common
         parse_specific
+        use_default_uid_if_needed
         check_title
         check_journal
         check_year
+      end
+
+      def default_uid
+        Digest::SHA256.hexdigest(@bv.to_s)
+      end
+
+      def use_default_uid_if_needed
+        @uid=default_uid if @uid.to_s==""
       end
 
       def parse_common
@@ -197,8 +208,8 @@ module BibliographicalImporter
       end
 
       def parse_specific
-        results=/(pid=[^&]+)/.match(@bv[:url])
-        @uid=results[0]
+        results_uid=/(pid=[^&]+)/.match(@bv[:url])
+        @uid=results_uid[0] if results_uid
         @scielo_id=@uid
       end
 
@@ -210,8 +221,18 @@ module BibliographicalImporter
     class Record_Ebscohost < Record
       def parse_specific
         @keywords=@bv[:keywords].nil? ? [] : @bv[:keywords].split(", ")
-        results=/((?:db|id)=.+)/.match(@bv[:url])
-        @uid=results[0]
+        url=@bv['url'].to_s
+
+        results_uid=/((?:db|id)=.+)/.match(url)
+        if url.include?("plink/")
+          # new format
+          matchs = /plink\/(.+)/.match(url)
+          @uid = matchs[1] if matchs
+        elsif results_uid
+          # New format: /publications/<numeric_id>
+          @uid = results_uid[0]
+        end
+
         @ebscohost_id=@uid
       end
 
@@ -350,4 +371,3 @@ module BibliographicalImporter
 
   end
 end
-

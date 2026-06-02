@@ -4,7 +4,7 @@ require 'mail'
 describe 'Buhos recover password' do
   before(:all) do
     RSpec.configure { |c| c.include RSpecMixin }
-    configure_empty_sqlite
+    configure_empty_database
     User[login:'admin'].update(email:"test@test.com",
                                token_password:nil,
                                token_datetime:nil)

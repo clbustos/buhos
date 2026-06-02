@@ -3,7 +3,7 @@ require 'spec_helper'
 describe 'Record crossref Processor' do
   before(:all) do
     RSpec.configure { |c| c.include RSpecMixin }
-    @temp=configure_empty_sqlite
+    @temp=configure_empty_database
     sr_for_report
     Record[1].update(:uid=>"eid=2-s2.0-85032230905", :doi=>"10.1902/jop.2017.170238")
   end
