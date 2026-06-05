@@ -44,6 +44,20 @@ describe 'Buhos extraction of data' do
     it {expect(response_request.body).to include "[RevMan]"}
   end
 
+  context 'when admin request extraction review page' do
+    before(:each) do
+      post '/login', :user=>'admin', :password=>'admin'
+      get '/review/1/extract_information'
+    end
+
+    it "should show the information summary at the beginning" do
+      expect(last_response).to be_ok
+      expect(last_response.body).to include "Articles with information"
+      expect(last_response.body).to include "1 / 1"
+      expect(last_response.body).to include "Articles pending information upload"
+    end
+  end
+
   context 'when enter information on form' do
     before(:each) do
       post '/login', :user=>'admin', :password=>'admin'

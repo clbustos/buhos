@@ -128,6 +128,8 @@ es:
   Cant_mark_as_read: "No puedo marcar como leído"
   Cd_extract_information: "Extraer información de: %{cd_title}"
   extract_information:
+    count_documents_pending_information: "Artículos pendientes de subir información"
+    count_documents_with_information: "Artículos con información"
     objective: "Extraiga información y evalúe la calidad de los documentos aceptados en la revisión de texto completo."
   Change: "Cambiar"
   Change_password: "Cambiar password"
@@ -1035,6 +1037,7 @@ es:
     count_canonical_document_without_assignation: "Número de documentos canónicos no asignados"
     count_canonical_document_assigned: "Número de documentos canónicos asignados"
     count_canonical_document_without_decision: "Número de documentos canónicos sin decisión"
+    count_canonical_document_pending_information: "Número de artículos pendientes de subir información"
     count_canonical_document_without_resolution: "Número de documentos canónicos sin resolución"
     count_search_not_ready: "Número de búsquedas validadas"
     count_records_not_ready: "Número de registros válidos"

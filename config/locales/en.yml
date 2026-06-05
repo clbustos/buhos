@@ -129,6 +129,8 @@ en:
   Cant_mark_as_read: "Cannot mark as read"
   Cd_extract_information: "Extract information from: %{cd_title}"
   extract_information:
+    count_documents_pending_information: "Articles pending information upload"
+    count_documents_with_information: "Articles with information"
     objective: "Extract information and assess quality for documents accepted in the full-text review."
   Change: "Change"
   Change_password: "Change password"
@@ -1016,6 +1018,7 @@ en:
     count_canonical_document_without_assignation: "Number of unassigned canonical documents"
     count_canonical_document_assigned: "Number of allocated canonical documents"
     count_canonical_document_without_decision: "Number of undecided canonical documents"
+    count_canonical_document_pending_information: "Number of articles pending information upload"
     count_canonical_document_without_resolution: "Number of unresolved canonical documents"
     count_search_not_ready: "Number of validated searches"
     count_records_not_ready: "Number of valid records"

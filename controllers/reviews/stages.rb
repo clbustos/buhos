@@ -173,6 +173,7 @@ get '/review/:id/extract_information' do |id|
   @order_criteria={:n_references_rtr=>I18n.t(:RTA_references), :title=>I18n.t(:Title), :year=> I18n.t(:Year), :author=>I18n.t(:Author)}
 
   @ars=AnalysisSystematicReview.new(@review)
+  @extract_information_stats=Analysis_SR_Stage.new(@review, @stage).extract_information_stats
   @cd_total_ds=@review.canonical_documents
   @url="/review/#{id}/#{@stage}"
 

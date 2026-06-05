@@ -20,6 +20,9 @@
 
 %h3=t(:Review_status)
 %p=t_desc_value(:Count_total_documents_to_review, sprintf("%d", @cds_total))
+- if @extract_information_stats
+  %p=t_desc_value("extract_information.count_documents_with_information", "#{@extract_information_stats[:documents_with_information]} / #{@extract_information_stats[:total_documents]}")
+  %p=t_desc_value("extract_information.count_documents_pending_information", @extract_information_stats[:documents_pending_information])
 
 %form.form-inline{:action=>url(@url), :method=>:get,:class=>"form-check", :enctype=>"multipart/form-data"}
   %input{:type=>:hidden,:name=>:page, :value=>@pager.page}

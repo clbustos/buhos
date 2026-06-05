@@ -113,6 +113,8 @@ pl:
   Category: "Kategoria"
   Cd_extract_information: "Ekstrahuj informacje z: %{cd_title}"
   extract_information:
+    count_documents_pending_information: "Artykuly oczekujace na przeslanie informacji"
+    count_documents_with_information: "Artykuly z informacjami"
     objective: "Extract information and assess quality for documents accepted in the full-text review."
   Change: "Zmień"
   Change_password: "Zmień hasło"
@@ -1029,6 +1031,7 @@ pl:
     count_canonical_document_without_assignation: "Liczba nieprzydzielonych dokumentów wzorcowych"
     count_canonical_document_assigned: "Liczba przydzielonych dokumentów wzorcowych"
     count_canonical_document_without_decision: "Liczba dokumentów wzorcowych oczekujących na decyzję"
+    count_canonical_document_pending_information: "Liczba artykulow oczekujacych na przeslanie informacji"
     count_canonical_document_without_resolution: "Liczba dokumentów wzorcowych oczekujących na rozstrzygnięcie"
     count_search_not_ready: "Liczba poprawnych wyszukiwań"
     count_records_not_ready: "Liczba poprawnych rekordów"

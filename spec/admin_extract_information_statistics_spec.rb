@@ -40,6 +40,24 @@ describe 'Extract information administration statistics' do
     end
   end
 
+  context "when checking dashboard pending extraction information" do
+    before(:each) do
+      @file_extraction_information_rows=FileExtractionInformation.all.map(&:values)
+      FileExtractionInformation.dataset.delete
+      get '/review/1/dashboard'
+    end
+
+    after(:each) do
+      @file_extraction_information_rows.each {|row| FileExtractionInformation.insert(row)}
+    end
+
+    it "should show pending articles without extraction information" do
+      expect(last_response).to be_ok
+      expect(last_response.body).to include('Number of articles pending information upload')
+      expect(last_response.body).to include('1')
+    end
+  end
+
   context "when all assigned extractions have information and quality" do
     before(:context) do
       CdQualityCriterion.insert(:systematic_review_id=>1, :canonical_document_id=>2,

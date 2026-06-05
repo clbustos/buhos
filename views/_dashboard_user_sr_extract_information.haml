@@ -1,5 +1,6 @@
 - n_cd_assigned = adu.cd_ids.count
 - total_canonical_documents_stage=sr.cd_id_by_stage(stage).count
+- extract_information_stats=Analysis_SR_Stage.new(sr, stage).extract_information_stats
 - if is_administrator
   - asr_stage=Analysis_SR_Stage.new(sr, stage)
   - cd_without_allocations_count=asr_stage.cd_without_allocations_count
@@ -22,6 +23,8 @@
   a_tag("/review/#{sr[:id]}/#{stage}",
   t("user_dashboard.check_n_assigned_canonical_documents",
   count: n_cd_assigned) ) )
+%p=t_desc_value("user_dashboard.count_canonical_document_pending_information",
+  extract_information_stats[:documents_pending_information])
 
 .btn-group.btn-group-sm
   -if is_administrator

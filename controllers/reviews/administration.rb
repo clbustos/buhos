@@ -64,114 +64,11 @@ get '/review/:id/administration/:stage' do |id,stage|
   if %w{screening_title_abstract screening_references review_full_text}.include? stage
     haml "systematic_reviews/administration_reviews".to_sym, escape_html: false
   elsif stage==Buhos::Stages::STAGE_REVIEW_EXTRACT_INFORMATION.to_s
-    @extract_information_stats=extract_information_administration_stats(@review, @cds_id, @cd_without_allocation)
+    @extract_information_stats=Analysis_SR_Stage.new(@review, stage).extract_information_stats
     haml "systematic_reviews/administration_extract_information".to_sym, escape_html: false
   else
     haml "systematic_reviews/administration_#{stage}".to_sym, escape_html: false
   end
-end
-
-def extract_information_administration_stats(review, cds_id, cd_without_allocation)
-  stage=Buhos::Stages::STAGE_REVIEW_EXTRACT_INFORMATION.to_s
-  cds_id=cds_id.map(&:to_i)
-  fields=review.fields.map {|field| field[:name].to_sym}
-  quality_criteria_ids=SrQualityCriterion.where(:systematic_review_id=>review[:id]).map(:quality_criterion_id)
-  quality_active=quality_criteria_ids.any?
-
-  form_information_by_pair={}
-  if $db.table_exists?(review.analysis_cd_tn.to_sym)
-    review.analysis_cd.where(:canonical_document_id=>cds_id).each do |row|
-      has_form_information=fields.any? do |field|
-        value=row[field]
-        !value.nil? && value.to_s.strip!=''
-      end
-      form_information_by_pair[[row[:canonical_document_id].to_i, row[:user_id].to_i]]=true if has_form_information
-    end
-  end
-
-  file_information_by_pair={}
-  if defined?(FileExtractionInformation)
-    FileExtractionInformation.where(:systematic_review_id=>review[:id], :canonical_document_id=>cds_id).each do |file_information|
-      file_information_by_pair[[file_information[:canonical_document_id].to_i, file_information[:user_id].to_i]]=true
-    end
-  end
-
-  quality_by_pair={}
-  if quality_active
-    CdQualityCriterion.
-      where(:systematic_review_id=>review[:id], :canonical_document_id=>cds_id, :quality_criterion_id=>quality_criteria_ids).
-      group_and_count(:canonical_document_id, :user_id).
-      each do |row|
-        quality_by_pair[[row[:canonical_document_id].to_i, row[:user_id].to_i]]=row[:count].to_i
-      end
-  end
-
-  users=Array(review.group_users)
-  users_by_id=users.each_with_object({}) {|user, memo| memo[user[:id].to_i]=user}
-  assigned_pairs=AllocationCd.where(:systematic_review_id=>review[:id], :stage=>stage, :canonical_document_id=>cds_id).all
-
-  user_statuses=users.each_with_object({}) do |user, memo|
-    memo[user[:id].to_i]={user_id:user[:id].to_i, user:user, assigned_count:0, information_count:0, quality_count:0, complete_count:0}
-  end
-
-  assigned_statuses=assigned_pairs.map do |allocation|
-    cd_id=allocation[:canonical_document_id].to_i
-    user_id=allocation[:user_id].to_i
-    pair=[cd_id, user_id]
-    has_information=form_information_by_pair[pair] || file_information_by_pair[pair]
-    quality_count=quality_by_pair[pair].to_i
-    has_quality=!quality_active || quality_count>=quality_criteria_ids.length
-    complete=has_information && has_quality
-
-    user_statuses[user_id]||={user_id:user_id, user:users_by_id[user_id] || User[user_id], assigned_count:0, information_count:0, quality_count:0, complete_count:0}
-    user_statuses[user_id][:assigned_count]+=1
-    user_statuses[user_id][:information_count]+=1 if has_information
-    user_statuses[user_id][:quality_count]+=1 if quality_active && has_quality
-    user_statuses[user_id][:complete_count]+=1 if complete
-
-    {
-      canonical_document_id:cd_id,
-      user_id:user_id,
-      has_information:has_information,
-      has_quality:has_quality,
-      complete:complete
-    }
-  end
-
-  document_statuses=cds_id.map do |cd_id|
-    form_users=form_information_by_pair.keys.find_all {|pair| pair[0]==cd_id}.map {|pair| pair[1]}
-    file_users=file_information_by_pair.keys.find_all {|pair| pair[0]==cd_id}.map {|pair| pair[1]}
-    quality_users=quality_by_pair.find_all {|pair, count| pair[0]==cd_id && count.to_i>=quality_criteria_ids.length}.map {|pair, _count| pair[1]}
-    has_information=(form_users | file_users).any?
-    has_quality=!quality_active || quality_users.any?
-    {
-      canonical_document_id:cd_id,
-      has_form_information:form_users.any?,
-      has_file_information:file_users.any?,
-      has_information:has_information,
-      has_quality:has_quality,
-      complete:has_information && has_quality,
-      assigned_count:assigned_pairs.count {|allocation| allocation[:canonical_document_id].to_i==cd_id}
-    }
-  end
-
-  documents_complete=document_statuses.all? {|status| status[:complete]}
-  assigned_complete=assigned_statuses.all? {|status| status[:complete]}
-  stage_complete=cds_id.any? && cd_without_allocation.empty? && documents_complete && assigned_complete
-
-  {
-    quality_active:quality_active,
-    quality_criteria_count:quality_criteria_ids.length,
-    total_documents:cds_id.length,
-    documents_with_information:document_statuses.count {|status| status[:has_information]},
-    documents_with_quality:document_statuses.count {|status| status[:has_quality]},
-    complete_documents:document_statuses.count {|status| status[:complete]},
-    assigned_total:assigned_statuses.length,
-    assigned_complete:assigned_statuses.count {|status| status[:complete]},
-    stage_complete:stage_complete,
-    user_statuses:user_statuses.values,
-    document_statuses:document_statuses
-  }
 end
 
 
