@@ -115,7 +115,7 @@ $dark_danger_bg: #f1dddd;
 
 }
 
-:root[color-mode="dark"] input:not(.form-control),
+:root[color-mode="dark"] input:not(.form-control):not(.btn),
 :root[color-mode="dark"] textarea:not(.form-control) {
   color: $light_element1;
 }

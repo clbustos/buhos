@@ -47,7 +47,7 @@ Released for free under a Creative Commons Attribution 2.5 License
   --danger:#a94442;
   --danger_bg:#f1dddd; }
 
-[color-mode="dark"]:root input:not(.form-control),
+[color-mode="dark"]:root input:not(.form-control):not(.btn),
 [color-mode="dark"]:root textarea:not(.form-control) {
   color: #111111; }
 
