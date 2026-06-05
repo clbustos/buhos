@@ -123,7 +123,7 @@ class Analysis_SR_Stage
     end
 
     user_statuses=users.each_with_object({}) do |user, memo|
-      memo[user[:id].to_i]={user_id:user[:id].to_i, user:user, assigned_count:0, information_count:0, quality_count:0, complete_count:0}
+      memo[user[:id].to_i]={user_id:user[:id].to_i, user:user, assigned_count:0, information_count:0, pending_information_count:0, quality_count:0, complete_count:0}
     end
 
     assigned_statuses=assigned_pairs.map do |allocation|
@@ -135,7 +135,7 @@ class Analysis_SR_Stage
       has_quality=!quality_active || quality_count>=quality_criteria_ids.length
       complete=has_information && has_quality
 
-      user_statuses[user_id]||={user_id:user_id, user:users_by_id[user_id] || User[user_id], assigned_count:0, information_count:0, quality_count:0, complete_count:0}
+      user_statuses[user_id]||={user_id:user_id, user:users_by_id[user_id] || User[user_id], assigned_count:0, information_count:0, pending_information_count:0, quality_count:0, complete_count:0}
       user_statuses[user_id][:assigned_count]+=1
       user_statuses[user_id][:information_count]+=1 if has_information
       user_statuses[user_id][:quality_count]+=1 if quality_active && has_quality
@@ -171,6 +171,9 @@ class Analysis_SR_Stage
     assigned_complete=assigned_statuses.all? {|status| status[:complete]}
     stage_complete=cds_id.any? && cd_without_allocations_id.empty? && documents_complete && assigned_complete
     documents_with_information=document_statuses.count {|status| status[:has_information]}
+    user_statuses.each_value do |status|
+      status[:pending_information_count]=status[:assigned_count]-status[:information_count]
+    end
 
     {
       quality_active:quality_active,

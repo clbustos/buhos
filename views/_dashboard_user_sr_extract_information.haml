@@ -1,6 +1,8 @@
 - n_cd_assigned = adu.cd_ids.count
 - total_canonical_documents_stage=sr.cd_id_by_stage(stage).count
 - extract_information_stats=Analysis_SR_Stage.new(sr, stage).extract_information_stats
+- user_extract_information_status=extract_information_stats[:user_statuses].find {|status| status[:user_id]==user[:id]}
+- pending_information_count=is_administrator ? extract_information_stats[:documents_pending_information] : (user_extract_information_status ? user_extract_information_status[:pending_information_count] : 0)
 - if is_administrator
   - asr_stage=Analysis_SR_Stage.new(sr, stage)
   - cd_without_allocations_count=asr_stage.cd_without_allocations_count
@@ -24,7 +26,7 @@
   t("user_dashboard.check_n_assigned_canonical_documents",
   count: n_cd_assigned) ) )
 %p=t_desc_value("user_dashboard.count_canonical_document_pending_information",
-  extract_information_stats[:documents_pending_information])
+  pending_information_count)
 
 .btn-group.btn-group-sm
   -if is_administrator
