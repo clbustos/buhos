@@ -77,6 +77,21 @@ describe 'Stage administration with complete data' do
     tempfile
   end
 
+  def xlsx_rows(response_body)
+    tempfile=Tempfile.new(['assignations_export', '.xlsx'])
+    tempfile.binmode
+    tempfile.write(response_body)
+    tempfile.close
+
+    require 'simple_xlsx_reader'
+    SimpleXlsxReader.configuration.auto_slurp = true
+    doc=SimpleXlsxReader.open(tempfile.path)
+    sheet=doc.sheets.first
+    rows=sheet.data.map {|row| sheet.headers.zip(row).to_h}
+    tempfile.unlink
+    rows
+  end
+
 
   context "when viewing the stage administration index" do
     before(:context) do
@@ -286,10 +301,27 @@ describe 'Stage administration with complete data' do
   end
 
   context "when cd assignations are exported to excel" do
-    ['save', 'save_only_not_allocated', 'save_only_not_resolved'].each do |mode|
+    before(:context) do
+      [
+        {id: 6, title: 'Documento sin asignacion'},
+        {id: 7, title: 'Documento asignado sin resolucion'},
+        {id: 8, title: 'Documento resuelto'}
+      ].each do |cd|
+        CanonicalDocument.insert(:id=>cd[:id], :title=>cd[:title], :year=>2022) unless CanonicalDocument[cd[:id]]
+      end
+      create_record(id:[6, 7, 8], cd_id:[6, 7, 8], search_id:[[1], [1], [1]])
+      AllocationCd.insert(:systematic_review_id=>1, :canonical_document_id=>7,
+                          :user_id=>1, :stage=>'screening_title_abstract')
+      Resolution.insert(:systematic_review_id=>1, :canonical_document_id=>8,
+                        :user_id=>1, :stage=>'screening_title_abstract',
+                        :resolution=>'yes', :commentary=>'Resolved')
+    end
+
+    ['save', 'save_only_not_allocated', 'save_only_not_resolved', 'save_only_allocated_but_not_resolved'].each do |mode|
       context "with #{mode} mode" do
         before(:context) do
           get "/review/1/administration/screening_title_abstract/cd_assignations_excel/#{mode}"
+          @rows=xlsx_rows(last_response.body)
         end
 
         it "should response be ok" do expect(last_response).to be_ok end
@@ -300,6 +332,33 @@ describe 'Stage administration with complete data' do
           expect(last_response.header['Content-Disposition']).to include('cd_assignation_1_screening_title_abstract.xlsx')
         end
       end
+    end
+
+    it "should include all stage canonical documents with save mode" do
+      get "/review/1/administration/screening_title_abstract/cd_assignations_excel/save"
+      exported_ids=xlsx_rows(last_response.body).map {|row| row['id'].to_i}
+      expect(exported_ids).to include(6, 7, 8)
+    end
+
+    it "should include only canonical documents without assignations with save_only_not_allocated mode" do
+      get "/review/1/administration/screening_title_abstract/cd_assignations_excel/save_only_not_allocated"
+      exported_ids=xlsx_rows(last_response.body).map {|row| row['id'].to_i}
+      expect(exported_ids).to include(6, 8)
+      expect(exported_ids).not_to include(7)
+    end
+
+    it "should include only canonical documents without resolutions with save_only_not_resolved mode" do
+      get "/review/1/administration/screening_title_abstract/cd_assignations_excel/save_only_not_resolved"
+      exported_ids=xlsx_rows(last_response.body).map {|row| row['id'].to_i}
+      expect(exported_ids).to include(6, 7)
+      expect(exported_ids).not_to include(8)
+    end
+
+    it "should include only assigned canonical documents without resolutions with save_only_allocated_but_not_resolved mode" do
+      get "/review/1/administration/screening_title_abstract/cd_assignations_excel/save_only_allocated_but_not_resolved"
+      exported_ids=xlsx_rows(last_response.body).map {|row| row['id'].to_i}
+      expect(exported_ids).to include(7)
+      expect(exported_ids).not_to include(6, 8)
     end
   end
 
