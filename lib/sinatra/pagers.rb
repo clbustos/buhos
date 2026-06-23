@@ -117,7 +117,7 @@ module Sinatra
       # 'order'
       def adapt_cds(cds_pre)
         pcqa=PagerCdQueryAdapter.new(self, cds_pre)
-        @max_page=(pcqa.cds_out.count/self.cpp.to_f).ceil
+        self.max_page=(pcqa.cds_out.count/self.cpp.to_f).ceil
         adjust_page_order(pcqa.cds_out)
       end
       # Adapt the cds_pre dataset, using decisions made by a user
@@ -125,7 +125,7 @@ module Sinatra
       # @param cds_pre [Sequel::Dataset]
       def adapt_ads_cds(ads, cds_pre, no_query:false)
         paqa=PagerAdsQueryAdapter.new(self, ads, cds_pre, no_query: no_query)
-        @max_page=(paqa.cds_out.count/self.cpp.to_f).ceil
+        self.max_page=(paqa.cds_out.count/self.cpp.to_f).ceil
         adjust_page_order(paqa.cds_out)
       end
 

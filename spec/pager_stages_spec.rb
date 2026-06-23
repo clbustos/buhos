@@ -29,6 +29,13 @@ describe 'Pager on evaluation of papers' do
       expect(last_response.body).to match(/<p.+id='count_search'.+3<\/p>/)
     end
 
+    it "returns to the first page when the requested page no longer has matching documents" do
+      get "/review/1/screening_title_abstract?decision=#{Decision::NO_DECISION}&cpp=2&page=2"
+      expect(last_response.body).to include('A Tool to Help Large SLURP reviews')
+      expect(last_response.body).to include('Pager document 5')
+      expect(last_response.body).not_to include(I18n.t(:No_document_for_this_criteria))
+    end
+
   end
 
   context 'when screening title abstract using query' do
@@ -84,6 +91,13 @@ describe 'Pager on evaluation of papers' do
       expect(last_response.body).to match(/<p.+id='count_search'.+1<\/p>/)
     end
 
+    it "returns to the first page when the requested page no longer has matching documents" do
+      get "/review/1/screening_references?decision=#{Decision::NO_DECISION}&cpp=2&page=2"
+      expect(last_response.body).to include('Pager document 7')
+      expect(last_response.body).to include('Pager document 8')
+      expect(last_response.body).not_to include(I18n.t(:No_document_for_this_criteria))
+    end
+
   end
 
   context 'when reviewing full text' do
@@ -113,6 +127,11 @@ describe 'Pager on evaluation of papers' do
       get '/review/1/review_full_text'
       expect(last_response.body).to include('/decision/review/1/user/1/canonical_document/1/stage/review_full_text/commentary')
       expect(last_response.body).to include('commentary-cd')
+    end
+    it "returns to the first page when the requested page no longer has matching documents" do
+      get "/review/1/review_full_text?decision=#{Decision::NO_DECISION}&cpp=1&page=2"
+      expect(last_response.body).to include('Pager document 7')
+      expect(last_response.body).not_to include(I18n.t(:No_document_for_this_criteria))
     end
   end
 
