@@ -61,7 +61,7 @@
   .list-group
     - @cds.each do |cd|
       %div{:id=>"decision-cd-#{cd[:id]}"}
-        =partial(:decision, :locals=>{ review: @review, cd: cd, decisions: @decisions, ars: @ars, user_id: @user_id, stage: @stage})
+        =partial(:decision, :locals=>{ review: @review, cd: cd, decisions: @decisions, ars: @ars, user_id: @user_id, stage: @stage, blind_reference_screening: @blind_reference_screening})
     = partial(:pager,:locals=>{url: @url, pager:@pager})
 - else
   .alert.alert-warning=t(:No_document_for_this_criteria)

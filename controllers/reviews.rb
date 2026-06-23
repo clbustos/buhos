@@ -48,7 +48,8 @@ get '/review/new' do
                                      date_creation:     Date.today,
                                      year_start:        @current_year,
                                      year_end:          @current_year,
-                                     show_other_users_tags: true
+                                     show_other_users_tags: true,
+                                     blind_reference_screening: false
                                      )
   @taxonomy_categories_id=[]
 

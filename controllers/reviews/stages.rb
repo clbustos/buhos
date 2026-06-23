@@ -21,7 +21,9 @@ get '/review/:id/screening_title_abstract' do |id|
 
   @pager=get_pager([:decision])
   @pager.order||="year__asc"
-  @order_criteria={:title=>I18n.t(:Title), :year=> I18n.t(:Year), :author=>I18n.t(:Author)}
+  @blind_reference_screening=@review.blind_reference_screening?
+  @pager.order="title__asc" if @blind_reference_screening && @pager.order !~ /^title__/
+  @order_criteria=@blind_reference_screening ? {:title=>I18n.t(:Title)} : {:title=>I18n.t(:Title), :year=> I18n.t(:Year), :author=>I18n.t(:Author)}
 
   # $log.info(params)
 

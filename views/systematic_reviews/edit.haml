@@ -113,6 +113,15 @@
           %label.radio-inline
             %input{:type=>"radio", :name=>"show_other_users_tags", :value=>0, :checked=>!@review.show_other_users_tags?}
             =t(:Show_only_own_tags)
+        .form-group
+          %label=t(:Reference_blinding)
+          =tooltip(t(:Reference_blinding_tip))
+          %label.radio-inline
+            %input{:type=>"radio", :name=>"blind_reference_screening", :value=>1, :checked=>@review.blind_reference_screening?}
+            =t(:Yes)
+          %label.radio-inline
+            %input{:type=>"radio", :name=>"blind_reference_screening", :value=>0, :checked=>!@review.blind_reference_screening?}
+            =t(:No)
 
         %div{:class=>"form-group"}
           %label{:for=>"stage"}=t(:Stage)

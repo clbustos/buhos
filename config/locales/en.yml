@@ -908,6 +908,8 @@ en:
   Systematic_review_tag_visibility_tip: "Controls whether reviewers can see tags and tag votes added by other users while coding documents."
   Show_other_users_tags: "Show all users' tags"
   Show_only_own_tags: "Show only own tags"
+  Reference_blinding: "Reference blinding"
+  Reference_blinding_tip: "When enabled, title and abstract screening shows the article title and abstract, and hides APA references and citations."
   systematic_review_page:
     documents_by_decision: "Documents by decision"
     massive_reassignation_from_to: "Massive reassignation from user %{from} to user %{to}"

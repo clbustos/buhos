@@ -21,7 +21,8 @@ get '/decision/review/:review_id/user/:user_id/canonical_document/:cd_id/stage/:
   if !review or !cd or !usuario
     return [500, "No existe alguno de los componentes"]
   end
-  return partial(:decision, :locals => {review: review, cd: cd, decisions: decisions, ars: ars, user_id: user_id, stage: stage})
+  blind_reference_screening=stage == 'screening_title_abstract' && review.blind_reference_screening?
+  return partial(:decision, :locals => {review: review, cd: cd, decisions: decisions, ars: ars, user_id: user_id, stage: stage, blind_reference_screening: blind_reference_screening})
 end
 
 # Put a commentary for a specific document on analysis
@@ -70,8 +71,9 @@ post '/decision/review/:review_id/user/:user_id/canonical_document/:cd_id/stage/
   decisions=Decision.where(:user_id => user_id, :systematic_review_id => review_id,
                             :stage => stage).as_hash(:canonical_document_id)
 
+  blind_reference_screening=stage == 'screening_title_abstract' && review.blind_reference_screening?
 
-  return partial(:decision, :locals => {review: review, cd: cd, decisions: decisions, ars: ars, user_id: user_id, stage: stage, ajax: true, only_buttons:only_buttons, compact:compact})
+  return partial(:decision, :locals => {review: review, cd: cd, decisions: decisions, ars: ars, user_id: user_id, stage: stage, ajax: true, only_buttons:only_buttons, compact:compact, blind_reference_screening: blind_reference_screening})
 
 
 end

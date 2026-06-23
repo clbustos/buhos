@@ -912,6 +912,8 @@ es:
   Systematic_review_tag_visibility_tip: "Controla si los revisores pueden ver etiquetas y votos de etiquetas agregados por otros usuarios durante la codificación de documentos."
   Show_other_users_tags: "Ver etiquetas de todos los usuarios"
   Show_only_own_tags: "Ver solo etiquetas propias"
+  Reference_blinding: "Cegamiento de referencia"
+  Reference_blinding_tip: "Si está activado, el tamizaje por título y resumen muestra el título y resumen del artículo, y oculta la referencia APA y citaciones."
   systematic_review_page:
     documents_by_decision: "Documentos por decision"
     massive_reassignation_from_to: "Reasignación masiva de usuario %{from} a usuario %{to}"

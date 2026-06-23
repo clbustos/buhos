@@ -92,6 +92,11 @@ AND  #{cd_query} GROUP BY tags.id) as t LEFT JOIN tag_in_classes tecl ON t.id=te
     value.nil? || value == true || value == 1 || value.to_s == '1'
   end
 
+  def blind_reference_screening?
+    value=self[:blind_reference_screening]
+    value == true || value == 1 || value.to_s == '1'
+  end
+
   def self.get_reviews_by_user(us_id)
     ids=$db["SELECT r.id FROM systematic_reviews r INNER JOIN groups_users gu on r.group_id=gu.group_id WHERE gu.user_id='#{us_id}'"].map{|v|v[:id]}
     SystematicReview.where(:id=>ids)

@@ -15,6 +15,7 @@ describe 'Pager on evaluation of papers' do
   end
   before(:each) do
     post '/login' , :user=>'admin', :password=>'admin'
+    SystematicReview[1].update(:blind_reference_screening=>false)
   end
 
   context 'when screening title abstract' do
@@ -37,6 +38,39 @@ describe 'Pager on evaluation of papers' do
       expect(last_response.body).to include("A Tool to Help Large")
     end
 
+  end
+
+  context 'when screening title abstract with reference blinding' do
+    before(:each) do
+      SystematicReview[1].update(:blind_reference_screening=>true)
+      CanonicalDocument[1].update(:author=>'Hidden Author', :abstract=>'Hidden abstract')
+    end
+
+    it "shows the article title and abstract in the document metadata" do
+      get '/review/1/screening_title_abstract'
+      expect(last_response.body).to include('Pager document 1')
+      expect(last_response.body).to include('Hidden abstract')
+      expect(last_response.body).to include(I18n.t(:Abstract))
+      expect(last_response.body).not_to include('Hidden Author')
+      expect(last_response.body).not_to include(I18n.t(:APA_references))
+      expect(last_response.body).not_to include(I18n.t(:Citations))
+    end
+
+    it "only offers title ordering" do
+      get '/review/1/screening_title_abstract?order=year__desc'
+      expect(last_response.body).to include('order=title__desc')
+      expect(last_response.body).not_to include('order=year__')
+      expect(last_response.body).not_to include('order=author__')
+    end
+
+    it "keeps the same blinding after an ajax decision update" do
+      post '/decision/review/1/user/1/canonical_document/1/stage/screening_title_abstract/decision',
+           decision:'no', user_id:1
+      expect(last_response.body).to include('Pager document 1')
+      expect(last_response.body).to include('Hidden abstract')
+      expect(last_response.body).not_to include('Hidden Author')
+      expect(last_response.body).not_to include(I18n.t(:APA_references))
+    end
   end
 
   context 'when screening references' do

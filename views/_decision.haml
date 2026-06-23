@@ -17,6 +17,7 @@
 - url_base="/review/#{review[:id]}/canonical_document/#{cd[:id]}"
 - only_buttons||=false
 - compact||=false
+- blind_reference_screening||=false
 - class_buttons  = only_buttons ? "panel-body" : "panel-footer"
 %div{:class=>"panel #{clase_panel}"}
   - if !only_buttons
@@ -26,14 +27,15 @@
       -else
         =CGI::escapeHTML cd.title
     %div{:class=>"panel-body"}
-      %p
-        %strong="#{t(:APA_references)}:"
-        =CGI::escapeHTML cd.ref_apa_6
+      - unless blind_reference_screening
+        %p
+          %strong="#{t(:APA_references)}:"
+          =CGI::escapeHTML cd.ref_apa_6
 
-        - text_references=sprintf("<strong>#{t(:Citations)}:</strong> #{t(:cites)} <strong><a href='#{url_base}/cites'>%d</a> </strong> / #{t(:cited_by)} <strong><a href='#{url_base}/cited_by'>%d</a></strong> ", ars.cd_count_outgoing(cd[:id]).to_i, ars.cd_count_incoming(cd[:id]).to_i)
-        - if ars.cd_count_incoming_sta(cd[:id])
-          -text_references+=sprintf("/ #{t(:cited_by_RTR_documents)} <strong><a href='#{url_base}/cited_by_rtr'>%d</a></strong>", ars.cd_count_incoming_sta(cd[:id]).to_i)
-        %p=text_references
+          - text_references=sprintf("<strong>#{t(:Citations)}:</strong> #{t(:cites)} <strong><a href='#{url_base}/cites'>%d</a> </strong> / #{t(:cited_by)} <strong><a href='#{url_base}/cited_by'>%d</a></strong> ", ars.cd_count_outgoing(cd[:id]).to_i, ars.cd_count_incoming(cd[:id]).to_i)
+          - if ars.cd_count_incoming_sta(cd[:id])
+            -text_references+=sprintf("/ #{t(:cited_by_RTR_documents)} <strong><a href='#{url_base}/cited_by_rtr'>%d</a></strong>", ars.cd_count_incoming_sta(cd[:id]).to_i)
+          %p=text_references
       %p{:class=>""}
         %strong=t(:Abstract)
         - if !cd.abstract
