@@ -1,0 +1,93 @@
+.heading
+  =t_systematic_review_title(@review[:name], "Detalle de extracción de información", false)
+
+=partial(:breadcrumb_review_admin,:locals=>{:name=>t(@name_stage)})
+
+%h3=@cd[:title]
+%p=@cd.ref_apa_6_brief_html
+
+.btn-group
+  %a.btn.btn-default.btn-sm{:href=>url("/review/#{@review[:id]}/administration/#{@stage}")}
+    %span.glyphicon.glyphicon-arrow-left
+    Volver a administración
+  %a.btn.btn-default.btn-sm{:href=>url("/canonical_document/#{@cd[:id]}")}
+    %span.glyphicon.glyphicon-file
+    Ver documento canónico
+
+- if @allocations.empty?
+  %p.alert.alert-warning Este documento no tiene usuarios asignados para extracción de información.
+- else
+  - @allocations.each do |allocation|
+    - user=@users[allocation[:user_id]]
+    - analysis_row=@analysis_rows[allocation[:user_id]] || {}
+    - user_files=@file_extraction_informations_by_user[allocation[:user_id]] || []
+    - user_quality=@quality_by_user[allocation[:user_id]] || {}
+    %h4= user ? user.name : "Usuario #{allocation[:user_id]}"
+
+    %h5 Información extraída
+    - if @fields.empty?
+      %p
+        %em No hay campos de extracción definidos.
+    - else
+      %table.reporte
+        %thead
+          %th Campo
+          %th Valor
+        %tbody
+          - @fields.each do |field|
+            - value=analysis_row[field[:name].to_sym]
+            %tr
+              %th=field[:description]
+              %td
+                - if value.nil? || value.to_s.strip==''
+                  %em Sin información
+                - else
+                  =value
+
+    %h5 Archivos adjuntados
+    - if user_files.empty?
+      %p
+        %em Sin archivos adjuntos.
+    - else
+      %table.reporte
+        %thead
+          %th Archivo
+          %th Fecha
+          %th Acción
+        %tbody
+          - user_files.each do |file_information|
+            - file=@files[file_information[:file_id]]
+            %tr
+              %td= file ? file[:filename] : file_information[:file_id]
+              %td=file_information[:created_at]
+              %td
+                - if file
+                  %a.btn.btn-default.btn-xs{:href=>url("/file/#{file[:id]}/download")}
+                    %span.glyphicon.glyphicon-download
+                    =t(:Download)
+
+    %h5 Indicadores de calidad
+    - if @sr_quality_criteria.empty?
+      %p
+        %em No hay criterios de calidad definidos.
+    - else
+      %table.reporte
+        %thead
+          %th Criterio
+          %th Evaluación
+          %th Comentario
+        %tbody
+          - @sr_quality_criteria.each do |sr_qc|
+            - quality=user_quality[sr_qc[:quality_criterion_id]]
+            %tr
+              %th=sr_qc[:text]
+              %td
+                - if quality
+                  =@scale_items[[quality[:scale_id], quality[:value]]] || quality[:value]
+                - else
+                  %em Sin evaluación
+              %td
+                - if quality && quality[:commentary] && quality[:commentary].to_s.strip!=''
+                  =quality[:commentary]
+                - else
+                  %em Sin comentario
