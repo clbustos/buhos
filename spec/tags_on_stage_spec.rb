@@ -143,6 +143,77 @@ describe 'Tags on stage forms' do
     it{expect('/tags/systematic_review/1/ref/query_json/new_relat').to be_available}
   end
 
+  context "when review hides tags from other users" do
+    before(:context) do
+      login_admin
+      @review=SystematicReview[1]
+      @previous_visibility=@review[:show_other_users_tags]
+      @review.update(:show_other_users_tags=>false)
+      @private_tag=Tag.get_tag("private_tag_from_admin")
+      TagInCd.approve_tag(CanonicalDocument[4], @review, @private_tag, 1)
+    end
+
+    it "does not include another user's tag in the tag builder" do
+      tags=TagBuilder.tag_in_cd(@review, CanonicalDocument[4], 2).map(&:text)
+      expect(tags).not_to include("private_tag_from_admin")
+    end
+
+    it "includes all users' tags when the tag builder is used without a user scope" do
+      tags=TagBuilder.tag_in_cd(@review, CanonicalDocument[4]).map(&:text)
+      expect(tags).to include("private_tag_from_admin")
+    end
+
+    it "shows all users' tags in the review tags administration page" do
+      login_admin
+      get '/review/1/tags'
+      expect(last_response).to be_ok
+      expect(last_response.body).to include("private_tag_from_admin")
+    end
+
+    it "does not include another user's tag in the review autocomplete" do
+      post '/login', user:'analyst', password:'analyst'
+      get '/tags/systematic_review/1/query_json/private_tag_from_admin'
+      expect(last_response).to be_ok
+      expect(last_response.body).not_to include("private_tag_from_admin")
+    end
+
+    it "still includes the user's own tag in the review autocomplete" do
+      TagInCd.approve_tag(CanonicalDocument[4], @review, @private_tag, 2)
+      post '/login', user:'analyst', password:'analyst'
+      get '/tags/systematic_review/1/query_json/private_tag_from_admin'
+      expect(last_response).to be_ok
+      expect(last_response.body).to include("private_tag_from_admin")
+    end
+
+    after(:context) do
+      @review.update(:show_other_users_tags=>@previous_visibility)
+      TagInCd.where(:tag_id=>@private_tag.id).delete
+      @private_tag.delete_if_unused
+    end
+  end
+
+  context "when review shows tags from other users" do
+    before(:context) do
+      login_admin
+      @review=SystematicReview[1]
+      @previous_visibility=@review[:show_other_users_tags]
+      @review.update(:show_other_users_tags=>true)
+      @shared_tag=Tag.get_tag("shared_tag_from_admin")
+      TagInCd.approve_tag(CanonicalDocument[4], @review, @shared_tag, 1)
+    end
+
+    it "includes another user's tag in the tag builder" do
+      tags=TagBuilder.tag_in_cd(@review, CanonicalDocument[4], 2).map(&:text)
+      expect(tags).to include("shared_tag_from_admin")
+    end
+
+    after(:context) do
+      @review.update(:show_other_users_tags=>@previous_visibility)
+      TagInCd.where(:tag_id=>@shared_tag.id).delete
+      @shared_tag.delete_if_unused
+    end
+  end
+
   context "when analyzing tags from specific systematic review and user" do
     before(:context) do
       login_admin

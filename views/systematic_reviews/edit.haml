@@ -104,6 +104,15 @@
           %label.radio-inline
             %input{:type=>"radio", :name=>"active", :value=>0, :checked=>!@review[:active] }
             =t(:Inactive)
+        .form-group
+          %label=t(:Systematic_review_tag_visibility)
+          =tooltip(t(:Systematic_review_tag_visibility_tip))
+          %label.radio-inline
+            %input{:type=>"radio", :name=>"show_other_users_tags", :value=>1, :checked=>@review.show_other_users_tags?}
+            =t(:Show_other_users_tags)
+          %label.radio-inline
+            %input{:type=>"radio", :name=>"show_other_users_tags", :value=>0, :checked=>!@review.show_other_users_tags?}
+            =t(:Show_only_own_tags)
 
         %div{:class=>"form-group"}
           %label{:for=>"stage"}=t(:Stage)
@@ -127,5 +136,3 @@
           %textarea{:class=>"form-control",:name=>"conflict_of_interest", :rows=>5}=@review[:conflict_of_interest]
 
   %input.form-control.btn.btn-primary{:type=>:submit, :value=>t(:Save)}
-
-

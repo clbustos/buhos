@@ -47,7 +47,8 @@ get '/review/new' do
                                      sr_administrator:  administrator,
                                      date_creation:     Date.today,
                                      year_start:        @current_year,
-                                     year_end:        @current_year
+                                     year_end:          @current_year,
+                                     show_other_users_tags: true
                                      )
   @taxonomy_categories_id=[]
 

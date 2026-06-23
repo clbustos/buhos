@@ -34,14 +34,16 @@ module TagBuilder
   class ContainerTagBwCd
     include TagBuilder::ContainerTagMixin
     attr_reader :tag_cd_rs_ref
-    def initialize(review,cd_start, cd_end)
+    def initialize(review,cd_start, cd_end,user_id=nil)
 
       @review = review
       @class_tags=[]
       @cd_start = cd_start
       @cd_end   = cd_end
       # Tags ya elegidos
-      @tag_cd_rs_ref=::TagBwCd.tags_rs_cd(@review,cd_start, cd_end).to_hash_groups(:tag_id)
+      tags_rs_cd=::TagBwCd.tags_rs_cd(@review,cd_start, cd_end)
+      tags_rs_cd=tags_rs_cd.where(:user_id=>user_id) if hide_other_users_tags?(user_id)
+      @tag_cd_rs_ref=tags_rs_cd.to_hash_groups(:tag_id)
       # Ahora, los tags por defecto que falta por elegir
 
 
@@ -61,6 +63,10 @@ module TagBuilder
         recs.predeterminado=@class_tags.include? v[0]
         yield recs
       end
+    end
+
+    def hide_other_users_tags?(user_id)
+      !user_id.nil? && !@review.show_other_users_tags?
     end
 
   end

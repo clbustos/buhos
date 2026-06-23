@@ -34,13 +34,15 @@ module TagBuilder
   class ContainerTagInCd
     include ContainerTagMixin
     attr_reader :tag_cd_rs
-    def initialize(review,cd)
+    def initialize(review,cd,user_id=nil)
 
       @review=review
       @class_tags=[]
       @cd=cd
       # Tags already elected
-      @tag_cd_rs=::TagInCd.tags_rs_cd(@review,cd).to_hash_groups(:tag_id)
+      tags_rs_cd=::TagInCd.tags_rs_cd(@review,cd)
+      tags_rs_cd=tags_rs_cd.where(:user_id=>user_id) if hide_other_users_tags?(user_id)
+      @tag_cd_rs=tags_rs_cd.to_hash_groups(:tag_id)
       # Tag in classes
       #$log.info(@review.t_classes_documents)
       T_Class.classes_documents(@review).each do |clase|
@@ -59,6 +61,10 @@ module TagBuilder
         recs.predeterminado=@class_tags.include? v[0]
         yield recs
       end
+    end
+
+    def hide_other_users_tags?(user_id)
+      !user_id.nil? && !@review.show_other_users_tags?
     end
 
   end

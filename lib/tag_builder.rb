@@ -29,13 +29,13 @@
 
 # Create HTML for Tags.
 module TagBuilder
-  def self.tag_in_cd(revision,cd)
-    TagBuilder::ContainerTagInCd.new(revision, cd)
+  def self.tag_in_cd(revision,cd,user_id=nil)
+    TagBuilder::ContainerTagInCd.new(revision, cd, user_id)
   end
 
 
-  def self.tag_bw_cd(revision,cd_start, cd_end)
-    TagBuilder::ContainerTagBwCd.new(revision, cd_start, cd_end)
+  def self.tag_bw_cd(revision,cd_start, cd_end,user_id=nil)
+    TagBuilder::ContainerTagBwCd.new(revision, cd_start, cd_end, user_id)
   end
 end
 

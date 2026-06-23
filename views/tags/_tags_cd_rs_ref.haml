@@ -1,5 +1,6 @@
 - nuevo||=false
 - ajax||=false
+- prefetch_url = review.show_other_users_tags? ? '/tags/basic_ref_10.json' : "/tags/systematic_review/#{review.id}/ref/basic_10.json"
 - if @_typeahead.nil?
   %link{:href=>url('/css/typeahead.css') , :media => 'screen', :rel=>'stylesheet', :type=>'text/css'}
   %script{:type=>'text/javascript', :src=>url('/js/typeahead.bundle.min.js')}
@@ -12,7 +13,7 @@
     var tagsRefQuery=new Bloodhound({
       datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
       queryTokenizer: Bloodhound.tokenizers.whitespace,
-      prefetch: '/tags/basic_ref_10.json',
+      prefetch: '#{prefetch_url}',
       remote: {
           url: "/tags/systematic_review/#{review.id}/refs/query_json/%QUERY",
           wildcard: '%QUERY'
@@ -23,7 +24,7 @@
 
 %div{:id=>"tags-cd_start-#{cd_start.id}-cd_end-#{cd_end.id}-rs-#{review.id}"}
   %ul.tags
-    -TagBuilder.tag_bw_cd(review,cd_start,cd_end).each do |tag|
+    -TagBuilder.tag_bw_cd(review,cd_start,cd_end,user_id).each do |tag|
       -res_usuario=tag.resultado_usuario(user_id)
       -if tag.mostrar
         - class_predeterminado = tag.predeterminado ? "tag-predeterminado" : ""

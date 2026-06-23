@@ -235,12 +235,40 @@ get /\/tags\/basic_(?:ref_)?10.json/ do
   ds_to_json(res)
 end
 
+get '/tags/systematic_review/:rs_id/basic_10.json' do |rs_id|
+  halt_unless_auth('review_view')
+
+  review=SystematicReview[rs_id]
+  raise Buhos::NoReviewIdError, rs_id if !review
+
+  if review.show_other_users_tags?
+    res=$db["SELECT MIN(t.id) as id, text,COUNT(*) as n from tags t INNER JOIN tag_in_cds tec ON t.id=tec.tag_id WHERE decision='yes' and systematic_review_id=? GROUP BY t.text ORDER BY t.text LIMIT 10", rs_id]
+  else
+    res=$db["SELECT MIN(t.id) as id, text,COUNT(*) as n from tags t INNER JOIN tag_in_cds tec ON t.id=tec.tag_id WHERE decision='yes' and systematic_review_id=? and tec.user_id=? GROUP BY t.text ORDER BY t.text LIMIT 10", rs_id, session['user_id']]
+  end
+  ds_to_json(res)
+end
+
+get '/tags/systematic_review/:rs_id/ref/basic_10.json' do |rs_id|
+  halt_unless_auth('review_view')
+
+  review=SystematicReview[rs_id]
+  raise Buhos::NoReviewIdError, rs_id if !review
+
+  if review.show_other_users_tags?
+    res=$db["SELECT MIN(t.id) as id, text,COUNT(*) as n from tags t INNER JOIN tag_bw_cds tec ON t.id=tec.tag_id WHERE decision='yes' and systematic_review_id=? GROUP BY t.text ORDER BY t.text LIMIT 10", rs_id]
+  else
+    res=$db["SELECT MIN(t.id) as id, text,COUNT(*) as n from tags t INNER JOIN tag_bw_cds tec ON t.id=tec.tag_id WHERE decision='yes' and systematic_review_id=? and tec.user_id=? GROUP BY t.text ORDER BY t.text LIMIT 10", rs_id, session['user_id']]
+  end
+  ds_to_json(res)
+end
+
 # Query for tags (canonical documents)
 
 get '/tags/query_json/:query' do |query|
   halt_unless_auth('review_view')
 
-  res=$db["SELECT id, text,COUNT(*) as n from tags t INNER JOIN tag_in_cds tec ON t.id=tec.tag_id WHERE INSTR(text,?)>0 and decision='yes' GROUP BY t.text ORDER BY n DESC LIMIT 10", query]
+  res=$db["SELECT MIN(t.id) as id, text,COUNT(*) as n from tags t INNER JOIN tag_in_cds tec ON t.id=tec.tag_id WHERE INSTR(text,?)>0 and decision='yes' GROUP BY t.text ORDER BY n DESC LIMIT 10", query]
   ds_to_json(res)
 
 end
@@ -250,7 +278,7 @@ end
 get '/tags/refs/query_json/:query' do |query|
   halt_unless_auth('review_view')
 
-  res=$db["SELECT id, text,COUNT(*) as n from tags t INNER JOIN tag_bw_cds tec ON t.id=tec.tag_id WHERE INSTR(text,?)>0 and decision='yes' GROUP BY t.text ORDER BY n DESC LIMIT 10", query]
+  res=$db["SELECT MIN(t.id) as id, text,COUNT(*) as n from tags t INNER JOIN tag_bw_cds tec ON t.id=tec.tag_id WHERE INSTR(text,?)>0 and decision='yes' GROUP BY t.text ORDER BY n DESC LIMIT 10", query]
   ds_to_json(res)
 end
 
@@ -260,7 +288,14 @@ end
 get '/tags/systematic_review/:rs_id/query_json/:query' do |rs_id,query|
   halt_unless_auth('review_view')
 
-  res=$db["SELECT id, text,COUNT(*) as n from tags t INNER JOIN tag_in_cds tec ON t.id=tec.tag_id WHERE INSTR(text,?)>0 and decision='yes' and systematic_review_id=? GROUP BY t.text ORDER BY n DESC LIMIT 10", query, rs_id ]
+  review=SystematicReview[rs_id]
+  raise Buhos::NoReviewIdError, rs_id if !review
+
+  if review.show_other_users_tags?
+    res=$db["SELECT MIN(t.id) as id, text,COUNT(*) as n from tags t INNER JOIN tag_in_cds tec ON t.id=tec.tag_id WHERE INSTR(text,?)>0 and decision='yes' and systematic_review_id=? GROUP BY t.text ORDER BY n DESC LIMIT 10", query, rs_id ]
+  else
+    res=$db["SELECT MIN(t.id) as id, text,COUNT(*) as n from tags t INNER JOIN tag_in_cds tec ON t.id=tec.tag_id WHERE INSTR(text,?)>0 and decision='yes' and systematic_review_id=? and tec.user_id=? GROUP BY t.text ORDER BY n DESC LIMIT 10", query, rs_id, session['user_id'] ]
+  end
   ds_to_json(res)
 
 end
@@ -272,8 +307,28 @@ end
 get '/tags/systematic_review/:rs_id/ref/query_json/:query' do |rs_id,query|
   halt_unless_auth('review_view')
 
+  review=SystematicReview[rs_id]
+  raise Buhos::NoReviewIdError, rs_id if !review
 
-  res=$db["SELECT id, text,COUNT(*) as n from tags t INNER JOIN tag_bw_cds tec ON t.id=tec.tag_id WHERE INSTR(text,?)>0 and decision='yes' and systematic_review_id=? GROUP BY t.text ORDER BY n DESC LIMIT 10", query, rs_id ]
+  if review.show_other_users_tags?
+    res=$db["SELECT MIN(t.id) as id, text,COUNT(*) as n from tags t INNER JOIN tag_bw_cds tec ON t.id=tec.tag_id WHERE INSTR(text,?)>0 and decision='yes' and systematic_review_id=? GROUP BY t.text ORDER BY n DESC LIMIT 10", query, rs_id ]
+  else
+    res=$db["SELECT MIN(t.id) as id, text,COUNT(*) as n from tags t INNER JOIN tag_bw_cds tec ON t.id=tec.tag_id WHERE INSTR(text,?)>0 and decision='yes' and systematic_review_id=? and tec.user_id=? GROUP BY t.text ORDER BY n DESC LIMIT 10", query, rs_id, session['user_id'] ]
+  end
+  ds_to_json(res)
+end
+
+get '/tags/systematic_review/:rs_id/refs/query_json/:query' do |rs_id,query|
+  halt_unless_auth('review_view')
+
+  review=SystematicReview[rs_id]
+  raise Buhos::NoReviewIdError, rs_id if !review
+
+  if review.show_other_users_tags?
+    res=$db["SELECT MIN(t.id) as id, text,COUNT(*) as n from tags t INNER JOIN tag_bw_cds tec ON t.id=tec.tag_id WHERE INSTR(text,?)>0 and decision='yes' and systematic_review_id=? GROUP BY t.text ORDER BY n DESC LIMIT 10", query, rs_id ]
+  else
+    res=$db["SELECT MIN(t.id) as id, text,COUNT(*) as n from tags t INNER JOIN tag_bw_cds tec ON t.id=tec.tag_id WHERE INSTR(text,?)>0 and decision='yes' and systematic_review_id=? and tec.user_id=? GROUP BY t.text ORDER BY n DESC LIMIT 10", query, rs_id, session['user_id'] ]
+  end
   ds_to_json(res)
 end
 

@@ -908,6 +908,10 @@ es:
   Systematic_review_new: "Nueva revisión sistemática"
   Systematic_review_active_inactive: "RS Activa / Inactiva"
   Systematic_review_all_user: "RS usuario / todos"
+  Systematic_review_tag_visibility: "Visibilidad de etiquetas"
+  Systematic_review_tag_visibility_tip: "Controla si los revisores pueden ver etiquetas y votos de etiquetas agregados por otros usuarios durante la codificación de documentos."
+  Show_other_users_tags: "Ver etiquetas de todos los usuarios"
+  Show_only_own_tags: "Ver solo etiquetas propias"
   systematic_review_page:
     documents_by_decision: "Documentos por decision"
     massive_reassignation_from_to: "Reasignación masiva de usuario %{from} a usuario %{to}"
