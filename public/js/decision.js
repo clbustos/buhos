@@ -21,6 +21,9 @@ function actualizar_decision(stage,div_id) {
             $(div_replace).html(data);
             actualizar_decision(stage,div_decision);
             actualizar_textarea_editable(div_decision);
+            if (typeof actualizar_favorito === "function") {
+                actualizar_favorito(div_decision);
+            }
             TagManager.update(div_decision);
         }).fail(function (data) {
             console.log(data);
@@ -45,6 +48,9 @@ function actualizar_decision(stage,div_id) {
             $(div_replace).html(data);
             actualizar_decision(stage,div_replace);
             actualizar_textarea_editable(div_replace);
+            if (typeof actualizar_favorito === "function") {
+                actualizar_favorito(div_replace);
+            }
             actualizar_reportes(div_replace);
 
 
