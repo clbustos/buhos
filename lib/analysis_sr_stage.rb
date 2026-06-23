@@ -117,13 +117,20 @@ class Analysis_SR_Stage
 
     users=Array(@sr.group_users)
     users_by_id=users.each_with_object({}) {|user, memo| memo[user[:id].to_i]=user}
-    assigned_pairs=AllocationCd.where(:systematic_review_id=>@sr[:id], :stage=>@stage.to_s, :canonical_document_id=>cds_id).all
+    assigned_pairs=AllocationCd.where(:systematic_review_id=>@sr[:id],
+                                      :stage=>@stage.to_s,
+                                      :canonical_document_id=>cds_id).all
     assigned_count_by_cd=assigned_pairs.each_with_object(Hash.new(0)) do |allocation, memo|
       memo[allocation[:canonical_document_id].to_i]+=1
     end
 
     user_statuses=users.each_with_object({}) do |user, memo|
-      memo[user[:id].to_i]={user_id:user[:id].to_i, user:user, assigned_count:0, information_count:0, pending_information_count:0, quality_count:0, complete_count:0}
+      memo[user[:id].to_i]={user_id:user[:id].to_i,
+                            user:user, assigned_count:0,
+                            information_count:0,
+                            pending_information_count:0,
+                            quality_count:0,
+                            complete_count:0}
     end
 
     assigned_statuses=assigned_pairs.map do |allocation|
@@ -163,6 +170,7 @@ class Analysis_SR_Stage
         has_information:has_information,
         has_quality:has_quality,
         complete:has_information && has_quality,
+        progress_status:document_progress_status(has_information, has_quality),
         assigned_count:assigned_count_by_cd[cd_id]
       }
     end
@@ -174,10 +182,14 @@ class Analysis_SR_Stage
     user_statuses.each_value do |status|
       status[:pending_information_count]=status[:assigned_count]-status[:information_count]
     end
-
+    complete_users=user_statuses.values.count do |status|
+      status[:assigned_count]>0 && status[:complete_count]==status[:assigned_count]
+    end
+    #Complete: information and quality
     {
       quality_active:quality_active,
       quality_criteria_count:quality_criteria_ids.length,
+      total_users:user_statuses.length,
       total_documents:cds_id.length,
       documents_with_information:documents_with_information,
       documents_pending_information:cds_id.length-documents_with_information,
@@ -185,10 +197,27 @@ class Analysis_SR_Stage
       complete_documents:document_statuses.count {|status| status[:complete]},
       assigned_total:assigned_statuses.length,
       assigned_complete:assigned_statuses.count {|status| status[:complete]},
+      total_stats:[
+        {complete_label:'Usuarios completos', complete_count:complete_users, total_count:user_statuses.length},
+        {complete_label:'Documentos completos', complete_count:document_statuses.count {|status| status[:complete]}, total_count:cds_id.length},
+        {complete_label:'Pares de asignación documento/usuario completos', complete_count:assigned_statuses.count {|status| status[:complete]}, total_count:assigned_statuses.length}
+      ],
       stage_complete:stage_complete,
       user_statuses:user_statuses.values,
       document_statuses:document_statuses
     }
+  end
+
+  def document_progress_status(has_information, has_quality)
+    if has_information && has_quality
+      'complete'
+    elsif !has_information
+      'pending_information'
+    elsif !has_quality
+      'pending_quality'
+    else
+      'incomplete'
+    end
   end
 
   def no_resolution_count

@@ -174,6 +174,9 @@ get '/review/:id/extract_information' do |id|
 
   @ars=AnalysisSystematicReview.new(@review)
   @extract_information_stats=Analysis_SR_Stage.new(@review, @stage).extract_information_stats
+  @extract_information_document_statuses=@extract_information_stats[:document_statuses].each_with_object({}) do |status, memo|
+    memo[status[:canonical_document_id]]=status
+  end
   @cd_total_ds=@review.canonical_documents
   @url="/review/#{id}/#{@stage}"
 

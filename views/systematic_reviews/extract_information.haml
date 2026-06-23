@@ -67,12 +67,14 @@
     %tbody
       - @cds.each do |cd|
         - asignacion_o=@assignations[cd[:id]]
-        %tr
+        - document_status=@extract_information_document_statuses ? @extract_information_document_statuses[cd[:id]] : nil
+        %tr{:class=>(document_status && document_status[:complete] ? 'success' : nil)}
           %td
             =partial("tags/tags_cd_rs_small", locals:{user_id:@user_id, review:@review, cd:cd, tags_a:@tags_a})
             =cd.ref_apa_6_brief_html
             .btn-group
-              %a.btn.btn-primary.btn-sm{:href=>"/review/#{@review[:id]}/quality_assessment/cd/#{cd[:id]}"}=t(:Quality_assesment)
+              - if @extract_information_stats && @extract_information_stats[:quality_active]
+                %a.btn.btn-primary.btn-sm{:href=>"/review/#{@review[:id]}/quality_assessment/cd/#{cd[:id]}"}=t(:Quality_assesment)
               %a.btn.btn-primary.btn-sm{:href=>"/review/#{@review[:id]}/extract_information/cd/#{cd[:id]}"}=t(:Extract_information)
             %br
             =partial("tags/tags_cd_rs", :locals=>{cd: cd, review:@review, user_id:@user_id, ajax:ajax})

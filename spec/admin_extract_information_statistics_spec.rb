@@ -34,9 +34,32 @@ describe 'Extract information administration statistics' do
     it "should response be ok" do expect(last_response).to be_ok end
 
     it "should show extraction information statistics" do
-      expect(last_response.body).to include('Estadísticas de completitud')
-      expect(last_response.body).to include('2 / 2')
-      expect(last_response.body).to include('La etapa de extracción de información está incompleta.')
+      expect(last_response.body).to include('Estadística total')
+      expect(last_response.body).to include('Completos')
+      expect(last_response.body).to include('Usuarios')
+      expect(last_response.body).to include('Documentos')
+      expect(last_response.body).to include('Pares de asignación documento/usuario')
+      expect(last_response.body).to include('Documentos completos')
+      expect(last_response.body).to include('The information extraction stage is incomplete.')
+    end
+
+    it "should filter canonical documents by progress status" do
+      get '/review/1/administration/extract_information', :progress_status=>'pending_quality'
+
+      expect(last_response).to be_ok
+      expect(last_response.body).to include('Title 2')
+      expect(last_response.body).not_to include('Title 1</a>')
+    end
+
+    it "should show the extraction detail for a canonical document" do
+      get '/review/1/administration/extract_information/cd/2'
+
+      expect(last_response).to be_ok
+      expect(last_response.body).to include('Title 2')
+      expect(last_response.body).to include('Analyst')
+      expect(last_response.body).to include('guideline.txt')
+      expect(last_response.body).to include('quality criterion')
+      expect(last_response.body).to include('Sin evaluación')
     end
   end
 
@@ -69,7 +92,7 @@ describe 'Extract information administration statistics' do
       AllocationCd.insert(:systematic_review_id=>1, :canonical_document_id=>3,
                           :user_id=>1, :stage=>'extract_information')
       @analyst_review_edit_authorization=AuthorizationsRole[:authorization_id=>'review_edit', :role_id=>'analyst']
-      AuthorizationsRole.insert(:authorization_id=>'review_edit', :role_id=>'analyst') unless @analyst_review_edit_authorization
+      Role['analyst'].add_auth_to(Authorization['review_edit']) unless @analyst_review_edit_authorization
     end
 
     after(:each) do
@@ -109,7 +132,7 @@ describe 'Extract information administration statistics' do
     end
 
     it "should show the extraction stage as complete" do
-      expect(last_response.body).to include('La etapa de extracción de información está completa.')
+      expect(last_response.body).to include('The information extraction stage is complete.')
     end
   end
 end

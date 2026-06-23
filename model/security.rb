@@ -64,7 +64,10 @@ class User < Sequel::Model
   many_to_one :role
 
   def authorizations
-    ##$log.info(self.rol)
-    Role[self[:role_id]].authorizations
+    Authorization.
+      join(:authorizations_roles, :authorization_id=>:id).
+      where(:role_id=>self[:role_id]).
+      select_all(:authorizations).
+      all
   end
 end

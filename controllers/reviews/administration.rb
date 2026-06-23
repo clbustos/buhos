@@ -71,6 +71,66 @@ get '/review/:id/administration/:stage' do |id,stage|
   end
 end
 
+get '/review/:id/administration/extract_information/cd/:cd_id' do |id,cd_id|
+  halt_unless_auth_any('review_admin', 'review_admin_view')
+  @review=SystematicReview[id]
+  raise Buhos::NoReviewIdError, id if !@review
+
+  @stage=Buhos::Stages::STAGE_REVIEW_EXTRACT_INFORMATION.to_s
+  @cd=CanonicalDocument[cd_id]
+  raise Buhos::NoCdIdError, cd_id if !@cd
+
+  if !@review.cd_id_by_stage(@stage).include?(cd_id.to_i)
+    add_message(t(:Canonical_documento_not_assigned_to_this_systematic_review), :error)
+    redirect url("/review/#{@review[:id]}/administration/#{@stage}")
+  end
+
+  @name_stage=get_stage_name(@stage)
+  @fields=@review.fields.all
+  @allocations=AllocationCd.where(:systematic_review_id=>@review[:id],
+                                  :stage=>@stage,
+                                  :canonical_document_id=>cd_id).order(:user_id).all
+  user_ids=@allocations.map {|allocation| allocation[:user_id]}
+  @users=User.where(:id=>user_ids).as_hash
+
+  @analysis_rows={}
+  if $db.table_exists?(@review.analysis_cd_tn.to_sym)
+    @analysis_rows=@review.analysis_cd.
+      where(:canonical_document_id=>cd_id, :user_id=>user_ids).
+      all.
+      each_with_object({}) {|row, memo| memo[row[:user_id]]=row}
+  end
+
+  @file_extraction_informations=FileExtractionInformation.
+    where(:systematic_review_id=>@review[:id], :canonical_document_id=>cd_id, :user_id=>user_ids).
+    order(:user_id, :id).
+    all
+  @files=IFile.where(:id=>@file_extraction_informations.map {|file_information| file_information[:file_id]}).as_hash
+  @file_extraction_informations_by_user=@file_extraction_informations.group_by {|file_information| file_information[:user_id]}
+
+  @sr_quality_criteria=SrQualityCriterion.
+    join(:quality_criteria, :id=>:quality_criterion_id).
+    where(:systematic_review_id=>@review[:id]).
+    order(:order).
+    all
+  @quality_by_user=CdQualityCriterion.
+    where(:systematic_review_id=>@review[:id],
+          :canonical_document_id=>cd_id,
+          :user_id=>user_ids,
+          :quality_criterion_id=>@sr_quality_criteria.map {|sr_qc| sr_qc[:quality_criterion_id]}).
+    all.
+    each_with_object({}) do |row, memo|
+      memo[row[:user_id]]||={}
+      memo[row[:user_id]][row[:quality_criterion_id]]=row
+    end
+  @scale_items=ScalesItem.
+    where(:scale_id=>@sr_quality_criteria.map {|sr_qc| sr_qc[:scale_id]}).
+    all.
+    each_with_object({}) {|item, memo| memo[[item[:scale_id], item[:value]]]=item[:name]}
+
+  haml "systematic_reviews/administration_extract_information_cd".to_sym, escape_html: false
+end
+
 
 get '/review/:id/stage/:stage/pattern/:patron/view' do |id,stage,patron_s|
   halt_unless_auth_any('review_admin', 'review_admin_view')

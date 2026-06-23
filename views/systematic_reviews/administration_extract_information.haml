@@ -5,8 +5,11 @@
 
 %p.info=t_desc_value(:Count_canonical_documents, @cds_id.length)
 - stats=@extract_information_stats
-
-%h3=t(:Statistics_by_user)
+- progress_filter=params['progress_status'].to_s
+- progress_options={'all'=>'Todos', 'complete'=>'Completos', 'pending_information'=>'Pendientes de información', 'pending_quality'=>'Pendientes de calidad', 'incomplete'=>'Incompletos'}
+- filtered_document_statuses=stats[:document_statuses]
+- if progress_filter!='' && progress_filter!='all'
+  - filtered_document_statuses=filtered_document_statuses.find_all {|document_status| document_status[:progress_status]==progress_filter}
 
 .btn-group
   %a.btn.btn-sm.btn-default{:href=>"/review/#{@review[:id]}/administration/#{@stage}/cd_assignations"}
@@ -18,67 +21,52 @@
       =t(:Check_CD_without_assignations)
       %span.badge=@cd_without_allocation.count
 
-%table.reporte
-  %thead
-    %th=t(:User)
-    %th=t(:Count_canonical_documents_assigned)
-  %tbody
-    - @review.group_users.each do |user|
-      - adu=AnalysisUserDecision.new(@review[:id], user[:id], @stage)
-      %tr
-        %th= user.name
-        %td= adu.assignations_count
-
-%h3 Estadísticas de completitud
+%h3=t(:Stage_status)
 
 - if stats[:stage_complete]
-  %p.alert.alert-success La etapa de extracción de información está completa.
+  %p.alert.alert-success=t(:extract_information_complete)
 - else
-  %p.alert.alert-warning La etapa de extracción de información está incompleta.
+  %p.alert.alert-warning=t(:extract_information_incomplete)
 
+%h4 Estadística total
 %table.reporte
   %thead
-    %th Canónicos
-    %th Con información
-    - if stats[:quality_active]
-      %th Con calidad
     %th Completos
-    %th Asignaciones completas
+    %th Total
   %tbody
-    %tr
-      %td=stats[:total_documents]
-      %td="#{stats[:documents_with_information]} / #{stats[:total_documents]}"
-      - if stats[:quality_active]
-        %td="#{stats[:documents_with_quality]} / #{stats[:total_documents]}"
-      %td="#{stats[:complete_documents]} / #{stats[:total_documents]}"
-      %td="#{stats[:assigned_complete]} / #{stats[:assigned_total]}"
+    - stats[:total_stats].each do |total_stat|
+      %tr
+        %th="#{total_stat[:complete_label]}: #{total_stat[:complete_count]}"
+        %td=total_stat[:total_count]
 
 - if stats[:quality_active]
   %p.info="Control de calidad activo: #{stats[:quality_criteria_count]} criterios definidos."
 - else
   %p.info Control de calidad no activo para esta revisión.
 
-%h4 Estado por usuario asignado
+%h4 Usuarios
 %table.reporte
   %thead
     %th=t(:User)
-    %th=t(:Count_canonical_documents_assigned)
-    %th Con información
-    - if stats[:quality_active]
-      %th Con calidad
-    %th Completos
+    %th Documentos completos
   %tbody
     - stats[:user_statuses].each do |user_status|
       - user=user_status[:user]
       %tr
         %th= user ? user.name : user_status[:user_id]
-        %td=user_status[:assigned_count]
-        %td="#{user_status[:information_count]} / #{user_status[:assigned_count]}"
-        - if stats[:quality_active]
-          %td="#{user_status[:quality_count]} / #{user_status[:assigned_count]}"
         %td="#{user_status[:complete_count]} / #{user_status[:assigned_count]}"
 
-%h4 Estado por documento canónico
+%h4 Documentos canónicos
+%form.form-inline{:method=>:get, :action=>url("/review/#{@review[:id]}/administration/#{@stage}")}
+  .form-group
+    %label{:for=>'progress_status'} Estado de avance
+    %select.form-control.input-sm{:name=>'progress_status', :id=>'progress_status'}
+      - progress_options.each do |value,label|
+        %option{:value=>value, :selected=>(progress_filter==value || (progress_filter=='' && value=='all'))}=label
+  %button.btn.btn-default.btn-sm{:type=>:submit}
+    %span.glyphicon.glyphicon-filter
+    Filtrar
+
 %table.reporte
   %thead
     %th=t(:Canonical_document)
@@ -89,11 +77,11 @@
       %th Calidad
     %th Estado
   %tbody
-    - stats[:document_statuses].each do |document_status|
+    - filtered_document_statuses.each do |document_status|
       - cd=@cds_hash[document_status[:canonical_document_id]]
       %tr
         %td
-          %a{:href=>url("/canonical_document/#{document_status[:canonical_document_id]}")}= cd ? cd[:title] : document_status[:canonical_document_id]
+          %a{:href=>url("/review/#{@review[:id]}/administration/#{@stage}/cd/#{document_status[:canonical_document_id]}")}= cd ? cd[:title] : document_status[:canonical_document_id]
         %td=document_status[:assigned_count]
         %td= document_status[:has_form_information] ? t(:Yes) : t(:No)
         %td= document_status[:has_file_information] ? t(:Yes) : t(:No)

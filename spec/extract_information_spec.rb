@@ -56,6 +56,16 @@ describe 'Buhos extraction of data' do
       expect(last_response.body).to include "1 / 1"
       expect(last_response.body).to include "Articles pending information upload"
     end
+
+    it "should hide quality assessment when no quality criteria are defined" do
+      expect(last_response).to be_ok
+      expect(last_response.body).not_to include('/quality_assessment/cd/1')
+    end
+
+    it "should mark complete extraction documents in green" do
+      expect(last_response).to be_ok
+      expect(last_response.body).to include("<tr class='success'>")
+    end
   end
 
   context 'when enter information on form' do
