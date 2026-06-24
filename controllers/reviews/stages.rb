@@ -132,6 +132,7 @@ get '/review/:id/review_full_text' do |id|
   @cd_total_ds=@review.canonical_documents
   @modal_files=get_modal_files
   @files_by_cd=@ars.files_by_cd
+  @global_files_by_cd=@ars.global_files_by_cd
 
 
   @url="/review/#{id}/#{@stage}"

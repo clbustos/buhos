@@ -289,6 +289,8 @@ es:
     get_error: "Error en la obtención de información desde %{type} para el documento canónico %{cd_id}"
     dont_know_type: "Fuente de información externa %{type} sin soporte"
   favorites:
+    Canonical_document_files: "Archivos del documento canónico"
+    file_uploaded_for_canonical_document: "Archivo %{filename} subido para el documento canónico %{cd_title}"
     My_Library_for: "Mi Biblioteca: %{user}"
     My_Categories: "Mis Categorías"
     New_category_name: "Nombre de la nueva categoría"
@@ -310,6 +312,7 @@ es:
     Public_favorites: "Favoritos públicos"
     No_public_favorites: "No hay favoritos en categorías públicas."
     Shared_by: "Compartido por %{user}"
+    Use_in_review: "Usar en %{review_name}"
   Field_new: "Nuevo campo"
   Fields: "Campos"
   fields:
@@ -337,6 +340,9 @@ es:
     show_canonical_document: "Mostrar en DC"
   Files: "Archivos"
   files:
+    Available_canonical_files: "Archivos disponibles del documento canónico"
+    file_added_to_review: "Archivo %{filename} agregado a la revisión sistemática %{sr_name}"
+    file_used_for_extraction_information: "El archivo %{filename} ya se usa como archivo de extracción de información"
     Show_all: "Mostrar todo"
     Show_only_files_assigned_to_cd: "Asignado a DC"
     Show_only_files_not_assigned_to_cd: "No asignado a DC"

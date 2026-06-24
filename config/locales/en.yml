@@ -291,6 +291,8 @@ en:
     get_error: "Error on retrieval from %{type} for canonical document %{cd_id}"
     dont_know_type: "Type %{type} not supported"
   favorites:
+    Canonical_document_files: "Canonical document files"
+    file_uploaded_for_canonical_document: "File %{filename} uploaded for canonical document %{cd_title}"
     My_Library_for: "My Library: %{user}"
     My_Categories: "My Collections"
     New_category_name: "New collection name"
@@ -311,6 +313,7 @@ en:
     Public_favorites: "Public favorites"
     No_public_favorites: "There are no favorites in public collections."
     Shared_by: "Shared by %{user}"
+    Use_in_review: "Use in %{review_name}"
     not_allowed_to_delete: "Not allowed to delete"
   Field_new: "New field"
   Fields: "Fields"
@@ -340,6 +343,9 @@ en:
   Files: "Files"
   Filter: "Filter"
   files:
+    Available_canonical_files: "Available canonical document files"
+    file_added_to_review: "File %{filename} added to systematic review %{sr_name}"
+    file_used_for_extraction_information: "File %{filename} is already used as an extraction-information file"
     Show_all: "Show all"
     Show_only_files_assigned_to_cd: "Assigned to CD"
     Show_only_files_not_assigned_to_cd: "Not assigned to CD"

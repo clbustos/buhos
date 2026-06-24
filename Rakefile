@@ -118,6 +118,70 @@ namespace :review do
     puts "Actualizados: #{validator.stats[:updated]}; invalidos: #{validator.stats[:invalid]}; errores: #{validator.stats[:errors]}"
     puts "Log: #{validator.log_file}"
   end
+
+  desc "Complete missing abstracts in title/abstract and reference screening using Semantic Scholar. Usage: rake review:complete_missing_abstracts[review_id] or REVIEW_ID=1 STAGES=screening_title_abstract,screening_references LIMIT=10 SLEEP=1"
+  task :complete_missing_abstracts, [:review_id] => :environment do |t, args|
+    require_relative 'lib/analysis_systematic_review'
+    require_relative 'lib/semantic_scholar'
+    require_relative 'model/semantic_scholar_paper'
+
+    review_id = args[:review_id] || ENV['REVIEW_ID']
+    abort "Review id is required. Usage: rake review:complete_missing_abstracts[review_id] or REVIEW_ID=1" if review_id.to_s.empty?
+
+    review = SystematicReview[review_id.to_i]
+    abort "Review #{review_id} does not exist" unless review
+
+    allowed_stages = %w[screening_title_abstract screening_references]
+    stages = ENV.fetch('STAGES', allowed_stages.join(',')).split(',').map(&:strip).reject(&:empty?)
+    invalid_stages = stages - allowed_stages
+    abort "Invalid stages: #{invalid_stages.join(', ')}. Allowed: #{allowed_stages.join(', ')}" if invalid_stages.any?
+
+    limit = ENV['LIMIT'].to_i if ENV['LIMIT'] && ENV['LIMIT'].to_i.positive?
+    sleep_seconds = ENV.fetch('SLEEP', '0').to_f
+    analysis = AnalysisSystematicReview.new(review)
+    processed_cd_ids = []
+    stats = Hash.new(0)
+
+    puts "Revision #{review.id}: #{review.name}"
+    puts "Stages: #{stages.join(', ')}"
+
+    stages.each do |stage|
+      documents = analysis.cd_without_abstract(stage).order(:id).all
+      documents = documents.first(limit) if limit
+      puts "Stage #{stage}: #{documents.length} documents without abstract"
+
+      documents.each do |document|
+        if processed_cd_ids.include?(document.id)
+          stats[:skipped] += 1
+          puts "SKIP cd=#{document.id} already processed in this run"
+          next
+        end
+
+        stats[:processed] += 1
+        processed_cd_ids << document.id
+        before_blank = document.abstract.to_s.strip.empty?
+        result = Semantic_Scholar_Paper.get_abstract_cd(document.id)
+        document.refresh
+        updated = before_blank && !document.abstract.to_s.strip.empty?
+
+        if updated
+          stats[:updated] += 1
+          puts "OK cd=#{document.id} abstract updated"
+        elsif result.success?
+          stats[:unchanged] += 1
+          puts "UNCHANGED cd=#{document.id}"
+        else
+          stats[:errors] += 1
+          puts "ERROR cd=#{document.id}: #{result.message}"
+        end
+
+        sleep sleep_seconds if sleep_seconds.positive?
+      end
+    end
+
+    puts "Summary processed=#{stats[:processed]} updated=#{stats[:updated]} unchanged=#{stats[:unchanged]} errors=#{stats[:errors]} skipped=#{stats[:skipped]}"
+    abort "Finished with #{stats[:errors]} errors" if stats[:errors].positive?
+  end
 end
 
 namespace :reflection do

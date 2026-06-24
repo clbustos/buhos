@@ -97,6 +97,9 @@
   %form{:id => "favorites_#{@user[:id]}", :action => "/favorites/user/#{@user[:id]}/update", :method => "post"}
     - @favorite_documents.each do |fav|
       - cd=@favorite_canonical_documents[fav[:canonical_document_id]]
+      - upload_form_id="favorite-file-upload-#{fav[:canonical_document_id]}"
+      - available_reviews=@favorite_reviews_by_cd[fav[:canonical_document_id]] || []
+      - favorite_files=@favorite_files_by_cd[fav[:canonical_document_id]] || []
       .panel.panel-default
         .panel-heading
           %span=cd.ref_apa_6_brief_html
@@ -118,10 +121,31 @@
           .btn-group
             =partial(:canonical_document_button_abstract_collapsible, :locals=>{cd:cd})
             =partial(:canonical_document_button, :locals=>{id:cd[:id]})
+          .pull-right
+            %input.form-control.input-sm{:type=>'file', :name=>'files[]', :multiple=>true, :form=>upload_form_id, :style=>"display:inline-block;width:auto;"}
+            %button.btn.btn-default.btn-sm{:type=>:submit, :form=>upload_form_id}
+              %span.glyphicon.glyphicon-upload
+              =t(:Upload_file)
+          - if favorite_files.any?
+            %div{:style=>"clear:both;padding-top:8px;"}
+              %strong=t("favorites.Canonical_document_files")
+              %ul.list-unstyled
+                - favorite_files.each do |file|
+                  %li
+                    %a{:href=>url("/file/#{file[:id]}/download")}=file[:filename]
+                    - if available_reviews.any?
+                      - available_reviews.each do |review|
+                        - linked=FileSr[:file_id=>file[:id], :systematic_review_id=>review[:id]]
+                        - unless linked
+                          %form{:method=>:post, :action=>url("/review/#{review[:id]}/canonical_document/#{cd[:id]}/file/#{file[:id]}/use"), :style=>"display:inline;"}
+                            %button.btn.btn-xs.btn-default{:type=>:submit}
+                              =t("favorites.Use_in_review", review_name:review[:name])
 
     %button.btn.btn-sm.btn-success{:type => "submit"}
       %span.glyphicon.glyphicon-save
       =t(:Save)
+  - @favorite_documents.each do |fav|
+    %form{:id=>"favorite-file-upload-#{fav[:canonical_document_id]}", :method=>:post, :action=>url("/favorite/user/#{@user[:id]}/canonical_document/#{fav[:canonical_document_id]}/file/add"), :enctype=>'multipart/form-data'}
 
 #favorites-trash.hidden
   %h3=t("favorites.Inactive_Favorites")

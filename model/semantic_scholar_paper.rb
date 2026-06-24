@@ -74,7 +74,8 @@ class Semantic_Scholar_Paper < Sequel::Model
     if !sa
       begin
         sr=SemanticScholar::Remote.new
-        json=sr.json_by_id(id, type)
+        remote_type=type.to_s=='semantic_scholar_id' ? :s2 : type
+        json=sr.json_by_id(id, remote_type)
       rescue Buhos::SemanticScholarError => e
         json=false
         sr=OpenStruct.new

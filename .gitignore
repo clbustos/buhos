@@ -5,8 +5,12 @@
 *.log
 .codex
 .tok
+node_modules/**/*
 cargar_base.sh
 bak/*
+ris/*
+scopus/*
+usr/*
 *~
 .env
 .env_test

@@ -243,6 +243,32 @@ post '/file/show_cd' do
   return 200
 end
 
+post '/review/:sr_id/canonical_document/:cd_id/file/:file_id/use' do |sr_id, cd_id, file_id|
+  halt_unless_auth('review_analyze')
+  halt_unless_auth('file_view')
+
+  rs=SystematicReview[sr_id]
+  raise Buhos::NoReviewIdError, sr_id unless rs
+
+  cd=CanonicalDocument[cd_id]
+  raise Buhos::NoCdIdError, cd_id unless cd
+
+  file=IFile[file_id]
+  raise Buhos::NoFileIdError, file_id unless file
+
+  halt 403 unless rs.cd_all_id.include?(cd.id)
+  if FileExtractionInformation.where(:file_id=>file.id).count>0
+    add_message(I18n::t("files.file_used_for_extraction_information", filename:file[:filename]), :error)
+    redirect back
+  end
+  file_cd=FileCd[:file_id=>file.id, :canonical_document_id=>cd.id]
+  halt 404 unless file_cd && file_cd[:not_consider] != true && file_cd[:not_consider] != 1
+
+  FileSr.insert(:file_id=>file.id, :systematic_review_id=>rs.id) unless FileSr[:file_id=>file.id, :systematic_review_id=>rs.id]
+  add_message(I18n::t("files.file_added_to_review", filename:file[:filename], sr_name:rs[:name]))
+  redirect back
+end
+
 
 # Remove the allocation of a file to a canonical document
 post '/file/unassign_cd' do

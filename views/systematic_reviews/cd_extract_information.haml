@@ -29,6 +29,15 @@
       - if @current_file_id.nil?
         %p.alert.alert-warning=t(:No_file)
         =@modal_files.cargador_archivo(@sr[:id], @cd[:id])
+        - if @global_files.any?
+          .panel.panel-default
+            .panel-heading=t("files.Available_canonical_files")
+            .panel-body
+              - @global_files.each do |file|
+                %form{:method=>:post, :action=>url("/review/#{@sr[:id]}/canonical_document/#{@cd[:id]}/file/#{file[:id]}/use"), :style=>"display:inline;"}
+                  %button.btn.btn-default.btn-sm{:type=>:submit}
+                    %span.glyphicon.glyphicon-plus
+                    =file[:filename]
       - else
         %div.embed-responsive.embed-responsive-4by3
           %iframe{:src=>"/ViewerJS/#../file/#{@current_file_id}/download",  :allowfullscreen=>true, :webkitallowfullscreen=>true}

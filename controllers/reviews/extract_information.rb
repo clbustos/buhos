@@ -35,8 +35,14 @@ get '/review/:sr_id/extract_information/cd/:cd_id' do |sr_id,cd_id|
     redirect back
   end
 
-  @files_id=FileCd.where(:canonical_document_id=>cd_id, :not_consider=>false).map(:file_id)
+  @files_id=FileCd.
+    join(:file_srs, :file_id=>:file_id).
+    where(:canonical_document_id=>cd_id, :systematic_review_id=>@sr[:id]).
+    where(Sequel.lit("file_cds.not_consider = ? OR file_cds.not_consider IS NULL", 0)).
+    exclude(Sequel[:file_cds][:file_id]=>FileExtractionInformation.where(:systematic_review_id=>@sr[:id]).select(:file_id)).
+    select_map(Sequel[:file_cds][:file_id])
   @files=IFile.where(:id=>@files_id).as_hash
+  @global_files=AnalysisSystematicReview.new(@sr).global_files_by_cd[@cd[:id]] || []
 
   @current_file_id = params['file'] || @files.keys[0]
 

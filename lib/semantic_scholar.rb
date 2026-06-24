@@ -28,6 +28,8 @@
 
 
 require 'json'
+require 'net/http'
+require 'uri'
 require_relative 'doi_helpers'
 require_relative 'error_codes'
 

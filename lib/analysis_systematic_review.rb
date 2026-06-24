@@ -194,7 +194,28 @@ class AnalysisSystematicReview
 
 
   def files_by_cd
-    $db["SELECT a.*,cds.canonical_document_id  FROM files a INNER JOIN file_cds cds ON a.id=cds.file_id INNER JOIN file_srs ars ON a.id=ars.file_id WHERE systematic_review_id=? AND (cds.not_consider = ? OR cds.not_consider IS NULL)", @rs.id, 0].to_hash_groups(:canonical_document_id)
+    $db["SELECT a.*,cds.canonical_document_id
+         FROM files a
+         INNER JOIN file_cds cds ON a.id=cds.file_id
+         INNER JOIN file_srs ars ON a.id=ars.file_id
+         WHERE systematic_review_id=? AND (cds.not_consider = ? OR cds.not_consider IS NULL)
+         AND NOT EXISTS (
+           SELECT 1 FROM file_extraction_informations fei
+           WHERE fei.file_id=a.id AND fei.systematic_review_id=?
+         )", @rs.id, 0, @rs.id].to_hash_groups(:canonical_document_id)
+  end
+
+  def global_files_by_cd
+    $db["SELECT a.*, cds.canonical_document_id
+         FROM files a
+         INNER JOIN file_cds cds ON a.id=cds.file_id
+         LEFT JOIN file_srs ars ON a.id=ars.file_id AND ars.systematic_review_id=?
+         WHERE ars.file_id IS NULL AND (cds.not_consider = ? OR cds.not_consider IS NULL)
+         AND NOT EXISTS (
+           SELECT 1 FROM file_extraction_informations fei
+           WHERE fei.file_id=a.id
+         )",
+        @rs.id, 0].to_hash_groups(:canonical_document_id)
   end
 
 

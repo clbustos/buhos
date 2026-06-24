@@ -87,12 +87,21 @@
             =partial("tags/tags_cd_rs_small", locals:{user_id:@user_id, review:@review, cd:cd, tags_a:@tags_a})
             =cd.ref_apa_6_brief_html
             - files=@files_by_cd[cd[:id]]
+            - global_files=@global_files_by_cd[cd[:id]] || []
             %div
               - if files && !files.empty?
                 - files.each do |file|
                   =@modal_files.buttons(file)
               - else
                 %span.label.label-warning=t(:No_file)
+              - if global_files.any?
+                .small
+                  %strong=t("files.Available_canonical_files")
+                  - global_files.each do |file|
+                    %form{:method=>:post, :action=>url("/review/#{@review[:id]}/canonical_document/#{cd[:id]}/file/#{file[:id]}/use"), :style=>"display:inline;"}
+                      %button.btn.btn-xs.btn-default{:type=>:submit}
+                        %span.glyphicon.glyphicon-plus
+                        =file[:filename]
             %br
             =partial("tags/tags_cd_rs", :locals=>{cd: cd, review:@review, user_id:@user_id, ajax:ajax})
           %td

@@ -288,6 +288,9 @@ pl:
   Files: "Pliki"
   Filter: "Filtr"
   files:
+    Available_canonical_files: "Dostępne pliki dokumentu kanonicznego"
+    file_added_to_review: "Plik %{filename} dodany do przeglądu systematycznego %{sr_name}"
+    file_used_for_extraction_information: "Plik %{filename} jest już używany jako plik ekstrakcji informacji"
     Show_all: "Pokaż wszystko"
     Show_only_files_assigned_to_cd: "Powiązany z DW"
     Show_only_files_not_assigned_to_cd: "Niepowiązany z DW"
@@ -577,6 +580,8 @@ pl:
   Missing_file_reports: "Zgłoszenia brakującego pliku"
   Reported_by_users: "Zgłoszone przez użytkowników"
   favorites:
+    Canonical_document_files: "Pliki dokumentu kanonicznego"
+    file_uploaded_for_canonical_document: "Plik %{filename} przesłany dla dokumentu kanonicznego %{cd_title}"
     Make_public: "Upublicznij (udostępnij)"
     My_Categories: "Moje kolekcje"
     My_Favorite_Documents: "Moje ulubione dokumenty"
@@ -594,6 +599,7 @@ pl:
     Public_favorites: "Publiczne ulubione"
     No_public_favorites: "Brak ulubionych w publicznych kolekcjach."
     Shared_by: "Udostępnione przez %{user}"
+    Use_in_review: "Użyj w %{review_name}"
     group_created: "Kolekcja została utworzona pomyślnie."
     group_deleted: "Kolekcja %{fg_id} została usunięta pomyślnie."
     not_allowed_to_delete: "Nie można usunąć tej kolekcji"

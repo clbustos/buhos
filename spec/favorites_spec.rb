@@ -128,6 +128,43 @@ describe 'Favorite documents' do
     it { expect(last_response.body).to include "data-target='#cd-abstract-1'" }
   end
 
+  context 'when a file is uploaded from favorites' do
+    before(:context) do
+      $db[:file_extraction_informations].delete
+      $db[:file_srs].delete
+      $db[:file_cds].delete
+      $db[:files].delete
+      FavoriteDocument.where(user_id: 1, canonical_document_id: 1).delete
+      FavoriteDocument.create(user_id: 1, canonical_document_id: 1, activo: true)
+      uploaded_file=Rack::Test::UploadedFile.new(File.expand_path("#{File.dirname(__FILE__)}/../docs/guide_resources/README.md"), "text/plain", true)
+      post '/favorite/user/1/canonical_document/1/file/add', files:[uploaded_file]
+      @file=IFile.order(:id).last
+    end
+
+    it { expect(last_response).to be_redirect }
+    it { expect(@file).to_not be_nil }
+    it { expect(FileCd[:file_id=>@file[:id], :canonical_document_id=>1]).to be_truthy }
+    it { expect(FileSr[:file_id=>@file[:id], :systematic_review_id=>1]).to be_nil }
+    it { expect(FileExtractionInformation.where(:file_id=>@file[:id]).count).to eq(0) }
+
+    it 'shows the global canonical document file on the favorites page' do
+      get '/user/1/favorites'
+      expect(last_response.body).to include(@file[:filename])
+      expect(last_response.body).to include("/review/1/canonical_document/1/file/#{@file[:id]}/use")
+    end
+  end
+
+  context 'when a global canonical file is used in a review' do
+    before(:context) do
+      @file_id=IFile.order(:id).last[:id]
+      post "/review/1/canonical_document/1/file/#{@file_id}/use", {}, 'HTTP_REFERER' => '/user/1/favorites'
+    end
+
+    it { expect(last_response).to be_redirect }
+    it { expect(FileSr[:file_id=>@file_id, :systematic_review_id=>1]).to be_truthy }
+    it { expect(FileExtractionInformation.where(:file_id=>@file_id).count).to eq(0) }
+  end
+
   context 'when public favorites are listed' do
     before(:context) do
       CanonicalDocument.where(id: 2).delete
