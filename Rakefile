@@ -122,6 +122,7 @@ namespace :review do
   desc "Complete missing abstracts in title/abstract and reference screening using Semantic Scholar. Usage: rake review:complete_missing_abstracts[review_id] or REVIEW_ID=1 STAGES=screening_title_abstract,screening_references LIMIT=10 SLEEP=1"
   task :complete_missing_abstracts, [:review_id] => :environment do |t, args|
     require_relative 'lib/analysis_systematic_review'
+    require_relative 'lib/abstract_from_doi'
     require_relative 'lib/semantic_scholar'
     require_relative 'model/semantic_scholar_paper'
 
@@ -148,9 +149,11 @@ namespace :review do
     stages.each do |stage|
       documents = analysis.cd_without_abstract(stage).order(:id).all
       documents = documents.first(limit) if limit
+
       puts "Stage #{stage}: #{documents.length} documents without abstract"
 
       documents.each do |document|
+        document.refresh
         if processed_cd_ids.include?(document.id)
           stats[:skipped] += 1
           puts "SKIP cd=#{document.id} already processed in this run"
@@ -160,22 +163,30 @@ namespace :review do
         stats[:processed] += 1
         processed_cd_ids << document.id
         before_blank = document.abstract.to_s.strip.empty?
-        result = Semantic_Scholar_Paper.get_abstract_cd(document.id)
-        document.refresh
-        updated = before_blank && !document.abstract.to_s.strip.empty?
-
-        if updated
-          stats[:updated] += 1
-          puts "OK cd=#{document.id} abstract updated"
-        elsif result.success?
-          stats[:unchanged] += 1
-          puts "UNCHANGED cd=#{document.id}"
+        if before_blank
+          result = Semantic_Scholar_Paper.get_abstract_cd(document.id)
+          if !result.success?
+            abstract = AbstractFromDoi.new(document.doi).get_abstract
+            if abstract
+              document.update(abstract: abstract)
+            else
+              result=Result.new
+              result.error("No abstract in DOI page")
+            end
+          end
+          document.refresh
+          updated = !document.abstract.to_s.strip.empty?
+          if updated
+            stats[:updated] += 1
+            puts "OK cd=#{document.id} abstract updated"
+          else
+            stats[:errors] += 1
+            puts "ERROR cd=#{document.id}: #{result.message}"
+          end
+          sleep sleep_seconds if sleep_seconds.positive?
         else
-          stats[:errors] += 1
-          puts "ERROR cd=#{document.id}: #{result.message}"
+          stats[:unchanged] += 1
         end
-
-        sleep sleep_seconds if sleep_seconds.positive?
       end
     end
 

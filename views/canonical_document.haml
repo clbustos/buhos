@@ -30,11 +30,11 @@
 
 .btn-group
   =partial(:favorite, :locals=>{cd: @cd, user_id:@user.id})
-  -if auth_to("scopus_query")
-    - if !@cd.abstract
+  - if !@cd.abstract
+    %a{:href=>url("/canonical_document/#{@cd[:id]}/search_abstract_doi_page"), :role=>:button, :class=>"btn btn-default"}=t(:Complete_abstract_using_DOI_referenced_page)
+    -if auth_to("scopus_query")
       %a{:href=>url("/canonical_document/#{@cd[:id]}/search_abstract_scopus"), :role=>:button, :class=>"btn btn-default"}=t(:Complete_abstract_using_Scopus)
-  -if auth_to("semantic_scholar_query")
-    - if !@cd.abstract
+    -if auth_to("semantic_scholar_query")
       %a{:href=>url("/canonical_document/#{@cd[:id]}/search_abstract_semantic_scholar"), :role=>:button, :class=>"btn btn-default"}=t(:Complete_abstract_using_Semantic_Scholar)
   - if @review
     .div
