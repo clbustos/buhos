@@ -61,6 +61,8 @@ $light_danger_bg: #f1dddd;
 $dark_danger: #a94442;
 $dark_danger_bg: #f1dddd;
 
+
+
 :root[color-mode="light"] {
   --surface1: #{$light_surface_1};
   --surface2: #{$light_surface_2};
@@ -981,6 +983,11 @@ div.lista-etapas {
 }
 
 
+.global-message {
+  font-weighth: bold;
+  color: $light_danger;
+  color: var(--danger, $light_danger);
+}
 
 .color-mode__btn {
   color: #111111;

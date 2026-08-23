@@ -650,6 +650,11 @@ div.lista-etapas span.etapa {
   -moz-border-radius: 6px;
   -webkit-border-radius: 6px; }
 
+.global-message {
+  font-weighth: bold;
+  color: #a94442;
+  color: var(--danger, #a94442); }
+
 .color-mode__btn {
   color: #111111;
   color: var(--element1, #111111); }

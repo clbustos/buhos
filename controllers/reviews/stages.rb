@@ -44,7 +44,6 @@ get '/review/:id/screening_title_abstract' do |id|
   @decisions=@ads.decisions
   @favorites = FavoriteDocument.where(user_id: @user_id, activo: true).
     inject({}) {|ac,v| ac[v[:canonical_document_id]]=v; ac}
-  $log.info(@favorites)
   begin
     @cds=@pager.adapt_ads_cds(@ads, @cds_pre)
   rescue Buhos::SearchParser::ParsingError => e

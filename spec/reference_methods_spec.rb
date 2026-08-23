@@ -8,6 +8,19 @@ describe 'ReferenceMethods mixin' do
 
   describe '#authors_apa_6' do
 
+    it "should create a correct link for doi with format 10.*" do
+      def @fake_cd.doi; "10.20";end
+      expect(@fake_cd.doi_link).to eq("<a href='https://doi.org/10.20'>https://doi.org/10.20</a>")
+    end
+    it "should create a correct link for doi with format doi:10.*" do
+      def @fake_cd.doi;"doi:10.20";end
+      expect(@fake_cd.doi_link).to eq("<a href='https://doi.org/10.20'>https://doi.org/10.20</a>")
+    end
+    it "should create a correct link for doi with format https:...doi:10.*" do
+      def @fake_cd.doi; "https://doi.org/10.20";end
+      expect(@fake_cd.doi_link).to eq("<a href='https://doi.org/10.20'>https://doi.org/10.20</a>")
+    end
+
     it "should retrieve correct authors names using commas (n<7)" do
       def @fake_cd.author; "SN1,    FN1 FN1b and SN2, FN2 "; end
       expect(@fake_cd.authors_apa_6).to eq("SN1, F.F., & SN2, F.")

@@ -30,16 +30,25 @@
       - unless blind_reference_screening
         %p
           %strong="#{t(:APA_references)}:"
-          =CGI::escapeHTML cd.ref_apa_6
-
+          =cd.ref_apa_6_doi_link
           - text_references=sprintf("<strong>#{t(:Citations)}:</strong> #{t(:cites)} <strong><a href='#{url_base}/cites'>%d</a> </strong> / #{t(:cited_by)} <strong><a href='#{url_base}/cited_by'>%d</a></strong> ", ars.cd_count_outgoing(cd[:id]).to_i, ars.cd_count_incoming(cd[:id]).to_i)
           - if ars.cd_count_incoming_sta(cd[:id])
             -text_references+=sprintf("/ #{t(:cited_by_RTR_documents)} <strong><a href='#{url_base}/cited_by_rtr'>%d</a></strong>", ars.cd_count_incoming_sta(cd[:id]).to_i)
           %p=text_references
       %p{:class=>""}
         %strong=t(:Abstract)
-        - if !cd.abstract
-          %em=t(:No_abstract)
+        - if cd.abstract.to_s.strip.empty?
+          - if auth_to("review_admin") or auth_to("canonical_document_admin")
+            %span.editable_decision_abstract
+              %button.btn.btn-default.decision_abstract_button{
+                :type=>"button",
+                "data-editor"=>"#decision-abstract-#{cd[:id]}"}
+                %span.glyphicon.glyphicon-pencil
+                =t(:Complete_abstract_manually)
+              %span.hidden{:id=>"decision-abstract-#{cd[:id]}"}
+                =a_textarea_editable(cd[:id], "canonical_document", "/canonical_document/edit_field/abstract", cd[:abstract],"")
+          -else
+            %em=t(:No_abstract)
         -else
           -abs_pres.text=cd.abstract
           =abs_pres.html_with_keywords

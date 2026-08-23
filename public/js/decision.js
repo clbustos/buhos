@@ -3,9 +3,18 @@ function actualizar_decision(stage,div_id) {
     var selector_action=div_id ? div_id+" .dc_decision" : '.dc_decision';
     var checked_action=div_id ? div_id+" .criteria_cd_user": ".criteria_cd_user";
 
+    var abstract_action=div_id ? div_id+" .decision_abstract_button": ".decision_abstract_button";
 
     $(selector_action).unbind("click");
     $(checked_action).unbind("click");
+    $(abstract_action).unbind("click");
+
+    $(abstract_action).click(function() {
+        var editor_id=$(this).attr("data-editor");
+        $(editor_id).toggleClass("hidden");
+        $(this).toggleClass("hidden");
+    })
+
 
     $(checked_action).click(function() {
         var cd_id= $(this).attr("data-cd-id");

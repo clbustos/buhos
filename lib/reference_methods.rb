@@ -38,11 +38,43 @@ module ReferenceMethods
   def cite_apa_6
     "(#{authors_apa_6}, #{year})"
   end
-  def ref_apa_6_base(text_author)
-    "#{text_author} (#{year}). #{title}. #{journal}, #{volume}, #{pages}.#{doi_t}"
+  def ref_apa_6_base(text_author, link_doi=false)
+    if link_doi
+      "#{text_author} (#{year}). #{title}. #{journal}, #{volume}, #{pages}. #{doi_link}"
+    else
+      "#{text_author} (#{year}). #{title}. #{journal}, #{volume}, #{pages}. #{doi_url}"
+    end
   end
+  def doi_url
+    if doi.to_s.chomp!=""
+      if doi=~/^(10\..+)/
+        url="https://doi.org/#{doi}"
+      elsif doi=~/(doi:|doi.org\/)\s*(10\..+)/
+        doi_i=$2
+        url="https://doi.org/#{doi_i}"
+      else
+        url=doi.to_s
+      end
+      url
+    else
+      nil
+    end
+  end
+
+  def doi_link
+    url=doi_url
+    if url
+      "<a href='#{url}'>#{url}</a>"
+    else
+      ""
+    end
+end
+
   def doi_t
     doi.to_s!="" ? "doi: #{doi}" : ""
+  end
+  def ref_apa_6_doi_link
+    ref_apa_6_base(author, link_doi=true)
   end
   def ref_apa_6
     ref_apa_6_base(author)
