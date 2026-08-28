@@ -1,0 +1,4 @@
+- global_message = ENV['GLOBAL_MESSAGE'].to_s.strip
+- unless global_message.empty?
+  .global-message.alert.alert-warning.text-center{:role=>'alert', 'aria-live'=>'polite'}
+    =Rack::Utils.escape_html(global_message)
