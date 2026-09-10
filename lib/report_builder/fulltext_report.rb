@@ -116,7 +116,7 @@ module ReportBuilder
           if codes_an.length>0
             codes_an.uniq.each {|code|
               # Busquemos el párrafo donde está el text
-              uses=an[field.to_sym].scan(/^.+#{code[0]}.+$/)
+              uses=an[field.to_sym].scan(/^.+#{Regexp.escape(code[0])}.+$/)
               codes[field][code[0]]||=[]
               codes[field][code[0]].push({cd_id:an[:canonical_document_id], uses:uses})
             }
