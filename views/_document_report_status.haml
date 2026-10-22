@@ -1,0 +1,4 @@
+- resolved=report.status == 'resolved'
+%button.btn.btn-sm.report-resolved-button{:type=>'button', :class=>resolved ? 'btn-success' : 'btn-default', :disabled=>!auth_to('review_admin'), 'data-resolved'=>resolved.to_s, 'aria-pressed'=>resolved.to_s, :title=>t(resolved ? 'document_reports.reopen' : 'document_reports.mark_resolved'), 'data-url'=>url("/review/#{review.id}/document_report/#{report.id}/resolved"), 'data-reopen-label'=>t('document_reports.reopen'), 'data-resolve-label'=>t('document_reports.mark_resolved'), 'data-error-label'=>t('document_reports.update_failed')}
+  %span.glyphicon.report-state-icon{:class=>resolved ? 'glyphicon-ok-circle' : 'glyphicon-time'}
+  %span.report-status=t("document_reports.#{report.status}")
