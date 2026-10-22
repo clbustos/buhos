@@ -185,12 +185,22 @@ describe DocumentReport do
     expect(Resolution.all.map(&:values)).to eq(resolutions)
 
     get '/review/1/administration_document_reports'
-    checkbox=Nokogiri::HTML(last_response.body).at_css("input[data-url='/review/1/document_report/#{report.id}/resolved']")
-    expect(checkbox['checked']).not_to be_nil
+    html=Nokogiri::HTML(last_response.body)
+    button=html.at_css("button[data-url='/review/1/document_report/#{report.id}/resolved']")
+    expect(button['data-resolved']).to eq('true')
+    expect(button['aria-pressed']).to eq('true')
+    expect(button['class']).to include('btn-success')
+    expect(button.text).to include('Resolved')
+    expect(html.css('.document-report-entry input[type="checkbox"]')).to be_empty
     put "/review/1/document_report/#{report.id}/resolved", resolved:'false'
     expect(last_response).to be_ok
     expect(report.refresh.status).to eq('pending')
     expect(report.resolved_at).to be_nil
+    get '/review/1/administration_document_reports'
+    button=Nokogiri::HTML(last_response.body).at_css("button[data-url='/review/1/document_report/#{report.id}/resolved']")
+    expect(button['data-resolved']).to eq('false')
+    expect(button['class']).to include('btn-default')
+    expect(button.text).to include('Pending')
   end
 
   it 'requires administration permission and the correct review to resolve a report' do

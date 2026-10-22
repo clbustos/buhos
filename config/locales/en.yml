@@ -228,6 +228,7 @@ en:
   document_reports:
     hide_documents_with_resolution: "Hide documents with a resolution in this stage"
     mark_resolved: "Mark report as resolved"
+    reopen: "Mark report as pending again"
     update_failed: "Could not update the report. Please try again."
     filter_by_report: "Filter by report"
     any_report: "Any report"

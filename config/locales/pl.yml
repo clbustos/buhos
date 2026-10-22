@@ -573,6 +573,7 @@ pl:
   document_reports:
     hide_documents_with_resolution: "Ukryj dokumenty z rozstrzygnięciem na tym etapie"
     mark_resolved: "Oznacz zgłoszenie jako rozwiązane"
+    reopen: "Oznacz zgłoszenie ponownie jako oczekujące"
     update_failed: "Nie udało się zaktualizować zgłoszenia. Spróbuj ponownie."
     filter_by_report: "Filtruj według zgłoszenia"
     any_report: "Dowolne zgłoszenie"

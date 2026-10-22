@@ -226,6 +226,7 @@ es:
   document_reports:
     hide_documents_with_resolution: "Ocultar documentos que ya tienen resolución en esta etapa"
     mark_resolved: "Marcar reporte como resuelto"
+    reopen: "Volver a marcar el reporte como pendiente"
     update_failed: "No se pudo actualizar el reporte. Inténtalo nuevamente."
     filter_by_report: "Filtrar por reporte"
     any_report: "Cualquier reporte"
