@@ -151,6 +151,48 @@ describe DocumentReport do
     expect(last_response).to be_ok
   end
 
+  it 'omits resolved report indicators while retaining pending reasons in canonical lists' do
+    report=DocumentReport.create(systematic_review_id:1, canonical_document_id:1, user_id:1,
+                                 report_type:'duplicate', status:'resolved')
+    get '/review/1/canonical_documents', query:'Pager document 1'
+    html=Nokogiri::HTML(last_response.body)
+    expect(html.at_css('#canonical-document-1 .canonical-document-reported')).to be_nil
+
+    DocumentReport.create(systematic_review_id:1, canonical_document_id:1, user_id:2,
+                          report_type:'does_not_meet_criteria')
+    get '/review/1/canonical_documents', query:'Pager document 1'
+    badge=Nokogiri::HTML(last_response.body).at_css('#canonical-document-1 .canonical-document-reported')
+    expect(badge.text).to include('Does not meet criteria')
+    expect(badge.text).not_to include('Duplicate Document')
+    expect(report.refresh.status).to eq('resolved')
+  end
+
+  it 'shows every report author and current status at the end of the canonical detail for this review' do
+    DocumentReport.create(systematic_review_id:1, canonical_document_id:1, user_id:1, report_type:'duplicate', status:'resolved')
+    DocumentReport.create(systematic_review_id:1, canonical_document_id:1, user_id:2, report_type:'spam', status:'ignored')
+    DocumentReport.create(systematic_review_id:1, canonical_document_id:1, user_id:2, report_type:'does_not_meet_criteria')
+    DocumentReport.create(systematic_review_id:1, canonical_document_id:2, user_id:1, report_type:'ocr_error')
+    SystematicReview.insert(id:2, name:'Other review', group_id:1, sr_administrator:1,
+                            date_creation:Date.today, year_start:0, year_end:0) unless SystematicReview[2]
+    DocumentReport.create(systematic_review_id:2, canonical_document_id:1, user_id:1, report_type:'missing_file')
+    get '/review/1/canonical_document/1'
+    expect(last_response).to be_ok
+    section=Nokogiri::HTML(last_response.body).at_css('#canonical-document-reports')
+    rows=section.css('tbody tr').map {|row| row.css('td').map {|cell| cell.text.strip}}
+    expect(rows).to contain_exactly(
+      ['Duplicate Document', User[1].name, 'Resolved'],
+      ['Spam / Irrelevant Content', User[2].name, 'Ignored'],
+      ['Does not meet criteria', User[2].name, 'Pending']
+    )
+  end
+
+  it 'shows an empty report section when the canonical document has no reports' do
+    get '/review/1/canonical_document/1'
+    expect(last_response).to be_ok
+    section=Nokogiri::HTML(last_response.body).at_css('#canonical-document-reports')
+    expect(section.text).to include('This document has no reports in this review.')
+  end
+
   it 'hides documents resolved only in the selected stage, independently of report status' do
     [1,2,3].each do |cd_id|
       DocumentReport.create(systematic_review_id:1, canonical_document_id:cd_id, user_id:1, report_type:'duplicate')

@@ -571,6 +571,7 @@ pl:
     empty: "Brak przydziałów bez głosu dla rozstrzygniętych dokumentów na tym etapie."
     removed: "Usunięto %{count} przydziałów bez głosu dla rozstrzygniętych dokumentów."
   document_reports:
+    no_reports: "Ten dokument nie ma zgłoszeń w tym przeglądzie."
     hide_documents_with_resolution: "Ukryj dokumenty z rozstrzygnięciem na tym etapie"
     mark_resolved: "Oznacz zgłoszenie jako rozwiązane"
     reopen: "Oznacz zgłoszenie ponownie jako oczekujące"

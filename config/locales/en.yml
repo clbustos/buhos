@@ -226,6 +226,7 @@ en:
     empty: "No assignments without votes for resolved documents in this stage."
     removed: "Removed %{count} assignments without votes for resolved documents."
   document_reports:
+    no_reports: "This document has no reports in this review."
     hide_documents_with_resolution: "Hide documents with a resolution in this stage"
     mark_resolved: "Mark report as resolved"
     reopen: "Mark report as pending again"

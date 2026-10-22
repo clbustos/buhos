@@ -224,6 +224,7 @@ es:
     empty: "No hay asignaciones sin voto para documentos resueltos en esta etapa."
     removed: "Se eliminaron %{count} asignaciones sin voto de documentos resueltos."
   document_reports:
+    no_reports: "Este documento no tiene reportes en esta revisión."
     hide_documents_with_resolution: "Ocultar documentos que ya tienen resolución en esta etapa"
     mark_resolved: "Marcar reporte como resuelto"
     reopen: "Volver a marcar el reporte como pendiente"

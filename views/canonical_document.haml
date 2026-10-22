@@ -140,3 +140,22 @@
 %h3=t("canonical_document.references")
 
 =partial(:references_list, :locals=>{:references=>@references_realizadas})
+
+- if @review && @document_reports
+  %section#canonical-document-reports
+    %h3=t('document_reports.document_reports')
+    - if @document_reports.empty?
+      %p=t('document_reports.no_reports')
+    - else
+      %table.table.table-bordered
+        %thead
+          %tr
+            %th=t('document_reports.report_type')
+            %th=t(:User)
+            %th=t('document_reports.status')
+        %tbody
+          - @document_reports.each do |report|
+            %tr
+              %td=t("document_reports.#{report.report_type}")
+              %td=CGI::escapeHTML @document_report_users[report.user_id][:name].to_s
+              %td=t("document_reports.#{report.status}")

@@ -86,7 +86,7 @@ get '/review/:id/canonical_documents' do |id|
 
   @cds=@pager.adjust_page_order(@cds_pre)
   @document_reports_by_cd=DocumentReport.where(systematic_review_id:@review.id,
-    canonical_document_id:@cds.map(:id)).exclude(status:'ignored').all.group_by(&:canonical_document_id)
+    canonical_document_id:@cds.map(:id), status:'pending').all.group_by(&:canonical_document_id)
 
   @ars=AnalysisSystematicReview.new(@review)
   @user=User[session['user_id']]
@@ -191,6 +191,9 @@ get "/review/:sr_id/canonical_document/:cd_id" do |sr_id, cd_id|
 
   #@sim_all=Buhos::SimilarAnalysisSr.similar_to_cd_in_sr( cd:@cd, sr:@review)
   @references_realizadas=@cd.references_performed
+  @document_reports=DocumentReport.where(systematic_review_id:@review.id, canonical_document_id:@cd.id).
+    order(:created_at, :id).all
+  @document_report_users=User.where(id:@document_reports.map(&:user_id).uniq).to_hash(:id)
   haml :canonical_document, escape_html: false
 
 end
