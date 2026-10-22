@@ -27,7 +27,11 @@ post '/review/:sr_id/document_reports/batch' do |sr_id|
       end
     end
   end
-  redirect url("/review/#{review.id}/administration_document_reports")
+  canonical_documents_url=url("/review/#{review.id}/canonical_documents")
+  return_to=params['report_return_to'].to_s
+  valid_return_to=(return_to == canonical_documents_url || return_to.start_with?(canonical_documents_url + '?')) &&
+    !return_to.match?(/[\r\n]/)
+  redirect(valid_return_to ? return_to : canonical_documents_url)
 end
 
 put '/review/:sr_id/document_report/cd/:cd_id/user/:user_id/report_types' do |sr_id, cd_id, user_id|

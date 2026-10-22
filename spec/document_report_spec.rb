@@ -151,6 +151,30 @@ describe DocumentReport do
     expect(last_response).to be_ok
   end
 
+  it 'returns to the exact canonical search URL after reporting' do
+    search_url='/review/1/canonical_documents?query=Pager+document&page=2&order=title__asc&only_records=true&wo_abstract=true'
+    get search_url
+    expect(last_response).to be_ok
+    return_to=Nokogiri::HTML(last_response.body).at_css('input[name="report_return_to"]')['value']
+    expect(return_to).to eq(search_url)
+
+    post '/review/1/document_reports/batch', canonical_document:{'1'=>'1'},
+         report_type:'does_not_meet_criteria', report_return_to:return_to
+    expect(last_response).to be_redirect
+    expect(URI(last_response.location).request_uri).to eq(search_url)
+    expect(DocumentReport.where(canonical_document_id:1, report_type:'does_not_meet_criteria').count).to eq(1)
+  end
+
+  it 'falls back to the same review canonical list for missing or unrelated return URLs' do
+    [nil, 'https://example.com', '//example.com', '/review/2/canonical_documents',
+     '/review/1/administration_document_reports'].each do |return_to|
+      post '/review/1/document_reports/batch', canonical_document:{'1'=>'1'},
+           report_type:'spam', report_return_to:return_to
+      expect(last_response).to be_redirect
+      expect(URI(last_response.location).request_uri).to eq('/review/1/canonical_documents')
+    end
+  end
+
   it 'links to reports from each stage and keeps exclusion specific to the chosen stage' do
     DocumentReport.create(systematic_review_id:1, canonical_document_id:1, user_id:1,
                           report_type:'does_not_meet_criteria')

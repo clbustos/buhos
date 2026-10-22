@@ -99,6 +99,7 @@
 %form{:action=>url("/canonical_document/actions"), :method=>:post}
   %input{:type=>:hidden, :name=>:action, :id=>:form_canonical_document_action}
   %input{:type=>:hidden, :name=>:url_back, :id=>:url_back, :value=>@url}
+  %input{:type=>:hidden, :name=>:report_return_to, :value=>request.fullpath}
   %input{:type=>:hidden, :name=>:sr_id, :value=>@review.id}
   %input{:type=>:hidden, :name=>:user_id, :value=>@user.id}
   %p
