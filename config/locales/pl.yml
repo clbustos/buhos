@@ -563,6 +563,13 @@ pl:
     tag_edit: 'Tagi: Edytuj'
     user_admin: 'Użytkownicy: Admin'
   PRISMA_flow_diagram: "Schemat blokowy PRISMA"
+  resolved_without_vote:
+    title: "Rozstrzygnięte dokumenty z przydziałami bez głosu"
+    description: "Dokumenty rozstrzygnięte na tym etapie z przypisanymi recenzentami, którzy jeszcze nie głosowali. Usunięte zostaną tylko ich przydziały na tym etapie."
+    reviewers: "Przypisani recenzenci bez głosu"
+    unassign_all: "Usuń wszystkie te przydziały bez głosu"
+    empty: "Brak przydziałów bez głosu dla rozstrzygniętych dokumentów na tym etapie."
+    removed: "Usunięto %{count} przydziałów bez głosu dla rozstrzygniętych dokumentów."
   document_reports:
     hide_documents_with_resolution: "Ukryj dokumenty z rozstrzygnięciem na tym etapie"
     mark_resolved: "Oznacz zgłoszenie jako rozwiązane"

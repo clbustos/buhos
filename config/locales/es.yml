@@ -216,6 +216,13 @@ es:
   Description: "Descripción"
   Dev_alert: "Desarrollo"
   Distinct_documents: "Documentos distintos"
+  resolved_without_vote:
+    title: "Resueltos con asignaciones sin voto"
+    description: "Documentos resueltos en esta etapa con personas asignadas que aún no han votado. La desasignación se aplica únicamente a esas personas en esta etapa."
+    reviewers: "Personas asignadas sin voto"
+    unassign_all: "Desasignar todas estas asignaciones sin voto"
+    empty: "No hay asignaciones sin voto para documentos resueltos en esta etapa."
+    removed: "Se eliminaron %{count} asignaciones sin voto de documentos resueltos."
   document_reports:
     hide_documents_with_resolution: "Ocultar documentos que ya tienen resolución en esta etapa"
     mark_resolved: "Marcar reporte como resuelto"

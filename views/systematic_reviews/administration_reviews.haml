@@ -18,6 +18,9 @@
   %a.btn.btn-sm.btn-default{:href=>"/review/#{@review[:id]}/administration/#{@stage}/cd_assignations"}
     %span.glyphicon.glyphicon-list
     =t(:Check_CD_assignations)
+  %a.btn.btn-sm.btn-default{:href=>url("/review/#{@review.id}/administration/#{@stage}/resolved_without_vote")}
+    %span.glyphicon.glyphicon-check
+    =t('resolved_without_vote.title')
   - if !@cd_without_allocation.empty?
     %a.btn.btn-sm.btn-warning{:href=>"/review/#{@review[:id]}/administration/#{@stage}/cd_without_allocations"}
       %span.glyphicon.glyphicon-list

@@ -1,0 +1,35 @@
+.heading
+  =t_systematic_review_title(@review.name, 'resolved_without_vote.title')
+
+%ul.breadcrumb
+  %li
+    %a{:href=>url("/review/#{@review.id}")}=@review.name
+  %li
+    %a{:href=>url("/review/#{@review.id}/administration/#{@stage}")}=t(get_stage_name(@stage))
+  %li.active=t('resolved_without_vote.title')
+
+%p=t('resolved_without_vote.description')
+
+- if @cds.empty?
+  %p.alert.alert-info=t('resolved_without_vote.empty')
+- else
+  - if auth_to('review_admin')
+    %form{:method=>'post', :action=>url("/review/#{@review.id}/administration/#{@stage}/resolved_without_vote/unassign")}
+      %button.btn.btn-warning{:type=>'submit'}=t('resolved_without_vote.unassign_all')
+  %table.table.table-bordered
+    %thead
+      %tr
+        %th=t(:Document)
+        %th=t('resolved_without_vote.reviewers')
+        %th=t(:Resolution)
+    %tbody
+      - @cds.each do |cd|
+        %tr{:id=>"resolved-without-vote-#{cd.id}"}
+          %td
+            =CGI::escapeHTML cd.ref_apa_6_brief
+            =partial(:canonical_document_button, locals:{id:cd.id, review:@review})
+            =partial(:canonical_document_button_abstract_collapsible, locals:{cd:cd})
+          %td
+            - @pending_allocations[cd.id].each do |allocation|
+              %p=CGI::escapeHTML @users[allocation.user_id].name.to_s
+          %td=t(Resolution.get_name_resolution(@resolutions[cd.id].resolution))

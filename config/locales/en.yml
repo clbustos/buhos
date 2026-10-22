@@ -218,6 +218,13 @@ en:
   Description: "Description"
   Dev_alert: "Development"
   Distinct_documents: "Distinct documents"
+  resolved_without_vote:
+    title: "Resolved documents with assignments awaiting votes"
+    description: "Documents resolved in this stage with assigned reviewers who have not voted. Only these reviewers will be unassigned in this stage."
+    reviewers: "Assigned reviewers without a vote"
+    unassign_all: "Remove all these assignments without votes"
+    empty: "No assignments without votes for resolved documents in this stage."
+    removed: "Removed %{count} assignments without votes for resolved documents."
   document_reports:
     hide_documents_with_resolution: "Hide documents with a resolution in this stage"
     mark_resolved: "Mark report as resolved"

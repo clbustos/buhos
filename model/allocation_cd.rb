@@ -32,6 +32,16 @@ require_relative 'canonical_document'
 
 
 class AllocationCd < Sequel::Model
+  # Only remove allocations whose reviewer has not voted in this same stage.
+  def self.without_vote_on_resolved_documents(review_id, stage)
+    resolved=Resolution.where(systematic_review_id:review_id, stage:stage,
+      resolution:[Resolution::RESOLUTION_ACCEPT, Resolution::RESOLUTION_REJECT]).select(:canonical_document_id)
+    voted=Decision.where(systematic_review_id:review_id, stage:stage,
+      decision:%w[yes no undecided]).select(:canonical_document_id, :user_id)
+    where(systematic_review_id:review_id, stage:stage, canonical_document_id:resolved).
+      exclude([:canonical_document_id, :user_id]=>voted)
+  end
+
   many_to_one :systematic_review    , :class=>SystematicReview
   many_to_one :user_name            , :class=>User
   many_to_one :canonical_document   , :class=>CanonicalDocument

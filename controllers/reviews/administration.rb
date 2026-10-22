@@ -12,6 +12,30 @@
 
 
 require 'serrano'
+get '/review/:id/administration/:stage/resolved_without_vote' do |id, stage|
+  halt_unless_auth_any('review_admin', 'review_admin_view')
+  @review=SystematicReview[id]
+  raise Buhos::NoReviewIdError, id unless @review
+  halt 400 unless %w[screening_title_abstract screening_references review_full_text].include?(stage)
+  @stage=stage
+  allocations=AllocationCd.without_vote_on_resolved_documents(@review.id, stage).all
+  @pending_allocations=allocations.group_by(&:canonical_document_id)
+  @cds=CanonicalDocument.where(id:@pending_allocations.keys).order(:title).all
+  @users=User.where(id:allocations.map(&:user_id).uniq).to_hash(:id)
+  @resolutions=Resolution.where(systematic_review_id:@review.id, stage:stage).to_hash(:canonical_document_id)
+  haml :'systematic_reviews/resolved_without_vote', escape_html:false
+end
+
+post '/review/:id/administration/:stage/resolved_without_vote/unassign' do |id, stage|
+  halt_unless_auth('review_admin')
+  review=SystematicReview[id]
+  raise Buhos::NoReviewIdError, id unless review
+  halt 400 unless %w[screening_title_abstract screening_references review_full_text].include?(stage)
+  count=AllocationCd.without_vote_on_resolved_documents(review.id, stage).delete
+  add_message(t('resolved_without_vote.removed', count:count))
+  redirect url("/review/#{review.id}/administration/#{stage}/resolved_without_vote")
+end
+
 get '/review/:id/administration_document_reports' do |id|
   halt_unless_auth_any('review_admin', 'review_admin_view')
   @review=SystematicReview[id]
