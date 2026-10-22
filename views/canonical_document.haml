@@ -158,4 +158,4 @@
             %tr
               %td=t("document_reports.#{report.report_type}")
               %td=CGI::escapeHTML @document_report_users[report.user_id][:name].to_s
-              %td=t("document_reports.#{report.status}")
+              %td=partial(:document_report_status, locals:{report:report, review:@review})

@@ -38,4 +38,23 @@ function actualizar_reportes(div_id) {
 
 $(document).ready(function () {
     actualizar_reportes();
+    $(document).on('click', '.report-resolved-button', function () {
+        var button = $(this);
+        if (button.prop('disabled')) return;
+        var resolved = button.attr('data-resolved') !== 'true';
+        button.prop('disabled', true);
+        $.ajax({url: button.data('url'), type: 'PUT', dataType: 'json', data: {resolved: String(resolved)}})
+            .done(function (response) {
+                button.attr('data-resolved', String(resolved));
+                button.attr('aria-pressed', String(resolved));
+                button.attr('title', button.attr(resolved ? 'data-reopen-label' : 'data-resolve-label'));
+                button.toggleClass('btn-success', resolved).toggleClass('btn-default', !resolved);
+                button.find('.report-state-icon').toggleClass('glyphicon-ok-circle', resolved).toggleClass('glyphicon-time', !resolved);
+                button.find('.report-status').text(response.label);
+            }).fail(function () {
+                alert(button.attr('data-error-label'));
+            }).always(function () {
+                button.prop('disabled', false);
+            });
+    });
 });

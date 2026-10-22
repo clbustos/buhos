@@ -24,22 +24,6 @@
 :javascript
   $(document).ready(function() {
     actualizar_resolution('#{@stage}');
-    $('.report-resolved-button').on('click', function() {
-      var button=$(this);
-      var resolved=button.attr('data-resolved') !== 'true';
-      button.prop('disabled', true);
-      $.ajax({url:button.data('url'), type:'PUT', dataType:'json', data:{resolved:String(resolved)}})
-        .done(function(response) {
-          button.attr('data-resolved', String(resolved));
-          button.attr('aria-pressed', String(resolved));
-          button.attr('title', resolved ? #{JSON.generate(t('document_reports.reopen'))} : #{JSON.generate(t('document_reports.mark_resolved'))});
-          button.toggleClass('btn-success', resolved).toggleClass('btn-default', !resolved);
-          button.find('.report-state-icon').toggleClass('glyphicon-ok-circle', resolved).toggleClass('glyphicon-time', !resolved);
-          button.find('.report-status').text(response.label);
-        }).fail(function() {
-          alert(#{JSON.generate(t('document_reports.update_failed'))});
-        }).always(function() { button.prop('disabled', false); });
-    });
     $(document).on('resolution:updated', function(event, cd_id, resolution, stage) {
       if (#{@hide_resolved} && stage === '#{@stage}' && (resolution === 'yes' || resolution === 'no')) {
         $('#reported-document-' + cd_id).remove();
@@ -69,10 +53,7 @@
             %p.document-report-entry
               %strong=t("document_reports.#{report.report_type}")
               =CGI::escapeHTML @report_users[report.user_id][:name].to_s
-              - resolved=report.status == 'resolved'
-              %button.btn.btn-sm.report-resolved-button{:type=>'button', :class=>resolved ? 'btn-success' : 'btn-default', :disabled=>!auth_to('review_admin'), 'data-resolved'=>resolved.to_s, 'aria-pressed'=>resolved.to_s, :title=>t(resolved ? 'document_reports.reopen' : 'document_reports.mark_resolved'), 'data-url'=>url("/review/#{@review.id}/document_report/#{report.id}/resolved")}
-                %span.glyphicon.report-state-icon{:class=>resolved ? 'glyphicon-ok-circle' : 'glyphicon-time'}
-                %span.report-status=t("document_reports.#{report.status}")
+              =partial(:document_report_status, locals:{report:report, review:@review})
               =CGI::escapeHTML report.commentary.to_s
         %td
           - if auth_to('review_admin')

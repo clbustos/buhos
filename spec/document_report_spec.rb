@@ -193,6 +193,41 @@ describe DocumentReport do
     expect(section.text).to include('This document has no reports in this review.')
   end
 
+  it 'provides the same AJAX status control in canonical details and administration' do
+    report=DocumentReport.create(systematic_review_id:1, canonical_document_id:1, user_id:2, report_type:'duplicate')
+    get '/review/1/canonical_document/1'
+    expect(last_response).to be_ok
+    button=Nokogiri::HTML(last_response.body).at_css('#canonical-document-reports .report-resolved-button')
+    expect(button['disabled']).to be_nil
+    expect(button['data-resolved']).to eq('false')
+    endpoint=button['data-url']
+    put endpoint, resolved:'true'
+    expect(last_response).to be_ok
+    expect(report.refresh.status).to eq('resolved')
+    ['/review/1/canonical_document/1', '/review/1/administration_document_reports'].each do |path|
+      get path
+      button=Nokogiri::HTML(last_response.body).at_css("button[data-url='#{endpoint}']")
+      expect(button['data-resolved']).to eq('true')
+      expect(button['class']).to include('btn-success')
+    end
+    put endpoint, resolved:'false'
+    expect(last_response).to be_ok
+    expect(report.refresh.status).to eq('pending')
+  end
+
+  it 'disables report status editing in canonical details without administration permission' do
+    report=DocumentReport.create(systematic_review_id:1, canonical_document_id:1, user_id:1, report_type:'duplicate')
+    allow_any_instance_of(Sinatra::Application).to receive(:auth_to).and_call_original
+    allow_any_instance_of(Sinatra::Application).to receive(:auth_to).with('review_admin').and_return(false)
+    get '/review/1/canonical_document/1'
+    expect(last_response).to be_ok
+    button=Nokogiri::HTML(last_response.body).at_css('#canonical-document-reports .report-resolved-button')
+    expect(button['disabled']).not_to be_nil
+    put button['data-url'], resolved:'true'
+    expect(last_response.status).to eq(403)
+    expect(report.refresh.status).to eq('pending')
+  end
+
   it 'hides documents resolved only in the selected stage, independently of report status' do
     [1,2,3].each do |cd_id|
       DocumentReport.create(systematic_review_id:1, canonical_document_id:cd_id, user_id:1, report_type:'duplicate')
