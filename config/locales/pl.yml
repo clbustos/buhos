@@ -564,6 +564,9 @@ pl:
     user_admin: 'Użytkownicy: Admin'
   PRISMA_flow_diagram: "Schemat blokowy PRISMA"
   document_reports:
+    hide_documents_with_resolution: "Ukryj dokumenty z rozstrzygnięciem na tym etapie"
+    mark_resolved: "Oznacz zgłoszenie jako rozwiązane"
+    update_failed: "Nie udało się zaktualizować zgłoszenia. Spróbuj ponownie."
     filter_by_report: "Filtruj według zgłoszenia"
     any_report: "Dowolne zgłoszenie"
     view_reported_documents: "Zobacz zgłoszone dokumenty"

@@ -18,11 +18,18 @@ get '/review/:id/administration_document_reports' do |id|
   raise Buhos::NoReviewIdError, id unless @review
 
   @stage=params['stage'] || 'screening_title_abstract'
+  @hide_resolved=params['hide_resolved']=='true'
   halt 400 unless %w[screening_title_abstract screening_references review_full_text].include?(@stage)
   @reports_by_cd=DocumentReport.where(systematic_review_id:@review.id).
     order(:canonical_document_id, :user_id, :report_type).all.group_by(&:canonical_document_id)
-  @reported_cds=@review.canonical_documents.
-    where(Sequel[:canonical_documents][:id]=>@reports_by_cd.keys).order(:title).all
+  reported_cds=@review.canonical_documents.
+    where(Sequel[:canonical_documents][:id]=>@reports_by_cd.keys)
+  if @hide_resolved
+    resolved_ids=Resolution.where(systematic_review_id:@review.id, stage:@stage,
+      resolution:[Resolution::RESOLUTION_ACCEPT, Resolution::RESOLUTION_REJECT]).select(:canonical_document_id)
+    reported_cds=reported_cds.exclude(Sequel[:canonical_documents][:id]=>resolved_ids)
+  end
+  @reported_cds=reported_cds.order(:title).all
   @report_users=User.where(id:@reports_by_cd.values.flatten.map(&:user_id).uniq).to_hash(:id)
   @ars=AnalysisSystematicReview.new(@review)
   @user_id=session['user_id']

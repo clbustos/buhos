@@ -151,6 +151,61 @@ describe DocumentReport do
     expect(last_response).to be_ok
   end
 
+  it 'hides documents resolved only in the selected stage, independently of report status' do
+    [1,2,3].each do |cd_id|
+      DocumentReport.create(systematic_review_id:1, canonical_document_id:cd_id, user_id:1, report_type:'duplicate')
+    end
+    Resolution.where(systematic_review_id:1, canonical_document_id:[1,2,3]).delete
+    Resolution.set_for_document(systematic_review_id:1, canonical_document_id:1, stage:'review_full_text', resolution:'yes', user_id:1)
+    Resolution.set_for_document(systematic_review_id:1, canonical_document_id:2, stage:'review_full_text', resolution:'no', user_id:1)
+    Resolution.set_for_document(systematic_review_id:1, canonical_document_id:3, stage:'screening_title_abstract', resolution:'no', user_id:1)
+    DocumentReport.where(canonical_document_id:3).first.update(status:'resolved')
+
+    get '/review/1/administration_document_reports', stage:'review_full_text', hide_resolved:'true'
+    expect(last_response).to be_ok
+    html=Nokogiri::HTML(last_response.body)
+    expect(html.css('tr[id^="reported-document-"]').map {|row| row['id']}).to eq(['reported-document-3'])
+    expect(html.at_css('input[name="hide_resolved"]')['checked']).not_to be_nil
+    expect(last_response.body).to include('hide_resolved=true')
+
+    get '/review/1/administration_document_reports', stage:'review_full_text'
+    expect(last_response.body).to include('reported-document-1', 'reported-document-2', 'reported-document-3')
+  end
+
+  it 'marks individual reports as resolved and reopens them without changing document resolutions' do
+    report=DocumentReport.create(systematic_review_id:1, canonical_document_id:1, user_id:2, report_type:'duplicate')
+    other=DocumentReport.create(systematic_review_id:1, canonical_document_id:1, user_id:1, report_type:'spam')
+    resolutions=Resolution.all.map(&:values)
+    put "/review/1/document_report/#{report.id}/resolved", resolved:'true'
+    expect(last_response).to be_ok
+    expect(JSON.parse(last_response.body)['status']).to eq('resolved')
+    expect(report.refresh.status).to eq('resolved')
+    expect(report.resolved_at).not_to be_nil
+    expect(other.refresh.status).to eq('pending')
+    expect(Resolution.all.map(&:values)).to eq(resolutions)
+
+    get '/review/1/administration_document_reports'
+    checkbox=Nokogiri::HTML(last_response.body).at_css("input[data-url='/review/1/document_report/#{report.id}/resolved']")
+    expect(checkbox['checked']).not_to be_nil
+    put "/review/1/document_report/#{report.id}/resolved", resolved:'false'
+    expect(last_response).to be_ok
+    expect(report.refresh.status).to eq('pending')
+    expect(report.resolved_at).to be_nil
+  end
+
+  it 'requires administration permission and the correct review to resolve a report' do
+    report=DocumentReport.create(systematic_review_id:1, canonical_document_id:1, user_id:1, report_type:'duplicate')
+    put "/review/999/document_report/#{report.id}/resolved", resolved:'true'
+    expect(last_response.status).to eq(404)
+    put "/review/1/document_report/#{report.id}/resolved", resolved:'invalid'
+    expect(last_response.status).to eq(400)
+    allow_any_instance_of(Sinatra::Application).to receive(:auth_to).and_call_original
+    allow_any_instance_of(Sinatra::Application).to receive(:auth_to).with('review_admin').and_return(false)
+    put "/review/1/document_report/#{report.id}/resolved", resolved:'true'
+    expect(last_response.status).to eq(403)
+    expect(report.refresh.status).to eq('pending')
+  end
+
   it 'filters canonical documents by any report or a specific reason only when enabled' do
     DocumentReport.create(systematic_review_id:1, canonical_document_id:1, user_id:1, report_type:'duplicate')
     DocumentReport.create(systematic_review_id:1, canonical_document_id:1, user_id:2, report_type:'duplicate')

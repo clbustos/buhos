@@ -2,6 +2,17 @@ require 'json'
 
 # @!group Document reports
 
+put '/review/:sr_id/document_report/:report_id/resolved' do |sr_id, report_id|
+  halt_unless_auth('review_admin')
+  report=DocumentReport.where(id:report_id, systematic_review_id:sr_id).first
+  halt 404 unless report
+  halt 400 unless %w[true false].include?(params['resolved'])
+  resolved=params['resolved']=='true'
+  report.update(status:resolved ? 'resolved' : 'pending', resolved_at:resolved ? report.resolved_at : nil)
+  content_type :json
+  JSON.generate(status:report.status, label:t("document_reports.#{report.status}"))
+end
+
 post '/review/:sr_id/document_reports/batch' do |sr_id|
   halt_unless_auth('review_admin')
   review=SystematicReview[sr_id]

@@ -127,6 +127,7 @@ function actualizar_resolution(stage, div_id) {
             var to_update="#botones_resolution_"+stage+"_"+pk_id;
             actualizar_resolution(stage,to_update);
             actualizar_textarea_editable(to_update);
+            $(document).trigger('resolution:updated', [pk_id, resolution, stage]);
 
 
         }).fail(function () {
