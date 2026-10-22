@@ -12,6 +12,23 @@
 
 
 require 'serrano'
+get '/review/:id/administration_document_reports' do |id|
+  halt_unless_auth_any('review_admin', 'review_admin_view')
+  @review=SystematicReview[id]
+  raise Buhos::NoReviewIdError, id unless @review
+
+  @stage=params['stage'] || 'screening_title_abstract'
+  halt 400 unless %w[screening_title_abstract screening_references review_full_text].include?(@stage)
+  @reports_by_cd=DocumentReport.where(systematic_review_id:@review.id).
+    order(:canonical_document_id, :user_id, :report_type).all.group_by(&:canonical_document_id)
+  @reported_cds=@review.canonical_documents.
+    where(Sequel[:canonical_documents][:id]=>@reports_by_cd.keys).order(:title).all
+  @report_users=User.where(id:@reports_by_cd.values.flatten.map(&:user_id).uniq).to_hash(:id)
+  @ars=AnalysisSystematicReview.new(@review)
+  @user_id=session['user_id']
+  haml :'systematic_reviews/administration_document_reports', escape_html:false
+end
+
 get '/review/:id/administration_stages' do |id|
   halt_unless_auth_any('review_admin', 'review_admin_view')
   @review=SystematicReview[id]

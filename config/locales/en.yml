@@ -219,6 +219,7 @@ en:
   Dev_alert: "Development"
   Distinct_documents: "Distinct documents"
   document_reports:
+    report_selected: "Report selected documents"
     document_reports: "Document Reports"
     report_type: "Report Type"
     status: "Status"
@@ -228,6 +229,7 @@ en:
     duplicate: "Duplicate Document"
     ocr_error: "OCR/Reading Error"
     wrong_metadata: "Incorrect Metadata"
+    does_not_meet_criteria: "Does not meet criteria"
     missing_file: "Missing file"
     conflicting_resolution: "Conflicting Resolution"
     spam: "Spam / Irrelevant Content"

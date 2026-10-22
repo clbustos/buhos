@@ -10,6 +10,8 @@
   %li{:class=>"active"}=t(:Administration)
 
 %ul
+  %li
+    %a{:href=>url("/review/#{@review.id}/administration_document_reports")}=t('document_reports.document_reports')
   - @review.current_stages.each do |stage|
     %li
       %a{:href=>"/review/#{@review[:id]}/administration/#{stage}"}

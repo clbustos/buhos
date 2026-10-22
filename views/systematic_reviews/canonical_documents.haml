@@ -114,6 +114,13 @@
             %button.btn.btn-default{:id=>:action_merge, :class=>'canonical_document_action'}=t(:Merge)
             %button.btn.btn-default{:id=>:action_tags,  :class=>'canonical_document_action'}=t(:Tags)
             %button.btn.btn-default{:id=>:action_bibtex,  :class=>'canonical_document_action'}=t(:Export_to_Bibtex)
+          - if auth_to('review_admin')
+            .form-inline
+              %label{:for=>'report-type'}=t('document_reports.report_type')
+              %select.form-control.input-sm{:id=>'report-type', :name=>'report_type'}
+                - DocumentReport.report_type_options.each do |value, label|
+                  %option{:value=>value}=label
+              %button.btn.btn-warning.btn-sm.canonical_document_action{:id=>'action_report', :type=>'submit', :formaction=>url("/review/#{@review.id}/document_reports/batch")}=t('document_reports.report_selected')
         %td
           =t(:Records_from_to, first_record:@pager.current_first_record, last_record:@pager.current_last_record , total_records: @cds_total)
     - @cds.each do |cd|
@@ -129,6 +136,9 @@
 
         %td
           =partial(:canonical_document_button, :locals=>{id:cd[:id], review:@review})
+          - if auth_to('review_admin')
+            - if auth_to('favorite_edit')
+              =partial(:favorite, :locals=>{cd:cd, user_id:@user.id})
 
 
 

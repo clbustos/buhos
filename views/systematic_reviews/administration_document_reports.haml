@@ -1,0 +1,45 @@
+.heading
+  =t_systematic_review_title(@review.name, 'document_reports.document_reports')
+
+%ul.breadcrumb
+  %li
+    %a{:href=>url("/review/#{@review.id}")}=@review.name
+  %li
+    %a{:href=>url("/review/#{@review.id}/administration_stages")}=t(:Administration)
+  %li.active=t('document_reports.document_reports')
+
+%ul.nav.nav-pills
+  - %w[screening_title_abstract screening_references review_full_text].each do |stage|
+    %li{:class=>(stage == @stage ? 'active' : nil)}
+      %a{:href=>url("/review/#{@review.id}/administration_document_reports?stage=#{stage}")}=t(get_stages_names[stage])
+
+:javascript
+  $(document).ready(function() { actualizar_resolution('#{@stage}'); });
+
+- rpc=@ars.resolution_by_cd(@stage)
+- rcompc=@ars.resolution_commentary_by_cd(@stage)
+%table.table.table-bordered
+  %thead
+    %tr
+      %th=t(:Document)
+      %th=t('document_reports.document_reports')
+      %th=t(:Resolution)
+  %tbody
+    - @reported_cds.each do |cd|
+      %tr{:id=>"reported-document-#{cd.id}"}
+        %td
+          =CGI::escapeHTML cd.ref_apa_6_brief
+          =partial(:canonical_document_button, locals:{id:cd.id, review:@review})
+          =partial(:canonical_document_button_abstract_collapsible, locals:{cd:cd})
+        %td
+          - @reports_by_cd[cd.id].each do |report|
+            %p
+              %strong=t("document_reports.#{report.report_type}")
+              =CGI::escapeHTML @report_users[report.user_id][:name].to_s
+              %span.label.label-default=t("document_reports.#{report.status}")
+              =CGI::escapeHTML report.commentary.to_s
+        %td
+          - if auth_to('review_admin')
+            =partial(:buttons_resolution, locals:{rpc:rpc, rcompc:rcompc, cd_id:cd.id, stage:@stage, user_id:@user_id, review:@review})
+          - else
+            =partial(:buttons_resolution_view, locals:{rpc:rpc, rcompc:rcompc, cd_id:cd.id, stage:@stage, user_id:@user_id, review:@review})

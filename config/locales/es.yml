@@ -217,6 +217,7 @@ es:
   Dev_alert: "Desarrollo"
   Distinct_documents: "Documentos distintos"
   document_reports:
+    report_selected: "Reportar seleccionados"
     document_reports: "Reportes del Documento"
     report_type: "Tipo de reporte"
     status: "Estado"
@@ -226,6 +227,7 @@ es:
     duplicate: "Documento Duplicado"
     ocr_error: "Error de lectura (OCR)"
     wrong_metadata: "Metadatos incorrectos"
+    does_not_meet_criteria: "No cumple criterios"
     missing_file: "Archivo faltante"
     conflicting_resolution: "Resolución contradictoria"
     spam: "Spam / Contenido irrelevante"

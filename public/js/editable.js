@@ -80,8 +80,18 @@ function actualizar_favorito(div_id) {
             $(to_update).replaceWith(data);
             actualizar_favorito(to_update);
             actualizar_textarea_editable(to_update);
-        }).fail(function () {
-            alert("No se pudo cargar el favorito")
+        }).fail(function (xhr, textStatus, errorThrown) {
+            boton.prop("disabled", false);
+            console.error("No se pudo actualizar el favorito", {
+                url: url,
+                canonical_document_id: pk_id,
+                user_id: user_id,
+                status: xhr.status,
+                statusText: xhr.statusText,
+                textStatus: textStatus,
+                error: errorThrown
+            });
+            alert("No se pudo cargar el favorito. Inténtalo nuevamente.");
         })
     })
 

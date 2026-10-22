@@ -576,6 +576,7 @@ pl:
     spam: "Spam / nieistotna treść"
     status: "Status"
     wrong_metadata: "Nieprawidłowe metadane"
+    does_not_meet_criteria: "Nie spełnia kryteriów"
     conflicting_resolution: "Sprzeczna decyzja końcowa"
   Missing_file_reports: "Zgłoszenia brakującego pliku"
   Reported_by_users: "Zgłoszone przez użytkowników"

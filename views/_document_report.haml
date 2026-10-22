@@ -3,7 +3,7 @@
 - report_active=report_types.any?
 - button_context=report_active ? 'btn-warning' : 'btn-default'
 %span{:id=>"document-report-span-#{review[:id]}-#{cd[:id]}-#{user_id}"}
-  %button{:href=>'#',
+  %button{:type=>'button', :href=>'#',
     :id=>"document-report-#{review[:id]}-#{cd[:id]}-#{user_id}",
     :class=>"document-report-editable btn btn-sm #{button_context}",
     "data-pk"=>cd[:id],

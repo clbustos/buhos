@@ -12,7 +12,7 @@ class DocumentReport < Sequel::Model(:sr_document_reports)
   # Tipos de reporte permitidos (opcional, para validación)
   CONFLICTING_RESOLUTION = 'conflicting_resolution'
   MISSING_FILE = 'missing_file'
-  REPORT_TYPES = %w[duplicate ocr_error wrong_metadata missing_file spam other conflicting_resolution]
+  REPORT_TYPES = %w[duplicate ocr_error wrong_metadata missing_file does_not_meet_criteria spam other conflicting_resolution]
   STATUSES     = %w[pending resolved ignored]
 
   def self.report_type_options
