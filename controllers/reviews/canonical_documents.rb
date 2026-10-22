@@ -22,6 +22,8 @@ get '/review/:id/canonical_documents' do |id|
 
   @wo_abstract=params['wo_abstract']=='true'
   @only_records=params['only_records']=='true'
+  @only_reported=params['only_reported']=='true'
+  @report_filter=DocumentReport::REPORT_TYPES.include?(params['report_filter']) ? params['report_filter'] : 'any'
 
   @ars=AnalysisSystematicReview.new(@review)
   @cd_total_ds=@review.canonical_documents
@@ -60,6 +62,14 @@ get '/review/:id/canonical_documents' do |id|
   if @only_records
     @cds_pre=@cds_pre.where(:id=>@ars.cd_reg_id)
   end
+  if @only_reported
+    reports=DocumentReport.where(systematic_review_id:@review.id).exclude(status:'ignored')
+    reports=reports.where(report_type:@report_filter) unless @report_filter == 'any'
+    @cds_pre=@cds_pre.where(Sequel[:canonical_documents][:id]=>reports.select(:canonical_document_id))
+  end
+
+  @canonical_filters={query:@pager.query, wo_abstract:@wo_abstract, only_records:@only_records,
+                      only_reported:@only_reported, report_filter:@report_filter, order:@pager.order}
 
 
 

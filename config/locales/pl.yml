@@ -564,6 +564,8 @@ pl:
     user_admin: 'Użytkownicy: Admin'
   PRISMA_flow_diagram: "Schemat blokowy PRISMA"
   document_reports:
+    filter_by_report: "Filtruj według zgłoszenia"
+    any_report: "Dowolne zgłoszenie"
     view_reported_documents: "Zobacz zgłoszone dokumenty"
     reported: "Zgłoszono:"
     document_reports: "Zgłoszenia dokumentów"

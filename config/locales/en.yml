@@ -219,6 +219,8 @@ en:
   Dev_alert: "Development"
   Distinct_documents: "Distinct documents"
   document_reports:
+    filter_by_report: "Filter by report"
+    any_report: "Any report"
     view_reported_documents: "View reported documents"
     reported: "Reported:"
     report_selected: "Report selected documents"

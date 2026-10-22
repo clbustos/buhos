@@ -36,7 +36,7 @@
   =sprintf("<strong>#{t(:Count_canonical_documents)}</strong>: #{t(:Total)}=%d, #{t(:Records)}=%d, #{t(:References)}=%d",@ars.cd_count_total, @ars.cd_count_reg, @ars.cd_count_ref)
 
 %form.form-inline{:action=>url("/review/#{@review[:id]}/canonical_documents"), :method=>:get}
-  %input{:type=>:hidden,:name=>:page, :value=>@pager.page}
+  %input{:type=>:hidden,:name=>:page, :value=>1}
   %input{:type=>:hidden,:name=>:order, :value=>@pager.order}
   %div{:class=>"form-group"}
     %label{:class=>"", :for=>:query}=t(:Search)
@@ -47,6 +47,14 @@
     .checkbox
       %label{:for=>:only_records}=t(:Check_only_documents_on_search_no_references)
       %input{:type=>:checkbox, :name=>:only_records, :class=>"form-control-checkbox", :checked=>@only_records, :value=>'true'}
+    .checkbox
+      %label{:for=>'only-reported'}
+        %input{:type=>:checkbox, :id=>'only-reported', :name=>:only_reported, :value=>'true', :checked=>@only_reported}
+        =t('document_reports.filter_by_report')
+    %select.form-control{:name=>:report_filter, 'aria-label'=>t('document_reports.report_type')}
+      %option{:value=>'any', :selected=>@report_filter == 'any'}=t('document_reports.any_report')
+      - DocumentReport.report_type_options.each do |value, label|
+        %option{:value=>value, :selected=>@report_filter == value}=label
   %input{:type=>:submit, :class=>'btn btn-default '}
 
 
@@ -81,14 +89,14 @@
 
 
 
-= partial(:pager,:locals=>{url: @url, page: @pager.page, max_page: @pager.max_page,:extra=>{query:@pager.query, wo_abstract:@wo_abstract, only_records:@only_records,  order:@pager.order}} )
+= partial(:pager,:locals=>{url: @url, page: @pager.page, max_page: @pager.max_page, extra:@canonical_filters} )
 
 .btn-group
   -@order_criteria.each do |crit_order,crit_name|
     -["asc","desc"].each do |dir|
       -arrow_dir =  dir=="asc" ? "up" : "down"
       -if @pager.order!="#{crit_order}__#{dir}"
-        %a{:href=>url("/review/#{@review[:id]}/canonical_documents?page=#{@pager.page}&search=#{@query}&order=#{crit_order}__#{dir}"), :class=>"btn btn-default btn-sm"}
+        %a{:href=>url("#{@url}?#{URI.encode_www_form(@canonical_filters.merge(page:@pager.page, order:"#{crit_order}__#{dir}"))}"), :class=>"btn btn-default btn-sm"}
           %span{:class=>"glyphicon glyphicon-chevron-#{arrow_dir}"}
           =crit_name
       -else
@@ -149,4 +157,4 @@
 
 
 
-= partial(:pager,:locals=>{url: @url, page: @pager.page, max_page: @pager.max_page, :extra=>{query:@pager.query, wo_abstract:@wo_abstract, only_records:@only_records,  order:@pager.order}} )
+= partial(:pager,:locals=>{url: @url, page: @pager.page, max_page: @pager.max_page, extra:@canonical_filters} )

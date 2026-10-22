@@ -151,6 +151,49 @@ describe DocumentReport do
     expect(last_response).to be_ok
   end
 
+  it 'filters canonical documents by any report or a specific reason only when enabled' do
+    DocumentReport.create(systematic_review_id:1, canonical_document_id:1, user_id:1, report_type:'duplicate')
+    DocumentReport.create(systematic_review_id:1, canonical_document_id:1, user_id:2, report_type:'duplicate')
+    DocumentReport.create(systematic_review_id:1, canonical_document_id:2, user_id:2, report_type:'does_not_meet_criteria')
+    DocumentReport.create(systematic_review_id:1, canonical_document_id:3, user_id:1, report_type:'duplicate', status:'ignored')
+
+    get '/review/1/canonical_documents', only_reported:'true', report_filter:'any'
+    expect(last_response).to be_ok
+    rows=Nokogiri::HTML(last_response.body).css('tr[id^="canonical-document-"]').map {|row| row['id']}
+    expect(rows.sort).to eq(%w[canonical-document-1 canonical-document-2])
+
+    get '/review/1/canonical_documents', only_reported:'true', report_filter:'does_not_meet_criteria'
+    expect(last_response).to be_ok
+    rows=Nokogiri::HTML(last_response.body).css('tr[id^="canonical-document-"]').map {|row| row['id']}
+    expect(rows).to eq(['canonical-document-2'])
+    expect(Nokogiri::HTML(last_response.body).at_css('select[name="report_filter"] option[selected]')['value']).to eq('does_not_meet_criteria')
+
+    get '/review/1/canonical_documents', report_filter:'does_not_meet_criteria'
+    expect(last_response.body).to include('canonical-document-1', 'canonical-document-2', 'canonical-document-3')
+
+    get '/review/1/canonical_documents', only_reported:'true', report_filter:'spam'
+    expect(last_response).to be_ok
+    expect(Nokogiri::HTML(last_response.body).css('tr[id^="canonical-document-"]')).to be_empty
+  end
+
+  it 'preserves report filters in pagination, sorting and the return URL while combining search filters' do
+    DocumentReport.create(systematic_review_id:1, canonical_document_id:1, user_id:1, report_type:'duplicate')
+    get '/review/1/canonical_documents', only_reported:'true', report_filter:'duplicate',
+        query:'Pager document 1', only_records:'true', wo_abstract:'true', order:'title__asc'
+    expect(last_response).to be_ok
+    html=Nokogiri::HTML(last_response.body)
+    expect(html.at_css('#canonical-document-1')).not_to be_nil
+    links=html.css('.pagination a, .btn-group a').select {|link| link['href'].include?('order=')}
+    expect(links).not_to be_empty
+    links.each do |link|
+      values=URI.decode_www_form(URI(link['href']).query).to_h
+      expect(values).to include('only_reported'=>'true', 'report_filter'=>'duplicate',
+                               'query'=>'Pager document 1', 'only_records'=>'true', 'wo_abstract'=>'true')
+    end
+    return_to=html.at_css('input[name="report_return_to"]')['value']
+    expect(URI.decode_www_form(URI(return_to).query).to_h).to include('only_reported'=>'true', 'report_filter'=>'duplicate')
+  end
+
   it 'returns to the exact canonical search URL after reporting' do
     search_url='/review/1/canonical_documents?query=Pager+document&page=2&order=title__asc&only_records=true&wo_abstract=true'
     get search_url
