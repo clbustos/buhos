@@ -6,6 +6,8 @@
     %a{:href=>url("/review/#{@review.id}")}=@review.name
   %li
     %a{:href=>url("/review/#{@review.id}/administration_stages")}=t(:Administration)
+  %li
+    %a{:href=>url("/review/#{@review.id}/administration/#{@stage}")}=t(get_stages_names[@stage])
   %li.active=t('document_reports.document_reports')
 
 %ul.nav.nav-pills
@@ -23,7 +25,9 @@
     %tr
       %th=t(:Document)
       %th=t('document_reports.document_reports')
-      %th=t(:Resolution)
+      %th
+        =t(:Resolution)
+        =t(get_stages_names[@stage])
   %tbody
     - @reported_cds.each do |cd|
       %tr{:id=>"reported-document-#{cd.id}"}

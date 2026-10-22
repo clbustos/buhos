@@ -151,6 +151,45 @@ describe DocumentReport do
     expect(last_response).to be_ok
   end
 
+  it 'links to reports from each stage and keeps exclusion specific to the chosen stage' do
+    DocumentReport.create(systematic_review_id:1, canonical_document_id:1, user_id:1,
+                          report_type:'does_not_meet_criteria')
+    %w[screening_title_abstract screening_references review_full_text].each do |stage|
+      get "/review/1/administration/#{stage}"
+      expect(last_response).to be_ok
+      expect(last_response.body).to include("/review/1/administration_document_reports?stage=#{stage}")
+      get '/review/1/administration_document_reports', stage:stage
+      expect(last_response).to be_ok
+      expect(last_response.body).to include("/resolution/review/1/canonical_document/1/stage/#{stage}/resolution")
+    end
+
+    other_stages=Resolution.where(systematic_review_id:1, canonical_document_id:1).
+      exclude(stage:'review_full_text').all.map(&:values)
+    post '/resolution/review/1/canonical_document/1/stage/review_full_text/resolution',
+         resolution:'no', user_id:1
+    expect(last_response).to be_ok
+    expect(Resolution.where(systematic_review_id:1, canonical_document_id:1,
+                            stage:'review_full_text').first.resolution).to eq('no')
+    expect(Resolution.where(systematic_review_id:1, canonical_document_id:1).
+      exclude(stage:'review_full_text').all.map(&:values)).to eq(other_stages)
+  end
+
+  it 'shows report reasons after canonical titles, combining users and omitting ignored reports' do
+    DocumentReport.create(systematic_review_id:1, canonical_document_id:1, user_id:1,
+                          report_type:'does_not_meet_criteria')
+    DocumentReport.create(systematic_review_id:1, canonical_document_id:1, user_id:2,
+                          report_type:'duplicate')
+    DocumentReport.create(systematic_review_id:1, canonical_document_id:1, user_id:2,
+                          report_type:'spam', status:'ignored')
+    get '/review/1/canonical_documents', query:'Pager document 1'
+    expect(last_response).to be_ok
+    row=Nokogiri::HTML(last_response.body).at_css('#canonical-document-1')
+    badge=row.at_css('.canonical-document-reported')
+    expect(badge.text).to include('Reported:', 'Does not meet criteria', 'Duplicate Document')
+    expect(badge.text).not_to include('Spam')
+    expect(row.text.index('Pager document 1')).to be < row.text.index('Reported:')
+  end
+
   it 'reports only checked documents without duplicates and shows them across resolution stages' do
     2.times do
       post '/review/1/document_reports/batch', canonical_document:{'1'=>'1', '2'=>'1'},

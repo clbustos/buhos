@@ -217,6 +217,8 @@ es:
   Dev_alert: "Desarrollo"
   Distinct_documents: "Documentos distintos"
   document_reports:
+    view_reported_documents: "Ver documentos reportados"
+    reported: "Reportado:"
     report_selected: "Reportar seleccionados"
     document_reports: "Reportes del Documento"
     report_type: "Tipo de reporte"

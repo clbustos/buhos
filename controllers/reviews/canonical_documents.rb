@@ -75,6 +75,8 @@ get '/review/:id/canonical_documents' do |id|
 
 
   @cds=@pager.adjust_page_order(@cds_pre)
+  @document_reports_by_cd=DocumentReport.where(systematic_review_id:@review.id,
+    canonical_document_id:@cds.map(:id)).exclude(status:'ignored').all.group_by(&:canonical_document_id)
 
   @ars=AnalysisSystematicReview.new(@review)
   @user=User[session['user_id']]
