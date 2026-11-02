@@ -42,6 +42,39 @@ class Analysis_SR_Stage
     rec=@sr.references_bw_canonical.where(:cd_end=>cd_id).map(:cd_start)
     rec & cd_stage
   end
+
+  # Compare explicit judgments within the stage; missing votes are never agreements.
+  def reviewer_agreement
+    users=Array(@sr.group_users).sort_by {|user| [user.name.to_s, user.id]}
+    ids=@sr.cd_id_by_stage(@stage)
+    votes=users.to_h {|user| [user.id, {}]}
+    Decision.where(systematic_review_id:@sr.id, stage:@stage.to_s,
+                   canonical_document_id:ids, user_id:votes.keys,
+                   decision:%w[yes no undecided]).each do |decision|
+      votes[decision.user_id][decision.canonical_document_id]=decision.decision
+    end
+    resolutions=Resolution.where(systematic_review_id:@sr.id, stage:@stage.to_s,
+                                 canonical_document_id:ids, resolution:%w[yes no]).to_hash(:canonical_document_id, :resolution)
+    score=lambda do |matches, total|
+      {matches:matches, total:total, percentage:total.zero? ? nil : 100.0*matches/total}
+    end
+    accuracy=users.to_h do |user|
+      judgments=votes[user.id]
+      counts=%w[yes no].to_h do |outcome|
+        comparable=judgments.keys.select {|id| resolutions[id]==outcome}
+        [outcome, score.call(comparable.count {|id| judgments[id]==outcome}, comparable.length)]
+      end
+      counts[:total]=score.call(counts.values.sum {|s| s[:matches]}, counts.values.sum {|s| s[:total]})
+      [user.id, counts]
+    end
+    matrix=users.to_h do |user|
+      [user.id, users.to_h do |other|
+        shared=votes[user.id].keys & votes[other.id].keys
+        [other.id, score.call(shared.count {|id| votes[user.id][id]==votes[other.id][id]}, shared.length)]
+      end]
+    end
+    {users:users, accuracy:accuracy, matrix:matrix}
+  end
   def outcoming_citations(cd_id)
     cd_stage=@sr.cd_id_by_stage(@stage)
     rec=@sr.references_bw_canonical.where(:cd_start=>cd_id).map(:cd_end)

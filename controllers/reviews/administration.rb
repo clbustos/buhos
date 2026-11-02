@@ -12,6 +12,16 @@
 
 
 require 'serrano'
+get '/review/:id/administration/:stage/reviewer_agreement' do |id, stage|
+  halt_unless_auth_any('review_admin', 'review_admin_view')
+  @review=SystematicReview[id]
+  raise Buhos::NoReviewIdError, id unless @review
+  halt 400 unless %w[screening_title_abstract screening_references review_full_text].include?(stage)
+  @stage=stage
+  @agreement=Analysis_SR_Stage.new(@review, stage).reviewer_agreement
+  haml :'systematic_reviews/reviewer_agreement', escape_html:false
+end
+
 get '/review/:id/administration/:stage/resolved_without_vote' do |id, stage|
   halt_unless_auth_any('review_admin', 'review_admin_view')
   @review=SystematicReview[id]

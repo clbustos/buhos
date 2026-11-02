@@ -1,4 +1,14 @@
 es:
+  reviewer_agreement:
+    title: "Acierto y acuerdo entre evaluadores"
+    accuracy: "Acierto respecto de la resolución final"
+    positive: "Resueltos positivos"
+    negative: "Resueltos negativos"
+    total: "Acierto total"
+    no_data: "Sin datos comparables"
+    accuracy_help: "Porcentaje de decisiones que coinciden con la resolución positiva o negativa de esta etapa. Se consideran solo documentos resueltos con voto explícito del evaluador; indeciso cuenta como desacierto. Cada celda muestra porcentaje (aciertos/documentos comparables). Los casos sin voto se excluyen."
+    matrix: "Matriz de acuerdo absoluto"
+    matrix_help: "Porcentaje de coincidencias exactas (sí, no o indeciso) en documentos con voto de ambos evaluadores, tengan o no resolución. Cada celda muestra porcentaje (coincidencias/documentos comunes). La diagonal compara cada evaluador consigo mismo. Sin votos comunes no se calcula porcentaje."
   Authorizations_renewed: "Autorizaciones renovadas"
   Renew_authorizations: "Renovar autorizaciones"
   Visibility: "Visibilidad"

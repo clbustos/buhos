@@ -1,0 +1,35 @@
+.heading
+  =t_systematic_review_title(@review.name, 'reviewer_agreement.title')
+=partial(:breadcrumb_review_admin, :locals=>{name:t(get_stage_name(@stage))})
+- format_score=lambda {|score| score[:percentage] ? "#{format('%.1f', score[:percentage])}% (#{score[:matches]}/#{score[:total]})" : t('reviewer_agreement.no_data')}
+%h3=t('reviewer_agreement.accuracy')
+%p=t('reviewer_agreement.accuracy_help')
+.table-responsive
+  %table.reporte
+    %thead
+      %tr
+        %th=t(:User)
+        %th=t('reviewer_agreement.positive')
+        %th=t('reviewer_agreement.negative')
+        %th=t('reviewer_agreement.total')
+    %tbody
+      - @agreement[:users].each do |user|
+        %tr
+          %th=escape_html(user.name)
+          - ['yes', 'no', :total].each do |outcome|
+            %td=format_score.call(@agreement[:accuracy][user.id][outcome])
+%h3=t('reviewer_agreement.matrix')
+%p=t('reviewer_agreement.matrix_help')
+.table-responsive
+  %table.reporte
+    %thead
+      %tr
+        %th=t(:User)
+        - @agreement[:users].each do |user|
+          %th=escape_html(user.name)
+    %tbody
+      - @agreement[:users].each do |user|
+        %tr
+          %th=escape_html(user.name)
+          - @agreement[:users].each do |other|
+            %td=format_score.call(@agreement[:matrix][user.id][other.id])

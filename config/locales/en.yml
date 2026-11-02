@@ -1,4 +1,14 @@
 en:
+  reviewer_agreement:
+    title: "Reviewer accuracy and agreement"
+    accuracy: "Accuracy against final resolution"
+    positive: "Positive resolutions"
+    negative: "Negative resolutions"
+    total: "Overall accuracy"
+    no_data: "No comparable data"
+    accuracy_help: "Percentage of decisions matching the positive or negative resolution in this stage. Only resolved documents with an explicit reviewer vote are included; undecided counts as incorrect. Each cell shows percentage (matches/comparable documents). Missing votes are excluded."
+    matrix: "Absolute agreement matrix"
+    matrix_help: "Percentage of exact matches (yes, no or undecided) on documents voted on by both reviewers, with or without a resolution. Each cell shows percentage (matches/shared documents). The diagonal compares each reviewer with themselves. No percentage is calculated without shared votes."
   Authorizations_renewed: "Authorizations renewed"
   Renew_authorizations: "Renew authorizations"
   Visibility: "Visibility"
