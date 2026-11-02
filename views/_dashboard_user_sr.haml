@@ -1,5 +1,5 @@
 - udi||=UserDashboardInfo.new(user)
-- is_administrator = udi.is_administrator_sr?(sr) || (udi.is_member?(sr) and auth_to('review_admin_view'))
+- is_administrator = udi.is_administrator_sr?(sr) || (udi.is_member?(sr) and !(defined?(reviewer_preview) && reviewer_preview) and auth_to('review_admin_view'))
 - unread_sr_messages_count=udi.unread_sr_messages_count(sr[:id])
 - if unread_sr_messages_count>0
   %p=t_desc_value("user_dashboard.unread_sr_messages", a_tag("/user/#{user[:id]}/messages#sr_#{sr[:id]}",  t("user_dashboard.check_n_unread_messages", count:unread_sr_messages_count)))
@@ -28,6 +28,8 @@
   %div{:class=>"tab-content"}
     - get_stages_ids.each do |stage_visualized|
       %div{:id=>"sr-#{sr.id}-#{stage_visualized}", :class=>"tab-pane #{stage_visualized==sr[:stage].to_sym ? 'active' : ''}"}
+        - if defined?(reviewer_preview) && reviewer_preview
+          %h3=t(get_stage_name(stage_visualized))
         %p
         - if stage_visualized==:search
           =partial(:dashboard_user_sr_search, :locals=>{is_administrator:is_administrator, sr:sr, stage:stage_visualized, user:user, udi:udi })

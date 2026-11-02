@@ -1,0 +1,7 @@
+.alert.alert-info
+  %strong=t('reviewer_preview.title', name: @preview_user.name)
+  %p=t('reviewer_preview.read_only')
+%div.reviewer-panel-preview{:inert=>true}
+  %h2=t(:Dashboard)
+  =partial(:dashboard_sr, :locals=>{sr:@review, user:@preview_user, reviewer_preview:true})
+  =@preview_panel

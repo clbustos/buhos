@@ -1119,3 +1119,8 @@ en:
   References_count_raw: "<strong>Statistics:</strong> cited by %{in} canonical references / available on  %{searches_count} searches"
   create_new_field: "Create new form field"
   Select_an_option: "Select an option"
+
+  reviewer_preview:
+    open: "View panel"
+    title: "Panel preview for %{name}"
+    read_only: "Read-only preview. Controls are disabled."

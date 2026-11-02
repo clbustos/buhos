@@ -48,12 +48,17 @@
 %table.reporte
   %thead
     %th=t(:User)
+    %th=t(:Actions)
     %th Documentos completos
   %tbody
     - stats[:user_statuses].each do |user_status|
       - user=user_status[:user]
       %tr
         %th= user ? user.name : user_status[:user_id]
+        %td
+          %a.btn.btn-default.btn-sm{:href=>url("/review/#{@review.id}/#{@stage}/preview/#{user_status[:user_id]}"), :target=>'_blank', :rel=>'noopener noreferrer'}
+            %span.glyphicon.glyphicon-eye-open
+            =t('reviewer_preview.open')
         %td="#{user_status[:complete_count]} / #{user_status[:assigned_count]}"
 
 %h4 Documentos canónicos

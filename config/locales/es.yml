@@ -1121,3 +1121,8 @@ es:
   References_count_raw: "<strong>Estadísticas:</strong> citado por %{in} documentos canónicos / disponible en  %{searches_count} búsquedas"
   create_new_field: "Crear nuevo campo de formulario"
   Select_an_option: "Seleccione una opción"
+
+  reviewer_preview:
+    open: "Ver panel"
+    title: "Vista previa del panel de %{name}"
+    read_only: "Vista de solo lectura. Los controles están deshabilitados."

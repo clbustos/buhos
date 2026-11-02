@@ -9,13 +9,37 @@
 # @!group Screening and analysis of documents
 
 
+# Reuse the reviewer panels without changing the administrator's session.
+helpers do
+  def stage_panel_user(preview_user_id)
+    if preview_user_id
+      halt_unless_auth_any('review_admin', 'review_admin_view')
+      @preview_user=(@review.group_users || []).find {|user| user.id.to_s==preview_user_id.to_s}
+      halt 404 unless @preview_user
+      @preview_user
+    else
+      halt_unless_auth('review_analyze')
+      User[session['user_id']]
+    end
+  end
+
+  def render_stage_panel(template)
+    return haml(template, escape_html: false) unless @preview_user
+
+    # The preview is a static snapshot: embedded scripts and forms cannot run.
+    headers 'Content-Security-Policy' => "sandbox allow-same-origin",
+            'Cache-Control' => 'no-store'
+    @preview_panel=haml(template, layout: false, escape_html: false)
+    haml :stage_panel_preview, escape_html: false
+  end
+end
+
 # Interface for stage screening titles and abstract
-get '/review/:id/screening_title_abstract' do |id|
-  halt_unless_auth('review_analyze')
+screening_title_abstract_panel=proc do |id, preview_user_id=nil|
   @review=SystematicReview[id]
   raise Buhos::NoReviewIdError, id if !@review
 
-  @usuario=User[session['user_id']]
+  @usuario=stage_panel_user(preview_user_id)
   @user_id=@usuario[:id]
 
 
@@ -52,19 +76,21 @@ get '/review/:id/screening_title_abstract' do |id|
     @cds=@pager.adapt_ads_cds(@ads, @cds_pre, no_query:true)
   end
 
-  haml "systematic_reviews/screening_general".to_sym, escape_html: false
+  render_stage_panel(:"systematic_reviews/screening_general")
 
 end
 
+get '/review/:id/screening_title_abstract', &screening_title_abstract_panel
+get '/review/:id/screening_title_abstract/preview/:preview_user_id', &screening_title_abstract_panel
+
 # Inteface for stage screening references
 
-get '/review/:id/screening_references' do |id|
-  halt_unless_auth('review_analyze')
+screening_references_panel=proc do |id, preview_user_id=nil|
 
   @review=SystematicReview[id]
   raise Buhos::NoReviewIdError, id if !@review
 
-  @usuario=User[session['user_id']]
+  @usuario=stage_panel_user(preview_user_id)
   @user_id=@usuario[:id]
 
 
@@ -104,19 +130,21 @@ get '/review/:id/screening_references' do |id|
   #                               .to_hash(:canonical_document_id, :commentary)
   #$log.info(@pager)
 
-  haml "systematic_reviews/screening_general".to_sym, escape_html: false
+  render_stage_panel(:"systematic_reviews/screening_general")
 
 end
 
+get '/review/:id/screening_references', &screening_references_panel
+get '/review/:id/screening_references/preview/:preview_user_id', &screening_references_panel
+
 # Inteface for stage review full text
 
-get '/review/:id/review_full_text' do |id|
-  halt_unless_auth('review_analyze')
+review_full_text_panel=proc do |id, preview_user_id=nil|
   @review=SystematicReview[id]
   raise Buhos::NoReviewIdError, id if !@review
 
 
-  @user=User[session['user_id']]
+  @user=stage_panel_user(preview_user_id)
   @user_id=@user[:id]
 
 
@@ -157,16 +185,18 @@ get '/review/:id/review_full_text' do |id|
   @a_tags=Buhos::AnalysisTags.new
   @a_tags.systematic_review_id(@review.id)
   @a_tags.user_id(@user_id)
-  haml %s{systematic_reviews/review_full_text}, escape_html: false
+  render_stage_panel(:"systematic_reviews/review_full_text")
 end
 
+get '/review/:id/review_full_text', &review_full_text_panel
+get '/review/:id/review_full_text/preview/:preview_user_id', &review_full_text_panel
+
 # Interface for extraction and quality assessment after full-text review
-get '/review/:id/extract_information' do |id|
-  halt_unless_auth('review_analyze')
+extract_information_panel=proc do |id, preview_user_id=nil|
   @review=SystematicReview[id]
   raise Buhos::NoReviewIdError, id if !@review
 
-  @user=User[session['user_id']]
+  @user=stage_panel_user(preview_user_id)
   @user_id=@user[:id]
   @stage=Buhos::Stages::STAGE_REVIEW_EXTRACT_INFORMATION.to_s
 
@@ -198,8 +228,11 @@ get '/review/:id/extract_information' do |id|
   @a_tags=Buhos::AnalysisTags.new
   @a_tags.systematic_review_id(@review.id)
   @a_tags.user_id(@user_id)
-  haml %s{systematic_reviews/extract_information}, escape_html: false
+  render_stage_panel(:"systematic_reviews/extract_information")
 end
+
+get '/review/:id/extract_information', &extract_information_panel
+get '/review/:id/extract_information/preview/:preview_user_id', &extract_information_panel
 
 
 # @!endgroup
