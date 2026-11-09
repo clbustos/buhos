@@ -188,6 +188,12 @@ class AnalysisSystematicReview
     @ref_count_outgoing.sort_by {|a| a[1]}.reverse[0...n]
   end
 
+  def pattern_meets_strict_minimum?(pattern, minimum)
+    return false unless pattern['undecided'].to_i.zero?
+    (pattern['yes'].to_i >= minimum && pattern['no'].to_i.zero?) ||
+      (pattern['no'].to_i >= minimum && pattern['yes'].to_i.zero?)
+  end
+
   def pattern_reviewer_count(pattern)
     (Decision::N_EST.keys - [Decision::NO_DECISION]).sum {|decision| pattern[decision].to_i}
   end

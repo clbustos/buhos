@@ -227,6 +227,8 @@ en:
   Decision_pattern: "Decision pattern"
   Decisions: "Decisions"
   Decisions_by_document: "Decisions by document"
+  Strict_minimum_decision_patterns: "Patterns strictly meeting the minimum"
+  Strict_minimum_decision_patterns_description: "At least %{n} unanimous yes or no decisions, with no opposing or undecided decisions."
   Minimum_reviewers_for_stage: "Minimum reviewers for this stage: %{n}"
   Decision_pattern_reviewers: "Patterns with %{n} reviewers with a decision"
   Below_minimum_reviewers: "Below the minimum of %{n} reviewers"
