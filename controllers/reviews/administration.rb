@@ -200,6 +200,13 @@ get '/review/:id/stage/:stage/pattern/:patron/view' do |id,stage,patron_s|
   @pattern_name=@ars.pattern_name(@pattern)
   @text_decision_cd= Buhos::AnalysisCdDecisions.new(@review, stage)
   @cds=@ars.cd_from_pattern(stage, @pattern)
+  @assigned_reviewers_by_cd=AllocationCd.
+    where(:systematic_review_id=>@review.id, :stage=>stage, :canonical_document_id=>@cds).
+    join(:users, :id=>:user_id).
+    select(Sequel[:allocation_cds][:canonical_document_id], Sequel[:users][:id], Sequel[:users][:name]).
+    distinct.
+    order(Sequel[:users][:name], Sequel[:users][:id]).
+    to_hash_groups(:canonical_document_id)
   @user_id=session['user_id']
   haml "systematic_reviews/administration_reviews_documents_by_decision".to_sym, escape_html: false
 end

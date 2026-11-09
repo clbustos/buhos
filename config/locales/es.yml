@@ -228,6 +228,8 @@ es:
   Minimum_reviewers_for_stage: "Mínimo de revisores para esta etapa: %{n}"
   Decision_pattern_reviewers: "Patrones con %{n} revisores con decisión"
   Below_minimum_reviewers: "No alcanza el mínimo de %{n} revisores"
+  Assigned_reviewers: "Personas asignadas"
+  No_assigned_reviewers: "Sin personas asignadas"
   Decisions_statistics: "Estadísticas de decisiones tomadas"
   Delete: "Eliminar"
   Deleted_references_to_record: "Eliminadas %{count_references} referencias del registro %{record_id}"

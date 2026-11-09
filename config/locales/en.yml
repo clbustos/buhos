@@ -230,6 +230,8 @@ en:
   Minimum_reviewers_for_stage: "Minimum reviewers for this stage: %{n}"
   Decision_pattern_reviewers: "Patterns with %{n} reviewers with a decision"
   Below_minimum_reviewers: "Below the minimum of %{n} reviewers"
+  Assigned_reviewers: "Assigned reviewers"
+  No_assigned_reviewers: "No assigned reviewers"
   Decisions_statistics: "Statistics of decisions taken"
   Delete: "Delete"
   Deleted_references_to_record: "Deleted %{count_references} references from record %{record_id}"

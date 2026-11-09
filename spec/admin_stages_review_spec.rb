@@ -197,6 +197,12 @@ describe 'Stage administration with complete data' do
       get '/review/1/stage/screening_title_abstract/pattern/yes_0__no_0__undecided_0__ND_1/view'
     end
     it "should response be ok" do expect(last_response).to be_ok end
+    it "shows the assigned reviewers for this stage before the decisions" do
+      html=Nokogiri::HTML(last_response.body)
+      assigned=html.at_css('.assigned-reviewers')
+      expect(assigned.css('li').map(&:text)).to eq([User[1].name])
+      expect(assigned.next_element.text).to eq(I18n.t(:Decisions))
+    end
     it "should include the toggle resolved control" do
       expect(last_response.body).to include('toggle-resolved')
     end

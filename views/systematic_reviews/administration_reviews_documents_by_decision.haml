@@ -94,6 +94,15 @@
               = partial(:canonical_document_button_abstract_collapsible, :locals=>{cd:@ars.cd_hash[cd_id]})
             - else
               =t("error.no_valid_cd_for_this_systematic_review", cd_id:cd_id)
+            .assigned-reviewers
+              %p.alert=t(:Assigned_reviewers)
+              - assigned_reviewers=@assigned_reviewers_by_cd[cd_id] || []
+              - if assigned_reviewers.empty?
+                %p=t(:No_assigned_reviewers)
+              - else
+                %ul
+                  - assigned_reviewers.each do |reviewer|
+                    %li=CGI::escapeHTML(reviewer[:name].to_s)
             %p.alert=t(:Decisions)
             =@text_decision_cd.to_html(cd_id)
           - if auth_to('review_admin')

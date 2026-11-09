@@ -198,6 +198,8 @@ pl:
   Minimum_reviewers_for_stage: "Minimalna liczba recenzentów na tym etapie: %{n}"
   Decision_pattern_reviewers: "Wzorce z %{n} recenzentami z decyzją"
   Below_minimum_reviewers: "Poniżej minimum %{n} recenzentów"
+  Assigned_reviewers: "Przypisani recenzenci"
+  No_assigned_reviewers: "Brak przypisanych recenzentów"
   Decisions_statistics: "Statystyki podjętych decyzji"
   Decisions_without_support: "Decyzje bez wsparcia"
   Decisions_without_support_explanation: "Jeśli po podjęciu decyzji zostaną wprowadzone zmiany w wyszukiwaniach, decyzje użytkowników pozostają zapisane nawet wtedy, gdy dokument nie jest już zapisany. Może to powodować problemy przy wykrywaniu wzorców."
