@@ -189,9 +189,7 @@ class AnalysisSystematicReview
   end
 
   def pattern_meets_strict_minimum?(pattern, minimum)
-    return false unless pattern['undecided'].to_i.zero?
-    (pattern['yes'].to_i >= minimum && pattern['no'].to_i.zero?) ||
-      (pattern['no'].to_i >= minimum && pattern['yes'].to_i.zero?)
+    pattern['yes'].to_i >= minimum || pattern['no'].to_i >= minimum
   end
 
   def pattern_reviewer_count(pattern)
