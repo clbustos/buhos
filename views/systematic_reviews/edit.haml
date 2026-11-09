@@ -78,6 +78,8 @@
         %a{:href=>'#sr-taxonomy', "aria-controls"=>'sr-taxonomy', :role=>'tab', "data-toggle"=>'tab'}=t(:Taxonomy)
       %li{:role=>'presentation'}
         %a{:href=>'#sr-advanced', "aria-controls"=>'sr-advanced', :role=>'tab', "data-toggle"=>'tab'}=t(:Advanced)
+      %li{:role=>'presentation'}
+        %a{:href=>'#sr-reviewers', "aria-controls"=>'sr-reviewers', :role=>'tab', "data-toggle"=>'tab'}=t(:Expected_reviewers)
     %div{:class=>'tab-content'}
       %div{:role=>'tabpanel', :class=>'tab-pane active', :id=>'sr-taxonomy'}
         %table.reporte
@@ -143,5 +145,13 @@
         %div{:class=>"form-group"}
           %label=t(:Conflict_of_interest)
           %textarea{:class=>"form-control",:name=>"conflict_of_interest", :rows=>5}=@review[:conflict_of_interest]
+
+      %div{:role=>'tabpanel', :class=>'tab-pane', :id=>'sr-reviewers'}
+        %p.instructions=t(:Expected_reviewers_description)
+        - SystematicReview::EXPECTED_REVIEWER_FIELDS.each do |field|
+          .form-group
+            %label{:for=>field}=t(field)
+            %p.help-block=t("#{field}_description")
+            %input.form-control{:type=>'number', :id=>field, :name=>field, :min=>1, :step=>1, :required=>true, :value=>(@review[field] || 2)}
 
   %input.form-control.btn.btn-primary{:type=>:submit, :value=>t(:Save)}

@@ -28,11 +28,12 @@
 
 class OutgoingEmail
   def initialize
-    @smtp_server=ENV['SMTP_SERVER']
-    @smtp_user=ENV['SMTP_USER']
-    @smtp_password=ENV['SMTP_PASSWORD']
-    @smtp_security=ENV['SMTP_SECURITY']
-    @smtp_port=ENV['SMTP_PORT']
+    smtp = Buhos::Configuration.smtp_settings
+    @smtp_server=smtp[:server]
+    @smtp_user=smtp[:user]
+    @smtp_password=smtp[:password]
+    @smtp_security=smtp[:security]
+    @smtp_port=smtp[:port]
     @result=Result.new
   end
 

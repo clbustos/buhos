@@ -88,6 +88,9 @@
                         %a{:class=>'dropdown-item', :href=>url('/admin/groups')}=t(:Groups)
                       %li<
                         %a{:class=>'dropdown-item', :href=>url('/admin/roles')}=t(:Roles)
+                      - if auth_to('role_admin')
+                        %li<
+                          %a{:class=>'dropdown-item', :href=>url('/admin/configurations')}=t(:Site_configurations)
                       %li<
                         %a{:class=>'dropdown-item', :href=>url('/admin/authorizations')}=t(:Authorizations)
                       %li<

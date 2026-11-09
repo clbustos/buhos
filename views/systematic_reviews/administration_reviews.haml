@@ -49,57 +49,7 @@
         - Decision::N_EST.each do |dec,name|
           %td=edu[:adu].total_decisions[dec].to_i
 
-%h3=t(:Decisions_statistics)
-
-- decisions_order=@ars.decisions_pattern(@stage).sort_by {|a|  @ars.pattern_order(a[0]) }
-- resolutions_patron=@ars.resolutions_f_pattern_decision(@stage)
-
-%table.reporte
-  %thead
-    %tr
-      %th{:colspan=>4}=t(:Decision_pattern)
-      %th{:rowspan=>2}=t(:n)
-      %th{:colspan=>3}=t(:Resolutions)
-      %th{:rowspan=>2}=t(:Actions)
-    %tr
-      - Decision::N_EST.each do |dec,name|
-        %th=t(Decision.get_name_decision(dec))
-      %th=t(:Yes)
-      %th=t(:No)
-      %th=t(:Without_Resolution)
-  %tbody
-    - decisions_order.each do |patron, cuenta|
-      - unresolved_count=resolutions_patron[patron][Resolution::NO_RESOLUTION]
-      - include_text= unresolved_count==0 ? t(:All_documents_resolved) : (unresolved_count==cuenta ? t(:Resolve_all_documents_as_included) : t(:Resolve_pending_documents_as_included, n:unresolved_count))
-      - exclude_text= unresolved_count==0 ? t(:All_documents_resolved) : (unresolved_count==cuenta ? t(:Resolve_all_documents_as_excluded) : t(:Resolve_pending_documents_as_excluded, n:unresolved_count))
-      %tr
-        - Decision::N_EST.each do |dec,name|
-          %td{:class=>"decision decision-#{dec}"}= patron[dec]
-        %td=cuenta
-        %td{:class=>"decision decision-yes"}=resolutions_patron[patron]["yes"]
-        %td{:class=>"decision decision-no"}=resolutions_patron[patron]["no"]
-        %td{:class=>"decision decision-undecided"}=resolutions_patron[patron][Resolution::NO_RESOLUTION]
-        %td
-          %a{:href=>url("/review/#{@review[:id]}/stage/#{@stage}/pattern/#{@ars.pattern_id(patron)}/view"),
-             :class=>"btn btn-default btn-sm", :role=>"button"}
-            %span{:class=>"glyphicon glyphicon-chevron-right"}
-              =t(:View)
-          - if auth_to('review_admin')
-            - if unresolved_count>0
-              %a{:href=>url("/review/#{@review[:id]}/stage/#{@stage}/pattern/#{@ars.pattern_id(patron)}/resolution/yes"),:class=>"btn btn-success btn-sm", :role=>"button"}
-                %span{:class=>"glyphicon glyphicon-ok-circle"}
-                  =include_text
-              %a{:href=>url("/review/#{@review[:id]}/stage/#{@stage}/pattern/#{@ars.pattern_id(patron)}/resolution/no"),:class=>"btn btn-danger btn-sm", :role=>"button"}
-                %span{:class=>"glyphicon glyphicon-ban-circle"}
-                  =exclude_text
-            - else
-              %button{:class=>"btn btn-success btn-sm", :role=>"button", :disabled=>true}
-                %span{:class=>"glyphicon glyphicon-ok-circle"}
-                  =include_text
-              %button{:class=>"btn btn-danger btn-sm", :role=>"button", :disabled=>true}
-                %span{:class=>"glyphicon glyphicon-ban-circle"}
-                  =exclude_text
-
+=partial(:decision_statistics)
 
 =partial(:sr_administration_actions, :locals=>{review:@review, stage:@stage})
 

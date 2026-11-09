@@ -60,5 +60,13 @@
           %em="#{t("sr_taxonomy.#{group}")}:"
           =categories.map {|v| t("sr_taxonomy_category.#{v[:cat_name]}")}. join(", ")
   %div{:class=>"list-group-item"}
+    %h4{:class=>"list-group-item-heading"}=t(:Expected_reviewers)
+    %p=t(:Expected_reviewers_description)
+    - SystematicReview::EXPECTED_REVIEWER_FIELDS.each do |field|
+      %p
+        %strong="#{t(field)}: "
+        %span{:name=>field}=@review[field]
+      %p=t("#{field}_description")
+  %div{:class=>"list-group-item"}
     %h4{:class=>"list-group-item-heading"}=t(:Actions)
     %p=partial(:review_buttons, :locals=>{:r=>@review})

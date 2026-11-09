@@ -1,0 +1,19 @@
+%h2=title(t(:Site_configurations))
+
+- @configurations.each_with_index do |configuration, index|
+  %form{:method=>:post, :action=>url('/admin/configurations/update')}
+    %input{:type=>'hidden', :name=>'key', :value=>configuration[:id]}
+    .form-group
+      %label{:for=>"configuration_value_#{index}"}= Rack::Utils.escape_html(configuration[:id])
+      %textarea.form-control{:id=>"configuration_value_#{index}", :name=>'value', :rows=>3}= Rack::Utils.escape_html(configuration[:value])
+    %input.btn.btn-default{:type=>:submit, :value=>t(:Update)}
+  %hr
+
+%form{:method=>:post, :action=>url('/admin/configurations/update')}
+  .form-group
+    %label{:for=>'configuration_key'}=t(:Configuration_key)
+    %input.form-control{:id=>'configuration_key', :type=>'text', :name=>'key', :required=>true, :maxlength=>255}
+  .form-group
+    %label{:for=>'configuration_value'}=t(:Configuration_value)
+    %textarea.form-control{:id=>'configuration_value', :name=>'value', :rows=>3}
+  %input.btn.btn-primary{:type=>:submit, :value=>t(:Save)}

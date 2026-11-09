@@ -94,4 +94,6 @@
           %td= document_status[:has_quality] ? t(:Yes) : t(:No)
         %td= document_status[:complete] ? "Completo" : "Incompleto"
 
+=partial(:decision_statistics)
+
 =partial(:sr_administration_actions, :locals=>{review:@review, stage:@stage})

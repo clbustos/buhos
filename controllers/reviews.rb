@@ -115,6 +115,13 @@ post '/review/update' do
   #  aa=SystematicReview.new
   #$log.info(otros_params)
 
+  SystematicReview::EXPECTED_REVIEWER_FIELDS.each do |field|
+    next unless otros_params.key?(field)
+    value=otros_params[field].to_s
+    halt 400, t(:Expected_reviewers_invalid) unless value.match?(/\A[0-9]+\z/) && value.to_i > 0
+    otros_params[field]=value.to_i
+  end
+
   $db.transaction(:rollback=>:reraise) do
     if(id=="")
       id=SystematicReview.insert(otros_params)

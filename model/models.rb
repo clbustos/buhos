@@ -30,12 +30,21 @@
 
 
 class Buhos::Configuration < Sequel::Model
+  # Resolve each SMTP setting independently; stored empty values override ENV too.
+  def self.smtp_settings
+    %w[SERVER USER PASSWORD SECURITY PORT].each_with_object({}) do |name, settings|
+      key = "SMTP_#{name}"
+      value = get(key)
+      settings[name.downcase.to_sym] = value.nil? ? ENV[key] : value
+    end
+  end
+
   def self.set(id,valor)
     conf=Buhos::Configuration[id]
     if conf.nil?
-      Buhos::Configuration.insert(:id=>id,:valor=>valor)
+      Buhos::Configuration.insert(:id=>id,:value=>valor)
     else
-      Buhos::Configuration[id].update(:valor=>valor)
+      Buhos::Configuration[id].update(:value=>valor)
     end
   end
   def self.get(id)
@@ -43,7 +52,7 @@ class Buhos::Configuration < Sequel::Model
     if conf.nil?
       nil
     else
-      conf[:valor]
+      conf[:value]
     end
   end
 end

@@ -30,7 +30,7 @@ module Sinatra
   module SessionAuth
     module Helpers
       def allow_password_recovery?
-        !ENV['SMTP_SERVER'].nil?
+        !Buhos::Configuration.smtp_settings[:server].to_s.strip.empty?
       end
       def show_user
         ##$log.info(session)

@@ -30,6 +30,13 @@ require_relative 'systematic_review_views_mixin.rb'
 require_relative 'tag'
 require_relative 'messages'
 class SystematicReview < Sequel::Model
+  EXPECTED_REVIEWER_FIELDS = %i[
+    expected_reviewers_screening
+    expected_reviewers_snowball
+    expected_reviewers_full_text
+    expected_reviewers_extraction
+  ].freeze
+
   include SystematicReviewViewsMixin
   one_to_many :searches
   one_to_many :message_srs, :class=>MessageSr
@@ -38,6 +45,16 @@ class SystematicReview < Sequel::Model
   many_to_one :group
 
 
+
+  def expected_reviewers_for_stage(stage)
+    field={
+      'screening_title_abstract'=>:expected_reviewers_screening,
+      'screening_references'=>:expected_reviewers_snowball,
+      'review_full_text'=>:expected_reviewers_full_text,
+      'extract_information'=>:expected_reviewers_extraction
+    }.fetch(stage.to_s)
+    self[field] || 2
+  end
 
   def keywords_as_array
     keywords.nil? ? nil : keywords.split(";").map {|v| v.strip}

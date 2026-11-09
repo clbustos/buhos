@@ -188,6 +188,10 @@ class AnalysisSystematicReview
     @ref_count_outgoing.sort_by {|a| a[1]}.reverse[0...n]
   end
 
+  def pattern_reviewer_count(pattern)
+    (Decision::N_EST.keys - [Decision::NO_DECISION]).sum {|decision| pattern[decision].to_i}
+  end
+
   def pattern_order(a)
     -(1000 * a["yes"].to_i + 100 * a["no"].to_i + 10 * a["undecided"].to_i + 1 * a["ND"].to_i)
   end
