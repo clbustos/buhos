@@ -200,7 +200,7 @@ describe 'Stage administration with complete data' do
     it "shows the assigned reviewers for this stage before the decisions" do
       html=Nokogiri::HTML(last_response.body)
       assigned=html.at_css('.assigned-reviewers')
-      expect(assigned.css('li').map(&:text)).to eq([User[1].name])
+      expect(assigned.text.strip).to eq("#{I18n.t(:Assigned_reviewers)}: \n#{User[1].name}")
       expect(assigned.next_element.text).to eq(I18n.t(:Decisions))
     end
     it "should include the toggle resolved control" do

@@ -207,8 +207,30 @@ get '/review/:id/stage/:stage/pattern/:patron/view' do |id,stage,patron_s|
     distinct.
     order(Sequel[:users][:name], Sequel[:users][:id]).
     to_hash_groups(:canonical_document_id)
+  @eligible_pattern_reviewers=Array(@review.group_users).select {|user| user[:active]}.sort_by {|user| [user.name.to_s, user.id]}
   @user_id=session['user_id']
   haml "systematic_reviews/administration_reviews_documents_by_decision".to_sym, escape_html: false
+end
+
+# Assign one reviewer to one document without replacing existing allocations.
+post '/review/:id/stage/:stage/pattern/:patron/assign' do |id, stage, patron_s|
+  halt_unless_auth('review_admin')
+  review=SystematicReview[id]
+  raise Buhos::NoReviewIdError, id unless review
+  halt 400 unless %w[screening_title_abstract screening_references review_full_text extract_information].include?(stage)
+  cd_id=params['canonical_document_id'].to_i
+  user_id=params['assigned_user_id'].to_i
+  halt 400 unless review.cd_id_by_stage(stage).include?(cd_id)
+  reviewer=Array(review.group_users).find {|user| user.id==user_id && user[:active]}
+  halt 400 unless reviewer
+
+  allocation={:systematic_review_id=>review.id,
+    :canonical_document_id=>cd_id, :stage=>stage, :user_id=>user_id}
+  $db.transaction do
+    AllocationCd.insert(allocation) unless AllocationCd.where(allocation).any?
+  end
+  add_message(t(:Reviewer_assigned_to_stage))
+  redirect url("/review/#{review.id}/stage/#{stage}/pattern/#{patron_s}/view")
 end
 
 # Set a resolution for a given pattern
