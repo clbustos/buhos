@@ -1,0 +1,50 @@
+- title(t('invitations.title'))
+%h2
+  =t('invitations.title')
+  =escape_html(@review.name)
+%form.form-inline{:method=>'get', :action=>url("/review/#{@review.id}/invitations")}
+  .form-group
+    %label{:for=>'invitation-count'}=t('invitations.count')
+    %input#invitation-count.form-control{:type=>'number', :name=>'count', :value=>@count, :min=>1, :max=>100, :required=>true}
+  .form-group
+    %label{:for=>'invitation-language'}=t('invitations.language')
+    %select#invitation-language.form-control{:name=>'language', :required=>true}
+      %option{:value=>'es', :selected=>@language == 'es'}=t('invitations.spanish')
+      %option{:value=>'en', :selected=>@language == 'en'}=t('invitations.english')
+  %button.btn.btn-default{:type=>'submit'}=t('invitations.prepare')
+- if @error
+  %p.alert.alert-danger{:role=>'alert'}=escape_html(@error)
+- if @rows
+  %form{:method=>'post', :action=>url("/review/#{@review.id}/invitations")}
+    %input{:type=>'hidden', :name=>'language', :value=>@language}
+    %table.table
+      %thead
+        %tr
+          %th=t(:Name)
+          %th=t('review_messages.email')
+      %tbody
+        - @rows.each_with_index do |row, index|
+          %tr
+            %td
+              %input.form-control{:type=>'text', :name=>'names[]', :value=>row['name'], :required=>true, :maxlength=>255, :'aria-label'=>"#{t(:Name)} #{index+1}"}
+            %td
+              %input.form-control{:type=>'email', :name=>'emails[]', :value=>row['email'], :required=>true, :maxlength=>255, :'aria-label'=>"#{t('review_messages.email')} #{index+1}"}
+    %p=t('invitations.standard_message')
+    %blockquote=escape_html(I18n.t('invitations.email_body', locale: @language, name: '<NOMBRE>', review: @review.name, url: '<URL>'))
+    %button.btn.btn-primary{:type=>'submit', :disabled=>!@review.group}=t('invitations.send')
+- unless @invitations.empty?
+  %h3=t('invitations.history')
+  %table.table.table-striped
+    %thead
+      %tr
+        %th=t(:Name)
+        %th=t('review_messages.email')
+        %th=t('invitations.delivery')
+        %th=t('invitations.decision')
+    %tbody
+      - @invitations.each do |invitation|
+        %tr
+          %td=escape_html(invitation.name)
+          %td=escape_html(invitation.email)
+          %td=t(invitation.email_sent ? 'invitations.sent' : 'invitations.not_sent')
+          %td=t("invitations.#{invitation.decision}")

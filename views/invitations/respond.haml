@@ -1,0 +1,28 @@
+.container
+  %h2=escape_html(@review.name)
+  - if @error
+    %p.alert.alert-danger{:role=>'alert'}=escape_html(@error)
+  - if @invitation.decision == 'rejected'
+    %p=t('invitations.goodbye')
+  - elsif @invitation.user_id
+    %p=t('invitations.registered')
+    %a.btn.btn-primary{:href=>url('/login')}=t('invitations.sign_in')
+  - elsif @invitation.decision == 'pending'
+    %p=escape_html(t('invitations.welcome', name: @invitation.name, review: @review.name))
+    %form{:method=>'post', :action=>url("/invitation/#{@invitation.token}/decision")}
+      %button.btn.btn-primary{:type=>'submit', :name=>'decision', :value=>'accepted'}=t('invitations.accept')
+      %button.btn.btn-default{:type=>'submit', :name=>'decision', :value=>'rejected'}=t('invitations.reject')
+  - else
+    %p=escape_html(t('invitations.create_account', name: @invitation.name))
+    %form{:method=>'post', :action=>url("/invitation/#{@invitation.token}/register")}
+      .form-group
+        %label{:for=>'invitation-login'}=t('invitations.login')
+        %input#invitation-login.form-control{:type=>'text', :name=>'login', :value=>@login, :required=>true, :maxlength=>255, :autocomplete=>'username'}
+        %p.help-block=t('invitations.login_help')
+      .form-group
+        %label{:for=>'invitation-password'}=t('password.write_new_password')
+        %input#invitation-password.form-control{:type=>'password', :name=>'password', :required=>true, :autocomplete=>'new-password'}
+      .form-group
+        %label{:for=>'invitation-repeat-password'}=t('password.repeat_new_password')
+        %input#invitation-repeat-password.form-control{:type=>'password', :name=>'repeat_password', :required=>true, :autocomplete=>'new-password'}
+      %button.btn.btn-primary{:type=>'submit'}=t('invitations.register')

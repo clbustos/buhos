@@ -1,0 +1,43 @@
+- if @error
+  %p.alert.alert-danger{:role=>'alert'}=escape_html(@error)
+%form{:method=>'post', :action=>url("/review/#{@review.id}/messages")}
+  %table.table.table-striped
+    %thead
+      %tr
+        %th
+          %input#message-select-all{:type=>'checkbox', :'aria-label'=>t('review_messages.select_all')}
+          %label{:for=>'message-select-all'}=t('review_messages.select_all')
+        %th=t(:Name)
+        %th= t('review_messages.email')
+    %tbody
+      - @members.each do |member|
+        %tr
+          %td
+            %input.message-recipient{:type=>'checkbox', :name=>'user_ids[]', :value=>member.id, :id=>"message-user-#{member.id}", :checked=>(@selected_ids || []).include?(member.id)}
+          %td
+            %label{:for=>"message-user-#{member.id}"}=escape_html(member.name)
+          %td=escape_html(member.email.to_s)
+  - if @members.empty?
+    %p=t('review_messages.no_members')
+  %h3=t('review_messages.send_selected')
+  .form-group
+    %label{:for=>'message-subject'}=t(:Subject)
+    %input#message-subject.form-control{:type=>'text', :name=>'subject', :value=>@subject, :required=>true, :maxlength=>255}
+  .form-group
+    %label{:for=>'message-text'}=t(:Text)
+    %textarea#message-text.form-control{:name=>'text', :rows=>6, :required=>true}=escape_html(@text.to_s)
+  %button.btn.btn-primary{:type=>'submit', :disabled=>@members.empty?}=t('review_messages.send')
+:javascript
+  document.getElementById('message-select-all').addEventListener('change', function () {
+    var checked = this.checked;
+    document.querySelectorAll('.message-recipient').forEach(function (checkbox) { checkbox.checked = checked; });
+  });
+  document.querySelectorAll('.message-recipient').forEach(function (checkbox) {
+    checkbox.addEventListener('change', function () {
+      var all = document.getElementById('message-select-all');
+      var selected = document.querySelectorAll('.message-recipient:checked').length;
+      var total = document.querySelectorAll('.message-recipient').length;
+      all.checked = selected === total;
+      all.indeterminate = selected > 0 && selected < total;
+    });
+  });

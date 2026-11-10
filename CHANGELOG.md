@@ -1,5 +1,28 @@
 # CHANGELOG
 
+## 1.4.0        : 2026-11-10
+
+Changes since the last documented release, 1.3.1:
+
+- Added external invitations with a configurable number of recipients and invitation language (Spanish or English), personalized emails, and public links to accept or decline without signing in.
+- Added invitation decisions and administrator notifications. Accepted invitations support unique suggested usernames, password confirmation, analyst account creation, and automatic membership in the review group.
+- Added the `invitations` model and migration, including review, sender, account, token, language, and email delivery information.
+- Added bulk email and internal messages to selected group members from the review's Messages screen, preserving the existing review message history and keeping invitation status separate.
+- Added per-user review data with invitation status and dashboard order. Reviews can be reordered using a drag handle, with a black insertion indicator and persistent personal ordering.
+- Added user deletion previews listing affected tables and record counts, explicit confirmation of related-data deletion, dependency cleanup, transactional rollback, and renewed confirmation when the affected data changes.
+- Added reviewer agreement and accuracy reports, reviewer assignment patterns, configurable expected reviewer counts, and previews of reviewer dashboards.
+- Improved stage administration, bulk resolutions, reassignment, and identification of resolved documents without reviewer votes.
+- Separated information extraction from full-text review and added extraction administration, progress reporting, and guideline file management.
+- Added private tag visibility and blinded reference screening options.
+- Added personal favorites and collections, document reports, and document type filtering.
+- Improved full-text file handling, folder imports, abstract completion, DOI handling, and configurable local file storage through `BUHOS_FILES_DIR`.
+- Updated bibliographic import support for EBSCOhost, Scopus, PubMed, BibTeX, and RIS formats, and improved handling of failed imports and incomplete records.
+- Added application configuration management, including database-backed SMTP settings.
+- Added dark mode and improved dashboard performance, database views, pagination, exports, and review reports.
+- Expanded regression coverage for invitations, messaging, dashboard ordering, reviewer workflows, configuration, and related-data deletion.
+
+Database upgrade: apply pending migrations through `32_add_invitations.rb`.
+
 ## 1.3.1        : 2023-10-15
 
 7f8b83d Added in canonical documents method to remove inconsistencies in resolutions and decisions
