@@ -74,6 +74,7 @@ module Buhos
       ::TagBwCd.dataset=self[:tag_bw_cds]
       ::SystematicReview.dataset=self[:systematic_reviews]
       ::SystematicReviewUserData.dataset=self[:systematic_review_user_data]
+      ::Invitation.dataset=self[:invitations]
       ::SrField.dataset=self[:sr_fields]
       ::SrTaxonomy.dataset=self[:sr_taxonomies]
       ::SrTaxonomyCategory.dataset=self[:sr_taxonomy_categories]

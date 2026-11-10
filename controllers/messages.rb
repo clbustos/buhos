@@ -15,8 +15,58 @@ get '/review/:id/messages' do |id|
   raise Buhos::NoReviewIdError, id if !@review
   @mensajes_rs=@review.message_srs_dataset.order(Sequel.desc(:time))
   @usuario=User[session['user_id']]
+  @members=@review.group ? @review.group.users_dataset.order(:name, :id).all : []
   haml "systematic_reviews/messages".to_sym , escape_html: false
 end
+
+post '/review/:id/messages' do
+  halt 403 unless User[session['user_id']] && (auth_to('review_edit') || review_belongs_to(params['id'], session['user_id']))
+  halt_unless_auth('message_edit')
+  @review=SystematicReview[params['id']]
+  raise Buhos::NoReviewIdError, params['id'] unless @review
+  @members=@review.group ? @review.group.users_dataset.order(:name, :id).all : []
+  @usuario=User[session['user_id']]
+  @mensajes_rs=@review.message_srs_dataset.order(Sequel.desc(:time))
+  ids=params['user_ids']
+  valid_ids=ids.is_a?(Array) && !ids.empty? && ids.all? { |id| id.to_s.match?(/\A[0-9]+\z/) }
+  selected_ids=valid_ids ? ids.map(&:to_i).uniq : []
+  @selected_ids=selected_ids
+  @subject=params['subject'].to_s.strip
+  @text=params['text'].to_s.strip
+
+  if !valid_ids || !(selected_ids - @members.map(&:id)).empty?
+    status 400
+    @error=t('review_messages.invalid_selection')
+  elsif @subject.empty? || @subject.length > 255 || @subject.match?(/[\r\n]/) || @text.empty?
+    status 400
+    @error=t('review_messages.invalid_content')
+  else
+    recipients=@members.select { |member| selected_ids.include?(member.id) }
+    # Include the review context in both the email and the personal message.
+    review_url="#{request.base_url}#{url("/review/#{@review.id}/dashboard")}"
+    text="#{@review.name}\n\n#{@text}\n\n#{review_url}"
+    failed=[]
+    mailer=OutgoingEmail.new
+    recipients.each do |member|
+      Message.create(user_from: session['user_id'], user_to: member.id,
+                     subject: @subject, text: text, time: DateTime.now, viewed: false)
+      sent=false
+      unless member.email.to_s.strip.empty?
+        begin
+          sent=mailer.send_email(member.email, @subject, text)
+        rescue StandardError => error
+          $log.error("Review message email failed for user #{member.id}: #{error.class}")
+        end
+      end
+      failed << member.name unless sent
+    end
+    add_message(t('review_messages.messages_sent', count: recipients.size, email_count: recipients.size - failed.size), :info)
+    add_message(escape_html(t('review_messages.emails_failed', names: failed.join(', '))), :error) unless failed.empty?
+    redirect url("/review/#{@review.id}/messages")
+  end
+  haml :'systematic_reviews/messages', escape_html: false
+end
+
 
 # Post a message
 post '/review/:id/message/new' do |id|

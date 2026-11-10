@@ -116,6 +116,7 @@ module Sinatra
       # todo: create a list of uri not evaluated for authentification
       app.before do
         excluded_path=[/file\/\d+\/download_external/,
+                        /\A\/invitation\/[0-9a-f]{64}(?:\/(?:decision|register))?\z/,
                         /forgotten_password/,
                        /reset_link/
         ]

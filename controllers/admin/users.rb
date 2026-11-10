@@ -185,7 +185,8 @@ post '/admin/users/update' do
       add_message(::I18n.t("users_admin.cant_delete_itself"))
       redirect back
     else
-      return haml "users/delete_confirm".to_sym, escape_html: false
+      load_user_deletion(@users_id)
+      return confirm_user_deletion
     end
   elsif params['action']=='edit'
     @users_id=users
@@ -196,20 +197,56 @@ post '/admin/users/update' do
 end
 
 
-post '/admin/users/delete' do
-  if params['action']=='delete'
-    users=User.where(:id=>params['users'].split(","))
+helpers do
+  def load_user_deletion(ids)
+    begin
+      @users_id=UserDeletionPlan.normalize_ids(ids)
+    rescue ArgumentError
+      halt 400
+    end
+    halt 403, t('users_admin.cant_delete_itself') if @users_id.include?(session['user_id'])
+    @users=User.where(id: @users_id)
+    halt 400 unless @users.count == @users_id.size
+    @deletion_plan=UserDeletionPlan.new(@users_id)
+  end
 
-    if !users
-      add_message(::I18n.t("users_admin.no_valid_user_selected"), :error)
-    else
-      $db.transaction do
-        User.where(:id=>params['users'].split(",")).delete
+  def confirm_user_deletion
+    @confirmation=SecureRandom.hex(32)
+    session['user_deletion_confirmation']={
+      'token'=>@confirmation, 'ids'=>@users_id, 'signature'=>@deletion_plan.signature
+    }
+    haml :'users/delete_confirm', escape_html: false
+  end
+end
+
+post '/admin/users/delete' do
+  halt_unless_auth('user_admin')
+  if params['action']=='delete'
+    load_user_deletion(params['users'].to_s.split(','))
+    pending=session['user_deletion_confirmation']
+    if @deletion_plan.related_tables.any?
+      confirmed=pending && pending['ids'] == @users_id && pending['token'] == params['confirmation'] && params['delete_related'] == '1'
+      unless confirmed && pending['signature'] == @deletion_plan.signature
+        @deletion_changed=confirmed
+        return confirm_user_deletion
       end
-      add_message(::I18n.t("users_admin.action_delete", ids: params['users']))
+    end
+    begin
+      @deletion_plan.delete!
+      session.delete('user_deletion_confirmation')
+      add_message(t('users_admin.action_delete', ids: @users_id.join(',')))
+    rescue UserDeletionPlan::Changed
+      load_user_deletion(@users_id)
+      @deletion_changed=true
+      return confirm_user_deletion
+    rescue Sequel::Error => error
+      $log.error("User deletion failed: #{error.class}")
+      load_user_deletion(@users_id)
+      @deletion_error=t('users_admin.deletion_failed')
+      return confirm_user_deletion
     end
   end
-  redirect url('admin/users')
+  redirect url('/admin/users')
 end
 
 post '/admin/users/update_edit' do

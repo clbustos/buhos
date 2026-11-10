@@ -11,17 +11,44 @@
 
 %ul
   -@users.each do |user|
-    %li=user[:name]
+    %li=escape_html(user[:name])
+
+- if @deletion_changed
+  %p.alert.alert-warning{:role=>'alert'}=t('users_admin.deletion_changed')
+- if @deletion_error
+  %p.alert.alert-danger{:role=>'alert'}=@deletion_error
+- if @deletion_plan.related_tables.any?
+  %p=t('users_admin.related_data_description')
+  %table.table.table-striped#user-related-tables
+    %thead
+      %tr
+        %th=t('users_admin.related_table')
+        %th=t('users_admin.related_count')
+    %tbody
+      - @deletion_plan.related_tables.each do |entry|
+        %tr
+          %td
+            %code=escape_html(entry[:table].to_s)
+          %td=entry[:count]
+  - if @deletion_plan.shared_resources?
+    %p.alert.alert-warning=t('users_admin.deleting_shared_resources')
+- else
+  %p=t('users_admin.no_related_data')
 
 %form{:method=>"post", :action=>url("/admin/users/delete")}
   %input{:type=>:hidden, :name=>:users, :value=>@users_id.join(",")}
-  %input{:type=>:hidden, :name=>:action, :id=>'form-action'}
+  %input{:type=>:hidden, :name=>:confirmation, :value=>@confirmation}
+  - if @deletion_plan.related_tables.any?
+    .checkbox
+      %label
+        %input{:type=>'checkbox', :name=>'delete_related', :value=>'1', :required=>true}
+        =t('users_admin.confirm_related_deletion')
   .btn-toolbar
     .btn-group.btn-group-sm{:role=>:group}
-      %button.btn.btn-danger.btn-action{"data-action"=>:delete}
+      %button.btn.btn-danger{:type=>'submit', :name=>'action', :value=>'delete'}
         %span.glyphicon.glyphicon-trash
         =t(:Delete)
-      %button.btn.btn-default.btn-action{"data-action"=>:cancel}
+      %a.btn.btn-default{:href=>url('/admin/users')}
         %span.glyphicon.glyphicon-remove
         =t(:Cancel)
 

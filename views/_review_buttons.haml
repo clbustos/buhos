@@ -4,6 +4,13 @@
     %a{:role=>:button, :href=>url("/review/#{r.id}/edit"), :class=>"btn btn-default"}
       %span{:class=>"glyphicon glyphicon-pencil"}
       =t(:Edit)
+    %a{:role=>:button, :href=>url("/review/#{r.id}/invitations"), :class=>"btn btn-default"}
+      %span.glyphicon.glyphicon-send
+      =t('invitations.title')
+  - if auth_to("message_view") or review_belongs_to(r.id, session['user_id'])
+    %a{:role=>:button, :href=>url("/review/#{r.id}/messages"), :class=>"btn btn-default"}
+      %span.glyphicon.glyphicon-envelope
+      =t(:Messages)
   - if auth_to("review_view") or review_belongs_to(r.id, session['user_id'])
     %a{:role=>:button, :href=>url("/review/#{r.id}/fields"), :class=>"btn btn-default"}
       %span.glyphicon.glyphicon-list
@@ -27,10 +34,6 @@
     %a{:role=>:button, :href=>url("/review/#{r.id}/tags"), :class=>"btn btn-default"}
       %span{:class=>"glyphicon glyphicon-tag"}
       =t(:Tags)
-  - if auth_to("message_view") or review_belongs_to(r.id, session['user_id'])
-    %a{:role=>:button, :href=>url("/review/#{r.id}/messages"), :class=>"btn btn-default"}
-      %span.glyphicon.glyphicon-envelope
-      =t(:Messages)
   - if auth_to("file_view") or review_belongs_to(r.id, session['user_id'])
     %a{:role=>:button, :href=>url("/review/#{r.id}/files"), :class=>"btn btn-default"}
       %span.glyphicon.glyphicon-file
