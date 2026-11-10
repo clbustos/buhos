@@ -1,4 +1,6 @@
 es:
+  Dashboard_drag_review: "Arrastrar para cambiar el orden de esta revisión"
+  Dashboard_order_error: "No se pudo guardar el orden. Inténtalo nuevamente."
   Site_configurations: "Configuraciones del sitio"
   Configuration_key: "Clave"
   Configuration_value: "Valor"

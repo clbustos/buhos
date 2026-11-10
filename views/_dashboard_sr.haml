@@ -4,6 +4,8 @@
 %div{:class=>"panel #{is_administrator ? "panel-primary" : "panel-black"}"}
   .panel-heading
     .panel-title
+      - if defined?(reorderable) && reorderable
+        %span.dashboard-drag-handle{:draggable=>'true', :title=>t(:Dashboard_drag_review), :"aria-label"=>t(:Dashboard_drag_review), :style=>'cursor: grab; display: inline-block; margin-right: 8px;'} ⠿
       =sr.name
       - if is_administrator
         %span.badge=t(:Administrator)

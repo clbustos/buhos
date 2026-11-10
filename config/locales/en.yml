@@ -1,4 +1,6 @@
 en:
+  Dashboard_drag_review: "Drag to reorder this review"
+  Dashboard_order_error: "Could not save the order. Please try again."
   Site_configurations: "Site settings"
   Configuration_key: "Key"
   Configuration_value: "Value"

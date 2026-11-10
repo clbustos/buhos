@@ -8,6 +8,24 @@
 
 # @!group User
 
+post '/user/dashboard/order' do
+  user=User[session['user_id']]
+  halt 403 unless user
+  ids=params['review_ids']
+  halt 400 unless ids.is_a?(Array) && ids.all? { |id| id.to_s.match?(/\A[0-9]+\z/) }
+  ids=ids.map(&:to_i)
+  allowed_ids=user.systematic_reviews.where(active: true).select_map(:id)
+  halt 400 unless ids.sort == allowed_ids.sort
+
+  $db.transaction do
+    ids.each_with_index do |id, position|
+      data=SystematicReviewUserData.find_or_create(user_id: user.id, systematic_review_id: id)
+      data.update(dashboard_order: position)
+    end
+  end
+  status 204
+end
+
 
 # View and edit user attributes
 get '/user/:user_id' do |user_id|

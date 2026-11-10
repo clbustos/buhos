@@ -32,6 +32,8 @@ class UserDashboardInfo
   def initialize(user)
     @user=user
     @sr_active=user.systematic_reviews.where(:active=>true).all
+    orders=SystematicReviewUserData.where(user_id: user.id).to_hash(:systematic_review_id, :dashboard_order)
+    @sr_active.sort_by! { |sr| [orders.fetch(sr.id, 0), sr.id] }
     @unread_personal_messages=nil
     @unread_sr_messages={}
     @unread_sr_messages_count={}

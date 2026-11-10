@@ -39,6 +39,7 @@ class SystematicReview < Sequel::Model
 
   include SystematicReviewViewsMixin
   one_to_many :searches
+  one_to_many :systematic_review_user_data, class: :SystematicReviewUserData
   one_to_many :message_srs, :class=>MessageSr
 
   one_to_many :t_classes, :class=>T_Class

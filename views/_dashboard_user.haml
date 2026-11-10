@@ -5,8 +5,12 @@
   %p=t_desc_value("user_dashboard.unread_personal_messages", a_tag("/user/#{user[:id]}/messages#personal", t("user_dashboard.check_n_unread_messages", count: unread_personal_messages_count)))
   %span.label.label-warning=t(:pending)
 - active_systematic_reviews=udi.active_systematic_reviews
-- active_systematic_reviews.each do |sr|
-  =partial(:dashboard_sr, :locals=>{:user=>user, :sr=>sr, :udi=>udi})
+#dashboard-reviews{:"data-order-url"=>url('/user/dashboard/order')}
+  - active_systematic_reviews.each do |sr|
+    .dashboard-review{:"data-review-id"=>sr.id}
+      =partial(:dashboard_sr, :locals=>{:user=>user, :sr=>sr, :udi=>udi, :reorderable=>true})
+%p#dashboard-order-error.text-danger{:hidden=>true, :role=>'alert'}=t(:Dashboard_order_error)
+%script{:src=>url('/js/dashboard_order.js')}
 - if active_systematic_reviews.count==0
   %p
     %em=t(:No_systematic_review_for_this_user)

@@ -27,6 +27,7 @@
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 class User < Sequel::Model
+  one_to_many :systematic_review_user_data, class: :SystematicReviewUserData
 
   def groups
     Group.where(:id=>GroupsUser.where(:user_id => self[:id]).map(:group_id))
