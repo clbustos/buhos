@@ -12,6 +12,7 @@ Plataforma web para gestionar el proceso completo de revisiones sistemáticas de
 
 * Multiplataforma: corre en Linux (probado en Ubuntu 14.04, 16.06, 18.04, 21.04 y 24.04), Windows (probado en Windows 7 y 10) y macOS (probado en High Sierra).
 * Puede ser usado para realizar revisiones sistemáticas por un individuo o por un grupo de trabajo.
+* Invitaciones externas: envío de correos personalizados en inglés o español, con aceptación o rechazo sin iniciar sesión y creación de una cuenta al incorporarse a una revisión.
 * Sistema de mensajería interna, para mensajes personales o relacionados con las revisiones sistemáticas.
 * Multilenguaje, usando *I18n*. Disponible en inglés, español y polaco.
 * Flujo de trabajo flexible. Las etapas principales de búsqueda de textos, tamizaje por título y resumen, tamizaje por referencias, revisión de texto completo, extracción de información, evaluación de calidad y reportes están claramente definidas. Es posible realizar cambios en cualquier etapa ya concluida, afectando las etapas posteriores.
@@ -20,13 +21,15 @@ Plataforma web para gestionar el proceso completo de revisiones sistemáticas de
 * Integración con Scopus y PubMed para recuperar resúmenes y metadatos faltantes cuando se cuenta con credenciales de API.
 * Repositorio de archivos. Se pueden ver en línea archivos PDF y ODF usando [ViewerJS](http://viewerjs.org/). Los archivos pueden asociarse a documentos canónicos y usarse durante la etapa de revisión de texto completo.
 * Múltiples formas de analizar datos: comentarios, etiquetas en cada etapa, reportes de documentos y formularios personalizados para extraer información.
+* Tamizaje ciego de referencias y visibilidad configurable de las etiquetas, que permite a los revisores mantener sus etiquetas privadas.
 * Sistema de favoritos: los usuarios pueden marcar documentos, organizarlos en categorías, agregar comentarios y publicar colecciones de favoritos.
 * Reportes por documento para identificar duplicados, errores de OCR, metadatos incorrectos, archivos faltantes, spam, otros problemas y resoluciones conflictivas.
 * Distintos tipos de reporte: reportes para los datos extraídos de los textos, reporte detallado del proceso de decisión en cada etapa de la revisión, reportes de extracción de información y un [diagrama de flujo PRISMA](http://prisma-statement.org/prismastatement/flowdiagram.aspx) para resumir el proceso, listo para publicaciones.
+* Informes de acuerdo entre revisores: evaluación de la concordancia entre revisores y de la precisión de sus decisiones respecto de las resoluciones de la revisión.
 * Distintos tipos de archivos para exportar: se pueden exportar referencias como BibTeX, importar y exportar decisiones mediante Excel, exportar reportes como archivos Excel y generar archivos GraphML para análisis de grafos.
 * Tablero de usuario para revisiones sistemáticas activas, documentos asignados, búsquedas pendientes y mensajes no leídos.
 * Modos de color claro y oscuro.
-* Tests unitarios y de integración para los principales recursos del software.
+* Tests unitarios y de integración para los principales recursos del software. Véase https://buhos.org/api/file.rspec.html .
 
 
 Usando como referencia a Kitchenham & Charters (2007), Buhos apoya de forma completa la fase de 'realizar la revisión', y de forma parcial las otras etapas.
@@ -90,7 +93,7 @@ Para Debian, Ubuntu y CentOS, se encuentran disponibles paquetes e instrucciones
 
 ### Usar vagrant
 
-En los directorios vendor/vagrant_alpine y vendor/vagrant_ubuntu_16 pueden configuraciones de vagrant para Alpine y Ubuntu 16.04, respectivamente. Se pueden ejecutar usando
+En los directorios vendor/vagrant_alpine y vendor/vagrant_ubuntu_16 se encuentran configuraciones de vagrant para Alpine y Ubuntu 16.04, respectivamente. Se pueden ejecutar usando
     
     > vagrant up
     
@@ -194,9 +197,9 @@ Una configuración típica para nginx debería lucir como:
     
     server {
       listen 80
-      root /home/<user>/<base_dir>; 
-      passenger_enabled on; 
-      passenger_ruby <ruby_location> 
+      root /home/<user>/<base_dir>;
+      passenger_enabled on;
+      passenger_ruby <ruby_location>;
     }
 
 La ubicación del ejecutable Ruby se puede obtener con
@@ -204,6 +207,10 @@ La ubicación del ejecutable Ruby se puede obtener con
     > which ruby
 
 Si se ocupa [RVM](https://rvm.io/) con Passenger, revise [esta página](https://rvm.io/deployment/passenger)
+
+## Consideraciones
+
+Desde octubre de 2018, ImageMagick aplica políticas estrictas para convertir archivos PDF a imágenes. Si necesita procesar archivos PDF como imágenes en Buhos (algo poco frecuente), o ejecutar las pruebas correspondientes, consulte [esta respuesta en Stack Overflow](https://stackoverflow.com/questions/42928765/convertnot-authorized-aaaa-error-constitute-c-readimage-453).
 
 
 ## Construido con 

@@ -11,6 +11,7 @@ Web-based platform to manage the complete process of systematic literature revie
 
 * Multi-platform: Runs on Linux (tested on Ubuntu 14.04, 16.06, 18.04, 21.04 and 24.04), Windows (tested on Windows 7 and 10) and macOS (tested on High Sierra).
 * Supports individual and group-based systematic reviews.
+* External invitations: send personalized emails in English or Spanish, allowing recipients to accept or decline without signing in and create an account when joining a review.
 * Internal messaging system for personal messages and messages related to systematic reviews.
 * Internationalization, using *I18n*. Available in English, Spanish and Polish.
 * Flexible workflow. The main stages of text searching, title and abstract screening, reference screening, full-text review, information extraction, quality assessment and reporting are clearly defined. Changes can be made at any stage already finalized, and are reflected in subsequent stages.
@@ -19,9 +20,11 @@ Web-based platform to manage the complete process of systematic literature revie
 * Integration with Scopus and PubMed can retrieve missing abstracts and metadata when API credentials are available.
 * File repository. PDF and ODF file viewing support online via [ViewerJS](http://viewerjs.org/). Files can be assigned to canonical documents and used during the full-text review stage.
 * Multiple ways to analyze data: comments, tagging at each stage of review, document reports and customized forms for information extraction.
+* Blinded reference screening and configurable tag visibility, allowing reviewers to keep their tags private.
 * Favorites system: users can mark documents, organize them in categories, add comments and publish public favorite collections.
 * Document reports can identify duplicate records, OCR errors, incorrect metadata, missing files, spam, other issues and conflicting resolutions.
 * Various report types: reports for extracted information, detailed reports on the decision process at each review stage, information extraction reports and a [PRISMA flow diagram](http://prisma-statement.org/prismastatement/flowdiagram.aspx) for process overviews, ready for publication.
+* Reviewer agreement reports: assess agreement between reviewers and the accuracy of their decisions against review resolutions.
 * Different export file types: Can export references as BibTeX, import and export review decisions using Excel, export reports as Excel files and generate GraphML to graph relations between papers.
 * User dashboard for active systematic reviews, assigned documents, pending searches and unread messages.
 * Light and dark color modes.
