@@ -7,6 +7,7 @@
   %script{:type=>'text/javascript', :src=>url('/js/estadisticas_tags.js')}
 
 %h3=t(:Tags_statistics)
+- tag_rows=tags_statistics.get_tags_decision_stats.all
 %table.reporte.tablesorter
   %thead
     %th=t(:Tag)
@@ -15,7 +16,7 @@
     %th=t(:No)
     %th=t(:Actions)
   %tbody
-    - tags_statistics.get_tags_decision_stats.each do |tag|
+    - tag_rows.each do |tag|
       %tr{:id=>"tag-fila-#{tag[:id]}"}
         %td=tag[:text]
         %td
@@ -29,3 +30,9 @@
               %button.btn.btn-default.borrar_tag{"tag-pk"=>tag[:id],"rs-pk"=>review.id}
                 %span.glyphicon.glyphicon-remove
                   Borrar
+  %tfoot
+    %tr
+      %th=t(:Total)
+      - [:n_documents, :d_yes, :d_no].each do |column|
+        %td=tag_rows.sum {|tag| tag[column].to_i}
+      %td

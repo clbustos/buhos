@@ -4,6 +4,8 @@
 =partial(:breadcrumb_review_admin,:locals=>{:name=>t(@name_stage)})
 
 %p.info=t_desc_value(:Count_canonical_documents, @cds_id.length)
+=partial(:stage_resolution_summary)
+
 - stats=@extract_information_stats
 - progress_filter=params['progress_status'].to_s
 - progress_options={'all'=>'Todos', 'complete'=>'Completos', 'pending_information'=>'Pendientes de información', 'pending_quality'=>'Pendientes de calidad', 'incomplete'=>'Incompletos'}
@@ -39,6 +41,11 @@
         %th="#{total_stat[:complete_label]}: #{total_stat[:complete_count]}"
         %td=total_stat[:total_count]
 
+  %tfoot
+    %tr
+      %th="#{t(:Total)}: #{stats[:total_stats].sum {|row| row[:complete_count]}}"
+      %td=stats[:total_stats].sum {|row| row[:total_count]}
+
 - if stats[:quality_active]
   %p.info="Control de calidad activo: #{stats[:quality_criteria_count]} criterios definidos."
 - else
@@ -60,6 +67,12 @@
             %span.glyphicon.glyphicon-eye-open
             =t('reviewer_preview.open')
         %td="#{user_status[:complete_count]} / #{user_status[:assigned_count]}"
+
+  %tfoot
+    %tr
+      %th=t(:Total)
+      %td
+      %td="#{stats[:user_statuses].sum {|row| row[:complete_count]}} / #{stats[:user_statuses].sum {|row| row[:assigned_count]}}"
 
 %h4 Documentos canónicos
 %form.form-inline{:method=>:get, :action=>url("/review/#{@review[:id]}/administration/#{@stage}")}
@@ -93,6 +106,16 @@
         - if stats[:quality_active]
           %td= document_status[:has_quality] ? t(:Yes) : t(:No)
         %td= document_status[:complete] ? "Completo" : "Incompleto"
+
+  %tfoot
+    %tr
+      %th="#{t(:Total)}: #{filtered_document_statuses.length}"
+      %td=filtered_document_statuses.sum {|row| row[:assigned_count]}
+      %td=filtered_document_statuses.count {|row| row[:has_form_information]}
+      %td=filtered_document_statuses.count {|row| row[:has_file_information]}
+      - if stats[:quality_active]
+        %td=filtered_document_statuses.count {|row| row[:has_quality]}
+      %td=filtered_document_statuses.count {|row| row[:complete]}
 
 =partial(:decision_statistics)
 

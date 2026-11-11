@@ -9,6 +9,8 @@
 
 %p.info=t_desc_value(:Count_canonical_documents, @cds_id.length)
 
+=partial(:stage_resolution_summary)
+
 %h3=t(:Statistics_by_user)
 
 .btn-group
@@ -30,7 +32,8 @@
       =t(:Check_CD_without_assignations)
       %span.badge=@cd_without_allocation.count
 
-%table.reporte
+- user_decisions=@ars.user_decisions(@stage)
+%table.reporte.user-decision-statistics
   %thead
     %th=t(:User)
     %th=t(:Actions)
@@ -38,7 +41,7 @@
     - Decision::N_EST.each do |dec,name|
       %th=t(Decision.get_name_decision(dec))
   %tbody
-    - @ars.user_decisions(@stage).each do |user_id, edu|
+    - user_decisions.each do |user_id, edu|
       %tr
         %th=edu[:usuario].name
         %td
@@ -48,6 +51,14 @@
         %td=edu[:adu].assignations_count
         - Decision::N_EST.each do |dec,name|
           %td=edu[:adu].total_decisions[dec].to_i
+
+  %tfoot
+    %tr
+      %th=t(:Total)
+      %td
+      %td=user_decisions.values.sum {|edu| edu[:adu].assignations_count}
+      - Decision::N_EST.each_key do |dec|
+        %td=user_decisions.values.sum {|edu| edu[:adu].total_decisions[dec].to_i}
 
 =partial(:decision_statistics)
 

@@ -43,3 +43,12 @@
               %button{:class=>"btn btn-danger btn-sm", :role=>"button", :disabled=>true}
                 %span{:class=>"glyphicon glyphicon-ban-circle"}
                   =exclude_text
+
+  %tfoot
+    %tr
+      - Decision::N_EST.each_key do |dec|
+        %td{:class=>"decision decision-#{dec}"}=patterns.sum {|pattern, count| pattern[dec].to_i * count}
+      %td=patterns.sum {|pattern, count| count}
+      - ['yes', 'no', Resolution::NO_RESOLUTION].each do |resolution|
+        %td=patterns.sum {|pattern, count| resolutions_patron[pattern][resolution].to_i}
+      %th=t(:Total)
