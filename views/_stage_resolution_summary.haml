@@ -1,0 +1,17 @@
+- resolutions=@ars.resolution_by_cd(@stage)
+- positive=resolutions.values.count('yes')
+- negative=resolutions.values.count('no')
+%h3=t(:Resolutions)
+%table.reporte.stage-resolution-summary
+  %thead
+    %tr
+      %th=t(:Yes)
+      %th=t(:No)
+      %th=t(:Without_Resolution)
+      %th=t(:Total)
+  %tbody
+    %tr
+      %td=positive
+      %td=negative
+      %td=resolutions.length-positive-negative
+      %td=resolutions.length
