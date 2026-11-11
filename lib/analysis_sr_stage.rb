@@ -299,7 +299,7 @@ class Analysis_SR_Stage
   # it should be noted that documents could be partially screened, not necessarily  resolved
   def cd_screened_id
     cds=@sr.cd_id_by_stage(@stage)
-    Decision.where(:systematic_review_id=>@sr.id, :canonical_document_id=>cds, :user_id=>@sr.group_users.map {|u| u[:id]}, :stage=>@stage.to_s).group(:canonical_document_id).map(:canonical_document_id)
+    Decision.where(:systematic_review_id=>@sr.id, :canonical_document_id=>cds, :user_id=>@sr.group_users.map {|u| u[:id]}, :stage=>@stage.to_s).exclude(:decision=>nil).group(:canonical_document_id).map(:canonical_document_id)
   end
 
   def cd_resolved_id
@@ -318,7 +318,7 @@ class Analysis_SR_Stage
     decisions=Decision.where(:systematic_review_id=>@sr.id,
                              :canonical_document_id=>cds,
                              :user_id=>@sr.group_users.map {|u| u[:id]},
-                             :stage=>@stage.to_s).group_and_count(:canonical_document_id, :decision).all
+                             :stage=>@stage.to_s).exclude(:decision=>nil).group_and_count(:canonical_document_id, :decision).all
     decisions_by_canonical_document=decisions.inject({}) do |ac, decision_count|
       cd_id=decision_count[:canonical_document_id]
       ac[cd_id] ||= {}
