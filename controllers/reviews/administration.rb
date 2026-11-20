@@ -156,9 +156,11 @@ helpers do
     end
 
     @reminder_url=url("/review/#{id}/administration/#{stage}/reminder/#{user_id}")
+    stage_path="/review/#{id}/#{stage}"
+    stage_path+="?decision=#{Decision::NO_DECISION}&query=&page=1" unless stage=='extract_information'
     @email_subject=t('stage_reminders.subject', review:@review.name).gsub(/[\r\n]/, ' ')
     @email_body=t('stage_reminders.body', count:@pending_count, name:@recipient.name,
-      review:@review.name, stage:t(get_stage_name(stage)), url:"#{request.base_url}#{url("/review/#{id}/#{stage}")}")
+      review:@review.name, stage:t(get_stage_name(stage)), url:"#{request.base_url}#{url(stage_path)}")
   end
 end
 
