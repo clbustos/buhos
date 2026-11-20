@@ -1,4 +1,15 @@
 en:
+  stage_reminders:
+    title: "Reminder"
+    email: "Email"
+    subject: "Pending articles in %{review}"
+    body:
+      one: "Hello %{name},\n\nYou have %{count} article left to review in the %{stage} stage of the systematic review %{review}.\n\nYou can continue at %{url}\n\nThank you."
+      other: "Hello %{name},\n\nYou have %{count} articles left to review in the %{stage} stage of the systematic review %{review}.\n\nYou can continue at %{url}\n\nThank you."
+    unavailable: "This person has no pending articles or has no email address on file."
+    progress_changed: "The number of pending articles changed. Review the message before sending."
+    sent: "The reminder email was sent."
+    failed: "The reminder email could not be sent."
   invitations:
     language: "Invitation language"
     spanish: "Spanish"

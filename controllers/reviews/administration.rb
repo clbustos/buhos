@@ -129,6 +129,66 @@ get '/review/:id/administration/:stage' do |id,stage|
   end
 end
 
+helpers do
+  def prepare_stage_reminder(id, stage, user_id)
+    halt_unless_auth('review_admin')
+    @review=SystematicReview[id]
+    raise Buhos::NoReviewIdError, id unless @review
+    halt 400 unless %w[screening_title_abstract screening_references review_full_text extract_information].include?(stage)
+
+    @stage=stage
+    @recipient=Array(@review.group_users).find {|user| user.id.to_s==user_id}
+    halt 404 unless @recipient
+
+    if stage=='extract_information'
+      stats=Analysis_SR_Stage.new(@review, stage).extract_information_stats
+      progress=stats[:user_statuses].find {|row| row[:user_id]==@recipient.id}
+      @pending_count=progress[:assigned_count]-progress[:complete_count] if progress
+    else
+      decisions=AnalysisUserDecision.new(@review.id, @recipient.id, stage)
+      @pending_count=decisions.total_decisions[Decision::NO_DECISION].to_i
+    end
+
+    @stage_admin_url=url("/review/#{id}/administration/#{stage}")
+    if @pending_count.to_i <= 0 || @recipient.email.to_s.strip.empty?
+      add_message(t('stage_reminders.unavailable'), :error)
+      redirect @stage_admin_url
+    end
+
+    @reminder_url=url("/review/#{id}/administration/#{stage}/reminder/#{user_id}")
+    @email_subject=t('stage_reminders.subject', review:@review.name).gsub(/[\r\n]/, ' ')
+    @email_body=t('stage_reminders.body', count:@pending_count, name:@recipient.name,
+      review:@review.name, stage:t(get_stage_name(stage)), url:"#{request.base_url}#{url("/review/#{id}/#{stage}")}")
+  end
+end
+
+get '/review/:id/administration/:stage/reminder/:user_id' do |id, stage, user_id|
+  prepare_stage_reminder(id, stage, user_id)
+  haml :'systematic_reviews/stage_reminder', escape_html: false
+end
+
+post '/review/:id/administration/:stage/reminder/:user_id' do |id, stage, user_id|
+  prepare_stage_reminder(id, stage, user_id)
+  if params['pending_count']!=@pending_count.to_s
+    add_message(t('stage_reminders.progress_changed'), :error)
+    redirect @reminder_url
+  end
+
+  sent=false
+  begin
+    sent=OutgoingEmail.new.send_email(@recipient.email, @email_subject, @email_body)
+  rescue StandardError => error
+    $log.error("Stage reminder failed for review #{@review.id}, user #{@recipient.id}: #{error.class}")
+  end
+  if sent
+    add_message(t('stage_reminders.sent'))
+    redirect @stage_admin_url
+  end
+
+  add_message(t('stage_reminders.failed'), :error)
+  redirect @reminder_url
+end
+
 get '/review/:id/administration/extract_information/cd/:cd_id' do |id,cd_id|
   halt_unless_auth_any('review_admin', 'review_admin_view')
   @review=SystematicReview[id]

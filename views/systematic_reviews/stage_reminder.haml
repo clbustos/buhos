@@ -1,0 +1,16 @@
+- title(t('stage_reminders.title'))
+=partial(:breadcrumb_review_admin, :locals=>{:name=>t('stage_reminders.title')})
+
+%h2=t('stage_reminders.title')
+%dl
+  %dt=t(:User)
+  %dd=escape_html(@recipient.name)
+  %dt=t('stage_reminders.email')
+  %dd=escape_html(@recipient.email)
+  %dt=t(:Subject)
+  %dd=escape_html(@email_subject)
+%pre=escape_html(@email_body)
+%form{:method=>'post', :action=>@reminder_url}
+  %input{:type=>'hidden', :name=>'pending_count', :value=>@pending_count}
+  %button.btn.btn-primary{:type=>'submit'}=t(:Send)
+  %a.btn.btn-default{:href=>@stage_admin_url}=t(:Cancel)

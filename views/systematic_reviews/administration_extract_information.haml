@@ -56,6 +56,8 @@
   %thead
     %th=t(:User)
     %th=t(:Actions)
+    - if auth_to('review_admin')
+      %th=t('stage_reminders.email')
     %th Documentos completos
   %tbody
     - stats[:user_statuses].each do |user_status|
@@ -66,12 +68,20 @@
           %a.btn.btn-default.btn-sm{:href=>url("/review/#{@review.id}/#{@stage}/preview/#{user_status[:user_id]}"), :target=>'_blank', :rel=>'noopener noreferrer'}
             %span.glyphicon.glyphicon-eye-open
             =t('reviewer_preview.open')
+        - if auth_to('review_admin')
+          %td
+            - if user && !user.email.to_s.strip.empty? && (user_status[:assigned_count]-user_status[:complete_count]) > 0
+              %a.btn.btn-default.btn-sm{:href=>url("/review/#{@review.id}/administration/#{@stage}/reminder/#{user.id}")}
+                %span.glyphicon.glyphicon-envelope{:'aria-hidden'=>true}
+                =t('stage_reminders.title')
         %td="#{user_status[:complete_count]} / #{user_status[:assigned_count]}"
 
   %tfoot
     %tr
       %th=t(:Total)
       %td
+      - if auth_to('review_admin')
+        %td
       %td="#{stats[:user_statuses].sum {|row| row[:complete_count]}} / #{stats[:user_statuses].sum {|row| row[:assigned_count]}}"
 
 %h4 Documentos canónicos

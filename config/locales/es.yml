@@ -1,4 +1,15 @@
 es:
+  stage_reminders:
+    title: "Recordatorio"
+    email: "Correo"
+    subject: "Artículos pendientes en %{review}"
+    body:
+      one: "Hola %{name},\n\nTe queda %{count} artículo por revisar en la etapa %{stage} de la revisión sistemática %{review}.\n\nPuedes continuar en %{url}\n\nGracias."
+      other: "Hola %{name},\n\nTe quedan %{count} artículos por revisar en la etapa %{stage} de la revisión sistemática %{review}.\n\nPuedes continuar en %{url}\n\nGracias."
+    unavailable: "La persona no tiene artículos pendientes o no tiene un correo registrado."
+    progress_changed: "El número de artículos pendientes cambió. Revisa el mensaje antes de enviarlo."
+    sent: "Se envió el recordatorio por correo."
+    failed: "No se pudo enviar el recordatorio por correo."
   invitations:
     language: "Idioma de la invitación"
     spanish: "Español"

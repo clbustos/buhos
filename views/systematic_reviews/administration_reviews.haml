@@ -37,6 +37,8 @@
   %thead
     %th=t(:User)
     %th=t(:Actions)
+    - if auth_to('review_admin')
+      %th=t('stage_reminders.email')
     %th=t(:Count_canonical_documents_assigned)
     - Decision::N_EST.each do |dec,name|
       %th=t(Decision.get_name_decision(dec))
@@ -48,6 +50,12 @@
           %a.btn.btn-default.btn-sm{:href=>url("/review/#{@review.id}/#{@stage}/preview/#{user_id}"), :target=>'_blank', :rel=>'noopener noreferrer'}
             %span.glyphicon.glyphicon-eye-open
             =t('reviewer_preview.open')
+        - if auth_to('review_admin')
+          %td
+            - if edu[:usuario] && !edu[:usuario].email.to_s.strip.empty? && (edu[:adu].total_decisions[Decision::NO_DECISION].to_i) > 0
+              %a.btn.btn-default.btn-sm{:href=>url("/review/#{@review.id}/administration/#{@stage}/reminder/#{user_id}")}
+                %span.glyphicon.glyphicon-envelope{:'aria-hidden'=>true}
+                =t('stage_reminders.title')
         %td=edu[:adu].assignations_count
         - Decision::N_EST.each do |dec,name|
           %td=edu[:adu].total_decisions[dec].to_i
@@ -56,6 +64,8 @@
     %tr
       %th=t(:Total)
       %td
+      - if auth_to('review_admin')
+        %td
       %td=user_decisions.values.sum {|edu| edu[:adu].assignations_count}
       - Decision::N_EST.each_key do |dec|
         %td=user_decisions.values.sum {|edu| edu[:adu].total_decisions[dec].to_i}
