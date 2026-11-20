@@ -361,59 +361,42 @@ post '/review/:rev_id/administration/:stage/cd_assignations_excel/:mode' do |rev
   review=SystematicReview[rev_id]
   raise Buhos::NoReviewIdError, rev_id if !review
 
-  cds_id=review.cd_id_by_stage(stage)
-  stage=stage
-  cds=CanonicalDocument.where(:id=>cds_id).order(:author)
-  users_grupos=review.group_users
-  archivo=params.delete("file")
+  halt 400 unless get_stages_ids.include?(stage.to_sym)
+  raise "Not implemented" unless mode == "load"
 
-  if mode=="load"
-    require 'simple_xlsx_reader'
-    SimpleXlsxReader.configuration.auto_slurp = true
-    doc = SimpleXlsxReader.open(archivo["tempfile"])
-    sheet=doc.sheets.first
-    header=sheet.headers
-    id_index=header.find_index("id")
-    users_assignation={}
-    header.each_index { |i|
-      if header[i]=~/\[(\d+)\].+/
-        users_assignation[i]=$1
+  require 'simple_xlsx_reader'
+  sheet = SimpleXlsxReader.open(params["file"]["tempfile"]).sheets.first
+  id_index = nil
+  user_columns = {}
+  assignments = []
+  missing_ids = 0
+
+  sheet.rows.each_with_index do |row, index|
+    if index.zero?
+      id_index = row.index("id")
+      row.each_with_index do |value, column|
+        match = /\[(\d+)\].+/.match(value.to_s)
+        user_columns[column] = match[1].to_i if match
       end
-    }
-    number_of_actions=0
-    $db.transaction(:rollback => :reraise) do
-      sheet.data.each do |row|
-        cd_id=row[id_index]
-        if cd_id.nil?
-          add_message("Row without information", :error)
-        else
-          user_allocations=AllocationCd.where(:systematic_review_id=>review[:id], :canonical_document_id=>cd_id, :stage=>stage ).to_hash(:user_id)
-          #$log.debug(user_allocations)
-          users_assignation.each do |i,user_id|
-            if !row[i].nil?
-              #$log.debug("#{row[i]}: #{user_id}")
-              if row[i].to_i==0 and user_allocations[user_id.to_i]
-                number_of_actions+=1
-               # $log.debug("Deleting")
-                  AllocationCd.where(:systematic_review_id=>review[:id], :canonical_document_id=>cd_id, :stage=>stage, :user_id=>user_id).delete
-              elsif row[i].to_i==1 and !user_allocations[user_id.to_i]
-              #$log.debug("assing")
-                number_of_actions+=1
-                AllocationCd.insert(:systematic_review_id=>review[:id], :canonical_document_id=>cd_id, :stage=>stage, :user_id=>user_id, :status=>"Massive assign")
-              end
-            end
-          end
-        end
+    elsif id_index.nil? || row[id_index].nil?
+      missing_ids += 1
+    else
+      cd_id = row[id_index]
+      cd_id = Integer(cd_id, 10, exception: false) || cd_id if cd_id.is_a?(String)
+      cd_id = cd_id.to_i if cd_id.is_a?(Float) && cd_id == cd_id.to_i
+      user_columns.each do |column, user_id|
+        value = row[column]
+        assignments << [cd_id, user_id, value.to_i] unless value.nil?
       end
     end
-
-
-    add_message(t("systematic_review_page.cd_assignations_number", n:number_of_actions))
-    redirect back
-    # Aquí es-> fp.read
-  else
-    raise "Not implemented"
   end
+
+  number_of_actions = AllocationCd.import_assignations(review.id, stage, assignments)
+  if missing_ids.positive?
+    add_message(t("systematic_review_page.cd_assignations_missing_ids", n: missing_ids), :error)
+  end
+  add_message(t("systematic_review_page.cd_assignations_number", n: number_of_actions))
+  redirect back
 
 end
 

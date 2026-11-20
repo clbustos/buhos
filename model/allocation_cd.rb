@@ -26,6 +26,7 @@
 # OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+require 'set'
 require_relative 'systematic_review'
 require_relative 'security'
 require_relative 'canonical_document'
@@ -76,6 +77,48 @@ class AllocationCd < Sequel::Model
 
 
   end
+  def self.import_assignations(review_id, stage, assignments)
+    return 0 if assignments.empty?
+
+    scope = {systematic_review_id: review_id, stage: stage}
+    allocations = where(scope)
+    actions = 0
+
+    db.transaction do
+      SystematicReview.where(id: review_id).for_update.first
+      assignments.each_slice(500) do |batch|
+        document_ids = batch.map(&:first).uniq
+        user_ids = batch.map { |_, user_id, _| user_id }.uniq
+        existing = allocations.where(canonical_document_id: document_ids, user_id: user_ids).
+          select_map([:canonical_document_id, :user_id]).to_set
+        to_delete = Set.new
+        to_insert = Set.new
+
+        batch.each do |cd_id, user_id, value|
+          key = [cd_id, user_id]
+          if value == 0
+            if to_insert.delete?(key) || (existing.include?(key) && to_delete.add?(key))
+              actions += 1
+            end
+          elsif value == 1 && !to_insert.include?(key) &&
+                (!existing.include?(key) || to_delete.include?(key))
+            to_insert.add(key)
+            actions += 1
+          end
+        end
+
+        to_delete.group_by(&:last).each do |user_id, keys|
+          allocations.where(user_id: user_id, canonical_document_id: keys.map(&:first)).delete
+        end
+        dataset.multi_insert(to_insert.map do |cd_id, user_id|
+          scope.merge(canonical_document_id: cd_id, user_id: user_id, status: "Massive assign")
+        end)
+      end
+    end
+
+    actions
+  end
+
   def self.update_assignation(rev_id, cds_id, user_id,stage, status=nil)
     current=AllocationCd.where(:systematic_review_id=>rev_id, :user_id=>user_id, :stage=>stage).map(:canonical_document_id)
 

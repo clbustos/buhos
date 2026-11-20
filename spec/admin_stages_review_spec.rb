@@ -391,6 +391,31 @@ describe 'Stage administration with complete data' do
                                :user_id=>1, :stage=>'screening_title_abstract']
       expect(assignation).to_not be_nil
     end
+
+    it "imports 200 documents and reports missing IDs without filling the session cookie" do
+      ids = (1000...1200).to_a
+      scope = {systematic_review_id: 1, stage: 'screening_title_abstract'}
+      CanonicalDocument.dataset.multi_insert(ids.map { |id| {id: id, title: "Document #{id}", year: 2020} })
+      AllocationCd.dataset.multi_insert(ids.map { |id| scope.merge(canonical_document_id: id, user_id: 2) })
+      rows = ids.map { |id| {id: id, admin: 1, analyst: 0} }
+      rows.concat(Array.new(200) { {reference: 'Missing ID', admin: 1} })
+      workbook = build_assignations_xlsx(rows)
+      uploaded_file = Rack::Test::UploadedFile.new(workbook.path, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", true)
+
+      post '/review/1/administration/screening_title_abstract/cd_assignations_excel/load',
+           {file: uploaded_file},
+           'HTTP_REFERER' => '/review/1/administration/screening_title_abstract/cd_assignations'
+
+      expect(last_response).to be_redirect
+      allocations = AllocationCd.where(scope).where(canonical_document_id: ids)
+      expect(allocations.where(user_id: 1).count).to eq(200)
+      expect(allocations.where(user_id: 2).count).to eq(0)
+
+      follow_redirect!
+      expect(last_response.body).to include(I18n.t("systematic_review_page.cd_assignations_missing_ids", n: 200))
+    ensure
+      workbook&.unlink
+    end
   end
 
   context "when viewing user reassignations" do

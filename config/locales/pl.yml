@@ -960,6 +960,7 @@ pl:
   Reference_blinding: "Ukrywanie referencji"
   Reference_blinding_tip: "Po włączeniu etap selekcji tytułu i abstraktu pokazuje tytuł oraz abstrakt artykułu, a ukrywa referencję APA i cytowania."
   systematic_review_page:
+    cd_assignations_missing_ids: "Pominięto wiersze bez identyfikatora dokumentu (%{n})."
     cd_assignations_number: "Dokonano łącznie %{n} przydziałów"
     cd_assignations_excel: "Przydzielanie dokumentów wzorcowych za pomocą pliku Excela"
     cd_assignations_batch: "Hurtowy przydział dokumentów wzorcowych"

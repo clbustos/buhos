@@ -1041,6 +1041,7 @@ es:
     cd_assigned_and_not_resolved: "Documentos canónicos asignados y aún no resueltos"
     cd_assigned_and_not_resolved_list: "Documentos canónicos asignados, aún no resueltos"
     cd_reassignations: "Reasignar documentos canónicos"
+    cd_assignations_missing_ids: "Filas omitidas por falta de identificador de documento (%{n})."
     cd_assignations_number: "Se realizaron %{n} asignaciones a usuarios"
     cd_assignations_excel: "Asignación de documentos canónicos usando archivos Excel"
     cd_assignations_batch: "Asignación masiva de documentos canónicos a usuarios"
