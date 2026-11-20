@@ -176,6 +176,14 @@ post '/review/:id/administration/:stage/reminder/:user_id' do |id, stage, user_i
     redirect @reminder_url
   end
 
+  @email_subject=params['subject'].to_s
+  @email_body=params['body'].to_s
+  if @email_subject.strip.empty? || @email_subject.length > 255 || @email_subject.match?(/[\r\n]/) || @email_body.strip.empty?
+    @reminder_error=t('review_messages.invalid_content')
+    status 400
+    return haml :'systematic_reviews/stage_reminder', escape_html: false
+  end
+
   sent=false
   begin
     sent=OutgoingEmail.new.send_email(@recipient.email, @email_subject, @email_body)
@@ -187,8 +195,9 @@ post '/review/:id/administration/:stage/reminder/:user_id' do |id, stage, user_i
     redirect @stage_admin_url
   end
 
-  add_message(t('stage_reminders.failed'), :error)
-  redirect @reminder_url
+  @reminder_error=t('stage_reminders.failed')
+  status 502
+  haml :'systematic_reviews/stage_reminder', escape_html: false
 end
 
 get '/review/:id/administration/extract_information/cd/:cd_id' do |id,cd_id|

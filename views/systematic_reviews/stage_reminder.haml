@@ -7,10 +7,15 @@
   %dd=escape_html(@recipient.name)
   %dt=t('stage_reminders.email')
   %dd=escape_html(@recipient.email)
-  %dt=t(:Subject)
-  %dd=escape_html(@email_subject)
-%pre=escape_html(@email_body)
+- if @reminder_error
+  %p.alert.alert-danger{:role=>'alert'}=escape_html(@reminder_error)
 %form{:method=>'post', :action=>@reminder_url}
   %input{:type=>'hidden', :name=>'pending_count', :value=>@pending_count}
+  .form-group
+    %label{:for=>'reminder-subject'}=t(:Subject)
+    %input#reminder-subject.form-control{:type=>'text', :name=>'subject', :value=>@email_subject, :required=>true, :maxlength=>255}
+  .form-group
+    %label{:for=>'reminder-body'}=t(:Text)
+    %textarea#reminder-body.form-control{:name=>'body', :rows=>10, :required=>true}=escape_html(@email_body)
   %button.btn.btn-primary{:type=>'submit'}=t(:Send)
   %a.btn.btn-default{:href=>@stage_admin_url}=t(:Cancel)
