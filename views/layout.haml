@@ -61,9 +61,14 @@
                     =t(:My_resources)
                     %span{:class=>:caret}>
                     %ul.dropdown-menu
+                      - if scoped_researcher?
+                        %li
+                          %a.nav-link{:href=>url('/reviews')}=t(:Systematic_reviews)
+                        %li
+                          %a.nav-link{:href=>url('/my_groups')}=t('systematic_review.my_groups')
                       %li<
                         %a{:class=>'nav-link', :href=>"/my_favorites"}=t(:My_favorites)
-                      -if auth_to('message_view')
+                      -if auth_to('message_view') || scoped_researcher?
                         %li<
                           %a{:class=>'nav-link', :href=>"/my_messages"}=t(:My_messages)
                 %li{:class=>'dropdown'}
@@ -84,6 +89,9 @@
                     %ul.dropdown-menu
                       %li<
                         %a{:class=>'dropdown-item', :href=>url('/admin/users')}=t(:Users)
+                      - if auth_to('user_admin')
+                        %li<
+                          %a.dropdown-item{:href=>url('/admin/registration_requests')}=t('registration.queue')
                       %li<
                         %a{:class=>'dropdown-item', :href=>url('/admin/groups')}=t(:Groups)
                       %li<

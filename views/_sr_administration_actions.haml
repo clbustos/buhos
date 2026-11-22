@@ -5,10 +5,17 @@
 
 .btn-group.btn-group-sm
   - if [:screening_title_abstract, :screening_references, :review_full_text, :extract_information].include? stage.to_sym
-    %a{:href=>url("/review/#{review[:id]}/stage/#{stage}/generate_graphml"), :role=>"button", :class=>"btn btn-default "}=t(:Export_graphml_for_this_stage)
-    %a{:href=>url("/review/#{review[:id]}/stage/#{stage}/generate_doi_list"), :role=>"button", :class=>"btn btn-default "}=t(:Export_doi_list_for_this_stage)
-    %a{:href=>url("/review/#{review[:id]}/stage/#{stage}/generate_bibtex"), :role=>"button", :class=>"btn btn-default "}=t(:Export_bibtex_for_this_stage)
-    %a{:href=>url("/review/#{review[:id]}/stage/#{stage}/generate_excel"), :role=>"button", :class=>"btn btn-default "}=t(:Export_generic_for_this_stage, type:"Excel")
+    %a.btn.btn-sm.btn-warning{:href=>url("/review/#{@review.id}/administration_document_reports?stage=#{@stage}")}
+      %span.glyphicon.glyphicon-warning-sign
+      =t('document_reports.view_reported_documents')
+    %a{:href=>url("/review/#{review[:id]}/stage/#{stage}/generate_graphml"), :role=>"button", :class=>"btn btn-default "}
+      =t(:Export_graphml_for_this_stage)
+    %a{:href=>url("/review/#{review[:id]}/stage/#{stage}/generate_doi_list"), :role=>"button", :class=>"btn btn-default "}
+      =t(:Export_doi_list_for_this_stage)
+    %a{:href=>url("/review/#{review[:id]}/stage/#{stage}/generate_bibtex"), :role=>"button", :class=>"btn btn-default "}
+      =t(:Export_bibtex_for_this_stage)
+    %a{:href=>url("/review/#{review[:id]}/stage/#{stage}/generate_excel"), :role=>"button", :class=>"btn btn-default "}
+      =t(:Export_generic_for_this_stage, type:"Excel")
     - if [:screening_title_abstract, :screening_references, :review_full_text].include? stage.to_sym
       %a{:href=>url("/review/#{review[:id]}/stage/#{stage}/import_export_decisions"), :role=>"button", :class=>"btn btn-default "}=t(:Import_export_decisions)
   - if [:screening_title_abstract, :screening_references].include? stage.to_sym and ars.cd_without_abstract(stage).count>0

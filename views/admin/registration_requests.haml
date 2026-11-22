@@ -1,0 +1,27 @@
+%h2=title(t('registration.queue'))
+- if @registration_requests.empty?
+  %p.alert.alert-info=t('registration.empty')
+- else
+  %table.table.table-striped
+    %thead
+      %tr
+        %th=t(:Name)
+        %th=t(:Login)
+        %th=t(:Email)
+        %th=t('registration.status')
+        %th=t(:Actions)
+    %tbody
+      - @registration_requests.each do |registration|
+        %tr
+          %td=registration.name
+          %td=registration.login
+          %td=registration.email
+          %td=t("registration.#{registration.status}")
+          %td
+            - if registration.status == 'pending'
+              %form{:method=>'post', :action=>url("/admin/registration_requests/#{registration.id}")}
+                %button.btn.btn-primary{:name=>'decision', :value=>'approved', :type=>'submit'}=t('registration.approve')
+                %button.btn.btn-default{:name=>'decision', :value=>'rejected', :type=>'submit'}=t('registration.reject')
+            - elsif !registration.notified_at
+              %form{:method=>'post', :action=>url("/admin/registration_requests/#{registration.id}")}
+                %button.btn.btn-default{:name=>'decision', :value=>'retry', :type=>'submit'}=t('registration.retry')

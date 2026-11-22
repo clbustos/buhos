@@ -26,9 +26,100 @@
 # OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
+require 'securerandom'
+
 module Sinatra
   module SessionAuth
     module Helpers
+      REVIEW_MEMBER_PERMISSIONS = %w[review_view review_analyze canonical_document_view search_view
+                                     record_view reference_view file_view tag_edit message_view].freeze
+      REVIEW_OWNER_PERMISSIONS = %w[review_edit review_admin review_admin_view search_edit file_admin message_edit].freeze
+
+      def independent_researcher?
+        session['role_id'] == 'independent_researcher'
+      end
+
+      def scoped_researcher?
+        independent_researcher? || session['role_id'] == 'review_collaborator'
+      end
+
+      def can_create_review?
+        independent_researcher? || auth_to('review_edit')
+      end
+
+      def review_group_member?(review, user_id)
+        review && GroupsUser.where(group_id: review.group_id, user_id: user_id).first
+      end
+
+      def scoped_review_owner?(review, user_id=session['user_id'])
+        independent_researcher? && review && review.sr_administrator == user_id &&
+          review_group_member?(review, user_id)
+      end
+
+      def research_review_scope
+        path=Rack::Utils.unescape_path(request.path_info)
+        case path
+        when %r{\A/(?:review|(?:decision|resolution|canonical_documents)/review|tags/systematic_review|files/rs|allocation/user/\d+/review|tag/rename/review)/(\d+)(?:/|\z)}
+          SystematicReview[Regexp.last_match(1)]
+        when '/review/update', '/review/reassign_cd_to_user'
+          scoped_review_from_id(params['review_id'])
+        when '/review/files/add', '/review/search/uploaded_files/new', '/review/import_decisions_excel'
+          scoped_review_from_id(params['systematic_review_id'])
+        when '/search/update'
+          if params['search_id'] == ''
+            scoped_review_from_id(params['systematic_review_id'])
+          elsif params['search_id'].to_s.match?(/\A\d+\z/)
+            Search[params['search_id']]&.systematic_review
+          end
+        when '/searches/update_batch', '/review/criteria/cd'
+          scoped_review_from_id(params['sr_id'])
+        when %r{\A/review/edit_field/}
+          field_id=params['pk'].to_s
+          scoped_review_from_id(SrField[field_id]&.systematic_review_id) if field_id.match?(/\A\d+\z/)
+        when %r{\A/canonical_document/user_allocation/}
+          scoped_review_from_id(params['rs_id'])
+        when '/file/unassign_sr'
+          scoped_review_from_id(params['rs_id'])
+        when %r{\A/search/(\d+)(?:/|\z)}
+          Search[Regexp.last_match(1)]&.systematic_review
+        when %r{\A/(?:file/|ViewerJS/\.\.file/)(\d+)/(?:download|view|page/)}
+          file_id=Regexp.last_match(1)
+          groups=GroupsUser.where(user_id: session['user_id']).select(:group_id)
+          review_ids=FileSr.where(file_id: file_id).select(:systematic_review_id)
+          SystematicReview.where(group_id: groups, id: review_ids).first
+        end
+      end
+
+      def scoped_review_from_id(id)
+        SystematicReview[id] if id.to_s.match?(/\A[1-9][0-9]*\z/)
+      end
+
+      def authorize_research_review_scope
+        @permission_review=research_review_scope
+        if @permission_review
+          halt 403 unless review_group_member?(@permission_review, session['user_id'])
+          check_research_review_resource
+        elsif Rack::Utils.unescape_path(request.path_info).match?(%r{\A/review/\d+(?:/|\z)})
+          halt 404
+        end
+      end
+
+      def check_research_review_resource
+        path=Rack::Utils.unescape_path(request.path_info)
+        document_id=path[%r{/(?:canonical_document|cd)/(\d+)(?:/|\z)}, 1]
+        document_id=params['cd_id'] if path.start_with?('/canonical_document/user_allocation/')
+        if document_id
+          halt 404 unless @permission_review.cd_all_id_table.where(cd_id: document_id).first
+        end
+        if path.match?(%r{\A/(?:decision/review|review/\d+/(?:extract_information|quality_assessment))/})
+          user_id=path[%r{/user/(\d+)(?:/|\z)}, 1]
+          halt 403 if user_id && !is_session_user(user_id)
+        end
+        if path.match?(%r{\A/(?:review/\d+/stage/[^/]+/(?:add_assign_user|rem_assign_user|reassign_user)|allocation/user)/(\d+)(?:/|\z)})
+          halt 403 unless review_group_member?(@permission_review, Regexp.last_match(1))
+        end
+      end
+
       def allow_password_recovery?
         !Buhos::Configuration.smtp_settings[:server].to_s.strip.empty?
       end
@@ -47,6 +138,10 @@ module Sinatra
         #log.info(session['authorizations'])
         if session['user'].nil?
           false
+        elsif scoped_researcher? && @permission_review &&
+              (REVIEW_MEMBER_PERMISSIONS.include?(auth) ||
+               (REVIEW_OWNER_PERMISSIONS.include?(auth) && scoped_review_owner?(@permission_review)))
+          true
         else
           if session['role_id']=='administrator'
             @admin_authorization_roles||=AuthorizationsRole.where(:role_id=>"administrator").select_map(:authorization_id)
@@ -80,6 +175,11 @@ module Sinatra
 
 
       def review_belongs_to(review_id,user_id)
+        if scoped_researcher?
+          review=@permission_review if @permission_review&.id.to_s == review_id.to_s
+          return scoped_review_owner?(review || SystematicReview[review_id], user_id)
+        end
+
         auth_to("review_admin") and SystematicReview[:id=>review_id, :sr_administrator=>user_id]
       end
 
@@ -118,13 +218,16 @@ module Sinatra
         excluded_path=[/file\/\d+\/download_external/,
                         /\A\/invitation\/[0-9a-f]{64}(?:\/(?:decision|register))?\z/,
                         /forgotten_password/,
-                       /reset_link/
+                       /reset_link/,
+                       /\A\/register\z/
         ]
         external_path_match= excluded_path.any? { |regex| request.path_info =~ regex }
         #$log.info(request.path_info=~external_path)
         #external_path=nil
         if session['user'].nil? and not external_path_match
           request.path_info='/login'
+        elsif session['user'] && scoped_researcher?
+          authorize_research_review_scope
         end
       end
 
@@ -152,10 +255,11 @@ module Sinatra
       end
 
       app.get '/reset_link' do
+        headers 'Cache-Control'=>'no-store', 'Referrer-Policy'=>'no-referrer'
         @t=params['t']
-        if @t
+        if @t.is_a?(String) && !@t.empty?
           @user=User[token_password: @t]
-          if @user and (Time.now - @user.token_datetime)<60*30
+          if @user && @user.token_datetime && (Time.now - @user.token_datetime)<60*30
             haml :reset_link, :layout=>:layout_empty, :escape_html=>false
           else
             redirect url("/login")  
@@ -167,32 +271,26 @@ module Sinatra
       end
 
       app.post '/reset_link' do
-
-        @user=User[id: params['user_id']]
-        raise Buhos::NoUserIdError, params['user_id'] unless @user
-        if @user[:token_password]!=params['t']
+        token=params['t']
+        @user=User[id: params['user_id']] if params['user_id'].to_s.match?(/\A[1-9][0-9]*\z/)
+        eligible=User.where(id: @user&.id, token_password: token).
+          where { token_datetime > Time.now - 30*60 }
+        unless @user && token.is_a?(String) && !token.empty? && eligible.first
           add_message(::I18n::t("sinatra_auth.token_error"), :info)
-          SecurityEvent.add_user_event("token error for password reset",  request.ip,request.path_info,
-                                       "password token", @user[:id] )
           redirect url("/login")
-        else
-          password_1=params['password']
-          password_2=params['repeat_password']
-          if password_1!=password_2
-            add_message(::I18n::t("password.not_equal_password"), :error)
-            redirect back
-          else
-            @user.update(token_password:nil,token_datetime: nil)
-            @user.change_password(password_1)
-
-            SecurityEvent.add_user_event("password reset by reset link",  request.ip,request.path_info,
-                                         "password changed for user using reset link", @user[:id] )
-            add_message(::I18n::t("sinatra_auth.password_update_relogin"))
-            redirect url("/login")
-          end
-
         end
 
+        password=params['password']
+        if !password.is_a?(String) || password.strip.empty? || password != params['repeat_password']
+          add_message(::I18n::t("password.not_equal_password"), :error)
+          redirect url("/reset_link?t=#{Rack::Utils.escape(token)}")
+        end
+        if eligible.update(password: Digest::SHA1.hexdigest(password.strip), token_password: nil, token_datetime: nil) == 1
+          SecurityEvent.add_user_event("password reset by reset link", request.ip, request.path_info,
+                                       "password changed for user using reset link", @user.id)
+          add_message(::I18n::t("sinatra_auth.password_update_relogin"))
+        end
+        redirect url("/login")
       end
 
 
@@ -201,13 +299,13 @@ module Sinatra
       end
 
       app.post '/forgotten_password' do
-        email=params['email']
-        if not email.include? "@"
+        email=params['email'].to_s.strip.downcase
+        unless email.include?("@")
           add_message(::I18n::t("sinatra_auth.not_an_email"), :error)
           redirect url("/forgotten_password")
         end
 
-        user=User.where(Sequel.lit('email=? and email IS NOT NULL', email)).first
+        user=User.where(Sequel.function(:lower, :email)=>email).first
         if user
           previous_datetime=user.token_datetime
           if previous_datetime
@@ -219,7 +317,7 @@ module Sinatra
           end
 
 
-          token=Digest::SHA1.hexdigest(DateTime.to_s+user.password+user.name)
+          token=SecureRandom.hex(32)
           user.update(token_password:token, token_datetime:DateTime.now)
           url="#{request.base_url}/reset_link?t=#{token}"
           subject=::I18n::t("sinatra_auth.password_reset_subject")

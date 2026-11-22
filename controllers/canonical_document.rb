@@ -264,6 +264,7 @@ post '/canonical_document/user_allocation/:action' do |action|
   user=User[params['user_id']]
   stage=params['stage']
   return 404 if !revision or !cd or !user or !stage
+  halt 403 if scoped_researcher? && !review_group_member?(revision, user.id)
   a_cd=AllocationCd[:systematic_review_id=>revision[:id],:canonical_document_id=>cd[:id],:user_id=>user[:id], :stage=>stage]
   if action=='allocate'
     if !a_cd

@@ -255,6 +255,11 @@ post '/review/:sr_id/canonical_document/:cd_id/file/:file_id/use' do |sr_id, cd_
 
   file=IFile[file_id]
   raise Buhos::NoFileIdError, file_id unless file
+  if scoped_researcher?
+    group_ids=GroupsUser.where(user_id: session['user_id']).select(:group_id)
+    review_ids=SystematicReview.where(group_id: group_ids).select(:id)
+    halt 404 unless FileSr.where(file_id: file.id, systematic_review_id: review_ids).first
+  end
 
   halt 403 unless rs.cd_all_id.include?(cd.id)
   if FileExtractionInformation.where(:file_id=>file.id).count>0

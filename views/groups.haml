@@ -15,10 +15,11 @@
     - @groups.each do |g|
       %tr
         %td=g.id
-        %td=g.name
-        %td=g.description
-        %td=g.administrator_name
-        %td=g.users.map {|u| "[#{u.id}]#{u.name}"}.join(",")
+        %td
+          %a{:href=>url("/group/#{g.id}")}&=g.name
+        %td&=g.description
+        %td&=g.administrator_name
+        %td&=g.users.map {|u| "[#{u.id}]#{u.name}"}.join(",")
         %td
           - if auth_to("group_admin")
             .btn-group.btn-group-sm

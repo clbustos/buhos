@@ -9,10 +9,11 @@
     %select{:name=>  :show_inactives}
       %option{:value=>:only_actives, :selected=>@show_inactives=='only_actives'}=t(:Show_only_actives)
       %option{:value=>:actives_and_inactives, :selected=>@show_inactives=='actives_and_inactives'}=t(:Show_actives_and_inactives)
-    %label{:for=>:show_only_user}=t(:Systematic_review_all_user)
-    %select{:name=>  :show_only_user}
-      %option{:value=>:yes, :selected=>@show_only_user=='yes'}=t(:Show_sr_only_user)
-      %option{:value=>:no , :selected=>@show_only_user=='no'}=t(:Show_sr_all)
+    - unless scoped_researcher?
+      %label{:for=>:show_only_user}=t(:Systematic_review_all_user)
+      %select{:name=>  :show_only_user}
+        %option{:value=>:yes, :selected=>@show_only_user=='yes'}=t(:Show_sr_only_user)
+        %option{:value=>:no , :selected=>@show_only_user=='no'}=t(:Show_sr_all)
 
   %input.btn.btn-default.btn-sm{:type=>:submit, :value=>t(:Show_systematic_review)}
 
@@ -22,7 +23,7 @@
 
 
 .btn-group
-  - if auth_to("review_admin")
+  - if can_create_review?
     %a{:href=>url("/review/new")}
       %button{:class=>"btn btn-default"}
         %span{:class=>"glyphicon glyphicon-plus"}

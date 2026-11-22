@@ -512,6 +512,12 @@ td.decision {
    width:5em;
 }
 
+table > tfoot > tr > td.decision,
+table > tfoot > tr > td.n_decisions,
+table > tfoot > tr > td.resolution {
+  border-top-width: 2px;
+  font-weight: bold;
+}
 
 
 .decision-yes, .decision-yes > button.btn-default {
@@ -869,6 +875,7 @@ Bootstrap changes
 
   > tfoot > tr > th, > thead > tr > td, > tbody > tr > td, > tfoot > tr > td {
     border-top: 1px solid $blue_light;
+
   }
 
 
@@ -881,6 +888,7 @@ Bootstrap changes
   > thead > tr > td, > tbody > tr > td, > tfoot > tr > td
   {
     border: 1px solid $blue_light;
+
   }
 }
 

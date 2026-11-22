@@ -54,6 +54,7 @@ put '/review/:sr_id/edit_quality_criterion/:attr' do |sr_id, attr|
   qc=QualityCriterion[qc_id]
   raise Buhos::NoQualityCriterionIdError, qc_id unless qc
   srqc=SrQualityCriterion[systematic_review_id:sr_id, quality_criterion_id:qc_id]
+  halt 404 if scoped_researcher? && !srqc
   if %w{order scale_id}.include? attr
     srqc.update(attr.to_sym => value)
   elsif attr=='text'

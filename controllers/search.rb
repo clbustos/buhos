@@ -65,6 +65,7 @@ get '/search/:s_id/record/:r_id' do |s_id, r_id|
   raise Buhos::NoSearchIdError, s_id if @search.nil?
   @reg=Record[r_id]
   raise Buhos::NoRecordIdError, r_id if @reg.nil?
+  halt 404 if scoped_researcher? && !$db[:records_searches].where(search_id: s_id, record_id: r_id).first
   @review=@search.systematic_review
   @references=@reg.references
   haml "record".to_sym, escape_html: false
@@ -183,6 +184,11 @@ post '/search/update' do
       )
     else
       search=Search[id]
+      if scoped_researcher?
+        otros_params.delete(:id)
+        otros_params.delete(:systematic_review_id)
+        otros_params.delete(:user_id)
+      end
       search.update(otros_params)
     end
 
@@ -251,6 +257,7 @@ post '/searches/update_batch' do
     add_message(I18n::t(:No_search_selected), :error)
   else
     searches=Search.where(:id=>params['search'])
+    searches=searches.where(systematic_review_id: @sr.id) if scoped_researcher?
     if params['action']=='analyze'
       redirect url("/review/#{@sr.id}/searches/analyze/#{searches.map {|v|v[:id]}.join(',')}")
     elsif params['action']=='valid'

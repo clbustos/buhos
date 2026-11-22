@@ -4,6 +4,8 @@ helpers do
     @invitation=Invitation[token: params['token']]
     halt 404 unless @invitation
     @review=@invitation.systematic_review
+    @existing_account=@invitation.existing_account
+    @signed_in_invitee=session['user_id'] == @existing_account&.id && session['user']
     I18n.locale=@invitation.language if %w[es en].include?(@invitation.language)
   end
 
@@ -21,8 +23,17 @@ end
 post '/invitation/:token/decision' do
   load_public_invitation
   halt 400 unless %w[accepted rejected].include?(params['decision'])
-  @invitation.decide!(params['decision'])
+  if @existing_account && params['decision'] == 'accepted'
+    account=@existing_account if @signed_in_invitee
+    @invitation.accept_with_account!(account)
+  else
+    @invitation.decide!(params['decision'])
+  end
   redirect url("/invitation/#{@invitation.token}")
+rescue Invitation::InvalidRegistration => error
+  status 422
+  @error=t("invitations.#{error.message}")
+  render_public_invitation
 end
 
 post '/invitation/:token/register' do

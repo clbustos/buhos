@@ -663,6 +663,7 @@ end
 
 post '/review/reassign_cd_to_user' do
   rev_id=params['review_id']
+  halt_unless_auth('review_admin')
   @review=SystematicReview[rev_id]
   raise Buhos::NoReviewIdError, rev_id if !@review
   user_id_from=params['user_id_from']
@@ -672,6 +673,9 @@ post '/review/reassign_cd_to_user' do
   user_id_to=params['user_id_to']
   @user_to=User[user_id_to]
   raise Buhos::NoUserIdError, user_id_to if !@user_to
+  if scoped_researcher?
+    halt 403 unless [@user_from, @user_to].all? {|user| review_group_member?(@review, user.id)}
+  end
 
   @stage=params['stage']
   @asr=::Analysis_SR_Stage.new(@review, @stage)

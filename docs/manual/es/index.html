@@ -274,6 +274,9 @@ passenger_ruby &lt;ruby_location&gt;
 <p>Al finalizar el proceso, se debe reiniciar la aplicación. De manera predeterminada, el usuario con permisos de administrador tiene como nombre de usuario y password ‘admin’.</p>
 <p><img class='border img-fluid interface' src="images/image5.png" /></p>
 <p>En linux, para cerrar la aplicación se puede usar <kbd>Ctrl+C</kbd> en consola. En Windows, se puede cerrar la ventana que muestra los logs de sistema.</p>
+<h4>Registro de cuentas</h4>
+<p>El registro de cuentas está desactivado de forma predeterminada. Para habilitarlo, define <code>SELF_REGISTRATION=true</code> en el entorno de la aplicación o guarda la clave <code>SELF_REGISTRATION</code> con valor <code>true</code> en <strong>Administración → Configuraciones del sitio</strong>. El valor guardado tiene prioridad. En una instalación existente, aplica la migración 34 y configura SMTP para enviar las notificaciones.</p>
+<p>La pantalla de entrada muestra <strong>Crea una cuenta</strong>. Las personas solicitan una cuenta con su nombre, nombre de usuario y correo. Quienes tienen permiso para administrar usuarios pueden aprobar o rechazar solicitudes en <strong>Administración → Solicitudes de registro</strong>. Si la solicitud se aprueba, Buhos crea una cuenta de Investigador independiente y envía un enlace de un solo uso para establecer la contraseña. El enlace vence en 30 minutos. Si se rechaza, envía una notificación estándar.</p>
 </article>
 <article>
 <h2 id="user_guide">Guía de uso</h2>

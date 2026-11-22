@@ -11,7 +11,7 @@
 post '/resolution/review/:id/canonical_document/:cd_id/stage/:stage/resolution' do |rev_id, cd_id, stage|
   halt_unless_auth('review_admin')
   resolution=params['resolution']
-  user_id=params['user_id']
+  user_id=scoped_researcher? ? session['user_id'] : params['user_id']
 
   if resolution=='delete'
     return 404 unless Resolution.delete_for_document(systematic_review_id:rev_id, canonical_document_id:cd_id, stage:stage)
@@ -38,6 +38,7 @@ end
 
 put '/resolution/review/:id/canonical_document/:cd_id/stage/:stage/user/:user_id/resolution_commentary' do |rev_id, cd_id, stage, user_id|
   halt_unless_auth('review_admin')
+  user_id=session['user_id'] if scoped_researcher?
   Resolution.update_commentary_for_document(
     systematic_review_id:rev_id,
     canonical_document_id:cd_id,

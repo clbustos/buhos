@@ -14,24 +14,31 @@
 
     $( "#form-date-creation" ).datepicker( "option", "dateFormat", "yy-mm-dd" );
 
-    $( "#form-date-creation" ).datepicker("setDate",new Date(#{@review[:date_creation].year},#{@review[:date_creation].month-1},#{@review[:date_creation].day},0,0,0,0));
+    var creationDate = $("#form-date-creation").val();
+    if (creationDate) {
+      $("#form-date-creation").datepicker("setDate", creationDate);
+    }
 
-    $(".select_group").change(function() {
+    var groupSelect = $("#group_id_select");
+    var administratorSelect = $("#group_administrator_select");
+    var existingFields = $("#existing-review-group");
 
-        var valor=$(this).val();
-        var select_id="group_administrator_select";
-        $.getJSON("/group/"+valor+"/datos.json",function(data) {
-         var option_html="";
-         for(var i=0; i<data.users.length;i++) {
-         var user_id       = data.users[i].id;
-         var user_name     = data.users[i].name;
-         var selected_attr = (user_id== data.group_administrator) ? "selected='selected'": "" ;
-           option_html=option_html+("<option "+selected_attr+" value='"+ user_id+"'>"+user_name+"</option>");
-         }
-          $("#"+select_id).html("<select class='form-control' name='sr_administrator' id='"+select_id+"'>"+option_html+"</select>");
-        }).fail(function() {
-          alert("#{t(:Json_cant_obtain_information)}")
-        });
+    function updateGroupMode() {
+      var useExisting = $("input[name='group_mode']:checked").val() !== "new";
+      existingFields.toggleClass("hidden", !useExisting);
+      existingFields.prop("disabled", !useExisting);
+    }
+
+    $("input[name='group_mode']").on("change", updateGroupMode);
+
+    groupSelect.on("change", function () {
+      var group = $(this).find(":selected");
+      var members = group.data("members") || [];
+      administratorSelect.empty();
+      members.forEach(function (member) {
+        var selected = member.id === group.data("administrator");
+        administratorSelect.append(new Option(member.name, member.id, selected, selected));
+      });
     });
   });
 %h2=@title
@@ -40,6 +47,36 @@
   %div{:class=>"form-group"}
     %label{:for=>"name"}=t(:Name)
     %input{:required=>true, :class=>"form-control",:type=>"text", :name=>"name",:value=>@review[:name]}
+  %fieldset.form-group
+    %legend=t(:Group)
+    - if @can_create_review_group
+      .radio
+        %label
+          %input{:type=>'radio', :name=>'group_mode', :value=>'new', :checked=>@review.new?}
+          =t('systematic_review.create_group')
+      .radio
+        %label
+          %input{:type=>'radio', :name=>'group_mode', :value=>'existing', :checked=>!@review.new?, :disabled=>@review_groups.empty?}
+          =t('systematic_review.use_existing_group')
+    - selected_group = @review_groups.find {|group| group.id == @review.group_id} || @review_groups.first
+    - if selected_group
+      %fieldset#existing-review-group{:class=>('hidden' if @review.new?), :disabled=>@review.new?}
+        .form-group
+          %label{:for=>'group_id_select'}=t(:Group)
+          %select#group_id_select.form-control{:name=>'group_id'}
+            - @review_groups.each do |group|
+              - members = @review_group_members[group.id]
+              %option{:value=>group.id, :selected=>group.id==selected_group.id, 'data-administrator'=>group.group_administrator, 'data-members'=>(members.map {|member| {id: member.id, name: member.name}}.to_json if members)}
+                &= group.name
+        - if @can_manage_groups
+          - selected_members = @review_group_members.fetch(selected_group.id)
+          - administrator_id = selected_members.any? {|member| member.id == @review.sr_administrator} ? @review.sr_administrator : selected_group.group_administrator
+          .form-group
+            %label{:for=>'group_administrator_select'}=t(:Administrator)
+            %select#group_administrator_select.form-control{:name=>'sr_administrator'}
+              - selected_members.each do |member|
+                %option{:value=>member.id, :selected=>member.id==administrator_id}
+                  &= member.name
   %div{:class=>"form-group"}
     %label=t(:Description)
     =tooltip(t("systematic_review.description_tip"))
@@ -129,18 +166,6 @@
           %label{:for=>"stage"}=t(:Stage)
           -get_stages_names.each do |stage_id,stage_name|
             %input{:class=>"form-check-input",:type=>"radio", :name=>"stage", :value=>stage_id, :checked=>stage_id.to_s==@review[:stage]}=t(stage_name)
-
-        %div{:class=>"form-group"}
-          %label{:for=>"group_id"}=t(:Group)
-          =tooltip(t("systematic_review.group_tip"))
-          %select{:class=>'form-control select_group', :name=>:group_id, :id=>:group_id_select}
-            - Group.all.each do |g|
-              %option{:value=>g.id, :selected=>g.id==@review[:group_id]}=g.name
-        %div{:class=>"form-group"}
-          %label=t(:Administrator)
-          %select{:class=>'form-control', :id=>:group_administrator_select, :name=>:sr_administrator}
-            - @review.group.users.each do |u|
-              %option{:selected=> u.id==@review[:sr_administrator], :value=>u.id}=u.name
 
         %div{:class=>"form-group"}
           %label=t(:Conflict_of_interest)

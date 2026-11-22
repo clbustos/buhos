@@ -282,6 +282,12 @@ span.titulo {
 td.decision {
   width: 5em; }
 
+table > tfoot > tr > td.decision,
+table > tfoot > tr > td.n_decisions,
+table > tfoot > tr > td.resolution {
+  border-top-width: 2px;
+  font-weight: bold; }
+
 .decision-yes, .decision-yes > button.btn-default {
   color: darkgreen; }
 
@@ -674,5 +680,4 @@ div.lista-etapas span.etapa {
 
 .decision-statistics-group .badge.alert-danger {
   color: #a94442;
-  background-color: #f2dede;
-}
+  background-color: #f2dede; }

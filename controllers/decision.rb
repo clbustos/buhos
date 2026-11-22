@@ -30,6 +30,7 @@ end
 put '/decision/review/:review_id/user/:user_id/canonical_document/:cd_id/stage/:stage/commentary' do |review_id, user_id, cd_id, stage|
   halt_unless_auth('review_analyze')
   pk = params['pk']
+  halt 400 if scoped_researcher? && pk.to_s != cd_id
   value = params['value']
   $db.transaction(:rollback => :reraise) do
     des=Decision.where(:systematic_review_id => review_id, :user_id => user_id, :canonical_document_id => pk, :stage => stage).first

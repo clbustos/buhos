@@ -185,6 +185,12 @@ If you wish to use a MySQL database, you should create it before configuring the
 First, the installation language should be defined.  Second, information on the specific database should be provided (SQLite / MySQL). By default, a SQLite database will be installed in db.sqlite. If you have a SCOPUS API key, the relevant information can be submitted along with the proxy settings, if applicable.
 As the final step, the database will be populated. You must restart the application before using it.
 
+### Account registration
+
+Self-registration is disabled by default. To enable it, set `SELF_REGISTRATION=true` in the application's environment or save the key `SELF_REGISTRATION` with the value `true` under **Administration → Site configurations**. The saved value takes precedence. For an existing installation, apply migration 34 and configure SMTP for email notifications.
+
+The sign-in page shows **Create an account**. Applicants submit their name, username, and email address. Users with permission to manage users can approve or reject requests under **Administration → Registration requests**. On approval, Buhos creates an Independent researcher account and emails a one-time link to set a password. On rejection, Buhos emails a standard notice.
+
 ## Deployment
 
 Individual users can run the application smoothly with the Windows installer or the packages for Ubuntu, Debian or CentOS.

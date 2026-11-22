@@ -48,7 +48,7 @@
     %tr
       - Decision::N_EST.each_key do |dec|
         %td{:class=>"decision decision-#{dec}"}=patterns.sum {|pattern, count| pattern[dec].to_i * count}
-      %td=patterns.sum {|pattern, count| count}
+      %td.n_decisions=patterns.sum {|pattern, count| count}
       - ['yes', 'no', Resolution::NO_RESOLUTION].each do |resolution|
-        %td=patterns.sum {|pattern, count| resolutions_patron[pattern][resolution].to_i}
+        %td.resolution=patterns.sum {|pattern, count| resolutions_patron[pattern][resolution].to_i}
       %th=t(:Total)

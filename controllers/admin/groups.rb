@@ -14,6 +14,12 @@ get '/admin/groups' do
   haml :groups, escape_html: false
 end
 
+get '/my_groups' do
+  halt_unless_auth('group_view')
+  @groups=Group.where(id: GroupsUser.where(user_id: session['user_id']).select(:group_id)).order(:name).all
+  haml :groups, escape_html: false
+end
+
 # Display form to edit a group
 
 get "/group/:id/edit" do |id|
@@ -43,6 +49,7 @@ end
 # Display information for a group
 get "/group/:id" do |id|
   halt_unless_auth('group_view')
+  halt 403 if scoped_researcher? && !GroupsUser.where(group_id: id, user_id: session['user_id']).first
   @group=Group[id]
   @users_id=@group.users.map {|v| v.id}
   haml "groups/view".to_sym, escape_html: false
@@ -53,6 +60,7 @@ end
 
 get '/group/:id/datos.json' do |id|
   halt_unless_auth('group_view')
+  halt 403 if scoped_researcher? && !GroupsUser.where(group_id: id, user_id: session['user_id']).first
 
   require 'json'
   @group=Group[id]

@@ -1,0 +1,18 @@
+.container
+  .row
+    .col-md-6.col-md-offset-3
+      %h2=t('registration.create_account')
+      - if @registration_error
+        %p.alert.alert-danger{:role=>'alert'}=@registration_error
+      %form{:method=>'post', :action=>url('/register')}
+        .form-group
+          %label{:for=>'registration-name'}=t(:Name)
+          %input#registration-name.form-control{:name=>'name', :value=>@registration_values['name'], :maxlength=>255, :required=>true, :autocomplete=>'name'}
+        .form-group
+          %label{:for=>'registration-login'}=t(:Login)
+          %input#registration-login.form-control{:name=>'login', :value=>@registration_values['login'], :maxlength=>255, :required=>true, :autocomplete=>'username', 'aria-describedby'=>'registration-login-help'}
+          %p#registration-login-help.help-block=t('registration.login_help')
+        .form-group
+          %label{:for=>'registration-email'}=t(:Email)
+          %input#registration-email.form-control{:type=>'email', :name=>'email', :value=>@registration_values['email'], :maxlength=>255, :required=>true, :autocomplete=>'email'}
+        %button.btn.btn-primary{:type=>'submit'}=t('registration.submit')

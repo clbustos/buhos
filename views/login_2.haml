@@ -24,6 +24,12 @@
                     =t(:remember_me)
                     / Change this to a button or input when using this as a form
               %input.enviar{:class=>"btn btn-lg btn-default btn-block",:type=>'submit', :value=>t("login.submit".to_sym)}
-        -if allow_password_recovery?
+        - if allow_password_recovery? || Buhos::Configuration.self_registration?
           .panel-footer
-            %a{:href=>url("/forgotten_password")}=t(:forgotten_password_link)
+            - if allow_password_recovery?
+              %p
+                %a{:href=>url("/forgotten_password")}=t(:forgotten_password_link)
+            - if Buhos::Configuration.self_registration?
+              %p
+                =t('registration.no_account')
+                %a{:href=>url('/register')}=t('registration.create_account')

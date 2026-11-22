@@ -24,7 +24,7 @@
       - if @have_permit
         =@select_role.html(@usuario[:id], @usuario[:role_id])
       - else
-        =@usuario[:role_id]
+        =t("role_labels.#{@usuario.role_id}", default: @usuario.role_id)
   %tr
     %th=t(:Active_user)
     %td

@@ -7,6 +7,33 @@ class Invitation < Sequel::Model
   many_to_one :sender, class: :User, key: :sender_id
   many_to_one :user
 
+  def existing_account
+    User.where(Sequel.function(:lower, :email)=>email.downcase).first
+  end
+
+  def accept_with_account!(account)
+    db.transaction do
+      refresh
+      raise InvalidRegistration, 'unavailable' unless decision == 'pending' && user_id.nil?
+      raise InvalidRegistration, 'invalid_group' unless systematic_review.group
+      raise InvalidRegistration, 'sign_in_existing' unless account && account.id == existing_account&.id && account.active
+
+      decide!('accepted')
+      claimed=self.class.where(id: id, decision: 'accepted', user_id: nil).update(user_id: account.id)
+      raise InvalidRegistration, 'unavailable' unless claimed == 1
+      add_to_review_group(account)
+      refresh
+    end
+  end
+
+  def add_to_review_group(account)
+    membership={group_id: systematic_review.group_id, user_id: account.id}
+    GroupsUser.insert(membership) unless GroupsUser[membership]
+    data=SystematicReviewUserData.find_or_create(user_id: account.id, systematic_review_id: systematic_review_id)
+    data.update(invitation_sent: true) if email_sent
+  end
+  private :add_to_review_group
+
   def suggested_login
     base=name.downcase.gsub(/[[:space:]]+/, '').gsub(/[^[:alnum:]_.-]/, '')
     base='user' if base.empty?
@@ -49,13 +76,12 @@ class Invitation < Sequel::Model
       raise InvalidRegistration, 'invalid_group' unless systematic_review.group
       raise InvalidRegistration, 'login_taken' if User.where(Sequel.function(:lower, :login)=>login.downcase).count > 0
       raise InvalidRegistration, 'email_exists' if User.where(Sequel.function(:lower, :email)=>email.downcase).count > 0
+      role=sender.role_id == 'independent_researcher' ? 'review_collaborator' : 'analyst'
       account=User.create(name: name, email: email, login: login,
-                          password: Digest::SHA1.hexdigest(password), role_id: 'analyst', active: true, language: language)
+                          password: Digest::SHA1.hexdigest(password), role_id: role, active: true, language: language)
       claimed=self.class.where(id: id, decision: 'accepted', user_id: nil).update(user_id: account.id)
       raise InvalidRegistration, 'unavailable' unless claimed == 1
-      GroupsUser.insert(group_id: systematic_review.group_id, user_id: account.id)
-      SystematicReviewUserData.create(user_id: account.id, systematic_review_id: systematic_review_id,
-                                     invitation_sent: email_sent)
+      add_to_review_group(account)
       refresh
       account
     end

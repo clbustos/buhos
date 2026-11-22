@@ -228,6 +228,28 @@ describe DocumentReport do
     expect(report.refresh.status).to eq('pending')
   end
 
+  it 'shows an empty state without report controls when the review has no reports' do
+    get '/review/1/administration_document_reports', stage:'screening_title_abstract'
+
+    expect(last_response).to be_ok
+    html=Nokogiri::HTML(last_response.body)
+    expect(html.at_css('.alert-info').text).to eq('No documents have been reported')
+    expect(html.css('.nav-pills, input[name="hide_resolved"], table')).to be_empty
+  end
+
+  it 'keeps the filter available when all reported documents are resolved in the selected stage' do
+    DocumentReport.create(systematic_review_id:1, canonical_document_id:1, user_id:1, report_type:'duplicate')
+    Resolution.set_for_document(systematic_review_id:1, canonical_document_id:1, stage:'review_full_text', resolution:'yes', user_id:1)
+
+    get '/review/1/administration_document_reports', stage:'review_full_text', hide_resolved:'true'
+
+    expect(last_response).to be_ok
+    html=Nokogiri::HTML(last_response.body)
+    expect(html.at_css('#no-visible-reported-documents:not(.hidden)')).not_to be_nil
+    expect(html.at_css('input[name="hide_resolved"][checked]')).not_to be_nil
+    expect(html.at_css('#reported-documents')).to be_nil
+  end
+
   it 'hides documents resolved only in the selected stage, independently of report status' do
     [1,2,3].each do |cd_id|
       DocumentReport.create(systematic_review_id:1, canonical_document_id:cd_id, user_id:1, report_type:'duplicate')
@@ -409,6 +431,9 @@ describe DocumentReport do
 
     get '/review/1/administration_document_reports', stage:'screening_title_abstract'
     expect(last_response.body).to include('reported-document-1', 'reported-document-2')
+    comment_editor=Nokogiri::HTML(last_response.body).at_css('#reported-document-1 #resolution-1')
+    expect(comment_editor.text.strip).to eq('Add resolution comment')
+    expect(comment_editor['data-value']).to eq('')
     get '/review/1/administration_document_reports', stage:'review_full_text'
     expect(last_response.body).to include('reported-document-1', 'reported-document-2')
 

@@ -7,6 +7,41 @@
 
 # @!group Systematic reviews
 
+helpers do
+  def review_groups_for(user_id, can_manage_groups)
+    return Group.dataset if can_manage_groups
+
+    Group.where(id: GroupsUser.where(user_id: user_id).select(:group_id))
+  end
+
+  def review_transfer_groups(groups, review)
+    required_users=review.users_required_for_group_transfer
+    return groups if required_users.empty?
+
+    matching_groups=GroupsUser.where(user_id: required_users).
+      group(:group_id).having { count(:user_id) =~ required_users.size }.select(:group_id)
+    groups.where(Sequel.|({id: review.group_id}, {id: matching_groups}))
+  end
+
+  def prepare_review_group_options
+    @can_manage_groups=auth_to('group_admin')
+    groups=review_groups_for(session['user_id'], @can_manage_groups)
+    unless @review.new?
+      halt 403 unless groups.where(id: @review.group_id).first
+      groups=review_transfer_groups(groups, @review)
+    end
+    @can_create_review_group=@review.new? ||
+      (independent_researcher? && (@review.users_required_for_group_transfer - [session['user_id']]).empty?)
+    @review_groups=groups.order(:name, :id).all
+    @review_group_members={}
+    if @can_manage_groups
+      @review_groups.each do |group|
+        @review_group_members[group.id]=group.users_dataset.order(:name, Sequel[:users][:id]).all
+      end
+    end
+  end
+end
+
 # Get a list of systematic Reviews
 get '/reviews' do
   halt_unless_auth('review_view')
@@ -15,7 +50,7 @@ get '/reviews' do
   @show_inactives||='only_actives'
   @show_only_user=params['show_only_user']
   @show_only_user||='yes'
-  if @show_only_user=='yes'
+  if @show_only_user=='yes' || scoped_researcher?
     @reviewes=SystematicReview.get_reviews_by_user(@user.id)
   else
     @reviewes=SystematicReview
@@ -30,21 +65,13 @@ end
 
 # Form to create a new systematic review
 get '/review/new' do
-  halt_unless_auth('review_edit')
+  halt 403 unless can_create_review?
 
   require 'date'
   title(t(:Systematic_review_new))
-  first_group=User[session['user_id']].groups.first
-  if first_group.nil?
-    add_message(I18n::t(:user_should_be_included_in_one_group_at_least), :error)
-    redirect back
-  end
   @current_year=DateTime.now.year
-  administrator=first_group[:group_administrator]
   @review=SystematicReview.new(      active:            true,
                                      stage:             "search",
-                                     group:             first_group,
-                                     sr_administrator:  administrator,
                                      date_creation:     Date.today,
                                      year_start:        @current_year,
                                      year_end:          @current_year,
@@ -52,6 +79,7 @@ get '/review/new' do
                                      blind_reference_screening: false
                                      )
   @taxonomy_categories_id=[]
+  prepare_review_group_options
 
   haml "systematic_reviews/edit".to_sym, escape_html: false
 end
@@ -72,7 +100,7 @@ get "/review/:id" do |id|
 end
 
 get '/review/:id/dashboard' do |id|
-  halt_unless_auth('review_edit')
+  halt_unless_auth(scoped_researcher? ? 'review_view' : 'review_edit')
   @review=SystematicReview[id]
   raise Buhos::NoReviewIdError, id if !@review
   @user=User[session['user_id']]
@@ -88,6 +116,7 @@ get "/review/:id/edit" do |id|
 
   @review=SystematicReview[id]
   raise Buhos::NoReviewIdError, id if !@review
+  prepare_review_group_options
   @taxonomy_categories_id=@review.taxonomy_categories_id
   title(t(:Systematic_review_edit, sr_name:@review.name))
   haml "systematic_reviews/edit".to_sym, escape_html: false
@@ -98,22 +127,18 @@ end
 # @see /review/:id/edit
 # @see /review/new
 post '/review/update' do
-  halt_unless_auth('review_edit')
-
   id=params['review_id']
-  otros_params=params
-  otros_params.delete("review_id")
-  otros_params.delete("captures")
-  strc=params.delete("srtc")
-  criteria=params.delete("criteria")
+  creating=id == ''
+  halt 403 unless creating ? can_create_review? : auth_to('review_edit')
+  halt 400 unless creating || id.to_s.match?(/\A[1-9][0-9]*\z/)
+  strc=params['srtc']
+  criteria=params['criteria']
   criteria||={'inclusion'=>[], 'exclusion'=>[]}
-  otros_params=otros_params.inject({}) {|ac,v|
-    ac[v[0].to_sym]=v[1];ac
-  }
-
-
-  #  aa=SystematicReview.new
-  #$log.info(otros_params)
+  fields=%i[name description date_creation research_questions objectives year_start year_end keywords
+            n_min_rr_rtr active show_other_users_tags blind_reference_screening stage conflict_of_interest]
+  otros_params=(fields + SystematicReview::EXPECTED_REVIEWER_FIELDS).each_with_object({}) do |field, values|
+    values[field]=params[field.to_s] if params.key?(field.to_s)
+  end
 
   SystematicReview::EXPECTED_REVIEWER_FIELDS.each do |field|
     next unless otros_params.key?(field)
@@ -122,11 +147,66 @@ post '/review/update' do
     otros_params[field]=value.to_i
   end
 
-  $db.transaction(:rollback=>:reraise) do
-    if(id=="")
+  transaction_options={rollback: :reraise}
+  transaction_options[:mode]=:immediate if $db.database_type == :sqlite
+  $db.transaction(transaction_options) do
+    user_id=session['user_id']
+    can_manage_groups=auth_to('group_admin')
+    groups=review_groups_for(user_id, can_manage_groups)
+    unless creating
+      revision=SystematicReview.where(id: id).for_update.first
+      raise Buhos::NoReviewIdError, id unless revision
+      halt 403 unless groups.where(id: revision.group_id).first
+    end
+
+    group_mode=params['group_mode']
+    group_mode ||= (creating && params['group_id'].to_s.empty? ? 'new' : 'existing')
+    if group_mode == 'new' && (creating || independent_researcher?)
+      if revision && !(revision.users_required_for_group_transfer - [user_id]).empty?
+        halt 422, t('systematic_review.group_missing_participants')
+      end
+      name=otros_params[:name] || revision&.name
+      halt 400 if name.to_s.strip.empty?
+      group=Group.create(name: name, description: otros_params.fetch(:description, revision&.description),
+                         group_administrator: user_id)
+      GroupsUser.insert(group_id: group.id, user_id: user_id)
+      otros_params.merge!(group_id: group.id, sr_administrator: user_id)
+    elsif group_mode == 'existing'
+      group_id=params['group_id'] || revision&.group_id
+      halt 400 unless group_id.to_s.match?(/\A[1-9][0-9]*\z/)
+      group=groups.where(id: group_id).first
+      halt 403, t('systematic_review.group_unavailable') unless group
+      moving=revision && revision.group_id != group.id
+      if moving && !review_transfer_groups(groups, revision).where(id: group.id).first
+        halt 422, t('systematic_review.group_missing_participants')
+      end
+
+      default_administrator=if independent_researcher? && (creating || moving)
+        user_id
+      elsif creating || moving
+        group.group_administrator
+      else
+        revision.sr_administrator
+      end
+      administrator=params['sr_administrator'] || default_administrator
+      if administrator
+        halt 400 unless administrator.to_s.match?(/\A[1-9][0-9]*\z/)
+        administrator=administrator.to_i
+        halt 403 unless can_manage_groups || administrator == default_administrator
+      end
+      if (creating || moving || administrator != revision.sr_administrator) &&
+         !GroupsUser.where(group_id: group.id, user_id: administrator).first
+        halt 422, t('systematic_review.group_administrator_not_member')
+      end
+      otros_params[:group_id]=group.id
+      otros_params[:sr_administrator]=administrator if administrator
+    else
+      halt 400
+    end
+
+    if creating
       id=SystematicReview.insert(otros_params)
     else
-      revision=SystematicReview[id]
       revision.update(otros_params)
     end
 
@@ -268,6 +348,7 @@ end
 
 
 post '/review/:id/delete2' do |id|
+  halt_unless_auth('review_admin')
   id2=params['sr_id']
   @review=SystematicReview[id]
   raise Buhos::NoReviewIdError, id if !@review

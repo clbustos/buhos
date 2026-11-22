@@ -3,6 +3,7 @@ before '/review/:id/invitations' do
   @review=SystematicReview[params['id']]
   raise Buhos::NoReviewIdError, params['id'] unless @review
   @invitations=Invitation.where(systematic_review_id: @review.id).order(:id).all
+  @shared_invitation_group=@review.group && @review.group.systematic_reviews.limit(2).all.size > 1
   @language=params.fetch('language', %w[es en].include?(I18n.locale.to_s) ? I18n.locale.to_s : 'en')
   halt 400 unless %w[es en].include?(@language)
 end
@@ -36,7 +37,8 @@ post '/review/:id/invitations' do
   else
     @rows.each do |row|
       previous=Invitation[systematic_review_id: @review.id, email: row['email']]
-      if User.where(Sequel.function(:lower, :email)=>row['email']).count > 0
+      existing_account=User.where(Sequel.function(:lower, :email)=>row['email']).first
+      if existing_account && (!existing_account.active || review_group_member?(@review, existing_account.id))
         @error=t('invitations.email_exists')
       elsif previous && (previous.email_sent || previous.decision != 'pending')
         @error=t('invitations.already_invited')

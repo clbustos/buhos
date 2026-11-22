@@ -187,6 +187,12 @@ Como paso final, se llena la base de datos. Se debe reiniciar la aplicación ant
 
     
 
+### Registro de cuentas
+
+El registro de cuentas está desactivado de forma predeterminada. Para habilitarlo, define `SELF_REGISTRATION=true` en el entorno de la aplicación o guarda la clave `SELF_REGISTRATION` con valor `true` en **Administración → Configuraciones del sitio**. El valor guardado tiene prioridad. En una instalación existente, aplica la migración 34 y configura SMTP para enviar las notificaciones.
+
+La pantalla de entrada muestra **Crea una cuenta**. Las personas solicitan una cuenta con su nombre, nombre de usuario y correo. Quienes tienen permiso para administrar usuarios pueden aprobar o rechazar solicitudes en **Administración → Solicitudes de registro**. Si la solicitud se aprueba, Buhos crea una cuenta de Investigador independiente y envía un enlace de un solo uso para establecer la contraseña. Si se rechaza, envía una notificación estándar.
+
 ## Implementación
 
 Para su uso individual, la aplicación puede ejecutarse sin problemas usando el instalador en Windows, o los paquetes para Ubuntu, Debian o CentOS.

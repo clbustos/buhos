@@ -10,53 +10,62 @@
     %a{:href=>url("/review/#{@review.id}/administration/#{@stage}")}=t(get_stages_names[@stage])
   %li.active=t('document_reports.document_reports')
 
-%ul.nav.nav-pills
-  - %w[screening_title_abstract screening_references review_full_text].each do |stage|
-    %li{:class=>(stage == @stage ? 'active' : nil)}
-      %a{:href=>url("/review/#{@review.id}/administration_document_reports?stage=#{stage}&hide_resolved=#{@hide_resolved}")}=t(get_stages_names[stage])
+- if @reports_by_cd.empty?
+  %p.alert.alert-info=t('document_reports.no_reported_documents')
+- else
+  %ul.nav.nav-pills
+    - %w[screening_title_abstract screening_references review_full_text].each do |stage|
+      %li{:class=>(stage == @stage ? 'active' : nil)}
+        %a{:href=>url("/review/#{@review.id}/administration_document_reports?stage=#{stage}&hide_resolved=#{@hide_resolved}")}=t(get_stages_names[stage])
 
-%form.form-inline{:method=>'get', :action=>url("/review/#{@review.id}/administration_document_reports")}
-  %input{:type=>'hidden', :name=>'stage', :value=>@stage}
-  %label
-    %input{:type=>'checkbox', :name=>'hide_resolved', :value=>'true', :checked=>@hide_resolved, :onchange=>'this.form.submit()'}
-    =t('document_reports.hide_documents_with_resolution')
+  %form.form-inline{:method=>'get', :action=>url("/review/#{@review.id}/administration_document_reports")}
+    %input{:type=>'hidden', :name=>'stage', :value=>@stage}
+    %label
+      %input{:type=>'checkbox', :name=>'hide_resolved', :value=>'true', :checked=>@hide_resolved, :onchange=>'this.form.submit()'}
+      =t('document_reports.hide_documents_with_resolution')
 
-:javascript
-  $(document).ready(function() {
-    actualizar_resolution('#{@stage}');
-    $(document).on('resolution:updated', function(event, cd_id, resolution, stage) {
-      if (#{@hide_resolved} && stage === '#{@stage}' && (resolution === 'yes' || resolution === 'no')) {
-        $('#reported-document-' + cd_id).remove();
-      }
+  :javascript
+    $(document).ready(function() {
+      actualizar_resolution('#{@stage}');
+      $(document).on('resolution:updated', function(event, cd_id, resolution, stage) {
+        if (#{@hide_resolved} && stage === '#{@stage}' && (resolution === 'yes' || resolution === 'no')) {
+          $('#reported-document-' + cd_id).remove();
+          if ($('#reported-documents tbody tr').length === 0) {
+            $('#reported-documents').addClass('hidden');
+            $('#no-visible-reported-documents').removeClass('hidden');
+          }
+        }
+      });
     });
-  });
 
-- rpc=@ars.resolution_by_cd(@stage)
-- rcompc=@ars.resolution_commentary_by_cd(@stage)
-%table.table.table-bordered
-  %thead
-    %tr
-      %th=t(:Document)
-      %th=t('document_reports.document_reports')
-      %th
-        =t(:Resolution)
-        =t(get_stages_names[@stage])
-  %tbody
-    - @reported_cds.each do |cd|
-      %tr{:id=>"reported-document-#{cd.id}"}
-        %td
-          =CGI::escapeHTML cd.ref_apa_6_brief
-          =partial(:canonical_document_button, locals:{id:cd.id, review:@review})
-          =partial(:canonical_document_button_abstract_collapsible, locals:{cd:cd})
-        %td
-          - @reports_by_cd[cd.id].each do |report|
-            %p.document-report-entry
-              %strong=t("document_reports.#{report.report_type}")
-              =CGI::escapeHTML @report_users[report.user_id][:name].to_s
-              =partial(:document_report_status, locals:{report:report, review:@review})
-              =CGI::escapeHTML report.commentary.to_s
-        %td
-          - if auth_to('review_admin')
-            =partial(:buttons_resolution, locals:{rpc:rpc, rcompc:rcompc, cd_id:cd.id, stage:@stage, user_id:@user_id, review:@review})
-          - else
-            =partial(:buttons_resolution_view, locals:{rpc:rpc, rcompc:rcompc, cd_id:cd.id, stage:@stage, user_id:@user_id, review:@review})
+  %p#no-visible-reported-documents.alert.alert-info{:class=>('hidden' unless @reported_cds.empty?)}=t('document_reports.no_reported_documents_without_resolution')
+  - unless @reported_cds.empty?
+    - rpc=@ars.resolution_by_cd(@stage)
+    - rcompc=@ars.resolution_commentary_by_cd(@stage)
+    %table#reported-documents.table.table-bordered
+      %thead
+        %tr
+          %th=t(:Document)
+          %th=t('document_reports.document_reports')
+          %th
+            =t(:Resolution)
+            =t(get_stages_names[@stage])
+      %tbody
+        - @reported_cds.each do |cd|
+          %tr{:id=>"reported-document-#{cd.id}"}
+            %td
+              =CGI::escapeHTML cd.ref_apa_6_brief
+              =partial(:canonical_document_button, locals:{id:cd.id, review:@review})
+              =partial(:canonical_document_button_abstract_collapsible, locals:{cd:cd})
+            %td
+              - @reports_by_cd[cd.id].each do |report|
+                %p.document-report-entry
+                  %strong=t("document_reports.#{report.report_type}")
+                  =CGI::escapeHTML @report_users[report.user_id][:name].to_s
+                  =partial(:document_report_status, locals:{report:report, review:@review})
+                  =CGI::escapeHTML report.commentary.to_s
+            %td
+              - if auth_to('review_admin')
+                =partial(:buttons_resolution, locals:{rpc:rpc, rcompc:rcompc, cd_id:cd.id, stage:@stage, user_id:@user_id, review:@review})
+              - else
+                =partial(:buttons_resolution_view, locals:{rpc:rpc, rcompc:rcompc, cd_id:cd.id, stage:@stage, user_id:@user_id, review:@review})

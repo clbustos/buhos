@@ -37,6 +37,7 @@ get %r{/review/(\d+)/searches/analyze(?:/(.*))?} do
 
   if search_ids.to_s!=""
     @searches=Search.where(:id=>search_ids.split(","))
+    @searches=@searches.where(systematic_review_id: @review.id) if scoped_researcher?
   else
     @searches=Search.where(:systematic_review_id=>sr_id)
   end

@@ -34,6 +34,7 @@ get '/user/:user_id' do |user_id|
     new_user_id=User.create_new_user(session['language'])
     @usuario=User[new_user_id]
   else
+    halt 403 if scoped_researcher? && !is_session_user(user_id)
     @usuario=User[user_id]
   end
 
@@ -45,7 +46,8 @@ get '/user/:user_id' do |user_id|
 
   @rss=@usuario.systematic_reviews.where(:active=>true)
 
-  @select_role=get_xeditable_select(Hash[Role.map{ |r| [r[:id], r[:id]] }],'/user/edit/role_id','select_role')
+  role_options=Role.to_hash.transform_values {|role| t("role_labels.#{role.id}", default: role.id)}
+  @select_role=get_xeditable_select(role_options,'/user/edit/role_id','select_role')
   @select_role.active=false if(!auth_to("user_admin") or user_id.to_i==session['user_id'])
 
   @select_active_user=get_xeditable_select_bool('/user/edit/active','select_active')

@@ -1,10 +1,6 @@
 .heading
   =t_systematic_review_title(@review[:name], "systematic_review_page.#{@stage}_administration")
 
-
-
-
-
 =partial(:breadcrumb_review_admin,:locals=>{:name=>t(@name_stage)})
 
 %p.info=t_desc_value(:Count_canonical_documents, @cds_id.length)
@@ -14,15 +10,12 @@
 %h3=t(:Statistics_by_user)
 
 .btn-group
-  %a.btn.btn-sm.btn-default{:href=>url("/review/#{@review.id}/administration/#{@stage}/reviewer_agreement")}
-    %span.glyphicon.glyphicon-stats
-    =t('reviewer_agreement.title')
-  %a.btn.btn-sm.btn-warning{:href=>url("/review/#{@review.id}/administration_document_reports?stage=#{@stage}")}
-    %span.glyphicon.glyphicon-warning-sign
-    =t('document_reports.view_reported_documents')
   %a.btn.btn-sm.btn-default{:href=>"/review/#{@review[:id]}/administration/#{@stage}/cd_assignations"}
     %span.glyphicon.glyphicon-list
     =t(:Check_CD_assignations)
+  %a.btn.btn-sm.btn-default{:href=>url("/review/#{@review.id}/administration/#{@stage}/reviewer_agreement")}
+    %span.glyphicon.glyphicon-stats
+    =t('reviewer_agreement.title')
   %a.btn.btn-sm.btn-default{:href=>url("/review/#{@review.id}/administration/#{@stage}/resolved_without_vote")}
     %span.glyphicon.glyphicon-check
     =t('resolved_without_vote.title')
@@ -70,9 +63,15 @@
       - Decision::N_EST.each_key do |dec|
         %td=user_decisions.values.sum {|edu| edu[:adu].total_decisions[dec].to_i}
 
-=partial(:decision_statistics)
+
+%h3=t(:Administrative_actions)
 
 =partial(:sr_administration_actions, :locals=>{review:@review, stage:@stage})
+
+%h3=t(:Decisions_and_Resolutions)
+
+=partial(:decision_statistics)
+
 
 -if @stage.to_sym==:review_full_text
   %h3=t(:Canonical_Document_Status)

@@ -30,6 +30,12 @@
 
 
 class Buhos::Configuration < Sequel::Model
+  def self.self_registration?
+    value=get('SELF_REGISTRATION')
+    value=ENV['SELF_REGISTRATION'] if value.nil?
+    %w[1 true yes on].include?(value.to_s.strip.downcase)
+  end
+
   # Resolve each SMTP setting independently; stored empty values override ENV too.
   def self.smtp_settings
     %w[SERVER USER PASSWORD SECURITY PORT].each_with_object({}) do |name, settings|

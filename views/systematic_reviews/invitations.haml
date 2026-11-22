@@ -15,6 +15,11 @@
 - if @error
   %p.alert.alert-danger{:role=>'alert'}=escape_html(@error)
 - if @rows
+  - if @shared_invitation_group
+    .alert.alert-warning{:role=>'alert'}
+      %p=t('invitations.shared_group_warning')
+      %p
+        %a.alert-link{:href=>url("/review/#{@review.id}/edit")}=t(:Edit)
   %form{:method=>'post', :action=>url("/review/#{@review.id}/invitations")}
     %input{:type=>'hidden', :name=>'language', :value=>@language}
     %table.table

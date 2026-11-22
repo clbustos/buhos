@@ -273,6 +273,9 @@ passenger_ruby &lt;ruby_location&gt;
 <p>At the end of the process, restart the application. By default, a user with administrator permissions will receive &apos;admin&apos; as their user name and password.</p>
 <p><img class='border img-fluid interface' src="images/image5.png" /></p>
 <p>To close the application in Linux,  <kbd>Ctrl+C</kbd> can be used in the console. In Windows, close the window displaying the system logs.</p>
+<h4>Account registration</h4>
+<p>Self-registration is disabled by default. To enable it, set <code>SELF_REGISTRATION=true</code> in the application's environment or save the key <code>SELF_REGISTRATION</code> with the value <code>true</code> under <strong>Administration → Site configurations</strong>. The saved value takes precedence. For an existing installation, apply migration 34 and configure SMTP for email notifications.</p>
+<p>The sign-in page shows <strong>Create an account</strong>. Applicants submit their name, username, and email address. Users with permission to manage users can approve or reject requests under <strong>Administration → Registration requests</strong>. On approval, Buhos creates an Independent researcher account and emails a one-time link to set a password. The link expires after 30 minutes. On rejection, Buhos emails a standard notice.</p>
 </article>
 <article>
 <h2 id="user_guide">Quick User Guide</h2>

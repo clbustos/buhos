@@ -73,8 +73,9 @@ end
 get '/review/:rs_id/field/:fid/delete' do  |rs_id, fid|
   halt_unless_auth('review_admin')
   sr_field=SrField[fid]
-  name=sr_field[:name]
   return 404 if !sr_field
+  halt 404 if scoped_researcher? && sr_field.systematic_review_id.to_s != rs_id
+  name=sr_field[:name]
   sr_field.delete
   add_message(t("fields.field_deleted", name:name))
   redirect back

@@ -98,6 +98,12 @@ AND  #{cd_query} GROUP BY tags.id) as t LEFT JOIN tag_in_classes tecl ON t.id=te
   def group_users
     group.nil? ? nil : group.users
   end
+
+  def users_required_for_group_transfer
+    [Decision, Resolution, AllocationCd].flat_map do |model|
+      model.where(systematic_review_id: id).distinct.select_map(:user_id)
+    end.uniq
+  end
   def stage_name
     Buhos::Stages.get_stage_name(self.stage.to_sym)
   end

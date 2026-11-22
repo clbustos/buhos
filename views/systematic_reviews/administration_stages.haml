@@ -9,9 +9,13 @@
     %a{:href=>url("/review/#{@review[:id]}")}=@review[:name]
   %li{:class=>"active"}=t(:Administration)
 
+.h3=t(:General_actions)
 %ul
   %li
     %a{:href=>url("/review/#{@review.id}/administration_document_reports")}=t('document_reports.document_reports')
+
+.h3=t(:Stages)
+%ul
   - @review.current_stages.each do |stage|
     %li
       %a{:href=>"/review/#{@review[:id]}/administration/#{stage}"}

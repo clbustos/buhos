@@ -6,6 +6,12 @@
     %p=t('invitations.goodbye')
   - elsif @invitation.user_id
     %p=t('invitations.registered')
+    - if @signed_in_invitee
+      %a.btn.btn-primary{:href=>url("/review/#{@review.id}")}=t(:View_technical_record)
+    - else
+      %a.btn.btn-primary{:href=>url('/login')}=t('invitations.sign_in')
+  - elsif @existing_account && !@signed_in_invitee
+    %p=t('invitations.sign_in_existing')
     %a.btn.btn-primary{:href=>url('/login')}=t('invitations.sign_in')
   - elsif @invitation.decision == 'pending'
     %p=escape_html(t('invitations.welcome', name: @invitation.name, review: @review.name))

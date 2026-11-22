@@ -75,6 +75,8 @@ module Buhos
       ::SystematicReview.dataset=self[:systematic_reviews]
       ::SystematicReviewUserData.dataset=self[:systematic_review_user_data]
       ::Invitation.dataset=self[:invitations]
+      ::RegistrationRequest.dataset=self[:registration_requests]
+      ::SecurityEvent.dataset=self[:security_events]
       ::SrField.dataset=self[:sr_fields]
       ::SrTaxonomy.dataset=self[:sr_taxonomies]
       ::SrTaxonomyCategory.dataset=self[:sr_taxonomy_categories]

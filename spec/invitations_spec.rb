@@ -56,6 +56,37 @@ describe 'External invitations' do
     expect(page.css('input[name="names[]"], input[name="emails[]"], blockquote, form[method=post]')).to be_empty
   end
 
+  it 'warns before selecting invitees only when the group has multiple reviews' do
+    get @path, count: 1
+    expect(Nokogiri::HTML(last_response.body).at_css('.alert-warning')).to be_nil
+
+    SystematicReview.create(name: 'Shared review', group_id: @review.group_id, sr_administrator: @sender.id)
+    get @path, count: 1
+    warning=Nokogiri::HTML(last_response.body).at_css('.alert-warning')
+    expect(warning.text).to include('gives them access to its other reviews', 'create a separate group')
+    expect(warning.at_css('a')['href']).to eq("/review/#{@review.id}/edit")
+  end
+
+  it 'adds an existing user after the invited account signs in' do
+    account=User.create(login: 'existing_invitee', name: 'Existing invitee', email: 'existing@example.com',
+                        role_id: 'independent_researcher', password: Digest::SHA1.hexdigest('secret'))
+    post @path, names: [account.name], emails: [account.email]
+    expect(last_response).to be_redirect
+    record=Invitation[email: account.email]
+
+    visit_public(record)
+    expect(last_response.body).to include('Sign in with the account that received this invitation')
+    post "#{@public_path}/decision", decision: 'accepted'
+    expect(last_response.status).to eq(422)
+    expect(record.refresh.decision).to eq('pending')
+
+    post '/login', user: account.login, password: 'secret'
+    post "#{@public_path}/decision", decision: 'accepted'
+    expect(last_response).to be_redirect
+    expect(record.refresh.user_id).to eq(account.id)
+    expect(account.groups.map(&:id)).to include(@review.group_id)
+  end
+
   it 'previews the selected language and retains it on validation errors' do
     get @path, count: 2, language: 'es'
     page=Nokogiri::HTML(last_response.body)
@@ -133,7 +164,7 @@ describe 'External invitations' do
     expect(Message.count).to eq(1)
     expect(Message.first.text).to include('accepted')
     follow_redirect!
-    expect(last_response.body).to include('Your account was created')
+    expect(last_response.body).to include('You have joined the review group.')
     post "#{@public_path}/register", login: 'secondaccount', password: 'secret', repeat_password: 'secret'
     expect(last_response.status).to eq(409)
     expect(User[login: 'secondaccount']).to be_nil

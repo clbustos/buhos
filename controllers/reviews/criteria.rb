@@ -23,6 +23,12 @@ post '/review/criteria/cd' do
   raise Buhos::NoCdIdError , params['cd_id'] if !cd
   raise Buhos::NoUserIdError, params['user_id'] if !user
   raise Buhos::NoCriterionIdError, params['criterion_id'] if !criterion
+  if scoped_researcher?
+    halt_unless_auth('review_analyze')
+    halt 403 unless is_session_user(user.id)
+    halt 404 unless sr.cd_all_id_table.where(cd_id: cd.id).first &&
+      $db[:sr_criteria].where(systematic_review_id: sr.id, criterion_id: criterion.id).first
+  end
 
   raise I18n::t("criteria.not_valid_presence_type", type:presence) unless CdCriterion.valid_presence? presence
 
