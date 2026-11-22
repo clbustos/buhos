@@ -6,6 +6,21 @@ class RegistrationRequest < Sequel::Model
 
   many_to_one :user
 
+  def self.notification_recipient
+    configured_id=Buhos::Configuration.get('REGISTRATION_EMAIL_TO')
+    configured_id=(configured_id || ENV['REGISTRATION_EMAIL_TO']).to_s.strip
+    users=User.where(active: true).exclude(email: nil)
+    if configured_id.empty?
+      roles=AuthorizationsRole.where(authorization_id: 'registration_admin').select(:role_id)
+      users=users.where(role_id: roles).order(:id)
+    elsif configured_id.match?(/\A[1-9][0-9]*\z/)
+      users=users.where(id: configured_id)
+    else
+      return
+    end
+    users.find {|user| !user.email.strip.empty?}
+  end
+
   def self.identity_taken?(login, email)
     User.where(Sequel.|({Sequel.function(:lower, :login)=>login},
                         {Sequel.function(:lower, :email)=>email})).first

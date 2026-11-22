@@ -389,6 +389,8 @@ module Buhos
       db[:roles].insert(:id => 'administrator', :description => 'App administrator') unless db[:roles][id:'administrator']
       db[:roles].insert(:id => 'analyst', :description => 'App analyst') unless db[:roles][id:'analyst']
       db[:roles].insert(:id => 'guest', :description => 'Guest') unless db[:roles][id:'guest']
+      db[:roles].insert(id: 'independent_researcher', description: 'Independent researcher') unless db[:roles][id: 'independent_researcher']
+      db[:roles].insert(id: 'review_collaborator', description: 'Review collaborator') unless db[:roles][id: 'review_collaborator']
     end
 
     # Insert data for taxonomies
@@ -447,6 +449,13 @@ module Buhos
       guest_permits.each do |auth|
         db[:authorizations_roles].replace(:authorization_id => auth, :role_id => 'guest') if db[:authorizations_roles].where(:authorization_id => auth, :role_id => 'guest').count==0
       end
+
+      %w[independent_researcher review_collaborator].each do |role_id|
+        %w[review_view group_view].each do |authorization_id|
+          grant={role_id: role_id, authorization_id: authorization_id}
+          db[:authorizations_roles].insert(grant) unless db[:authorizations_roles][grant]
+        end
+      end
     end
 
     def self.create_authorizations(db)
@@ -465,6 +474,7 @@ module Buhos
           'record_view',
           'reference_edit',
           'reference_view',
+          'registration_admin',
           'reflection',
           'review_admin',
           'review_admin_view',

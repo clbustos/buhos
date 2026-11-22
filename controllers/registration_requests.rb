@@ -3,6 +3,24 @@ helpers do
     haml :registration, layout: :layout_empty, escape_html: false
   end
 
+  def notify_registration_administrator(registration)
+    recipient=RegistrationRequest.notification_recipient
+    unless recipient
+      $log.warn("No recipient for new registration request #{registration.id}")
+      return
+    end
+
+    locale=recipient.language.to_s
+    locale='en' unless I18n.available_locales.map(&:to_s).include?(locale)
+    queue_url="#{request.base_url}#{url('/admin/registration_requests')}"
+    sent=OutgoingEmail.new.send_email(recipient.email.strip,
+      I18n.t('registration.new_request_subject', locale: locale),
+      I18n.t('registration.new_request_body', locale: locale, url: queue_url))
+    $log.warn("Could not notify administrator for registration request #{registration.id}") unless sent
+  rescue StandardError => error
+    $log.error("Administrator notification failed for registration request #{registration.id}: #{error.class}")
+  end
+
   def notify_registration_request(registration)
     locale=registration.language
     details={locale: locale}
@@ -49,7 +67,8 @@ post '/register' do
   end
 
   language=I18n.locale.to_s == 'es' ? 'es' : 'en'
-  RegistrationRequest.create(name: name, login: login, email: email, language: language, created_at: Time.now)
+  registration=RegistrationRequest.create(name: name, login: login, email: email, language: language, created_at: Time.now)
+  notify_registration_administrator(registration)
   add_message(t('registration.submitted'))
   redirect url('/login')
 rescue RegistrationRequest::IdentityTaken, Sequel::UniqueConstraintViolation
@@ -59,13 +78,13 @@ rescue RegistrationRequest::IdentityTaken, Sequel::UniqueConstraintViolation
 end
 
 get '/admin/registration_requests' do
-  halt_unless_auth('user_admin')
+  halt_unless_auth('registration_admin')
   @registration_requests=RegistrationRequest.order(Sequel.desc(:pending), :created_at, :id).all
   haml :'admin/registration_requests', escape_html: false
 end
 
 post '/admin/registration_requests/:id' do |id|
-  halt_unless_auth('user_admin')
+  halt_unless_auth('registration_admin')
   registration=RegistrationRequest[id]
   halt 404 unless registration
 

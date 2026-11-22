@@ -1,5 +1,7 @@
 es:
   registration:
+    new_request_subject: "Nueva solicitud de registro en Buhos"
+    new_request_body: "Hay una nueva solicitud de cuenta pendiente. Puedes revisarla en %{url}."
     no_account: "¿No eres usuario?"
     create_account: "Crea una cuenta"
     submit: "Enviar solicitud"
@@ -745,6 +747,7 @@ es:
     search_edit: 'Búsqueda: Editar'
     search_view: 'Búsqueda: Ver'
     tag_edit: 'Etiquetas: Editar'
+    registration_admin: 'Administrar solicitudes de registro'
     user_admin: 'Usuario: Admin'
     institution_admin: 'Instituciones: Admin'
     favorite_edit: 'Favoritos: Editar'

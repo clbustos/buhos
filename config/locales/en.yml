@@ -1,5 +1,7 @@
 en:
   registration:
+    new_request_subject: "New Buhos registration request"
+    new_request_body: "A new account request is pending. You can review it at %{url}."
     no_account: "Don't have an account?"
     create_account: "Create an account"
     submit: "Submit request"
@@ -743,6 +745,7 @@ en:
     search_edit: 'Searches: Edit'
     search_view: 'Searches: See'
     tag_edit: 'Tags: Edit'
+    registration_admin: 'Manage registration requests'
     user_admin: 'Users: Admin'
     institution_admin: 'Institutions: Admin'
     favorite_edit: 'Favorite: Edit'

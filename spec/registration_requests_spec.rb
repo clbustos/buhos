@@ -7,6 +7,7 @@ describe 'Self-registration' do
   before do
     configure_empty_database
     Buhos::Configuration.set('SELF_REGISTRATION', 'true')
+    Buhos::Configuration.set('REGISTRATION_EMAIL_TO', '')
     Mail::TestMailer.deliveries.clear
   end
 
@@ -53,7 +54,61 @@ describe 'Self-registration' do
     expect(RegistrationRequest.count).to eq(1)
   end
 
-  it 'allows a user administrator to approve and the applicant to set a password once' do
+  it 'emails the configured active user when a request is queued' do
+    previous=ENV['REGISTRATION_EMAIL_TO']
+    previous_locales=I18n.available_locales
+    I18n.available_locales=previous_locales | [:pl]
+    I18n.reload!
+    recipient=User[login: 'analyst']
+    recipient.update(email: 'assigned@example.com', language: 'pl')
+    Buhos::Configuration.where(id: 'REGISTRATION_EMAIL_TO').delete
+    ENV['REGISTRATION_EMAIL_TO']=recipient.id.to_s
+
+    submit_registration
+    expect(last_response).to be_redirect
+    message=Mail::TestMailer.deliveries.fetch(0)
+    expect(message.to).to eq([recipient.email])
+    expect(message.subject).to eq(I18n.t('registration.new_request_subject', locale: :pl))
+    expect(message.body.decoded.force_encoding('UTF-8')).to include('czeka na rozpatrzenie')
+    expect(message.body.decoded).to include('http://example.org/admin/registration_requests')
+    expect(RegistrationRequest.first.notified_at).to be_nil
+  ensure
+    ENV['REGISTRATION_EMAIL_TO']=previous
+    I18n.available_locales=previous_locales
+    I18n.reload!
+  end
+
+  it 'defaults to the first active user with the registration permission and an email' do
+    admin=User[login: 'admin']
+    admin.update(email: 'admin@example.com', language: 'es')
+    analyst=User[login: 'analyst']
+    analyst.update(email: 'delegate@example.com')
+    Role['analyst'].add_auth_to(Authorization['registration_admin'])
+
+    submit_registration
+    expect(Mail::TestMailer.deliveries.map(&:to)).to eq([[admin.email]])
+    expect(Mail::TestMailer.deliveries.first.subject).to eq('Nueva solicitud de registro en Buhos')
+    admin.update(active: false)
+    submit_registration(login: 'other', email: 'other@example.com')
+    expect(Mail::TestMailer.deliveries.last.to).to eq([analyst.email])
+    login_analyst
+    get '/admin/registration_requests'
+    expect(last_response).to be_ok
+    expect(Nokogiri::HTML(last_response.body).at_css('a[href="/admin/registration_requests"]')).not_to be_nil
+    get '/admin/users'
+    expect(last_response.status).to eq(403)
+  end
+
+  it 'keeps the registration pending when the administrator notification fails' do
+    User[login: 'admin'].update(email: 'admin@example.com')
+    allow(OutgoingEmail).to receive(:new).and_raise(StandardError)
+
+    submit_registration
+    expect(last_response).to be_redirect
+    expect(RegistrationRequest.first.status).to eq('pending')
+  end
+
+  it 'allows a registration administrator to approve and the applicant to set a password once' do
     submit_registration
     registration=RegistrationRequest.first
     path="/admin/registration_requests/#{registration.id}"

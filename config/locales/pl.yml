@@ -1,4 +1,7 @@
 pl:
+  registration:
+    new_request_subject: "Nowy wniosek o rejestrację w Buhos"
+    new_request_body: "Nowy wniosek o założenie konta czeka na rozpatrzenie. Możesz go sprawdzić pod adresem %{url}."
   Check_inconsistencies: "Sprawdź niezgodności"
   Nothing_to_update: "Nic do zaktualizowania"
   Batch_edition: "Edycja grupowa"

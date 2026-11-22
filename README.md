@@ -189,7 +189,9 @@ As the final step, the database will be populated. You must restart the applicat
 
 Self-registration is disabled by default. To enable it, set `SELF_REGISTRATION=true` in the application's environment or save the key `SELF_REGISTRATION` with the value `true` under **Administration → Site configurations**. The saved value takes precedence. For an existing installation, apply migration 34 and configure SMTP for email notifications.
 
-The sign-in page shows **Create an account**. Applicants submit their name, username, and email address. Users with permission to manage users can approve or reject requests under **Administration → Registration requests**. On approval, Buhos creates an Independent researcher account and emails a one-time link to set a password. On rejection, Buhos emails a standard notice.
+The sign-in page shows **Create an account**. Applicants submit their name, username, and email address. Users with the Manage registration requests permission can approve or reject requests under **Administration → Registration requests**. On approval, Buhos creates an Independent researcher account and emails a one-time link to set a password. On rejection, Buhos emails a standard notice.
+
+Set `REGISTRATION_EMAIL_TO` to the numeric ID of the active user who should receive new request alerts. With no value set, Buhos emails the active user with the lowest ID who has the permission and an email address. Migration 35 grants this permission to the administrator role.
 
 ## Deployment
 
