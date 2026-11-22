@@ -1,6 +1,6 @@
 helpers do
   def render_registration_form
-    haml :registration, layout: :layout_empty, escape_html: true
+    haml :registration, layout: :layout_empty, escape_html: false
   end
 
   def notify_registration_request(registration)
@@ -61,7 +61,7 @@ end
 get '/admin/registration_requests' do
   halt_unless_auth('user_admin')
   @registration_requests=RegistrationRequest.order(Sequel.desc(:pending), :created_at, :id).all
-  haml :'admin/registration_requests', escape_html: true
+  haml :'admin/registration_requests', escape_html: false
 end
 
 post '/admin/registration_requests/:id' do |id|

@@ -15,7 +15,8 @@
 ## Textos de interfaz
 
 - Usa I18n para el texto visible y actualiza `config/locales/es.yml` y `config/locales/en.yml` cuando agregues o cambies traducciones.
-
+- Usar escape_html: false para los haml, excepto cuando sea estrictamente necesario
+ 
 ## Permisos y datos
 
 - Al cambiar rutas de una revisión, verifica en el servidor los permisos y la pertenencia de los usuarios o documentos a esa revisión.
